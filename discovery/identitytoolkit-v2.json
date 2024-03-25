@@ -1655,7 +1655,7 @@
       }
     }
   },
-  "revision": "20240118",
+  "revision": "20240313",
   "rootUrl": "https://identitytoolkit.googleapis.com/",
   "schemas": {
     "GoogleCloudIdentitytoolkitAdminV2AllowByDefault": {
@@ -2638,11 +2638,10 @@
           "type": "array"
         },
         "recaptchaKeys": {
-          "description": "Output only. The reCAPTCHA keys.",
+          "description": "The reCAPTCHA keys.",
           "items": {
             "$ref": "GoogleCloudIdentitytoolkitAdminV2RecaptchaKey"
           },
-          "readOnly": true,
           "type": "array"
         },
         "useAccountDefender": {
