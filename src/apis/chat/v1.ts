@@ -471,7 +471,7 @@ export namespace chat_v1 {
     deletionType?: string | null;
   }
   /**
-   * A Google Chat app interaction event. To learn about interaction events, see [Receive and respond to interactions with your Google Chat app](https://developers.google.com/chat/api/guides/message-formats). To learn about event types and for example event payloads, see [Types of Google Chat app interaction events](https://developers.google.com/chat/api/guides/message-formats/events).
+   * A Google Chat app interaction event. To learn about interaction events, see [Receive and respond to interactions with your Google Chat app](https://developers.google.com/workspace/chat/api/guides/message-formats). To learn about event types and for example event payloads, see [Types of Google Chat app interaction events](https://developers.google.com/workspace/chat/events). In addition to receiving events from user interactions, Chat apps can receive events about changes to spaces, such as when a new member is added to a space. To learn about space events, see [Work with events from Google Chat](https://developers.google.com/workspace/chat/events-overview).
    */
   export interface Schema$DeprecatedEvent {
     /**
@@ -515,7 +515,7 @@ export namespace chat_v1 {
      */
     token?: string | null;
     /**
-     * The type of interaction event. For details, see [Types of Google Chat app interaction events](https://developers.google.com/chat/api/guides/message-formats/events).
+     * The type of interaction event. For details, see [Types of Google Chat app interaction events](https://developers.google.com/workspace/chat/events).
      */
     type?: string | null;
     /**
@@ -969,6 +969,10 @@ export namespace chat_v1 {
      * Display one of the built-in icons provided by Google Workspace. For example, to display an airplane icon, specify `AIRPLANE`. For a bus, specify `BUS`. For a full list of supported icons, see [built-in icons](https://developers.google.com/chat/format-messages#builtinicons).
      */
     knownIcon?: string | null;
+    /**
+     * Display one of the [Google Material Icons](https://fonts.google.com/icons). For example, to display a [checkbox icon](https://fonts.google.com/icons?selected=Material%20Symbols%20Outlined%3Acheck_box%3AFILL%400%3Bwght%40400%3BGRAD%400%3Bopsz%4048), use "material_icon": { "name": "check_box" \} Available for Chat apps and in [Developer Preview](https://developers.google.com/workspace/preview) for Google Workspace Add-ons.
+     */
+    materialIcon?: Schema$GoogleAppsCardV1MaterialIcon;
   }
   /**
    * An image that is specified by a URL and can have an `onClick` action. For an example, see [Image](https://developers.google.com/chat/ui/widgets/image). [Google Workspace Add-ons and Chat apps](https://developers.google.com/workspace/extend):
@@ -1020,6 +1024,27 @@ export namespace chat_v1 {
      * The crop type.
      */
     type?: string | null;
+  }
+  /**
+   * A [Google Material Icon](https://fonts.google.com/icons), which includes over 2500+ options. For example, to display a [checkbox icon](https://fonts.google.com/icons?selected=Material%20Symbols%20Outlined%3Acheck_box%3AFILL%400%3Bwght%40400%3BGRAD%400%3Bopsz%4048) with customized weight and grade, write { "name": "check_box", "fill": true, "weight": 300, "grade": -25 \} Available for Chat apps and in [Developer Preview](https://developers.google.com/workspace/preview) for Google Workspace Add-ons.
+   */
+  export interface Schema$GoogleAppsCardV1MaterialIcon {
+    /**
+     * Whether it renders a filled icon. Default value is false. See Customization in [Google Font Icon](https://fonts.google.com/icons) for details.
+     */
+    fill?: boolean | null;
+    /**
+     * Weight and grade affect a symbol’s thickness. Adjustments to grade are more granular than adjustments to weight and have a small impact on the size of the symbol. Choose from {-25, 0, 200\}. If absent, default value is 0. If any other value is specified, a broken image icon is displayed. See Customization in [Google Font Icon](https://fonts.google.com/icons) for details.
+     */
+    grade?: number | null;
+    /**
+     * The icon name defined in the [Google Material Icon Icon](https://fonts.google.com/icons) in snake_case. e.g. "check_box". Any invalid names are abandoned and replaced with empty string and results in the icon failing to render.
+     */
+    name?: string | null;
+    /**
+     * The stroke weight of the icon. Choose from {100, 200, 300, 400, 500, 600, 700\}. If absent, default value is 400. If any other value is specified, a broken image icon is displayed. See Customization in [Google Font Icon](https://fonts.google.com/icons) for details.
+     */
+    weight?: number | null;
   }
   /**
    * Represents how to respond when users click an interactive element on a card, such as a button. [Google Workspace Add-ons and Chat apps](https://developers.google.com/workspace/extend):
