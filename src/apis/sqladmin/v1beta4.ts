@@ -247,6 +247,10 @@ export namespace sqladmin_v1beta4 {
      */
     startTime?: string | null;
     /**
+     * Output only. This value contains the storage location of transactional logs for the database for point-in-time recovery.
+     */
+    transactionalLogStorageState?: string | null;
+    /**
      * The number of days of transaction logs we retain for point in time restore, from 1-7.
      */
     transactionLogRetentionDays?: number | null;
@@ -579,6 +583,10 @@ export namespace sqladmin_v1beta4 {
      */
     gceZone?: string | null;
     /**
+     * Gemini instance configuration.
+     */
+    geminiConfig?: Schema$GeminiInstanceConfig;
+    /**
      * The instance type.
      */
     instanceType?: string | null;
@@ -642,6 +650,10 @@ export namespace sqladmin_v1beta4 {
      * The replicas of the instance.
      */
     replicaNames?: string[] | null;
+    /**
+     * The pair of a primary instance and disaster recovery (DR) replica. A DR replica is a cross-region replica that you designate for failover in the event that the primary instance has regional failure.
+     */
+    replicationCluster?: Schema$ReplicationCluster;
     /**
      * Initial root password. Use only on creation. You must set root passwords before you can connect to PostgreSQL instances.
      */
@@ -965,6 +977,35 @@ export namespace sqladmin_v1beta4 {
      * This is always `sql#flagsList`.
      */
     kind?: string | null;
+  }
+  /**
+   * Gemini configuration.
+   */
+  export interface Schema$GeminiInstanceConfig {
+    /**
+     * Output only. Whether active query is enabled.
+     */
+    activeQueryEnabled?: boolean | null;
+    /**
+     * Output only. Whether Gemini is enabled.
+     */
+    entitled?: boolean | null;
+    /**
+     * Output only. Whether flag recommender is enabled.
+     */
+    flagRecommenderEnabled?: boolean | null;
+    /**
+     * Output only. Whether vacuum management is enabled.
+     */
+    googleVacuumMgmtEnabled?: boolean | null;
+    /**
+     * Output only. Whether index advisor is enabled.
+     */
+    indexAdvisorEnabled?: boolean | null;
+    /**
+     * Output only. Whether oom session cancel is enabled.
+     */
+    oomSessionCancelEnabled?: boolean | null;
   }
   /**
    * Ephemeral certificate creation request.
@@ -1662,6 +1703,19 @@ export namespace sqladmin_v1beta4 {
      */
     mysqlReplicaConfiguration?: Schema$MySqlReplicaConfiguration;
   }
+  /**
+   * Primary-DR replica pair
+   */
+  export interface Schema$ReplicationCluster {
+    /**
+     * Output only. read-only field that indicates if the replica is a dr_replica; not set for a primary.
+     */
+    drReplica?: boolean | null;
+    /**
+     * Optional. If the instance is a primary instance, then this field identifies the disaster recovery (DR) replica. A DR replica is an optional configuration for Enterprise Plus edition instances. If the instance is a read replica, then the field is not set. Users can set this field to set a designated DR replica for a primary. Removing this field removes the DR replica.
+     */
+    failoverDrReplicaName?: string | null;
+  }
   export interface Schema$Reschedule {
     /**
      * Required. The type of the reschedule.
@@ -1779,7 +1833,7 @@ export namespace sqladmin_v1beta4 {
      */
     edition?: string | null;
     /**
-     * Optional. Configuration to enable Cloud SQL Vertex AI Integration
+     * Optional. When this parameter is set to true, Cloud SQL instances can connect to Vertex AI to pass requests for real-time predictions and insights to the AI. The default value is false. This applies only to Cloud SQL for PostgreSQL instances.
      */
     enableGoogleMlIntegration?: boolean | null;
     /**
@@ -1936,6 +1990,10 @@ export namespace sqladmin_v1beta4 {
   export interface Schema$SqlInstancesResetReplicaSizeRequest {}
   export interface Schema$SqlInstancesStartExternalSyncRequest {
     /**
+     * Optional. MigrationType decides if the migration is a physical file based migration or logical migration.
+     */
+    migrationType?: string | null;
+    /**
      * MySQL-specific settings for start external sync.
      */
     mysqlSyncConfig?: Schema$MySqlSyncConfig;
@@ -1953,6 +2011,10 @@ export namespace sqladmin_v1beta4 {
     syncParallelLevel?: string | null;
   }
   export interface Schema$SqlInstancesVerifyExternalSyncSettingsRequest {
+    /**
+     * Optional. MigrationType field decides if the migration is a physical file based migration or logical migration
+     */
+    migrationType?: string | null;
     /**
      * Optional. MySQL-specific settings for start external sync.
      */
