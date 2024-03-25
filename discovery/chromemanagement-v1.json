@@ -376,6 +376,46 @@
                 "https://www.googleapis.com/auth/chrome.management.reports.readonly"
               ]
             },
+            "countChromeCrashEvents": {
+              "description": "Get a count of Chrome crash events.",
+              "flatPath": "v1/customers/{customersId}/reports:countChromeCrashEvents",
+              "httpMethod": "GET",
+              "id": "chromemanagement.customers.reports.countChromeCrashEvents",
+              "parameterOrder": [
+                "customer"
+              ],
+              "parameters": {
+                "customer": {
+                  "description": "Customer ID.",
+                  "location": "path",
+                  "pattern": "^customers/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                },
+                "filter": {
+                  "description": "Query string to filter results, AND-separated fields in EBNF syntax. Supported filter fields: * major_browser_version * minor_browser_version * browser_channel * device_platform * past_number_days Example: `major_browser_version = 'M115' AND past_number_days = '28'`.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "orderBy": {
+                  "description": "Field used to order results. Supported order by fields: * browser_version * count * date",
+                  "location": "query",
+                  "type": "string"
+                },
+                "orgUnitId": {
+                  "description": "If specified, only count the number of crash events of the devices in this organizational unit.",
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+customer}/reports:countChromeCrashEvents",
+              "response": {
+                "$ref": "GoogleChromeManagementV1CountChromeCrashEventsResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/chrome.management.reports.readonly"
+              ]
+            },
             "countChromeDevicesReachingAutoExpirationDate": {
               "description": "Generate report of the number of devices expiring in each month of the selected time frame. Devices are grouped by auto update expiration date and model. Further information can be found [here](https://support.google.com/chrome/a/answer/10564947).",
               "flatPath": "v1/customers/{customersId}/reports:countChromeDevicesReachingAutoExpirationDate",
@@ -862,7 +902,7 @@
                   ],
                   "parameters": {
                     "filter": {
-                      "description": "Optional. Only include resources that match the filter. Supported filter fields: - org_unit_id - serial_number - device_id - reports_timestamp The \"reports_timestamp\" filter accepts either the Unix Epoch milliseconds format or the RFC3339 UTC \"Zulu\" format with nanosecond resolution and up to nine fractional digits. Both formats should be surrounded by simple double quotes. Examples: \"2014-10-02T15:01:23Z\", \"2014-10-02T15:01:23.045123456Z\", \"1679283943823\".",
+                      "description": "Optional. Only include resources that match the filter. Requests that don't specify a \"reports_timestamp\" value will default to returning only recent reports. Specify \"reports_timestamp>=0\" to get all report data. Supported filter fields: - org_unit_id - serial_number - device_id - reports_timestamp The \"reports_timestamp\" filter accepts either the Unix Epoch milliseconds format or the RFC3339 UTC \"Zulu\" format with nanosecond resolution and up to nine fractional digits. Both formats should be surrounded by simple double quotes. Examples: \"2014-10-02T15:01:23Z\", \"2014-10-02T15:01:23.045123456Z\", \"1679283943823\".",
                       "location": "query",
                       "type": "string"
                     },
@@ -1132,7 +1172,7 @@
       }
     }
   },
-  "revision": "20240312",
+  "revision": "20240321",
   "rootUrl": "https://chromemanagement.googleapis.com/",
   "schemas": {
     "GoogleChromeManagementV1AndroidAppInfo": {
@@ -1788,6 +1828,40 @@
           "description": "Number of browsers that have been recently enrolled",
           "format": "int64",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleChromeManagementV1CountChromeCrashEventsResponse": {
+      "description": "Response contains a list of CrashEventCountByVersionPerDay which count the chrome crash at the certain date.",
+      "id": "GoogleChromeManagementV1CountChromeCrashEventsResponse",
+      "properties": {
+        "crashEventCounts": {
+          "description": "Crash event counts grouped by date and browser version.",
+          "items": {
+            "$ref": "GoogleChromeManagementV1CountChromeCrashEventsResponseCrashEventCount"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleChromeManagementV1CountChromeCrashEventsResponseCrashEventCount": {
+      "description": "The `count` of the Chrome crash events at the `date`.",
+      "id": "GoogleChromeManagementV1CountChromeCrashEventsResponseCrashEventCount",
+      "properties": {
+        "browserVersion": {
+          "description": "Browser version this is counting.",
+          "type": "string"
+        },
+        "count": {
+          "description": "Total count of crash events.",
+          "format": "int64",
+          "type": "string"
+        },
+        "date": {
+          "$ref": "GoogleTypeDate",
+          "description": "Date of the crash event."
         }
       },
       "type": "object"

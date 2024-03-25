@@ -548,6 +548,32 @@ export namespace chromemanagement_v1 {
     recentlyEnrolledCount?: string | null;
   }
   /**
+   * Response contains a list of CrashEventCountByVersionPerDay which count the chrome crash at the certain date.
+   */
+  export interface Schema$GoogleChromeManagementV1CountChromeCrashEventsResponse {
+    /**
+     * Crash event counts grouped by date and browser version.
+     */
+    crashEventCounts?: Schema$GoogleChromeManagementV1CountChromeCrashEventsResponseCrashEventCount[];
+  }
+  /**
+   * The `count` of the Chrome crash events at the `date`.
+   */
+  export interface Schema$GoogleChromeManagementV1CountChromeCrashEventsResponseCrashEventCount {
+    /**
+     * Browser version this is counting.
+     */
+    browserVersion?: string | null;
+    /**
+     * Total count of crash events.
+     */
+    count?: string | null;
+    /**
+     * Date of the crash event.
+     */
+    date?: Schema$GoogleTypeDate;
+  }
+  /**
    * Response containing a list of devices expiring in each month of a selected time frame. Counts are grouped by model and Auto Update Expiration date.
    */
   export interface Schema$GoogleChromeManagementV1CountChromeDevicesReachingAutoExpirationDateResponse {
@@ -2889,6 +2915,102 @@ export namespace chromemanagement_v1 {
     }
 
     /**
+     * Get a count of Chrome crash events.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    countChromeCrashEvents(
+      params: Params$Resource$Customers$Reports$Countchromecrashevents,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    countChromeCrashEvents(
+      params?: Params$Resource$Customers$Reports$Countchromecrashevents,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleChromeManagementV1CountChromeCrashEventsResponse>;
+    countChromeCrashEvents(
+      params: Params$Resource$Customers$Reports$Countchromecrashevents,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    countChromeCrashEvents(
+      params: Params$Resource$Customers$Reports$Countchromecrashevents,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleChromeManagementV1CountChromeCrashEventsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleChromeManagementV1CountChromeCrashEventsResponse>
+    ): void;
+    countChromeCrashEvents(
+      params: Params$Resource$Customers$Reports$Countchromecrashevents,
+      callback: BodyResponseCallback<Schema$GoogleChromeManagementV1CountChromeCrashEventsResponse>
+    ): void;
+    countChromeCrashEvents(
+      callback: BodyResponseCallback<Schema$GoogleChromeManagementV1CountChromeCrashEventsResponse>
+    ): void;
+    countChromeCrashEvents(
+      paramsOrCallback?:
+        | Params$Resource$Customers$Reports$Countchromecrashevents
+        | BodyResponseCallback<Schema$GoogleChromeManagementV1CountChromeCrashEventsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleChromeManagementV1CountChromeCrashEventsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleChromeManagementV1CountChromeCrashEventsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleChromeManagementV1CountChromeCrashEventsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Customers$Reports$Countchromecrashevents;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Customers$Reports$Countchromecrashevents;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://chromemanagement.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1/{+customer}/reports:countChromeCrashEvents'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['customer'],
+        pathParams: ['customer'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleChromeManagementV1CountChromeCrashEventsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleChromeManagementV1CountChromeCrashEventsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Generate report of the number of devices expiring in each month of the selected time frame. Devices are grouped by auto update expiration date and model. Further information can be found [here](https://support.google.com/chrome/a/answer/10564947).
      *
      * @param params - Parameters for request
@@ -3772,6 +3894,25 @@ export namespace chromemanagement_v1 {
      */
     orgUnitId?: string;
   }
+  export interface Params$Resource$Customers$Reports$Countchromecrashevents
+    extends StandardParameters {
+    /**
+     * Customer ID.
+     */
+    customer?: string;
+    /**
+     * Query string to filter results, AND-separated fields in EBNF syntax. Supported filter fields: * major_browser_version * minor_browser_version * browser_channel * device_platform * past_number_days Example: `major_browser_version = 'M115' AND past_number_days = '28'`.
+     */
+    filter?: string;
+    /**
+     * Field used to order results. Supported order by fields: * browser_version * count * date
+     */
+    orderBy?: string;
+    /**
+     * If specified, only count the number of crash events of the devices in this organizational unit.
+     */
+    orgUnitId?: string;
+  }
   export interface Params$Resource$Customers$Reports$Countchromedevicesreachingautoexpirationdate
     extends StandardParameters {
     /**
@@ -4216,7 +4357,7 @@ export namespace chromemanagement_v1 {
   export interface Params$Resource$Customers$Telemetry$Devices$List
     extends StandardParameters {
     /**
-     * Optional. Only include resources that match the filter. Supported filter fields: - org_unit_id - serial_number - device_id - reports_timestamp The "reports_timestamp" filter accepts either the Unix Epoch milliseconds format or the RFC3339 UTC "Zulu" format with nanosecond resolution and up to nine fractional digits. Both formats should be surrounded by simple double quotes. Examples: "2014-10-02T15:01:23Z", "2014-10-02T15:01:23.045123456Z", "1679283943823".
+     * Optional. Only include resources that match the filter. Requests that don't specify a "reports_timestamp" value will default to returning only recent reports. Specify "reports_timestamp\>=0" to get all report data. Supported filter fields: - org_unit_id - serial_number - device_id - reports_timestamp The "reports_timestamp" filter accepts either the Unix Epoch milliseconds format or the RFC3339 UTC "Zulu" format with nanosecond resolution and up to nine fractional digits. Both formats should be surrounded by simple double quotes. Examples: "2014-10-02T15:01:23Z", "2014-10-02T15:01:23.045123456Z", "1679283943823".
      */
     filter?: string;
     /**
