@@ -650,7 +650,7 @@
           ]
         },
         "validateAttributeExpression": {
-          "description": "Validates a given CEL expression conforms to IAP restrictions.",
+          "description": "Validates that a given CEL expression conforms to IAP restrictions.",
           "flatPath": "v1/{v1Id}:validateAttributeExpression",
           "httpMethod": "POST",
           "id": "iap.validateAttributeExpression",
@@ -659,7 +659,7 @@
           ],
           "parameters": {
             "expression": {
-              "description": "Required. User input string expression. Should be of the form 'attributes.saml_attributes.filter(attribute, attribute.name in ['{attribute_name}', '{attribute_name}'])'",
+              "description": "Required. User input string expression. Should be of the form `attributes.saml_attributes.filter(attribute, attribute.name in ['{attribute_name}', '{attribute_name}'])`",
               "location": "query",
               "type": "string"
             },
@@ -682,7 +682,7 @@
       }
     }
   },
-  "revision": "20240126",
+  "revision": "20240315",
   "rootUrl": "https://iap.googleapis.com/",
   "schemas": {
     "AccessDeniedPageSettings": {
