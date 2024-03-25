@@ -1786,6 +1786,19 @@ export namespace discoveryengine_v1alpha {
     userId?: string | null;
   }
   /**
+   * Document captures all raw metadata information of items to be recommended or searched.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaProcessedDocument {
+    /**
+     * Required. Full resource name of the referenced document, in the format `projects/x/locations/x/collections/x/dataStores/x/branches/x/documents/x`.
+     */
+    document?: string | null;
+    /**
+     * The JSON string representation of the processed document.
+     */
+    jsonData?: string | null;
+  }
+  /**
    * Metadata related to the progress of the PurgeDocuments operation. This will be returned by the google.longrunning.Operation.metadata field.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaPurgeDocumentsMetadata {
@@ -2269,7 +2282,7 @@ export namespace discoveryengine_v1alpha {
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaSearchRequestBoostSpecConditionBoostSpec {
     /**
-     * Strength of the condition boost, which should be in [-1, 1]. Negative boost means demotion. Default is 0.0. Setting to 1.0 gives the document a big promotion. However, it does not necessarily mean that the boosted document will be the top result at all times, nor that other documents will be excluded. Results could still be shown even when none of them matches the condition. And results that are significantly more relevant to the search query can still trump your heavily favored but irrelevant documents. Setting to -1.0 gives the document a big demotion. However, results that are deeply relevant might still be shown. The document will have an upstream battle to get a fairly high ranking, but it is not blocked out completely. Setting to 0.0 means no boost applied. The boosting condition is ignored.
+     * Strength of the condition boost, which should be in [-1, 1]. Negative boost means demotion. Default is 0.0. Setting to 1.0 gives the document a big promotion. However, it does not necessarily mean that the boosted document will be the top result at all times, nor that other documents will be excluded. Results could still be shown even when none of them matches the condition. And results that are significantly more relevant to the search query can still trump your heavily favored but irrelevant documents. Setting to -1.0 gives the document a big demotion. However, results that are deeply relevant might still be shown. The document will have an upstream battle to get a fairly high ranking, but it is not blocked out completely. Setting to 0.0 means no boost applied. The boosting condition is ignored. Only one of the (condition, boost) combination or the boost_control_spec below are set. If both are set then the global boost is ignored and the more fine-grained boost_control_spec is applied.
      */
     boost?: number | null;
     /**
@@ -2372,6 +2385,10 @@ export namespace discoveryengine_v1alpha {
      * The number of top results to generate the summary from. If the number of results returned is less than `summaryResultCount`, the summary is generated from all of the results. At most 10 results can be used to generate a summary.
      */
     summaryResultCount?: number | null;
+    /**
+     * If true, answer will be generated from most relevant chunks from top search results. This feature will improve summary quality. Please note that with this feature enabled, not all top search results will be referenced and included in the reference list, so the citation source index only points to the search results listed in the reference list.
+     */
+    useSemanticChunks?: boolean | null;
   }
   /**
    * Specification of the prompt to use with the model.
@@ -7468,6 +7485,104 @@ export namespace discoveryengine_v1alpha {
     }
 
     /**
+     * Gets the parsed layout information for a Document.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getProcessedDocument(
+      params: Params$Resource$Projects$Locations$Collections$Datastores$Branches$Documents$Getprocesseddocument,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getProcessedDocument(
+      params?: Params$Resource$Projects$Locations$Collections$Datastores$Branches$Documents$Getprocesseddocument,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDiscoveryengineV1alphaProcessedDocument>;
+    getProcessedDocument(
+      params: Params$Resource$Projects$Locations$Collections$Datastores$Branches$Documents$Getprocesseddocument,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getProcessedDocument(
+      params: Params$Resource$Projects$Locations$Collections$Datastores$Branches$Documents$Getprocesseddocument,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaProcessedDocument>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaProcessedDocument>
+    ): void;
+    getProcessedDocument(
+      params: Params$Resource$Projects$Locations$Collections$Datastores$Branches$Documents$Getprocesseddocument,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaProcessedDocument>
+    ): void;
+    getProcessedDocument(
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaProcessedDocument>
+    ): void;
+    getProcessedDocument(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Collections$Datastores$Branches$Documents$Getprocesseddocument
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaProcessedDocument>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaProcessedDocument>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaProcessedDocument>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDiscoveryengineV1alphaProcessedDocument>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Collections$Datastores$Branches$Documents$Getprocesseddocument;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Collections$Datastores$Branches$Documents$Getprocesseddocument;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://discoveryengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+name}:getProcessedDocument').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDiscoveryengineV1alphaProcessedDocument>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDiscoveryengineV1alphaProcessedDocument>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Bulk import of multiple Documents. Request processing may be synchronous. Non-existing items will be created. Note: It is possible for a subset of the Documents to be successfully updated.
      *
      * @param params - Parameters for request
@@ -7882,6 +7997,21 @@ export namespace discoveryengine_v1alpha {
      * Required. Full resource name of Document, such as `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store\}/branches/{branch\}/documents/{document\}`. If the caller does not have permission to access the Document, regardless of whether or not it exists, a `PERMISSION_DENIED` error is returned. If the requested Document does not exist, a `NOT_FOUND` error is returned.
      */
     name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Collections$Datastores$Branches$Documents$Getprocesseddocument
+    extends StandardParameters {
+    /**
+     * Required. Full resource name of Document, such as `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store\}/branches/{branch\}/documents/{document\}`. If the caller does not have permission to access the Document, regardless of whether or not it exists, a `PERMISSION_DENIED` error is returned. If the requested Document does not exist, a `NOT_FOUND` error is returned.
+     */
+    name?: string;
+    /**
+     * What format output should be. If unspecified, defaults to JSON.
+     */
+    processedDocumentFormat?: string;
+    /**
+     * Required. What type of processing to return.
+     */
+    processedDocumentType?: string;
   }
   export interface Params$Resource$Projects$Locations$Collections$Datastores$Branches$Documents$Import
     extends StandardParameters {
@@ -17051,6 +17181,104 @@ export namespace discoveryengine_v1alpha {
     }
 
     /**
+     * Gets the parsed layout information for a Document.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getProcessedDocument(
+      params: Params$Resource$Projects$Locations$Datastores$Branches$Documents$Getprocesseddocument,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getProcessedDocument(
+      params?: Params$Resource$Projects$Locations$Datastores$Branches$Documents$Getprocesseddocument,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDiscoveryengineV1alphaProcessedDocument>;
+    getProcessedDocument(
+      params: Params$Resource$Projects$Locations$Datastores$Branches$Documents$Getprocesseddocument,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getProcessedDocument(
+      params: Params$Resource$Projects$Locations$Datastores$Branches$Documents$Getprocesseddocument,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaProcessedDocument>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaProcessedDocument>
+    ): void;
+    getProcessedDocument(
+      params: Params$Resource$Projects$Locations$Datastores$Branches$Documents$Getprocesseddocument,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaProcessedDocument>
+    ): void;
+    getProcessedDocument(
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaProcessedDocument>
+    ): void;
+    getProcessedDocument(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datastores$Branches$Documents$Getprocesseddocument
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaProcessedDocument>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaProcessedDocument>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaProcessedDocument>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDiscoveryengineV1alphaProcessedDocument>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datastores$Branches$Documents$Getprocesseddocument;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Datastores$Branches$Documents$Getprocesseddocument;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://discoveryengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+name}:getProcessedDocument').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDiscoveryengineV1alphaProcessedDocument>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDiscoveryengineV1alphaProcessedDocument>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Bulk import of multiple Documents. Request processing may be synchronous. Non-existing items will be created. Note: It is possible for a subset of the Documents to be successfully updated.
      *
      * @param params - Parameters for request
@@ -17465,6 +17693,21 @@ export namespace discoveryengine_v1alpha {
      * Required. Full resource name of Document, such as `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store\}/branches/{branch\}/documents/{document\}`. If the caller does not have permission to access the Document, regardless of whether or not it exists, a `PERMISSION_DENIED` error is returned. If the requested Document does not exist, a `NOT_FOUND` error is returned.
      */
     name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Datastores$Branches$Documents$Getprocesseddocument
+    extends StandardParameters {
+    /**
+     * Required. Full resource name of Document, such as `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store\}/branches/{branch\}/documents/{document\}`. If the caller does not have permission to access the Document, regardless of whether or not it exists, a `PERMISSION_DENIED` error is returned. If the requested Document does not exist, a `NOT_FOUND` error is returned.
+     */
+    name?: string;
+    /**
+     * What format output should be. If unspecified, defaults to JSON.
+     */
+    processedDocumentFormat?: string;
+    /**
+     * Required. What type of processing to return.
+     */
+    processedDocumentType?: string;
   }
   export interface Params$Resource$Projects$Locations$Datastores$Branches$Documents$Import
     extends StandardParameters {
