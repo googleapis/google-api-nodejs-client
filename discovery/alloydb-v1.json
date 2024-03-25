@@ -517,34 +517,6 @@
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
-                "generateClientCertificate": {
-                  "description": "Generate a client certificate signed by a Cluster CA. The sole purpose of this endpoint is to support AlloyDB connectors and the Auth Proxy client. The endpoint's behavior is subject to change without notice, so do not rely on its behavior remaining constant. Future changes will not break AlloyDB connectors or the Auth Proxy client.",
-                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/clusters/{clustersId}:generateClientCertificate",
-                  "httpMethod": "POST",
-                  "id": "alloydb.projects.locations.clusters.generateClientCertificate",
-                  "parameterOrder": [
-                    "parent"
-                  ],
-                  "parameters": {
-                    "parent": {
-                      "description": "Required. The name of the parent resource. The required format is: * projects/{project}/locations/{location}/clusters/{cluster}",
-                      "location": "path",
-                      "pattern": "^projects/[^/]+/locations/[^/]+/clusters/[^/]+$",
-                      "required": true,
-                      "type": "string"
-                    }
-                  },
-                  "path": "v1/{+parent}:generateClientCertificate",
-                  "request": {
-                    "$ref": "GenerateClientCertificateRequest"
-                  },
-                  "response": {
-                    "$ref": "GenerateClientCertificateResponse"
-                  },
-                  "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
-                  ]
-                },
                 "get": {
                   "description": "Gets details of a single Cluster.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/clusters/{clustersId}",
@@ -1489,9 +1461,20 @@
       }
     }
   },
-  "revision": "20240228",
+  "revision": "20240315",
   "rootUrl": "https://alloydb.googleapis.com/",
   "schemas": {
+    "AuthorizedNetwork": {
+      "description": "AuthorizedNetwork contains metadata for an authorized network.",
+      "id": "AuthorizedNetwork",
+      "properties": {
+        "cidrRange": {
+          "description": "CIDR range for one authorzied network of the instance.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "AutomatedBackupPolicy": {
       "description": "Message describing the user-specified automated backup policy. All fields in the automated backup policy are optional. Defaults for each field are provided if they are not set.",
       "id": "AutomatedBackupPolicy",
@@ -1975,6 +1958,11 @@
         "name": {
           "description": "The name of the ConnectionInfo singleton resource, e.g.: projects/{project}/locations/{location}/clusters/*/instances/*/connectionInfo This field currently has no semantic meaning.",
           "type": "string"
+        },
+        "publicIpAddress": {
+          "description": "Output only. The public IP addresses for the Instance. This is available ONLY when enable_public_ip is set. This is the connection endpoint for an end-user application.",
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"
@@ -2125,49 +2113,6 @@
         "validateOnly": {
           "description": "Optional. If set, performs request validation (e.g. permission checks and any other type of validation), but do not actually execute the failover.",
           "type": "boolean"
-        }
-      },
-      "type": "object"
-    },
-    "GenerateClientCertificateRequest": {
-      "description": "Message for requests to generate a client certificate signed by the Cluster CA.",
-      "id": "GenerateClientCertificateRequest",
-      "properties": {
-        "certDuration": {
-          "description": "Optional. An optional hint to the endpoint to generate the client certificate with the requested duration. The duration can be from 1 hour to 24 hours. The endpoint may or may not honor the hint. If the hint is left unspecified or is not honored, then the endpoint will pick an appropriate default duration.",
-          "format": "google-duration",
-          "type": "string"
-        },
-        "publicKey": {
-          "description": "Optional. The public key from the client.",
-          "type": "string"
-        },
-        "requestId": {
-          "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
-          "type": "string"
-        },
-        "useMetadataExchange": {
-          "description": "Optional. An optional hint to the endpoint to generate a client ceritificate that can be used by AlloyDB connectors to exchange additional metadata with the server after TLS handshake.",
-          "type": "boolean"
-        }
-      },
-      "type": "object"
-    },
-    "GenerateClientCertificateResponse": {
-      "description": "Message returned by a GenerateClientCertificate operation.",
-      "id": "GenerateClientCertificateResponse",
-      "properties": {
-        "caCert": {
-          "description": "Optional. The pem-encoded cluster ca X.509 certificate.",
-          "type": "string"
-        },
-        "pemCertificateChain": {
-          "description": "Output only. The pem-encoded chain that may be used to verify the X.509 certificate. Expected to be in issuer-to-root order according to RFC 5246.",
-          "items": {
-            "type": "string"
-          },
-          "readOnly": true,
-          "type": "array"
         }
       },
       "type": "object"
@@ -2375,6 +2320,10 @@
           "readOnly": true,
           "type": "string"
         },
+        "networkConfig": {
+          "$ref": "InstanceNetworkConfig",
+          "description": "Optional. Instance level network configuration."
+        },
         "nodes": {
           "description": "Output only. List of available read-only VMs in this instance, including the standby for a PRIMARY instance.",
           "items": {
@@ -2382,6 +2331,11 @@
           },
           "readOnly": true,
           "type": "array"
+        },
+        "publicIpAddress": {
+          "description": "Output only. The public IP addresses for the Instance. This is available ONLY when enable_public_ip is set. This is the connection endpoint for an end-user application.",
+          "readOnly": true,
+          "type": "string"
         },
         "queryInsightsConfig": {
           "$ref": "QueryInsightsInstanceConfig",
@@ -2443,6 +2397,24 @@
           "$ref": "Node",
           "description": "Output only. This is set for the read-write VM of the PRIMARY instance only.",
           "readOnly": true
+        }
+      },
+      "type": "object"
+    },
+    "InstanceNetworkConfig": {
+      "description": "Metadata related to instance level network configuration.",
+      "id": "InstanceNetworkConfig",
+      "properties": {
+        "authorizedExternalNetworks": {
+          "description": "Optional. A list of external network authorized to access this instance.",
+          "items": {
+            "$ref": "AuthorizedNetwork"
+          },
+          "type": "array"
+        },
+        "enablePublicIp": {
+          "description": "Optional. Enabling public ip for the instance.",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -3327,7 +3299,13 @@
             "SIGNAL_TYPE_SERVER_CERTIFICATE_NEAR_EXPIRY",
             "SIGNAL_TYPE_DATABASE_AUDITING_DISABLED",
             "SIGNAL_TYPE_RESTRICT_AUTHORIZED_NETWORKS",
-            "SIGNAL_TYPE_VIOLATE_POLICY_RESTRICT_PUBLIC_IP"
+            "SIGNAL_TYPE_VIOLATE_POLICY_RESTRICT_PUBLIC_IP",
+            "SIGNAL_TYPE_QUOTA_LIMIT",
+            "SIGNAL_TYPE_NO_PASSWORD_POLICY",
+            "SIGNAL_TYPE_CONNECTIONS_PERFORMANCE_IMPACT",
+            "SIGNAL_TYPE_TMP_TABLES_PERFORMANCE_IMPACT",
+            "SIGNAL_TYPE_TRANS_LOGS_PERFORMANCE_IMPACT",
+            "SIGNAL_TYPE_HIGH_JOINS_WITHOUT_INDEXES"
           ],
           "enumDeprecated": [
             false,
@@ -3335,6 +3313,12 @@
             false,
             true,
             true,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
             false,
             false,
             false,
@@ -3453,7 +3437,13 @@
             "Represents server certificate is near expiry.",
             "Represents database auditing is disabled.",
             "Represents not restricted to authorized networks.",
-            "Represents violate org policy restrict public ip."
+            "Represents violate org policy restrict public ip.",
+            "Cluster nearing quota limit",
+            "No password policy set on resources",
+            "Performance impact of connections settings",
+            "Performance impact of temporary tables settings",
+            "Performance impact of transaction logs settings",
+            "Performance impact of high joins without indexes"
           ],
           "type": "string"
         },
@@ -3657,10 +3647,15 @@
           "format": "google-datetime",
           "type": "string"
         },
+        "userLabelSet": {
+          "$ref": "StorageDatabasecenterPartnerapiV1mainUserLabels",
+          "description": "User-provided labels associated with the resource"
+        },
         "userLabels": {
           "additionalProperties": {
             "type": "string"
           },
+          "deprecated": true,
           "description": "User-provided labels, represented as a dictionary where each label is a single key value pair.",
           "type": "object"
         }
@@ -3783,7 +3778,13 @@
             "SIGNAL_TYPE_SERVER_CERTIFICATE_NEAR_EXPIRY",
             "SIGNAL_TYPE_DATABASE_AUDITING_DISABLED",
             "SIGNAL_TYPE_RESTRICT_AUTHORIZED_NETWORKS",
-            "SIGNAL_TYPE_VIOLATE_POLICY_RESTRICT_PUBLIC_IP"
+            "SIGNAL_TYPE_VIOLATE_POLICY_RESTRICT_PUBLIC_IP",
+            "SIGNAL_TYPE_QUOTA_LIMIT",
+            "SIGNAL_TYPE_NO_PASSWORD_POLICY",
+            "SIGNAL_TYPE_CONNECTIONS_PERFORMANCE_IMPACT",
+            "SIGNAL_TYPE_TMP_TABLES_PERFORMANCE_IMPACT",
+            "SIGNAL_TYPE_TRANS_LOGS_PERFORMANCE_IMPACT",
+            "SIGNAL_TYPE_HIGH_JOINS_WITHOUT_INDEXES"
           ],
           "enumDeprecated": [
             false,
@@ -3791,6 +3792,12 @@
             false,
             true,
             true,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
             false,
             false,
             false,
@@ -3909,7 +3916,13 @@
             "Represents server certificate is near expiry.",
             "Represents database auditing is disabled.",
             "Represents not restricted to authorized networks.",
-            "Represents violate org policy restrict public ip."
+            "Represents violate org policy restrict public ip.",
+            "Cluster nearing quota limit",
+            "No password policy set on resources",
+            "Performance impact of connections settings",
+            "Performance impact of temporary tables settings",
+            "Performance impact of transaction logs settings",
+            "Performance impact of high joins without indexes"
           ],
           "type": "string"
         }
@@ -3938,11 +3951,18 @@
           "description": "An enum that represents the type of this entitlement.",
           "enum": [
             "ENTITLEMENT_TYPE_UNSPECIFIED",
-            "DUET_AI"
+            "DUET_AI",
+            "GEMINI"
+          ],
+          "enumDeprecated": [
+            false,
+            true,
+            false
           ],
           "enumDescriptions": [
             "",
-            "The root entitlement representing Duet AI package ownership."
+            "The root entitlement representing Duet AI package ownership.",
+            "The root entitlement representing Gemini package ownership."
           ],
           "type": "string"
         }
@@ -4011,6 +4031,19 @@
         "timeBasedRetention": {
           "format": "google-duration",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "StorageDatabasecenterPartnerapiV1mainUserLabels": {
+      "description": "Message type for storing user labels. User labels are used to tag App Engine resources, allowing users to search for resources matching a set of labels and to aggregate usage data by labels.",
+      "id": "StorageDatabasecenterPartnerapiV1mainUserLabels",
+      "properties": {
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object"
         }
       },
       "type": "object"
