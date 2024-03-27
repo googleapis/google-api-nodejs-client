@@ -19,10 +19,11 @@ import * as path from 'path';
 import {promisify} from 'util';
 import Q from 'p-queue';
 
-const srcPath = path.join(__dirname, '../../../src');
+const rootPath = path.join(__dirname, '../../..');
+const srcPath = path.join(rootPath, 'src');
 const apiPath = path.join(srcPath, 'apis');
 const templatePath = path.join(srcPath, 'generator/templates/index.html.njk');
-const docsPath = path.join(__dirname, '../../../docs');
+const docsPath = path.join(rootPath, 'docs');
 const indexPath = path.join(docsPath, 'index.html');
 
 export const gfs = {
@@ -52,17 +53,26 @@ export async function main() {
   await gfs.writeFile(indexPath, contents);
   const q = new Q({concurrency: 50});
   console.log(`Generating docs for ${dirs.length} APIs...`);
+  console.log('execpath:', process.execPath);
   let i = 0;
   const promises = dirs.map(dir => {
     return q
       .add(() =>
-        gfs.execa(process.execPath, [
-          '--max-old-space-size=8192',
-          './node_modules/.bin/compodoc',
-          `src/apis/${dir}`,
-          '-d',
-          `./docs/${dir}`,
-        ])
+        gfs.execa(
+          process.execPath,
+          [
+            '--max-old-space-size=8192',
+            path.join(rootPath, 'node_modules/.bin/compodoc'),
+            // Runs within declared cwd
+            '.',
+            '-d',
+            path.join(docsPath, dir),
+          ],
+          {
+            // Compodoc expects to be run in same dir as package.json
+            cwd: path.join(srcPath, `apis/${dir}`),
+          }
+        )
       )
       .then(() => {
         i++;
