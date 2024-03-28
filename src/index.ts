@@ -127,6 +127,8 @@ export {cloudbuild_v1alpha2} from './apis/cloudbuild/v1alpha2';
 export {cloudbuild_v1beta1} from './apis/cloudbuild/v1beta1';
 export {cloudbuild_v2} from './apis/cloudbuild/v2';
 export {cloudchannel_v1} from './apis/cloudchannel/v1';
+export {cloudcontrolspartner_v1} from './apis/cloudcontrolspartner/v1';
+export {cloudcontrolspartner_v1beta} from './apis/cloudcontrolspartner/v1beta';
 export {clouddebugger_v2} from './apis/clouddebugger/v2';
 export {clouddeploy_v1} from './apis/clouddeploy/v1';
 export {clouderrorreporting_v1beta1} from './apis/clouderrorreporting/v1beta1';

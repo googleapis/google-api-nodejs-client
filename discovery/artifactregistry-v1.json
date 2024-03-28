@@ -1734,7 +1734,7 @@
       }
     }
   },
-  "revision": "20240308",
+  "revision": "20240322",
   "rootUrl": "https://artifactregistry.googleapis.com/",
   "schemas": {
     "AptArtifact": {
@@ -3229,13 +3229,15 @@
             "MODE_UNSPECIFIED",
             "STANDARD_REPOSITORY",
             "VIRTUAL_REPOSITORY",
-            "REMOTE_REPOSITORY"
+            "REMOTE_REPOSITORY",
+            "AOSS_REPOSITORY"
           ],
           "enumDescriptions": [
             "Unspecified mode.",
             "A standard repository storing artifacts.",
             "A virtual repository to serve artifacts from one or more sources.",
-            "A remote repository to serve artifacts from a remote source."
+            "A remote repository to serve artifacts from a remote source.",
+            "An AOSS repository provides artifacts from AOSS upstreams."
           ],
           "type": "string"
         },

@@ -1163,7 +1163,7 @@
       }
     }
   },
-  "revision": "20240320",
+  "revision": "20240321",
   "rootUrl": "https://androidmanagement.googleapis.com/",
   "schemas": {
     "AdbShellCommandEvent": {
@@ -6113,7 +6113,9 @@
             "STOP_LOST_MODE_USER_ATTEMPT",
             "LOST_MODE_OUTGOING_PHONE_CALL",
             "LOST_MODE_LOCATION",
-            "ENROLLMENT_COMPLETE"
+            "ENROLLMENT_COMPLETE",
+            "MAX_DEVICES_REGISTRATION_QUOTA_WARNING",
+            "MAX_DEVICES_REGISTRATION_QUOTA_EXHAUSTED"
           ],
           "enumDescriptions": [
             "This value is not used",
@@ -6147,7 +6149,9 @@
             "Indicates stopLostModeUserAttemptEvent has been set.",
             "Indicates lostModeOutgoingPhoneCallEvent has been set.",
             "Indicates lostModeLocationEvent has been set.",
-            "Indicates enrollment_complete_event has been set."
+            "Indicates enrollment_complete_event has been set.",
+            "Indicates max_devices_registration_quota_warning_event has been set.",
+            "Indicates max_devices_registration_quota_exhausted_event has been set."
           ],
           "type": "string"
         },
