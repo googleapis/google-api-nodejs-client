@@ -306,6 +306,28 @@ export namespace factchecktools_v1alpha1 {
     versionId?: string | null;
   }
   /**
+   * Response from searching fact-checked claims by image.
+   */
+  export interface Schema$GoogleFactcheckingFactchecktoolsV1alpha1FactCheckedClaimImageSearchResponse {
+    /**
+     * The next pagination token in the Search response. It should be used as the `page_token` for the following request. An empty value means no more results.
+     */
+    nextPageToken?: string | null;
+    /**
+     * The list of claims and all of their associated information.
+     */
+    results?: Schema$GoogleFactcheckingFactchecktoolsV1alpha1FactCheckedClaimImageSearchResponseResult[];
+  }
+  /**
+   * A claim and its associated information.
+   */
+  export interface Schema$GoogleFactcheckingFactchecktoolsV1alpha1FactCheckedClaimImageSearchResponseResult {
+    /**
+     * A claim which matched the query.
+     */
+    claim?: Schema$GoogleFactcheckingFactchecktoolsV1alpha1Claim;
+  }
+  /**
    * Response from searching fact-checked claims.
    */
   export interface Schema$GoogleFactcheckingFactchecktoolsV1alpha1FactCheckedClaimSearchResponse {
@@ -353,6 +375,103 @@ export namespace factchecktools_v1alpha1 {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
+    }
+
+    /**
+     * Search through fact-checked claims using an image as the query.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    imageSearch(
+      params: Params$Resource$Claims$Imagesearch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    imageSearch(
+      params?: Params$Resource$Claims$Imagesearch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleFactcheckingFactchecktoolsV1alpha1FactCheckedClaimImageSearchResponse>;
+    imageSearch(
+      params: Params$Resource$Claims$Imagesearch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    imageSearch(
+      params: Params$Resource$Claims$Imagesearch,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleFactcheckingFactchecktoolsV1alpha1FactCheckedClaimImageSearchResponse>,
+      callback: BodyResponseCallback<Schema$GoogleFactcheckingFactchecktoolsV1alpha1FactCheckedClaimImageSearchResponse>
+    ): void;
+    imageSearch(
+      params: Params$Resource$Claims$Imagesearch,
+      callback: BodyResponseCallback<Schema$GoogleFactcheckingFactchecktoolsV1alpha1FactCheckedClaimImageSearchResponse>
+    ): void;
+    imageSearch(
+      callback: BodyResponseCallback<Schema$GoogleFactcheckingFactchecktoolsV1alpha1FactCheckedClaimImageSearchResponse>
+    ): void;
+    imageSearch(
+      paramsOrCallback?:
+        | Params$Resource$Claims$Imagesearch
+        | BodyResponseCallback<Schema$GoogleFactcheckingFactchecktoolsV1alpha1FactCheckedClaimImageSearchResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleFactcheckingFactchecktoolsV1alpha1FactCheckedClaimImageSearchResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleFactcheckingFactchecktoolsV1alpha1FactCheckedClaimImageSearchResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleFactcheckingFactchecktoolsV1alpha1FactCheckedClaimImageSearchResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Claims$Imagesearch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Claims$Imagesearch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://factchecktools.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha1/claims:imageSearch').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: [],
+        pathParams: [],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleFactcheckingFactchecktoolsV1alpha1FactCheckedClaimImageSearchResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleFactcheckingFactchecktoolsV1alpha1FactCheckedClaimImageSearchResponse>(
+          parameters
+        );
+      }
     }
 
     /**
@@ -452,6 +571,29 @@ export namespace factchecktools_v1alpha1 {
     }
   }
 
+  export interface Params$Resource$Claims$Imagesearch
+    extends StandardParameters {
+    /**
+     * Required. The URI of the source image. This must be a publicly-accessible image HTTP/HTTPS URL. When fetching images from HTTP/HTTPS URLs, Google cannot guarantee that the request will be completed. Your request may fail if the specified host denies the request (e.g. due to request throttling or DOS prevention), or if Google throttles requests to the site for abuse prevention. You should not depend on externally-hosted images for production applications.
+     */
+    imageUri?: string;
+    /**
+     * Optional. The BCP-47 language code, such as "en-US" or "sr-Latn". Can be used to restrict results by language, though we do not currently consider the region.
+     */
+    languageCode?: string;
+    /**
+     * Optional. An integer that specifies the current offset (that is, starting result location) in search results. This field is only considered if `page_token` is unset. For example, 0 means to return results starting from the first matching result, and 10 means to return from the 11th result.
+     */
+    offset?: number;
+    /**
+     * Optional. The pagination size. We will return up to that many results. Defaults to 10 if not set.
+     */
+    pageSize?: number;
+    /**
+     * Optional. The pagination token. You may provide the `next_page_token` returned from a previous List request, if any, in order to get the next page. All other fields must have the same values as in the previous request.
+     */
+    pageToken?: string;
+  }
   export interface Params$Resource$Claims$Search extends StandardParameters {
     /**
      * The BCP-47 language code, such as "en-US" or "sr-Latn". Can be used to restrict results by language, though we do not currently consider the region.
