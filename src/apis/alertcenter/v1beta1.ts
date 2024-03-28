@@ -655,9 +655,17 @@ export namespace alertcenter_v1beta1 {
      */
     iosVendorId?: string | null;
     /**
+     * Obfuscated ID of the owner of the device
+     */
+    ownerId?: string | null;
+    /**
      * The device resource ID.
      */
     resourceId?: string | null;
+    /**
+     * Action taken as result of the rule
+     */
+    ruleAction?: string | null;
     /**
      * The serial number of the device.
      */
