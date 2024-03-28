@@ -6186,7 +6186,7 @@
       }
     }
   },
-  "revision": "20240320",
+  "revision": "20240326",
   "rootUrl": "https://shoppingcontent.googleapis.com/",
   "schemas": {
     "Account": {
@@ -13764,6 +13764,10 @@
         "ageGroup": {
           "description": "Target age group of the item.",
           "type": "string"
+        },
+        "autoPricingMinPrice": {
+          "$ref": "Price",
+          "description": "A safeguard in the [Automated Discounts](https://support.google.com/merchants/answer/10295759?hl=en) and [Dynamic Promotions](https://support.google.com/merchants/answer/13949249?hl=en) projects, ensuring that discounts on merchants' offers do not fall below this value, thereby preserving the offer's value and profitability."
         },
         "availability": {
           "description": "Availability status of the item.",
