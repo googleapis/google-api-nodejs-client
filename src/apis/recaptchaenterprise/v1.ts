@@ -321,6 +321,10 @@ export namespace recaptchaenterprise_v1 {
      */
     firewallPolicyEvaluation?: boolean | null;
     /**
+     * Optional. The Fraud Prevention setting for this assessment.
+     */
+    fraudPrevention?: string | null;
+    /**
      * Optional. Deprecated: use `user_info.account_id` instead. Unique stable hashed user identifier for the request. The identifier must be hashed using hmac-sha256 with stable secret.
      */
     hashedAccountId?: string | null;
