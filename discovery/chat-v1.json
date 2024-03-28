@@ -788,7 +788,7 @@
                   "type": "string"
                 },
                 "updateMask": {
-                  "description": "Required. The field paths to update. Separate multiple values with commas or use `*` to update all field paths. Currently supported field paths: - `text` - `attachment` - `cards` (Requires [app authentication](/chat/api/guides/auth/service-accounts).) - `cards_v2` (Requires [app authentication](/chat/api/guides/auth/service-accounts).) - Developer Preview: `accessory_widgets` (Requires [app authentication](/chat/api/guides/auth/service-accounts).)",
+                  "description": "Required. The field paths to update. Separate multiple values with commas or use `*` to update all field paths. Currently supported field paths: - `text` - `attachment` - `cards` (Requires [app authentication](/chat/api/guides/auth/service-accounts).) - `cards_v2` (Requires [app authentication](/chat/api/guides/auth/service-accounts).) - `accessory_widgets` (Requires [app authentication](/chat/api/guides/auth/service-accounts).)",
                   "format": "google-fieldmask",
                   "location": "query",
                   "type": "string"
@@ -829,7 +829,7 @@
                   "type": "string"
                 },
                 "updateMask": {
-                  "description": "Required. The field paths to update. Separate multiple values with commas or use `*` to update all field paths. Currently supported field paths: - `text` - `attachment` - `cards` (Requires [app authentication](/chat/api/guides/auth/service-accounts).) - `cards_v2` (Requires [app authentication](/chat/api/guides/auth/service-accounts).) - Developer Preview: `accessory_widgets` (Requires [app authentication](/chat/api/guides/auth/service-accounts).)",
+                  "description": "Required. The field paths to update. Separate multiple values with commas or use `*` to update all field paths. Currently supported field paths: - `text` - `attachment` - `cards` (Requires [app authentication](/chat/api/guides/auth/service-accounts).) - `cards_v2` (Requires [app authentication](/chat/api/guides/auth/service-accounts).) - `accessory_widgets` (Requires [app authentication](/chat/api/guides/auth/service-accounts).)",
                   "format": "google-fieldmask",
                   "location": "query",
                   "type": "string"
@@ -986,13 +986,108 @@
               }
             }
           }
+        },
+        "spaceEvents": {
+          "methods": {
+            "get": {
+              "description": "Returns a SpaceEvent. You can request events from up to 28 days before the time of the request. The server will return the most recent version of the resource. For example, if a `google.workspace.chat.message.v1.created` event is requested and the message has since been deleted, the returned event will contain the deleted message resource in the payload. Requires [user authentication](https://developers.google.com/chat/api/guides/auth/users).",
+              "flatPath": "v1/spaces/{spacesId}/spaceEvents/{spaceEventsId}",
+              "httpMethod": "GET",
+              "id": "chat.spaces.spaceEvents.get",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. The resource name of the event. Format: `spaces/{space}/spaceEvents/{spaceEvent}`",
+                  "location": "path",
+                  "pattern": "^spaces/[^/]+/spaceEvents/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+name}",
+              "response": {
+                "$ref": "SpaceEvent"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/chat.memberships",
+                "https://www.googleapis.com/auth/chat.memberships.readonly",
+                "https://www.googleapis.com/auth/chat.messages",
+                "https://www.googleapis.com/auth/chat.messages.reactions",
+                "https://www.googleapis.com/auth/chat.messages.reactions.readonly",
+                "https://www.googleapis.com/auth/chat.messages.readonly",
+                "https://www.googleapis.com/auth/chat.spaces",
+                "https://www.googleapis.com/auth/chat.spaces.readonly"
+              ]
+            },
+            "list": {
+              "description": "Lists SpaceEvents in a space that the caller is a member of. You can request events from up to 28 days before the time of the request. The server will return the most recent version of the resources. For example, if a `google.workspace.chat.message.v1.created` event is requested and the message has since been deleted, the returned event will contain the deleted message resource in the payload. Requires [user authentication](https://developers.google.com/chat/api/guides/auth/users).",
+              "flatPath": "v1/spaces/{spacesId}/spaceEvents",
+              "httpMethod": "GET",
+              "id": "chat.spaces.spaceEvents.list",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "filter": {
+                  "description": "Required. A query filter. This method supports filtering by: `event_types`, `start_time`, and `end_time`. `event_types`: You must specify at least one event type in your query. `event_types` supports the has `:` operator. To filter by multiple event types, use the `OR` operator. To see the list of currently supported event types, see google.chat.v1.SpaceEvent.event_type `start_time`: Exclusive timestamp from which to start listing space events. You can list events that occurred up to 28 days ago. If unspecified, lists space events from the 28 days ago up to end time. `end_time`: Inclusive timestamp up to which space events are listed. Default value is the present. `start_time` and `end_time` accept a timestamp in [RFC-3339](https://www.rfc-editor.org/rfc/rfc3339) format and support the equals `=` comparison operator. To filter by both `start_time` and `end_time`, use the `AND` operator. For example, the following queries are valid: ``` start_time=\"2023-08-23T19:20:33+00:00\" AND end_time=\"2023-08-23T19:21:54+00:00\" ``` ``` start_time=\"2023-08-23T19:20:33+00:00\" AND (event_types:\"google.workspace.chat.space.v1.updated\" OR event_types:\"google.workspace.chat.message.v1.created\") ``` The following queries are invalid: ``` start_time=\"2023-08-23T19:20:33+00:00\" OR end_time=\"2023-08-23T19:21:54+00:00\" ``` ``` event_types:\"google.workspace.chat.space.v1.updated\" AND event_types:\"google.workspace.chat.message.v1.created\" ``` Invalid queries are rejected by the server with an `INVALID_ARGUMENT` error.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "pageSize": {
+                  "description": "Optional. The maximum number of space events returned. The service may return fewer than this value. Negative values return an `INVALID_ARGUMENT` error.",
+                  "format": "int32",
+                  "location": "query",
+                  "type": "integer"
+                },
+                "pageToken": {
+                  "description": "A page token, received from a previous list space events call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to list space events must match the call that provided the page token. Passing different values to the other parameters might lead to unexpected results.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "parent": {
+                  "description": "Required. The resource name of the space from which to list events. Format: `spaces/{space}`.",
+                  "location": "path",
+                  "pattern": "^spaces/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+parent}/spaceEvents",
+              "response": {
+                "$ref": "ListSpaceEventsResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/chat.memberships",
+                "https://www.googleapis.com/auth/chat.memberships.readonly",
+                "https://www.googleapis.com/auth/chat.messages",
+                "https://www.googleapis.com/auth/chat.messages.reactions",
+                "https://www.googleapis.com/auth/chat.messages.reactions.readonly",
+                "https://www.googleapis.com/auth/chat.messages.readonly",
+                "https://www.googleapis.com/auth/chat.spaces",
+                "https://www.googleapis.com/auth/chat.spaces.readonly"
+              ]
+            }
+          }
         }
       }
     }
   },
-  "revision": "20240319",
+  "revision": "20240324",
   "rootUrl": "https://chat.googleapis.com/",
   "schemas": {
+    "AccessoryWidget": {
+      "description": "One or more interactive widgets that appear at the bottom of a message. For details, see [Add interactive widgets at the bottom of a message](https://developers.google.com/workspace/chat/create-messages#add-accessory-widgets).",
+      "id": "AccessoryWidget",
+      "properties": {
+        "buttonList": {
+          "$ref": "GoogleAppsCardV1ButtonList",
+          "description": "A list of buttons."
+        }
+      },
+      "type": "object"
+    },
     "ActionParameter": {
       "description": "List of string parameters to supply when the action method is invoked. For example, consider three snooze buttons: snooze now, snooze one day, snooze next week. You might use `action method = snooze()`, passing the snooze type and snooze time in the list of string parameters.",
       "id": "ActionParameter",
@@ -2285,7 +2380,7 @@
         },
         "materialIcon": {
           "$ref": "GoogleAppsCardV1MaterialIcon",
-          "description": "Display one of the [Google Material Icons](https://fonts.google.com/icons). For example, to display a [checkbox icon](https://fonts.google.com/icons?selected=Material%20Symbols%20Outlined%3Acheck_box%3AFILL%400%3Bwght%40400%3BGRAD%400%3Bopsz%4048), use \"material_icon\": { \"name\": \"check_box\" } Available for Chat apps and in [Developer Preview](https://developers.google.com/workspace/preview) for Google Workspace Add-ons."
+          "description": "Display one of the [Google Material Icons](https://fonts.google.com/icons). For example, to display a [checkbox icon](https://fonts.google.com/icons?selected=Material%20Symbols%20Outlined%3Acheck_box%3AFILL%400%3Bwght%40400%3BGRAD%400%3Bopsz%4048), use ``` \"material_icon\": { \"name\": \"check_box\" } ``` [Google Chat apps](https://developers.google.com/workspace/chat):"
         }
       },
       "type": "object"
@@ -2363,24 +2458,24 @@
       "type": "object"
     },
     "GoogleAppsCardV1MaterialIcon": {
-      "description": "A [Google Material Icon](https://fonts.google.com/icons), which includes over 2500+ options. For example, to display a [checkbox icon](https://fonts.google.com/icons?selected=Material%20Symbols%20Outlined%3Acheck_box%3AFILL%400%3Bwght%40400%3BGRAD%400%3Bopsz%4048) with customized weight and grade, write { \"name\": \"check_box\", \"fill\": true, \"weight\": 300, \"grade\": -25 } Available for Chat apps and in [Developer Preview](https://developers.google.com/workspace/preview) for Google Workspace Add-ons.",
+      "description": "A [Google Material Icon](https://fonts.google.com/icons), which includes over 2500+ options. For example, to display a [checkbox icon](https://fonts.google.com/icons?selected=Material%20Symbols%20Outlined%3Acheck_box%3AFILL%400%3Bwght%40400%3BGRAD%400%3Bopsz%4048) with customized weight and grade, write the following: ``` { \"name\": \"check_box\", \"fill\": true, \"weight\": 300, \"grade\": -25 } ``` [Google Chat apps](https://developers.google.com/workspace/chat):",
       "id": "GoogleAppsCardV1MaterialIcon",
       "properties": {
         "fill": {
-          "description": "Whether it renders a filled icon. Default value is false. See Customization in [Google Font Icon](https://fonts.google.com/icons) for details.",
+          "description": "Whether the icon renders as filled. Default value is false. To preview different icon settings, go to [Google Font Icons](https://fonts.google.com/icons) and adjust the settings under **Customize**.",
           "type": "boolean"
         },
         "grade": {
-          "description": "Weight and grade affect a symbol’s thickness. Adjustments to grade are more granular than adjustments to weight and have a small impact on the size of the symbol. Choose from {-25, 0, 200}. If absent, default value is 0. If any other value is specified, a broken image icon is displayed. See Customization in [Google Font Icon](https://fonts.google.com/icons) for details.",
+          "description": "Weight and grade affect a symbol’s thickness. Adjustments to grade are more granular than adjustments to weight and have a small impact on the size of the symbol. Choose from {-25, 0, 200}. If absent, default value is 0. If any other value is specified, a broken image icon is displayed. To preview different icon settings, go to [Google Font Icons](https://fonts.google.com/icons) and adjust the settings under **Customize**.",
           "format": "int32",
           "type": "integer"
         },
         "name": {
-          "description": "The icon name defined in the [Google Material Icon Icon](https://fonts.google.com/icons) in snake_case. e.g. \"check_box\". Any invalid names are abandoned and replaced with empty string and results in the icon failing to render.",
+          "description": "The icon name defined in the [Google Material Icon](https://fonts.google.com/icons), for example, `check_box`. Any invalid names are abandoned and replaced with empty string and results in the icon failing to render.",
           "type": "string"
         },
         "weight": {
-          "description": "The stroke weight of the icon. Choose from {100, 200, 300, 400, 500, 600, 700}. If absent, default value is 400. If any other value is specified, a broken image icon is displayed. See Customization in [Google Font Icon](https://fonts.google.com/icons) for details.",
+          "description": "The stroke weight of the icon. Choose from {100, 200, 300, 400, 500, 600, 700}. If absent, default value is 400. If any other value is specified, a broken image icon is displayed. To preview different icon settings, go to [Google Font Icons](https://fonts.google.com/icons) and adjust the settings under **Customize**.",
           "format": "int32",
           "type": "integer"
         }
@@ -3116,6 +3211,24 @@
       },
       "type": "object"
     },
+    "ListSpaceEventsResponse": {
+      "description": "Response message for listing space events.",
+      "id": "ListSpaceEventsResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "Continuation token used to fetch more events. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        },
+        "spaceEvents": {
+          "description": "Results are returned in chronological order (oldest event first).",
+          "items": {
+            "$ref": "SpaceEvent"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "ListSpacesResponse": {
       "id": "ListSpacesResponse",
       "properties": {
@@ -3216,10 +3329,92 @@
       },
       "type": "object"
     },
+    "MembershipBatchCreatedEventData": {
+      "description": "Payload for batch new membership events where the `EventType` field is `google.workspace.chat.membership.v1.batchCreated`.",
+      "id": "MembershipBatchCreatedEventData",
+      "properties": {
+        "memberships": {
+          "description": "A list of created memberships.",
+          "items": {
+            "$ref": "MembershipCreatedEventData"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "MembershipBatchDeletedEventData": {
+      "description": "Payload for batch deleted membership events where the `EventType` field is `google.workspace.chat.membership.v1.batchDeleted`.",
+      "id": "MembershipBatchDeletedEventData",
+      "properties": {
+        "memberships": {
+          "description": "A list of deleted memberships.",
+          "items": {
+            "$ref": "MembershipDeletedEventData"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "MembershipBatchUpdatedEventData": {
+      "description": "Payload for batch updated membership events where the `EventType` field is `google.workspace.chat.membership.v1.batchUpdated`.",
+      "id": "MembershipBatchUpdatedEventData",
+      "properties": {
+        "memberships": {
+          "description": "A list of updated memberships.",
+          "items": {
+            "$ref": "MembershipUpdatedEventData"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "MembershipCreatedEventData": {
+      "description": "Payload for new membership events where the `EventType` field is `google.workspace.chat.membership.v1.created`.",
+      "id": "MembershipCreatedEventData",
+      "properties": {
+        "membership": {
+          "$ref": "Membership",
+          "description": "The most recent version of membership."
+        }
+      },
+      "type": "object"
+    },
+    "MembershipDeletedEventData": {
+      "description": "Payload for deleted membership events where the `EventType` field is `google.workspace.chat.membership.v1.deleted`.",
+      "id": "MembershipDeletedEventData",
+      "properties": {
+        "membership": {
+          "$ref": "Membership",
+          "description": "The deleted membership. Only `name` and `state` are populated."
+        }
+      },
+      "type": "object"
+    },
+    "MembershipUpdatedEventData": {
+      "description": "Payload for updated membership events where the `EventType` field is `google.workspace.chat.membership.v1.updated`.",
+      "id": "MembershipUpdatedEventData",
+      "properties": {
+        "membership": {
+          "$ref": "Membership",
+          "description": "The most recent version of membership."
+        }
+      },
+      "type": "object"
+    },
     "Message": {
       "description": "A message in a Google Chat space.",
       "id": "Message",
       "properties": {
+        "accessoryWidgets": {
+          "description": "One or more interactive widgets that appear at the bottom of a message. You can add accessory widgets to messages that contain text, cards, or both text and cards. Not supported for messages that contain dialogs. For details, see [Add interactive widgets at the bottom of a message](https://developers.google.com/workspace/chat/create-messages#add-accessory-widgets). Creating a message with accessory widgets requires [app authentication] (https://developers.google.com/chat/api/guides/auth/service-accounts).",
+          "items": {
+            "$ref": "AccessoryWidget"
+          },
+          "type": "array"
+        },
         "actionResponse": {
           "$ref": "ActionResponse",
           "description": "Input only. Parameters that a Chat app can use to configure how its response is posted."
@@ -3358,6 +3553,81 @@
       },
       "type": "object"
     },
+    "MessageBatchCreatedEventData": {
+      "description": "Payload for batch new message events where the `EventType` field is `google.workspace.chat.message.v1.batchCreated`.",
+      "id": "MessageBatchCreatedEventData",
+      "properties": {
+        "messages": {
+          "description": "A list of created messages.",
+          "items": {
+            "$ref": "MessageCreatedEventData"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "MessageBatchDeletedEventData": {
+      "description": "Payload for batch deleted message events where the `EventType` field is `google.workspace.chat.message.v1.batchDeleted`.",
+      "id": "MessageBatchDeletedEventData",
+      "properties": {
+        "messages": {
+          "description": "A list of deleted messages.",
+          "items": {
+            "$ref": "MessageDeletedEventData"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "MessageBatchUpdatedEventData": {
+      "description": "Payload for batch updated message events where the `EventType` field is `google.workspace.chat.message.v1.batchUpdated`.",
+      "id": "MessageBatchUpdatedEventData",
+      "properties": {
+        "messages": {
+          "description": "A list of updated messages.",
+          "items": {
+            "$ref": "MessageUpdatedEventData"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "MessageCreatedEventData": {
+      "description": "Payload for new message events where the `EventType` field is `google.workspace.chat.message.v1.created`.",
+      "id": "MessageCreatedEventData",
+      "properties": {
+        "message": {
+          "$ref": "Message",
+          "description": "The most recent version of the message."
+        }
+      },
+      "type": "object"
+    },
+    "MessageDeletedEventData": {
+      "description": "Payload for deleted message events where the `EventType` field is `google.workspace.chat.message.v1.deleted`.",
+      "id": "MessageDeletedEventData",
+      "properties": {
+        "message": {
+          "$ref": "Message",
+          "description": "The deleted message. Only `name`, `createTime`, `deleteTime`, and `deletionMetadata` are populated."
+        }
+      },
+      "type": "object"
+    },
+    "MessageUpdatedEventData": {
+      "description": "Payload for updated message events where the `EventType` field is `google.workspace.chat.message.v1.updated`.",
+      "id": "MessageUpdatedEventData",
+      "properties": {
+        "message": {
+          "$ref": "Message",
+          "description": "The most recent version of the message."
+        }
+      },
+      "type": "object"
+    },
     "OnClick": {
       "description": "An `onclick` action (for example, open a link).",
       "id": "OnClick",
@@ -3418,6 +3688,56 @@
           "$ref": "User",
           "description": "Output only. The user who created the reaction.",
           "readOnly": true
+        }
+      },
+      "type": "object"
+    },
+    "ReactionBatchCreatedEventData": {
+      "description": "Payload for batch new reaction events where the `EventType` field is `google.workspace.chat.reaction.v1.batchCreated`.",
+      "id": "ReactionBatchCreatedEventData",
+      "properties": {
+        "reactions": {
+          "description": "A list of created reactions.",
+          "items": {
+            "$ref": "ReactionCreatedEventData"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ReactionBatchDeletedEventData": {
+      "description": "Payload for batch deleted reaction events where the `EventType` field is `google.workspace.chat.reaction.v1.batchDeleted`.",
+      "id": "ReactionBatchDeletedEventData",
+      "properties": {
+        "reactions": {
+          "description": "A list of deleted reactions.",
+          "items": {
+            "$ref": "ReactionDeletedEventData"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ReactionCreatedEventData": {
+      "description": "Payload for new reaction events where the `EventType` field is `google.workspace.chat.reaction.v1.created`.",
+      "id": "ReactionCreatedEventData",
+      "properties": {
+        "reaction": {
+          "$ref": "Reaction",
+          "description": "The created reaction."
+        }
+      },
+      "type": "object"
+    },
+    "ReactionDeletedEventData": {
+      "description": "Payload for deleted reaction events where the `EventType` field is `google.workspace.chat.reaction.v1.deleted`.",
+      "id": "ReactionDeletedEventData",
+      "properties": {
+        "reaction": {
+          "$ref": "Reaction",
+          "description": "The deleted reaction."
         }
       },
       "type": "object"
@@ -3571,7 +3891,7 @@
           "type": "string"
         },
         "externalUserAllowed": {
-          "description": "Immutable. Whether this space permits any Google Chat user as a member. Input when creating a space in a Google Workspace organization. Omit this field when creating spaces in the following conditions: * The authenticated user uses a Google Account. By default, the space permits any Google Chat user. * The space is used to [import data to Google Chat] (https://developers.google.com/chat/api/guides/import-data-overview). Import mode spaces must only permit members from the same Google Workspace organization. For existing spaces, this field is output only.",
+          "description": "Immutable. Whether this space permits any Google Chat user as a member. Input when creating a space in a Google Workspace organization. Omit this field when creating spaces in the following conditions: * The authenticated user uses a consumer account (unmanaged user account). By default, a space created by a consumer account permits any Google Chat user. * The space is used to [import data to Google Chat] (https://developers.google.com/chat/api/guides/import-data-overview). Import mode spaces must only permit members from the same Google Workspace organization. For existing spaces, this field is output only.",
           "type": "boolean"
         },
         "importMode": {
@@ -3662,6 +3982,20 @@
       },
       "type": "object"
     },
+    "SpaceBatchUpdatedEventData": {
+      "description": "Payload for batch updated space events where the `EventType` field is `google.workspace.chat.space.v1.batchUpdated`.",
+      "id": "SpaceBatchUpdatedEventData",
+      "properties": {
+        "spaces": {
+          "description": "A list of updated spaces.",
+          "items": {
+            "$ref": "SpaceUpdatedEventData"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "SpaceDataSource": {
       "description": "A data source that populates Google Chat spaces as selection items for a multiselect menu. Only populates spaces that the user is a member of. [Google Chat apps](https://developers.google.com/workspace/chat):",
       "id": "SpaceDataSource",
@@ -3684,6 +4018,109 @@
         "guidelines": {
           "description": "Optional. The space's rules, expectations, and etiquette. Supports up to 5,000 characters.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SpaceEvent": {
+      "description": "An event that happens in a specific space.",
+      "id": "SpaceEvent",
+      "properties": {
+        "eventTime": {
+          "description": "Time of the event.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "eventType": {
+          "description": "Type of the space event. The following event types are supported: * New membership: `google.workspace.chat.membership.v1.created` * Deleted membership: `google.workspace.chat.membership.v1.deleted` * Updated membership: `google.workspace.chat.membership.v1.updated` * New message: `google.workspace.chat.message.v1.created` * Deleted message: `google.workspace.chat.message.v1.deleted` * Updated message: `google.workspace.chat.message.v1.updated` * New reaction: `google.workspace.chat.reaction.v1.created` * Deleted reaction: `google.workspace.chat.reaction.v1.deleted` * Updated space: `google.workspace.chat.space.v1.updated` Note that requesting or subscribing to the preceding event types automatically sets up the subscription or response to also return batched versions of the event type. For example, if you subscribe to `google.workspace.chat.membership.v1.created`, you also receive events for `google.workspace.chat.membership.v1.batchCreated`. For more details see https://developers.google.com/workspace/events/guides/events-chat#output_only_event_types.",
+          "type": "string"
+        },
+        "membershipBatchCreatedEventData": {
+          "$ref": "MembershipBatchCreatedEventData",
+          "description": "Payload for batch new membership events where the `EventType` field is `google.workspace.chat.membership.v1.batchCreated`."
+        },
+        "membershipBatchDeletedEventData": {
+          "$ref": "MembershipBatchDeletedEventData",
+          "description": "Payload for batch deleted membership events where the `EventType` field is `google.workspace.chat.membership.v1.batchDeleted`."
+        },
+        "membershipBatchUpdatedEventData": {
+          "$ref": "MembershipBatchUpdatedEventData",
+          "description": "Payload for batch updated membership events where the `EventType` field is `google.workspace.chat.membership.v1.batchUpdated`."
+        },
+        "membershipCreatedEventData": {
+          "$ref": "MembershipCreatedEventData",
+          "description": "Payload for new membership events where the `EventType` field is `google.workspace.chat.membership.v1.created`."
+        },
+        "membershipDeletedEventData": {
+          "$ref": "MembershipDeletedEventData",
+          "description": "Payload for deleted membership events where the `EventType` field is `google.workspace.chat.membership.v1.deleted`."
+        },
+        "membershipUpdatedEventData": {
+          "$ref": "MembershipUpdatedEventData",
+          "description": "Payload for updated membership events where the `EventType` field is `google.workspace.chat.membership.v1.updated`."
+        },
+        "messageBatchCreatedEventData": {
+          "$ref": "MessageBatchCreatedEventData",
+          "description": "Payload for batch new message events where the `EventType` field is `google.workspace.chat.message.v1.batchCreated`."
+        },
+        "messageBatchDeletedEventData": {
+          "$ref": "MessageBatchDeletedEventData",
+          "description": "Payload for batch deleted message events where the `EventType` field is `google.workspace.chat.message.v1.batchDeleted`."
+        },
+        "messageBatchUpdatedEventData": {
+          "$ref": "MessageBatchUpdatedEventData",
+          "description": "Payload for batch updated message events where the `EventType` field is `google.workspace.chat.message.v1.batchUpdated`."
+        },
+        "messageCreatedEventData": {
+          "$ref": "MessageCreatedEventData",
+          "description": "Payload for new message events where the `EventType` field is `google.workspace.chat.message.v1.created`."
+        },
+        "messageDeletedEventData": {
+          "$ref": "MessageDeletedEventData",
+          "description": "Payload for deleted message events where the `EventType` field is `google.workspace.chat.message.v1.deleted`."
+        },
+        "messageUpdatedEventData": {
+          "$ref": "MessageUpdatedEventData",
+          "description": "Payload for updated message events where the `EventType` field is `google.workspace.chat.message.v1.updated`."
+        },
+        "name": {
+          "description": "The resource name of the space event. Format: `spaces/{space}/spaceEvents/{spaceEvent}`",
+          "type": "string"
+        },
+        "reactionBatchCreatedEventData": {
+          "$ref": "ReactionBatchCreatedEventData",
+          "description": "Payload for batch new reaction events where the `EventType` field is `google.workspace.chat.reaction.v1.batchCreated`."
+        },
+        "reactionBatchDeletedEventData": {
+          "$ref": "ReactionBatchDeletedEventData",
+          "description": "Payload for batch deleted reaction events where the `EventType` field is `google.workspace.chat.reaction.v1.batchDeleted`."
+        },
+        "reactionCreatedEventData": {
+          "$ref": "ReactionCreatedEventData",
+          "description": "Payload for new reaction events where the `EventType` field is `google.workspace.chat.reaction.v1.created`."
+        },
+        "reactionDeletedEventData": {
+          "$ref": "ReactionDeletedEventData",
+          "description": "Payload for deleted reaction events where the `EventType` field is `google.workspace.chat.reaction.v1.deleted`."
+        },
+        "spaceBatchUpdatedEventData": {
+          "$ref": "SpaceBatchUpdatedEventData",
+          "description": "Payload for batch updated space events where the `EventType` field is `google.workspace.chat.space.v1.batchUpdated`."
+        },
+        "spaceUpdatedEventData": {
+          "$ref": "SpaceUpdatedEventData",
+          "description": "Payload for updated space events where the `EventType` field is `google.workspace.chat.space.v1.updated`."
+        }
+      },
+      "type": "object"
+    },
+    "SpaceUpdatedEventData": {
+      "description": "Payload for updated space events where the `EventType` field is `google.workspace.chat.space.v1.updated`.",
+      "id": "SpaceUpdatedEventData",
+      "properties": {
+        "space": {
+          "$ref": "Space",
+          "description": "The recent version of the space."
         }
       },
       "type": "object"

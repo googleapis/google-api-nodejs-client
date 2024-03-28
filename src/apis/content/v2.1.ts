@@ -5774,6 +5774,10 @@ export namespace content_v2_1 {
      */
     ageGroup?: string | null;
     /**
+     * A safeguard in the [Automated Discounts](https://support.google.com/merchants/answer/10295759?hl=en) and [Dynamic Promotions](https://support.google.com/merchants/answer/13949249?hl=en) projects, ensuring that discounts on merchants' offers do not fall below this value, thereby preserving the offer's value and profitability.
+     */
+    autoPricingMinPrice?: Schema$Price;
+    /**
      * Availability status of the item.
      */
     availability?: string | null;

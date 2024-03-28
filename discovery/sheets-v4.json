@@ -870,7 +870,7 @@
       }
     }
   },
-  "revision": "20240318",
+  "revision": "20240319",
   "rootUrl": "https://sheets.googleapis.com/",
   "schemas": {
     "AddBandingRequest": {
@@ -3178,7 +3178,8 @@
             "MISSING_COLUMN_ALIAS",
             "OBJECT_NOT_FOUND",
             "OBJECT_IN_ERROR_STATE",
-            "OBJECT_SPEC_INVALID"
+            "OBJECT_SPEC_INVALID",
+            "DATA_EXECUTION_CANCELLED"
           ],
           "enumDescriptions": [
             "Default value, do not use.",
@@ -3199,7 +3200,8 @@
             "The data execution returns columns with missing aliases.",
             "The data source object does not exist.",
             "The data source object is currently in error state. To force refresh, set force in RefreshDataSourceRequest.",
-            "The data source object specification is invalid."
+            "The data source object specification is invalid.",
+            "The data execution has been cancelled."
           ],
           "type": "string"
         },
@@ -3218,6 +3220,7 @@
             "DATA_EXECUTION_STATE_UNSPECIFIED",
             "NOT_STARTED",
             "RUNNING",
+            "CANCELLING",
             "SUCCEEDED",
             "FAILED"
           ],
@@ -3225,6 +3228,7 @@
             "Default value, do not use.",
             "The data execution has not started.",
             "The data execution has started and is running.",
+            "The data execution is currently being cancelled.",
             "The data execution has completed successfully.",
             "The data execution has completed with errors."
           ],

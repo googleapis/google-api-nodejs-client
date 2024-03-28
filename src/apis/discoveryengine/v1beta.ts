@@ -795,6 +795,15 @@ export namespace discoveryengine_v1beta {
     searchableOption?: string | null;
   }
   /**
+   * Grounding configuration.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaGroundingConfig {
+    /**
+     * Required. Name of the GroundingConfig, of the form `projects/{project\}/locations/{location\}/groundingConfig`.
+     */
+    name?: string | null;
+  }
+  /**
    * Identity Provider Config.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaIdpConfig {
@@ -815,6 +824,36 @@ export namespace discoveryengine_v1beta {
      * Workforce pool name. Example: "locations/global/workforcePools/pool_id"
      */
     workforcePoolName?: string | null;
+  }
+  /**
+   * Metadata related to the progress of the ImportCompletionSuggestions operation. This will be returned by the google.longrunning.Operation.metadata field.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaImportCompletionSuggestionsMetadata {
+    /**
+     * Operation create time.
+     */
+    createTime?: string | null;
+    /**
+     * Operation last update time. If the operation is done, this is also the finish time.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * Response of the CompletionService.ImportCompletionSuggestions method. If the long running operation is done, this message is returned by the google.longrunning.Operations.response field if the operation is successful.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaImportCompletionSuggestionsResponse {
+    /**
+     * A sample of errors encountered while processing the request.
+     */
+    errorSamples?: Schema$GoogleRpcStatus[];
+    /**
+     * Count of CompletionSuggestions that failed to be imported.
+     */
+    failureCount?: string | null;
+    /**
+     * Count of CompletionSuggestions successfully imported.
+     */
+    successCount?: string | null;
   }
   /**
    * Metadata related to the progress of the ImportDocuments operation. This is returned by the google.longrunning.Operation.metadata field.
@@ -1215,6 +1254,10 @@ export namespace discoveryengine_v1beta {
      * A sample of errors encountered while processing the data.
      */
     errorSamples?: Schema$GoogleRpcStatus[];
+    /**
+     * The metrics of the trained model.
+     */
+    metrics?: {[key: string]: number} | null;
     /**
      * The trained model status. Possible values are: * **bad-data**: The training data quality is bad. * **no-improvement**: Tuning didn't improve performance. Won't deploy. * **in-progress**: Model training is in progress. * **ready**: The model is ready for serving.
      */
@@ -1998,6 +2041,19 @@ export namespace discoveryengine_v1beta {
     totalSize?: number | null;
   }
   /**
+   * Cloud FhirStore source import data from.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaFhirStoreSource {
+    /**
+     * Required. The full resource name of the FHIR store to import data from, in the format of `projects/{project\}/locations/{location\}/datasets/{dataset\}/fhirStores/{fhir_store\}`.
+     */
+    fhirStore?: string | null;
+    /**
+     * Intermediate Cloud Storage directory used for the import with a length limit of 2,000 characters. Can be specified if one wants to have the FhirStore export to a specific Cloud Storage directory.
+     */
+    gcsStagingDir?: string | null;
+  }
+  /**
    * Cloud Storage location for input content.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1betaGcsSource {
@@ -2009,6 +2065,15 @@ export namespace discoveryengine_v1beta {
      * Required. Cloud Storage URIs to input files. URI can be up to 2000 characters long. URIs can match the full object path (for example, `gs://bucket/directory/object.json`) or a pattern matching one or more files, such as `gs://bucket/directory/x.json`. A request can contain at most 100 files (or 100,000 files if `data_schema` is `content`). Each file can be up to 2 GB (or 100 MB if `data_schema` is `content`).
      */
     inputUris?: string[] | null;
+  }
+  /**
+   * Grounding configuration.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaGroundingConfig {
+    /**
+     * Required. Name of the GroundingConfig, of the form `projects/{project\}/locations/{location\}/groundingConfig`.
+     */
+    name?: string | null;
   }
   /**
    * Metadata related to the progress of the ImportDocuments operation. This is returned by the google.longrunning.Operation.metadata field.
@@ -2036,7 +2101,7 @@ export namespace discoveryengine_v1beta {
    */
   export interface Schema$GoogleCloudDiscoveryengineV1betaImportDocumentsRequest {
     /**
-     * Whether to automatically generate IDs for the documents if absent. If set to `true`, Document.ids are automatically generated based on the hash of the payload, where IDs may not be consistent during multiple imports. In which case ReconciliationMode.FULL is highly recommended to avoid duplicate contents. If unset or set to `false`, Document.ids have to be specified using id_field, otherwise, documents without IDs fail to be imported. Only set this field when using GcsSource or BigQuerySource, and when GcsSource.data_schema or BigQuerySource.data_schema is `custom` or `csv`. Otherwise, an INVALID_ARGUMENT error is thrown.
+     * Whether to automatically generate IDs for the documents if absent. If set to `true`, Document.ids are automatically generated based on the hash of the payload, where IDs may not be consistent during multiple imports. In which case ReconciliationMode.FULL is highly recommended to avoid duplicate contents. If unset or set to `false`, Document.ids have to be specified using id_field, otherwise, documents without IDs fail to be imported. Supported data sources: * GcsSource. GcsSource.data_schema must be `custom` or `csv`. Otherwise, an INVALID_ARGUMENT error is thrown. * BigQuerySource. BigQuerySource.data_schema must be `custom` or `csv`. Otherwise, an INVALID_ARGUMENT error is thrown. * SpannerSource * CloudSqlSource * FirestoreSource * BigtableSource
      */
     autoGenerateIds?: boolean | null;
     /**
@@ -2048,11 +2113,15 @@ export namespace discoveryengine_v1beta {
      */
     errorConfig?: Schema$GoogleCloudDiscoveryengineV1betaImportErrorConfig;
     /**
+     * FhirStore input source.
+     */
+    fhirStoreSource?: Schema$GoogleCloudDiscoveryengineV1betaFhirStoreSource;
+    /**
      * Cloud Storage location for the input content.
      */
     gcsSource?: Schema$GoogleCloudDiscoveryengineV1betaGcsSource;
     /**
-     * The field in the Cloud Storage and BigQuery sources that indicates the unique IDs of the documents. For GcsSource it is the key of the JSON field. For instance, `my_id` for JSON `{"my_id": "some_uuid"\}`. For BigQuerySource it is the column name of the BigQuery table where the unique ids are stored. The values of the JSON field or the BigQuery column are used as the Document.ids. The JSON field or the BigQuery column must be of string type, and the values must be set as valid strings conform to [RFC-1034](https://tools.ietf.org/html/rfc1034) with 1-63 characters. Otherwise, documents without valid IDs fail to be imported. Only set this field when using GcsSource or BigQuerySource, and when GcsSource.data_schema or BigQuerySource.data_schema is `custom`. And only set this field when auto_generate_ids is unset or set as `false`. Otherwise, an INVALID_ARGUMENT error is thrown. If it is unset, a default value `_id` is used when importing from the allowed data sources.
+     * The field indicates the ID field or column to be used as unique IDs of the documents. For GcsSource it is the key of the JSON field. For instance, `my_id` for JSON `{"my_id": "some_uuid"\}`. For others, it may be the column name of the table where the unique ids are stored. The values of the JSON field or the table column are used as the Document.ids. The JSON field or the table column must be of string type, and the values must be set as valid strings conform to [RFC-1034](https://tools.ietf.org/html/rfc1034) with 1-63 characters. Otherwise, documents without valid IDs fail to be imported. Only set this field when auto_generate_ids is unset or set as `false`. Otherwise, an INVALID_ARGUMENT error is thrown. If it is unset, a default value `_id` is used when importing from the allowed data sources. Supported data sources: * GcsSource. GcsSource.data_schema must be `custom` or `csv`. Otherwise, an INVALID_ARGUMENT error is thrown. * BigQuerySource. BigQuerySource.data_schema must be `custom` or `csv`. Otherwise, an INVALID_ARGUMENT error is thrown. * SpannerSource * CloudSqlSource * FirestoreSource * BigtableSource
      */
     idField?: string | null;
     /**
@@ -2391,6 +2460,10 @@ export namespace discoveryengine_v1beta {
     totalPanels?: number | null;
   }
   /**
+   * Request for pausing training of an engine.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaPauseEngineRequest {}
+  /**
    * Metadata related to the progress of the PurgeDocuments operation. This will be returned by the google.longrunning.Operation.metadata field.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1betaPurgeDocumentsMetadata {
@@ -2470,6 +2543,61 @@ export namespace discoveryengine_v1beta {
      * Number of suggestion deny list entries purged.
      */
     purgeCount?: string | null;
+  }
+  /**
+   * Record message for RankService.Rank method.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaRankingRecord {
+    /**
+     * The content of the record. Empty by default. At least one of title or content should be set otherwise an INVALID_ARGUMENT error is thrown.
+     */
+    content?: string | null;
+    /**
+     * The unique ID to represent the record.
+     */
+    id?: string | null;
+    /**
+     * The score of this record based on the given query and selected model.
+     */
+    score?: number | null;
+    /**
+     * The title of the record. Empty by default. At least one of title or content should be set otherwise an INVALID_ARGUMENT error is thrown.
+     */
+    title?: string | null;
+  }
+  /**
+   * Request message for RankService.Rank method.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaRankRequest {
+    /**
+     * If true, the response will contain only record ID and score. By default, it is false, the response will contain record details.
+     */
+    ignoreRecordDetailsInResponse?: boolean | null;
+    /**
+     * The identifier of the model to use. It is one of: * `semantic-ranker-512@latest`: Semantic ranking model with maxiumn input token size 512. It is set to `semantic-ranker-512@latest` by default if unspecified.
+     */
+    model?: string | null;
+    /**
+     * The query to use.
+     */
+    query?: string | null;
+    /**
+     * Required. A list of records to rank.
+     */
+    records?: Schema$GoogleCloudDiscoveryengineV1betaRankingRecord[];
+    /**
+     * The number of results to return. If this is unset or no bigger than zero, returns all results.
+     */
+    topN?: number | null;
+  }
+  /**
+   * Response message for RankService.Rank method.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaRankResponse {
+    /**
+     * A list of records sorted by descending score.
+     */
+    records?: Schema$GoogleCloudDiscoveryengineV1betaRankingRecord[];
   }
   /**
    * Request message for Recommend method.
@@ -2585,6 +2713,10 @@ export namespace discoveryengine_v1beta {
      */
     uri?: string | null;
   }
+  /**
+   * Request for resuming training of an engine.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaResumeEngineRequest {}
   /**
    * Defines the structure and layout of a type of document data.
    */
@@ -3180,6 +3312,10 @@ export namespace discoveryengine_v1beta {
    */
   export interface Schema$GoogleCloudDiscoveryengineV1betaSearchResponseSummaryReference {
     /**
+     * List of cited chunk contents derived from document content.
+     */
+    chunkContents?: Schema$GoogleCloudDiscoveryengineV1betaSearchResponseSummaryReferenceChunkContent[];
+    /**
      * Required. Document.name of the document. Full resource name of the referenced document, in the format `projects/x/locations/x/collections/x/dataStores/x/branches/x/documents/x`.
      */
     document?: string | null;
@@ -3191,6 +3327,19 @@ export namespace discoveryengine_v1beta {
      * Cloud Storage or HTTP uri for the document.
      */
     uri?: string | null;
+  }
+  /**
+   * Chunk content.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaSearchResponseSummaryReferenceChunkContent {
+    /**
+     * Chunk textual content.
+     */
+    content?: string | null;
+    /**
+     * Page identifier.
+     */
+    pageIdentifier?: string | null;
   }
   /**
    * Safety Attribute categories and their associated confidence scores.
@@ -3504,6 +3653,10 @@ export namespace discoveryengine_v1beta {
      */
     errorSamples?: Schema$GoogleRpcStatus[];
     /**
+     * The metrics of the trained model.
+     */
+    metrics?: {[key: string]: number} | null;
+    /**
      * The trained model status. Possible values are: * **bad-data**: The training data quality is bad. * **no-improvement**: Tuning didn't improve performance. Won't deploy. * **in-progress**: Model training is in progress. * **ready**: The model is ready for serving.
      */
     modelStatus?: string | null;
@@ -3537,6 +3690,19 @@ export namespace discoveryengine_v1beta {
      */
     value?: number | null;
   }
+  /**
+   * Metadata associated with a tune operation.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaTuneEngineMetadata {
+    /**
+     * Required. The resource name of the engine that this tune applies to. Format: `projects/{project_number\}/locations/{location_id\}/collections/{collection_id\}/engines/{engine_id\}`
+     */
+    engine?: string | null;
+  }
+  /**
+   * Request to manually start a tuning process now (instead of waiting for the periodically scheduled tuning to happen).
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaTuneEngineRequest {}
   /**
    * Metadata for UpdateSchema LRO.
    */
@@ -4386,6 +4552,7 @@ export namespace discoveryengine_v1beta {
     collections: Resource$Projects$Locations$Collections;
     dataStores: Resource$Projects$Locations$Datastores;
     operations: Resource$Projects$Locations$Operations;
+    rankingConfigs: Resource$Projects$Locations$Rankingconfigs;
     constructor(context: APIRequestContext) {
       this.context = context;
       this.collections = new Resource$Projects$Locations$Collections(
@@ -4395,6 +4562,9 @@ export namespace discoveryengine_v1beta {
         this.context
       );
       this.operations = new Resource$Projects$Locations$Operations(
+        this.context
+      );
+      this.rankingConfigs = new Resource$Projects$Locations$Rankingconfigs(
         this.context
       );
     }
@@ -11754,6 +11924,298 @@ export namespace discoveryengine_v1beta {
         );
       }
     }
+
+    /**
+     * Pauses the training of an existing engine. Only applicable if SolutionType is SOLUTION_TYPE_RECOMMENDATION.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    pause(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Pause,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    pause(
+      params?: Params$Resource$Projects$Locations$Collections$Engines$Pause,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDiscoveryengineV1betaEngine>;
+    pause(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Pause,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    pause(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Pause,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaEngine>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaEngine>
+    ): void;
+    pause(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Pause,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaEngine>
+    ): void;
+    pause(
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaEngine>
+    ): void;
+    pause(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Collections$Engines$Pause
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaEngine>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaEngine>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaEngine>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDiscoveryengineV1betaEngine>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Collections$Engines$Pause;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Collections$Engines$Pause;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://discoveryengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta/{+name}:pause').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDiscoveryengineV1betaEngine>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDiscoveryengineV1betaEngine>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Resumes the training of an existing engine. Only applicable if SolutionType is SOLUTION_TYPE_RECOMMENDATION.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    resume(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Resume,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    resume(
+      params?: Params$Resource$Projects$Locations$Collections$Engines$Resume,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDiscoveryengineV1betaEngine>;
+    resume(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Resume,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    resume(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Resume,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaEngine>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaEngine>
+    ): void;
+    resume(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Resume,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaEngine>
+    ): void;
+    resume(
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaEngine>
+    ): void;
+    resume(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Collections$Engines$Resume
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaEngine>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaEngine>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaEngine>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDiscoveryengineV1betaEngine>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Collections$Engines$Resume;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Collections$Engines$Resume;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://discoveryengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta/{+name}:resume').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDiscoveryengineV1betaEngine>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDiscoveryengineV1betaEngine>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Tunes an existing engine. Only applicable if SolutionType is SOLUTION_TYPE_RECOMMENDATION.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    tune(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Tune,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    tune(
+      params?: Params$Resource$Projects$Locations$Collections$Engines$Tune,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    tune(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Tune,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    tune(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Tune,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    tune(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Tune,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    tune(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    tune(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Collections$Engines$Tune
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Collections$Engines$Tune;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Collections$Engines$Tune;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://discoveryengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta/{+name}:tune').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
   }
 
   export interface Params$Resource$Projects$Locations$Collections$Engines$Create
@@ -11820,6 +12282,42 @@ export namespace discoveryengine_v1beta {
      * Request body metadata
      */
     requestBody?: Schema$GoogleCloudDiscoveryengineV1betaEngine;
+  }
+  export interface Params$Resource$Projects$Locations$Collections$Engines$Pause
+    extends StandardParameters {
+    /**
+     * Required. The name of the engine to pause. Format: `projects/{project_number\}/locations/{location_id\}/collections/{collection_id\}/engines/{engine_id\}`
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDiscoveryengineV1betaPauseEngineRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Collections$Engines$Resume
+    extends StandardParameters {
+    /**
+     * Required. The name of the engine to resume. Format: `projects/{project_number\}/locations/{location_id\}/collections/{collection_id\}/engines/{engine_id\}`
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDiscoveryengineV1betaResumeEngineRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Collections$Engines$Tune
+    extends StandardParameters {
+    /**
+     * Required. The resource name of the engine to tune. Format: `projects/{project_number\}/locations/{location_id\}/collections/{collection_id\}/engines/{engine_id\}`
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDiscoveryengineV1betaTuneEngineRequest;
   }
 
   export class Resource$Projects$Locations$Collections$Engines$Conversations {
@@ -19270,6 +19768,123 @@ export namespace discoveryengine_v1beta {
      * The standard list page token.
      */
     pageToken?: string;
+  }
+
+  export class Resource$Projects$Locations$Rankingconfigs {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Ranks a list of text records based on the given input query.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    rank(
+      params: Params$Resource$Projects$Locations$Rankingconfigs$Rank,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    rank(
+      params?: Params$Resource$Projects$Locations$Rankingconfigs$Rank,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDiscoveryengineV1betaRankResponse>;
+    rank(
+      params: Params$Resource$Projects$Locations$Rankingconfigs$Rank,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    rank(
+      params: Params$Resource$Projects$Locations$Rankingconfigs$Rank,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaRankResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaRankResponse>
+    ): void;
+    rank(
+      params: Params$Resource$Projects$Locations$Rankingconfigs$Rank,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaRankResponse>
+    ): void;
+    rank(
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaRankResponse>
+    ): void;
+    rank(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Rankingconfigs$Rank
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaRankResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaRankResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaRankResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDiscoveryengineV1betaRankResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Rankingconfigs$Rank;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Rankingconfigs$Rank;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://discoveryengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta/{+rankingConfig}:rank').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['rankingConfig'],
+        pathParams: ['rankingConfig'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDiscoveryengineV1betaRankResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDiscoveryengineV1betaRankResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Rankingconfigs$Rank
+    extends StandardParameters {
+    /**
+     * Required. The resource name of the rank service config, such as `projects/{project_num\}/locations/{location_id\}/rankingConfigs/default_ranking_config`.
+     */
+    rankingConfig?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDiscoveryengineV1betaRankRequest;
   }
 
   export class Resource$Projects$Operations {

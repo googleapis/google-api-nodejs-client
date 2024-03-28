@@ -154,23 +154,6 @@ export namespace contentwarehouse_v1 {
      */
     subservice?: string | null;
   }
-  /**
-   * Extra information regarding evaluations received through cluster review.
-   */
-  export interface Schema$AbuseiamClusterEvaluationContext {
-    /**
-     * The family of the cluster where the case received the evaluation.
-     */
-    clusterFamily?: string | null;
-    /**
-     * The AbuseIAm rowkey of the cluster where the case received an evaluation.
-     */
-    clusterRowkey?: string | null;
-    /**
-     * The gaia id of a mail box that ops can send inquiries to for appeals. Used only by user clusters to fill a required gatekeeper param. See gaia_disableserver.DisableSpec.escalate_to field.
-     */
-    gaiaIdToEscalate?: string | null;
-  }
   export interface Schema$AbuseiamConstantRestriction {
     /**
      * A constant of type TRUE always applies, and of type FALSE never applies.
@@ -200,21 +183,9 @@ export namespace contentwarehouse_v1 {
      */
     backend?: string | null;
     /**
-     * Extra information regarding the cluster review context where the case received the evaluation.
-     */
-    clusterEvaluationContext?: Schema$AbuseiamClusterEvaluationContext;
-    /**
      * Backends can choose to put some debug info in addition to abuse_type, score, and status.
      */
     comment?: string | null;
-    /**
-     * A set of repeated features to allow adapters to return semi structured data. Please, prefer using feature instead of the old misc_data field since it supports richer and more structured data to be passed back.
-     */
-    feature?: Schema$AbuseiamFeature[];
-    /**
-     * Information about the manual review, for manual review evaluations. Do NOT expect this field to be set if `backend != MANUAL_REVIEW`.
-     */
-    manualReviewInfo?: Schema$AbuseiamManualReviewEvaluationInfo;
     /**
      * This field is used to store miscellaneous information that Backend might provide. If you find youself here considering to use this field, please prefer using the repeated feature field below instead. It supports a richer structure for passing complex data back from the backend.
      */
@@ -223,10 +194,6 @@ export namespace contentwarehouse_v1 {
      * When the evaluation was processed by the decision script.
      */
     processedMicros?: string | null;
-    /**
-     * Time in milliseconds when the Backend processed this Evaluation.
-     */
-    processTimeMillisecs?: string | null;
     /**
      * The list of regions where the evaluation applies.
      */
@@ -246,35 +213,6 @@ export namespace contentwarehouse_v1 {
      * Version of Backend. For rules, this string is the only way to differentiate between them.
      */
     version?: string | null;
-    /**
-     * Information about the video review, for video review evaluations. Do NOT expect this field to be set if `backend != VIDEO_REVIEW`.
-     */
-    videoReviewData?: Schema$AbuseiamVideoReviewData;
-  }
-  export interface Schema$AbuseiamFeature {
-    /**
-     * Exactly one of the following should be filled in.
-     */
-    booleanValue?: boolean | null;
-    doubleValue?: number | null;
-    /**
-     * Useful for applications that need to know how many times a specific feature occurs
-     */
-    featureCount?: string | null;
-    /**
-     * Useful for timestamps, or for numerical features where it is helpful for decision scripts to have exact values.
-     */
-    int64Value?: string | null;
-    /**
-     * integer value field is deprecated and shall only be used for passing the following features hardcoded in spamiam::SpamIAmMessage: spamiam::OrkutSenderId spamiam::OrkutPostnumReports spamiam::BloggerNumComments spamiam::BloggerNumCommentsByOthers Another hard-coded spamiam feature is spamiam::BlogName, which can be specified via string value.
-     */
-    integerValue?: number | null;
-    name?: string | null;
-    stringValue?: string[] | null;
-    /**
-     * This field should only be used to store a sequence of timestamps associated with the feature.
-     */
-    timestampSequence?: string[] | null;
   }
   /**
    * A node representing a table of regions and restrictions that apply to those regions. This table understands region inclusion and knows to apply the most specific rule, for example, a rule for France would override a rule for the EU for a user in France.
@@ -301,27 +239,6 @@ export namespace contentwarehouse_v1 {
      */
     hash?: string | null;
     type?: string | null;
-  }
-  export interface Schema$AbuseiamManualReviewerInfo {
-    credential?: string[] | null;
-    username?: string | null;
-  }
-  /**
-   * Relevant information for manual review evaluations.
-   */
-  export interface Schema$AbuseiamManualReviewEvaluationInfo {
-    /**
-     * Reviewer performing the manual review.
-     */
-    reviewer?: Schema$AbuseiamManualReviewerInfo;
-    /**
-     * Tool used to perform the manual review.
-     */
-    tool?: Schema$AbuseiamManualReviewTool;
-  }
-  export interface Schema$AbuseiamManualReviewTool {
-    experimentId?: string | null;
-    name?: string | null;
   }
   export interface Schema$AbuseiamNameValuePair {
     name?: string | null;
@@ -413,7 +330,7 @@ export namespace contentwarehouse_v1 {
      */
     isLegalIssued?: boolean | null;
     /**
-     * This field is used to pass relevant / necessary scores to our clients. For eg: ASBE propogates these scores to moonshine.
+     * This field is used to pass relevant / necessary scores to our clients. For eg: ASBE propagates these scores to moonshine.
      */
     miscScores?: Schema$AbuseiamNameValuePair[];
     /**
@@ -472,33 +389,6 @@ export namespace contentwarehouse_v1 {
      */
     id?: string | null;
     type?: string | null;
-  }
-  /**
-   * Information about a video review.
-   */
-  export interface Schema$AbuseiamVideoReviewData {
-    /**
-     * Serialized repeated youtube_admin.adminmatch.csai.ReferenceFragment
-     */
-    referenceFragment?: string[] | null;
-    /**
-     * Information about the video reviewer.
-     */
-    reviewer?: Schema$AbuseiamVideoReviewer;
-    /**
-     * The Viper id of the video.
-     */
-    videoId?: string | null;
-  }
-  /**
-   * Information about video reviewers.
-   */
-  export interface Schema$AbuseiamVideoReviewer {
-    type?: string | null;
-    /**
-     * The username of the person doing the video review.
-     */
-    username?: string | null;
   }
   /**
    * The serialized form of a SORI id. NOTE that this proto is stored in V4/O4 index and that new fields should not be added without getting an agreement from the serving team as well.
@@ -1918,7 +1808,7 @@ export namespace contentwarehouse_v1 {
      */
     source?: string | null;
     /**
-     * Describes the type of location. For e.g. Grew_up, Desk. Corresponds to FBS backend.proto Location.StandardTag
+     * Describes the type of location. E.g. Grew_up, Desk. Corresponds to FBS backend.proto Location.StandardTag
      */
     type?: string | null;
     value?: string | null;
@@ -3817,7 +3707,7 @@ export namespace contentwarehouse_v1 {
     fallbackToTetheredDevice?: boolean | null;
   }
   /**
-   * The android app information of the provider. Like, Spotify. Next ID: 17 LINT.IfChange
+   * The android app information of the provider. Like, Spotify. Next ID: 17
    */
   export interface Schema$AssistantApiCoreTypesAndroidAppInfo {
     accountType?: string | null;
@@ -4193,7 +4083,7 @@ export namespace contentwarehouse_v1 {
     /**
      * The background color of the agent. Used if no background image is specified for the given display orientation, or if the provided background image does not fit.
      */
-    backgroundColor?: Schema$AssistantApiCoreTypesGovernedColor;
+    backgroundColor?: Schema$AssistantApiCoreTypesColor;
     headerTheme?: string | null;
     /**
      * URL for the background image of the agent on landscape display.
@@ -4206,7 +4096,7 @@ export namespace contentwarehouse_v1 {
     /**
      * The color of the mask to apply to the background. See go/aog-cards-background-mask for details on applying this mask.
      */
-    maskColor?: Schema$AssistantApiCoreTypesGovernedColor;
+    maskColor?: Schema$AssistantApiCoreTypesColor;
     /**
      * URL for the background image of the agent on portrait display.
      */
@@ -4214,7 +4104,28 @@ export namespace contentwarehouse_v1 {
     /**
      * The primary color of the agent. Used by the client to style the header and suggestion chips.
      */
-    primaryColor?: Schema$AssistantApiCoreTypesGovernedColor;
+    primaryColor?: Schema$AssistantApiCoreTypesColor;
+  }
+  /**
+   * Represents a color in the RGBA color space. This message mirrors google.type.Color.
+   */
+  export interface Schema$AssistantApiCoreTypesColor {
+    /**
+     * The fraction of this color that should be applied to the pixel. That is, the final pixel color is defined by the equation: pixel color = alpha * (this color) + (1.0 - alpha) * (background color) This means that a value of 1.0 corresponds to a solid color, whereas a value of 0.0 corresponds to a completely transparent color. If omitted, this color object is to be rendered as a solid color (as if the alpha value had been explicitly given with a value of 1.0).
+     */
+    alpha?: number | null;
+    /**
+     * The amount of blue in the color as a value in the interval [0, 1].
+     */
+    blue?: number | null;
+    /**
+     * The amount of green in the color as a value in the interval [0, 1].
+     */
+    green?: number | null;
+    /**
+     * The amount of red in the color as a value in the interval [0, 1].
+     */
+    red?: number | null;
   }
   /**
    * The identification information for third party devices that integrates with the assistant. All of these fields will be populated by the third party when the query is sent from the third party device. Next Id: 5
@@ -4287,7 +4198,7 @@ export namespace contentwarehouse_v1 {
     quartzDeviceId?: string | null;
   }
   /**
-   * LINT.IfChange
+   * The set of information that helps Assistant identify a device-user pair. An example use of this proto is in broadcast reply, when after receiving a broadcast, we store a device-user pair in an attentional entity in order to later infer who initated the broadcast on which device.
    */
   export interface Schema$AssistantApiCoreTypesDeviceUserIdentity {
     /**
@@ -4298,241 +4209,6 @@ export namespace contentwarehouse_v1 {
      * The identifier of the user.
      */
     gaiaId?: string | null;
-  }
-  /**
-   * LINT.IfChange Represents a color in the RGBA color space. This message mirrors google.type.Color. IMPORTANT: The definition of Color proto is being moved to //assistant/api/core_types/color_type.proto. All existing references will be updated to point to the new location. If you are adding a reference, use the new one instead.
-   */
-  export interface Schema$AssistantApiCoreTypesGovernedColor {
-    /**
-     * The fraction of this color that should be applied to the pixel. That is, the final pixel color is defined by the equation: pixel color = alpha * (this color) + (1.0 - alpha) * (background color) This means that a value of 1.0 corresponds to a solid color, whereas a value of 0.0 corresponds to a completely transparent color. If omitted, this color object is to be rendered as a solid color (as if the alpha value had been explicitly given with a value of 1.0).
-     */
-    alpha?: number | null;
-    /**
-     * The amount of blue in the color as a value in the interval [0, 1].
-     */
-    blue?: number | null;
-    /**
-     * The amount of green in the color as a value in the interval [0, 1].
-     */
-    green?: number | null;
-    /**
-     * The amount of red in the color as a value in the interval [0, 1].
-     */
-    red?: number | null;
-  }
-  /**
-   * The identification information for third party devices that integrates with the assistant. All of these fields will be populated by the third party when the query is sent from the third party device. IMPORTANT: The definition of DeviceConfig proto is being moved to //assistant/api/core_types/device_type.proto. All existing references will be updated to point to the new location. If you are adding a reference, use the new one instead. Next Id: 5
-   */
-  export interface Schema$AssistantApiCoreTypesGovernedDeviceConfig {
-    /**
-     * Pantheon Project ID that uniquely identifies the consumer project ID. Required
-     */
-    agentId?: string | null;
-    /**
-     * Unique identifier for the device. Example: DBCDW098234. Required
-     */
-    deviceId?: string | null;
-  }
-  /**
-   * LINT.IfChange Specifies identifier of a device AKA surface. Note there may be multiple device ids for the same physical device E.g. Allo app and Assistant app on Nexus. Note: DeviceId usage is complicated. Please do not depend on it for surface specific logic. Please use google3/assistant/api/capabilities.proto instead. IMPORTANT: When checking for equality between two `DeviceId`s, you should always use an `isSameDevice{As\}` function to check for equality, as deep equality between `DeviceId`'s is not guaranteed. * C++: http://google3/assistant/assistant_server/util/device_id_util.cc;l=23;rcl=421295740 * Dart: http://google3/assistant/context/util/lib/device_id.dart;l=26;rcl=442126145 * Java: http://google3/java/com/google/assistant/assistantserver/utils/DeviceIdHelper.java;l=9;rcl=390378522 See http://go/deviceid-equality for more details. IMPORTANT: The definition of DeviceId proto is being moved to //assistant/api/core_types/device_type.proto. All existing references will be updated to point to the new location. If you are adding a reference, use the new one instead. Next ID: 14
-   */
-  export interface Schema$AssistantApiCoreTypesGovernedDeviceId {
-    /**
-     * The client_instance_id on devices with GSA. See 'client_instance_field' in go/androidids.
-     */
-    agsaClientInstanceId?: string | null;
-    /**
-     * Allo Id. Corresponds to the GBotRequest.Sender.sender. NOTE(dychen): This may change to standard android/ios physical device ids in order to enable shared data (e.g. installed app on physical device shared between Allo and Opa apps on Nexus).
-     */
-    alloDeviceId?: string | null;
-    /**
-     * A unique device ID for Assistant devices as proposed by go/ocelot-team to solve the device id fragmentation problem. The value of this id is the HomeGraph id of the device. See go/ocelot-track-0-registry-design. New surfaces should use the canonical_device_id instead of using other ids, and the registration should utilize the DeviceDataLayer (go/ddl-v0). Please contact the assistant-state-management@ team for guidance. Note: We didn't reuse |home_graph_device_id| because in Assistant code base |home_graph_device_id| is common to associate it with 3P devices. See go/project-yellowstone for more context.
-     */
-    canonicalDeviceId?: string | null;
-    /**
-     * If set, indicates that the device is a cast device, and contains the UUID of the cast device. Corresponds to the device_id field of the CastDevice proto.
-     */
-    castDeviceId?: string | null;
-    /**
-     * DUSI (go/dusi) is used as the identifier here. This identifier is unique to the user and device. This will help identify which device or application the user's request originated from. This is not to be confused with the client_instance_id that android devices provide. This is currently used by surfaces that use the assistant-legacy-nexus and assistant-legacy-clockwork pipelines. DUSI is created and set in S3. This field is only filled for GAIA requests.
-     */
-    clientInstanceId?: string | null;
-    /**
-     * A device ID produced by a connected dock, which is registered in HomeGraph.
-     */
-    connectedDockId?: string | null;
-    /**
-     * The unique DeviceConfig to the specific third party device. It is also used by Android Auto Embedded first party device. See go/opa-ids.
-     */
-    deviceConfig?: Schema$AssistantApiCoreTypesGovernedDeviceConfig;
-    /**
-     * DEPRECATED. assistant.api.core_types.governed.SurfaceIdentity.surface_type field should be used instead. The device's surface type. This is the string version of surface_type. The server should use the SurfaceType value derived from this string. If the device_type isn't supported within the SurfaceType enum, it will be set as UNKNOWN. Developers should use the enum in ServerParams instead of this string. WARNING: Clients are not actually setting this field. This field will be removed once references to it within the code base have been removed.
-     */
-    deviceType?: string | null;
-    /**
-     * The unique device ID for HomeGraph devices. This is the HomeGraph ID, created when the device is registered into HomeGraph. It is immutable for the same device unless it is completely deleted and recreated. See go/home-graph for details.
-     */
-    homeGraphDeviceId?: string | null;
-    /**
-     * The unique ID for libassistant based devices. See go/libassistant-id for details.
-     */
-    libassistantDeviceId?: string | null;
-    /**
-     * If set, indicates that the device is participating the multi-hotword arbitration and the id is an UUID to distinguish it from other devices. It should also be consistent between requests from a single device within a session (or short duration).
-     */
-    multiHotwordArbitrationDeviceId?: string | null;
-    /**
-     * The unique device ID for the Assistant App on iOS. See go/opa-ios-design for details.
-     */
-    opaIosDeviceId?: string | null;
-    /**
-     * The unique ID of a Quartz device. See go/quartz-design-doc for more details. Quartz ID is a hash of (android_id + gaia).
-     */
-    quartzDeviceId?: string | null;
-  }
-  /**
-   * LINT.IfChange Task metadata information describing the ringtone. IMPORTANT: The definition of RingtoneTaskMetadata proto is being moved to //assistant/api/core_types/ringtone_task_metadata.proto. All existing references will be updated to point to the new location. If you are adding a reference, use the new one instead. Next id: 11
-   */
-  export interface Schema$AssistantApiCoreTypesGovernedRingtoneTaskMetadata {
-    /**
-     * The category related with the ringtone. It's used to generate ringtone related with the category if the entity_mid is not be populated. E.g. for instrument, the ringtone may be piano sound.
-     */
-    category?: string | null;
-    characterAlarmMetadata?: Schema$AssistantApiCoreTypesGovernedRingtoneTaskMetadataCharacterAlarmMetadata;
-    characterTag?: string | null;
-    /**
-     * The freebase mid of the entity related to the ringtone. It will be used to generate the ringtone for the alarm or timer (with support for i18n). For instance, for the "cat" mid, the related ringtone will be a cat sound in some language, and for the "Beyonce" mid, the ringtone will be, e.g., a playlist of Beyonce's best hits.
-     */
-    entityMid?: string | null;
-    funtimeMetadata?: Schema$AssistantApiCoreTypesGovernedRingtoneTaskMetadataFuntimeMetadata;
-    genMlAlarmMetadata?: Schema$AssistantApiCoreTypesGovernedRingtoneTaskMetadataGenMlAlarmMetadata;
-    /**
-     * Gentle wake information for this alarm.
-     */
-    gentleWakeInfo?: Schema$AssistantApiCoreTypesGovernedRingtoneTaskMetadataGentleWakeInfo;
-    onDeviceAlarmMetadata?: Schema$AssistantApiCoreTypesGovernedRingtoneTaskMetadataOnDeviceAlarmMetadata;
-    /**
-     * Will be deprecated. Use OnDeviceAlarmMetadata.
-     */
-    onDeviceAlarmSound?: string | null;
-    routineAlarmMetadata?: Schema$AssistantApiCoreTypesGovernedRingtoneTaskMetadataRoutineAlarmMetadata;
-  }
-  export interface Schema$AssistantApiCoreTypesGovernedRingtoneTaskMetadataCharacterAlarmMetadata {
-    /**
-     * For character alarm, the media resources are provided through AOG apps. During alarm trigger phase, aog apps with the specified agent_ids are used to get the media resources. Multiple "AoG agents" can satisfy a character_tag. So the user will select the agents they want at alarm creation time. The chosen agents will be recorded so that the resources only from those agents will be used at trigger time. The number of selected agent_ids will not exceed 3. See go/character-alarm-aog.
-     */
-    agentIds?: string[] | null;
-    /**
-     * The Character Alarm tag. Tags are needed to identify the theme of the alarm. For example, if the tag is 'astronaut', astronaut based audio is played during alarm ring. Note : We have made it repeated so that the user can choose multiple character alarm themes at one go. At present, the user is allowed to choose only one theme during alarm creation.
-     */
-    characterTags?: string[] | null;
-    /**
-     * Icons urls corresponding to a character. Note : We have made it repeated so that we can show different images when the alarm rings. At present, we only support only one image.
-     */
-    iconUrls?: string[] | null;
-  }
-  /**
-   * Used to make timers and alarms more delightful. See go/funtime-engdesign for more details.
-   */
-  export interface Schema$AssistantApiCoreTypesGovernedRingtoneTaskMetadataFuntimeMetadata {
-    /**
-     * For FunTime alarms and timers, the media resources are provided through AOG apps during their ringtone. Multiple AoG agents can satisfy a label. So a random agent will be chosen from those that are supplied. See go/funtime-engdesign.
-     */
-    agentIds?: string[] | null;
-    /**
-     * These bytes may represent the blob of the Rive animation that we pass to the Opal App. We will deprecate this field if we figure out a solution to load the animation from the web.
-     */
-    animationBlob?: string | null;
-    /**
-     * Url for Rive animation that is brought up on ring. Rive is a lightweight animation library that is compatible with Flutter on Opal. See https://rive.app/.
-     */
-    animationUrl?: string | null;
-    /**
-     * The url used to load the image that is at the center of the timer during timer countdown visuals.
-     */
-    timerHeroUrl?: string | null;
-    /**
-     * This is used to call S3 to realize the TTS. Is in the form of bytes because of a circular dependency issue in libassistant protos. It is a serialized proto of type speech.s3.TtsServiceRequest.
-     */
-    ttsServiceRequestBytes?: string | null;
-  }
-  /**
-   * Metadata for machine learning generated audio samples. This will be similar to character alarms, Category will be set MEDIA but this metadata field will be used to identify the ringtone type on surface. (go/magenta-alarm-ringtones).
-   */
-  export interface Schema$AssistantApiCoreTypesGovernedRingtoneTaskMetadataGenMlAlarmMetadata {
-    isEnabled?: boolean | null;
-    /**
-     * Label for the generated ringtone.
-     */
-    ringtoneLabel?: string | null;
-  }
-  /**
-   * Gentle wake actions like slowly brightening the room/device screen leading up to the alarm firing (go/cube-gentle-wake-up).
-   */
-  export interface Schema$AssistantApiCoreTypesGovernedRingtoneTaskMetadataGentleWakeInfo {
-    /**
-     * Specifies how long the effect lasts. Allowed for effect to last after the alarm has started ringing. If unset or negative or 0, effect is assumed to last until alarm trigger time.
-     */
-    effectDurationMs?: string | null;
-    /**
-     * Indicates if gentle wake action is to be performed before this alarm fires. This is enabled only if the device supports sunrise alarm capability. http://cs/symbol:assistant.api.SunriseFeaturesSupport
-     */
-    isEnabled?: boolean | null;
-    /**
-     * Specifies how long before the alarm fire time, the wakeup effect will start. ALWAYS POSITIVE.
-     */
-    startTimedeltaMs?: string | null;
-  }
-  /**
-   * This describes the alarm sound resource enum and the alarm sound label for the on device alarm sound. On-device ringtones are product specific, hence Opal/UI layer will be responsible for populating this metadata at creation/edit. The enum map will be used to convert to an internal resource id used by libassistant for accessing the asset which are not exposed to UI.
-   */
-  export interface Schema$AssistantApiCoreTypesGovernedRingtoneTaskMetadataOnDeviceAlarmMetadata {
-    /**
-     * Opal/UI layer will set this bit based on the user selection.
-     */
-    onDeviceAlarmSound?: string | null;
-    /**
-     * A string label to identify the alarm sound name. Opal/UI layer will set this as per product definition. This will be used to display the name of the selected ringtone.
-     */
-    onDeviceAlarmSoundLabel?: string | null;
-    /**
-     * This is used to call S3 to realize the TTS. Is in the form of bytes because of a circular dependency issue in libassistant protos. It is a serialized proto of type speech.s3.TtsServiceRequest. This request will contain an ssml with the url to the ringtone files hosted on gstatic.
-     */
-    ttsServiceRequestBytes?: string | null;
-  }
-  export interface Schema$AssistantApiCoreTypesGovernedRingtoneTaskMetadataRoutineAlarmMetadata {
-    /**
-     * The unique id for each routine. When the alrm is dismissed, it will trigger the routine of the routine alarm's creator if feasible.
-     */
-    routineId?: string | null;
-  }
-  /**
-   * The set of information that helps the server identify the surface. This replaces the User-Agent string within the Assistant Server. Note: The SurfaceIdentity proto should only be used to derive the capabilities of a surface. It should not be accessed outside of the CapabilityBuilder or CapabilityChecker. IMPORTANT: The partial migration to the SurfaceIdentity and SurfaceVersion protos defined here is being rolled back (b/303012824). All existing references will be updated to point back to //assistant/api/core_types/surface_identity.proto. If you are adding a reference, use the SurfaceIdentity and SurfaceVersion protos defined there. NEXT ID: 6 LINT.IfChange
-   */
-  export interface Schema$AssistantApiCoreTypesGovernedSurfaceIdentity {
-    /**
-     * The identifier of the device.
-     */
-    deviceId?: Schema$AssistantApiCoreTypesDeviceId;
-    /**
-     * DEPRECATED: The legacy device's surface type enum. NOTE: Prefer using the ontological `surface_type` field above. If you need to access the legacy surface type, please file a bug and add it in your code to migrate to ontological surface type.
-     */
-    legacySurfaceType?: string | null;
-    /**
-     * The device's surface type. The types are defined at google3/assistant/api/core_types/surfaces.gcl.
-     */
-    surfaceType?: string | null;
-    /**
-     * The version of the surface/client. This is different from the Conversation protocol version.
-     */
-    surfaceVersion?: Schema$AssistantApiCoreTypesGovernedSurfaceVersion;
-  }
-  /**
-   * The version of the surface/client. New surfaces are encouraged to only use the “major” field to keep track of version number. The “minor” field may be used for surfaces that rely on both the “major” and “minor” fields to define their version.
-   */
-  export interface Schema$AssistantApiCoreTypesGovernedSurfaceVersion {
-    major?: number | null;
-    minor?: number | null;
   }
   /**
    * The Home app information of the provider. Next ID: 3
@@ -4548,7 +4224,7 @@ export namespace contentwarehouse_v1 {
     packageName?: string | null;
   }
   /**
-   * An image represents the data about an image or a photo. LINT.IfChange NextId: 13
+   * An image represents the data about an image or a photo. NextId: 13
    */
   export interface Schema$AssistantApiCoreTypesImage {
     /**
@@ -4658,7 +4334,7 @@ export namespace contentwarehouse_v1 {
     lngDegrees?: number | null;
   }
   /**
-   * LINT.IfChange(ungoverned_message_notification) This proto captures the contents of a messaging app notification that is typically part of a conversation thread. Next Id: 21
+   * This proto captures the contents of a messaging app notification that is typically part of a conversation thread. Next Id: 21
    */
   export interface Schema$AssistantApiCoreTypesMessageNotification {
     /**
@@ -4734,9 +4410,13 @@ export namespace contentwarehouse_v1 {
     senderName?: string | null;
   }
   /**
-   * Structure of each notification in the MessageNotification Bundle. Attribute sender_name could be different in case of group messages. Next Id: 8
+   * Structure of each notification in the MessageNotification Bundle. Attribute sender_name could be different in case of group messages. Next Id: 9
    */
   export interface Schema$AssistantApiCoreTypesMessageNotificationNotificationEntry {
+    /**
+     * Duration of audio message.
+     */
+    audioDuration?: string | null;
     /**
      * Count of characters in the message body in the notification.
      */
@@ -4842,6 +4522,122 @@ export namespace contentwarehouse_v1 {
     iconImageUrl?: string | null;
   }
   /**
+   * Task metadata information describing the ringtone. Next id: 11
+   */
+  export interface Schema$AssistantApiCoreTypesRingtoneTaskMetadata {
+    /**
+     * The category related with the ringtone. It's used to generate ringtone related with the category if the entity_mid is not be populated. E.g. for instrument, the ringtone may be piano sound.
+     */
+    category?: string | null;
+    characterAlarmMetadata?: Schema$AssistantApiCoreTypesRingtoneTaskMetadataCharacterAlarmMetadata;
+    characterTag?: string | null;
+    /**
+     * The freebase mid of the entity related to the ringtone. It will be used to generate the ringtone for the alarm or timer (with support for i18n). For instance, for the "cat" mid, the related ringtone will be a cat sound in some language, and for the "Beyonce" mid, the ringtone will be, e.g., a playlist of Beyonce's best hits.
+     */
+    entityMid?: string | null;
+    funtimeMetadata?: Schema$AssistantApiCoreTypesRingtoneTaskMetadataFuntimeMetadata;
+    genMlAlarmMetadata?: Schema$AssistantApiCoreTypesRingtoneTaskMetadataGenMlAlarmMetadata;
+    /**
+     * Gentle wake information for this alarm.
+     */
+    gentleWakeInfo?: Schema$AssistantApiCoreTypesRingtoneTaskMetadataGentleWakeInfo;
+    onDeviceAlarmMetadata?: Schema$AssistantApiCoreTypesRingtoneTaskMetadataOnDeviceAlarmMetadata;
+    /**
+     * Will be deprecated. Use OnDeviceAlarmMetadata.
+     */
+    onDeviceAlarmSound?: string | null;
+    routineAlarmMetadata?: Schema$AssistantApiCoreTypesRingtoneTaskMetadataRoutineAlarmMetadata;
+  }
+  export interface Schema$AssistantApiCoreTypesRingtoneTaskMetadataCharacterAlarmMetadata {
+    /**
+     * For character alarm, the media resources are provided through AOG apps. During alarm trigger phase, aog apps with the specified agent_ids are used to get the media resources. Multiple "AoG agents" can satisfy a character_tag. So the user will select the agents they want at alarm creation time. The chosen agents will be recorded so that the resources only from those agents will be used at trigger time. The number of selected agent_ids will not exceed 3. See go/character-alarm-aog.
+     */
+    agentIds?: string[] | null;
+    /**
+     * The Character Alarm tag. Tags are needed to identify the theme of the alarm. For example, if the tag is 'astronaut', astronaut based audio is played during alarm ring. Note : We have made it repeated so that the user can choose multiple character alarm themes at one go. At present, the user is allowed to choose only one theme during alarm creation.
+     */
+    characterTags?: string[] | null;
+    /**
+     * Icons urls corresponding to a character. Note : We have made it repeated so that we can show different images when the alarm rings. At present, we only support only one image.
+     */
+    iconUrls?: string[] | null;
+  }
+  /**
+   * Used to make timers and alarms more delightful. See go/funtime-engdesign for more details.
+   */
+  export interface Schema$AssistantApiCoreTypesRingtoneTaskMetadataFuntimeMetadata {
+    /**
+     * For FunTime alarms and timers, the media resources are provided through AOG apps during their ringtone. Multiple AoG agents can satisfy a label. So a random agent will be chosen from those that are supplied. See go/funtime-engdesign.
+     */
+    agentIds?: string[] | null;
+    /**
+     * These bytes may represent the blob of the Rive animation that we pass to the Opal App. We will deprecate this field if we figure out a solution to load the animation from the web.
+     */
+    animationBlob?: string | null;
+    /**
+     * Url for Rive animation that is brought up on ring. Rive is a lightweight animation library that is compatible with Flutter on Opal. See https://rive.app/.
+     */
+    animationUrl?: string | null;
+    /**
+     * The url used to load the image that is at the center of the timer during timer countdown visuals.
+     */
+    timerHeroUrl?: string | null;
+    /**
+     * This is used to call S3 to realize the TTS. Is in the form of bytes because of a circular dependency issue in libassistant protos. It is a serialized proto of type speech.s3.TtsServiceRequest.
+     */
+    ttsServiceRequestBytes?: string | null;
+  }
+  /**
+   * Metadata for machine learning generated audio samples. This will be similar to character alarms, Category will be set MEDIA but this metadata field will be used to identify the ringtone type on surface. (go/magenta-alarm-ringtones).
+   */
+  export interface Schema$AssistantApiCoreTypesRingtoneTaskMetadataGenMlAlarmMetadata {
+    isEnabled?: boolean | null;
+    /**
+     * Label for the generated ringtone.
+     */
+    ringtoneLabel?: string | null;
+  }
+  /**
+   * Gentle wake actions like slowly brightening the room/device screen leading up to the alarm firing (go/cube-gentle-wake-up).
+   */
+  export interface Schema$AssistantApiCoreTypesRingtoneTaskMetadataGentleWakeInfo {
+    /**
+     * Specifies how long the effect lasts. Allowed for effect to last after the alarm has started ringing. If unset or negative or 0, effect is assumed to last until alarm trigger time.
+     */
+    effectDurationMs?: string | null;
+    /**
+     * Indicates if gentle wake action is to be performed before this alarm fires. This is enabled only if the device supports sunrise alarm capability. http://cs/symbol:assistant.api.SunriseFeaturesSupport
+     */
+    isEnabled?: boolean | null;
+    /**
+     * Specifies how long before the alarm fire time, the wakeup effect will start. ALWAYS POSITIVE.
+     */
+    startTimedeltaMs?: string | null;
+  }
+  /**
+   * This describes the alarm sound resource enum and the alarm sound label for the on device alarm sound. On-device ringtones are product specific, hence Opal/UI layer will be responsible for populating this metadata at creation/edit. The enum map will be used to convert to an internal resource id used by libassistant for accessing the asset which are not exposed to UI.
+   */
+  export interface Schema$AssistantApiCoreTypesRingtoneTaskMetadataOnDeviceAlarmMetadata {
+    /**
+     * Opal/UI layer will set this bit based on the user selection.
+     */
+    onDeviceAlarmSound?: string | null;
+    /**
+     * A string label to identify the alarm sound name. Opal/UI layer will set this as per product definition. This will be used to display the name of the selected ringtone.
+     */
+    onDeviceAlarmSoundLabel?: string | null;
+    /**
+     * This is used to call S3 to realize the TTS. Is in the form of bytes because of a circular dependency issue in libassistant protos. It is a serialized proto of type speech.s3.TtsServiceRequest. This request will contain an ssml with the url to the ringtone files hosted on gstatic.
+     */
+    ttsServiceRequestBytes?: string | null;
+  }
+  export interface Schema$AssistantApiCoreTypesRingtoneTaskMetadataRoutineAlarmMetadata {
+    /**
+     * The unique id for each routine. When the alrm is dismissed, it will trigger the routine of the routine alarm's creator if feasible.
+     */
+    routineId?: string | null;
+  }
+  /**
    * Session Initiation Protocol (SIP) information for providers that use SIP to initiate multimedia communication sessions, like Google Voice and Fi. https://en.wikipedia.org/wiki/Session_Initiation_Protocol
    */
   export interface Schema$AssistantApiCoreTypesSipProviderInfo {
@@ -4859,7 +4655,7 @@ export namespace contentwarehouse_v1 {
     useBirdsongTacl?: boolean | null;
   }
   /**
-   * The set of information that helps the server identify the surface. This replaces the User-Agent string within the Assistant Server. Note: The SurfaceIdentity proto should only be used to derive the capabilities of a surface. It should not be accessed outside of the CapabilityBuilder or CapabilityChecker. NEXT ID: 6 LINT.IfChange
+   * The set of information that helps the server identify the surface. This replaces the User-Agent string within the Assistant Server. Note: The SurfaceIdentity proto should only be used to derive the capabilities of a surface. It should not be accessed outside of the CapabilityBuilder or CapabilityChecker. NEXT ID: 6
    */
   export interface Schema$AssistantApiCoreTypesSurfaceIdentity {
     /**
@@ -5471,6 +5267,27 @@ export namespace contentwarehouse_v1 {
      */
     supportedRecipientTypes?: string[] | null;
   }
+  /**
+   * LINT.IfChange(messageSummarySupport)
+   */
+  export interface Schema$AssistantApiMessageSummarySupport {
+    /**
+     * The current setting status of message summary on current device.
+     */
+    deviceSettingStatus?: string | null;
+    /**
+     * Last time that voice opt-in flow has been triggered.
+     */
+    lastVoiceOptInFlowTimestamp?: string | null;
+    /**
+     * Whether the client supports message summarization.
+     */
+    readNotificationSummarizationSupported?: boolean | null;
+    /**
+     * The voice consent flow counter on current device.
+     */
+    voiceOptInFlowCounter?: number | null;
+  }
   export interface Schema$AssistantApiMovementCapabilities {
     /**
      * Indicates how much the device moves around. E.g., TV has a low mobility level, while Auto has a very high level.
@@ -5683,6 +5500,47 @@ export namespace contentwarehouse_v1 {
      */
     weekOfMonth?: number[] | null;
   }
+  /**
+   * Used to describe the capabilities and params of Robin Client. Field will be populated from Client or backfilled in SAL only for Robin client.
+   */
+  export interface Schema$AssistantApiRobinCapabilities {
+    /**
+     * List of enabled Robin extensions.
+     */
+    enabledExtensions?: string[] | null;
+    robinStatus?: Schema$AssistantApiRobinCapabilitiesRobinStatus;
+    /**
+     * List of supported RobinOps.
+     */
+    supportedRobinOps?: string[] | null;
+  }
+  /**
+   * Current Robin status of the client.
+   */
+  export interface Schema$AssistantApiRobinCapabilitiesRobinStatus {
+    available?: Schema$AssistantApiRobinCapabilitiesRobinStatusRobinStatusAvailable;
+    notAvailable?: Schema$AssistantApiRobinCapabilitiesRobinStatusRobinStatusNotAvailable;
+    optedIn?: Schema$AssistantApiRobinCapabilitiesRobinStatusRobinStatusOptedIn;
+    optedOut?: Schema$AssistantApiRobinCapabilitiesRobinStatusRobinStatusOptedOut;
+  }
+  /**
+   * Robin is available and can be enabled by the user.
+   */
+  export interface Schema$AssistantApiRobinCapabilitiesRobinStatusRobinStatusAvailable {}
+  /**
+   * Robin is not available and can not be enabled by the user.
+   */
+  export interface Schema$AssistantApiRobinCapabilitiesRobinStatusRobinStatusNotAvailable {
+    reasons?: number[] | null;
+  }
+  /**
+   * Robin is available and the user opted in already.
+   */
+  export interface Schema$AssistantApiRobinCapabilitiesRobinStatusRobinStatusOptedIn {}
+  /**
+   * Robin would be available, but the user explicitly opted out.
+   */
+  export interface Schema$AssistantApiRobinCapabilitiesRobinStatusRobinStatusOptedOut {}
   /**
    * These capabilities represent the tactile features associated with the device. This includes, for example, whether the device has a screen, how big the screen is, and privacy of the screen. Next ID: 11
    */
@@ -6739,7 +6597,7 @@ export namespace contentwarehouse_v1 {
     supportsWarmWords?: boolean | null;
   }
   /**
-   * These capabilities represent what software features the client supports. This should be determined based on the client's various software versions (OS, GSA version, etc). Next ID: 27
+   * These capabilities represent what software features the client supports. This should be determined based on the client's various software versions (OS, GSA version, etc). Next ID: 28
    */
   export interface Schema$AssistantApiSoftwareCapabilities {
     /**
@@ -6802,6 +6660,10 @@ export namespace contentwarehouse_v1 {
      * An ordered list containing the live tv providers available in the client. The order of the providers reflects the ranking in the client and will be respected by server as well.
      */
     orderedLiveTvProviders?: Schema$AssistantApiLiveTvProvider[];
+    /**
+     * Capabilities of Robin client.
+     */
+    robinCapabilities?: Schema$AssistantApiRobinCapabilities;
     /**
      * The Soli capabilities on Elaine. go/dingo-dc-software
      */
@@ -6956,7 +6818,7 @@ export namespace contentwarehouse_v1 {
     version?: number | null;
   }
   /**
-   * These are the set of features that are supported by the device. It's a part of the SoftwareCapabilities of the device. Next ID: 68
+   * These are the set of features that are supported by the device. It's a part of the SoftwareCapabilities of the device. Next ID: 69
    */
   export interface Schema$AssistantApiSupportedFeatures {
     /**
@@ -7110,6 +6972,10 @@ export namespace contentwarehouse_v1 {
      */
     meetSupported?: boolean | null;
     /**
+     * The client information for message summary. More details in: go/roadwayrecap-prd
+     */
+    messageSummarySupport?: Schema$AssistantApiMessageSummarySupport;
+    /**
      * Whether the client can render no input response or just ignore it. No input response is returned when client has a no speech input interaction, eg. user tapped mic but didn't say anything.
      */
     noInputResponseSupported?: boolean | null;
@@ -7134,7 +7000,7 @@ export namespace contentwarehouse_v1 {
      */
     readMessagesTtsTaperingSupported?: boolean | null;
     /**
-     * Whether the client supports message summarization.
+     * Whether the client supports message summarization. Deprecated, use message_summary_support instead.
      */
     readNotificationSummarizationSupported?: boolean | null;
     /**
@@ -7205,10 +7071,6 @@ export namespace contentwarehouse_v1 {
      * Whether the supports opening a URL in a web browser. For example, we want to disable this for clients like Chirp.
      */
     webBrowserSupported?: boolean | null;
-    /**
-     * Whether or not the client supports WhatsNext in the protocol.
-     */
-    whatsNextSupported?: boolean | null;
     /**
      * Whether the client supports joining a Zoom meeting.
      */
@@ -7406,143 +7268,6 @@ export namespace contentwarehouse_v1 {
     veryLowVolumePercentage?: number | null;
   }
   /**
-   * LINT.IfChange Identifier for an application provider. NOTE: AppProviderId contains surface-specific info, such as the Android package name of the application. This was necessary for supporting current use cases that rely on surface-specific info in feature code. Eventually we want to deprecate AppProviderId and fetch surface-specific info in some other way (e.g. in a surface-translation layer). But until then, we may continue extending AppProviderId with other surface-specific info.
-   */
-  export interface Schema$AssistantContextAppProviderId {
-    /**
-     * The activity class name. E.g. com.google.android.gm.ui.MailActivityGmail
-     */
-    activityClassName?: string | null;
-    /**
-     * Unique package name that identifies an Android app of the provider.
-     */
-    androidPackageName?: string | null;
-    /**
-     * Unique cast app id that identifies a Cast app of the provider.
-     */
-    castAppId?: string | null;
-    /**
-     * Version code of the application.
-     */
-    versionCode?: number | null;
-  }
-  /**
-   * IMPORTANT: This proto is being migrated to ProviderId. If you are adding new field, please add to ProviderId as well.
-   */
-  export interface Schema$AssistantContextMediaProviderId {
-    /**
-     * Unique package name that identifies a Android app of the provider.
-     */
-    androidPackageName?: string | null;
-    /**
-     * Unique app id that identifies a Cast app of the provider.
-     */
-    castAppId?: string | null;
-    /**
-     * Unique package name that identifies a ChromeOS app of the provider.
-     */
-    chromeOsPackageName?: string | null;
-    /**
-     * Unique package name that identifies a Home app of the provider.
-     */
-    homeAppPackageName?: string | null;
-    /**
-     * Bundle identifier that identifies an iOS app of the provider.
-     */
-    iosBundleIdentifier?: string | null;
-    /**
-     * Unique package name that identifies a KaiOS app of the provider.
-     */
-    kaiOsPackageName?: string | null;
-    /**
-     * Each onboarded provider has a unique provider key. KG provider keys are string identifiers used to identify a provider in some Media backends since mids, names, etc can change.
-     */
-    kgProviderKey?: string | null;
-    /**
-     * The MID of the provider. A MID is a unique identifier issued by Knowledge Graph for all entities contained in its graph.
-     */
-    mid?: string | null;
-    /**
-     * Provider variant corresponding to the current MediaProviderId.
-     */
-    providerVariant?: Schema$AssistantContextProviderVariant;
-    /**
-     * Bundle id that identifies an Session Initiation Protocol (SIP) provider.
-     */
-    sipProviderId?: string | null;
-  }
-  /**
-   * Identifier used to represent a single application (a.k.a. provider). This model represents the surface-agnostic counterpart for assistant.api.core_types.Provider. E.g. it should avoid directly using package names for Android, bundle identifiers for iOS, etc. We require the transformation between assistant.context.ProviderId and assistant.api.core_types.Provider to either be lossless, or "lossy yet retrievable" (e.g. if package name is not available in ProviderId, it can still be retrieved using the ProviderMappingsModule). NOTE: 1. As of May 2021, verticals are highly fragmented in terms of how they represent/identify a provider, and so we may need to accommodate some vertical-specific representations. However, these should be generalized as much as possible so that they can be used by other verticals if needed. 2. If we need to differentiate between whether a provider is a media provider, app actions provider, timer provider, etc. we should capture this information in the context proto that contains a ProviderId field, rather than in the ProviderId message itself. 3. Any common fields across different provider identifier representations (e.g. ecosystem type) should be part of assistant.context.ProviderId directly.
-   */
-  export interface Schema$AssistantContextProviderId {
-    /**
-     * TODO(b/241170835) Deprecate this field.
-     */
-    appProviderId?: Schema$AssistantContextAppProviderId;
-    /**
-     * Ecosystem type for this provider.
-     */
-    ecosystemType?: string | null;
-    /**
-     * DEPRECATED. Fields in MediaProviderId have been pulled out into separate fields in ProviderId and ProviderMetadata. TODO(b/243953766) Deprecate this field.
-     */
-    mediaProviderId?: Schema$AssistantContextMediaProviderId;
-    /**
-     * The MID of the provider. A MID is a unique identifier issued by Knowledge Graph for all entities contained in its graph.
-     */
-    mid?: string | null;
-    /**
-     * ID issued by the Provider Corpus to uniquely identify a provider entity e.g. an Android app, a Cast app or a Cloud provider. In practice, a single partner can have multiple providers entities. For more detail, see go/se-storage-provider-id. This is the preferred/ standardized ID to use for ProviderId that all use-cases should eventually migrate to.
-     */
-    providerCorpusId?: string | null;
-    /**
-     * Provider variant corresponding to the current provider. It's used together with mid to uniquely identify provider.
-     */
-    providerVariant?: Schema$AssistantContextProviderVariant;
-  }
-  /**
-   * Identifies a business policy used for selecting a given content provider in the form of a name and a resulting scoring action.
-   */
-  export interface Schema$AssistantContextProviderSelectionPolicy {
-    /**
-     * Result of applying the policy.
-     */
-    policyAction?: string | null;
-    /**
-     * Name of the policy.
-     */
-    policyName?: string | null;
-  }
-  /**
-   * Message that gets returned from the Provider Selection Library (PSL). It encodes the scores, applied policies, and pruning decisions for a given provider candidate.
-   */
-  export interface Schema$AssistantContextProviderSelectionResult {
-    /**
-     * Alternative bucketed score for use by downstream ranking providers. A raw numeric score is subject to semantic-drift, while a bucket is not.
-     */
-    bucketedFinalScore?: string | null;
-    /**
-     * Final score in the range [0,1] that can be used for ranking providers. Incorporates both policy rules and quality considerations.
-     */
-    finalScore?: number | null;
-    /**
-     * List of business policies applied to the candidate.
-     */
-    policyApplied?: Schema$AssistantContextProviderSelectionPolicy[];
-    /**
-     * Indicates whether the candidate should be pruned.
-     */
-    shouldPrune?: boolean | null;
-  }
-  /**
-   * Note: As of May 2021, multiple providers use the same mids (e.g. YouTube Main, YouTube Go, and YouTube Music all have the same mids). However, quite often we end up using surface specific identifiers (e.g. Android package names, iOS bundle identifiers, etc.) to differentiate amongst them. This field allows us to move away from surface specific identifiers towards a surface-agnostic enum representing the same information.
-   */
-  export interface Schema$AssistantContextProviderVariant {
-    emptyMidVariant?: string | null;
-    spotifyVariant?: string | null;
-    youtubeVariant?: string | null;
-  }
-  /**
    * Capability with regard to support of alarms by the client.
    */
   export interface Schema$AssistantDevicesPlatformProtoAlarmCapability {
@@ -7676,6 +7401,7 @@ export namespace contentwarehouse_v1 {
     remoteExecutionType?: string | null;
   }
   export interface Schema$AssistantDevicesPlatformProtoExecutionWaitCapability {}
+  export interface Schema$AssistantDevicesPlatformProtoGetHealthObservationCapability {}
   export interface Schema$AssistantDevicesPlatformProtoInlinedActionCapability {
     /**
      * Specifies capabilities for handling on-device alarms. The presence of this field, even if empty, implies that the device supports alarms.
@@ -7845,7 +7571,7 @@ export namespace contentwarehouse_v1 {
   }
   export interface Schema$AssistantDevicesPlatformProtoSendChatMessageCapability {}
   /**
-   * This message will specify supports for fields in |assistant.embedded.v1.DeviceOp|, for a device model package. See go/easi-client-op2 for more info. Next ID: 17
+   * This message will specify supports for fields in |assistant.embedded.v1.DeviceOp|, for a device model package. See go/easi-client-op2 for more info. Next ID: 19
    */
   export interface Schema$AssistantDevicesPlatformProtoSupportedDeviceOps {
     /**
@@ -7872,6 +7598,10 @@ export namespace contentwarehouse_v1 {
      * |execution_wait| specifies the support for execution.WAIT client_op, and the corresponding execution_wait field in assistant.embedded.v1.DeviceOp.
      */
     executionWait?: Schema$AssistantDevicesPlatformProtoExecutionWaitCapability;
+    /**
+     * |get_health_observation| specifies the support for get_health_observation client_op, and the corresponding get_health_observation field in assistant.embedded.v1.DeviceOp.
+     */
+    getHealthObservation?: Schema$AssistantDevicesPlatformProtoGetHealthObservationCapability;
     mediaNext?: Schema$AssistantDevicesPlatformProtoMediaNextCapability;
     mediaPause?: Schema$AssistantDevicesPlatformProtoMediaPauseCapability;
     mediaPlayMedia?: Schema$AssistantDevicesPlatformProtoMediaPlayMediaCapability;
@@ -7891,6 +7621,10 @@ export namespace contentwarehouse_v1 {
      * |send_chat_message| specifies the support for the chat_message.SEND clientop, and the corresponding send_chat_message field in assistant.embedded.v1.DeviceOp.
      */
     sendChatMessage?: Schema$AssistantDevicesPlatformProtoSendChatMessageCapability;
+    /**
+     * |ui_show_interpreter| specifies the support for ui.SHOW_INTERPRETER client_op, and the corresponding ui_show_interpreter field in assistant.embedded.v1.DeviceOp.
+     */
+    uiShowInterpreter?: Schema$AssistantDevicesPlatformProtoUiShowInterpreterCapability;
   }
   /**
    * Capability with regard to support of timers by the client.
@@ -7941,6 +7675,7 @@ export namespace contentwarehouse_v1 {
      */
     supportsStructuredTts?: boolean | null;
   }
+  export interface Schema$AssistantDevicesPlatformProtoUiShowInterpreterCapability {}
   /**
    * Specifies the NLU level that Google performs, which determines the request format sent to the 3P cloud.
    */
@@ -7955,404 +7690,6 @@ export namespace contentwarehouse_v1 {
    */
   export interface Schema$AssistantDeviceTargetingDeviceTargetingError {
     type?: string | null;
-  }
-  /**
-   * Message containing the processed provider signals. This message is consumed by systems outside of the Provider GP, such as the HGR. For use of provider signals within the Provider GP, please refer to the CTF-governed PackedProviderSignals defined in: cs/google3/assistant/context/proto/packed_provider_signals.proto;rcl=486224300;l=68
-   */
-  export interface Schema$AssistantGroundingProviderProviderSignalResult {
-    /**
-     * Whether the provider is the default provider for the BII and entity type. Also known as the 'preferred_provider'.
-     */
-    isDefaultProvider?: boolean | null;
-    /**
-     * Whether the provider is currently open in the foreground on the device.
-     */
-    isForegroundProvider?: boolean | null;
-    /**
-     * Indicates that fulfillment on this provider will happen within the provider app
-     */
-    isInAppProvider?: boolean | null;
-    /**
-     * Whether the provider is installed, or otherwise reachable, from the device.
-     */
-    isInstalled?: boolean | null;
-    /**
-     * Whether the provider was the last-used provider for this intent on the device. Also known as the 'sticky_provider'.
-     */
-    isLastUsedProvider?: boolean | null;
-    /**
-     * Whether the provider was specified by the query.
-     */
-    isQueryRestrictedProvider?: boolean | null;
-    /**
-     * The result of running provider-selection on the provider candidate. This is populated by the Signal Extractor after the PSL has been run.
-     */
-    providerSelectionResult?: Schema$AssistantContextProviderSelectionResult;
-    /**
-     * Contains the "fulfillment type" of provider eg whether it's 0p or System API provider.
-     */
-    providerTypeSignal?: string | null;
-  }
-  export interface Schema$AssistantGroundingRankerAssistantInteractionFeatures {
-    timeDecayed14dHalfLife?: number | null;
-    /**
-     * Frequency features.
-     */
-    timeDecayed1dHalfLife?: number | null;
-    timeDecayed7dHalfLife?: number | null;
-    timeDecayedAccepted14dHalfLife?: number | null;
-    timeDecayedAuis14dHalfLife?: number | null;
-    timeDecayedCanceled14dHalfLife?: number | null;
-    timeDecayedDeclined14dHalfLife?: number | null;
-    timeSinceLastButOneCanceledActionSecs?: number | null;
-    timeSinceLastButOneCompletedActionSecs?: number | null;
-    timeSinceLastButTwoCanceledActionSecs?: number | null;
-    timeSinceLastButTwoCompletedActionSecs?: number | null;
-    timeSinceLastCanceledActionSecs?: number | null;
-    /**
-     * Recency features.
-     */
-    timeSinceLastCompletedActionSecs?: number | null;
-  }
-  /**
-   * Features to be passed from Contact GP to HGR. Next ID: 13
-   */
-  export interface Schema$AssistantGroundingRankerContactGroundingProviderFeatures {
-    /**
-     * Concept id for relationships in English, e.g. "Mother" for all non-English locales. It's only populated for source = RELATIONSHIP.
-     */
-    conceptId?: string | null;
-    contactSource?: string | null;
-    /**
-     * Whether the query is a relationship query based on the annotation source.
-     */
-    isRelationshipFromAnnotation?: boolean | null;
-    /**
-     * Whether the contact has relationship in the contact metadata.
-     */
-    isRelationshipFromSource?: boolean | null;
-    /**
-     * Whether only populates a single candidate.
-     */
-    isSingleCandidate?: boolean | null;
-    /**
-     * Whether the contact is starred contact.
-     */
-    isStarred?: boolean | null;
-    matchedNameType?: string | null;
-    /**
-     * Number of alternate contact names from fuzzy contact match. (Not suggest using it since it can change due to retrieval iteration)
-     */
-    numAlternateNameFromFuzzyContactMatch?: number | null;
-    /**
-     * Number of alternate contact names from S3_HYPOTHESES. (Not suggest using it since it can change due to retrieval iteration)
-     */
-    numAlternateNamesFromS3?: number | null;
-    /**
-     * Number of alternate contact names from interpretation. (Not suggest using it since it can change due to retrieval iteration)
-     */
-    numAlternativeNamesFromInterpretation?: number | null;
-    /**
-     * Number of contacts populated by the contact Grounding Provider. (Not suggest using it since it can change due to retrieval iteration)
-     */
-    numCandidates?: number | null;
-    recognitionAlternateSource?: string | null;
-  }
-  /**
-   * Device contact affinity from android call logs.
-   */
-  export interface Schema$AssistantGroundingRankerDeviceContactAffinityFeatures {
-    aggregateAffinity?: number | null;
-    callAffinity?: number | null;
-    messageAffinity?: number | null;
-  }
-  /**
-   * Features to be extracted from Device GP for ranking in HGR. Each candidate from Device GP will be associated with its own DeviceGroundingProviderFeatures. Next ID: 5
-   */
-  export interface Schema$AssistantGroundingRankerDeviceGroundingProviderFeatures {
-    /**
-     * ID for the device. This feature is needed specifically for PRR and it contains PII. Note that not every device has a corresponding DeviceId.
-     */
-    deviceId?: Schema$AssistantApiCoreTypesGovernedDeviceId;
-    /**
-     * Features generated by Device Targeting library (Lumos).
-     */
-    deviceTargetingFeatures?: Schema$AssistantGroundingRankerDeviceTargetingFeatures;
-    /**
-     * Labels tagged by Device Targeting library (Lumos).
-     */
-    deviceTargetingLabels?: Schema$AssistantGroundingRankerDeviceTargetingLabels;
-    /**
-     * The set of information that helps identify the surface.
-     */
-    surfaceIdentity?: Schema$AssistantApiCoreTypesGovernedSurfaceIdentity;
-  }
-  /**
-   * Features generated by Device Targeting library (Lumos). See go/hgr-lumos-integration and go/lumos-feature-extraction for more details. Next ID: 3
-   */
-  export interface Schema$AssistantGroundingRankerDeviceTargetingFeatures {
-    properties?: Schema$AssistantGroundingRankerDeviceTargetingFeaturesProperties;
-    states?: Schema$AssistantGroundingRankerDeviceTargetingFeaturesStates;
-  }
-  /**
-   * The properties of the device. They are static and won't change. Next ID: 4
-   */
-  export interface Schema$AssistantGroundingRankerDeviceTargetingFeaturesProperties {
-    /**
-     * The model ID of the device. This should be globally unique across manufacturers/OEMs.
-     */
-    deviceModelId?: string | null;
-    /**
-     * Indicate whether the device is owned by the user who is speaking.
-     */
-    isOwnedBySpeaker?: boolean | null;
-    /**
-     * Assistant surface type (ontology).
-     */
-    surfaceType?: string | null;
-  }
-  /**
-   * The states of the device. They are dynamic and may change based on the current context. Next ID: 15
-   */
-  export interface Schema$AssistantGroundingRankerDeviceTargetingFeaturesStates {
-    /**
-     * The distance of the device relative to others that hear the user's OKG.
-     */
-    distance?: string | null;
-    /**
-     * Indicates that the device is running a media session that is currently buffering.
-     */
-    hasBufferingMediaSession?: boolean | null;
-    /**
-     * Indicates that the device is running a media session that is currently paused.
-     */
-    hasPausedMediaSession?: boolean | null;
-    /**
-     * Indicates that the device is running a media session that is currently playing.
-     */
-    hasPlayingMediaSession?: boolean | null;
-    /**
-     * Indicates whether or not the device is in the same room as any hearing devices. Does not consider the device itself or the local device as a hearing device. If no valid hearing devices, this field is not set.
-     */
-    inSameRoomAsHearingDevice?: boolean | null;
-    /**
-     * Indicates whether or not the device is in the same room as the local device. If the device is the local device, this field is not set.
-     */
-    inSameRoomAsLocalDevice?: boolean | null;
-    /**
-     * Indicates whether or not the device is in the same structure as any hearing devices. Does not consider the device itself or the local device as a hearing device. If no valid hearing devices, this field is not set.
-     */
-    inSameStructureAsHearingDevice?: boolean | null;
-    /**
-     * Indicates whether or not the device is in the same structure as the local device. If the device is the local device, this field is not set.
-     */
-    inSameStructureAsLocalDevice?: boolean | null;
-    /**
-     * Indicate whether the device is docked on a base.
-     */
-    isDocked?: boolean | null;
-    /**
-     * Whether the device is a local device, i.e. the device that heard OKG from a user and is processed by an assistant pipeline. If multiple devices heard OKG (MDA case), each hearing device would be considered a local device in its own assistant pipeline. Example: A user says "OKG, play music on TV" to Google Home, and music is played on the TV. Google home is considered a local device, while TV is considered a remote device. Timestamp of when the device was last used. Should correspond to when the AssistantRequestParams (in ASSISTANT_SNAPSHOT corpus) were last written for this device.
-     */
-    isLocal?: boolean | null;
-    /**
-     * Indicate whether the device is locked.
-     */
-    isLocked?: boolean | null;
-    /**
-     * Indicate whether the device is tethered to another device.
-     */
-    isTethered?: boolean | null;
-    /**
-     * Indicates the state of media focus from a separate non-local hearing device.
-     */
-    mediaFocusStateFromHearingDevice?: string | null;
-    /**
-     * Indicates the state of media focus from a separate local device.
-     */
-    mediaFocusStateFromLocalDevice?: string | null;
-  }
-  /**
-   * Labels tagged by Device Targeting library (Lumos). See go/hgr-lumos-integration and go/lumos-feature-extraction for more details. Next ID: 2
-   */
-  export interface Schema$AssistantGroundingRankerDeviceTargetingLabels {
-    /**
-     * Indicate whether the device is selected by Lumos as the target device.
-     */
-    isSelectedByLumos?: boolean | null;
-  }
-  /**
-   * Features to be extracted from Endpoint GP for ranking in HGR. Next ID: 2
-   */
-  export interface Schema$AssistantGroundingRankerEndpointGroundingProviderFeatures {
-    /**
-     * Proxy signal which tells whether the user provided a confirmation to a prompt or not. See http://shortn/_XnZAJBIiwG for more details.
-     */
-    isUserConfirmed?: boolean | null;
-  }
-  /**
-   * Next ID: 7
-   */
-  export interface Schema$AssistantGroundingRankerGroundingProviderFeatures {
-    contactGroundingProviderFeatures?: Schema$AssistantGroundingRankerContactGroundingProviderFeatures;
-    deviceGroundingProviderFeatures?: Schema$AssistantGroundingRankerDeviceGroundingProviderFeatures;
-    endpointGroundingProviderFeatures?: Schema$AssistantGroundingRankerEndpointGroundingProviderFeatures;
-    mediaGroundingProviderFeatures?: Schema$AssistantGroundingRankerMediaGroundingProviderFeatures;
-    podcastGroundingProviderFeatures?: Schema$AssistantGroundingRankerPodcastGroundingProviderFeatures;
-    providerGroundingProviderFeatures?: Schema$AssistantGroundingRankerProviderGroundingProviderFeatures;
-  }
-  export interface Schema$AssistantGroundingRankerLaaFeature {
-    name?: string | null;
-    value?: number | null;
-  }
-  export interface Schema$AssistantGroundingRankerLaaFeatures {
-    bindingSet?: Schema$AssistantGroundingRankerLaaFeaturesBindingSet;
-    communicationEndpoint?: Schema$AssistantGroundingRankerLaaFeaturesCommunicationEndpoint;
-    contact?: Schema$AssistantGroundingRankerLaaFeaturesContact;
-    features?: Schema$AssistantGroundingRankerLaaFeature[];
-    provider?: Schema$AssistantGroundingRankerLaaFeaturesProvider;
-  }
-  export interface Schema$AssistantGroundingRankerLaaFeaturesBindingSet {
-    assistantInteractionFeatures?: Schema$AssistantGroundingRankerAssistantInteractionFeatures;
-  }
-  export interface Schema$AssistantGroundingRankerLaaFeaturesCommunicationEndpoint {
-    assistantInteractionFeatures?: Schema$AssistantGroundingRankerAssistantInteractionFeatures;
-  }
-  export interface Schema$AssistantGroundingRankerLaaFeaturesContact {
-    assistantInteractionFeatures?: Schema$AssistantGroundingRankerAssistantInteractionFeatures;
-    deviceContactAffinityFeatures?: Schema$AssistantGroundingRankerDeviceContactAffinityFeatures;
-  }
-  export interface Schema$AssistantGroundingRankerLaaFeaturesProvider {
-    assistantInteractionFeatures?: Schema$AssistantGroundingRankerAssistantInteractionFeatures;
-  }
-  /**
-   * Features to be passed from Media GP to HGR. Next ID: 21
-   */
-  export interface Schema$AssistantGroundingRankerMediaGroundingProviderFeatures {
-    /**
-     * Release type for an album container.
-     */
-    albumReleaseType?: string | null;
-    /**
-     * Temporary ambiguity classifier signals.
-     */
-    ambiguityClassifier?: string | null;
-    /**
-     * Mid of the media item. This is currently only used in manual rules.
-     */
-    entityMid?: string | null;
-    /**
-     * True if the candidate has a CAST_VIDEO deeplink regardless of which provider was chosen.
-     */
-    hasCastVideoDeeplink?: boolean | null;
-    /**
-     * True if the argument's type was explicitly mentioned in the query.
-     */
-    hasTypeSemanticEdge?: boolean | null;
-    /**
-     * Whether the candidate is YouTube CAST_VIDEO candidate. CAST_VIDEO is a deeplink platform. This signal will be used to promote YouTube Music screenful candidates with CAST_VIDEO platform for free users because free users cannot get exact entities in screenless response and can get exact entities with ads in screenful response.
-     */
-    isCastVideo?: boolean | null;
-    /**
-     * True if the media item in Binding Set is exclusively available on the provider in Binding set. Example: "Stranger things" is exclusive to "Netflix".
-     */
-    isExclusiveOriginalProvider?: boolean | null;
-    /**
-     * True if the media search query is included in the entity name and artists.
-     */
-    isMediaSearchQuerySubsetOfEntityNameAndArtist?: boolean | null;
-    isMostRecentSongAlbumAmbiguous?: boolean | null;
-    /**
-     * True if the media deeplink has tag SEED_RADIO.
-     */
-    isSeedRadio?: boolean | null;
-    /**
-     * True if the user requests seed radio.
-     */
-    isSeedRadioRequest?: boolean | null;
-    /**
-     * Provider is a self(user) reported subscripted provider https://g3doc.corp.google.com/knowledge/g3doc/ump/development/GetProviderAffinity.md?cl=head
-     */
-    isSelfReportedSvodProvider?: boolean | null;
-    /**
-     * Indicates whether this is youtube content seeking music.
-     */
-    isYoutubeMusicSeeking?: boolean | null;
-    /**
-     * Account Type of the user for the provider
-     */
-    mediaAccountType?: string | null;
-    /**
-     * MediaAquaAction::media_content_type from interpretation. It can be used for cross-content type ranking, for example, if a candidate's content type does not match this content type from interpretation, this candidate will be slightly demoted. Also, we might avoid fetching some signals when the content type is generic music, since some content types do not need ranking.
-     */
-    mediaContentType?: string | null;
-    /**
-     * MSC(Media Short Click) rate. MSC rate = total number of MSC events / total number of MSC candidates The event is considered as MSC candidate if the event is a media seeking query(excluding follow-ons) and the media result is successfully fulfilled. The event is MSC event if any of the following is in the following queries within 30 secs: FOLLOWED_BY_DUPLICATE FOLLOWED_BY_ADD_OR_DELETE_MANUAL_REFINEMENT FOLLOWED_BY_SAME_VERTICAL (MEDIA) FOLLOWED_BY_STOP More details: go/media-ranking, go/billboard-navboost, go/magma-music-actions-efrac
-     */
-    mscRate?: number | null;
-    /**
-     * Scubed predicted SAI value (pSAI - SCUBED_MUSIC_ACTIONS) for music populated by a regression model that incorporates a BERT model signal as well as other Scubed signals.
-     */
-    scubedPSaiMusic?: number | null;
-    /**
-     * Scubed predicted SAI value (pSAI - SCUBED_TVM_ACTIONS) for music populated by a regression model that incorporates a BERT model signal as well as other Scubed signals.
-     */
-    scubedPSaiTvm?: number | null;
-    /**
-     * Type of the media item.
-     */
-    type?: string | null;
-    youtubeConfidenceScore?: number | null;
-  }
-  /**
-   * Features to be extracted from Podcast GP for ranking in HGR. Next ID: 7
-   */
-  export interface Schema$AssistantGroundingRankerPodcastGroundingProviderFeatures {
-    /**
-     * Whether the podcast is exclusive to a provider a not.
-     */
-    isExclusive?: boolean | null;
-    /**
-     * The count of the unique users that listened to the podcast in the last 28 days.
-     */
-    podcastListenersCount?: number | null;
-    /**
-     * Provider popularity score. More details are here go/ps-to-kg.
-     */
-    popularityScore?: number | null;
-    /**
-     * The relevance score from Scubed.
-     */
-    scubedNg3ModelScore?: number | null;
-    /**
-     * Tstar score is a signal that indicates the quality of the entity.
-     */
-    scubedTstarScore?: number | null;
-    /**
-     * This score is in the range [0.0, 1.0] and is used for cross-backend (e.g., YT vs another Music/Podcast service provider) ranking and scoring. 0.0 means no confidence and 1.0 means full confidence.
-     */
-    youtubeConfidenceScore?: number | null;
-  }
-  /**
-   * Features to be extracted from Provider GP for ranking in HGR. Next ID: 7
-   */
-  export interface Schema$AssistantGroundingRankerProviderGroundingProviderFeatures {
-    /**
-     * Cluster IDs for the provider. This field is repeated because some providers can be associated with multiple clusters. PRR specific feature.
-     */
-    providerClusterIds?: string[] | null;
-    /**
-     * ProviderId for the provider in the binding set. PRR specific feature.
-     */
-    providerId?: Schema$AssistantContextProviderId;
-    /**
-     * Provider signals extracted from Provider GP.
-     */
-    providerSignalResult?: Schema$AssistantGroundingProviderProviderSignalResult;
-    /**
-     * Provider quality score in the range [0,1] that can be used for ranking providers. Incorporates both policy rules and quality considerations.
-     */
-    pslScore?: number | null;
   }
   export interface Schema$AssistantLogsAllMediaStreamLog {
     /**
@@ -8411,6 +7748,25 @@ export namespace contentwarehouse_v1 {
     providerMid?: string | null;
   }
   /**
+   * A list of per-device contexts and their respective diffs between AvailableDevice and CTF.
+   */
+  export interface Schema$AssistantLogsAvailableDeviceAndCtfContextDiffLog {
+    /**
+     * The diff between AvailableDevice and CTF for the local network ID of the device.
+     */
+    localNetworkIdDiff?: string | null;
+    /**
+     * The diff between AvailableDevice and CTF for the feature proto of the location of the device.
+     */
+    locationFeatureDiff?: string | null;
+  }
+  /**
+   * Contains the available devices in DeviceTargetingContext.
+   */
+  export interface Schema$AssistantLogsAvailableDevicesLog {
+    availableDeviceInfoLog?: Schema$AssistantLogsDeviceInfoLog[];
+  }
+  /**
    * This is the log version of apps.people.oz.external.mergedpeopleapi.DeviceContactInfo Next ID: 2
    */
   export interface Schema$AssistantLogsCommunicationDeviceContactInfoLog {
@@ -8435,7 +7791,7 @@ export namespace contentwarehouse_v1 {
     isDasherAccount?: boolean | null;
   }
   /**
-   * Contact meta data. Next ID: 30
+   * Contact meta data. Next ID: 31
    */
   export interface Schema$AssistantLogsCommunicationPersonalContactDataLog {
     /**
@@ -8470,6 +7826,10 @@ export namespace contentwarehouse_v1 {
      * Boolean value indicating whether selected contact is from different account than the logged in account.
      */
     isContactFromSecondaryAccount?: boolean | null;
+    /**
+     * If the contact is matched exactly from the query name.
+     */
+    isExactMatch?: boolean | null;
     /**
      * If this is a shared contact. This is true in 2 cases: - User is calling their own contacts that have been marked as shared. - User is calling shared contacts from some other user's contact list. This field is not being logged in P2.
      */
@@ -8603,6 +7963,10 @@ export namespace contentwarehouse_v1 {
    */
   export interface Schema$AssistantLogsDeviceAnnotationLog {
     /**
+     * The identification of the device. The logging version of the full DeviceId.
+     */
+    deviceIdLog?: Schema$AssistantLogsSettingsDeviceIdLog[];
+    /**
      * The raw text mentioning a device from the query, such as "any tv".
      */
     rawTextFromQuery?: string | null;
@@ -8616,13 +7980,17 @@ export namespace contentwarehouse_v1 {
     userDefinedName?: string | null;
   }
   /**
-   * The information related to the device. Next ID: 18
+   * The information related to the device. Next ID: 19
    */
   export interface Schema$AssistantLogsDeviceInfoLog {
     /**
      * Device identifier string for the current device used in the arbitration service.
      */
     arbitrationDeviceId?: string | null;
+    /**
+     * A list of diffs for the device's context between AvailableDevice and CTF.
+     */
+    availableDeviceAndCtfContextDiff?: Schema$AssistantLogsAvailableDeviceAndCtfContextDiffLog;
     connectivity?: string | null;
     /**
      * The identification of the device. DeviceId (go/as-device-id) has multiple fields. To consloidate it to a single to make dremel easier, we use the string obtained by calling go/get-device-id.
@@ -8693,7 +8061,7 @@ export namespace contentwarehouse_v1 {
     supportedTransportControl?: string[] | null;
   }
   /**
-   * Contains information logged in target device selection. See go/improve-device-targeting-logging for details. Next Id: 22
+   * Contains information logged in target device selection. See go/improve-device-targeting-logging for details. Next Id: 23
    */
   export interface Schema$AssistantLogsDeviceSelectionLog {
     /**
@@ -8704,6 +8072,10 @@ export namespace contentwarehouse_v1 {
      * Logs all active media sessions.
      */
     allMediaStreamLog?: Schema$AssistantLogsAllMediaStreamLog;
+    /**
+     * The list of `available_devices` as they appear in DeviceTargetingContext. This is very useful for debugging diffs between GB and CMP since they have different methods of populating the `available_devices` field.
+     */
+    availableDevicesLog?: Schema$AssistantLogsAvailableDevicesLog;
     /**
      * DeviceSelectionLog for counterfactual logging.
      */
@@ -8967,19 +8339,27 @@ export namespace contentwarehouse_v1 {
      */
     roomCount?: number | null;
     /**
+     * The identification of the room.
+     */
+    roomId?: string[] | null;
+    /**
      * The annotation type mentioned in the query.
      */
     type?: string | null;
     userDefinedName?: string | null;
   }
   /**
-   * The logging-version of DeviceId proto, which identifies a device. This mirrors cs/google3/assistant/api/core_types/device_type.proto?q=symbol:DeviceId Next ID: 6
+   * The logging-version of DeviceId proto, which identifies a device. This mirrors cs/google3/assistant/api/core_types/device_type.proto?q=symbol:DeviceId Next ID: 9
    */
   export interface Schema$AssistantLogsSettingsDeviceIdLog {
     /**
      * The client_instance_id on devices with GSA. See 'client_instance_field' in go/androidids.
      */
     agsaClientInstanceId?: string | null;
+    /**
+     * Allo Id. Corresponds to the GBotRequest.Sender.sender. This ID type should be deprecated by now, yet we've observed it serving prod traffic in GB.
+     */
+    alloDeviceId?: string | null;
     /**
      * A unique device ID for Assistant devices as proposed by go/ocelot-team.
      */
@@ -8993,6 +8373,10 @@ export namespace contentwarehouse_v1 {
      */
     clientInstanceId?: string | null;
     /**
+     * The unique DeviceConfig to the specific third party device. It is also used by Android Auto Embedded first party device. See go/opa-ids.
+     */
+    deviceConfigId?: string | null;
+    /**
      * The unique device ID for HomeGraph devices. This is the HomeGraph ID, created when the device is registered into HomeGraph. It is immutable for the same device unless it is completely deleted and recreated. See go/home-graph for details. \}
      */
     homeGraphDeviceId?: string | null;
@@ -9000,6 +8384,10 @@ export namespace contentwarehouse_v1 {
      * The unique ID for libassistant based devices.
      */
     libassistantDeviceId?: string | null;
+    /**
+     * The unique device ID for the Assistant App on iOS. See go/opa-ios-design for details.
+     */
+    opaIosDeviceId?: string | null;
   }
   /**
    * Structure annotation mentioned in query.
@@ -9009,6 +8397,10 @@ export namespace contentwarehouse_v1 {
      * The raw text mentioning a structure from the query, such as "my house".
      */
     rawTextFromQuery?: string | null;
+    /**
+     * The identification of the structure.
+     */
+    structureId?: string[] | null;
     /**
      * The annotation type mentioned in the query.
      */
@@ -9063,25 +8455,9 @@ export namespace contentwarehouse_v1 {
     sortedNameString?: string | null;
   }
   /**
-   * Signals to be used by the Prefulfillment Ranker. Derived from the ParsingSignals and GroundingSignals carried by the FunctionCall. LINT.IfChange Next ID: 69
+   * Signals to be used by the Prefulfillment Ranker. Derived from the ParsingSignals and GroundingSignals carried by the FunctionCall. LINT.IfChange Next ID: 74
    */
   export interface Schema$AssistantPrefulfillmentRankerPrefulfillmentSignals {
-    /**
-     * Assistant User Interaction Score for binding set.
-     */
-    bindingSetAuis?: number | null;
-    /**
-     * BindingSet level invalid reason. This is only useful when the bindingset is invalid after running the horizontal check in HGR. More details: go/gb-infeasible.
-     */
-    bindingSetInvalidReason?: string | null;
-    /**
-     * Pauis score for the binding set
-     */
-    bindingSetPauis?: number | null;
-    /**
-     * BindingSet level validity. When one of the GPs returns invalid resolution, or the combined bindingset is invalid, this enum will indidate the validity. More details: go/gb-infeasible.
-     */
-    bindingSetValidity?: string | null;
     /**
      * A parsing score that is independently calibrated by each parser/IG.
      */
@@ -9107,14 +8483,6 @@ export namespace contentwarehouse_v1 {
      */
     generatedByLegacyAquaDomain?: boolean | null;
     /**
-     * Grounding Signals. Score indicating how grounded the intent is, populated by the Grounding Box.
-     */
-    groundabilityScore?: number | null;
-    /**
-     * Grounding Provider related ranking features, including general Grounding Provider ranking features(shared among multiple GPs) and specific Grounding Provider ranking features(provided by a specific GP).
-     */
-    groundingProviderFeatures?: Schema$AssistantGroundingRankerGroundingProviderFeatures;
-    /**
      * Whether the interpretation has a Search answer group object, signifying it came from Search resolution.
      */
     hasAnswerGroup?: boolean | null;
@@ -9135,18 +8503,14 @@ export namespace contentwarehouse_v1 {
      */
     intentNameAuisScoreExp?: number | null;
     /**
-     * Intent level Pauis User Interaction Score.
-     */
-    intentNamePauis?: number | null;
-    /**
      * intent_type differentiates between intents that share the top level intent name. For eg: for TV_FALLBACK_SEARCH_INTENT, the top level intent name must be "Find_media" and the media_object argument within it must be of type "Media_unspecified".
      */
     intentType?: string | null;
-    isDummyIntent?: boolean | null;
     /**
-     * Feasibility of fulfilling the binding set. Eg: For PlayMedia, this is equivalent to playability. More details: go/hgr-feasibility-feature.
+     * Whether the intent aqua intent from media domain enabled in QBT
      */
-    isFeasible?: boolean | null;
+    isAquaMediaIntent?: boolean | null;
+    isDummyIntent?: boolean | null;
     /**
      * Whether the intent is fully grounded.
      */
@@ -9155,6 +8519,10 @@ export namespace contentwarehouse_v1 {
      * Used for PFR manual rule to prefer high confidence podcast intent (e.g. topical, genre) over generic podcast intents.
      */
     isHighConfidencePodcastIntent?: boolean | null;
+    /**
+     * Whether the intent is from ORBIT.
+     */
+    isIntentFromOrbit?: boolean | null;
     /**
      * Whether the intent is a media control intent.
      */
@@ -9175,6 +8543,10 @@ export namespace contentwarehouse_v1 {
      * Whether the intent is a podcast intent.
      */
     isPodcastIntent?: boolean | null;
+    /**
+     * Whether the intent is a PlayMedia radio intent.
+     */
+    isRadioIntent?: boolean | null;
     /**
      * Whether the intent is an intent marked disabled by the Sage IG.
      */
@@ -9204,31 +8576,27 @@ export namespace contentwarehouse_v1 {
      */
     isVideoIntent?: boolean | null;
     /**
+     * Used for PFR manaul rule to prefer high kscore radio intent. The k-score comes from twiddled_ranking_scores in query interpretations.
+     */
+    kScore?: number | null;
+    /**
      * The rank order of the interpretation as determined by kscorer. The kscorer-determined dominant interpretation, if any, gets a rank of 0. The remaining N interpretations get a rank of 1 through N.
      */
     kscorerRank?: number | null;
-    /**
-     * Learn and adapt(go/laa) related features. Design doc: go/laa-profile-signal-for-grounding.
-     */
-    laaFeatures?: Schema$AssistantGroundingRankerLaaFeatures;
-    /**
-     * This feature is always false / no-op in serving time. In training time, this feature may be set true on specific examples for weighted training where when this signal is true, only cross-intent level features are used for training and other candidate level features are masked (set as missing).
-     */
-    maskCandidateLevelFeatures?: boolean | null;
     /**
      * The maximum score assigned by the Horizontal Grounding Ranker (HGR) across all of the intent's binding sets.
      */
     maxHgrScoreAcrossBindingSets?: number | null;
     /**
+     * Parse score generated by NSP. If NSP intent has been pruned due to dededuplication, It will have highest parse score for deduplicated intent.
+     */
+    nspIntentParseScore?: number | null;
+    /**
      * Rank of the intent as reported by NSP.
      */
     nspRank?: number | null;
     /**
-     * Number of alternative hypotheses from speech recognition(S3).
-     */
-    numAlternativeHypothesis?: number | null;
-    /**
-     * Sum of the number of constraints used by the Grounding Box to ground each variable.
+     * Signals as proposed in go/improved-grounding-signals. Sum of the number of constraints used by the Grounding Box to ground each variable.
      */
     numConstraints?: number | null;
     /**
@@ -9236,21 +8604,13 @@ export namespace contentwarehouse_v1 {
      */
     numConstraintsSatisfied?: number | null;
     /**
-     * Number of groundable arguments the intent has, populated by the Grounding Box.
+     * Grounding Signals. Number of groundable arguments the intent has, populated by the Grounding Box.
      */
     numGroundableArgs?: number | null;
     /**
      * Number of grounded arguments the intent has, populated by the Grounding Box.
      */
     numGroundedArgs?: number | null;
-    /**
-     * Signals as proposed in go/improved-grounding-signals. Number of arguments, possibly nested, that the Grounding Box tried to ground.
-     */
-    numVariables?: number | null;
-    /**
-     * Number of arguments, possibly nested, that the Grounding Box was able to ground. This includes ambiguously grounded arguments.
-     */
-    numVariablesGrounded?: number | null;
     /**
      * A ID corresponding to which bucket a given parsing score belongs in.
      */
@@ -9276,10 +8636,6 @@ export namespace contentwarehouse_v1 {
      */
     predictedIntentConfidence?: number | null;
     /**
-     * Used in HGR to modify the ranker based on input experimental flag and intent name.
-     */
-    rankerName?: string | null;
-    /**
      * The determination made by the SearchDispatchingConfig as to whether and how this interpretation should be dispatched to Search.
      */
     searchDispatch?: string | null;
@@ -9290,17 +8646,9 @@ export namespace contentwarehouse_v1 {
     subIntentType?: string | null;
     tiebreakingMetadata?: Schema$AssistantPfrTiebreakingMetadata;
     /**
-     * Average of per-word confidence for top speech recognition hypothesis. The value is from RecognizerHypothesisLog: http://google3/logs/proto/speech/service/recognizer_log.proto?l=848&rcl=281400256
-     */
-    topHypothesisConfidence?: number | null;
-    /**
      * Whether the interpretation should run through grounding box or not.
      */
     usesGroundingBox?: boolean | null;
-    /**
-     * Horizontal feature that stores information about confidence scores for each resolution within the binding set.
-     */
-    verticalConfidenceScore?: number | null;
   }
   /**
    * A message to represent an item in a list. Just a basic string for now, but extensible for the future.
@@ -9331,7 +8679,7 @@ export namespace contentwarehouse_v1 {
      */
     linkUrl?: string | null;
     /**
-     * REQUIRED. The text for the notification link button. Note: We cannot take nlp_generation.TemplateData yet due to cyclic dependency. The plan is to cut dependency from TemplateData to quality.actions.Reminder.
+     * REQUIRED. The text for the notification link button. Note: We cannot take nlp_generation.TemplateData yet due to cyclic dependency. The plan is to cut dependency from TemplateData to quality.actions.Reminder. DEPRECATED. No longer used as part of the notification flow.
      */
     notificationText?: Schema$AssistantRemindersNlgTemplateKey;
   }
@@ -10579,7 +9927,7 @@ export namespace contentwarehouse_v1 {
     version?: number | null;
   }
   /**
-   * Protocol record used for collecting together all information about a document. Please consult go/dj-explorer for two basic questions about `CompositeDoc`: - Where should I look up certain information (e.g: pagerank, language)? - What does each field in CompositeDoc mean and who should I contact if I have questions? To add a new field into CompositeDoc, or change existing field's size significantly, please file a ticket at go/dj-new-field, fill in necessary information and get approved by docjoin-access@ team. Next id: 193
+   * Protocol record used for collecting together all information about a document. Please consult go/dj-explorer for two basic questions about `CompositeDoc`: - Where should I look up certain information (e.g: pagerank, language)? - What does each field in CompositeDoc mean and who should I contact if I have questions? To add a new field into CompositeDoc, or change existing field's size significantly, please file a ticket at go/dj-new-field, fill in necessary information and get approved by docjoin-access@ team. Next id: 194
    */
   export interface Schema$CompositeDoc {
     /**
@@ -10626,6 +9974,10 @@ export namespace contentwarehouse_v1 {
      * This message set is used for data pushed into the index using the signals framework that is never to be used in Mustang or TG Continuum scoring/snippeting code. Any protocol buffer stored in this message set is automatically returned in a docinfo response - it ends up in the "info" message set in the WWWSnippetResponse, so it can be used in post-doc twiddlers and for display in GWS with no code changes in Mustang or Teragoogle.
      */
     docinfoPassthroughAttachments?: Schema$Proto2BridgeMessageSet;
+    /**
+     * The commit timestamp of a CDoc update to Docjoins on Spanner.
+     */
+    docjoinsOnSpannerCommitTimestampMicros?: string | null;
     /**
      * Info about videos embedded in the document.
      */
@@ -10934,6 +10286,10 @@ export namespace contentwarehouse_v1 {
      */
     shouldLookupDocjoinsTier?: number | null;
     /**
+     * Which vertical docjoin corpus we should do cdoc lookup to merge partial cdocs. This uses the string value of table name in google3/indexing/docjoins/spanner/schema/global_tables_data.sdl. For example, Voce and ShortVideo. NOT intended for other usage.
+     */
+    shouldLookupDocjoinsVerticalCorpus?: string | null;
+    /**
      * List of signal updates present in the enclosing partial cdoc. Signal name for a signal is unique name for the signal according to SignalSpec.
      */
     signalNames?: string[] | null;
@@ -10968,7 +10324,7 @@ export namespace contentwarehouse_v1 {
     newsRobotsInfo?: Schema$IndexingConverterRobotsInfo;
   }
   /**
-   * A message containing per doc signals that are compressed and included in Mustang and TeraGoogle. For TeraGoogle, this message is included in perdocdata which means it can be used in preliminary scoring. CAREFUL: For TeraGoogle, this data resides in very limited serving memory (Flash storage) for a huge number of documents. Next id: 42
+   * A message containing per doc signals that are compressed and included in Mustang and TeraGoogle. For TeraGoogle, this message is included in perdocdata which means it can be used in preliminary scoring. CAREFUL: For TeraGoogle, this data resides in very limited serving memory (Flash storage) for a huge number of documents. Next id: 43
    */
   export interface Schema$CompressedQualitySignals {
     /**
@@ -10994,7 +10350,7 @@ export namespace contentwarehouse_v1 {
     crapsNewHostSignals?: string | null;
     crapsNewPatternSignals?: string | null;
     /**
-     * For craps_[url|pattern]_signals, please avoid accessing these fields directly, even in minor ways like checking has_craps_*. Instead, please use methods from quality/navboost/craps/craps-lossy-compression.h or talk to dice-team.
+     * For craps_[url|pattern]_signals, please avoid accessing these fields directly, even in minor ways like checking has_craps_*. Instead, please use methods from quality/navboost/craps/craps-lossy-compression.h or talk to craps-team@.
      */
     crapsNewUrlSignals?: string | null;
     crapsUnscaledIpPriorBadFraction?: number | null;
@@ -11031,19 +10387,19 @@ export namespace contentwarehouse_v1 {
      */
     navDemotion?: number | null;
     /**
-     * NSR confidence score: converted from quality_nsr.NsrData.
+     * NSR confidence score: converted from quality_nsr.NsrData. This field is deprecated - use nsr_variance inside nsr_data_proto instead.
      */
     nsrConfidence?: number | null;
     /**
-     * NSR override bid, used in Q* for emergency overrides.
+     * NSR override bid, used in Q* for emergency overrides. This field is deprecated - used the equivalent field inside nsr_data_proto instead.
      */
     nsrOverrideBid?: number | null;
     /**
-     * Versioned NSR score to be used in continuous evaluation of the upcoming NSR version and assess quality impact on various slices.
+     * Versioned NSR score to be used in continuous evaluation of the upcoming NSR version and assess quality impact on various slices. This field is deprecated - used the equivalent field inside nsr_data_proto instead.
      */
     nsrVersionedData?: Schema$NSRVersionedItem[];
     /**
-     * PairwiseQ data for QTJ. This field is *not* propagated to shards, but is populated at serving time by go/web-signal-joins. See b/175762140
+     * Deprecated and unused field.
      */
     pairwiseqScoringData?: Schema$PairwiseQScoringData;
     /**
@@ -11094,11 +10450,15 @@ export namespace contentwarehouse_v1 {
      */
     topicEmbeddingsVersionedData?: Schema$QualityAuthorityTopicEmbeddingsVersionedItem[];
     /**
+     * UGC page quality signals. (Times 1000 and floored)
+     */
+    ugcDiscussionEffortScore?: number | null;
+    /**
      * Unauthoritative score. Used as one of the web page quality qstar signals.
      */
     unauthoritativeScore?: number | null;
     /**
-     * NSR for low-quality videos, converted from quality_nsr.NsrData.vlq_nsr.
+     * NSR for low-quality videos, converted from quality_nsr.NsrData.vlq_nsr. This field is deprecated - used the equivalent field inside nsr_data_proto instead.
      */
     vlqNsr?: number | null;
   }
@@ -11692,18 +11052,6 @@ export namespace contentwarehouse_v1 {
      */
     lastModified?: number | null;
     /**
-     * The checksum of all the off-domain links on the page.
-     */
-    offDomainLinksChecksum?: number | null;
-    /**
-     * The count of all the off-domain links on the page.
-     */
-    offDomainLinksCount?: number | null;
-    /**
-     * The count of all the on-domain links on the page. We aren't worried about the contents themselves, since they might often change (e.g., session ids). We assume that a change in the number of links is significant, however.
-     */
-    onDomainLinksCount?: number | null;
-    /**
      * The simhash value obtained from shingles.
      */
     shingleSimhash?: Schema$IndexingConverterShingleFingerprint;
@@ -11723,10 +11071,6 @@ export namespace contentwarehouse_v1 {
      * Whether the simhash-v2 value should be trusted.
      */
     simhashV2IsTrusted?: boolean | null;
-    /**
-     * The tiles of the document body. We use int32s instead of int64s (the norm) in order to save space. Since rare inaccuracy doesn't really matter, we've decided this is an okay tradeoff.
-     */
-    tile?: number[] | null;
     /**
      * The timestamp we crawled the page.
      */
@@ -11837,6 +11181,17 @@ export namespace contentwarehouse_v1 {
      */
     value?: number[] | null;
   }
+  /**
+   * Protocol buffer for storing dense token data.
+   */
+  export interface Schema$DrishtiDenseTokenData {
+    /**
+     * If extra is present it must be of the same length as value.
+     */
+    extra?: Schema$DrishtiFeatureExtra[];
+    generalExtra?: Schema$DrishtiFeatureExtra;
+    value?: number[] | null;
+  }
   export interface Schema$DrishtiFeatureExtra {}
   export interface Schema$DrishtiFeatureSetData {
     /**
@@ -11867,6 +11222,7 @@ export namespace contentwarehouse_v1 {
     quantizedByteDense?: Schema$DrishtiQuantizedByteDenseFeatureData;
     quantizedByteIndexed?: Schema$DrishtiQuantizedByteIndexedFeatureData;
     sparse?: Schema$DrishtiSparseFeatureData;
+    token?: Schema$DrishtiDenseTokenData;
   }
   /**
    * This represents a sequence (ordered) of FeatureSetData elements.
@@ -12684,7 +12040,7 @@ export namespace contentwarehouse_v1 {
    */
   export interface Schema$FreebaseValue {
     /**
-     * key, uri, or datetime. Present when value is bool.
+     * Present when value is bool.
      */
     boolValue?: boolean | null;
     /**
@@ -12808,7 +12164,7 @@ export namespace contentwarehouse_v1 {
     NoImageframeOverlayReason?: number | null;
     NoImageIndexReason?: number | null;
     /**
-     * When these reasons are set to a non zero value, the document should not be indexed, or show a snippet, or show a cache, etc. These reasons are bit maps of indexing.converter.RobotsInfo.RobotedReasons enum values reflecting the places where the restriction was found.
+     * When these reasons are set to a non zero value, the document should not be indexed, or show a snippet, or show a cache, etc. These reasons are bit maps of indexing.converter.RobotsInfo.RobotedReasons enum values reflecting the places where the restriction was found: //depot/google3/indexing/converter/proto/converter.proto
      */
     NoIndexReason?: number | null;
     NoPreviewReason?: number | null;
@@ -12956,6 +12312,10 @@ export namespace contentwarehouse_v1 {
      * Servlet-specific response info.
      */
     info?: Schema$Proto2BridgeMessageSet;
+    /**
+     * The experimental ranking snippet field. This will be populated only when `fastwa_want_ranking_snippet` is set in the request.
+     */
+    rankingSnippet?: string | null;
     /**
      * Lines of the snippet HTML. Typically gws concatenates these and lets the browser wrap. The values include trailing spaces, so inserting additional spaces is not necessary. However, for very old browsers, gws may insert break tags after each snippet line. This field is confusing and poorly named; "snippet_line" would be better. In particular, note that this does not return multiple snippets for a result. Nor are these fields the individual tidbits of the snippet.
      */
@@ -13425,17 +12785,67 @@ export namespace contentwarehouse_v1 {
    */
   export interface Schema$GeostoreCityJsonProto {
     /**
+     * Additional information that can be used to describe the appearance of CityObjects in this CityJsonProto.
+     */
+    appearance?: Schema$GeostoreCityJsonProtoAppearance;
+    /**
      * City objects associated with this CityJsonProto.
      */
     cityObjects?: Schema$GeostoreCityJsonProtoCityObject[];
     /**
+     * Vertices as local coordinates represented as a flattened list: [x1,y1,z1,x2,y2,z2,x3,y3,z3]. Vertices are relative to a local coordinate system and rounded to their nearest integer value. See `transform` for how vertices can be transformed from a local coordinate system into an Earth-centered, Earth-fixed coordinate system. Vertices are flattened for space efficiency, memory locality, and processing performance. To access the x,y,z coordinates of vertex N, read the values at indices 3N, 3N+1, and 3N+2.
+     */
+    flattenedVertices?: number[] | null;
+    /**
      * Spec for converting vertices from a local coordinate system in arbitrary units to ECEF coordinates in meters (https://en.wikipedia.org/wiki/Earth-centered,_Earth-fixed_coordinate_system).
      */
     transform?: Schema$GeostoreCityJsonProtoTransform;
+  }
+  /**
+   * Contains additional ways to describe the appearance of a CityObject, e.g. definitions of materials and textures that can apply to geometry surfaces.
+   */
+  export interface Schema$GeostoreCityJsonProtoAppearance {
     /**
-     * Vertices as local coordinates represented as a flattened list: [x1,y1,z1,x2,y2,z2,x3,y3,z3]. Vertices are relative to a local coordinate system and rounded to their nearest integer value. See `transform` for how vertices can be transformed from a local coordinate system into an Earth-centered, Earth-fixed coordinate system. Vertices are flattened for space efficiency, memory locality, and processing performance. To access the x,y,z coordinates of vertex N, read the values at indices 3N, 3N+1, and 3N+2.
+     * Predefined materials that may be referenced from geometric primitives.
      */
-    vertexXyz?: number[] | null;
+    materials?: Schema$GeostoreCityJsonProtoAppearanceMaterial[];
+  }
+  /**
+   * Representation of a single material that can describe a geometry surface. See technical definitions of these fields via the description and link at https://www.cityjson.org/specs/2.0.0/#material-object.
+   */
+  export interface Schema$GeostoreCityJsonProtoAppearanceMaterial {
+    /**
+     * The color that this material shows under pure white light when incoming light is reflected in all directions equally.
+     */
+    diffuseColor?: Schema$GeostoreCityJsonProtoAppearanceMaterialRgbColor;
+    /**
+     * is_null=true is used to represent 'null' material references. There may only be one is_null=true Material per CityJsonProto, and it must not have any other fields set.
+     */
+    isNull?: boolean | null;
+    /**
+     * Whether this material has an even, regular surface or consistency.
+     */
+    isSmooth?: boolean | null;
+    /**
+     * The name of this material.
+     */
+    name?: string | null;
+    /**
+     * The degree to which this material reflects light; value is [0,1].
+     */
+    shininess?: number | null;
+    /**
+     * The degree to which this material allows light through; value is [0,1], with 1.0 being completely transparent.
+     */
+    transparency?: number | null;
+  }
+  /**
+   * RGB 0-1, where the range of each value is [0,1] instead of [0,255]. Values may be linear RGB or sRGB; RGB values are frequently stored as sRGB (https://stackoverflow.com/a/12894053 explains the difference).
+   */
+  export interface Schema$GeostoreCityJsonProtoAppearanceMaterialRgbColor {
+    blue?: number | null;
+    green?: number | null;
+    red?: number | null;
   }
   /**
    * Representation of an object with geometry.
@@ -13471,16 +12881,29 @@ export namespace contentwarehouse_v1 {
      */
     multisurface?: Schema$GeostoreCityJsonProtoCityObjectGeometryMultiSurface;
     /**
+     * Predefined semantics that may be referenced from geometric primitives.
+     */
+    semantics?: Schema$GeostoreCityJsonProtoCityObjectGeometrySemantic[];
+    /**
      * For geometries consisting of a watertight 3D shape.
      */
     solid?: Schema$GeostoreCityJsonProtoCityObjectGeometrySolid;
+  }
+  /**
+   * Used to reference a predefined material from a geometric primitive.
+   */
+  export interface Schema$GeostoreCityJsonProtoCityObjectGeometryMaterialSpec {
+    /**
+     * Index into CityJsonProto.appearance.materials.
+     */
+    materialsIndex?: number | null;
   }
   /**
    * A single line, loop, or set of points.
    */
   export interface Schema$GeostoreCityJsonProtoCityObjectGeometryMultiPoint {
     /**
-     * A collection of references to vertices in `CityJsonProto.vertex_xyz`. `CityJsonProto.vertex_xyz` is a flattened list of vertex coordinates. A value in `x_indices` should be the index of the x-coordinate of the desired vertex V; the full coordinates of vertex V can then be found at indices [V,V+1,V+2]. For example, an `x_indices` containing 3, 0, and 12 references three vertices, whose complete x,y,z coordinates can respectively be found at `CityJsonProto.vertex_xyz` indices [3,4,5], [0,1,2], and [12,13,14].
+     * A collection of references to vertices in `CityJsonProto.flattened_vertices`. `CityJsonProto.flattened_vertices` is a flattened list of vertex coordinates. A value in `x_indices` should be the index of the x-coordinate of the desired vertex V; the full coordinates of vertex V can then be found at indices [V,V+1,V+2]. For example, an `x_indices` containing 3, 0, and 12 references three vertices, whose complete x,y,z coordinates can respectively be found at `CityJsonProto.flattened_vertices` indices [3,4,5], [0,1,2], and [12,13,14].
      */
     xIndices?: number[] | null;
   }
@@ -13492,6 +12915,15 @@ export namespace contentwarehouse_v1 {
      * All surfaces are standalone entities with no relationship to each other.
      */
     surfaces?: Schema$GeostoreCityJsonProtoCityObjectGeometrySurface[];
+  }
+  /**
+   * Representation of semantic information that can be used for reasoning about geometric primitives.
+   */
+  export interface Schema$GeostoreCityJsonProtoCityObjectGeometrySemantic {
+    /**
+     * The type of semantic entity this geometric primitive is.
+     */
+    type?: string | null;
   }
   /**
    * A 3D shape, composed of a watertight exterior shell with optional interior watertight shells.
@@ -13510,6 +12942,14 @@ export namespace contentwarehouse_v1 {
      * The first loop is exterior; any additional are interior.
      */
     loops?: Schema$GeostoreCityJsonProtoCityObjectGeometryMultiPoint[];
+    /**
+     * The materials this surface is made of. Either all or none of the Surface protos must have this field set (even for 'null' references). Otherwise, this field must not be set. IMPORTANT: This field must not contain more than one MaterialSpec unless CityJSON's material "theme" is incorporated into CityJsonProto (see discussion in go/cityjson-for-hand-modeled-landmarks).
+     */
+    materialSpecs?: Schema$GeostoreCityJsonProtoCityObjectGeometryMaterialSpec[];
+    /**
+     * The semantics of this surface (e.g. what part of a building it is) represented as an index into the containing Geometry's `semantics` field. Either all or none of the Surface protos must have this field set (even for 'null' references). Otherwise, this field must not be set.
+     */
+    semanticsIndex?: number | null;
   }
   /**
    * Information for transforming a point from an "old" to "new" coordinate frame. Applied as follows: vertex_new = scale * vertex_old + translate
@@ -13879,7 +13319,7 @@ export namespace contentwarehouse_v1 {
   }
   export interface Schema$GeostoreExistenceProto {
     /**
-     * Indicates whether the place is closed (permanently or temporarily), i.e., not operational in the present, but was at in the past and/or will be in the future. WARNING: New code should use Geo Schema's libraries instead, specifically the OpeningStatus APIs, available in: * C++ (cs/f:google3/geostore/base/public/feature.h%20function:ExistenceState) * Java (cs/f:google3/java/com/google/geostore/base/Existence.java%20function:OpeningStatus) * Python (cs/f:google3/geostore/base/public/python/feature.clif%20existence_state)
+     * Indicates whether the place is closed (permanently or temporarily), i.e., not operational in the present, but was in the past. WARNING: New code should prefer go/geo-schema-reference:operational-status.
      */
     closed?: boolean | null;
     /**
@@ -13887,12 +13327,12 @@ export namespace contentwarehouse_v1 {
      */
     closeReason?: string | null;
     /**
-     * The earliest known date of this feature's "end" (e.g. an establishment's permanent closure), if the actual date is unknown; i.e. the best known upper bound of the day end_date would represent. end_as_of_date must be in local (civil) time and of PRECISION_DAY. For example, given an establishment: * Without any end_as_of_date, the permanent closure definitely isn't now and isn't known to start at any point in the future. * With an end_as_of_date of 2023-04-05 but without any end_date, the permanent closure definitely starts at latest 2023-04-05 but may start before 2023-04-05. * With an end_as_of_date of 2023-04-05 and an end_date of 2023 (at just PRECISION_YEAR), the permanent closure definitely starts at earliest 2023-01-01 (i.e. the first day of 2023) and at latest 2023-04-05, but may start at any day between 2023-01-01 and 2023-04-05. IMPORTANT: Generally for Geo Schema-internal use only. If you believe you need to use this field directly, please go/contact-geo-schema.
+     * The earliest known date of this feature's "end" (e.g. an establishment's permanent closure), if the actual date is unknown; i.e. the best known upper bound of the day end_date would represent. end_as_of_date must be in local (civil) time and of PRECISION_DAY. WARNING: Not necessarily consistent yet with `closed` or the ClosureAttachmentProto. If you believe you need to use this field directly, please go/contact-geo-schema.
      */
     endAsOfDate?: Schema$GeostoreDateTimeProto;
     endDate?: Schema$GeostoreDateTimeProto;
     /**
-     * ** DEPRECATED ** This field is now deprecated (see b/22878252). Please use the Geo Schema GetFeatureBirthTimestamp() API to extract the birth timestamp of a feature. The timestamp in seconds since the UNIX epoch (January 1, 1970) when this feature becomes live in the Geo repository. Different from start_date in that this is the birth date of Google's representation of the place whereas start_date is the birth date of the place in the physical world.
+     * ** DEPRECATED ** This field is now deprecated (see b/22878252). Please use the Geo Schema GetFeatureBirthTimestamp() API to extract the birth timestamp of a feature. The timestamp in seconds since the UNIX epoch (January 1, 1970) when this feature becomes live in the Geo repository. This was the birth date of the place's representation in Google whereas start_date is the birth date of the place's operations in the physical world.
      */
     featureBirthTimestampSeconds?: string | null;
     /**
@@ -13904,7 +13344,7 @@ export namespace contentwarehouse_v1 {
      */
     removedReason?: string | null;
     /**
-     * (Initial) opening and (permanent) closing dates of the establishment, such that start_date is the first day open and end_date is the first day closed. The only allowed precisions are PRECISION_DAY, PRECISION_MONTH, PRECISION_YEAR. DateTimeProto.seconds should have the lowest legal value for the desired date/time and precision. E.g. for PRECISION_MONTH, 2019-02-15 21:10:30 is not valid, it should be 2019-02-01 00:00:00 instead. NOTE: The start_date and end_date are stored in UTC but should be interpreted as being in the local timezone. So clients should convert the DateTimeProto to local (civil) time using UTC+0, and then treat the result as local to the feature.
+     * (Initial) start and (permanent) end dates of operations, such that start_date is the first day operational and end_date is the first day when operations have permanently ended. The only allowed precisions are PRECISION_DAY, PRECISION_MONTH, PRECISION_YEAR. DateTimeProto.seconds should have the lowest legal value for the desired date/time and precision. E.g. for PRECISION_MONTH, 2019-02-15 21:10:30 is not valid, it should be 2019-02-01 00:00:00 instead. NOTE: The start_date and end_date are stored in UTC but should be interpreted as being in the local timezone. So clients should convert the DateTimeProto to local (civil) time using UTC+0, and then treat the result as local to the feature.
      */
     startDate?: Schema$GeostoreDateTimeProto;
   }
@@ -14097,6 +13537,10 @@ export namespace contentwarehouse_v1 {
     covering?: Schema$GeostoreCellCoveringProto;
     dataSource?: Schema$GeostoreDataSourceProto;
     /**
+     * Geometry Store ID and materialized geometry representing the feature's physical presence in the world. Like geometry_3d above, but with additional semantic or renderable details, e.g. labeled surfaces ("door", "window"), material specifications, etc. IMPORTANT: Clients may not write to this field directly; see go/geometry-store-reading-and-writing#writing-to-geometry-store.
+     */
+    detailed3dModel?: Schema$GeostoreGeometryStoreReferenceProto;
+    /**
      * Data used to render this feature on a map.
      */
     displayData?: Schema$GeostoreDisplayDataProto;
@@ -14131,7 +13575,7 @@ export namespace contentwarehouse_v1 {
      */
     futureGeometryFor?: Schema$GeostoreFeatureIdProto;
     /**
-     * Geometry Store ID and materialized geometry representing the feature's physical shape in the world.
+     * Geometry Store ID and materialized geometry representing the feature's physical shape in the world. IMPORTANT: Clients may not write to this field directly; see go/geometry-store-reading-and-writing#writing-to-geometry-store.
      */
     geometry3d?: Schema$GeostoreGeometryStoreReferenceProto;
     /**
@@ -14157,7 +13601,7 @@ export namespace contentwarehouse_v1 {
      */
     interiorCovering?: Schema$GeostoreCellCoveringProto;
     /**
-     * Additional internal feature-level attributes that may be set by data providers to be used inside the Geo Data infrastructure. This field should never be present in the output of the Geo Data infrastructure that read-only clients consume.
+     * Data for this feature that is less about the feature and more about other data in the feature. For example, it might be data about the rights we have to other data in this FeatureProto, or MapFacts-internal shape IDs for this feature's polygons.
      */
     internal?: Schema$GeostoreInternalFeatureProto;
     intersection?: Schema$GeostoreIntersectionProto;
@@ -14284,7 +13728,7 @@ export namespace contentwarehouse_v1 {
      */
     storefrontGeometry?: Schema$GeostoreAnchoredGeometryProto[];
     /**
-     * Geometry Store ID and materialized geometry for a POI feature's storefront(s).
+     * Geometry Store ID and materialized geometry for a POI feature's storefront(s). IMPORTANT: Clients may not write to this field directly; see go/geometry-store-reading-and-writing#writing-to-geometry-store.
      */
     storefrontGeometryModel?: Schema$GeostoreGeometryStoreReferenceProto;
     /**
@@ -14304,6 +13748,10 @@ export namespace contentwarehouse_v1 {
      */
     tollCluster?: Schema$GeostoreTollClusterProto;
     /**
+     * Represents information about /geo/type/toll_path features.
+     */
+    tollPath?: Schema$GeostoreTollPathProto;
+    /**
      * Defines the geometry of a feature as a sequence of 6D poses, including lat, lng, altitude, roll, pitch, and yaw. Only lat and lng are typically required. Each track has an index so that they can be viewed in a stable order.
      */
     track?: Schema$GeostoreTrackProto[];
@@ -14322,7 +13770,7 @@ export namespace contentwarehouse_v1 {
      */
     verticalOrdering?: Schema$GeostoreVerticalOrderingProto;
     /**
-     * Geometry Store ID and materialized geometry representing a tight bounding box of the feature's geometry (or the building/grounds a POI occupies), e.g. for generating flyover experiences.
+     * Geometry Store ID and materialized geometry representing a bounding box of the feature's geometry (or the building/grounds a POI occupies) for stylized rendering, UX experiences, etc. IMPORTANT: Clients may not write to this field directly; see go/geometry-store-reading-and-writing#writing-to-geometry-store.
      */
     visualizationArea?: Schema$GeostoreGeometryStoreReferenceProto;
     /**
@@ -14518,15 +13966,60 @@ export namespace contentwarehouse_v1 {
      */
     selfPolygon?: Schema$GeostorePolygonProto;
   }
+  /**
+   * This protocol buffer is used to store geopolitical information about the feature that override the base state of the feature. For example, the name of the feature from different regions' POV. This protocol buffer can be used on any feature involved in a geopolitical situation and is not limited to TYPE_POLITICAL features.
+   */
   export interface Schema$GeostoreGeopoliticalProto {
     /**
      * If present, some aspect of this feature (usually name or geometry) can signify ownership of the area by the region specified. The string, if present, will be a region code. E.g., suppose a TYPE_POSTAL_CODE feature has a Russian format in Crimea (which is disputed by Ukraine), then this field would be set to "RU".
      */
     conveysAttributionTo?: string | null;
     /**
-     * Any specific handling of this feature's name from different regions' POVs.
+     * Adjustments to the base polygon of this feature to construct a region-specific view. In general, this field is edited only by go/mf-triggers based on the data written to regional_polygon_composing_claims. This field should only be directly edited if there are region-specific adjustments that cannot be represented using the geometry of this feature's claims, but note that anything written to this field will be overwritten by go/mf-triggers if regional_polygon_composing_claims is ever edited. See go/geopolitical-geometry-schema for more information.
+     */
+    regionalPolygonAdjustment?: Schema$GeostoreGeopoliticalProtoRegionalPolygonAdjustmentProto[];
+    /**
+     * Feature's claim(s) which compose the region-specific polygon. This composition will be used by go/mf-triggers to compose the specified region's view of this feature's geometry. The difference between that polygon and this feature's base polygon will be stored in regional_polygon_adjustment below. Edits to this field will overwrite anything already stored in regional_polygon_adjustment. See go/geopolitical-geometry-schema for more information.
+     */
+    regionalPolygonComposingClaims?: Schema$GeostoreGeopoliticalProtoRegionalPolygonComposingClaimsProto[];
+    /**
+     * Any specific handling of this feature's name from different regions' POVs. This field can only contain up to one name per region/language combination (each of which would be a separate RegionSpecificNameProto).
      */
     regionSpecificName?: Schema$GeostoreRegionSpecificNameProto[];
+  }
+  /**
+   * Raw polygon adjustments to apply to this feature's base polygon to construct a specific region's view of this feature's polygon.
+   */
+  export interface Schema$GeostoreGeopoliticalProtoRegionalPolygonAdjustmentProto {
+    /**
+     * Polygon to add to the feature's base polygon to get the view for the given region. Applied after polygon_to_subtract, such that any region contained in both polygons WILL be part of the final result.
+     */
+    polygonToAdd?: Schema$GeostorePolygonProto;
+    /**
+     * Polygon to subtract from the feature's base polygon to get the view for the given region.
+     */
+    polygonToSubtract?: Schema$GeostorePolygonProto;
+    /**
+     * Region code (or other identifier) for the region.
+     */
+    regionCode?: string | null;
+  }
+  /**
+   * The polygon composition recipe for a specific region's view of this feature's geometry, based on disputed area claims asserted by this country. Note that the included / excluded claims listed for a given region's view of this feature may not match up exactly with which claims the region recognizes / does not recognize for this feature. Claims may only be included or excluded for regions that themselves are a party to the dispute, i.e. a region's view of itself will include its own claims, and a region's view of another feature will exclude its own claims. See current Geopolitical policy at go/geopolitical-policy-primer.
+   */
+  export interface Schema$GeostoreGeopoliticalProtoRegionalPolygonComposingClaimsProto {
+    /**
+     * Region code (or other identifier) for the region.
+     */
+    regionCode?: string | null;
+    /**
+     * TYPE_DISPUTED_AREAs claimed by this feature excluded from this region's view of the feature's geometry. (The TDAs must have polygonal geometry and be referenced in this feature's political.claim field.) The polygons of these claims will be subtracted to this feature's base polygon when this feature is viewed from the specified region.
+     */
+    regionExcludedClaims?: Schema$GeostoreFeatureIdProto[];
+    /**
+     * TYPE_DISPUTED_AREAs claimed by this feature and included in this region's view of the feature's geometry. (The TDAs must have polygonal geometry and be referenced in this feature's political.claim field.) The polygons of these claims will be added to this feature's base polygon when this feature is viewed from the specified region.
+     */
+    regionIncludedClaims?: Schema$GeostoreFeatureIdProto[];
   }
   /**
    * The grade level of a segment represents the relative altitude of the segment at a particular point along the segment. This level is in relation to other segments at the same point. For example, you might have a freeway at level = 0 and an overpass at level = 2. Vertical segments are represented by a polyline containing only 1 vertex and exactly two grade_level in segment.proto whose indices are 0. grade_level(0) represents the relative height at the start point of the segments, and grade_level(1) represents the one at the end point.
@@ -14565,7 +14058,7 @@ export namespace contentwarehouse_v1 {
     geometryComposition?: Schema$GeostoreGeometryComposition;
   }
   /**
-   * Main proto for all internal fields to be stored at the feature level.
+   * InternalFeatureProto represents fields for data that are more about other data within the FeatureProto than about the feature itself. This could be data that's set by editors directly(ish) (e.g. trust or rights data), or data set internally by MapFacts based on other data (e.g. polygon shape IDs).
    */
   export interface Schema$GeostoreInternalFeatureProto {
     /**
@@ -14682,9 +14175,9 @@ export namespace contentwarehouse_v1 {
      */
     segment?: Schema$GeostoreFeatureIdProto[];
     /**
-     * The toll cluster to which this intersection belongs. If present, the toll cluster must also refer back to the intersection.
+     * The toll cluster to which this intersection belongs. If present, the toll cluster must also refer back to the intersection. To set this field, the intersection must be a gcid:toll_intersection feature.
      */
-    tollClusterId?: Schema$GeostoreFeatureIdProto;
+    tollCluster?: Schema$GeostoreFeatureIdProto;
   }
   export interface Schema$GeostoreJobMetadata {
     /**
@@ -15046,7 +14539,7 @@ export namespace contentwarehouse_v1 {
    */
   export interface Schema$GeostoreOperationsProto {
     /**
-     * Records temporary status change of the feature, such as remodel, vacation, etc.: the feature is temporarily (but not permanently) unavailable. This prevents users from going to the feature. Supports an arbitrary number of past, present, and future temporary closures, with the feature's data owner choosing which range of past and future closures to permit or guarantee to keep. All start and end dates must be unique from each other. If two consecutive dates are a start and an end of a TemporaryClosureProto, then the two dates must be from the same TemporaryClosureProto. Otherwise, exact dates may be missing so long as there exist a possible sequence of temporary closures with both exact start_date and end_date that keeps any known exact start_date and end_date. The earliest temporary closure must begin after whenever initial operations begin. Likewise, the latest temporary closure must end before whenever the permanent closure begins. NOTE: does *not* guarantee chronological order.
+     * Records temporary status changes of the feature, such as remodel, vacation, etc.: the feature is temporarily (but not permanently) unavailable. See go/geo-schema-reference:operational-lifecycle#temporary-closure for guidance on interpreting this data and constraints on writing it. NOTE: Order of the TemporaryClosureProtos is *not* guaranteed to be chronological.
      */
     temporaryClosure?: Schema$GeostoreTemporaryClosureProto[];
   }
@@ -15247,7 +14740,7 @@ export namespace contentwarehouse_v1 {
     point?: Schema$GeostorePointProto;
   }
   /**
-   * This protocol buffer is included from feature.proto as an optional message. Political features represent the different ways that people are divided into geographical regions.
+   * This protocol buffer is included from feature.proto as an optional message. Political features represent the different ways that people are divided into geographical regions. This protocol buffer is applicable only to TYPE_POLITICAL features and is used to store political information from the feature's point of view.
    */
   export interface Schema$GeostorePoliticalProto {
     /**
@@ -15618,7 +15111,7 @@ export namespace contentwarehouse_v1 {
     lo?: Schema$GeostorePointProto;
   }
   /**
-   * This protocol buffer supports a name per region per language, allowing it to represent the name of a given feature in different regions and languages. For example, the Persian Gulf has different English names in UAE versus Lebanon.
+   * This protocol buffer supports a name per region per language, allowing it to represent the name of a given feature in different regions and languages. For example, the Persian Gulf has different English names in UAE versus Lebanon; each would need to be represented as distinct RegionSpecificNameProtos.
    */
   export interface Schema$GeostoreRegionSpecificNameProto {
     /**
@@ -15702,7 +15195,7 @@ export namespace contentwarehouse_v1 {
     segment?: Schema$GeostoreFeatureIdProto[];
   }
   /**
-   * A restriction is an expression that limits when an action can be taken. Each restriction has a set of conditions. If all of the conditions are true, then the restriction applies and the action cannot be taken. For example, the restriction "no turns 3-5pm except buses" would have two conditions: "time is 3-5pm" and "vehicle is not a bus". If both of these conditions apply, the restriction is true, and the turn is prohibited. Multiple restrictions may apply to the same action. Clients handle this by always declaring RestrictionProto as a "repeated" element. The semantics of having multiple restrictions are that if any restriction applies, then the action cannot be taken. In other words, restrictions are OR-ed together. Putting all of this together, a set of RestrictionProtos can be interpreted as an bool expression in disjunctive normal form: (A and B) or (D and E and F) or (G and H) The action is prohibited if this expression is true. Note that a restriction with no conditions is always true, i.e. its action is always prohibited. NOTE: RestrictionProtos are often compared against one another (e.g. to check for duplicate/redundant restrictions) by canonicalizing them via GetCanonicalRestriction() in google3/geostore/base/internal/restriction.cc. Any fields that don't contribute to the definition of a restriction in the real world should be bundled with the annotative fields near the bottom and excluded in GetCanonicalRestriction(). LINT.IfChange
+   * A restriction is an expression that limits when an action can be taken. Each restriction has a set of conditions. If all of the conditions are true, then the restriction applies and the action cannot be taken. For example, the restriction "no turns 3-5pm except buses" would have two conditions: "time is 3-5pm" and "vehicle is not a bus". If both of these conditions apply, the restriction is true, and the turn is prohibited. Multiple restrictions may apply to the same action. Clients handle this by always declaring RestrictionProto as a "repeated" element. The semantics of having multiple restrictions are that if any restriction applies, then the action cannot be taken. In other words, restrictions are OR-ed together. Putting all of this together, a set of RestrictionProtos can be interpreted as a bool expression in disjunctive normal form: (A and B) or (D and E and F) or (G and H) The action is prohibited if this expression is true. Note that a restriction with no conditions is always true, i.e. its action is always prohibited. NOTE: RestrictionProtos are often compared against one another (e.g. to check for duplicate/redundant restrictions) by canonicalizing them via GetCanonicalRestriction() in google3/geostore/base/internal/restriction.cc. Any fields that don't contribute to the definition of a restriction in the real world should be bundled with the annotative fields near the bottom and excluded in GetCanonicalRestriction(). LINT.IfChange
    */
   export interface Schema$GeostoreRestrictionProto {
     /**
@@ -15730,7 +15223,7 @@ export namespace contentwarehouse_v1 {
      */
     schedule?: Schema$GeostoreTimeScheduleProto;
     /**
-     * The scope that the restriction applies to. - SCOPE_DIRECTION means the segment/sibling pair is restricted in the direction of the segment that contains this RestrictionProto. For segment/sibling pairs with pedestrian facilities (and thus side-of-road routing) the RestrictionProto restricts both facilities in the direction of the segment (assuming that the restriction applies to travel mode TRAVEL_PEDESTRIAN). - SCOPE_SIDE means the RestrictionProto applies only to the side of road that the containing segment represents. That sibling's pedestrian facility is restricted in both directions. Schema constraints: - SCOPE_SIDE must be set if and only if travel_mode == [TRAVEL_PEDESTRIAN] and the segment containing the restriction has the pedestrian_facility field set and is not set to PEDESTRIAN_FACILITY_UNKNOWN. Such restrictions must have no subpath. - All other restrictions must have this field set to SCOPE_DIRECTION (whether explicitly or implicitly). This distinction is necessary for cases such as pedestrian facility on one-way segment/sibling roads.
+     * The scope that the restriction applies to. - SCOPE_DIRECTION means the segment/sibling pair is restricted in the direction of the segment that contains this RestrictionProto. For segment/sibling pairs with pedestrian facilities (and thus side-of-road routing) the RestrictionProto restricts both facilities in the direction of the segment (assuming that the restriction applies to travel mode TRAVEL_PEDESTRIAN). - SCOPE_SIDE means the RestrictionProto applies only to the side of road that the containing segment represents. That sibling's pedestrian facility is restricted in both directions. Schema constraints: - SCOPE_SIDE must be set if and only if travel_mode == [TRAVEL_PEDESTRIAN] and the segment containing the restriction has the pedestrian_facility field set and is not set to PEDESTRIAN_FACILITY_UNKNOWN. Such restrictions must have no subpath. - All other restrictions must have this field set to SCOPE_DIRECTION (whether explicitly or implicitly). This distinction is necessary for cases such as pedestrian facility on one-way segment/sibling roads. NOTE: This field only makes sense in the context of segment restrictions, not lane restrictions.
      */
     scope?: string | null;
     /**
@@ -15822,10 +15315,6 @@ export namespace contentwarehouse_v1 {
      * If this sign component is of type "TYPE_TEXT", this field contains the text of the component. A NameProto is used to allow language and flags to be associated with the text.
      */
     text?: Schema$GeostoreNameProto;
-    /**
-     * This type of content represented by this sign component.
-     */
-    type?: string | null;
   }
   /**
    * A RoadSignProto holds the details of a road sign. Currently this is simply a list of the items that appear on the sign and their relative position.
@@ -15990,9 +15479,12 @@ export namespace contentwarehouse_v1 {
      * The legal maximum, legal minimum, and advisory (recommended but non-legally binding) maximum speed limits that are permitted on this segment. These should be the segment's legal limits; however, note that it may contain estimated values based on country-wide defaults and other heuristics (see 'AppliedSpeedLimitProto.trust_level'). Before exposing these fields to users as the legal speed limit please consult with Google lawyers.
      */
     legalMaximumSpeed?: Schema$GeostoreAppliedSpeedLimitProto[];
+    /**
+     * LINT.ThenChange(//depot/google3/geostore/base/internal/segment.cc:has_speed_limit)
+     */
     legalMinimumSpeed?: Schema$GeostoreAppliedSpeedLimitProto[];
     /**
-     * The maximum speed that is permitted on this segment, in kilometers per hour. This should be the segment's legal speed limit; however, note that it may contain estimated values based on country-wide defaults and other heuristics (see 'is_max_permitted_speed_derived' below). Before exposing this field to users as the legal speed limit please consult with Google lawyers.
+     * LINT.IfChange(speed_limits) The maximum speed that is permitted on this segment, in kilometers per hour. This should be the segment's legal speed limit; however, note that it may contain estimated values based on country-wide defaults and other heuristics (see 'is_max_permitted_speed_derived' below). Before exposing this field to users as the legal speed limit please consult with Google lawyers.
      */
     maxPermittedSpeedKph?: number | null;
     /**
@@ -16021,7 +15513,7 @@ export namespace contentwarehouse_v1 {
      */
     priorityMetadata?: Schema$GeostoreFieldMetadataProto;
     /**
-     * RESERVED
+     * May only be set when the segment's usage is `USAGE_RAMP`.
      */
     ramp?: Schema$GeostoreSegmentProtoRampProto;
     /**
@@ -16498,9 +15990,40 @@ export namespace contentwarehouse_v1 {
    */
   export interface Schema$GeostoreTollClusterProto {
     /**
-     * The list of TYPE_INTERSECTION features that are toll points and form this toll cluster. A toll cluster can consist of either a single or a group of intersection points called toll points at the end of various road segments in MapFacts that represent one or more lanes passing through a toll fixture that all go to the same routing destination. This relationship is reciprocal, as a toll point intersection also stores a reference to the toll cluster it belongs to. A toll cluster must have reference to one or more toll points i.e. toll_cluster.intersection should always be populated.
+     * The list of gcid:toll_intersection features that this toll cluster. A toll cluster can consist of either a single or a group of intersection points called toll intersections at the end of various road segments in MapFacts that represent one or more lanes passing through a toll fixture that all go to the same routing destination. This relationship is reciprocal, as a toll intersection also stores a reference to the toll cluster it belongs to. A toll cluster must have a reference to one or more toll interections (i.e. toll_cluster.intersection should always be populated).
      */
     intersection?: Schema$GeostoreFeatureIdProto[];
+  }
+  /**
+   * A TollPathProto describes the sequential travel across one or more /geo/type/toll_cluster features. Traveling across a toll path may entail paying a fee, buying a toll pass, etc (although we don't model this in FeatureProto). To travel across a toll path, one must travel between toll clusters in the exact order specified. See go/geo-schema:toll-paths for more information.
+   */
+  export interface Schema$GeostoreTollPathProto {
+    /**
+     * Details the /geo/type/toll_cluster features which constitute this toll path.
+     */
+    tollClusterSequence?: Schema$GeostoreTollPathProtoTollClusterSequence;
+  }
+  /**
+   * A /geo/type/toll_cluster and its position along a toll path.
+   */
+  export interface Schema$GeostoreTollPathProtoIndexedTollCluster {
+    /**
+     * The /geo/type/toll_cluster feature at this position.
+     */
+    cluster?: Schema$GeostoreFeatureIdProto;
+    /**
+     * The position along the path where this cluster appears.
+     */
+    index?: number | null;
+  }
+  /**
+   * The set of toll clusters in a toll path, along with their position in the path.
+   */
+  export interface Schema$GeostoreTollPathProtoTollClusterSequence {
+    /**
+     * There must be at least one toll cluster in a toll path, and there may not be duplicates. For ordering, one should rely on `IndexedTollClusterProto.index`, rather than the repeated field ordering (elements may be shuffled). This is a unidirectional reference - toll clusters do not reference the toll paths they're a part of. The toll clusters themselves may be part of multiple toll paths.
+     */
+    indexedTollClusters?: Schema$GeostoreTollPathProtoIndexedTollCluster[];
   }
   export interface Schema$GeostoreTrackProto {
     /**
@@ -19930,7 +19453,7 @@ export namespace contentwarehouse_v1 {
    */
   export interface Schema$GoogleCloudDocumentaiV1DocumentPageAnchorPageRef {
     /**
-     * Optional. Identifies the bounding polygon of a layout element on the page.
+     * Optional. Identifies the bounding polygon of a layout element on the page. If `layout_type` is set, the bounding polygon must be exactly the same to the layout element it's referring to.
      */
     boundingPoly?: Schema$GoogleCloudDocumentaiV1BoundingPoly;
     /**
@@ -20609,11 +20132,11 @@ export namespace contentwarehouse_v1 {
      */
     condition?: Schema$GoogleTypeExpr;
     /**
-     * Specifies the principals requesting access for a Google Cloud resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. Does not include identities that come from external identity providers (IdPs) through identity federation. * `user:{emailid\}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid\}`: An email address that represents a Google service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `serviceAccount:{projectid\}.svc.id.goog[{namespace\}/{kubernetes-sa\}]`: An identifier for a [Kubernetes service account](https://cloud.google.com/kubernetes-engine/docs/how-to/kubernetes-service-accounts). For example, `my-project.svc.id.goog[my-namespace/my-kubernetes-sa]`. * `group:{emailid\}`: An email address that represents a Google group. For example, `admins@example.com`. * `domain:{domain\}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`. * `deleted:user:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid\}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid\}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid\}` and the recovered group retains the role in the binding.
+     * Specifies the principals requesting access for a Google Cloud resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. Does not include identities that come from external identity providers (IdPs) through identity federation. * `user:{emailid\}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid\}`: An email address that represents a Google service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `serviceAccount:{projectid\}.svc.id.goog[{namespace\}/{kubernetes-sa\}]`: An identifier for a [Kubernetes service account](https://cloud.google.com/kubernetes-engine/docs/how-to/kubernetes-service-accounts). For example, `my-project.svc.id.goog[my-namespace/my-kubernetes-sa]`. * `group:{emailid\}`: An email address that represents a Google group. For example, `admins@example.com`. * `domain:{domain\}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`. * `principal://iam.googleapis.com/locations/global/workforcePools/{pool_id\}/subject/{subject_attribute_value\}`: A single identity in a workforce identity pool. * `principalSet://iam.googleapis.com/locations/global/workforcePools/{pool_id\}/group/{group_id\}`: All workforce identities in a group. * `principalSet://iam.googleapis.com/locations/global/workforcePools/{pool_id\}/attribute.{attribute_name\}/{attribute_value\}`: All workforce identities with a specific attribute value. * `principalSet://iam.googleapis.com/locations/global/workforcePools/{pool_id\}/x`: All identities in a workforce identity pool. * `principal://iam.googleapis.com/projects/{project_number\}/locations/global/workloadIdentityPools/{pool_id\}/subject/{subject_attribute_value\}`: A single identity in a workload identity pool. * `principalSet://iam.googleapis.com/projects/{project_number\}/locations/global/workloadIdentityPools/{pool_id\}/group/{group_id\}`: A workload identity pool group. * `principalSet://iam.googleapis.com/projects/{project_number\}/locations/global/workloadIdentityPools/{pool_id\}/attribute.{attribute_name\}/{attribute_value\}`: All identities in a workload identity pool with a certain attribute. * `principalSet://iam.googleapis.com/projects/{project_number\}/locations/global/workloadIdentityPools/{pool_id\}/x`: All identities in a workload identity pool. * `deleted:user:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid\}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid\}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid\}` and the recovered group retains the role in the binding. * `deleted:principal://iam.googleapis.com/locations/global/workforcePools/{pool_id\}/subject/{subject_attribute_value\}`: Deleted single identity in a workforce identity pool. For example, `deleted:principal://iam.googleapis.com/locations/global/workforcePools/my-pool-id/subject/my-subject-attribute-value`.
      */
     members?: string[] | null;
     /**
-     * Role that is assigned to the list of `members`, or principals. For example, `roles/viewer`, `roles/editor`, or `roles/owner`.
+     * Role that is assigned to the list of `members`, or principals. For example, `roles/viewer`, `roles/editor`, or `roles/owner`. For an overview of the IAM roles and permissions, see the [IAM documentation](https://cloud.google.com/iam/docs/roles-overview). For a list of the available pre-defined roles, see [here](https://cloud.google.com/iam/docs/understanding-roles).
      */
     role?: string | null;
   }
@@ -21339,7 +20862,14 @@ export namespace contentwarehouse_v1 {
    * A message to describe the trace events returned by Chromium.
    */
   export interface Schema$HtmlrenderWebkitHeadlessProtoChromiumTrace {
+    /**
+     * Populated if Chromium traces are requested in JSON format.
+     */
     chromiumTrace?: string | null;
+    /**
+     * Populated if Chromium traces are requested in PROTO format.
+     */
+    chromiumTraceProto?: string | null;
   }
   /**
    * ConsoleLogEntry message stores messages logged by the renderer to the console. Typically error messages related to JS execution, parsing, any CSS errors, etc are logged by the renderer to the console. Next id: 7.
@@ -22153,7 +21683,7 @@ export namespace contentwarehouse_v1 {
     rawInput?: string | null;
   }
   /**
-   * Next ID: 15
+   * Next ID: 16
    */
   export interface Schema$ImageBaseThumbnailMetadata {
     /**
@@ -22180,6 +21710,10 @@ export namespace contentwarehouse_v1 {
      * encrypted version of docid
      */
     encryptedDocid?: string | null;
+    /**
+     * expiration timestamp of thumbnail
+     */
+    expirationTimestampMicros?: string | null;
     /**
      * the fprint of the thumbnail
      */
@@ -22291,6 +21825,10 @@ export namespace contentwarehouse_v1 {
      */
     descriptorFloat?: number[] | null;
     /**
+     * Raw dense float feature vector prior to embedding. Only for Starburst V6.
+     */
+    descriptorFloatBeforeProjection?: number[] | null;
+    /**
      * Short descriptor for image content features, e.g. compressed bytes. This is the compressed version of descriptor_float below. It can be can be decompressed to descriptor_float with a tiny bit of compression error (in most cases it should be totally fine).
      */
     descriptorShort?: string | null;
@@ -22301,12 +21839,16 @@ export namespace contentwarehouse_v1 {
      */
     starburstTokens?: number[] | null;
     /**
+     * Squared distance of the current embedding to each cluster center. Elements are aligned with starburst_tokens.
+     */
+    starburstTokensDistances?: number[] | null;
+    /**
      * The following integers are currently used: Starburst V1: 1 Starburst V2: 2 Starburst V3: 3 Starburst V4: 4 Starburst Visual V4: 1004 This field is deprecated. Please try to use the 'enum_version' in future.
      */
     version?: number | null;
   }
   /**
-   * This defines the per-doc data which is extracted from thumbnails and propagated over to indexing. It contains all information that can be used for restricts. Next tag id: 132
+   * This defines the per-doc data which is extracted from thumbnails and propagated over to indexing. It contains all information that can be used for restricts. Next tag id: 135
    */
   export interface Schema$ImageData {
     /**
@@ -22341,7 +21883,7 @@ export namespace contentwarehouse_v1 {
     clipartDetectorScore?: number | null;
     clipartDetectorVersion?: number | null;
     /**
-     * Superlabels generated cluster id.
+     * Superlabels generated cluster id. This field is going to be deprecated, please use `superlabels_v2_cluster_id` instead.
      */
     clusterId?: string | null;
     /**
@@ -22429,6 +21971,10 @@ export namespace contentwarehouse_v1 {
      * The output of various features generated by the Flow framework, most importantly data from Starburst (go/starburst). Do NOT interact with the internals of this proto since they may change over time. Instead, use the existing interfaces that consume FlowProtoProd's directly, e.g., image/mustang/content/image_content_distance.h For more info, please contact image-content-core@.
      */
     flowOutput?: Schema$ImageContentFlowProtoProd;
+    /**
+     * The signal about the likelihood of whether the image is generated by Google.
+     */
+    generatedImageLikelihoodSignal?: Schema$ImageRepositoryGeneratedImageLikelihoodSignal;
     h2c?: number | null;
     /**
      * 'Hovers to Impressions' and 'Hovers to Clicks' ratios for an image. These are considered Search CPS Personal Data due to concerns that they may be used to reidentify or confirm the presence of specific singleton (unique) queries.
@@ -22454,6 +22000,10 @@ export namespace contentwarehouse_v1 {
      * Indicates license info of this image, which will tell image search users how to use this image legally.
      */
     imageLicenseInfo?: Schema$ImageSearchImageLicenseInfo;
+    /**
+     * Click signals for measuring image quality (e.g., usefulness, presentation, appealingness, and engagingness). Click signals are considered Search CPS Personal Data.
+     */
+    imageQualityClickSignals?: Schema$ImageQualityNavboostImageQualityClickSignals;
     imagerank?: number | null;
     /**
      * Regions detected within the image (go/images-region-search-edd). Regions contain bounding boxes circumscribing objects of interest in the image, along with object labels. Regions may overlap.
@@ -22604,6 +22154,10 @@ export namespace contentwarehouse_v1 {
      * Prediction of a style image type: Stage, Stock, Street or Outfits.
      */
     styleImageType?: Schema$LensDiscoveryStyleStyleImageTypeSignals;
+    /**
+     * Superlabels V2 generated cluster id.
+     */
+    superlabelsV2ClusterId?: string | null;
     /**
      * This field is for testing purposes, more information in go/media-dirt-2022.
      */
@@ -23035,6 +22589,16 @@ export namespace contentwarehouse_v1 {
     info?: string | null;
   }
   /**
+   * Next ID: 3
+   */
+  export interface Schema$ImageQualityNavboostImageQualityClickSignals {
+    clicks?: number | null;
+    /**
+     * Good clicks that are defined using GVE (go/gve-history).
+     */
+    gveClicks?: number | null;
+  }
+  /**
    * Goldmine annotation in the CDoc to store the hrid of the 5 entities with higher topicality in the document. Used by the Skin Tone Twiddler to determine if the result set shows mostly one specific KG entity. go/result-set-signal
    */
   export interface Schema$ImageQualitySensitiveMediaOrPeopleEntities {
@@ -23243,7 +22807,7 @@ export namespace contentwarehouse_v1 {
     xtags?: Schema$ImageRepositoryApiXtag[];
   }
   /**
-   * Next Tag: 51
+   * Next Tag: 52
    */
   export interface Schema$ImageRepositoryContentBasedVideoMetadata {
     /**
@@ -23266,6 +22830,10 @@ export namespace contentwarehouse_v1 {
      * Video Understanding Golden features. (go/amarna-video-signals#golden-signals) Note: Golden6 features (names matching "video_*") are DEPRECATED. Please migrate to Golden7 ("VideoFeatures.*"). For more context, see go/golden7/migrating-from-golden6 and go/amarna-golden-feature-tracker. Signals popluated in Raffia cdoc.doc_videos are configured in cs/symbol:AMARNA_EXPORTED_GOLDEN7_FEATURES.
      */
     featureSetData?: Schema$DrishtiFeatureSetData;
+    /**
+     * Frame-level Starburst embeddings. They are IE only signals for short videos initially and will be supported for all videos later. (go/frame-level-sbv5-on-ie)
+     */
+    frameLevelStarburstEmbeddings?: Schema$ImageRepositoryFrameLevelStarburstEmbeddings;
     /**
      * Golden7 video-level people features. (go/ypf-video-features)
      */
@@ -23445,9 +23013,26 @@ export namespace contentwarehouse_v1 {
    */
   export interface Schema$ImageRepositoryFrameIdentifierThumbnailVariant {}
   /**
+   * Each supported Starburst embedding version will have a pair of AmarnaSignalsBlobInfo and SUPFrameLevelEmbeddings. Blob info has the blob id of the corresponding embeddings and a blob write timestamp. SUPFrameLevelEmbeddings are the actual frame-level embeddings at 1 FPS. MMS callers have 3 options to fetch frame-level Starburst embeddings: 1. OPTION_NONE (default): Don't fetch frame-level Starburst embeddings. 2. OPTION_BLOB_DATA: Fetch the actual Starburst embeddings in SUPFrameLevelEmbeddings. 3. OPTION_CLONED_BLOB_ID: Clone the starburst embeddings into the target Blobstore directory. Then, fetch the cloned blob id of Starburst embeddings in AmarnaSignalsBlobInfo.
+   */
+  export interface Schema$ImageRepositoryFrameLevelStarburstEmbeddings {
+    /**
+     * Frame-level Starburst V5 embeddings computed by SUP. See https://data.corp.google.com/su_catalog/signal/starburst:v5.
+     */
+    starburstV5Embeddings?: Schema$ImageRepositorySUPFrameLevelEmbeddings;
+    /**
+     * Frame-level Starburst V5 embeddings blob id.
+     */
+    starburstV5EmbeddingsBlobInfo?: Schema$ImageRepositoryAmarnaSignalsBlobInfo;
+  }
+  /**
    * Only one of timestamp_msec or frame_identifier should be set. timestamp_msec is the old identifier for frames, and is still used on thumbnail frames. frame_identifier should be used on other kinds of frames (e.g. preview frame zero).
    */
   export interface Schema$ImageRepositoryFramePerdoc {
+    /**
+     * Error, if any, while generating the frame perdoc. It is mutually exclusive to the perdoc, only set when perdoc is missing.
+     */
+    errorStatus?: Schema$UtilStatusProto;
     frameIdentifier?: Schema$ImageRepositoryFrameIdentifier;
     perdoc?: Schema$ImageData;
     /**
@@ -23460,6 +23045,20 @@ export namespace contentwarehouse_v1 {
    */
   export interface Schema$ImageRepositoryFramePerdocs {
     framePerdoc?: Schema$ImageRepositoryFramePerdoc[];
+  }
+  export interface Schema$ImageRepositoryGeneratedImageLikelihoodSignal {
+    /**
+     * Decision according to the given fingerprint nearest neighbor score.
+     */
+    fingerprintNearestNeighborDecision?: string | null;
+    /**
+     * OVERALL DECISION Decision according to the given watermark logits and fingerprint nearest neighbor score.
+     */
+    provenanceClassifierDecision?: string | null;
+    /**
+     * INDIVIDUAL DECISION Decision according to the given watermark logits.
+     */
+    watermarkDecision?: string | null;
   }
   export interface Schema$ImageRepositoryLanguageIdentificationResult {
     /**
@@ -23685,6 +23284,22 @@ export namespace contentwarehouse_v1 {
      * Time offset of the end of this result relative to the beginning of the audio. This field is internal-only and is used to order results based on their timestamps.
      */
     resultEndTime?: string | null;
+  }
+  export interface Schema$ImageRepositorySUPFrameLevelEmbedding {
+    /**
+     * Embedding of the frame.
+     */
+    embedding?: Schema$ReneEmbedding;
+    /**
+     * Time offset of the frame.
+     */
+    timeOffset?: string | null;
+  }
+  export interface Schema$ImageRepositorySUPFrameLevelEmbeddings {
+    /**
+     * All the frame-level embeddings of the video.
+     */
+    embeddings?: Schema$ImageRepositorySUPFrameLevelEmbedding[];
   }
   /**
    * To indicate whether the image or video is to be deleted from the repository due to legal reasons or hidden from search results.
@@ -23935,14 +23550,6 @@ export namespace contentwarehouse_v1 {
      * The score produced by offensive salient terms model.
      */
     qbstOffensiveScore?: number | null;
-    /**
-     * Presence of i18n-recognized vulgar term in the OCR.
-     */
-    vulgarI18nBit?: boolean | null;
-    /**
-     * Image OCR vulgarity, computed by vulgar query classifier.
-     */
-    vulgarScore?: number | null;
   }
   export interface Schema$ImageSafesearchContentOffensiveSymbolDetection {
     matches?: Schema$ImageSafesearchContentOffensiveSymbolMatch[];
@@ -24666,7 +24273,7 @@ export namespace contentwarehouse_v1 {
     extraMessage?: Schema$Proto2BridgeMessageSet;
   }
   /**
-   * DataVersion tracks the version of data in CompositeDoc. The notion of "data" here is loose and people can define the name of their own. For example, a signal generated by Index Signals or an annotation generated by Goldmine (and other components) can all be considered as data here. Each field in this proto represents the human readable version string and the timestamp of one particular data. We choose to explicitly list out all of the data here for better understanding about which data are tracked. NOTE that human_readable_version is not intended for comparison, use timestamp_micros. In addition, we have an annotation about the field paths of each data. With proto reflection (using google3/net/proto2/util/public/field_path.h), downstream systems can take advantage of this annotation to automatically handle newly introduced data without modifying their code. Please also see the comment of FieldProjector above. There are also some fields in DataInfo that annotate who generates the data, the Index Signals or Goldmine annotator name for the fields already onboarded or being onboarded to FDP. Fields without annotation of signal_names or goldmine_annotator_names are not onboarded. Next ID: 539
+   * DataVersion tracks the version of data in CompositeDoc. The notion of "data" here is loose and people can define the name of their own. For example, a signal generated by Index Signals or an annotation generated by Goldmine (and other components) can all be considered as data here. Each field in this proto represents the human readable version string and the timestamp of one particular data. We choose to explicitly list out all of the data here for better understanding about which data are tracked. NOTE that human_readable_version is not intended for comparison, use timestamp_micros. In addition, we have an annotation about the field paths of each data. With proto reflection (using google3/net/proto2/util/public/field_path.h), downstream systems can take advantage of this annotation to automatically handle newly introduced data without modifying their code. Please also see the comment of FieldProjector above. There are also some fields in DataInfo that annotate who generates the data, the Index Signals or Goldmine annotator name for the fields already onboarded or being onboarded to FDP. Fields without annotation of signal_names or goldmine_annotator_names are not onboarded. Next ID: 543
    */
   export interface Schema$IndexingDocjoinerDataVersion {
     acceleratedShoppingSignal?: Schema$IndexingDocjoinerDataVersionVersionInfo;
@@ -24721,9 +24328,6 @@ export namespace contentwarehouse_v1 {
     imageContentColorSearchColorDetectionResults?: Schema$IndexingDocjoinerDataVersionVersionInfo;
     imageDataList?: Schema$IndexingDocjoinerDataVersionVersionInfo;
     imageembed?: Schema$IndexingDocjoinerDataVersionVersionInfo;
-    /**
-     * END DATA FIELDS
-     */
     imageembedDomainNorm?: Schema$IndexingDocjoinerDataVersionVersionInfo;
     imageExtraImageExtraTerms?: Schema$IndexingDocjoinerDataVersionVersionInfo;
     imageMonetizationFeaturedDocumentProperties?: Schema$IndexingDocjoinerDataVersionVersionInfo;
@@ -24921,6 +24525,10 @@ export namespace contentwarehouse_v1 {
     nlpSentimentSentimentAnnotation?: Schema$IndexingDocjoinerDataVersionVersionInfo;
     nlxDocAnnotation?: Schema$IndexingDocjoinerDataVersionVersionInfo;
     noindexedImageDataList?: Schema$IndexingDocjoinerDataVersionVersionInfo;
+    /**
+     * Must be used together with quality_nsr_nsr_data
+     */
+    nsrFdpData?: Schema$IndexingDocjoinerDataVersionVersionInfo;
     numberAnnotations?: Schema$IndexingDocjoinerDataVersionVersionInfo;
     oceanLibrarianBookMetadata?: Schema$IndexingDocjoinerDataVersionVersionInfo;
     oceanLibrarianPopulatorData?: Schema$IndexingDocjoinerDataVersionVersionInfo;
@@ -24954,6 +24562,7 @@ export namespace contentwarehouse_v1 {
     oceanReviewsForWork?: Schema$IndexingDocjoinerDataVersionVersionInfo;
     oceanRightsOptOutRequest?: Schema$IndexingDocjoinerDataVersionVersionInfo;
     officialPagesQuerySet?: Schema$IndexingDocjoinerDataVersionVersionInfo;
+    orbitIntents?: Schema$IndexingDocjoinerDataVersionVersionInfo;
     perDocLangidData?: Schema$IndexingDocjoinerDataVersionVersionInfo;
     personalizationGameWebeventsConsolidatedEvents?: Schema$IndexingDocjoinerDataVersionVersionInfo;
     personalizationGameWebeventsEvent?: Schema$IndexingDocjoinerDataVersionVersionInfo;
@@ -25138,6 +24747,7 @@ export namespace contentwarehouse_v1 {
     richsnippetsPageMap?: Schema$IndexingDocjoinerDataVersionVersionInfo;
     richsnippetsPageMapAnnotations?: Schema$IndexingDocjoinerDataVersionVersionInfo;
     richsnippetsSchemaThing?: Schema$IndexingDocjoinerDataVersionVersionInfo;
+    robotsPolicy?: Schema$IndexingDocjoinerDataVersionVersionInfo;
     rosettaLanguage?: Schema$IndexingDocjoinerDataVersionVersionInfo;
     safesearchPageClassifierOutput?: Schema$IndexingDocjoinerDataVersionVersionInfo;
     safesearchSafeSearchInternalPageSignals?: Schema$IndexingDocjoinerDataVersionVersionInfo;
@@ -25150,6 +24760,10 @@ export namespace contentwarehouse_v1 {
     sitemapsSitemapsSignals?: Schema$IndexingDocjoinerDataVersionVersionInfo;
     smearingSmearedTerms?: Schema$IndexingDocjoinerDataVersionVersionInfo;
     socialPersonalizationKnexAnnotation?: Schema$IndexingDocjoinerDataVersionVersionInfo;
+    /**
+     * END DATA FIELDS
+     */
+    spambrainDomainSitechunkData?: Schema$IndexingDocjoinerDataVersionVersionInfo;
     spamBrainSpamBrainData?: Schema$IndexingDocjoinerDataVersionVersionInfo;
     spamBrainSpamBrainPageClassifierAnnotation?: Schema$IndexingDocjoinerDataVersionVersionInfo;
     spamContentAnchorDist?: Schema$IndexingDocjoinerDataVersionVersionInfo;
@@ -26518,6 +26132,23 @@ export namespace contentwarehouse_v1 {
     remodelings?: Schema$NlpMeaningMeaningRemodelings;
   }
   /**
+   * Construct for how to construe a facet when parse from neural or lexical models. Unlike regular intent annotations, facets are post-hoc grounded to indicated spoans, so they also need to provide their input and output slot independently.
+   */
+  export interface Schema$KnowledgeAnswersFacetParsing {
+    /**
+     * Optional, as this can take the name of the slot/schema its associated with or it might need to map onto something different.
+     */
+    facetName?: string | null;
+    /**
+     * Required, the slot into which we put any ungrounded string or mid
+     */
+    inputSlotName?: string | null;
+    /**
+     * Optional, if absent output_type will be used for typing, or this is a MRF operator
+     */
+    outputSlotName?: string | null;
+  }
+  /**
    * Modifiers decorate a Meaning Expression (i.e. intent FunctionCall) with signals that depend on the source language's grammar and syntax. See go/intent-modifiers for details. NOTE: Modifiers don't necessarily impact go/intent-resolution semantics. LINT.IfChange
    */
   export interface Schema$KnowledgeAnswersIntentModifiers {
@@ -26745,7 +26376,7 @@ export namespace contentwarehouse_v1 {
     valueIndex?: number | null;
   }
   /**
-   * A message representing the signals associated with an argument. NEXT ID TO USE: 62 For //depot/google3/logs/proto/knowledge/interpretation/intent_query.proto in the "ThenChange", fields under Argument.signals in the serving proto are stored directly under Argument on the logging side. For example, see http://google3/nlp/semantic_parsing/data_management/logs/web_logs/semantic_logging_converters/semantic_logging_request_argument_converter.cc?l=58&rcl=322925428. LINT.IfChange
+   * A message representing the signals associated with an argument. NEXT ID TO USE: 66 For //depot/google3/logs/proto/knowledge/interpretation/intent_query.proto in the "ThenChange", fields under Argument.signals in the serving proto are stored directly under Argument on the logging side. For example, see http://google3/nlp/semantic_parsing/data_management/logs/web_logs/semantic_logging_converters/semantic_logging_request_argument_converter.cc?l=58&rcl=322925428. LINT.IfChange
    */
   export interface Schema$KnowledgeAnswersIntentQueryArgumentSignals {
     /**
@@ -26781,6 +26412,10 @@ export namespace contentwarehouse_v1 {
      */
     contextResolution?: string | null;
     /**
+     * Contains the source and type information related to a personal entity, for example if it is a hotel or a restaurant (type) and if it comes from Gmail, Calendar, etc. (source).
+     */
+    copleySourceTypeList?: Schema$CopleySourceTypeList;
+    /**
      * If the literal.obj_type of the argument value is ID (Entity), this represents freebase types of the entity in this argument.
      */
     deprecatedFreebaseType?: string[] | null;
@@ -26800,6 +26435,10 @@ export namespace contentwarehouse_v1 {
      * Status indicating whether the user has completely expressed the semantics of the argument.
      */
     expressionStatus?: Schema$NlpSemanticParsingExpressionStatus;
+    /**
+     * If this slot was transformed from or could be transformed to a facet on a categorical, that information is stored here.
+     */
+    facet?: Schema$KnowledgeAnswersFacetParsing;
     /**
      * Whether the argument entity comes from a manual graphic symbol annotation. This is later used as a heuristic for poor web result quality.
      */
@@ -26894,6 +26533,14 @@ export namespace contentwarehouse_v1 {
      */
     personalEntity?: Schema$KnowledgeAnswersIntentQueryPersonalEntity[];
     /**
+     * The confidence (in [0, 1]) that the annotation is a reference that implies another entity (e.g., "my hotel" in "navigate to my hotel" is a reference to an explicit hotel from the user's hotel reservations).
+     */
+    personalQrefReferenceScore?: number | null;
+    /**
+     * The confidence (in [0, 1]) that the annotation was created on an implicit mention (e.g., "my hotel") as opposed to an explicit mention (e.g., "the westin copley square").
+     */
+    personalQrefResolutionScore?: number | null;
+    /**
      * Information about where the value of this argument came from. For example, it could have been explicitly provided in the query, pulled in from the previous state, or pulled from attentional entities.
      */
     provenance?: Schema$KnowledgeAnswersIntentQueryArgumentProvenance[];
@@ -26968,7 +26615,7 @@ export namespace contentwarehouse_v1 {
     webrefListSource?: string | null;
   }
   /**
-   * A message representing the value of an argument. All types in the "value" oneof should have a corresponding field in the ValueType or OpaqueType protos defined in knowledge/answers/config/value.proto. This is specified by annotating each ArgumentValue type with options of the form (value_type_name) = A unit test ensure that this field is set and is valid for all types in ArgumentValue. A small number of special cases (such as funcall and simple_value) are allowed to omit the annotation. See intent_query_proto_test.cc for details. Note: If you are trying to add a new OpaqueType, stop; OpaqueType is deprecated, refer to go/opaque_type for details. If you think this is the only way to implement your feature, attend an office hours (go/meaning-help) and discuss with the MRF team. Next Id: 41
+   * A message representing the value of an argument. All types in the "value" oneof should have a corresponding field in the ValueType or OpaqueType protos defined in knowledge/answers/config/value.proto. This is specified by annotating each ArgumentValue type with options of the form (value_type_name) = A unit test ensure that this field is set and is valid for all types in ArgumentValue. A small number of special cases (such as funcall and simple_value) are allowed to omit the annotation. See intent_query_proto_test.cc for details. Note: If you are trying to add a new OpaqueType, stop; OpaqueType is deprecated, refer to go/opaque_type for details. If you think this is the only way to implement your feature, attend an office hours (go/meaning-help) and discuss with the MRF team. Next Id: 42
    */
   export interface Schema$KnowledgeAnswersIntentQueryArgumentValue {
     /**
@@ -27068,6 +26715,10 @@ export namespace contentwarehouse_v1 {
      */
     recurrence?: Schema$NlpSemanticParsingModelsRecurrence;
     reminder?: Schema$QualityActionsReminder;
+    /**
+     * A scalar value with optional unit; used ONLY for resolved values after grounding.
+     */
+    scalarValue?: Schema$KnowledgeAnswersIntentQueryScalarValue;
     /**
      * Sensitive value, see go/sensitive-intents and go/a4w-multi-turn-dialog
      */
@@ -27657,6 +27308,13 @@ export namespace contentwarehouse_v1 {
      */
     isVerb?: boolean | null;
     number?: string | null;
+  }
+  /**
+   * A message representing a scalar numeric value with optional units
+   */
+  export interface Schema$KnowledgeAnswersIntentQueryScalarValue {
+    doubleValue?: number | null;
+    unitType?: string | null;
   }
   /**
    * Signals associated with nlp_ig::v1::SemanticAnnotator.
@@ -28347,9 +28005,6 @@ export namespace contentwarehouse_v1 {
      */
     viewSpecificNumberTypes?: Schema$KnowledgeAnswersNumberType[];
   }
-  /**
-   * /////////// DATE //////////
-   */
   export interface Schema$KnowledgeGraphDateTimeProto {
     /**
      * A day of month, 1-31. If present, year and month must be present as well, and must form a valid date.
@@ -35132,7 +34787,7 @@ export namespace contentwarehouse_v1 {
     state?: string | null;
   }
   /**
-   * =========================================================================== # Make sure you read the comments in the bottom before you add any new field. NB: As noted in the comments, this protocol buffer is used in both indexing and serving. In mustang serving implementations we only decode perdocdata during the search phase, and so this protocol should only contain data used during search. See mustang/repos_www/attachments.proto:{MustangBasicInfo,MustangContentInfo\} for protocols used during search and/or docinfo. Next available tag deprecated, use this (and look for commented out fields): blaze-bin/net/proto_compiler/protocol-compiler --freetags \ indexer/perdocdata/perdocdata.proto Next tag: 223
+   * =========================================================================== # Make sure you read the comments in the bottom before you add any new field. NB: As noted in the comments, this protocol buffer is used in both indexing and serving. In mustang serving implementations we only decode perdocdata during the search phase, and so this protocol should only contain data used during search. See mustang/repos_www/attachments.proto:{MustangBasicInfo,MustangContentInfo\} for protocols used during search and/or docinfo. Next available tag deprecated, use this (and look for commented out fields): blaze-bin/net/proto_compiler/protocol-compiler --freetags \ indexer/perdocdata/perdocdata.proto Next tag: 225
    */
   export interface Schema$PerDocData {
     /**
@@ -35216,7 +34871,7 @@ export namespace contentwarehouse_v1 {
      */
     eventsDate?: string[] | null;
     /**
-     * This field is available only in the docjoins: it is cleared before building per-doc data in both Mustang and Teragoogle. (MessageSet is inefficient in space for serving data) Use this for all new fields that aren't needed during serving. Currently this field contains: * UrlSignals for the document level spam classifier (when the doclevelspamscore is set). * PerDocLangidData and realtimespam::ClassifierResult for the document level fresh spam classifier (when the doc-level fresh spam score is generated). * MicroblogDocQualitySignals for document-level microblog spam classifier. This only exists in Firebird for now. * spam_buckets::BucketsData for a document-structure hash
+     * This field is available only in the docjoins: it is cleared before building per-doc data in both Mustang and Teragoogle. (MessageSet is inefficient in space for serving data) Use this for all new fields that aren't needed during serving. Currently this field contains: * UrlSignals for the document level spam classifier (when the doclevelspamscore is set). * PerDocLangidData and realtimespam::ClassifierResult for the document level fresh spam classifier (when the doc-level fresh spam score is generated). * MicroblogDocQualitySignals for document-level microblog spam classifier. This only exists in Firebird for now. * spam_buckets::BucketsData for a document-structure hash This field is non-personal since the personal fields in MessageSet are not populated in production.
      */
     extraData?: Schema$Proto2BridgeMessageSet;
     /**
@@ -35257,7 +34912,7 @@ export namespace contentwarehouse_v1 {
      */
     hostAge?: number | null;
     /**
-     * Site rank computed for host-level sitechunks. This value encodes nsr, site_pr and new_nsr. See quality_nsr::util::ConvertNsrDataToHostNsr and go/nsr.
+     * Site rank computed for host-level sitechunks. This value encodes nsr, site_pr and new_nsr. See quality_nsr::util::ConvertNsrDataToHostNsr and go/nsr. This field is deprecated - used the equivalent field inside nsr_data_proto instead.
      */
     hostNsr?: number | null;
     imagedata?: Schema$ImagePerDocData;
@@ -35320,15 +34975,15 @@ export namespace contentwarehouse_v1 {
      */
     nsrDataProto?: Schema$QualityNsrNsrData;
     /**
-     * This field is propagated to shards. In addition, it is populated at serving time by go/web-signal-joins.
+     * This field is propagated to shards. In addition, it is populated at serving time by go/web-signal-joins. This field is deprecated - used the equivalent field inside nsr_data_proto instead.
      */
     nsrIsCovidLocalAuthority?: boolean | null;
     /**
-     * This field is propagated to shards. It will also be populated at serving time by go/web-signal-joins (see b/168114815).
+     * This field is propagated to shards. It will also be populated at serving time by go/web-signal-joins (see b/168114815). This field is deprecated - used the equivalent field inside nsr_data_proto instead.
      */
     nsrIsElectionAuthority?: boolean | null;
     /**
-     * This field is propagated to shards. It will also be populated at serving time by go/web-signal-joins (see b/170607253). Bit indicating whether this site is video-focused, but not hosted on any major known video hosting domains.
+     * This field is propagated to shards. It will also be populated at serving time by go/web-signal-joins (see b/170607253). Bit indicating whether this site is video-focused, but not hosted on any major known video hosting domains. This field is deprecated - used the equivalent field inside nsr_data_proto instead.
      */
     nsrIsVideoFocusedSite?: boolean | null;
     /**
@@ -35467,9 +35122,13 @@ export namespace contentwarehouse_v1 {
      */
     socialgraphNodeNameFp?: string | null;
     /**
-     * Site level scores coming from spambrain.
+     * Host-v1 sitechunk level scores coming from spambrain.
      */
     spambrainData?: Schema$SpamBrainData;
+    /**
+     * Domain sitechunk level scores coming from spambrain.
+     */
+    spambrainDomainSitechunkData?: Schema$SpamBrainData;
     /**
      * The document total spam score identified by spambrain, going from 0 to 1.
      */
@@ -35525,7 +35184,7 @@ export namespace contentwarehouse_v1 {
      */
     trendspamScore?: number | null;
     /**
-     * This field is propagated to shards. Stores clustering information on a site level for the Tundra project.
+     * This field is propagated to shards. Stores clustering information on a site level for the Tundra project. This field is deprecated - used the equivalent field inside nsr_data_proto instead.
      */
     tundraClusterId?: number | null;
     /**
@@ -35605,7 +35264,7 @@ export namespace contentwarehouse_v1 {
     type?: string | null;
   }
   /**
-   * A subset of an Alias that is stored on kansas max. It is used in Search for alias resolution and in Maps to show icons quickly on basetiles.
+   * A subset of an Alias that is stored on kansas max. It is used in Search for alias resolution and in Maps to show icons quickly on basetiles. Next ID: 18
    */
   export interface Schema$PersonalizationMapsAliasIcon {
     /**
@@ -35632,6 +35291,10 @@ export namespace contentwarehouse_v1 {
      * One-line geocoded address that this lat/lng represents at the time this alias was created by the user.
      */
     formattedAddress?: string | null;
+    /**
+     * Indicates whether this alias is Ads join compliant for use by 3p clients. See go/ios_address and go/aliased-locations-provenance for more details. Please contact oolong-team@ for additional questions regarding usage of this field.
+     */
+    isAdsJoinCompliant?: boolean | null;
     /**
      * Free-text alias if alias type is NICKNAME. Otherwise unset. Limited to 40 characters.
      */
@@ -35704,7 +35367,12 @@ export namespace contentwarehouse_v1 {
   /**
    * Metadata pertaining to nested Dynamic Depth metadata. Currently this message is used to indicate the presence of dynamic depth.
    */
-  export interface Schema$PhotosDynamicDepthMetadata {}
+  export interface Schema$PhotosDynamicDepthMetadata {
+    /**
+     * Currently there are two versions of DynamicDepth (go/ddv2). DynamicDepth photos without a set version should be assumed to be ddv1.
+     */
+    version?: number | null;
+  }
   export interface Schema$PhotosFourCMetadata {
     caption?: string | null;
     copyright?: string | null;
@@ -35771,7 +35439,7 @@ export namespace contentwarehouse_v1 {
     googleHdr?: boolean | null;
   }
   /**
-   * Next tag value: 382.
+   * Next tag value: 384.
    */
   export interface Schema$PhotosImageMetadata {
     actionadvised?: string | null;
@@ -35963,6 +35631,10 @@ export namespace contentwarehouse_v1 {
      */
     gcameradisableautocreation?: string[] | null;
     /**
+     * Indicates that an OEM has applied auto enhance via Photos' API.
+     */
+    gcameraisautoenhanced?: boolean | null;
+    /**
      * The following XMP metadata are used specifically for MicroVideo. More information about MicroVideo format can be found at go/photos-microvideo-format A value of 1 indicates that this file was a MicroVideo at capture time. Otherwise, this is not a MicroVideo (not set or 0).
      */
     gcameramicrovideo?: number | null;
@@ -35982,6 +35654,10 @@ export namespace contentwarehouse_v1 {
      * An indication that this item should be treated as a Motion Photo. 0 -\> Not Motion Photo, 1 -\> Motion Photo, everything else is undefined per the spec. If it's a motion photo, the previous gcamera fields should be ignored.
      */
     gcameramotionphoto?: number | null;
+    /**
+     * Indicates the creator of the Motion Photo. This will be set if the MotionPhoto was generated from a LivePhoto from the iOS to Android conversion tool.
+     */
+    gcameramotionphotocreator?: string | null;
     /**
      * The presentation timestamp in microseconds of the video frame corresponding to the image still. Value may be -1 to denote unset/unspecified.
      */
@@ -36461,10 +36137,6 @@ export namespace contentwarehouse_v1 {
      */
     ocrAnnotation?: Schema$ImageSafesearchContentOCRAnnotation;
     /**
-     * Vulgar score of the text found by OCR in the image.
-     */
-    ocrVulgarScore?: number | null;
-    /**
      * QuimbyCongas-based detection of offensive symbols in the image (currently swastika and Nazi yellow badge).
      */
     offensiveSymbolDetection?: Schema$ImageSafesearchContentOffensiveSymbolDetection;
@@ -36782,6 +36454,9 @@ export namespace contentwarehouse_v1 {
     category?: string | null;
     confidence?: number | null;
   }
+  /**
+   * DEPRECATED. No longer supported after migration to Tasks.
+   */
   export interface Schema$QualityActionsCustomizedNotification {
     /**
      * Buttons on the notification
@@ -36896,7 +36571,7 @@ export namespace contentwarehouse_v1 {
      */
     creator?: Schema$QualityActionsReminderPerson;
     /**
-     * OPTIONAL. Contains fields needed to build the customized notification card
+     * OPTIONAL. Contains fields needed to build the customized notification card DEPRECATED. No longer supported after migration to Tasks.
      */
     customizedNotificationCard?: Schema$QualityActionsCustomizedNotification[];
     /**
@@ -37147,7 +36822,7 @@ export namespace contentwarehouse_v1 {
     /**
      * Ringtone Task Metadata information used to generate sound for firing the timer.
      */
-    ringtoneTaskMetadata?: Schema$AssistantApiCoreTypesGovernedRingtoneTaskMetadata;
+    ringtoneTaskMetadata?: Schema$AssistantApiCoreTypesRingtoneTaskMetadata;
     /**
      * Contains info about the room the timer is in
      */
@@ -37420,7 +37095,7 @@ export namespace contentwarehouse_v1 {
     type?: string | null;
   }
   /**
-   * Set of per-document markup restrictions based on go/eucd-indexing-design. Used for EUCD and global preview compliance. Next ID: 17
+   * Set of per-document markup restrictions based on go/eucd-indexing-design. Used for EUCD and global preview compliance. Next ID: 20
    */
   export interface Schema$QualityDniDocPreviewRestrictions {
     /**
@@ -37469,6 +37144,18 @@ export namespace contentwarehouse_v1 {
     maxVideoPreviewSecs?: number | null;
     maxVideoPreviewSecsFromPublisher?: number | null;
     maxVideoPreviewSecsPublisherDefault?: number | null;
+    /**
+     * Source of snippet length.
+     */
+    snippetLengthSource?: string | null;
+    /**
+     * Source of thumbnail size.
+     */
+    thumbnailSizeSource?: string | null;
+    /**
+     * Source of video preview seconds.
+     */
+    videoPreviewSecsSource?: string | null;
   }
   /**
    * When making changes to this proto, make sure to run: blaze test commerce/datastore/tools/codegen:code_generator_test blaze run commerce/datastore/tools/codegen:code_generator See http://go/cds-schema-council for details. LINT.IfChange
@@ -37492,7 +37179,7 @@ export namespace contentwarehouse_v1 {
     version?: string | null;
   }
   /**
-   * PerDocData for fringe-query-prior (built into the shards for eventual consumption at Fringe classification time). Not stored in DocJoins. NEXT ID: 13
+   * PerDocData for fringe-query-prior (built into the shards for eventual consumption at Fringe classification time). Not stored in DocJoins. NEXT ID: 16
    */
   export interface Schema$QualityFringeFringeQueryPriorPerDocData {
     encodedCalibratedFringeSitePriorScore?: number | null;
@@ -37508,6 +37195,10 @@ export namespace contentwarehouse_v1 {
      * An encoding of the Chard XLQ-YMYL prediction in [0,1].
      */
     encodedChardXlqYmylPrediction?: number | null;
+    /**
+     * An encoding of the Document About Fringe Topic (daft) score in [0, 1].
+     */
+    encodedDaftScore?: number | null;
     /**
      * An estimate of the vulnerability of this doc to show fringe content, based on the context around the document. Can be interpreted as a 'safe' QScore threshold to use (see go/doc-fringe-vulnerability for more info). Encoded for compactness and to restrict visibility. Please contact fringe-ranking@ to get access to quality_fringe::DocumentFringeVulnerabilityEncoding to decode this field.
      */
@@ -37537,9 +37228,17 @@ export namespace contentwarehouse_v1 {
      */
     encodedProximityScore?: number | null;
     /**
-     * Indices on the repository_webref::WebrefEntities::entity field of entities that represent a person or a group of people (aka sensitive entities).
+     * An encoding of the XLQ pseudorater severity score translated into pXLQ score space in [0,1]. The encoding includes the pseudorater version and confidence.
+     */
+    encodedPseudoraterPxlqScore?: number | null;
+    /**
+     * Indices on the repository_webref::WebrefEntities::entity field of entities that represent a person or a group of people (aka sensitive entities). Will be deprecated once sensitive_entities_mids is fully launched (see b/290268614).
      */
     sensitiveEntitiesIndices?: number[] | null;
+    /**
+     * MIDs of entities that represent a person or a group of people (aka sensitive entities). See b/290268614 for reference why this is needed in replacement to sensitive_entities_indices.
+     */
+    sensitiveEntitiesMids?: string[] | null;
   }
   export interface Schema$QualityGenieComplexQueriesComplexQueriesOutputRewrite {
     entities?: Schema$QualityGenieComplexQueriesComplexQueriesOutputRewriteEntity[];
@@ -37610,28 +37309,6 @@ export namespace contentwarehouse_v1 {
      */
     name?: string | null;
   }
-  export interface Schema$QualityNavboostCrapsAgingData {
-    /**
-     * Documents with byline date younger than month at the event time.
-     */
-    lastMonthBucket?: Schema$QualityNavboostCrapsAgingDataAgingAgeBucket;
-    /**
-     * Documents with byline date younger than week at the event time.
-     */
-    lastWeekBucket?: Schema$QualityNavboostCrapsAgingDataAgingAgeBucket;
-    /**
-     * Documents with byline date younger than year at the event time.
-     */
-    lastYearBucket?: Schema$QualityNavboostCrapsAgingDataAgingAgeBucket;
-    /**
-     * Documents with byline date older than year at the event time.
-     */
-    yearPlusBucket?: Schema$QualityNavboostCrapsAgingDataAgingAgeBucket;
-  }
-  export interface Schema$QualityNavboostCrapsAgingDataAgingAgeBucket {
-    goodClicks?: number | null;
-    impressions?: number | null;
-  }
   /**
    * Click / impression signals for craps. The tag numbers are the same as they were in the original CrapsData (below). This is deliberate.
    */
@@ -37663,10 +37340,6 @@ export namespace contentwarehouse_v1 {
    * NEXT TAG: 28
    */
   export interface Schema$QualityNavboostCrapsCrapsData {
-    /**
-     * Contains counter for Aging signal (go/freshness-aging). It's used internally by Craps/Aging pipeline.
-     */
-    agingCounts?: Schema$QualityNavboostCrapsAgingData;
     badClicks?: number | null;
     clicks?: number | null;
     /**
@@ -37831,6 +37504,23 @@ export namespace contentwarehouse_v1 {
     lookupKey?: string | null;
   }
   /**
+   * Data populated to NsrData and hence propagated to docjoins/ascorer/superroot/etc.
+   */
+  export interface Schema$QualityNsrKetoKetoVersionedData {
+    /**
+     * What fraction of the site went into the computation of the site_score. Should be a number in (0, 1].
+     */
+    siteFrac?: number | null;
+    /**
+     * Site-level aggregated keto score.
+     */
+    siteScore?: number | null;
+    /**
+     * Unique id of the version.
+     */
+    versionId?: number | null;
+  }
+  /**
    * The NsrChunksProto corresponds to the NSRChunks class. The data saved by the proto and the class is the same. We provide utilities to go from one to the other.
    */
   export interface Schema$QualityNsrNsrChunksProto {
@@ -37851,7 +37541,7 @@ export namespace contentwarehouse_v1 {
     siteChunkSource?: string | null;
   }
   /**
-   * NOTE: When adding a new field to be propagated to Raffia check if NsrPatternSignalSpec needs to be updated. Next ID: 56
+   * NOTE: When adding a new field to be propagated to Raffia check if NsrPatternSignalSpec needs to be updated. Next ID: 63
    */
   export interface Schema$QualityNsrNsrData {
     /**
@@ -37863,6 +37553,14 @@ export namespace contentwarehouse_v1 {
      * Site-level chard score: site quality predictor based on content.
      */
     chardEncoded?: number | null;
+    /**
+     * Site-level Chard (encoded as an int).
+     */
+    chardScoreEncoded?: Schema$QualityNsrVersionedIntSignal[];
+    /**
+     * Site-level Chard Variance for all pages of a site.
+     */
+    chardScoreVariance?: Schema$QualityNsrVersionedFloatSignal[];
     chardVariance?: number | null;
     /**
      * Site-level Chrome views.
@@ -37904,17 +37602,16 @@ export namespace contentwarehouse_v1 {
      * Bit to determine whether the site has mostly video content, but is not hosted on any known video-hosting domains. Site is considered to be video-focused, if it has \> 50% of the URLs with watch pages (with smoothing prior). ariane/4045246
      */
     isVideoFocusedSite?: boolean | null;
+    /**
+     * Keto data.
+     */
+    ketoVersionedData?: Schema$QualityNsrKetoKetoVersionedData[];
     language?: number | null;
-    largeOrgId?: number | null;
     /**
      * Locality score of the site, i.e. the locality component of the LocalAuthority signal (see go/pq-localauthority).
      */
     localityScore?: number | null;
     metadata?: Schema$QualityNsrNsrDataMetadata;
-    /**
-     * This field used as a temporary field for clean transitions when we need to roll out Q* and NSR changes simultaneously.
-     */
-    newNsr?: number | null;
     nsr?: number | null;
     /**
      * If true indicates that we do not have NSR data computed for the chunk, and instead the data is coming from an average of other host chunks.
@@ -37928,9 +37625,6 @@ export namespace contentwarehouse_v1 {
      * This signal is used to unconditionally override NSR as a bid in Q*. Should only be used in case of emergency (see go/nsr-override-bid). To have any effect, the value should be present and greater than 0.001.
      */
     nsrOverrideBid?: number | null;
-    /**
-     * NSR variance logodds [0, infinity).
-     */
     nsrVariance?: number | null;
     /**
      * Fractional signals.
@@ -37945,10 +37639,22 @@ export namespace contentwarehouse_v1 {
      */
     priorAdjustedNsr?: Schema$QualityNsrVersionedFloatSignal[];
     /**
+     * Site-level AGC classification score (see also go/project-racter-overview).
+     */
+    racterScores?: Schema$QualityNsrVersionedFloatSignal[];
+    /**
      * Secondary NSR sitechunk. When present, it provides more granular chunking than primary sitechunks (see quality/nsr/util/sitechunker.h for details).
      */
     secondarySiteChunk?: string | null;
     shoppingScore?: number | null;
+    /**
+     * Site2vec embeddings.
+     */
+    site2vecEmbedding?: Schema$QualityNsrNsrDataEmbedding[];
+    /**
+     * Encoded site2vec embedding (to be used in superroot) since the full embeddings take too much space.
+     */
+    site2vecEmbeddingEncoded?: Schema$QualityNsrNsrDataEncodedEmbedding[];
     /**
      * Aggregated value of url autopilot scores for this sitechunk.
      */
@@ -37985,6 +37691,10 @@ export namespace contentwarehouse_v1 {
     spambrainLavcScore?: number | null;
     spambrainLavcScores?: Schema$QualityNsrVersionedFloatSignal[];
     /**
+     * Titlematch score of the site, a signal that tells how well titles are matching user queries.
+     */
+    titlematchScore?: number | null;
+    /**
      * Site-level tofu score: site quality predictor based on content.
      */
     tofu?: number | null;
@@ -38017,6 +37727,14 @@ export namespace contentwarehouse_v1 {
      * Score for the small sites arm.
      */
     small?: number | null;
+  }
+  export interface Schema$QualityNsrNsrDataEmbedding {
+    version?: number | null;
+    x?: number[] | null;
+  }
+  export interface Schema$QualityNsrNsrDataEncodedEmbedding {
+    data?: string | null;
+    version?: number | null;
   }
   /**
    * Contains meta information about this data. This field is only available in docjoins (and potentially MDU shards), it is not populated offline. NOTE: This is a new field (Nov 2022) and we do not want clients to depend on this; please contact qscore-team@ if you want to use this information.
@@ -38075,20 +37793,24 @@ export namespace contentwarehouse_v1 {
     versionId?: number | null;
   }
   /**
-   * Next id: 18
+   * Next id: 22
    */
   export interface Schema$QualityNsrPQData {
     /**
      * URL-level chard prediction (encoded as an int).
      */
     chard?: number | null;
+    /**
+     * URL-level Chard (encoded as an int).
+     */
+    chardScoreEncoded?: Schema$QualityNsrVersionedIntSignal[];
+    /**
+     * LLM-based effort estimation for article pages (see landspeeder/4311817).
+     */
+    contentEffort?: Schema$QualityNsrVersionedFloatSignal[];
     deltaAutopilotScore?: number | null;
     deltaLinkIncoming?: number | null;
     deltaLinkOutgoing?: number | null;
-    /**
-     * The delta score of the URL-level quality predictor.
-     */
-    deltaPageQuality?: number | null;
     /**
      * Total deltaNSR adjustment based on subchunks. This is a page-level adjustment (subchunks are retrieved based on the page classification).
      */
@@ -38104,11 +37826,23 @@ export namespace contentwarehouse_v1 {
      */
     numOffdomainAnchors?: number | null;
     page2vecLq?: number | null;
+    /**
+     * Predicted default NSR score computed in Goldmine via the NSR default predictor (go/default-nsr-predictor).
+     */
+    predictedDefaultNsr?: Schema$QualityNsrVersionedFloatSignal[];
+    /**
+     * Site-URL delta signals based quality score computed in Goldmine via the Rhubarb model (go/rhubarb-dd).
+     */
+    rhubarb?: Schema$QualityNsrVersionedFloatSignal[];
     subchunkData?: Schema$QualityNsrPQDataSubchunkData[];
     /**
      * URL-level tofu prediction.
      */
     tofu?: number | null;
+    /**
+     * The delta score of the URL-level quality predictor.
+     */
+    unversionedRhubarb?: number | null;
     urlAutopilotScore?: number | null;
     /**
      * URL-level score of the VLQ model.
@@ -38136,6 +37870,9 @@ export namespace contentwarehouse_v1 {
      */
     type?: string | null;
   }
+  /**
+   * A versioned float value. See VersionedFloatSignal functions in google3/quality/nsr/proto/proto_util.h
+   */
   export interface Schema$QualityNsrVersionedFloatSignal {
     /**
      * The corresponding float value.
@@ -38144,7 +37881,20 @@ export namespace contentwarehouse_v1 {
     /**
      * Unique version id.
      */
-    versionId?: number | null;
+    versionId?: string | null;
+  }
+  /**
+   * A versioned int value. See VersionedIntSignal functions in google3/quality/nsr/proto/proto_util.h
+   */
+  export interface Schema$QualityNsrVersionedIntSignal {
+    /**
+     * The corresponding int value.
+     */
+    value?: string | null;
+    /**
+     * Unique version id.
+     */
+    versionId?: string | null;
   }
   /**
    * Next ID: 7
@@ -38196,6 +37946,11 @@ export namespace contentwarehouse_v1 {
      */
     imageIntent?: string | null;
     missingInputs?: string[] | null;
+    reach?: string | null;
+    /**
+     * Whether this intent should be removed when backfilling new classifications to the index. When backfilling a new version of a classifier to production we have cases where we actually want to *remove* an intent that was present in production because the new version might have moved the intent to below logging threshold. This bit should be used to signal this case so that merging logic can remove the intent for the image. This should *never* be set in a production callsite, it is only intended for backfilling operations.
+     */
+    remove?: boolean | null;
     /**
      * Score of the intent.
      */
@@ -38213,10 +37968,6 @@ export namespace contentwarehouse_v1 {
      * Intents with non-trivial scores.
      */
     intents?: Schema$QualityOrbitOrbitImageIntent[];
-    /**
-     * Used to control merging behavior: partial protos will always be merged with current, while full protos will completely replace older versions.
-     */
-    isPartial?: boolean | null;
     /**
      * Represents the version. Filled in Amarna (main version controller).
      */
@@ -38312,7 +38063,7 @@ export namespace contentwarehouse_v1 {
     snippetInfo?: Schema$QualityPreviewChosenSnippetInfo;
   }
   /**
-   * A collection of data corresponding to a single title candidate. This will be used as: - a collection of signals to score and select titles in production - an input for training title models NOTE: When adding a floating point value for Ranklab purposes, use float32 instead of float64, because some of the Ranklab library still does not fully support float64. Next ID: 68
+   * A collection of data corresponding to a single title candidate. This will be used as: - a collection of signals to score and select titles in production - an input for training title models NOTE: When adding a floating point value for Ranklab purposes, use float32 instead of float64, because some of the Ranklab library still does not fully support float64. Next ID: 70
    */
   export interface Schema$QualityPreviewRanklabTitle {
     /**
@@ -38381,6 +38132,8 @@ export namespace contentwarehouse_v1 {
     goldmineReadabilityScore?: number | null;
     goldmineSalientTermFactor?: number | null;
     goldmineSitenameFactor?: number | null;
+    goldmineSiteNameMarkupFactor?: number | null;
+    goldmineSiteQueryFactor?: number | null;
     goldmineSubHeading?: number | null;
     goldmineTitleTagFactor?: number | null;
     goldmineTrustFactor?: number | null;
@@ -39263,6 +39016,23 @@ export namespace contentwarehouse_v1 {
     titleScore?: number | null;
   }
   /**
+   * MESSAGE SHOULD ONLY BE POPULATED DURING ONLINE/SERVING TIME.
+   */
+  export interface Schema$QualitySitemapSporcSignals {
+    /**
+     * Score for normal oneline sitelink
+     */
+    oslScore?: number | null;
+    /**
+     * Score for scroll-to sitelink
+     */
+    scrolltoScore?: number | null;
+    /**
+     * Score for table of contents sitelink
+     */
+    tocScore?: number | null;
+  }
+  /**
    * Information about a single sub-result.
    */
   export interface Schema$QualitySitemapSubresult {
@@ -39301,6 +39071,10 @@ export namespace contentwarehouse_v1 {
      */
     snippetResponse?: Schema$GenericSnippetResponse;
     sourceAnchor?: boolean | null;
+    /**
+     * FIELD SHOULD ONLY BE POPULATED DURING ONLINE/SERVING TIME. Thus it should have no impact on cdoc/mdu.
+     */
+    sporcSignals?: Schema$QualitySitemapSporcSignals;
     title?: string | null;
     twoLevelScore?: number | null;
     url?: string | null;
@@ -39653,6 +39427,53 @@ export namespace contentwarehouse_v1 {
     expiredDate?: number | null;
   }
   /**
+   * Message to represent an embedding vector with clusters.
+   */
+  export interface Schema$ReneEmbedding {
+    /**
+     * Token information of the embedding vector if available.
+     */
+    clusterList?: Schema$ReneEmbeddingClusterList;
+    /**
+     * Compressed value of the embedding. For example, different versions of starburst signals use different compressor to generate the value.
+     */
+    compressedValue?: string | null;
+    /**
+     * Optional feature map output from the model. Note: this is not applicable to some models.
+     */
+    denseFeatureFloatValues?: number[] | null;
+    /**
+     * Values of the embedding vector.
+     */
+    floatValues?: number[] | null;
+    /**
+     * Optional embedding vector prior to projection. Note: this is not applicable to some models.
+     */
+    floatValuesBeforeProjection?: number[] | null;
+  }
+  /**
+   * Message to represent a cluster of the embedding space.
+   */
+  export interface Schema$ReneEmbeddingCluster {
+    /**
+     * Id of the cluster.
+     */
+    id?: number | null;
+    /**
+     * Squared distance of the current embedding to the cluster center.
+     */
+    squaredDistance?: number | null;
+  }
+  /**
+   * Message to represent a list of clusters.
+   */
+  export interface Schema$ReneEmbeddingClusterList {
+    /**
+     * Clusters.
+     */
+    clusters?: Schema$ReneEmbeddingCluster[];
+  }
+  /**
    * GeoTopicality of a document is a set of GeoTopics ordered by their normalized scores.
    */
   export interface Schema$RepositoryAnnotationsGeoTopic {
@@ -39958,9 +39779,9 @@ export namespace contentwarehouse_v1 {
    */
   export interface Schema$RepositoryWebrefAnnotatedCategoryInfo {
     /**
-     * A debug string for the category.
+     * The collection hrid for the category.
      */
-    debugString?: string | null;
+    collectionHrid?: string | null;
     /**
      * The mid of the entity representing the category.
      */
@@ -40459,6 +40280,10 @@ export namespace contentwarehouse_v1 {
      */
     explainedRangeInfo?: Schema$RepositoryWebrefExplainedRangeInfo;
     /**
+     * This is an experimental output for go/multiref. Don't use it without consulting the Webref team
+     */
+    imageMention?: Schema$RepositoryWebrefImageMention[];
+    /**
      * An entity is marked as implicit if there is no explicit mention of the entity in the content of the page. For instance, all mentions of the entity are in query, url and/or anchors; or the entity has only implicit content mentions.
      */
     isImplicit?: boolean | null;
@@ -40867,10 +40692,6 @@ export namespace contentwarehouse_v1 {
      */
     typeFprint?: string | null;
     /**
-     * Mid of this type. Equivalent to type_name, but is more compact. When present, overrides type_name (which can be omitted in this case to save space). This field is deprecated and migrated to fprint.
-     */
-    typeMid?: string | null;
-    /**
      * e.g.: "/business/industry", "/book/book_subject", "/people/person"... HRID of the type. May be missing for optimisation reasons in Refcon, but is present for Qref/Webref. At least one of type_name or type_fprint will be present at all times
      */
     typeName?: string | null;
@@ -40980,6 +40801,13 @@ export namespace contentwarehouse_v1 {
   }
   export interface Schema$RepositoryWebrefHumanRatings {
     annotationRatings?: Schema$RepositoryWebrefAnnotationRatings;
+  }
+  export interface Schema$RepositoryWebrefImageMention {
+    confidenceScore?: number | null;
+    /**
+     * https://source.corp.google.com/piper///depot/google3/image/search/imagedoc.proto;bpv=1;bpt=1;rcl=592258038;l=275 cdoc -\> doc_images -\> canonical_docid corresponds to the Image Doc ID
+     */
+    imageDocid?: string | null;
   }
   /**
    * Identifies a set of Image NavBoost queries in the CompositeDoc. Each CompositeDoc can contain several images, so we store the image index from the CompositeDoc::doc_images with the index of the particular query inside ImageData::image_data_navboost.
@@ -41267,10 +41095,6 @@ export namespace contentwarehouse_v1 {
      * Resolution priority for this entity. If there are many possible resolutions to a MDVC understanding, only the ones with the highest priority are annotated.
      */
     resolutionPriority?: number | null;
-    /**
-     * Fingerprints that identify the topic's sub-verticals, if any.
-     */
-    subVerticalFp?: string[] | null;
     /**
      * Name of the vertical this message is about.
      */
@@ -42142,7 +41966,7 @@ export namespace contentwarehouse_v1 {
     anchor?: Schema$RepositoryWebrefSimplifiedAnchor[];
   }
   /**
-   * Represents an information which is very close to composite doc, but compresses how the anchors are represented to save space. Next available tag: 17.
+   * Represents an information which is very close to composite doc, but compresses how the anchors are represented to save space. Next available tag: 18.
    */
   export interface Schema$RepositoryWebrefSimplifiedCompositeDoc {
     /**
@@ -42165,6 +41989,7 @@ export namespace contentwarehouse_v1 {
      * Metadata related to why this doc was matched to its owning entity.
      */
     matchingMetadata?: Schema$RepositoryWebrefPreprocessingUrlMatchingMetadata;
+    pageContent?: string[] | null;
     /**
      * Additional document metadata needed by Refcon.
      */
@@ -42736,6 +42561,19 @@ export namespace contentwarehouse_v1 {
     tokens?: string[] | null;
   }
   /**
+   * The custom restrict evaluation stats.
+   */
+  export interface Schema$ResearchScamCustomRestrictEvaluationStats {}
+  /**
+   * The custom restrict namespace proto. Note that custom restrict don't have to be symmetric. That is, this proto is always needed in the query, but only optionally in database datapoints, as some custom restrict implementations may use alternative data sources, instead of |GenericFeatureVector.restrict_tokens.v3.custom_namespaces| field.
+   */
+  export interface Schema$ResearchScamCustomRestrictNamespace {
+    /**
+     * The name of this namespacey
+     */
+    namespace?: string | null;
+  }
+  /**
    * ===================================================================== # GenericFeatureVector Last tag used: 23
    */
   export interface Schema$ResearchScamGenericFeatureVector {
@@ -42753,7 +42591,7 @@ export namespace contentwarehouse_v1 {
      */
     expirationTimestamp?: string | null;
     /**
-     * DEPRECATED: - this field can safely be left unspecified. For dense vectors, dimensionality is inferred from the number of values specified, and must be identical to this, or unspecified. For sparse vectors, the default value is correct for most users, and allows use of 64-bit hash values for feature indices.
+     *  - Optionally explicitly specifies the dimensionality of this vector. For dense vectors, this is ignored and, dimensionality is inferred from the number of values specified, and must be identical to this, or unspecified. For sparse vectors, the default value is correct for most users, and allows use of 64-bit hash values for feature indices. If you're using sparse vectors with a limited range of dimension indices and want to do K-Means clustering with them, you may want to specify this explicitly.
      */
     featureDim?: string | null;
     /**
@@ -42902,7 +42740,7 @@ export namespace contentwarehouse_v1 {
     metadata?: string | null;
   }
   /**
-   * Last used tag = 8
+   * Last used tag = 13
    */
   export interface Schema$ResearchScamNeighborSelectionOverride {
     /**
@@ -42933,6 +42771,15 @@ export namespace contentwarehouse_v1 {
      * The maximum number of neighbors to return from the approximate portion of the nearest-neighbor search algorithm, within each shard, for a single value of the crowding attribute, before performing exact reordering. Ignored if exact reordering is disabled for this dataset.
      */
     perCrowdingAttributePreReorderingNumNeighbors?: number | null;
+    /**
+     * The scoring extension metadata overrides for single machine classical scam database.
+     */
+    scoringExtensionMetadata?: Schema$ResearchScamScoringExtensionMetadata;
+    /**
+     * Note: currently not implemented for all database shard subclasses! Contact ScaM before using. Provides prematched centers_to_search for tree-X hybrid searchers. Ignores any overwrites related to centroid matching since they are already matched. `tree_x_hybrid_centers_to_search` should match by size with `tree_x_hybrid_distances`.
+     */
+    treeXHybridCentersToSearch?: number[] | null;
+    treeXHybridDistances?: number[] | null;
     /**
      * Note: currently not implemented for all database shard subclasses! Contact ScaM before using. Overrides max_spill_centers for tree-X hybrid searchers configured with FIXED_NUMBER_OF_CENTERS spilling. The max_spill_centers in the ScaM config is used if this field isn't set. Only valid if: * Used on a tree-X hybrid ScaM config with FIXED_NUMBER_OF_CENTERS. * Value is greater than zero and at most equal to num_children.
      */
@@ -43015,9 +42862,48 @@ export namespace contentwarehouse_v1 {
     status?: Schema$UtilStatusProto;
   }
   /**
-   * Structure to hold the number of active and total datapoints for a given dataset, as defined below. Last used: 2
+   * Structre to hold the detailed information for restrict evaluation for a given query and dataset.
+   */
+  export interface Schema$ResearchScamRestrictEvaluationInfo {
+    applyTokenStats?: Schema$ResearchScamRestrictEvaluationInfoApplyTokenStats;
+    /**
+     * The evaluation results for all custom restricts. It's up to the individual custom restrict implementation and configuration to populate this field accordingly.
+     */
+    customRestrictStats?: Schema$ResearchScamCustomRestrictEvaluationStats;
+    directLookupStats?: Schema$ResearchScamRestrictEvaluationInfoDirectLookupStats;
+  }
+  /**
+   * The aggregated stats for token namespace restricts.
+   */
+  export interface Schema$ResearchScamRestrictEvaluationInfoApplyTokenStats {
+    bijectiveMatches?: string | null;
+    bitmapMatches?: string | null;
+    noMatches?: string | null;
+    nonCompactMatches?: string | null;
+    vectorDatapointCount?: string | null;
+    vectorMatches?: string | null;
+  }
+  /**
+   * NOTE: add stats for numeric restrict if needed. The stats for direct lookup restricts.
+   */
+  export interface Schema$ResearchScamRestrictEvaluationInfoDirectLookupStats {
+    /**
+     * The number of docids in the direct lookup request.
+     */
+    directLookupDocidsCount?: string | null;
+    /**
+     * The number of datapoints found for direct lookup request.
+     */
+    directLookupMatches?: string | null;
+  }
+  /**
+   * TODO(qhliao) move this proto to research/scam/proto/restricts.proto Structure to hold the number of active and total datapoints for a given dataset, as defined below. Last used: 3
    */
   export interface Schema$ResearchScamRestrictStats {
+    /**
+     * Information about the evaluation of the restricts for this query. Could be used for production (e.g., custom restrict pass certain information to the downstream). copybara:strip_end
+     */
+    evaluationInfo?: Schema$ResearchScamRestrictEvaluationInfo;
     /**
      * The number of datapoints that are whitelisted by restricts specified for this query, across all shards for which the query executed successfully. In other words, this represents the number of datapoints that could potentially be returned if they were close enough to the query according to the selected distance measure. If restricts are disabled, this will be equal to num_total_datapoints.
      */
@@ -43027,25 +42913,52 @@ export namespace contentwarehouse_v1 {
      */
     numTotalDatapoints?: string | null;
   }
+  /**
+   * Parameters to adjust the scoring extension configuration for ScaM. Next ID: 2
+   */
+  export interface Schema$ResearchScamScoringExtensionMetadata {
+    /**
+     * The number of neighbors to return post scoring extension.
+     */
+    postScoringExtensionNumNeighbors?: number | null;
+  }
   export interface Schema$ResearchScamTokenNamespace {
+    /**
+     * If present, override |string_blacklist_tokens|.
+     */
+    bytesBlocklistTokens?: string[] | null;
+    /**
+     * If present, override |string_tokens|
+     */
+    bytesTokens?: string[] | null;
     /**
      * //////////////////////////////////////////////////////////////////////////// NAMESPACE - the string name of the namespace that this proto is specifying, such as "color", "shape", "geo", or "tags". Recall that your overall query is an AND across namespaces.
      */
     namespace?: string | null;
     /**
-     * //////////////////////////////////////////////////////////////////////////// BLACKLIST - Blacklisting can be used to implement more complex scenarios. The blacklist fields have exactly the same format as the token fields, but represents a negation. When a token is blacklisted, then matches will be excluded whenever the other datapoint has that token. For example, if a query specifies {color: red, blue, !purple\}, then that query will match datapoints that are red or blue, but if those points are also purple, then they will be excluded even if they are red/blue. Note that, due to symmetry, if one of the database points is {red, !blue\}, that point will be excluded from queries that specify blue. Lastly, note that namespaces with *only* blacklist tokens behave similar to empty namespaces, in that {color: !purple\} would match blue or red datapoints, as long as those datapoints don't also have the purple token.
+     * New use cases should prefer |bytes_tokens|, go/fast/11#bytes-vs-string When migrate, need to be consistent in both dataset and query.
      */
     stringBlacklistTokens?: string[] | null;
     /**
-     * //////////////////////////////////////////////////////////////////////////// TOKENS - Conceptually, each token names a set datapoints. The field(s) below are for declaring the tokens that name the datapoint that this TokenNamespace proto is attached to. For convenience, we support either string or uint64 tokens. Internally, the restricts system is based on uint64s, but for many applications, strings are the more natural format, and they should be preferred whenever this is the case. * When only uint64s are specified, they will be used as-is. * When only strings are specified, they will be converted to uint64s via Fingerprint2011. (See "Note on the safety of Fingerprint2011"). * ADVANCED: When both fields are specified, the uint64s are used as-is. Note that, when both fields are used, they *must* have the same number of entries, and the system will assume that your strings correspond 1:1 with the list of uint64 tokens. * EDGE CASE: All matching is done in the uint64 space, so, I'm not sure why you'd do this, but if, eg, your database uses strings, and your queries specify the Fingerprint2011 hashes of those strings, matching will work, and this is a specified behavior. Note on the safety of Fingerprint2011: Unless you have well over 1M+ unique string tokens, you can safely assume that every string will map to a unique 64-bit token. Internally, both Mustang and PSI use Fingerprint2011 to hash arbitrary strings into uint64 tokens, and assume, without validation, that each 64-bit token is unique. And the math backs up this assumption: If we are using a "perfect" hashing function (and Fingerprint2011 is close-enough for our purposes), and we then hash 1M unique tokens into a 64-bit space, there's still better than 99.9999% odds that all tokens are collision-free, nearly as good as the odds for the datacenter's continued existence. Scenarios for having both the string and uint64 token forms: * Probably none that matter to you. Just use the strings directly. * You could have uint64 enum values, yet want to include the string values for debugging purposes. Note that it *is* supported to use a proprietary string =\> uint64 mapping, assuming that it is consistent, and that you always specify the uint64 values. * The mixer-tier in a multi-shard deployment might convert the strings into uint64s to avoid redundant hashing overhead on the leaves, yet keep the string tokens to preserve proto-level debugging. * When strings are present, I reserve the right to use them for making logging "better", but, thusfar, there are 0 examples of this.
+     * New use cases should prefer |bytes_tokens|, go/fast/11#bytes-vs-string When migrate, need to be consistent in both dataset and query.
      */
     stringTokens?: string[] | null;
+    /**
+     * TODO(qhliao) rename to |uint64_blocklist_tokens| eventually.
+     */
     uint64BlacklistTokens?: string[] | null;
     uint64Tokens?: string[] | null;
   }
+  /**
+   * //////////////////////////////////////////////////////////////////////////// Note that: * Your overall query is an AND across namespaces across types. * Namespaces names are independent across different restrict types (token, numeric and custom).
+   */
   export interface Schema$ResearchScamV3Restrict {
     /**
-     * //////////////////////////////////////////////////////////////////////////// NAMESPACES - a repeating field, where each entry specifies the set of tokens, within a single namespace, that apply to the query, or database point, on which this V3Restrict proto is defined. Note that: * Your overall query is an AND across namespaces. * Explicitly specifying a namespace with 0 tokens is identical to omitting that namespace. ie, "{ns:\}" == "". * It is an error to specify the same namespace more than once per instance of the V3Restrict proto.
+     * This field allows custom restrict extension. - It is up to the extension to decide whether OK to specify the same custom namespace more than once per instance of the V3Restrict proto. - Unrecorgniazed (in |V3RestrictsConfig.custom_restrict_namespace_configs|) and unregistered (in factory function registry) custom namespace name will fail dataset loading (instead of being ignored silently). See go/scam-restrict-plugin for more details.
+     */
+    customNamespaces?: Schema$ResearchScamCustomRestrictNamespace[];
+    /**
+     * A repeating field, where each entry specifies the set of tokens, within a single namespace, that apply to the query, or database point, on which this V3Restrict proto is defined. * Explicitly specifying a namespace with 0 tokens is identical to omitting that namespace. ie, "{ns:\}" == "". * It is an error to specify the same namespace more than once per instance of the V3Restrict proto.
      */
     namespaces?: Schema$ResearchScamTokenNamespace[];
     /**
@@ -43354,7 +43267,7 @@ export namespace contentwarehouse_v1 {
      */
     funder?: Schema$ResearchScienceSearchOrganization[];
     /**
-     * Indicates if the dataset has croissant format (https://github.com/mlcommons/croissant).
+     * Indicates if the dataset has croissant format (https://github.com/mlcommons/croissant). Use optional so that explicitly setting to false will ensure the value is passed along to the KG instead of being indistinguisable from being unset and thus not set in the KG.
      */
     hasCroissantFormat?: boolean | null;
     /**
@@ -43547,7 +43460,7 @@ export namespace contentwarehouse_v1 {
     pdfDownloadUrl?: string | null;
   }
   /**
-   * The proto containing all the information we extracted from docjoin, for the source_url of the dataset. NEXT TAG: 17
+   * The proto containing all the information we extracted from docjoin, for the source_url of the dataset. NEXT TAG: 18
    */
   export interface Schema$ResearchScienceSearchSourceUrlDocjoinInfo {
     dataSource?: string | null;
@@ -43576,9 +43489,13 @@ export namespace contentwarehouse_v1 {
      */
     navboostQuery?: Schema$ResearchScienceSearchNavboostQueryInfo[];
     /**
-     * The page rank of the document.
+     * The page rank of the document. DEPRECATED in favour of Pagerank_NS. Do not use as it is no longer maintained in docjoins and can break at any moment.
      */
     pagerank?: number | null;
+    /**
+     * The production pagerank value of the document.
+     */
+    pagerankNs?: number | null;
     /**
      * Petacat classifications for the web document. Normally the results from calling Petacat come in a PetacatResponse, which is very flexible and extensible. This proto takes most of the flexibility away - only rephil clusters, taxonomic classifications, and binary classifications, with discretized weights.
      */
@@ -46580,7 +46497,7 @@ export namespace contentwarehouse_v1 {
     moderationState?: string | null;
   }
   /**
-   * This holds SpamBrain values which will be populated to docjoins & muppet. Proto is copied from spam_brain::SpamBrainData and populated at sitechunked site level (as opposed to the spambrain page classifier score).
+   * This holds SpamBrain values which are populated in docjoins. The data is populated at sitechunked host level and sitechunked domain level in the doc_attachments, and saved in Perdocdata in respective fields.
    */
   export interface Schema$SpamBrainData {
     /**
@@ -46592,16 +46509,14 @@ export namespace contentwarehouse_v1 {
      */
     versionedData?: Schema$SpamBrainScore[];
   }
-  /**
-   * Message representing versioned scores
-   */
   export interface Schema$SpamBrainScore {
+    modelName?: string | null;
     /**
      * The value corresponding to this version.
      */
     sbScore?: number | null;
     /**
-     * The version id.
+     * The version id (derived from the epoch - larger number means newer score)
      */
     versionId?: number | null;
   }
@@ -46746,6 +46661,15 @@ export namespace contentwarehouse_v1 {
     weakData?: boolean | null;
   }
   /**
+   * Metadata fields for LLM related data usage restrictions. See go/bard-kg-data-acl for more details.
+   */
+  export interface Schema$StorageGraphBfgLlmPolicyMetadata {
+    /**
+     * Bitmap of LlmDataAccessRestriction.
+     */
+    dataAccessRestrictions?: number | null;
+  }
+  /**
    * Metadata fields for LMS. See go/lms-online-restrictions for details.
    */
   export interface Schema$StorageGraphBfgLmsPolicyMetadata {
@@ -46782,6 +46706,10 @@ export namespace contentwarehouse_v1 {
      * List of regions in which the data with this policy need to be removed according to legal request. WARNING: This field is for legal purposes only. Please do not populate it without consulting ke-data-governance@.
      */
     legalRemovalRegions?: Schema$KeGovernanceTypedRegions[];
+    /**
+     * Policy metadata fields for LLM related data usage restrictions. Only expected to be used by SCP internally -- please consult ke-data-governance@ before populating this field.
+     */
+    llmPolicyMetadata?: Schema$StorageGraphBfgLlmPolicyMetadata;
     /**
      * Policy metadata fields for LMS data. Only expected to be used by LMS providers -- please consult ke-data-governance@ before populating this field.
      */
@@ -48111,6 +48039,17 @@ export namespace contentwarehouse_v1 {
    * Contain Multiverse client information, such as topic name. Can include other information such as crawl policy id in the future.
    */
   export interface Schema$TrawlerMultiverseClientIdentifier {
+    crawlPolicyId?: number | null;
+    crawlPolicyName?: string | null;
+    /**
+     * Hyperdrive Analytics.
+     */
+    hyperdriveAppName?: string | null;
+    hyperdriveTableName?: string | null;
+    /**
+     * Propagate the id instead of the string name to save storage resource. TODO (b/317133951) consider deprecate the two fields in string above.
+     */
+    topicId?: number | null;
     topicName?: string | null;
     trafficType?: string | null;
   }
@@ -48201,7 +48140,7 @@ export namespace contentwarehouse_v1 {
     MaxAllowedRate?: number | null;
   }
   /**
-   * This is an optional container of arbitrary data that can be added to a FetchReplyData. This data is meant to be logged, but not sent back in a fetch reply (it should be added *after* the reply is prepared). Use FetchResponsePreparatorImpl::AddTrawlerPrivateDataToFetchReplyData to add. See also the comment in fetch_response_preparator_impl.cc. Next Tag: 47
+   * This is an optional container of arbitrary data that can be added to a FetchReplyData. This data is meant to be logged, but not sent back in a fetch reply (it should be added *after* the reply is prepared). Use FetchResponsePreparatorImpl::AddTrawlerPrivateDataToFetchReplyData to add. See also the comment in fetch_response_preparator_impl.cc. Next Tag: 49
    */
   export interface Schema$TrawlerTrawlerPrivateFetchReplyData {
     /**
@@ -48257,6 +48196,14 @@ export namespace contentwarehouse_v1 {
      * Which Trawler fetcher task fetched this URL.
      */
     FetcherTaskNumber?: number | null;
+    /**
+     * We check if Google-Extended is allowed to crawl this URL, wildcard rules are obeyed, this is for internal analysis. Check RobotsTxtClient::RobotsStatus for the meaning of number.
+     */
+    googleExtendedObeyWildcardRobotsStatus?: number | null;
+    /**
+     * We check if Google-Extended is allowed to crawl this URL and store the result here, wildcard rules are not obeyed, this is for internal analysis. Check RobotsTxtClient::RobotsStatus for the meaning of number.
+     */
+    googleExtendedRobotsStatus?: number | null;
     HadInMemCacheHit?: boolean | null;
     /**
      * If we do not have Endpoints in FetchReplyData (e.g., url rejected due to hostload limit), do we have a guess of the server IPAddress (e.g., from robots fetch)? This helps us classify URLs based on country code, etc. The field is filled with IPAddress::ToPackedString().
@@ -51550,6 +51497,10 @@ export namespace contentwarehouse_v1 {
    */
   export interface Schema$VideoGoogleVideoClipInfo {
     /**
+     * Used to track videos produced via Aloud dubbing.
+     */
+    aloudLoggingId?: string | null;
+    /**
      * YT app version (ie. YT Create app version).
      */
     appVersion?: string | null;
@@ -51557,6 +51508,14 @@ export namespace contentwarehouse_v1 {
      * List of YT media asset logging ids.
      */
     assetLoggingId?: string[] | null;
+    /**
+     * Used to track videos produced via Universal Dubbing.
+     */
+    dubbingLoggingId?: string | null;
+    /**
+     * Product used to create this video clip.
+     */
+    productType?: string | null;
   }
   export interface Schema$VideoLegosLegosAnnotationsSet {
     featureSetName?: string | null;
@@ -53261,11 +53220,10 @@ export namespace contentwarehouse_v1 {
      * Abbreviated bibliographic data from Google Scholar.
      */
     scienceInfo?: Schema$ScienceIndexSignal;
-    sectionHeadingAnchorName?: string | null;
     /**
      * If requested, the snippet generator may take note of query items present in an entry in an on-page table-of-contents (i.e. a series of on-page links to named anchors.) If so, these two fields contain the formatted and highlighted entry and the name of the on-page anchor it links to, respectively. This may be used by GWS to show a direct link to that named anchor on the page.
      */
-    sectionHeadingText?: string | null;
+    sectionHeadingAnchorName?: string | null;
     /**
      * Did a negative query term match the meta description?
      */
@@ -53365,6 +53323,61 @@ export namespace contentwarehouse_v1 {
     version?: string | null;
   }
   /**
+   * Derived fields that encapsulate the possible enforcement states of a Comment. Used to influence the viewer experience. NextID: 11 ----- CommentDemotedRestriction Summary ----- Demoted Restriction hides live chat messages from being shown in Top Chat.
+   */
+  export interface Schema$YoutubeCommentsApiCommentEnforcementStatus {
+    /**
+     * Output only. The severity of the active demotion. At most one CommentDemotedRestriction can be active at any time. Only supported for Comments with an associated ChatEvent.
+     */
+    demotedRestrictionSeverity?: string | null;
+    /**
+     * Output only. True if the comment is auto-approved by creator-defined roles and is not subject to automod hold.
+     */
+    exemptFromHold?: boolean | null;
+    /**
+     * Output only. True if the comment is held and going to be reviewed by channel owner or moderators. The issuers that can hold entity comments are: 1) TNS 2) AUTOMOD, 3) CHANNEL_SETTINGS, 4) CHANNEL_MODERATOR, 5)GLOBAL, 6) ISSUER_UNSPECIFIED. The issuers that can hold live chat are // 1) AUTOMOD, 2) GLOBAL, 3) ISSUER_UNSPECIFIED. Issuer definitions: https://source.corp.google.com/piper///depot/google3/video/youtube/comments/api/proto/comment_restriction_issuer.proto;rcl=586954033;l=15 This is used to infer the SBE moderation_state for entity comment and live chat.
+     */
+    held?: boolean | null;
+    /**
+     * Output only. The moderation state of comments that have been held. Currently only effective for live chat because we can not tell the rejected creator review status for entity comments from current data model.
+     */
+    heldForCreatorReviewStatus?: string | null;
+    /**
+     * Output only. True if the comment is moderated and not overridden by creator reviews.
+     */
+    moderated?: boolean | null;
+    /**
+     * Output only. True if the comment is moderated due to any of the creator-defined blocked words.
+     */
+    moderatedByBlockedWords?: boolean | null;
+    /**
+     * Output only. Live Chat only. True only if the live chat message is directly moderated by a privileged user from Live Chat chat room. go/ytfexit-live-chat-moderation#remove-chat-messages
+     */
+    moderatedByChatRemoval?: boolean | null;
+    /**
+     * Output only. True if the comment is moderated by TnS. Maps to SBE Spam http://google3/video/youtube/comments/backstage/backend/lib/stream_v2/stream_item_reader.cc?l=597
+     */
+    moderatedByTns?: boolean | null;
+    /**
+     * Output only. True if the comment is rejected or taken down by TNS.
+     */
+    rejected?: boolean | null;
+    /**
+     * Output only. The moderation decision on comments from privileged users. This field can be used to take place of `held_for_creator_review_status` for live chat, together with `held_by_non_tns`.
+     */
+    userModerationDecision?: Schema$YoutubeCommentsApiCommentEnforcementStatusUserModerationDecision;
+  }
+  export interface Schema$YoutubeCommentsApiCommentEnforcementStatusUserModerationDecision {
+    /**
+     * The moderation status of comments due to privileged user decision. Privileged user can manually reject comments in multiple ways or approve held comments.
+     */
+    moderationStatus?: string | null;
+    /**
+     * For comments with REJECTED status, it can result from privileged users directly rejecting comments or reviewing comments that have been held, for both entity comment and live chat, but reject type is only captured for live chat because we are not able to distinguish the 2 types from data model for entity comment.
+     */
+    rejectType?: string | null;
+  }
+  /**
    * Data representing a comment moderated restriction. A moderated comment is hidden from all viewers except for comment author. A comment can be moderated due to multiple moderated restrictions from multiple issuers. Each is represented by a CommentModeratedRestriction entry which is uniquely identified by the external comment id and the create time in the storage. Conceptually, there should be exactly one moderated restriction for a specific reason per issuer per reviewable value and this constraint will be enforced in the Comment API endpoints. For more context see go/yt-comment-restriction-data-model ## Next id: 11. ## Spanner primary key attributes
    */
   export interface Schema$YoutubeCommentsApiCommentModeratedRestriction {
@@ -53447,7 +53460,7 @@ export namespace contentwarehouse_v1 {
     reason?: string | null;
   }
   /**
-   * Intended to be simpler to work with than the ExportedStanza it's derived from See documentation: https://g3doc.corp.google.com/company/teams/youtube/community_intelligence/eng_resources/data_sources.md#ministanza Next available: 80
+   * Intended to be simpler to work with than the ExportedStanza it's derived from See documentation: https://g3doc.corp.google.com/company/teams/youtube/community_intelligence/eng_resources/data_sources.md#ministanza Next available: 84
    */
   export interface Schema$YoutubeCommentsClusteringMiniStanza {
     /**
@@ -53455,19 +53468,15 @@ export namespace contentwarehouse_v1 {
      */
     ansibleScores?: {[key: string]: number} | null;
     /**
-     * Automod scores map. Keyed by various model names.
+     * Automod scores map. Keyed by various model names. Deprecated. Consider using low_quality_scores instead.
      */
     automodScores?: {[key: string]: number} | null;
-    /**
-     * The blarney stone score.
-     */
-    blarneyStoneScore?: Schema$YoutubeDistillerBlarneyStoneScores;
     /**
      * The channel this channel discussion comment belongs to. Note that this will match channel_id for such comments.
      */
     channelDiscussionId?: string | null;
     /**
-     * The channel of the video this comment belongs to.
+     * The channel of the video or post this comment belongs to. In certain circumstances a video can belong to multiple channels, this channel_id does not handle that situation well. go/yt-identity-overview for further reading.
      */
     channelId?: string | null;
     /**
@@ -53490,6 +53499,10 @@ export namespace contentwarehouse_v1 {
      * Comment classification for ranking mapping all secondary keys to values. E.g. {"joke_v1":0.8, "joke_v2":0.7, "question_v1":0.3\}.
      */
     commentClassificationRanking?: {[key: string]: number} | null;
+    /**
+     * Contains the current status of comment enforcement. This provides a summary/aggregation of all restrictions (one per comment), while CommentModeratedRestriction provides the history of restrictions (multiple per comment). Extracted from http://shortn/_m5yiWa8ENR
+     */
+    commentEnforcementStatus?: Schema$YoutubeCommentsApiCommentEnforcementStatus;
     /**
      * Contains various comment moderated restrictions. Only available in the Atlas version. Extracted from http://shortn/_2LzgPEF5K3
      */
@@ -53535,9 +53548,9 @@ export namespace contentwarehouse_v1 {
      */
     empiricalCtrs?: Schema$VideoYoutubeCommentsRankingCTRMetrics;
     /**
-     * Fountain Discovery Score, which represents the reputation of the author.
+     * Whether a comment is deleted by the end user.
      */
-    fds?: number | null;
+    endUserDeleted?: boolean | null;
     /**
      * Indicator for whether there is creator heart on this comment.
      */
@@ -53559,7 +53572,7 @@ export namespace contentwarehouse_v1 {
      */
     isDeleted?: boolean | null;
     /**
-     * Whether the comment is pinned. This is derived from the DestinationStreamDump.
+     * Whether the comment is pinned. This is derived from YTMS and may be out of sync with other fields (a day early or behind).
      */
     isPinned?: boolean | null;
     /**
@@ -53599,11 +53612,15 @@ export namespace contentwarehouse_v1 {
      */
     misinfoScores?: {[key: string]: number} | null;
     /**
-     * Number of dislikes the comment has.
+     * Whether a comment's author channel is deleted. Populated from http://shortn/_YttLvbraAI.
+     */
+    mustDeleteComments?: boolean | null;
+    /**
+     * Number of dislikes the comment has. num_likes and num_dislikes are retrieved from a different source than other fields and may be out of sync (a day early or behind).
      */
     numDislikes?: number | null;
     /**
-     * Number of likes the comment has.
+     * Number of likes the comment has. num_likes and num_dislikes are retrieved from a different source than other fields and may be out of sync (a day early or behind).
      */
     numLikes?: number | null;
     /**
@@ -53630,10 +53647,6 @@ export namespace contentwarehouse_v1 {
      * The post this comment belongs to.
      */
     postId?: string | null;
-    /**
-     * The language code stored in the KV pair ranking:post_language. This should usually be the same as language_code but is not guaranteed to be identical. The KV pair is needed because SBE ranking can't consume user_content. Still populated, but deprecated.
-     */
-    rankingPostLanguage?: string | null;
     /**
      * A textual content for the context.
      */
@@ -53667,7 +53680,7 @@ export namespace contentwarehouse_v1 {
      */
     stanzaRestrictions?: Schema$SocialStanzaStanzaRestriction[];
     /**
-     * The author of the comment
+     * The author of the comment Prefer using yt_author_channel_id instead of subject when possible.
      */
     subject?: Schema$SecurityCredentialsPrincipalProto;
     /**
@@ -53689,7 +53702,7 @@ export namespace contentwarehouse_v1 {
       [key: string]: Schema$YoutubeCommentsRankingYouTubeCommentTextEmbedding;
     } | null;
     /**
-     * Text length of the comment.
+     * Text length of the comment in UTF-16 code points. The encoding could change in the future.
      */
     textLength?: number | null;
     /**
@@ -53705,15 +53718,11 @@ export namespace contentwarehouse_v1 {
      */
     videoId?: string | null;
     /**
-     * Unique video timestamps in seconds sorted by timestamp. This is derived from text Segments, not from a KV. These may exceed the length of the video since that isn't checked at segmentation time. The segmentation rules have changed over time e.g. in the past "10:00 PM" was treated as a timestamp.
-     */
-    videoTimestamps?: number[] | null;
-    /**
      * Word entropy of the comment.
      */
     wordEntropy?: number | null;
     /**
-     * The youtube channel id of the comment author.
+     * The youtube channel id of the comment author. One person can have multiple channels and one channel can have multiple users. go/yt-identity-overview for further reading.
      */
     ytAuthorChannelId?: string | null;
     /**
@@ -53925,33 +53934,6 @@ export namespace contentwarehouse_v1 {
     /**
      * A score, in the 0-1 range, used to rank taxonomy annotations.
      */
-    score?: number | null;
-  }
-  /**
-   * Blarney Stone classification scores: go/blarneystone Next available ID: 6
-   */
-  export interface Schema$YoutubeDistillerBlarneyStoneScores {
-    familySafeV1Score?: number | null;
-    mildHateHarassV1Score?: number | null;
-    mildHateHarassV2Score?: number | null;
-    /**
-     * The scores corresponds to each of the abe_models in /cns/yk-d/home/blarneystone/model0/config-2015-11-20.pbtxt
-     */
-    modelScores?: Schema$YoutubeDistillerModelScore[];
-    severeHateHarassV1Score?: number | null;
-  }
-  /**
-   * Next available ID: 4
-   */
-  export interface Schema$YoutubeDistillerModelScore {
-    /**
-     * The classifier trained with tensor flow.
-     */
-    classifier?: string | null;
-    /**
-     * The model trained with dist belief [going to be deprecated].
-     */
-    model?: string | null;
     score?: number | null;
   }
 

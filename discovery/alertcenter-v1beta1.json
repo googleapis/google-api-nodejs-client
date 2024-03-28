@@ -423,7 +423,7 @@
       }
     }
   },
-  "revision": "20240129",
+  "revision": "20240325",
   "rootUrl": "https://alertcenter.googleapis.com/",
   "schemas": {
     "AbuseDetected": {
@@ -1181,8 +1181,16 @@
           "description": "Required for iOS, empty for others.",
           "type": "string"
         },
+        "ownerId": {
+          "description": "Obfuscated ID of the owner of the device",
+          "type": "string"
+        },
         "resourceId": {
           "description": "The device resource ID.",
+          "type": "string"
+        },
+        "ruleAction": {
+          "description": "Action taken as result of the rule",
           "type": "string"
         },
         "serialNumber": {

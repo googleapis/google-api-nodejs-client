@@ -603,10 +603,6 @@ export namespace customsearch_v1 {
      */
     siteSearchFilter?: string;
     /**
-     * Optional. Maximum length of snippet text, in characters, to be returned with results. * Valid values are integers between 1 and 160, inclusive.
-     */
-    snippetLength?: number;
-    /**
      * The sort expression to apply to the results. The sort parameter specifies that the results be sorted according to the specified expression i.e. sort by date. [Example: sort=date](https://developers.google.com/custom-search/docs/structured_search#sort-by-attribute).
      */
     sort?: string;
@@ -828,10 +824,6 @@ export namespace customsearch_v1 {
      * Controls whether to include or exclude results from the site named in the `siteSearch` parameter. Acceptable values are: * `"e"`: exclude * `"i"`: include
      */
     siteSearchFilter?: string;
-    /**
-     * Optional. Maximum length of snippet text, in characters, to be returned with results. * Valid values are integers between 1 and 160, inclusive.
-     */
-    snippetLength?: number;
     /**
      * The sort expression to apply to the results. The sort parameter specifies that the results be sorted according to the specified expression i.e. sort by date. [Example: sort=date](https://developers.google.com/custom-search/docs/structured_search#sort-by-attribute).
      */

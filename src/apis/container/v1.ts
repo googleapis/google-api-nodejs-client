@@ -1187,9 +1187,21 @@ export namespace container_v1 {
    */
   export interface Schema$DatabaseEncryption {
     /**
+     * Output only. The current state of etcd encryption.
+     */
+    currentState?: string | null;
+    /**
+     * Output only. Keys in use by the cluster for decrypting existing objects, in addition to the key in `key_name`. Each item is a CloudKMS key resource.
+     */
+    decryptionKeys?: string[] | null;
+    /**
      * Name of CloudKMS key to use for the encryption of secrets in etcd. Ex. projects/my-project/locations/global/keyRings/my-ring/cryptoKeys/my-key
      */
     keyName?: string | null;
+    /**
+     * Output only. Records errors seen during DatabaseEncryption update operations.
+     */
+    lastOperationErrors?: Schema$OperationError[];
     /**
      * The desired state of etcd encryption.
      */
@@ -2520,6 +2532,23 @@ export namespace container_v1 {
      * The name of the Google Compute Engine [zone](https://cloud.google.com/compute/docs/zones#available) in which the operation is taking place. This field is deprecated, use location instead.
      */
     zone?: string | null;
+  }
+  /**
+   * OperationError records errors seen from CloudKMS keys encountered during updates to DatabaseEncryption configuration.
+   */
+  export interface Schema$OperationError {
+    /**
+     * Description of the error seen during the operation.
+     */
+    errorMessage?: string | null;
+    /**
+     * CloudKMS key resource that had the error.
+     */
+    keyName?: string | null;
+    /**
+     * Time when the CloudKMS error was seen.
+     */
+    timestamp?: string | null;
   }
   /**
    * Information about operation (or operation stage) progress.
