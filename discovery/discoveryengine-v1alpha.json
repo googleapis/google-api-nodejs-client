@@ -5110,6 +5110,38 @@
                   ]
                 }
               }
+            },
+            "rankingConfigs": {
+              "methods": {
+                "rank": {
+                  "description": "Ranks a list of text records based on the given input query.",
+                  "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/rankingConfigs/{rankingConfigsId}:rank",
+                  "httpMethod": "POST",
+                  "id": "discoveryengine.projects.locations.rankingConfigs.rank",
+                  "parameterOrder": [
+                    "rankingConfig"
+                  ],
+                  "parameters": {
+                    "rankingConfig": {
+                      "description": "Required. The resource name of the rank service config, such as `projects/{project_num}/locations/{location_id}/rankingConfigs/default_ranking_config`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/rankingConfigs/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha/{+rankingConfig}:rank",
+                  "request": {
+                    "$ref": "GoogleCloudDiscoveryengineV1alphaRankRequest"
+                  },
+                  "response": {
+                    "$ref": "GoogleCloudDiscoveryengineV1alphaRankResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
             }
           }
         },
@@ -5186,7 +5218,7 @@
       }
     }
   },
-  "revision": "20240318",
+  "revision": "20240323",
   "rootUrl": "https://discoveryengine.googleapis.com/",
   "schemas": {
     "GoogleApiHttpBody": {
@@ -5478,12 +5510,14 @@
           "enum": [
             "INDUSTRY_VERTICAL_UNSPECIFIED",
             "GENERIC",
-            "MEDIA"
+            "MEDIA",
+            "HEALTHCARE_FHIR"
           ],
           "enumDescriptions": [
             "Value used when unset.",
             "The generic vertical for documents that are not specific to any industry vertical.",
-            "The media industry vertical."
+            "The media industry vertical.",
+            "The healthcare FHIR vertical."
           ],
           "type": "string"
         },
@@ -5498,13 +5532,15 @@
               "SOLUTION_TYPE_UNSPECIFIED",
               "SOLUTION_TYPE_RECOMMENDATION",
               "SOLUTION_TYPE_SEARCH",
-              "SOLUTION_TYPE_CHAT"
+              "SOLUTION_TYPE_CHAT",
+              "SOLUTION_TYPE_GENERATIVE_CHAT"
             ],
             "enumDescriptions": [
               "Default value.",
               "Used for Recommendations AI.",
               "Used for Discovery Search.",
-              "Used for use cases related to the Generative AI agent."
+              "Used for use cases related to the Generative AI agent.",
+              "Used for use cases related to the Generative Chat agent. It's used for Generative chat engine only, the associated data stores must enrolled with `SOLUTION_TYPE_CHAT` solution."
             ],
             "type": "string"
           },
@@ -5731,12 +5767,14 @@
           "enum": [
             "INDUSTRY_VERTICAL_UNSPECIFIED",
             "GENERIC",
-            "MEDIA"
+            "MEDIA",
+            "HEALTHCARE_FHIR"
           ],
           "enumDescriptions": [
             "Value used when unset.",
             "The generic vertical for documents that are not specific to any industry vertical.",
-            "The media industry vertical."
+            "The media industry vertical.",
+            "The healthcare FHIR vertical."
           ],
           "type": "string"
         },
@@ -5754,13 +5792,15 @@
             "SOLUTION_TYPE_UNSPECIFIED",
             "SOLUTION_TYPE_RECOMMENDATION",
             "SOLUTION_TYPE_SEARCH",
-            "SOLUTION_TYPE_CHAT"
+            "SOLUTION_TYPE_CHAT",
+            "SOLUTION_TYPE_GENERATIVE_CHAT"
           ],
           "enumDescriptions": [
             "Default value.",
             "Used for Recommendations AI.",
             "Used for Discovery Search.",
-            "Used for use cases related to the Generative AI agent."
+            "Used for use cases related to the Generative AI agent.",
+            "Used for use cases related to the Generative Chat agent. It's used for Generative chat engine only, the associated data stores must enrolled with `SOLUTION_TYPE_CHAT` solution."
           ],
           "type": "string"
         },
@@ -6402,6 +6442,11 @@
       "description": "Chunk captures all raw metadata information of items to be recommended or searched in the chunk mode.",
       "id": "GoogleCloudDiscoveryengineV1alphaChunk",
       "properties": {
+        "chunkMetadata": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaChunkChunkMetadata",
+          "description": "Output only. Metadata of the current chunk.",
+          "readOnly": true
+        },
         "content": {
           "description": "Content is a string from a document (parsed content).",
           "type": "string"
@@ -6426,6 +6471,31 @@
         "name": {
           "description": "The full resource name of the chunk. Format: `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}/branches/{branch}/documents/{document_id}/chunks/{chunk_id}`. This field must be a UTF-8 encoded string with a length limit of 1024 characters.",
           "type": "string"
+        },
+        "pageSpan": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaChunkPageSpan",
+          "description": "Page span of the chunk."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaChunkChunkMetadata": {
+      "description": "Metadata of the current chunk. This field is only populated on SearchService.Search API.",
+      "id": "GoogleCloudDiscoveryengineV1alphaChunkChunkMetadata",
+      "properties": {
+        "nextChunks": {
+          "description": "The next chunks of the current chunk. The number is controlled by SearchRequest.ContentSearchSpec.ChunkSpec.num_next_chunks. This field is only populated on SearchService.Search API.",
+          "items": {
+            "$ref": "GoogleCloudDiscoveryengineV1alphaChunk"
+          },
+          "type": "array"
+        },
+        "previousChunks": {
+          "description": "The previous chunks of the current chunk. The number is controlled by SearchRequest.ContentSearchSpec.ChunkSpec.num_previous_chunks. This field is only populated on SearchService.Search API.",
+          "items": {
+            "$ref": "GoogleCloudDiscoveryengineV1alphaChunk"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -6441,6 +6511,23 @@
         "uri": {
           "description": "Uri of the document.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaChunkPageSpan": {
+      "description": "Page span of the chunk.",
+      "id": "GoogleCloudDiscoveryengineV1alphaChunkPageSpan",
+      "properties": {
+        "pageEnd": {
+          "description": "The end page of the chunk.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "pageStart": {
+          "description": "The start page of the chunk.",
+          "format": "int32",
+          "type": "integer"
         }
       },
       "type": "object"
@@ -6855,12 +6942,14 @@
           "enum": [
             "INDUSTRY_VERTICAL_UNSPECIFIED",
             "GENERIC",
-            "MEDIA"
+            "MEDIA",
+            "HEALTHCARE_FHIR"
           ],
           "enumDescriptions": [
             "Value used when unset.",
             "The generic vertical for documents that are not specific to any industry vertical.",
-            "The media industry vertical."
+            "The media industry vertical.",
+            "The healthcare FHIR vertical."
           ],
           "type": "string"
         },
@@ -6875,13 +6964,15 @@
               "SOLUTION_TYPE_UNSPECIFIED",
               "SOLUTION_TYPE_RECOMMENDATION",
               "SOLUTION_TYPE_SEARCH",
-              "SOLUTION_TYPE_CHAT"
+              "SOLUTION_TYPE_CHAT",
+              "SOLUTION_TYPE_GENERATIVE_CHAT"
             ],
             "enumDescriptions": [
               "Default value.",
               "Used for Recommendations AI.",
               "Used for Discovery Search.",
-              "Used for use cases related to the Generative AI agent."
+              "Used for use cases related to the Generative AI agent.",
+              "Used for use cases related to the Generative Chat agent. It's used for Generative chat engine only, the associated data stores must enrolled with `SOLUTION_TYPE_CHAT` solution."
             ],
             "type": "string"
           },
@@ -7324,12 +7415,14 @@
           "enum": [
             "INDUSTRY_VERTICAL_UNSPECIFIED",
             "GENERIC",
-            "MEDIA"
+            "MEDIA",
+            "HEALTHCARE_FHIR"
           ],
           "enumDescriptions": [
             "Value used when unset.",
             "The generic vertical for documents that are not specific to any industry vertical.",
-            "The media industry vertical."
+            "The media industry vertical.",
+            "The healthcare FHIR vertical."
           ],
           "type": "string"
         },
@@ -7360,13 +7453,15 @@
             "SOLUTION_TYPE_UNSPECIFIED",
             "SOLUTION_TYPE_RECOMMENDATION",
             "SOLUTION_TYPE_SEARCH",
-            "SOLUTION_TYPE_CHAT"
+            "SOLUTION_TYPE_CHAT",
+            "SOLUTION_TYPE_GENERATIVE_CHAT"
           ],
           "enumDescriptions": [
             "Default value.",
             "Used for Recommendations AI.",
             "Used for Discovery Search.",
-            "Used for use cases related to the Generative AI agent."
+            "Used for use cases related to the Generative AI agent.",
+            "Used for use cases related to the Generative Chat agent. It's used for Generative chat engine only, the associated data stores must enrolled with `SOLUTION_TYPE_CHAT` solution."
           ],
           "type": "string"
         },
@@ -7695,6 +7790,21 @@
       },
       "type": "object"
     },
+    "GoogleCloudDiscoveryengineV1alphaFhirStoreSource": {
+      "description": "Cloud FhirStore source import data from.",
+      "id": "GoogleCloudDiscoveryengineV1alphaFhirStoreSource",
+      "properties": {
+        "fhirStore": {
+          "description": "Required. The full resource name of the FHIR store to import data from, in the format of `projects/{project}/locations/{location}/datasets/{dataset}/fhirStores/{fhir_store}`.",
+          "type": "string"
+        },
+        "gcsStagingDir": {
+          "description": "Intermediate Cloud Storage directory used for the import with a length limit of 2,000 characters. Can be specified if one wants to have the FhirStore export to a specific Cloud Storage directory.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDiscoveryengineV1alphaFieldConfig": {
       "description": "Configurations for fields of a schema. For example, configuring a field is indexable, or searchable.",
       "id": "GoogleCloudDiscoveryengineV1alphaFieldConfig",
@@ -7838,6 +7948,17 @@
       },
       "type": "object"
     },
+    "GoogleCloudDiscoveryengineV1alphaGroundingConfig": {
+      "description": "Grounding configuration.",
+      "id": "GoogleCloudDiscoveryengineV1alphaGroundingConfig",
+      "properties": {
+        "name": {
+          "description": "Required. Name of the GroundingConfig, of the form `projects/{project}/locations/{location}/groundingConfig`.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDiscoveryengineV1alphaGuidedSearchSpec": {
       "description": "Defines guided search spec.",
       "id": "GoogleCloudDiscoveryengineV1alphaGuidedSearchSpec",
@@ -7894,6 +8015,47 @@
       },
       "type": "object"
     },
+    "GoogleCloudDiscoveryengineV1alphaImportCompletionSuggestionsMetadata": {
+      "description": "Metadata related to the progress of the ImportCompletionSuggestions operation. This will be returned by the google.longrunning.Operation.metadata field.",
+      "id": "GoogleCloudDiscoveryengineV1alphaImportCompletionSuggestionsMetadata",
+      "properties": {
+        "createTime": {
+          "description": "Operation create time.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Operation last update time. If the operation is done, this is also the finish time.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaImportCompletionSuggestionsResponse": {
+      "description": "Response of the CompletionService.ImportCompletionSuggestions method. If the long running operation is done, this message is returned by the google.longrunning.Operations.response field if the operation is successful.",
+      "id": "GoogleCloudDiscoveryengineV1alphaImportCompletionSuggestionsResponse",
+      "properties": {
+        "errorSamples": {
+          "description": "A sample of errors encountered while processing the request.",
+          "items": {
+            "$ref": "GoogleRpcStatus"
+          },
+          "type": "array"
+        },
+        "failureCount": {
+          "description": "Count of CompletionSuggestions that failed to be imported.",
+          "format": "int64",
+          "type": "string"
+        },
+        "successCount": {
+          "description": "Count of CompletionSuggestions successfully imported.",
+          "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDiscoveryengineV1alphaImportDocumentsMetadata": {
       "description": "Metadata related to the progress of the ImportDocuments operation. This is returned by the google.longrunning.Operation.metadata field.",
       "id": "GoogleCloudDiscoveryengineV1alphaImportDocumentsMetadata",
@@ -7926,7 +8088,7 @@
       "id": "GoogleCloudDiscoveryengineV1alphaImportDocumentsRequest",
       "properties": {
         "autoGenerateIds": {
-          "description": "Whether to automatically generate IDs for the documents if absent. If set to `true`, Document.ids are automatically generated based on the hash of the payload, where IDs may not be consistent during multiple imports. In which case ReconciliationMode.FULL is highly recommended to avoid duplicate contents. If unset or set to `false`, Document.ids have to be specified using id_field, otherwise, documents without IDs fail to be imported. Only set this field when using GcsSource or BigQuerySource, and when GcsSource.data_schema or BigQuerySource.data_schema is `custom` or `csv`. Otherwise, an INVALID_ARGUMENT error is thrown.",
+          "description": "Whether to automatically generate IDs for the documents if absent. If set to `true`, Document.ids are automatically generated based on the hash of the payload, where IDs may not be consistent during multiple imports. In which case ReconciliationMode.FULL is highly recommended to avoid duplicate contents. If unset or set to `false`, Document.ids have to be specified using id_field, otherwise, documents without IDs fail to be imported. Supported data sources: * GcsSource. GcsSource.data_schema must be `custom` or `csv`. Otherwise, an INVALID_ARGUMENT error is thrown. * BigQuerySource. BigQuerySource.data_schema must be `custom` or `csv`. Otherwise, an INVALID_ARGUMENT error is thrown. * SpannerSource * CloudSqlSource * FirestoreSource * BigtableSource",
           "type": "boolean"
         },
         "bigquerySource": {
@@ -7937,12 +8099,16 @@
           "$ref": "GoogleCloudDiscoveryengineV1alphaImportErrorConfig",
           "description": "The desired location of errors incurred during the Import."
         },
+        "fhirStoreSource": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaFhirStoreSource",
+          "description": "FhirStore input source."
+        },
         "gcsSource": {
           "$ref": "GoogleCloudDiscoveryengineV1alphaGcsSource",
           "description": "Cloud Storage location for the input content."
         },
         "idField": {
-          "description": "The field in the Cloud Storage and BigQuery sources that indicates the unique IDs of the documents. For GcsSource it is the key of the JSON field. For instance, `my_id` for JSON `{\"my_id\": \"some_uuid\"}`. For BigQuerySource it is the column name of the BigQuery table where the unique ids are stored. The values of the JSON field or the BigQuery column are used as the Document.ids. The JSON field or the BigQuery column must be of string type, and the values must be set as valid strings conform to [RFC-1034](https://tools.ietf.org/html/rfc1034) with 1-63 characters. Otherwise, documents without valid IDs fail to be imported. Only set this field when using GcsSource or BigQuerySource, and when GcsSource.data_schema or BigQuerySource.data_schema is `custom`. And only set this field when auto_generate_ids is unset or set as `false`. Otherwise, an INVALID_ARGUMENT error is thrown. If it is unset, a default value `_id` is used when importing from the allowed data sources.",
+          "description": "The field indicates the ID field or column to be used as unique IDs of the documents. For GcsSource it is the key of the JSON field. For instance, `my_id` for JSON `{\"my_id\": \"some_uuid\"}`. For others, it may be the column name of the table where the unique ids are stored. The values of the JSON field or the table column are used as the Document.ids. The JSON field or the table column must be of string type, and the values must be set as valid strings conform to [RFC-1034](https://tools.ietf.org/html/rfc1034) with 1-63 characters. Otherwise, documents without valid IDs fail to be imported. Only set this field when auto_generate_ids is unset or set as `false`. Otherwise, an INVALID_ARGUMENT error is thrown. If it is unset, a default value `_id` is used when importing from the allowed data sources. Supported data sources: * GcsSource. GcsSource.data_schema must be `custom` or `csv`. Otherwise, an INVALID_ARGUMENT error is thrown. * BigQuerySource. BigQuerySource.data_schema must be `custom` or `csv`. Otherwise, an INVALID_ARGUMENT error is thrown. * SpannerSource * CloudSqlSource * FirestoreSource * BigtableSource",
           "type": "string"
         },
         "inlineSource": {
@@ -8651,6 +8817,75 @@
       },
       "type": "object"
     },
+    "GoogleCloudDiscoveryengineV1alphaRankRequest": {
+      "description": "Request message for RankService.Rank method.",
+      "id": "GoogleCloudDiscoveryengineV1alphaRankRequest",
+      "properties": {
+        "ignoreRecordDetailsInResponse": {
+          "description": "If true, the response will contain only record ID and score. By default, it is false, the response will contain record details.",
+          "type": "boolean"
+        },
+        "model": {
+          "description": "The identifier of the model to use. It is one of: * `semantic-ranker-512@latest`: Semantic ranking model with maxiumn input token size 512. It is set to `semantic-ranker-512@latest` by default if unspecified.",
+          "type": "string"
+        },
+        "query": {
+          "description": "The query to use.",
+          "type": "string"
+        },
+        "records": {
+          "description": "Required. A list of records to rank.",
+          "items": {
+            "$ref": "GoogleCloudDiscoveryengineV1alphaRankingRecord"
+          },
+          "type": "array"
+        },
+        "topN": {
+          "description": "The number of results to return. If this is unset or no bigger than zero, returns all results.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaRankResponse": {
+      "description": "Response message for RankService.Rank method.",
+      "id": "GoogleCloudDiscoveryengineV1alphaRankResponse",
+      "properties": {
+        "records": {
+          "description": "A list of records sorted by descending score.",
+          "items": {
+            "$ref": "GoogleCloudDiscoveryengineV1alphaRankingRecord"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaRankingRecord": {
+      "description": "Record message for RankService.Rank method.",
+      "id": "GoogleCloudDiscoveryengineV1alphaRankingRecord",
+      "properties": {
+        "content": {
+          "description": "The content of the record. Empty by default. At least one of title or content should be set otherwise an INVALID_ARGUMENT error is thrown.",
+          "type": "string"
+        },
+        "id": {
+          "description": "The unique ID to represent the record.",
+          "type": "string"
+        },
+        "score": {
+          "description": "The score of this record based on the given query and selected model.",
+          "format": "float",
+          "type": "number"
+        },
+        "title": {
+          "description": "The title of the record. Empty by default. At least one of title or content should be set otherwise an INVALID_ARGUMENT error is thrown.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDiscoveryengineV1alphaRecommendRequest": {
       "description": "Request message for Recommend method.",
       "id": "GoogleCloudDiscoveryengineV1alphaRecommendRequest",
@@ -9120,6 +9355,10 @@
       "description": "A specification for configuring the behavior of content search.",
       "id": "GoogleCloudDiscoveryengineV1alphaSearchRequestContentSearchSpec",
       "properties": {
+        "chunkSpec": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaSearchRequestContentSearchSpecChunkSpec",
+          "description": "Specifies the chunk spec to be returned from the search response. Only available if the SearchRequest.ContentSearchSpec.search_result_mode is set to CHUNKS"
+        },
         "extractiveContentSpec": {
           "$ref": "GoogleCloudDiscoveryengineV1alphaSearchRequestContentSearchSpecExtractiveContentSpec",
           "description": "If there is no extractive_content_spec provided, there will be no extractive answer in the search response."
@@ -9145,6 +9384,23 @@
         "summarySpec": {
           "$ref": "GoogleCloudDiscoveryengineV1alphaSearchRequestContentSearchSpecSummarySpec",
           "description": "If `summarySpec` is not specified, summaries are not included in the search response."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaSearchRequestContentSearchSpecChunkSpec": {
+      "description": "Specifies the chunk spec to be returned from the search response. Only available if the SearchRequest.ContentSearchSpec.search_result_mode is set to CHUNKS",
+      "id": "GoogleCloudDiscoveryengineV1alphaSearchRequestContentSearchSpecChunkSpec",
+      "properties": {
+        "numNextChunks": {
+          "description": "The number of next chunks to be returned of the current chunk. The maximum allowed value is 3. If not specified, no next chunks will be returned.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "numPreviousChunks": {
+          "description": "The number of previous chunks to be returned of the current chunk. The maximum allowed value is 3. If not specified, no previous chunks will be returned.",
+          "format": "int32",
+          "type": "integer"
         }
       },
       "type": "object"
@@ -9737,6 +9993,13 @@
       "description": "Document reference.",
       "id": "GoogleCloudDiscoveryengineV1alphaSearchResponseSummaryReference",
       "properties": {
+        "chunkContents": {
+          "description": "List of cited chunk contents derived from document content.",
+          "items": {
+            "$ref": "GoogleCloudDiscoveryengineV1alphaSearchResponseSummaryReferenceChunkContent"
+          },
+          "type": "array"
+        },
         "document": {
           "description": "Required. Document.name of the document. Full resource name of the referenced document, in the format `projects/*/locations/*/collections/*/dataStores/*/branches/*/documents/*`.",
           "type": "string"
@@ -9747,6 +10010,21 @@
         },
         "uri": {
           "description": "Cloud Storage or HTTP uri for the document.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaSearchResponseSummaryReferenceChunkContent": {
+      "description": "Chunk content.",
+      "id": "GoogleCloudDiscoveryengineV1alphaSearchResponseSummaryReferenceChunkContent",
+      "properties": {
+        "content": {
+          "description": "Chunk textual content.",
+          "type": "string"
+        },
+        "pageIdentifier": {
+          "description": "Page identifier.",
           "type": "string"
         }
       },
@@ -9901,13 +10179,15 @@
             "SOLUTION_TYPE_UNSPECIFIED",
             "SOLUTION_TYPE_RECOMMENDATION",
             "SOLUTION_TYPE_SEARCH",
-            "SOLUTION_TYPE_CHAT"
+            "SOLUTION_TYPE_CHAT",
+            "SOLUTION_TYPE_GENERATIVE_CHAT"
           ],
           "enumDescriptions": [
             "Default value.",
             "Used for Recommendations AI.",
             "Used for Discovery Search.",
-            "Used for use cases related to the Generative AI agent."
+            "Used for use cases related to the Generative AI agent.",
+            "Used for use cases related to the Generative Chat agent. It's used for Generative chat engine only, the associated data stores must enrolled with `SOLUTION_TYPE_CHAT` solution."
           ],
           "type": "string"
         },
@@ -10213,6 +10493,14 @@
             "$ref": "GoogleRpcStatus"
           },
           "type": "array"
+        },
+        "metrics": {
+          "additionalProperties": {
+            "format": "double",
+            "type": "number"
+          },
+          "description": "The metrics of the trained model.",
+          "type": "object"
         },
         "modelStatus": {
           "description": "The trained model status. Possible values are: * **bad-data**: The training data quality is bad. * **no-improvement**: Tuning didn't improve performance. Won't deploy. * **in-progress**: Model training is in progress. * **ready**: The model is ready for serving.",
@@ -10556,6 +10844,10 @@
           "description": "Whether to enable safe search.",
           "type": "boolean"
         },
+        "enableSearchAsYouType": {
+          "description": "Whether to enable search-as-you-type behavior for the search widget",
+          "type": "boolean"
+        },
         "enableSnippetResultSummary": {
           "description": "Turn on or off summary for each snippets result.",
           "type": "boolean"
@@ -10587,12 +10879,14 @@
           "enum": [
             "INDUSTRY_VERTICAL_UNSPECIFIED",
             "GENERIC",
-            "MEDIA"
+            "MEDIA",
+            "HEALTHCARE_FHIR"
           ],
           "enumDescriptions": [
             "Value used when unset.",
             "The generic vertical for documents that are not specific to any industry vertical.",
-            "The media industry vertical."
+            "The media industry vertical.",
+            "The healthcare FHIR vertical."
           ],
           "readOnly": true,
           "type": "string"
@@ -10631,13 +10925,15 @@
             "SOLUTION_TYPE_UNSPECIFIED",
             "SOLUTION_TYPE_RECOMMENDATION",
             "SOLUTION_TYPE_SEARCH",
-            "SOLUTION_TYPE_CHAT"
+            "SOLUTION_TYPE_CHAT",
+            "SOLUTION_TYPE_GENERATIVE_CHAT"
           ],
           "enumDescriptions": [
             "Default value.",
             "Used for Recommendations AI.",
             "Used for Discovery Search.",
-            "Used for use cases related to the Generative AI agent."
+            "Used for use cases related to the Generative AI agent.",
+            "Used for use cases related to the Generative Chat agent. It's used for Generative chat engine only, the associated data stores must enrolled with `SOLUTION_TYPE_CHAT` solution."
           ],
           "type": "string"
         },
@@ -10671,7 +10967,7 @@
           "type": "string"
         },
         "name": {
-          "description": "The name of the collection. It should be collection resource name. Format: `projects/{project_number}/locations/{location}/collections/{collection_id}`. For widget service usage, such look up widget config, returned name should be skipped.",
+          "description": "The name of the collection. It should be collection resource name. Format: `projects/{project_number}/locations/{location}/collections/{collection_id}`. For APIs under WidgetService, such as LookUpWidgetConfig, the project number and location part is erased in this field.",
           "type": "string"
         }
       },
@@ -10691,7 +10987,7 @@
           "type": "string"
         },
         "name": {
-          "description": "The name of the data store. It should be data store resource name Format: `projects/{project_number}/locations/{location}/collections/{collection_id}/dataStores/{data_store_id}`. For widget service usage, such look up widget config, returned name should be skipped.",
+          "description": "The name of the data store. It should be data store resource name Format: `projects/{project_number}/locations/{location}/collections/{collection_id}/dataStores/{data_store_id}`. For APIs under WidgetService, such as LookUpWidgetConfig, the project number and location part is erased in this field.",
           "type": "string"
         }
       },
@@ -10721,7 +11017,7 @@
           "type": "string"
         },
         "name": {
-          "description": "The name of the data store. It should be data store resource name Format: `projects/{project_number}/locations/{location}/collections/{collection_id}/dataStores/{data_store_id}`. For widget service usage, such look up widget config, returned name should be skipped.",
+          "description": "The name of the data store. It should be data store resource name Format: `projects/{project_number}/locations/{location}/collections/{collection_id}/dataStores/{data_store_id}`. For APIs under WidgetService, such as LookUpWidgetConfig, the project number and location part is erased in this field.",
           "type": "string"
         }
       },
@@ -10993,12 +11289,14 @@
           "enum": [
             "INDUSTRY_VERTICAL_UNSPECIFIED",
             "GENERIC",
-            "MEDIA"
+            "MEDIA",
+            "HEALTHCARE_FHIR"
           ],
           "enumDescriptions": [
             "Value used when unset.",
             "The generic vertical for documents that are not specific to any industry vertical.",
-            "The media industry vertical."
+            "The media industry vertical.",
+            "The healthcare FHIR vertical."
           ],
           "type": "string"
         },
@@ -11013,13 +11311,15 @@
               "SOLUTION_TYPE_UNSPECIFIED",
               "SOLUTION_TYPE_RECOMMENDATION",
               "SOLUTION_TYPE_SEARCH",
-              "SOLUTION_TYPE_CHAT"
+              "SOLUTION_TYPE_CHAT",
+              "SOLUTION_TYPE_GENERATIVE_CHAT"
             ],
             "enumDescriptions": [
               "Default value.",
               "Used for Recommendations AI.",
               "Used for Discovery Search.",
-              "Used for use cases related to the Generative AI agent."
+              "Used for use cases related to the Generative AI agent.",
+              "Used for use cases related to the Generative Chat agent. It's used for Generative chat engine only, the associated data stores must enrolled with `SOLUTION_TYPE_CHAT` solution."
             ],
             "type": "string"
           },
@@ -11246,12 +11546,14 @@
           "enum": [
             "INDUSTRY_VERTICAL_UNSPECIFIED",
             "GENERIC",
-            "MEDIA"
+            "MEDIA",
+            "HEALTHCARE_FHIR"
           ],
           "enumDescriptions": [
             "Value used when unset.",
             "The generic vertical for documents that are not specific to any industry vertical.",
-            "The media industry vertical."
+            "The media industry vertical.",
+            "The healthcare FHIR vertical."
           ],
           "type": "string"
         },
@@ -11269,13 +11571,15 @@
             "SOLUTION_TYPE_UNSPECIFIED",
             "SOLUTION_TYPE_RECOMMENDATION",
             "SOLUTION_TYPE_SEARCH",
-            "SOLUTION_TYPE_CHAT"
+            "SOLUTION_TYPE_CHAT",
+            "SOLUTION_TYPE_GENERATIVE_CHAT"
           ],
           "enumDescriptions": [
             "Default value.",
             "Used for Recommendations AI.",
             "Used for Discovery Search.",
-            "Used for use cases related to the Generative AI agent."
+            "Used for use cases related to the Generative AI agent.",
+            "Used for use cases related to the Generative Chat agent. It's used for Generative chat engine only, the associated data stores must enrolled with `SOLUTION_TYPE_CHAT` solution."
           ],
           "type": "string"
         },
@@ -11379,6 +11683,17 @@
             "Standard tier.",
             "Enterprise tier."
           ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaGroundingConfig": {
+      "description": "Grounding configuration.",
+      "id": "GoogleCloudDiscoveryengineV1betaGroundingConfig",
+      "properties": {
+        "name": {
+          "description": "Required. Name of the GroundingConfig, of the form `projects/{project}/locations/{location}/groundingConfig`.",
           "type": "string"
         }
       },
@@ -11803,8 +12118,27 @@
           },
           "type": "array"
         },
+        "metrics": {
+          "additionalProperties": {
+            "format": "double",
+            "type": "number"
+          },
+          "description": "The metrics of the trained model.",
+          "type": "object"
+        },
         "modelStatus": {
           "description": "The trained model status. Possible values are: * **bad-data**: The training data quality is bad. * **no-improvement**: Tuning didn't improve performance. Won't deploy. * **in-progress**: Model training is in progress. * **ready**: The model is ready for serving.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaTuneEngineMetadata": {
+      "description": "Metadata associated with a tune operation.",
+      "id": "GoogleCloudDiscoveryengineV1betaTuneEngineMetadata",
+      "properties": {
+        "engine": {
+          "description": "Required. The resource name of the engine that this tune applies to. Format: `projects/{project_number}/locations/{location_id}/collections/{collection_id}/engines/{engine_id}`",
           "type": "string"
         }
       },

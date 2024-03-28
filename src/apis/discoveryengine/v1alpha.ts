@@ -332,6 +332,10 @@ export namespace discoveryengine_v1alpha {
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaChunk {
     /**
+     * Output only. Metadata of the current chunk.
+     */
+    chunkMetadata?: Schema$GoogleCloudDiscoveryengineV1alphaChunkChunkMetadata;
+    /**
      * Content is a string from a document (parsed content).
      */
     content?: string | null;
@@ -351,6 +355,23 @@ export namespace discoveryengine_v1alpha {
      * The full resource name of the chunk. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store\}/branches/{branch\}/documents/{document_id\}/chunks/{chunk_id\}`. This field must be a UTF-8 encoded string with a length limit of 1024 characters.
      */
     name?: string | null;
+    /**
+     * Page span of the chunk.
+     */
+    pageSpan?: Schema$GoogleCloudDiscoveryengineV1alphaChunkPageSpan;
+  }
+  /**
+   * Metadata of the current chunk. This field is only populated on SearchService.Search API.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaChunkChunkMetadata {
+    /**
+     * The next chunks of the current chunk. The number is controlled by SearchRequest.ContentSearchSpec.ChunkSpec.num_next_chunks. This field is only populated on SearchService.Search API.
+     */
+    nextChunks?: Schema$GoogleCloudDiscoveryengineV1alphaChunk[];
+    /**
+     * The previous chunks of the current chunk. The number is controlled by SearchRequest.ContentSearchSpec.ChunkSpec.num_previous_chunks. This field is only populated on SearchService.Search API.
+     */
+    previousChunks?: Schema$GoogleCloudDiscoveryengineV1alphaChunk[];
   }
   /**
    * Document metadata contains the information of the document of the current chunk.
@@ -364,6 +385,19 @@ export namespace discoveryengine_v1alpha {
      * Uri of the document.
      */
     uri?: string | null;
+  }
+  /**
+   * Page span of the chunk.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaChunkPageSpan {
+    /**
+     * The end page of the chunk.
+     */
+    pageEnd?: number | null;
+    /**
+     * The start page of the chunk.
+     */
+    pageStart?: number | null;
   }
   /**
    * Request message for CompletionService.CompleteQuery method.
@@ -1265,6 +1299,19 @@ export namespace discoveryengine_v1alpha {
     totalSize?: number | null;
   }
   /**
+   * Cloud FhirStore source import data from.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaFhirStoreSource {
+    /**
+     * Required. The full resource name of the FHIR store to import data from, in the format of `projects/{project\}/locations/{location\}/datasets/{dataset\}/fhirStores/{fhir_store\}`.
+     */
+    fhirStore?: string | null;
+    /**
+     * Intermediate Cloud Storage directory used for the import with a length limit of 2,000 characters. Can be specified if one wants to have the FhirStore export to a specific Cloud Storage directory.
+     */
+    gcsStagingDir?: string | null;
+  }
+  /**
    * Configurations for fields of a schema. For example, configuring a field is indexable, or searchable.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaFieldConfig {
@@ -1319,6 +1366,15 @@ export namespace discoveryengine_v1alpha {
     inputUris?: string[] | null;
   }
   /**
+   * Grounding configuration.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaGroundingConfig {
+    /**
+     * Required. Name of the GroundingConfig, of the form `projects/{project\}/locations/{location\}/groundingConfig`.
+     */
+    name?: string | null;
+  }
+  /**
    * Defines guided search spec.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaGuidedSearchSpec {
@@ -1358,6 +1414,36 @@ export namespace discoveryengine_v1alpha {
     workforcePoolName?: string | null;
   }
   /**
+   * Metadata related to the progress of the ImportCompletionSuggestions operation. This will be returned by the google.longrunning.Operation.metadata field.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaImportCompletionSuggestionsMetadata {
+    /**
+     * Operation create time.
+     */
+    createTime?: string | null;
+    /**
+     * Operation last update time. If the operation is done, this is also the finish time.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * Response of the CompletionService.ImportCompletionSuggestions method. If the long running operation is done, this message is returned by the google.longrunning.Operations.response field if the operation is successful.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaImportCompletionSuggestionsResponse {
+    /**
+     * A sample of errors encountered while processing the request.
+     */
+    errorSamples?: Schema$GoogleRpcStatus[];
+    /**
+     * Count of CompletionSuggestions that failed to be imported.
+     */
+    failureCount?: string | null;
+    /**
+     * Count of CompletionSuggestions successfully imported.
+     */
+    successCount?: string | null;
+  }
+  /**
    * Metadata related to the progress of the ImportDocuments operation. This is returned by the google.longrunning.Operation.metadata field.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaImportDocumentsMetadata {
@@ -1383,7 +1469,7 @@ export namespace discoveryengine_v1alpha {
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaImportDocumentsRequest {
     /**
-     * Whether to automatically generate IDs for the documents if absent. If set to `true`, Document.ids are automatically generated based on the hash of the payload, where IDs may not be consistent during multiple imports. In which case ReconciliationMode.FULL is highly recommended to avoid duplicate contents. If unset or set to `false`, Document.ids have to be specified using id_field, otherwise, documents without IDs fail to be imported. Only set this field when using GcsSource or BigQuerySource, and when GcsSource.data_schema or BigQuerySource.data_schema is `custom` or `csv`. Otherwise, an INVALID_ARGUMENT error is thrown.
+     * Whether to automatically generate IDs for the documents if absent. If set to `true`, Document.ids are automatically generated based on the hash of the payload, where IDs may not be consistent during multiple imports. In which case ReconciliationMode.FULL is highly recommended to avoid duplicate contents. If unset or set to `false`, Document.ids have to be specified using id_field, otherwise, documents without IDs fail to be imported. Supported data sources: * GcsSource. GcsSource.data_schema must be `custom` or `csv`. Otherwise, an INVALID_ARGUMENT error is thrown. * BigQuerySource. BigQuerySource.data_schema must be `custom` or `csv`. Otherwise, an INVALID_ARGUMENT error is thrown. * SpannerSource * CloudSqlSource * FirestoreSource * BigtableSource
      */
     autoGenerateIds?: boolean | null;
     /**
@@ -1395,11 +1481,15 @@ export namespace discoveryengine_v1alpha {
      */
     errorConfig?: Schema$GoogleCloudDiscoveryengineV1alphaImportErrorConfig;
     /**
+     * FhirStore input source.
+     */
+    fhirStoreSource?: Schema$GoogleCloudDiscoveryengineV1alphaFhirStoreSource;
+    /**
      * Cloud Storage location for the input content.
      */
     gcsSource?: Schema$GoogleCloudDiscoveryengineV1alphaGcsSource;
     /**
-     * The field in the Cloud Storage and BigQuery sources that indicates the unique IDs of the documents. For GcsSource it is the key of the JSON field. For instance, `my_id` for JSON `{"my_id": "some_uuid"\}`. For BigQuerySource it is the column name of the BigQuery table where the unique ids are stored. The values of the JSON field or the BigQuery column are used as the Document.ids. The JSON field or the BigQuery column must be of string type, and the values must be set as valid strings conform to [RFC-1034](https://tools.ietf.org/html/rfc1034) with 1-63 characters. Otherwise, documents without valid IDs fail to be imported. Only set this field when using GcsSource or BigQuerySource, and when GcsSource.data_schema or BigQuerySource.data_schema is `custom`. And only set this field when auto_generate_ids is unset or set as `false`. Otherwise, an INVALID_ARGUMENT error is thrown. If it is unset, a default value `_id` is used when importing from the allowed data sources.
+     * The field indicates the ID field or column to be used as unique IDs of the documents. For GcsSource it is the key of the JSON field. For instance, `my_id` for JSON `{"my_id": "some_uuid"\}`. For others, it may be the column name of the table where the unique ids are stored. The values of the JSON field or the table column are used as the Document.ids. The JSON field or the table column must be of string type, and the values must be set as valid strings conform to [RFC-1034](https://tools.ietf.org/html/rfc1034) with 1-63 characters. Otherwise, documents without valid IDs fail to be imported. Only set this field when auto_generate_ids is unset or set as `false`. Otherwise, an INVALID_ARGUMENT error is thrown. If it is unset, a default value `_id` is used when importing from the allowed data sources. Supported data sources: * GcsSource. GcsSource.data_schema must be `custom` or `csv`. Otherwise, an INVALID_ARGUMENT error is thrown. * BigQuerySource. BigQuerySource.data_schema must be `custom` or `csv`. Otherwise, an INVALID_ARGUMENT error is thrown. * SpannerSource * CloudSqlSource * FirestoreSource * BigtableSource
      */
     idField?: string | null;
     /**
@@ -1940,6 +2030,61 @@ export namespace discoveryengine_v1alpha {
     purgeCount?: string | null;
   }
   /**
+   * Record message for RankService.Rank method.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaRankingRecord {
+    /**
+     * The content of the record. Empty by default. At least one of title or content should be set otherwise an INVALID_ARGUMENT error is thrown.
+     */
+    content?: string | null;
+    /**
+     * The unique ID to represent the record.
+     */
+    id?: string | null;
+    /**
+     * The score of this record based on the given query and selected model.
+     */
+    score?: number | null;
+    /**
+     * The title of the record. Empty by default. At least one of title or content should be set otherwise an INVALID_ARGUMENT error is thrown.
+     */
+    title?: string | null;
+  }
+  /**
+   * Request message for RankService.Rank method.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaRankRequest {
+    /**
+     * If true, the response will contain only record ID and score. By default, it is false, the response will contain record details.
+     */
+    ignoreRecordDetailsInResponse?: boolean | null;
+    /**
+     * The identifier of the model to use. It is one of: * `semantic-ranker-512@latest`: Semantic ranking model with maxiumn input token size 512. It is set to `semantic-ranker-512@latest` by default if unspecified.
+     */
+    model?: string | null;
+    /**
+     * The query to use.
+     */
+    query?: string | null;
+    /**
+     * Required. A list of records to rank.
+     */
+    records?: Schema$GoogleCloudDiscoveryengineV1alphaRankingRecord[];
+    /**
+     * The number of results to return. If this is unset or no bigger than zero, returns all results.
+     */
+    topN?: number | null;
+  }
+  /**
+   * Response message for RankService.Rank method.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaRankResponse {
+    /**
+     * A list of records sorted by descending score.
+     */
+    records?: Schema$GoogleCloudDiscoveryengineV1alphaRankingRecord[];
+  }
+  /**
    * Request message for Recommend method.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaRecommendRequest {
@@ -2295,6 +2440,10 @@ export namespace discoveryengine_v1alpha {
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaSearchRequestContentSearchSpec {
     /**
+     * Specifies the chunk spec to be returned from the search response. Only available if the SearchRequest.ContentSearchSpec.search_result_mode is set to CHUNKS
+     */
+    chunkSpec?: Schema$GoogleCloudDiscoveryengineV1alphaSearchRequestContentSearchSpecChunkSpec;
+    /**
      * If there is no extractive_content_spec provided, there will be no extractive answer in the search response.
      */
     extractiveContentSpec?: Schema$GoogleCloudDiscoveryengineV1alphaSearchRequestContentSearchSpecExtractiveContentSpec;
@@ -2310,6 +2459,19 @@ export namespace discoveryengine_v1alpha {
      * If `summarySpec` is not specified, summaries are not included in the search response.
      */
     summarySpec?: Schema$GoogleCloudDiscoveryengineV1alphaSearchRequestContentSearchSpecSummarySpec;
+  }
+  /**
+   * Specifies the chunk spec to be returned from the search response. Only available if the SearchRequest.ContentSearchSpec.search_result_mode is set to CHUNKS
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaSearchRequestContentSearchSpecChunkSpec {
+    /**
+     * The number of next chunks to be returned of the current chunk. The maximum allowed value is 3. If not specified, no next chunks will be returned.
+     */
+    numNextChunks?: number | null;
+    /**
+     * The number of previous chunks to be returned of the current chunk. The maximum allowed value is 3. If not specified, no previous chunks will be returned.
+     */
+    numPreviousChunks?: number | null;
   }
   /**
    * A specification for configuring the extractive content in a search response.
@@ -2744,6 +2906,10 @@ export namespace discoveryengine_v1alpha {
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaSearchResponseSummaryReference {
     /**
+     * List of cited chunk contents derived from document content.
+     */
+    chunkContents?: Schema$GoogleCloudDiscoveryengineV1alphaSearchResponseSummaryReferenceChunkContent[];
+    /**
      * Required. Document.name of the document. Full resource name of the referenced document, in the format `projects/x/locations/x/collections/x/dataStores/x/branches/x/documents/x`.
      */
     document?: string | null;
@@ -2755,6 +2921,19 @@ export namespace discoveryengine_v1alpha {
      * Cloud Storage or HTTP uri for the document.
      */
     uri?: string | null;
+  }
+  /**
+   * Chunk content.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaSearchResponseSummaryReferenceChunkContent {
+    /**
+     * Chunk textual content.
+     */
+    content?: string | null;
+    /**
+     * Page identifier.
+     */
+    pageIdentifier?: string | null;
   }
   /**
    * Safety Attribute categories and their associated confidence scores.
@@ -3076,6 +3255,10 @@ export namespace discoveryengine_v1alpha {
      */
     errorSamples?: Schema$GoogleRpcStatus[];
     /**
+     * The metrics of the trained model.
+     */
+    metrics?: {[key: string]: number} | null;
+    /**
      * The trained model status. Possible values are: * **bad-data**: The training data quality is bad. * **no-improvement**: Tuning didn't improve performance. Won't deploy. * **in-progress**: Model training is in progress. * **ready**: The model is ready for serving.
      */
     modelStatus?: string | null;
@@ -3344,6 +3527,10 @@ export namespace discoveryengine_v1alpha {
      */
     enableSafeSearch?: boolean | null;
     /**
+     * Whether to enable search-as-you-type behavior for the search widget
+     */
+    enableSearchAsYouType?: boolean | null;
+    /**
      * Turn on or off summary for each snippets result.
      */
     enableSnippetResultSummary?: boolean | null;
@@ -3413,7 +3600,7 @@ export namespace discoveryengine_v1alpha {
      */
     id?: string | null;
     /**
-     * The name of the collection. It should be collection resource name. Format: `projects/{project_number\}/locations/{location\}/collections/{collection_id\}`. For widget service usage, such look up widget config, returned name should be skipped.
+     * The name of the collection. It should be collection resource name. Format: `projects/{project_number\}/locations/{location\}/collections/{collection_id\}`. For APIs under WidgetService, such as LookUpWidgetConfig, the project number and location part is erased in this field.
      */
     name?: string | null;
   }
@@ -3430,7 +3617,7 @@ export namespace discoveryengine_v1alpha {
      */
     id?: string | null;
     /**
-     * The name of the data store. It should be data store resource name Format: `projects/{project_number\}/locations/{location\}/collections/{collection_id\}/dataStores/{data_store_id\}`. For widget service usage, such look up widget config, returned name should be skipped.
+     * The name of the data store. It should be data store resource name Format: `projects/{project_number\}/locations/{location\}/collections/{collection_id\}/dataStores/{data_store_id\}`. For APIs under WidgetService, such as LookUpWidgetConfig, the project number and location part is erased in this field.
      */
     name?: string | null;
   }
@@ -3455,7 +3642,7 @@ export namespace discoveryengine_v1alpha {
      */
     id?: string | null;
     /**
-     * The name of the data store. It should be data store resource name Format: `projects/{project_number\}/locations/{location\}/collections/{collection_id\}/dataStores/{data_store_id\}`. For widget service usage, such look up widget config, returned name should be skipped.
+     * The name of the data store. It should be data store resource name Format: `projects/{project_number\}/locations/{location\}/collections/{collection_id\}/dataStores/{data_store_id\}`. For APIs under WidgetService, such as LookUpWidgetConfig, the project number and location part is erased in this field.
      */
     name?: string | null;
   }
@@ -3946,6 +4133,15 @@ export namespace discoveryengine_v1alpha {
     searchTier?: string | null;
   }
   /**
+   * Grounding configuration.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaGroundingConfig {
+    /**
+     * Required. Name of the GroundingConfig, of the form `projects/{project\}/locations/{location\}/groundingConfig`.
+     */
+    name?: string | null;
+  }
+  /**
    * Metadata related to the progress of the ImportDocuments operation. This is returned by the google.longrunning.Operation.metadata field.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1betaImportDocumentsMetadata {
@@ -4239,9 +4435,22 @@ export namespace discoveryengine_v1alpha {
      */
     errorSamples?: Schema$GoogleRpcStatus[];
     /**
+     * The metrics of the trained model.
+     */
+    metrics?: {[key: string]: number} | null;
+    /**
      * The trained model status. Possible values are: * **bad-data**: The training data quality is bad. * **no-improvement**: Tuning didn't improve performance. Won't deploy. * **in-progress**: Model training is in progress. * **ready**: The model is ready for serving.
      */
     modelStatus?: string | null;
+  }
+  /**
+   * Metadata associated with a tune operation.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaTuneEngineMetadata {
+    /**
+     * Required. The resource name of the engine that this tune applies to. Format: `projects/{project_number\}/locations/{location_id\}/collections/{collection_id\}/engines/{engine_id\}`
+     */
+    engine?: string | null;
   }
   /**
    * Metadata for UpdateSchema LRO.
@@ -5443,6 +5652,7 @@ export namespace discoveryengine_v1alpha {
     collections: Resource$Projects$Locations$Collections;
     dataStores: Resource$Projects$Locations$Datastores;
     operations: Resource$Projects$Locations$Operations;
+    rankingConfigs: Resource$Projects$Locations$Rankingconfigs;
     constructor(context: APIRequestContext) {
       this.context = context;
       this.collections = new Resource$Projects$Locations$Collections(
@@ -5452,6 +5662,9 @@ export namespace discoveryengine_v1alpha {
         this.context
       );
       this.operations = new Resource$Projects$Locations$Operations(
+        this.context
+      );
+      this.rankingConfigs = new Resource$Projects$Locations$Rankingconfigs(
         this.context
       );
     }
@@ -22301,6 +22514,123 @@ export namespace discoveryengine_v1alpha {
      * The standard list page token.
      */
     pageToken?: string;
+  }
+
+  export class Resource$Projects$Locations$Rankingconfigs {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Ranks a list of text records based on the given input query.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    rank(
+      params: Params$Resource$Projects$Locations$Rankingconfigs$Rank,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    rank(
+      params?: Params$Resource$Projects$Locations$Rankingconfigs$Rank,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDiscoveryengineV1alphaRankResponse>;
+    rank(
+      params: Params$Resource$Projects$Locations$Rankingconfigs$Rank,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    rank(
+      params: Params$Resource$Projects$Locations$Rankingconfigs$Rank,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaRankResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaRankResponse>
+    ): void;
+    rank(
+      params: Params$Resource$Projects$Locations$Rankingconfigs$Rank,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaRankResponse>
+    ): void;
+    rank(
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaRankResponse>
+    ): void;
+    rank(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Rankingconfigs$Rank
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaRankResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaRankResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaRankResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDiscoveryengineV1alphaRankResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Rankingconfigs$Rank;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Rankingconfigs$Rank;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://discoveryengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+rankingConfig}:rank').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['rankingConfig'],
+        pathParams: ['rankingConfig'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDiscoveryengineV1alphaRankResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDiscoveryengineV1alphaRankResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Rankingconfigs$Rank
+    extends StandardParameters {
+    /**
+     * Required. The resource name of the rank service config, such as `projects/{project_num\}/locations/{location_id\}/rankingConfigs/default_ranking_config`.
+     */
+    rankingConfig?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDiscoveryengineV1alphaRankRequest;
   }
 
   export class Resource$Projects$Operations {
