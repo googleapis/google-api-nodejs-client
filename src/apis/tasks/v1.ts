@@ -160,7 +160,7 @@ export namespace tasks_v1 {
      */
     links?: Array<{description?: string; link?: string; type?: string}> | null;
     /**
-     * Notes describing the task. Optional.
+     * Notes describing the task. Optional. Maximum length allowed: 8192 characters.
      */
     notes?: string | null;
     /**
@@ -180,7 +180,7 @@ export namespace tasks_v1 {
      */
     status?: string | null;
     /**
-     * Title of the task.
+     * Title of the task. Maximum length allowed: 1024 characters.
      */
     title?: string | null;
     /**
@@ -210,7 +210,7 @@ export namespace tasks_v1 {
      */
     selfLink?: string | null;
     /**
-     * Title of the task list.
+     * Title of the task list. Maximum length allowed: 1024 characters.
      */
     title?: string | null;
     /**
@@ -432,7 +432,7 @@ export namespace tasks_v1 {
     }
 
     /**
-     * Creates a new task list and adds it to the authenticated user's task lists.
+     * Creates a new task list and adds it to the authenticated user's task lists. A user can have up to 2000 lists at a time.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -518,7 +518,7 @@ export namespace tasks_v1 {
     }
 
     /**
-     * Returns all the authenticated user's task lists.
+     * Returns all the authenticated user's task lists. A user can have up to 2000 lists at a time.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1088,7 +1088,7 @@ export namespace tasks_v1 {
     }
 
     /**
-     * Creates a new task on the specified task list.
+     * Creates a new task on the specified task list. A user can have up to 20,000 uncompleted tasks per list and up to 100,000 tasks in total at a time.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1174,7 +1174,7 @@ export namespace tasks_v1 {
     }
 
     /**
-     * Returns all tasks in the specified task list.
+     * Returns all tasks in the specified task list. A user can have up to 20,000 uncompleted tasks per list and up to 100,000 tasks in total at a time.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1260,7 +1260,7 @@ export namespace tasks_v1 {
     }
 
     /**
-     * Moves the specified task to another position in the task list. This can include putting it as a child task under a new parent and/or move it to a different position among its sibling tasks.
+     * Moves the specified task to another position in the task list. This can include putting it as a child task under a new parent and/or move it to a different position among its sibling tasks. A user can have up to 2,000 subtasks per task.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
