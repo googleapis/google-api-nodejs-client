@@ -226,6 +226,11 @@
                     "name"
                   ],
                   "parameters": {
+                    "force": {
+                      "description": "Optional. Followed the best practice from https://aip.dev/135#cascading-delete",
+                      "location": "query",
+                      "type": "boolean"
+                    },
                     "name": {
                       "description": "Required. Name of the resource",
                       "location": "path",
@@ -767,7 +772,7 @@
       }
     }
   },
-  "revision": "20240306",
+  "revision": "20240322",
   "rootUrl": "https://workloadmanager.googleapis.com/",
   "schemas": {
     "BigQueryDestination": {
@@ -1518,6 +1523,10 @@
           "description": "Optional. Indicates whether this is a Java or ABAP Netweaver instance. true means it is ABAP, false means it is Java.",
           "type": "boolean"
         },
+        "appInstanceNumber": {
+          "description": "Optional. Instance number of the SAP application instance.",
+          "type": "string"
+        },
         "applicationType": {
           "description": "Required. Type of the application. Netweaver, etc.",
           "enum": [
@@ -1530,12 +1539,12 @@
           ],
           "type": "string"
         },
-        "ascsUri": {
-          "description": "Optional. Resource URI of the recognized ASCS host of the application.",
+        "ascsInstanceNumber": {
+          "description": "Optional. Instance number of the ASCS instance.",
           "type": "string"
         },
-        "instanceNumber": {
-          "description": "Optional. Instance number of the SAP instance.",
+        "ascsUri": {
+          "description": "Optional. Resource URI of the recognized ASCS host of the application.",
           "type": "string"
         },
         "kernelVersion": {
@@ -1553,6 +1562,10 @@
       "description": "A set of properties describing an SAP Database layer.",
       "id": "SapDiscoveryComponentDatabaseProperties",
       "properties": {
+        "databaseSid": {
+          "description": "Optional. SID of the system database.",
+          "type": "string"
+        },
         "databaseType": {
           "description": "Required. Type of the database. HANA, DB2, etc.",
           "enum": [
@@ -1696,6 +1709,11 @@
             "type": "string"
           },
           "type": "array"
+        },
+        "instanceNumber": {
+          "description": "Optional. The VM's instance number.",
+          "format": "int64",
+          "type": "string"
         },
         "virtualHostname": {
           "description": "Optional. A virtual hostname of the instance if it has one.",

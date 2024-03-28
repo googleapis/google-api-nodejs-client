@@ -672,17 +672,21 @@ export namespace workloadmanager_v1 {
      */
     abap?: boolean | null;
     /**
+     * Optional. Instance number of the SAP application instance.
+     */
+    appInstanceNumber?: string | null;
+    /**
      * Required. Type of the application. Netweaver, etc.
      */
     applicationType?: string | null;
     /**
+     * Optional. Instance number of the ASCS instance.
+     */
+    ascsInstanceNumber?: string | null;
+    /**
      * Optional. Resource URI of the recognized ASCS host of the application.
      */
     ascsUri?: string | null;
-    /**
-     * Optional. Instance number of the SAP instance.
-     */
-    instanceNumber?: string | null;
     /**
      * Optional. Kernel version for Netweaver running in the system.
      */
@@ -696,6 +700,10 @@ export namespace workloadmanager_v1 {
    * A set of properties describing an SAP Database layer.
    */
   export interface Schema$SapDiscoveryComponentDatabaseProperties {
+    /**
+     * Optional. SID of the system database.
+     */
+    databaseSid?: string | null;
     /**
      * Required. Type of the database. HANA, DB2, etc.
      */
@@ -775,6 +783,10 @@ export namespace workloadmanager_v1 {
      * Optional. A list of instance URIs that are part of a cluster with this one.
      */
     clusterInstances?: string[] | null;
+    /**
+     * Optional. The VM's instance number.
+     */
+    instanceNumber?: string | null;
     /**
      * Optional. A virtual hostname of the instance if it has one.
      */
@@ -1590,6 +1602,10 @@ export namespace workloadmanager_v1 {
   }
   export interface Params$Resource$Projects$Locations$Evaluations$Delete
     extends StandardParameters {
+    /**
+     * Optional. Followed the best practice from https://aip.dev/135#cascading-delete
+     */
+    force?: boolean;
     /**
      * Required. Name of the resource
      */
