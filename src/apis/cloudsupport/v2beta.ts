@@ -204,7 +204,7 @@ export namespace cloudsupport_v2beta {
     uploadMetadataContainer?: string | null;
   }
   /**
-   * A Case is an object that contains the details of a support case. It contains fields for the time it was created, its priority, its classification, and more. Cases can also have comments and attachments that get added over time. A case is parented by a Google Cloud organization or project. Organizations are identified by a number, so the name of a case parented by an organization would look like this: ``` organizations/123/cases/456 ``` Projects have two unique identifiers, an ID and a number, and they look like this: ``` projects/abc/cases/456 ``` ``` projects/123/cases/456 ``` You can use either of them when calling the API. To learn more about project identifiers, see [AIP-2510](https://google.aip.dev/cloud/2510). Next ID: 38
+   * A Case is an object that contains the details of a support case. It contains fields for the time it was created, its priority, its classification, and more. Cases can also have comments and attachments that get added over time. A case is parented by a Google Cloud organization or project. Organizations are identified by a number, so the name of a case parented by an organization would look like this: ``` organizations/123/cases/456 ``` Projects have two unique identifiers, an ID and a number, and they look like this: ``` projects/abc/cases/456 ``` ``` projects/123/cases/456 ``` You can use either of them when calling the API. To learn more about project identifiers, see [AIP-2510](https://google.aip.dev/cloud/2510).
    */
   export interface Schema$Case {
     /**
@@ -284,10 +284,6 @@ export namespace cloudsupport_v2beta {
      * The unique ID for a classification. Must be specified for case creation. To retrieve valid classification IDs for case creation, use `caseClassifications.search`. Classification IDs returned by `caseClassifications.search` are guaranteed to be valid for at least 6 months. If a given classification is deactiveated, it will immediately stop being returned. After 6 months, `case.create` requests using the classification ID will fail.
      */
     id?: string | null;
-    /**
-     * The full product the classification corresponds to.
-     */
-    product?: Schema$Product;
   }
   /**
    * The request message for the CloseCase endpoint.
@@ -695,19 +691,6 @@ export namespace cloudsupport_v2beta {
     objectName?: string | null;
   }
   /**
-   * The full product a case may be associated with, including Product Line and Product Subline.
-   */
-  export interface Schema$Product {
-    /**
-     * The Product Line of the Product.
-     */
-    productLine?: string | null;
-    /**
-     * The Product Subline of the Product, such as "Maps Billing".
-     */
-    productSubline?: string | null;
-  }
-  /**
    * The response message for SearchCaseClassifications endpoint.
    */
   export interface Schema$SearchCaseClassificationsResponse {
@@ -864,14 +847,6 @@ export namespace cloudsupport_v2beta {
      * A token identifying the page of results to return. If unspecified, the first page is retrieved.
      */
     pageToken?: string;
-    /**
-     * The Product Line of the Product.
-     */
-    'product.productLine'?: string;
-    /**
-     * The Product Subline of the Product, such as "Maps Billing".
-     */
-    'product.productSubline'?: string;
     /**
      * An expression used to filter case classifications. If it's an empty string, then no filtering happens. Otherwise, case classifications will be returned that match the filter.
      */
@@ -1547,10 +1522,6 @@ export namespace cloudsupport_v2beta {
      * Required. The name of a parent to list cases under.
      */
     parent?: string;
-    /**
-     * The product line to request cases for.
-     */
-    productLine?: string;
   }
   export interface Params$Resource$Cases$Patch extends StandardParameters {
     /**

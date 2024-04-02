@@ -115,6 +115,38 @@
   },
   "protocol": "rest",
   "resources": {
+    "media": {
+      "methods": {
+        "download": {
+          "description": "Download a file.",
+          "flatPath": "v1beta2/projects/{projectsId}/locations/{locationsId}/repositories/{repositoriesId}/files/{filesId}:download",
+          "httpMethod": "GET",
+          "id": "artifactregistry.media.download",
+          "parameterOrder": [
+            "name"
+          ],
+          "parameters": {
+            "name": {
+              "description": "Required. The name of the file to download.",
+              "location": "path",
+              "pattern": "^projects/[^/]+/locations/[^/]+/repositories/[^/]+/files/[^/]+$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "v1beta2/{+name}:download",
+          "response": {
+            "$ref": "DownloadFileResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/cloud-platform.read-only"
+          ],
+          "supportsMediaDownload": true,
+          "useMediaDownloadService": true
+        }
+      }
+    },
     "projects": {
       "methods": {
         "getProjectSettings": {
@@ -762,6 +794,40 @@
                         "https://www.googleapis.com/auth/cloud-platform",
                         "https://www.googleapis.com/auth/cloud-platform.read-only"
                       ]
+                    },
+                    "patch": {
+                      "description": "Updates a package.",
+                      "flatPath": "v1beta2/projects/{projectsId}/locations/{locationsId}/repositories/{repositoriesId}/packages/{packagesId}",
+                      "httpMethod": "PATCH",
+                      "id": "artifactregistry.projects.locations.repositories.packages.patch",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "The name of the package, for example: `projects/p1/locations/us-central1/repositories/repo1/packages/pkg1`. If the package ID part contains slashes, the slashes are escaped.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/repositories/[^/]+/packages/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "updateMask": {
+                          "description": "The update mask applies to the resource. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask",
+                          "format": "google-fieldmask",
+                          "location": "query",
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta2/{+name}",
+                      "request": {
+                        "$ref": "Package"
+                      },
+                      "response": {
+                        "$ref": "Package"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
                     }
                   },
                   "resources": {
@@ -1142,7 +1208,7 @@
       }
     }
   },
-  "revision": "20240213",
+  "revision": "20240308",
   "rootUrl": "https://artifactregistry.googleapis.com/",
   "schemas": {
     "AptArtifact": {
@@ -1213,6 +1279,12 @@
           "type": "string"
         }
       },
+      "type": "object"
+    },
+    "DownloadFileResponse": {
+      "description": "The response to download a file.",
+      "id": "DownloadFileResponse",
+      "properties": {},
       "type": "object"
     },
     "Empty": {
@@ -1663,6 +1735,13 @@
       "description": "Packages are named collections of versions.",
       "id": "Package",
       "properties": {
+        "annotations": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. Client specified annotations.",
+          "type": "object"
+        },
         "createTime": {
           "description": "The time when the package was created.",
           "format": "google-datetime",
@@ -1718,19 +1797,22 @@
             "REDIRECTION_STATE_UNSPECIFIED",
             "REDIRECTION_FROM_GCR_IO_DISABLED",
             "REDIRECTION_FROM_GCR_IO_ENABLED",
-            "REDIRECTION_FROM_GCR_IO_FINALIZED"
+            "REDIRECTION_FROM_GCR_IO_FINALIZED",
+            "REDIRECTION_FROM_GCR_IO_ENABLED_AND_COPYING"
           ],
           "enumDeprecated": [
             false,
             false,
             false,
-            true
+            true,
+            false
           ],
           "enumDescriptions": [
             "No redirection status has been set.",
             "Redirection is disabled.",
             "Redirection is enabled.",
-            "Redirection is enabled, and has been finalized so cannot be reverted."
+            "Redirection is enabled, and has been finalized so cannot be reverted.",
+            "Redirection is enabled and missing images are copied from GCR"
           ],
           "type": "string"
         },

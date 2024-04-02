@@ -659,7 +659,7 @@ export namespace datacatalog_v1 {
      */
     modelSpec?: Schema$GoogleCloudDatacatalogV1ModelSpec;
     /**
-     * Output only. The resource name of an entry in URL format. Note: The entry itself and its child resources might not be stored in the location specified in its name.
+     * Output only. Identifier. The resource name of an entry in URL format. Note: The entry itself and its child resources might not be stored in the location specified in its name.
      */
     name?: string | null;
     /**
@@ -720,7 +720,7 @@ export namespace datacatalog_v1 {
      */
     displayName?: string | null;
     /**
-     * The resource name of the entry group in URL format. Note: The entry group itself and its child resources might not be stored in the location specified in its name.
+     * Identifier. The resource name of the entry group in URL format. Note: The entry group itself and its child resources might not be stored in the location specified in its name.
      */
     name?: string | null;
   }
@@ -1490,7 +1490,7 @@ export namespace datacatalog_v1 {
      */
     fields?: {[key: string]: Schema$GoogleCloudDatacatalogV1TagField} | null;
     /**
-     * The resource name of the tag in URL format where tag ID is a system-generated identifier. Note: The tag itself might not be stored in the location specified in its name.
+     * Identifier. The resource name of the tag in URL format where tag ID is a system-generated identifier. Note: The tag itself might not be stored in the location specified in its name.
      */
     name?: string | null;
     /**
@@ -1570,6 +1570,10 @@ export namespace datacatalog_v1 {
    */
   export interface Schema$GoogleCloudDatacatalogV1TagTemplate {
     /**
+     * Optional. Transfer status of the TagTemplate
+     */
+    dataplexTransferStatus?: string | null;
+    /**
      * Display name for this template. Defaults to an empty string. The name must contain only Unicode letters, numbers (0-9), underscores (_), dashes (-), spaces ( ), and can't start or end with spaces. The maximum length is 200 characters.
      */
     displayName?: string | null;
@@ -1584,7 +1588,7 @@ export namespace datacatalog_v1 {
      */
     isPubliclyReadable?: boolean | null;
     /**
-     * The resource name of the tag template in URL format. Note: The tag template itself and its child resources might not be stored in the location specified in its name.
+     * Identifier. The resource name of the tag template in URL format. Note: The tag template itself and its child resources might not be stored in the location specified in its name.
      */
     name?: string | null;
   }
@@ -1605,7 +1609,7 @@ export namespace datacatalog_v1 {
      */
     isRequired?: boolean | null;
     /**
-     * Output only. The resource name of the tag template field in URL format. Example: `projects/{PROJECT_ID\}/locations/{LOCATION\}/tagTemplates/{TAG_TEMPLATE\}/fields/{FIELD\}` Note: The tag template field itself might not be stored in the location specified in its name. The name must contain only letters (a-z, A-Z), numbers (0-9), or underscores (_), and must start with a letter or underscore. The maximum length is 64 characters.
+     * Identifier. The resource name of the tag template field in URL format. Example: `projects/{PROJECT_ID\}/locations/{LOCATION\}/tagTemplates/{TAG_TEMPLATE\}/fields/{FIELD\}` Note: The tag template field itself might not be stored in the location specified in its name. The name must contain only letters (a-z, A-Z), numbers (0-9), or underscores (_), and must start with a letter or underscore. The maximum length is 64 characters.
      */
     name?: string | null;
     /**
@@ -2953,7 +2957,7 @@ export namespace datacatalog_v1 {
   export interface Params$Resource$Projects$Locations$Entrygroups$Patch
     extends StandardParameters {
     /**
-     * The resource name of the entry group in URL format. Note: The entry group itself and its child resources might not be stored in the location specified in its name.
+     * Identifier. The resource name of the entry group in URL format. Note: The entry group itself and its child resources might not be stored in the location specified in its name.
      */
     name?: string;
     /**
@@ -4222,7 +4226,7 @@ export namespace datacatalog_v1 {
   export interface Params$Resource$Projects$Locations$Entrygroups$Entries$Patch
     extends StandardParameters {
     /**
-     * Output only. The resource name of an entry in URL format. Note: The entry itself and its child resources might not be stored in the location specified in its name.
+     * Output only. Identifier. The resource name of an entry in URL format. Note: The entry itself and its child resources might not be stored in the location specified in its name.
      */
     name?: string;
     /**
@@ -4767,7 +4771,7 @@ export namespace datacatalog_v1 {
   export interface Params$Resource$Projects$Locations$Entrygroups$Entries$Tags$Patch
     extends StandardParameters {
     /**
-     * The resource name of the tag in URL format where tag ID is a system-generated identifier. Note: The tag itself might not be stored in the location specified in its name.
+     * Identifier. The resource name of the tag in URL format where tag ID is a system-generated identifier. Note: The tag itself might not be stored in the location specified in its name.
      */
     name?: string;
     /**
@@ -5199,7 +5203,7 @@ export namespace datacatalog_v1 {
   export interface Params$Resource$Projects$Locations$Entrygroups$Tags$Patch
     extends StandardParameters {
     /**
-     * The resource name of the tag in URL format where tag ID is a system-generated identifier. Note: The tag itself might not be stored in the location specified in its name.
+     * Identifier. The resource name of the tag in URL format where tag ID is a system-generated identifier. Note: The tag itself might not be stored in the location specified in its name.
      */
     name?: string;
     /**
@@ -6302,7 +6306,7 @@ export namespace datacatalog_v1 {
   export interface Params$Resource$Projects$Locations$Tagtemplates$Patch
     extends StandardParameters {
     /**
-     * The resource name of the tag template in URL format. Note: The tag template itself and its child resources might not be stored in the location specified in its name.
+     * Identifier. The resource name of the tag template in URL format. Note: The tag template itself and its child resources might not be stored in the location specified in its name.
      */
     name?: string;
     /**

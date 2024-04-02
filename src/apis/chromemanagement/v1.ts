@@ -548,6 +548,32 @@ export namespace chromemanagement_v1 {
     recentlyEnrolledCount?: string | null;
   }
   /**
+   * Response contains a list of CrashEventCountByVersionPerDay which count the chrome crash at the certain date.
+   */
+  export interface Schema$GoogleChromeManagementV1CountChromeCrashEventsResponse {
+    /**
+     * Crash event counts grouped by date and browser version.
+     */
+    crashEventCounts?: Schema$GoogleChromeManagementV1CountChromeCrashEventsResponseCrashEventCount[];
+  }
+  /**
+   * The `count` of the Chrome crash events at the `date`.
+   */
+  export interface Schema$GoogleChromeManagementV1CountChromeCrashEventsResponseCrashEventCount {
+    /**
+     * Browser version this is counting.
+     */
+    browserVersion?: string | null;
+    /**
+     * Total count of crash events.
+     */
+    count?: string | null;
+    /**
+     * Date of the crash event.
+     */
+    date?: Schema$GoogleTypeDate;
+  }
+  /**
    * Response containing a list of devices expiring in each month of a selected time frame. Counts are grouped by model and Auto Update Expiration date.
    */
   export interface Schema$GoogleChromeManagementV1CountChromeDevicesReachingAutoExpirationDateResponse {
@@ -794,6 +820,19 @@ export namespace chromemanagement_v1 {
     count?: string | null;
   }
   /**
+   * Details of a device requesting an extension, including the name of the device and the justification of the request.
+   */
+  export interface Schema$GoogleChromeManagementV1DeviceRequestingExtensionDetails {
+    /**
+     * The name of a device that has requested the extension.
+     */
+    deviceName?: string | null;
+    /**
+     * Request justification as entered by the user.
+     */
+    justification?: string | null;
+  }
+  /**
    * Status of the single storage device.
    */
   export interface Schema$GoogleChromeManagementV1DiskInfo {
@@ -928,6 +967,40 @@ export namespace chromemanagement_v1 {
      * Total number of print jobs matching request.
      */
     totalSize?: string | null;
+  }
+  /**
+   * Response containing a list of devices that have requested the queried extension.
+   */
+  export interface Schema$GoogleChromeManagementV1FetchDevicesRequestingExtensionResponse {
+    /**
+     * Details of devices that have requested the queried extension.
+     */
+    deviceDetails?: Schema$GoogleChromeManagementV1DeviceRequestingExtensionDetails[];
+    /**
+     * Optional. Token to specify the next page in the list. Token expires after 1 day.
+     */
+    nextPageToken?: string | null;
+    /**
+     * Optional. Total number of devices in response.
+     */
+    totalSize?: number | null;
+  }
+  /**
+   * Response containing a list of users that have requested the queried extension.
+   */
+  export interface Schema$GoogleChromeManagementV1FetchUsersRequestingExtensionResponse {
+    /**
+     * Token to specify the next page in the list.
+     */
+    nextPageToken?: string | null;
+    /**
+     * Total number of users in response.
+     */
+    totalSize?: number | null;
+    /**
+     * Details of users that have requested the queried extension.
+     */
+    userDetails?: Schema$GoogleChromeManagementV1UserRequestingExtensionDetails[];
   }
   /**
    * Response containing a list of devices with queried app installed.
@@ -1973,6 +2046,19 @@ export namespace chromemanagement_v1 {
     userId?: string | null;
   }
   /**
+   * Details of a user requesting an extension, including the email and the justification.
+   */
+  export interface Schema$GoogleChromeManagementV1UserRequestingExtensionDetails {
+    /**
+     * The e-mail address of a user that has requested the extension.
+     */
+    email?: string | null;
+    /**
+     * Request justification as entered by the user.
+     */
+    justification?: string | null;
+  }
+  /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
    */
   export interface Schema$GoogleProtobufEmpty {}
@@ -2131,6 +2217,200 @@ export namespace chromemanagement_v1 {
         );
       }
     }
+
+    /**
+     * Get a list of devices that have requested to install an extension.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    fetchDevicesRequestingExtension(
+      params: Params$Resource$Customers$Apps$Fetchdevicesrequestingextension,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    fetchDevicesRequestingExtension(
+      params?: Params$Resource$Customers$Apps$Fetchdevicesrequestingextension,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleChromeManagementV1FetchDevicesRequestingExtensionResponse>;
+    fetchDevicesRequestingExtension(
+      params: Params$Resource$Customers$Apps$Fetchdevicesrequestingextension,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    fetchDevicesRequestingExtension(
+      params: Params$Resource$Customers$Apps$Fetchdevicesrequestingextension,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleChromeManagementV1FetchDevicesRequestingExtensionResponse>,
+      callback: BodyResponseCallback<Schema$GoogleChromeManagementV1FetchDevicesRequestingExtensionResponse>
+    ): void;
+    fetchDevicesRequestingExtension(
+      params: Params$Resource$Customers$Apps$Fetchdevicesrequestingextension,
+      callback: BodyResponseCallback<Schema$GoogleChromeManagementV1FetchDevicesRequestingExtensionResponse>
+    ): void;
+    fetchDevicesRequestingExtension(
+      callback: BodyResponseCallback<Schema$GoogleChromeManagementV1FetchDevicesRequestingExtensionResponse>
+    ): void;
+    fetchDevicesRequestingExtension(
+      paramsOrCallback?:
+        | Params$Resource$Customers$Apps$Fetchdevicesrequestingextension
+        | BodyResponseCallback<Schema$GoogleChromeManagementV1FetchDevicesRequestingExtensionResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleChromeManagementV1FetchDevicesRequestingExtensionResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleChromeManagementV1FetchDevicesRequestingExtensionResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleChromeManagementV1FetchDevicesRequestingExtensionResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Customers$Apps$Fetchdevicesrequestingextension;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Customers$Apps$Fetchdevicesrequestingextension;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://chromemanagement.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1/{+customer}/apps:fetchDevicesRequestingExtension'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['customer'],
+        pathParams: ['customer'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleChromeManagementV1FetchDevicesRequestingExtensionResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleChromeManagementV1FetchDevicesRequestingExtensionResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Get a list of users that have requested to install an extension.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    fetchUsersRequestingExtension(
+      params: Params$Resource$Customers$Apps$Fetchusersrequestingextension,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    fetchUsersRequestingExtension(
+      params?: Params$Resource$Customers$Apps$Fetchusersrequestingextension,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleChromeManagementV1FetchUsersRequestingExtensionResponse>;
+    fetchUsersRequestingExtension(
+      params: Params$Resource$Customers$Apps$Fetchusersrequestingextension,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    fetchUsersRequestingExtension(
+      params: Params$Resource$Customers$Apps$Fetchusersrequestingextension,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleChromeManagementV1FetchUsersRequestingExtensionResponse>,
+      callback: BodyResponseCallback<Schema$GoogleChromeManagementV1FetchUsersRequestingExtensionResponse>
+    ): void;
+    fetchUsersRequestingExtension(
+      params: Params$Resource$Customers$Apps$Fetchusersrequestingextension,
+      callback: BodyResponseCallback<Schema$GoogleChromeManagementV1FetchUsersRequestingExtensionResponse>
+    ): void;
+    fetchUsersRequestingExtension(
+      callback: BodyResponseCallback<Schema$GoogleChromeManagementV1FetchUsersRequestingExtensionResponse>
+    ): void;
+    fetchUsersRequestingExtension(
+      paramsOrCallback?:
+        | Params$Resource$Customers$Apps$Fetchusersrequestingextension
+        | BodyResponseCallback<Schema$GoogleChromeManagementV1FetchUsersRequestingExtensionResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleChromeManagementV1FetchUsersRequestingExtensionResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleChromeManagementV1FetchUsersRequestingExtensionResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleChromeManagementV1FetchUsersRequestingExtensionResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Customers$Apps$Fetchusersrequestingextension;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Customers$Apps$Fetchusersrequestingextension;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://chromemanagement.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1/{+customer}/apps:fetchUsersRequestingExtension'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['customer'],
+        pathParams: ['customer'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleChromeManagementV1FetchUsersRequestingExtensionResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleChromeManagementV1FetchUsersRequestingExtensionResponse>(
+          parameters
+        );
+      }
+    }
   }
 
   export interface Params$Resource$Customers$Apps$Countchromeapprequests
@@ -2153,6 +2433,52 @@ export namespace chromemanagement_v1 {
     pageSize?: number;
     /**
      * Token to specify the page of the request to be returned.
+     */
+    pageToken?: string;
+  }
+  export interface Params$Resource$Customers$Apps$Fetchdevicesrequestingextension
+    extends StandardParameters {
+    /**
+     * Required. The customer ID or "my_customer" prefixed with "customers/".
+     */
+    customer?: string;
+    /**
+     * Required. The extension for which we want to find requesting devices.
+     */
+    extensionId?: string;
+    /**
+     * The ID of the organizational unit. Only consider devices that directly belong to this org unit, i.e. sub-orgunits are not counted. If omitted, all data will be returned.
+     */
+    orgUnitId?: string;
+    /**
+     * Optional. Maximum number of results to return. Maximum and default are 50. Any page size larger than 50 will be coerced to 50.
+     */
+    pageSize?: number;
+    /**
+     * Optional. Token to specify the page of the request to be returned. Token expires after 1 day.
+     */
+    pageToken?: string;
+  }
+  export interface Params$Resource$Customers$Apps$Fetchusersrequestingextension
+    extends StandardParameters {
+    /**
+     * Required. The customer ID or "my_customer" prefixed with "customers/".
+     */
+    customer?: string;
+    /**
+     * Required. The extension for which we want to find the requesting users.
+     */
+    extensionId?: string;
+    /**
+     * The ID of the organizational unit. Only consider devices that directly belong to this org unit, i.e. sub-orgunits are not counted. If omitted, all data will be returned.
+     */
+    orgUnitId?: string;
+    /**
+     * Optional. Maximum number of results to return. Maximum and default are 50. Any page size larger than 50 will be coerced to 50.
+     */
+    pageSize?: number;
+    /**
+     * Optional. Token to specify the page of the request to be returned. Token expires after 1 day.
      */
     pageToken?: string;
   }
@@ -2583,6 +2909,102 @@ export namespace chromemanagement_v1 {
         );
       } else {
         return createAPIRequest<Schema$GoogleChromeManagementV1CountChromeBrowsersNeedingAttentionResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Get a count of Chrome crash events.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    countChromeCrashEvents(
+      params: Params$Resource$Customers$Reports$Countchromecrashevents,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    countChromeCrashEvents(
+      params?: Params$Resource$Customers$Reports$Countchromecrashevents,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleChromeManagementV1CountChromeCrashEventsResponse>;
+    countChromeCrashEvents(
+      params: Params$Resource$Customers$Reports$Countchromecrashevents,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    countChromeCrashEvents(
+      params: Params$Resource$Customers$Reports$Countchromecrashevents,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleChromeManagementV1CountChromeCrashEventsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleChromeManagementV1CountChromeCrashEventsResponse>
+    ): void;
+    countChromeCrashEvents(
+      params: Params$Resource$Customers$Reports$Countchromecrashevents,
+      callback: BodyResponseCallback<Schema$GoogleChromeManagementV1CountChromeCrashEventsResponse>
+    ): void;
+    countChromeCrashEvents(
+      callback: BodyResponseCallback<Schema$GoogleChromeManagementV1CountChromeCrashEventsResponse>
+    ): void;
+    countChromeCrashEvents(
+      paramsOrCallback?:
+        | Params$Resource$Customers$Reports$Countchromecrashevents
+        | BodyResponseCallback<Schema$GoogleChromeManagementV1CountChromeCrashEventsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleChromeManagementV1CountChromeCrashEventsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleChromeManagementV1CountChromeCrashEventsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleChromeManagementV1CountChromeCrashEventsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Customers$Reports$Countchromecrashevents;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Customers$Reports$Countchromecrashevents;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://chromemanagement.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1/{+customer}/reports:countChromeCrashEvents'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['customer'],
+        pathParams: ['customer'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleChromeManagementV1CountChromeCrashEventsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleChromeManagementV1CountChromeCrashEventsResponse>(
           parameters
         );
       }
@@ -3472,6 +3894,25 @@ export namespace chromemanagement_v1 {
      */
     orgUnitId?: string;
   }
+  export interface Params$Resource$Customers$Reports$Countchromecrashevents
+    extends StandardParameters {
+    /**
+     * Customer ID.
+     */
+    customer?: string;
+    /**
+     * Query string to filter results, AND-separated fields in EBNF syntax. Supported filter fields: * major_browser_version * minor_browser_version * browser_channel * device_platform * past_number_days Example: `major_browser_version = 'M115' AND past_number_days = '28'`.
+     */
+    filter?: string;
+    /**
+     * Field used to order results. Supported order by fields: * browser_version * count * date
+     */
+    orderBy?: string;
+    /**
+     * If specified, only count the number of crash events of the devices in this organizational unit.
+     */
+    orgUnitId?: string;
+  }
   export interface Params$Resource$Customers$Reports$Countchromedevicesreachingautoexpirationdate
     extends StandardParameters {
     /**
@@ -3909,14 +4350,14 @@ export namespace chromemanagement_v1 {
      */
     name?: string;
     /**
-     * Required. Read mask to specify which fields to return.
+     * Required. Read mask to specify which fields to return. Supported read_mask paths are: - name - org_unit_id - device_id - serial_number - cpu_info - cpu_status_report - memory_info - memory_status_report - network_info - network_diagnostics_report - network_status_report - os_update_status - graphics_info - graphics_status_report - battery_info - battery_status_report - storage_info - storage_status_report - thunderbolt_info - audio_status_report - boot_performance_report - heartbeat_status_report - network_bandwidth_report - peripherals_report - kiosk_app_status_report - app_report - runtime_counters_report
      */
     readMask?: string;
   }
   export interface Params$Resource$Customers$Telemetry$Devices$List
     extends StandardParameters {
     /**
-     * Optional. Only include resources that match the filter. Supported filter fields: - org_unit_id - serial_number - device_id - reports_timestamp The "reports_timestamp" filter accepts either the Unix Epoch milliseconds format or the RFC3339 UTC "Zulu" format with nanosecond resolution and up to nine fractional digits. Both formats should be surrounded by simple double quotes. Examples: "2014-10-02T15:01:23Z", "2014-10-02T15:01:23.045123456Z", "1679283943823".
+     * Optional. Only include resources that match the filter. Requests that don't specify a "reports_timestamp" value will default to returning only recent reports. Specify "reports_timestamp\>=0" to get all report data. Supported filter fields: - org_unit_id - serial_number - device_id - reports_timestamp The "reports_timestamp" filter accepts either the Unix Epoch milliseconds format or the RFC3339 UTC "Zulu" format with nanosecond resolution and up to nine fractional digits. Both formats should be surrounded by simple double quotes. Examples: "2014-10-02T15:01:23Z", "2014-10-02T15:01:23.045123456Z", "1679283943823".
      */
     filter?: string;
     /**
@@ -3932,7 +4373,7 @@ export namespace chromemanagement_v1 {
      */
     parent?: string;
     /**
-     * Required. Read mask to specify which fields to return.
+     * Required. Read mask to specify which fields to return. Supported read_mask paths are: - name - org_unit_id - device_id - serial_number - cpu_info - cpu_status_report - memory_info - memory_status_report - network_info - network_diagnostics_report - network_status_report - os_update_status - graphics_info - graphics_status_report - battery_info - battery_status_report - storage_info - storage_status_report - thunderbolt_info - audio_status_report - boot_performance_report - heartbeat_status_report - network_bandwidth_report - peripherals_report - kiosk_app_status_report - app_report - runtime_counters_report
      */
     readMask?: string;
   }
@@ -4060,7 +4501,7 @@ export namespace chromemanagement_v1 {
      */
     parent?: string;
     /**
-     * Required. Read mask to specify which fields to return. Although currently required, this field will become optional, while the filter parameter with an event type will be come required.
+     * Required. Read mask to specify which fields to return. Although currently required, this field will become optional, while the filter parameter with an event type will be come required. Supported read_mask paths are: - device - user - audio_severe_underrun_event - usb_peripherals_event - https_latency_change_event - network_state_change_event - wifi_signal_strength_event - vpn_connection_state_change_event - app_install_event - app_uninstall_event - app_launch_event
      */
     readMask?: string;
   }
@@ -4595,7 +5036,7 @@ export namespace chromemanagement_v1 {
      */
     name?: string;
     /**
-     * Read mask to specify which fields to return.
+     * Read mask to specify which fields to return. Supported read_mask paths are: - name - org_unit_id - user_id - user_email - user_device.device_id - user_device.audio_status_report - user_device.device_activity_report - user_device.network_bandwidth_report - user_device.peripherals_report
      */
     readMask?: string;
   }
@@ -4618,7 +5059,7 @@ export namespace chromemanagement_v1 {
      */
     parent?: string;
     /**
-     * Read mask to specify which fields to return.
+     * Read mask to specify which fields to return. Supported read_mask paths are: - name - org_unit_id - user_id - user_email - user_device.device_id - user_device.audio_status_report - user_device.device_activity_report - user_device.network_bandwidth_report - user_device.peripherals_report
      */
     readMask?: string;
   }

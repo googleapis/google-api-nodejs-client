@@ -131,6 +131,10 @@ export namespace bigtableadmin_v2 {
    */
   export interface Schema$AppProfile {
     /**
+     * Specifies that this app profile is intended for read-only usage via the Data Boost feature.
+     */
+    dataBoostIsolationReadOnly?: Schema$DataBoostIsolationReadOnly;
+    /**
      * Long form description of the use case for this AppProfile.
      */
     description?: string | null;
@@ -184,6 +188,40 @@ export namespace bigtableadmin_v2 {
      * The log type that this config enables.
      */
     logType?: string | null;
+  }
+  /**
+   * Placeholder for admin API work while we work out the internals.
+   */
+  export interface Schema$AuthorizedView {
+    /**
+     * Set to true to make the AuthorizedView protected against deletion. The parent Table and containing Instance cannot be deleted if an AuthorizedView has this bit set.
+     */
+    deletionProtection?: boolean | null;
+    /**
+     * The etag for this AuthorizedView. If this is provided on update, it must match the server's etag. The server returns ABORTED error on a mismatched etag.
+     */
+    etag?: string | null;
+    /**
+     * Identifier. The name of this AuthorizedView. Values are of the form `projects/{project\}/instances/{instance\}/tables/{table\}/authorizedViews/{authorized_view\}`
+     */
+    name?: string | null;
+    /**
+     * An AuthorizedView permitting access to an explicit subset of a Table.
+     */
+    subsetView?: Schema$GoogleBigtableAdminV2AuthorizedViewSubsetView;
+  }
+  /**
+   * Defines an automated backup policy for a table
+   */
+  export interface Schema$AutomatedBackupPolicy {
+    /**
+     * Required. How frequently automated backups should occur. The only supported value at this time is 24 hours.
+     */
+    frequency?: string | null;
+    /**
+     * Required. How long the automated backups should be retained. The only supported value at this time is 3 days.
+     */
+    retentionPeriod?: string | null;
   }
   /**
    * Limits for the number of nodes a Cluster can autoscale up/down to.
@@ -311,6 +349,14 @@ export namespace bigtableadmin_v2 {
      * Required. The token created using GenerateConsistencyToken for the Table.
      */
     consistencyToken?: string | null;
+    /**
+     * Checks that reads using an app profile with `DataBoostIsolationReadOnly` can see all writes committed before the token was created, but only if the read and write target the same cluster.
+     */
+    dataBoostReadLocalWrites?: Schema$DataBoostReadLocalWrites;
+    /**
+     * Checks that reads using an app profile with `StandardIsolation` can see all writes committed before the token was created, even if the read and write target different clusters.
+     */
+    standardReadRemoteWrites?: Schema$StandardReadRemoteWrites;
   }
   /**
    * Response message for google.bigtable.admin.v2.BigtableTableAdmin.CheckConsistency
@@ -401,6 +447,10 @@ export namespace bigtableadmin_v2 {
      * Output only. Only available with STATS_VIEW, this includes summary statistics about column family contents. For statistics over an entire table, see TableStats above.
      */
     stats?: Schema$ColumnFamilyStats;
+    /**
+     * The type of data stored in each of this family's cell values, including its full encoding. If omitted, the family only serves raw untyped bytes. For now, only the `Aggregate` type is supported. `Aggregate` can only be set at family creation and is immutable afterwards. If `value_type` is `Aggregate`, written data must be compatible with: * `value_type.input_type` for `AddInput` mutations
+     */
+    valueType?: Schema$Type;
   }
   /**
    * Approximate statistics related to a single column family within a table. This information may change rapidly, interpreting these values at a point in time may already preset out-of-date information. Everything below is approximate, unless otherwise specified.
@@ -452,6 +502,40 @@ export namespace bigtableadmin_v2 {
      * Required. The source backup to be copied from. The source backup needs to be in READY state for it to be copied. Copying a copied backup is not allowed. Once CopyBackup is in progress, the source backup cannot be deleted or cleaned up on expiration until CopyBackup is finished. Values are of the form: `projects//instances//clusters//backups/`.
      */
     sourceBackup?: string | null;
+  }
+  /**
+   * The metadata for the Operation returned by CreateAuthorizedView.
+   */
+  export interface Schema$CreateAuthorizedViewMetadata {
+    /**
+     * The time at which the operation failed or was completed successfully.
+     */
+    finishTime?: string | null;
+    /**
+     * The request that prompted the initiation of this CreateInstance operation.
+     */
+    originalRequest?: Schema$CreateAuthorizedViewRequest;
+    /**
+     * The time at which the original request was received.
+     */
+    requestTime?: string | null;
+  }
+  /**
+   * The request for CreateAuthorizedView
+   */
+  export interface Schema$CreateAuthorizedViewRequest {
+    /**
+     * Required. The AuthorizedView to create.
+     */
+    authorizedView?: Schema$AuthorizedView;
+    /**
+     * Required. The id of the AuthorizedView to create. This AuthorizedView must not already exist. The `authorized_view_id` appended to `parent` forms the full AuthorizedView name of the form `projects/{project\}/instances/{instance\}/tables/{table\}/authorizedView/{authorized_view\}`.
+     */
+    authorizedViewId?: string | null;
+    /**
+     * Required. This is the name of the table the AuthorizedView belongs to. Values are of the form `projects/{project\}/instances/{instance\}/tables/{table\}`.
+     */
+    parent?: string | null;
   }
   /**
    * Metadata type for the operation returned by CreateBackup.
@@ -567,6 +651,19 @@ export namespace bigtableadmin_v2 {
      */
     tableId?: string | null;
   }
+  /**
+   * Data Boost is a serverless compute capability that lets you run high-throughput read jobs on your Bigtable data, without impacting the performance of the clusters that handle your application traffic. Currently, Data Boost exclusively supports read-only use-cases with single-cluster routing. Data Boost reads are only guaranteed to see the results of writes that were written at least 30 minutes ago. This means newly written values may not become visible for up to 30m, and also means that old values may remain visible for up to 30m after being deleted or overwritten. To mitigate the staleness of the data, users may either wait 30m, or use CheckConsistency.
+   */
+  export interface Schema$DataBoostIsolationReadOnly {
+    /**
+     * The Compute Billing Owner for this Data Boost App Profile.
+     */
+    computeBillingOwner?: string | null;
+  }
+  /**
+   * Checks that all writes before the consistency token was generated in the same cluster are readable by Databoost.
+   */
+  export interface Schema$DataBoostReadLocalWrites {}
   /**
    * Request message for google.bigtable.admin.v2.BigtableTableAdmin.DropRowRange
    */
@@ -684,6 +781,104 @@ export namespace bigtableadmin_v2 {
     requestedPolicyVersion?: number | null;
   }
   /**
+   * Subsets of a column family that are included in this AuthorizedView.
+   */
+  export interface Schema$GoogleBigtableAdminV2AuthorizedViewFamilySubsets {
+    /**
+     * Prefixes for qualifiers to be included in the AuthorizedView. Every qualifier starting with one of these prefixes is included in the AuthorizedView. To provide access to all qualifiers, include the empty string as a prefix ("").
+     */
+    qualifierPrefixes?: string[] | null;
+    /**
+     * Individual exact column qualifiers to be included in the AuthorizedView.
+     */
+    qualifiers?: string[] | null;
+  }
+  /**
+   * Defines a simple AuthorizedView that is a subset of the underlying Table.
+   */
+  export interface Schema$GoogleBigtableAdminV2AuthorizedViewSubsetView {
+    /**
+     * Map from column family name to the columns in this family to be included in the AuthorizedView.
+     */
+    familySubsets?: {
+      [key: string]: Schema$GoogleBigtableAdminV2AuthorizedViewFamilySubsets;
+    } | null;
+    /**
+     * Row prefixes to be included in the AuthorizedView. To provide access to all rows, include the empty string as a prefix ("").
+     */
+    rowPrefixes?: string[] | null;
+  }
+  /**
+   * A value that combines incremental updates into a summarized value. Data is never directly written or read using type `Aggregate`. Writes will provide either the `input_type` or `state_type`, and reads will always return the `state_type` .
+   */
+  export interface Schema$GoogleBigtableAdminV2TypeAggregate {
+    /**
+     * Type of the inputs that are accumulated by this `Aggregate`, which must specify a full encoding. Use `AddInput` mutations to accumulate new inputs.
+     */
+    inputType?: Schema$Type;
+    /**
+     * Output only. Type that holds the internal accumulator state for the `Aggregate`. This is a function of the `input_type` and `aggregator` chosen, and will always specify a full encoding.
+     */
+    stateType?: Schema$Type;
+    /**
+     * Sum aggregator.
+     */
+    sum?: Schema$GoogleBigtableAdminV2TypeAggregateSum;
+  }
+  /**
+   * Computes the sum of the input values. Allowed input: `Int64` State: same as input
+   */
+  export interface Schema$GoogleBigtableAdminV2TypeAggregateSum {}
+  /**
+   * Bytes Values of type `Bytes` are stored in `Value.bytes_value`.
+   */
+  export interface Schema$GoogleBigtableAdminV2TypeBytes {
+    /**
+     * The encoding to use when converting to/from lower level types.
+     */
+    encoding?: Schema$GoogleBigtableAdminV2TypeBytesEncoding;
+  }
+  /**
+   * Rules used to convert to/from lower level types.
+   */
+  export interface Schema$GoogleBigtableAdminV2TypeBytesEncoding {
+    /**
+     * Use `Raw` encoding.
+     */
+    raw?: Schema$GoogleBigtableAdminV2TypeBytesEncodingRaw;
+  }
+  /**
+   * Leaves the value "as-is" * Natural sort? Yes * Self-delimiting? No * Compatibility? N/A
+   */
+  export interface Schema$GoogleBigtableAdminV2TypeBytesEncodingRaw {}
+  /**
+   * Int64 Values of type `Int64` are stored in `Value.int_value`.
+   */
+  export interface Schema$GoogleBigtableAdminV2TypeInt64 {
+    /**
+     * The encoding to use when converting to/from lower level types.
+     */
+    encoding?: Schema$GoogleBigtableAdminV2TypeInt64Encoding;
+  }
+  /**
+   * Rules used to convert to/from lower level types.
+   */
+  export interface Schema$GoogleBigtableAdminV2TypeInt64Encoding {
+    /**
+     * Use `BigEndianBytes` encoding.
+     */
+    bigEndianBytes?: Schema$GoogleBigtableAdminV2TypeInt64EncodingBigEndianBytes;
+  }
+  /**
+   * Encodes the value as an 8-byte big endian twos complement `Bytes` value. * Natural sort? No (positive values only) * Self-delimiting? Yes * Compatibility? - BigQuery Federation `BINARY` encoding - HBase `Bytes.toBytes` - Java `ByteBuffer.putLong()` with `ByteOrder.BIG_ENDIAN`
+   */
+  export interface Schema$GoogleBigtableAdminV2TypeInt64EncodingBigEndianBytes {
+    /**
+     * The underlying `Bytes` type, which may be able to encode further.
+     */
+    bytesType?: Schema$GoogleBigtableAdminV2TypeBytes;
+  }
+  /**
    * A tablet is a defined by a start and end key and is explained in https://cloud.google.com/bigtable/docs/overview#architecture and https://cloud.google.com/bigtable/docs/performance#optimization. A Hot tablet is a tablet that exhibits high average cpu usage during the time interval from start time to end time.
    */
   export interface Schema$HotTablet {
@@ -772,6 +967,19 @@ export namespace bigtableadmin_v2 {
     failedLocations?: string[] | null;
     /**
      * Set if not all app profiles could be returned in a single response. Pass this value to `page_token` in another request to get the next page of results.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
+   * Response message for google.bigtable.admin.v2.BigtableTableAdmin.ListAuthorizedViews
+   */
+  export interface Schema$ListAuthorizedViewsResponse {
+    /**
+     * The AuthorizedViews present in the requested table.
+     */
+    authorizedViews?: Schema$AuthorizedView[];
+    /**
+     * Set if not all tables could be returned in a single response. Pass this value to `page_token` in another request to get the next page of results.
      */
     nextPageToken?: string | null;
   }
@@ -919,6 +1127,10 @@ export namespace bigtableadmin_v2 {
      * Update an existing column family to the specified schema, or fail if no column family exists with the given ID.
      */
     update?: Schema$ColumnFamily;
+    /**
+     * Optional. A mask specifying which fields (e.g. `gc_rule`) in the `update` mod should be updated, ignored for other modification types. If unset or empty, we treat it as updating `gc_rule` to be backward compatible.
+     */
+    updateMask?: string | null;
   }
   /**
    * Request message for google.bigtable.admin.v2.BigtableTableAdmin.ModifyColumnFamilies
@@ -1154,6 +1366,10 @@ export namespace bigtableadmin_v2 {
     priority?: string | null;
   }
   /**
+   * Checks that all writes before the consistency token was generated are replicated in every cluster and readable.
+   */
+  export interface Schema$StandardReadRemoteWrites {}
+  /**
    * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
    */
   export interface Schema$Status {
@@ -1174,6 +1390,10 @@ export namespace bigtableadmin_v2 {
    * A collection of user data indexed by row, column, and timestamp. Each table is served using the resources of its parent cluster.
    */
   export interface Schema$Table {
+    /**
+     * If specified, automated backups are enabled for this table. Otherwise, automated backups are disabled.
+     */
+    automatedBackupPolicy?: Schema$AutomatedBackupPolicy;
     /**
      * If specified, enable the change stream on this table. Otherwise, the change stream is disabled and the change stream is not retained.
      */
@@ -1261,6 +1481,23 @@ export namespace bigtableadmin_v2 {
     permissions?: string[] | null;
   }
   /**
+   * `Type` represents the type of data that is written to, read from, or stored in Bigtable. It is heavily based on the GoogleSQL standard to help maintain familiarity and consistency across products and features. For compatibility with Bigtable's existing untyped APIs, each `Type` includes an `Encoding` which describes how to convert to/from the underlying data. This might involve composing a series of steps into an "encoding chain," for example to convert from INT64 -\> STRING -\> raw bytes. In most cases, a "link" in the encoding chain will be based an on existing GoogleSQL conversion function like `CAST`. Each link in the encoding chain also defines the following properties: * Natural sort: Does the encoded value sort consistently with the original typed value? Note that Bigtable will always sort data based on the raw encoded value, *not* the decoded type. - Example: STRING values sort in the same order as their UTF-8 encodings. - Counterexample: Encoding INT64 to a fixed-width STRING does *not* preserve sort order when dealing with negative numbers. INT64(1) \> INT64(-1), but STRING("-00001") \> STRING("00001). - The overall encoding chain sorts naturally if *every* link does. * Self-delimiting: If we concatenate two encoded values, can we always tell where the first one ends and the second one begins? - Example: If we encode INT64s to fixed-width STRINGs, the first value will always contain exactly N digits, possibly preceded by a sign. - Counterexample: If we concatenate two UTF-8 encoded STRINGs, we have no way to tell where the first one ends. - The overall encoding chain is self-delimiting if *any* link is. * Compatibility: Which other systems have matching encoding schemes? For example, does this encoding have a GoogleSQL equivalent? HBase? Java?
+   */
+  export interface Schema$Type {
+    /**
+     * Aggregate
+     */
+    aggregateType?: Schema$GoogleBigtableAdminV2TypeAggregate;
+    /**
+     * Bytes
+     */
+    bytesType?: Schema$GoogleBigtableAdminV2TypeBytes;
+    /**
+     * Int64
+     */
+    int64Type?: Schema$GoogleBigtableAdminV2TypeInt64;
+  }
+  /**
    * Metadata type for the operation returned by google.bigtable.admin.v2.BigtableTableAdmin.UndeleteTable.
    */
   export interface Schema$UndeleteTableMetadata {
@@ -1294,6 +1531,40 @@ export namespace bigtableadmin_v2 {
    * The metadata for the Operation returned by UpdateAppProfile.
    */
   export interface Schema$UpdateAppProfileMetadata {}
+  /**
+   * Metadata for the google.longrunning.Operation returned by UpdateAuthorizedView.
+   */
+  export interface Schema$UpdateAuthorizedViewMetadata {
+    /**
+     * The time at which the operation failed or was completed successfully.
+     */
+    finishTime?: string | null;
+    /**
+     * The request that prompted the initiation of this UpdateAuthorizedView operation.
+     */
+    originalRequest?: Schema$UpdateAuthorizedViewRequest;
+    /**
+     * The time at which the original request was received.
+     */
+    requestTime?: string | null;
+  }
+  /**
+   * The request for UpdateAuthorizedView.
+   */
+  export interface Schema$UpdateAuthorizedViewRequest {
+    /**
+     * Required. The AuthorizedView to update. The `name` in `authorized_view` is used to identify the AuthorizedView. AuthorizedView name must in this format projects//instances//tables//authorizedViews/
+     */
+    authorizedView?: Schema$AuthorizedView;
+    /**
+     * Optional. If true, ignore the safety checks when updating the AuthorizedView.
+     */
+    ignoreWarnings?: boolean | null;
+    /**
+     * Optional. The list of fields to update. A mask specifying which fields in the AuthorizedView resource should be updated. This mask is relative to the AuthorizedView resource, not to the request message. A field will be overwritten if it is in the mask. If empty, all fields set in the request will be overwritten. A special value `*` means to overwrite all fields (including fields not set in the request).
+     */
+    updateMask?: string | null;
+  }
   /**
    * The metadata for the Operation returned by UpdateCluster.
    */
@@ -4676,8 +4947,11 @@ export namespace bigtableadmin_v2 {
 
   export class Resource$Projects$Instances$Tables {
     context: APIRequestContext;
+    authorizedViews: Resource$Projects$Instances$Tables$Authorizedviews;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.authorizedViews =
+        new Resource$Projects$Instances$Tables$Authorizedviews(this.context);
     }
 
     /**
@@ -6106,6 +6380,534 @@ export namespace bigtableadmin_v2 {
      * Request body metadata
      */
     requestBody?: Schema$UndeleteTableRequest;
+  }
+
+  export class Resource$Projects$Instances$Tables$Authorizedviews {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Creates a new AuthorizedView in a table.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Instances$Tables$Authorizedviews$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Projects$Instances$Tables$Authorizedviews$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    create(
+      params: Params$Resource$Projects$Instances$Tables$Authorizedviews$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Instances$Tables$Authorizedviews$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Instances$Tables$Authorizedviews$Create,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$Operation>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Instances$Tables$Authorizedviews$Create
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Instances$Tables$Authorizedviews$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Instances$Tables$Authorizedviews$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://bigtableadmin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+parent}/authorizedViews').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Permanently deletes a specified AuthorizedView.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Instances$Tables$Authorizedviews$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Projects$Instances$Tables$Authorizedviews$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Projects$Instances$Tables$Authorizedviews$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Instances$Tables$Authorizedviews$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Instances$Tables$Authorizedviews$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Instances$Tables$Authorizedviews$Delete
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Instances$Tables$Authorizedviews$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Instances$Tables$Authorizedviews$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://bigtableadmin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+
+    /**
+     * Gets information from a specified AuthorizedView.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Instances$Tables$Authorizedviews$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Instances$Tables$Authorizedviews$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AuthorizedView>;
+    get(
+      params: Params$Resource$Projects$Instances$Tables$Authorizedviews$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Instances$Tables$Authorizedviews$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$AuthorizedView>,
+      callback: BodyResponseCallback<Schema$AuthorizedView>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Instances$Tables$Authorizedviews$Get,
+      callback: BodyResponseCallback<Schema$AuthorizedView>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$AuthorizedView>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Instances$Tables$Authorizedviews$Get
+        | BodyResponseCallback<Schema$AuthorizedView>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AuthorizedView>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AuthorizedView>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$AuthorizedView> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Instances$Tables$Authorizedviews$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Instances$Tables$Authorizedviews$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://bigtableadmin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$AuthorizedView>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$AuthorizedView>(parameters);
+      }
+    }
+
+    /**
+     * Lists all AuthorizedViews from a specific table.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Instances$Tables$Authorizedviews$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Instances$Tables$Authorizedviews$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListAuthorizedViewsResponse>;
+    list(
+      params: Params$Resource$Projects$Instances$Tables$Authorizedviews$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Instances$Tables$Authorizedviews$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListAuthorizedViewsResponse>,
+      callback: BodyResponseCallback<Schema$ListAuthorizedViewsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Instances$Tables$Authorizedviews$List,
+      callback: BodyResponseCallback<Schema$ListAuthorizedViewsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListAuthorizedViewsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Instances$Tables$Authorizedviews$List
+        | BodyResponseCallback<Schema$ListAuthorizedViewsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListAuthorizedViewsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListAuthorizedViewsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListAuthorizedViewsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Instances$Tables$Authorizedviews$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Instances$Tables$Authorizedviews$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://bigtableadmin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+parent}/authorizedViews').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListAuthorizedViewsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListAuthorizedViewsResponse>(parameters);
+      }
+    }
+
+    /**
+     * Updates an AuthorizedView in a table.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Instances$Tables$Authorizedviews$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Projects$Instances$Tables$Authorizedviews$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    patch(
+      params: Params$Resource$Projects$Instances$Tables$Authorizedviews$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Instances$Tables$Authorizedviews$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Instances$Tables$Authorizedviews$Patch,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$Operation>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Instances$Tables$Authorizedviews$Patch
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Instances$Tables$Authorizedviews$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Instances$Tables$Authorizedviews$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://bigtableadmin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Instances$Tables$Authorizedviews$Create
+    extends StandardParameters {
+    /**
+     * Required. The id of the AuthorizedView to create. This AuthorizedView must not already exist. The `authorized_view_id` appended to `parent` forms the full AuthorizedView name of the form `projects/{project\}/instances/{instance\}/tables/{table\}/authorizedView/{authorized_view\}`.
+     */
+    authorizedViewId?: string;
+    /**
+     * Required. This is the name of the table the AuthorizedView belongs to. Values are of the form `projects/{project\}/instances/{instance\}/tables/{table\}`.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$AuthorizedView;
+  }
+  export interface Params$Resource$Projects$Instances$Tables$Authorizedviews$Delete
+    extends StandardParameters {
+    /**
+     * Optional. The current etag of the AuthorizedView. If an etag is provided and does not match the current etag of the AuthorizedView, deletion will be blocked and an ABORTED error will be returned.
+     */
+    etag?: string;
+    /**
+     * Required. The unique name of the AuthorizedView to be deleted. Values are of the form `projects/{project\}/instances/{instance\}/tables/{table\}/authorizedViews/{authorized_view\}`.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Instances$Tables$Authorizedviews$Get
+    extends StandardParameters {
+    /**
+     * Required. The unique name of the requested AuthorizedView. Values are of the form `projects/{project\}/instances/{instance\}/tables/{table\}/authorizedViews/{authorized_view\}`.
+     */
+    name?: string;
+    /**
+     * Optional. The resource_view to be applied to the returned AuthorizedView's fields. Default to BASIC.
+     */
+    view?: string;
+  }
+  export interface Params$Resource$Projects$Instances$Tables$Authorizedviews$List
+    extends StandardParameters {
+    /**
+     * Optional. Maximum number of results per page. A page_size of zero lets the server choose the number of items to return. A page_size which is strictly positive will return at most that many items. A negative page_size will cause an error. Following the first request, subsequent paginated calls are not required to pass a page_size. If a page_size is set in subsequent calls, it must match the page_size given in the first request.
+     */
+    pageSize?: number;
+    /**
+     * Optional. The value of `next_page_token` returned by a previous call.
+     */
+    pageToken?: string;
+    /**
+     * Required. The unique name of the table for which AuthorizedViews should be listed. Values are of the form `projects/{project\}/instances/{instance\}/tables/{table\}`.
+     */
+    parent?: string;
+    /**
+     * Optional. The resource_view to be applied to the returned views' fields. Default to NAME_ONLY.
+     */
+    view?: string;
+  }
+  export interface Params$Resource$Projects$Instances$Tables$Authorizedviews$Patch
+    extends StandardParameters {
+    /**
+     * Optional. If true, ignore the safety checks when updating the AuthorizedView.
+     */
+    ignoreWarnings?: boolean;
+    /**
+     * Identifier. The name of this AuthorizedView. Values are of the form `projects/{project\}/instances/{instance\}/tables/{table\}/authorizedViews/{authorized_view\}`
+     */
+    name?: string;
+    /**
+     * Optional. The list of fields to update. A mask specifying which fields in the AuthorizedView resource should be updated. This mask is relative to the AuthorizedView resource, not to the request message. A field will be overwritten if it is in the mask. If empty, all fields set in the request will be overwritten. A special value `*` means to overwrite all fields (including fields not set in the request).
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$AuthorizedView;
   }
 
   export class Resource$Projects$Locations {

@@ -319,7 +319,7 @@
       }
     }
   },
-  "revision": "20230703",
+  "revision": "20240305",
   "rootUrl": "https://doubleclickbidmanager.googleapis.com/",
   "schemas": {
     "ChannelGrouping": {
@@ -511,7 +511,7 @@
         },
         "pathQueryOptions": {
           "$ref": "PathQueryOptions",
-          "description": "Options that contain Path Filters and Custom Channel Groupings."
+          "description": "Options that contain Path Filters and Custom Channel Groupings. This field is deprecated and will sunset on **May 1, 2024**. After sunset, requests using this field will return an error."
         }
       },
       "type": "object"
@@ -586,8 +586,8 @@
             "YouTube Programmatic Guaranteed report.",
             "Reach report.",
             "Unique Reach Audience report.",
-            "Full Path report.",
-            "Path Attribution report."
+            "Full Path report. This report type is deprecated and will sunset on **May 1, 2024**. After sunset, requests retrieving, creating, or running reports of this type will return an error.",
+            "Path Attribution report. This report type is deprecated and will sunset on **May 1, 2024**. After sunset, requests retrieving, creating, or running reports of this type will return an error."
           ],
           "type": "string"
         }

@@ -1821,7 +1821,7 @@
       }
     }
   },
-  "revision": "20240129",
+  "revision": "20240304",
   "rootUrl": "https://dns.googleapis.com/",
   "schemas": {
     "Change": {
@@ -2932,6 +2932,11 @@
         },
         "managedZonesPerNetwork": {
           "description": "Maximum allowed number of managed zones which can be attached to a network.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "nameserversPerDelegation": {
+          "description": "Maximum number of nameservers per delegation, meant to prevent abuse",
           "format": "int32",
           "type": "integer"
         },

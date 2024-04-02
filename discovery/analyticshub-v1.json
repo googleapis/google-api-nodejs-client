@@ -1022,7 +1022,7 @@
       }
     }
   },
-  "revision": "20240219",
+  "revision": "20240307",
   "rootUrl": "https://analyticshub.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -1080,6 +1080,13 @@
         "dataset": {
           "description": "Resource name of the dataset source for this listing. e.g. `projects/myproject/datasets/123`",
           "type": "string"
+        },
+        "selectedResources": {
+          "description": "Optional. Resources in this dataset that are selectively shared. If this field is empty, then the entire dataset (all resources) are shared. This field is only valid for data clean room exchanges.",
+          "items": {
+            "$ref": "SelectedResource"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -1675,6 +1682,17 @@
       "description": "Message for response when you revoke a subscription.",
       "id": "RevokeSubscriptionResponse",
       "properties": {},
+      "type": "object"
+    },
+    "SelectedResource": {
+      "description": "Resource in this dataset that are selectively shared.",
+      "id": "SelectedResource",
+      "properties": {
+        "table": {
+          "description": "Optional. Format: For table: `projects/{projectId}/datasets/{datasetId}/tables/{tableId}` Example:\"projects/test_project/datasets/test_dataset/tables/test_table\"",
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "SetIamPolicyRequest": {

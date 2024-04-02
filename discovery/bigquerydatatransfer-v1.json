@@ -21,6 +21,33 @@
   "description": "Schedule queries or transfer external data from SaaS applications to Google BigQuery on a regular basis.",
   "discoveryVersion": "v1",
   "documentationLink": "https://cloud.google.com/bigquery-transfer/",
+  "endpoints": [
+    {
+      "endpointUrl": "https://bigquerydatatransfer.me-central2.rep.googleapis.com/",
+      "location": "me-central2",
+      "description": "Regional Endpoint"
+    },
+    {
+      "endpointUrl": "https://bigquerydatatransfer.europe-west3.rep.googleapis.com/",
+      "location": "europe-west3",
+      "description": "Regional Endpoint"
+    },
+    {
+      "endpointUrl": "https://bigquerydatatransfer.europe-west9.rep.googleapis.com/",
+      "location": "europe-west9",
+      "description": "Regional Endpoint"
+    },
+    {
+      "endpointUrl": "https://bigquerydatatransfer.us-east4.rep.googleapis.com/",
+      "location": "us-east4",
+      "description": "Regional Endpoint"
+    },
+    {
+      "endpointUrl": "https://bigquerydatatransfer.us-west1.rep.googleapis.com/",
+      "location": "us-west1",
+      "description": "Regional Endpoint"
+    }
+  ],
   "fullyEncodeReservedExpansion": true,
   "icons": {
     "x16": "http://www.google.com/images/icons/product/search-16.gif",
@@ -1371,7 +1398,7 @@
       }
     }
   },
-  "revision": "20240202",
+  "revision": "20240306",
   "rootUrl": "https://bigquerydatatransfer.googleapis.com/",
   "schemas": {
     "CheckValidCredsRequest": {

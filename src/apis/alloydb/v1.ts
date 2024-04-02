@@ -125,6 +125,15 @@ export namespace alloydb_v1 {
   }
 
   /**
+   * AuthorizedNetwork contains metadata for an authorized network.
+   */
+  export interface Schema$AuthorizedNetwork {
+    /**
+     * CIDR range for one authorzied network of the instance.
+     */
+    cidrRange?: string | null;
+  }
+  /**
    * Message describing the user-specified automated backup policy. All fields in the automated backup policy are optional. Defaults for each field are provided if they are not set.
    */
   export interface Schema$AutomatedBackupPolicy {
@@ -370,7 +379,7 @@ export namespace alloydb_v1 {
      */
     name?: string | null;
     /**
-     * Required. The resource link for the VPC network in which cluster resources are created and from which they are accessible via Private IP. The network must belong to the same project as the cluster. It is specified in the form: "projects/{project\}/global/networks/{network_id\}". This is required to create a cluster. Deprecated, use network_config.network instead.
+     * Required. The resource link for the VPC network in which cluster resources are created and from which they are accessible via Private IP. The network must belong to the same project as the cluster. It is specified in the form: `projects/{project\}/global/networks/{network_id\}`. This is required to create a cluster. Deprecated, use network_config.network instead.
      */
     network?: string | null;
     networkConfig?: Schema$NetworkConfig;
@@ -423,6 +432,10 @@ export namespace alloydb_v1 {
      * The name of the ConnectionInfo singleton resource, e.g.: projects/{project\}/locations/{location\}/clusters/x/instances/x/connectionInfo This field currently has no semantic meaning.
      */
     name?: string | null;
+    /**
+     * Output only. The public IP addresses for the Instance. This is available ONLY when enable_public_ip is set. This is the connection endpoint for an end-user application.
+     */
+    publicIpAddress?: string | null;
   }
   /**
    * ContinuousBackupConfig describes the continuous backups recovery configurations of a cluster.
@@ -513,40 +526,6 @@ export namespace alloydb_v1 {
      * Optional. If set, performs request validation (e.g. permission checks and any other type of validation), but do not actually execute the failover.
      */
     validateOnly?: boolean | null;
-  }
-  /**
-   * Message for requests to generate a client certificate signed by the Cluster CA.
-   */
-  export interface Schema$GenerateClientCertificateRequest {
-    /**
-     * Optional. An optional hint to the endpoint to generate the client certificate with the requested duration. The duration can be from 1 hour to 24 hours. The endpoint may or may not honor the hint. If the hint is left unspecified or is not honored, then the endpoint will pick an appropriate default duration.
-     */
-    certDuration?: string | null;
-    /**
-     * Optional. The public key from the client.
-     */
-    publicKey?: string | null;
-    /**
-     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
-     */
-    requestId?: string | null;
-    /**
-     * Optional. An optional hint to the endpoint to generate a client ceritificate that can be used by AlloyDB connectors to exchange additional metadata with the server after TLS handshake.
-     */
-    useMetadataExchange?: boolean | null;
-  }
-  /**
-   * Message returned by a GenerateClientCertificate operation.
-   */
-  export interface Schema$GenerateClientCertificateResponse {
-    /**
-     * Optional. The pem-encoded cluster ca X.509 certificate.
-     */
-    caCert?: string | null;
-    /**
-     * Output only. The pem-encoded chain that may be used to verify the X.509 certificate. Expected to be in issuer-to-root order according to RFC 5246.
-     */
-    pemCertificateChain?: string[] | null;
   }
   /**
    * The response message for Locations.ListLocations.
@@ -685,9 +664,17 @@ export namespace alloydb_v1 {
      */
     name?: string | null;
     /**
+     * Optional. Instance level network configuration.
+     */
+    networkConfig?: Schema$InstanceNetworkConfig;
+    /**
      * Output only. List of available read-only VMs in this instance, including the standby for a PRIMARY instance.
      */
     nodes?: Schema$Node[];
+    /**
+     * Output only. The public IP addresses for the Instance. This is available ONLY when enable_public_ip is set. This is the connection endpoint for an end-user application.
+     */
+    publicIpAddress?: string | null;
     /**
      * Configuration for query insights.
      */
@@ -720,6 +707,19 @@ export namespace alloydb_v1 {
      * Output only. This is set for the read-write VM of the PRIMARY instance only.
      */
     writableNode?: Schema$Node;
+  }
+  /**
+   * Metadata related to instance level network configuration.
+   */
+  export interface Schema$InstanceNetworkConfig {
+    /**
+     * Optional. A list of external network authorized to access this instance.
+     */
+    authorizedExternalNetworks?: Schema$AuthorizedNetwork[];
+    /**
+     * Optional. Enabling public ip for the instance.
+     */
+    enablePublicIp?: boolean | null;
   }
   /**
    * Restrictions on INTEGER type values.
@@ -863,7 +863,7 @@ export namespace alloydb_v1 {
      */
     allocatedIpRange?: string | null;
     /**
-     * Optional. The resource link for the VPC network in which cluster resources are created and from which they are accessible via Private IP. The network must belong to the same project as the cluster. It is specified in the form: "projects/{project_number\}/global/networks/{network_id\}". This is required to create a cluster.
+     * Optional. The resource link for the VPC network in which cluster resources are created and from which they are accessible via Private IP. The network must belong to the same project as the cluster. It is specified in the form: `projects/{project_number\}/global/networks/{network_id\}`. This is required to create a cluster.
      */
     network?: string | null;
   }
@@ -1336,7 +1336,7 @@ export namespace alloydb_v1 {
      */
     location?: string | null;
     /**
-     * Identifier for this resource's immediate parent/primary resource if the current resource is a replica or derived form of another Database resource. Else it would be NULL. REQUIRED if the immediate parent exists when first time resource is getting ingested
+     * Identifier for this resource's immediate parent/primary resource if the current resource is a replica or derived form of another Database resource. Else it would be NULL. REQUIRED if the immediate parent exists when first time resource is getting ingested, otherwise optional.
      */
     primaryResourceId?: Schema$StorageDatabasecenterPartnerapiV1mainDatabaseResourceId;
     /**
@@ -1359,13 +1359,17 @@ export namespace alloydb_v1 {
      * User-provided labels, represented as a dictionary where each label is a single key value pair.
      */
     userLabels?: {[key: string]: string} | null;
+    /**
+     * User-provided labels associated with the resource
+     */
+    userLabelSet?: Schema$StorageDatabasecenterPartnerapiV1mainUserLabels;
   }
   /**
    * Common model for database resource recommendation signal data.
    */
   export interface Schema$StorageDatabasecenterPartnerapiV1mainDatabaseResourceRecommendationSignalData {
     /**
-     * Required. Any other additional metadata specific to recommendation
+     * Optional. Any other additional metadata specific to recommendation
      */
     additionalMetadata?: {[key: string]: any} | null;
     /**
@@ -1418,6 +1422,7 @@ export namespace alloydb_v1 {
      * Identifies the specific error that occurred. REQUIRED
      */
     code?: string | null;
+    errorType?: string | null;
     /**
      * Additional information about the error encountered. REQUIRED
      */
@@ -1430,6 +1435,12 @@ export namespace alloydb_v1 {
      */
     retentionUnit?: string | null;
     timeBasedRetention?: string | null;
+  }
+  /**
+   * Message type for storing user labels. User labels are used to tag App Engine resources, allowing users to search for resources matching a set of labels and to aggregate usage data by labels.
+   */
+  export interface Schema$StorageDatabasecenterPartnerapiV1mainUserLabels {
+    labels?: {[key: string]: string} | null;
   }
   /**
    * Product specification for Condor resources.
@@ -2599,103 +2610,6 @@ export namespace alloydb_v1 {
     }
 
     /**
-     * Generate a client certificate signed by a Cluster CA. The sole purpose of this endpoint is to support AlloyDB connectors and the Auth Proxy client. The endpoint's behavior is subject to change without notice, so do not rely on its behavior remaining constant. Future changes will not break AlloyDB connectors or the Auth Proxy client.
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    generateClientCertificate(
-      params: Params$Resource$Projects$Locations$Clusters$Generateclientcertificate,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    generateClientCertificate(
-      params?: Params$Resource$Projects$Locations$Clusters$Generateclientcertificate,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$GenerateClientCertificateResponse>;
-    generateClientCertificate(
-      params: Params$Resource$Projects$Locations$Clusters$Generateclientcertificate,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    generateClientCertificate(
-      params: Params$Resource$Projects$Locations$Clusters$Generateclientcertificate,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GenerateClientCertificateResponse>,
-      callback: BodyResponseCallback<Schema$GenerateClientCertificateResponse>
-    ): void;
-    generateClientCertificate(
-      params: Params$Resource$Projects$Locations$Clusters$Generateclientcertificate,
-      callback: BodyResponseCallback<Schema$GenerateClientCertificateResponse>
-    ): void;
-    generateClientCertificate(
-      callback: BodyResponseCallback<Schema$GenerateClientCertificateResponse>
-    ): void;
-    generateClientCertificate(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Clusters$Generateclientcertificate
-        | BodyResponseCallback<Schema$GenerateClientCertificateResponse>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GenerateClientCertificateResponse>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GenerateClientCertificateResponse>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$GenerateClientCertificateResponse>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Clusters$Generateclientcertificate;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Projects$Locations$Clusters$Generateclientcertificate;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://alloydb.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+parent}:generateClientCertificate').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'POST',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['parent'],
-        pathParams: ['parent'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GenerateClientCertificateResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GenerateClientCertificateResponse>(
-          parameters
-        );
-      }
-    }
-
-    /**
      * Gets details of a single Cluster.
      *
      * @param params - Parameters for request
@@ -3200,18 +3114,6 @@ export namespace alloydb_v1 {
      * Optional. If set, performs request validation (e.g. permission checks and any other type of validation), but do not actually execute the delete.
      */
     validateOnly?: boolean;
-  }
-  export interface Params$Resource$Projects$Locations$Clusters$Generateclientcertificate
-    extends StandardParameters {
-    /**
-     * Required. The name of the parent resource. The required format is: * projects/{project\}/locations/{location\}/clusters/{cluster\}
-     */
-    parent?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$GenerateClientCertificateRequest;
   }
   export interface Params$Resource$Projects$Locations$Clusters$Get
     extends StandardParameters {

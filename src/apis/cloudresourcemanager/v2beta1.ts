@@ -322,6 +322,10 @@ export namespace cloudresourcemanager_v2beta1 {
      * Required. The Folder's parent's resource name. Updates to the folder's parent must be performed via MoveFolder.
      */
     parent?: string | null;
+    /**
+     * Optional. Input only. Immutable. Tag keys/values directly bound to this folder. Each item in the map must be expressed as " : ". For example: "123/environment" : "production", "123/costCenter" : "marketing" Note: Currently this field is in Preview.
+     */
+    tags?: {[key: string]: string} | null;
   }
   /**
    * Metadata describing a long running folder operation

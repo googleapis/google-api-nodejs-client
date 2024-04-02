@@ -448,6 +448,10 @@ export namespace secretmanager_v1 {
      */
     createTime?: string | null;
     /**
+     * Optional. The customer-managed encryption configuration of the Regionalised Secrets. If no configuration is provided, Google-managed default encryption is used. Updates to the Secret encryption configuration only apply to SecretVersions added afterwards. They do not apply retroactively to existing SecretVersions.
+     */
+    customerManagedEncryption?: Schema$CustomerManagedEncryption;
+    /**
      * Optional. Etag of the currently stored Secret.
      */
     etag?: string | null;
@@ -483,6 +487,10 @@ export namespace secretmanager_v1 {
      * Optional. Mapping from version alias to version name. A version alias is a string with a maximum length of 63 characters and can contain uppercase and lowercase letters, numerals, and the hyphen (`-`) and underscore ('_') characters. An alias string must start with a letter and cannot be the string 'latest' or 'NEW'. No more than 50 aliases can be assigned to a given secret. Version-Alias pairs will be viewable via GetSecret and modifiable via UpdateSecret. Access by alias is only be supported on GetSecretVersion and AccessSecretVersion.
      */
     versionAliases?: {[key: string]: string} | null;
+    /**
+     * Optional. Secret Version TTL after destruction request This is a part of the Delayed secret version destroy feature. For secret with TTL\>0, version destruction doesn't happen immediately on calling destroy instead the version goes to a disabled state and destruction happens after the TTL expires.
+     */
+    versionDestroyTtl?: string | null;
   }
   /**
    * A secret payload resource in the Secret Manager API. This contains the sensitive secret payload that is associated with a SecretVersion.
@@ -510,6 +518,10 @@ export namespace secretmanager_v1 {
      */
     createTime?: string | null;
     /**
+     * Output only. The customer-managed encryption status of the SecretVersion. Only populated if customer-managed encryption is used and Secret is a Regionalised Secret.
+     */
+    customerManagedEncryption?: Schema$CustomerManagedEncryptionStatus;
+    /**
      * Output only. The time this SecretVersion was destroyed. Only present if state is DESTROYED.
      */
     destroyTime?: string | null;
@@ -525,6 +537,10 @@ export namespace secretmanager_v1 {
      * The replication status of the SecretVersion.
      */
     replicationStatus?: Schema$ReplicationStatus;
+    /**
+     * Optional. Output only. Scheduled destroy time for secret version. This is a part of the Delayed secret version destroy feature. For a Secret with a valid version destroy TTL, when a secert version is destroyed, version is moved to disabled state and it is scheduled for destruction Version is destroyed only after the scheduled_destroy_time.
+     */
+    scheduledDestroyTime?: string | null;
     /**
      * Output only. The current state of the SecretVersion.
      */

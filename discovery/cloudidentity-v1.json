@@ -1990,7 +1990,7 @@
       }
     }
   },
-  "revision": "20240206",
+  "revision": "20240312",
   "rootUrl": "https://cloudidentity.googleapis.com/",
   "schemas": {
     "AddIdpCredentialOperationMetadata": {
@@ -2324,6 +2324,128 @@
       },
       "type": "object"
     },
+    "GoogleAppsCloudidentityDevicesV1BrowserAttributes": {
+      "description": "Contains information about browser profiles reported by the [Endpoint Verification extension](https://chromewebstore.google.com/detail/endpoint-verification/callobklhcbilhphinckomhgkigmfocg?pli=1).",
+      "id": "GoogleAppsCloudidentityDevicesV1BrowserAttributes",
+      "properties": {
+        "chromeBrowserInfo": {
+          "$ref": "GoogleAppsCloudidentityDevicesV1BrowserInfo",
+          "description": "Represents the current state of the [Chrome browser attributes](https://cloud.google.com/access-context-manager/docs/browser-attributes) sent by the [Endpoint Verification extension](https://chromewebstore.google.com/detail/endpoint-verification/callobklhcbilhphinckomhgkigmfocg?pli=1)."
+        },
+        "chromeProfileId": {
+          "description": "Chrome profile ID that is exposed by the Chrome API. It is unique for each device.",
+          "type": "string"
+        },
+        "lastProfileSyncTime": {
+          "description": "Timestamp in milliseconds since Epoch when the profile/gcm id was last synced.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAppsCloudidentityDevicesV1BrowserInfo": {
+      "description": "Browser-specific fields reported by the [Endpoint Verification extension](https://chromewebstore.google.com/detail/endpoint-verification/callobklhcbilhphinckomhgkigmfocg?pli=1). LINT.IfChange",
+      "id": "GoogleAppsCloudidentityDevicesV1BrowserInfo",
+      "properties": {
+        "browserManagementState": {
+          "description": "Output only. Browser's management state.",
+          "enum": [
+            "UNSPECIFIED",
+            "UNMANAGED",
+            "MANAGED_BY_OTHER_DOMAIN",
+            "PROFILE_MANAGED",
+            "BROWSER_MANAGED"
+          ],
+          "enumDescriptions": [
+            "Management state is not specified.",
+            "Browser/Profile is not managed by any customer.",
+            "Browser/Profile is managed, but by some other customer.",
+            "Profile is managed by customer.",
+            "Browser is managed by customer."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "browserVersion": {
+          "description": "Version of the request initiating browser.",
+          "type": "string"
+        },
+        "isBuiltInDnsClientEnabled": {
+          "description": "Current state of [built-in DNS client](https://chromeenterprise.google/policies/#BuiltInDnsClientEnabled).",
+          "type": "boolean"
+        },
+        "isBulkDataEntryAnalysisEnabled": {
+          "description": "Current state of [bulk data analysis](https://chromeenterprise.google/policies/#OnBulkDataEntryEnterpriseConnector). Set to true if provider list from Chrome is non-empty.",
+          "type": "boolean"
+        },
+        "isChromeCleanupEnabled": {
+          "description": "Current state of [Chrome Cleanup](https://chromeenterprise.google/policies/#ChromeCleanupEnabled).",
+          "type": "boolean"
+        },
+        "isChromeRemoteDesktopAppBlocked": {
+          "description": "Current state of [Chrome Remote Desktop app](https://chromeenterprise.google/policies/#URLBlocklist).",
+          "type": "boolean"
+        },
+        "isFileDownloadAnalysisEnabled": {
+          "description": "Current state of [file download analysis](https://chromeenterprise.google/policies/#OnFileDownloadedEnterpriseConnector). Set to true if provider list from Chrome is non-empty.",
+          "type": "boolean"
+        },
+        "isFileUploadAnalysisEnabled": {
+          "description": "Current state of [file upload analysis](https://chromeenterprise.google/policies/#OnFileAttachedEnterpriseConnector). Set to true if provider list from Chrome is non-empty.",
+          "type": "boolean"
+        },
+        "isRealtimeUrlCheckEnabled": {
+          "description": "Current state of [real-time URL check](https://chromeenterprise.google/policies/#EnterpriseRealTimeUrlCheckMode). Set to true if provider list from Chrome is non-empty.",
+          "type": "boolean"
+        },
+        "isSecurityEventAnalysisEnabled": {
+          "description": "Current state of [security event analysis](https://chromeenterprise.google/policies/#OnSecurityEventEnterpriseConnector). Set to true if provider list from Chrome is non-empty.",
+          "type": "boolean"
+        },
+        "isSiteIsolationEnabled": {
+          "description": "Current state of [site isolation](https://chromeenterprise.google/policies/?policy=IsolateOrigins).",
+          "type": "boolean"
+        },
+        "isThirdPartyBlockingEnabled": {
+          "description": "Current state of [third-party blocking](https://chromeenterprise.google/policies/#ThirdPartyBlockingEnabled).",
+          "type": "boolean"
+        },
+        "passwordProtectionWarningTrigger": {
+          "description": "Current state of [password protection trigger](https://chromeenterprise.google/policies/#PasswordProtectionWarningTrigger).",
+          "enum": [
+            "PASSWORD_PROTECTION_TRIGGER_UNSPECIFIED",
+            "PROTECTION_OFF",
+            "PASSWORD_REUSE",
+            "PHISHING_REUSE"
+          ],
+          "enumDescriptions": [
+            "Password protection is not specified.",
+            "Password reuse is never detected.",
+            "Warning is shown when the user reuses their protected password on a non-allowed site.",
+            "Warning is shown when the user reuses their protected password on a phishing site."
+          ],
+          "type": "string"
+        },
+        "safeBrowsingProtectionLevel": {
+          "description": "Current state of [Safe Browsing protection level](https://chromeenterprise.google/policies/#SafeBrowsingProtectionLevel).",
+          "enum": [
+            "SAFE_BROWSING_LEVEL_UNSPECIFIED",
+            "DISABLED",
+            "STANDARD",
+            "ENHANCED"
+          ],
+          "enumDescriptions": [
+            "Browser protection level is not specified.",
+            "No protection against dangerous websites, downloads, and extensions.",
+            "Standard protection against websites, downloads, and extensions that are known to be dangerous.",
+            "Faster, proactive protection against dangerous websites, downloads, and extensions."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleAppsCloudidentityDevicesV1CancelWipeDeviceMetadata": {
       "description": "Metadata for CancelWipeDevice LRO.",
       "id": "GoogleAppsCloudidentityDevicesV1CancelWipeDeviceMetadata",
@@ -2376,6 +2498,83 @@
         "deviceUser": {
           "$ref": "GoogleAppsCloudidentityDevicesV1DeviceUser",
           "description": "Resultant DeviceUser object for the action."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAppsCloudidentityDevicesV1CertificateAttributes": {
+      "description": "Stores information about a certificate.",
+      "id": "GoogleAppsCloudidentityDevicesV1CertificateAttributes",
+      "properties": {
+        "certificateTemplate": {
+          "$ref": "GoogleAppsCloudidentityDevicesV1CertificateTemplate",
+          "description": "The X.509 extension for CertificateTemplate."
+        },
+        "fingerprint": {
+          "description": "The encoded certificate fingerprint.",
+          "type": "string"
+        },
+        "issuer": {
+          "description": "The name of the issuer of this certificate.",
+          "type": "string"
+        },
+        "serialNumber": {
+          "description": "Serial number of the certificate, Example: \"123456789\".",
+          "type": "string"
+        },
+        "subject": {
+          "description": "The subject name of this certificate.",
+          "type": "string"
+        },
+        "thumbprint": {
+          "description": "The certificate thumbprint.",
+          "type": "string"
+        },
+        "validationState": {
+          "description": "Output only. Validation state of this certificate.",
+          "enum": [
+            "CERTIFICATE_VALIDATION_STATE_UNSPECIFIED",
+            "VALIDATION_SUCCESSFUL",
+            "VALIDATION_FAILED"
+          ],
+          "enumDescriptions": [
+            "Default value.",
+            "Certificate validation was successful.",
+            "Certificate validation failed."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "validityExpirationTime": {
+          "description": "Certificate not valid at or after this timestamp.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "validityStartTime": {
+          "description": "Certificate not valid before this timestamp.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAppsCloudidentityDevicesV1CertificateTemplate": {
+      "description": "CertificateTemplate (v3 Extension in X.509).",
+      "id": "GoogleAppsCloudidentityDevicesV1CertificateTemplate",
+      "properties": {
+        "id": {
+          "description": "The template id of the template. Example: \"1.3.6.1.4.1.311.21.8.15608621.11768144.5720724.16068415.6889630.81.2472537.7784047\".",
+          "type": "string"
+        },
+        "majorVersion": {
+          "description": "The Major version of the template. Example: 100.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "minorVersion": {
+          "description": "The minor version of the template. Example: 12.",
+          "format": "int32",
+          "type": "integer"
         }
       },
       "type": "object"
@@ -2641,6 +2840,11 @@
           "readOnly": true,
           "type": "string"
         },
+        "endpointVerificationSpecificAttributes": {
+          "$ref": "GoogleAppsCloudidentityDevicesV1EndpointVerificationSpecificAttributes",
+          "description": "Output only. Attributes specific to [Endpoint Verification](https://cloud.google.com/endpoint-verification/docs/overview) devices.",
+          "readOnly": true
+        },
         "hostname": {
           "description": "Host name of the device.",
           "type": "string"
@@ -2851,6 +3055,35 @@
         "userEmail": {
           "description": "Email address of the user registered on the device.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAppsCloudidentityDevicesV1EndpointVerificationSpecificAttributes": {
+      "description": "Resource representing the [Endpoint Verification-specific attributes](https://cloud.google.com/endpoint-verification/docs/device-information) of a device.",
+      "id": "GoogleAppsCloudidentityDevicesV1EndpointVerificationSpecificAttributes",
+      "properties": {
+        "additionalSignals": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "Additional signals reported by Endpoint Verification. It includes the following attributes: 1. Non-configurable attributes: hotfixes, av_installed, av_enabled, windows_domain_name, is_os_native_firewall_enabled, and is_secure_boot_enabled. 2. [Configurable attributes](https://cloud.google.com/endpoint-verification/docs/collect-config-attributes): file, folder, and binary attributes; registry entries; and properties in a plist.",
+          "type": "object"
+        },
+        "browserAttributes": {
+          "description": "Details of browser profiles reported by Endpoint Verification.",
+          "items": {
+            "$ref": "GoogleAppsCloudidentityDevicesV1BrowserAttributes"
+          },
+          "type": "array"
+        },
+        "certificateAttributes": {
+          "description": "Details of certificates.",
+          "items": {
+            "$ref": "GoogleAppsCloudidentityDevicesV1CertificateAttributes"
+          },
+          "type": "array"
         }
       },
       "type": "object"

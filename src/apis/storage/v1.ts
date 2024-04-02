@@ -5611,6 +5611,10 @@ export namespace storage_v1 {
   export interface Params$Resource$Managedfolders$Delete
     extends StandardParameters {
     /**
+     * Allows the deletion of a managed folder even if it is not empty. A managed folder is empty if there are no objects or managed folders that it applies to. Callers must have storage.managedFolders.setIamPolicy permission.
+     */
+    allowNonEmpty?: boolean;
+    /**
      * Name of the bucket containing the managed folder.
      */
     bucket?: string;
@@ -7703,7 +7707,7 @@ export namespace storage_v1 {
           options
         ),
         params,
-        requiredParams: ['bucket', 'object'],
+        requiredParams: ['bucket', 'object', 'generation'],
         pathParams: ['bucket', 'object'],
         context: this.context,
       };
@@ -8599,11 +8603,6 @@ export namespace storage_v1 {
      * The project to be billed for this request. Required for Requester Pays buckets.
      */
     userProject?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$Object;
   }
   export interface Params$Resource$Objects$Rewrite extends StandardParameters {
     /**

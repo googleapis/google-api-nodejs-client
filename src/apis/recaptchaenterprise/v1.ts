@@ -612,7 +612,7 @@ export namespace recaptchaenterprise_v1 {
     webSettings?: Schema$GoogleCloudRecaptchaenterpriseV1WebKeySettings;
   }
   /**
-   * Response to request to list firewall policies belonging to a key.
+   * Response to request to list firewall policies belonging to a project.
    */
   export interface Schema$GoogleCloudRecaptchaenterpriseV1ListFirewallPoliciesResponse {
     /**

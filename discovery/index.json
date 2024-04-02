@@ -772,7 +772,7 @@
       "name": "batch",
       "version": "v1",
       "title": "Batch API",
-      "description": "An API to manage the running of batch resources on Google Cloud Platform.",
+      "description": "An API to manage the running of Batch resources on Google Cloud Platform.",
       "discoveryRestUrl": "https://batch.googleapis.com/$discovery/rest?version=v1",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
@@ -2207,6 +2207,21 @@
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
       },
       "documentationLink": "https://developers.google.com/data-portability",
+      "preferred": false
+    },
+    {
+      "kind": "discovery#directoryItem",
+      "id": "dataportability:v1",
+      "name": "dataportability",
+      "version": "v1",
+      "title": "Data Portability API",
+      "description": "The Data Portability API lets you build applications that request authorization from a user to move a copy of data from Google services into your application. This enables data portability and facilitates switching services.",
+      "discoveryRestUrl": "https://dataportability.googleapis.com/$discovery/rest?version=v1",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://developers.google.com/data-portability",
       "preferred": true
     },
     {
@@ -3263,21 +3278,6 @@
     },
     {
       "kind": "discovery#directoryItem",
-      "id": "gkehub:v1alpha2",
-      "name": "gkehub",
-      "version": "v1alpha2",
-      "title": "GKE Hub API",
-      "description": "",
-      "discoveryRestUrl": "https://gkehub.googleapis.com/$discovery/rest?version=v1alpha2",
-      "icons": {
-        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
-        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
-      },
-      "documentationLink": "https://cloud.google.com/anthos/multicluster-management/connect/registering-a-cluster",
-      "preferred": false
-    },
-    {
-      "kind": "discovery#directoryItem",
       "id": "gkehub:v2alpha",
       "name": "gkehub",
       "version": "v2alpha",
@@ -3934,6 +3934,21 @@
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
       },
       "documentationLink": "https://developers.google.com/manufacturers/",
+      "preferred": true
+    },
+    {
+      "kind": "discovery#directoryItem",
+      "id": "marketingplatformadmin:v1alpha",
+      "name": "marketingplatformadmin",
+      "version": "v1alpha",
+      "title": "Google Marketing Platform Admin API",
+      "description": "The Google Marketing Platform Admin API allows for programmatic access to the Google Marketing Platform configuration data. You can use the Google Marketing Platform Admin API to manage links between your Google Marketing Platform organization and Google Analytics accounts, set the service level of your GA4 properties.",
+      "discoveryRestUrl": "https://marketingplatformadmin.googleapis.com/$discovery/rest?version=v1alpha",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://developers.google.com/analytics/devguides/config/gmp/v1",
       "preferred": true
     },
     {
@@ -5289,6 +5304,21 @@
     },
     {
       "kind": "discovery#directoryItem",
+      "id": "secretmanager:v1beta2",
+      "name": "secretmanager",
+      "version": "v1beta2",
+      "title": "Secret Manager API",
+      "description": "Stores sensitive data such as API keys, passwords, and certificates. Provides convenience while improving security.",
+      "discoveryRestUrl": "https://secretmanager.googleapis.com/$discovery/rest?version=v1beta2",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://cloud.google.com/secret-manager/",
+      "preferred": false
+    },
+    {
+      "kind": "discovery#directoryItem",
       "id": "secretmanager:v1",
       "name": "secretmanager",
       "version": "v1",
@@ -5794,7 +5824,7 @@
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
       },
-      "documentationLink": "https://developers.google.com/cloud-test-lab/",
+      "documentationLink": "https://firebase.google.com/docs/test-lab/",
       "preferred": true
     },
     {

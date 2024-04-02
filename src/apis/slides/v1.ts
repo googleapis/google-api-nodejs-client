@@ -1120,6 +1120,10 @@ export namespace slides_v1 {
      */
     size?: Schema$Size;
     /**
+     * A Speaker Spotlight.
+     */
+    speakerSpotlight?: Schema$SpeakerSpotlight;
+    /**
      * A table page element.
      */
     table?: Schema$Table;
@@ -1868,6 +1872,28 @@ export namespace slides_v1 {
      * The color value of the solid fill.
      */
     color?: Schema$OpaqueColor;
+  }
+  /**
+   * A PageElement kind representing a Speaker Spotlight.
+   */
+  export interface Schema$SpeakerSpotlight {
+    /**
+     * The properties of the Speaker Spotlight.
+     */
+    speakerSpotlightProperties?: Schema$SpeakerSpotlightProperties;
+  }
+  /**
+   * The properties of the SpeakerSpotlight.
+   */
+  export interface Schema$SpeakerSpotlightProperties {
+    /**
+     * The outline of the Speaker Spotlight. If not set, it has no outline.
+     */
+    outline?: Schema$Outline;
+    /**
+     * The shadow of the Speaker Spotlight. If not set, it has no shadow.
+     */
+    shadow?: Schema$Shadow;
   }
   /**
    * The stretched picture fill. The page or page element is filled entirely with the specified picture. The picture is stretched to fit its container.

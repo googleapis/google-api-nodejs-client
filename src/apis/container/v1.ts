@@ -890,9 +890,17 @@ export namespace container_v1 {
      */
     desiredDnsConfig?: Schema$DNSConfig;
     /**
+     * Enable/Disable Cilium Clusterwide Network Policy for the cluster.
+     */
+    desiredEnableCiliumClusterwideNetworkPolicy?: boolean | null;
+    /**
      * Enable/Disable FQDN Network Policy for the cluster.
      */
     desiredEnableFqdnNetworkPolicy?: boolean | null;
+    /**
+     * Enable/Disable Multi-Networking for the cluster
+     */
+    desiredEnableMultiNetworking?: boolean | null;
     /**
      * Enable/Disable private endpoint for the cluster's master.
      */
@@ -1893,6 +1901,10 @@ export namespace container_v1 {
      */
     dnsConfig?: Schema$DNSConfig;
     /**
+     * Whether CiliumClusterwideNetworkPolicy is enabled on this cluster.
+     */
+    enableCiliumClusterwideNetworkPolicy?: boolean | null;
+    /**
      * Whether FQDN Network Policy is enabled on this cluster.
      */
     enableFqdnNetworkPolicy?: boolean | null;
@@ -2114,6 +2126,10 @@ export namespace container_v1 {
      * List of secondary boot disks attached to the nodes.
      */
     secondaryBootDisks?: Schema$SecondaryBootDisk[];
+    /**
+     * Secondary boot disk update strategy.
+     */
+    secondaryBootDiskUpdateStrategy?: Schema$SecondaryBootDiskUpdateStrategy;
     /**
      * The Google Cloud Platform Service Account to be used by the node VMs. Specify the email address of the Service Account; otherwise, if no Service Account is specified, the "default" service account is used.
      */
@@ -2809,6 +2825,10 @@ export namespace container_v1 {
      */
     mode?: string | null;
   }
+  /**
+   * SecondaryBootDiskUpdateStrategy is a placeholder which will be extended in the future to define different options for updating secondary boot disks.
+   */
+  export interface Schema$SecondaryBootDiskUpdateStrategy {}
   /**
    * SecurityBulletinEvent is a notification sent to customers when a security bulletin has been posted that they are vulnerable to.
    */

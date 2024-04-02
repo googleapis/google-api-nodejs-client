@@ -837,6 +837,10 @@ export namespace container_v1beta1 {
      */
     resourceUsageExportConfig?: Schema$ResourceUsageExportConfig;
     /**
+     * Secret CSI driver configuration.
+     */
+    secretManagerConfig?: Schema$SecretManagerConfig;
+    /**
      * Enable/Disable Security Posture API features for the cluster.
      */
     securityPostureConfig?: Schema$SecurityPostureConfig;
@@ -989,9 +993,17 @@ export namespace container_v1beta1 {
      */
     desiredDnsConfig?: Schema$DNSConfig;
     /**
+     * Enable/Disable Cilium Clusterwide Network Policy for the cluster.
+     */
+    desiredEnableCiliumClusterwideNetworkPolicy?: boolean | null;
+    /**
      * Enable/Disable FQDN Network Policy for the cluster.
      */
     desiredEnableFqdnNetworkPolicy?: boolean | null;
+    /**
+     * Enable/Disable Multi-Networking for the cluster
+     */
+    desiredEnableMultiNetworking?: boolean | null;
     /**
      * Enable/Disable private endpoint for the cluster's master.
      */
@@ -1132,6 +1144,10 @@ export namespace container_v1beta1 {
      * The desired configuration for exporting resource usage.
      */
     desiredResourceUsageExportConfig?: Schema$ResourceUsageExportConfig;
+    /**
+     * Enable/Disable Secret Manager Config.
+     */
+    desiredSecretManagerConfig?: Schema$SecretManagerConfig;
     /**
      * Enable/Disable Security Posture API features for the cluster.
      */
@@ -1306,9 +1322,21 @@ export namespace container_v1beta1 {
    */
   export interface Schema$DatabaseEncryption {
     /**
+     * Output only. The current state of etcd encryption.
+     */
+    currentState?: string | null;
+    /**
+     * Output only. Keys in use by the cluster for decrypting existing objects, in addition to the key in `key_name`. Each item is a CloudKMS key resource.
+     */
+    decryptionKeys?: string[] | null;
+    /**
      * Name of CloudKMS key to use for the encryption of secrets in etcd. Ex. projects/my-project/locations/global/keyRings/my-ring/cryptoKeys/my-key
      */
     keyName?: string | null;
+    /**
+     * Output only. Records errors seen during DatabaseEncryption update operations.
+     */
+    lastOperationErrors?: Schema$OperationError[];
     /**
      * The desired state of etcd encryption.
      */
@@ -2116,6 +2144,10 @@ export namespace container_v1beta1 {
      */
     dnsConfig?: Schema$DNSConfig;
     /**
+     * Whether CiliumClusterWideNetworkPolicy is enabled on this cluster.
+     */
+    enableCiliumClusterwideNetworkPolicy?: boolean | null;
+    /**
      * Whether FQDN Network Policy is enabled on this cluster.
      */
     enableFqdnNetworkPolicy?: boolean | null;
@@ -2345,6 +2377,14 @@ export namespace container_v1beta1 {
      * Sandbox configuration for this node.
      */
     sandboxConfig?: Schema$SandboxConfig;
+    /**
+     * List of secondary boot disks attached to the nodes.
+     */
+    secondaryBootDisks?: Schema$SecondaryBootDisk[];
+    /**
+     * Secondary boot disk update strategy.
+     */
+    secondaryBootDiskUpdateStrategy?: Schema$SecondaryBootDiskUpdateStrategy;
     /**
      * The Google Cloud Platform Service Account to be used by the node VMs. Specify the email address of the Service Account; otherwise, if no Service Account is specified, the "default" service account is used.
      */
@@ -2741,6 +2781,23 @@ export namespace container_v1beta1 {
     zone?: string | null;
   }
   /**
+   * OperationError records errors seen from CloudKMS keys encountered during updates to DatabaseEncryption configuration.
+   */
+  export interface Schema$OperationError {
+    /**
+     * Description of the error seen during the operation.
+     */
+    errorMessage?: string | null;
+    /**
+     * CloudKMS key resource that had the error.
+     */
+    keyName?: string | null;
+    /**
+     * Time when the CloudKMS error was seen.
+     */
+    timestamp?: string | null;
+  }
+  /**
    * Information about operation (or operation stage) progress.
    */
   export interface Schema$OperationProgress {
@@ -3086,6 +3143,32 @@ export namespace container_v1beta1 {
      * Type of the sandbox to use for the node.
      */
     type?: string | null;
+  }
+  /**
+   * SecondaryBootDisk represents a persistent disk attached to a node with special configurations based on its mode.
+   */
+  export interface Schema$SecondaryBootDisk {
+    /**
+     * Fully-qualified resource ID for an existing disk image.
+     */
+    diskImage?: string | null;
+    /**
+     * Disk mode (container image cache, etc.)
+     */
+    mode?: string | null;
+  }
+  /**
+   * SecondaryBootDiskUpdateStrategy is a placeholder which will be extended in the future to define different options for updating secondary boot disks.
+   */
+  export interface Schema$SecondaryBootDiskUpdateStrategy {}
+  /**
+   * SecretManagerConfig is config for secret manager enablement.
+   */
+  export interface Schema$SecretManagerConfig {
+    /**
+     * Whether the cluster is configured to use secret manager CSI component.
+     */
+    enabled?: boolean | null;
   }
   /**
    * SecurityBulletinEvent is a notification sent to customers when a security bulletin has been posted that they are vulnerable to.

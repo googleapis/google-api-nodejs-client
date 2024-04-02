@@ -2085,7 +2085,7 @@
           ],
           "parameters": {
             "externalTransactionId": {
-              "description": "Required. The id to use for the external transaction. Must be unique across all other transactions for the app. This value should be 1-63 characters and valid characters are /a-z0-9_-/. Do not use this field to store any Personally Identifiable Information (PII) such as emails. Attempting to store PII in this field may result in requests being blocked.",
+              "description": "Required. The id to use for the external transaction. Must be unique across all other transactions for the app. This value should be 1-63 characters and valid characters are /a-zA-Z0-9_-/. Do not use this field to store any Personally Identifiable Information (PII) such as emails. Attempting to store PII in this field may result in requests being blocked.",
               "location": "query",
               "type": "string"
             },
@@ -4279,6 +4279,11 @@
                   "location": "query",
                   "type": "string"
                 },
+                "includeQuantityBasedPartialRefund": {
+                  "description": "Optional. Whether to include voided purchases of quantity-based partial refunds, which are applicable only to multi-quantity purchases. If true, additional voided purchases may be returned with voidedQuantity that indicates the refund quantity of a quantity-based partial refund. The default value is false.",
+                  "location": "query",
+                  "type": "boolean"
+                },
                 "maxResults": {
                   "description": "Defines how many results the list operation should return. The default number depends on the resource collection.",
                   "format": "uint32",
@@ -4726,7 +4731,7 @@
       }
     }
   },
-  "revision": "20240222",
+  "revision": "20240321",
   "rootUrl": "https://androidpublisher.googleapis.com/",
   "schemas": {
     "Abi": {
@@ -7706,6 +7711,11 @@
           "format": "int32",
           "type": "integer"
         },
+        "refundableQuantity": {
+          "description": "The quantity eligible for refund, i.e. quantity that hasn't been refunded. The value reflects quantity-based partial refunds and full refunds.",
+          "format": "int32",
+          "type": "integer"
+        },
         "regionCode": {
           "description": "ISO 3166-1 alpha-2 billing region code of the user at the time the product was granted.",
           "type": "string"
@@ -7745,12 +7755,12 @@
           "enum": [
             "EXTERNAL_TRANSACTION_PROGRAM_UNSPECIFIED",
             "USER_CHOICE_BILLING",
-            "ALTERTNATIVE_BILLING_ONLY"
+            "ALTERNATIVE_BILLING_ONLY"
           ],
           "enumDescriptions": [
             "Unspecified transaction program. Not used.",
             "User choice billing, where a user may choose between Google Play Billing developer-managed billing.",
-            "Alternatively billing only, where users may only use developer-manager billing."
+            "Alternative billing only, where users may only use developer-manager billing."
           ],
           "type": "string"
         }
@@ -9743,6 +9753,11 @@
         "purchaseToken": {
           "description": "The token which uniquely identifies a one-time purchase or subscription. To uniquely identify subscription renewals use order_id (available starting from version 3 of the API).",
           "type": "string"
+        },
+        "voidedQuantity": {
+          "description": "The voided quantity as the result of a quantity-based partial refund. Voided purchases of quantity-based partial refunds may only be returned when includeQuantityBasedPartialRefund is set to true.",
+          "format": "int32",
+          "type": "integer"
         },
         "voidedReason": {
           "description": "The reason why the purchase was voided, possible values are: 0. Other 1. Remorse 2. Not_received 3. Defective 4. Accidental_purchase 5. Fraud 6. Friendly_fraud 7. Chargeback",

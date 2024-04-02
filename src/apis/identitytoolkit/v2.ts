@@ -836,7 +836,7 @@ export namespace identitytoolkit_v2 {
      */
     managedRules?: Schema$GoogleCloudIdentitytoolkitAdminV2RecaptchaManagedRule[];
     /**
-     * Output only. The reCAPTCHA keys.
+     * The reCAPTCHA keys.
      */
     recaptchaKeys?: Schema$GoogleCloudIdentitytoolkitAdminV2RecaptchaKey[];
     /**

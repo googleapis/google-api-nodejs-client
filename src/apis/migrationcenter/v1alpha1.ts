@@ -475,7 +475,7 @@ export namespace migrationcenter_v1alpha1 {
    */
   export interface Schema$ComputeEnginePreferences {
     /**
-     * License type to consider when calculating costs for virtual machine insights and recommendations. If unspecified, costs are calculated based on the default licensing plan.
+     * Overridden by os_pricing_preferences if specified. License type to consider when calculating costs for virtual machine insights and recommendations. If unspecified, costs are calculated based on the default licensing plan.
      */
     licenseType?: string | null;
     /**

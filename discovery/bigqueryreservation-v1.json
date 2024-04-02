@@ -579,6 +579,35 @@
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
+                "failoverReservation": {
+                  "description": "Failover a reservation to the secondary location. The operation should be done in the current secondary location, which will be promoted to the new primary location for the reservation. Attempting to failover a reservation in the current primary location will fail with the error code `google.rpc.Code.FAILED_PRECONDITION`.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/reservations/{reservationsId}:failoverReservation",
+                  "httpMethod": "POST",
+                  "id": "bigqueryreservation.projects.locations.reservations.failoverReservation",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Resource name of the reservation to failover. E.g., `projects/myproject/locations/US/reservations/team1-prod`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/reservations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}:failoverReservation",
+                  "request": {
+                    "$ref": "FailoverReservationRequest"
+                  },
+                  "response": {
+                    "$ref": "Reservation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/bigquery",
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
                 "get": {
                   "description": "Returns information about the reservation.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/reservations/{reservationsId}",
@@ -851,7 +880,7 @@
       }
     }
   },
-  "revision": "20240217",
+  "revision": "20240321",
   "rootUrl": "https://bigqueryreservation.googleapis.com/",
   "schemas": {
     "Assignment": {
@@ -869,14 +898,16 @@
             "PIPELINE",
             "QUERY",
             "ML_EXTERNAL",
-            "BACKGROUND"
+            "BACKGROUND",
+            "CONTINUOUS"
           ],
           "enumDescriptions": [
             "Invalid type. Requests with this value will be rejected with error code `google.rpc.Code.INVALID_ARGUMENT`.",
             "Pipeline (load/export) jobs from the project will use the reservation.",
             "Query jobs from the project will use the reservation.",
             "BigQuery ML jobs that use services external to BigQuery for model training. These jobs will not utilize idle slots from other reservations.",
-            "Background jobs that BigQuery runs for the customers in the background."
+            "Background jobs that BigQuery runs for the customers in the background.",
+            "Continuous SQL jobs will use this reservation. Reservations with continuous assignments cannot be mixed with non-continuous assignments."
           ],
           "type": "string"
         },
@@ -1112,6 +1143,12 @@
       "properties": {},
       "type": "object"
     },
+    "FailoverReservationRequest": {
+      "description": "The request for ReservationService.FailoverReservation.",
+      "id": "FailoverReservationRequest",
+      "properties": {},
+      "type": "object"
+    },
     "ListAssignmentsResponse": {
       "description": "The response for ReservationService.ListAssignments.",
       "id": "ListAssignmentsResponse",
@@ -1204,7 +1241,7 @@
           "description": "The configuration parameters for the auto scaling feature."
         },
         "concurrency": {
-          "description": "Job concurrency target which sets a soft upper bound on the number of jobs that can run concurrently in this reservation. This is a soft target due to asynchronous nature of the system and various optimizations for small queries. Default value is 0 which means that concurrency target will be automatically computed by the system. NOTE: this field is exposed as `target_job_concurrency` in the Information Schema, DDL and BQ CLI.",
+          "description": "Job concurrency target which sets a soft upper bound on the number of jobs that can run concurrently in this reservation. This is a soft target due to asynchronous nature of the system and various optimizations for small queries. Default value is 0 which means that concurrency target will be automatically computed by the system. NOTE: this field is exposed as target job concurrency in the Information Schema, DDL and BQ CLI.",
           "format": "int64",
           "type": "string"
         },
@@ -1240,6 +1277,18 @@
         },
         "name": {
           "description": "The resource name of the reservation, e.g., `projects/*/locations/*/reservations/team1-prod`. The reservation_id must only contain lower case alphanumeric characters or dashes. It must start with a letter and must not end with a dash. Its maximum length is 64 characters.",
+          "type": "string"
+        },
+        "originalPrimaryLocation": {
+          "description": "Optional. The original primary location of the reservation which is set only during its creation and remains unchanged afterwards. It can be used by the customer to answer questions about disaster recovery billing. The field is output only for customers and should not be specified, however, the google.api.field_behavior is not set to OUTPUT_ONLY since these fields are set in rerouted requests sent across regions.",
+          "type": "string"
+        },
+        "primaryLocation": {
+          "description": "Optional. The primary location of the reservation. The field is only meaningful for reservation used for cross region disaster recovery. The field is output only for customers and should not be specified, however, the google.api.field_behavior is not set to OUTPUT_ONLY since these fields are set in rerouted requests sent across regions.",
+          "type": "string"
+        },
+        "secondaryLocation": {
+          "description": "Optional. The secondary location of the reservation which is used for cross region disaster recovery purposes. Customer can set this in create/update reservation calls to create a failover reservation or convert a non-failover reservation to a failover reservation.",
           "type": "string"
         },
         "slotCapacity": {

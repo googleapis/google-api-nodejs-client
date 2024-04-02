@@ -140,6 +140,10 @@ export namespace dialogflow_v3beta1 {
      * Settings for logging. Settings for Dialogflow History, Contact Center messages, StackDriver logs, and speech logging. Exposed at the following levels: - Agent level.
      */
     loggingSettings?: Schema$GoogleCloudDialogflowCxV3AdvancedSettingsLoggingSettings;
+    /**
+     * Settings for speech to text detection. Exposed at the following levels: - Agent level - Flow level - Page level - Parameter level
+     */
+    speechSettings?: Schema$GoogleCloudDialogflowCxV3AdvancedSettingsSpeechSettings;
   }
   /**
    * Define behaviors for DTMF (dual tone multi frequency).
@@ -170,6 +174,27 @@ export namespace dialogflow_v3beta1 {
      * If true, StackDriver logging is currently enabled.
      */
     enableStackdriverLogging?: boolean | null;
+  }
+  /**
+   * Define behaviors of speech to text detection.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3AdvancedSettingsSpeechSettings {
+    /**
+     * Sensitivity of the speech model that detects the end of speech. Scale from 0 to 100.
+     */
+    endpointerSensitivity?: number | null;
+    /**
+     * Mapping from language to Speech-to-Text model. The mapped Speech-to-Text model will be selected for requests from its corresponding language. For more information, see [Speech models](https://cloud.google.com/dialogflow/cx/docs/concept/speech-models).
+     */
+    models?: {[key: string]: string} | null;
+    /**
+     * Timeout before detecting no speech.
+     */
+    noSpeechTimeout?: string | null;
+    /**
+     * Use timeout based endpointing, interpreting endpointer sensitivy as seconds of timeout value.
+     */
+    useTimeoutBasedEndpointing?: boolean | null;
   }
   /**
    * Represents the natural speech audio to be processed.
@@ -231,6 +256,10 @@ export namespace dialogflow_v3beta1 {
      * Settings for logging. Settings for Dialogflow History, Contact Center messages, StackDriver logs, and speech logging. Exposed at the following levels: - Agent level.
      */
     loggingSettings?: Schema$GoogleCloudDialogflowCxV3beta1AdvancedSettingsLoggingSettings;
+    /**
+     * Settings for speech to text detection. Exposed at the following levels: - Agent level - Flow level - Page level - Parameter level
+     */
+    speechSettings?: Schema$GoogleCloudDialogflowCxV3beta1AdvancedSettingsSpeechSettings;
   }
   /**
    * Define behaviors for DTMF (dual tone multi frequency).
@@ -261,6 +290,27 @@ export namespace dialogflow_v3beta1 {
      * If true, StackDriver logging is currently enabled.
      */
     enableStackdriverLogging?: boolean | null;
+  }
+  /**
+   * Define behaviors of speech to text detection.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1AdvancedSettingsSpeechSettings {
+    /**
+     * Sensitivity of the speech model that detects the end of speech. Scale from 0 to 100.
+     */
+    endpointerSensitivity?: number | null;
+    /**
+     * Mapping from language to Speech-to-Text model. The mapped Speech-to-Text model will be selected for requests from its corresponding language. For more information, see [Speech models](https://cloud.google.com/dialogflow/cx/docs/concept/speech-models).
+     */
+    models?: {[key: string]: string} | null;
+    /**
+     * Timeout before detecting no speech.
+     */
+    noSpeechTimeout?: string | null;
+    /**
+     * Use timeout based endpointing, interpreting endpointer sensitivy as seconds of timeout value.
+     */
+    useTimeoutBasedEndpointing?: boolean | null;
   }
   /**
    * Agents are best described as Natural Language Understanding (NLU) modules that transform user requests into actionable data. You can include agents in your app, product, or service to determine user intent and respond to the user in a natural way. After you create an agent, you can add Intents, Entity Types, Flows, Fulfillments, Webhooks, TransitionRouteGroups and so on to manage the conversation flows.
@@ -314,6 +364,10 @@ export namespace dialogflow_v3beta1 {
      * The unique identifier of the agent. Required for the Agents.UpdateAgent method. Agents.CreateAgent populates the name automatically. Format: `projects//locations//agents/`.
      */
     name?: string | null;
+    /**
+     * Optional. Settings for end user personalization.
+     */
+    personalizationSettings?: Schema$GoogleCloudDialogflowCxV3beta1AgentPersonalizationSettings;
     /**
      * Name of the SecuritySettings reference for the agent. Format: `projects//locations//securitySettings/`.
      */
@@ -390,6 +444,15 @@ export namespace dialogflow_v3beta1 {
      * The branch of the GitHub repository tracked for this agent.
      */
     trackingBranch?: string | null;
+  }
+  /**
+   * Settings for end user personalization.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1AgentPersonalizationSettings {
+    /**
+     * Optional. Default end user metadata, used when processing DetectIntent requests. Recommended to be filled as a template instead of hard-coded value, for example { "age": "$session.params.age" \}. The data will be merged with the QueryParameters.end_user_metadata in DetectIntentRequest.query_params during query processing.
+     */
+    defaultEndUserMetadata?: {[key: string]: any} | null;
   }
   /**
    * The response message for Agents.GetAgentValidationResult.
@@ -750,6 +813,146 @@ export namespace dialogflow_v3beta1 {
      * The type of the connected data store.
      */
     dataStoreType?: string | null;
+  }
+  /**
+   * Data store connection feature output signals. Might be only partially field if processing stop before the final answer. Reasons for this can be, but are not limited to: empty UCS search results, positive RAI check outcome, grounding failure, ...
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1DataStoreConnectionSignals {
+    /**
+     * Optional. The final compiled answer.
+     */
+    answer?: string | null;
+    /**
+     * Optional. Diagnostic info related to the answer generation model call.
+     */
+    answerGenerationModelCallSignals?: Schema$GoogleCloudDialogflowCxV3beta1DataStoreConnectionSignalsAnswerGenerationModelCallSignals;
+    /**
+     * Optional. Answer parts with relevant citations. Concatenation of texts should add up the `answer` (not counting whitespaces).
+     */
+    answerParts?: Schema$GoogleCloudDialogflowCxV3beta1DataStoreConnectionSignalsAnswerPart[];
+    /**
+     * Optional. Snippets cited by the answer generation model from the most to least relevant.
+     */
+    citedSnippets?: Schema$GoogleCloudDialogflowCxV3beta1DataStoreConnectionSignalsCitedSnippet[];
+    /**
+     * Optional. Grounding signals.
+     */
+    groundingSignals?: Schema$GoogleCloudDialogflowCxV3beta1DataStoreConnectionSignalsGroundingSignals;
+    /**
+     * Optional. Diagnostic info related to the rewriter model call.
+     */
+    rewriterModelCallSignals?: Schema$GoogleCloudDialogflowCxV3beta1DataStoreConnectionSignalsRewriterModelCallSignals;
+    /**
+     * Optional. Rewritten string query used for search.
+     */
+    rewrittenQuery?: string | null;
+    /**
+     * Optional. Safety check result.
+     */
+    safetySignals?: Schema$GoogleCloudDialogflowCxV3beta1DataStoreConnectionSignalsSafetySignals;
+    /**
+     * Optional. Search snippets included in the answer generation prompt.
+     */
+    searchSnippets?: Schema$GoogleCloudDialogflowCxV3beta1DataStoreConnectionSignalsSearchSnippet[];
+  }
+  /**
+   * Diagnostic info related to the answer generation model call.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1DataStoreConnectionSignalsAnswerGenerationModelCallSignals {
+    /**
+     * Output of the generative model.
+     */
+    modelOutput?: string | null;
+    /**
+     * Prompt as sent to the model.
+     */
+    renderedPrompt?: string | null;
+  }
+  /**
+   * Answer part with citation.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1DataStoreConnectionSignalsAnswerPart {
+    /**
+     * Citations for this answer part. Indices of `search_snippets`.
+     */
+    supportingIndices?: number[] | null;
+    /**
+     * Substring of the answer.
+     */
+    text?: string | null;
+  }
+  /**
+   * Snippet cited by the answer generation model.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1DataStoreConnectionSignalsCitedSnippet {
+    /**
+     * Details of the snippet.
+     */
+    searchSnippet?: Schema$GoogleCloudDialogflowCxV3beta1DataStoreConnectionSignalsSearchSnippet;
+    /**
+     * Index of the snippet in `search_snippets` field.
+     */
+    snippetIndex?: number | null;
+  }
+  /**
+   * Grounding signals.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1DataStoreConnectionSignalsGroundingSignals {
+    /**
+     * Represents the decision of the grounding check.
+     */
+    decision?: string | null;
+    /**
+     * Grounding score bucket setting.
+     */
+    score?: string | null;
+  }
+  /**
+   * Diagnostic info related to the rewriter model call.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1DataStoreConnectionSignalsRewriterModelCallSignals {
+    /**
+     * Output of the generative model.
+     */
+    modelOutput?: string | null;
+    /**
+     * Prompt as sent to the model.
+     */
+    renderedPrompt?: string | null;
+  }
+  /**
+   * Safety check results.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1DataStoreConnectionSignalsSafetySignals {
+    /**
+     * Specifies banned phrase match subject.
+     */
+    bannedPhraseMatch?: string | null;
+    /**
+     * Safety decision.
+     */
+    decision?: string | null;
+    /**
+     * The matched banned phrase if there was a match.
+     */
+    matchedBannedPhrase?: string | null;
+  }
+  /**
+   * Search snippet details.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1DataStoreConnectionSignalsSearchSnippet {
+    /**
+     * Title of the enclosing document.
+     */
+    documentTitle?: string | null;
+    /**
+     * Uri for the document. Present if specified for the document.
+     */
+    documentUri?: string | null;
+    /**
+     * Text included in the prompt.
+     */
+    text?: string | null;
   }
   /**
    * Metadata for DeleteDocument operation.
@@ -2724,6 +2927,10 @@ export namespace dialogflow_v3beta1 {
      */
     payload?: {[key: string]: any} | null;
     /**
+     * Optional. If set to true and data stores are involved in serving the request then DetectIntentResponse.query_result.data_store_connection_signals will be filled with data that can help evaluations.
+     */
+    populateDataStoreConnectionSignals?: boolean | null;
+    /**
      * Optional. Search configuration for UCS search queries.
      */
     searchConfig?: Schema$GoogleCloudDialogflowCxV3beta1SearchConfig;
@@ -2760,6 +2967,10 @@ export namespace dialogflow_v3beta1 {
      * The current Page. Some, not all fields are filled in this message, including but not limited to `name` and `display_name`.
      */
     currentPage?: Schema$GoogleCloudDialogflowCxV3beta1Page;
+    /**
+     * Optional. Data store connection feature output signals. Filled only when data stores are involved in serving the query and DetectIntentRequest.populate data_store_connection_quality_signals is set to true in the request.
+     */
+    dataStoreConnectionSignals?: Schema$GoogleCloudDialogflowCxV3beta1DataStoreConnectionSignals;
     /**
      * The free-form diagnostic info. For example, this field could contain webhook call latency. The fields of this data can change without notice, so you should not write code that depends on its structure. One of the fields is called "Alternative Matched Intents", which may aid with debugging. The following describes these intent results: - The list is empty if no intent was matched to end-user input. - Only intents that are referenced in the currently active flow are included. - The matched intent is included. - Other intents that could have matched end-user input, but did not match because they are referenced by intent routes that are out of [scope](https://cloud.google.com/dialogflow/cx/docs/concept/handler#scope), are included. - Other intents referenced by intent routes in scope that matched end-user input, but had a lower confidence score.
      */
@@ -3217,7 +3428,7 @@ export namespace dialogflow_v3beta1 {
      */
     retentionStrategy?: string | null;
     /**
-     * Retains data in interaction logging for the specified number of days. This does not apply to Cloud logging, which is owned by the user - not Dialogflow. User must set a value lower than Dialogflow's default 365d TTL (30 days for Agent Assist traffic), higher value will be ignored and use default. Setting a value higher than that has no effect. A missing value or setting to 0 also means we use default TTL.
+     * Retains data in interaction logging for the specified number of days. This does not apply to Cloud logging, which is owned by the user - not Dialogflow. User must set a value lower than Dialogflow's default 365d TTL (30 days for Agent Assist traffic), higher value will be ignored and use default. Setting a value higher than that has no effect. A missing value or setting to 0 also means we use default TTL. When data retention configuration is changed, it only applies to the data created after the change; the TTL of existing data created before the change stays intact.
      */
     retentionWindowDays?: number | null;
   }
@@ -3234,7 +3445,7 @@ export namespace dialogflow_v3beta1 {
      */
     audioFormat?: string | null;
     /**
-     * Enable audio redaction if it is true.
+     * Enable audio redaction if it is true. Note that this only redacts end-user audio data; Synthesised audio from the virtual agent is not redacted.
      */
     enableAudioRedaction?: boolean | null;
     /**
@@ -3869,6 +4080,10 @@ export namespace dialogflow_v3beta1 {
      */
     httpMethod?: string | null;
     /**
+     * Optional. The OAuth configuration of the webhook. If specified, Dialogflow will initiate the OAuth client credential flow to exchange an access token from the 3rd party platform and put it in the auth header.
+     */
+    oauthConfig?: Schema$GoogleCloudDialogflowCxV3beta1WebhookGenericWebServiceOAuthConfig;
+    /**
      * Optional. Maps the values extracted from specific fields of the flexible webhook response into session parameters. - Key: session parameter name - Value: field path in the webhook response
      */
     parameterMapping?: {[key: string]: string} | null;
@@ -3885,6 +4100,10 @@ export namespace dialogflow_v3beta1 {
      */
     requestHeaders?: {[key: string]: string} | null;
     /**
+     * Optional. Indicate the auth token type generated from the [Diglogflow service agent](https://cloud.google.com/iam/docs/service-agents#dialogflow-service-agent). The generated token is sent in the Authorization header.
+     */
+    serviceAgentAuth?: string | null;
+    /**
      * Required. The webhook URI for receiving POST requests. It must use https protocol.
      */
     uri?: string | null;
@@ -3896,6 +4115,27 @@ export namespace dialogflow_v3beta1 {
      * Optional. Type of the webhook.
      */
     webhookType?: string | null;
+  }
+  /**
+   * Represents configuration of OAuth client credential flow for 3rd party API authentication.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1WebhookGenericWebServiceOAuthConfig {
+    /**
+     * Required. The client ID provided by the 3rd party platform.
+     */
+    clientId?: string | null;
+    /**
+     * Required. The client secret provided by the 3rd party platform.
+     */
+    clientSecret?: string | null;
+    /**
+     * Optional. The OAuth scopes to grant.
+     */
+    scopes?: string[] | null;
+    /**
+     * Required. The token endpoint provided by the 3rd party platform to exchange an access token.
+     */
+    tokenEndpoint?: string | null;
   }
   /**
    * The request message for a webhook call. The request is sent as a JSON object and the field names will be presented in camel cases. You may see undocumented fields in an actual request. These fields are used internally by Dialogflow and should be ignored.
@@ -5462,6 +5702,10 @@ export namespace dialogflow_v3beta1 {
      */
     httpMethod?: string | null;
     /**
+     * Optional. The OAuth configuration of the webhook. If specified, Dialogflow will initiate the OAuth client credential flow to exchange an access token from the 3rd party platform and put it in the auth header.
+     */
+    oauthConfig?: Schema$GoogleCloudDialogflowCxV3WebhookGenericWebServiceOAuthConfig;
+    /**
      * Optional. Maps the values extracted from specific fields of the flexible webhook response into session parameters. - Key: session parameter name - Value: field path in the webhook response
      */
     parameterMapping?: {[key: string]: string} | null;
@@ -5478,6 +5722,10 @@ export namespace dialogflow_v3beta1 {
      */
     requestHeaders?: {[key: string]: string} | null;
     /**
+     * Optional. Indicate the auth token type generated from the [Diglogflow service agent](https://cloud.google.com/iam/docs/service-agents#dialogflow-service-agent). The generated token is sent in the Authorization header.
+     */
+    serviceAgentAuth?: string | null;
+    /**
      * Required. The webhook URI for receiving POST requests. It must use https protocol.
      */
     uri?: string | null;
@@ -5489,6 +5737,27 @@ export namespace dialogflow_v3beta1 {
      * Optional. Type of the webhook.
      */
     webhookType?: string | null;
+  }
+  /**
+   * Represents configuration of OAuth client credential flow for 3rd party API authentication.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3WebhookGenericWebServiceOAuthConfig {
+    /**
+     * Required. The client ID provided by the 3rd party platform.
+     */
+    clientId?: string | null;
+    /**
+     * Required. The client secret provided by the 3rd party platform.
+     */
+    clientSecret?: string | null;
+    /**
+     * Optional. The OAuth scopes to grant.
+     */
+    scopes?: string[] | null;
+    /**
+     * Required. The token endpoint provided by the 3rd party platform to exchange an access token.
+     */
+    tokenEndpoint?: string | null;
   }
   /**
    * The request message for a webhook call. The request is sent as a JSON object and the field names will be presented in camel cases. You may see undocumented fields in an actual request. These fields are used internally by Dialogflow and should be ignored.

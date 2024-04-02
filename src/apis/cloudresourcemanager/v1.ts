@@ -766,6 +766,10 @@ export namespace cloudresourcemanager_v1 {
      * The number uniquely identifying the project. Example: `415104041262` Read-only.
      */
     projectNumber?: string | null;
+    /**
+     * Optional. Input only. Immutable. Tag keys/values directly bound to this project. Each item in the map must be expressed as " : ". For example: "123/environment" : "production", "123/costCenter" : "marketing" Note: Currently this field is in Preview.
+     */
+    tags?: {[key: string]: string} | null;
   }
   /**
    * A status object which is used as the `metadata` field for the Operation returned by CreateProject. It provides insight for when significant phases of Project creation have completed.

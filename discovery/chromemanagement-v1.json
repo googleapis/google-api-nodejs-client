@@ -160,6 +160,98 @@
               "scopes": [
                 "https://www.googleapis.com/auth/chrome.management.appdetails.readonly"
               ]
+            },
+            "fetchDevicesRequestingExtension": {
+              "description": "Get a list of devices that have requested to install an extension.",
+              "flatPath": "v1/customers/{customersId}/apps:fetchDevicesRequestingExtension",
+              "httpMethod": "GET",
+              "id": "chromemanagement.customers.apps.fetchDevicesRequestingExtension",
+              "parameterOrder": [
+                "customer"
+              ],
+              "parameters": {
+                "customer": {
+                  "description": "Required. The customer ID or \"my_customer\" prefixed with \"customers/\".",
+                  "location": "path",
+                  "pattern": "^customers/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                },
+                "extensionId": {
+                  "description": "Required. The extension for which we want to find requesting devices.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "orgUnitId": {
+                  "description": "The ID of the organizational unit. Only consider devices that directly belong to this org unit, i.e. sub-orgunits are not counted. If omitted, all data will be returned.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "pageSize": {
+                  "description": "Optional. Maximum number of results to return. Maximum and default are 50. Any page size larger than 50 will be coerced to 50.",
+                  "format": "int32",
+                  "location": "query",
+                  "type": "integer"
+                },
+                "pageToken": {
+                  "description": "Optional. Token to specify the page of the request to be returned. Token expires after 1 day.",
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+customer}/apps:fetchDevicesRequestingExtension",
+              "response": {
+                "$ref": "GoogleChromeManagementV1FetchDevicesRequestingExtensionResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/chrome.management.appdetails.readonly"
+              ]
+            },
+            "fetchUsersRequestingExtension": {
+              "description": "Get a list of users that have requested to install an extension.",
+              "flatPath": "v1/customers/{customersId}/apps:fetchUsersRequestingExtension",
+              "httpMethod": "GET",
+              "id": "chromemanagement.customers.apps.fetchUsersRequestingExtension",
+              "parameterOrder": [
+                "customer"
+              ],
+              "parameters": {
+                "customer": {
+                  "description": "Required. The customer ID or \"my_customer\" prefixed with \"customers/\".",
+                  "location": "path",
+                  "pattern": "^customers/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                },
+                "extensionId": {
+                  "description": "Required. The extension for which we want to find the requesting users.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "orgUnitId": {
+                  "description": "The ID of the organizational unit. Only consider devices that directly belong to this org unit, i.e. sub-orgunits are not counted. If omitted, all data will be returned.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "pageSize": {
+                  "description": "Optional. Maximum number of results to return. Maximum and default are 50. Any page size larger than 50 will be coerced to 50.",
+                  "format": "int32",
+                  "location": "query",
+                  "type": "integer"
+                },
+                "pageToken": {
+                  "description": "Optional. Token to specify the page of the request to be returned. Token expires after 1 day.",
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+customer}/apps:fetchUsersRequestingExtension",
+              "response": {
+                "$ref": "GoogleChromeManagementV1FetchUsersRequestingExtensionResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/chrome.management.appdetails.readonly"
+              ]
             }
           },
           "resources": {
@@ -279,6 +371,46 @@
               "path": "v1/{+customer}/reports:countChromeBrowsersNeedingAttention",
               "response": {
                 "$ref": "GoogleChromeManagementV1CountChromeBrowsersNeedingAttentionResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/chrome.management.reports.readonly"
+              ]
+            },
+            "countChromeCrashEvents": {
+              "description": "Get a count of Chrome crash events.",
+              "flatPath": "v1/customers/{customersId}/reports:countChromeCrashEvents",
+              "httpMethod": "GET",
+              "id": "chromemanagement.customers.reports.countChromeCrashEvents",
+              "parameterOrder": [
+                "customer"
+              ],
+              "parameters": {
+                "customer": {
+                  "description": "Customer ID.",
+                  "location": "path",
+                  "pattern": "^customers/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                },
+                "filter": {
+                  "description": "Query string to filter results, AND-separated fields in EBNF syntax. Supported filter fields: * major_browser_version * minor_browser_version * browser_channel * device_platform * past_number_days Example: `major_browser_version = 'M115' AND past_number_days = '28'`.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "orderBy": {
+                  "description": "Field used to order results. Supported order by fields: * browser_version * count * date",
+                  "location": "query",
+                  "type": "string"
+                },
+                "orgUnitId": {
+                  "description": "If specified, only count the number of crash events of the devices in this organizational unit.",
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+customer}/reports:countChromeCrashEvents",
+              "response": {
+                "$ref": "GoogleChromeManagementV1CountChromeCrashEventsResponse"
               },
               "scopes": [
                 "https://www.googleapis.com/auth/chrome.management.reports.readonly"
@@ -746,7 +878,7 @@
                       "type": "string"
                     },
                     "readMask": {
-                      "description": "Required. Read mask to specify which fields to return.",
+                      "description": "Required. Read mask to specify which fields to return. Supported read_mask paths are: - name - org_unit_id - device_id - serial_number - cpu_info - cpu_status_report - memory_info - memory_status_report - network_info - network_diagnostics_report - network_status_report - os_update_status - graphics_info - graphics_status_report - battery_info - battery_status_report - storage_info - storage_status_report - thunderbolt_info - audio_status_report - boot_performance_report - heartbeat_status_report - network_bandwidth_report - peripherals_report - kiosk_app_status_report - app_report - runtime_counters_report ",
                       "format": "google-fieldmask",
                       "location": "query",
                       "type": "string"
@@ -770,7 +902,7 @@
                   ],
                   "parameters": {
                     "filter": {
-                      "description": "Optional. Only include resources that match the filter. Supported filter fields: - org_unit_id - serial_number - device_id - reports_timestamp The \"reports_timestamp\" filter accepts either the Unix Epoch milliseconds format or the RFC3339 UTC \"Zulu\" format with nanosecond resolution and up to nine fractional digits. Both formats should be surrounded by simple double quotes. Examples: \"2014-10-02T15:01:23Z\", \"2014-10-02T15:01:23.045123456Z\", \"1679283943823\".",
+                      "description": "Optional. Only include resources that match the filter. Requests that don't specify a \"reports_timestamp\" value will default to returning only recent reports. Specify \"reports_timestamp>=0\" to get all report data. Supported filter fields: - org_unit_id - serial_number - device_id - reports_timestamp The \"reports_timestamp\" filter accepts either the Unix Epoch milliseconds format or the RFC3339 UTC \"Zulu\" format with nanosecond resolution and up to nine fractional digits. Both formats should be surrounded by simple double quotes. Examples: \"2014-10-02T15:01:23Z\", \"2014-10-02T15:01:23.045123456Z\", \"1679283943823\".",
                       "location": "query",
                       "type": "string"
                     },
@@ -793,7 +925,7 @@
                       "type": "string"
                     },
                     "readMask": {
-                      "description": "Required. Read mask to specify which fields to return.",
+                      "description": "Required. Read mask to specify which fields to return. Supported read_mask paths are: - name - org_unit_id - device_id - serial_number - cpu_info - cpu_status_report - memory_info - memory_status_report - network_info - network_diagnostics_report - network_status_report - os_update_status - graphics_info - graphics_status_report - battery_info - battery_status_report - storage_info - storage_status_report - thunderbolt_info - audio_status_report - boot_performance_report - heartbeat_status_report - network_bandwidth_report - peripherals_report - kiosk_app_status_report - app_report - runtime_counters_report ",
                       "format": "google-fieldmask",
                       "location": "query",
                       "type": "string"
@@ -844,7 +976,7 @@
                       "type": "string"
                     },
                     "readMask": {
-                      "description": "Required. Read mask to specify which fields to return. Although currently required, this field will become optional, while the filter parameter with an event type will be come required.",
+                      "description": "Required. Read mask to specify which fields to return. Although currently required, this field will become optional, while the filter parameter with an event type will be come required. Supported read_mask paths are: - device - user - audio_severe_underrun_event - usb_peripherals_event - https_latency_change_event - network_state_change_event - wifi_signal_strength_event - vpn_connection_state_change_event - app_install_event - app_uninstall_event - app_launch_event ",
                       "format": "google-fieldmask",
                       "location": "query",
                       "type": "string"
@@ -972,7 +1104,7 @@
                       "type": "string"
                     },
                     "readMask": {
-                      "description": "Read mask to specify which fields to return.",
+                      "description": "Read mask to specify which fields to return. Supported read_mask paths are: - name - org_unit_id - user_id - user_email - user_device.device_id - user_device.audio_status_report - user_device.device_activity_report - user_device.network_bandwidth_report - user_device.peripherals_report ",
                       "format": "google-fieldmask",
                       "location": "query",
                       "type": "string"
@@ -1019,7 +1151,7 @@
                       "type": "string"
                     },
                     "readMask": {
-                      "description": "Read mask to specify which fields to return.",
+                      "description": "Read mask to specify which fields to return. Supported read_mask paths are: - name - org_unit_id - user_id - user_email - user_device.device_id - user_device.audio_status_report - user_device.device_activity_report - user_device.network_bandwidth_report - user_device.peripherals_report ",
                       "format": "google-fieldmask",
                       "location": "query",
                       "type": "string"
@@ -1040,7 +1172,7 @@
       }
     }
   },
-  "revision": "20240227",
+  "revision": "20240321",
   "rootUrl": "https://chromemanagement.googleapis.com/",
   "schemas": {
     "GoogleChromeManagementV1AndroidAppInfo": {
@@ -1700,6 +1832,40 @@
       },
       "type": "object"
     },
+    "GoogleChromeManagementV1CountChromeCrashEventsResponse": {
+      "description": "Response contains a list of CrashEventCountByVersionPerDay which count the chrome crash at the certain date.",
+      "id": "GoogleChromeManagementV1CountChromeCrashEventsResponse",
+      "properties": {
+        "crashEventCounts": {
+          "description": "Crash event counts grouped by date and browser version.",
+          "items": {
+            "$ref": "GoogleChromeManagementV1CountChromeCrashEventsResponseCrashEventCount"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleChromeManagementV1CountChromeCrashEventsResponseCrashEventCount": {
+      "description": "The `count` of the Chrome crash events at the `date`.",
+      "id": "GoogleChromeManagementV1CountChromeCrashEventsResponseCrashEventCount",
+      "properties": {
+        "browserVersion": {
+          "description": "Browser version this is counting.",
+          "type": "string"
+        },
+        "count": {
+          "description": "Total count of crash events.",
+          "format": "int64",
+          "type": "string"
+        },
+        "date": {
+          "$ref": "GoogleTypeDate",
+          "description": "Date of the crash event."
+        }
+      },
+      "type": "object"
+    },
     "GoogleChromeManagementV1CountChromeDevicesReachingAutoExpirationDateResponse": {
       "description": "Response containing a list of devices expiring in each month of a selected time frame. Counts are grouped by model and Auto Update Expiration date.",
       "id": "GoogleChromeManagementV1CountChromeDevicesReachingAutoExpirationDateResponse",
@@ -2087,6 +2253,21 @@
       },
       "type": "object"
     },
+    "GoogleChromeManagementV1DeviceRequestingExtensionDetails": {
+      "description": "Details of a device requesting an extension, including the name of the device and the justification of the request.",
+      "id": "GoogleChromeManagementV1DeviceRequestingExtensionDetails",
+      "properties": {
+        "deviceName": {
+          "description": "The name of a device that has requested the extension.",
+          "type": "string"
+        },
+        "justification": {
+          "description": "Request justification as entered by the user.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleChromeManagementV1DiskInfo": {
       "description": "Status of the single storage device.",
       "id": "GoogleChromeManagementV1DiskInfo",
@@ -2275,6 +2456,52 @@
           "description": "Total number of print jobs matching request.",
           "format": "int64",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleChromeManagementV1FetchDevicesRequestingExtensionResponse": {
+      "description": "Response containing a list of devices that have requested the queried extension.",
+      "id": "GoogleChromeManagementV1FetchDevicesRequestingExtensionResponse",
+      "properties": {
+        "deviceDetails": {
+          "description": "Details of devices that have requested the queried extension.",
+          "items": {
+            "$ref": "GoogleChromeManagementV1DeviceRequestingExtensionDetails"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "Optional. Token to specify the next page in the list. Token expires after 1 day.",
+          "type": "string"
+        },
+        "totalSize": {
+          "description": "Optional. Total number of devices in response.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleChromeManagementV1FetchUsersRequestingExtensionResponse": {
+      "description": "Response containing a list of users that have requested the queried extension.",
+      "id": "GoogleChromeManagementV1FetchUsersRequestingExtensionResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "Token to specify the next page in the list.",
+          "type": "string"
+        },
+        "totalSize": {
+          "description": "Total number of users in response.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "userDetails": {
+          "description": "Details of users that have requested the queried extension.",
+          "items": {
+            "$ref": "GoogleChromeManagementV1UserRequestingExtensionDetails"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -3983,6 +4210,21 @@
         },
         "userId": {
           "description": "The unique Directory API ID of the user.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleChromeManagementV1UserRequestingExtensionDetails": {
+      "description": "Details of a user requesting an extension, including the email and the justification.",
+      "id": "GoogleChromeManagementV1UserRequestingExtensionDetails",
+      "properties": {
+        "email": {
+          "description": "The e-mail address of a user that has requested the extension.",
+          "type": "string"
+        },
+        "justification": {
+          "description": "Request justification as entered by the user.",
           "type": "string"
         }
       },

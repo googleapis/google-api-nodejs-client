@@ -125,6 +125,19 @@ export namespace composer_v1beta1 {
   }
 
   /**
+   * The policy for airflow metadata database retention.
+   */
+  export interface Schema$AirflowMetadataRetentionPolicyConfig {
+    /**
+     * Optional. How many days data should be retained for.
+     */
+    retentionDays?: number | null;
+    /**
+     * Optional. Retention can be either enabled or disabled.
+     */
+    retentionMode?: string | null;
+  }
+  /**
    * Allowed IP range with user-provided description.
    */
   export interface Schema$AllowedIpRange {
@@ -228,7 +241,7 @@ export namespace composer_v1beta1 {
     statusMessage?: string | null;
   }
   /**
-   * Configuration for resources used by Airflow DAG processors.
+   * Configuration for resources used by Airflow DAG processors. This field is supported for Cloud Composer environments in versions composer-3.*.*-airflow-*.*.* and newer.
    */
   export interface Schema$DagProcessorResource {
     /**
@@ -273,6 +286,14 @@ export namespace composer_v1beta1 {
    * The configuration setting for Airflow database data retention mechanism.
    */
   export interface Schema$DataRetentionConfig {
+    /**
+     * Optional. The number of days describing for how long to store event-based records in airflow database. If the retention mechanism is enabled this value must be a positive integer otherwise, value should be set to 0.
+     */
+    airflowDatabaseRetentionDays?: number | null;
+    /**
+     * Optional. The retention policy for airflow metadata database.
+     */
+    airflowMetadataRetentionConfig?: Schema$AirflowMetadataRetentionPolicyConfig;
     /**
      * Optional. The configuration settings for task logs retention
      */
@@ -386,7 +407,7 @@ export namespace composer_v1beta1 {
      */
     gkeCluster?: string | null;
     /**
-     * Optional. The maintenance window is the period when Cloud Composer components may undergo maintenance. It is defined so that maintenance is not executed during peak hours or critical time periods. The system will not be under maintenance for every occurrence of this window, but when maintenance is planned, it will be scheduled during the window. The maintenance window period must encompass at least 12 hours per week. This may be split into multiple chunks, each with a size of at least 4 hours. If this value is omitted, Cloud Composer components may be subject to maintenance at any time.
+     * Optional. The maintenance window is the period when Cloud Composer components may undergo maintenance. It is defined so that maintenance is not executed during peak hours or critical time periods. The system will not be under maintenance for every occurrence of this window, but when maintenance is planned, it will be scheduled during the window. The maintenance window period must encompass at least 12 hours per week. This may be split into multiple chunks, each with a size of at least 4 hours. If this value is omitted, the default value for maintenance window is applied. By default, maintenance windows are from 00:00:00 to 04:00:00 (GMT) on Friday, Saturday, and Sunday every week.
      */
     maintenanceWindow?: Schema$MaintenanceWindow;
     /**
@@ -1101,7 +1122,7 @@ export namespace composer_v1beta1 {
    */
   export interface Schema$TaskLogsRetentionConfig {
     /**
-     * Optional. The mode of storage for Airflow workers task logs. For details, see go/composer-store-task-logs-in-cloud-logging-only-design-doc
+     * Optional. The mode of storage for Airflow workers task logs.
      */
     storageMode?: string | null;
   }

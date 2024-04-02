@@ -125,69 +125,6 @@ export namespace workloadmanager_v1 {
   }
 
   /**
-   * The API layer server
-   */
-  export interface Schema$APILayerServer {
-    /**
-     * Output only. The api layer name
-     */
-    name?: string | null;
-    /**
-     * Output only. OS information
-     */
-    osVersion?: string | null;
-    /**
-     * Output only. resources in the component
-     */
-    resources?: Schema$CloudResource[];
-  }
-  /**
-   * The availability groups for sqlserver
-   */
-  export interface Schema$AvailabilityGroup {
-    /**
-     * Output only. The databases
-     */
-    databases?: string[] | null;
-    /**
-     * Output only. The availability group name
-     */
-    name?: string | null;
-    /**
-     * Output only. The primary server
-     */
-    primaryServer?: string | null;
-    /**
-     * Output only. The secondary servers
-     */
-    secondaryServers?: string[] | null;
-  }
-  /**
-   * The backend server
-   */
-  export interface Schema$BackendServer {
-    /**
-     * Output only. The backup file
-     */
-    backupFile?: string | null;
-    /**
-     * Output only. The backup schedule
-     */
-    backupSchedule?: string | null;
-    /**
-     * Output only. The backend name
-     */
-    name?: string | null;
-    /**
-     * Output only. OS information
-     */
-    osVersion?: string | null;
-    /**
-     * Output only. resources in the component
-     */
-    resources?: Schema$CloudResource[];
-  }
-  /**
    * Message describing big query destination
    */
   export interface Schema$BigQueryDestination {
@@ -204,53 +141,6 @@ export namespace workloadmanager_v1 {
    * The request message for Operations.CancelOperation.
    */
   export interface Schema$CancelOperationRequest {}
-  /**
-   * The resource on GCP
-   */
-  export interface Schema$CloudResource {
-    /**
-     * Output only. ComputeInstance, ComputeDisk, VPC, Bare Metal server, etc.
-     */
-    kind?: string | null;
-    /**
-     * Output only. resource name
-     */
-    name?: string | null;
-  }
-  /**
-   * The cluster for sqlserver
-   */
-  export interface Schema$Cluster {
-    /**
-     * Output only. The nodes
-     */
-    nodes?: string[] | null;
-    /**
-     * Output only. The witness server
-     */
-    witnessServer?: string | null;
-  }
-  /**
-   * The database for sqlserver
-   */
-  export interface Schema$Database {
-    /**
-     * Output only. The backup file
-     */
-    backupFile?: string | null;
-    /**
-     * Output only. The backup schedule
-     */
-    backupSchedule?: string | null;
-    /**
-     * Output only. The host VM
-     */
-    hostVm?: string | null;
-    /**
-     * Output only. The database name
-     */
-    name?: string | null;
-  }
   /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
    */
@@ -375,23 +265,6 @@ export namespace workloadmanager_v1 {
     violationMessage?: string | null;
   }
   /**
-   * The front end server
-   */
-  export interface Schema$FrontEndServer {
-    /**
-     * Output only. The frontend name
-     */
-    name?: string | null;
-    /**
-     * Output only. OS information
-     */
-    osVersion?: string | null;
-    /**
-     * Output only. resources in the component
-     */
-    resources?: Schema$CloudResource[];
-  }
-  /**
    * Message describing compute engine instance filter
    */
   export interface Schema$GceInstanceFilter {
@@ -424,44 +297,6 @@ export namespace workloadmanager_v1 {
      * The insights data for the sqlserver workload validation.
      */
     sqlserverValidation?: Schema$SqlserverValidation;
-  }
-  /**
-   * a vm instance
-   */
-  export interface Schema$Instance {
-    /**
-     * Output only. name of the VM
-     */
-    name?: string | null;
-    /**
-     * Output only. The location of the VM
-     */
-    region?: string | null;
-    /**
-     * Output only. The state of the VM
-     */
-    status?: string | null;
-  }
-  /**
-   * The database layer
-   */
-  export interface Schema$Layer {
-    /**
-     * the application layer
-     */
-    applicationType?: string | null;
-    /**
-     * Optional. the database layer
-     */
-    databaseType?: string | null;
-    /**
-     * Optional. instances in a layer
-     */
-    instances?: Schema$Instance[];
-    /**
-     * Output only. system identification of a layer
-     */
-    sid?: string | null;
   }
   /**
    * Message for response to listing Evaluations
@@ -561,36 +396,6 @@ export namespace workloadmanager_v1 {
      * All scanned resources in response
      */
     scannedResources?: Schema$ScannedResource[];
-  }
-  /**
-   * List workloadResponse returns a response with the list of workload overview
-   */
-  export interface Schema$ListWorkloadProfilesResponse {
-    /**
-     * Output only. A token identifying a page of results the server should return
-     */
-    nextPageToken?: string | null;
-    /**
-     * Locations that could not be reached.
-     */
-    unreachable?: string[] | null;
-    /**
-     * Output only. The list of Workload Overview
-     */
-    workloadOverviews?: Schema$WorkloadProfileOverview[];
-  }
-  /**
-   * The load balancer for sqlserver
-   */
-  export interface Schema$LoadBalancerServer {
-    /**
-     * Output only. The IP address
-     */
-    ip?: string | null;
-    /**
-     * Output only. The VM name
-     */
-    vm?: string | null;
   }
   /**
    * A resource that represents a Google Cloud location.
@@ -793,19 +598,6 @@ export namespace workloadmanager_v1 {
     requestId?: string | null;
   }
   /**
-   * The component of sap workload
-   */
-  export interface Schema$SapComponent {
-    /**
-     * Output only. resources in the component
-     */
-    resources?: Schema$CloudResource[];
-    /**
-     * Output only. sid is the sap component identificator
-     */
-    sid?: string | null;
-  }
-  /**
    * The schema of SAP system discovery data.
    */
   export interface Schema$SapDiscovery {
@@ -888,6 +680,10 @@ export namespace workloadmanager_v1 {
      */
     ascsUri?: string | null;
     /**
+     * Optional. Instance number of the SAP instance.
+     */
+    instanceNumber?: string | null;
+    /**
      * Optional. Kernel version for Netweaver running in the system.
      */
     kernelVersion?: string | null;
@@ -908,6 +704,10 @@ export namespace workloadmanager_v1 {
      * Optional. The version of the database software running in the system.
      */
     databaseVersion?: string | null;
+    /**
+     * Optional. Instance number of the SAP instance.
+     */
+    instanceNumber?: string | null;
     /**
      * Required. URI of the recognized primary instance of the database.
      */
@@ -1062,40 +862,6 @@ export namespace workloadmanager_v1 {
     sapValidationType?: string | null;
   }
   /**
-   * The body of sap workload
-   */
-  export interface Schema$SapWorkload {
-    /**
-     * Output only. the acsc componment
-     */
-    application?: Schema$SapComponent;
-    /**
-     * Output only. the database componment
-     */
-    database?: Schema$SapComponent;
-    /**
-     * Output only. The metadata for SAP workload.
-     */
-    metadata?: {[key: string]: string} | null;
-  }
-  /**
-   * The overview of sap workload
-   */
-  export interface Schema$SapWorkloadOverview {
-    /**
-     * Output only. The application SID
-     */
-    appSid?: string | null;
-    /**
-     * Output only. The database SID
-     */
-    dbSid?: string | null;
-    /**
-     * Output only. The UUID for a SAP workload
-     */
-    sapSystemId?: string | null;
-  }
-  /**
    * Message of scanned resource
    */
   export interface Schema$ScannedResource {
@@ -1152,40 +918,6 @@ export namespace workloadmanager_v1 {
     type?: string | null;
   }
   /**
-   * The body of sqlserver workload
-   */
-  export interface Schema$SqlserverWorkload {
-    /**
-     * Output only. The availability groups for sqlserver
-     */
-    ags?: Schema$AvailabilityGroup[];
-    /**
-     * Output only. The cluster for sqlserver
-     */
-    cluster?: Schema$Cluster;
-    /**
-     * Output only. The databases for sqlserver
-     */
-    databases?: Schema$Database[];
-    /**
-     * Output only. The load balancer for sqlserver
-     */
-    loadBalancerServer?: Schema$LoadBalancerServer;
-  }
-  /**
-   * The overview of sqlserver workload
-   */
-  export interface Schema$SqlserverWorkloadOverview {
-    /**
-     * Output only. The availability groups
-     */
-    availabilityGroup?: string[] | null;
-    /**
-     * Output only. The UUID for a Sqlserver workload
-     */
-    sqlserverSystemId?: string | null;
-  }
-  /**
    * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
    */
   export interface Schema$Status {
@@ -1201,36 +933,6 @@ export namespace workloadmanager_v1 {
      * A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.
      */
     message?: string | null;
-  }
-  /**
-   * The body of three tier workload
-   */
-  export interface Schema$ThreeTierWorkload {
-    /**
-     * Output only. The API layer for three tier workload
-     */
-    apiLayer?: Schema$APILayerServer;
-    /**
-     * Output only. The backend for three tier workload
-     */
-    backend?: Schema$BackendServer;
-    /**
-     * Output only. the workload endpoint
-     */
-    endpoint?: string | null;
-    /**
-     * Output only. The frontend for three tier workload
-     */
-    frontend?: Schema$FrontEndServer;
-  }
-  /**
-   * The overview of three tier workload
-   */
-  export interface Schema$ThreeTierWorkloadOverview {
-    /**
-     * Output only. The UUID for a three tier workload
-     */
-    threeTierSystemId?: string | null;
   }
   /**
    * Message describing the violdation in execution result
@@ -1250,75 +952,13 @@ export namespace workloadmanager_v1 {
     serviceAccount?: string | null;
   }
   /**
-   * workload resource
-   */
-  export interface Schema$WorkloadProfile {
-    /**
-     * Optional. The application layer
-     */
-    application?: Schema$Layer;
-    /**
-     * Optional. The ascs layer
-     */
-    ascs?: Schema$Layer;
-    /**
-     * Optional. The database layer
-     */
-    database?: Schema$Layer;
-    /**
-     * Optional. such as name, description, version. More example can be found in deployment
-     */
-    labels?: {[key: string]: string} | null;
-    /**
-     * Identifier. name of resource names have the form 'projects/{project_id\}/workloads/{workload_id\}'
-     */
-    name?: string | null;
-    /**
-     * Required. time when the workload data was refreshed
-     */
-    refreshedTime?: string | null;
-    /**
-     * The sap workload content
-     */
-    sapWorkload?: Schema$SapWorkload;
-    /**
-     * The sqlserver workload content
-     */
-    sqlserverWorkload?: Schema$SqlserverWorkload;
-    /**
-     * Output only. [output only] the current state if a a workload
-     */
-    state?: string | null;
-    /**
-     * The 3 tier web app workload content
-     */
-    threeTierWorkload?: Schema$ThreeTierWorkload;
-    /**
-     * Required. The type of the workload
-     */
-    workloadType?: string | null;
-  }
-  /**
-   * a workload profile overview
-   */
-  export interface Schema$WorkloadProfileOverview {
-    /**
-     * The sap workload overview
-     */
-    sapWorkloadOverview?: Schema$SapWorkloadOverview;
-    /**
-     * The sqlserver workload overview
-     */
-    sqlserverWorkloadOverview?: Schema$SqlserverWorkloadOverview;
-    /**
-     * The three tier workload overview
-     */
-    threeTierWorkloadOverview?: Schema$ThreeTierWorkloadOverview;
-  }
-  /**
    * Request for sending the data insights.
    */
   export interface Schema$WriteInsightRequest {
+    /**
+     * Optional. The agent version collected this data point.
+     */
+    agentVersion?: string | null;
     /**
      * Required. The metrics data details.
      */
@@ -1348,7 +988,6 @@ export namespace workloadmanager_v1 {
     insights: Resource$Projects$Locations$Insights;
     operations: Resource$Projects$Locations$Operations;
     rules: Resource$Projects$Locations$Rules;
-    workloadProfiles: Resource$Projects$Locations$Workloadprofiles;
     constructor(context: APIRequestContext) {
       this.context = context;
       this.evaluations = new Resource$Projects$Locations$Evaluations(
@@ -1359,9 +998,6 @@ export namespace workloadmanager_v1 {
         this.context
       );
       this.rules = new Resource$Projects$Locations$Rules(this.context);
-      this.workloadProfiles = new Resource$Projects$Locations$Workloadprofiles(
-        this.context
-      );
     }
 
     /**
@@ -3312,222 +2948,6 @@ export namespace workloadmanager_v1 {
     pageToken?: string;
     /**
      * Required. The [project] on which to execute the request. The format is: projects/{project_id\}/locations/{location\} Currently, the pre-defined rules are global available to all projects and all regions
-     */
-    parent?: string;
-  }
-
-  export class Resource$Projects$Locations$Workloadprofiles {
-    context: APIRequestContext;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-    }
-
-    /**
-     * Gets details of a single workload.
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    get(
-      params: Params$Resource$Projects$Locations$Workloadprofiles$Get,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    get(
-      params?: Params$Resource$Projects$Locations$Workloadprofiles$Get,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$WorkloadProfile>;
-    get(
-      params: Params$Resource$Projects$Locations$Workloadprofiles$Get,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    get(
-      params: Params$Resource$Projects$Locations$Workloadprofiles$Get,
-      options: MethodOptions | BodyResponseCallback<Schema$WorkloadProfile>,
-      callback: BodyResponseCallback<Schema$WorkloadProfile>
-    ): void;
-    get(
-      params: Params$Resource$Projects$Locations$Workloadprofiles$Get,
-      callback: BodyResponseCallback<Schema$WorkloadProfile>
-    ): void;
-    get(callback: BodyResponseCallback<Schema$WorkloadProfile>): void;
-    get(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Workloadprofiles$Get
-        | BodyResponseCallback<Schema$WorkloadProfile>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$WorkloadProfile>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$WorkloadProfile>
-        | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$WorkloadProfile> | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Workloadprofiles$Get;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Workloadprofiles$Get;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl =
-        options.rootUrl || 'https://workloadmanager.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'GET',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$WorkloadProfile>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$WorkloadProfile>(parameters);
-      }
-    }
-
-    /**
-     * List workloads
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    list(
-      params: Params$Resource$Projects$Locations$Workloadprofiles$List,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    list(
-      params?: Params$Resource$Projects$Locations$Workloadprofiles$List,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$ListWorkloadProfilesResponse>;
-    list(
-      params: Params$Resource$Projects$Locations$Workloadprofiles$List,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    list(
-      params: Params$Resource$Projects$Locations$Workloadprofiles$List,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListWorkloadProfilesResponse>,
-      callback: BodyResponseCallback<Schema$ListWorkloadProfilesResponse>
-    ): void;
-    list(
-      params: Params$Resource$Projects$Locations$Workloadprofiles$List,
-      callback: BodyResponseCallback<Schema$ListWorkloadProfilesResponse>
-    ): void;
-    list(
-      callback: BodyResponseCallback<Schema$ListWorkloadProfilesResponse>
-    ): void;
-    list(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Workloadprofiles$List
-        | BodyResponseCallback<Schema$ListWorkloadProfilesResponse>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$ListWorkloadProfilesResponse>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$ListWorkloadProfilesResponse>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$ListWorkloadProfilesResponse>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Workloadprofiles$List;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Workloadprofiles$List;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl =
-        options.rootUrl || 'https://workloadmanager.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+parent}/workloadProfiles').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'GET',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['parent'],
-        pathParams: ['parent'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$ListWorkloadProfilesResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$ListWorkloadProfilesResponse>(
-          parameters
-        );
-      }
-    }
-  }
-
-  export interface Params$Resource$Projects$Locations$Workloadprofiles$Get
-    extends StandardParameters {
-    /**
-     * Required. Name of the resource
-     */
-    name?: string;
-  }
-  export interface Params$Resource$Projects$Locations$Workloadprofiles$List
-    extends StandardParameters {
-    /**
-     * Optional. Filtering results
-     */
-    filter?: string;
-    /**
-     * Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.
-     */
-    pageSize?: number;
-    /**
-     * Optional. A token identifying a page of results the server should return.
-     */
-    pageToken?: string;
-    /**
-     * Required. Parent value for ListWorkloadRequest
      */
     parent?: string;
   }
