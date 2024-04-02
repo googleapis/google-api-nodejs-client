@@ -1143,6 +1143,37 @@
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 }
+              },
+              "resources": {
+                "customConnectorVersions": {
+                  "methods": {
+                    "delete": {
+                      "description": "Deletes a single CustomConnectorVersion.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/customConnectors/{customConnectorsId}/customConnectorVersions/{customConnectorVersionsId}",
+                      "httpMethod": "DELETE",
+                      "id": "connectors.projects.locations.customConnectors.customConnectorVersions.delete",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. Resource name of the form: `projects/{project}/locations/{location}/customConnectors/{custom_connector}/customConnectorVersions/{custom_connector_version}`",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/customConnectors/[^/]+/customConnectorVersions/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}",
+                      "response": {
+                        "$ref": "Operation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    }
+                  }
+                }
               }
             },
             "endpointAttachments": {
@@ -2327,7 +2358,7 @@
       }
     }
   },
-  "revision": "20240305",
+  "revision": "20240319",
   "rootUrl": "https://connectors.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -3117,6 +3148,11 @@
           "readOnly": true,
           "type": "array"
         },
+        "authOverrideEnabled": {
+          "description": "Output only. Flag to mark the dynamic auth override.",
+          "readOnly": true,
+          "type": "boolean"
+        },
         "configVariableTemplates": {
           "description": "Output only. List of config variables needed to create a connection.",
           "items": {
@@ -3208,6 +3244,10 @@
           },
           "readOnly": true,
           "type": "array"
+        },
+        "schemaRefreshConfig": {
+          "$ref": "SchemaRefreshConfig",
+          "description": "Connection Schema Refresh Config"
         },
         "sslConfigTemplate": {
           "$ref": "SslConfigTemplate",
@@ -5501,7 +5541,7 @@
       "type": "object"
     },
     "MaintenancePolicy": {
-      "description": "LINT.IfChange Defines policies to service maintenance events.",
+      "description": "Defines policies to service maintenance events.",
       "id": "MaintenancePolicy",
       "properties": {
         "createTime": {
@@ -6528,6 +6568,21 @@
         "startTime": {
           "$ref": "TimeOfDay",
           "description": "Time within the window to start the operations."
+        }
+      },
+      "type": "object"
+    },
+    "SchemaRefreshConfig": {
+      "description": "Config for connection schema refresh",
+      "id": "SchemaRefreshConfig",
+      "properties": {
+        "useActionDisplayNames": {
+          "description": "Whether to use displayName for actions in UI.",
+          "type": "boolean"
+        },
+        "useSynchronousSchemaRefresh": {
+          "description": "Whether to use synchronous schema refresh.",
+          "type": "boolean"
         }
       },
       "type": "object"

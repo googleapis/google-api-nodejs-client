@@ -2115,7 +2115,7 @@
       }
     }
   },
-  "revision": "20240222",
+  "revision": "20240315",
   "rootUrl": "https://retail.googleapis.com/",
   "schemas": {
     "GoogleApiHttpBody": {
@@ -4529,7 +4529,7 @@
       "id": "GoogleCloudRetailV2betaExperimentInfoServingConfigExperiment",
       "properties": {
         "experimentServingConfig": {
-          "description": "The fully qualified resource name of the serving config VariantArm.serving_config_id responsible for generating the search response. For example: `projects/*/locations/*/catalogs/*/servingConfigs/*`.",
+          "description": "The fully qualified resource name of the serving config Experiment.VariantArm.serving_config_id responsible for generating the search response. For example: `projects/*/locations/*/catalogs/*/servingConfigs/*`.",
           "type": "string"
         },
         "originalServingConfig": {

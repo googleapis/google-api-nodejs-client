@@ -1280,9 +1280,20 @@
       }
     }
   },
-  "revision": "20240209",
+  "revision": "20240313",
   "rootUrl": "https://certificatemanager.googleapis.com/",
   "schemas": {
+    "AllowlistedCertificate": {
+      "description": "Defines an allowlisted certificate.",
+      "id": "AllowlistedCertificate",
+      "properties": {
+        "pemCertificate": {
+          "description": "Required. PEM certificate that is allowlisted. The certificate can be up to 5k bytes, and must be a parseable X.509 certificate.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "AuthorizationAttemptInfo": {
       "description": "State of the latest attempt to authorize a domain for certificate issuance.",
       "id": "AuthorizationAttemptInfo",
@@ -2185,6 +2196,13 @@
       "description": "Defines a trust config.",
       "id": "TrustConfig",
       "properties": {
+        "allowlistedCertificates": {
+          "description": "Optional. A certificate matching an allowlisted certificate is always considered valid as long as the certificate is parseable, proof of private key possession is established, and constraints on the certificate’s SAN field are met.",
+          "items": {
+            "$ref": "AllowlistedCertificate"
+          },
+          "type": "array"
+        },
         "createTime": {
           "description": "Output only. The creation timestamp of a TrustConfig.",
           "format": "google-datetime",

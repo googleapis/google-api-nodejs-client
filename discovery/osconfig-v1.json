@@ -109,6 +109,69 @@
       "resources": {
         "locations": {
           "resources": {
+            "global": {
+              "methods": {
+                "getProjectFeatureSettings": {
+                  "description": "GetProjectFeatureSettings returns the feature settings for a project",
+                  "flatPath": "v1/projects/{projectsId}/locations/global/projectFeatureSettings",
+                  "httpMethod": "GET",
+                  "id": "osconfig.projects.locations.global.getProjectFeatureSettings",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Name of the billing config. \"projects//locations/global/projectFeatureSettings\"",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/global/projectFeatureSettings$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "ProjectFeatureSettings"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "updateProjectFeatureSettings": {
+                  "description": "UpdateProjectFeatureSettings sets the feature settings for a project.",
+                  "flatPath": "v1/projects/{projectsId}/locations/global/projectFeatureSettings",
+                  "httpMethod": "PATCH",
+                  "id": "osconfig.projects.locations.global.updateProjectFeatureSettings",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Immutable. Name of the config, e.g. projects/12345/locations/global/projectFeatureSettings",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/global/projectFeatureSettings$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "Optional. Field mask that controls which fields of the ProjectFeatureSettings should be updated.",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "request": {
+                    "$ref": "ProjectFeatureSettings"
+                  },
+                  "response": {
+                    "$ref": "ProjectFeatureSettings"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            },
             "instances": {
               "resources": {
                 "inventories": {
@@ -1000,7 +1063,7 @@
       }
     }
   },
-  "revision": "20240129",
+  "revision": "20240317",
   "rootUrl": "https://osconfig.googleapis.com/",
   "schemas": {
     "AptSettings": {
@@ -3291,6 +3354,31 @@
       "description": "A request message for pausing a patch deployment.",
       "id": "PausePatchDeploymentRequest",
       "properties": {},
+      "type": "object"
+    },
+    "ProjectFeatureSettings": {
+      "description": "ProjectFeatureSettings represents the features settings for the VM Manager. The project features settings can be set for a project.",
+      "id": "ProjectFeatureSettings",
+      "properties": {
+        "name": {
+          "description": "Required. Immutable. Name of the config, e.g. projects/12345/locations/global/projectFeatureSettings",
+          "type": "string"
+        },
+        "patchAndConfigFeatureSet": {
+          "description": "Currently set PatchAndConfigFeatureSet for name.",
+          "enum": [
+            "PATCH_AND_CONFIG_FEATURE_SET_UNSPECIFIED",
+            "OSCONFIG_B",
+            "OSCONFIG_C"
+          ],
+          "enumDescriptions": [
+            "Not specified placeholder",
+            "Basic feature set. Enables only the basic set of features.",
+            "Classic set of functionality."
+          ],
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "RecurringSchedule": {

@@ -795,6 +795,59 @@
                                 "https://www.googleapis.com/auth/cloud-platform"
                               ]
                             },
+                            "getProcessedDocument": {
+                              "description": "Gets the parsed layout information for a Document.",
+                              "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/dataStores/{dataStoresId}/branches/{branchesId}/documents/{documentsId}:getProcessedDocument",
+                              "httpMethod": "GET",
+                              "id": "discoveryengine.projects.locations.collections.dataStores.branches.documents.getProcessedDocument",
+                              "parameterOrder": [
+                                "name"
+                              ],
+                              "parameters": {
+                                "name": {
+                                  "description": "Required. Full resource name of Document, such as `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}/branches/{branch}/documents/{document}`. If the caller does not have permission to access the Document, regardless of whether or not it exists, a `PERMISSION_DENIED` error is returned. If the requested Document does not exist, a `NOT_FOUND` error is returned.",
+                                  "location": "path",
+                                  "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/dataStores/[^/]+/branches/[^/]+/documents/[^/]+$",
+                                  "required": true,
+                                  "type": "string"
+                                },
+                                "processedDocumentFormat": {
+                                  "description": "What format output should be. If unspecified, defaults to JSON.",
+                                  "enum": [
+                                    "PROCESSED_DOCUMENT_FORMAT_UNSPECIFIED",
+                                    "JSON"
+                                  ],
+                                  "enumDescriptions": [
+                                    "Default value.",
+                                    "output format will be a JSON string representation of processed document."
+                                  ],
+                                  "location": "query",
+                                  "type": "string"
+                                },
+                                "processedDocumentType": {
+                                  "description": "Required. What type of processing to return.",
+                                  "enum": [
+                                    "PROCESSED_DOCUMENT_TYPE_UNSPECIFIED",
+                                    "PARSED_DOCUMENT",
+                                    "CHUNKED_DOCUMENT"
+                                  ],
+                                  "enumDescriptions": [
+                                    "Default value.",
+                                    "Available for all data store parsing configs.",
+                                    "Only available if ChunkingConfig is enabeld on the data store."
+                                  ],
+                                  "location": "query",
+                                  "type": "string"
+                                }
+                              },
+                              "path": "v1alpha/{+name}:getProcessedDocument",
+                              "response": {
+                                "$ref": "GoogleCloudDiscoveryengineV1alphaProcessedDocument"
+                              },
+                              "scopes": [
+                                "https://www.googleapis.com/auth/cloud-platform"
+                              ]
+                            },
                             "import": {
                               "description": "Bulk import of multiple Documents. Request processing may be synchronous. Non-existing items will be created. Note: It is possible for a subset of the Documents to be successfully updated.",
                               "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/dataStores/{dataStoresId}/branches/{branchesId}/documents:import",
@@ -3563,6 +3616,59 @@
                             "https://www.googleapis.com/auth/cloud-platform"
                           ]
                         },
+                        "getProcessedDocument": {
+                          "description": "Gets the parsed layout information for a Document.",
+                          "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/dataStores/{dataStoresId}/branches/{branchesId}/documents/{documentsId}:getProcessedDocument",
+                          "httpMethod": "GET",
+                          "id": "discoveryengine.projects.locations.dataStores.branches.documents.getProcessedDocument",
+                          "parameterOrder": [
+                            "name"
+                          ],
+                          "parameters": {
+                            "name": {
+                              "description": "Required. Full resource name of Document, such as `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}/branches/{branch}/documents/{document}`. If the caller does not have permission to access the Document, regardless of whether or not it exists, a `PERMISSION_DENIED` error is returned. If the requested Document does not exist, a `NOT_FOUND` error is returned.",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/dataStores/[^/]+/branches/[^/]+/documents/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            },
+                            "processedDocumentFormat": {
+                              "description": "What format output should be. If unspecified, defaults to JSON.",
+                              "enum": [
+                                "PROCESSED_DOCUMENT_FORMAT_UNSPECIFIED",
+                                "JSON"
+                              ],
+                              "enumDescriptions": [
+                                "Default value.",
+                                "output format will be a JSON string representation of processed document."
+                              ],
+                              "location": "query",
+                              "type": "string"
+                            },
+                            "processedDocumentType": {
+                              "description": "Required. What type of processing to return.",
+                              "enum": [
+                                "PROCESSED_DOCUMENT_TYPE_UNSPECIFIED",
+                                "PARSED_DOCUMENT",
+                                "CHUNKED_DOCUMENT"
+                              ],
+                              "enumDescriptions": [
+                                "Default value.",
+                                "Available for all data store parsing configs.",
+                                "Only available if ChunkingConfig is enabeld on the data store."
+                              ],
+                              "location": "query",
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1alpha/{+name}:getProcessedDocument",
+                          "response": {
+                            "$ref": "GoogleCloudDiscoveryengineV1alphaProcessedDocument"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        },
                         "import": {
                           "description": "Bulk import of multiple Documents. Request processing may be synchronous. Non-existing items will be created. Note: It is possible for a subset of the Documents to be successfully updated.",
                           "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/dataStores/{dataStoresId}/branches/{branchesId}/documents:import",
@@ -5080,7 +5186,7 @@
       }
     }
   },
-  "revision": "20240312",
+  "revision": "20240318",
   "rootUrl": "https://discoveryengine.googleapis.com/",
   "schemas": {
     "GoogleApiHttpBody": {
@@ -8349,6 +8455,21 @@
       },
       "type": "object"
     },
+    "GoogleCloudDiscoveryengineV1alphaProcessedDocument": {
+      "description": "Document captures all raw metadata information of items to be recommended or searched.",
+      "id": "GoogleCloudDiscoveryengineV1alphaProcessedDocument",
+      "properties": {
+        "document": {
+          "description": "Required. Full resource name of the referenced document, in the format `projects/*/locations/*/collections/*/dataStores/*/branches/*/documents/*`.",
+          "type": "string"
+        },
+        "jsonData": {
+          "description": "The JSON string representation of the processed document.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDiscoveryengineV1alphaPurgeDocumentsMetadata": {
       "description": "Metadata related to the progress of the PurgeDocuments operation. This will be returned by the google.longrunning.Operation.metadata field.",
       "id": "GoogleCloudDiscoveryengineV1alphaPurgeDocumentsMetadata",
@@ -8984,7 +9105,7 @@
       "id": "GoogleCloudDiscoveryengineV1alphaSearchRequestBoostSpecConditionBoostSpec",
       "properties": {
         "boost": {
-          "description": "Strength of the condition boost, which should be in [-1, 1]. Negative boost means demotion. Default is 0.0. Setting to 1.0 gives the document a big promotion. However, it does not necessarily mean that the boosted document will be the top result at all times, nor that other documents will be excluded. Results could still be shown even when none of them matches the condition. And results that are significantly more relevant to the search query can still trump your heavily favored but irrelevant documents. Setting to -1.0 gives the document a big demotion. However, results that are deeply relevant might still be shown. The document will have an upstream battle to get a fairly high ranking, but it is not blocked out completely. Setting to 0.0 means no boost applied. The boosting condition is ignored.",
+          "description": "Strength of the condition boost, which should be in [-1, 1]. Negative boost means demotion. Default is 0.0. Setting to 1.0 gives the document a big promotion. However, it does not necessarily mean that the boosted document will be the top result at all times, nor that other documents will be excluded. Results could still be shown even when none of them matches the condition. And results that are significantly more relevant to the search query can still trump your heavily favored but irrelevant documents. Setting to -1.0 gives the document a big demotion. However, results that are deeply relevant might still be shown. The document will have an upstream battle to get a fairly high ranking, but it is not blocked out completely. Setting to 0.0 means no boost applied. The boosting condition is ignored. Only one of the (condition, boost) combination or the boost_control_spec below are set. If both are set then the global boost is ignored and the more fine-grained boost_control_spec is applied.",
           "format": "float",
           "type": "number"
         },
@@ -9113,6 +9234,10 @@
           "description": "The number of top results to generate the summary from. If the number of results returned is less than `summaryResultCount`, the summary is generated from all of the results. At most 10 results can be used to generate a summary.",
           "format": "int32",
           "type": "integer"
+        },
+        "useSemanticChunks": {
+          "description": "If true, answer will be generated from most relevant chunks from top search results. This feature will improve summary quality. Please note that with this feature enabled, not all top search results will be referenced and included in the reference list, so the citation source index only points to the search results listed in the reference list.",
+          "type": "boolean"
         }
       },
       "type": "object"

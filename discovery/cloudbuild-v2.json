@@ -671,7 +671,7 @@
                       ],
                       "parameters": {
                         "pageSize": {
-                          "description": "Optional. Number of results to return in the list. Default to 100.",
+                          "description": "Optional. Number of results to return in the list. Default to 20.",
                           "format": "int32",
                           "location": "query",
                           "type": "integer"
@@ -844,7 +844,7 @@
       }
     }
   },
-  "revision": "20240310",
+  "revision": "20240314",
   "rootUrl": "https://cloudbuild.googleapis.com/",
   "schemas": {
     "AuditConfig": {

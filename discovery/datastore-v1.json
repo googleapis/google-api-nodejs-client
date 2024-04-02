@@ -654,7 +654,7 @@
       }
     }
   },
-  "revision": "20240131",
+  "revision": "20240317",
   "rootUrl": "https://datastore.googleapis.com/",
   "schemas": {
     "Aggregation": {
@@ -989,6 +989,62 @@
           "description": "The version of the entity, a strictly positive number that monotonically increases with changes to the entity. This field is set for `FULL` entity results. For missing entities in `LookupResponse`, this is the version of the snapshot that was used to look up the entity, and it is always set except for eventually consistent reads.",
           "format": "int64",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ExecutionStats": {
+      "description": "Execution statistics for the query.",
+      "id": "ExecutionStats",
+      "properties": {
+        "debugStats": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "Debugging statistics from the execution of the query. Note that the debugging stats are subject to change as Firestore evolves. It could include: { \"indexes_entries_scanned\": \"1000\", \"documents_scanned\": \"20\", \"billing_details\" : { \"documents_billable\": \"20\", \"index_entries_billable\": \"1000\", \"min_query_cost\": \"0\" } }",
+          "type": "object"
+        },
+        "executionDuration": {
+          "description": "Total time to execute the query in the backend.",
+          "format": "google-duration",
+          "type": "string"
+        },
+        "readOperations": {
+          "description": "Total billable read operations.",
+          "format": "int64",
+          "type": "string"
+        },
+        "resultsReturned": {
+          "description": "Total number of results returned, including documents, projections, aggregation results, keys.",
+          "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ExplainMetrics": {
+      "description": "Explain metrics for the query.",
+      "id": "ExplainMetrics",
+      "properties": {
+        "executionStats": {
+          "$ref": "ExecutionStats",
+          "description": "Aggregated stats from the execution of the query. Only present when ExplainOptions.analyze is set to true."
+        },
+        "planSummary": {
+          "$ref": "PlanSummary",
+          "description": "Planning phase information for the query."
+        }
+      },
+      "type": "object"
+    },
+    "ExplainOptions": {
+      "description": "Explain options for the query.",
+      "id": "ExplainOptions",
+      "properties": {
+        "analyze": {
+          "description": "Optional. Whether to execute this query. When false (the default), the query will be planned, returning only metrics from the planning stages. When true, the query will be planned and executed, returning the full query results along with both planning and execution stage metrics.",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -1823,6 +1879,10 @@
           },
           "type": "array"
         },
+        "propertyMask": {
+          "$ref": "PropertyMask",
+          "description": "The properties to return. Defaults to returning all properties. If this field is set and an entity has a property not referenced in the mask, it will be absent from LookupResponse.found.entity.properties. The entity's key is always returned."
+        },
         "readOptions": {
           "$ref": "ReadOptions",
           "description": "The options for this lookup request."
@@ -1884,6 +1944,10 @@
         "insert": {
           "$ref": "Entity",
           "description": "The entity to insert. The entity must not already exist. The entity key's final path element may be incomplete."
+        },
+        "propertyMask": {
+          "$ref": "PropertyMask",
+          "description": "The properties to write in this mutation. None of the properties in the mask may have a reserved name, except for `__key__`. This field is ignored for `delete`. If the entity already exists, only properties referenced in the mask are updated, others are left untouched. Properties referenced in the mask but not in the entity are deleted."
         },
         "update": {
           "$ref": "Entity",
@@ -1970,6 +2034,24 @@
       },
       "type": "object"
     },
+    "PlanSummary": {
+      "description": "Planning phase information for the query.",
+      "id": "PlanSummary",
+      "properties": {
+        "indexesUsed": {
+          "description": "The indexes selected for the query. For example: [ {\"query_scope\": \"Collection\", \"properties\": \"(foo ASC, __name__ ASC)\"}, {\"query_scope\": \"Collection\", \"properties\": \"(bar ASC, __name__ ASC)\"} ]",
+          "items": {
+            "additionalProperties": {
+              "description": "Properties of the object.",
+              "type": "any"
+            },
+            "type": "object"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "Projection": {
       "description": "A representation of a property in a projection.",
       "id": "Projection",
@@ -2020,6 +2102,20 @@
         "value": {
           "$ref": "Value",
           "description": "The value to compare the property to."
+        }
+      },
+      "type": "object"
+    },
+    "PropertyMask": {
+      "description": "The set of arbitrarily nested property paths used to restrict an operation to only a subset of properties in an entity.",
+      "id": "PropertyMask",
+      "properties": {
+        "paths": {
+          "description": "The paths to the properties covered by this mask. A path is a list of property names separated by dots (`.`), for example `foo.bar` means the property `bar` inside the entity property `foo` inside the entity associated with this path. If a property name contains a dot `.` or a backslash `\\`, then that name must be escaped. A path must not be empty, and may not reference a value inside an array value.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -2309,6 +2405,10 @@
           "description": "The ID of the database against which to make the request. '(default)' is not allowed; please use empty string '' to refer the default database.",
           "type": "string"
         },
+        "explainOptions": {
+          "$ref": "ExplainOptions",
+          "description": "Optional. Explain options for the query. If set, additional query statistics will be returned. If not, only query results will be returned."
+        },
         "gqlQuery": {
           "$ref": "GqlQuery",
           "description": "The GQL query to run. This query must be an aggregation query."
@@ -2332,6 +2432,10 @@
           "$ref": "AggregationResultBatch",
           "description": "A batch of aggregation results. Always present."
         },
+        "explainMetrics": {
+          "$ref": "ExplainMetrics",
+          "description": "Query explain metrics. This is only present when the RunAggregationQueryRequest.explain_options is provided, and it is sent only once with the last response in the stream."
+        },
         "query": {
           "$ref": "AggregationQuery",
           "description": "The parsed form of the `GqlQuery` from the request, if it was set."
@@ -2352,6 +2456,10 @@
           "description": "The ID of the database against which to make the request. '(default)' is not allowed; please use empty string '' to refer the default database.",
           "type": "string"
         },
+        "explainOptions": {
+          "$ref": "ExplainOptions",
+          "description": "Optional. Explain options for the query. If set, additional query statistics will be returned. If not, only query results will be returned."
+        },
         "gqlQuery": {
           "$ref": "GqlQuery",
           "description": "The GQL query to run. This query must be a non-aggregation query."
@@ -2359,6 +2467,10 @@
         "partitionId": {
           "$ref": "PartitionId",
           "description": "Entities are partitioned into subsets, identified by a partition ID. Queries are scoped to a single partition. This partition ID is normalized with the standard default context partition ID."
+        },
+        "propertyMask": {
+          "$ref": "PropertyMask",
+          "description": "The properties to return. This field must not be set for a projection query. See LookupRequest.property_mask."
         },
         "query": {
           "$ref": "Query",
@@ -2378,6 +2490,10 @@
         "batch": {
           "$ref": "QueryResultBatch",
           "description": "A batch of query results (always present)."
+        },
+        "explainMetrics": {
+          "$ref": "ExplainMetrics",
+          "description": "Query explain metrics. This is only present when the RunQueryRequest.explain_options is provided, and it is sent only once with the last response in the stream."
         },
         "query": {
           "$ref": "Query",

@@ -612,7 +612,7 @@
       }
     }
   },
-  "revision": "20240104",
+  "revision": "20240307",
   "rootUrl": "https://memcache.googleapis.com/",
   "schemas": {
     "ApplyParametersRequest": {
@@ -1384,7 +1384,7 @@
       "type": "object"
     },
     "MaintenancePolicy": {
-      "description": "LINT.IfChange Defines policies to service maintenance events.",
+      "description": "Defines policies to service maintenance events.",
       "id": "MaintenancePolicy",
       "properties": {
         "createTime": {

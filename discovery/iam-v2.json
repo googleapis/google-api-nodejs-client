@@ -12,7 +12,7 @@
   "baseUrl": "https://iam.googleapis.com/",
   "batchPath": "batch",
   "canonicalName": "Iam",
-  "description": "Manages identity and access control for Google Cloud Platform resources, including the creation of service accounts, which you can use to authenticate to Google and make API calls. ",
+  "description": "Manages identity and access control for Google Cloud resources, including the creation of service accounts, which you can use to authenticate to Google and make API calls. Enabling this API also enables the IAM Service Account Credentials API (iamcredentials.googleapis.com). However, disabling this API doesn't disable the IAM Service Account Credentials API. ",
   "discoveryVersion": "v1",
   "documentationLink": "https://cloud.google.com/iam/",
   "fullyEncodeReservedExpansion": true,
@@ -293,9 +293,40 @@
       }
     }
   },
-  "revision": "20240118",
+  "revision": "20240314",
   "rootUrl": "https://iam.googleapis.com/",
   "schemas": {
+    "CloudControl2SharedOperationsReconciliationOperationMetadata": {
+      "description": "Operation metadata returned by the CLH during resource state reconciliation.",
+      "id": "CloudControl2SharedOperationsReconciliationOperationMetadata",
+      "properties": {
+        "deleteResource": {
+          "deprecated": true,
+          "description": "DEPRECATED. Use exclusive_action instead.",
+          "type": "boolean"
+        },
+        "exclusiveAction": {
+          "description": "Excluisive action returned by the CLH.",
+          "enum": [
+            "UNKNOWN_REPAIR_ACTION",
+            "DELETE",
+            "RETRY"
+          ],
+          "enumDeprecated": [
+            false,
+            true,
+            false
+          ],
+          "enumDescriptions": [
+            "Unknown repair action.",
+            "The resource has to be deleted. When using this bit, the CLH should fail the operation. DEPRECATED. Instead use DELETE_RESOURCE OperationSignal in SideChannel.",
+            "This resource could not be repaired but the repair should be tried again at a later time. This can happen if there is a dependency that needs to be resolved first- e.g. if a parent resource must be repaired before a child resource."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudCommonOperationMetadata": {
       "description": "Represents the metadata of the long-running operation.",
       "id": "GoogleCloudCommonOperationMetadata",

@@ -4122,6 +4122,10 @@ export namespace sheets_v4 {
      */
     defaultFormat?: Schema$CellFormat;
     /**
+     * Whether to allow external url access for image and import functions. Read only when true. When false, you can set to true.
+     */
+    importFunctionsExternalUrlAccessAllowed?: boolean | null;
+    /**
      * Determines whether and how circular references are resolved with iterative calculation. Absence of this field means that circular references result in calculation errors.
      */
     iterativeCalculationSettings?: Schema$IterativeCalculationSettings;

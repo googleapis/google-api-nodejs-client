@@ -1688,7 +1688,7 @@
       }
     }
   },
-  "revision": "20240207",
+  "revision": "20240313",
   "rootUrl": "https://gkebackup.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -1740,7 +1740,7 @@
       "type": "object"
     },
     "Backup": {
-      "description": "Represents a request to perform a single point-in-time capture of some portion of the state of a GKE cluster, the record of the backup operation itself, and an anchor for the underlying artifacts that comprise the Backup (the config backup and VolumeBackups). Next id: 29",
+      "description": "Represents a request to perform a single point-in-time capture of some portion of the state of a GKE cluster, the record of the backup operation itself, and an anchor for the underlying artifacts that comprise the Backup (the config backup and VolumeBackups).",
       "id": "Backup",
       "properties": {
         "allNamespaces": {
@@ -2590,7 +2590,7 @@
       "type": "object"
     },
     "Restore": {
-      "description": "Represents both a request to Restore some portion of a Backup into a target GKE cluster and a record of the restore operation itself. Next id: 20",
+      "description": "Represents both a request to Restore some portion of a Backup into a target GKE cluster and a record of the restore operation itself.",
       "id": "Restore",
       "properties": {
         "backup": {
@@ -2705,7 +2705,7 @@
       "type": "object"
     },
     "RestoreConfig": {
-      "description": "Configuration of a restore. Next id: 14",
+      "description": "Configuration of a restore.",
       "id": "RestoreConfig",
       "properties": {
         "allNamespaces": {
@@ -2794,7 +2794,7 @@
       "type": "object"
     },
     "RestorePlan": {
-      "description": "The configuration of a potential series of Restore operations to be performed against Backups belong to a particular BackupPlan. Next id: 13",
+      "description": "The configuration of a potential series of Restore operations to be performed against Backups belong to a particular BackupPlan.",
       "id": "RestorePlan",
       "properties": {
         "backupPlan": {
@@ -3051,7 +3051,7 @@
       "type": "object"
     },
     "VolumeBackup": {
-      "description": "Represents the backup of a specific persistent volume as a component of a Backup - both the record of the operation and a pointer to the underlying storage-specific artifacts. Next id: 14",
+      "description": "Represents the backup of a specific persistent volume as a component of a Backup - both the record of the operation and a pointer to the underlying storage-specific artifacts.",
       "id": "VolumeBackup",
       "properties": {
         "completeTime": {
@@ -3154,7 +3154,7 @@
       "type": "object"
     },
     "VolumeRestore": {
-      "description": "Represents the operation of restoring a volume from a VolumeBackup. Next id: 13",
+      "description": "Represents the operation of restoring a volume from a VolumeBackup.",
       "id": "VolumeRestore",
       "properties": {
         "completeTime": {

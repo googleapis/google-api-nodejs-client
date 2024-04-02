@@ -5284,6 +5284,10 @@ export namespace documentai_v1 {
      */
     documentSchema?: Schema$GoogleCloudDocumentaiV1DocumentSchema;
     /**
+     * Options to control foundation model tuning of a processor.
+     */
+    foundationModelTuningOptions?: Schema$GoogleCloudDocumentaiV1TrainProcessorVersionRequestFoundationModelTuningOptions;
+    /**
      * Optional. The input data used to train the ProcessorVersion.
      */
     inputData?: Schema$GoogleCloudDocumentaiV1TrainProcessorVersionRequestInputData;
@@ -5300,6 +5304,19 @@ export namespace documentai_v1 {
      * Training method to use for CDE training.
      */
     trainingMethod?: string | null;
+  }
+  /**
+   * Options to control foundation model tuning of the processor.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1TrainProcessorVersionRequestFoundationModelTuningOptions {
+    /**
+     * Optional. The multiplier to apply to the recommended learning rate. Valid values are between 0.1 and 10. If not provided, recommended learning rate will be used.
+     */
+    learningRateMultiplier?: number | null;
+    /**
+     * Optional. The number of steps to run for model tuning. Valid values are between 1 and 400. If not provided, recommended steps will be used.
+     */
+    trainSteps?: number | null;
   }
   /**
    * The input data used to train a new ProcessorVersion.

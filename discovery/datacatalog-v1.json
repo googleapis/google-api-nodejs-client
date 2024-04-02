@@ -346,7 +346,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "The resource name of the entry group in URL format. Note: The entry group itself and its child resources might not be stored in the location specified in its name.",
+                      "description": "Identifier. The resource name of the entry group in URL format. Note: The entry group itself and its child resources might not be stored in the location specified in its name.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/entryGroups/[^/]+$",
                       "required": true,
@@ -677,7 +677,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "Output only. The resource name of an entry in URL format. Note: The entry itself and its child resources might not be stored in the location specified in its name.",
+                          "description": "Output only. Identifier. The resource name of an entry in URL format. Note: The entry itself and its child resources might not be stored in the location specified in its name.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/entryGroups/[^/]+/entries/[^/]+$",
                           "required": true,
@@ -888,7 +888,7 @@
                           ],
                           "parameters": {
                             "name": {
-                              "description": "The resource name of the tag in URL format where tag ID is a system-generated identifier. Note: The tag itself might not be stored in the location specified in its name.",
+                              "description": "Identifier. The resource name of the tag in URL format where tag ID is a system-generated identifier. Note: The tag itself might not be stored in the location specified in its name.",
                               "location": "path",
                               "pattern": "^projects/[^/]+/locations/[^/]+/entryGroups/[^/]+/entries/[^/]+/tags/[^/]+$",
                               "required": true,
@@ -1045,7 +1045,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "The resource name of the tag in URL format where tag ID is a system-generated identifier. Note: The tag itself might not be stored in the location specified in its name.",
+                          "description": "Identifier. The resource name of the tag in URL format where tag ID is a system-generated identifier. Note: The tag itself might not be stored in the location specified in its name.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/entryGroups/[^/]+/tags/[^/]+$",
                           "required": true,
@@ -1321,7 +1321,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "The resource name of the tag template in URL format. Note: The tag template itself and its child resources might not be stored in the location specified in its name.",
+                      "description": "Identifier. The resource name of the tag template in URL format. Note: The tag template itself and its child resources might not be stored in the location specified in its name.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/tagTemplates/[^/]+$",
                       "required": true,
@@ -2144,7 +2144,7 @@
       }
     }
   },
-  "revision": "20240220",
+  "revision": "20240315",
   "rootUrl": "https://datacatalog.googleapis.com/",
   "schemas": {
     "Binding": {
@@ -2914,7 +2914,7 @@
           "description": "Model specification."
         },
         "name": {
-          "description": "Output only. The resource name of an entry in URL format. Note: The entry itself and its child resources might not be stored in the location specified in its name.",
+          "description": "Output only. Identifier. The resource name of an entry in URL format. Note: The entry itself and its child resources might not be stored in the location specified in its name.",
           "readOnly": true,
           "type": "string"
         },
@@ -3022,7 +3022,7 @@
           "type": "string"
         },
         "name": {
-          "description": "The resource name of the entry group in URL format. Note: The entry group itself and its child resources might not be stored in the location specified in its name.",
+          "description": "Identifier. The resource name of the entry group in URL format. Note: The entry group itself and its child resources might not be stored in the location specified in its name.",
           "type": "string"
         }
       },
@@ -4131,7 +4131,7 @@
           "type": "object"
         },
         "name": {
-          "description": "The resource name of the tag in URL format where tag ID is a system-generated identifier. Note: The tag itself might not be stored in the location specified in its name.",
+          "description": "Identifier. The resource name of the tag in URL format where tag ID is a system-generated identifier. Note: The tag itself might not be stored in the location specified in its name.",
           "type": "string"
         },
         "template": {
@@ -4205,6 +4205,18 @@
       "description": "A tag template defines a tag that can have one or more typed fields. The template is used to create tags that are attached to Google Cloud resources. [Tag template roles] (https://cloud.google.com/iam/docs/understanding-roles#data-catalog-roles) provide permissions to create, edit, and use the template. For example, see the [TagTemplate User] (https://cloud.google.com/data-catalog/docs/how-to/template-user) role that includes a permission to use the tag template to tag resources.",
       "id": "GoogleCloudDatacatalogV1TagTemplate",
       "properties": {
+        "dataplexTransferStatus": {
+          "description": "Optional. Transfer status of the TagTemplate",
+          "enum": [
+            "DATAPLEX_TRANSFER_STATUS_UNSPECIFIED",
+            "MIGRATED"
+          ],
+          "enumDescriptions": [
+            "Default value. TagTemplate and its tags are only visible and editable in DataCatalog.",
+            "TagTemplate and its tags are auto-copied to Dataplex service. Visible in both services. Editable in DataCatalog, read-only in Dataplex."
+          ],
+          "type": "string"
+        },
         "displayName": {
           "description": "Display name for this template. Defaults to an empty string. The name must contain only Unicode letters, numbers (0-9), underscores (_), dashes (-), spaces ( ), and can't start or end with spaces. The maximum length is 200 characters.",
           "type": "string"
@@ -4221,7 +4233,7 @@
           "type": "boolean"
         },
         "name": {
-          "description": "The resource name of the tag template in URL format. Note: The tag template itself and its child resources might not be stored in the location specified in its name.",
+          "description": "Identifier. The resource name of the tag template in URL format. Note: The tag template itself and its child resources might not be stored in the location specified in its name.",
           "type": "string"
         }
       },
@@ -4244,8 +4256,7 @@
           "type": "boolean"
         },
         "name": {
-          "description": "Output only. The resource name of the tag template field in URL format. Example: `projects/{PROJECT_ID}/locations/{LOCATION}/tagTemplates/{TAG_TEMPLATE}/fields/{FIELD}` Note: The tag template field itself might not be stored in the location specified in its name. The name must contain only letters (a-z, A-Z), numbers (0-9), or underscores (_), and must start with a letter or underscore. The maximum length is 64 characters.",
-          "readOnly": true,
+          "description": "Identifier. The resource name of the tag template field in URL format. Example: `projects/{PROJECT_ID}/locations/{LOCATION}/tagTemplates/{TAG_TEMPLATE}/fields/{FIELD}` Note: The tag template field itself might not be stored in the location specified in its name. The name must contain only letters (a-z, A-Z), numbers (0-9), or underscores (_), and must start with a letter or underscore. The maximum length is 64 characters.",
           "type": "string"
         },
         "order": {

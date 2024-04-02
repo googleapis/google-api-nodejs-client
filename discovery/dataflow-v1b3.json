@@ -31,6 +31,11 @@
       "endpointUrl": "https://dataflow.europe-west3.rep.googleapis.com/",
       "location": "europe-west3",
       "description": "Regional Endpoint"
+    },
+    {
+      "endpointUrl": "https://dataflow.europe-west9.rep.googleapis.com/",
+      "location": "europe-west9",
+      "description": "Regional Endpoint"
     }
   ],
   "fullyEncodeReservedExpansion": true,
@@ -1918,7 +1923,7 @@
                   ],
                   "parameters": {
                     "dynamicTemplate.gcsPath": {
-                      "description": "Path to dynamic template spec file on Cloud Storage. The file must be a Json serialized DynamicTemplateFieSpec object.",
+                      "description": "Path to the dynamic template specification file on Cloud Storage. The file must be a JSON serialized `DynamicTemplateFileSpec` object.",
                       "location": "query",
                       "type": "string"
                     },
@@ -1928,7 +1933,7 @@
                       "type": "string"
                     },
                     "gcsPath": {
-                      "description": "A Cloud Storage path to the template from which to create the job. Must be valid Cloud Storage URL, beginning with 'gs://'.",
+                      "description": "A Cloud Storage path to the template to use to create the job. Must be valid Cloud Storage URL, beginning with `gs://`.",
                       "location": "query",
                       "type": "string"
                     },
@@ -2133,7 +2138,7 @@
               ],
               "parameters": {
                 "dynamicTemplate.gcsPath": {
-                  "description": "Path to dynamic template spec file on Cloud Storage. The file must be a Json serialized DynamicTemplateFieSpec object.",
+                  "description": "Path to the dynamic template specification file on Cloud Storage. The file must be a JSON serialized `DynamicTemplateFileSpec` object.",
                   "location": "query",
                   "type": "string"
                 },
@@ -2143,7 +2148,7 @@
                   "type": "string"
                 },
                 "gcsPath": {
-                  "description": "A Cloud Storage path to the template from which to create the job. Must be valid Cloud Storage URL, beginning with 'gs://'.",
+                  "description": "A Cloud Storage path to the template to use to create the job. Must be valid Cloud Storage URL, beginning with `gs://`.",
                   "location": "query",
                   "type": "string"
                 },
@@ -2182,7 +2187,7 @@
       }
     }
   },
-  "revision": "20240303",
+  "revision": "20240317",
   "rootUrl": "https://dataflow.googleapis.com/",
   "schemas": {
     "ApproximateProgress": {
@@ -3201,7 +3206,7 @@
           "type": "string"
         },
         "streamingMode": {
-          "description": "Optional. Specifies the Streaming Engine message processing guarantees. Reduces cost and latency but might result in duplicate messages committed to storage. Designed to run simple mapping streaming ETL jobs at the lowest cost. For example, Change Data Capture (CDC) to BigQuery is a canonical use case.",
+          "description": "Optional. Specifies the Streaming Engine message processing guarantees. Reduces cost and latency but might result in duplicate messages committed to storage. Designed to run simple mapping streaming ETL jobs at the lowest cost. For example, Change Data Capture (CDC) to BigQuery is a canonical use case. For more information, see [Set the pipeline streaming mode](https://cloud.google.com/dataflow/docs/guides/streaming-modes).",
           "enum": [
             "STREAMING_MODE_UNSPECIFIED",
             "STREAMING_MODE_EXACTLY_ONCE",
@@ -3539,7 +3544,7 @@
           "type": "string"
         },
         "streamingMode": {
-          "description": "Optional. Specifies the Streaming Engine message processing guarantees. Reduces cost and latency but might result in duplicate messages committed to storage. Designed to run simple mapping streaming ETL jobs at the lowest cost. For example, Change Data Capture (CDC) to BigQuery is a canonical use case.",
+          "description": "Optional. Specifies the Streaming Engine message processing guarantees. Reduces cost and latency but might result in duplicate messages committed to storage. Designed to run simple mapping streaming ETL jobs at the lowest cost. For example, Change Data Capture (CDC) to BigQuery is a canonical use case. For more information, see [Set the pipeline streaming mode](https://cloud.google.com/dataflow/docs/guides/streaming-modes).",
           "enum": [
             "STREAMING_MODE_UNSPECIFIED",
             "STREAMING_MODE_EXACTLY_ONCE",
@@ -5413,7 +5418,7 @@
       "type": "object"
     },
     "RuntimeEnvironment": {
-      "description": "The environment values to set at runtime.",
+      "description": "The environment values to set at runtime. LINT.IfChange",
       "id": "RuntimeEnvironment",
       "properties": {
         "additionalExperiments": {
@@ -5484,7 +5489,7 @@
           "type": "string"
         },
         "streamingMode": {
-          "description": "Optional. Specifies the Streaming Engine message processing guarantees. Reduces cost and latency but might result in duplicate messages committed to storage. Designed to run simple mapping streaming ETL jobs at the lowest cost. For example, Change Data Capture (CDC) to BigQuery is a canonical use case.",
+          "description": "Optional. Specifies the Streaming Engine message processing guarantees. Reduces cost and latency but might result in duplicate messages committed to storage. Designed to run simple mapping streaming ETL jobs at the lowest cost. For example, Change Data Capture (CDC) to BigQuery is a canonical use case. For more information, see [Set the pipeline streaming mode](https://cloud.google.com/dataflow/docs/guides/streaming-modes).",
           "enum": [
             "STREAMING_MODE_UNSPECIFIED",
             "STREAMING_MODE_EXACTLY_ONCE",
@@ -5553,7 +5558,7 @@
           "type": "integer"
         },
         "workerUtilizationHint": {
-          "description": "Target worker utilization, compared against the aggregate utilization of the worker pool by autoscaler, to determine upscaling and downscaling when absent other constraints such as backlog.",
+          "description": "Target worker utilization, compared against the aggregate utilization of the worker pool by autoscaler, to determine upscaling and downscaling when absent other constraints such as backlog. For more information, see [Update an existing pipeline](https://cloud.google.com/dataflow/docs/guides/updating-a-pipeline).",
           "format": "double",
           "type": "number"
         }

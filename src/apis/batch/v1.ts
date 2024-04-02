@@ -102,7 +102,7 @@ export namespace batch_v1 {
   /**
    * Batch API
    *
-   * An API to manage the running of batch resources on Google Cloud Platform.
+   * An API to manage the running of Batch resources on Google Cloud Platform.
    *
    * @example
    * ```js
@@ -380,7 +380,7 @@ export namespace batch_v1 {
      */
     environment?: Schema$AgentEnvironment;
     /**
-     * Maximum duration the task should run. The task will be killed and marked as FAILED if over this limit.
+     * Maximum duration the task should run. The task will be killed and marked as FAILED if over this limit. The valid value range for max_run_duration in seconds is [0, 315576000000.999999999],
      */
     maxRunDuration?: string | null;
     /**
@@ -1272,7 +1272,7 @@ export namespace batch_v1 {
      */
     maxRetryCount?: number | null;
     /**
-     * Maximum duration the task should run. The task will be killed and marked as FAILED if over this limit.
+     * Maximum duration the task should run. The task will be killed and marked as FAILED if over this limit. The valid value range for max_run_duration in seconds is [0, 315576000000.999999999],
      */
     maxRunDuration?: string | null;
     /**

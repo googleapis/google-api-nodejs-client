@@ -591,7 +591,7 @@
       }
     }
   },
-  "revision": "20240228",
+  "revision": "20240313",
   "rootUrl": "https://networkmanagement.googleapis.com/",
   "schemas": {
     "AbortInfo": {
@@ -630,7 +630,9 @@
             "GOOGLE_MANAGED_SERVICE_AMBIGUOUS_PSC_ENDPOINT",
             "SOURCE_PSC_CLOUD_SQL_UNSUPPORTED",
             "SOURCE_FORWARDING_RULE_UNSUPPORTED",
-            "NON_ROUTABLE_IP_ADDRESS"
+            "NON_ROUTABLE_IP_ADDRESS",
+            "UNKNOWN_ISSUE_IN_GOOGLE_MANAGED_PROJECT",
+            "UNSUPPORTED_GOOGLE_MANAGED_PROJECT_CONFIG"
           ],
           "enumDeprecated": [
             false,
@@ -642,6 +644,8 @@
             true,
             true,
             true,
+            false,
+            false,
             false,
             false,
             false,
@@ -694,7 +698,9 @@
             "Aborted because a PSC endpoint selection for the Google-managed service is ambiguous (several PSC endpoints satisfy test input).",
             "Aborted because tests with a PSC-based Cloud SQL instance as a source are not supported.",
             "Aborted because tests with a forwarding rule as a source are not supported.",
-            "Aborted because one of the endpoints is a non-routable IP address (loopback, link-local, etc)."
+            "Aborted because one of the endpoints is a non-routable IP address (loopback, link-local, etc).",
+            "Aborted due to an unknown issue in the Google-managed project.",
+            "Aborted due to an unsupported configuration of the Google-managed project."
           ],
           "type": "string"
         },
@@ -930,6 +936,10 @@
       "description": "A Connectivity Test for a network reachability analysis.",
       "id": "ConnectivityTest",
       "properties": {
+        "bypassFirewallChecks": {
+          "description": "Whether the test should skip firewall checking. If not provided, we assume false.",
+          "type": "boolean"
+        },
         "createTime": {
           "description": "Output only. The time the test was created.",
           "format": "google-datetime",
@@ -1105,13 +1115,15 @@
             "PSC_ENDPOINT_ACCESSED_FROM_PEERED_NETWORK",
             "PSC_NEG_PRODUCER_ENDPOINT_NO_GLOBAL_ACCESS",
             "PSC_NEG_PRODUCER_FORWARDING_RULE_MULTIPLE_PORTS",
+            "CLOUD_SQL_PSC_NEG_UNSUPPORTED",
             "NO_NAT_SUBNETS_FOR_PSC_SERVICE_ATTACHMENT",
             "HYBRID_NEG_NON_DYNAMIC_ROUTE_MATCHED",
             "HYBRID_NEG_NON_LOCAL_DYNAMIC_ROUTE_MATCHED",
             "CLOUD_RUN_REVISION_NOT_READY",
             "DROPPED_INSIDE_PSC_SERVICE_PRODUCER",
             "LOAD_BALANCER_HAS_NO_PROXY_SUBNET",
-            "CLOUD_NAT_NO_ADDRESSES"
+            "CLOUD_NAT_NO_ADDRESSES",
+            "ROUTING_LOOP"
           ],
           "enumDescriptions": [
             "Cause is unspecified.",
@@ -1165,13 +1177,15 @@
             "The packet is sent to the Private Service Connect endpoint over the peering, but [it's not supported](https://cloud.google.com/vpc/docs/configure-private-service-connect-services#on-premises).",
             "The packet is sent to the Private Service Connect backend (network endpoint group), but the producer PSC forwarding rule does not have global access enabled.",
             "The packet is sent to the Private Service Connect backend (network endpoint group), but the producer PSC forwarding rule has multiple ports specified.",
+            "The packet is sent to the Private Service Connect backend (network endpoint group) targeting a Cloud SQL service attachment, but this configuration is not supported.",
             "No NAT subnets are defined for the PSC service attachment.",
             "The packet sent from the hybrid NEG proxy matches a non-dynamic route, but such a configuration is not supported.",
             "The packet sent from the hybrid NEG proxy matches a dynamic route with a next hop in a different region, but such a configuration is not supported.",
             "Packet sent from a Cloud Run revision that is not ready.",
             "Packet was dropped inside Private Service Connect service producer.",
             "Packet sent to a load balancer, which requires a proxy-only subnet and the subnet is not found.",
-            "Packet sent to Cloud Nat without active NAT IPs."
+            "Packet sent to Cloud Nat without active NAT IPs.",
+            "Packet is stuck in a routing loop."
           ],
           "type": "string"
         },

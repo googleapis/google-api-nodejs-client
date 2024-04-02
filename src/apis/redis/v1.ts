@@ -125,6 +125,15 @@ export namespace redis_v1 {
   }
 
   /**
+   * Configuration of the AOF based persistence.
+   */
+  export interface Schema$AOFConfig {
+    /**
+     * Optional. fsync configuration.
+     */
+    appendFsync?: string | null;
+  }
+  /**
    * Configuration for availability of database instance
    */
   export interface Schema$AvailabilityConfiguration {
@@ -210,6 +219,10 @@ export namespace redis_v1 {
      */
     name?: string | null;
     /**
+     * Optional. Persistence config (RDB, AOF) for the cluster.
+     */
+    persistenceConfig?: Schema$ClusterPersistenceConfig;
+    /**
      * Required. Each PscConfig configures the consumer network where IPs will be designated to the cluster for client access through Private Service Connect Automation. Currently, only one PscConfig is supported.
      */
     pscConfigs?: Schema$PscConfig[];
@@ -217,6 +230,10 @@ export namespace redis_v1 {
      * Output only. PSC connections for discovery of the cluster topology and accessing the cluster.
      */
     pscConnections?: Schema$PscConnection[];
+    /**
+     * Optional. Key/Value pairs of customer overrides for mutable Redis Configs
+     */
+    redisConfigs?: {[key: string]: string} | null;
     /**
      * Optional. The number of replica nodes per shard.
      */
@@ -245,6 +262,23 @@ export namespace redis_v1 {
      * Output only. System assigned, unique identifier for the cluster.
      */
     uid?: string | null;
+  }
+  /**
+   * Configuration of the persistence functionality.
+   */
+  export interface Schema$ClusterPersistenceConfig {
+    /**
+     * Optional. AOF configuration. This field will be ignored if mode is not AOF.
+     */
+    aofConfig?: Schema$AOFConfig;
+    /**
+     * Optional. The mode of persistence.
+     */
+    mode?: string | null;
+    /**
+     * Optional. RDB configuration. This field will be ignored if mode is not RDB.
+     */
+    rdbConfig?: Schema$RDBConfig;
   }
   /**
    * Contains compliance information about a security standard indicating unmet recommendations.
@@ -1089,6 +1123,19 @@ export namespace redis_v1 {
      * Output only. The PSC connection id of the forwarding rule connected to the service attachment.
      */
     pscConnectionId?: string | null;
+  }
+  /**
+   * Configuration of the RDB based persistence.
+   */
+  export interface Schema$RDBConfig {
+    /**
+     * Optional. Period between RDB snapshots.
+     */
+    rdbSnapshotPeriod?: string | null;
+    /**
+     * Optional. The time that the first snapshot was/will be attempted, and to which future snapshots will be aligned. If not provided, the current time will be used.
+     */
+    rdbSnapshotStartTime?: string | null;
   }
   /**
    * Operation metadata returned by the CLH during resource state reconciliation.

@@ -333,6 +333,49 @@ export namespace datastore_v1beta3 {
     version?: string | null;
   }
   /**
+   * Execution statistics for the query.
+   */
+  export interface Schema$ExecutionStats {
+    /**
+     * Debugging statistics from the execution of the query. Note that the debugging stats are subject to change as Firestore evolves. It could include: { "indexes_entries_scanned": "1000", "documents_scanned": "20", "billing_details" : { "documents_billable": "20", "index_entries_billable": "1000", "min_query_cost": "0" \} \}
+     */
+    debugStats?: {[key: string]: any} | null;
+    /**
+     * Total time to execute the query in the backend.
+     */
+    executionDuration?: string | null;
+    /**
+     * Total billable read operations.
+     */
+    readOperations?: string | null;
+    /**
+     * Total number of results returned, including documents, projections, aggregation results, keys.
+     */
+    resultsReturned?: string | null;
+  }
+  /**
+   * Explain metrics for the query.
+   */
+  export interface Schema$ExplainMetrics {
+    /**
+     * Aggregated stats from the execution of the query. Only present when ExplainOptions.analyze is set to true.
+     */
+    executionStats?: Schema$ExecutionStats;
+    /**
+     * Planning phase information for the query.
+     */
+    planSummary?: Schema$PlanSummary;
+  }
+  /**
+   * Explain options for the query.
+   */
+  export interface Schema$ExplainOptions {
+    /**
+     * Optional. Whether to execute this query. When false (the default), the query will be planned, returning only metrics from the planning stages. When true, the query will be planned and executed, returning the full query results along with both planning and execution stage metrics.
+     */
+    analyze?: boolean | null;
+  }
+  /**
    * A holder for any type of filter.
    */
   export interface Schema$Filter {
@@ -717,6 +760,10 @@ export namespace datastore_v1beta3 {
      */
     keys?: Schema$Key[];
     /**
+     * The properties to return. Defaults to returning all properties. If this field is set and an entity has a property not referenced in the mask, it will be absent from LookupResponse.found.entity.properties. The entity's key is always returned.
+     */
+    propertyMask?: Schema$PropertyMask;
+    /**
      * The options for this lookup request.
      */
     readOptions?: Schema$ReadOptions;
@@ -758,6 +805,10 @@ export namespace datastore_v1beta3 {
      * The entity to insert. The entity must not already exist. The entity key's final path element may be incomplete.
      */
     insert?: Schema$Entity;
+    /**
+     * The properties to write in this mutation. None of the properties in the mask may have a reserved name, except for `__key__`. This field is ignored for `delete`. If the entity already exists, only properties referenced in the mask are updated, others are left untouched. Properties referenced in the mask but not in the entity are deleted.
+     */
+    propertyMask?: Schema$PropertyMask;
     /**
      * The entity to update. The entity must already exist. Must have a complete key path.
      */
@@ -827,6 +878,15 @@ export namespace datastore_v1beta3 {
     name?: string | null;
   }
   /**
+   * Planning phase information for the query.
+   */
+  export interface Schema$PlanSummary {
+    /**
+     * The indexes selected for the query. For example: [ {"query_scope": "Collection", "properties": "(foo ASC, __name__ ASC)"\}, {"query_scope": "Collection", "properties": "(bar ASC, __name__ ASC)"\} ]
+     */
+    indexesUsed?: Array<{[key: string]: any}> | null;
+  }
+  /**
    * A representation of a property in a projection.
    */
   export interface Schema$Projection {
@@ -851,6 +911,15 @@ export namespace datastore_v1beta3 {
      * The value to compare the property to.
      */
     value?: Schema$Value;
+  }
+  /**
+   * The set of arbitrarily nested property paths used to restrict an operation to only a subset of properties in an entity.
+   */
+  export interface Schema$PropertyMask {
+    /**
+     * The paths to the properties covered by this mask. A path is a list of property names separated by dots (`.`), for example `foo.bar` means the property `bar` inside the entity property `foo` inside the entity associated with this path. If a property name contains a dot `.` or a backslash `\`, then that name must be escaped. A path must not be empty, and may not reference a value inside an array value.
+     */
+    paths?: string[] | null;
   }
   /**
    * The desired order for a specific property.
@@ -1026,6 +1095,10 @@ export namespace datastore_v1beta3 {
      */
     aggregationQuery?: Schema$AggregationQuery;
     /**
+     * Optional. Explain options for the query. If set, additional query statistics will be returned. If not, only query results will be returned.
+     */
+    explainOptions?: Schema$ExplainOptions;
+    /**
      * The GQL query to run. This query must be an aggregation query.
      */
     gqlQuery?: Schema$GqlQuery;
@@ -1047,6 +1120,10 @@ export namespace datastore_v1beta3 {
      */
     batch?: Schema$AggregationResultBatch;
     /**
+     * Query explain metrics. This is only present when the RunAggregationQueryRequest.explain_options is provided, and it is sent only once with the last response in the stream.
+     */
+    explainMetrics?: Schema$ExplainMetrics;
+    /**
      * The parsed form of the `GqlQuery` from the request, if it was set.
      */
     query?: Schema$AggregationQuery;
@@ -1056,6 +1133,10 @@ export namespace datastore_v1beta3 {
    */
   export interface Schema$RunQueryRequest {
     /**
+     * Optional. Explain options for the query. If set, additional query statistics will be returned. If not, only query results will be returned.
+     */
+    explainOptions?: Schema$ExplainOptions;
+    /**
      * The GQL query to run. This query must be a non-aggregation query.
      */
     gqlQuery?: Schema$GqlQuery;
@@ -1063,6 +1144,10 @@ export namespace datastore_v1beta3 {
      * Entities are partitioned into subsets, identified by a partition ID. Queries are scoped to a single partition. This partition ID is normalized with the standard default context partition ID.
      */
     partitionId?: Schema$PartitionId;
+    /**
+     * The properties to return. This field must not be set for a projection query. See LookupRequest.property_mask.
+     */
+    propertyMask?: Schema$PropertyMask;
     /**
      * The query to run.
      */
@@ -1080,6 +1165,10 @@ export namespace datastore_v1beta3 {
      * A batch of query results (always present).
      */
     batch?: Schema$QueryResultBatch;
+    /**
+     * Query explain metrics. This is only present when the RunQueryRequest.explain_options is provided, and it is sent only once with the last response in the stream.
+     */
+    explainMetrics?: Schema$ExplainMetrics;
     /**
      * The parsed form of the `GqlQuery` from the request, if it was set.
      */

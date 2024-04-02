@@ -1824,7 +1824,7 @@ export namespace retail_v2 {
    */
   export interface Schema$GoogleCloudRetailV2ExperimentInfoServingConfigExperiment {
     /**
-     * The fully qualified resource name of the serving config VariantArm.serving_config_id responsible for generating the search response. For example: `projects/x/locations/x/catalogs/x/servingConfigs/x`.
+     * The fully qualified resource name of the serving config Experiment.VariantArm.serving_config_id responsible for generating the search response. For example: `projects/x/locations/x/catalogs/x/servingConfigs/x`.
      */
     experimentServingConfig?: string | null;
     /**

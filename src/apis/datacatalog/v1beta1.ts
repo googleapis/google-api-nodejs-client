@@ -280,7 +280,7 @@ export namespace datacatalog_v1beta1 {
      */
     linkedResource?: string | null;
     /**
-     * Output only. The Data Catalog resource name of the entry in URL format. Example: * projects/{project_id\}/locations/{location\}/entryGroups/{entry_group_id\}/entries/{entry_id\} Note that this Entry and its child resources may not actually be stored in the location in this name.
+     * Output only. Identifier. The Data Catalog resource name of the entry in URL format. Example: * projects/{project_id\}/locations/{location\}/entryGroups/{entry_group_id\}/entries/{entry_id\} Note that this Entry and its child resources may not actually be stored in the location in this name.
      */
     name?: string | null;
     /**
@@ -325,7 +325,7 @@ export namespace datacatalog_v1beta1 {
      */
     displayName?: string | null;
     /**
-     * The resource name of the entry group in URL format. Example: * projects/{project_id\}/locations/{location\}/entryGroups/{entry_group_id\} Note that this EntryGroup and its child resources may not actually be stored in the location in this name.
+     * Identifier. The resource name of the entry group in URL format. Example: * projects/{project_id\}/locations/{location\}/entryGroups/{entry_group_id\} Note that this EntryGroup and its child resources may not actually be stored in the location in this name.
      */
     name?: string | null;
   }
@@ -706,7 +706,7 @@ export namespace datacatalog_v1beta1 {
       [key: string]: Schema$GoogleCloudDatacatalogV1beta1TagField;
     } | null;
     /**
-     * The resource name of the tag in URL format. Example: * projects/{project_id\}/locations/{location\}/entrygroups/{entry_group_id\}/entries/{entry_id\}/tags/{tag_id\} where `tag_id` is a system-generated identifier. Note that this Tag may not actually be stored in the location in this name.
+     * Identifier. The resource name of the tag in URL format. Example: * projects/{project_id\}/locations/{location\}/entrygroups/{entry_group_id\}/entries/{entry_id\}/tags/{tag_id\} where `tag_id` is a system-generated identifier. Note that this Tag may not actually be stored in the location in this name.
      */
     name?: string | null;
     /**
@@ -765,6 +765,10 @@ export namespace datacatalog_v1beta1 {
    */
   export interface Schema$GoogleCloudDatacatalogV1beta1TagTemplate {
     /**
+     * Output only. Transfer status of the TagTemplate
+     */
+    dataplexTransferStatus?: string | null;
+    /**
      * The display name for this template. Defaults to an empty string.
      */
     displayName?: string | null;
@@ -775,7 +779,7 @@ export namespace datacatalog_v1beta1 {
       [key: string]: Schema$GoogleCloudDatacatalogV1beta1TagTemplateField;
     } | null;
     /**
-     * The resource name of the tag template in URL format. Example: * projects/{project_id\}/locations/{location\}/tagTemplates/{tag_template_id\} Note that this TagTemplate and its child resources may not actually be stored in the location in this name.
+     * Identifier. The resource name of the tag template in URL format. Example: * projects/{project_id\}/locations/{location\}/tagTemplates/{tag_template_id\} Note that this TagTemplate and its child resources may not actually be stored in the location in this name.
      */
     name?: string | null;
   }
@@ -796,7 +800,7 @@ export namespace datacatalog_v1beta1 {
      */
     isRequired?: boolean | null;
     /**
-     * Output only. The resource name of the tag template field in URL format. Example: * projects/{project_id\}/locations/{location\}/tagTemplates/{tag_template\}/fields/{field\} Note that this TagTemplateField may not actually be stored in the location in this name.
+     * Output only. Identifier. The resource name of the tag template field in URL format. Example: * projects/{project_id\}/locations/{location\}/tagTemplates/{tag_template\}/fields/{field\} Note that this TagTemplateField may not actually be stored in the location in this name.
      */
     name?: string | null;
     /**
@@ -1361,7 +1365,7 @@ export namespace datacatalog_v1beta1 {
      */
     modelSpec?: Schema$GoogleCloudDatacatalogV1ModelSpec;
     /**
-     * Output only. The resource name of an entry in URL format. Note: The entry itself and its child resources might not be stored in the location specified in its name.
+     * Output only. Identifier. The resource name of an entry in URL format. Note: The entry itself and its child resources might not be stored in the location specified in its name.
      */
     name?: string | null;
     /**
@@ -1770,7 +1774,7 @@ export namespace datacatalog_v1beta1 {
      */
     fields?: {[key: string]: Schema$GoogleCloudDatacatalogV1TagField} | null;
     /**
-     * The resource name of the tag in URL format where tag ID is a system-generated identifier. Note: The tag itself might not be stored in the location specified in its name.
+     * Identifier. The resource name of the tag in URL format where tag ID is a system-generated identifier. Note: The tag itself might not be stored in the location specified in its name.
      */
     name?: string | null;
     /**
@@ -3079,7 +3083,7 @@ export namespace datacatalog_v1beta1 {
   export interface Params$Resource$Projects$Locations$Entrygroups$Patch
     extends StandardParameters {
     /**
-     * The resource name of the entry group in URL format. Example: * projects/{project_id\}/locations/{location\}/entryGroups/{entry_group_id\} Note that this EntryGroup and its child resources may not actually be stored in the location in this name.
+     * Identifier. The resource name of the entry group in URL format. Example: * projects/{project_id\}/locations/{location\}/entryGroups/{entry_group_id\} Note that this EntryGroup and its child resources may not actually be stored in the location in this name.
      */
     name?: string;
     /**
@@ -3842,7 +3846,7 @@ export namespace datacatalog_v1beta1 {
   export interface Params$Resource$Projects$Locations$Entrygroups$Entries$Patch
     extends StandardParameters {
     /**
-     * Output only. The Data Catalog resource name of the entry in URL format. Example: * projects/{project_id\}/locations/{location\}/entryGroups/{entry_group_id\}/entries/{entry_id\} Note that this Entry and its child resources may not actually be stored in the location in this name.
+     * Output only. Identifier. The Data Catalog resource name of the entry in URL format. Example: * projects/{project_id\}/locations/{location\}/entryGroups/{entry_group_id\}/entries/{entry_id\} Note that this Entry and its child resources may not actually be stored in the location in this name.
      */
     name?: string;
     /**
@@ -4285,7 +4289,7 @@ export namespace datacatalog_v1beta1 {
   export interface Params$Resource$Projects$Locations$Entrygroups$Entries$Tags$Patch
     extends StandardParameters {
     /**
-     * The resource name of the tag in URL format. Example: * projects/{project_id\}/locations/{location\}/entrygroups/{entry_group_id\}/entries/{entry_id\}/tags/{tag_id\} where `tag_id` is a system-generated identifier. Note that this Tag may not actually be stored in the location in this name.
+     * Identifier. The resource name of the tag in URL format. Example: * projects/{project_id\}/locations/{location\}/entrygroups/{entry_group_id\}/entries/{entry_id\}/tags/{tag_id\} where `tag_id` is a system-generated identifier. Note that this Tag may not actually be stored in the location in this name.
      */
     name?: string;
     /**
@@ -4715,7 +4719,7 @@ export namespace datacatalog_v1beta1 {
   export interface Params$Resource$Projects$Locations$Entrygroups$Tags$Patch
     extends StandardParameters {
     /**
-     * The resource name of the tag in URL format. Example: * projects/{project_id\}/locations/{location\}/entrygroups/{entry_group_id\}/entries/{entry_id\}/tags/{tag_id\} where `tag_id` is a system-generated identifier. Note that this Tag may not actually be stored in the location in this name.
+     * Identifier. The resource name of the tag in URL format. Example: * projects/{project_id\}/locations/{location\}/entrygroups/{entry_group_id\}/entries/{entry_id\}/tags/{tag_id\} where `tag_id` is a system-generated identifier. Note that this Tag may not actually be stored in the location in this name.
      */
     name?: string;
     /**
@@ -5426,7 +5430,7 @@ export namespace datacatalog_v1beta1 {
   export interface Params$Resource$Projects$Locations$Tagtemplates$Patch
     extends StandardParameters {
     /**
-     * The resource name of the tag template in URL format. Example: * projects/{project_id\}/locations/{location\}/tagTemplates/{tag_template_id\} Note that this TagTemplate and its child resources may not actually be stored in the location in this name.
+     * Identifier. The resource name of the tag template in URL format. Example: * projects/{project_id\}/locations/{location\}/tagTemplates/{tag_template_id\} Note that this TagTemplate and its child resources may not actually be stored in the location in this name.
      */
     name?: string;
     /**

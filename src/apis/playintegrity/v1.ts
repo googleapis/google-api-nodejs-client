@@ -199,7 +199,7 @@ export namespace playintegrity_v1 {
     tokenPayloadExternal?: Schema$TokenPayloadExternal;
   }
   /**
-   * Contains the device attestation information.
+   * Contains the device attestation information. Next tag: 4
    */
   export interface Schema$DeviceIntegrity {
     /**

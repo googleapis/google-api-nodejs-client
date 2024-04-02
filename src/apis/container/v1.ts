@@ -898,6 +898,10 @@ export namespace container_v1 {
      */
     desiredEnableFqdnNetworkPolicy?: boolean | null;
     /**
+     * Enable/Disable Multi-Networking for the cluster
+     */
+    desiredEnableMultiNetworking?: boolean | null;
+    /**
      * Enable/Disable private endpoint for the cluster's master.
      */
     desiredEnablePrivateEndpoint?: boolean | null;
@@ -2123,6 +2127,10 @@ export namespace container_v1 {
      */
     secondaryBootDisks?: Schema$SecondaryBootDisk[];
     /**
+     * Secondary boot disk update strategy.
+     */
+    secondaryBootDiskUpdateStrategy?: Schema$SecondaryBootDiskUpdateStrategy;
+    /**
      * The Google Cloud Platform Service Account to be used by the node VMs. Specify the email address of the Service Account; otherwise, if no Service Account is specified, the "default" service account is used.
      */
     serviceAccount?: string | null;
@@ -2817,6 +2825,10 @@ export namespace container_v1 {
      */
     mode?: string | null;
   }
+  /**
+   * SecondaryBootDiskUpdateStrategy is a placeholder which will be extended in the future to define different options for updating secondary boot disks.
+   */
+  export interface Schema$SecondaryBootDiskUpdateStrategy {}
   /**
    * SecurityBulletinEvent is a notification sent to customers when a security bulletin has been posted that they are vulnerable to.
    */

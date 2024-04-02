@@ -138,7 +138,7 @@
       }
     }
   },
-  "revision": "20240103",
+  "revision": "20240321",
   "rootUrl": "https://playintegrity.googleapis.com/",
   "schemas": {
     "AccountActivity": {
@@ -304,7 +304,7 @@
       "type": "object"
     },
     "DeviceIntegrity": {
-      "description": "Contains the device attestation information.",
+      "description": "Contains the device attestation information. Next tag: 4",
       "id": "DeviceIntegrity",
       "properties": {
         "deviceRecognitionVerdict": {

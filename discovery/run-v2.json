@@ -1130,6 +1130,12 @@
                       "required": true,
                       "type": "string"
                     },
+                    "updateMask": {
+                      "description": "Optional. The list of fields to be updated.",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    },
                     "validateOnly": {
                       "description": "Indicates that the request should be validated and default values populated, without persisting the request or updating any resources.",
                       "location": "query",
@@ -1317,7 +1323,7 @@
       }
     }
   },
-  "revision": "20240303",
+  "revision": "20240315",
   "rootUrl": "https://run.googleapis.com/",
   "schemas": {
     "GoogleCloudRunV2BinaryAuthorization": {
@@ -2829,13 +2835,15 @@
             "INGRESS_TRAFFIC_UNSPECIFIED",
             "INGRESS_TRAFFIC_ALL",
             "INGRESS_TRAFFIC_INTERNAL_ONLY",
-            "INGRESS_TRAFFIC_INTERNAL_LOAD_BALANCER"
+            "INGRESS_TRAFFIC_INTERNAL_LOAD_BALANCER",
+            "INGRESS_TRAFFIC_NONE"
           ],
           "enumDescriptions": [
             "Unspecified",
             "All inbound traffic is allowed.",
             "Only internal traffic is allowed.",
-            "Both internal and Google Cloud Load Balancer traffic is allowed."
+            "Both internal and Google Cloud Load Balancer traffic is allowed.",
+            "No ingress traffic is allowed."
           ],
           "type": "string"
         },

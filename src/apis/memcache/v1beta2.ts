@@ -658,7 +658,7 @@ export namespace memcache_v1beta2 {
     availableZones?: {[key: string]: Schema$ZoneMetadata} | null;
   }
   /**
-   * LINT.IfChange Defines policies to service maintenance events.
+   * Defines policies to service maintenance events.
    */
   export interface Schema$MaintenancePolicy {
     /**

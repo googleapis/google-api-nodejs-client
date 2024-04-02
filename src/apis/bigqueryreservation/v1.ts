@@ -233,6 +233,10 @@ export namespace bigqueryreservation_v1 {
    */
   export interface Schema$Empty {}
   /**
+   * The request for ReservationService.FailoverReservation.
+   */
+  export interface Schema$FailoverReservationRequest {}
+  /**
    * The response for ReservationService.ListAssignments.
    */
   export interface Schema$ListAssignmentsResponse {
@@ -325,6 +329,18 @@ export namespace bigqueryreservation_v1 {
      * The resource name of the reservation, e.g., `projects/x/locations/x/reservations/team1-prod`. The reservation_id must only contain lower case alphanumeric characters or dashes. It must start with a letter and must not end with a dash. Its maximum length is 64 characters.
      */
     name?: string | null;
+    /**
+     * Optional. The original primary location of the reservation which is set only during its creation and remains unchanged afterwards. It can be used by the customer to answer questions about disaster recovery billing. The field is output only for customers and should not be specified, however, the google.api.field_behavior is not set to OUTPUT_ONLY since these fields are set in rerouted requests sent across regions.
+     */
+    originalPrimaryLocation?: string | null;
+    /**
+     * Optional. The primary location of the reservation. The field is only meaningful for reservation used for cross region disaster recovery. The field is output only for customers and should not be specified, however, the google.api.field_behavior is not set to OUTPUT_ONLY since these fields are set in rerouted requests sent across regions.
+     */
+    primaryLocation?: string | null;
+    /**
+     * Optional. The secondary location of the reservation which is used for cross region disaster recovery purposes. Customer can set this in create/update reservation calls to create a failover reservation or convert a non-failover reservation to a failover reservation.
+     */
+    secondaryLocation?: string | null;
     /**
      * Baseline slots available to this reservation. A slot is a unit of computational power in BigQuery, and serves as the unit of parallelism. Queries using this reservation might use more slots during runtime if ignore_idle_slots is set to false, or autoscaling is enabled. If edition is EDITION_UNSPECIFIED and total slot_capacity of the reservation and its siblings exceeds the total slot_count of all capacity commitments, the request will fail with `google.rpc.Code.RESOURCE_EXHAUSTED`. If edition is any value but EDITION_UNSPECIFIED, then the above requirement is not needed. The total slot_capacity of the reservation and its siblings may exceed the total slot_count of capacity commitments. In that case, the exceeding slots will be charged with the autoscale SKU. You can increase the number of baseline slots in a reservation every few minutes. If you want to decrease your baseline slots, you are limited to once an hour if you have recently changed your baseline slot capacity and your baseline slots exceed your committed slots. Otherwise, you can decrease your baseline slots every few minutes.
      */
@@ -1793,6 +1809,97 @@ export namespace bigqueryreservation_v1 {
     }
 
     /**
+     * Failover a reservation to the secondary location. The operation should be done in the current secondary location, which will be promoted to the new primary location for the reservation. Attempting to failover a reservation in the current primary location will fail with the error code `google.rpc.Code.FAILED_PRECONDITION`.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    failoverReservation(
+      params: Params$Resource$Projects$Locations$Reservations$Failoverreservation,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    failoverReservation(
+      params?: Params$Resource$Projects$Locations$Reservations$Failoverreservation,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Reservation>;
+    failoverReservation(
+      params: Params$Resource$Projects$Locations$Reservations$Failoverreservation,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    failoverReservation(
+      params: Params$Resource$Projects$Locations$Reservations$Failoverreservation,
+      options: MethodOptions | BodyResponseCallback<Schema$Reservation>,
+      callback: BodyResponseCallback<Schema$Reservation>
+    ): void;
+    failoverReservation(
+      params: Params$Resource$Projects$Locations$Reservations$Failoverreservation,
+      callback: BodyResponseCallback<Schema$Reservation>
+    ): void;
+    failoverReservation(
+      callback: BodyResponseCallback<Schema$Reservation>
+    ): void;
+    failoverReservation(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Reservations$Failoverreservation
+        | BodyResponseCallback<Schema$Reservation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Reservation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Reservation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Reservation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Reservations$Failoverreservation;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Reservations$Failoverreservation;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://bigqueryreservation.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:failoverReservation').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Reservation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Reservation>(parameters);
+      }
+    }
+
+    /**
      * Returns information about the reservation.
      *
      * @param params - Parameters for request
@@ -2078,6 +2185,18 @@ export namespace bigqueryreservation_v1 {
      * Required. Resource name of the reservation to retrieve. E.g., `projects/myproject/locations/US/reservations/team1-prod`
      */
     name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Reservations$Failoverreservation
+    extends StandardParameters {
+    /**
+     * Required. Resource name of the reservation to failover. E.g., `projects/myproject/locations/US/reservations/team1-prod`
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$FailoverReservationRequest;
   }
   export interface Params$Resource$Projects$Locations$Reservations$Get
     extends StandardParameters {

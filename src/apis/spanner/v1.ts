@@ -592,6 +592,40 @@ export namespace spanner_v1 {
     startTime?: string | null;
   }
   /**
+   * Metadata type for the operation returned by CreateInstancePartition.
+   */
+  export interface Schema$CreateInstancePartitionMetadata {
+    /**
+     * The time at which this operation was cancelled. If set, this operation is in the process of undoing itself (which is guaranteed to succeed) and cannot be cancelled again.
+     */
+    cancelTime?: string | null;
+    /**
+     * The time at which this operation failed or was completed successfully.
+     */
+    endTime?: string | null;
+    /**
+     * The instance partition being created.
+     */
+    instancePartition?: Schema$InstancePartition;
+    /**
+     * The time at which the CreateInstancePartition request was received.
+     */
+    startTime?: string | null;
+  }
+  /**
+   * The request for CreateInstancePartition.
+   */
+  export interface Schema$CreateInstancePartitionRequest {
+    /**
+     * Required. The instance partition to create. The instance_partition.name may be omitted, but if specified must be `/instancePartitions/`.
+     */
+    instancePartition?: Schema$InstancePartition;
+    /**
+     * Required. The ID of the instance partition to create. Valid identifiers are of the form `a-z*[a-z0-9]` and must be between 2 and 64 characters in length.
+     */
+    instancePartitionId?: string | null;
+  }
+  /**
    * The request for CreateInstance.
    */
   export interface Schema$CreateInstanceRequest {
@@ -1140,6 +1174,55 @@ export namespace spanner_v1 {
     startTime?: string | null;
   }
   /**
+   * An isolated set of Cloud Spanner resources that databases can define placements on.
+   */
+  export interface Schema$InstancePartition {
+    /**
+     * Required. The name of the instance partition's configuration. Values are of the form `projects//instanceConfigs/`. See also InstanceConfig and ListInstanceConfigs.
+     */
+    config?: string | null;
+    /**
+     * Output only. The time at which the instance partition was created.
+     */
+    createTime?: string | null;
+    /**
+     * Required. The descriptive name for this instance partition as it appears in UIs. Must be unique per project and between 4 and 30 characters in length.
+     */
+    displayName?: string | null;
+    /**
+     * Used for optimistic concurrency control as a way to help prevent simultaneous updates of a instance partition from overwriting each other. It is strongly suggested that systems make use of the etag in the read-modify-write cycle to perform instance partition updates in order to avoid race conditions: An etag is returned in the response which contains instance partitions, and systems are expected to put that etag in the request to update instance partitions to ensure that their change will be applied to the same version of the instance partition. If no etag is provided in the call to update instance partition, then the existing instance partition is overwritten blindly.
+     */
+    etag?: string | null;
+    /**
+     * Required. A unique identifier for the instance partition. Values are of the form `projects//instances//instancePartitions/a-z*[a-z0-9]`. The final segment of the name must be between 2 and 64 characters in length. An instance partition's name cannot be changed after the instance partition is created.
+     */
+    name?: string | null;
+    /**
+     * The number of nodes allocated to this instance partition. Users can set the node_count field to specify the target number of nodes allocated to the instance partition. This may be zero in API responses for instance partitions that are not yet in state `READY`.
+     */
+    nodeCount?: number | null;
+    /**
+     * The number of processing units allocated to this instance partition. Users can set the processing_units field to specify the target number of processing units allocated to the instance partition. This may be zero in API responses for instance partitions that are not yet in state `READY`.
+     */
+    processingUnits?: number | null;
+    /**
+     * Output only. The names of the backups that reference this instance partition. Referencing backups should share the parent instance. The existence of any referencing backup prevents the instance partition from being deleted.
+     */
+    referencingBackups?: string[] | null;
+    /**
+     * Output only. The names of the databases that reference this instance partition. Referencing databases should share the parent instance. The existence of any referencing database prevents the instance partition from being deleted.
+     */
+    referencingDatabases?: string[] | null;
+    /**
+     * Output only. The current instance partition state.
+     */
+    state?: string | null;
+    /**
+     * Output only. The time at which the instance partition was most recently updated.
+     */
+    updateTime?: string | null;
+  }
+  /**
    * KeyRange represents a range of rows in a table or index. A range has a start key and an end key. These keys can be open or closed, indicating if the range includes rows with that key. Keys are represented by lists, where the ith value in the list corresponds to the ith component of the table or index primary key. Individual values are encoded as described here. For example, consider the following table definition: CREATE TABLE UserEvents ( UserName STRING(MAX), EventDate STRING(10) ) PRIMARY KEY(UserName, EventDate); The following keys name rows in this table: "Bob", "2014-09-23" Since the `UserEvents` table's `PRIMARY KEY` clause names two columns, each `UserEvents` key has two elements; the first is the `UserName`, and the second is the `EventDate`. Key ranges with multiple components are interpreted lexicographically by component using the table or index key's declared sort order. For example, the following range returns all events for user `"Bob"` that occurred in the year 2015: "start_closed": ["Bob", "2015-01-01"] "end_closed": ["Bob", "2015-12-31"] Start and end keys can omit trailing key components. This affects the inclusion and exclusion of rows that exactly match the provided key components: if the key is closed, then rows that exactly match the provided components are included; if the key is open, then rows that exactly match are not included. For example, the following range includes all events for `"Bob"` that occurred during and after the year 2000: "start_closed": ["Bob", "2000-01-01"] "end_closed": ["Bob"] The next example retrieves all events for `"Bob"`: "start_closed": ["Bob"] "end_closed": ["Bob"] To retrieve events before the year 2000: "start_closed": ["Bob"] "end_open": ["Bob", "2000-01-01"] The following range includes all rows in the table: "start_closed": [] "end_closed": [] This range returns all users whose `UserName` begins with any character from A to C: "start_closed": ["A"] "end_open": ["D"] This range returns all users whose `UserName` begins with B: "start_closed": ["B"] "end_open": ["C"] Key ranges honor column sort order. For example, suppose a table is defined as follows: CREATE TABLE DescendingSortedTable { Key INT64, ... ) PRIMARY KEY(Key DESC); The following range retrieves all rows with key values between 1 and 100 inclusive: "start_closed": ["100"] "end_closed": ["1"] Note that 100 is passed as the start, and 1 is passed as the end, because `Key` is a descending column in the schema.
    */
   export interface Schema$KeyRange {
@@ -1321,6 +1404,40 @@ export namespace spanner_v1 {
      * `next_page_token` can be sent in a subsequent ListInstanceConfigs call to fetch more of the matching instance configurations.
      */
     nextPageToken?: string | null;
+  }
+  /**
+   * The response for ListInstancePartitionOperations.
+   */
+  export interface Schema$ListInstancePartitionOperationsResponse {
+    /**
+     * `next_page_token` can be sent in a subsequent ListInstancePartitionOperations call to fetch more of the matching metadata.
+     */
+    nextPageToken?: string | null;
+    /**
+     * The list of matching instance partition long-running operations. Each operation's name will be prefixed by the instance partition's name. The operation's metadata field type `metadata.type_url` describes the type of the metadata.
+     */
+    operations?: Schema$Operation[];
+    /**
+     * The list of unreachable instance partitions. It includes the names of instance partitions whose operation metadata could not be retrieved within instance_partition_deadline.
+     */
+    unreachableInstancePartitions?: string[] | null;
+  }
+  /**
+   * The response for ListInstancePartitions.
+   */
+  export interface Schema$ListInstancePartitionsResponse {
+    /**
+     * The list of requested instancePartitions.
+     */
+    instancePartitions?: Schema$InstancePartition[];
+    /**
+     * `next_page_token` can be sent in a subsequent ListInstancePartitions call to fetch more of the matching instance partitions.
+     */
+    nextPageToken?: string | null;
+    /**
+     * The list of unreachable instance partitions. It includes the names of instance partitions whose metadata could not be retrieved within instance_partition_deadline.
+     */
+    unreachable?: string[] | null;
   }
   /**
    * The response for ListInstances.
@@ -2414,6 +2531,40 @@ export namespace spanner_v1 {
      * The time at which UpdateInstance request was received.
      */
     startTime?: string | null;
+  }
+  /**
+   * Metadata type for the operation returned by UpdateInstancePartition.
+   */
+  export interface Schema$UpdateInstancePartitionMetadata {
+    /**
+     * The time at which this operation was cancelled. If set, this operation is in the process of undoing itself (which is guaranteed to succeed) and cannot be cancelled again.
+     */
+    cancelTime?: string | null;
+    /**
+     * The time at which this operation failed or was completed successfully.
+     */
+    endTime?: string | null;
+    /**
+     * The desired end state of the update.
+     */
+    instancePartition?: Schema$InstancePartition;
+    /**
+     * The time at which UpdateInstancePartition request was received.
+     */
+    startTime?: string | null;
+  }
+  /**
+   * The request for UpdateInstancePartition.
+   */
+  export interface Schema$UpdateInstancePartitionRequest {
+    /**
+     * Required. A mask specifying which fields in InstancePartition should be updated. The field mask must always be specified; this prevents any future fields in InstancePartition from being erased accidentally by clients that do not know about them.
+     */
+    fieldMask?: string | null;
+    /**
+     * Required. The instance partition to update, which must always include the instance partition name. Otherwise, only fields mentioned in field_mask need be included.
+     */
+    instancePartition?: Schema$InstancePartition;
   }
   /**
    * The request for UpdateInstance.
@@ -3939,6 +4090,7 @@ export namespace spanner_v1 {
     backups: Resource$Projects$Instances$Backups;
     databaseOperations: Resource$Projects$Instances$Databaseoperations;
     databases: Resource$Projects$Instances$Databases;
+    instancePartitionOperations: Resource$Projects$Instances$Instancepartitionoperations;
     instancePartitions: Resource$Projects$Instances$Instancepartitions;
     operations: Resource$Projects$Instances$Operations;
     constructor(context: APIRequestContext) {
@@ -3950,6 +4102,10 @@ export namespace spanner_v1 {
       this.databaseOperations =
         new Resource$Projects$Instances$Databaseoperations(this.context);
       this.databases = new Resource$Projects$Instances$Databases(this.context);
+      this.instancePartitionOperations =
+        new Resource$Projects$Instances$Instancepartitionoperations(
+          this.context
+        );
       this.instancePartitions =
         new Resource$Projects$Instances$Instancepartitions(this.context);
       this.operations = new Resource$Projects$Instances$Operations(
@@ -9785,6 +9941,133 @@ export namespace spanner_v1 {
     requestBody?: Schema$ReadRequest;
   }
 
+  export class Resource$Projects$Instances$Instancepartitionoperations {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Lists instance partition long-running operations in the given instance. An instance partition operation has a name of the form `projects//instances//instancePartitions//operations/`. The long-running operation metadata field type `metadata.type_url` describes the type of the metadata. Operations returned include those that have completed/failed/canceled within the last 7 days, and pending operations. Operations returned are ordered by `operation.metadata.value.start_time` in descending order starting from the most recently started operation. Authorization requires `spanner.instancePartitionOperations.list` permission on the resource parent.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Instances$Instancepartitionoperations$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Instances$Instancepartitionoperations$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListInstancePartitionOperationsResponse>;
+    list(
+      params: Params$Resource$Projects$Instances$Instancepartitionoperations$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Instances$Instancepartitionoperations$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListInstancePartitionOperationsResponse>,
+      callback: BodyResponseCallback<Schema$ListInstancePartitionOperationsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Instances$Instancepartitionoperations$List,
+      callback: BodyResponseCallback<Schema$ListInstancePartitionOperationsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListInstancePartitionOperationsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Instances$Instancepartitionoperations$List
+        | BodyResponseCallback<Schema$ListInstancePartitionOperationsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListInstancePartitionOperationsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListInstancePartitionOperationsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListInstancePartitionOperationsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Instances$Instancepartitionoperations$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Instances$Instancepartitionoperations$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://spanner.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1/{+parent}/instancePartitionOperations'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListInstancePartitionOperationsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListInstancePartitionOperationsResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Instances$Instancepartitionoperations$List
+    extends StandardParameters {
+    /**
+     * Optional. An expression that filters the list of returned operations. A filter expression consists of a field name, a comparison operator, and a value for filtering. The value must be a string, a number, or a boolean. The comparison operator must be one of: `<`, `\>`, `<=`, `\>=`, `!=`, `=`, or `:`. Colon `:` is the contains operator. Filter rules are not case sensitive. The following fields in the Operation are eligible for filtering: * `name` - The name of the long-running operation * `done` - False if the operation is in progress, else true. * `metadata.@type` - the type of metadata. For example, the type string for CreateInstancePartitionMetadata is `type.googleapis.com/google.spanner.admin.instance.v1.CreateInstancePartitionMetadata`. * `metadata.` - any field in metadata.value. `metadata.@type` must be specified first, if filtering on metadata fields. * `error` - Error associated with the long-running operation. * `response.@type` - the type of response. * `response.` - any field in response.value. You can combine multiple expressions by enclosing each expression in parentheses. By default, expressions are combined with AND logic. However, you can specify AND, OR, and NOT logic explicitly. Here are a few examples: * `done:true` - The operation is complete. * `(metadata.@type=` \ `type.googleapis.com/google.spanner.admin.instance.v1.CreateInstancePartitionMetadata) AND` \ `(metadata.instance_partition.name:custom-instance-partition) AND` \ `(metadata.start_time < \"2021-03-28T14:50:00Z\") AND` \ `(error:*)` - Return operations where: * The operation's metadata type is CreateInstancePartitionMetadata. * The instance partition name contains "custom-instance-partition". * The operation started before 2021-03-28T14:50:00Z. * The operation resulted in an error.
+     */
+    filter?: string;
+    /**
+     * Optional. Deadline used while retrieving metadata for instance partition operations. Instance partitions whose operation metadata cannot be retrieved within this deadline will be added to unreachable in ListInstancePartitionOperationsResponse.
+     */
+    instancePartitionDeadline?: string;
+    /**
+     * Optional. Number of operations to be returned in the response. If 0 or less, defaults to the server's maximum allowed page size.
+     */
+    pageSize?: number;
+    /**
+     * Optional. If non-empty, `page_token` should contain a next_page_token from a previous ListInstancePartitionOperationsResponse to the same `parent` and with the same `filter`.
+     */
+    pageToken?: string;
+    /**
+     * Required. The parent instance of the instance partition operations. Values are of the form `projects//instances/`.
+     */
+    parent?: string;
+  }
+
   export class Resource$Projects$Instances$Instancepartitions {
     context: APIRequestContext;
     operations: Resource$Projects$Instances$Instancepartitions$Operations;
@@ -9795,6 +10078,511 @@ export namespace spanner_v1 {
           this.context
         );
     }
+
+    /**
+     * Creates an instance partition and begins preparing it to be used. The returned long-running operation can be used to track the progress of preparing the new instance partition. The instance partition name is assigned by the caller. If the named instance partition already exists, `CreateInstancePartition` returns `ALREADY_EXISTS`. Immediately upon completion of this request: * The instance partition is readable via the API, with all requested attributes but no allocated resources. Its state is `CREATING`. Until completion of the returned operation: * Cancelling the operation renders the instance partition immediately unreadable via the API. * The instance partition can be deleted. * All other attempts to modify the instance partition are rejected. Upon completion of the returned operation: * Billing for all successfully-allocated resources begins (some types may have lower than the requested levels). * Databases can start using this instance partition. * The instance partition's allocated resource levels are readable via the API. * The instance partition's state becomes `READY`. The returned long-running operation will have a name of the format `/operations/` and can be used to track creation of the instance partition. The metadata field type is CreateInstancePartitionMetadata. The response field type is InstancePartition, if successful.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Instances$Instancepartitions$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Projects$Instances$Instancepartitions$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    create(
+      params: Params$Resource$Projects$Instances$Instancepartitions$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Instances$Instancepartitions$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Instances$Instancepartitions$Create,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$Operation>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Instances$Instancepartitions$Create
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Instances$Instancepartitions$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Instances$Instancepartitions$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://spanner.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/instancePartitions').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Deletes an existing instance partition. Requires that the instance partition is not used by any database or backup and is not the default instance partition of an instance. Authorization requires `spanner.instancePartitions.delete` permission on the resource name.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Instances$Instancepartitions$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Projects$Instances$Instancepartitions$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Projects$Instances$Instancepartitions$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Instances$Instancepartitions$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Instances$Instancepartitions$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Instances$Instancepartitions$Delete
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Instances$Instancepartitions$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Instances$Instancepartitions$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://spanner.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+
+    /**
+     * Gets information about a particular instance partition.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Instances$Instancepartitions$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Instances$Instancepartitions$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$InstancePartition>;
+    get(
+      params: Params$Resource$Projects$Instances$Instancepartitions$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Instances$Instancepartitions$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$InstancePartition>,
+      callback: BodyResponseCallback<Schema$InstancePartition>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Instances$Instancepartitions$Get,
+      callback: BodyResponseCallback<Schema$InstancePartition>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$InstancePartition>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Instances$Instancepartitions$Get
+        | BodyResponseCallback<Schema$InstancePartition>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$InstancePartition>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$InstancePartition>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$InstancePartition>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Instances$Instancepartitions$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Instances$Instancepartitions$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://spanner.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$InstancePartition>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$InstancePartition>(parameters);
+      }
+    }
+
+    /**
+     * Lists all instance partitions for the given instance.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Instances$Instancepartitions$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Instances$Instancepartitions$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListInstancePartitionsResponse>;
+    list(
+      params: Params$Resource$Projects$Instances$Instancepartitions$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Instances$Instancepartitions$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListInstancePartitionsResponse>,
+      callback: BodyResponseCallback<Schema$ListInstancePartitionsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Instances$Instancepartitions$List,
+      callback: BodyResponseCallback<Schema$ListInstancePartitionsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListInstancePartitionsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Instances$Instancepartitions$List
+        | BodyResponseCallback<Schema$ListInstancePartitionsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListInstancePartitionsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListInstancePartitionsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListInstancePartitionsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Instances$Instancepartitions$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Instances$Instancepartitions$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://spanner.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/instancePartitions').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListInstancePartitionsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListInstancePartitionsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Updates an instance partition, and begins allocating or releasing resources as requested. The returned long-running operation can be used to track the progress of updating the instance partition. If the named instance partition does not exist, returns `NOT_FOUND`. Immediately upon completion of this request: * For resource types for which a decrease in the instance partition's allocation has been requested, billing is based on the newly-requested level. Until completion of the returned operation: * Cancelling the operation sets its metadata's cancel_time, and begins restoring resources to their pre-request values. The operation is guaranteed to succeed at undoing all resource changes, after which point it terminates with a `CANCELLED` status. * All other attempts to modify the instance partition are rejected. * Reading the instance partition via the API continues to give the pre-request resource levels. Upon completion of the returned operation: * Billing begins for all successfully-allocated resources (some types may have lower than the requested levels). * All newly-reserved resources are available for serving the instance partition's tables. * The instance partition's new resource levels are readable via the API. The returned long-running operation will have a name of the format `/operations/` and can be used to track the instance partition modification. The metadata field type is UpdateInstancePartitionMetadata. The response field type is InstancePartition, if successful. Authorization requires `spanner.instancePartitions.update` permission on the resource name.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Instances$Instancepartitions$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Projects$Instances$Instancepartitions$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    patch(
+      params: Params$Resource$Projects$Instances$Instancepartitions$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Instances$Instancepartitions$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Instances$Instancepartitions$Patch,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$Operation>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Instances$Instancepartitions$Patch
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Instances$Instancepartitions$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Instances$Instancepartitions$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://spanner.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Instances$Instancepartitions$Create
+    extends StandardParameters {
+    /**
+     * Required. The name of the instance in which to create the instance partition. Values are of the form `projects//instances/`.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$CreateInstancePartitionRequest;
+  }
+  export interface Params$Resource$Projects$Instances$Instancepartitions$Delete
+    extends StandardParameters {
+    /**
+     * Optional. If not empty, the API only deletes the instance partition when the etag provided matches the current status of the requested instance partition. Otherwise, deletes the instance partition without checking the current status of the requested instance partition.
+     */
+    etag?: string;
+    /**
+     * Required. The name of the instance partition to be deleted. Values are of the form `projects/{project\}/instances/{instance\}/instancePartitions/{instance_partition\}`
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Instances$Instancepartitions$Get
+    extends StandardParameters {
+    /**
+     * Required. The name of the requested instance partition. Values are of the form `projects/{project\}/instances/{instance\}/instancePartitions/{instance_partition\}`.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Instances$Instancepartitions$List
+    extends StandardParameters {
+    /**
+     * Optional. Deadline used while retrieving metadata for instance partitions. Instance partitions whose metadata cannot be retrieved within this deadline will be added to unreachable in ListInstancePartitionsResponse.
+     */
+    instancePartitionDeadline?: string;
+    /**
+     * Number of instance partitions to be returned in the response. If 0 or less, defaults to the server's maximum allowed page size.
+     */
+    pageSize?: number;
+    /**
+     * If non-empty, `page_token` should contain a next_page_token from a previous ListInstancePartitionsResponse.
+     */
+    pageToken?: string;
+    /**
+     * Required. The instance whose instance partitions should be listed. Values are of the form `projects//instances/`.
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Instances$Instancepartitions$Patch
+    extends StandardParameters {
+    /**
+     * Required. A unique identifier for the instance partition. Values are of the form `projects//instances//instancePartitions/a-z*[a-z0-9]`. The final segment of the name must be between 2 and 64 characters in length. An instance partition's name cannot be changed after the instance partition is created.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$UpdateInstancePartitionRequest;
   }
 
   export class Resource$Projects$Instances$Instancepartitions$Operations {
