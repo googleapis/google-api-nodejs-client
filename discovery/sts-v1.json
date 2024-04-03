@@ -98,36 +98,6 @@
   "resources": {
     "v1": {
       "methods": {
-        "introspect": {
-          "description": "Gets information about a Google OAuth 2.0 access token issued by the Google Cloud [Security Token Service API](https://cloud.google.com/iam/docs/reference/sts/rest).",
-          "flatPath": "v1/introspect",
-          "httpMethod": "POST",
-          "id": "sts.introspect",
-          "parameterOrder": [],
-          "parameters": {},
-          "path": "v1/introspect",
-          "request": {
-            "$ref": "GoogleIdentityStsV1IntrospectTokenRequest"
-          },
-          "response": {
-            "$ref": "GoogleIdentityStsV1IntrospectTokenResponse"
-          }
-        },
-        "oauthtoken": {
-          "description": "Exchanges a credential that represents the resource owner's authorization for a Google-generated [OAuth 2.0 access token] (https://www.rfc-editor.org/rfc/rfc6749#section-5) or [refreshes an accesstoken] (https://www.rfc-editor.org/rfc/rfc6749#section-6) following [the OAuth 2.0 authorization framework] (https://tools.ietf.org/html/rfc8693) The credential can be one of the following: - An authorization code issued by the workforce identity federation authorization endpoint - A [refresh token](https://www.rfc-editor.org/rfc/rfc6749#section-10.4) issued by this endpoint This endpoint is only meant to be called by the Google Cloud CLI. Also note that this API only accepts the authorization code issued for workforce pools.",
-          "flatPath": "v1/oauthtoken",
-          "httpMethod": "POST",
-          "id": "sts.oauthtoken",
-          "parameterOrder": [],
-          "parameters": {},
-          "path": "v1/oauthtoken",
-          "request": {
-            "$ref": "GoogleIdentityStsV1ExchangeOauthTokenRequest"
-          },
-          "response": {
-            "$ref": "GoogleIdentityStsV1ExchangeOauthTokenResponse"
-          }
-        },
         "token": {
           "description": "Exchanges a credential for a Google OAuth 2.0 access token. The token asserts an external identity within an identity pool, or it applies a Credential Access Boundary to a Google access token. Note that workforce pools do not support Credential Access Boundaries. When you call this method, do not send the `Authorization` HTTP header in the request. This method does not require the `Authorization` header, and using the header can cause the request to fail.",
           "flatPath": "v1/token",
@@ -146,7 +116,7 @@
       }
     }
   },
-  "revision": "20240129",
+  "revision": "20240320",
   "rootUrl": "https://sts.googleapis.com/",
   "schemas": {
     "GoogleIamV1Binding": {
@@ -207,73 +177,6 @@
       },
       "type": "object"
     },
-    "GoogleIdentityStsV1ExchangeOauthTokenRequest": {
-      "description": "Request message for ExchangeOauthToken",
-      "id": "GoogleIdentityStsV1ExchangeOauthTokenRequest",
-      "properties": {
-        "clientId": {
-          "description": "Optional. The client identifier for the OAuth 2.0 client that requested the provided token. It is REQUIRED when the [client] (https://www.rfc-editor.org/rfc/rfc6749#section-1.1) is not authenticating with the authorization server, i.e. when authentication method is [client authentication] (https://www.rfc-editor.org/rfc/rfc6749#section-3.2.1).",
-          "type": "string"
-        },
-        "code": {
-          "description": "Optional. The authorization code that was previously from workforce identity federation's `authorize` endpoint. Required if the flow is authorization code flow, i.e. if grant_type is 'authorization_code'",
-          "type": "string"
-        },
-        "codeVerifier": {
-          "description": "Optional. The code verifier for the PKCE request, Google Cloud CLI originally generates it before the authorization request. PKCE is used to protect authorization code from interception attacks. See https://www.rfc-editor.org/rfc/rfc7636#section-1.1 and https://www.rfc-editor.org/rfc/rfc7636#section-3. It is required when the flow is authorization code flow, i.e. if grant_type is 'authorization_code'",
-          "type": "string"
-        },
-        "grantType": {
-          "description": "Required. The grant types are as follows: - 'authorization_code' : an authorization code flow, i.e. exchange of authorization code for the Oauth access token - 'refresh_token' : a refresh token flow, i.e. obtain a new access token by providing the refresh token. See https://www.rfc-editor.org/rfc/rfc6749#section-6",
-          "type": "string"
-        },
-        "redirectUri": {
-          "description": "Optional. redirect_url is required when the flow is authorization code flow i.e. if grant_type is `authorization_code` See https://www.rfc-editor.org/rfc/rfc6749#section-4.1.3",
-          "type": "string"
-        },
-        "refreshToken": {
-          "description": "Optional. The Refresh token is the credential that is used to obtain a new access token when the current access token becomes invalid or expires. Required when using refresh token flow, i.e. if `grant_type` is 'refresh_token' See https://www.rfc-editor.org/rfc/rfc6749#section-1.5 and https://www.rfc-editor.org/rfc/rfc6749#section-6",
-          "type": "string"
-        },
-        "scope": {
-          "description": "Optional. An optional list of scopes that are requested for the token to be returned. See https://www.rfc-editor.org/rfc/rfc6749#section-3.3 Must be a list of space-delimited, case-sensitive strings. Note: Currently, the scopes in the request are not supported",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "GoogleIdentityStsV1ExchangeOauthTokenResponse": {
-      "description": "Response message for ExchangeOauthToken. see https://www.rfc-editor.org/rfc/rfc6749#section-5.1",
-      "id": "GoogleIdentityStsV1ExchangeOauthTokenResponse",
-      "properties": {
-        "access_token": {
-          "description": "An OAuth 2.0 security token, issued by Google, in response to the Oauth token exchange request for the authorization code and refresh token flows. The returned [access token](https://www.rfc-editor.org/rfc/rfc6749#section-4.1.4). Tokens can vary in size, depending, in part, on the size of mapped claims, up to a maximum of 12288 bytes (12 KB). Google reserves the right to change the token size and the maximum length at any time.",
-          "type": "string"
-        },
-        "expires_in": {
-          "description": "The amount of time, in seconds, between the time when the access token was issued and the time when the access token will expires.",
-          "format": "int32",
-          "type": "integer"
-        },
-        "id_token": {
-          "description": "Google issued ID token in response to the OAuth token exchange request for ID token flow.",
-          "type": "string"
-        },
-        "refresh_token": {
-          "description": "A refresh token, issued by Google, in response to the OAuth token exchange request for refresh token flow",
-          "type": "string"
-        },
-        "scope": {
-          "description": "A list of scopes associated with the returned token.",
-          "type": "string"
-        },
-        "token_type": {
-          "description": "The type of token. Field reserved for RFC compliance. See https://www.rfc-editor.org/rfc/rfc6749#section-5.1",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
     "GoogleIdentityStsV1ExchangeTokenRequest": {
       "description": "Request message for ExchangeToken.",
       "id": "GoogleIdentityStsV1ExchangeTokenRequest",
@@ -328,62 +231,6 @@
         },
         "token_type": {
           "description": "The type of access token. Always has the value `Bearer`.",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "GoogleIdentityStsV1IntrospectTokenRequest": {
-      "description": "Request message for IntrospectToken.",
-      "id": "GoogleIdentityStsV1IntrospectTokenRequest",
-      "properties": {
-        "token": {
-          "description": "Required. The OAuth 2.0 security token issued by the Security Token Service API.",
-          "type": "string"
-        },
-        "tokenTypeHint": {
-          "description": "Optional. The type of the given token. Supported values are `urn:ietf:params:oauth:token-type:access_token` and `access_token`.",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "GoogleIdentityStsV1IntrospectTokenResponse": {
-      "description": "Response message for IntrospectToken.",
-      "id": "GoogleIdentityStsV1IntrospectTokenResponse",
-      "properties": {
-        "active": {
-          "description": "A boolean value that indicates whether the provided access token is currently active.",
-          "type": "boolean"
-        },
-        "client_id": {
-          "description": "The client identifier for the OAuth 2.0 client that requested the provided token.",
-          "type": "string"
-        },
-        "exp": {
-          "description": "The expiration timestamp, measured in the number of seconds since January 1 1970 UTC, indicating when this token will expire.",
-          "format": "int64",
-          "type": "string"
-        },
-        "iat": {
-          "description": "The issued timestamp, measured in the number of seconds since January 1 1970 UTC, indicating when this token was originally issued.",
-          "format": "int64",
-          "type": "string"
-        },
-        "iss": {
-          "description": "The issuer of the provided token.",
-          "type": "string"
-        },
-        "scope": {
-          "description": "A list of scopes associated with the provided token.",
-          "type": "string"
-        },
-        "sub": {
-          "description": "The unique user ID associated with the provided token. For Google Accounts, this value is based on the Google Account's user ID. For federated identities, this value is based on the identity pool ID and the value of the mapped `google.subject` attribute.",
-          "type": "string"
-        },
-        "username": {
-          "description": "The human-readable identifier for the token principal subject. For example, if the provided token is associated with a workload identity pool, this field contains a value in the following format: `principal://iam.googleapis.com/projects//locations/global/workloadIdentityPools//subject/`. If the provided token is associated with a workforce pool, this field contains a value in the following format: `principal://iam.googleapis.com/locations/global/workforcePools//subject/`.",
           "type": "string"
         }
       },

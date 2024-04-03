@@ -517,34 +517,6 @@
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
-                "generateClientCertificate": {
-                  "description": "Generate a client certificate signed by a Cluster CA. The sole purpose of this endpoint is to support AlloyDB connectors and the Auth Proxy client. The endpoint's behavior is subject to change without notice, so do not rely on its behavior remaining constant. Future changes will not break AlloyDB connectors or the Auth Proxy client.",
-                  "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/clusters/{clustersId}:generateClientCertificate",
-                  "httpMethod": "POST",
-                  "id": "alloydb.projects.locations.clusters.generateClientCertificate",
-                  "parameterOrder": [
-                    "parent"
-                  ],
-                  "parameters": {
-                    "parent": {
-                      "description": "Required. The name of the parent resource. The required format is: * projects/{project}/locations/{location}/clusters/{cluster}",
-                      "location": "path",
-                      "pattern": "^projects/[^/]+/locations/[^/]+/clusters/[^/]+$",
-                      "required": true,
-                      "type": "string"
-                    }
-                  },
-                  "path": "v1alpha/{+parent}:generateClientCertificate",
-                  "request": {
-                    "$ref": "GenerateClientCertificateRequest"
-                  },
-                  "response": {
-                    "$ref": "GenerateClientCertificateResponse"
-                  },
-                  "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
-                  ]
-                },
                 "get": {
                   "description": "Gets details of a single Cluster.",
                   "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/clusters/{clustersId}",
@@ -1489,7 +1461,7 @@
       }
     }
   },
-  "revision": "20240228",
+  "revision": "20240315",
   "rootUrl": "https://alloydb.googleapis.com/",
   "schemas": {
     "AuthorizedNetwork": {
@@ -1878,6 +1850,10 @@
           "description": "For Resource freshness validation (https://google.aip.dev/154)",
           "type": "string"
         },
+        "geminiConfig": {
+          "$ref": "GeminiClusterConfig",
+          "description": "Optional. Configuration parameters related to the Gemini in Databases add-on. See go/prd-enable-duet-ai-databases for more details."
+        },
         "initialUser": {
           "$ref": "UserPassword",
           "description": "Input only. Initial user to setup during cluster creation. Required. If used in `RestoreCluster` this is ignored."
@@ -1888,6 +1864,10 @@
           },
           "description": "Labels as key value pairs",
           "type": "object"
+        },
+        "maintenanceUpdatePolicy": {
+          "$ref": "MaintenanceUpdatePolicy",
+          "description": "Optional. The maintenance update policy determines when to allow or deny updates."
         },
         "migrationSource": {
           "$ref": "MigrationSource",
@@ -2111,6 +2091,25 @@
       },
       "type": "object"
     },
+    "DenyMaintenancePeriod": {
+      "description": "DenyMaintenancePeriod definition. Excepting emergencies, maintenance will not be scheduled to start within this deny period. The start_date must be less than the end_date.",
+      "id": "DenyMaintenancePeriod",
+      "properties": {
+        "endDate": {
+          "$ref": "GoogleTypeDate",
+          "description": "Deny period end date. This can be: * A full date, with non-zero year, month and day values. * A month and day value, with a zero year for recurring. Date matching this period will have to be before the end."
+        },
+        "startDate": {
+          "$ref": "GoogleTypeDate",
+          "description": "Deny period start date. This can be: * A full date, with non-zero year, month and day values. * A month and day value, with a zero year for recurring. Date matching this period will have to be the same or after the start."
+        },
+        "time": {
+          "$ref": "GoogleTypeTimeOfDay",
+          "description": "Time in UTC when the deny period starts on start_date and ends on end_date. This can be: * Full time. * All zeros for 00:00:00 UTC"
+        }
+      },
+      "type": "object"
+    },
     "Empty": {
       "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }",
       "id": "Empty",
@@ -2173,56 +2172,26 @@
       },
       "type": "object"
     },
-    "GenerateClientCertificateRequest": {
-      "description": "Message for requests to generate a client certificate signed by the Cluster CA.",
-      "id": "GenerateClientCertificateRequest",
+    "GeminiClusterConfig": {
+      "description": "Cluster level configuration parameters related to the Gemini in Databases add-on. See go/prd-enable-duet-ai-databases for more details.",
+      "id": "GeminiClusterConfig",
       "properties": {
-        "certDuration": {
-          "description": "Optional. An optional hint to the endpoint to generate the client certificate with the requested duration. The duration can be from 1 hour to 24 hours. The endpoint may or may not honor the hint. If the hint is left unspecified or is not honored, then the endpoint will pick an appropriate default duration.",
-          "format": "google-duration",
-          "type": "string"
-        },
-        "pemCsr": {
-          "deprecated": true,
-          "description": "Optional. A pem-encoded X.509 certificate signing request (CSR). It is recommended to use public_key instead.",
-          "type": "string"
-        },
-        "publicKey": {
-          "description": "Optional. The public key from the client.",
-          "type": "string"
-        },
-        "requestId": {
-          "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
-          "type": "string"
-        },
-        "useMetadataExchange": {
-          "description": "Optional. An optional hint to the endpoint to generate a client ceritificate that can be used by AlloyDB connectors to exchange additional metadata with the server after TLS handshake.",
+        "entitled": {
+          "description": "Output only. Whether the Gemini in Databases add-on is enabled for the cluster. It will be true only if the add-on has been enabled for the billing account corresponding to the cluster. Its status is toggled from the Admin Control Center (ACC) and cannot be toggled using AlloyDB's APIs.",
+          "readOnly": true,
           "type": "boolean"
         }
       },
       "type": "object"
     },
-    "GenerateClientCertificateResponse": {
-      "description": "Message returned by a GenerateClientCertificate operation.",
-      "id": "GenerateClientCertificateResponse",
+    "GeminiInstanceConfig": {
+      "description": "Instance level configuration parameters related to the Gemini in Databases add-on. See go/prd-enable-duet-ai-databases for more details.",
+      "id": "GeminiInstanceConfig",
       "properties": {
-        "caCert": {
-          "description": "Optional. The pem-encoded cluster ca X.509 certificate.",
-          "type": "string"
-        },
-        "pemCertificate": {
-          "deprecated": true,
-          "description": "Output only. The pem-encoded, signed X.509 certificate.",
+        "entitled": {
+          "description": "Output only. Whether the Gemini in Databases add-on is enabled for the instance. It will be true only if the add-on has been enabled for the billing account corresponding to the instance. Its status is toggled from the Admin Control Center (ACC) and cannot be toggled using AlloyDB's APIs.",
           "readOnly": true,
-          "type": "string"
-        },
-        "pemCertificateChain": {
-          "description": "Output only. The pem-encoded chain that may be used to verify the X.509 certificate. Expected to be in issuer-to-root order according to RFC 5246.",
-          "items": {
-            "type": "string"
-          },
-          "readOnly": true,
-          "type": "array"
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -2275,6 +2244,28 @@
         "name": {
           "description": "Resource name for the location, which may vary between implementations. For example: `\"projects/example-project/locations/us-east1\"`",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleTypeDate": {
+      "description": "Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: * A full date, with non-zero year, month, and day values. * A month and day, with a zero year (for example, an anniversary). * A year on its own, with a zero month and a zero day. * A year and month, with a zero day (for example, a credit card expiration date). Related types: * google.type.TimeOfDay * google.type.DateTime * google.protobuf.Timestamp",
+      "id": "GoogleTypeDate",
+      "properties": {
+        "day": {
+          "description": "Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "month": {
+          "description": "Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "year": {
+          "description": "Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year.",
+          "format": "int32",
+          "type": "integer"
         }
       },
       "type": "object"
@@ -2393,6 +2384,10 @@
           "description": "The Compute Engine zone that the instance should serve from, per https://cloud.google.com/compute/docs/regions-zones This can ONLY be specified for ZONAL instances. If present for a REGIONAL instance, an error will be thrown. If this is absent for a ZONAL instance, instance is created in a random zone with available capacity.",
           "type": "string"
         },
+        "geminiConfig": {
+          "$ref": "GeminiInstanceConfig",
+          "description": "Optional. Configuration parameters related to the Gemini in Databases add-on. See go/prd-enable-duet-ai-databases for more details."
+        },
         "instanceType": {
           "description": "Required. The type of the instance. Specified at creation time.",
           "enum": [
@@ -2441,6 +2436,10 @@
           },
           "readOnly": true,
           "type": "array"
+        },
+        "observabilityConfig": {
+          "$ref": "ObservabilityInstanceConfig",
+          "description": "Configuration for observability."
         },
         "pscInstanceConfig": {
           "$ref": "PscInstanceConfig",
@@ -2707,6 +2706,62 @@
       },
       "type": "object"
     },
+    "MaintenanceUpdatePolicy": {
+      "description": "MaintenanceUpdatePolicy defines the policy for system updates.",
+      "id": "MaintenanceUpdatePolicy",
+      "properties": {
+        "denyMaintenancePeriods": {
+          "description": "Periods to deny maintenance. Currently limited to 1.",
+          "items": {
+            "$ref": "DenyMaintenancePeriod"
+          },
+          "type": "array"
+        },
+        "maintenanceWindows": {
+          "description": "Preferred windows to perform maintenance. Currently limited to 1.",
+          "items": {
+            "$ref": "MaintenanceWindow"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "MaintenanceWindow": {
+      "description": "MaintenanceWindow specifies a preferred day and time for maintenance.",
+      "id": "MaintenanceWindow",
+      "properties": {
+        "day": {
+          "description": "Preferred day of the week for maintenance, e.g. MONDAY, TUESDAY, etc.",
+          "enum": [
+            "DAY_OF_WEEK_UNSPECIFIED",
+            "MONDAY",
+            "TUESDAY",
+            "WEDNESDAY",
+            "THURSDAY",
+            "FRIDAY",
+            "SATURDAY",
+            "SUNDAY"
+          ],
+          "enumDescriptions": [
+            "The day of the week is unspecified.",
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday",
+            "Sunday"
+          ],
+          "type": "string"
+        },
+        "startTime": {
+          "$ref": "GoogleTypeTimeOfDay",
+          "description": "Preferred time to start the maintenance operation on the specified day. Maintenance will start within 1 hour of this time."
+        }
+      },
+      "type": "object"
+    },
     "MigrationSource": {
       "description": "Subset of the source instance configuration that is available when reading the cluster resource.",
       "id": "MigrationSource",
@@ -2771,6 +2826,48 @@
         "zoneId": {
           "description": "The Compute Engine zone of the VM e.g. \"us-central1-b\".",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ObservabilityInstanceConfig": {
+      "description": "Observability Instance specific configuration.",
+      "id": "ObservabilityInstanceConfig",
+      "properties": {
+        "enabled": {
+          "description": "Observability feature status for an instance. This is a read-only flag and modifiable only by producer API. This flag is turned \"off\" by default.",
+          "type": "boolean"
+        },
+        "maxQueryStringLength": {
+          "description": "Query string length. The default value is 10k.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "preserveComments": {
+          "description": "Preserve comments in query string for an instance. This flag is turned \"off\" by default.",
+          "type": "boolean"
+        },
+        "queryPlansPerMinute": {
+          "description": "Number of query execution plans captured by Insights per minute for all queries combined. The default value is 5. Any integer between 0 to 20 is considered valid.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "recordApplicationTags": {
+          "description": "Record application tags for an instance. This flag is turned \"off\" by default.",
+          "type": "boolean"
+        },
+        "trackActiveQueries": {
+          "description": "Track actively running queries on the instance. If not set, this flag is \"off\" by default.",
+          "type": "boolean"
+        },
+        "trackWaitEventTypes": {
+          "description": "Output only. Track wait event types during query execution for an instance. This flag is turned \"on\" by default but tracking is enabled only after observability enabled flag is also turned on. This is read-only flag and only modifiable by producer API.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "trackWaitEvents": {
+          "description": "Track wait events during query execution for an instance. This flag is turned \"on\" by default but tracking is enabled only after observability enabled flag is also turned on.",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -3500,7 +3597,13 @@
             "SIGNAL_TYPE_SERVER_CERTIFICATE_NEAR_EXPIRY",
             "SIGNAL_TYPE_DATABASE_AUDITING_DISABLED",
             "SIGNAL_TYPE_RESTRICT_AUTHORIZED_NETWORKS",
-            "SIGNAL_TYPE_VIOLATE_POLICY_RESTRICT_PUBLIC_IP"
+            "SIGNAL_TYPE_VIOLATE_POLICY_RESTRICT_PUBLIC_IP",
+            "SIGNAL_TYPE_QUOTA_LIMIT",
+            "SIGNAL_TYPE_NO_PASSWORD_POLICY",
+            "SIGNAL_TYPE_CONNECTIONS_PERFORMANCE_IMPACT",
+            "SIGNAL_TYPE_TMP_TABLES_PERFORMANCE_IMPACT",
+            "SIGNAL_TYPE_TRANS_LOGS_PERFORMANCE_IMPACT",
+            "SIGNAL_TYPE_HIGH_JOINS_WITHOUT_INDEXES"
           ],
           "enumDeprecated": [
             false,
@@ -3508,6 +3611,12 @@
             false,
             true,
             true,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
             false,
             false,
             false,
@@ -3626,7 +3735,13 @@
             "Represents server certificate is near expiry.",
             "Represents database auditing is disabled.",
             "Represents not restricted to authorized networks.",
-            "Represents violate org policy restrict public ip."
+            "Represents violate org policy restrict public ip.",
+            "Cluster nearing quota limit",
+            "No password policy set on resources",
+            "Performance impact of connections settings",
+            "Performance impact of temporary tables settings",
+            "Performance impact of transaction logs settings",
+            "Performance impact of high joins without indexes"
           ],
           "type": "string"
         },
@@ -3830,10 +3945,15 @@
           "format": "google-datetime",
           "type": "string"
         },
+        "userLabelSet": {
+          "$ref": "StorageDatabasecenterPartnerapiV1mainUserLabels",
+          "description": "User-provided labels associated with the resource"
+        },
         "userLabels": {
           "additionalProperties": {
             "type": "string"
           },
+          "deprecated": true,
           "description": "User-provided labels, represented as a dictionary where each label is a single key value pair.",
           "type": "object"
         }
@@ -3956,7 +4076,13 @@
             "SIGNAL_TYPE_SERVER_CERTIFICATE_NEAR_EXPIRY",
             "SIGNAL_TYPE_DATABASE_AUDITING_DISABLED",
             "SIGNAL_TYPE_RESTRICT_AUTHORIZED_NETWORKS",
-            "SIGNAL_TYPE_VIOLATE_POLICY_RESTRICT_PUBLIC_IP"
+            "SIGNAL_TYPE_VIOLATE_POLICY_RESTRICT_PUBLIC_IP",
+            "SIGNAL_TYPE_QUOTA_LIMIT",
+            "SIGNAL_TYPE_NO_PASSWORD_POLICY",
+            "SIGNAL_TYPE_CONNECTIONS_PERFORMANCE_IMPACT",
+            "SIGNAL_TYPE_TMP_TABLES_PERFORMANCE_IMPACT",
+            "SIGNAL_TYPE_TRANS_LOGS_PERFORMANCE_IMPACT",
+            "SIGNAL_TYPE_HIGH_JOINS_WITHOUT_INDEXES"
           ],
           "enumDeprecated": [
             false,
@@ -3964,6 +4090,12 @@
             false,
             true,
             true,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
             false,
             false,
             false,
@@ -4082,7 +4214,13 @@
             "Represents server certificate is near expiry.",
             "Represents database auditing is disabled.",
             "Represents not restricted to authorized networks.",
-            "Represents violate org policy restrict public ip."
+            "Represents violate org policy restrict public ip.",
+            "Cluster nearing quota limit",
+            "No password policy set on resources",
+            "Performance impact of connections settings",
+            "Performance impact of temporary tables settings",
+            "Performance impact of transaction logs settings",
+            "Performance impact of high joins without indexes"
           ],
           "type": "string"
         }
@@ -4111,11 +4249,18 @@
           "description": "An enum that represents the type of this entitlement.",
           "enum": [
             "ENTITLEMENT_TYPE_UNSPECIFIED",
-            "DUET_AI"
+            "DUET_AI",
+            "GEMINI"
+          ],
+          "enumDeprecated": [
+            false,
+            true,
+            false
           ],
           "enumDescriptions": [
             "",
-            "The root entitlement representing Duet AI package ownership."
+            "The root entitlement representing Duet AI package ownership.",
+            "The root entitlement representing Gemini package ownership."
           ],
           "type": "string"
         }
@@ -4184,6 +4329,19 @@
         "timeBasedRetention": {
           "format": "google-duration",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "StorageDatabasecenterPartnerapiV1mainUserLabels": {
+      "description": "Message type for storing user labels. User labels are used to tag App Engine resources, allowing users to search for resources matching a set of labels and to aggregate usage data by labels.",
+      "id": "StorageDatabasecenterPartnerapiV1mainUserLabels",
+      "properties": {
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object"
         }
       },
       "type": "object"

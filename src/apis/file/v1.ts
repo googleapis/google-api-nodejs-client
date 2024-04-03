@@ -626,7 +626,7 @@ export namespace file_v1 {
     name?: string | null;
   }
   /**
-   * LINT.IfChange Defines policies to service maintenance events.
+   * Defines policies to service maintenance events.
    */
   export interface Schema$MaintenancePolicy {
     /**

@@ -1705,6 +1705,19 @@ export namespace osconfig_v1 {
    */
   export interface Schema$PausePatchDeploymentRequest {}
   /**
+   * ProjectFeatureSettings represents the features settings for the VM Manager. The project features settings can be set for a project.
+   */
+  export interface Schema$ProjectFeatureSettings {
+    /**
+     * Required. Immutable. Name of the config, e.g. projects/12345/locations/global/projectFeatureSettings
+     */
+    name?: string | null;
+    /**
+     * Currently set PatchAndConfigFeatureSet for name.
+     */
+    patchAndConfigFeatureSet?: string | null;
+  }
+  /**
    * Sets the time for recurring patch deployments.
    */
   export interface Schema$RecurringSchedule {
@@ -2020,14 +2033,231 @@ export namespace osconfig_v1 {
 
   export class Resource$Projects$Locations {
     context: APIRequestContext;
+    global: Resource$Projects$Locations$Global;
     instances: Resource$Projects$Locations$Instances;
     osPolicyAssignments: Resource$Projects$Locations$Ospolicyassignments;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.global = new Resource$Projects$Locations$Global(this.context);
       this.instances = new Resource$Projects$Locations$Instances(this.context);
       this.osPolicyAssignments =
         new Resource$Projects$Locations$Ospolicyassignments(this.context);
     }
+  }
+
+  export class Resource$Projects$Locations$Global {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * GetProjectFeatureSettings returns the feature settings for a project
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getProjectFeatureSettings(
+      params: Params$Resource$Projects$Locations$Global$Getprojectfeaturesettings,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getProjectFeatureSettings(
+      params?: Params$Resource$Projects$Locations$Global$Getprojectfeaturesettings,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ProjectFeatureSettings>;
+    getProjectFeatureSettings(
+      params: Params$Resource$Projects$Locations$Global$Getprojectfeaturesettings,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getProjectFeatureSettings(
+      params: Params$Resource$Projects$Locations$Global$Getprojectfeaturesettings,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ProjectFeatureSettings>,
+      callback: BodyResponseCallback<Schema$ProjectFeatureSettings>
+    ): void;
+    getProjectFeatureSettings(
+      params: Params$Resource$Projects$Locations$Global$Getprojectfeaturesettings,
+      callback: BodyResponseCallback<Schema$ProjectFeatureSettings>
+    ): void;
+    getProjectFeatureSettings(
+      callback: BodyResponseCallback<Schema$ProjectFeatureSettings>
+    ): void;
+    getProjectFeatureSettings(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Global$Getprojectfeaturesettings
+        | BodyResponseCallback<Schema$ProjectFeatureSettings>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ProjectFeatureSettings>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ProjectFeatureSettings>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ProjectFeatureSettings>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Global$Getprojectfeaturesettings;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Global$Getprojectfeaturesettings;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://osconfig.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ProjectFeatureSettings>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ProjectFeatureSettings>(parameters);
+      }
+    }
+
+    /**
+     * UpdateProjectFeatureSettings sets the feature settings for a project.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    updateProjectFeatureSettings(
+      params: Params$Resource$Projects$Locations$Global$Updateprojectfeaturesettings,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    updateProjectFeatureSettings(
+      params?: Params$Resource$Projects$Locations$Global$Updateprojectfeaturesettings,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ProjectFeatureSettings>;
+    updateProjectFeatureSettings(
+      params: Params$Resource$Projects$Locations$Global$Updateprojectfeaturesettings,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    updateProjectFeatureSettings(
+      params: Params$Resource$Projects$Locations$Global$Updateprojectfeaturesettings,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ProjectFeatureSettings>,
+      callback: BodyResponseCallback<Schema$ProjectFeatureSettings>
+    ): void;
+    updateProjectFeatureSettings(
+      params: Params$Resource$Projects$Locations$Global$Updateprojectfeaturesettings,
+      callback: BodyResponseCallback<Schema$ProjectFeatureSettings>
+    ): void;
+    updateProjectFeatureSettings(
+      callback: BodyResponseCallback<Schema$ProjectFeatureSettings>
+    ): void;
+    updateProjectFeatureSettings(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Global$Updateprojectfeaturesettings
+        | BodyResponseCallback<Schema$ProjectFeatureSettings>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ProjectFeatureSettings>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ProjectFeatureSettings>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ProjectFeatureSettings>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Global$Updateprojectfeaturesettings;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Global$Updateprojectfeaturesettings;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://osconfig.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ProjectFeatureSettings>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ProjectFeatureSettings>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Global$Getprojectfeaturesettings
+    extends StandardParameters {
+    /**
+     * Required. Name of the billing config. "projects//locations/global/projectFeatureSettings"
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Global$Updateprojectfeaturesettings
+    extends StandardParameters {
+    /**
+     * Required. Immutable. Name of the config, e.g. projects/12345/locations/global/projectFeatureSettings
+     */
+    name?: string;
+    /**
+     * Optional. Field mask that controls which fields of the ProjectFeatureSettings should be updated.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ProjectFeatureSettings;
   }
 
   export class Resource$Projects$Locations$Instances {

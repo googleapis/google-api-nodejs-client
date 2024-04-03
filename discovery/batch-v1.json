@@ -12,7 +12,7 @@
   "baseUrl": "https://batch.googleapis.com/",
   "batchPath": "batch",
   "canonicalName": "Batch",
-  "description": "An API to manage the running of batch resources on Google Cloud Platform.",
+  "description": "An API to manage the running of Batch resources on Google Cloud Platform.",
   "discoveryVersion": "v1",
   "documentationLink": "https://cloud.google.com/batch/",
   "fullyEncodeReservedExpansion": true,
@@ -561,7 +561,7 @@
       }
     }
   },
-  "revision": "20240206",
+  "revision": "20240315",
   "rootUrl": "https://batch.googleapis.com/",
   "schemas": {
     "Accelerator": {
@@ -907,7 +907,7 @@
           "description": "Environment variables to set before running the Task."
         },
         "maxRunDuration": {
-          "description": "Maximum duration the task should run. The task will be killed and marked as FAILED if over this limit.",
+          "description": "Maximum duration the task should run. The task will be killed and marked as FAILED if over this limit. The valid value range for max_run_duration in seconds is [0, 315576000000.999999999],",
           "format": "google-duration",
           "type": "string"
         },
@@ -2193,7 +2193,7 @@
           "type": "integer"
         },
         "maxRunDuration": {
-          "description": "Maximum duration the task should run. The task will be killed and marked as FAILED if over this limit.",
+          "description": "Maximum duration the task should run. The task will be killed and marked as FAILED if over this limit. The valid value range for max_run_duration in seconds is [0, 315576000000.999999999],",
           "format": "google-duration",
           "type": "string"
         },

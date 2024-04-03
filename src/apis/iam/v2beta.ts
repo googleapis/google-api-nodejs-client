@@ -102,7 +102,7 @@ export namespace iam_v2beta {
   /**
    * Identity and Access Management (IAM) API
    *
-   * Manages identity and access control for Google Cloud Platform resources, including the creation of service accounts, which you can use to authenticate to Google and make API calls.
+   * Manages identity and access control for Google Cloud resources, including the creation of service accounts, which you can use to authenticate to Google and make API calls. Enabling this API also enables the IAM Service Account Credentials API (iamcredentials.googleapis.com). However, disabling this API doesn&#39;t disable the IAM Service Account Credentials API.
    *
    * @example
    * ```js
@@ -124,6 +124,19 @@ export namespace iam_v2beta {
     }
   }
 
+  /**
+   * Operation metadata returned by the CLH during resource state reconciliation.
+   */
+  export interface Schema$CloudControl2SharedOperationsReconciliationOperationMetadata {
+    /**
+     * DEPRECATED. Use exclusive_action instead.
+     */
+    deleteResource?: boolean | null;
+    /**
+     * Excluisive action returned by the CLH.
+     */
+    exclusiveAction?: string | null;
+  }
   /**
    * Represents the metadata of the long-running operation.
    */

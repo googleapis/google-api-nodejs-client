@@ -2,6 +2,9 @@
   "auth": {
     "oauth2": {
       "scopes": {
+        "https://www.googleapis.com/auth/dataportability.alerts.subscriptions": {
+          "description": "Move a copy of the Google Alerts subscriptions you created."
+        },
         "https://www.googleapis.com/auth/dataportability.businessmessaging.conversations": {
           "description": "Move a copy of messages between you and the businesses you have conversations with across Google services."
         },
@@ -26,6 +29,18 @@
         "https://www.googleapis.com/auth/dataportability.chrome.settings": {
           "description": "Move a copy of your settings in Chrome."
         },
+        "https://www.googleapis.com/auth/dataportability.discover.follows": {
+          "description": "Move a copy of searches and sites you follow, saved by Discover."
+        },
+        "https://www.googleapis.com/auth/dataportability.discover.likes": {
+          "description": "Move a copy of links to your liked documents, saved by Discover."
+        },
+        "https://www.googleapis.com/auth/dataportability.discover.not_interested": {
+          "description": "Move a copy of content you marked as not interested, saved by Discover."
+        },
+        "https://www.googleapis.com/auth/dataportability.maps.aliased_places": {
+          "description": "Move a copy of the places you labeled on Maps."
+        },
         "https://www.googleapis.com/auth/dataportability.maps.commute_routes": {
           "description": "Move a copy of your pinned trips on Maps."
         },
@@ -35,11 +50,20 @@
         "https://www.googleapis.com/auth/dataportability.maps.ev_profile": {
           "description": "Move a copy of your electric vehicle profile on Maps."
         },
+        "https://www.googleapis.com/auth/dataportability.maps.factual_contributions": {
+          "description": "Move a copy of the corrections you made to places or map information on Maps."
+        },
         "https://www.googleapis.com/auth/dataportability.maps.offering_contributions": {
           "description": "Move a copy of your updates to places on Maps."
         },
         "https://www.googleapis.com/auth/dataportability.maps.photos_videos": {
           "description": "Move a copy of the photos and videos you posted on Maps."
+        },
+        "https://www.googleapis.com/auth/dataportability.maps.post_trip_feedback": {
+          "description": "Move a copy of feedback you gave after completing trips using Maps directions."
+        },
+        "https://www.googleapis.com/auth/dataportability.maps.questions_answers": {
+          "description": "Move a copy of the questions and answers you posted on Maps."
         },
         "https://www.googleapis.com/auth/dataportability.maps.reviews": {
           "description": "Move a copy of your reviews and posts on Maps."
@@ -50,6 +74,12 @@
         "https://www.googleapis.com/auth/dataportability.myactivity.maps": {
           "description": "Move a copy of your Maps activity."
         },
+        "https://www.googleapis.com/auth/dataportability.myactivity.myadcenter": {
+          "description": "Move a copy of your My Ad Center activity."
+        },
+        "https://www.googleapis.com/auth/dataportability.myactivity.play": {
+          "description": "Move a copy of your Google Play activity."
+        },
         "https://www.googleapis.com/auth/dataportability.myactivity.search": {
           "description": "Move a copy of your Google Search activity."
         },
@@ -59,14 +89,71 @@
         "https://www.googleapis.com/auth/dataportability.myactivity.youtube": {
           "description": "Move a copy of your YouTube activity."
         },
+        "https://www.googleapis.com/auth/dataportability.mymaps.maps": {
+          "description": "Move a copy of the maps you created in My Maps."
+        },
+        "https://www.googleapis.com/auth/dataportability.order_reserve.purchases_reservations": {
+          "description": "Move a copy of your food purchase and reservation activity."
+        },
+        "https://www.googleapis.com/auth/dataportability.play.devices": {
+          "description": "Move a copy of information about your devices with Google Play Store installed."
+        },
+        "https://www.googleapis.com/auth/dataportability.play.grouping": {
+          "description": "Move a copy of your Google Play Store Grouping tags created by app developers."
+        },
+        "https://www.googleapis.com/auth/dataportability.play.installs": {
+          "description": "Move a copy of your Google Play Store app installations."
+        },
+        "https://www.googleapis.com/auth/dataportability.play.library": {
+          "description": "Move a copy of your Google Play Store downloads, including books, games, and apps."
+        },
+        "https://www.googleapis.com/auth/dataportability.play.playpoints": {
+          "description": "Move a copy of information about your Google Play Store Points."
+        },
+        "https://www.googleapis.com/auth/dataportability.play.promotions": {
+          "description": "Move a copy of information about your Google Play Store promotions."
+        },
+        "https://www.googleapis.com/auth/dataportability.play.purchases": {
+          "description": "Move a copy of your Google Play Store purchases."
+        },
+        "https://www.googleapis.com/auth/dataportability.play.redemptions": {
+          "description": "Move a copy of your Google Play Store redemption activities."
+        },
+        "https://www.googleapis.com/auth/dataportability.play.subscriptions": {
+          "description": "Move a copy of your Google Play Store subscriptions."
+        },
+        "https://www.googleapis.com/auth/dataportability.play.usersettings": {
+          "description": "Move a copy of your Google Play Store user settings and preferences."
+        },
         "https://www.googleapis.com/auth/dataportability.saved.collections": {
           "description": "Move a copy of your saved links, images, places, and collections from your use of Google services."
+        },
+        "https://www.googleapis.com/auth/dataportability.search_ugc.media.reviews_and_stars": {
+          "description": "Move a copy of your media reviews on Google Search."
+        },
+        "https://www.googleapis.com/auth/dataportability.search_ugc.media.streaming_video_providers": {
+          "description": "Move a copy of your self-reported video streaming provider preferences from Google Search and Google TV."
+        },
+        "https://www.googleapis.com/auth/dataportability.search_ugc.media.thumbs": {
+          "description": "Move a copy of your indicated thumbs up and thumbs down on media in Google Search and Google TV."
+        },
+        "https://www.googleapis.com/auth/dataportability.search_ugc.media.watched": {
+          "description": "Move a copy of information about the movies and TV shows you marked as watched on Google Search and Google TV."
+        },
+        "https://www.googleapis.com/auth/dataportability.searchnotifications.settings": {
+          "description": "Move a copy of your notification settings on the Google Search app."
+        },
+        "https://www.googleapis.com/auth/dataportability.searchnotifications.subscriptions": {
+          "description": "Move a copy of your notification subscriptions on Google Search app."
         },
         "https://www.googleapis.com/auth/dataportability.shopping.addresses": {
           "description": "Move a copy of your shipping information on Shopping."
         },
         "https://www.googleapis.com/auth/dataportability.shopping.reviews": {
           "description": "Move a copy of reviews you wrote about products or online stores on Google Search."
+        },
+        "https://www.googleapis.com/auth/dataportability.streetview.imagery": {
+          "description": "Move a copy of the images and videos you uploaded to Street View."
         },
         "https://www.googleapis.com/auth/dataportability.youtube.channel": {
           "description": "Move a copy of information about your YouTube channel."
@@ -234,6 +321,7 @@
             "$ref": "PortabilityArchiveState"
           },
           "scopes": [
+            "https://www.googleapis.com/auth/dataportability.alerts.subscriptions",
             "https://www.googleapis.com/auth/dataportability.businessmessaging.conversations",
             "https://www.googleapis.com/auth/dataportability.chrome.autofill",
             "https://www.googleapis.com/auth/dataportability.chrome.bookmarks",
@@ -242,20 +330,48 @@
             "https://www.googleapis.com/auth/dataportability.chrome.history",
             "https://www.googleapis.com/auth/dataportability.chrome.reading_list",
             "https://www.googleapis.com/auth/dataportability.chrome.settings",
+            "https://www.googleapis.com/auth/dataportability.discover.follows",
+            "https://www.googleapis.com/auth/dataportability.discover.likes",
+            "https://www.googleapis.com/auth/dataportability.discover.not_interested",
+            "https://www.googleapis.com/auth/dataportability.maps.aliased_places",
             "https://www.googleapis.com/auth/dataportability.maps.commute_routes",
             "https://www.googleapis.com/auth/dataportability.maps.commute_settings",
             "https://www.googleapis.com/auth/dataportability.maps.ev_profile",
+            "https://www.googleapis.com/auth/dataportability.maps.factual_contributions",
             "https://www.googleapis.com/auth/dataportability.maps.offering_contributions",
             "https://www.googleapis.com/auth/dataportability.maps.photos_videos",
+            "https://www.googleapis.com/auth/dataportability.maps.post_trip_feedback",
+            "https://www.googleapis.com/auth/dataportability.maps.questions_answers",
             "https://www.googleapis.com/auth/dataportability.maps.reviews",
             "https://www.googleapis.com/auth/dataportability.maps.starred_places",
             "https://www.googleapis.com/auth/dataportability.myactivity.maps",
+            "https://www.googleapis.com/auth/dataportability.myactivity.myadcenter",
+            "https://www.googleapis.com/auth/dataportability.myactivity.play",
             "https://www.googleapis.com/auth/dataportability.myactivity.search",
             "https://www.googleapis.com/auth/dataportability.myactivity.shopping",
             "https://www.googleapis.com/auth/dataportability.myactivity.youtube",
+            "https://www.googleapis.com/auth/dataportability.mymaps.maps",
+            "https://www.googleapis.com/auth/dataportability.order_reserve.purchases_reservations",
+            "https://www.googleapis.com/auth/dataportability.play.devices",
+            "https://www.googleapis.com/auth/dataportability.play.grouping",
+            "https://www.googleapis.com/auth/dataportability.play.installs",
+            "https://www.googleapis.com/auth/dataportability.play.library",
+            "https://www.googleapis.com/auth/dataportability.play.playpoints",
+            "https://www.googleapis.com/auth/dataportability.play.promotions",
+            "https://www.googleapis.com/auth/dataportability.play.purchases",
+            "https://www.googleapis.com/auth/dataportability.play.redemptions",
+            "https://www.googleapis.com/auth/dataportability.play.subscriptions",
+            "https://www.googleapis.com/auth/dataportability.play.usersettings",
             "https://www.googleapis.com/auth/dataportability.saved.collections",
+            "https://www.googleapis.com/auth/dataportability.search_ugc.media.reviews_and_stars",
+            "https://www.googleapis.com/auth/dataportability.search_ugc.media.streaming_video_providers",
+            "https://www.googleapis.com/auth/dataportability.search_ugc.media.thumbs",
+            "https://www.googleapis.com/auth/dataportability.search_ugc.media.watched",
+            "https://www.googleapis.com/auth/dataportability.searchnotifications.settings",
+            "https://www.googleapis.com/auth/dataportability.searchnotifications.subscriptions",
             "https://www.googleapis.com/auth/dataportability.shopping.addresses",
             "https://www.googleapis.com/auth/dataportability.shopping.reviews",
+            "https://www.googleapis.com/auth/dataportability.streetview.imagery",
             "https://www.googleapis.com/auth/dataportability.youtube.channel",
             "https://www.googleapis.com/auth/dataportability.youtube.comments",
             "https://www.googleapis.com/auth/dataportability.youtube.live_chat",
@@ -297,6 +413,7 @@
             "$ref": "RetryPortabilityArchiveResponse"
           },
           "scopes": [
+            "https://www.googleapis.com/auth/dataportability.alerts.subscriptions",
             "https://www.googleapis.com/auth/dataportability.businessmessaging.conversations",
             "https://www.googleapis.com/auth/dataportability.chrome.autofill",
             "https://www.googleapis.com/auth/dataportability.chrome.bookmarks",
@@ -305,20 +422,48 @@
             "https://www.googleapis.com/auth/dataportability.chrome.history",
             "https://www.googleapis.com/auth/dataportability.chrome.reading_list",
             "https://www.googleapis.com/auth/dataportability.chrome.settings",
+            "https://www.googleapis.com/auth/dataportability.discover.follows",
+            "https://www.googleapis.com/auth/dataportability.discover.likes",
+            "https://www.googleapis.com/auth/dataportability.discover.not_interested",
+            "https://www.googleapis.com/auth/dataportability.maps.aliased_places",
             "https://www.googleapis.com/auth/dataportability.maps.commute_routes",
             "https://www.googleapis.com/auth/dataportability.maps.commute_settings",
             "https://www.googleapis.com/auth/dataportability.maps.ev_profile",
+            "https://www.googleapis.com/auth/dataportability.maps.factual_contributions",
             "https://www.googleapis.com/auth/dataportability.maps.offering_contributions",
             "https://www.googleapis.com/auth/dataportability.maps.photos_videos",
+            "https://www.googleapis.com/auth/dataportability.maps.post_trip_feedback",
+            "https://www.googleapis.com/auth/dataportability.maps.questions_answers",
             "https://www.googleapis.com/auth/dataportability.maps.reviews",
             "https://www.googleapis.com/auth/dataportability.maps.starred_places",
             "https://www.googleapis.com/auth/dataportability.myactivity.maps",
+            "https://www.googleapis.com/auth/dataportability.myactivity.myadcenter",
+            "https://www.googleapis.com/auth/dataportability.myactivity.play",
             "https://www.googleapis.com/auth/dataportability.myactivity.search",
             "https://www.googleapis.com/auth/dataportability.myactivity.shopping",
             "https://www.googleapis.com/auth/dataportability.myactivity.youtube",
+            "https://www.googleapis.com/auth/dataportability.mymaps.maps",
+            "https://www.googleapis.com/auth/dataportability.order_reserve.purchases_reservations",
+            "https://www.googleapis.com/auth/dataportability.play.devices",
+            "https://www.googleapis.com/auth/dataportability.play.grouping",
+            "https://www.googleapis.com/auth/dataportability.play.installs",
+            "https://www.googleapis.com/auth/dataportability.play.library",
+            "https://www.googleapis.com/auth/dataportability.play.playpoints",
+            "https://www.googleapis.com/auth/dataportability.play.promotions",
+            "https://www.googleapis.com/auth/dataportability.play.purchases",
+            "https://www.googleapis.com/auth/dataportability.play.redemptions",
+            "https://www.googleapis.com/auth/dataportability.play.subscriptions",
+            "https://www.googleapis.com/auth/dataportability.play.usersettings",
             "https://www.googleapis.com/auth/dataportability.saved.collections",
+            "https://www.googleapis.com/auth/dataportability.search_ugc.media.reviews_and_stars",
+            "https://www.googleapis.com/auth/dataportability.search_ugc.media.streaming_video_providers",
+            "https://www.googleapis.com/auth/dataportability.search_ugc.media.thumbs",
+            "https://www.googleapis.com/auth/dataportability.search_ugc.media.watched",
+            "https://www.googleapis.com/auth/dataportability.searchnotifications.settings",
+            "https://www.googleapis.com/auth/dataportability.searchnotifications.subscriptions",
             "https://www.googleapis.com/auth/dataportability.shopping.addresses",
             "https://www.googleapis.com/auth/dataportability.shopping.reviews",
+            "https://www.googleapis.com/auth/dataportability.streetview.imagery",
             "https://www.googleapis.com/auth/dataportability.youtube.channel",
             "https://www.googleapis.com/auth/dataportability.youtube.comments",
             "https://www.googleapis.com/auth/dataportability.youtube.live_chat",
@@ -354,6 +499,7 @@
             "$ref": "Empty"
           },
           "scopes": [
+            "https://www.googleapis.com/auth/dataportability.alerts.subscriptions",
             "https://www.googleapis.com/auth/dataportability.businessmessaging.conversations",
             "https://www.googleapis.com/auth/dataportability.chrome.autofill",
             "https://www.googleapis.com/auth/dataportability.chrome.bookmarks",
@@ -362,20 +508,48 @@
             "https://www.googleapis.com/auth/dataportability.chrome.history",
             "https://www.googleapis.com/auth/dataportability.chrome.reading_list",
             "https://www.googleapis.com/auth/dataportability.chrome.settings",
+            "https://www.googleapis.com/auth/dataportability.discover.follows",
+            "https://www.googleapis.com/auth/dataportability.discover.likes",
+            "https://www.googleapis.com/auth/dataportability.discover.not_interested",
+            "https://www.googleapis.com/auth/dataportability.maps.aliased_places",
             "https://www.googleapis.com/auth/dataportability.maps.commute_routes",
             "https://www.googleapis.com/auth/dataportability.maps.commute_settings",
             "https://www.googleapis.com/auth/dataportability.maps.ev_profile",
+            "https://www.googleapis.com/auth/dataportability.maps.factual_contributions",
             "https://www.googleapis.com/auth/dataportability.maps.offering_contributions",
             "https://www.googleapis.com/auth/dataportability.maps.photos_videos",
+            "https://www.googleapis.com/auth/dataportability.maps.post_trip_feedback",
+            "https://www.googleapis.com/auth/dataportability.maps.questions_answers",
             "https://www.googleapis.com/auth/dataportability.maps.reviews",
             "https://www.googleapis.com/auth/dataportability.maps.starred_places",
             "https://www.googleapis.com/auth/dataportability.myactivity.maps",
+            "https://www.googleapis.com/auth/dataportability.myactivity.myadcenter",
+            "https://www.googleapis.com/auth/dataportability.myactivity.play",
             "https://www.googleapis.com/auth/dataportability.myactivity.search",
             "https://www.googleapis.com/auth/dataportability.myactivity.shopping",
             "https://www.googleapis.com/auth/dataportability.myactivity.youtube",
+            "https://www.googleapis.com/auth/dataportability.mymaps.maps",
+            "https://www.googleapis.com/auth/dataportability.order_reserve.purchases_reservations",
+            "https://www.googleapis.com/auth/dataportability.play.devices",
+            "https://www.googleapis.com/auth/dataportability.play.grouping",
+            "https://www.googleapis.com/auth/dataportability.play.installs",
+            "https://www.googleapis.com/auth/dataportability.play.library",
+            "https://www.googleapis.com/auth/dataportability.play.playpoints",
+            "https://www.googleapis.com/auth/dataportability.play.promotions",
+            "https://www.googleapis.com/auth/dataportability.play.purchases",
+            "https://www.googleapis.com/auth/dataportability.play.redemptions",
+            "https://www.googleapis.com/auth/dataportability.play.subscriptions",
+            "https://www.googleapis.com/auth/dataportability.play.usersettings",
             "https://www.googleapis.com/auth/dataportability.saved.collections",
+            "https://www.googleapis.com/auth/dataportability.search_ugc.media.reviews_and_stars",
+            "https://www.googleapis.com/auth/dataportability.search_ugc.media.streaming_video_providers",
+            "https://www.googleapis.com/auth/dataportability.search_ugc.media.thumbs",
+            "https://www.googleapis.com/auth/dataportability.search_ugc.media.watched",
+            "https://www.googleapis.com/auth/dataportability.searchnotifications.settings",
+            "https://www.googleapis.com/auth/dataportability.searchnotifications.subscriptions",
             "https://www.googleapis.com/auth/dataportability.shopping.addresses",
             "https://www.googleapis.com/auth/dataportability.shopping.reviews",
+            "https://www.googleapis.com/auth/dataportability.streetview.imagery",
             "https://www.googleapis.com/auth/dataportability.youtube.channel",
             "https://www.googleapis.com/auth/dataportability.youtube.comments",
             "https://www.googleapis.com/auth/dataportability.youtube.live_chat",
@@ -411,6 +585,7 @@
             "$ref": "InitiatePortabilityArchiveResponse"
           },
           "scopes": [
+            "https://www.googleapis.com/auth/dataportability.alerts.subscriptions",
             "https://www.googleapis.com/auth/dataportability.businessmessaging.conversations",
             "https://www.googleapis.com/auth/dataportability.chrome.autofill",
             "https://www.googleapis.com/auth/dataportability.chrome.bookmarks",
@@ -419,20 +594,48 @@
             "https://www.googleapis.com/auth/dataportability.chrome.history",
             "https://www.googleapis.com/auth/dataportability.chrome.reading_list",
             "https://www.googleapis.com/auth/dataportability.chrome.settings",
+            "https://www.googleapis.com/auth/dataportability.discover.follows",
+            "https://www.googleapis.com/auth/dataportability.discover.likes",
+            "https://www.googleapis.com/auth/dataportability.discover.not_interested",
+            "https://www.googleapis.com/auth/dataportability.maps.aliased_places",
             "https://www.googleapis.com/auth/dataportability.maps.commute_routes",
             "https://www.googleapis.com/auth/dataportability.maps.commute_settings",
             "https://www.googleapis.com/auth/dataportability.maps.ev_profile",
+            "https://www.googleapis.com/auth/dataportability.maps.factual_contributions",
             "https://www.googleapis.com/auth/dataportability.maps.offering_contributions",
             "https://www.googleapis.com/auth/dataportability.maps.photos_videos",
+            "https://www.googleapis.com/auth/dataportability.maps.post_trip_feedback",
+            "https://www.googleapis.com/auth/dataportability.maps.questions_answers",
             "https://www.googleapis.com/auth/dataportability.maps.reviews",
             "https://www.googleapis.com/auth/dataportability.maps.starred_places",
             "https://www.googleapis.com/auth/dataportability.myactivity.maps",
+            "https://www.googleapis.com/auth/dataportability.myactivity.myadcenter",
+            "https://www.googleapis.com/auth/dataportability.myactivity.play",
             "https://www.googleapis.com/auth/dataportability.myactivity.search",
             "https://www.googleapis.com/auth/dataportability.myactivity.shopping",
             "https://www.googleapis.com/auth/dataportability.myactivity.youtube",
+            "https://www.googleapis.com/auth/dataportability.mymaps.maps",
+            "https://www.googleapis.com/auth/dataportability.order_reserve.purchases_reservations",
+            "https://www.googleapis.com/auth/dataportability.play.devices",
+            "https://www.googleapis.com/auth/dataportability.play.grouping",
+            "https://www.googleapis.com/auth/dataportability.play.installs",
+            "https://www.googleapis.com/auth/dataportability.play.library",
+            "https://www.googleapis.com/auth/dataportability.play.playpoints",
+            "https://www.googleapis.com/auth/dataportability.play.promotions",
+            "https://www.googleapis.com/auth/dataportability.play.purchases",
+            "https://www.googleapis.com/auth/dataportability.play.redemptions",
+            "https://www.googleapis.com/auth/dataportability.play.subscriptions",
+            "https://www.googleapis.com/auth/dataportability.play.usersettings",
             "https://www.googleapis.com/auth/dataportability.saved.collections",
+            "https://www.googleapis.com/auth/dataportability.search_ugc.media.reviews_and_stars",
+            "https://www.googleapis.com/auth/dataportability.search_ugc.media.streaming_video_providers",
+            "https://www.googleapis.com/auth/dataportability.search_ugc.media.thumbs",
+            "https://www.googleapis.com/auth/dataportability.search_ugc.media.watched",
+            "https://www.googleapis.com/auth/dataportability.searchnotifications.settings",
+            "https://www.googleapis.com/auth/dataportability.searchnotifications.subscriptions",
             "https://www.googleapis.com/auth/dataportability.shopping.addresses",
             "https://www.googleapis.com/auth/dataportability.shopping.reviews",
+            "https://www.googleapis.com/auth/dataportability.streetview.imagery",
             "https://www.googleapis.com/auth/dataportability.youtube.channel",
             "https://www.googleapis.com/auth/dataportability.youtube.comments",
             "https://www.googleapis.com/auth/dataportability.youtube.live_chat",
@@ -452,7 +655,7 @@
       }
     }
   },
-  "revision": "20240312",
+  "revision": "20240321",
   "rootUrl": "https://dataportability.googleapis.com/",
   "schemas": {
     "Empty": {

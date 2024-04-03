@@ -1284,7 +1284,7 @@
       }
     }
   },
-  "revision": "20240223",
+  "revision": "20240314",
   "rootUrl": "https://documentai.googleapis.com/",
   "schemas": {
     "GoogleCloudDocumentaiUiv1beta3AutoLabelDocumentsMetadata": {
@@ -7862,7 +7862,7 @@
           "description": "The source processor version to import from. It can be from a different environment and region than the destination processor."
         },
         "processorVersionSource": {
-          "description": "The source processor version to import from. The source processor version and destination processor need to be in the same environment and region.",
+          "description": "The source processor version to import from. The source processor version and destination processor need to be in the same environment and region. Note that ProcessorVersions with `model_type` `MODEL_TYPE_LLM` are not supported.",
           "type": "string"
         }
       },

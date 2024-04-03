@@ -10013,7 +10013,7 @@
       }
     }
   },
-  "revision": "20240312",
+  "revision": "20240318",
   "rootUrl": "https://apigee.googleapis.com/",
   "schemas": {
     "EdgeConfigstoreBundleBadBundle": {
@@ -10110,6 +10110,21 @@
           "type": "string"
         },
         "value": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudApigeeV1AccessLoggingConfig": {
+      "description": "Access logging configuration enables customers to ship the access logs from the tenant projects to their own project's cloud logging. The feature is at the instance level ad disabled by default. It can be enabled during CreateInstance or UpdateInstance.",
+      "id": "GoogleCloudApigeeV1AccessLoggingConfig",
+      "properties": {
+        "enabled": {
+          "description": "Optional. Boolean flag that specifies whether the customer access log feature is enabled.",
+          "type": "boolean"
+        },
+        "filter": {
+          "description": "Optional. Ship the access log entries that match the status_code defined in the filter. The status_code is the only expected/supported filter field. (Ex: status_code) The filter will parse it to the Common Expression Language semantics for expression evaluation to build the filter condition. (Ex: \"filter\": status_code >= 200 && status_code < 300 )",
           "type": "string"
         }
       },
@@ -13583,6 +13598,10 @@
       "description": "Apigee runtime instance.",
       "id": "GoogleCloudApigeeV1Instance",
       "properties": {
+        "accessLoggingConfig": {
+          "$ref": "GoogleCloudApigeeV1AccessLoggingConfig",
+          "description": "Optional. Access logging configuration enables the access logging feature at the instance. Apigee customers can enable access logging to ship the access logs to their own project's cloud logging."
+        },
         "consumerAcceptList": {
           "description": "Optional. Customer accept list represents the list of projects (id/number) on customer side that can privately connect to the service attachment. It is an optional field which the customers can provide during the instance creation. By default, the customer project associated with the Apigee organization will be included to the list.",
           "items": {

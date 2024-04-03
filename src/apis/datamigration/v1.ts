@@ -577,6 +577,10 @@ export namespace datamigration_v1 {
      */
     provider?: string | null;
     /**
+     * Connection profile for a SQL Server data source.
+     */
+    sqlserver?: Schema$SqlServerConnectionProfile;
+    /**
      * The current connection profile state (e.g. DRAFT, READY, or FAILED).
      */
     state?: string | null;
@@ -1588,6 +1592,10 @@ export namespace datamigration_v1 {
      */
     sourceDatabase?: Schema$DatabaseType;
     /**
+     * Optional. Configuration for SQL Server homogeneous migration.
+     */
+    sqlserverHomogeneousMigrationJobConfig?: Schema$SqlServerHomogeneousMigrationJobConfig;
+    /**
      * The current migration job state.
      */
     state?: string | null;
@@ -2325,6 +2333,115 @@ export namespace datamigration_v1 {
      * Whether SSL connections over IP should be enforced or not.
      */
     requireSsl?: boolean | null;
+  }
+  /**
+   * Specifies the backup details in Cloud Storage for homogeneous migration to Cloud SQL for SQL Server.
+   */
+  export interface Schema$SqlServerBackups {
+    /**
+     * Required. The Cloud Storage bucket that stores backups for all replicated databases.
+     */
+    gcsBucket?: string | null;
+    /**
+     * Optional. Cloud Storage path inside the bucket that stores backups.
+     */
+    gcsPrefix?: string | null;
+  }
+  /**
+   * Specifies connection parameters required specifically for SQL Server databases.
+   */
+  export interface Schema$SqlServerConnectionProfile {
+    /**
+     * The backup details in Cloud Storage for homogeneous migration to Cloud SQL for SQL Server.
+     */
+    backups?: Schema$SqlServerBackups;
+    /**
+     * If the source is a Cloud SQL database, use this field to provide the Cloud SQL instance ID of the source.
+     */
+    cloudSqlId?: string | null;
+    /**
+     * Forward SSH tunnel connectivity.
+     */
+    forwardSshConnectivity?: Schema$ForwardSshTunnelConnectivity;
+    /**
+     * Required. The IP or hostname of the source SQL Server database.
+     */
+    host?: string | null;
+    /**
+     * Required. Input only. The password for the user that Database Migration Service will be using to connect to the database. This field is not returned on request, and the value is encrypted when stored in Database Migration Service.
+     */
+    password?: string | null;
+    /**
+     * Output only. Indicates whether a new password is included in the request.
+     */
+    passwordSet?: boolean | null;
+    /**
+     * Required. The network port of the source SQL Server database.
+     */
+    port?: number | null;
+    /**
+     * Private connectivity.
+     */
+    privateConnectivity?: Schema$PrivateConnectivity;
+    /**
+     * Private Service Connect connectivity.
+     */
+    privateServiceConnectConnectivity?: Schema$PrivateServiceConnectConnectivity;
+    /**
+     * SSL configuration for the destination to connect to the source database.
+     */
+    ssl?: Schema$SslConfig;
+    /**
+     * Static IP connectivity data (default, no additional details needed).
+     */
+    staticIpConnectivity?: Schema$StaticIpConnectivity;
+    /**
+     * Required. The username that Database Migration Service will use to connect to the database. The value is encrypted when stored in Database Migration Service.
+     */
+    username?: string | null;
+  }
+  /**
+   * Specifies the backup details for a single database in Cloud Storage for homogeneous migration to Cloud SQL for SQL Server.
+   */
+  export interface Schema$SqlServerDatabaseBackup {
+    /**
+     * Required. Name of a SQL Server database for which to define backup configuration.
+     */
+    database?: string | null;
+    /**
+     * Optional. Encryption settings for the database. Required if provided database backups are encrypted. Encryption settings include path to certificate, path to certificate private key, and key password.
+     */
+    encryptionOptions?: Schema$SqlServerEncryptionOptions;
+  }
+  /**
+   * Encryption settings for the SQL Server database.
+   */
+  export interface Schema$SqlServerEncryptionOptions {
+    /**
+     * Required. Path to certificate.
+     */
+    certPath?: string | null;
+    /**
+     * Required. Input only. Private key password.
+     */
+    pvkPassword?: string | null;
+    /**
+     * Required. Path to certificate private key.
+     */
+    pvkPath?: string | null;
+  }
+  /**
+   * Configuration for homogeneous migration to Cloud SQL for SQL Server.
+   */
+  export interface Schema$SqlServerHomogeneousMigrationJobConfig {
+    /**
+     * Required. Pattern that describes the default backup naming strategy. The specified pattern should ensure lexicographical order of backups. The pattern must define one of the following capture group sets: Capture group set #1 yy/yyyy - year, 2 or 4 digits mm - month number, 1-12 dd - day of month, 1-31 hh - hour of day, 00-23 mi - minutes, 00-59 ss - seconds, 00-59 Example: For backup file TestDB_20230802_155400.trn, use pattern: (?.*)_backup_(?\d{4\})(?\d{2\})(?\d{2\})_(?\d{2\})(?\d{2\})(?\d{2\}).trn Capture group set #2 timestamp - unix timestamp Example: For backup file TestDB.1691448254.trn, use pattern: (?.*)\.(?\d*).trn or (?.*)\.(?\d*).trn
+     */
+    backupFilePattern?: string | null;
+    /**
+     * Required. Backup details per database in Cloud Storage.
+     */
+    databaseBackups?: Schema$SqlServerDatabaseBackup[];
   }
   /**
    * Response message for 'GenerateSshScript' request.

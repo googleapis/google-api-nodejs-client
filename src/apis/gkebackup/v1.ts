@@ -151,7 +151,7 @@ export namespace gkebackup_v1 {
     logType?: string | null;
   }
   /**
-   * Represents a request to perform a single point-in-time capture of some portion of the state of a GKE cluster, the record of the backup operation itself, and an anchor for the underlying artifacts that comprise the Backup (the config backup and VolumeBackups). Next id: 29
+   * Represents a request to perform a single point-in-time capture of some portion of the state of a GKE cluster, the record of the backup operation itself, and an anchor for the underlying artifacts that comprise the Backup (the config backup and VolumeBackups).
    */
   export interface Schema$Backup {
     /**
@@ -757,7 +757,7 @@ export namespace gkebackup_v1 {
     namespaces?: string[] | null;
   }
   /**
-   * Represents both a request to Restore some portion of a Backup into a target GKE cluster and a record of the restore operation itself. Next id: 20
+   * Represents both a request to Restore some portion of a Backup into a target GKE cluster and a record of the restore operation itself.
    */
   export interface Schema$Restore {
     /**
@@ -830,7 +830,7 @@ export namespace gkebackup_v1 {
     volumesRestoredCount?: number | null;
   }
   /**
-   * Configuration of a restore. Next id: 14
+   * Configuration of a restore.
    */
   export interface Schema$RestoreConfig {
     /**
@@ -879,7 +879,7 @@ export namespace gkebackup_v1 {
     volumeDataRestorePolicy?: string | null;
   }
   /**
-   * The configuration of a potential series of Restore operations to be performed against Backups belong to a particular BackupPlan. Next id: 13
+   * The configuration of a potential series of Restore operations to be performed against Backups belong to a particular BackupPlan.
    */
   export interface Schema$RestorePlan {
     /**
@@ -1056,7 +1056,7 @@ export namespace gkebackup_v1 {
     value?: string | null;
   }
   /**
-   * Represents the backup of a specific persistent volume as a component of a Backup - both the record of the operation and a pointer to the underlying storage-specific artifacts. Next id: 14
+   * Represents the backup of a specific persistent volume as a component of a Backup - both the record of the operation and a pointer to the underlying storage-specific artifacts.
    */
   export interface Schema$VolumeBackup {
     /**
@@ -1113,7 +1113,7 @@ export namespace gkebackup_v1 {
     volumeBackupHandle?: string | null;
   }
   /**
-   * Represents the operation of restoring a volume from a VolumeBackup. Next id: 13
+   * Represents the operation of restoring a volume from a VolumeBackup.
    */
   export interface Schema$VolumeRestore {
     /**

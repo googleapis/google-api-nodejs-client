@@ -320,6 +320,10 @@ export namespace networkmanagement_v1beta1 {
    */
   export interface Schema$ConnectivityTest {
     /**
+     * Whether the test should skip firewall checking. If not provided, we assume false.
+     */
+    bypassFirewallChecks?: boolean | null;
+    /**
      * Output only. The time the test was created.
      */
     createTime?: string | null;

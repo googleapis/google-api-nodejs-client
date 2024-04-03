@@ -2175,7 +2175,7 @@
       }
     }
   },
-  "revision": "20240229",
+  "revision": "20240318",
   "rootUrl": "https://gkehub.googleapis.com/",
   "schemas": {
     "AnthosObservabilityFeatureSpec": {
@@ -4313,6 +4313,10 @@
           "$ref": "IdentityServiceGoogleConfig",
           "description": "GoogleConfig specific configuration."
         },
+        "ldapConfig": {
+          "$ref": "IdentityServiceLdapConfig",
+          "description": "LDAP specific configuration."
+        },
         "name": {
           "description": "Identifier for auth config.",
           "type": "string"
@@ -4376,6 +4380,48 @@
         "disable": {
           "description": "Disable automatic configuration of Google Plugin on supported platforms.",
           "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "IdentityServiceGroupConfig": {
+      "description": "Contains the properties for locating and authenticating groups in the directory.",
+      "id": "IdentityServiceGroupConfig",
+      "properties": {
+        "baseDn": {
+          "description": "Required. The location of the subtree in the LDAP directory to search for group entries.",
+          "type": "string"
+        },
+        "filter": {
+          "description": "Optional. Optional filter to be used when searching for groups a user belongs to. This can be used to explicitly match only certain groups in order to reduce the amount of groups returned for each user. This defaults to \"(objectClass=Group)\".",
+          "type": "string"
+        },
+        "idAttribute": {
+          "description": "Optional. The identifying name of each group a user belongs to. For example, if this is set to \"distinguishedName\" then RBACs and other group expectations should be written as full DNs. This defaults to \"distinguishedName\".",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "IdentityServiceLdapConfig": {
+      "description": "Configuration for the LDAP Auth flow.",
+      "id": "IdentityServiceLdapConfig",
+      "properties": {
+        "group": {
+          "$ref": "IdentityServiceGroupConfig",
+          "description": "Optional. Contains the properties for locating and authenticating groups in the directory."
+        },
+        "server": {
+          "$ref": "IdentityServiceServerConfig",
+          "description": "Required. Server settings for the external LDAP server."
+        },
+        "serviceAccount": {
+          "$ref": "IdentityServiceServiceAccountConfig",
+          "description": "Required. Contains the credentials of the service account which is authorized to perform the LDAP search in the directory. The credentials can be supplied by the combination of the DN and password or the client certificate."
+        },
+        "user": {
+          "$ref": "IdentityServiceUserConfig",
+          "description": "Required. Defines where users exist in the LDAP directory."
         }
       },
       "type": "object"
@@ -4532,6 +4578,81 @@
         },
         "userPrefix": {
           "description": "Optional. Prefix to prepend to user name.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "IdentityServiceServerConfig": {
+      "description": "Server settings for the external LDAP server.",
+      "id": "IdentityServiceServerConfig",
+      "properties": {
+        "certificateAuthorityData": {
+          "description": "Optional. Contains a Base64 encoded, PEM formatted certificate authority certificate for the LDAP server. This must be provided for the \"ldaps\" and \"startTLS\" connections.",
+          "format": "byte",
+          "type": "string"
+        },
+        "connectionType": {
+          "description": "Optional. Defines the connection type to communicate with the LDAP server. If `starttls` or `ldaps` is specified, the certificate_authority_data should not be empty.",
+          "type": "string"
+        },
+        "host": {
+          "description": "Required. Defines the hostname or IP of the LDAP server. Port is optional and will default to 389, if unspecified. For example, \"ldap.server.example\" or \"10.10.10.10:389\".",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "IdentityServiceServiceAccountConfig": {
+      "description": "Contains the credentials of the service account which is authorized to perform the LDAP search in the directory. The credentials can be supplied by the combination of the DN and password or the client certificate.",
+      "id": "IdentityServiceServiceAccountConfig",
+      "properties": {
+        "simpleBindCredentials": {
+          "$ref": "IdentityServiceSimpleBindCredentials",
+          "description": "Credentials for basic auth."
+        }
+      },
+      "type": "object"
+    },
+    "IdentityServiceSimpleBindCredentials": {
+      "description": "The structure holds the LDAP simple binding credential.",
+      "id": "IdentityServiceSimpleBindCredentials",
+      "properties": {
+        "dn": {
+          "description": "Required. The distinguished name(DN) of the service account object/user.",
+          "type": "string"
+        },
+        "encryptedPassword": {
+          "description": "Output only. The encrypted password of the service account object/user.",
+          "format": "byte",
+          "readOnly": true,
+          "type": "string"
+        },
+        "password": {
+          "description": "Required. Input only. The password of the service account object/user.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "IdentityServiceUserConfig": {
+      "description": "Defines where users exist in the LDAP directory.",
+      "id": "IdentityServiceUserConfig",
+      "properties": {
+        "baseDn": {
+          "description": "Required. The location of the subtree in the LDAP directory to search for user entries.",
+          "type": "string"
+        },
+        "filter": {
+          "description": "Optional. Filter to apply when searching for the user. This can be used to further restrict the user accounts which are allowed to login. This defaults to \"(objectClass=User)\".",
+          "type": "string"
+        },
+        "idAttribute": {
+          "description": "Optional. Determines which attribute to use as the user's identity after they are authenticated. This is distinct from the loginAttribute field to allow users to login with a username, but then have their actual identifier be an email address or full Distinguished Name (DN). For example, setting loginAttribute to \"sAMAccountName\" and identifierAttribute to \"userPrincipalName\" would allow a user to login as \"bsmith\", but actual RBAC policies for the user would be written as \"bsmith@example.com\". Using \"userPrincipalName\" is recommended since this will be unique for each user. This defaults to \"userPrincipalName\".",
+          "type": "string"
+        },
+        "loginAttribute": {
+          "description": "Optional. The name of the attribute which matches against the input username. This is used to find the user in the LDAP database e.g. \"(=)\" and is combined with the optional filter field. This defaults to \"userPrincipalName\".",
           "type": "string"
         }
       },

@@ -694,7 +694,7 @@
       }
     }
   },
-  "revision": "20240218",
+  "revision": "20240317",
   "rootUrl": "https://recaptchaenterprise.googleapis.com/",
   "schemas": {
     "GoogleCloudRecaptchaenterpriseV1AccountDefenderAssessment": {
@@ -1415,7 +1415,7 @@
       "type": "object"
     },
     "GoogleCloudRecaptchaenterpriseV1ListFirewallPoliciesResponse": {
-      "description": "Response to request to list firewall policies belonging to a key.",
+      "description": "Response to request to list firewall policies belonging to a project.",
       "id": "GoogleCloudRecaptchaenterpriseV1ListFirewallPoliciesResponse",
       "properties": {
         "firewallPolicies": {

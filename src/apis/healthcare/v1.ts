@@ -1933,7 +1933,7 @@ export namespace healthcare_v1 {
      */
     force?: boolean | null;
     /**
-     * Optional. GCS object containing list of {resourceType\}/{resourceId\} lines, identifying resources to be reverted
+     * Optional. Cloud Storage object containing list of {resourceType\}/{resourceId\} lines, identifying resources to be reverted
      */
     inputGcsObject?: string | null;
     /**

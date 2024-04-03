@@ -131,6 +131,10 @@ export namespace bigtableadmin_v2 {
    */
   export interface Schema$AppProfile {
     /**
+     * Specifies that this app profile is intended for read-only usage via the Data Boost feature.
+     */
+    dataBoostIsolationReadOnly?: Schema$DataBoostIsolationReadOnly;
+    /**
      * Long form description of the use case for this AppProfile.
      */
     description?: string | null;
@@ -345,6 +349,14 @@ export namespace bigtableadmin_v2 {
      * Required. The token created using GenerateConsistencyToken for the Table.
      */
     consistencyToken?: string | null;
+    /**
+     * Checks that reads using an app profile with `DataBoostIsolationReadOnly` can see all writes committed before the token was created, but only if the read and write target the same cluster.
+     */
+    dataBoostReadLocalWrites?: Schema$DataBoostReadLocalWrites;
+    /**
+     * Checks that reads using an app profile with `StandardIsolation` can see all writes committed before the token was created, even if the read and write target different clusters.
+     */
+    standardReadRemoteWrites?: Schema$StandardReadRemoteWrites;
   }
   /**
    * Response message for google.bigtable.admin.v2.BigtableTableAdmin.CheckConsistency
@@ -435,6 +447,10 @@ export namespace bigtableadmin_v2 {
      * Output only. Only available with STATS_VIEW, this includes summary statistics about column family contents. For statistics over an entire table, see TableStats above.
      */
     stats?: Schema$ColumnFamilyStats;
+    /**
+     * The type of data stored in each of this family's cell values, including its full encoding. If omitted, the family only serves raw untyped bytes. For now, only the `Aggregate` type is supported. `Aggregate` can only be set at family creation and is immutable afterwards. If `value_type` is `Aggregate`, written data must be compatible with: * `value_type.input_type` for `AddInput` mutations
+     */
+    valueType?: Schema$Type;
   }
   /**
    * Approximate statistics related to a single column family within a table. This information may change rapidly, interpreting these values at a point in time may already preset out-of-date information. Everything below is approximate, unless otherwise specified.
@@ -636,6 +652,19 @@ export namespace bigtableadmin_v2 {
     tableId?: string | null;
   }
   /**
+   * Data Boost is a serverless compute capability that lets you run high-throughput read jobs on your Bigtable data, without impacting the performance of the clusters that handle your application traffic. Currently, Data Boost exclusively supports read-only use-cases with single-cluster routing. Data Boost reads are only guaranteed to see the results of writes that were written at least 30 minutes ago. This means newly written values may not become visible for up to 30m, and also means that old values may remain visible for up to 30m after being deleted or overwritten. To mitigate the staleness of the data, users may either wait 30m, or use CheckConsistency.
+   */
+  export interface Schema$DataBoostIsolationReadOnly {
+    /**
+     * The Compute Billing Owner for this Data Boost App Profile.
+     */
+    computeBillingOwner?: string | null;
+  }
+  /**
+   * Checks that all writes before the consistency token was generated in the same cluster are readable by Databoost.
+   */
+  export interface Schema$DataBoostReadLocalWrites {}
+  /**
    * Request message for google.bigtable.admin.v2.BigtableTableAdmin.DropRowRange
    */
   export interface Schema$DropRowRangeRequest {
@@ -778,6 +807,76 @@ export namespace bigtableadmin_v2 {
      * Row prefixes to be included in the AuthorizedView. To provide access to all rows, include the empty string as a prefix ("").
      */
     rowPrefixes?: string[] | null;
+  }
+  /**
+   * A value that combines incremental updates into a summarized value. Data is never directly written or read using type `Aggregate`. Writes will provide either the `input_type` or `state_type`, and reads will always return the `state_type` .
+   */
+  export interface Schema$GoogleBigtableAdminV2TypeAggregate {
+    /**
+     * Type of the inputs that are accumulated by this `Aggregate`, which must specify a full encoding. Use `AddInput` mutations to accumulate new inputs.
+     */
+    inputType?: Schema$Type;
+    /**
+     * Output only. Type that holds the internal accumulator state for the `Aggregate`. This is a function of the `input_type` and `aggregator` chosen, and will always specify a full encoding.
+     */
+    stateType?: Schema$Type;
+    /**
+     * Sum aggregator.
+     */
+    sum?: Schema$GoogleBigtableAdminV2TypeAggregateSum;
+  }
+  /**
+   * Computes the sum of the input values. Allowed input: `Int64` State: same as input
+   */
+  export interface Schema$GoogleBigtableAdminV2TypeAggregateSum {}
+  /**
+   * Bytes Values of type `Bytes` are stored in `Value.bytes_value`.
+   */
+  export interface Schema$GoogleBigtableAdminV2TypeBytes {
+    /**
+     * The encoding to use when converting to/from lower level types.
+     */
+    encoding?: Schema$GoogleBigtableAdminV2TypeBytesEncoding;
+  }
+  /**
+   * Rules used to convert to/from lower level types.
+   */
+  export interface Schema$GoogleBigtableAdminV2TypeBytesEncoding {
+    /**
+     * Use `Raw` encoding.
+     */
+    raw?: Schema$GoogleBigtableAdminV2TypeBytesEncodingRaw;
+  }
+  /**
+   * Leaves the value "as-is" * Natural sort? Yes * Self-delimiting? No * Compatibility? N/A
+   */
+  export interface Schema$GoogleBigtableAdminV2TypeBytesEncodingRaw {}
+  /**
+   * Int64 Values of type `Int64` are stored in `Value.int_value`.
+   */
+  export interface Schema$GoogleBigtableAdminV2TypeInt64 {
+    /**
+     * The encoding to use when converting to/from lower level types.
+     */
+    encoding?: Schema$GoogleBigtableAdminV2TypeInt64Encoding;
+  }
+  /**
+   * Rules used to convert to/from lower level types.
+   */
+  export interface Schema$GoogleBigtableAdminV2TypeInt64Encoding {
+    /**
+     * Use `BigEndianBytes` encoding.
+     */
+    bigEndianBytes?: Schema$GoogleBigtableAdminV2TypeInt64EncodingBigEndianBytes;
+  }
+  /**
+   * Encodes the value as an 8-byte big endian twos complement `Bytes` value. * Natural sort? No (positive values only) * Self-delimiting? Yes * Compatibility? - BigQuery Federation `BINARY` encoding - HBase `Bytes.toBytes` - Java `ByteBuffer.putLong()` with `ByteOrder.BIG_ENDIAN`
+   */
+  export interface Schema$GoogleBigtableAdminV2TypeInt64EncodingBigEndianBytes {
+    /**
+     * The underlying `Bytes` type, which may be able to encode further.
+     */
+    bytesType?: Schema$GoogleBigtableAdminV2TypeBytes;
   }
   /**
    * A tablet is a defined by a start and end key and is explained in https://cloud.google.com/bigtable/docs/overview#architecture and https://cloud.google.com/bigtable/docs/performance#optimization. A Hot tablet is a tablet that exhibits high average cpu usage during the time interval from start time to end time.
@@ -1267,6 +1366,10 @@ export namespace bigtableadmin_v2 {
     priority?: string | null;
   }
   /**
+   * Checks that all writes before the consistency token was generated are replicated in every cluster and readable.
+   */
+  export interface Schema$StandardReadRemoteWrites {}
+  /**
    * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
    */
   export interface Schema$Status {
@@ -1376,6 +1479,23 @@ export namespace bigtableadmin_v2 {
      * A subset of `TestPermissionsRequest.permissions` that the caller is allowed.
      */
     permissions?: string[] | null;
+  }
+  /**
+   * `Type` represents the type of data that is written to, read from, or stored in Bigtable. It is heavily based on the GoogleSQL standard to help maintain familiarity and consistency across products and features. For compatibility with Bigtable's existing untyped APIs, each `Type` includes an `Encoding` which describes how to convert to/from the underlying data. This might involve composing a series of steps into an "encoding chain," for example to convert from INT64 -\> STRING -\> raw bytes. In most cases, a "link" in the encoding chain will be based an on existing GoogleSQL conversion function like `CAST`. Each link in the encoding chain also defines the following properties: * Natural sort: Does the encoded value sort consistently with the original typed value? Note that Bigtable will always sort data based on the raw encoded value, *not* the decoded type. - Example: STRING values sort in the same order as their UTF-8 encodings. - Counterexample: Encoding INT64 to a fixed-width STRING does *not* preserve sort order when dealing with negative numbers. INT64(1) \> INT64(-1), but STRING("-00001") \> STRING("00001). - The overall encoding chain sorts naturally if *every* link does. * Self-delimiting: If we concatenate two encoded values, can we always tell where the first one ends and the second one begins? - Example: If we encode INT64s to fixed-width STRINGs, the first value will always contain exactly N digits, possibly preceded by a sign. - Counterexample: If we concatenate two UTF-8 encoded STRINGs, we have no way to tell where the first one ends. - The overall encoding chain is self-delimiting if *any* link is. * Compatibility: Which other systems have matching encoding schemes? For example, does this encoding have a GoogleSQL equivalent? HBase? Java?
+   */
+  export interface Schema$Type {
+    /**
+     * Aggregate
+     */
+    aggregateType?: Schema$GoogleBigtableAdminV2TypeAggregate;
+    /**
+     * Bytes
+     */
+    bytesType?: Schema$GoogleBigtableAdminV2TypeBytes;
+    /**
+     * Int64
+     */
+    int64Type?: Schema$GoogleBigtableAdminV2TypeInt64;
   }
   /**
    * Metadata type for the operation returned by google.bigtable.admin.v2.BigtableTableAdmin.UndeleteTable.

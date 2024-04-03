@@ -2058,6 +2058,19 @@ export namespace aiplatform_v1 {
     genericMetadata?: Schema$GoogleCloudAiplatformV1GenericOperationMetadata;
   }
   /**
+   * Details of operations that perform create PersistentResource.
+   */
+  export interface Schema$GoogleCloudAiplatformV1CreatePersistentResourceOperationMetadata {
+    /**
+     * Operation metadata for PersistentResource.
+     */
+    genericMetadata?: Schema$GoogleCloudAiplatformV1GenericOperationMetadata;
+    /**
+     * Progress Message for Create LRO
+     */
+    progressMessage?: string | null;
+  }
+  /**
    * Request message for PipelineService.CreatePipelineJob.
    */
   export interface Schema$GoogleCloudAiplatformV1CreatePipelineJobRequest {
@@ -2238,6 +2251,10 @@ export namespace aiplatform_v1 {
      * Optional. The full name of the Compute Engine [network](/compute/docs/networks-and-firewalls#networks) to which the Job should be peered. For example, `projects/12345/global/networks/myVPC`. [Format](/compute/docs/reference/rest/v1/networks/insert) is of the form `projects/{project\}/global/networks/{network\}`. Where {project\} is a project number, as in `12345`, and {network\} is a network name. To specify this field, you must have already [configured VPC Network Peering for Vertex AI](https://cloud.google.com/vertex-ai/docs/general/vpc-peering). If this field is left unspecified, the job is not peered with any network.
      */
     network?: string | null;
+    /**
+     * Optional. The ID of the PersistentResource in the same Project and Location which to run If this is specified, the job will be run on existing machines held by the PersistentResource instead of on-demand short-live machines. The network and CMEK configs on the job should be consistent with those on the PersistentResource, otherwise, the job will be rejected.
+     */
+    persistentResourceId?: string | null;
     /**
      * The ID of the location to store protected artifacts. e.g. us-central1. Populate only when the location is different than CustomJob location. List of supported locations: https://cloud.google.com/vertex-ai/docs/general/locations
      */
@@ -2988,10 +3005,6 @@ export namespace aiplatform_v1 {
      * Configures the request-response logging for online prediction.
      */
     predictRequestResponseLoggingConfig?: Schema$GoogleCloudAiplatformV1PredictRequestResponseLoggingConfig;
-    /**
-     * Optional. Configuration for private service connect. network and private_service_connect_config are mutually exclusive.
-     */
-    privateServiceConnectConfig?: Schema$GoogleCloudAiplatformV1PrivateServiceConnectConfig;
     /**
      * A map from a DeployedModel's ID to the percentage of this Endpoint's traffic that should be forwarded to that DeployedModel. If a DeployedModel's ID is not listed in this map, then it receives no traffic. The traffic percentage values must add up to 100, or map must be empty if the Endpoint is to not accept any traffic at a moment.
      */
@@ -4427,6 +4440,10 @@ export namespace aiplatform_v1 {
    */
   export interface Schema$GoogleCloudAiplatformV1FetchFeatureValuesResponse {
     /**
+     * The data key associated with this response. Will only be populated for FeatureOnlineStoreService.StreamingFetchFeatureValues RPCs.
+     */
+    dataKey?: Schema$GoogleCloudAiplatformV1FeatureViewDataKey;
+    /**
      * Feature values in KeyValue format.
      */
     keyValues?: Schema$GoogleCloudAiplatformV1FetchFeatureValuesResponseFeatureNameValuePairList;
@@ -4603,11 +4620,11 @@ export namespace aiplatform_v1 {
      */
     description?: string | null;
     /**
-     * Required. The name of the function to call. Must start with a letter or an underscore. Must be a-z, A-Z, 0-9, or contain underscores and dashes, with a maximum length of 64.
+     * Required. The name of the function to call. Must start with a letter or an underscore. Must be a-z, A-Z, 0-9, or contain underscores, dots and dashes, with a maximum length of 64.
      */
     name?: string | null;
     /**
-     * Optional. Describes the parameters to this function in JSON Schema Object format. Reflects the Open API 3.03 Parameter Object. string Key: the name of the parameter. Parameter names are case sensitive. Schema Value: the Schema defining the type used for the parameter. For function with no parameters, this can be left unset. Example with 1 required and 1 optional parameter: type: OBJECT properties: param1: type: STRING param2: type: INTEGER required: - param1
+     * Optional. Describes the parameters to this function in JSON Schema Object format. Reflects the Open API 3.03 Parameter Object. string Key: the name of the parameter. Parameter names are case sensitive. Schema Value: the Schema defining the type used for the parameter. For function with no parameters, this can be left unset. Parameter names must start with a letter or an underscore and must only contain chars a-z, A-Z, 0-9, or underscores with a maximum length of 64. Example with 1 required and 1 optional parameter: type: OBJECT properties: param1: type: STRING param2: type: INTEGER required: - param1
      */
     parameters?: Schema$GoogleCloudAiplatformV1Schema;
   }
@@ -4765,6 +4782,15 @@ export namespace aiplatform_v1 {
      * Required. The public base model URI.
      */
     baseModelUri?: string | null;
+  }
+  /**
+   * Tool to retrieve public web data for grounding, powered by Google.
+   */
+  export interface Schema$GoogleCloudAiplatformV1GoogleSearchRetrieval {
+    /**
+     * Optional. Disable using the result from this tool in detecting grounding attribution. This does not affect how the result is given to the model for generation.
+     */
+    disableAttribution?: boolean | null;
   }
   /**
    * Grounding attribution.
@@ -5812,6 +5838,16 @@ export namespace aiplatform_v1 {
      * The pareto-optimal Trials for multiple objective Study or the optimal trial for single objective Study. The definition of pareto-optimal can be checked in wiki page. https://en.wikipedia.org/wiki/Pareto_efficiency
      */
     optimalTrials?: Schema$GoogleCloudAiplatformV1Trial[];
+  }
+  /**
+   * Response message for PersistentResourceService.ListPersistentResources
+   */
+  export interface Schema$GoogleCloudAiplatformV1ListPersistentResourcesResponse {
+    /**
+     * A token to retrieve next page of results. Pass to ListPersistentResourcesRequest.page_token to obtain that page.
+     */
+    nextPageToken?: string | null;
+    persistentResources?: Schema$GoogleCloudAiplatformV1PersistentResource[];
   }
   /**
    * Response message for PipelineService.ListPipelineJobs
@@ -7809,6 +7845,67 @@ export namespace aiplatform_v1 {
     diskType?: string | null;
   }
   /**
+   * Represents long-lasting resources that are dedicated to users to runs custom workloads. A PersistentResource can have multiple node pools and each node pool can have its own machine spec.
+   */
+  export interface Schema$GoogleCloudAiplatformV1PersistentResource {
+    /**
+     * Output only. Time when the PersistentResource was created.
+     */
+    createTime?: string | null;
+    /**
+     * Optional. The display name of the PersistentResource. The name can be up to 128 characters long and can consist of any UTF-8 characters.
+     */
+    displayName?: string | null;
+    /**
+     * Optional. Customer-managed encryption key spec for a PersistentResource. If set, this PersistentResource and all sub-resources of this PersistentResource will be secured by this key.
+     */
+    encryptionSpec?: Schema$GoogleCloudAiplatformV1EncryptionSpec;
+    /**
+     * Output only. Only populated when persistent resource's state is `STOPPING` or `ERROR`.
+     */
+    error?: Schema$GoogleRpcStatus;
+    /**
+     * Optional. The labels with user-defined metadata to organize PersistentResource. Label keys and values can be no longer than 64 characters (Unicode codepoints), can only contain lowercase letters, numeric characters, underscores and dashes. International characters are allowed. See https://goo.gl/xmQnxf for more information and examples of labels.
+     */
+    labels?: {[key: string]: string} | null;
+    /**
+     * Immutable. Resource name of a PersistentResource.
+     */
+    name?: string | null;
+    /**
+     * Optional. The full name of the Compute Engine [network](/compute/docs/networks-and-firewalls#networks) to peered with Vertex AI to host the persistent resources. For example, `projects/12345/global/networks/myVPC`. [Format](/compute/docs/reference/rest/v1/networks/insert) is of the form `projects/{project\}/global/networks/{network\}`. Where {project\} is a project number, as in `12345`, and {network\} is a network name. To specify this field, you must have already [configured VPC Network Peering for Vertex AI](https://cloud.google.com/vertex-ai/docs/general/vpc-peering). If this field is left unspecified, the resources aren't peered with any network.
+     */
+    network?: string | null;
+    /**
+     * Optional. A list of names for the reserved IP ranges under the VPC network that can be used for this persistent resource. If set, we will deploy the persistent resource within the provided IP ranges. Otherwise, the persistent resource is deployed to any IP ranges under the provided VPC network. Example: ['vertex-ai-ip-range'].
+     */
+    reservedIpRanges?: string[] | null;
+    /**
+     * Required. The spec of the pools of different resources.
+     */
+    resourcePools?: Schema$GoogleCloudAiplatformV1ResourcePool[];
+    /**
+     * Output only. Runtime information of the Persistent Resource.
+     */
+    resourceRuntime?: Schema$GoogleCloudAiplatformV1ResourceRuntime;
+    /**
+     * Optional. Persistent Resource runtime spec. For example, used for Ray cluster configuration.
+     */
+    resourceRuntimeSpec?: Schema$GoogleCloudAiplatformV1ResourceRuntimeSpec;
+    /**
+     * Output only. Time when the PersistentResource for the first time entered the `RUNNING` state.
+     */
+    startTime?: string | null;
+    /**
+     * Output only. The detailed state of a Study.
+     */
+    state?: string | null;
+    /**
+     * Output only. Time when the PersistentResource was most recently updated.
+     */
+    updateTime?: string | null;
+  }
+  /**
    * An instance of a machine learning PipelineJob.
    */
   export interface Schema$GoogleCloudAiplatformV1PipelineJob {
@@ -8333,6 +8430,10 @@ export namespace aiplatform_v1 {
      */
     deployGke?: Schema$GoogleCloudAiplatformV1PublisherModelCallToActionDeployGke;
     /**
+     * Optional. Multiple setups to deploy the PublisherModel to Vertex Endpoint.
+     */
+    multiDeployVertex?: Schema$GoogleCloudAiplatformV1PublisherModelCallToActionDeployVertex;
+    /**
      * Optional. Open evaluation pipeline of the PublisherModel.
      */
     openEvaluationPipeline?: Schema$GoogleCloudAiplatformV1PublisherModelCallToActionRegionalResourceReferences;
@@ -8422,6 +8523,15 @@ export namespace aiplatform_v1 {
      * Optional. GKE deployment configuration in yaml format.
      */
     gkeYamlConfigs?: string[] | null;
+  }
+  /**
+   * Multiple setups to deploy the PublisherModel.
+   */
+  export interface Schema$GoogleCloudAiplatformV1PublisherModelCallToActionDeployVertex {
+    /**
+     * Optional. One click deployment configurations.
+     */
+    multiDeployVertex?: Schema$GoogleCloudAiplatformV1PublisherModelCallToActionDeploy[];
   }
   /**
    * Open fine tuning pipelines.
@@ -8682,6 +8792,36 @@ export namespace aiplatform_v1 {
     httpBody?: Schema$GoogleApiHttpBody;
   }
   /**
+   * Configuration for the Ray metrics.
+   */
+  export interface Schema$GoogleCloudAiplatformV1RayMetricSpec {
+    /**
+     * Optional. Flag to disable the Ray metrics collection.
+     */
+    disabled?: boolean | null;
+  }
+  /**
+   * Configuration information for the Ray cluster. For experimental launch, Ray cluster creation and Persistent cluster creation are 1:1 mapping: We will provision all the nodes within the Persistent cluster as Ray nodes.
+   */
+  export interface Schema$GoogleCloudAiplatformV1RaySpec {
+    /**
+     * Optional. This will be used to indicate which resource pool will serve as the Ray head node(the first node within that pool). Will use the machine from the first workerpool as the head node by default if this field isn't set.
+     */
+    headNodeResourcePoolId?: string | null;
+    /**
+     * Optional. Default image for user to choose a preferred ML framework (for example, TensorFlow or Pytorch) by choosing from [Vertex prebuilt images](https://cloud.google.com/vertex-ai/docs/training/pre-built-containers). Either this or the resource_pool_images is required. Use this field if you need all the resource pools to have the same Ray image. Otherwise, use the {@code resource_pool_images\} field.
+     */
+    imageUri?: string | null;
+    /**
+     * Optional. Ray metrics configurations.
+     */
+    rayMetricSpec?: Schema$GoogleCloudAiplatformV1RayMetricSpec;
+    /**
+     * Optional. Required if image_uri isn't set. A map of resource_pool_id to prebuild Ray image if user need to use different images for different head/worker pools. This map needs to cover all the resource pool ids. Example: { "ray_head_node_pool": "head image" "ray_worker_node_pool1": "worker image" "ray_worker_node_pool2": "another worker image" \}
+     */
+    resourcePoolImages?: {[key: string]: string} | null;
+  }
+  /**
    * Request message for FeaturestoreOnlineServingService.ReadFeatureValues.
    */
   export interface Schema$GoogleCloudAiplatformV1ReadFeatureValuesRequest {
@@ -8840,6 +8980,23 @@ export namespace aiplatform_v1 {
     viewCount?: string | null;
   }
   /**
+   * Details of operations that perform reboot PersistentResource.
+   */
+  export interface Schema$GoogleCloudAiplatformV1RebootPersistentResourceOperationMetadata {
+    /**
+     * Operation metadata for PersistentResource.
+     */
+    genericMetadata?: Schema$GoogleCloudAiplatformV1GenericOperationMetadata;
+    /**
+     * Progress Message for Reboot LRO
+     */
+    progressMessage?: string | null;
+  }
+  /**
+   * Request message for PersistentResourceService.RebootPersistentResource.
+   */
+  export interface Schema$GoogleCloudAiplatformV1RebootPersistentResourceRequest {}
+  /**
    * Request message for MetadataService.DeleteContextChildrenRequest.
    */
   export interface Schema$GoogleCloudAiplatformV1RemoveContextChildrenRequest {
@@ -8865,6 +9022,74 @@ export namespace aiplatform_v1 {
    * Response message for IndexService.RemoveDatapoints
    */
   export interface Schema$GoogleCloudAiplatformV1RemoveDatapointsResponse {}
+  /**
+   * Represents the spec of a group of resources of the same type, for example machine type, disk, and accelerators, in a PersistentResource.
+   */
+  export interface Schema$GoogleCloudAiplatformV1ResourcePool {
+    /**
+     * Optional. Optional spec to configure GKE autoscaling
+     */
+    autoscalingSpec?: Schema$GoogleCloudAiplatformV1ResourcePoolAutoscalingSpec;
+    /**
+     * Optional. Disk spec for the machine in this node pool.
+     */
+    diskSpec?: Schema$GoogleCloudAiplatformV1DiskSpec;
+    /**
+     * Immutable. The unique ID in a PersistentResource for referring to this resource pool. User can specify it if necessary. Otherwise, it's generated automatically.
+     */
+    id?: string | null;
+    /**
+     * Required. Immutable. The specification of a single machine.
+     */
+    machineSpec?: Schema$GoogleCloudAiplatformV1MachineSpec;
+    /**
+     * Optional. The total number of machines to use for this resource pool.
+     */
+    replicaCount?: string | null;
+    /**
+     * Output only. The number of machines currently in use by training jobs for this resource pool. Will replace idle_replica_count.
+     */
+    usedReplicaCount?: string | null;
+  }
+  /**
+   * The min/max number of replicas allowed if enabling autoscaling
+   */
+  export interface Schema$GoogleCloudAiplatformV1ResourcePoolAutoscalingSpec {
+    /**
+     * Optional. max replicas in the node pool, must be ≥ replica_count and \> min_replica_count or will throw error
+     */
+    maxReplicaCount?: string | null;
+    /**
+     * Optional. min replicas in the node pool, must be ≤ replica_count and < max_replica_count or will throw error
+     */
+    minReplicaCount?: string | null;
+  }
+  /**
+   * Persistent Cluster runtime information as output
+   */
+  export interface Schema$GoogleCloudAiplatformV1ResourceRuntime {
+    /**
+     * Output only. URIs for user to connect to the Cluster. Example: { "RAY_HEAD_NODE_INTERNAL_IP": "head-node-IP:10001" "RAY_DASHBOARD_URI": "ray-dashboard-address:8888" \}
+     */
+    accessUris?: {[key: string]: string} | null;
+    /**
+     * Output only. The resource name of NotebookRuntimeTemplate for the RoV Persistent Cluster The NotebokRuntimeTemplate is created in the same VPC (if set), and with the same Ray and Python version as the Persistent Cluster. Example: "projects/1000/locations/us-central1/notebookRuntimeTemplates/abc123"
+     */
+    notebookRuntimeTemplate?: string | null;
+  }
+  /**
+   * Configuration for the runtime on a PersistentResource instance, including but not limited to: * Service accounts used to run the workloads. * Whether to make it a dedicated Ray Cluster.
+   */
+  export interface Schema$GoogleCloudAiplatformV1ResourceRuntimeSpec {
+    /**
+     * Optional. Ray cluster configuration. Required when creating a dedicated RayCluster on the PersistentResource.
+     */
+    raySpec?: Schema$GoogleCloudAiplatformV1RaySpec;
+    /**
+     * Optional. Configure the use of workload identity on the PersistentResource
+     */
+    serviceAccountSpec?: Schema$GoogleCloudAiplatformV1ServiceAccountSpec;
+  }
   /**
    * Statistics information about resource consumption.
    */
@@ -8895,6 +9120,19 @@ export namespace aiplatform_v1 {
      * Optional. Whether to backfill missed runs when the schedule is resumed from PAUSED state. If set to true, all missed runs will be scheduled. New runs will be scheduled after the backfill is complete. This will also update Schedule.catch_up field. Default to false.
      */
     catchUp?: boolean | null;
+  }
+  /**
+   * Defines a retrieval tool that model can call to access external knowledge.
+   */
+  export interface Schema$GoogleCloudAiplatformV1Retrieval {
+    /**
+     * Optional. Disable using the result from this tool in detecting grounding attribution. This does not affect how the result is given to the model for generation.
+     */
+    disableAttribution?: boolean | null;
+    /**
+     * Set to use data source powered by Vertex AI Search.
+     */
+    vertexAiSearch?: Schema$GoogleCloudAiplatformV1VertexAISearch;
   }
   /**
    * Safety rating corresponding to the generated content.
@@ -8933,6 +9171,10 @@ export namespace aiplatform_v1 {
      * Required. Harm category.
      */
     category?: string | null;
+    /**
+     * Optional. Specify if the threshold is used for probability or severity score. If not specified, the threshold is used for probability score.
+     */
+    method?: string | null;
     /**
      * Required. The harm block threshold.
      */
@@ -9148,6 +9390,10 @@ export namespace aiplatform_v1 {
    */
   export interface Schema$GoogleCloudAiplatformV1Schema {
     /**
+     * Optional. Default value of the data.
+     */
+    default?: any | null;
+    /**
      * Optional. The description of the data.
      */
     description?: string | null;
@@ -9160,25 +9406,65 @@ export namespace aiplatform_v1 {
      */
     example?: any | null;
     /**
-     * Optional. The format of the data. Supported formats: for NUMBER type: float, double for INTEGER type: int32, int64
+     * Optional. The format of the data. Supported formats: for NUMBER type: "float", "double" for INTEGER type: "int32", "int64" for STRING type: "email", "byte", etc
      */
     format?: string | null;
     /**
-     * Optional. Schema of the elements of Type.ARRAY.
+     * Optional. SCHEMA FIELDS FOR TYPE ARRAY Schema of the elements of Type.ARRAY.
      */
     items?: Schema$GoogleCloudAiplatformV1Schema;
+    /**
+     * Optional. Maximum value of the Type.INTEGER and Type.NUMBER
+     */
+    maximum?: number | null;
+    /**
+     * Optional. Maximum number of the elements for Type.ARRAY.
+     */
+    maxItems?: string | null;
+    /**
+     * Optional. Maximum length of the Type.STRING
+     */
+    maxLength?: string | null;
+    /**
+     * Optional. Maximum number of the properties for Type.OBJECT.
+     */
+    maxProperties?: string | null;
+    /**
+     * Optional. SCHEMA FIELDS FOR TYPE INTEGER and NUMBER Minimum value of the Type.INTEGER and Type.NUMBER
+     */
+    minimum?: number | null;
+    /**
+     * Optional. Minimum number of the elements for Type.ARRAY.
+     */
+    minItems?: string | null;
+    /**
+     * Optional. SCHEMA FIELDS FOR TYPE STRING Minimum length of the Type.STRING
+     */
+    minLength?: string | null;
+    /**
+     * Optional. Minimum number of the properties for Type.OBJECT.
+     */
+    minProperties?: string | null;
     /**
      * Optional. Indicates if the value may be null.
      */
     nullable?: boolean | null;
     /**
-     * Optional. Properties of Type.OBJECT.
+     * Optional. Pattern of the Type.STRING to restrict a string to a regular expression.
+     */
+    pattern?: string | null;
+    /**
+     * Optional. SCHEMA FIELDS FOR TYPE OBJECT Properties of Type.OBJECT.
      */
     properties?: {[key: string]: Schema$GoogleCloudAiplatformV1Schema} | null;
     /**
      * Optional. Required properties of Type.OBJECT.
      */
     required?: string[] | null;
+    /**
+     * Optional. The title of the Schema.
+     */
+    title?: string | null;
     /**
      * Optional. The type of the data.
      */
@@ -11872,6 +12158,19 @@ export namespace aiplatform_v1 {
     startIndex?: number | null;
   }
   /**
+   * Configuration for the use of custom service account to run the workloads.
+   */
+  export interface Schema$GoogleCloudAiplatformV1ServiceAccountSpec {
+    /**
+     * Required. If true, custom user-managed service account is enforced to run any workloads (for example, Vertex Jobs) on the resource. Otherwise, uses the [Vertex AI Custom Code Service Agent](https://cloud.google.com/vertex-ai/docs/general/access-control#service-agents).
+     */
+    enableCustomServiceAccount?: boolean | null;
+    /**
+     * Optional. Default service account that this PersistentResource's workloads run as. The workloads include: * Any runtime specified via `ResourceRuntimeSpec` on creation time, for example, Ray. * Jobs submitted to PersistentResource, if no other service account specified in the job specs. Only works when custom service account is enabled and users have the `iam.serviceAccounts.actAs` permission on this service account. Required if any containers are specified in `ResourceRuntimeSpec`.
+     */
+    serviceAccount?: string | null;
+  }
+  /**
    * A set of Shielded Instance options. See [Images using supported Shielded VM features](https://cloud.google.com/compute/docs/instances/modifying-shielded-vm).
    */
   export interface Schema$GoogleCloudAiplatformV1ShieldedVmConfig {
@@ -12802,6 +13101,14 @@ export namespace aiplatform_v1 {
      * Optional. Function tool type. One or more function declarations to be passed to the model along with the current user query. Model may decide to call a subset of these functions by populating FunctionCall in the response. User should provide a FunctionResponse for each function call in the next turn. Based on the function responses, Model will generate the final response back to the user. Maximum 64 function declarations can be provided.
      */
     functionDeclarations?: Schema$GoogleCloudAiplatformV1FunctionDeclaration[];
+    /**
+     * Optional. GoogleSearchRetrieval tool type. Specialized retrieval tool that is powered by Google search.
+     */
+    googleSearchRetrieval?: Schema$GoogleCloudAiplatformV1GoogleSearchRetrieval;
+    /**
+     * Optional. Retrieval tool type. System will always execute the provided retrieval tool(s) to get external knowledge to answer the prompt. Retrieval results are presented to the model for generation.
+     */
+    retrieval?: Schema$GoogleCloudAiplatformV1Retrieval;
   }
   /**
    * CMLE training config. For every active learning labeling iteration, system will train a machine learning model on CMLE. The trained model will be used by data sampling algorithm to select DataItems.
@@ -13128,6 +13435,19 @@ export namespace aiplatform_v1 {
     genericMetadata?: Schema$GoogleCloudAiplatformV1GenericOperationMetadata;
   }
   /**
+   * Details of operations that perform update PersistentResource.
+   */
+  export interface Schema$GoogleCloudAiplatformV1UpdatePersistentResourceOperationMetadata {
+    /**
+     * Operation metadata for PersistentResource.
+     */
+    genericMetadata?: Schema$GoogleCloudAiplatformV1GenericOperationMetadata;
+    /**
+     * Progress Message for Update LRO
+     */
+    progressMessage?: string | null;
+  }
+  /**
    * Runtime operation metadata for SpecialistPoolService.UpdateSpecialistPool.
    */
   export interface Schema$GoogleCloudAiplatformV1UpdateSpecialistPoolOperationMetadata {
@@ -13259,6 +13579,15 @@ export namespace aiplatform_v1 {
      * A string value.
      */
     stringValue?: string | null;
+  }
+  /**
+   * Retrieve from Vertex AI Search datastore for grounding. See https://cloud.google.com/vertex-ai-search-and-conversation
+   */
+  export interface Schema$GoogleCloudAiplatformV1VertexAISearch {
+    /**
+     * Required. Fully-qualified Vertex AI Search's datastore resource ID. Format: projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{dataStore\}
+     */
+    datastore?: string | null;
   }
   /**
    * Metadata describes the input video content.
@@ -14047,7 +14376,7 @@ export namespace aiplatform_v1 {
   }
   export interface Schema$LearningGenaiRootGroundingMetadataCitation {
     /**
-     * Index in the prediction output where the citation ends (exclusive). Must be \> start_index and < len(output).
+     * Index in the prediction output where the citation ends (exclusive). Must be \> start_index and <= len(output).
      */
     endIndex?: number | null;
     /**
@@ -14561,6 +14890,7 @@ export namespace aiplatform_v1 {
     notebookRuntimes: Resource$Projects$Locations$Notebookruntimes;
     notebookRuntimeTemplates: Resource$Projects$Locations$Notebookruntimetemplates;
     operations: Resource$Projects$Locations$Operations;
+    persistentResources: Resource$Projects$Locations$Persistentresources;
     pipelineJobs: Resource$Projects$Locations$Pipelinejobs;
     publishers: Resource$Projects$Locations$Publishers;
     schedules: Resource$Projects$Locations$Schedules;
@@ -14616,6 +14946,8 @@ export namespace aiplatform_v1 {
       this.operations = new Resource$Projects$Locations$Operations(
         this.context
       );
+      this.persistentResources =
+        new Resource$Projects$Locations$Persistentresources(this.context);
       this.pipelineJobs = new Resource$Projects$Locations$Pipelinejobs(
         this.context
       );
@@ -25178,7 +25510,7 @@ export namespace aiplatform_v1 {
   export interface Params$Resource$Projects$Locations$Endpoints$List
     extends StandardParameters {
     /**
-     * Optional. An expression for filtering the results of the request. For field names both snake_case and camelCase are supported. * `endpoint` supports = and !=. `endpoint` represents the Endpoint ID, i.e. the last segment of the Endpoint's resource name. * `display_name` supports = and, != * `labels` supports general map functions that is: * `labels.key=value` - key:value equality * `labels.key:* or labels:key - key existence * A key including a space must be quoted. `labels."a key"`. * `base_model_name` only supports = Some examples: * `endpoint=1` * `displayName="myDisplayName"` * `labels.myKey="myValue"` * `baseModelName="text-bison"`
+     * Optional. An expression for filtering the results of the request. For field names both snake_case and camelCase are supported. * `endpoint` supports `=` and `!=`. `endpoint` represents the Endpoint ID, i.e. the last segment of the Endpoint's resource name. * `display_name` supports `=` and `!=`. * `labels` supports general map functions that is: * `labels.key=value` - key:value equality * `labels.key:*` or `labels:key` - key existence * A key including a space must be quoted. `labels."a key"`. * `base_model_name` only supports `=`. Some examples: * `endpoint=1` * `displayName="myDisplayName"` * `labels.myKey="myValue"` * `baseModelName="text-bison"`
      */
     filter?: string;
     /**
@@ -51381,7 +51713,7 @@ export namespace aiplatform_v1 {
   export interface Params$Resource$Projects$Locations$Notebookruntimes$List
     extends StandardParameters {
     /**
-     * Optional. An expression for filtering the results of the request. For field names both snake_case and camelCase are supported. * `notebookRuntime` supports = and !=. `notebookRuntime` represents the NotebookRuntime ID, i.e. the last segment of the NotebookRuntime's resource name. * `displayName` supports = and != and regex. * `notebookRuntimeTemplate` supports = and !=. `notebookRuntimeTemplate` represents the NotebookRuntimeTemplate ID, i.e. the last segment of the NotebookRuntimeTemplate's resource name. * `healthState` supports = and !=. healthState enum: [HEALTHY, UNHEALTHY, HEALTH_STATE_UNSPECIFIED]. * `runtimeState` supports = and !=. runtimeState enum: [RUNTIME_STATE_UNSPECIFIED, RUNNING, BEING_STARTED, BEING_STOPPED, STOPPED, BEING_UPGRADED]. * `runtimeUser` supports = and !=. * API version is UI only: `uiState` supports = and !=. uiState enum: [UI_RESOURCE_STATE_UNSPECIFIED, UI_RESOURCE_STATE_BEING_CREATED, UI_RESOURCE_STATE_ACTIVE, UI_RESOURCE_STATE_BEING_DELETED, UI_RESOURCE_STATE_CREATION_FAILED]. * `notebookRuntimeType` supports = and !=. notebookRuntimeType enum: [USER_DEFINED, ONE_CLICK]. Some examples: * `notebookRuntime="notebookRuntime123"` * `displayName="myDisplayName"` and `displayName=~"myDisplayNameRegex"` * `notebookRuntimeTemplate="notebookRuntimeTemplate321"` * `healthState=HEALTHY` * `runtimeState=RUNNING` * `runtimeUser="test@google.com"` * `uiState=UI_RESOURCE_STATE_BEING_DELETED` * `notebookRuntimeType=USER_DEFINED`
+     * Optional. An expression for filtering the results of the request. For field names both snake_case and camelCase are supported. * `notebookRuntime` supports = and !=. `notebookRuntime` represents the NotebookRuntime ID, i.e. the last segment of the NotebookRuntime's resource name. * `displayName` supports = and != and regex. * `notebookRuntimeTemplate` supports = and !=. `notebookRuntimeTemplate` represents the NotebookRuntimeTemplate ID, i.e. the last segment of the NotebookRuntimeTemplate's resource name. * `healthState` supports = and !=. healthState enum: [HEALTHY, UNHEALTHY, HEALTH_STATE_UNSPECIFIED]. * `runtimeState` supports = and !=. runtimeState enum: [RUNTIME_STATE_UNSPECIFIED, RUNNING, BEING_STARTED, BEING_STOPPED, STOPPED, BEING_UPGRADED, ERROR, INVALID]. * `runtimeUser` supports = and !=. * API version is UI only: `uiState` supports = and !=. uiState enum: [UI_RESOURCE_STATE_UNSPECIFIED, UI_RESOURCE_STATE_BEING_CREATED, UI_RESOURCE_STATE_ACTIVE, UI_RESOURCE_STATE_BEING_DELETED, UI_RESOURCE_STATE_CREATION_FAILED]. * `notebookRuntimeType` supports = and !=. notebookRuntimeType enum: [USER_DEFINED, ONE_CLICK]. Some examples: * `notebookRuntime="notebookRuntime123"` * `displayName="myDisplayName"` and `displayName=~"myDisplayNameRegex"` * `notebookRuntimeTemplate="notebookRuntimeTemplate321"` * `healthState=HEALTHY` * `runtimeState=RUNNING` * `runtimeUser="test@google.com"` * `uiState=UI_RESOURCE_STATE_BEING_DELETED` * `notebookRuntimeType=USER_DEFINED`
      */
     filter?: string;
     /**
@@ -52690,6 +53022,1170 @@ export namespace aiplatform_v1 {
     pageToken?: string;
   }
   export interface Params$Resource$Projects$Locations$Operations$Wait
+    extends StandardParameters {
+    /**
+     * The name of the operation resource to wait on.
+     */
+    name?: string;
+    /**
+     * The maximum duration to wait before timing out. If left blank, the wait will be at most the time permitted by the underlying HTTP/RPC protocol. If RPC context deadline is also specified, the shorter one will be used.
+     */
+    timeout?: string;
+  }
+
+  export class Resource$Projects$Locations$Persistentresources {
+    context: APIRequestContext;
+    operations: Resource$Projects$Locations$Persistentresources$Operations;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.operations =
+        new Resource$Projects$Locations$Persistentresources$Operations(
+          this.context
+        );
+    }
+
+    /**
+     * Creates a PersistentResource.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Locations$Persistentresources$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Projects$Locations$Persistentresources$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    create(
+      params: Params$Resource$Projects$Locations$Persistentresources$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Persistentresources$Create,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Persistentresources$Create,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    create(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Persistentresources$Create
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Persistentresources$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Persistentresources$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/persistentResources').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+
+    /**
+     * Deletes a PersistentResource.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Persistentresources$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Persistentresources$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    delete(
+      params: Params$Resource$Projects$Locations$Persistentresources$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Persistentresources$Delete,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Persistentresources$Delete,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    delete(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Persistentresources$Delete
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Persistentresources$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Persistentresources$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+
+    /**
+     * Gets a PersistentResource.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Persistentresources$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Persistentresources$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1PersistentResource>;
+    get(
+      params: Params$Resource$Projects$Locations$Persistentresources$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Persistentresources$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1PersistentResource>,
+      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1PersistentResource>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Persistentresources$Get,
+      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1PersistentResource>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1PersistentResource>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Persistentresources$Get
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1PersistentResource>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1PersistentResource>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1PersistentResource>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudAiplatformV1PersistentResource>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Persistentresources$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Persistentresources$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudAiplatformV1PersistentResource>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudAiplatformV1PersistentResource>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Lists PersistentResources in a Location.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Persistentresources$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Persistentresources$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1ListPersistentResourcesResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Persistentresources$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Persistentresources$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1ListPersistentResourcesResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1ListPersistentResourcesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Persistentresources$List,
+      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1ListPersistentResourcesResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1ListPersistentResourcesResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Persistentresources$List
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1ListPersistentResourcesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1ListPersistentResourcesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1ListPersistentResourcesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudAiplatformV1ListPersistentResourcesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Persistentresources$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Persistentresources$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/persistentResources').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudAiplatformV1ListPersistentResourcesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudAiplatformV1ListPersistentResourcesResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Updates a PersistentResource.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Locations$Persistentresources$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Projects$Locations$Persistentresources$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    patch(
+      params: Params$Resource$Projects$Locations$Persistentresources$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Persistentresources$Patch,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Persistentresources$Patch,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    patch(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Persistentresources$Patch
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Persistentresources$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Persistentresources$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+
+    /**
+     * Reboots a PersistentResource.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    reboot(
+      params: Params$Resource$Projects$Locations$Persistentresources$Reboot,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    reboot(
+      params?: Params$Resource$Projects$Locations$Persistentresources$Reboot,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    reboot(
+      params: Params$Resource$Projects$Locations$Persistentresources$Reboot,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    reboot(
+      params: Params$Resource$Projects$Locations$Persistentresources$Reboot,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    reboot(
+      params: Params$Resource$Projects$Locations$Persistentresources$Reboot,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    reboot(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    reboot(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Persistentresources$Reboot
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Persistentresources$Reboot;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Persistentresources$Reboot;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:reboot').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Persistentresources$Create
+    extends StandardParameters {
+    /**
+     * Required. The resource name of the Location to create the PersistentResource in. Format: `projects/{project\}/locations/{location\}`
+     */
+    parent?: string;
+    /**
+     * Required. The ID to use for the PersistentResource, which become the final component of the PersistentResource's resource name. The maximum length is 63 characters, and valid characters are `/^[a-z]([a-z0-9-]{0,61\}[a-z0-9])?$/`.
+     */
+    persistentResourceId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudAiplatformV1PersistentResource;
+  }
+  export interface Params$Resource$Projects$Locations$Persistentresources$Delete
+    extends StandardParameters {
+    /**
+     * Required. The name of the PersistentResource to be deleted. Format: `projects/{project\}/locations/{location\}/persistentResources/{persistent_resource\}`
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Persistentresources$Get
+    extends StandardParameters {
+    /**
+     * Required. The name of the PersistentResource resource. Format: `projects/{project_id_or_number\}/locations/{location_id\}/persistentResources/{persistent_resource_id\}`
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Persistentresources$List
+    extends StandardParameters {
+    /**
+     * Optional. The standard list page size.
+     */
+    pageSize?: number;
+    /**
+     * Optional. The standard list page token. Typically obtained via ListPersistentResourceResponse.next_page_token of the previous PersistentResourceService.ListPersistentResource call.
+     */
+    pageToken?: string;
+    /**
+     * Required. The resource name of the Location to list the PersistentResources from. Format: `projects/{project\}/locations/{location\}`
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Persistentresources$Patch
+    extends StandardParameters {
+    /**
+     * Immutable. Resource name of a PersistentResource.
+     */
+    name?: string;
+    /**
+     * Required. Specify the fields to be overwritten in the PersistentResource by the update method.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudAiplatformV1PersistentResource;
+  }
+  export interface Params$Resource$Projects$Locations$Persistentresources$Reboot
+    extends StandardParameters {
+    /**
+     * Required. The name of the PersistentResource resource. Format: `projects/{project_id_or_number\}/locations/{location_id\}/persistentResources/{persistent_resource_id\}`
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudAiplatformV1RebootPersistentResourceRequest;
+  }
+
+  export class Resource$Projects$Locations$Persistentresources$Operations {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    cancel(
+      params: Params$Resource$Projects$Locations$Persistentresources$Operations$Cancel,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    cancel(
+      params?: Params$Resource$Projects$Locations$Persistentresources$Operations$Cancel,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    cancel(
+      params: Params$Resource$Projects$Locations$Persistentresources$Operations$Cancel,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    cancel(
+      params: Params$Resource$Projects$Locations$Persistentresources$Operations$Cancel,
+      options: MethodOptions | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+    ): void;
+    cancel(
+      params: Params$Resource$Projects$Locations$Persistentresources$Operations$Cancel,
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+    ): void;
+    cancel(callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>): void;
+    cancel(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Persistentresources$Operations$Cancel
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleProtobufEmpty>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Persistentresources$Operations$Cancel;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Persistentresources$Operations$Cancel;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:cancel').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleProtobufEmpty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
+      }
+    }
+
+    /**
+     * Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Persistentresources$Operations$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Persistentresources$Operations$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    delete(
+      params: Params$Resource$Projects$Locations$Persistentresources$Operations$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Persistentresources$Operations$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Persistentresources$Operations$Delete,
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Persistentresources$Operations$Delete
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleProtobufEmpty>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Persistentresources$Operations$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Persistentresources$Operations$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleProtobufEmpty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
+      }
+    }
+
+    /**
+     * Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Persistentresources$Operations$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Persistentresources$Operations$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    get(
+      params: Params$Resource$Projects$Locations$Persistentresources$Operations$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Persistentresources$Operations$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Persistentresources$Operations$Get,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Persistentresources$Operations$Get
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Persistentresources$Operations$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Persistentresources$Operations$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+
+    /**
+     * Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Persistentresources$Operations$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Persistentresources$Operations$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningListOperationsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Persistentresources$Operations$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Persistentresources$Operations$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Persistentresources$Operations$List,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Persistentresources$Operations$List
+        | BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningListOperationsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Persistentresources$Operations$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Persistentresources$Operations$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}/operations').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningListOperationsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningListOperationsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Waits until the specified long-running operation is done or reaches at most a specified timeout, returning the latest state. If the operation is already done, the latest state is immediately returned. If the timeout specified is greater than the default HTTP/RPC timeout, the HTTP/RPC timeout is used. If the server does not support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Note that this method is on a best-effort basis. It may return the latest state before the specified timeout (including immediately), meaning even an immediate response is no guarantee that the operation is done.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    wait(
+      params: Params$Resource$Projects$Locations$Persistentresources$Operations$Wait,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    wait(
+      params?: Params$Resource$Projects$Locations$Persistentresources$Operations$Wait,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    wait(
+      params: Params$Resource$Projects$Locations$Persistentresources$Operations$Wait,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    wait(
+      params: Params$Resource$Projects$Locations$Persistentresources$Operations$Wait,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    wait(
+      params: Params$Resource$Projects$Locations$Persistentresources$Operations$Wait,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    wait(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    wait(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Persistentresources$Operations$Wait
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Persistentresources$Operations$Wait;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Persistentresources$Operations$Wait;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:wait').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Persistentresources$Operations$Cancel
+    extends StandardParameters {
+    /**
+     * The name of the operation resource to be cancelled.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Persistentresources$Operations$Delete
+    extends StandardParameters {
+    /**
+     * The name of the operation resource to be deleted.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Persistentresources$Operations$Get
+    extends StandardParameters {
+    /**
+     * The name of the operation resource.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Persistentresources$Operations$List
+    extends StandardParameters {
+    /**
+     * The standard list filter.
+     */
+    filter?: string;
+    /**
+     * The name of the operation's parent resource.
+     */
+    name?: string;
+    /**
+     * The standard list page size.
+     */
+    pageSize?: number;
+    /**
+     * The standard list page token.
+     */
+    pageToken?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Persistentresources$Operations$Wait
     extends StandardParameters {
     /**
      * The name of the operation resource to wait on.

@@ -3783,7 +3783,7 @@ export namespace cloudbuild_v2 {
   export interface Params$Resource$Projects$Locations$Connections$Repositories$Fetchgitrefs
     extends StandardParameters {
     /**
-     * Optional. Number of results to return in the list. Default to 100.
+     * Optional. Number of results to return in the list. Default to 20.
      */
     pageSize?: number;
     /**

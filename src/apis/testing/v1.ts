@@ -649,7 +649,7 @@ export namespace testing_v1 {
      */
     stateHistories?: Schema$SessionStateEvent[];
     /**
-     * Optional. The amount of time that a device will be initially allocated for. This can eventually be extended with the UpdateDeviceSession RPC. Default: 30 minutes.
+     * Optional. The amount of time that a device will be initially allocated for. This can eventually be extended with the UpdateDeviceSession RPC. Default: 15 minutes.
      */
     ttl?: string | null;
   }

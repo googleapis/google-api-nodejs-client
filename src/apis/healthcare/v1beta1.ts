@@ -650,11 +650,11 @@ export namespace healthcare_v1beta1 {
      */
     actor?: string | null;
     /**
-     * An abstract identifier that describes the environment or conditions under which the accessor is acting. Can be “*” if it applies to all environments.
+     * An abstract identifier that describes the environment or conditions under which the accessor is acting. Can be "*" if it applies to all environments.
      */
     environment?: string | null;
     /**
-     * The intent of data use. Can be “*” if it applies to all purposes.
+     * The intent of data use. Can be "*" if it applies to all purposes.
      */
     purpose?: string | null;
   }
@@ -1222,7 +1222,7 @@ export namespace healthcare_v1beta1 {
      */
     cascadeOrigins?: string[] | null;
     /**
-     * The resource name of this consent resource. Format: `projects/{projectId\}/datasets/{datasetId\}/fhirStores/{fhirStoreId\}/fhir/{resourceType\}/{id\}`.
+     * The resource name of this consent resource. Format: `projects/{projectId\}/locations/{locationId\}/datasets/{datasetId\}/fhirStores/{fhirStoreId\}/fhir/{resourceType\}/{id\}`.
      */
     consentResource?: string | null;
     /**
@@ -2971,7 +2971,7 @@ export namespace healthcare_v1beta1 {
      */
     blobStorageSettings?: Schema$BlobStorageSettings;
     /**
-     * Optional. A filter configuration. If `filter_config` is specified, set the value of `resource` to the resource name of a DICOM store in the format `projects/{projectID\}/datasets/{datasetID\}/dicomStores/{dicomStoreID\}`.
+     * Optional. A filter configuration. If `filter_config` is specified, set the value of `resource` to the resource name of a DICOM store in the format `projects/{projectID\}/locations/{locationID\}/datasets/{datasetID\}/dicomStores/{dicomStoreID\}`.
      */
     filterConfig?: Schema$DicomFilterConfig;
   }
@@ -3039,7 +3039,7 @@ export namespace healthcare_v1beta1 {
      */
     blobStorageInfo?: Schema$BlobStorageInfo;
     /**
-     * The resource whose storage info is returned. For example, to specify the resource path of a DICOM Instance: `projects/{projectid\}/datasets/{datasetid\}/dicomStores/{dicom_store_id\}/dicomWeb/studi/{study_uid\}/series/{series_uid\}/instances/{instance_uid\}`
+     * The resource whose storage info is returned. For example, to specify the resource path of a DICOM Instance: `projects/{projectID\}/locations/{locationID\}/datasets/{datasetID\}/dicomStores/{dicom_store_id\}/dicomWeb/studi/{study_uid\}/series/{series_uid\}/instances/{instance_uid\}`
      */
     referencedResource?: string | null;
     /**
@@ -11771,7 +11771,7 @@ export namespace healthcare_v1beta1 {
   export interface Params$Resource$Projects$Locations$Datasets$Dicomstores$Setblobstoragesettings
     extends StandardParameters {
     /**
-     * Required. The path of the resource to update the blob storage settings in the format of `projects/{projectID\}/datasets/{datasetID\}/dicomStores/{dicomStoreID\}/dicomWeb/studies/{studyUID\}`, `projects/{projectID\}/datasets/{datasetID\}/dicomStores/{dicomStoreID\}/dicomWeb/studies/{studyUID\}/series/{seriesUID\}/`, or `projects/{projectID\}/datasets/{datasetID\}/dicomStores/{dicomStoreID\}/dicomWeb/studies/{studyUID\}/series/{seriesUID\}/instances/{instanceUID\}`. If `filter_config` is specified, set the value of `resource` to the resource name of a DICOM store in the format `projects/{projectID\}/datasets/{datasetID\}/dicomStores/{dicomStoreID\}`.
+     * Required. The path of the resource to update the blob storage settings in the format of `projects/{projectID\}/locations/{locationID\}/datasets/{datasetID\}/dicomStores/{dicomStoreID\}/dicomWeb/studies/{studyUID\}`, `projects/{projectID\}/locations/{locationID\}/datasets/{datasetID\}/dicomStores/{dicomStoreID\}/dicomWeb/studies/{studyUID\}/series/{seriesUID\}/`, or `projects/{projectID\}/locations/{locationID\}/datasets/{datasetID\}/dicomStores/{dicomStoreID\}/dicomWeb/studies/{studyUID\}/series/{seriesUID\}/instances/{instanceUID\}`. If `filter_config` is specified, set the value of `resource` to the resource name of a DICOM store in the format `projects/{projectID\}/locations/{locationID\}/datasets/{datasetID\}/dicomStores/{dicomStoreID\}`.
      */
     resource?: string;
 
@@ -12032,7 +12032,7 @@ export namespace healthcare_v1beta1 {
   export interface Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Setblobstoragesettings
     extends StandardParameters {
     /**
-     * Required. The path of the resource to update the blob storage settings in the format of `projects/{projectID\}/datasets/{datasetID\}/dicomStores/{dicomStoreID\}/dicomWeb/studies/{studyUID\}`, `projects/{projectID\}/datasets/{datasetID\}/dicomStores/{dicomStoreID\}/dicomWeb/studies/{studyUID\}/series/{seriesUID\}/`, or `projects/{projectID\}/datasets/{datasetID\}/dicomStores/{dicomStoreID\}/dicomWeb/studies/{studyUID\}/series/{seriesUID\}/instances/{instanceUID\}`. If `filter_config` is specified, set the value of `resource` to the resource name of a DICOM store in the format `projects/{projectID\}/datasets/{datasetID\}/dicomStores/{dicomStoreID\}`.
+     * Required. The path of the resource to update the blob storage settings in the format of `projects/{projectID\}/locations/{locationID\}/datasets/{datasetID\}/dicomStores/{dicomStoreID\}/dicomWeb/studies/{studyUID\}`, `projects/{projectID\}/locations/{locationID\}/datasets/{datasetID\}/dicomStores/{dicomStoreID\}/dicomWeb/studies/{studyUID\}/series/{seriesUID\}/`, or `projects/{projectID\}/locations/{locationID\}/datasets/{datasetID\}/dicomStores/{dicomStoreID\}/dicomWeb/studies/{studyUID\}/series/{seriesUID\}/instances/{instanceUID\}`. If `filter_config` is specified, set the value of `resource` to the resource name of a DICOM store in the format `projects/{projectID\}/locations/{locationID\}/datasets/{datasetID\}/dicomStores/{dicomStoreID\}`.
      */
     resource?: string;
 
@@ -12250,7 +12250,7 @@ export namespace healthcare_v1beta1 {
   export interface Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series$Instances$Getstorageinfo
     extends StandardParameters {
     /**
-     * Required. The path of the resource for which the storage info is requested (for exaxmple for a DICOM Instance: `projects/{projectid\}/datasets/{datasetid\}/dicomStores/{dicomStoreId\}/dicomWeb/studies/{study_uid\}/series/{series_uid\}/instances/{instance_uid\}`)
+     * Required. The path of the resource for which the storage info is requested (for exaxmple for a DICOM Instance: `projects/{projectID\}/locations/{locationID\}/datasets/{datasetID\}/dicomStores/{dicomStoreId\}/dicomWeb/studies/{study_uid\}/series/{series_uid\}/instances/{instance_uid\}`)
      */
     resource?: string;
   }

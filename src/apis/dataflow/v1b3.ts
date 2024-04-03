@@ -869,7 +869,7 @@ export namespace dataflow_v1b3 {
      */
     shuffleMode?: string | null;
     /**
-     * Optional. Specifies the Streaming Engine message processing guarantees. Reduces cost and latency but might result in duplicate messages committed to storage. Designed to run simple mapping streaming ETL jobs at the lowest cost. For example, Change Data Capture (CDC) to BigQuery is a canonical use case.
+     * Optional. Specifies the Streaming Engine message processing guarantees. Reduces cost and latency but might result in duplicate messages committed to storage. Designed to run simple mapping streaming ETL jobs at the lowest cost. For example, Change Data Capture (CDC) to BigQuery is a canonical use case. For more information, see [Set the pipeline streaming mode](https://cloud.google.com/dataflow/docs/guides/streaming-modes).
      */
     streamingMode?: string | null;
     /**
@@ -1063,7 +1063,7 @@ export namespace dataflow_v1b3 {
      */
     stagingLocation?: string | null;
     /**
-     * Optional. Specifies the Streaming Engine message processing guarantees. Reduces cost and latency but might result in duplicate messages committed to storage. Designed to run simple mapping streaming ETL jobs at the lowest cost. For example, Change Data Capture (CDC) to BigQuery is a canonical use case.
+     * Optional. Specifies the Streaming Engine message processing guarantees. Reduces cost and latency but might result in duplicate messages committed to storage. Designed to run simple mapping streaming ETL jobs at the lowest cost. For example, Change Data Capture (CDC) to BigQuery is a canonical use case. For more information, see [Set the pipeline streaming mode](https://cloud.google.com/dataflow/docs/guides/streaming-modes).
      */
     streamingMode?: string | null;
     /**
@@ -2389,7 +2389,7 @@ export namespace dataflow_v1b3 {
    */
   export interface Schema$ResourceUtilizationReportResponse {}
   /**
-   * The environment values to set at runtime.
+   * The environment values to set at runtime. LINT.IfChange
    */
   export interface Schema$RuntimeEnvironment {
     /**
@@ -2441,7 +2441,7 @@ export namespace dataflow_v1b3 {
      */
     serviceAccountEmail?: string | null;
     /**
-     * Optional. Specifies the Streaming Engine message processing guarantees. Reduces cost and latency but might result in duplicate messages committed to storage. Designed to run simple mapping streaming ETL jobs at the lowest cost. For example, Change Data Capture (CDC) to BigQuery is a canonical use case.
+     * Optional. Specifies the Streaming Engine message processing guarantees. Reduces cost and latency but might result in duplicate messages committed to storage. Designed to run simple mapping streaming ETL jobs at the lowest cost. For example, Change Data Capture (CDC) to BigQuery is a canonical use case. For more information, see [Set the pipeline streaming mode](https://cloud.google.com/dataflow/docs/guides/streaming-modes).
      */
     streamingMode?: string | null;
     /**
@@ -2491,7 +2491,7 @@ export namespace dataflow_v1b3 {
      */
     minNumWorkers?: number | null;
     /**
-     * Target worker utilization, compared against the aggregate utilization of the worker pool by autoscaler, to determine upscaling and downscaling when absent other constraints such as backlog.
+     * Target worker utilization, compared against the aggregate utilization of the worker pool by autoscaler, to determine upscaling and downscaling when absent other constraints such as backlog. For more information, see [Update an existing pipeline](https://cloud.google.com/dataflow/docs/guides/updating-a-pipeline).
      */
     workerUtilizationHint?: number | null;
   }
@@ -8250,7 +8250,7 @@ export namespace dataflow_v1b3 {
   export interface Params$Resource$Projects$Locations$Templates$Launch
     extends StandardParameters {
     /**
-     * Path to dynamic template spec file on Cloud Storage. The file must be a Json serialized DynamicTemplateFieSpec object.
+     * Path to the dynamic template specification file on Cloud Storage. The file must be a JSON serialized `DynamicTemplateFileSpec` object.
      */
     'dynamicTemplate.gcsPath'?: string;
     /**
@@ -8258,7 +8258,7 @@ export namespace dataflow_v1b3 {
      */
     'dynamicTemplate.stagingLocation'?: string;
     /**
-     * A Cloud Storage path to the template from which to create the job. Must be valid Cloud Storage URL, beginning with 'gs://'.
+     * A Cloud Storage path to the template to use to create the job. Must be valid Cloud Storage URL, beginning with `gs://`.
      */
     gcsPath?: string;
     /**
@@ -8805,7 +8805,7 @@ export namespace dataflow_v1b3 {
   export interface Params$Resource$Projects$Templates$Launch
     extends StandardParameters {
     /**
-     * Path to dynamic template spec file on Cloud Storage. The file must be a Json serialized DynamicTemplateFieSpec object.
+     * Path to the dynamic template specification file on Cloud Storage. The file must be a JSON serialized `DynamicTemplateFileSpec` object.
      */
     'dynamicTemplate.gcsPath'?: string;
     /**
@@ -8813,7 +8813,7 @@ export namespace dataflow_v1b3 {
      */
     'dynamicTemplate.stagingLocation'?: string;
     /**
-     * A Cloud Storage path to the template from which to create the job. Must be valid Cloud Storage URL, beginning with 'gs://'.
+     * A Cloud Storage path to the template to use to create the job. Must be valid Cloud Storage URL, beginning with `gs://`.
      */
     gcsPath?: string;
     /**
