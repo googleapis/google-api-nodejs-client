@@ -1,5 +1,25 @@
 # Changelog
 
+## [16.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/iam-v15.0.0...iam-v16.0.0) (2024-04-04)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+* This release has breaking changes.
+
+### Features
+
+* **iam:** update the API ([39e347f](https://github.com/googleapis/google-api-nodejs-client/commit/39e347fc80df6509b24a26dc4de3ebd025ac4e6d))
+* run the generator ([#3441](https://github.com/googleapis/google-api-nodejs-client/issues/3441)) ([f832463](https://github.com/googleapis/google-api-nodejs-client/commit/f832463312572dc58fe89f9254282982a520d1df))
+* run the generator ([#3456](https://github.com/googleapis/google-api-nodejs-client/issues/3456)) ([a865e81](https://github.com/googleapis/google-api-nodejs-client/commit/a865e81539b315d3b321650663ba0b2555b1e5a1))
+
+
+### Bug Fixes
+
+* **iam:** update the API ([c67391f](https://github.com/googleapis/google-api-nodejs-client/commit/c67391f6deacd8cc5a2ba99f51e5d7a7d4d531a2))
+* **iam:** update the API ([4e12124](https://github.com/googleapis/google-api-nodejs-client/commit/4e121245a3e13e02cb325576f9a9de0f5d49ab98))
+
 ## [15.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/iam-v14.0.1...iam-v15.0.0) (2024-03-12)
 
 
