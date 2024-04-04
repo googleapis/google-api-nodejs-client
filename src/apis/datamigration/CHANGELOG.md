@@ -1,5 +1,16 @@
 # Changelog
 
+## [5.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/datamigration-v4.6.2...datamigration-v5.0.0) (2024-04-04)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#3456](https://github.com/googleapis/google-api-nodejs-client/issues/3456)) ([a865e81](https://github.com/googleapis/google-api-nodejs-client/commit/a865e81539b315d3b321650663ba0b2555b1e5a1))
+
 ## [4.6.2](https://github.com/googleapis/google-api-nodejs-client/compare/datamigration-v4.6.1...datamigration-v4.6.2) (2024-02-07)
 
 
