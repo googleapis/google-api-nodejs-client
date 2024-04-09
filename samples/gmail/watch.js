@@ -21,10 +21,12 @@ const gmail = google.gmail('v1');
 
 /**
  * NOTE: Before using this API, you need to do a few things.
- * 1. Create a new Pub/Sub topic.  You can use the command:
- *      gcloud pubsub topics create gmail
+ * 1. Create a new Pub/Sub topic. You can use the command:
+ *    ```sh
+ *    $ gcloud pubsub topics create gmail
+ *    ```
  * 2. Go to the Cloud Developer Console, and give the gmail
- *    service account gmail-api-push@system.gserviceaccount.com
+ *    service account `gmail-api-push@system.gserviceaccount.com`
  *    Pub/Sub Publisher rights to your newly created topic.
  *    https://console.cloud.google.com/cloudpubsub/topicList?project=${PROJECT_NAME}
  */

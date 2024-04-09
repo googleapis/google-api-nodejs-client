@@ -35,7 +35,7 @@ export const gfs = {
 
 /**
  * Iterate over each API directory, and use the `compodoc` tool to generate
- * reference API documentation in the `docs` folder.  This folder is ignored
+ * reference API documentation in the `docs` folder. This folder is ignored
  * in git, so a publish must be done with `npm run publish-docs`.
  *
  * To use this, run `npm run generate-docs`.

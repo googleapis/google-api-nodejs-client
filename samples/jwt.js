@@ -23,7 +23,7 @@ const path = require('path');
  * Suggested reading for Admin SDK users using service accounts:
  * https://developers.google.com/admin-sdk/directory/v1/guides/delegation
  *
- * See the defaultauth.js sample for an alternate way of fetching compute credentials.
+ * See the `defaultauth.js` sample for an alternate way of fetching compute credentials.
  */
 async function runSample() {
   // Create a new JWT client using the key file downloaded from the Google Developer Console

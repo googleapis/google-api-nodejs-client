@@ -6,4 +6,6 @@ Google Custom Search enables you to create a search engine for your website, you
 
 ## Running the sample
 
-`node customsearch.js`
+```sh
+node customsearch.js
+```

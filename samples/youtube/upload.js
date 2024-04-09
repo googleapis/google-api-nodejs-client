@@ -76,5 +76,4 @@ if (module === require.main) {
   const fileName = process.argv[2];
   runSample(fileName).catch(console.error);
 }
-
 module.exports = runSample;

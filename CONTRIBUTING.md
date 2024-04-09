@@ -50,22 +50,26 @@ accept your pull requests.
 
 1.  Install dependencies:
 
-        npm install
-
+    ```sh
+    npm install
+    ```
 1.  Run the tests:
 
-        # Run unit tests.
-        npm test
+    ```sh
+    # Run unit tests.
+    npm test
 
-        # Run sample integration tests.
-        npm run samples-test
+    # Run sample integration tests.
+    npm run samples-test
 
-        # Run all system tests.
-        npm run system-test
-
+    # Run all system tests.
+    npm run system-test
+    ```
 1.  Lint (and maybe fix) any changes:
 
-        npm run fix
+    ```sh        
+    npm run fix
+    ```
 
 [setup]: https://cloud.google.com/nodejs/docs/setup
 [projects]: https://console.cloud.google.com/project

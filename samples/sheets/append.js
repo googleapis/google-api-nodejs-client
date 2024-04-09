@@ -50,5 +50,4 @@ if (module === require.main) {
   const [spreadsheetId, range] = process.argv.slice(2);
   runSample(spreadsheetId, range).catch(console.error);
 }
-
 module.exports = runSample;
