@@ -1,0 +1,319 @@
+{
+    "kind": "discovery#restDescription",
+    "discoveryVersion": "v1",
+    "id": "dev_deltav_pa_sandbox:v1",
+    "name": "dev_deltav_pa_sandbox",
+    "canonicalName": "Delta V Example",
+    "version": "v1",
+    "revision": "0",
+    "title": "Delta V Example API (Dev)",
+    "description": "deltav-pa.googleapis.com API.",
+    "ownerDomain": "google.com",
+    "ownerName": "Google",
+    "icons": {
+      "x16": "http://www.google.com/images/icons/product/search-16.gif",
+      "x32": "http://www.google.com/images/icons/product/search-32.gif"
+     },
+    "documentationLink": "https://g3doc.corp.google.com/google/g3doc/oneplatform/versioning/experimental/index.md",
+    "protocol": "rest",
+    "rootUrl": "https://dev-deltav-pa.sandbox.googleapis.com/",
+    "mtlsRootUrl": "https://dev-deltav-pa.mtls.sandbox.googleapis.com/",
+    "servicePath": "",
+    "baseUrl": "https://dev-deltav-pa.sandbox.googleapis.com/",
+    "batchPath": "batch",
+    "version_module": true,
+    "parameters": {
+      "access_token": {
+        "type": "string",
+        "description": "OAuth access token.",
+        "location": "query"
+      },
+      "alt": {
+        "type": "string",
+        "description": "Data format for response.",
+        "default": "json",
+        "enum": [
+          "json",
+          "media",
+          "proto"
+        ],
+        "enumDescriptions": [
+          "Responses with Content-Type of application/json",
+          "Media download with context-dependent Content-Type",
+          "Responses with Content-Type of application/x-protobuf"
+        ],
+        "location": "query"
+      },
+      "callback": {
+        "type": "string",
+        "description": "JSONP",
+        "location": "query"
+      },
+      "fields": {
+        "type": "string",
+        "description": "Selector specifying which fields to include in a partial response.",
+        "location": "query"
+      },
+      "key": {
+        "type": "string",
+        "description": "API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.",
+        "location": "query"
+      },
+      "oauth_token": {
+        "type": "string",
+        "description": "OAuth 2.0 token for the current user.",
+        "location": "query"
+      },
+      "prettyPrint": {
+        "type": "boolean",
+        "description": "Returns response with indentations and line breaks.",
+        "default": "true",
+        "location": "query"
+      },
+      "quotaUser": {
+        "type": "string",
+        "description": "Available to use for quota purposes for server-side applications. Can be any arbitrary string assigned to a user, but should not exceed 40 characters.",
+        "location": "query"
+      },
+      "upload_protocol": {
+        "type": "string",
+        "description": "Upload protocol for media (e.g. \"raw\", \"multipart\").",
+        "location": "query"
+      },
+      "uploadType": {
+        "type": "string",
+        "description": "Legacy upload protocol for media (e.g. \"media\", \"multipart\").",
+        "location": "query"
+      },
+      "$.xgafv": {
+        "type": "string",
+        "description": "V1 error format.",
+        "enum": [
+          "1",
+          "2"
+        ],
+        "enumDescriptions": [
+          "v1 error format",
+          "v2 error format"
+        ],
+        "location": "query"
+      }
+    },
+    "auth": {
+      "oauth2": {
+        "scopes": {
+          "https://www.googleapis.com/auth/cloud-platform": {
+            "description": "See, edit, configure, and delete your Google Cloud data and see the email address for your Google Account."
+          }
+        }
+      }
+    },
+    "schemas": {
+      "ListPlanetsResponse": {
+        "id": "ListPlanetsResponse",
+        "description": "A response to the ListPlanets RPC.",
+        "type": "object",
+        "properties": {
+          "planets": {
+            "description": "The planets from the specified location.",
+            "type": "array",
+            "items": {
+              "$ref": "Planet"
+            }
+          },
+          "nextPageToken": {
+            "description": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+            "type": "string"
+          }
+        }
+      },
+      "Planet": {
+        "id": "Planet",
+        "description": "A representation of a planet.",
+        "type": "object",
+        "properties": {
+          "name": {
+            "description": "The name of the planet. Format: projects\/{project}\/locations\/{location}\/planets\/{planet_id}",
+            "type": "string"
+          }
+        }
+      },
+      "ListMoonsResponse": {
+        "id": "ListMoonsResponse",
+        "description": "A response to the ListMoons RPC.",
+        "type": "object",
+        "properties": {
+          "moons": {
+            "description": "The moons from the specified planet.",
+            "type": "array",
+            "items": {
+              "$ref": "Moon"
+            }
+          },
+          "nextPageToken": {
+            "description": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+            "type": "string"
+          }
+        }
+      },
+      "Moon": {
+        "id": "Moon",
+        "description": "A representation of a moon.",
+        "type": "object",
+        "properties": {
+          "name": {
+            "description": "The name of the moon. Format: projects\/{project}\/locations\/{location}\/planets\/{planet_id}\/moons\/{moon_id}",
+            "type": "string"
+          }
+        }
+      }
+    },
+    "resources": {
+      "projects": {
+        "resources": {
+          "locations": {
+            "resources": {
+              "planets": {
+                "methods": {
+                  "list": {
+                    "id": "dev_deltav_pa_sandbox.projects.locations.planets.list",
+                    "path": "v1/{+parent}/planets",
+                    "apiVersion": "v1_20230601",
+                    "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/planets",
+                    "httpMethod": "GET",
+                    "parameters": {
+                      "parent": {
+                        "description": "Required. The parent, which owns this collection of planets. Format: projects\/{project}\/locations\/{location}",
+                        "pattern": "^projects\/[^\/]+\/locations\/[^\/]+$",
+                        "location": "path",
+                        "required": true,
+                        "type": "string"
+                      },
+                      "pageSize": {
+                        "description": "Optional. The maximum number of planets to return. The service may return fewer than this value. If unspecified, at most 50 books will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.",
+                        "location": "query",
+                        "type": "integer",
+                        "format": "int32"
+                      },
+                      "pageToken": {
+                        "description": "Optional. A page token, received from a previous `ListPlanets` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListPlanets` must match the call that provided the page token.",
+                        "location": "query",
+                        "type": "string"
+                      }
+                    },
+                    "parameterOrder": [
+                      "parent"
+                    ],
+                    "response": {
+                      "$ref": "ListPlanetsResponse"
+                    },
+                    "scopes": [
+                      "https://www.googleapis.com/auth/cloud-platform"
+                    ],
+                    "description": "Fetches a list of planets."
+                  },
+                  "get": {
+                    "id": "dev_deltav_pa_sandbox.projects.locations.planets.get",
+                    "path": "v1/{+name}",
+                    "apiVersion": "v1_20230601",
+                    "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/planets/{planetsId}",
+                    "httpMethod": "GET",
+                    "parameters": {
+                      "name": {
+                        "description": "Required. The name of the planet to retrieve. Format: projects\/{project}\/locations\/{location}\/planets\/{planet_id}",
+                        "pattern": "^projects\/[^\/]+\/locations\/[^\/]+\/planets\/[^\/]+$",
+                        "location": "path",
+                        "required": true,
+                        "type": "string"
+                      }
+                    },
+                    "parameterOrder": [
+                      "name"
+                    ],
+                    "response": {
+                      "$ref": "Planet"
+                    },
+                    "scopes": [
+                      "https://www.googleapis.com/auth/cloud-platform"
+                    ],
+                    "description": "Fetches a planet."
+                  }
+                }
+                ,
+                "resources": {
+                  "moons": {
+                    "methods": {
+                      "list": {
+                        "id": "dev_deltav_pa_sandbox.projects.locations.planets.moons.list",
+                        "path": "v1/{+parent}/moons",
+                        "apiVersion": "v1_20230601",
+                        "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/planets/moons",
+                        "httpMethod": "GET",
+                        "parameters": {
+                          "parent": {
+                            "description": "Required. The parent, which owns this collection of moons. Format: projects\/{project}\/locations\/{location}\/planets\/{planet_id}",
+                            "pattern": "^projects\/[^\/]+\/locations\/[^\/]+\/planets$",
+                            "location": "path",
+                            "required": true,
+                            "type": "string"
+                          },
+                          "pageSize": {
+                            "description": "Optional. The maximum number of moons to return. The service may return fewer than this value. If unspecified, at most 50 books will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.",
+                            "location": "query",
+                            "type": "integer",
+                            "format": "int32"
+                          },
+                          "pageToken": {
+                            "description": "Optional. A page token, received from a previous `ListMoons` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListMoons` must match the call that provided the page token.",
+                            "location": "query",
+                            "type": "string"
+                          }
+                        },
+                        "parameterOrder": [
+                          "parent"
+                        ],
+                        "response": {
+                          "$ref": "ListMoonsResponse"
+                        },
+                        "scopes": [
+                          "https://www.googleapis.com/auth/cloud-platform"
+                        ],
+                        "description": "Fetches a list of moons."
+                      },
+                      "get": {
+                        "id": "dev_deltav_pa_sandbox.projects.locations.planets.moons.get",
+                        "path": "v1/{+name}",
+                        "apiVersion": "v1_20230601",
+                        "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/planets/{planetsId}/moons/{moonsId}",
+                        "httpMethod": "GET",
+                        "parameters": {
+                          "name": {
+                            "description": "Required. The name of the moon to retrieve. Format: projects\/{project}\/locations\/{location}\/planets\/{planet_id}\/moons\/{moon_id}",
+                            "pattern": "^projects\/[^\/]+\/locations\/[^\/]+\/planets\/[^\/]+\/moons\/[^\/]+$",
+                            "location": "path",
+                            "required": true,
+                            "type": "string"
+                          }
+                        },
+                        "parameterOrder": [
+                          "name"
+                        ],
+                        "response": {
+                          "$ref": "Moon"
+                        },
+                        "scopes": [
+                          "https://www.googleapis.com/auth/cloud-platform"
+                        ],
+                        "description": "Fetches a moon."
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "basePath": ""
+}
