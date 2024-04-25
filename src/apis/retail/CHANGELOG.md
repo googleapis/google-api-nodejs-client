@@ -1,5 +1,27 @@
 # Changelog
 
+## [7.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/retail-v6.0.0...retail-v7.0.0) (2024-04-04)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+* This release has breaking changes.
+
+### Features
+
+* **retail:** update the API ([bf50f07](https://github.com/googleapis/google-api-nodejs-client/commit/bf50f07fcb2d94efc9ec9cb380c7d50c751def78))
+* **retail:** update the API ([4140165](https://github.com/googleapis/google-api-nodejs-client/commit/41401655d33fef14afd88ee7fed70a607eed3f7f))
+* **retail:** update the API ([a681493](https://github.com/googleapis/google-api-nodejs-client/commit/a6814939d649e650c35af3ed333d3653d456e5e2))
+* **retail:** update the API ([0aa095b](https://github.com/googleapis/google-api-nodejs-client/commit/0aa095b51a4ee7be3dde61b0a8653f526f3e73ea))
+* run the generator ([#3434](https://github.com/googleapis/google-api-nodejs-client/issues/3434)) ([f0db524](https://github.com/googleapis/google-api-nodejs-client/commit/f0db524bb26f05cea3dec4c0ed66b496399e3857))
+* run the generator ([#3456](https://github.com/googleapis/google-api-nodejs-client/issues/3456)) ([a865e81](https://github.com/googleapis/google-api-nodejs-client/commit/a865e81539b315d3b321650663ba0b2555b1e5a1))
+
+
+### Bug Fixes
+
+* **retail:** update the API ([943be6c](https://github.com/googleapis/google-api-nodejs-client/commit/943be6c22ebbc9ba4e17f45bb2ba58e6193a126e))
+
 ## [6.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/retail-v5.2.0...retail-v6.0.0) (2024-03-12)
 
 

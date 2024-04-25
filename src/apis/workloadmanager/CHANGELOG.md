@@ -1,5 +1,22 @@
 # Changelog
 
+## [10.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/workloadmanager-v9.0.0...workloadmanager-v10.0.0) (2024-04-04)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#3434](https://github.com/googleapis/google-api-nodejs-client/issues/3434)) ([f0db524](https://github.com/googleapis/google-api-nodejs-client/commit/f0db524bb26f05cea3dec4c0ed66b496399e3857))
+* run the generator ([#3456](https://github.com/googleapis/google-api-nodejs-client/issues/3456)) ([a865e81](https://github.com/googleapis/google-api-nodejs-client/commit/a865e81539b315d3b321650663ba0b2555b1e5a1))
+* **workloadmanager:** update the API ([d8ded70](https://github.com/googleapis/google-api-nodejs-client/commit/d8ded700cad0e17213350a233351586e8450df4c))
+* **workloadmanager:** update the API ([d0ec5c2](https://github.com/googleapis/google-api-nodejs-client/commit/d0ec5c281928efe40cc11f5524fc2cb5d9c01174))
+* **workloadmanager:** update the API ([a399523](https://github.com/googleapis/google-api-nodejs-client/commit/a399523589a85d344b5ba0ecc56de9aec322932f))
+* **workloadmanager:** update the API ([4c49597](https://github.com/googleapis/google-api-nodejs-client/commit/4c4959752e2d6825bca64aef6694b6f2e4b042e2))
+
 ## [9.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/workloadmanager-v8.4.0...workloadmanager-v9.0.0) (2024-03-12)
 
 

@@ -1,5 +1,22 @@
 # Changelog
 
+## [7.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/dialogflow-v6.0.0...dialogflow-v7.0.0) (2024-04-04)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+* **dialogflow:** This release has breaking changes.
+
+### Features
+
+* **dialogflow:** update the API ([3d7fb88](https://github.com/googleapis/google-api-nodejs-client/commit/3d7fb8880f43bec8318c14544fcbe09b06a45cf7))
+* **dialogflow:** update the API ([e8db16f](https://github.com/googleapis/google-api-nodejs-client/commit/e8db16f0b664a4236e1223b95ce694f53408dc28))
+* **dialogflow:** update the API ([4b1e073](https://github.com/googleapis/google-api-nodejs-client/commit/4b1e0734d9ae8775a64c0cf438cd3f657a2066b4))
+* **dialogflow:** update the API ([8829da4](https://github.com/googleapis/google-api-nodejs-client/commit/8829da4a7ee2885ae8b580eed903b2df5526918f))
+* **dialogflow:** update the API ([4c4d968](https://github.com/googleapis/google-api-nodejs-client/commit/4c4d968f3f64306083692f333b097b4dfe5f4fd3))
+* run the generator ([#3434](https://github.com/googleapis/google-api-nodejs-client/issues/3434)) ([f0db524](https://github.com/googleapis/google-api-nodejs-client/commit/f0db524bb26f05cea3dec4c0ed66b496399e3857))
+
 ## [6.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/dialogflow-v5.1.0...dialogflow-v6.0.0) (2024-03-12)
 
 

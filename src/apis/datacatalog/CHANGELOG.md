@@ -1,5 +1,25 @@
 # Changelog
 
+## [5.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/datacatalog-v4.0.0...datacatalog-v5.0.0) (2024-04-04)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+* This release has breaking changes.
+* **datacatalog:** This release has breaking changes.
+
+### Features
+
+* **datacatalog:** update the API ([a939d7e](https://github.com/googleapis/google-api-nodejs-client/commit/a939d7eaf290e763657eda597be699c0f52d8773))
+* run the generator ([#3434](https://github.com/googleapis/google-api-nodejs-client/issues/3434)) ([f0db524](https://github.com/googleapis/google-api-nodejs-client/commit/f0db524bb26f05cea3dec4c0ed66b496399e3857))
+* run the generator ([#3456](https://github.com/googleapis/google-api-nodejs-client/issues/3456)) ([a865e81](https://github.com/googleapis/google-api-nodejs-client/commit/a865e81539b315d3b321650663ba0b2555b1e5a1))
+
+
+### Bug Fixes
+
+* **datacatalog:** update the API ([6f7a6cc](https://github.com/googleapis/google-api-nodejs-client/commit/6f7a6ccd58b1f4ee8c4b241cb6e3dc4c6a30f596))
+
 ## [4.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/datacatalog-v3.0.1...datacatalog-v4.0.0) (2024-03-12)
 
 
