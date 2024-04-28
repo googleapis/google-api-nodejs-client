@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.2.1](https://github.com/googleapis/google-api-nodejs-client/compare/migrationcenter-v3.2.0...migrationcenter-v3.2.1) (2024-04-04)
+
+
+### Bug Fixes
+
+* **migrationcenter:** update the API ([dceb089](https://github.com/googleapis/google-api-nodejs-client/commit/dceb089463ac4c373df64a1c0f99e00f9a031855))
+
 ## [3.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/migrationcenter-v3.1.0...migrationcenter-v3.2.0) (2024-02-02)
 
 

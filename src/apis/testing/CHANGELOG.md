@@ -1,5 +1,21 @@
 # Changelog
 
+## [9.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/testing-v8.0.0...testing-v9.0.0) (2024-04-04)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+* This release has breaking changes.
+* **testing:** This release has breaking changes.
+
+### Features
+
+* run the generator ([#3434](https://github.com/googleapis/google-api-nodejs-client/issues/3434)) ([f0db524](https://github.com/googleapis/google-api-nodejs-client/commit/f0db524bb26f05cea3dec4c0ed66b496399e3857))
+* run the generator ([#3456](https://github.com/googleapis/google-api-nodejs-client/issues/3456)) ([a865e81](https://github.com/googleapis/google-api-nodejs-client/commit/a865e81539b315d3b321650663ba0b2555b1e5a1))
+* **testing:** update the API ([a188b41](https://github.com/googleapis/google-api-nodejs-client/commit/a188b418786bbd7fdc1f6750a4e8562765766db9))
+* **testing:** update the API ([fb01dcd](https://github.com/googleapis/google-api-nodejs-client/commit/fb01dcd1f474cd6a4c2ede041b97bab6f2ea5308))
+
 ## [8.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/testing-v7.0.0...testing-v8.0.0) (2024-03-12)
 
 

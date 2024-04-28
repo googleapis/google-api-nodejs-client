@@ -1,5 +1,17 @@
 # Changelog
 
+## [6.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/file-v5.2.0...file-v6.0.0) (2024-04-04)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* **file:** update the API ([ff74297](https://github.com/googleapis/google-api-nodejs-client/commit/ff74297097a094fb9a67ade6a24e8a83d0d19404))
+* run the generator ([#3456](https://github.com/googleapis/google-api-nodejs-client/issues/3456)) ([a865e81](https://github.com/googleapis/google-api-nodejs-client/commit/a865e81539b315d3b321650663ba0b2555b1e5a1))
+
 ## [5.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/file-v5.1.0...file-v5.2.0) (2024-01-05)
 
 
