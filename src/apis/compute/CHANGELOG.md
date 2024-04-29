@@ -1,5 +1,29 @@
 # Changelog
 
+## [10.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/compute-v9.0.0...compute-v10.0.0) (2024-04-04)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+* **compute:** This release has breaking changes.
+* This release has breaking changes.
+* This release has breaking changes.
+* **compute:** This release has breaking changes.
+* **compute:** This release has breaking changes.
+
+### Features
+
+* **compute:** update the API ([65016d0](https://github.com/googleapis/google-api-nodejs-client/commit/65016d05e42a4fc68b8b61b4fc80e45a8dd3e2a7))
+* **compute:** update the API ([38e7737](https://github.com/googleapis/google-api-nodejs-client/commit/38e7737b08d06863fdcd39a29f11dcba07f5937f))
+* **compute:** update the API ([e40a7e7](https://github.com/googleapis/google-api-nodejs-client/commit/e40a7e7f6d6f3e6b7787a02d6a1d05f169475d1e))
+* **compute:** update the API ([014e200](https://github.com/googleapis/google-api-nodejs-client/commit/014e200c79aa90dd08ec2bd2bdefae97560b0686))
+* **compute:** update the API ([ffbf00b](https://github.com/googleapis/google-api-nodejs-client/commit/ffbf00b1c1dfa03616f3900be03014f20f04c65e))
+* **compute:** update the API ([ff34fa6](https://github.com/googleapis/google-api-nodejs-client/commit/ff34fa659d97eb880290823f5724514a546f29a7))
+* run the generator ([#3434](https://github.com/googleapis/google-api-nodejs-client/issues/3434)) ([f0db524](https://github.com/googleapis/google-api-nodejs-client/commit/f0db524bb26f05cea3dec4c0ed66b496399e3857))
+* run the generator ([#3441](https://github.com/googleapis/google-api-nodejs-client/issues/3441)) ([f832463](https://github.com/googleapis/google-api-nodejs-client/commit/f832463312572dc58fe89f9254282982a520d1df))
+* run the generator ([#3456](https://github.com/googleapis/google-api-nodejs-client/issues/3456)) ([a865e81](https://github.com/googleapis/google-api-nodejs-client/commit/a865e81539b315d3b321650663ba0b2555b1e5a1))
+
 ## [9.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/compute-v8.1.0...compute-v9.0.0) (2024-03-12)
 
 

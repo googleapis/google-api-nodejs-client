@@ -1,5 +1,17 @@
 # Changelog
 
+## [5.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/searchads360-v4.0.0...searchads360-v5.0.0) (2024-04-04)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#3434](https://github.com/googleapis/google-api-nodejs-client/issues/3434)) ([f0db524](https://github.com/googleapis/google-api-nodejs-client/commit/f0db524bb26f05cea3dec4c0ed66b496399e3857))
+* **searchads360:** update the API ([ec1b88c](https://github.com/googleapis/google-api-nodejs-client/commit/ec1b88c762438ca2ef86e6c0514288518f172d6f))
+
 ## [4.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/searchads360-v3.0.0...searchads360-v4.0.0) (2024-03-12)
 
 

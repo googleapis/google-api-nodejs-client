@@ -1,5 +1,17 @@
 # Changelog
 
+## [3.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/transcoder-v2.0.0...transcoder-v3.0.0) (2024-04-04)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#3434](https://github.com/googleapis/google-api-nodejs-client/issues/3434)) ([f0db524](https://github.com/googleapis/google-api-nodejs-client/commit/f0db524bb26f05cea3dec4c0ed66b496399e3857))
+* **transcoder:** update the API ([f32737d](https://github.com/googleapis/google-api-nodejs-client/commit/f32737d987ceda983de8b4d6a1bc6487ffc9435e))
+
 ## [2.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/transcoder-v1.3.0...transcoder-v2.0.0) (2024-03-12)
 
 
