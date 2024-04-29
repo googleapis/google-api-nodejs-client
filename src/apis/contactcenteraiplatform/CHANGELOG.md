@@ -1,5 +1,17 @@
 # Changelog
 
+## [4.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/contactcenteraiplatform-v3.0.0...contactcenteraiplatform-v4.0.0) (2024-04-04)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* **contactcenteraiplatform:** update the API ([076984f](https://github.com/googleapis/google-api-nodejs-client/commit/076984f0bca2b816ee58272292a3459c66823743))
+* run the generator ([#3434](https://github.com/googleapis/google-api-nodejs-client/issues/3434)) ([f0db524](https://github.com/googleapis/google-api-nodejs-client/commit/f0db524bb26f05cea3dec4c0ed66b496399e3857))
+
 ## [3.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/contactcenteraiplatform-v2.2.0...contactcenteraiplatform-v3.0.0) (2024-03-12)
 
 

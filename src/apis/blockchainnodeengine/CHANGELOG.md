@@ -1,5 +1,19 @@
 # Changelog
 
+## [6.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/blockchainnodeengine-v5.0.0...blockchainnodeengine-v6.0.0) (2024-04-04)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+* **blockchainnodeengine:** This release has breaking changes.
+
+### Features
+
+* **blockchainnodeengine:** update the API ([ec5ff13](https://github.com/googleapis/google-api-nodejs-client/commit/ec5ff1392d7d55d95d50e99ba105cd7ffea997e0))
+* **blockchainnodeengine:** update the API ([07ac2e7](https://github.com/googleapis/google-api-nodejs-client/commit/07ac2e721d6d2ce87bccc4971423ba0af294d0b1))
+* run the generator ([#3434](https://github.com/googleapis/google-api-nodejs-client/issues/3434)) ([f0db524](https://github.com/googleapis/google-api-nodejs-client/commit/f0db524bb26f05cea3dec4c0ed66b496399e3857))
+
 ## [5.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/blockchainnodeengine-v4.0.0...blockchainnodeengine-v5.0.0) (2024-03-12)
 
 

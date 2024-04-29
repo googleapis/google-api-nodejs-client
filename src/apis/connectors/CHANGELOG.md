@@ -1,5 +1,26 @@
 # Changelog
 
+## [12.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/connectors-v11.0.0...connectors-v12.0.0) (2024-04-04)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+* **connectors:** This release has breaking changes.
+* This release has breaking changes.
+* This release has breaking changes.
+* **connectors:** This release has breaking changes.
+
+### Features
+
+* **connectors:** update the API ([d81f31d](https://github.com/googleapis/google-api-nodejs-client/commit/d81f31d620c083d308ccf33c7de7128501f8b3a6))
+* **connectors:** update the API ([102625b](https://github.com/googleapis/google-api-nodejs-client/commit/102625b204b712ce916d5ccd873eee2c19907643))
+* **connectors:** update the API ([f433bd6](https://github.com/googleapis/google-api-nodejs-client/commit/f433bd628431cd6c340746a6066b55bf27267e42))
+* **connectors:** update the API ([863f64f](https://github.com/googleapis/google-api-nodejs-client/commit/863f64ff009635ad2fa4c79216a4b82b22e6235e))
+* run the generator ([#3434](https://github.com/googleapis/google-api-nodejs-client/issues/3434)) ([f0db524](https://github.com/googleapis/google-api-nodejs-client/commit/f0db524bb26f05cea3dec4c0ed66b496399e3857))
+* run the generator ([#3441](https://github.com/googleapis/google-api-nodejs-client/issues/3441)) ([f832463](https://github.com/googleapis/google-api-nodejs-client/commit/f832463312572dc58fe89f9254282982a520d1df))
+* run the generator ([#3456](https://github.com/googleapis/google-api-nodejs-client/issues/3456)) ([a865e81](https://github.com/googleapis/google-api-nodejs-client/commit/a865e81539b315d3b321650663ba0b2555b1e5a1))
+
 ## [11.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/connectors-v10.1.0...connectors-v11.0.0) (2024-03-12)
 
 

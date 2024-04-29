@@ -1,5 +1,20 @@
 # Changelog
 
+## [15.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/youtube-v14.0.0...youtube-v15.0.0) (2024-04-04)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#3434](https://github.com/googleapis/google-api-nodejs-client/issues/3434)) ([f0db524](https://github.com/googleapis/google-api-nodejs-client/commit/f0db524bb26f05cea3dec4c0ed66b496399e3857))
+* run the generator ([#3441](https://github.com/googleapis/google-api-nodejs-client/issues/3441)) ([f832463](https://github.com/googleapis/google-api-nodejs-client/commit/f832463312572dc58fe89f9254282982a520d1df))
+* **youtube:** update the API ([b0cfa8e](https://github.com/googleapis/google-api-nodejs-client/commit/b0cfa8e1b29ab4c822ee7e5c8881186940c6a05e))
+* **youtube:** update the API ([dc515e2](https://github.com/googleapis/google-api-nodejs-client/commit/dc515e21ebc0d64e9fdd6a6aa16aeeede8e2929b))
+
 ## [14.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/youtube-v13.1.0...youtube-v14.0.0) (2024-03-12)
 
 
