@@ -4,6 +4,13 @@
 
 [1]: https://www.npmjs.com/package/googleapis?activeTab=versions
 
+## [135.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/googleapis-v135.0.0...googleapis-v135.1.0) (2024-04-30)
+
+
+### Features
+
+* add API version to request ([b0fe3c6](https://github.com/googleapis/google-api-nodejs-client/commit/b0fe3c63e70011024d565ac0330bda8b5719e0e9))
+
 ## [135.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/googleapis-v134.0.0...googleapis-v135.0.0) (2024-04-04)
 
 
