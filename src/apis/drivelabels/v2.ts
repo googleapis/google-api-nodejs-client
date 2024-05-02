@@ -1769,6 +1769,7 @@ export namespace drivelabels_v2 {
           {
             url: (rootUrl + '/v2/labels').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1857,6 +1858,7 @@ export namespace drivelabels_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -1947,6 +1949,7 @@ export namespace drivelabels_v2 {
           {
             url: (rootUrl + '/v2/{+name}:delta').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2042,6 +2045,7 @@ export namespace drivelabels_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2134,6 +2138,7 @@ export namespace drivelabels_v2 {
           {
             url: (rootUrl + '/v2/{+name}:enable').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2226,6 +2231,7 @@ export namespace drivelabels_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2318,6 +2324,7 @@ export namespace drivelabels_v2 {
           {
             url: (rootUrl + '/v2/labels').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2413,6 +2420,7 @@ export namespace drivelabels_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2509,6 +2517,7 @@ export namespace drivelabels_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2605,6 +2614,7 @@ export namespace drivelabels_v2 {
               '$1'
             ),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -2862,6 +2872,7 @@ export namespace drivelabels_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2979,6 +2990,7 @@ export namespace drivelabels_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3073,6 +3085,7 @@ export namespace drivelabels_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3169,6 +3182,7 @@ export namespace drivelabels_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3258,6 +3272,7 @@ export namespace drivelabels_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -3352,6 +3367,7 @@ export namespace drivelabels_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3532,6 +3548,7 @@ export namespace drivelabels_v2 {
               '$1'
             ),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -3652,6 +3669,7 @@ export namespace drivelabels_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3769,6 +3787,7 @@ export namespace drivelabels_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3863,6 +3882,7 @@ export namespace drivelabels_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3959,6 +3979,7 @@ export namespace drivelabels_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4048,6 +4069,7 @@ export namespace drivelabels_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -4142,6 +4164,7 @@ export namespace drivelabels_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4312,6 +4335,7 @@ export namespace drivelabels_v2 {
           {
             url: (rootUrl + '/v2/limits/label').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4419,6 +4443,7 @@ export namespace drivelabels_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),

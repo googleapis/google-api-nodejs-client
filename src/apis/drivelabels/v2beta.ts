@@ -1769,6 +1769,7 @@ export namespace drivelabels_v2beta {
           {
             url: (rootUrl + '/v2beta/labels').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1857,6 +1858,7 @@ export namespace drivelabels_v2beta {
           {
             url: (rootUrl + '/v2beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -1950,6 +1952,7 @@ export namespace drivelabels_v2beta {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2045,6 +2048,7 @@ export namespace drivelabels_v2beta {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2140,6 +2144,7 @@ export namespace drivelabels_v2beta {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2232,6 +2237,7 @@ export namespace drivelabels_v2beta {
           {
             url: (rootUrl + '/v2beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2324,6 +2330,7 @@ export namespace drivelabels_v2beta {
           {
             url: (rootUrl + '/v2beta/labels').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2419,6 +2426,7 @@ export namespace drivelabels_v2beta {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2515,6 +2523,7 @@ export namespace drivelabels_v2beta {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2611,6 +2620,7 @@ export namespace drivelabels_v2beta {
               '$1'
             ),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -2868,6 +2878,7 @@ export namespace drivelabels_v2beta {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2984,6 +2995,7 @@ export namespace drivelabels_v2beta {
               rootUrl + '/v2beta/{+parent}/permissions:batchDelete'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3077,6 +3089,7 @@ export namespace drivelabels_v2beta {
               rootUrl + '/v2beta/{+parent}/permissions:batchUpdate'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3173,6 +3186,7 @@ export namespace drivelabels_v2beta {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3262,6 +3276,7 @@ export namespace drivelabels_v2beta {
           {
             url: (rootUrl + '/v2beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -3356,6 +3371,7 @@ export namespace drivelabels_v2beta {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3536,6 +3552,7 @@ export namespace drivelabels_v2beta {
               '$1'
             ),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -3656,6 +3673,7 @@ export namespace drivelabels_v2beta {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3772,6 +3790,7 @@ export namespace drivelabels_v2beta {
               rootUrl + '/v2beta/{+parent}/permissions:batchDelete'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3865,6 +3884,7 @@ export namespace drivelabels_v2beta {
               rootUrl + '/v2beta/{+parent}/permissions:batchUpdate'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3961,6 +3981,7 @@ export namespace drivelabels_v2beta {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4050,6 +4071,7 @@ export namespace drivelabels_v2beta {
           {
             url: (rootUrl + '/v2beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -4144,6 +4166,7 @@ export namespace drivelabels_v2beta {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4317,6 +4340,7 @@ export namespace drivelabels_v2beta {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4424,6 +4448,7 @@ export namespace drivelabels_v2beta {
           {
             url: (rootUrl + '/v2beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
