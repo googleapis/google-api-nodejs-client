@@ -644,6 +644,7 @@ export namespace doubleclicksearch_v2 {
               '/doubleclicksearch/v2/agency/{agencyId}/advertiser/{advertiserId}/engine/{engineAccountId}/conversion'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -741,6 +742,7 @@ export namespace doubleclicksearch_v2 {
               rootUrl + '/doubleclicksearch/v2/customer/{customerId}/conversion'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -835,6 +837,7 @@ export namespace doubleclicksearch_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -923,6 +926,7 @@ export namespace doubleclicksearch_v2 {
               '$1'
             ),
             method: 'PUT',
+            apiVersion: '',
           },
           options
         ),
@@ -1017,6 +1021,7 @@ export namespace doubleclicksearch_v2 {
               rootUrl + '/doubleclicksearch/v2/conversion/updateAvailability'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1234,6 +1239,7 @@ export namespace doubleclicksearch_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1321,6 +1327,7 @@ export namespace doubleclicksearch_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1406,6 +1413,7 @@ export namespace doubleclicksearch_v2 {
               '/doubleclicksearch/v2/reports/{reportId}/files/{reportFragment}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1496,6 +1504,7 @@ export namespace doubleclicksearch_v2 {
               '/doubleclicksearch/v2/agency/{agencyId}/advertiser/{advertiserId}/idmapping'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1583,6 +1592,7 @@ export namespace doubleclicksearch_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1718,6 +1728,7 @@ export namespace doubleclicksearch_v2 {
               '/doubleclicksearch/v2/agency/{agencyId}/advertiser/{advertiserId}/savedcolumns'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
