@@ -4453,7 +4453,7 @@
       }
     }
   },
-  "revision": "20240311",
+  "revision": "20240422",
   "rootUrl": "https://dialogflow.googleapis.com/",
   "schemas": {
     "GoogleCloudDialogflowCxV3AdvancedSettings": {
@@ -4569,6 +4569,10 @@
         "displayName": {
           "description": "Required. The human-readable name of the agent, unique within the location.",
           "type": "string"
+        },
+        "enableMultiLanguageTraining": {
+          "description": "Optional. Enable training multi-lingual models for this agent. These models will be trained on all the languages supported by the agent.",
+          "type": "boolean"
         },
         "enableSpellCorrection": {
           "description": "Indicates if automatic spell correction is enabled in detect intent requests.",
@@ -6380,6 +6384,10 @@
           "$ref": "GoogleCloudDialogflowCxV3KnowledgeConnectorSettings",
           "description": "Optional. Knowledge connector configuration."
         },
+        "multiLanguageSettings": {
+          "$ref": "GoogleCloudDialogflowCxV3FlowMultiLanguageSettings",
+          "description": "Optional. Multi-lingual agent settings for this flow."
+        },
         "name": {
           "description": "The unique identifier of the flow. Format: `projects//locations//agents//flows/`.",
           "type": "string"
@@ -6428,6 +6436,24 @@
             "Throw error if a conflict is encountered."
           ],
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3FlowMultiLanguageSettings": {
+      "description": "Settings for multi-lingual agents.",
+      "id": "GoogleCloudDialogflowCxV3FlowMultiLanguageSettings",
+      "properties": {
+        "enableMultiLanguageDetection": {
+          "description": "Optional. Enable multi-language detection for this flow. This can be set only if agent level multi language setting is enabled.",
+          "type": "boolean"
+        },
+        "supportedResponseLanguageCodes": {
+          "description": "Optional. Agent will respond in the detected language if the detected language code is in the supported resolved languages for this flow. This will be used only if multi-language training is enabled in the agent and multi-language detection is enabled in the flow. The supported languages must be a subset of the languages supported by the agent.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -7424,6 +7450,26 @@
         "triggerFulfillment": {
           "$ref": "GoogleCloudDialogflowCxV3Fulfillment",
           "description": "The fulfillment to be triggered. When the answers from the Knowledge Connector are selected by Dialogflow, you can utitlize the request scoped parameter `$request.knowledge.answers` (contains up to the 5 highest confidence answers) and `$request.knowledge.questions` (contains the corresponding questions) to construct the fulfillment."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3LanguageInfo": {
+      "description": "Represents the language information of the request.",
+      "id": "GoogleCloudDialogflowCxV3LanguageInfo",
+      "properties": {
+        "confidenceScore": {
+          "description": "The confidence score of the detected language between 0 and 1.",
+          "format": "float",
+          "type": "number"
+        },
+        "inputLanguageCode": {
+          "description": "The language code specified in the original request.",
+          "type": "string"
+        },
+        "resolvedLanguageCode": {
+          "description": "The language code detected for this request based on the user conversation.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -9943,6 +9989,10 @@
           "description": "The language code specified in the original request.",
           "type": "string"
         },
+        "languageInfo": {
+          "$ref": "GoogleCloudDialogflowCxV3LanguageInfo",
+          "description": "Information about the language of the request."
+        },
         "messages": {
           "description": "The list of rich message responses to present to the user. Webhook can choose to append or replace this list in WebhookResponse.fulfillment_response;",
           "items": {
@@ -11367,6 +11417,26 @@
       },
       "type": "object"
     },
+    "GoogleCloudDialogflowCxV3beta1LanguageInfo": {
+      "description": "Represents the language information of the request.",
+      "id": "GoogleCloudDialogflowCxV3beta1LanguageInfo",
+      "properties": {
+        "confidenceScore": {
+          "description": "The confidence score of the detected language between 0 and 1.",
+          "format": "float",
+          "type": "number"
+        },
+        "inputLanguageCode": {
+          "description": "The language code specified in the original request.",
+          "type": "string"
+        },
+        "resolvedLanguageCode": {
+          "description": "The language code detected for this request based on the user conversation.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDialogflowCxV3beta1Page": {
       "description": "A Dialogflow CX conversation (session) can be described and visualized as a state machine. The states of a CX session are represented by pages. For each flow, you define many pages, where your combined pages can handle a complete conversation on the topics the flow is designed for. At any given moment, exactly one page is the current page, the current page is considered active, and the flow associated with that page is considered active. Every flow has a special start page. When a flow initially becomes active, the start page page becomes the current page. For each conversational turn, the current page will either stay the same or transition to another page. You configure each page to collect information from the end-user that is relevant for the conversational state represented by the page. For more information, see the [Page guide](https://cloud.google.com/dialogflow/cx/docs/concept/page).",
       "id": "GoogleCloudDialogflowCxV3beta1Page",
@@ -12282,6 +12352,10 @@
         "languageCode": {
           "description": "The language code specified in the original request.",
           "type": "string"
+        },
+        "languageInfo": {
+          "$ref": "GoogleCloudDialogflowCxV3beta1LanguageInfo",
+          "description": "Information about the language of the request."
         },
         "messages": {
           "description": "The list of rich message responses to present to the user. Webhook can choose to append or replace this list in WebhookResponse.fulfillment_response;",

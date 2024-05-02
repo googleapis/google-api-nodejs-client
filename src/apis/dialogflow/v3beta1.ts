@@ -341,6 +341,10 @@ export namespace dialogflow_v3beta1 {
      */
     displayName?: string | null;
     /**
+     * Optional. Enable training multi-lingual models for this agent. These models will be trained on all the languages supported by the agent.
+     */
+    enableMultiLanguageTraining?: boolean | null;
+    /**
      * Indicates if automatic spell correction is enabled in detect intent requests.
      */
     enableSpellCorrection?: boolean | null;
@@ -708,6 +712,204 @@ export namespace dialogflow_v3beta1 {
     testCaseResults?: string[] | null;
   }
   /**
+   * Represents a conversation.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1Conversation {
+    /**
+     * Duration of the conversation.
+     */
+    duration?: string | null;
+    /**
+     * Environment of the conversation. Only `name` and `display_name` are filled in this message.
+     */
+    environment?: Schema$GoogleCloudDialogflowCxV3beta1Environment;
+    /**
+     * All the Flow the conversation has went through. Only `name` and `display_name` are filled in this message.
+     */
+    flows?: Schema$GoogleCloudDialogflowCxV3beta1Flow[];
+    /**
+     * Flow versions used in the conversation.
+     */
+    flowVersions?: {[key: string]: string} | null;
+    /**
+     * All the matched Intent in the conversation. Only `name` and `display_name` are filled in this message.
+     */
+    intents?: Schema$GoogleCloudDialogflowCxV3beta1Intent[];
+    /**
+     * Interactions of the conversation. Only populated for `GetConversation` and empty for `ListConversations`.
+     */
+    interactions?: Schema$GoogleCloudDialogflowCxV3beta1ConversationInteraction[];
+    /**
+     * The language of the conversation, which is the language of the first request in the conversation.
+     */
+    languageCode?: string | null;
+    /**
+     * Conversation metrics.
+     */
+    metrics?: Schema$GoogleCloudDialogflowCxV3beta1ConversationMetrics;
+    /**
+     * Identifier. The identifier of the conversation. If conversation ID is reused, interactions happened later than 48 hours of the conversation's create time will be ignored. Format: `projects//locations//agents//conversations/`
+     */
+    name?: string | null;
+    /**
+     * All the Page the conversation has went through. Only `name` and `display_name` are filled in this message.
+     */
+    pages?: Schema$GoogleCloudDialogflowCxV3beta1Page[];
+    /**
+     * Start time of the conversation, which is the time of the first request of the conversation.
+     */
+    startTime?: string | null;
+    /**
+     * The type of the conversation.
+     */
+    type?: string | null;
+  }
+  /**
+   * Represents an interaction between an end user and a Dialogflow CX agent using V3 (Streaming)DetectIntent API, or an interaction between an end user and a Dialogflow CX agent using V2 (Streaming)AnalyzeContent API.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1ConversationInteraction {
+    /**
+     * The time that the interaction was created.
+     */
+    createTime?: string | null;
+    /**
+     * Missing transition predicted for the interaction. This field is set only if the interaction match type was no-match.
+     */
+    missingTransition?: Schema$GoogleCloudDialogflowCxV3beta1ConversationInteractionMissingTransition;
+    /**
+     * The partial responses of the interaction. Empty if there is no partial response in the interaction. See the partial response documentation.
+     */
+    partialResponses?: Schema$GoogleCloudDialogflowCxV3beta1DetectIntentResponse[];
+    /**
+     * The request of the interaction.
+     */
+    request?: Schema$GoogleCloudDialogflowCxV3beta1DetectIntentRequest;
+    /**
+     * The input text or the transcript of the input audio in the request.
+     */
+    requestUtterances?: string | null;
+    /**
+     * The final response of the interaction.
+     */
+    response?: Schema$GoogleCloudDialogflowCxV3beta1DetectIntentResponse;
+    /**
+     * The output text or the transcript of the output audio in the responses. If multiple output messages are returned, they will be concatenated into one.
+     */
+    responseUtterances?: string | null;
+  }
+  /**
+   * Information collected for DF CX agents in case NLU predicted an intent that was filtered out as being inactive which may indicate a missing transition and/or absent functionality.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1ConversationInteractionMissingTransition {
+    /**
+     * Name of the intent that could have triggered.
+     */
+    intentDisplayName?: string | null;
+    /**
+     * Score of the above intent. The higher it is the more likely a transition was missed on a given page.
+     */
+    score?: number | null;
+  }
+  /**
+   * Represents metrics for the conversation.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1ConversationMetrics {
+    /**
+     * The average confidence all of the Match in the conversation. Values range from 0.0 (completely uncertain) to 1.0 (completely certain).
+     */
+    averageMatchConfidence?: number | null;
+    /**
+     * A signal that indicates the interaction with the Dialogflow agent has ended. If any response has the ResponseMessage.end_interaction signal, this is set to true.
+     */
+    hasEndInteraction?: boolean | null;
+    /**
+     * Hands off conversation to a human agent. If any response has the ResponseMessage.live_agent_handoffsignal, this is set to true.
+     */
+    hasLiveAgentHandoff?: boolean | null;
+    /**
+     * Duration of all the input's audio in the conversation.
+     */
+    inputAudioDuration?: string | null;
+    /**
+     * The number of interactions in the conversation.
+     */
+    interactionCount?: number | null;
+    /**
+     * Match type counts.
+     */
+    matchTypeCount?: Schema$GoogleCloudDialogflowCxV3beta1ConversationMetricsMatchTypeCount;
+    /**
+     * Maximum latency of the Webhook calls in the conversation.
+     */
+    maxWebhookLatency?: string | null;
+    /**
+     * Duration of all the output's audio in the conversation.
+     */
+    outputAudioDuration?: string | null;
+    /**
+     * Query input counts.
+     */
+    queryInputCount?: Schema$GoogleCloudDialogflowCxV3beta1ConversationMetricsQueryInputCount;
+  }
+  /**
+   * Count by Match.MatchType of the matches in the conversation.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1ConversationMetricsMatchTypeCount {
+    /**
+     * The number of matches with type Match.MatchType.DIRECT_INTENT.
+     */
+    directIntentCount?: number | null;
+    /**
+     * The number of matches with type Match.MatchType.EVENT.
+     */
+    eventCount?: number | null;
+    /**
+     * The number of matches with type Match.MatchType.INTENT.
+     */
+    intentCount?: number | null;
+    /**
+     * The number of matches with type Match.MatchType.NO_INPUT.
+     */
+    noInputCount?: number | null;
+    /**
+     * The number of matches with type Match.MatchType.NO_MATCH.
+     */
+    noMatchCount?: number | null;
+    /**
+     * The number of matches with type Match.MatchType.PARAMETER_FILLING.
+     */
+    parameterFillingCount?: number | null;
+    /**
+     * The number of matches with type Match.MatchType.MATCH_TYPE_UNSPECIFIED.
+     */
+    unspecifiedCount?: number | null;
+  }
+  /**
+   * Count by types of QueryInput of the requests in the conversation.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1ConversationMetricsQueryInputCount {
+    /**
+     * The number of AudioInput in the conversation.
+     */
+    audioCount?: number | null;
+    /**
+     * The number of DtmfInput in the conversation.
+     */
+    dtmfCount?: number | null;
+    /**
+     * The number of EventInput in the conversation.
+     */
+    eventCount?: number | null;
+    /**
+     * The number of IntentInput in the conversation.
+     */
+    intentCount?: number | null;
+    /**
+     * The number of TextInput in the conversation.
+     */
+    textCount?: number | null;
+  }
+  /**
    * This message is used to hold all the Conversation Signals data, which will be converted to JSON and exported to BigQuery.
    */
   export interface Schema$GoogleCloudDialogflowCxV3beta1ConversationSignals {
@@ -1052,6 +1254,10 @@ export namespace dialogflow_v3beta1 {
      * The parameters of this query.
      */
     queryParams?: Schema$GoogleCloudDialogflowCxV3beta1QueryParameters;
+    /**
+     * Required. The name of the session this query is sent to. Format: `projects//locations//agents//sessions/` or `projects//locations//agents//environments//sessions/`. If `Environment ID` is not specified, we assume default 'draft' environment. It's up to the API caller to choose an appropriate `Session ID`. It can be a random number or some type of session identifiers (preferably hashed). The length of the `Session ID` must not exceed 36 characters. For more information, see the [sessions guide](https://cloud.google.com/dialogflow/cx/docs/concept/session). Note: Always use agent versions for production traffic. See [Versions and environments](https://cloud.google.com/dialogflow/cx/docs/concept/version).
+     */
+    session?: string | null;
   }
   /**
    * The message returned from the DetectIntent method.
@@ -1643,6 +1849,10 @@ export namespace dialogflow_v3beta1 {
      */
     knowledgeConnectorSettings?: Schema$GoogleCloudDialogflowCxV3beta1KnowledgeConnectorSettings;
     /**
+     * Optional. Multi-lingual agent settings for this flow.
+     */
+    multiLanguageSettings?: Schema$GoogleCloudDialogflowCxV3beta1FlowMultiLanguageSettings;
+    /**
      * The unique identifier of the flow. Format: `projects//locations//agents//flows/`.
      */
     name?: string | null;
@@ -1667,6 +1877,19 @@ export namespace dialogflow_v3beta1 {
      * Optional. Global flow import strategy for resource conflict resolution. The import Import strategy for resource conflict resolution, applied globally throughout the flow. It will be applied for all display name conflicts in the imported content. If not specified, 'CREATE_NEW' is assumed.
      */
     globalImportStrategy?: string | null;
+  }
+  /**
+   * Settings for multi-lingual agents.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1FlowMultiLanguageSettings {
+    /**
+     * Optional. Enable multi-language detection for this flow. This can be set only if agent level multi language setting is enabled.
+     */
+    enableMultiLanguageDetection?: boolean | null;
+    /**
+     * Optional. Agent will respond in the detected language if the detected language code is in the supported resolved languages for this flow. This will be used only if multi-language training is enabled in the agent and multi-language detection is enabled in the flow. The supported languages must be a subset of the languages supported by the agent.
+     */
+    supportedResponseLanguageCodes?: string[] | null;
   }
   /**
    * The response message for Flows.GetFlowValidationResult.
@@ -2388,6 +2611,23 @@ export namespace dialogflow_v3beta1 {
     triggerFulfillment?: Schema$GoogleCloudDialogflowCxV3beta1Fulfillment;
   }
   /**
+   * Represents the language information of the request.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1LanguageInfo {
+    /**
+     * The confidence score of the detected language between 0 and 1.
+     */
+    confidenceScore?: number | null;
+    /**
+     * The language code specified in the original request.
+     */
+    inputLanguageCode?: string | null;
+    /**
+     * The language code detected for this request based on the user conversation.
+     */
+    resolvedLanguageCode?: string | null;
+  }
+  /**
    * The response message for Agents.ListAgents.
    */
   export interface Schema$GoogleCloudDialogflowCxV3beta1ListAgentsResponse {
@@ -2421,6 +2661,19 @@ export namespace dialogflow_v3beta1 {
      * The list of continuous test results.
      */
     continuousTestResults?: Schema$GoogleCloudDialogflowCxV3beta1ContinuousTestResult[];
+    /**
+     * Token to retrieve the next page of results, or empty if there are no more results in the list.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
+   * The response message for Conversations.ListConversations.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1ListConversationsResponse {
+    /**
+     * The list of conversations. There will be a maximum number of items returned based on the page_size field. The returned conversations will be sorted by start_time in descending order (newest conversation first).
+     */
+    conversations?: Schema$GoogleCloudDialogflowCxV3beta1Conversation[];
     /**
      * Token to retrieve the next page of results, or empty if there are no more results in the list.
      */
@@ -4162,6 +4415,10 @@ export namespace dialogflow_v3beta1 {
      */
     languageCode?: string | null;
     /**
+     * Information about the language of the request.
+     */
+    languageInfo?: Schema$GoogleCloudDialogflowCxV3beta1LanguageInfo;
+    /**
      * The list of rich message responses to present to the user. Webhook can choose to append or replace this list in WebhookResponse.fulfillment_response;
      */
     messages?: Schema$GoogleCloudDialogflowCxV3beta1ResponseMessage[];
@@ -5108,6 +5365,23 @@ export namespace dialogflow_v3beta1 {
     triggerFulfillment?: Schema$GoogleCloudDialogflowCxV3Fulfillment;
   }
   /**
+   * Represents the language information of the request.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3LanguageInfo {
+    /**
+     * The confidence score of the detected language between 0 and 1.
+     */
+    confidenceScore?: number | null;
+    /**
+     * The language code specified in the original request.
+     */
+    inputLanguageCode?: string | null;
+    /**
+     * The language code detected for this request based on the user conversation.
+     */
+    resolvedLanguageCode?: string | null;
+  }
+  /**
    * A Dialogflow CX conversation (session) can be described and visualized as a state machine. The states of a CX session are represented by pages. For each flow, you define many pages, where your combined pages can handle a complete conversation on the topics the flow is designed for. At any given moment, exactly one page is the current page, the current page is considered active, and the flow associated with that page is considered active. Every flow has a special start page. When a flow initially becomes active, the start page page becomes the current page. For each conversational turn, the current page will either stay the same or transition to another page. You configure each page to collect information from the end-user that is relevant for the conversational state represented by the page. For more information, see the [Page guide](https://cloud.google.com/dialogflow/cx/docs/concept/page).
    */
   export interface Schema$GoogleCloudDialogflowCxV3Page {
@@ -5783,6 +6057,10 @@ export namespace dialogflow_v3beta1 {
      * The language code specified in the original request.
      */
     languageCode?: string | null;
+    /**
+     * Information about the language of the request.
+     */
+    languageInfo?: Schema$GoogleCloudDialogflowCxV3LanguageInfo;
     /**
      * The list of rich message responses to present to the user. Webhook can choose to append or replace this list in WebhookResponse.fulfillment_response;
      */
@@ -9323,6 +9601,7 @@ export namespace dialogflow_v3beta1 {
           {
             url: (rootUrl + '/v3beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -9417,6 +9696,7 @@ export namespace dialogflow_v3beta1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -9468,6 +9748,7 @@ export namespace dialogflow_v3beta1 {
   export class Resource$Projects$Locations$Agents {
     context: APIRequestContext;
     changelogs: Resource$Projects$Locations$Agents$Changelogs;
+    conversations: Resource$Projects$Locations$Agents$Conversations;
     entityTypes: Resource$Projects$Locations$Agents$Entitytypes;
     environments: Resource$Projects$Locations$Agents$Environments;
     flows: Resource$Projects$Locations$Agents$Flows;
@@ -9480,6 +9761,9 @@ export namespace dialogflow_v3beta1 {
     constructor(context: APIRequestContext) {
       this.context = context;
       this.changelogs = new Resource$Projects$Locations$Agents$Changelogs(
+        this.context
+      );
+      this.conversations = new Resource$Projects$Locations$Agents$Conversations(
         this.context
       );
       this.entityTypes = new Resource$Projects$Locations$Agents$Entitytypes(
@@ -9586,6 +9870,7 @@ export namespace dialogflow_v3beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -9675,6 +9960,7 @@ export namespace dialogflow_v3beta1 {
           {
             url: (rootUrl + '/v3beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -9769,6 +10055,7 @@ export namespace dialogflow_v3beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -9860,6 +10147,7 @@ export namespace dialogflow_v3beta1 {
           {
             url: (rootUrl + '/v3beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -9954,6 +10242,7 @@ export namespace dialogflow_v3beta1 {
           {
             url: (rootUrl + '/v3beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -10048,6 +10337,7 @@ export namespace dialogflow_v3beta1 {
           {
             url: (rootUrl + '/v3beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -10144,6 +10434,7 @@ export namespace dialogflow_v3beta1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -10237,6 +10528,7 @@ export namespace dialogflow_v3beta1 {
           {
             url: (rootUrl + '/v3beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -10333,6 +10625,7 @@ export namespace dialogflow_v3beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -10425,6 +10718,7 @@ export namespace dialogflow_v3beta1 {
           {
             url: (rootUrl + '/v3beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -10521,6 +10815,7 @@ export namespace dialogflow_v3beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -10753,6 +11048,7 @@ export namespace dialogflow_v3beta1 {
           {
             url: (rootUrl + '/v3beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -10850,6 +11146,7 @@ export namespace dialogflow_v3beta1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -10894,6 +11191,329 @@ export namespace dialogflow_v3beta1 {
     pageToken?: string;
     /**
      * Required. The agent containing the changelogs. Format: `projects//locations//agents/`.
+     */
+    parent?: string;
+  }
+
+  export class Resource$Projects$Locations$Agents$Conversations {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Deletes the specified conversation.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Agents$Conversations$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Agents$Conversations$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    delete(
+      params: Params$Resource$Projects$Locations$Agents$Conversations$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Agents$Conversations$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Agents$Conversations$Delete,
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Agents$Conversations$Delete
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleProtobufEmpty>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Agents$Conversations$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Agents$Conversations$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v3beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleProtobufEmpty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
+      }
+    }
+
+    /**
+     * Retrieves the specified conversation.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Agents$Conversations$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Agents$Conversations$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1Conversation>;
+    get(
+      params: Params$Resource$Projects$Locations$Agents$Conversations$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Agents$Conversations$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1Conversation>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1Conversation>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Agents$Conversations$Get,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1Conversation>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1Conversation>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Agents$Conversations$Get
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1Conversation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1Conversation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1Conversation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1Conversation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Agents$Conversations$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Agents$Conversations$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v3beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1Conversation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1Conversation>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Returns the list of all conversations.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Agents$Conversations$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Agents$Conversations$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1ListConversationsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Agents$Conversations$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Agents$Conversations$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1ListConversationsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1ListConversationsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Agents$Conversations$List,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1ListConversationsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1ListConversationsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Agents$Conversations$List
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1ListConversationsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1ListConversationsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1ListConversationsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1ListConversationsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Agents$Conversations$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Agents$Conversations$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v3beta1/{+parent}/conversations').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1ListConversationsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1ListConversationsResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Agents$Conversations$Delete
+    extends StandardParameters {
+    /**
+     * Required. The name of the conversation. Format: `projects//locations//agents//conversations/`.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Agents$Conversations$Get
+    extends StandardParameters {
+    /**
+     * Required. The name of the conversation. Format: `projects//locations//agents//conversations/`.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Agents$Conversations$List
+    extends StandardParameters {
+    /**
+     * Optional. The filter string. Supports filter by create_time, metrics.has_end_interaction, metrics.has_live_agent_handoff, intents.display_name, pages.display_name and flows.display_name. Timestamps expect an RFC-3339 formatted string (e.g. 2012-04-21T11:30:00-04:00). UTC offsets are supported. Some examples: 1. By create time: create_time \> "2022-04-21T11:30:00-04:00" 2. By intent display name: intents.display_name : "billing" 3. By end interaction signal: metrics.has_end_interaction = true
+     */
+    filter?: string;
+    /**
+     * Optional. The maximum number of items to return in a single page. By default 100 and at most 1000.
+     */
+    pageSize?: number;
+    /**
+     * Optional. The next_page_token value returned from a previous list request.
+     */
+    pageToken?: string;
+    /**
+     * Required. The agent to list all conversations for. Format: `projects//locations//agents/`.
      */
     parent?: string;
   }
@@ -10981,6 +11601,7 @@ export namespace dialogflow_v3beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -11071,6 +11692,7 @@ export namespace dialogflow_v3beta1 {
           {
             url: (rootUrl + '/v3beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -11166,6 +11788,7 @@ export namespace dialogflow_v3beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -11258,6 +11881,7 @@ export namespace dialogflow_v3beta1 {
           {
             url: (rootUrl + '/v3beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -11355,6 +11979,7 @@ export namespace dialogflow_v3beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -11450,6 +12075,7 @@ export namespace dialogflow_v3beta1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -11544,6 +12170,7 @@ export namespace dialogflow_v3beta1 {
           {
             url: (rootUrl + '/v3beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -11770,6 +12397,7 @@ export namespace dialogflow_v3beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -11858,6 +12486,7 @@ export namespace dialogflow_v3beta1 {
           {
             url: (rootUrl + '/v3beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -11953,6 +12582,7 @@ export namespace dialogflow_v3beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -12045,6 +12675,7 @@ export namespace dialogflow_v3beta1 {
           {
             url: (rootUrl + '/v3beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -12142,6 +12773,7 @@ export namespace dialogflow_v3beta1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -12238,6 +12870,7 @@ export namespace dialogflow_v3beta1 {
               rootUrl + '/v3beta1/{+name}:lookupEnvironmentHistory'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -12332,6 +12965,7 @@ export namespace dialogflow_v3beta1 {
           {
             url: (rootUrl + '/v3beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -12426,6 +13060,7 @@ export namespace dialogflow_v3beta1 {
               rootUrl + '/v3beta1/{+environment}:runContinuousTest'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -12625,6 +13260,7 @@ export namespace dialogflow_v3beta1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -12742,6 +13378,7 @@ export namespace dialogflow_v3beta1 {
           {
             url: (rootUrl + '/v3beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -12839,6 +13476,7 @@ export namespace dialogflow_v3beta1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -12966,6 +13604,7 @@ export namespace dialogflow_v3beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -13056,6 +13695,7 @@ export namespace dialogflow_v3beta1 {
           {
             url: (rootUrl + '/v3beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -13148,6 +13788,7 @@ export namespace dialogflow_v3beta1 {
           {
             url: (rootUrl + '/v3beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -13245,6 +13886,7 @@ export namespace dialogflow_v3beta1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -13339,6 +13981,7 @@ export namespace dialogflow_v3beta1 {
           {
             url: (rootUrl + '/v3beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -13436,6 +14079,7 @@ export namespace dialogflow_v3beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -13533,6 +14177,7 @@ export namespace dialogflow_v3beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -13724,6 +14369,7 @@ export namespace dialogflow_v3beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -13821,6 +14467,7 @@ export namespace dialogflow_v3beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -13918,6 +14565,7 @@ export namespace dialogflow_v3beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -14014,6 +14662,7 @@ export namespace dialogflow_v3beta1 {
               rootUrl + '/v3beta1/{+session}:serverStreamingDetectIntent'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -14167,6 +14816,7 @@ export namespace dialogflow_v3beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -14257,6 +14907,7 @@ export namespace dialogflow_v3beta1 {
           {
             url: (rootUrl + '/v3beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -14349,6 +15000,7 @@ export namespace dialogflow_v3beta1 {
           {
             url: (rootUrl + '/v3beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -14446,6 +15098,7 @@ export namespace dialogflow_v3beta1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -14540,6 +15193,7 @@ export namespace dialogflow_v3beta1 {
           {
             url: (rootUrl + '/v3beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -14714,6 +15368,7 @@ export namespace dialogflow_v3beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -14803,6 +15458,7 @@ export namespace dialogflow_v3beta1 {
           {
             url: (rootUrl + '/v3beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -14897,6 +15553,7 @@ export namespace dialogflow_v3beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -14988,6 +15645,7 @@ export namespace dialogflow_v3beta1 {
           {
             url: (rootUrl + '/v3beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -15082,6 +15740,7 @@ export namespace dialogflow_v3beta1 {
           {
             url: (rootUrl + '/v3beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -15178,6 +15837,7 @@ export namespace dialogflow_v3beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -15272,6 +15932,7 @@ export namespace dialogflow_v3beta1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -15365,6 +16026,7 @@ export namespace dialogflow_v3beta1 {
           {
             url: (rootUrl + '/v3beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -15461,6 +16123,7 @@ export namespace dialogflow_v3beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -15555,6 +16218,7 @@ export namespace dialogflow_v3beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -15796,6 +16460,7 @@ export namespace dialogflow_v3beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -15886,6 +16551,7 @@ export namespace dialogflow_v3beta1 {
           {
             url: (rootUrl + '/v3beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -15978,6 +16644,7 @@ export namespace dialogflow_v3beta1 {
           {
             url: (rootUrl + '/v3beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -16075,6 +16742,7 @@ export namespace dialogflow_v3beta1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -16169,6 +16837,7 @@ export namespace dialogflow_v3beta1 {
           {
             url: (rootUrl + '/v3beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -16351,6 +17020,7 @@ export namespace dialogflow_v3beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -16441,6 +17111,7 @@ export namespace dialogflow_v3beta1 {
           {
             url: (rootUrl + '/v3beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -16533,6 +17204,7 @@ export namespace dialogflow_v3beta1 {
           {
             url: (rootUrl + '/v3beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -16630,6 +17302,7 @@ export namespace dialogflow_v3beta1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -16724,6 +17397,7 @@ export namespace dialogflow_v3beta1 {
           {
             url: (rootUrl + '/v3beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -16906,6 +17580,7 @@ export namespace dialogflow_v3beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -17003,6 +17678,7 @@ export namespace dialogflow_v3beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -17091,6 +17767,7 @@ export namespace dialogflow_v3beta1 {
           {
             url: (rootUrl + '/v3beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -17183,6 +17860,7 @@ export namespace dialogflow_v3beta1 {
           {
             url: (rootUrl + '/v3beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -17280,6 +17958,7 @@ export namespace dialogflow_v3beta1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -17377,6 +18056,7 @@ export namespace dialogflow_v3beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -17469,6 +18149,7 @@ export namespace dialogflow_v3beta1 {
           {
             url: (rootUrl + '/v3beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -17655,6 +18336,7 @@ export namespace dialogflow_v3beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -17745,6 +18427,7 @@ export namespace dialogflow_v3beta1 {
           {
             url: (rootUrl + '/v3beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -17836,6 +18519,7 @@ export namespace dialogflow_v3beta1 {
           {
             url: (rootUrl + '/v3beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -17933,6 +18617,7 @@ export namespace dialogflow_v3beta1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -18027,6 +18712,7 @@ export namespace dialogflow_v3beta1 {
           {
             url: (rootUrl + '/v3beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -18208,6 +18894,7 @@ export namespace dialogflow_v3beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -18297,6 +18984,7 @@ export namespace dialogflow_v3beta1 {
           {
             url: (rootUrl + '/v3beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -18391,6 +19079,7 @@ export namespace dialogflow_v3beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -18482,6 +19171,7 @@ export namespace dialogflow_v3beta1 {
           {
             url: (rootUrl + '/v3beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -18578,6 +19268,7 @@ export namespace dialogflow_v3beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -18672,6 +19363,7 @@ export namespace dialogflow_v3beta1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -18765,6 +19457,7 @@ export namespace dialogflow_v3beta1 {
           {
             url: (rootUrl + '/v3beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -18976,6 +19669,7 @@ export namespace dialogflow_v3beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -19073,6 +19767,7 @@ export namespace dialogflow_v3beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -19170,6 +19865,7 @@ export namespace dialogflow_v3beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -19266,6 +19962,7 @@ export namespace dialogflow_v3beta1 {
               rootUrl + '/v3beta1/{+session}:serverStreamingDetectIntent'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -19363,6 +20060,7 @@ export namespace dialogflow_v3beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -19528,6 +20226,7 @@ export namespace dialogflow_v3beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -19618,6 +20317,7 @@ export namespace dialogflow_v3beta1 {
           {
             url: (rootUrl + '/v3beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -19710,6 +20410,7 @@ export namespace dialogflow_v3beta1 {
           {
             url: (rootUrl + '/v3beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -19807,6 +20508,7 @@ export namespace dialogflow_v3beta1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -19901,6 +20603,7 @@ export namespace dialogflow_v3beta1 {
           {
             url: (rootUrl + '/v3beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -20065,6 +20768,7 @@ export namespace dialogflow_v3beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -20160,6 +20864,7 @@ export namespace dialogflow_v3beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -20254,6 +20959,7 @@ export namespace dialogflow_v3beta1 {
               rootUrl + '/v3beta1/{+agent}/testCases:calculateCoverage'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -20351,6 +21057,7 @@ export namespace dialogflow_v3beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -20448,6 +21155,7 @@ export namespace dialogflow_v3beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -20539,6 +21247,7 @@ export namespace dialogflow_v3beta1 {
           {
             url: (rootUrl + '/v3beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -20636,6 +21345,7 @@ export namespace dialogflow_v3beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -20730,6 +21440,7 @@ export namespace dialogflow_v3beta1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -20824,6 +21535,7 @@ export namespace dialogflow_v3beta1 {
           {
             url: (rootUrl + '/v3beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -20920,6 +21632,7 @@ export namespace dialogflow_v3beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -21145,6 +21858,7 @@ export namespace dialogflow_v3beta1 {
           {
             url: (rootUrl + '/v3beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -21242,6 +21956,7 @@ export namespace dialogflow_v3beta1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -21373,6 +22088,7 @@ export namespace dialogflow_v3beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -21463,6 +22179,7 @@ export namespace dialogflow_v3beta1 {
           {
             url: (rootUrl + '/v3beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -21555,6 +22272,7 @@ export namespace dialogflow_v3beta1 {
           {
             url: (rootUrl + '/v3beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -21652,6 +22370,7 @@ export namespace dialogflow_v3beta1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -21746,6 +22465,7 @@ export namespace dialogflow_v3beta1 {
           {
             url: (rootUrl + '/v3beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -21928,6 +22648,7 @@ export namespace dialogflow_v3beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -22018,6 +22739,7 @@ export namespace dialogflow_v3beta1 {
           {
             url: (rootUrl + '/v3beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -22109,6 +22831,7 @@ export namespace dialogflow_v3beta1 {
           {
             url: (rootUrl + '/v3beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -22205,6 +22928,7 @@ export namespace dialogflow_v3beta1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -22298,6 +23022,7 @@ export namespace dialogflow_v3beta1 {
           {
             url: (rootUrl + '/v3beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -22459,6 +23184,7 @@ export namespace dialogflow_v3beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -22550,6 +23276,7 @@ export namespace dialogflow_v3beta1 {
           {
             url: (rootUrl + '/v3beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -22644,6 +23371,7 @@ export namespace dialogflow_v3beta1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -22782,6 +23510,7 @@ export namespace dialogflow_v3beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -22872,6 +23601,7 @@ export namespace dialogflow_v3beta1 {
           {
             url: (rootUrl + '/v3beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -22963,6 +23693,7 @@ export namespace dialogflow_v3beta1 {
           {
             url: (rootUrl + '/v3beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -23059,6 +23790,7 @@ export namespace dialogflow_v3beta1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -23153,6 +23885,7 @@ export namespace dialogflow_v3beta1 {
           {
             url: (rootUrl + '/v3beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -23310,6 +24043,7 @@ export namespace dialogflow_v3beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -23401,6 +24135,7 @@ export namespace dialogflow_v3beta1 {
           {
             url: (rootUrl + '/v3beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -23495,6 +24230,7 @@ export namespace dialogflow_v3beta1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
