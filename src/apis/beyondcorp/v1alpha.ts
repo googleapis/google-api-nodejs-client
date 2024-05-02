@@ -168,6 +168,14 @@ export namespace beyondcorp_v1alpha {
      */
     name?: string | null;
     /**
+     * Output only. Reserved for future use.
+     */
+    satisfiesPzi?: boolean | null;
+    /**
+     * Output only. Reserved for future use.
+     */
+    satisfiesPzs?: boolean | null;
+    /**
      * Output only. The current state of the AppGateway.
      */
     state?: string | null;
@@ -577,6 +585,14 @@ export namespace beyondcorp_v1alpha {
      * Required. Unique resource name of the AppConnection. The name is ignored when creating a AppConnection.
      */
     name?: string | null;
+    /**
+     * Output only. Reserved for future use.
+     */
+    satisfiesPzi?: boolean | null;
+    /**
+     * Output only. Reserved for future use.
+     */
+    satisfiesPzs?: boolean | null;
     /**
      * Output only. The current state of the AppConnection.
      */
@@ -1517,6 +1533,15 @@ export namespace beyondcorp_v1alpha {
     value?: string | null;
   }
   /**
+   * Response message for BeyondCorp.CancelSubscription
+   */
+  export interface Schema$GoogleCloudBeyondcorpSaasplatformSubscriptionsV1alphaCancelSubscriptionResponse {
+    /**
+     * Time when the cancellation will become effective
+     */
+    effectiveCancellationTime?: string | null;
+  }
+  /**
    * Response message for BeyondCorp.ListSubscriptions.
    */
   export interface Schema$GoogleCloudBeyondcorpSaasplatformSubscriptionsV1alphaListSubscriptionsResponse {
@@ -1537,6 +1562,10 @@ export namespace beyondcorp_v1alpha {
      * Output only. Represents that, if subscription will renew or end when the term ends.
      */
     autoRenewEnabled?: boolean | null;
+    /**
+     * Optional. Name of the billing account in the format. e.g. billingAccounts/123456-123456-123456 Required if Subscription is of Paid type.
+     */
+    billingAccount?: string | null;
     /**
      * Output only. Create time of the subscription.
      */
@@ -1588,19 +1617,6 @@ export namespace beyondcorp_v1alpha {
     unreachable?: string[] | null;
   }
   /**
-   * Message contains the configuration for each supported region for the securityGateway instance.
-   */
-  export interface Schema$GoogleCloudBeyondcorpSecuritygatewaysV1alphaRegionConfig {
-    /**
-     * Output only. External IP addresses that will be used for establishing connection to the egress endpoints.
-     */
-    egressIpAddresses?: string[] | null;
-    /**
-     * Required. The region where the egress connectivity is required.
-     */
-    region?: string | null;
-  }
-  /**
    * Information about a BeyoncCorp SecurityGateway resource.
    */
   export interface Schema$GoogleCloudBeyondcorpSecuritygatewaysV1alphaSecurityGateway {
@@ -1613,13 +1629,13 @@ export namespace beyondcorp_v1alpha {
      */
     displayName?: string | null;
     /**
+     * Output only. IP addresses that will be used for establishing connection to the endpoints.
+     */
+    externalIps?: string[] | null;
+    /**
      * Identifier. Name of the resource.
      */
     name?: string | null;
-    /**
-     * Optional. List of regions where the egress connectivity is required.
-     */
-    regionConfigs?: Schema$GoogleCloudBeyondcorpSecuritygatewaysV1alphaRegionConfig[];
     /**
      * Output only. The operational state of the SecurityGateway.
      */
@@ -2212,6 +2228,7 @@ export namespace beyondcorp_v1alpha {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2304,6 +2321,7 @@ export namespace beyondcorp_v1alpha {
           {
             url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -2396,6 +2414,7 @@ export namespace beyondcorp_v1alpha {
           {
             url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2491,6 +2510,7 @@ export namespace beyondcorp_v1alpha {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2586,6 +2606,7 @@ export namespace beyondcorp_v1alpha {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2680,6 +2701,7 @@ export namespace beyondcorp_v1alpha {
           {
             url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -2773,6 +2795,7 @@ export namespace beyondcorp_v1alpha {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2868,6 +2891,7 @@ export namespace beyondcorp_v1alpha {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3085,6 +3109,7 @@ export namespace beyondcorp_v1alpha {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3177,6 +3202,7 @@ export namespace beyondcorp_v1alpha {
           {
             url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -3269,6 +3295,7 @@ export namespace beyondcorp_v1alpha {
           {
             url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3364,6 +3391,7 @@ export namespace beyondcorp_v1alpha {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3459,6 +3487,7 @@ export namespace beyondcorp_v1alpha {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3553,6 +3582,7 @@ export namespace beyondcorp_v1alpha {
           {
             url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -3646,6 +3676,7 @@ export namespace beyondcorp_v1alpha {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3741,6 +3772,7 @@ export namespace beyondcorp_v1alpha {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3942,6 +3974,7 @@ export namespace beyondcorp_v1alpha {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4034,6 +4067,7 @@ export namespace beyondcorp_v1alpha {
           {
             url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -4126,6 +4160,7 @@ export namespace beyondcorp_v1alpha {
           {
             url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4221,6 +4256,7 @@ export namespace beyondcorp_v1alpha {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4316,6 +4352,7 @@ export namespace beyondcorp_v1alpha {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4410,6 +4447,7 @@ export namespace beyondcorp_v1alpha {
           {
             url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -4503,6 +4541,7 @@ export namespace beyondcorp_v1alpha {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4598,6 +4637,7 @@ export namespace beyondcorp_v1alpha {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4815,6 +4855,7 @@ export namespace beyondcorp_v1alpha {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4908,6 +4949,7 @@ export namespace beyondcorp_v1alpha {
           {
             url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5004,6 +5046,7 @@ export namespace beyondcorp_v1alpha {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5183,6 +5226,7 @@ export namespace beyondcorp_v1alpha {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5268,6 +5312,7 @@ export namespace beyondcorp_v1alpha {
           {
             url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -5359,6 +5404,7 @@ export namespace beyondcorp_v1alpha {
           {
             url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5453,6 +5499,7 @@ export namespace beyondcorp_v1alpha {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5524,6 +5571,104 @@ export namespace beyondcorp_v1alpha {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
+    }
+
+    /**
+     * Cancels an existing BeyondCorp Enterprise Subscription in a given organization. Location will always be global as BeyondCorp subscriptions are per organization. Returns the timestamp for when the cancellation will become effective
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    cancel(
+      params: Params$Resource$Organizations$Locations$Subscriptions$Cancel,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    cancel(
+      params?: Params$Resource$Organizations$Locations$Subscriptions$Cancel,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudBeyondcorpSaasplatformSubscriptionsV1alphaCancelSubscriptionResponse>;
+    cancel(
+      params: Params$Resource$Organizations$Locations$Subscriptions$Cancel,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    cancel(
+      params: Params$Resource$Organizations$Locations$Subscriptions$Cancel,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudBeyondcorpSaasplatformSubscriptionsV1alphaCancelSubscriptionResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudBeyondcorpSaasplatformSubscriptionsV1alphaCancelSubscriptionResponse>
+    ): void;
+    cancel(
+      params: Params$Resource$Organizations$Locations$Subscriptions$Cancel,
+      callback: BodyResponseCallback<Schema$GoogleCloudBeyondcorpSaasplatformSubscriptionsV1alphaCancelSubscriptionResponse>
+    ): void;
+    cancel(
+      callback: BodyResponseCallback<Schema$GoogleCloudBeyondcorpSaasplatformSubscriptionsV1alphaCancelSubscriptionResponse>
+    ): void;
+    cancel(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Locations$Subscriptions$Cancel
+        | BodyResponseCallback<Schema$GoogleCloudBeyondcorpSaasplatformSubscriptionsV1alphaCancelSubscriptionResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudBeyondcorpSaasplatformSubscriptionsV1alphaCancelSubscriptionResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudBeyondcorpSaasplatformSubscriptionsV1alphaCancelSubscriptionResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudBeyondcorpSaasplatformSubscriptionsV1alphaCancelSubscriptionResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Locations$Subscriptions$Cancel;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Organizations$Locations$Subscriptions$Cancel;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://beyondcorp.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+name}:cancel').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudBeyondcorpSaasplatformSubscriptionsV1alphaCancelSubscriptionResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudBeyondcorpSaasplatformSubscriptionsV1alphaCancelSubscriptionResponse>(
+          parameters
+        );
+      }
     }
 
     /**
@@ -5603,6 +5748,7 @@ export namespace beyondcorp_v1alpha {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5697,6 +5843,7 @@ export namespace beyondcorp_v1alpha {
           {
             url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5794,6 +5941,7 @@ export namespace beyondcorp_v1alpha {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5813,8 +5961,114 @@ export namespace beyondcorp_v1alpha {
         );
       }
     }
+
+    /**
+     * Updates an existing BeyondCorp Enterprise Subscription in a given organization. Location will always be global as BeyondCorp subscriptions are per organization.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Organizations$Locations$Subscriptions$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Organizations$Locations$Subscriptions$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudBeyondcorpSaasplatformSubscriptionsV1alphaSubscription>;
+    patch(
+      params: Params$Resource$Organizations$Locations$Subscriptions$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Organizations$Locations$Subscriptions$Patch,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudBeyondcorpSaasplatformSubscriptionsV1alphaSubscription>,
+      callback: BodyResponseCallback<Schema$GoogleCloudBeyondcorpSaasplatformSubscriptionsV1alphaSubscription>
+    ): void;
+    patch(
+      params: Params$Resource$Organizations$Locations$Subscriptions$Patch,
+      callback: BodyResponseCallback<Schema$GoogleCloudBeyondcorpSaasplatformSubscriptionsV1alphaSubscription>
+    ): void;
+    patch(
+      callback: BodyResponseCallback<Schema$GoogleCloudBeyondcorpSaasplatformSubscriptionsV1alphaSubscription>
+    ): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Locations$Subscriptions$Patch
+        | BodyResponseCallback<Schema$GoogleCloudBeyondcorpSaasplatformSubscriptionsV1alphaSubscription>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudBeyondcorpSaasplatformSubscriptionsV1alphaSubscription>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudBeyondcorpSaasplatformSubscriptionsV1alphaSubscription>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudBeyondcorpSaasplatformSubscriptionsV1alphaSubscription>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Locations$Subscriptions$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Organizations$Locations$Subscriptions$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://beyondcorp.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudBeyondcorpSaasplatformSubscriptionsV1alphaSubscription>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudBeyondcorpSaasplatformSubscriptionsV1alphaSubscription>(
+          parameters
+        );
+      }
+    }
   }
 
+  export interface Params$Resource$Organizations$Locations$Subscriptions$Cancel
+    extends StandardParameters {
+    /**
+     * Required. Name of the resource.
+     */
+    name?: string;
+    /**
+     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+  }
   export interface Params$Resource$Organizations$Locations$Subscriptions$Create
     extends StandardParameters {
     /**
@@ -5849,6 +6103,26 @@ export namespace beyondcorp_v1alpha {
      */
     parent?: string;
   }
+  export interface Params$Resource$Organizations$Locations$Subscriptions$Patch
+    extends StandardParameters {
+    /**
+     * Required. Unique resource name of the Subscription. The name is ignored when creating a subscription.
+     */
+    name?: string;
+    /**
+     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+    /**
+     * Required. Field mask is used to specify the fields to be overwritten in the Subscription resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. Mutable fields: seat_count.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudBeyondcorpSaasplatformSubscriptionsV1alphaSubscription;
+  }
 
   export class Resource$Projects {
     context: APIRequestContext;
@@ -5870,10 +6144,10 @@ export namespace beyondcorp_v1alpha {
     clientGateways: Resource$Projects$Locations$Clientgateways;
     connections: Resource$Projects$Locations$Connections;
     connectors: Resource$Projects$Locations$Connectors;
-    global: Resource$Projects$Locations$Global;
     insights: Resource$Projects$Locations$Insights;
     netConnections: Resource$Projects$Locations$Netconnections;
     operations: Resource$Projects$Locations$Operations;
+    securityGateways: Resource$Projects$Locations$Securitygateways;
     constructor(context: APIRequestContext) {
       this.context = context;
       this.appConnections = new Resource$Projects$Locations$Appconnections(
@@ -5901,12 +6175,14 @@ export namespace beyondcorp_v1alpha {
       this.connectors = new Resource$Projects$Locations$Connectors(
         this.context
       );
-      this.global = new Resource$Projects$Locations$Global(this.context);
       this.insights = new Resource$Projects$Locations$Insights(this.context);
       this.netConnections = new Resource$Projects$Locations$Netconnections(
         this.context
       );
       this.operations = new Resource$Projects$Locations$Operations(
+        this.context
+      );
+      this.securityGateways = new Resource$Projects$Locations$Securitygateways(
         this.context
       );
     }
@@ -5984,6 +6260,7 @@ export namespace beyondcorp_v1alpha {
           {
             url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6078,6 +6355,7 @@ export namespace beyondcorp_v1alpha {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6208,6 +6486,7 @@ export namespace beyondcorp_v1alpha {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -6299,6 +6578,7 @@ export namespace beyondcorp_v1alpha {
           {
             url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -6390,6 +6670,7 @@ export namespace beyondcorp_v1alpha {
           {
             url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6485,6 +6766,7 @@ export namespace beyondcorp_v1alpha {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6579,6 +6861,7 @@ export namespace beyondcorp_v1alpha {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6672,6 +6955,7 @@ export namespace beyondcorp_v1alpha {
           {
             url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -6766,6 +7050,7 @@ export namespace beyondcorp_v1alpha {
               rootUrl + '/v1alpha/{+parent}/appConnections:resolve'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6861,6 +7146,7 @@ export namespace beyondcorp_v1alpha {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -6956,6 +7242,7 @@ export namespace beyondcorp_v1alpha {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -7211,6 +7498,7 @@ export namespace beyondcorp_v1alpha {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -7302,6 +7590,7 @@ export namespace beyondcorp_v1alpha {
           {
             url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -7393,6 +7682,7 @@ export namespace beyondcorp_v1alpha {
           {
             url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -7488,6 +7778,7 @@ export namespace beyondcorp_v1alpha {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -7582,6 +7873,7 @@ export namespace beyondcorp_v1alpha {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -7675,6 +7967,7 @@ export namespace beyondcorp_v1alpha {
           {
             url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -7770,6 +8063,7 @@ export namespace beyondcorp_v1alpha {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -7864,6 +8158,7 @@ export namespace beyondcorp_v1alpha {
               rootUrl + '/v1alpha/{+appConnector}:resolveInstanceConfig'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -7959,6 +8254,7 @@ export namespace beyondcorp_v1alpha {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -8054,6 +8350,7 @@ export namespace beyondcorp_v1alpha {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -8305,6 +8602,7 @@ export namespace beyondcorp_v1alpha {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -8396,6 +8694,7 @@ export namespace beyondcorp_v1alpha {
           {
             url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -8480,6 +8779,7 @@ export namespace beyondcorp_v1alpha {
           {
             url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -8573,6 +8873,7 @@ export namespace beyondcorp_v1alpha {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -8665,6 +8966,7 @@ export namespace beyondcorp_v1alpha {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -8758,6 +9060,7 @@ export namespace beyondcorp_v1alpha {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -8853,6 +9156,7 @@ export namespace beyondcorp_v1alpha {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -9060,6 +9364,7 @@ export namespace beyondcorp_v1alpha {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -9153,6 +9458,7 @@ export namespace beyondcorp_v1alpha {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -9248,6 +9554,7 @@ export namespace beyondcorp_v1alpha {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -9386,6 +9693,7 @@ export namespace beyondcorp_v1alpha {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -9479,6 +9787,7 @@ export namespace beyondcorp_v1alpha {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -9574,6 +9883,7 @@ export namespace beyondcorp_v1alpha {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -9712,6 +10022,7 @@ export namespace beyondcorp_v1alpha {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -9805,6 +10116,7 @@ export namespace beyondcorp_v1alpha {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -9900,6 +10212,7 @@ export namespace beyondcorp_v1alpha {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -10038,6 +10351,7 @@ export namespace beyondcorp_v1alpha {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -10131,6 +10445,7 @@ export namespace beyondcorp_v1alpha {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -10226,6 +10541,7 @@ export namespace beyondcorp_v1alpha {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -10365,6 +10681,7 @@ export namespace beyondcorp_v1alpha {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -10456,6 +10773,7 @@ export namespace beyondcorp_v1alpha {
           {
             url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -10540,6 +10858,7 @@ export namespace beyondcorp_v1alpha {
           {
             url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -10633,6 +10952,7 @@ export namespace beyondcorp_v1alpha {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -10725,6 +11045,7 @@ export namespace beyondcorp_v1alpha {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -10816,6 +11137,7 @@ export namespace beyondcorp_v1alpha {
           {
             url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -10910,6 +11232,7 @@ export namespace beyondcorp_v1alpha {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -11003,6 +11326,7 @@ export namespace beyondcorp_v1alpha {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -11098,6 +11422,7 @@ export namespace beyondcorp_v1alpha {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -11353,6 +11678,7 @@ export namespace beyondcorp_v1alpha {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -11444,6 +11770,7 @@ export namespace beyondcorp_v1alpha {
           {
             url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -11528,6 +11855,7 @@ export namespace beyondcorp_v1alpha {
           {
             url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -11621,6 +11949,7 @@ export namespace beyondcorp_v1alpha {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -11713,6 +12042,7 @@ export namespace beyondcorp_v1alpha {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -11804,6 +12134,7 @@ export namespace beyondcorp_v1alpha {
           {
             url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -11899,6 +12230,7 @@ export namespace beyondcorp_v1alpha {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -11993,6 +12325,7 @@ export namespace beyondcorp_v1alpha {
               rootUrl + '/v1alpha/{+connector}:resolveInstanceConfig'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -12088,6 +12421,7 @@ export namespace beyondcorp_v1alpha {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -12183,6 +12517,7 @@ export namespace beyondcorp_v1alpha {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -12352,579 +12687,6 @@ export namespace beyondcorp_v1alpha {
     requestBody?: Schema$GoogleIamV1TestIamPermissionsRequest;
   }
 
-  export class Resource$Projects$Locations$Global {
-    context: APIRequestContext;
-    securityGateways: Resource$Projects$Locations$Global$Securitygateways;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-      this.securityGateways =
-        new Resource$Projects$Locations$Global$Securitygateways(this.context);
-    }
-  }
-
-  export class Resource$Projects$Locations$Global$Securitygateways {
-    context: APIRequestContext;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-    }
-
-    /**
-     * Creates a new SecurityGateway in a given project and global location.
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    create(
-      params: Params$Resource$Projects$Locations$Global$Securitygateways$Create,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    create(
-      params?: Params$Resource$Projects$Locations$Global$Securitygateways$Create,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
-    create(
-      params: Params$Resource$Projects$Locations$Global$Securitygateways$Create,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    create(
-      params: Params$Resource$Projects$Locations$Global$Securitygateways$Create,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    create(
-      params: Params$Resource$Projects$Locations$Global$Securitygateways$Create,
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    create(
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    create(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Global$Securitygateways$Create
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Global$Securitygateways$Create;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Projects$Locations$Global$Securitygateways$Create;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://beyondcorp.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1alpha/{+parent}/securityGateways').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'POST',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['parent'],
-        pathParams: ['parent'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleLongrunningOperation>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
-      }
-    }
-
-    /**
-     * Deletes a single SecurityGateway.
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    delete(
-      params: Params$Resource$Projects$Locations$Global$Securitygateways$Delete,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    delete(
-      params?: Params$Resource$Projects$Locations$Global$Securitygateways$Delete,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
-    delete(
-      params: Params$Resource$Projects$Locations$Global$Securitygateways$Delete,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    delete(
-      params: Params$Resource$Projects$Locations$Global$Securitygateways$Delete,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    delete(
-      params: Params$Resource$Projects$Locations$Global$Securitygateways$Delete,
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    delete(
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    delete(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Global$Securitygateways$Delete
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Global$Securitygateways$Delete;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Projects$Locations$Global$Securitygateways$Delete;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://beyondcorp.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'DELETE',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleLongrunningOperation>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
-      }
-    }
-
-    /**
-     * Gets details of a single SecurityGateway.
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    get(
-      params: Params$Resource$Projects$Locations$Global$Securitygateways$Get,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    get(
-      params?: Params$Resource$Projects$Locations$Global$Securitygateways$Get,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudBeyondcorpSecuritygatewaysV1alphaSecurityGateway>;
-    get(
-      params: Params$Resource$Projects$Locations$Global$Securitygateways$Get,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    get(
-      params: Params$Resource$Projects$Locations$Global$Securitygateways$Get,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudBeyondcorpSecuritygatewaysV1alphaSecurityGateway>,
-      callback: BodyResponseCallback<Schema$GoogleCloudBeyondcorpSecuritygatewaysV1alphaSecurityGateway>
-    ): void;
-    get(
-      params: Params$Resource$Projects$Locations$Global$Securitygateways$Get,
-      callback: BodyResponseCallback<Schema$GoogleCloudBeyondcorpSecuritygatewaysV1alphaSecurityGateway>
-    ): void;
-    get(
-      callback: BodyResponseCallback<Schema$GoogleCloudBeyondcorpSecuritygatewaysV1alphaSecurityGateway>
-    ): void;
-    get(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Global$Securitygateways$Get
-        | BodyResponseCallback<Schema$GoogleCloudBeyondcorpSecuritygatewaysV1alphaSecurityGateway>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudBeyondcorpSecuritygatewaysV1alphaSecurityGateway>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleCloudBeyondcorpSecuritygatewaysV1alphaSecurityGateway>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$GoogleCloudBeyondcorpSecuritygatewaysV1alphaSecurityGateway>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Global$Securitygateways$Get;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Projects$Locations$Global$Securitygateways$Get;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://beyondcorp.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'GET',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleCloudBeyondcorpSecuritygatewaysV1alphaSecurityGateway>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleCloudBeyondcorpSecuritygatewaysV1alphaSecurityGateway>(
-          parameters
-        );
-      }
-    }
-
-    /**
-     * Lists SecurityGateways in a given project and global location.
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    list(
-      params: Params$Resource$Projects$Locations$Global$Securitygateways$List,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    list(
-      params?: Params$Resource$Projects$Locations$Global$Securitygateways$List,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudBeyondcorpSecuritygatewaysV1alphaListSecurityGatewaysResponse>;
-    list(
-      params: Params$Resource$Projects$Locations$Global$Securitygateways$List,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    list(
-      params: Params$Resource$Projects$Locations$Global$Securitygateways$List,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudBeyondcorpSecuritygatewaysV1alphaListSecurityGatewaysResponse>,
-      callback: BodyResponseCallback<Schema$GoogleCloudBeyondcorpSecuritygatewaysV1alphaListSecurityGatewaysResponse>
-    ): void;
-    list(
-      params: Params$Resource$Projects$Locations$Global$Securitygateways$List,
-      callback: BodyResponseCallback<Schema$GoogleCloudBeyondcorpSecuritygatewaysV1alphaListSecurityGatewaysResponse>
-    ): void;
-    list(
-      callback: BodyResponseCallback<Schema$GoogleCloudBeyondcorpSecuritygatewaysV1alphaListSecurityGatewaysResponse>
-    ): void;
-    list(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Global$Securitygateways$List
-        | BodyResponseCallback<Schema$GoogleCloudBeyondcorpSecuritygatewaysV1alphaListSecurityGatewaysResponse>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudBeyondcorpSecuritygatewaysV1alphaListSecurityGatewaysResponse>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleCloudBeyondcorpSecuritygatewaysV1alphaListSecurityGatewaysResponse>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$GoogleCloudBeyondcorpSecuritygatewaysV1alphaListSecurityGatewaysResponse>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Global$Securitygateways$List;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Projects$Locations$Global$Securitygateways$List;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://beyondcorp.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1alpha/{+parent}/securityGateways').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'GET',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['parent'],
-        pathParams: ['parent'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleCloudBeyondcorpSecuritygatewaysV1alphaListSecurityGatewaysResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleCloudBeyondcorpSecuritygatewaysV1alphaListSecurityGatewaysResponse>(
-          parameters
-        );
-      }
-    }
-
-    /**
-     * Updates the parameters of a single SecurityGateway.
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    patch(
-      params: Params$Resource$Projects$Locations$Global$Securitygateways$Patch,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    patch(
-      params?: Params$Resource$Projects$Locations$Global$Securitygateways$Patch,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
-    patch(
-      params: Params$Resource$Projects$Locations$Global$Securitygateways$Patch,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    patch(
-      params: Params$Resource$Projects$Locations$Global$Securitygateways$Patch,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    patch(
-      params: Params$Resource$Projects$Locations$Global$Securitygateways$Patch,
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    patch(
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    patch(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Global$Securitygateways$Patch
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Global$Securitygateways$Patch;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Projects$Locations$Global$Securitygateways$Patch;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://beyondcorp.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'PATCH',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleLongrunningOperation>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
-      }
-    }
-  }
-
-  export interface Params$Resource$Projects$Locations$Global$Securitygateways$Create
-    extends StandardParameters {
-    /**
-     * Required. The resource project name of the SecurityGateway location using the form: `projects/{project_id\}/locations/global`
-     */
-    parent?: string;
-    /**
-     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request.
-     */
-    requestId?: string;
-    /**
-     * Optional. User-settable SecurityGateway resource ID. * Must start with a letter. * Must contain between 4-63 characters from `/a-z-/`. * Must end with a number or letter.
-     */
-    securityGatewayId?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$GoogleCloudBeyondcorpSecuritygatewaysV1alphaSecurityGateway;
-  }
-  export interface Params$Resource$Projects$Locations$Global$Securitygateways$Delete
-    extends StandardParameters {
-    /**
-     * Required. BeyondCorp SecurityGateway name using the form: `projects/{project_id\}/locations/global/securityGateways/{security_gateway_id\}`
-     */
-    name?: string;
-    /**
-     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
-     */
-    requestId?: string;
-    /**
-     * Optional. If set, validates request by executing a dry-run which would not alter the resource in any way.
-     */
-    validateOnly?: boolean;
-  }
-  export interface Params$Resource$Projects$Locations$Global$Securitygateways$Get
-    extends StandardParameters {
-    /**
-     * Required. The resource name of the PartnerTenant using the form: `projects/{project_id\}/locations/global/securityGateway/{security_gateway_id\}`
-     */
-    name?: string;
-  }
-  export interface Params$Resource$Projects$Locations$Global$Securitygateways$List
-    extends StandardParameters {
-    /**
-     * Optional. A filter specifying constraints of a list operation. All fields in the SecurityGateway message are supported. For example, the following query will return the SecurityGateway with displayName "test-security-gateway" For more information, please refer to https://google.aip.dev/160.
-     */
-    filter?: string;
-    /**
-     * Optional. Specifies the ordering of results. See [Sorting order](https://cloud.google.com/apis/design/design_patterns#sorting_order) for more information.
-     */
-    orderBy?: string;
-    /**
-     * Optional. The maximum number of items to return. If not specified, a default value of 50 will be used by the service. Regardless of the page_size value, the response may include a partial list and a caller should only rely on response's next_page_token to determine if there are more instances left to be queried.
-     */
-    pageSize?: number;
-    /**
-     * Optional. The next_page_token value returned from a previous ListSecurityGatewayRequest, if any.
-     */
-    pageToken?: string;
-    /**
-     * Required. The parent location to which the resources belong. `projects/{project_id\}/locations/global/`
-     */
-    parent?: string;
-  }
-  export interface Params$Resource$Projects$Locations$Global$Securitygateways$Patch
-    extends StandardParameters {
-    /**
-     * Identifier. Name of the resource.
-     */
-    name?: string;
-    /**
-     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request timed out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
-     */
-    requestId?: string;
-    /**
-     * Required. Mutable fields include: display_name, gateway_regions.
-     */
-    updateMask?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$GoogleCloudBeyondcorpSecuritygatewaysV1alphaSecurityGateway;
-  }
-
   export class Resource$Projects$Locations$Insights {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
@@ -13008,6 +12770,7 @@ export namespace beyondcorp_v1alpha {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -13101,6 +12864,7 @@ export namespace beyondcorp_v1alpha {
           {
             url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -13197,6 +12961,7 @@ export namespace beyondcorp_v1alpha {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -13381,6 +13146,7 @@ export namespace beyondcorp_v1alpha {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -13474,6 +13240,7 @@ export namespace beyondcorp_v1alpha {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -13569,6 +13336,7 @@ export namespace beyondcorp_v1alpha {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -13701,6 +13469,7 @@ export namespace beyondcorp_v1alpha {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -13785,6 +13554,7 @@ export namespace beyondcorp_v1alpha {
           {
             url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -13876,6 +13646,7 @@ export namespace beyondcorp_v1alpha {
           {
             url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -13970,6 +13741,7 @@ export namespace beyondcorp_v1alpha {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -14035,5 +13807,571 @@ export namespace beyondcorp_v1alpha {
      * The standard list page token.
      */
     pageToken?: string;
+  }
+
+  export class Resource$Projects$Locations$Securitygateways {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Creates a new SecurityGateway in a given project and location.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Locations$Securitygateways$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Projects$Locations$Securitygateways$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    create(
+      params: Params$Resource$Projects$Locations$Securitygateways$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Securitygateways$Create,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Securitygateways$Create,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    create(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Securitygateways$Create
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Securitygateways$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Securitygateways$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://beyondcorp.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+parent}/securityGateways').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+
+    /**
+     * Deletes a single SecurityGateway.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Securitygateways$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Securitygateways$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    delete(
+      params: Params$Resource$Projects$Locations$Securitygateways$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Securitygateways$Delete,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Securitygateways$Delete,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    delete(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Securitygateways$Delete
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Securitygateways$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Securitygateways$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://beyondcorp.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+
+    /**
+     * Gets details of a single SecurityGateway.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Securitygateways$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Securitygateways$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudBeyondcorpSecuritygatewaysV1alphaSecurityGateway>;
+    get(
+      params: Params$Resource$Projects$Locations$Securitygateways$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Securitygateways$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudBeyondcorpSecuritygatewaysV1alphaSecurityGateway>,
+      callback: BodyResponseCallback<Schema$GoogleCloudBeyondcorpSecuritygatewaysV1alphaSecurityGateway>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Securitygateways$Get,
+      callback: BodyResponseCallback<Schema$GoogleCloudBeyondcorpSecuritygatewaysV1alphaSecurityGateway>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$GoogleCloudBeyondcorpSecuritygatewaysV1alphaSecurityGateway>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Securitygateways$Get
+        | BodyResponseCallback<Schema$GoogleCloudBeyondcorpSecuritygatewaysV1alphaSecurityGateway>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudBeyondcorpSecuritygatewaysV1alphaSecurityGateway>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudBeyondcorpSecuritygatewaysV1alphaSecurityGateway>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudBeyondcorpSecuritygatewaysV1alphaSecurityGateway>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Securitygateways$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Securitygateways$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://beyondcorp.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudBeyondcorpSecuritygatewaysV1alphaSecurityGateway>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudBeyondcorpSecuritygatewaysV1alphaSecurityGateway>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Lists SecurityGateways in a given project and location.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Securitygateways$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Securitygateways$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudBeyondcorpSecuritygatewaysV1alphaListSecurityGatewaysResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Securitygateways$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Securitygateways$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudBeyondcorpSecuritygatewaysV1alphaListSecurityGatewaysResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudBeyondcorpSecuritygatewaysV1alphaListSecurityGatewaysResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Securitygateways$List,
+      callback: BodyResponseCallback<Schema$GoogleCloudBeyondcorpSecuritygatewaysV1alphaListSecurityGatewaysResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$GoogleCloudBeyondcorpSecuritygatewaysV1alphaListSecurityGatewaysResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Securitygateways$List
+        | BodyResponseCallback<Schema$GoogleCloudBeyondcorpSecuritygatewaysV1alphaListSecurityGatewaysResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudBeyondcorpSecuritygatewaysV1alphaListSecurityGatewaysResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudBeyondcorpSecuritygatewaysV1alphaListSecurityGatewaysResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudBeyondcorpSecuritygatewaysV1alphaListSecurityGatewaysResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Securitygateways$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Securitygateways$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://beyondcorp.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+parent}/securityGateways').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudBeyondcorpSecuritygatewaysV1alphaListSecurityGatewaysResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudBeyondcorpSecuritygatewaysV1alphaListSecurityGatewaysResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Updates the parameters of a single SecurityGateway.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Locations$Securitygateways$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Projects$Locations$Securitygateways$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    patch(
+      params: Params$Resource$Projects$Locations$Securitygateways$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Securitygateways$Patch,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Securitygateways$Patch,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    patch(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Securitygateways$Patch
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Securitygateways$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Securitygateways$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://beyondcorp.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Securitygateways$Create
+    extends StandardParameters {
+    /**
+     * Required. The resource project name of the SecurityGateway location using the form: `projects/{project_id\}/locations/{location_id\}`
+     */
+    parent?: string;
+    /**
+     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request.
+     */
+    requestId?: string;
+    /**
+     * Optional. User-settable SecurityGateway resource ID. * Must start with a letter. * Must contain between 4-63 characters from `/a-z-/`. * Must end with a number or letter.
+     */
+    securityGatewayId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudBeyondcorpSecuritygatewaysV1alphaSecurityGateway;
+  }
+  export interface Params$Resource$Projects$Locations$Securitygateways$Delete
+    extends StandardParameters {
+    /**
+     * Required. BeyondCorp SecurityGateway name using the form: `projects/{project_id\}/locations/{location_id\}/securityGateways/{security_gateway_id\}`
+     */
+    name?: string;
+    /**
+     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+    /**
+     * Optional. If set, validates request by executing a dry-run which would not alter the resource in any way.
+     */
+    validateOnly?: boolean;
+  }
+  export interface Params$Resource$Projects$Locations$Securitygateways$Get
+    extends StandardParameters {
+    /**
+     * Required. The resource name of the PartnerTenant using the form: `projects/{project_id\}/locations/{location_id\}/securityGateway/{security_gateway_id\}`
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Securitygateways$List
+    extends StandardParameters {
+    /**
+     * Optional. A filter specifying constraints of a list operation. All fields in the SecurityGateway message are supported. For example, the following query will return the SecurityGateway with displayName "test-security-gateway" For more information, please refer to https://google.aip.dev/160.
+     */
+    filter?: string;
+    /**
+     * Optional. Specifies the ordering of results. See [Sorting order](https://cloud.google.com/apis/design/design_patterns#sorting_order) for more information.
+     */
+    orderBy?: string;
+    /**
+     * Optional. The maximum number of items to return. If not specified, a default value of 50 will be used by the service. Regardless of the page_size value, the response may include a partial list and a caller should only rely on response's next_page_token to determine if there are more instances left to be queried.
+     */
+    pageSize?: number;
+    /**
+     * Optional. The next_page_token value returned from a previous ListSecurityGatewayRequest, if any.
+     */
+    pageToken?: string;
+    /**
+     * Required. The parent location to which the resources belong. `projects/{project_id\}/locations/{location_id\}/`
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Securitygateways$Patch
+    extends StandardParameters {
+    /**
+     * Identifier. Name of the resource.
+     */
+    name?: string;
+    /**
+     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request timed out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+    /**
+     * Required. Mutable fields include: display_name, gateway_regions.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudBeyondcorpSecuritygatewaysV1alphaSecurityGateway;
   }
 }
