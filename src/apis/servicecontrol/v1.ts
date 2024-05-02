@@ -280,6 +280,10 @@ export namespace servicecontrol_v1 {
      */
     claims?: {[key: string]: any} | null;
     /**
+     * Identifies the client credential id used for authentication. credential_id is in the format of AUTH_METHOD:IDENTIFIER, e.g. "serviceaccount:XXXXX, apikey:XXXXX" where the format of the IDENTIFIER can vary for different AUTH_METHODs.
+     */
+    credentialId?: string | null;
+    /**
      * The authorized presenter of the credential. Reflects the optional Authorized Presenter (`azp`) claim within a JWT or the OAuth client id. For example, a Google Cloud Platform client id looks as follows: "123456789012.apps.googleusercontent.com".
      */
     presenter?: string | null;
@@ -333,6 +337,10 @@ export namespace servicecontrol_v1 {
      * The required IAM permission.
      */
     permission?: string | null;
+    /**
+     * The type of the permission that was checked. For data access audit logs this corresponds with the permission type that must be enabled in the project/folder/organization IAM policy in order for the log to be written.
+     */
+    permissionType?: string | null;
     /**
      * The resource being accessed, as a REST-style or cloud resource string. For example: bigquery.googleapis.com/projects/PROJECTID/datasets/DATASETID or projects/PROJECTID/datasets/DATASETID
      */
@@ -1597,6 +1605,7 @@ export namespace servicecontrol_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1684,6 +1693,7 @@ export namespace servicecontrol_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1771,6 +1781,7 @@ export namespace servicecontrol_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
