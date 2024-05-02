@@ -1,5 +1,24 @@
 # Changelog
 
+## [11.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/cloudsupport-v10.1.0...cloudsupport-v11.0.0) (2024-05-02)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+* This release has breaking changes.
+
+### Features
+
+* **cloudsupport:** update the API ([ceb5503](https://github.com/googleapis/google-api-nodejs-client/commit/ceb5503e69b26a0838d8decc00ca17ebdcdda743))
+* run the generator ([#3434](https://github.com/googleapis/google-api-nodejs-client/issues/3434)) ([f0db524](https://github.com/googleapis/google-api-nodejs-client/commit/f0db524bb26f05cea3dec4c0ed66b496399e3857))
+* run the generator ([#3456](https://github.com/googleapis/google-api-nodejs-client/issues/3456)) ([a865e81](https://github.com/googleapis/google-api-nodejs-client/commit/a865e81539b315d3b321650663ba0b2555b1e5a1))
+
+
+### Bug Fixes
+
+* **cloudsupport:** update the API ([ae1260a](https://github.com/googleapis/google-api-nodejs-client/commit/ae1260a4fd045464e931c15f2229f0789b987a94))
+
 ## [10.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/cloudsupport-v10.0.0...cloudsupport-v10.1.0) (2024-05-02)
 
 
