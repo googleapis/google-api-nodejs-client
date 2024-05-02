@@ -270,6 +270,7 @@ export namespace playgrouping_v1alpha1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -387,6 +388,7 @@ export namespace playgrouping_v1alpha1 {
               rootUrl + '/v1alpha1/{+appPackage}/{+token}/tags:createOrUpdate'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
