@@ -485,6 +485,7 @@ export namespace reseller_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -571,6 +572,7 @@ export namespace reseller_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -657,6 +659,7 @@ export namespace reseller_v1 {
               '$1'
             ),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -743,6 +746,7 @@ export namespace reseller_v1 {
               '$1'
             ),
             method: 'PUT',
+            apiVersion: '',
           },
           options
         ),
@@ -883,6 +887,7 @@ export namespace reseller_v1 {
               rootUrl + '/apps/reseller/v1/resellernotify/getwatchdetails'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -978,6 +983,7 @@ export namespace reseller_v1 {
               rootUrl + '/apps/reseller/v1/resellernotify/register'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1071,6 +1077,7 @@ export namespace reseller_v1 {
               rootUrl + '/apps/reseller/v1/resellernotify/unregister'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1182,6 +1189,7 @@ export namespace reseller_v1 {
               '/apps/reseller/v1/customers/{customerId}/subscriptions/{subscriptionId}/activate'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1269,6 +1277,7 @@ export namespace reseller_v1 {
               '/apps/reseller/v1/customers/{customerId}/subscriptions/{subscriptionId}/changePlan'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1358,6 +1367,7 @@ export namespace reseller_v1 {
               '/apps/reseller/v1/customers/{customerId}/subscriptions/{subscriptionId}/changeRenewalSettings'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1445,6 +1455,7 @@ export namespace reseller_v1 {
               '/apps/reseller/v1/customers/{customerId}/subscriptions/{subscriptionId}/changeSeats'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1530,6 +1541,7 @@ export namespace reseller_v1 {
               '/apps/reseller/v1/customers/{customerId}/subscriptions/{subscriptionId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -1617,6 +1629,7 @@ export namespace reseller_v1 {
               '/apps/reseller/v1/customers/{customerId}/subscriptions/{subscriptionId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1703,6 +1716,7 @@ export namespace reseller_v1 {
               rootUrl + '/apps/reseller/v1/customers/{customerId}/subscriptions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1790,6 +1804,7 @@ export namespace reseller_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1877,6 +1892,7 @@ export namespace reseller_v1 {
               '/apps/reseller/v1/customers/{customerId}/subscriptions/{subscriptionId}/startPaidService'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1964,6 +1980,7 @@ export namespace reseller_v1 {
               '/apps/reseller/v1/customers/{customerId}/subscriptions/{subscriptionId}/suspend'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
