@@ -1,5 +1,12 @@
 # Changelog
 
+## [7.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/appengine-v7.0.0...appengine-v7.1.0) (2024-05-02)
+
+
+### Features
+
+* **appengine:** update the API ([543b45e](https://github.com/googleapis/google-api-nodejs-client/commit/543b45e8cad0556e923f2f44e61d3bf96675e1ca))
+
 ## [7.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/appengine-v6.0.0...appengine-v7.0.0) (2024-04-04)
 
 

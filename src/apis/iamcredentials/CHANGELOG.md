@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/iamcredentials-v3.0.0...iamcredentials-v3.0.1) (2024-05-02)
+
+
+### Bug Fixes
+
+* **iamcredentials:** update the API ([0610412](https://github.com/googleapis/google-api-nodejs-client/commit/06104128540bdc9565a0cd8cdb812aafe4025ba2))
+
 ## [3.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/iamcredentials-v2.0.0...iamcredentials-v3.0.0) (2024-04-04)
 
 

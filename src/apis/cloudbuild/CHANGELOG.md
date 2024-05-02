@@ -1,5 +1,12 @@
 # Changelog
 
+## [8.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/cloudbuild-v8.0.0...cloudbuild-v8.1.0) (2024-05-02)
+
+
+### Features
+
+* **cloudbuild:** update the API ([d20db7b](https://github.com/googleapis/google-api-nodejs-client/commit/d20db7be93195c69e6b1345bcf196aeab8b57b35))
+
 ## [8.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/cloudbuild-v7.0.0...cloudbuild-v8.0.0) (2024-04-04)
 
 

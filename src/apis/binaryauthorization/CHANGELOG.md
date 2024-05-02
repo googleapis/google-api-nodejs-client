@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/binaryauthorization-v5.0.0...binaryauthorization-v5.0.1) (2024-05-02)
+
+
+### Bug Fixes
+
+* **binaryauthorization:** update the API ([a5ad874](https://github.com/googleapis/google-api-nodejs-client/commit/a5ad874a862e827b55278bd56f25d6efbcc797c6))
+
 ## [5.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/binaryauthorization-v4.0.0...binaryauthorization-v5.0.0) (2024-04-04)
 
 

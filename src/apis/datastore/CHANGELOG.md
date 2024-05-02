@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/datastore-v3.0.0...datastore-v3.0.1) (2024-05-02)
+
+
+### Bug Fixes
+
+* **datastore:** update the API ([fe99c43](https://github.com/googleapis/google-api-nodejs-client/commit/fe99c436b00f3e0db1c048b6e1978c2c91eeaf75))
+
 ## [3.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/datastore-v2.0.0...datastore-v3.0.0) (2024-04-04)
 
 

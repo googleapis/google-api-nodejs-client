@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/apigeeregistry-v2.0.0...apigeeregistry-v2.0.1) (2024-05-02)
+
+
+### Bug Fixes
+
+* **apigeeregistry:** update the API ([f627870](https://github.com/googleapis/google-api-nodejs-client/commit/f62787095c2439b882896130c259cedb810114de))
+
 ## [2.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/apigeeregistry-v1.0.2...apigeeregistry-v2.0.0) (2023-10-11)
 
 

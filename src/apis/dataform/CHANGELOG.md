@@ -1,5 +1,16 @@
 # Changelog
 
+## [3.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/dataform-v2.0.0...dataform-v3.0.0) (2024-05-02)
+
+
+### ⚠ BREAKING CHANGES
+
+* **dataform:** This release has breaking changes.
+
+### Features
+
+* **dataform:** update the API ([a43ddce](https://github.com/googleapis/google-api-nodejs-client/commit/a43ddced989c08697f803f6d167f771ae27ecbcb))
+
 ## [2.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/dataform-v1.8.0...dataform-v2.0.0) (2024-04-04)
 
 

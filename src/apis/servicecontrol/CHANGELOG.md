@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/servicecontrol-v3.0.0...servicecontrol-v3.1.0) (2024-05-02)
+
+
+### Features
+
+* **servicecontrol:** update the API ([763243a](https://github.com/googleapis/google-api-nodejs-client/commit/763243a5a56fbc735a259bc8a0cd16046a9b5289))
+
 ## [3.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/servicecontrol-v2.0.0...servicecontrol-v3.0.0) (2024-04-04)
 
 

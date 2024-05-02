@@ -1,5 +1,12 @@
 # Changelog
 
+## [7.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/retail-v7.0.0...retail-v7.1.0) (2024-05-02)
+
+
+### Features
+
+* **retail:** update the API ([5c3af10](https://github.com/googleapis/google-api-nodejs-client/commit/5c3af10dc0c01bcba9ac1dd306ece2641e576f66))
+
 ## [7.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/retail-v6.0.0...retail-v7.0.0) (2024-04-04)
 
 
