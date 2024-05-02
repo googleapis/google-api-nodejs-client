@@ -2681,7 +2681,7 @@
       }
     }
   },
-  "revision": "20240313",
+  "revision": "20240501",
   "rootUrl": "https://walletobjects.googleapis.com/",
   "schemas": {
     "ActivationOptions": {
@@ -5219,7 +5219,7 @@
       "type": "object"
     },
     "GenericObject": {
-      "description": "Generic Object Next ID: 121",
+      "description": "Generic Object",
       "id": "GenericObject",
       "properties": {
         "appLinkData": {
