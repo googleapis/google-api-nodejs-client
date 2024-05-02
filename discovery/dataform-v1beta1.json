@@ -790,6 +790,11 @@
                           "location": "query",
                           "type": "string"
                         },
+                        "orderBy": {
+                          "description": "Optional. This field only supports ordering by `name` and `create_time`. If unspecified, the server will choose the ordering. If specified, the default order is ascending for the `name` field.",
+                          "location": "query",
+                          "type": "string"
+                        },
                         "pageSize": {
                           "description": "Optional. Maximum number of compilation results to return. The server may return fewer items than requested. If unspecified, the server will pick an appropriate default.",
                           "format": "int32",
@@ -1148,7 +1153,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "Output only. The workflow config's name.",
+                          "description": "Identifier. The workflow config's name.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/repositories/[^/]+/workflowConfigs/[^/]+$",
                           "required": true,
@@ -2103,7 +2108,7 @@
       }
     }
   },
-  "revision": "20240310",
+  "revision": "20240420",
   "rootUrl": "https://dataform.googleapis.com/",
   "schemas": {
     "Assertion": {
@@ -2147,6 +2152,11 @@
       "description": "Represents a workflow action that will run against BigQuery.",
       "id": "BigQueryAction",
       "properties": {
+        "jobId": {
+          "description": "Output only. The ID of the BigQuery job that executed the SQL in sql_script. Only set once the job has started to run.",
+          "readOnly": true,
+          "type": "string"
+        },
         "sqlScript": {
           "description": "Output only. The generated BigQuery SQL script that will be executed.",
           "readOnly": true,
@@ -2202,6 +2212,9 @@
         "defaultLocation": {
           "description": "Optional. The default BigQuery location to use. Defaults to \"US\". See the BigQuery docs for a full list of locations: https://cloud.google.com/bigquery/docs/locations.",
           "type": "string"
+        },
+        "defaultNotebookRuntimeOptions": {
+          "$ref": "NotebookRuntimeOptions"
         },
         "defaultSchema": {
           "description": "Optional. The default schema (BigQuery dataset ID).",
@@ -2440,6 +2453,10 @@
         "filePath": {
           "description": "The full path including filename in which this action is located, relative to the workspace root.",
           "type": "string"
+        },
+        "notebook": {
+          "$ref": "Notebook",
+          "description": "The notebook executed by this action."
         },
         "operations": {
           "$ref": "Operations",
@@ -3057,6 +3074,61 @@
       "description": "`MoveFile` response message.",
       "id": "MoveFileResponse",
       "properties": {},
+      "type": "object"
+    },
+    "Notebook": {
+      "id": "Notebook",
+      "properties": {
+        "contents": {
+          "description": "The contents of the notebook.",
+          "type": "string"
+        },
+        "dependencyTargets": {
+          "description": "A list of actions that this action depends on.",
+          "items": {
+            "$ref": "Target"
+          },
+          "type": "array"
+        },
+        "disabled": {
+          "description": "Whether this action is disabled (i.e. should not be run).",
+          "type": "boolean"
+        },
+        "tags": {
+          "description": "Arbitrary, user-defined tags on this action.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "NotebookAction": {
+      "description": "Represents a workflow action that will run against a Notebook runtime.",
+      "id": "NotebookAction",
+      "properties": {
+        "contents": {
+          "description": "Output only. The code contents of a Notebook to be run.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "jobId": {
+          "description": "Output only. The ID of the Vertex job that executed the notebook in contents and also the ID used for the outputs created in GCS buckets. Only set once the job has started to run.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "NotebookRuntimeOptions": {
+      "id": "NotebookRuntimeOptions",
+      "properties": {
+        "gcsOutputBucket": {
+          "description": "Optional. The GCS location to upload the result to. Format: `gs://bucket-name`.",
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "OperationMetadata": {
@@ -3756,8 +3828,7 @@
           "description": "Optional. If left unset, a default InvocationConfig will be used."
         },
         "name": {
-          "description": "Output only. The workflow config's name.",
-          "readOnly": true,
+          "description": "Identifier. The workflow config's name.",
           "type": "string"
         },
         "recentScheduledExecutionRecords": {
@@ -3856,6 +3927,11 @@
         "invocationTiming": {
           "$ref": "Interval",
           "description": "Output only. This action's timing details. `start_time` will be set if the action is in [RUNNING, SUCCEEDED, CANCELLED, FAILED] state. `end_time` will be set if the action is in [SUCCEEDED, CANCELLED, FAILED] state.",
+          "readOnly": true
+        },
+        "notebookAction": {
+          "$ref": "NotebookAction",
+          "description": "Output only. The workflow action's notebook action details.",
           "readOnly": true
         },
         "state": {
