@@ -1,5 +1,12 @@
 # Changelog
 
+## [17.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/displayvideo-v17.0.0...displayvideo-v17.1.0) (2024-05-02)
+
+
+### Features
+
+* **displayvideo:** update the API ([90937cd](https://github.com/googleapis/google-api-nodejs-client/commit/90937cda7d6475fd0f04ac2332f3351f53f08b22))
+
 ## [17.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/displayvideo-v16.0.0...displayvideo-v17.0.0) (2024-04-04)
 
 

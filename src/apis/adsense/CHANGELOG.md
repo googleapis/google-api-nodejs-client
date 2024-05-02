@@ -1,5 +1,12 @@
 # Changelog
 
+## [7.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/adsense-v7.0.0...adsense-v7.1.0) (2024-05-02)
+
+
+### Features
+
+* **adsense:** update the API ([5349cf9](https://github.com/googleapis/google-api-nodejs-client/commit/5349cf9808017b594380ade8c94aed81a3330ed2))
+
 ## [7.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/adsense-v6.0.0...adsense-v7.0.0) (2024-04-04)
 
 

@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.6.0](https://github.com/googleapis/google-api-nodejs-client/compare/discovery-v1.5.0...discovery-v1.6.0) (2024-05-02)
+
+
+### Features
+
+* **discovery:** update the API ([8d42dab](https://github.com/googleapis/google-api-nodejs-client/commit/8d42dab88214bc01e9a9678794b6015435b5071f))
+
 ## [1.5.0](https://github.com/googleapis/google-api-nodejs-client/compare/discovery-v1.4.1...discovery-v1.5.0) (2023-10-11)
 
 

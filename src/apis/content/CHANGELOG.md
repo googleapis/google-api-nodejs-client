@@ -1,5 +1,16 @@
 # Changelog
 
+## [23.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/content-v22.0.0...content-v23.0.0) (2024-05-02)
+
+
+### ⚠ BREAKING CHANGES
+
+* **content:** This release has breaking changes.
+
+### Features
+
+* **content:** update the API ([76546b8](https://github.com/googleapis/google-api-nodejs-client/commit/76546b866ac0e675f27b2b9ab1727f4c821c17ac))
+
 ## [22.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/content-v21.0.0...content-v22.0.0) (2024-04-04)
 
 
