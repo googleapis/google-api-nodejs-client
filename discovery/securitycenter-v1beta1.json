@@ -896,7 +896,7 @@
       }
     }
   },
-  "revision": "20240226",
+  "revision": "20240422",
   "rootUrl": "https://securitycenter.googleapis.com/",
   "schemas": {
     "Access": {
@@ -988,6 +988,18 @@
       },
       "type": "object"
     },
+    "AdaptiveProtection": {
+      "description": "Information about [Google Cloud Armor Adaptive Protection](https://cloud.google.com/armor/docs/cloud-armor-overview#google-cloud-armor-adaptive-protection).",
+      "id": "AdaptiveProtection",
+      "properties": {
+        "confidence": {
+          "description": "A score of 0 means that there is low confidence that the detected event is an actual attack. A score of 1 means that there is high confidence that the detected event is an attack. See the [Adaptive Protection documentation](https://cloud.google.com/armor/docs/adaptive-protection-overview#configure-alert-tuning) for further explanation.",
+          "format": "double",
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
     "Application": {
       "description": "Represents an application associated with a finding.",
       "id": "Application",
@@ -1063,6 +1075,27 @@
             "type": "string"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "Attack": {
+      "description": "Information about DDoS attack volume and classification.",
+      "id": "Attack",
+      "properties": {
+        "classification": {
+          "description": "Type of attack, for example, 'SYN-flood', 'NTP-udp', or 'CHARGEN-udp'.",
+          "type": "string"
+        },
+        "volumeBps": {
+          "description": "Total BPS (bytes per second) volume of attack.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "volumePps": {
+          "description": "Total PPS (packets per second) volume of attack.",
+          "format": "int32",
+          "type": "integer"
         }
       },
       "type": "object"
@@ -1165,6 +1198,69 @@
       },
       "type": "object"
     },
+    "AwsAccount": {
+      "description": "An AWS account that is a member of an organization.",
+      "id": "AwsAccount",
+      "properties": {
+        "id": {
+          "description": "The unique identifier (ID) of the account, containing exactly 12 digits.",
+          "type": "string"
+        },
+        "name": {
+          "description": "The friendly name of this account.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AwsMetadata": {
+      "description": "AWS metadata associated with the resource, only applicable if the finding's cloud provider is Amazon Web Services.",
+      "id": "AwsMetadata",
+      "properties": {
+        "account": {
+          "$ref": "AwsAccount",
+          "description": "The AWS account associated with the resource."
+        },
+        "organization": {
+          "$ref": "AwsOrganization",
+          "description": "The AWS organization associated with the resource."
+        },
+        "organizationalUnits": {
+          "description": "A list of AWS organizational units associated with the resource, ordered from lowest level (closest to the account) to highest level.",
+          "items": {
+            "$ref": "AwsOrganizationalUnit"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "AwsOrganization": {
+      "description": "An organization is a collection of accounts that are centrally managed together using consolidated billing, organized hierarchically with organizational units (OUs), and controlled with policies.",
+      "id": "AwsOrganization",
+      "properties": {
+        "id": {
+          "description": "The unique identifier (ID) for the organization. The regex pattern for an organization ID string requires \"o-\" followed by from 10 to 32 lowercase letters or digits.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AwsOrganizationalUnit": {
+      "description": "An Organizational Unit (OU) is a container of AWS accounts within a root of an organization. Policies that are attached to an OU apply to all accounts contained in that OU and in any child OUs.",
+      "id": "AwsOrganizationalUnit",
+      "properties": {
+        "id": {
+          "description": "The unique identifier (ID) associated with this OU. The regex pattern for an organizational unit ID string requires \"ou-\" followed by from 4 to 32 lowercase letters or digits (the ID of the root that contains the OU). This string is followed by a second \"-\" dash and from 8 to 32 additional lowercase letters or digits. For example, \"ou-ab12-cd34ef56\".",
+          "type": "string"
+        },
+        "name": {
+          "description": "The friendly name of the OU.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "BackupDisasterRecovery": {
       "description": "Information related to Google Cloud Backup and DR Service findings.",
       "id": "BackupDisasterRecovery",
@@ -1248,6 +1344,38 @@
       "description": "The request message for Operations.CancelOperation.",
       "id": "CancelOperationRequest",
       "properties": {},
+      "type": "object"
+    },
+    "CloudArmor": {
+      "description": "Fields related to Google Cloud Armor findings.",
+      "id": "CloudArmor",
+      "properties": {
+        "adaptiveProtection": {
+          "$ref": "AdaptiveProtection",
+          "description": "Information about potential Layer 7 DDoS attacks identified by [Google Cloud Armor Adaptive Protection](https://cloud.google.com/armor/docs/adaptive-protection-overview)."
+        },
+        "attack": {
+          "$ref": "Attack",
+          "description": "Information about DDoS attack volume and classification."
+        },
+        "duration": {
+          "description": "Duration of attack from the start until the current moment (updated every 5 minutes).",
+          "format": "google-duration",
+          "type": "string"
+        },
+        "requests": {
+          "$ref": "Requests",
+          "description": "Information about incoming requests evaluated by [Google Cloud Armor security policies](https://cloud.google.com/armor/docs/security-policy-overview)."
+        },
+        "securityPolicy": {
+          "$ref": "SecurityPolicy",
+          "description": "Information about the [Google Cloud Armor security policy](https://cloud.google.com/armor/docs/security-policy-overview) relevant to the finding."
+        },
+        "threatVector": {
+          "description": "Distinguish between volumetric & protocol DDoS attack and application layer attacks. For example, \"L3_4\" for Layer 3 and Layer 4 DDoS attacks, or \"L_7\" for Layer 7 DDoS attacks.",
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "CloudDlpDataProfile": {
@@ -1353,6 +1481,22 @@
           "description": "The category of Findings matching.",
           "type": "string"
         },
+        "cloudProvider": {
+          "description": "The cloud provider for the compliance snapshot.",
+          "enum": [
+            "CLOUD_PROVIDER_UNSPECIFIED",
+            "GOOGLE_CLOUD_PLATFORM",
+            "AMAZON_WEB_SERVICES",
+            "MICROSOFT_AZURE"
+          ],
+          "enumDescriptions": [
+            "The cloud provider is unspecified.",
+            "The cloud provider is Google Cloud Platform.",
+            "The cloud provider is Amazon Web Services.",
+            "The cloud provider is Microsoft Azure."
+          ],
+          "type": "string"
+        },
         "complianceStandard": {
           "description": "The compliance standard (ie CIS).",
           "type": "string"
@@ -1372,10 +1516,6 @@
         },
         "name": {
           "description": "The compliance snapshot name. Format: //sources//complianceSnapshots/",
-          "type": "string"
-        },
-        "projectDisplayName": {
-          "description": "The CRM resource display name that is closest to the snapshot the Findings belong to.",
           "type": "string"
         },
         "snapshotTime": {
@@ -1913,6 +2053,10 @@
           "description": "The additional taxonomy group within findings from a given source. This field is immutable after creation time. Example: \"XSS_FLASH_INJECTION\"",
           "type": "string"
         },
+        "cloudArmor": {
+          "$ref": "CloudArmor",
+          "description": "Fields related to Cloud Armor findings."
+        },
         "cloudDlpDataProfile": {
           "$ref": "CloudDlpDataProfile",
           "description": "Cloud DLP data profile that is associated with the finding."
@@ -2088,6 +2232,10 @@
           "description": "Steps to address the finding.",
           "type": "string"
         },
+        "notebook": {
+          "$ref": "Notebook",
+          "description": "Notebook associated with the finding."
+        },
         "orgPolicies": {
           "description": "Contains information about the org policies associated with the finding.",
           "items": {
@@ -2180,6 +2328,41 @@
         },
         "resourceFolderDisplayName": {
           "description": "The user defined display name for this folder.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GcpMetadata": {
+      "description": "GCP metadata associated with the resource, only applicable if the finding's cloud provider is Google Cloud Platform.",
+      "id": "GcpMetadata",
+      "properties": {
+        "folders": {
+          "description": "Output only. Contains a Folder message for each folder in the assets ancestry. The first folder is the deepest nested folder, and the last folder is the folder directly under the Organization.",
+          "items": {
+            "$ref": "GoogleCloudSecuritycenterV2Folder"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "organization": {
+          "description": "The name of the organization that the resource belongs to.",
+          "type": "string"
+        },
+        "parent": {
+          "description": "The full resource name of resource's parent.",
+          "type": "string"
+        },
+        "parentDisplayName": {
+          "description": "The human readable name of resource's parent.",
+          "type": "string"
+        },
+        "project": {
+          "description": "The full resource name of project that the resource belongs to.",
+          "type": "string"
+        },
+        "projectDisplayName": {
+          "description": "The project ID that the resource belongs to.",
           "type": "string"
         }
       },
@@ -2529,6 +2712,26 @@
       "description": "Information related to the Google Cloud resource.",
       "id": "GoogleCloudSecuritycenterV1Resource",
       "properties": {
+        "awsMetadata": {
+          "$ref": "AwsMetadata",
+          "description": "The AWS metadata associated with the finding."
+        },
+        "cloudProvider": {
+          "description": "Indicates which cloud provider the resource resides in.",
+          "enum": [
+            "CLOUD_PROVIDER_UNSPECIFIED",
+            "GOOGLE_CLOUD_PLATFORM",
+            "AMAZON_WEB_SERVICES",
+            "MICROSOFT_AZURE"
+          ],
+          "enumDescriptions": [
+            "The cloud provider is unspecified.",
+            "The cloud provider is Google Cloud Platform.",
+            "The cloud provider is Amazon Web Services.",
+            "The cloud provider is Microsoft Azure."
+          ],
+          "type": "string"
+        },
         "displayName": {
           "description": "The human readable name of the resource.",
           "type": "string"
@@ -2541,8 +2744,16 @@
           "readOnly": true,
           "type": "array"
         },
+        "location": {
+          "description": "The region or location of the service (if applicable).",
+          "type": "string"
+        },
         "name": {
           "description": "The full resource name of the resource. See: https://cloud.google.com/apis/design/resource_names#full_resource_name",
+          "type": "string"
+        },
+        "organization": {
+          "description": "Indicates which organization or tenant in the cloud provider the finding applies to.",
           "type": "string"
         },
         "parent": {
@@ -2559,6 +2770,18 @@
         },
         "projectDisplayName": {
           "description": "The project ID that the resource belongs to.",
+          "type": "string"
+        },
+        "resourcePath": {
+          "$ref": "ResourcePath",
+          "description": "Provides the path to the resource within the resource hierarchy."
+        },
+        "resourcePathString": {
+          "description": "A string representation of the resource path. For Google Cloud, it has the format of organizations/{organization_id}/folders/{folder_id}/folders/{folder_id}/projects/{project_id} where there can be any number of folders. For AWS, it has the format of org/{organization_id}/ou/{organizational_unit_id}/ou/{organizational_unit_id}/account/{account_id} where there can be any number of organizational units. For Azure, it has the format of mg/{management_group_id}/mg/{management_group_id}/subscription/{subscription_id}/rg/{resource_group_name} where there can be any number of management groups.",
+          "type": "string"
+        },
+        "service": {
+          "description": "The parent service or product from which the resource is provided, for example, GKE or SNS.",
           "type": "string"
         },
         "type": {
@@ -2586,6 +2809,22 @@
       "description": "A resource value config (RVC) is a mapping configuration of user's resources to resource values. Used in Attack path simulations.",
       "id": "GoogleCloudSecuritycenterV1ResourceValueConfig",
       "properties": {
+        "cloudProvider": {
+          "description": "Cloud provider this configuration applies to",
+          "enum": [
+            "CLOUD_PROVIDER_UNSPECIFIED",
+            "GOOGLE_CLOUD_PLATFORM",
+            "AMAZON_WEB_SERVICES",
+            "MICROSOFT_AZURE"
+          ],
+          "enumDescriptions": [
+            "The cloud provider is unspecified.",
+            "The cloud provider is Google Cloud Platform.",
+            "The cloud provider is Amazon Web Services.",
+            "The cloud provider is Microsoft Azure."
+          ],
+          "type": "string"
+        },
         "createTime": {
           "description": "Output only. Timestamp this resource value config was created.",
           "format": "google-datetime",
@@ -3177,6 +3416,18 @@
       },
       "type": "object"
     },
+    "GoogleCloudSecuritycenterV2AdaptiveProtection": {
+      "description": "Information about [Google Cloud Armor Adaptive Protection](https://cloud.google.com/armor/docs/cloud-armor-overview#google-cloud-armor-adaptive-protection).",
+      "id": "GoogleCloudSecuritycenterV2AdaptiveProtection",
+      "properties": {
+        "confidence": {
+          "description": "A score of 0 means that there is low confidence that the detected event is an actual attack. A score of 1 means that there is high confidence that the detected event is an attack. See the [Adaptive Protection documentation](https://cloud.google.com/armor/docs/adaptive-protection-overview#configure-alert-tuning) for further explanation.",
+          "format": "double",
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudSecuritycenterV2Application": {
       "description": "Represents an application associated with a finding.",
       "id": "GoogleCloudSecuritycenterV2Application",
@@ -3188,6 +3439,27 @@
         "fullUri": {
           "description": "The full URI with payload that could be used to reproduce the vulnerability. For example, `http://example.com?p=aMmYgI6H`.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudSecuritycenterV2Attack": {
+      "description": "Information about DDoS attack volume and classification.",
+      "id": "GoogleCloudSecuritycenterV2Attack",
+      "properties": {
+        "classification": {
+          "description": "Type of attack, for example, 'SYN-flood', 'NTP-udp', or 'CHARGEN-udp'.",
+          "type": "string"
+        },
+        "volumeBps": {
+          "description": "Total BPS (bytes per second) volume of attack.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "volumePps": {
+          "description": "Total PPS (packets per second) volume of attack.",
+          "format": "int32",
+          "type": "integer"
         }
       },
       "type": "object"
@@ -3238,6 +3510,69 @@
             "The attack exposure has not been calculated."
           ],
           "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudSecuritycenterV2AwsAccount": {
+      "description": "An AWS account that is a member of an organization.",
+      "id": "GoogleCloudSecuritycenterV2AwsAccount",
+      "properties": {
+        "id": {
+          "description": "The unique identifier (ID) of the account, containing exactly 12 digits.",
+          "type": "string"
+        },
+        "name": {
+          "description": "The friendly name of this account.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudSecuritycenterV2AwsMetadata": {
+      "description": "AWS metadata associated with the resource, only applicable if the finding's cloud provider is Amazon Web Services.",
+      "id": "GoogleCloudSecuritycenterV2AwsMetadata",
+      "properties": {
+        "account": {
+          "$ref": "GoogleCloudSecuritycenterV2AwsAccount",
+          "description": "The AWS account associated with the resource."
+        },
+        "organization": {
+          "$ref": "GoogleCloudSecuritycenterV2AwsOrganization",
+          "description": "The AWS organization associated with the resource."
+        },
+        "organizationalUnits": {
+          "description": "A list of AWS organizational units associated with the resource, ordered from lowest level (closest to the account) to highest level.",
+          "items": {
+            "$ref": "GoogleCloudSecuritycenterV2AwsOrganizationalUnit"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudSecuritycenterV2AwsOrganization": {
+      "description": "An organization is a collection of accounts that are centrally managed together using consolidated billing, organized hierarchically with organizational units (OUs), and controlled with policies.",
+      "id": "GoogleCloudSecuritycenterV2AwsOrganization",
+      "properties": {
+        "id": {
+          "description": "The unique identifier (ID) for the organization. The regex pattern for an organization ID string requires \"o-\" followed by from 10 to 32 lowercase letters or digits.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudSecuritycenterV2AwsOrganizationalUnit": {
+      "description": "An Organizational Unit (OU) is a container of AWS accounts within a root of an organization. Policies that are attached to an OU apply to all accounts contained in that OU and in any child OUs.",
+      "id": "GoogleCloudSecuritycenterV2AwsOrganizationalUnit",
+      "properties": {
+        "id": {
+          "description": "The unique identifier (ID) associated with this OU. The regex pattern for an organizational unit ID string requires \"ou-\" followed by from 4 to 32 lowercase letters or digits (the ID of the root that contains the OU). This string is followed by a second \"-\" dash and from 8 to 32 additional lowercase letters or digits. For example, \"ou-ab12-cd34ef56\".",
+          "type": "string"
+        },
+        "name": {
+          "description": "The friendly name of the OU.",
           "type": "string"
         }
       },
@@ -3375,6 +3710,38 @@
       "description": "The response to a BulkMute request. Contains the LRO information.",
       "id": "GoogleCloudSecuritycenterV2BulkMuteFindingsResponse",
       "properties": {},
+      "type": "object"
+    },
+    "GoogleCloudSecuritycenterV2CloudArmor": {
+      "description": "Fields related to Google Cloud Armor findings.",
+      "id": "GoogleCloudSecuritycenterV2CloudArmor",
+      "properties": {
+        "adaptiveProtection": {
+          "$ref": "GoogleCloudSecuritycenterV2AdaptiveProtection",
+          "description": "Information about potential Layer 7 DDoS attacks identified by [Google Cloud Armor Adaptive Protection](https://cloud.google.com/armor/docs/adaptive-protection-overview)."
+        },
+        "attack": {
+          "$ref": "GoogleCloudSecuritycenterV2Attack",
+          "description": "Information about DDoS attack volume and classification."
+        },
+        "duration": {
+          "description": "Duration of attack from the start until the current moment (updated every 5 minutes).",
+          "format": "google-duration",
+          "type": "string"
+        },
+        "requests": {
+          "$ref": "GoogleCloudSecuritycenterV2Requests",
+          "description": "Information about incoming requests evaluated by [Google Cloud Armor security policies](https://cloud.google.com/armor/docs/security-policy-overview)."
+        },
+        "securityPolicy": {
+          "$ref": "GoogleCloudSecuritycenterV2SecurityPolicy",
+          "description": "Information about the [Google Cloud Armor security policy](https://cloud.google.com/armor/docs/security-policy-overview) relevant to the finding."
+        },
+        "threatVector": {
+          "description": "Distinguish between volumetric & protocol DDoS attack and application layer attacks. For example, \"L3_4\" for Layer 3 and Layer 4 DDoS attacks, or \"L_7\" for Layer 7 DDoS attacks.",
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "GoogleCloudSecuritycenterV2CloudDlpDataProfile": {
@@ -4029,6 +4396,10 @@
           "description": "Immutable. The additional taxonomy group within findings from a given source. Example: \"XSS_FLASH_INJECTION\"",
           "type": "string"
         },
+        "cloudArmor": {
+          "$ref": "GoogleCloudSecuritycenterV2CloudArmor",
+          "description": "Fields related to Cloud Armor findings."
+        },
         "cloudDlpDataProfile": {
           "$ref": "GoogleCloudSecuritycenterV2CloudDlpDataProfile",
           "description": "Cloud DLP data profile that is associated with the finding."
@@ -4205,6 +4576,10 @@
           "description": "Steps to address the finding.",
           "type": "string"
         },
+        "notebook": {
+          "$ref": "GoogleCloudSecuritycenterV2Notebook",
+          "description": "Notebook associated with the finding."
+        },
         "orgPolicies": {
           "description": "Contains information about the org policies associated with the finding.",
           "items": {
@@ -4284,6 +4659,21 @@
         "vulnerability": {
           "$ref": "GoogleCloudSecuritycenterV2Vulnerability",
           "description": "Represents vulnerability-specific fields like CVE and CVSS scores. CVE stands for Common Vulnerabilities and Exposures (https://cve.mitre.org/about/)"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudSecuritycenterV2Folder": {
+      "description": "Message that contains the resource name and display name of a folder resource.",
+      "id": "GoogleCloudSecuritycenterV2Folder",
+      "properties": {
+        "resourceFolder": {
+          "description": "Full resource name of this folder. See: https://cloud.google.com/apis/design/resource_names#full_resource_name",
+          "type": "string"
+        },
+        "resourceFolderDisplayName": {
+          "description": "The user defined display name for this folder.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -4575,6 +4965,7 @@
               "PROCESS_DISCOVERY",
               "COMMAND_AND_SCRIPTING_INTERPRETER",
               "UNIX_SHELL",
+              "PYTHON",
               "PERMISSION_GROUPS_DISCOVERY",
               "CLOUD_GROUPS",
               "APPLICATION_LAYER_PROTOCOL",
@@ -4636,6 +5027,7 @@
               "T1057",
               "T1059",
               "T1059.004",
+              "T1059.006",
               "T1069",
               "T1069.003",
               "T1071",
@@ -4742,6 +5134,7 @@
               "PROCESS_DISCOVERY",
               "COMMAND_AND_SCRIPTING_INTERPRETER",
               "UNIX_SHELL",
+              "PYTHON",
               "PERMISSION_GROUPS_DISCOVERY",
               "CLOUD_GROUPS",
               "APPLICATION_LAYER_PROTOCOL",
@@ -4803,6 +5196,7 @@
               "T1057",
               "T1059",
               "T1059.004",
+              "T1059.006",
               "T1069",
               "T1069.003",
               "T1071",
@@ -4938,6 +5332,30 @@
             "$ref": "GoogleCloudSecuritycenterV2Node"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudSecuritycenterV2Notebook": {
+      "description": "Represents a Jupyter notebook IPYNB file, such as a [Colab Enterprise notebook](https://cloud.google.com/colab/docs/introduction) file, that is associated with a finding.",
+      "id": "GoogleCloudSecuritycenterV2Notebook",
+      "properties": {
+        "lastAuthor": {
+          "description": "The user ID of the latest author to modify the notebook.",
+          "type": "string"
+        },
+        "name": {
+          "description": "The name of the notebook.",
+          "type": "string"
+        },
+        "notebookUpdateTime": {
+          "description": "The most recent time the notebook was updated.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "service": {
+          "description": "The source notebook service, for example, \"Colab Enterprise\".",
+          "type": "string"
         }
       },
       "type": "object"
@@ -5175,16 +5593,83 @@
       },
       "type": "object"
     },
+    "GoogleCloudSecuritycenterV2Requests": {
+      "description": "Information about the requests relevant to the finding.",
+      "id": "GoogleCloudSecuritycenterV2Requests",
+      "properties": {
+        "longTermAllowed": {
+          "description": "Allowed RPS (requests per second) over the long term.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "longTermDenied": {
+          "description": "Denied RPS (requests per second) over the long term.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "ratio": {
+          "description": "For 'Increasing deny ratio', the ratio is the denied traffic divided by the allowed traffic. For 'Allowed traffic spike', the ratio is the allowed traffic in the short term divided by allowed traffic in the long term.",
+          "format": "double",
+          "type": "number"
+        },
+        "shortTermAllowed": {
+          "description": "Allowed RPS (requests per second) in the short term.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudSecuritycenterV2Resource": {
       "description": "Information related to the Google Cloud resource.",
       "id": "GoogleCloudSecuritycenterV2Resource",
       "properties": {
+        "awsMetadata": {
+          "$ref": "GoogleCloudSecuritycenterV2AwsMetadata",
+          "description": "The AWS metadata associated with the finding."
+        },
+        "cloudProvider": {
+          "description": "Indicates which cloud provider the finding is from.",
+          "enum": [
+            "CLOUD_PROVIDER_UNSPECIFIED",
+            "GOOGLE_CLOUD_PLATFORM",
+            "AMAZON_WEB_SERVICES",
+            "MICROSOFT_AZURE"
+          ],
+          "enumDescriptions": [
+            "The cloud provider is unspecified.",
+            "The cloud provider is Google Cloud Platform.",
+            "The cloud provider is Amazon Web Services.",
+            "The cloud provider is Microsoft Azure."
+          ],
+          "type": "string"
+        },
         "displayName": {
           "description": "The human readable name of the resource.",
           "type": "string"
         },
+        "gcpMetadata": {
+          "$ref": "GcpMetadata",
+          "description": "The GCP metadata associated with the finding."
+        },
+        "location": {
+          "description": "The region or location of the service (if applicable).",
+          "type": "string"
+        },
         "name": {
           "description": "The full resource name of the resource. See: https://cloud.google.com/apis/design/resource_names#full_resource_name",
+          "type": "string"
+        },
+        "resourcePath": {
+          "$ref": "GoogleCloudSecuritycenterV2ResourcePath",
+          "description": "Provides the path to the resource within the resource hierarchy."
+        },
+        "resourcePathString": {
+          "description": "A string representation of the resource path. For Google Cloud, it has the format of organizations/{organization_id}/folders/{folder_id}/folders/{folder_id}/projects/{project_id} where there can be any number of folders. For AWS, it has the format of org/{organization_id}/ou/{organizational_unit_id}/ou/{organizational_unit_id}/account/{account_id} where there can be any number of organizational units. For Azure, it has the format of mg/{management_group_id}/mg/{management_group_id}/subscription/{subscription_id}/rg/{resource_group_name} where there can be any number of management groups.",
+          "type": "string"
+        },
+        "service": {
+          "description": "The service or resource provider associated with the resource.",
           "type": "string"
         },
         "type": {
@@ -5194,10 +5679,83 @@
       },
       "type": "object"
     },
+    "GoogleCloudSecuritycenterV2ResourcePath": {
+      "description": "Represents the path of resources leading up to the resource this finding is about.",
+      "id": "GoogleCloudSecuritycenterV2ResourcePath",
+      "properties": {
+        "nodes": {
+          "description": "The list of nodes that make the up resource path, ordered from lowest level to highest level.",
+          "items": {
+            "$ref": "GoogleCloudSecuritycenterV2ResourcePathNode"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudSecuritycenterV2ResourcePathNode": {
+      "description": "A node within the resource path. Each node represents a resource within the resource hierarchy.",
+      "id": "GoogleCloudSecuritycenterV2ResourcePathNode",
+      "properties": {
+        "displayName": {
+          "description": "The display name of the resource this node represents.",
+          "type": "string"
+        },
+        "id": {
+          "description": "The ID of the resource this node represents.",
+          "type": "string"
+        },
+        "nodeType": {
+          "description": "The type of resource this node represents.",
+          "enum": [
+            "RESOURCE_PATH_NODE_TYPE_UNSPECIFIED",
+            "GCP_ORGANIZATION",
+            "GCP_FOLDER",
+            "GCP_PROJECT",
+            "AWS_ORGANIZATION",
+            "AWS_ORGANIZATIONAL_UNIT",
+            "AWS_ACCOUNT",
+            "AZURE_MANAGEMENT_GROUP",
+            "AZURE_SUBSCRIPTION",
+            "AZURE_RESOURCE_GROUP"
+          ],
+          "enumDescriptions": [
+            "Node type is unspecified.",
+            "The node represents a Google Cloud organization.",
+            "The node represents a Google Cloud folder.",
+            "The node represents a Google Cloud project.",
+            "The node represents an AWS organization.",
+            "The node represents an AWS organizational unit.",
+            "The node represents an AWS account.",
+            "The node represents an Azure management group.",
+            "The node represents an Azure subscription.",
+            "The node represents an Azure resource group."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudSecuritycenterV2ResourceValueConfig": {
       "description": "A resource value config (RVC) is a mapping configuration of user's resources to resource values. Used in Attack path simulations.",
       "id": "GoogleCloudSecuritycenterV2ResourceValueConfig",
       "properties": {
+        "cloudProvider": {
+          "description": "Cloud provider this configuration applies to",
+          "enum": [
+            "CLOUD_PROVIDER_UNSPECIFIED",
+            "GOOGLE_CLOUD_PLATFORM",
+            "AMAZON_WEB_SERVICES",
+            "MICROSOFT_AZURE"
+          ],
+          "enumDescriptions": [
+            "The cloud provider is unspecified.",
+            "The cloud provider is Google Cloud Platform.",
+            "The cloud provider is Amazon Web Services.",
+            "The cloud provider is Microsoft Azure."
+          ],
+          "type": "string"
+        },
         "createTime": {
           "description": "Output only. Timestamp this resource value config was created.",
           "format": "google-datetime",
@@ -5319,7 +5877,7 @@
       "id": "GoogleCloudSecuritycenterV2SecurityMarks",
       "properties": {
         "canonicalName": {
-          "description": "The canonical name of the marks. The following list shows some examples: + `organizations/{organization_id}/assets/{asset_id}/securityMarks\" + `organizations/{organization_id}/sources/{source_id}/findings/{finding_id}/securityMarks\" + `organizations/{organization_id}/sources/{source_id}/locations/{location}/findings/{finding_id}/securityMarks\" + `folders/{folder_id}/assets/{asset_id}/securityMarks\" + `folders/{folder_id}/sources/{source_id}/findings/{finding_id}/securityMarks\" + `folders/{folder_id}/sources/{source_id}/locations/{location}/findings/{finding_id}/securityMarks\" + `projects/{project_number}/assets/{asset_id}/securityMarks\" + `projects/{project_number}/sources/{source_id}/findings/{finding_id}/securityMarks\" + `projects/{project_number}/sources/{source_id}/locations/{location}/findings/{finding_id}/securityMarks\"",
+          "description": "The canonical name of the marks. The following list shows some examples: + `organizations/{organization_id}/assets/{asset_id}/securityMarks` + `organizations/{organization_id}/sources/{source_id}/findings/{finding_id}/securityMarks` + `organizations/{organization_id}/sources/{source_id}/locations/{location}/findings/{finding_id}/securityMarks` + `folders/{folder_id}/assets/{asset_id}/securityMarks` + `folders/{folder_id}/sources/{source_id}/findings/{finding_id}/securityMarks` + `folders/{folder_id}/sources/{source_id}/locations/{location}/findings/{finding_id}/securityMarks` + `projects/{project_number}/assets/{asset_id}/securityMarks` + `projects/{project_number}/sources/{source_id}/findings/{finding_id}/securityMarks` + `projects/{project_number}/sources/{source_id}/locations/{location}/findings/{finding_id}/securityMarks`",
           "type": "string"
         },
         "marks": {
@@ -5331,6 +5889,25 @@
         },
         "name": {
           "description": "The relative resource name of the SecurityMarks. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name The following list shows some examples: + `organizations/{organization_id}/assets/{asset_id}/securityMarks` + `organizations/{organization_id}/sources/{source_id}/findings/{finding_id}/securityMarks` + `organizations/{organization_id}/sources/{source_id}/locations/{location}/findings/{finding_id}/securityMarks`",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudSecuritycenterV2SecurityPolicy": {
+      "description": "Information about the [Google Cloud Armor security policy](https://cloud.google.com/armor/docs/security-policy-overview) relevant to the finding.",
+      "id": "GoogleCloudSecuritycenterV2SecurityPolicy",
+      "properties": {
+        "name": {
+          "description": "The name of the Google Cloud Armor security policy, for example, \"my-security-policy\".",
+          "type": "string"
+        },
+        "preview": {
+          "description": "Whether or not the associated rule or policy is in preview mode.",
+          "type": "boolean"
+        },
+        "type": {
+          "description": "The type of Google Cloud Armor security policy for example, 'backend security policy', 'edge security policy', 'network edge security policy', or 'always-on DDoS protection'.",
           "type": "string"
         }
       },
@@ -6058,6 +6635,7 @@
               "PROCESS_DISCOVERY",
               "COMMAND_AND_SCRIPTING_INTERPRETER",
               "UNIX_SHELL",
+              "PYTHON",
               "PERMISSION_GROUPS_DISCOVERY",
               "CLOUD_GROUPS",
               "APPLICATION_LAYER_PROTOCOL",
@@ -6119,6 +6697,7 @@
               "T1057",
               "T1059",
               "T1059.004",
+              "T1059.006",
               "T1069",
               "T1069.003",
               "T1071",
@@ -6225,6 +6804,7 @@
               "PROCESS_DISCOVERY",
               "COMMAND_AND_SCRIPTING_INTERPRETER",
               "UNIX_SHELL",
+              "PYTHON",
               "PERMISSION_GROUPS_DISCOVERY",
               "CLOUD_GROUPS",
               "APPLICATION_LAYER_PROTOCOL",
@@ -6286,6 +6866,7 @@
               "T1057",
               "T1059",
               "T1059.004",
+              "T1059.006",
               "T1069",
               "T1069.003",
               "T1071",
@@ -6373,6 +6954,30 @@
             "$ref": "Node"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "Notebook": {
+      "description": "Represents a Jupyter notebook IPYNB file, such as a [Colab Enterprise notebook](https://cloud.google.com/colab/docs/introduction) file, that is associated with a finding.",
+      "id": "Notebook",
+      "properties": {
+        "lastAuthor": {
+          "description": "The user ID of the latest author to modify the notebook.",
+          "type": "string"
+        },
+        "name": {
+          "description": "The name of the notebook.",
+          "type": "string"
+        },
+        "notebookUpdateTime": {
+          "description": "The most recent time the notebook was updated.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "service": {
+          "description": "The source notebook service, for example, \"Colab Enterprise\".",
+          "type": "string"
         }
       },
       "type": "object"
@@ -6676,6 +7281,90 @@
       },
       "type": "object"
     },
+    "Requests": {
+      "description": "Information about the requests relevant to the finding.",
+      "id": "Requests",
+      "properties": {
+        "longTermAllowed": {
+          "description": "Allowed RPS (requests per second) over the long term.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "longTermDenied": {
+          "description": "Denied RPS (requests per second) over the long term.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "ratio": {
+          "description": "For 'Increasing deny ratio', the ratio is the denied traffic divided by the allowed traffic. For 'Allowed traffic spike', the ratio is the allowed traffic in the short term divided by allowed traffic in the long term.",
+          "format": "double",
+          "type": "number"
+        },
+        "shortTermAllowed": {
+          "description": "Allowed RPS (requests per second) in the short term.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "ResourcePath": {
+      "description": "Represents the path of resources leading up to the resource this finding is about.",
+      "id": "ResourcePath",
+      "properties": {
+        "nodes": {
+          "description": "The list of nodes that make the up resource path, ordered from lowest level to highest level.",
+          "items": {
+            "$ref": "ResourcePathNode"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ResourcePathNode": {
+      "description": "A node within the resource path. Each node represents a resource within the resource hierarchy.",
+      "id": "ResourcePathNode",
+      "properties": {
+        "displayName": {
+          "description": "The display name of the resource this node represents.",
+          "type": "string"
+        },
+        "id": {
+          "description": "The ID of the resource this node represents.",
+          "type": "string"
+        },
+        "nodeType": {
+          "description": "The type of resource this node represents.",
+          "enum": [
+            "RESOURCE_PATH_NODE_TYPE_UNSPECIFIED",
+            "GCP_ORGANIZATION",
+            "GCP_FOLDER",
+            "GCP_PROJECT",
+            "AWS_ORGANIZATION",
+            "AWS_ORGANIZATIONAL_UNIT",
+            "AWS_ACCOUNT",
+            "AZURE_MANAGEMENT_GROUP",
+            "AZURE_SUBSCRIPTION",
+            "AZURE_RESOURCE_GROUP"
+          ],
+          "enumDescriptions": [
+            "Node type is unspecified.",
+            "The node represents a Google Cloud organization.",
+            "The node represents a Google Cloud folder.",
+            "The node represents a Google Cloud project.",
+            "The node represents an AWS organization.",
+            "The node represents an AWS organizational unit.",
+            "The node represents an AWS account.",
+            "The node represents an Azure management group.",
+            "The node represents an Azure subscription.",
+            "The node represents an Azure resource group."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "Role": {
       "description": "Kubernetes Role or ClusterRole.",
       "id": "Role",
@@ -6778,6 +7467,25 @@
         },
         "name": {
           "description": "The relative resource name of the SecurityMarks. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name Examples: \"organizations/{organization_id}/assets/{asset_id}/securityMarks\" \"organizations/{organization_id}/sources/{source_id}/findings/{finding_id}/securityMarks\".",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SecurityPolicy": {
+      "description": "Information about the [Google Cloud Armor security policy](https://cloud.google.com/armor/docs/security-policy-overview) relevant to the finding.",
+      "id": "SecurityPolicy",
+      "properties": {
+        "name": {
+          "description": "The name of the Google Cloud Armor security policy, for example, \"my-security-policy\".",
+          "type": "string"
+        },
+        "preview": {
+          "description": "Whether or not the associated rule or policy is in preview mode.",
+          "type": "boolean"
+        },
+        "type": {
+          "description": "The type of Google Cloud Armor security policy for example, 'backend security policy', 'edge security policy', 'network edge security policy', or 'always-on DDoS protection'.",
           "type": "string"
         }
       },
@@ -7038,6 +7746,57 @@
         "securityBulletin": {
           "$ref": "SecurityBulletin",
           "description": "The security bulletin is relevant to this finding."
+        }
+      },
+      "type": "object"
+    },
+    "VulnerabilityCountBySeverity": {
+      "description": "Vulnerability count by severity.",
+      "id": "VulnerabilityCountBySeverity",
+      "properties": {
+        "severityToFindingCount": {
+          "additionalProperties": {
+            "format": "int64",
+            "type": "string"
+          },
+          "description": "Key is the Severity enum.",
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "VulnerabilitySnapshot": {
+      "description": "Result containing the properties and count of a VulnerabilitySnapshot request.",
+      "id": "VulnerabilitySnapshot",
+      "properties": {
+        "cloudProvider": {
+          "description": "The cloud provider for the vulnerability snapshot.",
+          "enum": [
+            "CLOUD_PROVIDER_UNSPECIFIED",
+            "GOOGLE_CLOUD_PLATFORM",
+            "AMAZON_WEB_SERVICES",
+            "MICROSOFT_AZURE"
+          ],
+          "enumDescriptions": [
+            "The cloud provider is unspecified.",
+            "The cloud provider is Google Cloud Platform.",
+            "The cloud provider is Amazon Web Services.",
+            "The cloud provider is Microsoft Azure."
+          ],
+          "type": "string"
+        },
+        "findingCount": {
+          "$ref": "VulnerabilityCountBySeverity",
+          "description": "The vulnerability count by severity."
+        },
+        "name": {
+          "description": "Identifier. The vulnerability snapshot name. Format: //locations//vulnerabilitySnapshots/",
+          "type": "string"
+        },
+        "snapshotTime": {
+          "description": "The time that the snapshot was taken.",
+          "format": "google-datetime",
+          "type": "string"
         }
       },
       "type": "object"
