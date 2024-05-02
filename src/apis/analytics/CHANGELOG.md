@@ -1,5 +1,12 @@
 # Changelog
 
+## [7.0.6](https://github.com/googleapis/google-api-nodejs-client/compare/analytics-v7.0.5...analytics-v7.0.6) (2024-05-02)
+
+
+### Bug Fixes
+
+* **analytics:** update the API ([f7f9cc4](https://github.com/googleapis/google-api-nodejs-client/commit/f7f9cc4b9f2bf47aedd233ecdfb43531b5dad3cd))
+
 ## [7.0.5](https://github.com/googleapis/google-api-nodejs-client/compare/analytics-v7.0.4...analytics-v7.0.5) (2023-10-11)
 
 

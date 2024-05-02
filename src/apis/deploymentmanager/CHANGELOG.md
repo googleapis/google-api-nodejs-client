@@ -1,5 +1,12 @@
 # Changelog
 
+## [13.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/deploymentmanager-v13.0.0...deploymentmanager-v13.0.1) (2024-05-02)
+
+
+### Bug Fixes
+
+* **deploymentmanager:** update the API ([87fda2a](https://github.com/googleapis/google-api-nodejs-client/commit/87fda2a3b88f81077ed5f18f52e0263644ba19cb))
+
 ## [13.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/deploymentmanager-v12.0.0...deploymentmanager-v13.0.0) (2024-04-04)
 
 

@@ -1,5 +1,12 @@
 # Changelog
 
+## [10.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/cloudsupport-v10.0.0...cloudsupport-v10.1.0) (2024-05-02)
+
+
+### Features
+
+* **cloudsupport:** update the API ([ceb5503](https://github.com/googleapis/google-api-nodejs-client/commit/ceb5503e69b26a0838d8decc00ca17ebdcdda743))
+
 ## [10.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/cloudsupport-v9.0.0...cloudsupport-v10.0.0) (2024-04-04)
 
 
