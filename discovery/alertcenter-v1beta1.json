@@ -423,7 +423,7 @@
       }
     }
   },
-  "revision": "20240129",
+  "revision": "20240429",
   "rootUrl": "https://alertcenter.googleapis.com/",
   "schemas": {
     "AbuseDetected": {
@@ -1177,12 +1177,24 @@
           "description": "The email of the user this alert was created for.",
           "type": "string"
         },
+        "id": {
+          "description": "ID of the rule that triggered the alert",
+          "type": "string"
+        },
         "iosVendorId": {
           "description": "Required for iOS, empty for others.",
           "type": "string"
         },
+        "ownerId": {
+          "description": "Obfuscated ID of the owner of the device",
+          "type": "string"
+        },
         "resourceId": {
           "description": "The device resource ID.",
+          "type": "string"
+        },
+        "ruleAction": {
+          "description": "Action taken as result of the rule",
           "type": "string"
         },
         "serialNumber": {
@@ -1631,6 +1643,18 @@
       "description": "Proto that contains resource information.",
       "id": "ResourceInfo",
       "properties": {
+        "chatAttachmentId": {
+          "description": "Chat attachment ID.",
+          "type": "string"
+        },
+        "chatMessageId": {
+          "description": "Chat message ID.",
+          "type": "string"
+        },
+        "deviceId": {
+          "description": "Id to identify a device. For example, for Android devices, this is the \"Android Device Id\" and for Chrome OS devices, it's the \"Device Virtual Id\".",
+          "type": "string"
+        },
         "documentId": {
           "description": "Drive file ID.",
           "type": "string"
@@ -1665,11 +1689,29 @@
           "description": "Source of the data.",
           "enum": [
             "DATA_SOURCE_UNSPECIFIED",
-            "DRIVE"
+            "DRIVE",
+            "CHROME",
+            "CHAT"
           ],
           "enumDescriptions": [
             "Data source is unspecified.",
-            "Drive data source."
+            "Drive data source.",
+            "Chrome data source.",
+            "Chat data source."
+          ],
+          "type": "string"
+        },
+        "eventType": {
+          "description": "Event associated with this alert after applying the rule.",
+          "enum": [
+            "EVENT_TYPE_UNSPECIFIED",
+            "ACCESS_BLOCKED",
+            "SHARING_BLOCKED"
+          ],
+          "enumDescriptions": [
+            "Event type wasn't set.",
+            "An access attempt was blocked.",
+            "A sharing attempt was blocked."
           ],
           "type": "string"
         },
@@ -1702,7 +1744,22 @@
               "ACTION_TYPE_UNSPECIFIED",
               "DRIVE_BLOCK_EXTERNAL_SHARING",
               "DRIVE_WARN_ON_EXTERNAL_SHARING",
+              "DRIVE_RESTRICT_DOWNLOAD_PRINT_COPY",
+              "DRIVE_APPLY_DRIVE_LABELS",
+              "CHROME_BLOCK_FILE_DOWNLOAD",
+              "CHROME_WARN_FILE_DOWNLOAD",
+              "CHROME_BLOCK_FILE_UPLOAD",
+              "CHROME_WARN_FILE_UPLOAD",
+              "CHROME_BLOCK_WEB_CONTENT_UPLOAD",
+              "CHROME_WARN_WEB_CONTENT_UPLOAD",
+              "CHROME_BLOCK_PAGE_PRINT",
+              "CHROME_WARN_PAGE_PRINT",
+              "CHROME_BLOCK_URL_VISITED",
+              "CHROME_WARN_URL_VISITED",
+              "CHROME_STORE_CONTENT",
               "DELETE_WEBPROTECT_EVIDENCE",
+              "CHAT_BLOCK_CONTENT",
+              "CHAT_WARN_USER",
               "ALERT",
               "RULE_ACTIVATE",
               "RULE_DEACTIVATE"
@@ -1711,7 +1768,22 @@
               "Action type is unspecified.",
               "Block sharing a file externally.",
               "Show a warning message when sharing a file externally.",
+              "Disable download, print, and copy for commenters and viewers in drive.",
+              "Apply customer specified Drive labels to the file.",
+              "Chrome actions. Block file download.",
+              "Warn user about downloaded file.",
+              "Block file upload.",
+              "Warn user about uploaded file.",
+              "Block web content upload.",
+              "Warn user about uploaded web content.",
+              "Block page print.",
+              "Warn user about printed page.",
+              "Block Chrome URL visit.",
+              "Warn user about Chrome URL visited.",
+              "Store the content that violated the rule.",
               "Delete web protect evidence file",
+              "Chat actions. Block Chat content to be sent out.",
+              "Warn end user about Chat content.",
               "Send alert.",
               "Activate Rule Action",
               "Deactivate Rule Action"
@@ -1724,11 +1796,25 @@
           "description": "Trigger of the rule.",
           "enum": [
             "TRIGGER_UNSPECIFIED",
-            "DRIVE_SHARE"
+            "DRIVE_SHARE",
+            "CHROME_FILE_DOWNLOAD",
+            "CHROME_FILE_UPLOAD",
+            "CHROME_WEB_CONTENT_UPLOAD",
+            "CHAT_MESSAGE_SENT",
+            "CHAT_ATTACHMENT_UPLOADED",
+            "CHROME_PAGE_PRINT",
+            "CHROME_URL_VISITED"
           ],
           "enumDescriptions": [
             "Trigger is unspecified.",
-            "A Drive file is shared."
+            "A Drive file is shared.",
+            "A file being downloaded in a Chrome browser.",
+            "A file being uploaded from a Chrome browser.",
+            "Web content being uploaded from a Chrome browser.",
+            "A Chat message is sent.",
+            "A Chat attachment is uploaded.",
+            "A page is being printed by Chrome.",
+            "A URL is visited within Chrome."
           ],
           "type": "string"
         },
@@ -1746,7 +1832,22 @@
               "ACTION_TYPE_UNSPECIFIED",
               "DRIVE_BLOCK_EXTERNAL_SHARING",
               "DRIVE_WARN_ON_EXTERNAL_SHARING",
+              "DRIVE_RESTRICT_DOWNLOAD_PRINT_COPY",
+              "DRIVE_APPLY_DRIVE_LABELS",
+              "CHROME_BLOCK_FILE_DOWNLOAD",
+              "CHROME_WARN_FILE_DOWNLOAD",
+              "CHROME_BLOCK_FILE_UPLOAD",
+              "CHROME_WARN_FILE_UPLOAD",
+              "CHROME_BLOCK_WEB_CONTENT_UPLOAD",
+              "CHROME_WARN_WEB_CONTENT_UPLOAD",
+              "CHROME_BLOCK_PAGE_PRINT",
+              "CHROME_WARN_PAGE_PRINT",
+              "CHROME_BLOCK_URL_VISITED",
+              "CHROME_WARN_URL_VISITED",
+              "CHROME_STORE_CONTENT",
               "DELETE_WEBPROTECT_EVIDENCE",
+              "CHAT_BLOCK_CONTENT",
+              "CHAT_WARN_USER",
               "ALERT",
               "RULE_ACTIVATE",
               "RULE_DEACTIVATE"
@@ -1755,7 +1856,22 @@
               "Action type is unspecified.",
               "Block sharing a file externally.",
               "Show a warning message when sharing a file externally.",
+              "Disable download, print, and copy for commenters and viewers in drive.",
+              "Apply customer specified Drive labels to the file.",
+              "Chrome actions. Block file download.",
+              "Warn user about downloaded file.",
+              "Block file upload.",
+              "Warn user about uploaded file.",
+              "Block web content upload.",
+              "Warn user about uploaded web content.",
+              "Block page print.",
+              "Warn user about printed page.",
+              "Block Chrome URL visit.",
+              "Warn user about Chrome URL visited.",
+              "Store the content that violated the rule.",
               "Delete web protect evidence file",
+              "Chat actions. Block Chat content to be sent out.",
+              "Warn end user about Chat content.",
               "Send alert.",
               "Activate Rule Action",
               "Deactivate Rule Action"
