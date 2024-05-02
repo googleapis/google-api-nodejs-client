@@ -1076,6 +1076,7 @@ export namespace gmail_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1160,6 +1161,7 @@ export namespace gmail_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1246,6 +1248,7 @@ export namespace gmail_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1266,6 +1269,10 @@ export namespace gmail_v1 {
   }
 
   export interface Params$Resource$Users$Getprofile extends StandardParameters {
+    /**
+     *
+     */
+    temporaryEeccBypass?: boolean;
     /**
      * The user's email address. The special value `me` can be used to indicate the authenticated user.
      */
@@ -1364,6 +1371,7 @@ export namespace gmail_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1453,6 +1461,7 @@ export namespace gmail_v1 {
               '$1'
             ),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -1539,6 +1548,7 @@ export namespace gmail_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1629,6 +1639,7 @@ export namespace gmail_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1716,6 +1727,7 @@ export namespace gmail_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1806,6 +1818,7 @@ export namespace gmail_v1 {
               '$1'
             ),
             method: 'PUT',
+            apiVersion: '',
           },
           options
         ),
@@ -2040,6 +2053,7 @@ export namespace gmail_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2162,6 +2176,7 @@ export namespace gmail_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2247,6 +2262,7 @@ export namespace gmail_v1 {
               '$1'
             ),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -2333,6 +2349,7 @@ export namespace gmail_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2423,6 +2440,7 @@ export namespace gmail_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2510,6 +2528,7 @@ export namespace gmail_v1 {
               '$1'
             ),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -2597,6 +2616,7 @@ export namespace gmail_v1 {
               '$1'
             ),
             method: 'PUT',
+            apiVersion: '',
           },
           options
         ),
@@ -2763,6 +2783,7 @@ export namespace gmail_v1 {
               rootUrl + '/gmail/v1/users/{userId}/messages/batchDelete'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2847,6 +2868,7 @@ export namespace gmail_v1 {
               rootUrl + '/gmail/v1/users/{userId}/messages/batchModify'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2932,6 +2954,7 @@ export namespace gmail_v1 {
               '$1'
             ),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -3019,6 +3042,7 @@ export namespace gmail_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3106,6 +3130,7 @@ export namespace gmail_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3196,6 +3221,7 @@ export namespace gmail_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3291,6 +3317,7 @@ export namespace gmail_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3377,6 +3404,7 @@ export namespace gmail_v1 {
               rootUrl + '/gmail/v1/users/{userId}/messages/{id}/modify'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3464,6 +3492,7 @@ export namespace gmail_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3553,6 +3582,7 @@ export namespace gmail_v1 {
               rootUrl + '/gmail/v1/users/{userId}/messages/{id}/trash'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3639,6 +3669,7 @@ export namespace gmail_v1 {
               rootUrl + '/gmail/v1/users/{userId}/messages/{id}/untrash'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3707,6 +3738,10 @@ export namespace gmail_v1 {
      * When given and format is `METADATA`, only include headers specified.
      */
     metadataHeaders?: string[];
+    /**
+     *
+     */
+    temporaryEeccBypass?: boolean;
     /**
      * The user's email address. The special value `me` can be used to indicate the authenticated user.
      */
@@ -3812,6 +3847,10 @@ export namespace gmail_v1 {
      * Only return messages matching the specified query. Supports the same query format as the Gmail search box. For example, `"from:someuser@example.com rfc822msgid: is:unread"`. Parameter cannot be used when accessing the api using the gmail.metadata scope.
      */
     q?: string;
+    /**
+     *
+     */
+    temporaryEeccBypass?: boolean;
     /**
      * The user's email address. The special value `me` can be used to indicate the authenticated user.
      */
@@ -3958,6 +3997,7 @@ export namespace gmail_v1 {
               '/gmail/v1/users/{userId}/messages/{messageId}/attachments/{id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3987,6 +4027,10 @@ export namespace gmail_v1 {
      * The ID of the message containing the attachment.
      */
     messageId?: string;
+    /**
+     *
+     */
+    temporaryEeccBypass?: boolean;
     /**
      * The user's email address. The special value `me` can be used to indicate the authenticated user.
      */
@@ -4080,6 +4124,7 @@ export namespace gmail_v1 {
               rootUrl + '/gmail/v1/users/{userId}/settings/autoForwarding'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4167,6 +4212,7 @@ export namespace gmail_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4253,6 +4299,7 @@ export namespace gmail_v1 {
               rootUrl + '/gmail/v1/users/{userId}/settings/language'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4340,6 +4387,7 @@ export namespace gmail_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4426,6 +4474,7 @@ export namespace gmail_v1 {
               rootUrl + '/gmail/v1/users/{userId}/settings/vacation'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4514,6 +4563,7 @@ export namespace gmail_v1 {
               rootUrl + '/gmail/v1/users/{userId}/settings/autoForwarding'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
+            apiVersion: '',
           },
           options
         ),
@@ -4601,6 +4651,7 @@ export namespace gmail_v1 {
               '$1'
             ),
             method: 'PUT',
+            apiVersion: '',
           },
           options
         ),
@@ -4689,6 +4740,7 @@ export namespace gmail_v1 {
               rootUrl + '/gmail/v1/users/{userId}/settings/language'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
+            apiVersion: '',
           },
           options
         ),
@@ -4776,6 +4828,7 @@ export namespace gmail_v1 {
               '$1'
             ),
             method: 'PUT',
+            apiVersion: '',
           },
           options
         ),
@@ -4864,6 +4917,7 @@ export namespace gmail_v1 {
               rootUrl + '/gmail/v1/users/{userId}/settings/vacation'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
+            apiVersion: '',
           },
           options
         ),
@@ -5066,6 +5120,7 @@ export namespace gmail_v1 {
               rootUrl + '/gmail/v1/users/{userId}/settings/cse/identities'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5151,6 +5206,7 @@ export namespace gmail_v1 {
               '/gmail/v1/users/{userId}/settings/cse/identities/{cseEmailAddress}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -5238,6 +5294,7 @@ export namespace gmail_v1 {
               '/gmail/v1/users/{userId}/settings/cse/identities/{cseEmailAddress}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5331,6 +5388,7 @@ export namespace gmail_v1 {
               rootUrl + '/gmail/v1/users/{userId}/settings/cse/identities'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5418,6 +5476,7 @@ export namespace gmail_v1 {
               '/gmail/v1/users/{userId}/settings/cse/identities/{emailAddress}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -5577,6 +5636,7 @@ export namespace gmail_v1 {
               rootUrl + '/gmail/v1/users/{userId}/settings/cse/keypairs'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5664,6 +5724,7 @@ export namespace gmail_v1 {
               '/gmail/v1/users/{userId}/settings/cse/keypairs/{keyPairId}:disable'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5751,6 +5812,7 @@ export namespace gmail_v1 {
               '/gmail/v1/users/{userId}/settings/cse/keypairs/{keyPairId}:enable'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5838,6 +5900,7 @@ export namespace gmail_v1 {
               '/gmail/v1/users/{userId}/settings/cse/keypairs/{keyPairId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5929,6 +5992,7 @@ export namespace gmail_v1 {
               rootUrl + '/gmail/v1/users/{userId}/settings/cse/keypairs'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6014,6 +6078,7 @@ export namespace gmail_v1 {
               '/gmail/v1/users/{userId}/settings/cse/keypairs/{keyPairId}:obliterate'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -6194,6 +6259,7 @@ export namespace gmail_v1 {
               rootUrl + '/gmail/v1/users/{userId}/settings/delegates'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -6279,6 +6345,7 @@ export namespace gmail_v1 {
               '/gmail/v1/users/{userId}/settings/delegates/{delegateEmail}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -6366,6 +6433,7 @@ export namespace gmail_v1 {
               '/gmail/v1/users/{userId}/settings/delegates/{delegateEmail}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6457,6 +6525,7 @@ export namespace gmail_v1 {
               rootUrl + '/gmail/v1/users/{userId}/settings/delegates'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6592,6 +6661,7 @@ export namespace gmail_v1 {
               rootUrl + '/gmail/v1/users/{userId}/settings/filters'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -6676,6 +6746,7 @@ export namespace gmail_v1 {
               rootUrl + '/gmail/v1/users/{userId}/settings/filters/{id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -6762,6 +6833,7 @@ export namespace gmail_v1 {
               rootUrl + '/gmail/v1/users/{userId}/settings/filters/{id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6851,6 +6923,7 @@ export namespace gmail_v1 {
               rootUrl + '/gmail/v1/users/{userId}/settings/filters'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6990,6 +7063,7 @@ export namespace gmail_v1 {
               rootUrl + '/gmail/v1/users/{userId}/settings/forwardingAddresses'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -7076,6 +7150,7 @@ export namespace gmail_v1 {
               '/gmail/v1/users/{userId}/settings/forwardingAddresses/{forwardingEmail}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -7166,6 +7241,7 @@ export namespace gmail_v1 {
               '/gmail/v1/users/{userId}/settings/forwardingAddresses/{forwardingEmail}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -7259,6 +7335,7 @@ export namespace gmail_v1 {
               rootUrl + '/gmail/v1/users/{userId}/settings/forwardingAddresses'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -7401,6 +7478,7 @@ export namespace gmail_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -7485,6 +7563,7 @@ export namespace gmail_v1 {
               rootUrl + '/gmail/v1/users/{userId}/settings/sendAs/{sendAsEmail}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -7571,6 +7650,7 @@ export namespace gmail_v1 {
               rootUrl + '/gmail/v1/users/{userId}/settings/sendAs/{sendAsEmail}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -7661,6 +7741,7 @@ export namespace gmail_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -7747,6 +7828,7 @@ export namespace gmail_v1 {
               rootUrl + '/gmail/v1/users/{userId}/settings/sendAs/{sendAsEmail}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -7833,6 +7915,7 @@ export namespace gmail_v1 {
               rootUrl + '/gmail/v1/users/{userId}/settings/sendAs/{sendAsEmail}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
+            apiVersion: '',
           },
           options
         ),
@@ -7918,6 +8001,7 @@ export namespace gmail_v1 {
               '/gmail/v1/users/{userId}/settings/sendAs/{sendAsEmail}/verify'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -8095,6 +8179,7 @@ export namespace gmail_v1 {
               '/gmail/v1/users/{userId}/settings/sendAs/{sendAsEmail}/smimeInfo/{id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -8182,6 +8267,7 @@ export namespace gmail_v1 {
               '/gmail/v1/users/{userId}/settings/sendAs/{sendAsEmail}/smimeInfo/{id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -8269,6 +8355,7 @@ export namespace gmail_v1 {
               '/gmail/v1/users/{userId}/settings/sendAs/{sendAsEmail}/smimeInfo'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -8361,6 +8448,7 @@ export namespace gmail_v1 {
               '/gmail/v1/users/{userId}/settings/sendAs/{sendAsEmail}/smimeInfo'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -8447,6 +8535,7 @@ export namespace gmail_v1 {
               '/gmail/v1/users/{userId}/settings/sendAs/{sendAsEmail}/smimeInfo/{id}/setDefault'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -8612,6 +8701,7 @@ export namespace gmail_v1 {
               '$1'
             ),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -8699,6 +8789,7 @@ export namespace gmail_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -8789,6 +8880,7 @@ export namespace gmail_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -8875,6 +8967,7 @@ export namespace gmail_v1 {
               rootUrl + '/gmail/v1/users/{userId}/threads/{id}/modify'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -8961,6 +9054,7 @@ export namespace gmail_v1 {
               rootUrl + '/gmail/v1/users/{userId}/threads/{id}/trash'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -9047,6 +9141,7 @@ export namespace gmail_v1 {
               rootUrl + '/gmail/v1/users/{userId}/threads/{id}/untrash'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -9092,6 +9187,10 @@ export namespace gmail_v1 {
      */
     metadataHeaders?: string[];
     /**
+     *
+     */
+    temporaryEeccBypass?: boolean;
+    /**
      * The user's email address. The special value `me` can be used to indicate the authenticated user.
      */
     userId?: string;
@@ -9118,6 +9217,10 @@ export namespace gmail_v1 {
      * Only return threads matching the specified query. Supports the same query format as the Gmail search box. For example, `"from:someuser@example.com rfc822msgid: is:unread"`. Parameter cannot be used when accessing the api using the gmail.metadata scope.
      */
     q?: string;
+    /**
+     *
+     */
+    temporaryEeccBypass?: boolean;
     /**
      * The user's email address. The special value `me` can be used to indicate the authenticated user.
      */
