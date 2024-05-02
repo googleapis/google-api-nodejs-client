@@ -555,6 +555,10 @@
     "RestMethod": {
       "id": "RestMethod",
       "properties": {
+        "apiVersion": {
+          "description": "The API Version of this method, as passed in via the `X-Goog-Api-Version` header or `$apiVersion` query parameter.",
+          "type": "string"
+        },
         "deprecated": {
           "description": "Whether this method is deprecated.",
           "type": "boolean"
