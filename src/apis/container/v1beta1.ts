@@ -279,6 +279,10 @@ export namespace container_v1beta1 {
    */
   export interface Schema$AdvancedMachineFeatures {
     /**
+     * Whether or not to enable nested virtualization (defaults to false).
+     */
+    enableNestedVirtualization?: boolean | null;
+    /**
      * The number of threads per physical core. To disable simultaneous multithreading (SMT) set this to 1. If unset, the maximum number of threads supported per core by the underlying processor is assumed.
      */
     threadsPerCore?: string | null;
@@ -533,6 +537,19 @@ export namespace container_v1beta1 {
     zone?: string | null;
   }
   /**
+   * CertificateAuthorityDomainConfig configures one or more fully qualified domain names (FQDN) to a specific certificate.
+   */
+  export interface Schema$CertificateAuthorityDomainConfig {
+    /**
+     * List of fully qualified domain names (FQDN). Specifying port is supported. Wilcards are NOT supported. Examples: - my.customdomain.com - 10.0.1.2:5000
+     */
+    fqdns?: string[] | null;
+    /**
+     * Google Secret Manager (GCP) certificate configuration.
+     */
+    gcpSecretManagerCertificateConfig?: Schema$GCPSecretManagerCertificateConfig;
+  }
+  /**
    * CheckAutopilotCompatibilityResponse has a list of compatibility issues.
    */
   export interface Schema$CheckAutopilotCompatibilityResponse {
@@ -612,6 +629,10 @@ export namespace container_v1beta1 {
      * Telemetry integration for the cluster.
      */
     clusterTelemetry?: Schema$ClusterTelemetry;
+    /**
+     * Enable/Disable Compliance Posture features for the cluster.
+     */
+    compliancePostureConfig?: Schema$CompliancePostureConfig;
     /**
      * Which conditions caused the current cluster state.
      */
@@ -973,6 +994,10 @@ export namespace container_v1beta1 {
      */
     desiredClusterTelemetry?: Schema$ClusterTelemetry;
     /**
+     * The desired containerd config for the cluster.
+     */
+    desiredContainerdConfig?: Schema$ContainerdConfig;
+    /**
      * The desired configuration for the fine-grained cost management feature.
      */
     desiredCostManagementConfig?: Schema$CostManagementConfig;
@@ -1037,7 +1062,7 @@ export namespace container_v1beta1 {
      */
     desiredIntraNodeVisibilityConfig?: Schema$IntraNodeVisibilityConfig;
     /**
-     * Specify the details of in-transit encryption.
+     * Specify the details of in-transit encryption. Now named inter-node transparent encryption.
      */
     desiredInTransitEncryptionConfig?: string | null;
     /**
@@ -1125,7 +1150,7 @@ export namespace container_v1beta1 {
      */
     desiredPodSecurityPolicyConfig?: Schema$PodSecurityPolicyConfig;
     /**
-     * The desired private cluster configuration.
+     * The desired private cluster configuration. master_global_access_config is the only field that can be changed via this field. See also ClusterUpdate.desired_enable_private_endpoint for modifying other fields within PrivateClusterConfig.
      */
     desiredPrivateClusterConfig?: Schema$PrivateClusterConfig;
     /**
@@ -1193,6 +1218,10 @@ export namespace container_v1beta1 {
      */
     etag?: string | null;
     /**
+     * The desired private cluster configuration. Has no effect. Use desired_private_cluster_config instead.
+     */
+    privateClusterConfig?: Schema$PrivateClusterConfig;
+    /**
      * The additional pod ranges that are to be removed from the cluster. The pod ranges specified here must have been specified earlier in the 'additional_pod_ranges_config' argument.
      */
     removedAdditionalPodRangesConfig?: Schema$AdditionalPodRangesConfig;
@@ -1223,6 +1252,28 @@ export namespace container_v1beta1 {
    */
   export interface Schema$CompleteNodePoolUpgradeRequest {}
   /**
+   * CompliancePostureConfig defines the settings needed to enable/disable features for the Compliance Posture.
+   */
+  export interface Schema$CompliancePostureConfig {
+    /**
+     * List of enabled compliance standards.
+     */
+    complianceStandards?: Schema$ComplianceStandard[];
+    /**
+     * Defines the enablement mode for Compliance Posture.
+     */
+    mode?: string | null;
+  }
+  /**
+   * Defines the details of a compliance standard.
+   */
+  export interface Schema$ComplianceStandard {
+    /**
+     * Name of the compliance standard.
+     */
+    standard?: string | null;
+  }
+  /**
    * ConfidentialNodes is configuration for the confidential nodes feature, which makes nodes run on confidential VMs.
    */
   export interface Schema$ConfidentialNodes {
@@ -1248,6 +1299,15 @@ export namespace container_v1beta1 {
      * Whether to enable consumption metering for this cluster. If enabled, a second BigQuery table will be created to hold resource consumption records.
      */
     enabled?: boolean | null;
+  }
+  /**
+   * ContainerdConfig contains configuration to customize containerd.
+   */
+  export interface Schema$ContainerdConfig {
+    /**
+     * PrivateRegistryAccessConfig is used to configure access configuration for private container registries.
+     */
+    privateRegistryAccessConfig?: Schema$PrivateRegistryAccessConfig;
   }
   /**
    * Configuration for fine-grained cost management feature.
@@ -1382,6 +1442,10 @@ export namespace container_v1beta1 {
    */
   export interface Schema$DNSConfig {
     /**
+     * Optional. The domain used in Additive VPC scope.
+     */
+    additiveVpcScopeDnsDomain?: string | null;
+    /**
      * cluster_dns indicates which in-cluster DNS provider should be used.
      */
     clusterDns?: string | null;
@@ -1495,6 +1559,15 @@ export namespace container_v1beta1 {
      * Whether the GCP Filestore CSI driver is enabled for this cluster.
      */
     enabled?: boolean | null;
+  }
+  /**
+   * GCPSecretManagerCertificateConfig configures a secret from [Google Secret Manager](https://cloud.google.com/secret-manager).
+   */
+  export interface Schema$GCPSecretManagerCertificateConfig {
+    /**
+     * Secret URI, in the form "projects/$PROJECT_ID/secrets/$SECRET_NAME/versions/$VERSION". Version can be fixed (e.g. "2") or "latest"
+     */
+    secretUri?: string | null;
   }
   /**
    * Configuration for the Cloud Storage Fuse CSI driver.
@@ -1633,6 +1706,19 @@ export namespace container_v1beta1 {
      * Whether the HTTP Load Balancing controller is enabled in the cluster. When enabled, it runs a small pod in the cluster that manages the load balancers.
      */
     disabled?: boolean | null;
+  }
+  /**
+   * Hugepages amount in both 2m and 1g size
+   */
+  export interface Schema$HugepagesConfig {
+    /**
+     * Optional. Amount of 1G hugepages
+     */
+    hugepageSize1g?: number | null;
+    /**
+     * Optional. Amount of 2M hugepages
+     */
+    hugepageSize2m?: number | null;
   }
   /**
    * IdentityServiceConfig is configuration for Identity Service which allows customers to use external identity providers with the K8S API
@@ -1848,6 +1934,10 @@ export namespace container_v1beta1 {
      * cgroup_mode specifies the cgroup mode to be used on the node.
      */
     cgroupMode?: string | null;
+    /**
+     * Optional. Amounts for 2M and 1G hugepages
+     */
+    hugepages?: Schema$HugepagesConfig;
     /**
      * The Linux kernel parameters to be applied to the nodes and all pods running on the nodes. The following parameters are supported. net.core.busy_poll net.core.busy_read net.core.netdev_max_backlog net.core.rmem_max net.core.wmem_default net.core.wmem_max net.core.optmem_max net.core.somaxconn net.ipv4.tcp_rmem net.ipv4.tcp_wmem net.ipv4.tcp_tw_reuse
      */
@@ -2274,6 +2364,10 @@ export namespace container_v1beta1 {
      */
     confidentialNodes?: Schema$ConfidentialNodes;
     /**
+     * Parameters for containerd customization.
+     */
+    containerdConfig?: Schema$ContainerdConfig;
+    /**
      * Size of the disk attached to each node, specified in GB. The smallest allowed disk size is 10GB. If unspecified, the default disk size is 100GB.
      */
     diskSizeGb?: number | null;
@@ -2422,6 +2516,10 @@ export namespace container_v1beta1 {
    * Subset of NodeConfig message that has defaults.
    */
   export interface Schema$NodeConfigDefaults {
+    /**
+     * Parameters for containerd customization.
+     */
+    containerdConfig?: Schema$ContainerdConfig;
     /**
      * GCFS (Google Container File System, also known as Riptide) options.
      */
@@ -2888,7 +2986,7 @@ export namespace container_v1beta1 {
    */
   export interface Schema$PolicyBinding {
     /**
-     * The relative resource name of the binauthz platform policy to audit. GKE platform policies have the following format: `projects/{project_number\}/platforms/gke/policies/{policy_id\}`.
+     * The relative resource name of the binauthz platform policy to evaluate. GKE platform policies have the following format: `projects/{project_number\}/platforms/gke/policies/{policy_id\}`.
      */
     name?: string | null;
   }
@@ -2935,6 +3033,19 @@ export namespace container_v1beta1 {
   export interface Schema$PrivateClusterMasterGlobalAccessConfig {
     /**
      * Whenever master is accessible globally or not.
+     */
+    enabled?: boolean | null;
+  }
+  /**
+   * PrivateRegistryAccessConfig contains access configuration for private container registries.
+   */
+  export interface Schema$PrivateRegistryAccessConfig {
+    /**
+     * Private registry access configuration.
+     */
+    certificateAuthorityDomainConfig?: Schema$CertificateAuthorityDomainConfig[];
+    /**
+     * Private registry access is enabled.
      */
     enabled?: boolean | null;
   }
@@ -3804,6 +3915,10 @@ export namespace container_v1beta1 {
    */
   export interface Schema$UpdateNodePoolRequest {
     /**
+     * A list of hardware accelerators to be attached to each node. See https://cloud.google.com/compute/docs/gpus for more information about support for GPUs.
+     */
+    accelerators?: Schema$AcceleratorConfig[];
+    /**
      * Required. Deprecated. The name of the cluster to upgrade. This field has been deprecated and replaced by the name field.
      */
     clusterId?: string | null;
@@ -3811,6 +3926,10 @@ export namespace container_v1beta1 {
      * Confidential nodes config. All the nodes in the node pool will be Confidential VM once enabled.
      */
     confidentialNodes?: Schema$ConfidentialNodes;
+    /**
+     * The desired containerd config for nodes in the node pool. Initiates an upgrade operation that recreates the nodes with the new config.
+     */
+    containerdConfig?: Schema$ContainerdConfig;
     /**
      * Optional. The desired disk size for nodes in the node pool. Initiates an upgrade operation that migrates the nodes in the node pool to the specified disk size.
      */
@@ -4262,6 +4381,7 @@ export namespace container_v1beta1 {
               rootUrl + '/v1beta1/{+parent}/aggregated/usableSubnetworks'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4384,6 +4504,7 @@ export namespace container_v1beta1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4476,6 +4597,7 @@ export namespace container_v1beta1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4608,6 +4730,7 @@ export namespace container_v1beta1 {
               rootUrl + '/v1beta1/{+name}:checkAutopilotCompatibility'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4698,6 +4821,7 @@ export namespace container_v1beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4785,6 +4909,7 @@ export namespace container_v1beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4869,6 +4994,7 @@ export namespace container_v1beta1 {
           {
             url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -4953,6 +5079,7 @@ export namespace container_v1beta1 {
           {
             url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5047,6 +5174,7 @@ export namespace container_v1beta1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5139,6 +5267,7 @@ export namespace container_v1beta1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5226,6 +5355,7 @@ export namespace container_v1beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5314,6 +5444,7 @@ export namespace container_v1beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5401,6 +5532,7 @@ export namespace container_v1beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5488,6 +5620,7 @@ export namespace container_v1beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5578,6 +5711,7 @@ export namespace container_v1beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5666,6 +5800,7 @@ export namespace container_v1beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5754,6 +5889,7 @@ export namespace container_v1beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5842,6 +5978,7 @@ export namespace container_v1beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5930,6 +6067,7 @@ export namespace container_v1beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -6018,6 +6156,7 @@ export namespace container_v1beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -6102,6 +6241,7 @@ export namespace container_v1beta1 {
           {
             url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
+            apiVersion: '',
           },
           options
         ),
@@ -6189,6 +6329,7 @@ export namespace container_v1beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -6520,6 +6661,7 @@ export namespace container_v1beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -6608,6 +6750,7 @@ export namespace container_v1beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -6693,6 +6836,7 @@ export namespace container_v1beta1 {
           {
             url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -6778,6 +6922,7 @@ export namespace container_v1beta1 {
           {
             url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6871,6 +7016,7 @@ export namespace container_v1beta1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6959,6 +7105,7 @@ export namespace container_v1beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -7047,6 +7194,7 @@ export namespace container_v1beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -7135,6 +7283,7 @@ export namespace container_v1beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -7223,6 +7372,7 @@ export namespace container_v1beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -7308,6 +7458,7 @@ export namespace container_v1beta1 {
           {
             url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
+            apiVersion: '',
           },
           options
         ),
@@ -7559,6 +7710,7 @@ export namespace container_v1beta1 {
               rootUrl + '/v1beta1/{+parent}/.well-known/openid-configuration'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -7661,6 +7813,7 @@ export namespace container_v1beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -7745,6 +7898,7 @@ export namespace container_v1beta1 {
           {
             url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -7837,6 +7991,7 @@ export namespace container_v1beta1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -7982,6 +8137,7 @@ export namespace container_v1beta1 {
               '/v1beta1/projects/{projectId}/zones/{zone}/serverconfig'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -8096,6 +8252,7 @@ export namespace container_v1beta1 {
               '/v1beta1/projects/{projectId}/zones/{zone}/clusters/{clusterId}/addons'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -8184,6 +8341,7 @@ export namespace container_v1beta1 {
               '/v1beta1/projects/{projectId}/zones/{zone}/clusters/{clusterId}:completeIpRotation'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -8270,6 +8428,7 @@ export namespace container_v1beta1 {
               rootUrl + '/v1beta1/projects/{projectId}/zones/{zone}/clusters'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -8357,6 +8516,7 @@ export namespace container_v1beta1 {
               '/v1beta1/projects/{projectId}/zones/{zone}/clusters/{clusterId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -8444,6 +8604,7 @@ export namespace container_v1beta1 {
               '/v1beta1/projects/{projectId}/zones/{zone}/clusters/{clusterId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -8531,6 +8692,7 @@ export namespace container_v1beta1 {
               '/v1beta1/projects/{projectId}/zones/{zone}/clusters/{clusterId}/legacyAbac'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -8622,6 +8784,7 @@ export namespace container_v1beta1 {
               rootUrl + '/v1beta1/projects/{projectId}/zones/{zone}/clusters'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -8709,6 +8872,7 @@ export namespace container_v1beta1 {
               '/v1beta1/projects/{projectId}/zones/{zone}/clusters/{clusterId}/locations'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -8796,6 +8960,7 @@ export namespace container_v1beta1 {
               '/v1beta1/projects/{projectId}/zones/{zone}/clusters/{clusterId}/logging'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -8883,6 +9048,7 @@ export namespace container_v1beta1 {
               '/v1beta1/projects/{projectId}/zones/{zone}/clusters/{clusterId}/master'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -8970,6 +9136,7 @@ export namespace container_v1beta1 {
               '/v1beta1/projects/{projectId}/zones/{zone}/clusters/{clusterId}/monitoring'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -9057,6 +9224,7 @@ export namespace container_v1beta1 {
               '/v1beta1/projects/{projectId}/zones/{zone}/clusters/{clusterId}/resourceLabels'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -9147,6 +9315,7 @@ export namespace container_v1beta1 {
               '/v1beta1/projects/{projectId}/zones/{zone}/clusters/{clusterId}:setMaintenancePolicy'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -9234,6 +9403,7 @@ export namespace container_v1beta1 {
               '/v1beta1/projects/{projectId}/zones/{zone}/clusters/{clusterId}:setMasterAuth'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -9321,6 +9491,7 @@ export namespace container_v1beta1 {
               '/v1beta1/projects/{projectId}/zones/{zone}/clusters/{clusterId}:setNetworkPolicy'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -9408,6 +9579,7 @@ export namespace container_v1beta1 {
               '/v1beta1/projects/{projectId}/zones/{zone}/clusters/{clusterId}:startIpRotation'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -9495,6 +9667,7 @@ export namespace container_v1beta1 {
               '/v1beta1/projects/{projectId}/zones/{zone}/clusters/{clusterId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
+            apiVersion: '',
           },
           options
         ),
@@ -9920,6 +10093,7 @@ export namespace container_v1beta1 {
               '/v1beta1/projects/{projectId}/zones/{zone}/clusters/{clusterId}/nodePools/{nodePoolId}/autoscaling'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -10007,6 +10181,7 @@ export namespace container_v1beta1 {
               '/v1beta1/projects/{projectId}/zones/{zone}/clusters/{clusterId}/nodePools'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -10094,6 +10269,7 @@ export namespace container_v1beta1 {
               '/v1beta1/projects/{projectId}/zones/{zone}/clusters/{clusterId}/nodePools/{nodePoolId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -10181,6 +10357,7 @@ export namespace container_v1beta1 {
               '/v1beta1/projects/{projectId}/zones/{zone}/clusters/{clusterId}/nodePools/{nodePoolId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -10273,6 +10450,7 @@ export namespace container_v1beta1 {
               '/v1beta1/projects/{projectId}/zones/{zone}/clusters/{clusterId}/nodePools'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -10361,6 +10539,7 @@ export namespace container_v1beta1 {
               '/v1beta1/projects/{projectId}/zones/{zone}/clusters/{clusterId}/nodePools/{nodePoolId}:rollback'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -10449,6 +10628,7 @@ export namespace container_v1beta1 {
               '/v1beta1/projects/{projectId}/zones/{zone}/clusters/{clusterId}/nodePools/{nodePoolId}/setManagement'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -10537,6 +10717,7 @@ export namespace container_v1beta1 {
               '/v1beta1/projects/{projectId}/zones/{zone}/clusters/{clusterId}/nodePools/{nodePoolId}/setSize'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -10624,6 +10805,7 @@ export namespace container_v1beta1 {
               '/v1beta1/projects/{projectId}/zones/{zone}/clusters/{clusterId}/nodePools/{nodePoolId}/update'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -10924,6 +11106,7 @@ export namespace container_v1beta1 {
               '/v1beta1/projects/{projectId}/zones/{zone}/operations/{operationId}:cancel'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -11011,6 +11194,7 @@ export namespace container_v1beta1 {
               '/v1beta1/projects/{projectId}/zones/{zone}/operations/{operationId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -11102,6 +11286,7 @@ export namespace container_v1beta1 {
               rootUrl + '/v1beta1/projects/{projectId}/zones/{zone}/operations'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
