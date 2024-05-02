@@ -346,6 +346,7 @@ export namespace gmailpostmastertools_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -433,6 +434,7 @@ export namespace gmailpostmastertools_v1 {
           {
             url: (rootUrl + '/v1/domains').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -542,6 +544,7 @@ export namespace gmailpostmastertools_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -635,6 +638,7 @@ export namespace gmailpostmastertools_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
