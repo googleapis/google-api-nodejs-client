@@ -1446,6 +1446,7 @@ export namespace osconfig_v1beta {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1530,6 +1531,7 @@ export namespace osconfig_v1beta {
           {
             url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -1614,6 +1616,7 @@ export namespace osconfig_v1beta {
           {
             url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1708,6 +1711,7 @@ export namespace osconfig_v1beta {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1792,6 +1796,7 @@ export namespace osconfig_v1beta {
           {
             url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -1948,6 +1953,7 @@ export namespace osconfig_v1beta {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2032,6 +2038,7 @@ export namespace osconfig_v1beta {
           {
             url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -2116,6 +2123,7 @@ export namespace osconfig_v1beta {
           {
             url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2210,6 +2218,7 @@ export namespace osconfig_v1beta {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2296,6 +2305,7 @@ export namespace osconfig_v1beta {
           {
             url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -2383,6 +2393,7 @@ export namespace osconfig_v1beta {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2470,6 +2481,7 @@ export namespace osconfig_v1beta {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2654,6 +2666,7 @@ export namespace osconfig_v1beta {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2741,6 +2754,7 @@ export namespace osconfig_v1beta {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2825,6 +2839,7 @@ export namespace osconfig_v1beta {
           {
             url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2917,6 +2932,7 @@ export namespace osconfig_v1beta {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3069,6 +3085,7 @@ export namespace osconfig_v1beta {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3201,6 +3218,7 @@ export namespace osconfig_v1beta {
               rootUrl + '/v1beta/{+instance}:lookupEffectiveGuestPolicy'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),

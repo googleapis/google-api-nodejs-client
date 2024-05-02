@@ -112,7 +112,7 @@
             "global": {
               "methods": {
                 "getProjectFeatureSettings": {
-                  "description": "GetProjectFeatureSettings returns the feature settings for a project",
+                  "description": "GetProjectFeatureSettings returns the VM Manager feature settings for a project.",
                   "flatPath": "v1/projects/{projectsId}/locations/global/projectFeatureSettings",
                   "httpMethod": "GET",
                   "id": "osconfig.projects.locations.global.getProjectFeatureSettings",
@@ -121,7 +121,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. Name of the billing config. \"projects//locations/global/projectFeatureSettings\"",
+                      "description": "Required. Name specifies the URL for the ProjectFeatureSettings resource: projects/project_id/locations/global/projectFeatureSettings.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/global/projectFeatureSettings$",
                       "required": true,
@@ -137,7 +137,7 @@
                   ]
                 },
                 "updateProjectFeatureSettings": {
-                  "description": "UpdateProjectFeatureSettings sets the feature settings for a project.",
+                  "description": "UpdateProjectFeatureSettings sets the VM Manager features for a project.",
                   "flatPath": "v1/projects/{projectsId}/locations/global/projectFeatureSettings",
                   "httpMethod": "PATCH",
                   "id": "osconfig.projects.locations.global.updateProjectFeatureSettings",
@@ -146,7 +146,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. Immutable. Name of the config, e.g. projects/12345/locations/global/projectFeatureSettings",
+                      "description": "Required. Immutable. Name specifies the URL for the ProjectFeatureSettings resource: projects/project_id/locations/global/projectFeatureSettings.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/global/projectFeatureSettings$",
                       "required": true,
@@ -1063,7 +1063,7 @@
       }
     }
   },
-  "revision": "20240317",
+  "revision": "20240429",
   "rootUrl": "https://osconfig.googleapis.com/",
   "schemas": {
     "AptSettings": {
@@ -3357,15 +3357,15 @@
       "type": "object"
     },
     "ProjectFeatureSettings": {
-      "description": "ProjectFeatureSettings represents the features settings for the VM Manager. The project features settings can be set for a project.",
+      "description": "ProjectFeatureSettings represents the VM Manager feature settings in a project. For more information, see Enable full VM Manager functionality.",
       "id": "ProjectFeatureSettings",
       "properties": {
         "name": {
-          "description": "Required. Immutable. Name of the config, e.g. projects/12345/locations/global/projectFeatureSettings",
+          "description": "Required. Immutable. Name specifies the URL for the ProjectFeatureSettings resource: projects/project_id/locations/global/projectFeatureSettings.",
           "type": "string"
         },
         "patchAndConfigFeatureSet": {
-          "description": "Currently set PatchAndConfigFeatureSet for name.",
+          "description": "Set PatchAndConfigFeatureSet for the project.",
           "enum": [
             "PATCH_AND_CONFIG_FEATURE_SET_UNSPECIFIED",
             "OSCONFIG_B",
@@ -3373,8 +3373,8 @@
           ],
           "enumDescriptions": [
             "Not specified placeholder",
-            "Basic feature set. Enables only the basic set of features.",
-            "Classic set of functionality."
+            "Enables only the basic set of VM Manager features in the project.",
+            "Enables all VM Manager features in the project."
           ],
           "type": "string"
         }
