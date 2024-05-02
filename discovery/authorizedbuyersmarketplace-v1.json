@@ -107,6 +107,51 @@
   "resources": {
     "bidders": {
       "resources": {
+        "auctionPackages": {
+          "methods": {
+            "list": {
+              "description": "List the auction packages. Buyers can use the URL path \"/v1/buyers/{accountId}/auctionPackages\" to list auction packages for the current buyer and its clients. Bidders can use the URL path \"/v1/bidders/{accountId}/auctionPackages\" to list auction packages for the bidder, its media planners, its buyers, and all their clients.",
+              "flatPath": "v1/bidders/{biddersId}/auctionPackages",
+              "httpMethod": "GET",
+              "id": "authorizedbuyersmarketplace.bidders.auctionPackages.list",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "filter": {
+                  "description": "Optional. Optional query string using the [Cloud API list filtering syntax](/authorized-buyers/apis/guides/list-filters). Only supported when parent is bidder. Supported columns for filtering are: * displayName * createTime * updateTime * eligibleSeatIds",
+                  "location": "query",
+                  "type": "string"
+                },
+                "pageSize": {
+                  "description": "Requested page size. The server may return fewer results than requested. Max allowed page size is 500.",
+                  "format": "int32",
+                  "location": "query",
+                  "type": "integer"
+                },
+                "pageToken": {
+                  "description": "The page token as returned. ListAuctionPackagesResponse.nextPageToken",
+                  "location": "query",
+                  "type": "string"
+                },
+                "parent": {
+                  "description": "Required. Name of the parent buyer that can access the auction package. Format: `buyers/{accountId}`. When used with a bidder account, the auction packages that the bidder, its media planners, its buyers and clients are subscribed to will be listed, in the format `bidders/{accountId}`.",
+                  "location": "path",
+                  "pattern": "^bidders/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+parent}/auctionPackages",
+              "response": {
+                "$ref": "ListAuctionPackagesResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/authorized-buyers-marketplace"
+              ]
+            }
+          }
+        },
         "finalizedDeals": {
           "methods": {
             "list": {
@@ -189,7 +234,7 @@
               ]
             },
             "list": {
-              "description": "List the auction packages subscribed by a buyer and its clients.",
+              "description": "List the auction packages. Buyers can use the URL path \"/v1/buyers/{accountId}/auctionPackages\" to list auction packages for the current buyer and its clients. Bidders can use the URL path \"/v1/bidders/{accountId}/auctionPackages\" to list auction packages for the bidder, its media planners, its buyers, and all their clients.",
               "flatPath": "v1/buyers/{buyersId}/auctionPackages",
               "httpMethod": "GET",
               "id": "authorizedbuyersmarketplace.buyers.auctionPackages.list",
@@ -197,6 +242,11 @@
                 "parent"
               ],
               "parameters": {
+                "filter": {
+                  "description": "Optional. Optional query string using the [Cloud API list filtering syntax](/authorized-buyers/apis/guides/list-filters). Only supported when parent is bidder. Supported columns for filtering are: * displayName * createTime * updateTime * eligibleSeatIds",
+                  "location": "query",
+                  "type": "string"
+                },
                 "pageSize": {
                   "description": "Requested page size. The server may return fewer results than requested. Max allowed page size is 500.",
                   "format": "int32",
@@ -209,7 +259,7 @@
                   "type": "string"
                 },
                 "parent": {
-                  "description": "Required. Name of the parent buyer that can access the auction package. Format: `buyers/{accountId}`",
+                  "description": "Required. Name of the parent buyer that can access the auction package. Format: `buyers/{accountId}`. When used with a bidder account, the auction packages that the bidder, its media planners, its buyers and clients are subscribed to will be listed, in the format `bidders/{accountId}`.",
                   "location": "path",
                   "pattern": "^buyers/[^/]+$",
                   "required": true,
@@ -1307,7 +1357,7 @@
       }
     }
   },
-  "revision": "20240312",
+  "revision": "20240422",
   "rootUrl": "https://authorizedbuyersmarketplace.googleapis.com/",
   "schemas": {
     "AcceptProposalRequest": {
@@ -1415,14 +1465,38 @@
           "description": "The display_name assigned to the auction package.",
           "type": "string"
         },
+        "eligibleSeatIds": {
+          "description": "Output only. If set, this field contains the list of DSP specific seat ids set by media planners that are eligible to transact on this deal. The seat ID is in the calling DSP's namespace.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
         "name": {
           "description": "Immutable. The unique identifier for the auction package. Format: `buyers/{accountId}/auctionPackages/{auctionPackageId}` The auction_package_id part of name is sent in the BidRequest to all RTB bidders and is returned as deal_id by the bidder in the BidResponse.",
           "type": "string"
         },
-        "subscribedClients": {
-          "description": "Output only. The list of clients of the current buyer that are subscribed to the AuctionPackage. Format: `buyers/{buyerAccountId}/clients/{clientAccountId}`",
+        "subscribedBuyers": {
+          "description": "Output only. The list of buyers that are subscribed to the AuctionPackage. This field is only populated when calling as a bidder. Format: `buyers/{buyerAccountId}`",
           "items": {
             "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "subscribedClients": {
+          "description": "Output only. When calling as a buyer, the list of clients of the current buyer that are subscribed to the AuctionPackage. When calling as a bidder, the list of clients that are subscribed to the AuctionPackage owned by the bidder or its buyers. Format: `buyers/{buyerAccountId}/clients/{clientAccountId}`",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "subscribedMediaPlanners": {
+          "description": "Output only. The list of media planners that are subscribed to the AuctionPackage. This field is only populated when calling as a bidder.",
+          "items": {
+            "$ref": "MediaPlanner"
           },
           "readOnly": true,
           "type": "array"
