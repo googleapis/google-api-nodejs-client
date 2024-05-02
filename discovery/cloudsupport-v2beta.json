@@ -125,6 +125,21 @@
               "location": "query",
               "type": "string"
             },
+            "product.productLine": {
+              "description": "The product line of the Product.",
+              "enum": [
+                "PRODUCT_LINE_UNSPECIFIED",
+                "GOOGLE_CLOUD",
+                "GOOGLE_MAPS"
+              ],
+              "enumDescriptions": [
+                "Unknown product type.",
+                "Google Cloud",
+                "Google Maps"
+              ],
+              "location": "query",
+              "type": "string"
+            },
             "query": {
               "description": "An expression used to filter case classifications. If it's an empty string, then no filtering happens. Otherwise, case classifications will be returned that match the filter.",
               "location": "query",
@@ -283,6 +298,21 @@
               "pattern": "^[^/]+/[^/]+$",
               "required": true,
               "type": "string"
+            },
+            "productLine": {
+              "description": "The product line to request cases for. If unspecified, only Google Cloud cases will be returned.",
+              "enum": [
+                "PRODUCT_LINE_UNSPECIFIED",
+                "GOOGLE_CLOUD",
+                "GOOGLE_MAPS"
+              ],
+              "enumDescriptions": [
+                "Unknown product type.",
+                "Google Cloud",
+                "Google Maps"
+              ],
+              "location": "query",
+              "type": "string"
             }
           },
           "path": "v2beta/{+parent}/cases",
@@ -359,6 +389,47 @@
           "path": "v2beta/cases:search",
           "response": {
             "$ref": "SearchCasesResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform"
+          ]
+        },
+        "showFeed": {
+          "description": "Show items in the feed of this case, including case emails, attachments, and comments.",
+          "flatPath": "v2beta/{v2betaId}/{v2betaId1}/cases/{casesId}:showFeed",
+          "httpMethod": "GET",
+          "id": "cloudsupport.cases.showFeed",
+          "parameterOrder": [
+            "parent"
+          ],
+          "parameters": {
+            "orderBy": {
+              "description": "Optional. Field to order feed items by, followed by `asc` or `desc` postfix. The only valid field is `creation_time`. This list is case-insensitive, default sorting order is ascending, and the redundant space characters are insignificant. Example: `creation_time desc`",
+              "location": "query",
+              "type": "string"
+            },
+            "pageSize": {
+              "description": "Optional. The maximum number of feed items fetched with each request.",
+              "format": "int32",
+              "location": "query",
+              "type": "integer"
+            },
+            "pageToken": {
+              "description": "Optional. A token identifying the page of results to return. If unspecified, it retrieves the first page.",
+              "location": "query",
+              "type": "string"
+            },
+            "parent": {
+              "description": "Required. The resource name of the case for which feed items should be listed.",
+              "location": "path",
+              "pattern": "^[^/]+/[^/]+/cases/[^/]+$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "v2beta/{+parent}:showFeed",
+          "response": {
+            "$ref": "ShowFeedResponse"
           },
           "scopes": [
             "https://www.googleapis.com/auth/cloud-platform"
@@ -548,7 +619,7 @@
       }
     }
   },
-  "revision": "20240320",
+  "revision": "20240430",
   "rootUrl": "https://cloudsupport.googleapis.com/",
   "schemas": {
     "Actor": {
@@ -783,6 +854,10 @@
         "id": {
           "description": "The unique ID for a classification. Must be specified for case creation. To retrieve valid classification IDs for case creation, use `caseClassifications.search`. Classification IDs returned by `caseClassifications.search` are guaranteed to be valid for at least 6 months. If a given classification is deactiveated, it will immediately stop being returned. After 6 months, `case.create` requests using the classification ID will fail.",
           "type": "string"
+        },
+        "product": {
+          "$ref": "Product",
+          "description": "The full product the classification corresponds to."
         }
       },
       "type": "object"
@@ -794,31 +869,32 @@
       "type": "object"
     },
     "Comment": {
-      "description": "Case comments are the main way Google Support communicates with a user who has opened a case. When a user responds to Google Support, the user's responses also appear as comments.",
+      "description": "A comment associated with a support case. Case comments are the primary way for Google Support to communicate with a user who has opened a case. When a user responds to Google Support, the user's responses also appear as comments.",
       "id": "Comment",
       "properties": {
         "body": {
-          "description": "The full comment body. Maximum of 12800 characters. This can contain rich text syntax.",
+          "description": "The full comment body. Maximum of 12800 characters.",
           "type": "string"
         },
         "createTime": {
-          "description": "Output only. The time when this comment was created.",
+          "description": "Output only. The time when the comment was created.",
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
         },
         "creator": {
           "$ref": "Actor",
-          "description": "Output only. The user or Google Support agent created this comment.",
+          "description": "Output only. The user or Google Support agent who created the comment.",
           "readOnly": true
         },
         "name": {
-          "description": "Output only. The resource name for the comment.",
+          "description": "Output only. Identifier. The resource name of the comment.",
           "readOnly": true,
           "type": "string"
         },
         "plainTextBody": {
-          "description": "Output only. DEPRECATED. An automatically generated plain text version of body with all rich text syntax stripped.",
+          "deprecated": true,
+          "description": "Output only. DEPRECATED. DO NOT USE. A duplicate of the `body` field. This field is only present for legacy reasons.",
           "readOnly": true,
           "type": "string"
         }
@@ -1041,6 +1117,54 @@
       },
       "type": "object"
     },
+    "EmailMessage": {
+      "description": "An email associated with a support case.",
+      "id": "EmailMessage",
+      "properties": {
+        "actor": {
+          "$ref": "Actor",
+          "description": "Output only. The user or Google Support agent that created this email message. This is inferred from the headers on the email message.",
+          "readOnly": true
+        },
+        "bodyContent": {
+          "$ref": "TextContent",
+          "description": "Output only. The full email message body. A best-effort attempt is made to remove extraneous reply threads.",
+          "readOnly": true
+        },
+        "ccEmailAddresses": {
+          "description": "Output only. Email addresses CCed on the email.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "createTime": {
+          "description": "Output only. Time when this email message object was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "Identifier. Resource name for the email message.",
+          "type": "string"
+        },
+        "recipientEmailAddresses": {
+          "description": "Output only. Email addresses the email was sent to.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "subject": {
+          "description": "Output only. Subject of the email.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "EscalateCaseRequest": {
       "description": "The request message for the EscalateCase endpoint.",
       "id": "EscalateCaseRequest",
@@ -1074,6 +1198,39 @@
             "The support agent does not have the expertise required to successfully resolve the issue.",
             "The issue is having a significant business impact."
           ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "FeedItem": {
+      "description": "A feed item associated with a support case.",
+      "id": "FeedItem",
+      "properties": {
+        "attachment": {
+          "$ref": "Attachment",
+          "description": "Output only. An attachment attached to the case.",
+          "readOnly": true
+        },
+        "comment": {
+          "$ref": "Comment",
+          "description": "Output only. A comment added to the case.",
+          "readOnly": true
+        },
+        "deletedAttachment": {
+          "$ref": "Attachment",
+          "description": "Output only. A deleted attachment that used to be associated with the support case.",
+          "readOnly": true
+        },
+        "emailMessage": {
+          "$ref": "EmailMessage",
+          "description": "Output only. An email message received in reply to the case.",
+          "readOnly": true
+        },
+        "eventTime": {
+          "description": "Output only. Time corresponding to the event of this item.",
+          "format": "google-datetime",
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -1328,6 +1485,27 @@
       },
       "type": "object"
     },
+    "Product": {
+      "description": "The product a case may be associated with.",
+      "id": "Product",
+      "properties": {
+        "productLine": {
+          "description": "The product line of the Product.",
+          "enum": [
+            "PRODUCT_LINE_UNSPECIFIED",
+            "GOOGLE_CLOUD",
+            "GOOGLE_MAPS"
+          ],
+          "enumDescriptions": [
+            "Unknown product type.",
+            "Google Cloud",
+            "Google Maps"
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "SearchCaseClassificationsResponse": {
       "description": "The response message for SearchCaseClassifications endpoint.",
       "id": "SearchCaseClassificationsResponse",
@@ -1359,6 +1537,35 @@
         },
         "nextPageToken": {
           "description": "A token to retrieve the next page of results. Set this in the `page_token` field of subsequent `cases.search` requests. If unspecified, there are no more results to retrieve.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ShowFeedResponse": {
+      "description": "The response message for the ShowFeed endpoint.",
+      "id": "ShowFeedResponse",
+      "properties": {
+        "feedItems": {
+          "description": "The list of feed items associated with the given Case.",
+          "items": {
+            "$ref": "FeedItem"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token to retrieve the next page of results. This should be set in the `page_token` field of subsequent `ShowFeedRequests`. If unspecified, there are no more results to retrieve.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "TextContent": {
+      "description": "Stores text attached to a support object.",
+      "id": "TextContent",
+      "properties": {
+        "plainText": {
+          "description": "Content in this field should be rendered and interpreted as-is.",
           "type": "string"
         }
       },
