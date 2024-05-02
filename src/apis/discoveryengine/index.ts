@@ -14,14 +14,22 @@
 /*! THIS FILE IS AUTO-GENERATED */
 
 import {AuthPlus, getAPI, GoogleConfigurable} from 'googleapis-common';
+import {discoveryengine_v1} from './v1';
 import {discoveryengine_v1alpha} from './v1alpha';
 import {discoveryengine_v1beta} from './v1beta';
 
 export const VERSIONS = {
+  v1: discoveryengine_v1.Discoveryengine,
   v1alpha: discoveryengine_v1alpha.Discoveryengine,
   v1beta: discoveryengine_v1beta.Discoveryengine,
 };
 
+export function discoveryengine(
+  version: 'v1'
+): discoveryengine_v1.Discoveryengine;
+export function discoveryengine(
+  options: discoveryengine_v1.Options
+): discoveryengine_v1.Discoveryengine;
 export function discoveryengine(
   version: 'v1alpha'
 ): discoveryengine_v1alpha.Discoveryengine;
@@ -36,11 +44,14 @@ export function discoveryengine(
 ): discoveryengine_v1beta.Discoveryengine;
 export function discoveryengine<
   T =
+    | discoveryengine_v1.Discoveryengine
     | discoveryengine_v1alpha.Discoveryengine
     | discoveryengine_v1beta.Discoveryengine,
 >(
   this: GoogleConfigurable,
   versionOrOptions:
+    | 'v1'
+    | discoveryengine_v1.Options
     | 'v1alpha'
     | discoveryengine_v1alpha.Options
     | 'v1beta'
@@ -51,6 +62,7 @@ export function discoveryengine<
 
 const auth = new AuthPlus();
 export {auth};
+export {discoveryengine_v1};
 export {discoveryengine_v1alpha};
 export {discoveryengine_v1beta};
 export {
