@@ -125,6 +125,15 @@ export namespace redis_v1beta1 {
   }
 
   /**
+   * Configuration of the AOF based persistence.
+   */
+  export interface Schema$AOFConfig {
+    /**
+     * Optional. fsync configuration.
+     */
+    appendFsync?: string | null;
+  }
+  /**
    * Configuration for availability of database instance
    */
   export interface Schema$AvailabilityConfiguration {
@@ -132,6 +141,10 @@ export namespace redis_v1beta1 {
      * Availability type. Potential values: * `ZONAL`: The instance serves data from only one zone. Outages in that zone affect data accessibility. * `REGIONAL`: The instance can serve data from more than one zone in a region (it is highly available).
      */
     availabilityType?: string | null;
+    /**
+     * Checks for resources that are configured to have redundancy, and ongoing replication across regions
+     */
+    crossRegionReplicaConfigured?: boolean | null;
     externalReplicaConfigured?: boolean | null;
     promotableReplicaConfigured?: boolean | null;
   }
@@ -202,6 +215,10 @@ export namespace redis_v1beta1 {
      */
     createTime?: string | null;
     /**
+     * Optional. The delete operation will fail when the value is set to true.
+     */
+    deletionProtectionEnabled?: boolean | null;
+    /**
      * Output only. Endpoints created on each given network, for Redis clients to connect to the cluster. Currently only one discovery endpoint is supported.
      */
     discoveryEndpoints?: Schema$DiscoveryEndpoint[];
@@ -210,6 +227,18 @@ export namespace redis_v1beta1 {
      */
     name?: string | null;
     /**
+     * Optional. The type of a redis node in the cluster. NodeType determines the underlying machine-type of a redis node.
+     */
+    nodeType?: string | null;
+    /**
+     * Optional. Persistence config (RDB, AOF) for the cluster.
+     */
+    persistenceConfig?: Schema$ClusterPersistenceConfig;
+    /**
+     * Output only. Precise value of redis memory size in GB for the entire cluster.
+     */
+    preciseSizeGb?: number | null;
+    /**
      * Required. Each PscConfig configures the consumer network where IPs will be designated to the cluster for client access through Private Service Connect Automation. Currently, only one PscConfig is supported.
      */
     pscConfigs?: Schema$PscConfig[];
@@ -217,6 +246,10 @@ export namespace redis_v1beta1 {
      * Output only. PSC connections for discovery of the cluster topology and accessing the cluster.
      */
     pscConnections?: Schema$PscConnection[];
+    /**
+     * Optional. Key/Value pairs of customer overrides for mutable Redis Configs
+     */
+    redisConfigs?: {[key: string]: string} | null;
     /**
      * Optional. The number of replica nodes per shard.
      */
@@ -245,6 +278,23 @@ export namespace redis_v1beta1 {
      * Output only. System assigned, unique identifier for the cluster.
      */
     uid?: string | null;
+  }
+  /**
+   * Configuration of the persistence functionality.
+   */
+  export interface Schema$ClusterPersistenceConfig {
+    /**
+     * Optional. AOF configuration. This field will be ignored if mode is not AOF.
+     */
+    aofConfig?: Schema$AOFConfig;
+    /**
+     * Optional. The mode of persistence.
+     */
+    mode?: string | null;
+    /**
+     * Optional. RDB configuration. This field will be ignored if mode is not RDB.
+     */
+    rdbConfig?: Schema$RDBConfig;
   }
   /**
    * Contains compliance information about a security standard indicating unmet recommendations.
@@ -1091,6 +1141,19 @@ export namespace redis_v1beta1 {
     pscConnectionId?: string | null;
   }
   /**
+   * Configuration of the RDB based persistence.
+   */
+  export interface Schema$RDBConfig {
+    /**
+     * Optional. Period between RDB snapshots.
+     */
+    rdbSnapshotPeriod?: string | null;
+    /**
+     * Optional. The time that the first snapshot was/will be attempted, and to which future snapshots will be aligned. If not provided, the current time will be used.
+     */
+    rdbSnapshotStartTime?: string | null;
+  }
+  /**
    * Operation metadata returned by the CLH during resource state reconciliation.
    */
   export interface Schema$ReconciliationOperationMetadata {
@@ -1331,6 +1394,7 @@ export namespace redis_v1beta1 {
           {
             url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1423,6 +1487,7 @@ export namespace redis_v1beta1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1544,6 +1609,7 @@ export namespace redis_v1beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1628,6 +1694,7 @@ export namespace redis_v1beta1 {
           {
             url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -1712,6 +1779,7 @@ export namespace redis_v1beta1 {
           {
             url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1804,6 +1872,7 @@ export namespace redis_v1beta1 {
           {
             url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1896,6 +1965,7 @@ export namespace redis_v1beta1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1980,6 +2050,7 @@ export namespace redis_v1beta1 {
           {
             url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -2155,6 +2226,7 @@ export namespace redis_v1beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2239,6 +2311,7 @@ export namespace redis_v1beta1 {
           {
             url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -2326,6 +2399,7 @@ export namespace redis_v1beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2413,6 +2487,7 @@ export namespace redis_v1beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2497,6 +2572,7 @@ export namespace redis_v1beta1 {
           {
             url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2590,6 +2666,7 @@ export namespace redis_v1beta1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2677,6 +2754,7 @@ export namespace redis_v1beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2769,6 +2847,7 @@ export namespace redis_v1beta1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2853,6 +2932,7 @@ export namespace redis_v1beta1 {
           {
             url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -2943,6 +3023,7 @@ export namespace redis_v1beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3030,6 +3111,7 @@ export namespace redis_v1beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3253,6 +3335,7 @@ export namespace redis_v1beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3337,6 +3420,7 @@ export namespace redis_v1beta1 {
           {
             url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -3421,6 +3505,7 @@ export namespace redis_v1beta1 {
           {
             url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3513,6 +3598,7 @@ export namespace redis_v1beta1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
