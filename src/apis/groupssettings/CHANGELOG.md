@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.0.6](https://github.com/googleapis/google-api-nodejs-client/compare/groupssettings-v3.0.5...groupssettings-v3.0.6) (2024-05-02)
+
+
+### Bug Fixes
+
+* **groupssettings:** update the API ([81f7c45](https://github.com/googleapis/google-api-nodejs-client/commit/81f7c4560d45065ccd96c24d05094c7b5de59580))
+
 ## [3.0.5](https://github.com/googleapis/google-api-nodejs-client/compare/groupssettings-v3.0.4...groupssettings-v3.0.5) (2023-10-11)
 
 

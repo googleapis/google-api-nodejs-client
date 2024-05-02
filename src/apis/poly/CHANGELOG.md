@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.4](https://github.com/googleapis/google-api-nodejs-client/compare/poly-v1.0.3...poly-v1.0.4) (2024-05-02)
+
+
+### Bug Fixes
+
+* **poly:** update the API ([12d5e41](https://github.com/googleapis/google-api-nodejs-client/commit/12d5e413c9db34fc5c1c34ab4773499c5f8c9c3b))
+
 ## [1.0.3](https://github.com/googleapis/google-api-nodejs-client/compare/poly-v1.0.2...poly-v1.0.3) (2023-10-11)
 
 

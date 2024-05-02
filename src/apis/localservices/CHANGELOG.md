@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/localservices-v3.0.0...localservices-v3.0.1) (2024-05-02)
+
+
+### Bug Fixes
+
+* **localservices:** update the API ([ca0c8d7](https://github.com/googleapis/google-api-nodejs-client/commit/ca0c8d7c7409cccbdf436d539119f093d3f62eec))
+
 ## [3.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/localservices-v2.0.0...localservices-v3.0.0) (2024-04-04)
 
 

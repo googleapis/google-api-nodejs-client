@@ -1,5 +1,12 @@
 # Changelog
 
+## [16.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/prod_tt_sasportal-v16.0.0...prod_tt_sasportal-v16.0.1) (2024-05-02)
+
+
+### Bug Fixes
+
+* **prod_tt_sasportal:** update the API ([5dfac38](https://github.com/googleapis/google-api-nodejs-client/commit/5dfac38e84b1d21146a9fecd9ead4a04d81e19f8))
+
 ## [16.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/prod_tt_sasportal-v15.0.0...prod_tt_sasportal-v16.0.0) (2024-04-04)
 
 

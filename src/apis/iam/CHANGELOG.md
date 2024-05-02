@@ -1,5 +1,16 @@
 # Changelog
 
+## [17.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/iam-v16.0.0...iam-v17.0.0) (2024-05-02)
+
+
+### ⚠ BREAKING CHANGES
+
+* **iam:** This release has breaking changes.
+
+### Features
+
+* **iam:** update the API ([2e9117f](https://github.com/googleapis/google-api-nodejs-client/commit/2e9117f73657e08bcea4de889f49bbeca4cb6882))
+
 ## [16.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/iam-v15.0.0...iam-v16.0.0) (2024-04-04)
 
 

@@ -1,5 +1,12 @@
 # Changelog
 
+## [12.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/networkservices-v12.0.0...networkservices-v12.0.1) (2024-05-02)
+
+
+### Bug Fixes
+
+* **networkservices:** update the API ([0cf9456](https://github.com/googleapis/google-api-nodejs-client/commit/0cf9456b33165b03510406f5173f875aa67b15c8))
+
 ## [12.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/networkservices-v11.0.0...networkservices-v12.0.0) (2024-04-04)
 
 
