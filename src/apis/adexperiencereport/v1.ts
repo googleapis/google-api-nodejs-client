@@ -261,6 +261,7 @@ export namespace adexperiencereport_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -365,6 +366,7 @@ export namespace adexperiencereport_v1 {
           {
             url: (rootUrl + '/v1/violatingSites').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
