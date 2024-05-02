@@ -1686,7 +1686,7 @@
       }
     }
   },
-  "revision": "20240128",
+  "revision": "20240421",
   "rootUrl": "https://recommender.googleapis.com/",
   "schemas": {
     "GoogleCloudRecommenderV1CostProjection": {
@@ -1813,7 +1813,7 @@
           "type": "string"
         },
         "name": {
-          "description": "Name of the insight.",
+          "description": "Identifier. Name of the insight.",
           "type": "string"
         },
         "observationPeriod": {
@@ -2171,7 +2171,7 @@
           "type": "string"
         },
         "name": {
-          "description": "Name of recommendation.",
+          "description": "Identifier. Name of recommendation.",
           "type": "string"
         },
         "primaryImpact": {
