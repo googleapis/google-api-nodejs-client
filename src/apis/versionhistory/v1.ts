@@ -336,6 +336,7 @@ export namespace versionhistory_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -453,6 +454,7 @@ export namespace versionhistory_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -573,6 +575,7 @@ export namespace versionhistory_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -698,6 +701,7 @@ export namespace versionhistory_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
