@@ -1429,6 +1429,7 @@ export namespace classroom_v1 {
           {
             url: (rootUrl + '/v1/courses').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1512,6 +1513,7 @@ export namespace classroom_v1 {
           {
             url: (rootUrl + '/v1/courses/{id}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -1595,6 +1597,7 @@ export namespace classroom_v1 {
           {
             url: (rootUrl + '/v1/courses/{id}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1681,6 +1684,7 @@ export namespace classroom_v1 {
           {
             url: (rootUrl + '/v1/courses').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1764,6 +1768,7 @@ export namespace classroom_v1 {
           {
             url: (rootUrl + '/v1/courses/{id}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -1847,6 +1852,7 @@ export namespace classroom_v1 {
           {
             url: (rootUrl + '/v1/courses/{id}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
+            apiVersion: '',
           },
           options
         ),
@@ -2008,6 +2014,7 @@ export namespace classroom_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2095,6 +2102,7 @@ export namespace classroom_v1 {
               '$1'
             ),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -2189,6 +2197,7 @@ export namespace classroom_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2322,6 +2331,7 @@ export namespace classroom_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2408,6 +2418,7 @@ export namespace classroom_v1 {
               rootUrl + '/v1/courses/{courseId}/announcements/{id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -2494,6 +2505,7 @@ export namespace classroom_v1 {
               rootUrl + '/v1/courses/{courseId}/announcements/{id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2588,6 +2600,7 @@ export namespace classroom_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2675,6 +2688,7 @@ export namespace classroom_v1 {
               '/v1/courses/{courseId}/announcements/{id}:modifyAssignees'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2761,6 +2775,7 @@ export namespace classroom_v1 {
               rootUrl + '/v1/courses/{courseId}/announcements/{id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -2952,6 +2967,7 @@ export namespace classroom_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3039,6 +3055,7 @@ export namespace classroom_v1 {
               '$1'
             ),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -3126,6 +3143,7 @@ export namespace classroom_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3218,6 +3236,7 @@ export namespace classroom_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3304,6 +3323,7 @@ export namespace classroom_v1 {
               rootUrl + '/v1/courses/{courseId}/courseWork/{id}:modifyAssignees'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3391,6 +3411,7 @@ export namespace classroom_v1 {
               '$1'
             ),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -3583,6 +3604,7 @@ export namespace classroom_v1 {
               '/v1/courses/{courseId}/courseWork/{courseWorkId}/studentSubmissions/{id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3678,6 +3700,7 @@ export namespace classroom_v1 {
               '/v1/courses/{courseId}/courseWork/{courseWorkId}/studentSubmissions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3773,6 +3796,7 @@ export namespace classroom_v1 {
               '/v1/courses/{courseId}/courseWork/{courseWorkId}/studentSubmissions/{id}:modifyAttachments'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3864,6 +3888,7 @@ export namespace classroom_v1 {
               '/v1/courses/{courseId}/courseWork/{courseWorkId}/studentSubmissions/{id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -3952,6 +3977,7 @@ export namespace classroom_v1 {
               '/v1/courses/{courseId}/courseWork/{courseWorkId}/studentSubmissions/{id}:reclaim'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4040,6 +4066,7 @@ export namespace classroom_v1 {
               '/v1/courses/{courseId}/courseWork/{courseWorkId}/studentSubmissions/{id}:return'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4128,6 +4155,7 @@ export namespace classroom_v1 {
               '/v1/courses/{courseId}/courseWork/{courseWorkId}/studentSubmissions/{id}:turnIn'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4375,6 +4403,7 @@ export namespace classroom_v1 {
               rootUrl + '/v1/courses/{courseId}/courseWorkMaterials'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4461,6 +4490,7 @@ export namespace classroom_v1 {
               rootUrl + '/v1/courses/{courseId}/courseWorkMaterials/{id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -4550,6 +4580,7 @@ export namespace classroom_v1 {
               rootUrl + '/v1/courses/{courseId}/courseWorkMaterials/{id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4643,6 +4674,7 @@ export namespace classroom_v1 {
               rootUrl + '/v1/courses/{courseId}/courseWorkMaterials'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4734,6 +4766,7 @@ export namespace classroom_v1 {
               rootUrl + '/v1/courses/{courseId}/courseWorkMaterials/{id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -4914,6 +4947,7 @@ export namespace classroom_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5001,6 +5035,7 @@ export namespace classroom_v1 {
               '$1'
             ),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -5088,6 +5123,7 @@ export namespace classroom_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5180,6 +5216,7 @@ export namespace classroom_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5328,6 +5365,7 @@ export namespace classroom_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5415,6 +5453,7 @@ export namespace classroom_v1 {
               '$1'
             ),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -5502,6 +5541,7 @@ export namespace classroom_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5594,6 +5634,7 @@ export namespace classroom_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5738,6 +5779,7 @@ export namespace classroom_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5825,6 +5867,7 @@ export namespace classroom_v1 {
               '$1'
             ),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -5912,6 +5955,7 @@ export namespace classroom_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6002,6 +6046,7 @@ export namespace classroom_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6089,6 +6134,7 @@ export namespace classroom_v1 {
               '$1'
             ),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -6253,6 +6299,7 @@ export namespace classroom_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -6337,6 +6384,7 @@ export namespace classroom_v1 {
           {
             url: (rootUrl + '/v1/invitations').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -6424,6 +6472,7 @@ export namespace classroom_v1 {
               '$1'
             ),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -6510,6 +6559,7 @@ export namespace classroom_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6598,6 +6648,7 @@ export namespace classroom_v1 {
           {
             url: (rootUrl + '/v1/invitations').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6735,6 +6786,7 @@ export namespace classroom_v1 {
           {
             url: (rootUrl + '/v1/registrations').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -6822,6 +6874,7 @@ export namespace classroom_v1 {
               '$1'
             ),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -6936,6 +6989,7 @@ export namespace classroom_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -7039,6 +7093,7 @@ export namespace classroom_v1 {
               rootUrl + '/v1/userProfiles/{studentId}/guardianInvitations'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -7129,6 +7184,7 @@ export namespace classroom_v1 {
               '/v1/userProfiles/{studentId}/guardianInvitations/{invitationId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -7222,6 +7278,7 @@ export namespace classroom_v1 {
               rootUrl + '/v1/userProfiles/{studentId}/guardianInvitations'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -7314,6 +7371,7 @@ export namespace classroom_v1 {
               '/v1/userProfiles/{studentId}/guardianInvitations/{invitationId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -7474,6 +7532,7 @@ export namespace classroom_v1 {
               rootUrl + '/v1/userProfiles/{studentId}/guardians/{guardianId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -7560,6 +7619,7 @@ export namespace classroom_v1 {
               rootUrl + '/v1/userProfiles/{studentId}/guardians/{guardianId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -7652,6 +7712,7 @@ export namespace classroom_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
