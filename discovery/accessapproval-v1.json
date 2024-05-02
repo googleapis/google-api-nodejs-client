@@ -913,7 +913,7 @@
       }
     }
   },
-  "revision": "20240126",
+  "revision": "20240424",
   "rootUrl": "https://accessapproval.googleapis.com/",
   "schemas": {
     "AccessApprovalServiceAccount": {
@@ -984,6 +984,10 @@
           "description": "This preference is shared with Google personnel, but can be overridden if said personnel deems necessary. The approver ultimately can set the expiration at approval time.",
           "format": "int32",
           "type": "integer"
+        },
+        "requireCustomerVisibleJustification": {
+          "description": "Optional. A setting to require approval request justifications to be customer visible.",
+          "type": "boolean"
         }
       },
       "type": "object"
