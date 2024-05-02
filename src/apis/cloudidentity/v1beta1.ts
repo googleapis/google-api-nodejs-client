@@ -2255,6 +2255,7 @@ export namespace cloudidentity_v1beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2340,6 +2341,7 @@ export namespace cloudidentity_v1beta1 {
           {
             url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2436,6 +2438,7 @@ export namespace cloudidentity_v1beta1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2531,6 +2534,7 @@ export namespace cloudidentity_v1beta1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2619,6 +2623,7 @@ export namespace cloudidentity_v1beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2778,6 +2783,7 @@ export namespace cloudidentity_v1beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2862,6 +2868,7 @@ export namespace cloudidentity_v1beta1 {
           {
             url: (rootUrl + '/v1beta1/devices').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2946,6 +2953,7 @@ export namespace cloudidentity_v1beta1 {
           {
             url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -3030,6 +3038,7 @@ export namespace cloudidentity_v1beta1 {
           {
             url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3117,6 +3126,7 @@ export namespace cloudidentity_v1beta1 {
           {
             url: (rootUrl + '/v1beta1/devices').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3204,6 +3214,7 @@ export namespace cloudidentity_v1beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3379,6 +3390,7 @@ export namespace cloudidentity_v1beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3467,6 +3479,7 @@ export namespace cloudidentity_v1beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3555,6 +3568,7 @@ export namespace cloudidentity_v1beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3640,6 +3654,7 @@ export namespace cloudidentity_v1beta1 {
           {
             url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -3725,6 +3740,7 @@ export namespace cloudidentity_v1beta1 {
           {
             url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3818,6 +3834,7 @@ export namespace cloudidentity_v1beta1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3913,6 +3930,7 @@ export namespace cloudidentity_v1beta1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4003,6 +4021,7 @@ export namespace cloudidentity_v1beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4220,6 +4239,7 @@ export namespace cloudidentity_v1beta1 {
           {
             url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4305,6 +4325,7 @@ export namespace cloudidentity_v1beta1 {
           {
             url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -4430,6 +4451,7 @@ export namespace cloudidentity_v1beta1 {
           {
             url: (rootUrl + '/v1beta1/groups').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4514,6 +4536,7 @@ export namespace cloudidentity_v1beta1 {
           {
             url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -4598,6 +4621,7 @@ export namespace cloudidentity_v1beta1 {
           {
             url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4685,6 +4709,7 @@ export namespace cloudidentity_v1beta1 {
           {
             url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4772,6 +4797,7 @@ export namespace cloudidentity_v1beta1 {
           {
             url: (rootUrl + '/v1beta1/groups').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4866,6 +4892,7 @@ export namespace cloudidentity_v1beta1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4950,6 +4977,7 @@ export namespace cloudidentity_v1beta1 {
           {
             url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -5042,6 +5070,7 @@ export namespace cloudidentity_v1beta1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5129,6 +5158,7 @@ export namespace cloudidentity_v1beta1 {
           {
             url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -5348,6 +5378,7 @@ export namespace cloudidentity_v1beta1 {
               '/v1beta1/{+parent}/memberships:checkTransitiveMembership'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5438,6 +5469,7 @@ export namespace cloudidentity_v1beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5523,6 +5555,7 @@ export namespace cloudidentity_v1beta1 {
           {
             url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -5608,6 +5641,7 @@ export namespace cloudidentity_v1beta1 {
           {
             url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5695,6 +5729,7 @@ export namespace cloudidentity_v1beta1 {
               rootUrl + '/v1beta1/{+parent}/memberships:getMembershipGraph'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5788,6 +5823,7 @@ export namespace cloudidentity_v1beta1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5883,6 +5919,7 @@ export namespace cloudidentity_v1beta1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5980,6 +6017,7 @@ export namespace cloudidentity_v1beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -6076,6 +6114,7 @@ export namespace cloudidentity_v1beta1 {
               rootUrl + '/v1beta1/{+parent}/memberships:searchDirectGroups'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6171,6 +6210,7 @@ export namespace cloudidentity_v1beta1 {
               rootUrl + '/v1beta1/{+parent}/memberships:searchTransitiveGroups'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6269,6 +6309,7 @@ export namespace cloudidentity_v1beta1 {
               '/v1beta1/{+parent}/memberships:searchTransitiveMemberships'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6522,6 +6563,7 @@ export namespace cloudidentity_v1beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -6607,6 +6649,7 @@ export namespace cloudidentity_v1beta1 {
           {
             url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -6697,6 +6740,7 @@ export namespace cloudidentity_v1beta1 {
           {
             url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6792,6 +6836,7 @@ export namespace cloudidentity_v1beta1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6879,6 +6924,7 @@ export namespace cloudidentity_v1beta1 {
           {
             url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -7028,6 +7074,7 @@ export namespace cloudidentity_v1beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -7114,6 +7161,7 @@ export namespace cloudidentity_v1beta1 {
           {
             url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -7200,6 +7248,7 @@ export namespace cloudidentity_v1beta1 {
           {
             url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -7296,6 +7345,7 @@ export namespace cloudidentity_v1beta1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -7433,6 +7483,7 @@ export namespace cloudidentity_v1beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -7518,6 +7569,7 @@ export namespace cloudidentity_v1beta1 {
           {
             url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -7608,6 +7660,7 @@ export namespace cloudidentity_v1beta1 {
           {
             url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -7703,6 +7756,7 @@ export namespace cloudidentity_v1beta1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -7790,6 +7844,7 @@ export namespace cloudidentity_v1beta1 {
           {
             url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -7954,6 +8009,7 @@ export namespace cloudidentity_v1beta1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -8042,6 +8098,7 @@ export namespace cloudidentity_v1beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
