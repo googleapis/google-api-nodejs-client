@@ -321,6 +321,10 @@ export namespace recaptchaenterprise_v1 {
      */
     firewallPolicyEvaluation?: boolean | null;
     /**
+     * Optional. The Fraud Prevention setting for this assessment.
+     */
+    fraudPrevention?: string | null;
+    /**
      * Optional. Deprecated: use `user_info.account_id` instead. Unique stable hashed user identifier for the request. The identifier must be hashed using hmac-sha256 with stable secret.
      */
     hashedAccountId?: string | null;
@@ -1260,6 +1264,7 @@ export namespace recaptchaenterprise_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1357,6 +1362,7 @@ export namespace recaptchaenterprise_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1486,6 +1492,7 @@ export namespace recaptchaenterprise_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1576,6 +1583,7 @@ export namespace recaptchaenterprise_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -1668,6 +1676,7 @@ export namespace recaptchaenterprise_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1765,6 +1774,7 @@ export namespace recaptchaenterprise_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1859,6 +1869,7 @@ export namespace recaptchaenterprise_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -1956,6 +1967,7 @@ export namespace recaptchaenterprise_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2127,6 +2139,7 @@ export namespace recaptchaenterprise_v1 {
           {
             url: (rootUrl + '/v1/{+parent}/keys').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2217,6 +2230,7 @@ export namespace recaptchaenterprise_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -2309,6 +2323,7 @@ export namespace recaptchaenterprise_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2403,6 +2418,7 @@ export namespace recaptchaenterprise_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2497,6 +2513,7 @@ export namespace recaptchaenterprise_v1 {
           {
             url: (rootUrl + '/v1/{+parent}/keys').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2594,6 +2611,7 @@ export namespace recaptchaenterprise_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2688,6 +2706,7 @@ export namespace recaptchaenterprise_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -2785,6 +2804,7 @@ export namespace recaptchaenterprise_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2973,6 +2993,7 @@ export namespace recaptchaenterprise_v1 {
               rootUrl + '/v1/{+project}/relatedaccountgroupmemberships:search'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3094,6 +3115,7 @@ export namespace recaptchaenterprise_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3215,6 +3237,7 @@ export namespace recaptchaenterprise_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),

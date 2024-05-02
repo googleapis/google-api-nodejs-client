@@ -694,7 +694,7 @@
       }
     }
   },
-  "revision": "20240317",
+  "revision": "20240414",
   "rootUrl": "https://recaptchaenterprise.googleapis.com/",
   "schemas": {
     "GoogleCloudRecaptchaenterpriseV1AccountDefenderAssessment": {
@@ -1033,6 +1033,20 @@
         "firewallPolicyEvaluation": {
           "description": "Optional. Flag for enabling firewall policy config assessment. If this flag is enabled, the firewall policy will be evaluated and a suggested firewall action will be returned in the response.",
           "type": "boolean"
+        },
+        "fraudPrevention": {
+          "description": "Optional. The Fraud Prevention setting for this assessment.",
+          "enum": [
+            "FRAUD_PREVENTION_UNSPECIFIED",
+            "ENABLED",
+            "DISABLED"
+          ],
+          "enumDescriptions": [
+            "Default, unspecified setting. If opted in for automatic detection, `fraud_prevention_assessment` is returned based on the request. Otherwise, `fraud_prevention_assessment` is returned if `transaction_data` is present in the `Event` and Fraud Prevention is enabled in the Google Cloud console.",
+            "Enable Fraud Prevention for this assessment, if Fraud Prevention is enabled in the Google Cloud console.",
+            "Disable Fraud Prevention for this assessment, regardless of opt-in status or Google Cloud console settings."
+          ],
+          "type": "string"
         },
         "hashedAccountId": {
           "deprecated": true,
