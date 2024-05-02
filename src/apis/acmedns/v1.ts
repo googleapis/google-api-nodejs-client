@@ -247,6 +247,7 @@ export namespace acmedns_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -335,6 +336,7 @@ export namespace acmedns_v1 {
               rootUrl + '/v1/acmeChallengeSets/{rootDomain}:rotateChallenges'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
