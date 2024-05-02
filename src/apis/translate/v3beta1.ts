@@ -799,6 +799,7 @@ export namespace translate_v3beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -891,6 +892,7 @@ export namespace translate_v3beta1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -985,6 +987,7 @@ export namespace translate_v3beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1129,6 +1132,7 @@ export namespace translate_v3beta1 {
               rootUrl + '/v3beta1/{+parent}:batchTranslateDocument'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1216,6 +1220,7 @@ export namespace translate_v3beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1310,6 +1315,7 @@ export namespace translate_v3beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1394,6 +1400,7 @@ export namespace translate_v3beta1 {
           {
             url: (rootUrl + '/v3beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1486,6 +1493,7 @@ export namespace translate_v3beta1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1578,6 +1586,7 @@ export namespace translate_v3beta1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1672,6 +1681,7 @@ export namespace translate_v3beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1766,6 +1776,7 @@ export namespace translate_v3beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1962,6 +1973,7 @@ export namespace translate_v3beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2046,6 +2058,7 @@ export namespace translate_v3beta1 {
           {
             url: (rootUrl + '/v3beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -2130,6 +2143,7 @@ export namespace translate_v3beta1 {
           {
             url: (rootUrl + '/v3beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2222,6 +2236,7 @@ export namespace translate_v3beta1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2362,6 +2377,7 @@ export namespace translate_v3beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2446,6 +2462,7 @@ export namespace translate_v3beta1 {
           {
             url: (rootUrl + '/v3beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -2530,6 +2547,7 @@ export namespace translate_v3beta1 {
           {
             url: (rootUrl + '/v3beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2622,6 +2640,7 @@ export namespace translate_v3beta1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2709,6 +2728,7 @@ export namespace translate_v3beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
