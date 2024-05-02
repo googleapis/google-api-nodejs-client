@@ -500,6 +500,7 @@ export namespace area120tables_v1alpha1 {
           {
             url: (rootUrl + '/v1alpha1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -587,6 +588,7 @@ export namespace area120tables_v1alpha1 {
           {
             url: (rootUrl + '/v1alpha1/tables').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -710,6 +712,7 @@ export namespace area120tables_v1alpha1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -798,6 +801,7 @@ export namespace area120tables_v1alpha1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -893,6 +897,7 @@ export namespace area120tables_v1alpha1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -981,6 +986,7 @@ export namespace area120tables_v1alpha1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1066,6 +1072,7 @@ export namespace area120tables_v1alpha1 {
           {
             url: (rootUrl + '/v1alpha1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -1150,6 +1157,7 @@ export namespace area120tables_v1alpha1 {
           {
             url: (rootUrl + '/v1alpha1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1237,6 +1245,7 @@ export namespace area120tables_v1alpha1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1322,6 +1331,7 @@ export namespace area120tables_v1alpha1 {
           {
             url: (rootUrl + '/v1alpha1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -1529,6 +1539,7 @@ export namespace area120tables_v1alpha1 {
           {
             url: (rootUrl + '/v1alpha1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1621,6 +1632,7 @@ export namespace area120tables_v1alpha1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
