@@ -243,6 +243,7 @@ export namespace playcustomapp_v1 {
               rootUrl + '/playcustomapp/v1/accounts/{account}/customApps'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
