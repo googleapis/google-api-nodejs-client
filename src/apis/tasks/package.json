@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/tasks",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "tasks",
   "main": "build/index.js",
   "types": "build/index.d.ts",

@@ -1,5 +1,12 @@
 # Changelog
 
+## [8.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/places-v8.0.0...places-v8.0.1) (2024-05-02)
+
+
+### Bug Fixes
+
+* **places:** update the API ([7dd5993](https://github.com/googleapis/google-api-nodejs-client/commit/7dd5993f4d5adbfd6eeed73bad1c066594fa8ffe))
+
 ## [8.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/places-v7.0.0...places-v8.0.0) (2024-04-04)
 
 

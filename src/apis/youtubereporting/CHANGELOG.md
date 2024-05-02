@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.4](https://github.com/googleapis/google-api-nodejs-client/compare/youtubereporting-v1.0.3...youtubereporting-v1.0.4) (2024-05-02)
+
+
+### Bug Fixes
+
+* **youtubereporting:** update the API ([87c5dcc](https://github.com/googleapis/google-api-nodejs-client/commit/87c5dcc04c98a5defa4a271125cd5a248eca800a))
+
 ## [1.0.3](https://github.com/googleapis/google-api-nodejs-client/compare/youtubereporting-v1.0.2...youtubereporting-v1.0.3) (2023-10-11)
 
 

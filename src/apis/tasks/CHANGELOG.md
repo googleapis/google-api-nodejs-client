@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/tasks-v3.0.0...tasks-v3.0.1) (2024-05-02)
+
+
+### Bug Fixes
+
+* **tasks:** update the API ([4203139](https://github.com/googleapis/google-api-nodejs-client/commit/4203139d06bd3b8487d1d0e2d29b92ba7d9a6975))
+
 ## [3.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/tasks-v2.0.0...tasks-v3.0.0) (2024-04-04)
 
 

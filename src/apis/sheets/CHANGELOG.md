@@ -1,5 +1,12 @@
 # Changelog
 
+## [6.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/sheets-v6.0.0...sheets-v6.1.0) (2024-05-02)
+
+
+### Features
+
+* **sheets:** update the API ([74b2d05](https://github.com/googleapis/google-api-nodejs-client/commit/74b2d057117112b9b6991f70dc47ac60a9945e82))
+
 ## [6.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/sheets-v5.0.5...sheets-v6.0.0) (2024-04-04)
 
 
