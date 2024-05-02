@@ -2074,6 +2074,10 @@ export namespace androidpublisher_v3 {
     externalTransactionToken?: string | null;
   }
   /**
+   * Details of a recurring external transaction product which doesn't belong to any other more specific category.
+   */
+  export interface Schema$OtherRecurringProduct {}
+  /**
    * Pricing information for any new locations Play may launch in.
    */
   export interface Schema$OtherRegionsBasePlanConfig {
@@ -2108,6 +2112,10 @@ export namespace androidpublisher_v3 {
      */
     absoluteDiscounts?: Schema$OtherRegionsSubscriptionOfferPhasePrices;
     /**
+     * Set to specify this offer is free to obtain.
+     */
+    free?: Schema$OtherRegionsSubscriptionOfferPhaseFreePriceOverride;
+    /**
      * The absolute price the user pays for this offer phase. The price must not be smaller than the minimum price allowed for any new locations Play may launch in.
      */
     otherRegionsPrices?: Schema$OtherRegionsSubscriptionOfferPhasePrices;
@@ -2116,6 +2124,10 @@ export namespace androidpublisher_v3 {
      */
     relativeDiscount?: number | null;
   }
+  /**
+   * Represents the free price override configuration for any new locations Play may launch for a single offer phase.
+   */
+  export interface Schema$OtherRegionsSubscriptionOfferPhaseFreePriceOverride {}
   /**
    * Pricing information for any new locations Play may launch in.
    */
@@ -2252,7 +2264,7 @@ export namespace androidpublisher_v3 {
      */
     purchaseToken?: string | null;
     /**
-     * The type of purchase of the inapp product. This field is only set if this purchase was not made using the standard in-app billing flow. Possible values are: 0. Test (i.e. purchased from a license testing account) 1. Promo (i.e. purchased using a promo code) 2. Rewarded (i.e. from watching a video ad instead of paying)
+     * The type of purchase of the inapp product. This field is only set if this purchase was not made using the standard in-app billing flow. Possible values are: 0. Test (i.e. purchased from a license testing account) 1. Promo (i.e. purchased using a promo code). Does not include Play Points purchases. 2. Rewarded (i.e. from watching a video ad instead of paying)
      */
     purchaseType?: number | null;
     /**
@@ -2297,6 +2309,10 @@ export namespace androidpublisher_v3 {
      * Input only. Provided during the call to Create. Must only be used when migrating a subscription from manual monthly reporting to automated reporting.
      */
     migratedTransactionProgram?: string | null;
+    /**
+     * Details of a recurring external transaction product which doesn't belong to any other specific category.
+     */
+    otherRecurringProduct?: Schema$OtherRecurringProduct;
   }
   /**
    * A request to refund an existing external transaction.
@@ -2371,6 +2387,10 @@ export namespace androidpublisher_v3 {
      */
     absoluteDiscount?: Schema$Money;
     /**
+     * Set to specify this offer is free to obtain.
+     */
+    free?: Schema$RegionalSubscriptionOfferPhaseFreePriceOverride;
+    /**
      * The absolute price the user pays for this offer phase. The price must not be smaller than the minimum price allowed for this region.
      */
     price?: Schema$Money;
@@ -2383,6 +2403,10 @@ export namespace androidpublisher_v3 {
      */
     relativeDiscount?: number | null;
   }
+  /**
+   * Represents the free price override configuration for a single phase of a subscription offer
+   */
+  export interface Schema$RegionalSubscriptionOfferPhaseFreePriceOverride {}
   /**
    * Specified details about taxation in a given geographical region.
    */
@@ -3201,10 +3225,26 @@ export namespace androidpublisher_v3 {
    */
   export interface Schema$TargetingRuleScope {
     /**
+     * The scope of the current targeting rule is any subscription in the parent app.
+     */
+    anySubscriptionInApp?: Schema$TargetingRuleScopeAnySubscriptionInApp;
+    /**
      * The scope of the current targeting rule is the subscription with the specified subscription ID. Must be a subscription within the same parent app.
      */
     specificSubscriptionInApp?: string | null;
+    /**
+     * The scope of the current targeting rule is the subscription in which this offer is defined.
+     */
+    thisSubscription?: Schema$TargetingRuleScopeThisSubscription;
   }
+  /**
+   * Represents the targeting rule scope corresponding to any subscription in the parent app.
+   */
+  export interface Schema$TargetingRuleScopeAnySubscriptionInApp {}
+  /**
+   * Represents the targeting rule scope corresponding to the subscriptions in which this offer is defined.
+   */
+  export interface Schema$TargetingRuleScopeThisSubscription {}
   /**
    * Update type for targeting. Note it is always a subset Targeting.
    */
@@ -3794,6 +3834,7 @@ export namespace androidpublisher_v3 {
               '/androidpublisher/v3/applications/{packageName}/dataSafety'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3902,6 +3943,7 @@ export namespace androidpublisher_v3 {
               '/androidpublisher/v3/applications/{packageName}/deviceTierConfigs'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3990,6 +4032,7 @@ export namespace androidpublisher_v3 {
               '/androidpublisher/v3/applications/{packageName}/deviceTierConfigs/{deviceTierConfigId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4085,6 +4128,7 @@ export namespace androidpublisher_v3 {
               '/androidpublisher/v3/applications/{packageName}/deviceTierConfigs'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4232,6 +4276,7 @@ export namespace androidpublisher_v3 {
               '/androidpublisher/v3/applications/{packageName}/appRecoveries/{appRecoveryId}:addTargeting'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4327,6 +4372,7 @@ export namespace androidpublisher_v3 {
               '/androidpublisher/v3/applications/{packageName}/appRecoveries'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4422,6 +4468,7 @@ export namespace androidpublisher_v3 {
               '/androidpublisher/v3/applications/{packageName}/appRecoveries/{appRecoveryId}:cancel'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4513,6 +4560,7 @@ export namespace androidpublisher_v3 {
               '/androidpublisher/v3/applications/{packageName}/appRecoveries'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4608,6 +4656,7 @@ export namespace androidpublisher_v3 {
               '/androidpublisher/v3/applications/{packageName}/appRecoveries/{appRecoveryId}:deploy'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4798,6 +4847,7 @@ export namespace androidpublisher_v3 {
               '/androidpublisher/v3/applications/{packageName}/edits/{editId}:commit'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4883,6 +4933,7 @@ export namespace androidpublisher_v3 {
               '/androidpublisher/v3/applications/{packageName}/edits/{editId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -4970,6 +5021,7 @@ export namespace androidpublisher_v3 {
               '/androidpublisher/v3/applications/{packageName}/edits/{editId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5056,6 +5108,7 @@ export namespace androidpublisher_v3 {
               rootUrl + '/androidpublisher/v3/applications/{packageName}/edits'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5143,6 +5196,7 @@ export namespace androidpublisher_v3 {
               '/androidpublisher/v3/applications/{packageName}/edits/{editId}:validate'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5301,6 +5355,7 @@ export namespace androidpublisher_v3 {
               '/androidpublisher/v3/applications/{packageName}/edits/{editId}/apks/externallyHosted'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5390,6 +5445,7 @@ export namespace androidpublisher_v3 {
               '/androidpublisher/v3/applications/{packageName}/edits/{editId}/apks'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5478,6 +5534,7 @@ export namespace androidpublisher_v3 {
               '/androidpublisher/v3/applications/{packageName}/edits/{editId}/apks'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5638,6 +5695,7 @@ export namespace androidpublisher_v3 {
               '/androidpublisher/v3/applications/{packageName}/edits/{editId}/bundles'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5726,6 +5784,7 @@ export namespace androidpublisher_v3 {
               '/androidpublisher/v3/applications/{packageName}/edits/{editId}/bundles'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5881,6 +5940,7 @@ export namespace androidpublisher_v3 {
               '/androidpublisher/v3/applications/{packageName}/edits/{editId}/countryAvailability/{track}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5999,6 +6059,7 @@ export namespace androidpublisher_v3 {
               '/androidpublisher/v3/applications/{packageName}/edits/{editId}/apks/{apkVersionCode}/deobfuscationFiles/{deobfuscationFileType}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -6150,6 +6211,7 @@ export namespace androidpublisher_v3 {
               '/androidpublisher/v3/applications/{packageName}/edits/{editId}/details'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6238,6 +6300,7 @@ export namespace androidpublisher_v3 {
               '/androidpublisher/v3/applications/{packageName}/edits/{editId}/details'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -6326,6 +6389,7 @@ export namespace androidpublisher_v3 {
               '/androidpublisher/v3/applications/{packageName}/edits/{editId}/details'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
+            apiVersion: '',
           },
           options
         ),
@@ -6465,6 +6529,7 @@ export namespace androidpublisher_v3 {
               '/androidpublisher/v3/applications/{packageName}/edits/{editId}/apks/{apkVersionCode}/expansionFiles/{expansionFileType}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6563,6 +6628,7 @@ export namespace androidpublisher_v3 {
               '/androidpublisher/v3/applications/{packageName}/edits/{editId}/apks/{apkVersionCode}/expansionFiles/{expansionFileType}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -6661,6 +6727,7 @@ export namespace androidpublisher_v3 {
               '/androidpublisher/v3/applications/{packageName}/edits/{editId}/apks/{apkVersionCode}/expansionFiles/{expansionFileType}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
+            apiVersion: '',
           },
           options
         ),
@@ -6766,6 +6833,7 @@ export namespace androidpublisher_v3 {
               '/androidpublisher/v3/applications/{packageName}/edits/{editId}/apks/{apkVersionCode}/expansionFiles/{expansionFileType}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -6982,6 +7050,7 @@ export namespace androidpublisher_v3 {
               '/androidpublisher/v3/applications/{packageName}/edits/{editId}/listings/{language}/{imageType}/{imageId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -7089,6 +7158,7 @@ export namespace androidpublisher_v3 {
               '/androidpublisher/v3/applications/{packageName}/edits/{editId}/listings/{language}/{imageType}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -7180,6 +7250,7 @@ export namespace androidpublisher_v3 {
               '/androidpublisher/v3/applications/{packageName}/edits/{editId}/listings/{language}/{imageType}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -7273,6 +7344,7 @@ export namespace androidpublisher_v3 {
               '/androidpublisher/v3/applications/{packageName}/edits/{editId}/listings/{language}/{imageType}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -7471,6 +7543,7 @@ export namespace androidpublisher_v3 {
               '/androidpublisher/v3/applications/{packageName}/edits/{editId}/listings/{language}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -7557,6 +7630,7 @@ export namespace androidpublisher_v3 {
               '/androidpublisher/v3/applications/{packageName}/edits/{editId}/listings'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -7645,6 +7719,7 @@ export namespace androidpublisher_v3 {
               '/androidpublisher/v3/applications/{packageName}/edits/{editId}/listings/{language}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -7738,6 +7813,7 @@ export namespace androidpublisher_v3 {
               '/androidpublisher/v3/applications/{packageName}/edits/{editId}/listings'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -7826,6 +7902,7 @@ export namespace androidpublisher_v3 {
               '/androidpublisher/v3/applications/{packageName}/edits/{editId}/listings/{language}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -7914,6 +7991,7 @@ export namespace androidpublisher_v3 {
               '/androidpublisher/v3/applications/{packageName}/edits/{editId}/listings/{language}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
+            apiVersion: '',
           },
           options
         ),
@@ -8102,6 +8180,7 @@ export namespace androidpublisher_v3 {
               '/androidpublisher/v3/applications/{packageName}/edits/{editId}/testers/{track}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -8190,6 +8269,7 @@ export namespace androidpublisher_v3 {
               '/androidpublisher/v3/applications/{packageName}/edits/{editId}/testers/{track}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -8278,6 +8358,7 @@ export namespace androidpublisher_v3 {
               '/androidpublisher/v3/applications/{packageName}/edits/{editId}/testers/{track}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
+            apiVersion: '',
           },
           options
         ),
@@ -8429,6 +8510,7 @@ export namespace androidpublisher_v3 {
               '/androidpublisher/v3/applications/{packageName}/edits/{editId}/tracks'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -8516,6 +8598,7 @@ export namespace androidpublisher_v3 {
               '/androidpublisher/v3/applications/{packageName}/edits/{editId}/tracks/{track}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -8607,6 +8690,7 @@ export namespace androidpublisher_v3 {
               '/androidpublisher/v3/applications/{packageName}/edits/{editId}/tracks'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -8695,6 +8779,7 @@ export namespace androidpublisher_v3 {
               '/androidpublisher/v3/applications/{packageName}/edits/{editId}/tracks/{track}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -8783,6 +8868,7 @@ export namespace androidpublisher_v3 {
               '/androidpublisher/v3/applications/{packageName}/edits/{editId}/tracks/{track}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
+            apiVersion: '',
           },
           options
         ),
@@ -8965,6 +9051,7 @@ export namespace androidpublisher_v3 {
               rootUrl + '/androidpublisher/v3/{+parent}/externalTransactions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -9059,6 +9146,7 @@ export namespace androidpublisher_v3 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -9153,6 +9241,7 @@ export namespace androidpublisher_v3 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -9282,6 +9371,7 @@ export namespace androidpublisher_v3 {
               '/androidpublisher/v3/applications/{packageName}/generatedApks/{versionCode}/downloads/{downloadId}:download'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -9377,6 +9467,7 @@ export namespace androidpublisher_v3 {
               '/androidpublisher/v3/applications/{packageName}/generatedApks/{versionCode}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -9498,6 +9589,7 @@ export namespace androidpublisher_v3 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -9583,6 +9675,7 @@ export namespace androidpublisher_v3 {
               '$1'
             ),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -9670,6 +9763,7 @@ export namespace androidpublisher_v3 {
               '$1'
             ),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -9796,6 +9890,7 @@ export namespace androidpublisher_v3 {
               '/androidpublisher/v3/applications/{packageName}/inappproducts:batchDelete'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -9891,6 +9986,7 @@ export namespace androidpublisher_v3 {
               '/androidpublisher/v3/applications/{packageName}/inappproducts:batchGet'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -9988,6 +10084,7 @@ export namespace androidpublisher_v3 {
               '/androidpublisher/v3/applications/{packageName}/inappproducts:batchUpdate'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -10076,6 +10173,7 @@ export namespace androidpublisher_v3 {
               '/androidpublisher/v3/applications/{packageName}/inappproducts/{sku}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -10164,6 +10262,7 @@ export namespace androidpublisher_v3 {
               '/androidpublisher/v3/applications/{packageName}/inappproducts/{sku}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -10252,6 +10351,7 @@ export namespace androidpublisher_v3 {
               '/androidpublisher/v3/applications/{packageName}/inappproducts'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -10347,6 +10447,7 @@ export namespace androidpublisher_v3 {
               '/androidpublisher/v3/applications/{packageName}/inappproducts'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -10435,6 +10536,7 @@ export namespace androidpublisher_v3 {
               '/androidpublisher/v3/applications/{packageName}/inappproducts/{sku}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -10523,6 +10625,7 @@ export namespace androidpublisher_v3 {
               '/androidpublisher/v3/applications/{packageName}/inappproducts/{sku}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
+            apiVersion: '',
           },
           options
         ),
@@ -10774,6 +10877,7 @@ export namespace androidpublisher_v3 {
               '/androidpublisher/v3/applications/internalappsharing/{packageName}/artifacts/apk'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -10873,6 +10977,7 @@ export namespace androidpublisher_v3 {
               '/androidpublisher/v3/applications/internalappsharing/{packageName}/artifacts/bundle'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -11038,6 +11143,7 @@ export namespace androidpublisher_v3 {
               '/androidpublisher/v3/applications/{packageName}/pricing:convertRegionPrices'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -11150,6 +11256,7 @@ export namespace androidpublisher_v3 {
               '/androidpublisher/v3/applications/{packageName}/subscriptions/{productId}:archive'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -11245,6 +11352,7 @@ export namespace androidpublisher_v3 {
               '/androidpublisher/v3/applications/{packageName}/subscriptions:batchGet'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -11342,6 +11450,7 @@ export namespace androidpublisher_v3 {
               '/androidpublisher/v3/applications/{packageName}/subscriptions:batchUpdate'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -11432,6 +11541,7 @@ export namespace androidpublisher_v3 {
               '/androidpublisher/v3/applications/{packageName}/subscriptions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -11518,6 +11628,7 @@ export namespace androidpublisher_v3 {
               '/androidpublisher/v3/applications/{packageName}/subscriptions/{productId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -11606,6 +11717,7 @@ export namespace androidpublisher_v3 {
               '/androidpublisher/v3/applications/{packageName}/subscriptions/{productId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -11701,6 +11813,7 @@ export namespace androidpublisher_v3 {
               '/androidpublisher/v3/applications/{packageName}/subscriptions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -11789,6 +11902,7 @@ export namespace androidpublisher_v3 {
               '/androidpublisher/v3/applications/{packageName}/subscriptions/{productId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -12022,6 +12136,7 @@ export namespace androidpublisher_v3 {
               '/androidpublisher/v3/applications/{packageName}/subscriptions/{productId}/basePlans/{basePlanId}:activate'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -12118,6 +12233,7 @@ export namespace androidpublisher_v3 {
               '/androidpublisher/v3/applications/{packageName}/subscriptions/{productId}/basePlans:batchMigratePrices'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -12216,6 +12332,7 @@ export namespace androidpublisher_v3 {
               '/androidpublisher/v3/applications/{packageName}/subscriptions/{productId}/basePlans:batchUpdateStates'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -12307,6 +12424,7 @@ export namespace androidpublisher_v3 {
               '/androidpublisher/v3/applications/{packageName}/subscriptions/{productId}/basePlans/{basePlanId}:deactivate'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -12394,6 +12512,7 @@ export namespace androidpublisher_v3 {
               '/androidpublisher/v3/applications/{packageName}/subscriptions/{productId}/basePlans/{basePlanId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -12490,6 +12609,7 @@ export namespace androidpublisher_v3 {
               '/androidpublisher/v3/applications/{packageName}/subscriptions/{productId}/basePlans/{basePlanId}:migratePrices'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -12699,6 +12819,7 @@ export namespace androidpublisher_v3 {
               '/androidpublisher/v3/applications/{packageName}/subscriptions/{productId}/basePlans/{basePlanId}/offers/{offerId}:activate'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -12795,6 +12916,7 @@ export namespace androidpublisher_v3 {
               '/androidpublisher/v3/applications/{packageName}/subscriptions/{productId}/basePlans/{basePlanId}/offers:batchGet'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -12893,6 +13015,7 @@ export namespace androidpublisher_v3 {
               '/androidpublisher/v3/applications/{packageName}/subscriptions/{productId}/basePlans/{basePlanId}/offers:batchUpdate'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -12991,6 +13114,7 @@ export namespace androidpublisher_v3 {
               '/androidpublisher/v3/applications/{packageName}/subscriptions/{productId}/basePlans/{basePlanId}/offers:batchUpdateStates'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -13085,6 +13209,7 @@ export namespace androidpublisher_v3 {
               '/androidpublisher/v3/applications/{packageName}/subscriptions/{productId}/basePlans/{basePlanId}/offers'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -13177,6 +13302,7 @@ export namespace androidpublisher_v3 {
               '/androidpublisher/v3/applications/{packageName}/subscriptions/{productId}/basePlans/{basePlanId}/offers/{offerId}:deactivate'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -13264,6 +13390,7 @@ export namespace androidpublisher_v3 {
               '/androidpublisher/v3/applications/{packageName}/subscriptions/{productId}/basePlans/{basePlanId}/offers/{offerId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -13356,6 +13483,7 @@ export namespace androidpublisher_v3 {
               '/androidpublisher/v3/applications/{packageName}/subscriptions/{productId}/basePlans/{basePlanId}/offers/{offerId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -13452,6 +13580,7 @@ export namespace androidpublisher_v3 {
               '/androidpublisher/v3/applications/{packageName}/subscriptions/{productId}/basePlans/{basePlanId}/offers'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -13546,6 +13675,7 @@ export namespace androidpublisher_v3 {
               '/androidpublisher/v3/applications/{packageName}/subscriptions/{productId}/basePlans/{basePlanId}/offers/{offerId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -13876,6 +14006,7 @@ export namespace androidpublisher_v3 {
               '/androidpublisher/v3/applications/{packageName}/orders/{orderId}:refund'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -14003,6 +14134,7 @@ export namespace androidpublisher_v3 {
               '/androidpublisher/v3/applications/{packageName}/purchases/products/{productId}/tokens/{token}:acknowledge'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -14089,6 +14221,7 @@ export namespace androidpublisher_v3 {
               '/androidpublisher/v3/applications/{packageName}/purchases/products/{productId}/tokens/{token}:consume'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -14177,6 +14310,7 @@ export namespace androidpublisher_v3 {
               '/androidpublisher/v3/applications/{packageName}/purchases/products/{productId}/tokens/{token}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -14321,6 +14455,7 @@ export namespace androidpublisher_v3 {
               '/androidpublisher/v3/applications/{packageName}/purchases/subscriptions/{subscriptionId}/tokens/{token}:acknowledge'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -14407,6 +14542,7 @@ export namespace androidpublisher_v3 {
               '/androidpublisher/v3/applications/{packageName}/purchases/subscriptions/{subscriptionId}/tokens/{token}:cancel'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -14502,6 +14638,7 @@ export namespace androidpublisher_v3 {
               '/androidpublisher/v3/applications/{packageName}/purchases/subscriptions/{subscriptionId}/tokens/{token}:defer'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -14597,6 +14734,7 @@ export namespace androidpublisher_v3 {
               '/androidpublisher/v3/applications/{packageName}/purchases/subscriptions/{subscriptionId}/tokens/{token}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -14683,6 +14821,7 @@ export namespace androidpublisher_v3 {
               '/androidpublisher/v3/applications/{packageName}/purchases/subscriptions/{subscriptionId}/tokens/{token}:refund'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -14769,6 +14908,7 @@ export namespace androidpublisher_v3 {
               '/androidpublisher/v3/applications/{packageName}/purchases/subscriptions/{subscriptionId}/tokens/{token}:revoke'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -14970,6 +15110,7 @@ export namespace androidpublisher_v3 {
               '/androidpublisher/v3/applications/{packageName}/purchases/subscriptionsv2/tokens/{token}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -15065,6 +15206,7 @@ export namespace androidpublisher_v3 {
               '/androidpublisher/v3/applications/{packageName}/purchases/subscriptionsv2/tokens/{token}:revoke'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -15197,6 +15339,7 @@ export namespace androidpublisher_v3 {
               '/androidpublisher/v3/applications/{packageName}/purchases/voidedpurchases'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -15327,6 +15470,7 @@ export namespace androidpublisher_v3 {
               '/androidpublisher/v3/applications/{packageName}/reviews/{reviewId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -15417,6 +15561,7 @@ export namespace androidpublisher_v3 {
               '/androidpublisher/v3/applications/{packageName}/reviews'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -15509,6 +15654,7 @@ export namespace androidpublisher_v3 {
               '/androidpublisher/v3/applications/{packageName}/reviews/{reviewId}:reply'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -15665,6 +15811,7 @@ export namespace androidpublisher_v3 {
               '/androidpublisher/v3/applications/{packageName}/systemApks/{versionCode}/variants'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -15751,6 +15898,7 @@ export namespace androidpublisher_v3 {
               '/androidpublisher/v3/applications/{packageName}/systemApks/{versionCode}/variants/{variantId}:download'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -15839,6 +15987,7 @@ export namespace androidpublisher_v3 {
               '/androidpublisher/v3/applications/{packageName}/systemApks/{versionCode}/variants/{variantId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -15932,6 +16081,7 @@ export namespace androidpublisher_v3 {
               '/androidpublisher/v3/applications/{packageName}/systemApks/{versionCode}/variants'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -16084,6 +16234,7 @@ export namespace androidpublisher_v3 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -16169,6 +16320,7 @@ export namespace androidpublisher_v3 {
               '$1'
             ),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -16259,6 +16411,7 @@ export namespace androidpublisher_v3 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -16346,6 +16499,7 @@ export namespace androidpublisher_v3 {
               '$1'
             ),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
