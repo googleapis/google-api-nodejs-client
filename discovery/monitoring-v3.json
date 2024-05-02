@@ -2714,7 +2714,7 @@
       }
     }
   },
-  "revision": "20240303",
+  "revision": "20240414",
   "rootUrl": "https://monitoring.googleapis.com/",
   "schemas": {
     "Aggregation": {
@@ -3453,7 +3453,7 @@
       "type": "object"
     },
     "Documentation": {
-      "description": "A content string and a MIME type that describes the content string's format.",
+      "description": "Documentation that is included in the notifications and incidents pertaining to this policy.",
       "id": "Documentation",
       "properties": {
         "content": {
@@ -3859,7 +3859,7 @@
         },
         "authInfo": {
           "$ref": "BasicAuthentication",
-          "description": "The authentication information. Optional when creating an HTTP check; defaults to empty."
+          "description": "The authentication information. Optional when creating an HTTP check; defaults to empty. Do not set both auth_method and auth_info."
         },
         "body": {
           "description": "The request body associated with the HTTP POST request. If content_type is URL_ENCODED, the body passed in must be URL-encoded. Users can provide a Content-Length header via the headers field or the API will do so. If the request_method is GET and body is not empty, the API will return an error. The maximum byte size is 1 megabyte.Note: If client libraries aren't used (which performs the conversion automatically) base64 encode your body data since the field is of bytes type.",
@@ -3921,6 +3921,10 @@
             "POST request."
           ],
           "type": "string"
+        },
+        "serviceAgentAuthentication": {
+          "$ref": "ServiceAgentAuthentication",
+          "description": "If specified, Uptime will generate and attach an OIDC JWT token for the Monitoring service agent service account as an Authorization header in the HTTP request when probing."
         },
         "useSsl": {
           "description": "If true, use HTTPS instead of HTTP to run the check.",
@@ -5380,6 +5384,25 @@
           },
           "description": "Labels which have been used to annotate the service. Label keys must start with a letter. Label keys and values may contain lowercase letters, numbers, underscores, and dashes. Label keys and values have a maximum length of 63 characters, and must be less than 128 bytes in size. Up to 64 label entries may be stored. For labels which do not have a semantic value, the empty string may be supplied for the label value.",
           "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "ServiceAgentAuthentication": {
+      "description": "Contains information needed for generating an OpenID Connect token (https://developers.google.com/identity/protocols/OpenIDConnect). The OIDC token will be generated for the Monitoring service agent service account.",
+      "id": "ServiceAgentAuthentication",
+      "properties": {
+        "type": {
+          "description": "Type of authentication.",
+          "enum": [
+            "SERVICE_AGENT_AUTHENTICATION_TYPE_UNSPECIFIED",
+            "OIDC_TOKEN"
+          ],
+          "enumDescriptions": [
+            "Default value, will result in OIDC Authentication.",
+            "OIDC Authentication"
+          ],
+          "type": "string"
         }
       },
       "type": "object"
