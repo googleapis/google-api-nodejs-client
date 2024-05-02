@@ -1087,6 +1087,7 @@ export namespace cloudresourcemanager_v3 {
           {
             url: (rootUrl + '/v3/effectiveTags').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1194,6 +1195,7 @@ export namespace cloudresourcemanager_v3 {
           {
             url: (rootUrl + '/v3/folders').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1278,6 +1280,7 @@ export namespace cloudresourcemanager_v3 {
           {
             url: (rootUrl + '/v3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -1362,6 +1365,7 @@ export namespace cloudresourcemanager_v3 {
           {
             url: (rootUrl + '/v3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1450,6 +1454,7 @@ export namespace cloudresourcemanager_v3 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1537,6 +1542,7 @@ export namespace cloudresourcemanager_v3 {
           {
             url: (rootUrl + '/v3/folders').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1621,6 +1627,7 @@ export namespace cloudresourcemanager_v3 {
           {
             url: (rootUrl + '/v3/{+name}:move').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1705,6 +1712,7 @@ export namespace cloudresourcemanager_v3 {
           {
             url: (rootUrl + '/v3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -1794,6 +1802,7 @@ export namespace cloudresourcemanager_v3 {
           {
             url: (rootUrl + '/v3/folders:search').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1882,6 +1891,7 @@ export namespace cloudresourcemanager_v3 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1977,6 +1987,7 @@ export namespace cloudresourcemanager_v3 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2064,6 +2075,7 @@ export namespace cloudresourcemanager_v3 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2279,6 +2291,7 @@ export namespace cloudresourcemanager_v3 {
           {
             url: (rootUrl + '/v3/liens').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2363,6 +2376,7 @@ export namespace cloudresourcemanager_v3 {
           {
             url: (rootUrl + '/v3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -2447,6 +2461,7 @@ export namespace cloudresourcemanager_v3 {
           {
             url: (rootUrl + '/v3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2534,6 +2549,7 @@ export namespace cloudresourcemanager_v3 {
           {
             url: (rootUrl + '/v3/liens').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2658,6 +2674,7 @@ export namespace cloudresourcemanager_v3 {
           {
             url: (rootUrl + '/v3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2757,6 +2774,7 @@ export namespace cloudresourcemanager_v3 {
           {
             url: (rootUrl + '/v3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2845,6 +2863,7 @@ export namespace cloudresourcemanager_v3 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2940,6 +2959,7 @@ export namespace cloudresourcemanager_v3 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3028,6 +3048,7 @@ export namespace cloudresourcemanager_v3 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3123,6 +3144,7 @@ export namespace cloudresourcemanager_v3 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3273,6 +3295,7 @@ export namespace cloudresourcemanager_v3 {
           {
             url: (rootUrl + '/v3/projects').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3357,6 +3380,7 @@ export namespace cloudresourcemanager_v3 {
           {
             url: (rootUrl + '/v3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -3441,6 +3465,7 @@ export namespace cloudresourcemanager_v3 {
           {
             url: (rootUrl + '/v3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3529,6 +3554,7 @@ export namespace cloudresourcemanager_v3 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3618,6 +3644,7 @@ export namespace cloudresourcemanager_v3 {
           {
             url: (rootUrl + '/v3/projects').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3702,6 +3729,7 @@ export namespace cloudresourcemanager_v3 {
           {
             url: (rootUrl + '/v3/{+name}:move').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3786,6 +3814,7 @@ export namespace cloudresourcemanager_v3 {
           {
             url: (rootUrl + '/v3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -3878,6 +3907,7 @@ export namespace cloudresourcemanager_v3 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3966,6 +3996,7 @@ export namespace cloudresourcemanager_v3 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4061,6 +4092,7 @@ export namespace cloudresourcemanager_v3 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4149,6 +4181,7 @@ export namespace cloudresourcemanager_v3 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4366,6 +4399,7 @@ export namespace cloudresourcemanager_v3 {
           {
             url: (rootUrl + '/v3/tagBindings').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4451,6 +4485,7 @@ export namespace cloudresourcemanager_v3 {
           {
             url: (rootUrl + '/v3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -4540,6 +4575,7 @@ export namespace cloudresourcemanager_v3 {
           {
             url: (rootUrl + '/v3/tagBindings').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4665,6 +4701,7 @@ export namespace cloudresourcemanager_v3 {
           {
             url: (rootUrl + '/v3/tagKeys').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4749,6 +4786,7 @@ export namespace cloudresourcemanager_v3 {
           {
             url: (rootUrl + '/v3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -4833,6 +4871,7 @@ export namespace cloudresourcemanager_v3 {
           {
             url: (rootUrl + '/v3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4921,6 +4960,7 @@ export namespace cloudresourcemanager_v3 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5009,6 +5049,7 @@ export namespace cloudresourcemanager_v3 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5096,6 +5137,7 @@ export namespace cloudresourcemanager_v3 {
           {
             url: (rootUrl + '/v3/tagKeys').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5180,6 +5222,7 @@ export namespace cloudresourcemanager_v3 {
           {
             url: (rootUrl + '/v3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -5268,6 +5311,7 @@ export namespace cloudresourcemanager_v3 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5363,6 +5407,7 @@ export namespace cloudresourcemanager_v3 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5564,6 +5609,7 @@ export namespace cloudresourcemanager_v3 {
           {
             url: (rootUrl + '/v3/tagValues').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5648,6 +5694,7 @@ export namespace cloudresourcemanager_v3 {
           {
             url: (rootUrl + '/v3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -5732,6 +5779,7 @@ export namespace cloudresourcemanager_v3 {
           {
             url: (rootUrl + '/v3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5820,6 +5868,7 @@ export namespace cloudresourcemanager_v3 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5908,6 +5957,7 @@ export namespace cloudresourcemanager_v3 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5997,6 +6047,7 @@ export namespace cloudresourcemanager_v3 {
           {
             url: (rootUrl + '/v3/tagValues').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6081,6 +6132,7 @@ export namespace cloudresourcemanager_v3 {
           {
             url: (rootUrl + '/v3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -6169,6 +6221,7 @@ export namespace cloudresourcemanager_v3 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -6264,6 +6317,7 @@ export namespace cloudresourcemanager_v3 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -6467,6 +6521,7 @@ export namespace cloudresourcemanager_v3 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -6552,6 +6607,7 @@ export namespace cloudresourcemanager_v3 {
           {
             url: (rootUrl + '/v3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -6645,6 +6701,7 @@ export namespace cloudresourcemanager_v3 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
