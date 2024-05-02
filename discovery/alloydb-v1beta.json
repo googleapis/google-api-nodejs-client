@@ -1458,7 +1458,7 @@
       }
     }
   },
-  "revision": "20240315",
+  "revision": "20240417",
   "rootUrl": "https://alloydb.googleapis.com/",
   "schemas": {
     "AuthorizedNetwork": {
@@ -1838,7 +1838,7 @@
         },
         "geminiConfig": {
           "$ref": "GeminiClusterConfig",
-          "description": "Optional. Configuration parameters related to the Gemini in Databases add-on. See go/prd-enable-duet-ai-databases for more details."
+          "description": "Optional. Configuration parameters related to the Gemini in Databases add-on."
         },
         "initialUser": {
           "$ref": "UserPassword",
@@ -1850,6 +1850,11 @@
           },
           "description": "Labels as key value pairs",
           "type": "object"
+        },
+        "maintenanceSchedule": {
+          "$ref": "MaintenanceSchedule",
+          "description": "Output only. The maintenance schedule for the cluster, generated for a specific rollout if a maintenance window is set.",
+          "readOnly": true
         },
         "maintenanceUpdatePolicy": {
           "$ref": "MaintenanceUpdatePolicy",
@@ -2072,25 +2077,6 @@
       },
       "type": "object"
     },
-    "DenyMaintenancePeriod": {
-      "description": "DenyMaintenancePeriod definition. Excepting emergencies, maintenance will not be scheduled to start within this deny period. The start_date must be less than the end_date.",
-      "id": "DenyMaintenancePeriod",
-      "properties": {
-        "endDate": {
-          "$ref": "GoogleTypeDate",
-          "description": "Deny period end date. This can be: * A full date, with non-zero year, month and day values. * A month and day value, with a zero year for recurring. Date matching this period will have to be before the end."
-        },
-        "startDate": {
-          "$ref": "GoogleTypeDate",
-          "description": "Deny period start date. This can be: * A full date, with non-zero year, month and day values. * A month and day value, with a zero year for recurring. Date matching this period will have to be the same or after the start."
-        },
-        "time": {
-          "$ref": "GoogleTypeTimeOfDay",
-          "description": "Time in UTC when the deny period starts on start_date and ends on end_date. This can be: * Full time. * All zeros for 00:00:00 UTC"
-        }
-      },
-      "type": "object"
-    },
     "Empty": {
       "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }",
       "id": "Empty",
@@ -2154,7 +2140,7 @@
       "type": "object"
     },
     "GeminiClusterConfig": {
-      "description": "Cluster level configuration parameters related to the Gemini in Databases add-on. See go/prd-enable-duet-ai-databases for more details.",
+      "description": "Cluster level configuration parameters related to the Gemini in Databases add-on.",
       "id": "GeminiClusterConfig",
       "properties": {
         "entitled": {
@@ -2166,7 +2152,7 @@
       "type": "object"
     },
     "GeminiInstanceConfig": {
-      "description": "Instance level configuration parameters related to the Gemini in Databases add-on. See go/prd-enable-duet-ai-databases for more details.",
+      "description": "Instance level configuration parameters related to the Gemini in Databases add-on.",
       "id": "GeminiInstanceConfig",
       "properties": {
         "entitled": {
@@ -2225,28 +2211,6 @@
         "name": {
           "description": "Resource name for the location, which may vary between implementations. For example: `\"projects/example-project/locations/us-east1\"`",
           "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "GoogleTypeDate": {
-      "description": "Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: * A full date, with non-zero year, month, and day values. * A month and day, with a zero year (for example, an anniversary). * A year on its own, with a zero month and a zero day. * A year and month, with a zero day (for example, a credit card expiration date). Related types: * google.type.TimeOfDay * google.type.DateTime * google.protobuf.Timestamp",
-      "id": "GoogleTypeDate",
-      "properties": {
-        "day": {
-          "description": "Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant.",
-          "format": "int32",
-          "type": "integer"
-        },
-        "month": {
-          "description": "Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day.",
-          "format": "int32",
-          "type": "integer"
-        },
-        "year": {
-          "description": "Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year.",
-          "format": "int32",
-          "type": "integer"
         }
       },
       "type": "object"
@@ -2367,7 +2331,7 @@
         },
         "geminiConfig": {
           "$ref": "GeminiInstanceConfig",
-          "description": "Optional. Configuration parameters related to the Gemini in Databases add-on. See go/prd-enable-duet-ai-databases for more details."
+          "description": "Optional. Configuration parameters related to the Gemini in Databases add-on."
         },
         "instanceType": {
           "description": "Required. The type of the instance. Specified at creation time.",
@@ -2682,17 +2646,23 @@
       },
       "type": "object"
     },
+    "MaintenanceSchedule": {
+      "description": "MaintenanceSchedule stores the maintenance schedule generated from the MaintenanceUpdatePolicy, once a maintenance rollout is triggered, if MaintenanceWindow is set, and if there is no conflicting DenyPeriod. The schedule is cleared once the update takes place. This field cannot be manually changed; modify the MaintenanceUpdatePolicy instead.",
+      "id": "MaintenanceSchedule",
+      "properties": {
+        "startTime": {
+          "description": "Output only. The scheduled start time for the maintenance.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "MaintenanceUpdatePolicy": {
       "description": "MaintenanceUpdatePolicy defines the policy for system updates.",
       "id": "MaintenanceUpdatePolicy",
       "properties": {
-        "denyMaintenancePeriods": {
-          "description": "Periods to deny maintenance. Currently limited to 1.",
-          "items": {
-            "$ref": "DenyMaintenancePeriod"
-          },
-          "type": "array"
-        },
         "maintenanceWindows": {
           "description": "Preferred windows to perform maintenance. Currently limited to 1.",
           "items": {
@@ -2976,22 +2946,8 @@
       "description": "PscInstanceConfig contains PSC related configuration at an instance level.",
       "id": "PscInstanceConfig",
       "properties": {
-        "allowedConsumerNetworks": {
-          "description": "Optional. List of consumer networks that are allowed to create PSC endpoints to service-attachments to this instance.",
-          "items": {
-            "type": "string"
-          },
-          "type": "array"
-        },
         "allowedConsumerProjects": {
           "description": "Optional. List of consumer projects that are allowed to create PSC endpoints to service-attachments to this instance.",
-          "items": {
-            "type": "string"
-          },
-          "type": "array"
-        },
-        "outgoingServiceAttachmentLinks": {
-          "description": "Optional. List of service attachments that this instance has created endpoints to connect with. Currently, only a single outgoing service attachment is supported per instance.",
           "items": {
             "type": "string"
           },
@@ -3002,38 +2958,9 @@
           "readOnly": true,
           "type": "string"
         },
-        "pscEnabled": {
-          "description": "Optional. Whether PSC connectivity is enabled for this instance. This is populated by referencing the value from the parent cluster.",
-          "type": "boolean"
-        },
-        "pscInterfaceConfigs": {
-          "description": "Optional. Configurations for setting up PSC interfaces attached to the instance which are used for outbound connectivity. Only primary instances can have PSC interface attached. All the VMs created for the primary instance will share the same configurations. Currently we only support 0 or 1 PSC interface.",
-          "items": {
-            "$ref": "PscInterfaceConfig"
-          },
-          "type": "array"
-        },
         "serviceAttachmentLink": {
           "description": "Output only. The service attachment created when Private Service Connect (PSC) is enabled for the instance. The name of the resource will be in the format of `projects//regions//serviceAttachments/`",
           "readOnly": true,
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "PscInterfaceConfig": {
-      "description": "Configuration for setting up a PSC interface. This information needs to be provided by the customer. PSC interfaces will be created and added to VMs via SLM (adding a network interface will require recreating the VM). For HA instances this will be done via LDTM.",
-      "id": "PscInterfaceConfig",
-      "properties": {
-        "consumerEndpointIps": {
-          "description": "A list of endpoints in the consumer VPC the interface might initiate outbound connections to. This list has to be provided when the PSC interface is created.",
-          "items": {
-            "type": "string"
-          },
-          "type": "array"
-        },
-        "networkAttachment": {
-          "description": "The NetworkAttachment resource created in the consumer VPC to which the PSC interface will be linked, in the form of: `projects/${CONSUMER_PROJECT}/regions/${REGION}/networkAttachments/${NETWORK_ATTACHMENT_NAME}`. NetworkAttachment has to be provided when the PSC interface is created.",
           "type": "string"
         }
       },
@@ -3258,6 +3185,10 @@
             "For rest of the other category"
           ],
           "type": "string"
+        },
+        "crossRegionReplicaConfigured": {
+          "description": "Checks for resources that are configured to have redundancy, and ongoing replication across regions",
+          "type": "boolean"
         },
         "externalReplicaConfigured": {
           "type": "boolean"
@@ -4225,17 +4156,10 @@
           "description": "An enum that represents the type of this entitlement.",
           "enum": [
             "ENTITLEMENT_TYPE_UNSPECIFIED",
-            "DUET_AI",
             "GEMINI"
-          ],
-          "enumDeprecated": [
-            false,
-            true,
-            false
           ],
           "enumDescriptions": [
             "",
-            "The root entitlement representing Duet AI package ownership.",
             "The root entitlement representing Gemini package ownership."
           ],
           "type": "string"
