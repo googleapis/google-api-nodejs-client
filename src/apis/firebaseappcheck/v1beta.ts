@@ -239,7 +239,7 @@ export namespace firebaseappcheck_v1beta {
    */
   export interface Schema$GoogleFirebaseAppcheckV1betaBatchUpdateResourcePoliciesRequest {
     /**
-     * Required. The request messages specifying the ResourcePolicys to update. A maximum of 100 objects can be updated in a batch.
+     * Required. The request messages specifying the ResourcePolicy objects to update. A maximum of 100 objects can be updated in a batch.
      */
     requests?: Schema$GoogleFirebaseAppcheckV1betaUpdateResourcePolicyRequest[];
     /**
@@ -531,7 +531,7 @@ export namespace firebaseappcheck_v1beta {
      */
     nextPageToken?: string | null;
     /**
-     * The ResourcePolicys retrieved.
+     * The ResourcePolicy objects retrieved.
      */
     resourcePolicies?: Schema$GoogleFirebaseAppcheckV1betaResourcePolicy[];
   }
@@ -659,27 +659,27 @@ export namespace firebaseappcheck_v1beta {
     tokenTtl?: string | null;
   }
   /**
-   * App Check enforcement policy for a specific resource of a Firebase service supported by App Check. Note that this policy will override the Service level enforcement mode configuration.
+   * App Check enforcement policy for a specific resource of a Firebase service supported by App Check. Note that this policy will override the service-level configuration.
    */
   export interface Schema$GoogleFirebaseAppcheckV1betaResourcePolicy {
     /**
-     * Required. The App Check enforcement mode for this resource. This will override the EnforcementMode setting on the service. For new resources that you are creating, you should consider setting an override and enable enforcement on the resource immediately, if there are no outdated clients that can use it.
+     * Required. The App Check enforcement mode for this resource. This will override the EnforcementMode setting on the parent service.
      */
     enforcementMode?: string | null;
     /**
-     * This checksum is computed by the server based on the value of other fields, and may be sent on update and delete requests to ensure the client has an up-to-date value before proceeding. This etag is strongly validated.
+     * This checksum is computed by the server based on the value of other fields, and may be sent on update and delete requests to ensure the client has an up-to-date value before proceeding. This etag is strongly validated as defined by RFC 7232.
      */
     etag?: string | null;
     /**
-     * Required. The relative name of the resource configuration object, in the format: ``` projects/{project_number\}/services/{service_id\}/resourcePolicies/{resource_policy_id\} ``` Note that the `service_id` element must be a supported service ID. Currently, the following service IDs are supported: * `oauth2.googleapis.com` (Google Identity for iOS) `resource_policy_id` is a system-generated UID used as the resource ID for the policy.
+     * Required. The relative name of the resource policy object, in the format: ``` projects/{project_number\}/services/{service_id\}/resourcePolicies/{resource_policy_id\} ``` Note that the `service_id` element must be a supported service ID. Currently, the following service IDs are supported: * `oauth2.googleapis.com` (Google Identity for iOS) `resource_policy_id` is a system-generated UID.
      */
     name?: string | null;
     /**
-     * Required. Service specific name of the resource object to which this policy applies, in the format: * `//oauth2.googleapis.com/projects/{project\}/oauthClients/{oauth_client_id\}` (Google Identity for iOS) NOTE that the resource must belong to the service specified in the `name` and be from the same project as this policy, but it may or may not exist at the time of creation of the policy.
+     * Required. Service specific name of the resource object to which this policy applies, in the format: * `//oauth2.googleapis.com/projects/{project_number\}/oauthClients/{oauth_client_id\}` (Google Identity for iOS) Note that the resource must belong to the service specified in the `name` and be from the same project as this policy, but the resource is allowed to be missing at the time of creation of this policy; in that case, we make a best-effort attempt at respecting this policy, but it may not have any effect until the resource is fully created.
      */
     targetResource?: string | null;
     /**
-     * Output only. Timestamp when this service configuration object was most recently updated.
+     * Output only. Timestamp when this resource policy configuration object was most recently updated.
      */
     updateTime?: string | null;
   }
@@ -722,7 +722,7 @@ export namespace firebaseappcheck_v1beta {
    */
   export interface Schema$GoogleFirebaseAppcheckV1betaUpdateResourcePolicyRequest {
     /**
-     * Required. The ResourcePolicy to update. The ResourcePolicy's `name` field is used to identify the ResourcePolicy to be updated, in the format: ``` projects/{project_number\}/services/{service_id\}/resourcePolicies/{resource_name\} ``` Note that the `service_id` element must be a supported service ID. Currently, the following service IDs are supported: * `oauth2.googleapis.com` (Google Identity for iOS) Only the top-level resources are supported for each of the services. The resources must belong to the service specified and `resource_name` should be formatted as: * `oauthClients/{oauth_client_id\}` (Google Identity for iOS)
+     * Required. The ResourcePolicy to update. The ResourcePolicy's `name` field is used to identify the ResourcePolicy to be updated, in the format: ``` projects/{project_number\}/services/{service_id\}/resourcePolicies/{resource_policy_id\} ``` Note that the `service_id` element must be a supported service ID. Currently, the following service IDs are supported: * `oauth2.googleapis.com` (Google Identity for iOS)
      */
     resourcePolicy?: Schema$GoogleFirebaseAppcheckV1betaResourcePolicy;
     /**
@@ -845,6 +845,7 @@ export namespace firebaseappcheck_v1beta {
           {
             url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -955,6 +956,7 @@ export namespace firebaseappcheck_v1beta {
               rootUrl + '/v1beta/{+app}:exchangeAppAttestAssertion'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1052,6 +1054,7 @@ export namespace firebaseappcheck_v1beta {
               rootUrl + '/v1beta/{+app}:exchangeAppAttestAttestation'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1149,6 +1152,7 @@ export namespace firebaseappcheck_v1beta {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1245,6 +1249,7 @@ export namespace firebaseappcheck_v1beta {
               rootUrl + '/v1beta/{+app}:generateAppAttestChallenge'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1402,6 +1407,7 @@ export namespace firebaseappcheck_v1beta {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1547,6 +1553,7 @@ export namespace firebaseappcheck_v1beta {
               rootUrl + '/v1beta/{+app}:exchangeAppAttestAssertion'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1644,6 +1651,7 @@ export namespace firebaseappcheck_v1beta {
               rootUrl + '/v1beta/{+app}:exchangeAppAttestAttestation'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1741,6 +1749,7 @@ export namespace firebaseappcheck_v1beta {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1838,6 +1847,7 @@ export namespace firebaseappcheck_v1beta {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1935,6 +1945,7 @@ export namespace firebaseappcheck_v1beta {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2031,6 +2042,7 @@ export namespace firebaseappcheck_v1beta {
               rootUrl + '/v1beta/{+app}:exchangePlayIntegrityToken'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2128,6 +2140,7 @@ export namespace firebaseappcheck_v1beta {
               rootUrl + '/v1beta/{+app}:exchangeRecaptchaEnterpriseToken'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2225,6 +2238,7 @@ export namespace firebaseappcheck_v1beta {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2322,6 +2336,7 @@ export namespace firebaseappcheck_v1beta {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2419,6 +2434,7 @@ export namespace firebaseappcheck_v1beta {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2515,6 +2531,7 @@ export namespace firebaseappcheck_v1beta {
               rootUrl + '/v1beta/{+app}:generateAppAttestChallenge'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2612,6 +2629,7 @@ export namespace firebaseappcheck_v1beta {
               rootUrl + '/v1beta/{+app}:generatePlayIntegrityChallenge'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2860,6 +2878,7 @@ export namespace firebaseappcheck_v1beta {
               rootUrl + '/v1beta/{+parent}/apps/-/appAttestConfig:batchGet'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2954,6 +2973,7 @@ export namespace firebaseappcheck_v1beta {
           {
             url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3048,6 +3068,7 @@ export namespace firebaseappcheck_v1beta {
           {
             url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -3094,7 +3115,7 @@ export namespace firebaseappcheck_v1beta {
      */
     name?: string;
     /**
-     * Required. A comma-separated list of names of fields in the AppAttestConfig Gets to update. Example: `token_ttl`.
+     * Required. A comma-separated list of names of fields in the AppAttestConfig to update. Example: `token_ttl`.
      */
     updateMask?: string;
 
@@ -3187,6 +3208,7 @@ export namespace firebaseappcheck_v1beta {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3277,6 +3299,7 @@ export namespace firebaseappcheck_v1beta {
           {
             url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -3369,6 +3392,7 @@ export namespace firebaseappcheck_v1beta {
           {
             url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3466,6 +3490,7 @@ export namespace firebaseappcheck_v1beta {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3560,6 +3585,7 @@ export namespace firebaseappcheck_v1beta {
           {
             url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -3721,6 +3747,7 @@ export namespace firebaseappcheck_v1beta {
               rootUrl + '/v1beta/{+parent}/apps/-/deviceCheckConfig:batchGet'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3815,6 +3842,7 @@ export namespace firebaseappcheck_v1beta {
           {
             url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3909,6 +3937,7 @@ export namespace firebaseappcheck_v1beta {
           {
             url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -3955,7 +3984,7 @@ export namespace firebaseappcheck_v1beta {
      */
     name?: string;
     /**
-     * Required. A comma-separated list of names of fields in the DeviceCheckConfig Gets to update. Example: `key_id,private_key`.
+     * Required. A comma-separated list of names of fields in the DeviceCheckConfig to update. Example: `key_id,private_key`.
      */
     updateMask?: string;
 
@@ -4048,6 +4077,7 @@ export namespace firebaseappcheck_v1beta {
               rootUrl + '/v1beta/{+parent}/apps/-/playIntegrityConfig:batchGet'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4142,6 +4172,7 @@ export namespace firebaseappcheck_v1beta {
           {
             url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4236,6 +4267,7 @@ export namespace firebaseappcheck_v1beta {
           {
             url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -4282,7 +4314,7 @@ export namespace firebaseappcheck_v1beta {
      */
     name?: string;
     /**
-     * Required. A comma-separated list of names of fields in the PlayIntegrityConfig Gets to update. Example: `token_ttl`.
+     * Required. A comma-separated list of names of fields in the PlayIntegrityConfig to update. Example: `token_ttl`.
      */
     updateMask?: string;
 
@@ -4374,6 +4406,7 @@ export namespace firebaseappcheck_v1beta {
               rootUrl + '/v1beta/{+parent}/apps/-/recaptchaConfig:batchGet'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4468,6 +4501,7 @@ export namespace firebaseappcheck_v1beta {
           {
             url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4562,6 +4596,7 @@ export namespace firebaseappcheck_v1beta {
           {
             url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -4702,6 +4737,7 @@ export namespace firebaseappcheck_v1beta {
               '/v1beta/{+parent}/apps/-/recaptchaEnterpriseConfig:batchGet'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4797,6 +4833,7 @@ export namespace firebaseappcheck_v1beta {
           {
             url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4892,6 +4929,7 @@ export namespace firebaseappcheck_v1beta {
           {
             url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -5030,6 +5068,7 @@ export namespace firebaseappcheck_v1beta {
               rootUrl + '/v1beta/{+parent}/apps/-/recaptchaV3Config:batchGet'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5124,6 +5163,7 @@ export namespace firebaseappcheck_v1beta {
           {
             url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5218,6 +5258,7 @@ export namespace firebaseappcheck_v1beta {
           {
             url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -5356,6 +5397,7 @@ export namespace firebaseappcheck_v1beta {
               rootUrl + '/v1beta/{+parent}/apps/-/safetyNetConfig:batchGet'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5450,6 +5492,7 @@ export namespace firebaseappcheck_v1beta {
           {
             url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5544,6 +5587,7 @@ export namespace firebaseappcheck_v1beta {
           {
             url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -5590,7 +5634,7 @@ export namespace firebaseappcheck_v1beta {
      */
     name?: string;
     /**
-     * Required. A comma-separated list of names of fields in the SafetyNetConfig Gets to update. Example: `token_ttl`.
+     * Required. A comma-separated list of names of fields in the SafetyNetConfig to update. Example: `token_ttl`.
      */
     updateMask?: string;
 
@@ -5687,6 +5731,7 @@ export namespace firebaseappcheck_v1beta {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5781,6 +5826,7 @@ export namespace firebaseappcheck_v1beta {
           {
             url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5878,6 +5924,7 @@ export namespace firebaseappcheck_v1beta {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5972,6 +6019,7 @@ export namespace firebaseappcheck_v1beta {
           {
             url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -6127,6 +6175,7 @@ export namespace firebaseappcheck_v1beta {
               rootUrl + '/v1beta/{+parent}/resourcePolicies:batchUpdate'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -6225,6 +6274,7 @@ export namespace firebaseappcheck_v1beta {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -6316,6 +6366,7 @@ export namespace firebaseappcheck_v1beta {
           {
             url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -6408,6 +6459,7 @@ export namespace firebaseappcheck_v1beta {
           {
             url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6505,6 +6557,7 @@ export namespace firebaseappcheck_v1beta {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6599,6 +6652,7 @@ export namespace firebaseappcheck_v1beta {
           {
             url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -6623,7 +6677,7 @@ export namespace firebaseappcheck_v1beta {
   export interface Params$Resource$Projects$Services$Resourcepolicies$Batchupdate
     extends StandardParameters {
     /**
-     * Required. The parent project name and the service, in the format ``` projects/{project_number\}/services/{service_id\} ``` The parent collection in the `name` field of any resource being updated must match this field, or the entire batch fails.
+     * Required. The parent service name, in the format ``` projects/{project_number\}/services/{service_id\} ``` The parent collection in the `name` field of any resource being updated must match this field, or the entire batch fails.
      */
     parent?: string;
 
@@ -6635,7 +6689,7 @@ export namespace firebaseappcheck_v1beta {
   export interface Params$Resource$Projects$Services$Resourcepolicies$Create
     extends StandardParameters {
     /**
-     * Required. The relative resource name of the parent service in which the specified ResourcePolicy will be created, in the format: ``` projects/{project_number\}/services/{service_id\} ``` Note that the `service_id` element must be a supported service ID. Currently, the following service IDs are supported: * `oauth2.googleapis.com` (Google Identity for iOS)
+     * Required. The relative resource name of the parent Service in which the specified ResourcePolicy will be created, in the format: ``` projects/{project_number\}/services/{service_id\} ``` Note that the `service_id` element must be a supported service ID. Currently, the following service IDs are supported: * `oauth2.googleapis.com` (Google Identity for iOS)
      */
     parent?: string;
 
@@ -6647,18 +6701,18 @@ export namespace firebaseappcheck_v1beta {
   export interface Params$Resource$Projects$Services$Resourcepolicies$Delete
     extends StandardParameters {
     /**
-     * The checksum to be validated against the current ResourcePolicy, to ensure the client has an up-to-date value before proceeding. The user can obtain this from the ResourcePolicy object that they last received. This etag is strongly validated.
+     * The checksum to be validated against the current ResourcePolicy, to ensure the client has an up-to-date value before proceeding. This checksum is computed by the server based on the values of fields in the ResourcePolicy object, and can be obtained from the ResourcePolicy object received from the last CreateResourcePolicy, GetResourcePolicy, ListResourcePolicies, UpdateResourcePolicy, or BatchUpdateResourcePolicies call. This etag is strongly validated as defined by RFC 7232.
      */
     etag?: string;
     /**
-     * Required. The relative resource name of the ResourcePolicy to delete, in the format: ``` projects/{project_number\}/services/{service_id\}/resourcePolicies/{resource_name\} ```
+     * Required. The relative resource name of the ResourcePolicy to delete, in the format: ``` projects/{project_number\}/services/{service_id\}/resourcePolicies/{resource_policy_id\} ```
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Services$Resourcepolicies$Get
     extends StandardParameters {
     /**
-     * Required. The relative resource name of the ResourcePolicy to retrieve, in the format: ``` projects/{project_number\}/services/{service_id\}/resourcePolicies/{resource_policy_id\} ``` Note that the `service_id` element must be a supported service ID. Currently, the following service IDs are supported: * `oauth2.googleapis.com` (Google Identity for iOS) `resource_policy_id` is a system-generated UID used as the resource ID for the policy.
+     * Required. The relative resource name of the ResourcePolicy to retrieve, in the format: ``` projects/{project_number\}/services/{service_id\}/resourcePolicies/{resource_policy_id\} ``` Note that the `service_id` element must be a supported service ID. Currently, the following service IDs are supported: * `oauth2.googleapis.com` (Google Identity for iOS)
      */
     name?: string;
   }
@@ -6669,22 +6723,22 @@ export namespace firebaseappcheck_v1beta {
      */
     filter?: string;
     /**
-     * The maximum number of ResourcePolicys to return in the response. Only explicitly configured policies are returned. The server may return fewer than this at its own discretion. If no value is specified (or too large a value is specified), the server will impose its own limit.
+     * The maximum number of ResourcePolicy objects to return in the response. The server may return fewer than this at its own discretion. If no value is specified (or too large a value is specified), the server will impose its own limit.
      */
     pageSize?: number;
     /**
-     * Token returned from a previous call to ListResourcePolicies indicating where in the set of ResourcePolicys to resume listing. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to ListResourcePolicies must match the call that provided the page token; if they do not match, the result is undefined.
+     * Token returned from a previous call to ListResourcePolicies indicating where in the set of ResourcePolicy objects to resume listing. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to ListResourcePolicies must match the call that provided the page token; if they do not match, the result is undefined.
      */
     pageToken?: string;
     /**
-     * Required. The relative resource name of the parent project and service for which to list each associated ResourcePolicy, in the format: ``` projects/{project_number\}/services/{service_name\} ```
+     * Required. The relative resource name of the parent Service for which to list each associated ResourcePolicy, in the format: ``` projects/{project_number\}/services/{service_id\} ``` Note that the `service_id` element must be a supported service ID. Currently, the following service IDs are supported: * `oauth2.googleapis.com` (Google Identity for iOS)
      */
     parent?: string;
   }
   export interface Params$Resource$Projects$Services$Resourcepolicies$Patch
     extends StandardParameters {
     /**
-     * Required. The relative name of the resource configuration object, in the format: ``` projects/{project_number\}/services/{service_id\}/resourcePolicies/{resource_policy_id\} ``` Note that the `service_id` element must be a supported service ID. Currently, the following service IDs are supported: * `oauth2.googleapis.com` (Google Identity for iOS) `resource_policy_id` is a system-generated UID used as the resource ID for the policy.
+     * Required. The relative name of the resource policy object, in the format: ``` projects/{project_number\}/services/{service_id\}/resourcePolicies/{resource_policy_id\} ``` Note that the `service_id` element must be a supported service ID. Currently, the following service IDs are supported: * `oauth2.googleapis.com` (Google Identity for iOS) `resource_policy_id` is a system-generated UID.
      */
     name?: string;
     /**
