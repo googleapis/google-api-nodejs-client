@@ -265,6 +265,7 @@ export namespace verifiedaccess_v1 {
           {
             url: (rootUrl + '/v1/challenge').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -359,6 +360,7 @@ export namespace verifiedaccess_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
