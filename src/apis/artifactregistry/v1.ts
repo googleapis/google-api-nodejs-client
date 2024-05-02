@@ -359,6 +359,27 @@ export namespace artifactregistry_v1 {
     title?: string | null;
   }
   /**
+   * GenericArtifact represents a generic artifact
+   */
+  export interface Schema$GenericArtifact {
+    /**
+     * Output only. The time when the Generic module is created.
+     */
+    createTime?: string | null;
+    /**
+     * Resource name of the generic artifact. project, location, repository, package_id and version_id create a unique generic artifact. i.e. "projects/test-project/locations/us-west4/repositories/test-repo/ genericArtifacts/package_id:version_id"
+     */
+    name?: string | null;
+    /**
+     * Output only. The time when the Generic module is updated.
+     */
+    updateTime?: string | null;
+    /**
+     * The version of the generic artifact.
+     */
+    version?: string | null;
+  }
+  /**
    * GoModule represents a Go module.
    */
   export interface Schema$GoModule {
@@ -1271,6 +1292,40 @@ export namespace artifactregistry_v1 {
     aptArtifacts?: Schema$AptArtifact[];
   }
   /**
+   * The response to upload a generic artifact.
+   */
+  export interface Schema$UploadGenericArtifactMediaResponse {
+    /**
+     * Operation that will be returned to the user.
+     */
+    operation?: Schema$Operation;
+  }
+  /**
+   * The operation metadata for uploading generic artifacts.
+   */
+  export interface Schema$UploadGenericArtifactMetadata {}
+  /**
+   * The request to upload a generic artifact. The created GenericArtifact will have the resource name {parent\}/genericArtifacts/package_id:version_id. The created file will have the resource name {parent\}/files/package_id:version_id:filename.
+   */
+  export interface Schema$UploadGenericArtifactRequest {
+    /**
+     * The name of the file of the generic artifact to be uploaded. E.g. "example-file.zip" The filename should only include letters, numbers, and url safe characters, i.e. [a-zA-Z0-9-_.~@].
+     */
+    filename?: string | null;
+    /**
+     * Deprecated. Use package_id, version_id and filename instead. The resource name of the generic artifact. E.g. "projects/math/locations/us/repositories/operations/genericArtifacts/addition/1.0.0/add.py"
+     */
+    name?: string | null;
+    /**
+     * The ID of the package of the generic artifact. If the package does not exist, a new package will be created. E.g. "pkg-1" The package_id must start with a letter, end with a letter or number, only contain letters, numbers, hyphens and periods i.e. [a-z0-9-.], and cannot exceed 256 characters.
+     */
+    packageId?: string | null;
+    /**
+     * The ID of the version of the generic artifact. If the version does not exist, a new version will be created. E.g."1.0.0" The version_id must start and end with a letter or number, can only contain lowercase letters, numbers, hyphens and periods, i.e. [a-z0-9-.] and cannot exceed a total of 128 characters. While "latest" is a well-known name for the latest version of a package, it is not yet supported and is reserved for future use. Creating a version called "latest" is not allowed.
+     */
+    versionId?: string | null;
+  }
+  /**
    * The response to upload a Go module.
    */
   export interface Schema$UploadGoModuleMediaResponse {
@@ -1570,6 +1625,7 @@ export namespace artifactregistry_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1673,6 +1729,7 @@ export namespace artifactregistry_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1760,6 +1817,7 @@ export namespace artifactregistry_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -1884,6 +1942,7 @@ export namespace artifactregistry_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1969,6 +2028,7 @@ export namespace artifactregistry_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2062,6 +2122,7 @@ export namespace artifactregistry_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2147,6 +2208,7 @@ export namespace artifactregistry_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -2289,6 +2351,7 @@ export namespace artifactregistry_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2321,6 +2384,7 @@ export namespace artifactregistry_v1 {
     aptArtifacts: Resource$Projects$Locations$Repositories$Aptartifacts;
     dockerImages: Resource$Projects$Locations$Repositories$Dockerimages;
     files: Resource$Projects$Locations$Repositories$Files;
+    genericArtifacts: Resource$Projects$Locations$Repositories$Genericartifacts;
     goModules: Resource$Projects$Locations$Repositories$Gomodules;
     googetArtifacts: Resource$Projects$Locations$Repositories$Googetartifacts;
     kfpArtifacts: Resource$Projects$Locations$Repositories$Kfpartifacts;
@@ -2338,6 +2402,10 @@ export namespace artifactregistry_v1 {
       this.files = new Resource$Projects$Locations$Repositories$Files(
         this.context
       );
+      this.genericArtifacts =
+        new Resource$Projects$Locations$Repositories$Genericartifacts(
+          this.context
+        );
       this.goModules = new Resource$Projects$Locations$Repositories$Gomodules(
         this.context
       );
@@ -2434,6 +2502,7 @@ export namespace artifactregistry_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2519,6 +2588,7 @@ export namespace artifactregistry_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -2604,6 +2674,7 @@ export namespace artifactregistry_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2693,6 +2764,7 @@ export namespace artifactregistry_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2786,6 +2858,7 @@ export namespace artifactregistry_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2871,6 +2944,7 @@ export namespace artifactregistry_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -2960,6 +3034,7 @@ export namespace artifactregistry_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3056,6 +3131,7 @@ export namespace artifactregistry_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3249,6 +3325,7 @@ export namespace artifactregistry_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3345,6 +3422,7 @@ export namespace artifactregistry_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3483,6 +3561,7 @@ export namespace artifactregistry_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3577,6 +3656,7 @@ export namespace artifactregistry_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3704,6 +3784,7 @@ export namespace artifactregistry_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3798,6 +3879,7 @@ export namespace artifactregistry_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3846,6 +3928,143 @@ export namespace artifactregistry_v1 {
      * Required. The name of the repository whose files will be listed. For example: "projects/p1/locations/us-central1/repositories/repo1
      */
     parent?: string;
+  }
+
+  export class Resource$Projects$Locations$Repositories$Genericartifacts {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Directly uploads a Generic artifact. The returned Operation will complete once the resources are uploaded. Package, Version, and File resources are created based on the uploaded artifact. Uploaded artifacts that conflict with existing resources will raise an ALREADY_EXISTS error.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    upload(
+      params: Params$Resource$Projects$Locations$Repositories$Genericartifacts$Upload,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    upload(
+      params?: Params$Resource$Projects$Locations$Repositories$Genericartifacts$Upload,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$UploadGenericArtifactMediaResponse>;
+    upload(
+      params: Params$Resource$Projects$Locations$Repositories$Genericartifacts$Upload,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    upload(
+      params: Params$Resource$Projects$Locations$Repositories$Genericartifacts$Upload,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$UploadGenericArtifactMediaResponse>,
+      callback: BodyResponseCallback<Schema$UploadGenericArtifactMediaResponse>
+    ): void;
+    upload(
+      params: Params$Resource$Projects$Locations$Repositories$Genericartifacts$Upload,
+      callback: BodyResponseCallback<Schema$UploadGenericArtifactMediaResponse>
+    ): void;
+    upload(
+      callback: BodyResponseCallback<Schema$UploadGenericArtifactMediaResponse>
+    ): void;
+    upload(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Repositories$Genericartifacts$Upload
+        | BodyResponseCallback<Schema$UploadGenericArtifactMediaResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$UploadGenericArtifactMediaResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$UploadGenericArtifactMediaResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$UploadGenericArtifactMediaResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Repositories$Genericartifacts$Upload;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Repositories$Genericartifacts$Upload;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://artifactregistry.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/genericArtifacts:create').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        mediaUrl: (
+          rootUrl + '/upload/v1/{+parent}/genericArtifacts:create'
+        ).replace(/([^:]\/)\/+/g, '$1'),
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$UploadGenericArtifactMediaResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$UploadGenericArtifactMediaResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Repositories$Genericartifacts$Upload
+    extends StandardParameters {
+    /**
+     * The resource name of the repository where the generic artifact will be uploaded.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$UploadGenericArtifactRequest;
+
+    /**
+     * Media metadata
+     */
+    media?: {
+      /**
+       * Media mime-type
+       */
+      mimeType?: string;
+
+      /**
+       * Media body contents
+       */
+      body?: any;
+    };
   }
 
   export class Resource$Projects$Locations$Repositories$Gomodules {
@@ -3932,6 +4151,7 @@ export namespace artifactregistry_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4060,6 +4280,7 @@ export namespace artifactregistry_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4156,6 +4377,7 @@ export namespace artifactregistry_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4304,6 +4526,7 @@ export namespace artifactregistry_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4430,6 +4653,7 @@ export namespace artifactregistry_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4526,6 +4750,7 @@ export namespace artifactregistry_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4642,6 +4867,7 @@ export namespace artifactregistry_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4736,6 +4962,7 @@ export namespace artifactregistry_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4861,6 +5088,7 @@ export namespace artifactregistry_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -4947,6 +5175,7 @@ export namespace artifactregistry_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5041,6 +5270,7 @@ export namespace artifactregistry_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5127,6 +5357,7 @@ export namespace artifactregistry_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -5266,6 +5497,7 @@ export namespace artifactregistry_v1 {
           {
             url: (rootUrl + '/v1/{+parent}/tags').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5352,6 +5584,7 @@ export namespace artifactregistry_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -5438,6 +5671,7 @@ export namespace artifactregistry_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5524,6 +5758,7 @@ export namespace artifactregistry_v1 {
           {
             url: (rootUrl + '/v1/{+parent}/tags').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5610,6 +5845,7 @@ export namespace artifactregistry_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -5772,6 +6008,7 @@ export namespace artifactregistry_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5858,6 +6095,7 @@ export namespace artifactregistry_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -5944,6 +6182,7 @@ export namespace artifactregistry_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6038,6 +6277,7 @@ export namespace artifactregistry_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6189,6 +6429,7 @@ export namespace artifactregistry_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6285,6 +6526,7 @@ export namespace artifactregistry_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6404,6 +6646,7 @@ export namespace artifactregistry_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -6500,6 +6743,7 @@ export namespace artifactregistry_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
