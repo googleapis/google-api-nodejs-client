@@ -133,7 +133,7 @@ export namespace storagetransfer_v1 {
   }
 
   /**
-   * Represents an On-Premises Agent pool.
+   * Represents an agent pool.
    */
   export interface Schema$AgentPool {
     /**
@@ -472,7 +472,7 @@ export namespace storagetransfer_v1 {
      */
     temporaryHold?: string | null;
     /**
-     * Specifies how each object's `timeCreated` metadata is preserved for transfers. If unspecified, the default behavior is the same as TIME_CREATED_SKIP.
+     * Specifies how each object's `timeCreated` metadata is preserved for transfers. If unspecified, the default behavior is the same as TIME_CREATED_SKIP. This behavior is supported for transfers to GCS buckets from GCS, S3, Azure, S3 Compatible, and Azure sources.
      */
     timeCreated?: string | null;
     /**
@@ -808,7 +808,7 @@ export namespace storagetransfer_v1 {
      */
     name?: string | null;
     /**
-     * Notification configuration. This is not supported for transfers involving PosixFilesystem.
+     * Notification configuration.
      */
     notificationConfig?: Schema$NotificationConfig;
     /**
@@ -1079,6 +1079,7 @@ export namespace storagetransfer_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1191,6 +1192,7 @@ export namespace storagetransfer_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1276,6 +1278,7 @@ export namespace storagetransfer_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -1361,6 +1364,7 @@ export namespace storagetransfer_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1454,6 +1458,7 @@ export namespace storagetransfer_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1539,6 +1544,7 @@ export namespace storagetransfer_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -1697,6 +1703,7 @@ export namespace storagetransfer_v1 {
           {
             url: (rootUrl + '/v1/transferJobs').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1782,6 +1789,7 @@ export namespace storagetransfer_v1 {
           {
             url: (rootUrl + '/v1/{+jobName}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -1866,6 +1874,7 @@ export namespace storagetransfer_v1 {
           {
             url: (rootUrl + '/v1/{+jobName}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1956,6 +1965,7 @@ export namespace storagetransfer_v1 {
           {
             url: (rootUrl + '/v1/transferJobs').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2041,6 +2051,7 @@ export namespace storagetransfer_v1 {
           {
             url: (rootUrl + '/v1/{+jobName}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -2125,6 +2136,7 @@ export namespace storagetransfer_v1 {
           {
             url: (rootUrl + '/v1/{+jobName}:run').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2284,6 +2296,7 @@ export namespace storagetransfer_v1 {
           {
             url: (rootUrl + '/v1/{+name}:cancel').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2369,6 +2382,7 @@ export namespace storagetransfer_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2459,6 +2473,7 @@ export namespace storagetransfer_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2544,6 +2559,7 @@ export namespace storagetransfer_v1 {
           {
             url: (rootUrl + '/v1/{+name}:pause').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2629,6 +2645,7 @@ export namespace storagetransfer_v1 {
           {
             url: (rootUrl + '/v1/{+name}:resume').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
