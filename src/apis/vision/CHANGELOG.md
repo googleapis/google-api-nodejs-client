@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.5.2](https://github.com/googleapis/google-api-nodejs-client/compare/vision-v1.5.1...vision-v1.5.2) (2024-05-02)
+
+
+### Bug Fixes
+
+* **vision:** update the API ([c6585c7](https://github.com/googleapis/google-api-nodejs-client/commit/c6585c79b039060193405d68e865552f579dae19))
+
 ## [1.5.1](https://github.com/googleapis/google-api-nodejs-client/compare/vision-v1.5.0...vision-v1.5.1) (2024-05-02)
 
 

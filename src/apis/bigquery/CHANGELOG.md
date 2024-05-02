@@ -1,5 +1,18 @@
 # Changelog
 
+## [10.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/bigquery-v9.1.0...bigquery-v10.0.0) (2024-05-02)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* **bigquery:** update the API ([72b5d21](https://github.com/googleapis/google-api-nodejs-client/commit/72b5d21ed11f1bcde638a1240c02d6ce03906844))
+* **bigquery:** update the API ([bb0336c](https://github.com/googleapis/google-api-nodejs-client/commit/bb0336c60f51e34284473f3091b6e24290187d55))
+* run the generator ([#3434](https://github.com/googleapis/google-api-nodejs-client/issues/3434)) ([f0db524](https://github.com/googleapis/google-api-nodejs-client/commit/f0db524bb26f05cea3dec4c0ed66b496399e3857))
+
 ## [9.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/bigquery-v9.0.0...bigquery-v9.1.0) (2024-05-02)
 
 
