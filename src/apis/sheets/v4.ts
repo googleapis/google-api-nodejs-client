@@ -1055,6 +1055,45 @@ export namespace sheets_v4 {
     series?: Schema$ChartData;
   }
   /**
+   * Cancels one or multiple refreshes of data source objects in the spreadsheet by the specified references.
+   */
+  export interface Schema$CancelDataSourceRefreshRequest {
+    /**
+     * Reference to a DataSource. If specified, cancels all associated data source object refreshes for this data source.
+     */
+    dataSourceId?: string | null;
+    /**
+     * Cancels all existing data source object refreshes for all data sources in the spreadsheet.
+     */
+    isAll?: boolean | null;
+    /**
+     * References to data source objects whose refreshes are to be cancelled.
+     */
+    references?: Schema$DataSourceObjectReferences;
+  }
+  /**
+   * The response from cancelling one or multiple data source object refreshes.
+   */
+  export interface Schema$CancelDataSourceRefreshResponse {
+    /**
+     * The cancellation statuses of refreshes of all data source objects specified in the request. If is_all is specified, the field contains only those in failure status. Refreshing and canceling refresh the same data source object is also not allowed in the same `batchUpdate`.
+     */
+    statuses?: Schema$CancelDataSourceRefreshStatus[];
+  }
+  /**
+   * The status of cancelling a single data source object refresh.
+   */
+  export interface Schema$CancelDataSourceRefreshStatus {
+    /**
+     * Reference to the data source object whose refresh is being cancelled.
+     */
+    reference?: Schema$DataSourceObjectReference;
+    /**
+     * The cancellation status.
+     */
+    refreshCancellationStatus?: Schema$RefreshCancellationStatus;
+  }
+  /**
    * A candlestick chart.
    */
   export interface Schema$CandlestickChartSpec {
@@ -3342,6 +3381,19 @@ export namespace sheets_v4 {
     range?: Schema$GridRange;
   }
   /**
+   * The status of a refresh cancellation. You can send cancel request to explicitly cancel one or multiple data source object refreshes.
+   */
+  export interface Schema$RefreshCancellationStatus {
+    /**
+     * The error code.
+     */
+    errorCode?: string | null;
+    /**
+     * The state of a call to cancel a refresh in Sheets.
+     */
+    state?: string | null;
+  }
+  /**
    * The execution status of refreshing one data source object.
    */
   export interface Schema$RefreshDataSourceObjectExecutionStatus {
@@ -3461,6 +3513,10 @@ export namespace sheets_v4 {
      * Automatically resizes one or more dimensions based on the contents of the cells in that dimension.
      */
     autoResizeDimensions?: Schema$AutoResizeDimensionsRequest;
+    /**
+     * Cancels refreshes of one or multiple data sources and associated dbobjects.
+     */
+    cancelDataSourceRefresh?: Schema$CancelDataSourceRefreshRequest;
     /**
      * Clears the basic filter on a sheet.
      */
@@ -3706,6 +3762,10 @@ export namespace sheets_v4 {
      * A reply from adding a slicer.
      */
     addSlicer?: Schema$AddSlicerResponse;
+    /**
+     * A reply from cancelling data source object refreshes.
+     */
+    cancelDataSourceRefresh?: Schema$CancelDataSourceRefreshResponse;
     /**
      * A reply from creating a developer metadata entry.
      */
@@ -4122,7 +4182,7 @@ export namespace sheets_v4 {
      */
     defaultFormat?: Schema$CellFormat;
     /**
-     * Whether to allow external url access for image and import functions. Read only when true. When false, you can set to true.
+     * Whether to allow external URL access for image and import functions. Read only when true. When false, you can set to true.
      */
     importFunctionsExternalUrlAccessAllowed?: boolean | null;
     /**
@@ -5018,6 +5078,7 @@ export namespace sheets_v4 {
               rootUrl + '/v4/spreadsheets/{spreadsheetId}:batchUpdate'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5104,6 +5165,7 @@ export namespace sheets_v4 {
           {
             url: (rootUrl + '/v4/spreadsheets').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5190,6 +5252,7 @@ export namespace sheets_v4 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5276,6 +5339,7 @@ export namespace sheets_v4 {
               rootUrl + '/v4/spreadsheets/{spreadsheetId}:getByDataFilter'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5419,6 +5483,7 @@ export namespace sheets_v4 {
               '/v4/spreadsheets/{spreadsheetId}/developerMetadata/{metadataId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5513,6 +5578,7 @@ export namespace sheets_v4 {
               '/v4/spreadsheets/{spreadsheetId}/developerMetadata:search'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5633,6 +5699,7 @@ export namespace sheets_v4 {
               '/v4/spreadsheets/{spreadsheetId}/sheets/{sheetId}:copyTo'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5748,6 +5815,7 @@ export namespace sheets_v4 {
               rootUrl + '/v4/spreadsheets/{spreadsheetId}/values/{range}:append'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5841,6 +5909,7 @@ export namespace sheets_v4 {
               rootUrl + '/v4/spreadsheets/{spreadsheetId}/values:batchClear'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5936,6 +6005,7 @@ export namespace sheets_v4 {
               '/v4/spreadsheets/{spreadsheetId}/values:batchClearByDataFilter'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -6031,6 +6101,7 @@ export namespace sheets_v4 {
               rootUrl + '/v4/spreadsheets/{spreadsheetId}/values:batchGet'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6125,6 +6196,7 @@ export namespace sheets_v4 {
               '/v4/spreadsheets/{spreadsheetId}/values:batchGetByDataFilter'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -6220,6 +6292,7 @@ export namespace sheets_v4 {
               rootUrl + '/v4/spreadsheets/{spreadsheetId}/values:batchUpdate'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -6315,6 +6388,7 @@ export namespace sheets_v4 {
               '/v4/spreadsheets/{spreadsheetId}/values:batchUpdateByDataFilter'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -6406,6 +6480,7 @@ export namespace sheets_v4 {
               rootUrl + '/v4/spreadsheets/{spreadsheetId}/values/{range}:clear'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -6492,6 +6567,7 @@ export namespace sheets_v4 {
               rootUrl + '/v4/spreadsheets/{spreadsheetId}/values/{range}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6583,6 +6659,7 @@ export namespace sheets_v4 {
               rootUrl + '/v4/spreadsheets/{spreadsheetId}/values/{range}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
+            apiVersion: '',
           },
           options
         ),
