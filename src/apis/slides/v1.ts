@@ -2744,6 +2744,7 @@ export namespace slides_v1 {
               rootUrl + '/v1/presentations/{presentationId}:batchUpdate'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2830,6 +2831,7 @@ export namespace slides_v1 {
           {
             url: (rootUrl + '/v1/presentations').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2917,6 +2919,7 @@ export namespace slides_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3038,6 +3041,7 @@ export namespace slides_v1 {
               '/v1/presentations/{presentationId}/pages/{pageObjectId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3125,6 +3129,7 @@ export namespace slides_v1 {
               '/v1/presentations/{presentationId}/pages/{pageObjectId}/thumbnail'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
