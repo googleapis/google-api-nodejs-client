@@ -684,6 +684,7 @@ export namespace firebaseappcheck_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -831,6 +832,7 @@ export namespace firebaseappcheck_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -929,6 +931,7 @@ export namespace firebaseappcheck_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1026,6 +1029,7 @@ export namespace firebaseappcheck_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1123,6 +1127,7 @@ export namespace firebaseappcheck_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1220,6 +1225,7 @@ export namespace firebaseappcheck_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1317,6 +1323,7 @@ export namespace firebaseappcheck_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1414,6 +1421,7 @@ export namespace firebaseappcheck_v1 {
               rootUrl + '/v1/{+app}:exchangeRecaptchaEnterpriseToken'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1511,6 +1519,7 @@ export namespace firebaseappcheck_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1608,6 +1617,7 @@ export namespace firebaseappcheck_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1705,6 +1715,7 @@ export namespace firebaseappcheck_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1802,6 +1813,7 @@ export namespace firebaseappcheck_v1 {
               rootUrl + '/v1/{+app}:generatePlayIntegrityChallenge'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2038,6 +2050,7 @@ export namespace firebaseappcheck_v1 {
               rootUrl + '/v1/{+parent}/apps/-/appAttestConfig:batchGet'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2132,6 +2145,7 @@ export namespace firebaseappcheck_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2226,6 +2240,7 @@ export namespace firebaseappcheck_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -2272,7 +2287,7 @@ export namespace firebaseappcheck_v1 {
      */
     name?: string;
     /**
-     * Required. A comma-separated list of names of fields in the AppAttestConfig Gets to update. Example: `token_ttl`.
+     * Required. A comma-separated list of names of fields in the AppAttestConfig to update. Example: `token_ttl`.
      */
     updateMask?: string;
 
@@ -2365,6 +2380,7 @@ export namespace firebaseappcheck_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2455,6 +2471,7 @@ export namespace firebaseappcheck_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -2547,6 +2564,7 @@ export namespace firebaseappcheck_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2644,6 +2662,7 @@ export namespace firebaseappcheck_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2738,6 +2757,7 @@ export namespace firebaseappcheck_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -2899,6 +2919,7 @@ export namespace firebaseappcheck_v1 {
               rootUrl + '/v1/{+parent}/apps/-/deviceCheckConfig:batchGet'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2993,6 +3014,7 @@ export namespace firebaseappcheck_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3087,6 +3109,7 @@ export namespace firebaseappcheck_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -3133,7 +3156,7 @@ export namespace firebaseappcheck_v1 {
      */
     name?: string;
     /**
-     * Required. A comma-separated list of names of fields in the DeviceCheckConfig Gets to update. Example: `key_id,private_key`.
+     * Required. A comma-separated list of names of fields in the DeviceCheckConfig to update. Example: `key_id,private_key`.
      */
     updateMask?: string;
 
@@ -3226,6 +3249,7 @@ export namespace firebaseappcheck_v1 {
               rootUrl + '/v1/{+parent}/apps/-/playIntegrityConfig:batchGet'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3320,6 +3344,7 @@ export namespace firebaseappcheck_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3414,6 +3439,7 @@ export namespace firebaseappcheck_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -3460,7 +3486,7 @@ export namespace firebaseappcheck_v1 {
      */
     name?: string;
     /**
-     * Required. A comma-separated list of names of fields in the PlayIntegrityConfig Gets to update. Example: `token_ttl`.
+     * Required. A comma-separated list of names of fields in the PlayIntegrityConfig to update. Example: `token_ttl`.
      */
     updateMask?: string;
 
@@ -3554,6 +3580,7 @@ export namespace firebaseappcheck_v1 {
               '/v1/{+parent}/apps/-/recaptchaEnterpriseConfig:batchGet'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3649,6 +3676,7 @@ export namespace firebaseappcheck_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3744,6 +3772,7 @@ export namespace firebaseappcheck_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -3882,6 +3911,7 @@ export namespace firebaseappcheck_v1 {
               rootUrl + '/v1/{+parent}/apps/-/recaptchaV3Config:batchGet'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3976,6 +4006,7 @@ export namespace firebaseappcheck_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4070,6 +4101,7 @@ export namespace firebaseappcheck_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -4208,6 +4240,7 @@ export namespace firebaseappcheck_v1 {
               rootUrl + '/v1/{+parent}/apps/-/safetyNetConfig:batchGet'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4302,6 +4335,7 @@ export namespace firebaseappcheck_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4396,6 +4430,7 @@ export namespace firebaseappcheck_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -4442,7 +4477,7 @@ export namespace firebaseappcheck_v1 {
      */
     name?: string;
     /**
-     * Required. A comma-separated list of names of fields in the SafetyNetConfig Gets to update. Example: `token_ttl`.
+     * Required. A comma-separated list of names of fields in the SafetyNetConfig to update. Example: `token_ttl`.
      */
     updateMask?: string;
 
@@ -4535,6 +4570,7 @@ export namespace firebaseappcheck_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4629,6 +4665,7 @@ export namespace firebaseappcheck_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4726,6 +4763,7 @@ export namespace firebaseappcheck_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4820,6 +4858,7 @@ export namespace firebaseappcheck_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
