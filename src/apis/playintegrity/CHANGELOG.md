@@ -1,5 +1,12 @@
 # Changelog
 
+## [9.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/playintegrity-v9.0.0...playintegrity-v9.0.1) (2024-05-02)
+
+
+### Bug Fixes
+
+* **playintegrity:** update the API ([78dfca2](https://github.com/googleapis/google-api-nodejs-client/commit/78dfca25343031a78ba17ce5a9f84b4b449ff3c3))
+
 ## [9.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/playintegrity-v8.0.0...playintegrity-v9.0.0) (2024-04-04)
 
 

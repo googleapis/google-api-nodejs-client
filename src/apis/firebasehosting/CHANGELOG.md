@@ -1,5 +1,12 @@
 # Changelog
 
+## [8.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/firebasehosting-v8.0.0...firebasehosting-v8.0.1) (2024-05-02)
+
+
+### Bug Fixes
+
+* **firebasehosting:** update the API ([6abce84](https://github.com/googleapis/google-api-nodejs-client/commit/6abce84cf7567d906dc94c64700c8bc42c55de4a))
+
 ## [8.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/firebasehosting-v7.1.0...firebasehosting-v8.0.0) (2024-04-04)
 
 
