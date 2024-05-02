@@ -4037,7 +4037,7 @@
       }
     }
   },
-  "revision": "20240312",
+  "revision": "20240429",
   "rootUrl": "https://youtube.googleapis.com/",
   "schemas": {
     "AbuseReport": {
@@ -7679,11 +7679,13 @@
           "type": "string"
         },
         "repeatIntervalSecs": {
+          "deprecated": true,
           "description": "Interval frequency in seconds that api uses to insert cuepoints automatically.",
           "format": "int32",
           "type": "integer"
         },
         "scheduleStrategy": {
+          "deprecated": true,
           "description": "The strategy to use when scheduling cuepoints.",
           "enum": [
             "scheduleStrategyUnspecified",
@@ -8283,6 +8285,7 @@
           "type": "boolean"
         },
         "startWithSlate": {
+          "deprecated": true,
           "description": "This setting indicates whether the broadcast should automatically begin with an in-stream slate when you update the broadcast's status to live. After updating the status, you then need to send a liveCuepoints.insert request that sets the cuepoint's eventState to end to remove the in-stream slate and make your broadcast stream visible to viewers.",
           "type": "boolean"
         },
