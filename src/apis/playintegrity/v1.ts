@@ -151,11 +151,11 @@ export namespace playintegrity_v1 {
    */
   export interface Schema$AppAccessRiskVerdict {
     /**
-     * Required. App access risk verdict related to apps that are not installed by Google Play, and are not preloaded on the system image by the device manufacturer.
+     * App access risk verdict related to apps that are not installed by Google Play, and are not preloaded on the system image by the device manufacturer.
      */
     otherApps?: string | null;
     /**
-     * Required. App access risk verdict related to apps that are not installed by the Google Play Store, and are not preloaded on the system image by the device manufacturer.
+     * App access risk verdict related to apps that are not installed by the Google Play Store, and are not preloaded on the system image by the device manufacturer.
      */
     playOrSystemApps?: string | null;
   }
@@ -376,6 +376,7 @@ export namespace playintegrity_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
