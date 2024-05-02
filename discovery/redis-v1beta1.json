@@ -821,9 +821,32 @@
       }
     }
   },
-  "revision": "20240307",
+  "revision": "20240418",
   "rootUrl": "https://redis.googleapis.com/",
   "schemas": {
+    "AOFConfig": {
+      "description": "Configuration of the AOF based persistence.",
+      "id": "AOFConfig",
+      "properties": {
+        "appendFsync": {
+          "description": "Optional. fsync configuration.",
+          "enum": [
+            "APPEND_FSYNC_UNSPECIFIED",
+            "NO",
+            "EVERYSEC",
+            "ALWAYS"
+          ],
+          "enumDescriptions": [
+            "Not set. Default: EVERYSEC",
+            "Never fsync. Normally Linux will flush data every 30 seconds with this configuration, but it's up to the kernel's exact tuning.",
+            "fsync every second. Fast enough, and you may lose 1 second of data if there is a disaster",
+            "fsync every time new commands are appended to the AOF. It has the best data loss protection at the cost of performance"
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "AvailabilityConfiguration": {
       "description": "Configuration for availability of database instance",
       "id": "AvailabilityConfiguration",
@@ -845,6 +868,10 @@
             "For rest of the other category"
           ],
           "type": "string"
+        },
+        "crossRegionReplicaConfigured": {
+          "description": "Checks for resources that are configured to have redundancy, and ongoing replication across regions",
+          "type": "boolean"
         },
         "externalReplicaConfigured": {
           "type": "boolean"
@@ -960,6 +987,10 @@
           "readOnly": true,
           "type": "string"
         },
+        "deletionProtectionEnabled": {
+          "description": "Optional. The delete operation will fail when the value is set to true.",
+          "type": "boolean"
+        },
         "discoveryEndpoints": {
           "description": "Output only. Endpoints created on each given network, for Redis clients to connect to the cluster. Currently only one discovery endpoint is supported.",
           "items": {
@@ -971,6 +1002,34 @@
         "name": {
           "description": "Required. Unique name of the resource in this scope including project and location using the form: `projects/{project_id}/locations/{location_id}/clusters/{cluster_id}`",
           "type": "string"
+        },
+        "nodeType": {
+          "description": "Optional. The type of a redis node in the cluster. NodeType determines the underlying machine-type of a redis node.",
+          "enum": [
+            "NODE_TYPE_UNSPECIFIED",
+            "REDIS_SHARED_CORE_NANO",
+            "REDIS_HIGHMEM_MEDIUM",
+            "REDIS_HIGHMEM_XLARGE",
+            "REDIS_STANDARD_SMALL"
+          ],
+          "enumDescriptions": [
+            "",
+            "Redis shared core nano node_type.",
+            "Redis highmem medium node_type.",
+            "Redis highmem xlarge node_type.",
+            "Redis standard small node_type."
+          ],
+          "type": "string"
+        },
+        "persistenceConfig": {
+          "$ref": "ClusterPersistenceConfig",
+          "description": "Optional. Persistence config (RDB, AOF) for the cluster."
+        },
+        "preciseSizeGb": {
+          "description": "Output only. Precise value of redis memory size in GB for the entire cluster.",
+          "format": "double",
+          "readOnly": true,
+          "type": "number"
         },
         "pscConfigs": {
           "description": "Required. Each PscConfig configures the consumer network where IPs will be designated to the cluster for client access through Private Service Connect Automation. Currently, only one PscConfig is supported.",
@@ -986,6 +1045,13 @@
           },
           "readOnly": true,
           "type": "array"
+        },
+        "redisConfigs": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. Key/Value pairs of customer overrides for mutable Redis Configs",
+          "type": "object"
         },
         "replicaCount": {
           "description": "Optional. The number of replica nodes per shard.",
@@ -1045,6 +1111,37 @@
           "description": "Output only. System assigned, unique identifier for the cluster.",
           "readOnly": true,
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ClusterPersistenceConfig": {
+      "description": "Configuration of the persistence functionality.",
+      "id": "ClusterPersistenceConfig",
+      "properties": {
+        "aofConfig": {
+          "$ref": "AOFConfig",
+          "description": "Optional. AOF configuration. This field will be ignored if mode is not AOF."
+        },
+        "mode": {
+          "description": "Optional. The mode of persistence.",
+          "enum": [
+            "PERSISTENCE_MODE_UNSPECIFIED",
+            "DISABLED",
+            "RDB",
+            "AOF"
+          ],
+          "enumDescriptions": [
+            "Not set.",
+            "Persistence is disabled, and any snapshot data is deleted.",
+            "RDB based persistence is enabled.",
+            "AOF based persistence is enabled."
+          ],
+          "type": "string"
+        },
+        "rdbConfig": {
+          "$ref": "RDBConfig",
+          "description": "Optional. RDB configuration. This field will be ignored if mode is not RDB."
         }
       },
       "type": "object"
@@ -1301,7 +1398,7 @@
             "SIGNAL_TYPE_DATABASE_AUDITING_DISABLED",
             "SIGNAL_TYPE_RESTRICT_AUTHORIZED_NETWORKS",
             "SIGNAL_TYPE_VIOLATE_POLICY_RESTRICT_PUBLIC_IP",
-            "SIGNAL_TYPE_CLUSTER_QUOTA_LIMIT",
+            "SIGNAL_TYPE_QUOTA_LIMIT",
             "SIGNAL_TYPE_NO_PASSWORD_POLICY",
             "SIGNAL_TYPE_CONNECTIONS_PERFORMANCE_IMPACT",
             "SIGNAL_TYPE_TMP_TABLES_PERFORMANCE_IMPACT",
@@ -1780,7 +1877,7 @@
             "SIGNAL_TYPE_DATABASE_AUDITING_DISABLED",
             "SIGNAL_TYPE_RESTRICT_AUTHORIZED_NETWORKS",
             "SIGNAL_TYPE_VIOLATE_POLICY_RESTRICT_PUBLIC_IP",
-            "SIGNAL_TYPE_CLUSTER_QUOTA_LIMIT",
+            "SIGNAL_TYPE_QUOTA_LIMIT",
             "SIGNAL_TYPE_NO_PASSWORD_POLICY",
             "SIGNAL_TYPE_CONNECTIONS_PERFORMANCE_IMPACT",
             "SIGNAL_TYPE_TMP_TABLES_PERFORMANCE_IMPACT",
@@ -1981,17 +2078,10 @@
           "description": "An enum that represents the type of this entitlement.",
           "enum": [
             "ENTITLEMENT_TYPE_UNSPECIFIED",
-            "DUET_AI",
             "GEMINI"
-          ],
-          "enumDeprecated": [
-            false,
-            true,
-            false
           ],
           "enumDescriptions": [
             "",
-            "The root entitlement representing Duet AI package ownership.",
             "The root entitlement representing Gemini package ownership."
           ],
           "type": "string"
@@ -2938,6 +3028,36 @@
         "pscConnectionId": {
           "description": "Output only. The PSC connection id of the forwarding rule connected to the service attachment.",
           "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "RDBConfig": {
+      "description": "Configuration of the RDB based persistence.",
+      "id": "RDBConfig",
+      "properties": {
+        "rdbSnapshotPeriod": {
+          "description": "Optional. Period between RDB snapshots.",
+          "enum": [
+            "SNAPSHOT_PERIOD_UNSPECIFIED",
+            "ONE_HOUR",
+            "SIX_HOURS",
+            "TWELVE_HOURS",
+            "TWENTY_FOUR_HOURS"
+          ],
+          "enumDescriptions": [
+            "Not set.",
+            "One hour.",
+            "Six hours.",
+            "Twelve hours.",
+            "Twenty four hours."
+          ],
+          "type": "string"
+        },
+        "rdbSnapshotStartTime": {
+          "description": "Optional. The time that the first snapshot was/will be attempted, and to which future snapshots will be aligned. If not provided, the current time will be used.",
+          "format": "google-datetime",
           "type": "string"
         }
       },
