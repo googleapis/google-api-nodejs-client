@@ -652,6 +652,7 @@ export namespace safebrowsing_v4 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -770,6 +771,7 @@ export namespace safebrowsing_v4 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -888,6 +890,7 @@ export namespace safebrowsing_v4 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -991,6 +994,7 @@ export namespace safebrowsing_v4 {
           {
             url: (rootUrl + '/v4/threatHits').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1096,6 +1100,7 @@ export namespace safebrowsing_v4 {
           {
             url: (rootUrl + '/v4/threatLists').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1202,6 +1207,7 @@ export namespace safebrowsing_v4 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1313,6 +1319,7 @@ export namespace safebrowsing_v4 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
