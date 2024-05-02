@@ -1,5 +1,27 @@
 # Changelog
 
+## [8.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/firestore-v7.1.0...firestore-v8.0.0) (2024-05-02)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+* This release has breaking changes.
+* **firestore:** This release has breaking changes.
+
+### Features
+
+* **firestore:** update the API ([6d67fed](https://github.com/googleapis/google-api-nodejs-client/commit/6d67fed98433e01900db319bc4747577cb6d6e3d))
+* **firestore:** update the API ([f9334eb](https://github.com/googleapis/google-api-nodejs-client/commit/f9334eb195565032f973c6c484daa3b7ffdfecc2))
+* **firestore:** update the API ([ccbb1f0](https://github.com/googleapis/google-api-nodejs-client/commit/ccbb1f08c6cad820c2a71d1a060bd9c3099032c3))
+* run the generator ([#3434](https://github.com/googleapis/google-api-nodejs-client/issues/3434)) ([f0db524](https://github.com/googleapis/google-api-nodejs-client/commit/f0db524bb26f05cea3dec4c0ed66b496399e3857))
+* run the generator ([#3456](https://github.com/googleapis/google-api-nodejs-client/issues/3456)) ([a865e81](https://github.com/googleapis/google-api-nodejs-client/commit/a865e81539b315d3b321650663ba0b2555b1e5a1))
+
+
+### Bug Fixes
+
+* **firestore:** update the API ([1e04a1a](https://github.com/googleapis/google-api-nodejs-client/commit/1e04a1a7926bfddb42adfacf5c1157fe1455de32))
+
 ## [7.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/firestore-v7.0.0...firestore-v7.1.0) (2024-05-02)
 
 

@@ -1,5 +1,25 @@
 # Changelog
 
+## [4.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/language-v3.0.1...language-v4.0.0) (2024-05-02)
+
+
+### ⚠ BREAKING CHANGES
+
+* **language:** This release has breaking changes.
+* This release has breaking changes.
+* This release has breaking changes.
+
+### Features
+
+* **language:** update the API ([1972ea6](https://github.com/googleapis/google-api-nodejs-client/commit/1972ea604b5d67ece5986888f12150f601980ab1))
+* run the generator ([#3441](https://github.com/googleapis/google-api-nodejs-client/issues/3441)) ([f832463](https://github.com/googleapis/google-api-nodejs-client/commit/f832463312572dc58fe89f9254282982a520d1df))
+* run the generator ([#3447](https://github.com/googleapis/google-api-nodejs-client/issues/3447)) ([873b559](https://github.com/googleapis/google-api-nodejs-client/commit/873b55950bcf04db37f08e8a62caa6e4a9b9c487))
+
+
+### Bug Fixes
+
+* **language:** update the API ([91caf34](https://github.com/googleapis/google-api-nodejs-client/commit/91caf3471150689b54fa2a51cde93de44c595df7))
+
 ## [3.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/language-v3.0.0...language-v3.0.1) (2024-05-02)
 
 

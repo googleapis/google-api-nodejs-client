@@ -1,5 +1,21 @@
 # Changelog
 
+## [13.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/serviceusage-v12.0.0...serviceusage-v13.0.0) (2024-05-02)
+
+
+### ⚠ BREAKING CHANGES
+
+* **serviceusage:** This release has breaking changes.
+* This release has breaking changes.
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#3434](https://github.com/googleapis/google-api-nodejs-client/issues/3434)) ([f0db524](https://github.com/googleapis/google-api-nodejs-client/commit/f0db524bb26f05cea3dec4c0ed66b496399e3857))
+* run the generator ([#3456](https://github.com/googleapis/google-api-nodejs-client/issues/3456)) ([a865e81](https://github.com/googleapis/google-api-nodejs-client/commit/a865e81539b315d3b321650663ba0b2555b1e5a1))
+* **serviceusage:** update the API ([41b76ee](https://github.com/googleapis/google-api-nodejs-client/commit/41b76ee8d6beeeb3bbccdcbbcd0853f610a54171))
+* **serviceusage:** update the API ([b9c0c7c](https://github.com/googleapis/google-api-nodejs-client/commit/b9c0c7c6374ea63327b26bb4a5655e91af920913))
+
 ## [12.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/serviceusage-v11.0.0...serviceusage-v12.0.0) (2024-05-02)
 
 
