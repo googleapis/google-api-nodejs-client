@@ -289,6 +289,10 @@
     "src/apis/apphub": {},
     "src/apis/dataportability": {},
     "src/apis/workspaceevents": {},
-    "src/apis/marketingplatformadmin": {}
+    "src/apis/marketingplatformadmin": {},
+    "src/apis/solar": {},
+    "src/apis/config": {},
+    "src/apis/cloudcontrolspartner": {},
+    "src/apis/addressvalidation": {}
   }
 }
