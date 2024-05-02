@@ -436,6 +436,7 @@ export namespace youtubeAnalytics_v2 {
           {
             url: (rootUrl + '/v2/groupItems').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -521,6 +522,7 @@ export namespace youtubeAnalytics_v2 {
           {
             url: (rootUrl + '/v2/groupItems').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -610,6 +612,7 @@ export namespace youtubeAnalytics_v2 {
           {
             url: (rootUrl + '/v2/groupItems').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -735,6 +738,7 @@ export namespace youtubeAnalytics_v2 {
           {
             url: (rootUrl + '/v2/groups').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -819,6 +823,7 @@ export namespace youtubeAnalytics_v2 {
           {
             url: (rootUrl + '/v2/groups').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -906,6 +911,7 @@ export namespace youtubeAnalytics_v2 {
           {
             url: (rootUrl + '/v2/groups').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -990,6 +996,7 @@ export namespace youtubeAnalytics_v2 {
           {
             url: (rootUrl + '/v2/groups').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
+            apiVersion: '',
           },
           options
         ),
@@ -1132,6 +1139,7 @@ export namespace youtubeAnalytics_v2 {
           {
             url: (rootUrl + '/v2/reports').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
