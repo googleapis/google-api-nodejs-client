@@ -1711,6 +1711,14 @@ export namespace run_v1 {
    */
   export interface Schema$JobSpec {
     /**
+     * A unique string used as a suffix for creating a new execution. The Job will become ready when the execution is successfully completed. The sum of job name and token length must be fewer than 63 characters.
+     */
+    runExecutionToken?: string | null;
+    /**
+     * A unique string used as a suffix for creating a new execution. The Job will become ready when the execution is successfully started. The sum of job name and token length must be fewer than 63 characters.
+     */
+    startExecutionToken?: string | null;
+    /**
      * Optional. Describes the execution that will be created when running a job.
      */
     template?: Schema$ExecutionTemplateSpec;
@@ -2031,7 +2039,7 @@ export namespace run_v1 {
     name?: string | null;
   }
   /**
-   * Represents a persistent volume that will be mounted using NFS. This volume will be shared between all instances of the Service and data will not be deleted when the instance is shut down.
+   * Represents a persistent volume that will be mounted using NFS. This volume will be shared between all instances of the resource and data will not be deleted when the instance is shut down.
    */
   export interface Schema$NFSVolumeSource {
     /**
@@ -2972,6 +2980,7 @@ export namespace run_v1 {
               '/apis/domains.cloudrun.com/v1/{+parent}/authorizeddomains'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3084,6 +3093,7 @@ export namespace run_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3177,6 +3187,7 @@ export namespace run_v1 {
               rootUrl + '/apis/serving.knative.dev/v1/{+parent}/configurations'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3313,6 +3324,7 @@ export namespace run_v1 {
               rootUrl + '/apis/domains.cloudrun.com/v1/{+parent}/domainmappings'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3400,6 +3412,7 @@ export namespace run_v1 {
               '$1'
             ),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -3487,6 +3500,7 @@ export namespace run_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3580,6 +3594,7 @@ export namespace run_v1 {
               rootUrl + '/apis/domains.cloudrun.com/v1/{+parent}/domainmappings'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3755,6 +3770,7 @@ export namespace run_v1 {
               rootUrl + '/apis/run.googleapis.com/v1/{+name}:cancel'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3842,6 +3858,7 @@ export namespace run_v1 {
               '$1'
             ),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -3929,6 +3946,7 @@ export namespace run_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4020,6 +4038,7 @@ export namespace run_v1 {
               rootUrl + '/apis/run.googleapis.com/v1/{+parent}/executions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4187,6 +4206,7 @@ export namespace run_v1 {
               rootUrl + '/apis/run.googleapis.com/v1/{+parent}/jobs'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4274,6 +4294,7 @@ export namespace run_v1 {
               '$1'
             ),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -4361,6 +4382,7 @@ export namespace run_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4447,6 +4469,7 @@ export namespace run_v1 {
               rootUrl + '/apis/run.googleapis.com/v1/{+parent}/jobs'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4534,6 +4557,7 @@ export namespace run_v1 {
               '$1'
             ),
             method: 'PUT',
+            apiVersion: '',
           },
           options
         ),
@@ -4621,6 +4645,7 @@ export namespace run_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4813,6 +4838,7 @@ export namespace run_v1 {
               '$1'
             ),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -4900,6 +4926,7 @@ export namespace run_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4991,6 +5018,7 @@ export namespace run_v1 {
               rootUrl + '/apis/serving.knative.dev/v1/{+parent}/revisions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5151,6 +5179,7 @@ export namespace run_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5240,6 +5269,7 @@ export namespace run_v1 {
               rootUrl + '/apis/serving.knative.dev/v1/{+parent}/routes'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5376,6 +5406,7 @@ export namespace run_v1 {
               rootUrl + '/apis/serving.knative.dev/v1/{+parent}/services'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5463,6 +5494,7 @@ export namespace run_v1 {
               '$1'
             ),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -5550,6 +5582,7 @@ export namespace run_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5641,6 +5674,7 @@ export namespace run_v1 {
               rootUrl + '/apis/serving.knative.dev/v1/{+parent}/services'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5728,6 +5762,7 @@ export namespace run_v1 {
               '$1'
             ),
             method: 'PUT',
+            apiVersion: '',
           },
           options
         ),
@@ -5920,6 +5955,7 @@ export namespace run_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6009,6 +6045,7 @@ export namespace run_v1 {
               rootUrl + '/apis/run.googleapis.com/v1/{+parent}/tasks'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6166,6 +6203,7 @@ export namespace run_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6306,6 +6344,7 @@ export namespace run_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6428,6 +6467,7 @@ export namespace run_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6537,6 +6577,7 @@ export namespace run_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6631,6 +6672,7 @@ export namespace run_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6768,6 +6810,7 @@ export namespace run_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -6852,6 +6895,7 @@ export namespace run_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -6936,6 +6980,7 @@ export namespace run_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -7030,6 +7075,7 @@ export namespace run_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -7206,6 +7252,7 @@ export namespace run_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -7293,6 +7340,7 @@ export namespace run_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -7388,6 +7436,7 @@ export namespace run_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -7515,6 +7564,7 @@ export namespace run_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -7606,6 +7656,7 @@ export namespace run_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -7700,6 +7751,7 @@ export namespace run_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -7793,6 +7845,7 @@ export namespace run_v1 {
           {
             url: (rootUrl + '/v1/{+name}:wait').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -7930,6 +7983,7 @@ export namespace run_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -8014,6 +8068,7 @@ export namespace run_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -8106,6 +8161,7 @@ export namespace run_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -8263,6 +8319,7 @@ export namespace run_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -8353,6 +8410,7 @@ export namespace run_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -8490,6 +8548,7 @@ export namespace run_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -8574,6 +8633,7 @@ export namespace run_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -8658,6 +8718,7 @@ export namespace run_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -8745,6 +8806,7 @@ export namespace run_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -8837,6 +8899,7 @@ export namespace run_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -8922,6 +8985,7 @@ export namespace run_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
+            apiVersion: '',
           },
           options
         ),
@@ -9009,6 +9073,7 @@ export namespace run_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -9104,6 +9169,7 @@ export namespace run_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
