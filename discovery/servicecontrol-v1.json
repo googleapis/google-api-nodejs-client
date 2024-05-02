@@ -197,7 +197,7 @@
       }
     }
   },
-  "revision": "20240223",
+  "revision": "20240419",
   "rootUrl": "https://servicecontrol.googleapis.com/",
   "schemas": {
     "AllocateInfo": {
@@ -418,6 +418,10 @@
           "description": "Structured claims presented with the credential. JWTs include `{key: value}` pairs for standard and private claims. The following is a subset of the standard required and optional claims that would typically be presented for a Google-based JWT: {'iss': 'accounts.google.com', 'sub': '113289723416554971153', 'aud': ['123456789012', 'pubsub.googleapis.com'], 'azp': '123456789012.apps.googleusercontent.com', 'email': 'jsmith@example.com', 'iat': 1353601026, 'exp': 1353604926} SAML assertions are similarly specified, but with an identity provider dependent structure.",
           "type": "object"
         },
+        "credentialId": {
+          "description": "Identifies the client credential id used for authentication. credential_id is in the format of AUTH_METHOD:IDENTIFIER, e.g. \"serviceaccount:XXXXX, apikey:XXXXX\" where the format of the IDENTIFIER can vary for different AUTH_METHODs.",
+          "type": "string"
+        },
         "presenter": {
           "description": "The authorized presenter of the credential. Reflects the optional Authorized Presenter (`azp`) claim within a JWT or the OAuth client id. For example, a Google Cloud Platform client id looks as follows: \"123456789012.apps.googleusercontent.com\".",
           "type": "string"
@@ -481,6 +485,24 @@
         },
         "permission": {
           "description": "The required IAM permission.",
+          "type": "string"
+        },
+        "permissionType": {
+          "description": "The type of the permission that was checked. For data access audit logs this corresponds with the permission type that must be enabled in the project/folder/organization IAM policy in order for the log to be written.",
+          "enum": [
+            "PERMISSION_TYPE_UNSPECIFIED",
+            "ADMIN_READ",
+            "ADMIN_WRITE",
+            "DATA_READ",
+            "DATA_WRITE"
+          ],
+          "enumDescriptions": [
+            "Default. Should not be used.",
+            "Permissions that gate reading resource configuration or metadata.",
+            "Permissions that gate modification of resource configuration or metadata.",
+            "Permissions that gate reading user-provided data.",
+            "Permissions that gate writing user-provided data."
+          ],
           "type": "string"
         },
         "resource": {
