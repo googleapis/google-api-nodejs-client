@@ -1057,6 +1057,7 @@ export namespace tagmanager_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1148,6 +1149,7 @@ export namespace tagmanager_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1234,6 +1236,7 @@ export namespace tagmanager_v1 {
               '$1'
             ),
             method: 'PUT',
+            apiVersion: '',
           },
           options
         ),
@@ -1371,6 +1374,7 @@ export namespace tagmanager_v1 {
               rootUrl + '/tagmanager/v1/accounts/{accountId}/containers'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1456,6 +1460,7 @@ export namespace tagmanager_v1 {
               '/tagmanager/v1/accounts/{accountId}/containers/{containerId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -1543,6 +1548,7 @@ export namespace tagmanager_v1 {
               '/tagmanager/v1/accounts/{accountId}/containers/{containerId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1634,6 +1640,7 @@ export namespace tagmanager_v1 {
               rootUrl + '/tagmanager/v1/accounts/{accountId}/containers'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1721,6 +1728,7 @@ export namespace tagmanager_v1 {
               '/tagmanager/v1/accounts/{accountId}/containers/{containerId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
+            apiVersion: '',
           },
           options
         ),
@@ -1877,6 +1885,7 @@ export namespace tagmanager_v1 {
               '/tagmanager/v1/accounts/{accountId}/containers/{containerId}/environments'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1962,6 +1971,7 @@ export namespace tagmanager_v1 {
               '/tagmanager/v1/accounts/{accountId}/containers/{containerId}/environments/{environmentId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -2049,6 +2059,7 @@ export namespace tagmanager_v1 {
               '/tagmanager/v1/accounts/{accountId}/containers/{containerId}/environments/{environmentId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2141,6 +2152,7 @@ export namespace tagmanager_v1 {
               '/tagmanager/v1/accounts/{accountId}/containers/{containerId}/environments'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2228,6 +2240,7 @@ export namespace tagmanager_v1 {
               '/tagmanager/v1/accounts/{accountId}/containers/{containerId}/environments/{environmentId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
+            apiVersion: '',
           },
           options
         ),
@@ -2408,6 +2421,7 @@ export namespace tagmanager_v1 {
               '/tagmanager/v1/accounts/{accountId}/containers/{containerId}/folders'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2493,6 +2507,7 @@ export namespace tagmanager_v1 {
               '/tagmanager/v1/accounts/{accountId}/containers/{containerId}/folders/{folderId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -2580,6 +2595,7 @@ export namespace tagmanager_v1 {
               '/tagmanager/v1/accounts/{accountId}/containers/{containerId}/folders/{folderId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2670,6 +2686,7 @@ export namespace tagmanager_v1 {
               '/tagmanager/v1/accounts/{accountId}/containers/{containerId}/folders'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2757,6 +2774,7 @@ export namespace tagmanager_v1 {
               '/tagmanager/v1/accounts/{accountId}/containers/{containerId}/folders/{folderId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
+            apiVersion: '',
           },
           options
         ),
@@ -2934,6 +2952,7 @@ export namespace tagmanager_v1 {
               '/tagmanager/v1/accounts/{accountId}/containers/{containerId}/folders/{folderId}/entities'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3042,6 +3061,7 @@ export namespace tagmanager_v1 {
               '/tagmanager/v1/accounts/{accountId}/containers/{containerId}/move_folders/{folderId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
+            apiVersion: '',
           },
           options
         ),
@@ -3170,6 +3190,7 @@ export namespace tagmanager_v1 {
               '/tagmanager/v1/accounts/{accountId}/containers/{containerId}/reauthorize_environments/{environmentId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
+            apiVersion: '',
           },
           options
         ),
@@ -3285,6 +3306,7 @@ export namespace tagmanager_v1 {
               '/tagmanager/v1/accounts/{accountId}/containers/{containerId}/tags'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3370,6 +3392,7 @@ export namespace tagmanager_v1 {
               '/tagmanager/v1/accounts/{accountId}/containers/{containerId}/tags/{tagId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -3457,6 +3480,7 @@ export namespace tagmanager_v1 {
               '/tagmanager/v1/accounts/{accountId}/containers/{containerId}/tags/{tagId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3544,6 +3568,7 @@ export namespace tagmanager_v1 {
               '/tagmanager/v1/accounts/{accountId}/containers/{containerId}/tags'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3631,6 +3656,7 @@ export namespace tagmanager_v1 {
               '/tagmanager/v1/accounts/{accountId}/containers/{containerId}/tags/{tagId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
+            apiVersion: '',
           },
           options
         ),
@@ -3807,6 +3833,7 @@ export namespace tagmanager_v1 {
               '/tagmanager/v1/accounts/{accountId}/containers/{containerId}/triggers'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3892,6 +3919,7 @@ export namespace tagmanager_v1 {
               '/tagmanager/v1/accounts/{accountId}/containers/{containerId}/triggers/{triggerId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -3979,6 +4007,7 @@ export namespace tagmanager_v1 {
               '/tagmanager/v1/accounts/{accountId}/containers/{containerId}/triggers/{triggerId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4071,6 +4100,7 @@ export namespace tagmanager_v1 {
               '/tagmanager/v1/accounts/{accountId}/containers/{containerId}/triggers'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4158,6 +4188,7 @@ export namespace tagmanager_v1 {
               '/tagmanager/v1/accounts/{accountId}/containers/{containerId}/triggers/{triggerId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
+            apiVersion: '',
           },
           options
         ),
@@ -4334,6 +4365,7 @@ export namespace tagmanager_v1 {
               '/tagmanager/v1/accounts/{accountId}/containers/{containerId}/variables'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4419,6 +4451,7 @@ export namespace tagmanager_v1 {
               '/tagmanager/v1/accounts/{accountId}/containers/{containerId}/variables/{variableId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -4506,6 +4539,7 @@ export namespace tagmanager_v1 {
               '/tagmanager/v1/accounts/{accountId}/containers/{containerId}/variables/{variableId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4598,6 +4632,7 @@ export namespace tagmanager_v1 {
               '/tagmanager/v1/accounts/{accountId}/containers/{containerId}/variables'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4685,6 +4720,7 @@ export namespace tagmanager_v1 {
               '/tagmanager/v1/accounts/{accountId}/containers/{containerId}/variables/{variableId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
+            apiVersion: '',
           },
           options
         ),
@@ -4868,6 +4904,7 @@ export namespace tagmanager_v1 {
               '/tagmanager/v1/accounts/{accountId}/containers/{containerId}/versions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4955,6 +4992,7 @@ export namespace tagmanager_v1 {
               '/tagmanager/v1/accounts/{accountId}/containers/{containerId}/versions/{containerVersionId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -5042,6 +5080,7 @@ export namespace tagmanager_v1 {
               '/tagmanager/v1/accounts/{accountId}/containers/{containerId}/versions/{containerVersionId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5136,6 +5175,7 @@ export namespace tagmanager_v1 {
               '/tagmanager/v1/accounts/{accountId}/containers/{containerId}/versions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5232,6 +5272,7 @@ export namespace tagmanager_v1 {
               '/tagmanager/v1/accounts/{accountId}/containers/{containerId}/versions/{containerVersionId}/publish'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5321,6 +5362,7 @@ export namespace tagmanager_v1 {
               '/tagmanager/v1/accounts/{accountId}/containers/{containerId}/versions/{containerVersionId}/restore'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5408,6 +5450,7 @@ export namespace tagmanager_v1 {
               '/tagmanager/v1/accounts/{accountId}/containers/{containerId}/versions/{containerVersionId}/undelete'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5495,6 +5538,7 @@ export namespace tagmanager_v1 {
               '/tagmanager/v1/accounts/{accountId}/containers/{containerId}/versions/{containerVersionId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
+            apiVersion: '',
           },
           options
         ),
@@ -5727,6 +5771,7 @@ export namespace tagmanager_v1 {
               rootUrl + '/tagmanager/v1/accounts/{accountId}/permissions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5812,6 +5857,7 @@ export namespace tagmanager_v1 {
               '/tagmanager/v1/accounts/{accountId}/permissions/{permissionId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -5899,6 +5945,7 @@ export namespace tagmanager_v1 {
               '/tagmanager/v1/accounts/{accountId}/permissions/{permissionId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5990,6 +6037,7 @@ export namespace tagmanager_v1 {
               rootUrl + '/tagmanager/v1/accounts/{accountId}/permissions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6077,6 +6125,7 @@ export namespace tagmanager_v1 {
               '/tagmanager/v1/accounts/{accountId}/permissions/{permissionId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
+            apiVersion: '',
           },
           options
         ),
