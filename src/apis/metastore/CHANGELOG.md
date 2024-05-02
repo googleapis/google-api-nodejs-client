@@ -1,5 +1,12 @@
 # Changelog
 
+## [6.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/metastore-v6.0.0...metastore-v6.1.0) (2024-05-02)
+
+
+### Features
+
+* **metastore:** update the API ([57b1763](https://github.com/googleapis/google-api-nodejs-client/commit/57b1763cd49724b461a5f85f8a6ef1cdebfdd500))
+
 ## [6.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/metastore-v5.0.0...metastore-v6.0.0) (2024-04-04)
 
 

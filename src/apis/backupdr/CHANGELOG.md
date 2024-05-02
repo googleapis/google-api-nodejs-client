@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/backupdr-v3.0.0...backupdr-v3.1.0) (2024-05-02)
+
+
+### Features
+
+* **backupdr:** update the API ([9796834](https://github.com/googleapis/google-api-nodejs-client/commit/97968343e02bd85538961138f02ed20976f53a02))
+
 ## [3.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/backupdr-v2.0.0...backupdr-v3.0.0) (2024-04-04)
 
 
