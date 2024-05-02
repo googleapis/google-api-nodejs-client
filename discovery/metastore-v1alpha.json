@@ -627,6 +627,62 @@
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
+                "cancelMigration": {
+                  "description": "Cancels the ongoing Managed Migration process.",
+                  "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/services/{servicesId}:cancelMigration",
+                  "httpMethod": "POST",
+                  "id": "metastore.projects.locations.services.cancelMigration",
+                  "parameterOrder": [
+                    "service"
+                  ],
+                  "parameters": {
+                    "service": {
+                      "description": "Required. The relative resource name of the metastore service to cancel the ongoing migration to, in the following format:projects/{project_id}/locations/{location_id}/services/{service_id}.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/services/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha/{+service}:cancelMigration",
+                  "request": {
+                    "$ref": "CancelMigrationRequest"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "completeMigration": {
+                  "description": "Completes the managed migration process. The Dataproc Metastore service will switch to using its own backend database after successful migration.",
+                  "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/services/{servicesId}:completeMigration",
+                  "httpMethod": "POST",
+                  "id": "metastore.projects.locations.services.completeMigration",
+                  "parameterOrder": [
+                    "service"
+                  ],
+                  "parameters": {
+                    "service": {
+                      "description": "Required. The relative resource name of the metastore service to complete the migration to, in the following format:projects/{project_id}/locations/{location_id}/services/{service_id}.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/services/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha/{+service}:completeMigration",
+                  "request": {
+                    "$ref": "CompleteMigrationRequest"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
                 "create": {
                   "description": "Creates a metastore service in a project and location.",
                   "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/services",
@@ -893,7 +949,7 @@
                   ]
                 },
                 "queryMetadata": {
-                  "description": "Query DPMS metadata.",
+                  "description": "Query Dataproc Metastore metadata.",
                   "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/services/{servicesId}:queryMetadata",
                   "httpMethod": "POST",
                   "id": "metastore.projects.locations.services.queryMetadata",
@@ -999,6 +1055,34 @@
                   },
                   "response": {
                     "$ref": "Policy"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "startMigration": {
+                  "description": "Starts the Managed Migration process.",
+                  "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/services/{servicesId}:startMigration",
+                  "httpMethod": "POST",
+                  "id": "metastore.projects.locations.services.startMigration",
+                  "parameterOrder": [
+                    "service"
+                  ],
+                  "parameters": {
+                    "service": {
+                      "description": "Required. The relative resource name of the metastore service to start migrating to, in the following format:projects/{project_id}/locations/{location_id}/services/{service_id}.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/services/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha/{+service}:startMigration",
+                  "request": {
+                    "$ref": "StartMigrationRequest"
+                  },
+                  "response": {
+                    "$ref": "Operation"
                   },
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform"
@@ -1599,6 +1683,111 @@
                       ]
                     }
                   }
+                },
+                "migrationExecutions": {
+                  "methods": {
+                    "delete": {
+                      "description": "Deletes a single migration execution.",
+                      "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/services/{servicesId}/migrationExecutions/{migrationExecutionsId}",
+                      "httpMethod": "DELETE",
+                      "id": "metastore.projects.locations.services.migrationExecutions.delete",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The relative resource name of the migrationExecution to delete, in the following form:projects/{project_number}/locations/{location_id}/services/{service_id}/migrationExecutions/{migration_execution_id}.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/services/[^/]+/migrationExecutions/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "requestId": {
+                          "description": "Optional. A request ID. Specify a unique request ID to allow the server to ignore the request if it has completed. The server will ignore subsequent requests that provide a duplicate request ID for at least 60 minutes after the first request.For example, if an initial request times out, followed by another request with the same request ID, the server ignores the second request to prevent the creation of duplicate commitments.The request ID must be a valid UUID (https://en.wikipedia.org/wiki/Universally_unique_identifier#Format) A zero UUID (00000000-0000-0000-0000-000000000000) is not supported.",
+                          "location": "query",
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1alpha/{+name}",
+                      "response": {
+                        "$ref": "Operation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "get": {
+                      "description": "Gets details of a single migration execution.",
+                      "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/services/{servicesId}/migrationExecutions/{migrationExecutionsId}",
+                      "httpMethod": "GET",
+                      "id": "metastore.projects.locations.services.migrationExecutions.get",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The relative resource name of the migration execution to retrieve, in the following form:projects/{project_number}/locations/{location_id}/services/{service_id}/migrationExecutions/{migration_execution_id}.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/services/[^/]+/migrationExecutions/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1alpha/{+name}",
+                      "response": {
+                        "$ref": "MigrationExecution"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "list": {
+                      "description": "Lists migration executions on a service.",
+                      "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/services/{servicesId}/migrationExecutions",
+                      "httpMethod": "GET",
+                      "id": "metastore.projects.locations.services.migrationExecutions.list",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "filter": {
+                          "description": "Optional. The filter to apply to list results.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "orderBy": {
+                          "description": "Optional. Specify the ordering of results as described in Sorting Order (https://cloud.google.com/apis/design/design_patterns#sorting_order). If not specified, the results will be sorted in the default order.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "pageSize": {
+                          "description": "Optional. The maximum number of migration executions to return. The response may contain less than the maximum number. If unspecified, no more than 500 migration executions are returned. The maximum value is 1000; values above 1000 are changed to 1000.",
+                          "format": "int32",
+                          "location": "query",
+                          "type": "integer"
+                        },
+                        "pageToken": {
+                          "description": "Optional. A page token, received from a previous DataprocMetastore.ListMigrationExecutions call. Provide this token to retrieve the subsequent page.To retrieve the first page, supply an empty page token.When paginating, other parameters provided to DataprocMetastore.ListMigrationExecutions must match the call that provided the page token.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "parent": {
+                          "description": "Required. The relative resource name of the service whose migration executions to list, in the following form:projects/{project_number}/locations/{location_id}/services/{service_id}/migrationExecutions.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/services/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1alpha/{+parent}/migrationExecutions",
+                      "response": {
+                        "$ref": "ListMigrationExecutionsResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    }
+                  }
                 }
               }
             }
@@ -1607,7 +1796,7 @@
       }
     }
   },
-  "revision": "20240312",
+  "revision": "20240423",
   "rootUrl": "https://metastore.googleapis.com/",
   "schemas": {
     "AlterMetadataResourceLocationRequest": {
@@ -1698,6 +1887,27 @@
             "Data reads. Example: CloudSQL Users list"
           ],
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AutoscalingConfig": {
+      "description": "Represents the autoscaling configuration of a metastore service.",
+      "id": "AutoscalingConfig",
+      "properties": {
+        "autoscalingEnabled": {
+          "description": "Optional. Whether or not autoscaling is enabled for this service.",
+          "type": "boolean"
+        },
+        "autoscalingFactor": {
+          "description": "Output only. The scaling factor of a service with autoscaling enabled.",
+          "format": "float",
+          "readOnly": true,
+          "type": "number"
+        },
+        "limitConfig": {
+          "$ref": "LimitConfig",
+          "description": "Optional. The LimitConfig of the service."
         }
       },
       "type": "object"
@@ -1835,10 +2045,134 @@
       },
       "type": "object"
     },
+    "CancelMigrationRequest": {
+      "description": "Request message for DataprocMetastore.CancelMigration.",
+      "id": "CancelMigrationRequest",
+      "properties": {},
+      "type": "object"
+    },
+    "CancelMigrationResponse": {
+      "description": "Response message for DataprocMetastore.CancelMigration.",
+      "id": "CancelMigrationResponse",
+      "properties": {
+        "migrationExecution": {
+          "description": "The relative resource name of the migration execution, in the following form:projects/{project_number}/locations/{location_id}/services/{service_id}/migrationExecutions/{migration_execution_id}.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "CancelOperationRequest": {
       "description": "The request message for Operations.CancelOperation.",
       "id": "CancelOperationRequest",
       "properties": {},
+      "type": "object"
+    },
+    "CdcConfig": {
+      "description": "Configuration information to start the Change Data Capture (CDC) streams from customer database to backend database of Dataproc Metastore.",
+      "id": "CdcConfig",
+      "properties": {
+        "bucket": {
+          "description": "Optional. The bucket to write the intermediate stream event data in. The bucket name must be without any prefix like \"gs://\". See the bucket naming requirements (https://cloud.google.com/storage/docs/buckets#naming). This field is optional. If not set, the Artifacts Cloud Storage bucket will be used.",
+          "type": "string"
+        },
+        "password": {
+          "description": "Required. Input only. The password for the user that Datastream service should use for the MySQL connection. This field is not returned on request.",
+          "type": "string"
+        },
+        "reverseProxySubnet": {
+          "description": "Required. The URL of the subnetwork resource to create the VM instance hosting the reverse proxy in. More context in https://cloud.google.com/datastream/docs/private-connectivity#reverse-csql-proxy The subnetwork should reside in the network provided in the request that Datastream will peer to and should be in the same region as Datastream, in the following format. projects/{project_id}/regions/{region_id}/subnetworks/{subnetwork_id}",
+          "type": "string"
+        },
+        "rootPath": {
+          "description": "Optional. The root path inside the Cloud Storage bucket. The stream event data will be written to this path. The default value is /migration.",
+          "type": "string"
+        },
+        "subnetIpRange": {
+          "description": "Required. A /29 CIDR IP range for peering with datastream.",
+          "type": "string"
+        },
+        "username": {
+          "description": "Required. The username that the Datastream service should use for the MySQL connection.",
+          "type": "string"
+        },
+        "vpcNetwork": {
+          "description": "Required. Fully qualified name of the Cloud SQL instance's VPC network or the shared VPC network that Datastream will peer to, in the following format: projects/{project_id}/locations/global/networks/{network_id}. More context in https://cloud.google.com/datastream/docs/network-connectivity-options#privateconnectivity",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "CloudSQLConnectionConfig": {
+      "description": "Configuration information to establish customer database connection before the cutover phase of migration",
+      "id": "CloudSQLConnectionConfig",
+      "properties": {
+        "hiveDatabaseName": {
+          "description": "Required. The hive database name.",
+          "type": "string"
+        },
+        "instanceConnectionName": {
+          "description": "Required. Cloud SQL database connection name (project_id:region:instance_name)",
+          "type": "string"
+        },
+        "ipAddress": {
+          "description": "Required. The private IP address of the Cloud SQL instance.",
+          "type": "string"
+        },
+        "natSubnet": {
+          "description": "Required. The relative resource name of the subnetwork to be used for Private Service Connect. Note that this cannot be a regular subnet and is used only for NAT. (https://cloud.google.com/vpc/docs/about-vpc-hosted-services#psc-subnets) This subnet is used to publish the SOCKS5 proxy service. The subnet size must be at least /29 and it should reside in a network through which the Cloud SQL instance is accessible. The resource name should be in the format, projects/{project_id}/regions/{region_id}/subnetworks/{subnetwork_id}",
+          "type": "string"
+        },
+        "password": {
+          "description": "Required. Input only. The password for the user that Dataproc Metastore service will be using to connect to the database. This field is not returned on request.",
+          "type": "string"
+        },
+        "port": {
+          "description": "Required. The network port of the database.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "proxySubnet": {
+          "description": "Required. The relative resource name of the subnetwork to deploy the SOCKS5 proxy service in. The subnetwork should reside in a network through which the Cloud SQL instance is accessible. The resource name should be in the format, projects/{project_id}/regions/{region_id}/subnetworks/{subnetwork_id}",
+          "type": "string"
+        },
+        "username": {
+          "description": "Required. The username that Dataproc Metastore service will use to connect to the database.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "CloudSQLMigrationConfig": {
+      "description": "Configuration information for migrating from self-managed hive metastore on Google Cloud using Cloud SQL as the backend database to Dataproc Metastore.",
+      "id": "CloudSQLMigrationConfig",
+      "properties": {
+        "cdcConfig": {
+          "$ref": "CdcConfig",
+          "description": "Required. Configuration information to start the Change Data Capture (CDC) streams from customer database to backend database of Dataproc Metastore. Dataproc Metastore switches to using its backend database after the cutover phase of migration."
+        },
+        "cloudSqlConnectionConfig": {
+          "$ref": "CloudSQLConnectionConfig",
+          "description": "Required. Configuration information to establish customer database connection before the cutover phase of migration"
+        }
+      },
+      "type": "object"
+    },
+    "CompleteMigrationRequest": {
+      "description": "Request message for DataprocMetastore.CompleteMigration.",
+      "id": "CompleteMigrationRequest",
+      "properties": {},
+      "type": "object"
+    },
+    "CompleteMigrationResponse": {
+      "description": "Response message for DataprocMetastore.CompleteMigration.",
+      "id": "CompleteMigrationResponse",
+      "properties": {
+        "migrationExecution": {
+          "description": "The relative resource name of the migration execution, in the following form:projects/{project_number}/locations/{location_id}/services/{service_id}/migrationExecutions/{migration_execution_id}.",
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "Consumer": {
@@ -1941,7 +2275,7 @@
       "id": "EncryptionConfig",
       "properties": {
         "kmsKey": {
-          "description": "The fully qualified customer provided Cloud KMS key name to use for customer data encryption, in the following form:projects/{project_number}/locations/{location_id}/keyRings/{key_ring_id}/cryptoKeys/{crypto_key_id}.",
+          "description": "The fully qualified customer provided Cloud KMS key name to use for customer data encryption, in the following format:projects/{project_number}/locations/{location_id}/keyRings/{key_ring_id}/cryptoKeys/{crypto_key_id}.",
           "type": "string"
         }
       },
@@ -2219,6 +2553,23 @@
       },
       "type": "object"
     },
+    "LimitConfig": {
+      "description": "Represents the autoscaling limit configuration of a metastore service.",
+      "id": "LimitConfig",
+      "properties": {
+        "maxScalingFactor": {
+          "description": "Optional. The highest scaling factor that the service should be autoscaled to.",
+          "format": "float",
+          "type": "number"
+        },
+        "minScalingFactor": {
+          "description": "Optional. The lowest scaling factor that the service should be autoscaled to.",
+          "format": "float",
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
     "ListBackupsResponse": {
       "description": "Response message for DataprocMetastore.ListBackups.",
       "id": "ListBackupsResponse",
@@ -2295,6 +2646,31 @@
           "description": "The imports in the specified service.",
           "items": {
             "$ref": "MetadataImport"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token that can be sent as page_token to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        },
+        "unreachable": {
+          "description": "Locations that could not be reached.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ListMigrationExecutionsResponse": {
+      "description": "Response message for DataprocMetastore.ListMigrationExecutions.",
+      "id": "ListMigrationExecutionsResponse",
+      "properties": {
+        "migrationExecutions": {
+          "description": "The migration executions on the specified service.",
+          "items": {
+            "$ref": "MigrationExecution"
           },
           "type": "array"
         },
@@ -2591,6 +2967,81 @@
           },
           "readOnly": true,
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "MigrationExecution": {
+      "description": "The details of a migration execution resource.",
+      "id": "MigrationExecution",
+      "properties": {
+        "cloudSqlMigrationConfig": {
+          "$ref": "CloudSQLMigrationConfig",
+          "description": "Configuration information specific to migrating from self-managed hive metastore on Google Cloud using Cloud SQL as the backend database to Dataproc Metastore."
+        },
+        "createTime": {
+          "description": "Output only. The time when the migration execution was started.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "endTime": {
+          "description": "Output only. The time when the migration execution finished.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "Output only. The relative resource name of the migration execution, in the following form: projects/{project_number}/locations/{location_id}/services/{service_id}/migrationExecutions/{migration_execution_id}",
+          "readOnly": true,
+          "type": "string"
+        },
+        "phase": {
+          "description": "Output only. The current phase of the migration execution.",
+          "enum": [
+            "PHASE_UNSPECIFIED",
+            "REPLICATION",
+            "CUTOVER"
+          ],
+          "enumDescriptions": [
+            "The phase of the migration execution is unknown.",
+            "Replication phase refers to the migration phase when Dataproc Metastore is running a pipeline to replicate changes in the customer database to its backend database. During this phase, Dataproc Metastore uses the customer database as the hive metastore backend database.",
+            "Cutover phase refers to the migration phase when Dataproc Metastore switches to using its own backend database. Migration enters this phase when customer is done migrating all their clusters/workloads to Dataproc Metastore and triggers CompleteMigration."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "state": {
+          "description": "Output only. The current state of the migration execution.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "STARTING",
+            "RUNNING",
+            "CANCELLING",
+            "AWAITING_USER_ACTION",
+            "SUCCEEDED",
+            "FAILED",
+            "CANCELLED",
+            "DELETING"
+          ],
+          "enumDescriptions": [
+            "The state of the migration execution is unknown.",
+            "The migration execution is starting.",
+            "The migration execution is running.",
+            "The migration execution is in the process of being cancelled.",
+            "The migration execution is awaiting user action.",
+            "The migration execution has completed successfully.",
+            "The migration execution has failed.",
+            "The migration execution is cancelled.",
+            "The migration execution is being deleted."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "stateMessage": {
+          "description": "Output only. Additional information about the current state of the migration execution.",
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"
@@ -2910,6 +3361,10 @@
       "description": "Represents the scaling configuration of a metastore service.",
       "id": "ScalingConfig",
       "properties": {
+        "autoscalingConfig": {
+          "$ref": "AutoscalingConfig",
+          "description": "Optional. The autoscaling configuration."
+        },
         "instanceSize": {
           "description": "An enum of readable instance sizes, with each instance size mapping to a float value (e.g. InstanceSize.EXTRA_SMALL = scaling_factor(0.1))",
           "enum": [
@@ -3094,7 +3549,8 @@
             "SUSPENDED",
             "UPDATING",
             "DELETING",
-            "ERROR"
+            "ERROR",
+            "MIGRATING"
           ],
           "enumDescriptions": [
             "The state of the metastore service is unknown.",
@@ -3104,7 +3560,8 @@
             "The metastore service is suspended and unable to serve queries.",
             "The metastore service is being updated. It remains usable but cannot accept additional update requests or be deleted at this time.",
             "The metastore service is undergoing deletion. It cannot be used.",
-            "The metastore service has encountered an error and cannot be used. The metastore service should be deleted."
+            "The metastore service has encountered an error and cannot be used. The metastore service should be deleted.",
+            "The metastore service is processing a managed migration."
           ],
           "readOnly": true,
           "type": "string"
@@ -3157,6 +3614,21 @@
         "updateMask": {
           "description": "OPTIONAL: A FieldMask specifying which fields of the policy to modify. Only the fields in the mask will be modified. If no mask is provided, the following default mask is used:paths: \"bindings, etag\"",
           "format": "google-fieldmask",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "StartMigrationRequest": {
+      "description": "Request message for DataprocMetastore.StartMigration.",
+      "id": "StartMigrationRequest",
+      "properties": {
+        "migrationExecution": {
+          "$ref": "MigrationExecution",
+          "description": "Required. The configuration details for the migration."
+        },
+        "requestId": {
+          "description": "Optional. A request ID. Specify a unique request ID to allow the server to ignore the request if it has completed. The server will ignore subsequent requests that provide a duplicate request ID for at least 60 minutes after the first request.For example, if an initial request times out, followed by another request with the same request ID, the server ignores the second request to prevent the creation of duplicate commitments.The request ID must be a valid UUID (https://en.wikipedia.org/wiki/Universally_unique_identifier#Format) A zero UUID (00000000-0000-0000-0000-000000000000) is not supported.",
           "type": "string"
         }
       },
