@@ -490,6 +490,7 @@ export namespace chromeuxreport_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -578,6 +579,7 @@ export namespace chromeuxreport_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
