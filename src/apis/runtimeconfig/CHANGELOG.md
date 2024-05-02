@@ -1,5 +1,21 @@
 # Changelog
 
+## [4.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/runtimeconfig-v3.0.1...runtimeconfig-v4.0.0) (2024-05-02)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#3447](https://github.com/googleapis/google-api-nodejs-client/issues/3447)) ([873b559](https://github.com/googleapis/google-api-nodejs-client/commit/873b55950bcf04db37f08e8a62caa6e4a9b9c487))
+
+
+### Bug Fixes
+
+* **runtimeconfig:** update the API ([f4f60c4](https://github.com/googleapis/google-api-nodejs-client/commit/f4f60c410d6d7a39d585a3f9711bd1e398cf1d42))
+
 ## [3.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/runtimeconfig-v3.0.0...runtimeconfig-v3.0.1) (2024-05-02)
 
 

@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/script",
-  "version": "4.0.1",
+  "version": "5.0.0",
   "description": "script",
   "main": "build/index.js",
   "types": "build/index.d.ts",

@@ -1,5 +1,18 @@
 # Changelog
 
+## [6.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/analyticshub-v5.1.0...analyticshub-v6.0.0) (2024-05-02)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* **analyticshub:** update the API ([d06ce46](https://github.com/googleapis/google-api-nodejs-client/commit/d06ce46d020c92976660e2e9ee68f35f0e2da2f6))
+* **analyticshub:** update the API ([620e881](https://github.com/googleapis/google-api-nodejs-client/commit/620e88110ecfcb9a0fce0f3304e9367939db80c4))
+* run the generator ([#3434](https://github.com/googleapis/google-api-nodejs-client/issues/3434)) ([f0db524](https://github.com/googleapis/google-api-nodejs-client/commit/f0db524bb26f05cea3dec4c0ed66b496399e3857))
+
 ## [5.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/analyticshub-v5.0.0...analyticshub-v5.1.0) (2024-05-02)
 
 
