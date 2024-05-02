@@ -584,6 +584,51 @@
                 }
               }
             },
+            "connections": {
+              "methods": {
+                "search": {
+                  "description": "Searches for Connections in a parent.",
+                  "flatPath": "v2/organizations/{organizationsId}/locations/{locationsId}/connections:search",
+                  "httpMethod": "GET",
+                  "id": "dlp.organizations.locations.connections.search",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "Optional. * Supported fields/values - `state` - MISSING|AVAILABLE|ERROR",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "Optional. Number of results per page, max 1000.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. Page token from a previous page to return the next set of results. If set, all other request fields must match the original request.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. Parent name, typically an organization, without location. For example: \"organizations/12345678\".",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2/{+parent}/connections:search",
+                  "response": {
+                    "$ref": "GooglePrivacyDlpV2SearchConnectionsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            },
             "deidentifyTemplates": {
               "methods": {
                 "create": {
@@ -1526,6 +1571,31 @@
             },
             "tableDataProfiles": {
               "methods": {
+                "delete": {
+                  "description": "Delete a TableDataProfile. Will not prevent the profile from being regenerated if the table is still included in a discovery configuration.",
+                  "flatPath": "v2/organizations/{organizationsId}/locations/{locationsId}/tableDataProfiles/{tableDataProfilesId}",
+                  "httpMethod": "DELETE",
+                  "id": "dlp.organizations.locations.tableDataProfiles.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Resource name of the table data profile.",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/locations/[^/]+/tableDataProfiles/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2/{+name}",
+                  "response": {
+                    "$ref": "GoogleProtobufEmpty"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
                 "get": {
                   "description": "Gets a table data profile.",
                   "flatPath": "v2/organizations/{organizationsId}/locations/{locationsId}/tableDataProfiles/{tableDataProfilesId}",
@@ -2643,6 +2713,198 @@
                   "path": "v2/{+parent}/columnDataProfiles",
                   "response": {
                     "$ref": "GooglePrivacyDlpV2ListColumnDataProfilesResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            },
+            "connections": {
+              "methods": {
+                "create": {
+                  "description": "Create a Connection to an external data source.",
+                  "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/connections",
+                  "httpMethod": "POST",
+                  "id": "dlp.projects.locations.connections.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. Parent resource name in the format: \"projects/{project}/locations/{location}\".",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2/{+parent}/connections",
+                  "request": {
+                    "$ref": "GooglePrivacyDlpV2CreateConnectionRequest"
+                  },
+                  "response": {
+                    "$ref": "GooglePrivacyDlpV2Connection"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "delete": {
+                  "description": "Delete a Connection.",
+                  "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/connections/{connectionsId}",
+                  "httpMethod": "DELETE",
+                  "id": "dlp.projects.locations.connections.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Resource name of the Connection to be deleted, in the format: \"projects/{project}/locations/{location}/connections/{connection}\".",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/connections/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2/{+name}",
+                  "response": {
+                    "$ref": "GoogleProtobufEmpty"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "get": {
+                  "description": "Get a Connection by name.",
+                  "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/connections/{connectionsId}",
+                  "httpMethod": "GET",
+                  "id": "dlp.projects.locations.connections.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Resource name in the format: \"projects/{project}/locations/{location}/connections/{connection}\".",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/connections/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2/{+name}",
+                  "response": {
+                    "$ref": "GooglePrivacyDlpV2Connection"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "Lists Connections in a parent.",
+                  "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/connections",
+                  "httpMethod": "GET",
+                  "id": "dlp.projects.locations.connections.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "Optional. * Supported fields/values - `state` - MISSING|AVAILABLE|ERROR",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "Optional. Number of results per page, max 1000.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. Page token from a previous page to return the next set of results. If set, all other request fields must match the original request.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. Parent name, for example: \"projects/project-id/locations/global\".",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2/{+parent}/connections",
+                  "response": {
+                    "$ref": "GooglePrivacyDlpV2ListConnectionsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "patch": {
+                  "description": "Update a Connection.",
+                  "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/connections/{connectionsId}",
+                  "httpMethod": "PATCH",
+                  "id": "dlp.projects.locations.connections.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Resource name in the format: \"projects/{project}/locations/{location}/connections/{connection}\".",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/connections/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2/{+name}",
+                  "request": {
+                    "$ref": "GooglePrivacyDlpV2UpdateConnectionRequest"
+                  },
+                  "response": {
+                    "$ref": "GooglePrivacyDlpV2Connection"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "search": {
+                  "description": "Searches for Connections in a parent.",
+                  "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/connections:search",
+                  "httpMethod": "GET",
+                  "id": "dlp.projects.locations.connections.search",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "Optional. * Supported fields/values - `state` - MISSING|AVAILABLE|ERROR",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "Optional. Number of results per page, max 1000.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. Page token from a previous page to return the next set of results. If set, all other request fields must match the original request.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. Parent name, typically an organization, without location. For example: \"organizations/12345678\".",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2/{+parent}/connections:search",
+                  "response": {
+                    "$ref": "GooglePrivacyDlpV2SearchConnectionsResponse"
                   },
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform"
@@ -3930,6 +4192,31 @@
             },
             "tableDataProfiles": {
               "methods": {
+                "delete": {
+                  "description": "Delete a TableDataProfile. Will not prevent the profile from being regenerated if the table is still included in a discovery configuration.",
+                  "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/tableDataProfiles/{tableDataProfilesId}",
+                  "httpMethod": "DELETE",
+                  "id": "dlp.projects.locations.tableDataProfiles.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Resource name of the table data profile.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/tableDataProfiles/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2/{+name}",
+                  "response": {
+                    "$ref": "GoogleProtobufEmpty"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
                 "get": {
                   "description": "Gets a table data profile.",
                   "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/tableDataProfiles/{tableDataProfilesId}",
@@ -4164,7 +4451,7 @@
       }
     }
   },
-  "revision": "20240317",
+  "revision": "20240421",
   "rootUrl": "https://dlp.googleapis.com/",
   "schemas": {
     "GooglePrivacyDlpV2Action": {
@@ -4228,6 +4515,12 @@
     "GooglePrivacyDlpV2AllOtherBigQueryTables": {
       "description": "Catch-all for all other tables not specified by other filters. Should always be last, except for single-table configurations, which will only have a TableReference target.",
       "id": "GooglePrivacyDlpV2AllOtherBigQueryTables",
+      "properties": {},
+      "type": "object"
+    },
+    "GooglePrivacyDlpV2AllOtherDatabaseResources": {
+      "description": "Match database resources not covered by any other filter.",
+      "id": "GooglePrivacyDlpV2AllOtherDatabaseResources",
       "properties": {},
       "type": "object"
     },
@@ -4730,6 +5023,73 @@
       },
       "type": "object"
     },
+    "GooglePrivacyDlpV2CloudSqlDiscoveryTarget": {
+      "description": "Target used to match against for discovery with Cloud SQL tables.",
+      "id": "GooglePrivacyDlpV2CloudSqlDiscoveryTarget",
+      "properties": {
+        "conditions": {
+          "$ref": "GooglePrivacyDlpV2DiscoveryCloudSqlConditions",
+          "description": "In addition to matching the filter, these conditions must be true before a profile is generated."
+        },
+        "disabled": {
+          "$ref": "GooglePrivacyDlpV2Disabled",
+          "description": "Disable profiling for database resources that match this filter."
+        },
+        "filter": {
+          "$ref": "GooglePrivacyDlpV2DiscoveryCloudSqlFilter",
+          "description": "Required. The tables the discovery cadence applies to. The first target with a matching filter will be the one to apply to a table."
+        },
+        "generationCadence": {
+          "$ref": "GooglePrivacyDlpV2DiscoveryCloudSqlGenerationCadence",
+          "description": "How often and when to update profiles. New tables that match both the filter and conditions are scanned as quickly as possible depending on system capacity."
+        }
+      },
+      "type": "object"
+    },
+    "GooglePrivacyDlpV2CloudSqlIamCredential": {
+      "description": "Use IAM auth to connect. This requires the Cloud SQL IAM feature to be enabled on the instance, which is not the default for Cloud SQL. See https://cloud.google.com/sql/docs/postgres/authentication and https://cloud.google.com/sql/docs/mysql/authentication.",
+      "id": "GooglePrivacyDlpV2CloudSqlIamCredential",
+      "properties": {},
+      "type": "object"
+    },
+    "GooglePrivacyDlpV2CloudSqlProperties": {
+      "description": "Cloud SQL connection properties.",
+      "id": "GooglePrivacyDlpV2CloudSqlProperties",
+      "properties": {
+        "cloudSqlIam": {
+          "$ref": "GooglePrivacyDlpV2CloudSqlIamCredential",
+          "description": "Built-in IAM authentication (must be configured in Cloud SQL)."
+        },
+        "connectionName": {
+          "description": "Optional. Immutable. The Cloud SQL instance for which the connection is defined. Only one connection per instance is allowed. This can only be set at creation time, and cannot be updated. It is an error to use a connection_name from different project or region than the one that holds the connection. For example, a Connection resource for Cloud SQL connection_name \"project-id:us-central1:sql-instance\" must be created under the parent \"projects/project-id/locations/us-central1\"",
+          "type": "string"
+        },
+        "databaseEngine": {
+          "description": "Required. The database engine used by the Cloud SQL instance that this connection configures.",
+          "enum": [
+            "DATABASE_ENGINE_UNKNOWN",
+            "DATABASE_ENGINE_MYSQL",
+            "DATABASE_ENGINE_POSTGRES"
+          ],
+          "enumDescriptions": [
+            "An engine that is not currently supported by SDP.",
+            "Cloud SQL for MySQL instance.",
+            "Cloud SQL for Postgres instance."
+          ],
+          "type": "string"
+        },
+        "maxConnections": {
+          "description": "Required. DLP will limit its connections to max_connections. Must be 2 or greater.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "usernamePassword": {
+          "$ref": "GooglePrivacyDlpV2SecretManagerCredential",
+          "description": "A username and password stored in Secret Manager."
+        }
+      },
+      "type": "object"
+    },
     "GooglePrivacyDlpV2CloudStorageFileSet": {
       "description": "Message representing a set of files in Cloud Storage.",
       "id": "GooglePrivacyDlpV2CloudStorageFileSet",
@@ -5103,6 +5463,46 @@
       },
       "type": "object"
     },
+    "GooglePrivacyDlpV2Connection": {
+      "description": "A data connection to allow DLP to profile data in locations that require additional configuration.",
+      "id": "GooglePrivacyDlpV2Connection",
+      "properties": {
+        "cloudSql": {
+          "$ref": "GooglePrivacyDlpV2CloudSqlProperties",
+          "description": "Connect to a Cloud SQL instance."
+        },
+        "errors": {
+          "description": "Output only. Set if status == ERROR, to provide additional details. Will store the last 10 errors sorted with the most recent first.",
+          "items": {
+            "$ref": "GooglePrivacyDlpV2Error"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "name": {
+          "description": "Output only. Name of the connection: projects/{project}/locations/{location}/connections/{name}.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "state": {
+          "description": "Required. The connection's state in its lifecycle.",
+          "enum": [
+            "CONNECTION_STATE_UNSPECIFIED",
+            "MISSING_CREDENTIALS",
+            "AVAILABLE",
+            "ERROR"
+          ],
+          "enumDescriptions": [
+            "Unused",
+            "DLP automatically created this connection during an initial scan, and it is awaiting full configuration by a user.",
+            "A configured connection that has not encountered any errors.",
+            "A configured connection that encountered errors during its last use. It will not be used again until it is set to AVAILABLE. If the resolution requires external action, then a request to set the status to AVAILABLE will mark this connection for use. Otherwise, any changes to the connection properties will automatically mark it as AVAILABLE."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GooglePrivacyDlpV2Container": {
       "description": "Represents a container that may contain DLP findings. Examples of a container include a file, table, or database record.",
       "id": "GooglePrivacyDlpV2Container",
@@ -5190,6 +5590,17 @@
         "recordLocation": {
           "$ref": "GooglePrivacyDlpV2RecordLocation",
           "description": "Location within a row or record of a database table."
+        }
+      },
+      "type": "object"
+    },
+    "GooglePrivacyDlpV2CreateConnectionRequest": {
+      "description": "Request message for CreateConnection.",
+      "id": "GooglePrivacyDlpV2CreateConnectionRequest",
+      "properties": {
+        "connection": {
+          "$ref": "GooglePrivacyDlpV2Connection",
+          "description": "Required. The connection resource."
         }
       },
       "type": "object"
@@ -5649,6 +6060,69 @@
           "description": "Output only. An identifying string to the type of resource being profiled. Current values: google/bigquery/table, google/project",
           "readOnly": true,
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GooglePrivacyDlpV2DatabaseResourceCollection": {
+      "description": "Match database resources using regex filters. Examples of database resources are tables, views, and stored procedures.",
+      "id": "GooglePrivacyDlpV2DatabaseResourceCollection",
+      "properties": {
+        "includeRegexes": {
+          "$ref": "GooglePrivacyDlpV2DatabaseResourceRegexes",
+          "description": "A collection of regular expressions to match a database resource against."
+        }
+      },
+      "type": "object"
+    },
+    "GooglePrivacyDlpV2DatabaseResourceReference": {
+      "description": "Identifies a single database resource, like a table within a database.",
+      "id": "GooglePrivacyDlpV2DatabaseResourceReference",
+      "properties": {
+        "instance": {
+          "description": "Required. The instance where this resource is located. For example: Cloud SQL's instance id.",
+          "type": "string"
+        },
+        "projectId": {
+          "description": "Required. If within a project-level config, then this must match the config's project id.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GooglePrivacyDlpV2DatabaseResourceRegex": {
+      "description": "A pattern to match against one or more database resources. At least one pattern must be specified. Regular expressions use RE2 [syntax](https://github.com/google/re2/wiki/Syntax); a guide can be found under the google/re2 repository on GitHub.",
+      "id": "GooglePrivacyDlpV2DatabaseResourceRegex",
+      "properties": {
+        "databaseRegex": {
+          "description": "Regex to test the database name against. If empty, all databases match.",
+          "type": "string"
+        },
+        "databaseResourceNameRegex": {
+          "description": "Regex to test the database resource's name against. An example of a database resource name is a table's name. Other database resource names like view names could be included in the future. If empty, all database resources match.",
+          "type": "string"
+        },
+        "instanceRegex": {
+          "description": "Regex to test the instance name against. If empty, all instances match.",
+          "type": "string"
+        },
+        "projectIdRegex": {
+          "description": "For organizations, if unset, will match all projects. Has no effect for Data Profile configurations created within a project.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GooglePrivacyDlpV2DatabaseResourceRegexes": {
+      "description": "A collection of regular expressions to determine what database resources to match against.",
+      "id": "GooglePrivacyDlpV2DatabaseResourceRegexes",
+      "properties": {
+        "patterns": {
+          "description": "A group of regular expression patterns to match against one or more database resources. Maximum of 100 entries. The sum of all regular expression's length can't exceed 10 KiB.",
+          "items": {
+            "$ref": "GooglePrivacyDlpV2DatabaseResourceRegex"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -6114,6 +6588,95 @@
       },
       "type": "object"
     },
+    "GooglePrivacyDlpV2DiscoveryCloudSqlConditions": {
+      "description": "Requirements that must be true before a table is profiled for the first time.",
+      "id": "GooglePrivacyDlpV2DiscoveryCloudSqlConditions",
+      "properties": {
+        "databaseEngines": {
+          "description": "Optional. Database engines that should be profiled. Optional. Defaults to ALL_SUPPORTED_DATABASE_ENGINES if unspecified.",
+          "items": {
+            "enum": [
+              "DATABASE_ENGINE_UNSPECIFIED",
+              "ALL_SUPPORTED_DATABASE_ENGINES",
+              "MYSQL",
+              "POSTGRES"
+            ],
+            "enumDescriptions": [
+              "Unused.",
+              "Include all supported database engines.",
+              "MySql database.",
+              "PostGres database."
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "types": {
+          "description": "Data profiles will only be generated for the database resource types specified in this field. If not specified, defaults to [DATABASE_RESOURCE_TYPE_ALL_SUPPORTED_TYPES].",
+          "items": {
+            "enum": [
+              "DATABASE_RESOURCE_TYPE_UNSPECIFIED",
+              "DATABASE_RESOURCE_TYPE_ALL_SUPPORTED_TYPES",
+              "DATABASE_RESOURCE_TYPE_TABLE"
+            ],
+            "enumDescriptions": [
+              "Unused.",
+              "Includes database resource types that become supported at a later time.",
+              "Tables."
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GooglePrivacyDlpV2DiscoveryCloudSqlFilter": {
+      "description": "Determines what tables will have profiles generated within an organization or project. Includes the ability to filter by regular expression patterns on project ID, location, instance, database, and database resource name.",
+      "id": "GooglePrivacyDlpV2DiscoveryCloudSqlFilter",
+      "properties": {
+        "collection": {
+          "$ref": "GooglePrivacyDlpV2DatabaseResourceCollection",
+          "description": "A specific set of database resources for this filter to apply to."
+        },
+        "databaseResourceReference": {
+          "$ref": "GooglePrivacyDlpV2DatabaseResourceReference",
+          "description": "The database resource to scan. Targets including this can only include one target (the target with this database resource reference)."
+        },
+        "others": {
+          "$ref": "GooglePrivacyDlpV2AllOtherDatabaseResources",
+          "description": "Catch-all. This should always be the last target in the list because anything above it will apply first. Should only appear once in a configuration. If none is specified, a default one will be added automatically."
+        }
+      },
+      "type": "object"
+    },
+    "GooglePrivacyDlpV2DiscoveryCloudSqlGenerationCadence": {
+      "description": "How often existing tables should have their profiles refreshed. New tables are scanned as quickly as possible depending on system capacity.",
+      "id": "GooglePrivacyDlpV2DiscoveryCloudSqlGenerationCadence",
+      "properties": {
+        "refreshFrequency": {
+          "description": "Data changes (non-schema changes) in Cloud SQL tables can't trigger reprofiling. If you set this field, profiles are refreshed at this frequency regardless of whether the underlying tables have changes. Defaults to never.",
+          "enum": [
+            "UPDATE_FREQUENCY_UNSPECIFIED",
+            "UPDATE_FREQUENCY_NEVER",
+            "UPDATE_FREQUENCY_DAILY",
+            "UPDATE_FREQUENCY_MONTHLY"
+          ],
+          "enumDescriptions": [
+            "Unspecified.",
+            "After the data profile is created, it will never be updated.",
+            "The data profile can be updated up to once every 24 hours.",
+            "The data profile can be updated up to once every 30 days. Default."
+          ],
+          "type": "string"
+        },
+        "schemaModifiedCadence": {
+          "$ref": "GooglePrivacyDlpV2SchemaModifiedCadence",
+          "description": "When to reprofile if the schema has changed."
+        }
+      },
+      "type": "object"
+    },
     "GooglePrivacyDlpV2DiscoveryConfig": {
       "description": "Configuration for discovery to scan resources for profile generation. Only one discovery configuration may exist per organization, folder, or project. The generated data profiles are retained according to the [data retention policy] (https://cloud.google.com/sensitive-data-protection/docs/data-profiles#retention).",
       "id": "GooglePrivacyDlpV2DiscoveryConfig",
@@ -6311,6 +6874,10 @@
         "bigQueryTarget": {
           "$ref": "GooglePrivacyDlpV2BigQueryDiscoveryTarget",
           "description": "BigQuery target for Discovery. The first target to match a table will be the one applied."
+        },
+        "cloudSqlTarget": {
+          "$ref": "GooglePrivacyDlpV2CloudSqlDiscoveryTarget",
+          "description": "Cloud SQL target for Discovery. The first target to match a table will be the one applied."
         }
       },
       "type": "object"
@@ -6524,7 +7091,7 @@
       "properties": {
         "profileTable": {
           "$ref": "GooglePrivacyDlpV2BigQueryTable",
-          "description": "Store all table and column profiles in an existing table or a new table in an existing dataset. Each re-generation will result in a new row in BigQuery."
+          "description": "Store all table and column profiles in an existing table or a new table in an existing dataset. Each re-generation will result in new rows in BigQuery. Data is inserted using [streaming insert](https://cloud.google.com/blog/products/bigquery/life-of-a-bigquery-streaming-insert) and so data may be in the buffer for a period of time after the profile has finished. The Pub/Sub notification is sent before the streaming buffer is guaranteed to be written, so data may not be instantly visible to queries by the time your topic receives the Pub/Sub notification."
         }
       },
       "type": "object"
@@ -6969,7 +7536,7 @@
       "type": "object"
     },
     "GooglePrivacyDlpV2InfoTypeCategory": {
-      "description": "Classification of infoTypes to organize them according to geographic location, industry, and data type.",
+      "description": "Classification of infoTypes to organize them according to geographic location, industry, and data type. NEXT_ID: 47",
       "id": "GooglePrivacyDlpV2InfoTypeCategory",
       "properties": {
         "industryCategory": {
@@ -7022,6 +7589,7 @@
             "PERU",
             "POLAND",
             "PORTUGAL",
+            "RUSSIA",
             "SINGAPORE",
             "SOUTH_AFRICA",
             "SPAIN",
@@ -7030,9 +7598,11 @@
             "TAIWAN",
             "THAILAND",
             "TURKEY",
+            "UKRAINE",
             "UNITED_KINGDOM",
             "UNITED_STATES",
             "URUGUAY",
+            "UZBEKISTAN",
             "VENEZUELA",
             "INTERNAL"
           ],
@@ -7068,6 +7638,7 @@
             "The infoType is typically used in Peru.",
             "The infoType is typically used in Poland.",
             "The infoType is typically used in Portugal.",
+            "The infoType is typically used in Russia.",
             "The infoType is typically used in Singapore.",
             "The infoType is typically used in South Africa.",
             "The infoType is typically used in Spain.",
@@ -7076,9 +7647,11 @@
             "The infoType is typically used in Taiwan.",
             "The infoType is typically used in Thailand.",
             "The infoType is typically used in Turkey.",
+            "The infoType is typically used in Ukraine.",
             "The infoType is typically used in the United Kingdom.",
             "The infoType is typically used in the United States.",
             "The infoType is typically used in Uruguay.",
+            "The infoType is typically used in Uzbekistan.",
             "The infoType is typically used in Venezuela.",
             "The infoType is typically used in Google internally."
           ],
@@ -7533,7 +8106,7 @@
       "type": "object"
     },
     "GooglePrivacyDlpV2JobTrigger": {
-      "description": "Contains a configuration to make dlp api calls on a repeating basis. See https://cloud.google.com/sensitive-data-protection/docs/concepts-job-triggers to learn more.",
+      "description": "Contains a configuration to make api calls on a repeating basis. See https://cloud.google.com/sensitive-data-protection/docs/concepts-job-triggers to learn more.",
       "id": "GooglePrivacyDlpV2JobTrigger",
       "properties": {
         "createTime": {
@@ -8005,6 +8578,24 @@
         },
         "nextPageToken": {
           "description": "The next page token.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GooglePrivacyDlpV2ListConnectionsResponse": {
+      "description": "Response message for ListConnections.",
+      "id": "GooglePrivacyDlpV2ListConnectionsResponse",
+      "properties": {
+        "connections": {
+          "description": "List of connections.",
+          "items": {
+            "$ref": "GooglePrivacyDlpV2Connection"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "Token to retrieve the next page of results. An empty value means there are no more results.",
           "type": "string"
         }
       },
@@ -9058,6 +9649,11 @@
           },
           "type": "array"
         },
+        "numRowsProcessed": {
+          "description": "Number of rows scanned post sampling and time filtering (Applicable for row based stores such as BigQuery).",
+          "format": "int64",
+          "type": "string"
+        },
         "processedBytes": {
           "description": "Total size in bytes that were processed.",
           "format": "int64",
@@ -9125,6 +9721,79 @@
         "recurrencePeriodDuration": {
           "description": "With this option a job is started on a regular periodic basis. For example: every day (86400 seconds). A scheduled start time will be skipped if the previous execution has not ended when its scheduled time occurs. This value must be set to a time duration greater than or equal to 1 day and can be no longer than 60 days.",
           "format": "google-duration",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GooglePrivacyDlpV2SchemaModifiedCadence": {
+      "description": "How frequency to modify the profile when the table's schema is modified.",
+      "id": "GooglePrivacyDlpV2SchemaModifiedCadence",
+      "properties": {
+        "frequency": {
+          "description": "Frequency to regenerate data profiles when the schema is modified. Defaults to monthly.",
+          "enum": [
+            "UPDATE_FREQUENCY_UNSPECIFIED",
+            "UPDATE_FREQUENCY_NEVER",
+            "UPDATE_FREQUENCY_DAILY",
+            "UPDATE_FREQUENCY_MONTHLY"
+          ],
+          "enumDescriptions": [
+            "Unspecified.",
+            "After the data profile is created, it will never be updated.",
+            "The data profile can be updated up to once every 24 hours.",
+            "The data profile can be updated up to once every 30 days. Default."
+          ],
+          "type": "string"
+        },
+        "types": {
+          "description": "The types of schema modifications to consider. Defaults to NEW_COLUMNS.",
+          "items": {
+            "enum": [
+              "SQL_SCHEMA_MODIFICATION_UNSPECIFIED",
+              "NEW_COLUMNS",
+              "REMOVED_COLUMNS"
+            ],
+            "enumDescriptions": [
+              "Unused.",
+              "New columns has appeared.",
+              "Columns have been removed from the table."
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GooglePrivacyDlpV2SearchConnectionsResponse": {
+      "description": "Response message for SearchConnections.",
+      "id": "GooglePrivacyDlpV2SearchConnectionsResponse",
+      "properties": {
+        "connections": {
+          "description": "List of connections that match the search query. Note that only a subset of the fields will be populated, and only \"name\" is guaranteed to be set. For full details of a Connection, call GetConnection with the name.",
+          "items": {
+            "$ref": "GooglePrivacyDlpV2Connection"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "Token to retrieve the next page of results. An empty value means there are no more results.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GooglePrivacyDlpV2SecretManagerCredential": {
+      "description": "A credential consisting of a username and password, where the password is stored in a Secret Manager resource. Note: Secret Manager [charges apply](https://cloud.google.com/secret-manager/pricing).",
+      "id": "GooglePrivacyDlpV2SecretManagerCredential",
+      "properties": {
+        "passwordSecretVersionName": {
+          "description": "Required. The name of the Secret Manager resource that stores the password, in the form \"projects/project-id/secrets/secret-name/versions/version\".",
+          "type": "string"
+        },
+        "username": {
+          "description": "Required. The username.",
           "type": "string"
         }
       },
@@ -9664,7 +10333,7 @@
       "id": "GooglePrivacyDlpV2TimespanConfig",
       "properties": {
         "enableAutoPopulationOfTimespanConfig": {
-          "description": "When the job is started by a JobTrigger we will automatically figure out a valid start_time to avoid scanning files that have not been modified since the last time the JobTrigger executed. This will be based on the time of the execution of the last run of the JobTrigger or the timespan end_time used in the last run of the JobTrigger.",
+          "description": "When the job is started by a JobTrigger we will automatically figure out a valid start_time to avoid scanning files that have not been modified since the last time the JobTrigger executed. This will be based on the time of the execution of the last run of the JobTrigger or the timespan end_time used in the last run of the JobTrigger. *For BigQuery* Inspect jobs triggered by automatic population will scan data that is at least three hours old when the job starts. This is because streaming buffer rows are not read during inspection and reading up to the current timestamp will result in skipped rows. See the [known issue](https://cloud.google.com/sensitive-data-protection/docs/known-issues#recently-streamed-data) related to this operation.",
           "type": "boolean"
         },
         "endTime": {
@@ -9975,6 +10644,22 @@
         "key": {
           "description": "Required. A 128/192/256 bit key.",
           "format": "byte",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GooglePrivacyDlpV2UpdateConnectionRequest": {
+      "description": "Request message for UpdateConnection.",
+      "id": "GooglePrivacyDlpV2UpdateConnectionRequest",
+      "properties": {
+        "connection": {
+          "$ref": "GooglePrivacyDlpV2Connection",
+          "description": "Required. The connection with new values for the relevant fields."
+        },
+        "updateMask": {
+          "description": "Optional. Mask to control which fields get updated.",
+          "format": "google-fieldmask",
           "type": "string"
         }
       },
