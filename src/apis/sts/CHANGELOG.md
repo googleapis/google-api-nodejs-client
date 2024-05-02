@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/sts-v4.0.0...sts-v4.0.1) (2024-05-02)
+
+
+### Bug Fixes
+
+* **sts:** update the API ([bce176a](https://github.com/googleapis/google-api-nodejs-client/commit/bce176a17c9e5ff821d2e6a058720f9f744e18b4))
+
 ## [4.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/sts-v3.3.5...sts-v4.0.0) (2024-04-04)
 
 

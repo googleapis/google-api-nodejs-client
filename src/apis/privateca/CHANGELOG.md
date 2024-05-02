@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/privateca-v3.0.0...privateca-v3.1.0) (2024-05-02)
+
+
+### Features
+
+* **privateca:** update the API ([c8bed74](https://github.com/googleapis/google-api-nodejs-client/commit/c8bed74402e19d48227929a3c387663650c713fd))
+
 ## [3.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/privateca-v2.0.0...privateca-v3.0.0) (2024-04-04)
 
 

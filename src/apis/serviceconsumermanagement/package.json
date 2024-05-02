@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/serviceconsumermanagement",
-  "version": "13.0.0",
+  "version": "14.0.0",
   "description": "serviceconsumermanagement",
   "main": "build/index.js",
   "types": "build/index.d.ts",

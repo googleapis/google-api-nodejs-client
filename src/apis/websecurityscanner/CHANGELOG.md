@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.4](https://github.com/googleapis/google-api-nodejs-client/compare/websecurityscanner-v1.0.3...websecurityscanner-v1.0.4) (2024-05-02)
+
+
+### Bug Fixes
+
+* **websecurityscanner:** update the API ([3e1d63b](https://github.com/googleapis/google-api-nodejs-client/commit/3e1d63b7ab93ca294ec0c983851321bc2fb85338))
+
 ## [1.0.3](https://github.com/googleapis/google-api-nodejs-client/compare/websecurityscanner-v1.0.2...websecurityscanner-v1.0.3) (2023-10-11)
 
 
