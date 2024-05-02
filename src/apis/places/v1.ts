@@ -302,7 +302,7 @@ export namespace places_v1 {
      */
     structuredFormat?: Schema$GoogleMapsPlacesV1AutocompletePlacesResponseSuggestionStructuredFormat;
     /**
-     * The predicted text. This text does not represent a Place, but rather a text query that could be used in a search endpoint (for example, TextSearch). `text` is recommended for developers who wish to show a single UI element. Developers who wish to show two separate, but related, UI elements may want to use `structured_format` instead. They are two different ways to represent a query prediction. Users should not try to parse `structured_format` into `text` or vice versa. May be in mixed languages if the request `input` and `language_code` are in different languages or if part of the query does not have a translation from the local language to `language_code`.
+     * The predicted text. This text does not represent a Place, but rather a text query that could be used in a search endpoint (for example, Text Search). `text` is recommended for developers who wish to show a single UI element. Developers who wish to show two separate, but related, UI elements may want to use `structured_format` instead. They are two different ways to represent a query prediction. Users should not try to parse `structured_format` into `text` or vice versa. May be in mixed languages if the request `input` and `language_code` are in different languages or if part of the query does not have a translation from the local language to `language_code`.
      */
     text?: Schema$GoogleMapsPlacesV1AutocompletePlacesResponseSuggestionFormattableText;
   }
@@ -1057,11 +1057,11 @@ export namespace places_v1 {
    */
   export interface Schema$GoogleMapsPlacesV1SearchTextRequestEVOptions {
     /**
-     * Optional. The list of preferred EV connector types. A place that does not support any of the listed connector types are filter out.
+     * Optional. The list of preferred EV connector types. A place that does not support any of the listed connector types is filtered out.
      */
     connectorTypes?: string[] | null;
     /**
-     * Optional. Filtering places by minimum charging rate. Any places with charging a rate less than the minimum charging rate are filtered out.
+     * Optional. Minimum required charging rate in kilowatts. A place with a charging rate less than the specified rate is filtered out.
      */
     minimumChargingRateKw?: number | null;
   }
@@ -1241,6 +1241,7 @@ export namespace places_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1331,6 +1332,7 @@ export namespace places_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1425,6 +1427,7 @@ export namespace places_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1521,6 +1524,7 @@ export namespace places_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1661,6 +1665,7 @@ export namespace places_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
