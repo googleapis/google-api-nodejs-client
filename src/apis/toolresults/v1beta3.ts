@@ -1860,6 +1860,7 @@ export namespace toolresults_v1beta3 {
               rootUrl + '/toolresults/v1beta3/projects/{projectId}/settings'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1949,6 +1950,7 @@ export namespace toolresults_v1beta3 {
               '/toolresults/v1beta3/projects/{projectId}:initializeSettings'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2061,6 +2063,7 @@ export namespace toolresults_v1beta3 {
               rootUrl + '/toolresults/v1beta3/projects/{projectId}/histories'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2148,6 +2151,7 @@ export namespace toolresults_v1beta3 {
               '/toolresults/v1beta3/projects/{projectId}/histories/{historyId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2239,6 +2243,7 @@ export namespace toolresults_v1beta3 {
               rootUrl + '/toolresults/v1beta3/projects/{projectId}/histories'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2391,6 +2396,7 @@ export namespace toolresults_v1beta3 {
               '/toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2478,6 +2484,7 @@ export namespace toolresults_v1beta3 {
               '/toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2570,6 +2577,7 @@ export namespace toolresults_v1beta3 {
               '/toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2657,6 +2665,7 @@ export namespace toolresults_v1beta3 {
               '/toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -2834,6 +2843,7 @@ export namespace toolresults_v1beta3 {
               '/toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/clusters/{clusterId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2929,6 +2939,7 @@ export namespace toolresults_v1beta3 {
               '/toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/clusters'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3061,6 +3072,7 @@ export namespace toolresults_v1beta3 {
               '/toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/environments/{environmentId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3159,6 +3171,7 @@ export namespace toolresults_v1beta3 {
               '/toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/environments'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3323,6 +3336,7 @@ export namespace toolresults_v1beta3 {
               rootUrl + '/toolresults/v1beta3/{+name}:accessibilityClusters'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3413,6 +3427,7 @@ export namespace toolresults_v1beta3 {
               '/toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3500,6 +3515,7 @@ export namespace toolresults_v1beta3 {
               '/toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps/{stepId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3593,6 +3609,7 @@ export namespace toolresults_v1beta3 {
               '/toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps/{stepId}/perfMetricsSummary'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3683,6 +3700,7 @@ export namespace toolresults_v1beta3 {
               '/toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3771,6 +3789,7 @@ export namespace toolresults_v1beta3 {
               '/toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps/{stepId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -3859,6 +3878,7 @@ export namespace toolresults_v1beta3 {
               '/toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps/{stepId}:publishXunitXmlFiles'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4106,6 +4126,7 @@ export namespace toolresults_v1beta3 {
               '/toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps/{stepId}/perfMetricsSummary'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4231,6 +4252,7 @@ export namespace toolresults_v1beta3 {
               '/toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps/{stepId}/perfSampleSeries'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4319,6 +4341,7 @@ export namespace toolresults_v1beta3 {
               '/toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps/{stepId}/perfSampleSeries/{sampleSeriesId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4426,6 +4449,7 @@ export namespace toolresults_v1beta3 {
               '/toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps/{stepId}/perfSampleSeries'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4601,6 +4625,7 @@ export namespace toolresults_v1beta3 {
               '/toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps/{stepId}/perfSampleSeries/{sampleSeriesId}/samples:batchCreate'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4708,6 +4733,7 @@ export namespace toolresults_v1beta3 {
               '/toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps/{stepId}/perfSampleSeries/{sampleSeriesId}/samples'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4875,6 +4901,7 @@ export namespace toolresults_v1beta3 {
               '/toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps/{stepId}/testCases/{testCaseId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4980,6 +5007,7 @@ export namespace toolresults_v1beta3 {
               '/toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps/{stepId}/testCases'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5133,6 +5161,7 @@ export namespace toolresults_v1beta3 {
               '/toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps/{stepId}/thumbnails'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
