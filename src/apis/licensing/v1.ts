@@ -268,6 +268,7 @@ export namespace licensing_v1 {
               '/apps/licensing/v1/product/{productId}/sku/{skuId}/user/{userId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -358,6 +359,7 @@ export namespace licensing_v1 {
               '/apps/licensing/v1/product/{productId}/sku/{skuId}/user/{userId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -448,6 +450,7 @@ export namespace licensing_v1 {
               '/apps/licensing/v1/product/{productId}/sku/{skuId}/user'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -541,6 +544,7 @@ export namespace licensing_v1 {
               rootUrl + '/apps/licensing/v1/product/{productId}/users'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -635,6 +639,7 @@ export namespace licensing_v1 {
               '/apps/licensing/v1/product/{productId}/sku/{skuId}/users'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -725,6 +730,7 @@ export namespace licensing_v1 {
               '/apps/licensing/v1/product/{productId}/sku/{skuId}/user/{userId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -815,6 +821,7 @@ export namespace licensing_v1 {
               '/apps/licensing/v1/product/{productId}/sku/{skuId}/user/{userId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
+            apiVersion: '',
           },
           options
         ),
