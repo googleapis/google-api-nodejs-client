@@ -854,6 +854,7 @@ export namespace deploymentmanager_v2 {
               '/deploymentmanager/v2/projects/{project}/global/deployments/{deployment}/cancelPreview'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -942,6 +943,7 @@ export namespace deploymentmanager_v2 {
               '/deploymentmanager/v2/projects/{project}/global/deployments/{deployment}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -1029,6 +1031,7 @@ export namespace deploymentmanager_v2 {
               '/deploymentmanager/v2/projects/{project}/global/deployments/{deployment}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1117,6 +1120,7 @@ export namespace deploymentmanager_v2 {
               '/deploymentmanager/v2/projects/{project}/global/deployments/{resource}/getIamPolicy'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1205,6 +1209,7 @@ export namespace deploymentmanager_v2 {
               '/deploymentmanager/v2/projects/{project}/global/deployments'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1297,6 +1302,7 @@ export namespace deploymentmanager_v2 {
               '/deploymentmanager/v2/projects/{project}/global/deployments'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1385,6 +1391,7 @@ export namespace deploymentmanager_v2 {
               '/deploymentmanager/v2/projects/{project}/global/deployments/{deployment}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -1473,6 +1480,7 @@ export namespace deploymentmanager_v2 {
               '/deploymentmanager/v2/projects/{project}/global/deployments/{resource}/setIamPolicy'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1560,6 +1568,7 @@ export namespace deploymentmanager_v2 {
               '/deploymentmanager/v2/projects/{project}/global/deployments/{deployment}/stop'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1655,6 +1664,7 @@ export namespace deploymentmanager_v2 {
               '/deploymentmanager/v2/projects/{project}/global/deployments/{resource}/testIamPermissions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1743,6 +1753,7 @@ export namespace deploymentmanager_v2 {
               '/deploymentmanager/v2/projects/{project}/global/deployments/{deployment}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
+            apiVersion: '',
           },
           options
         ),
@@ -2039,6 +2050,7 @@ export namespace deploymentmanager_v2 {
               '/deploymentmanager/v2/projects/{project}/global/deployments/{deployment}/manifests/{manifest}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2131,6 +2143,7 @@ export namespace deploymentmanager_v2 {
               '/deploymentmanager/v2/projects/{project}/global/deployments/{deployment}/manifests'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2266,6 +2279,7 @@ export namespace deploymentmanager_v2 {
               '/deploymentmanager/v2/projects/{project}/global/operations/{operation}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2358,6 +2372,7 @@ export namespace deploymentmanager_v2 {
               '/deploymentmanager/v2/projects/{project}/global/operations'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2485,6 +2500,7 @@ export namespace deploymentmanager_v2 {
               '/deploymentmanager/v2/projects/{project}/global/deployments/{deployment}/resources/{resource}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2577,6 +2593,7 @@ export namespace deploymentmanager_v2 {
               '/deploymentmanager/v2/projects/{project}/global/deployments/{deployment}/resources'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2714,6 +2731,7 @@ export namespace deploymentmanager_v2 {
               rootUrl + '/deploymentmanager/v2/projects/{project}/global/types'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
