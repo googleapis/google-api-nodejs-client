@@ -381,6 +381,7 @@ export namespace sts_v1beta {
           {
             url: (rootUrl + '/v1beta/token').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
