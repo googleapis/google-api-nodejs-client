@@ -273,6 +273,7 @@ export namespace connectors_v2 {
      * The name of the entity type.
      */
     name?: string | null;
+    operations?: string[] | null;
   }
   /**
    * ExchangeAuthCodeRequest currently includes no fields.
@@ -980,6 +981,7 @@ export namespace connectors_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1073,6 +1075,7 @@ export namespace connectors_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1168,6 +1171,7 @@ export namespace connectors_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1263,6 +1267,7 @@ export namespace connectors_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1358,6 +1363,7 @@ export namespace connectors_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1509,6 +1515,7 @@ export namespace connectors_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1594,6 +1601,7 @@ export namespace connectors_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1685,6 +1693,7 @@ export namespace connectors_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1821,6 +1830,7 @@ export namespace connectors_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1914,6 +1924,7 @@ export namespace connectors_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2036,6 +2047,7 @@ export namespace connectors_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2121,6 +2133,7 @@ export namespace connectors_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -2211,6 +2224,7 @@ export namespace connectors_v2 {
               '/v2/{+entityType}/entities:deleteEntitiesWithConditions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2296,6 +2310,7 @@ export namespace connectors_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2389,6 +2404,7 @@ export namespace connectors_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2474,6 +2490,7 @@ export namespace connectors_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -2569,6 +2586,7 @@ export namespace connectors_v2 {
               '/v2/{+entityType}/entities:updateEntitiesWithConditions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),

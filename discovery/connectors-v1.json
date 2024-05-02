@@ -523,7 +523,7 @@
                       "type": "string"
                     },
                     "updateMask": {
-                      "description": "Required. You can modify only the fields listed below. To lock/unlock a connection: * `lock_config` To suspend/resume a connection: * `suspended` To update the connection details: * `description` * `labels` * `connector_version` * `config_variables` * `auth_config` * `destination_configs` * `node_config` * `log_config` * `ssl_config` * `eventing_enablement_type` * `eventing_config`",
+                      "description": "Required. You can modify only the fields listed below. To lock/unlock a connection: * `lock_config` To suspend/resume a connection: * `suspended` To update the connection details: * `description` * `labels` * `connector_version` * `config_variables` * `auth_config` * `destination_configs` * `node_config` * `log_config` * `ssl_config` * `eventing_enablement_type` * `eventing_config` * `auth_override_enabled`",
                       "format": "google-fieldmask",
                       "location": "query",
                       "type": "string"
@@ -563,6 +563,47 @@
                   },
                   "response": {
                     "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "search": {
+                  "description": "Returns Top matching Connections for a given query.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/connections:search",
+                  "httpMethod": "GET",
+                  "id": "connectors.projects.locations.connections.search",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Parent resource of the Connection, of the form: `projects/*/locations/*/connections`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/connections$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "Optional. The number of top matching connectors to return",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. page_token",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "query": {
+                      "description": "Required. The query against which the search needs to be done.",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}:search",
+                  "response": {
+                    "$ref": "SearchConnectionsResponse"
                   },
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform"
@@ -2358,7 +2399,7 @@
       }
     }
   },
-  "revision": "20240319",
+  "revision": "20240415",
   "rootUrl": "https://connectors.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -2538,6 +2579,28 @@
         },
         "uri": {
           "description": "The base URI the user must click to trigger the authorization code login flow.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "BillingConfig": {
+      "description": "Billing config for the connection.",
+      "id": "BillingConfig",
+      "properties": {
+        "billingCategory": {
+          "description": "Output only. Billing category for the connector.",
+          "enum": [
+            "BILLING_CATEGORY_UNSPECIFIED",
+            "GCP_AND_TECHNICAL_CONNECTOR",
+            "NON_GCP_CONNECTOR"
+          ],
+          "enumDescriptions": [
+            "Billing category is not specified.",
+            "GCP/Technical connector.",
+            "Non-GCP connector."
+          ],
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -2728,6 +2791,11 @@
         "authConfig": {
           "$ref": "AuthConfig",
           "description": "Optional. Configuration for establishing the connection's authentication with an external system."
+        },
+        "billingConfig": {
+          "$ref": "BillingConfig",
+          "description": "Output only. Billing config for the connection.",
+          "readOnly": true
         },
         "configVariables": {
           "description": "Optional. Configuration for configuring the connection with an external system.",
@@ -3363,10 +3431,19 @@
       "id": "CustomConnector",
       "properties": {
         "activeConnectorVersions": {
-          "description": "Optional. Active connector versions.",
+          "description": "Output only. Active connector versions.",
           "items": {
             "type": "string"
           },
+          "readOnly": true,
+          "type": "array"
+        },
+        "allConnectorVersions": {
+          "description": "Output only. All connector versions.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
           "type": "array"
         },
         "createTime": {
@@ -6528,6 +6605,29 @@
           "$ref": "JsonSchema",
           "description": "Output only. JsonSchema representation of this entity's metadata",
           "readOnly": true
+        },
+        "operations": {
+          "description": "List of operations supported by this entity",
+          "items": {
+            "enum": [
+              "OPERATION_UNSPECIFIED",
+              "LIST",
+              "GET",
+              "CREATE",
+              "UPDATE",
+              "DELETE"
+            ],
+            "enumDescriptions": [
+              "Operation unspecified.",
+              "This operation means entity type supports LIST entities.",
+              "This operation means entity type supports GET entity.",
+              "This operation means entity type supports CREATE entity.",
+              "This operation means entity type supports UPDATE entity.",
+              "This operation means entity type supports DELETE entity."
+            ],
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -6583,6 +6683,53 @@
         "useSynchronousSchemaRefresh": {
           "description": "Whether to use synchronous schema refresh.",
           "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "SearchConnectionInstance": {
+      "description": "SearchConnectionInstance represents an instance of connector with specific fields",
+      "id": "SearchConnectionInstance",
+      "properties": {
+        "actionSchema": {
+          "$ref": "RuntimeActionSchema",
+          "description": "Output only. Schema of a runtime action.",
+          "readOnly": true
+        },
+        "connection": {
+          "$ref": "Connection",
+          "description": "Output only. Connection details",
+          "readOnly": true
+        },
+        "entitySchema": {
+          "$ref": "RuntimeEntitySchema",
+          "description": "Output only. Schema of a runtime entity.",
+          "readOnly": true
+        }
+      },
+      "type": "object"
+    },
+    "SearchConnectionsResponse": {
+      "description": "Response message for Connectors.SearchConnections.",
+      "id": "SearchConnectionsResponse",
+      "properties": {
+        "connections": {
+          "description": "A list of connectors.",
+          "items": {
+            "$ref": "SearchConnectionInstance"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "Optional. page_token",
+          "type": "string"
+        },
+        "unreachable": {
+          "description": "Locations that could not be reached.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
