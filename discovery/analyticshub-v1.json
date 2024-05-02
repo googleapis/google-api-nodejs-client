@@ -896,7 +896,7 @@
                   ],
                   "parameters": {
                     "filter": {
-                      "description": "The filter expression may be used to filter by Data Exchange or Listing.",
+                      "description": "An expression for filtering the results of the request. Eligible fields for filtering are: + `listing` + `data_exchange` Alternatively, a literal wrapped in double quotes may be provided. This will be checked for an exact match against both fields above. In all cases, the full Data Exchange or Listing resource name must be provided. Some example of using filters: + data_exchange=\"projects/myproject/locations/us/dataExchanges/123\" + listing=\"projects/123/locations/us/dataExchanges/456/listings/789\" + \"projects/myproject/locations/us/dataExchanges/123\"",
                       "location": "query",
                       "type": "string"
                     },
@@ -1022,7 +1022,7 @@
       }
     }
   },
-  "revision": "20240307",
+  "revision": "20240429",
   "rootUrl": "https://analyticshub.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -1080,6 +1080,10 @@
         "dataset": {
           "description": "Resource name of the dataset source for this listing. e.g. `projects/myproject/datasets/123`",
           "type": "string"
+        },
+        "restrictedExportPolicy": {
+          "$ref": "RestrictedExportPolicy",
+          "description": "Optional. If set, restricted export policy will be propagated and enforced on the linked dataset."
         },
         "selectedResources": {
           "description": "Optional. Resources in this dataset that are selectively shared. If this field is empty, then the entire dataset (all resources) are shared. This field is only valid for data clean room exchanges.",
@@ -1672,6 +1676,25 @@
       },
       "type": "object"
     },
+    "RestrictedExportPolicy": {
+      "description": "Restricted export policy used to configure restricted export on linked dataset.",
+      "id": "RestrictedExportPolicy",
+      "properties": {
+        "enabled": {
+          "description": "Optional. If true, enable restricted export.",
+          "type": "boolean"
+        },
+        "restrictDirectTableAccess": {
+          "description": "Optional. If true, restrict direct table access (read api/tabledata.list) on linked table.",
+          "type": "boolean"
+        },
+        "restrictQueryResult": {
+          "description": "Optional. If true, restrict export of query result derived from restricted linked dataset table.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
     "RevokeSubscriptionRequest": {
       "description": "Message for revoking a subscription.",
       "id": "RevokeSubscriptionRequest",
@@ -1789,7 +1812,7 @@
       "properties": {
         "destinationDataset": {
           "$ref": "DestinationDataset",
-          "description": "BigQuery destination dataset to create for the subscriber."
+          "description": "Input only. BigQuery destination dataset to create for the subscriber."
         }
       },
       "type": "object"
