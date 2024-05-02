@@ -202,6 +202,10 @@ export namespace networkconnectivity_v1 {
      */
     network?: string | null;
     /**
+     * Immutable. An immutable identifier for the producer instance.
+     */
+    producerInstanceId?: string | null;
+    /**
      * The consumer project where PSC connections are allowed to be created in.
      */
     project?: string | null;
@@ -242,6 +246,10 @@ export namespace networkconnectivity_v1 {
      * The consumer network whose PSC forwarding rule is connected to the service attachments in this service connection map. Note that the network could be on a different project (shared VPC).
      */
     network?: string | null;
+    /**
+     * Immutable. An immutable identifier for the producer instance.
+     */
+    producerInstanceId?: string | null;
     /**
      * The consumer project whose PSC forwarding rule is connected to the service attachments in this service connection map.
      */
@@ -360,7 +368,7 @@ export namespace networkconnectivity_v1 {
      */
     domain?: string | null;
     /**
-     * Additional structured details about this error. Keys should match /[a-zA-Z0-9-_]/ and be limited to 64 characters in length. When identifying the current value of an exceeded limit, the units should be contained in the key, not the value. For example, rather than {"instanceLimit": "100/request"\}, should be returned as, {"instanceLimitPerRequest": "100"\}, if the client exceeds the number of instances that can be created in a single (batch) request.
+     * Additional structured details about this error. Keys must match /a-z+/ but should ideally be lowerCamelCase. Also they must be limited to 64 characters in length. When identifying the current value of an exceeded limit, the units should be contained in the key, not the value. For example, rather than {"instanceLimit": "100/request"\}, should be returned as, {"instanceLimitPerRequest": "100"\}, if the client exceeds the number of instances that can be created in a single (batch) request.
      */
     metadata?: {[key: string]: string} | null;
     /**
@@ -497,7 +505,7 @@ export namespace networkconnectivity_v1 {
      */
     name?: string | null;
     /**
-     * The URL or resource ID of the network in which to reserve the internal range. The network cannot be deleted if there are any reserved internal ranges referring to it. Legacy networks are not supported. This can only be specified for a global internal address. Example: - URL: /compute/v1/projects/{project\}/global/networks/{resourceId\} - ID: network123
+     * The URL or resource ID of the network in which to reserve the internal range. The network cannot be deleted if there are any reserved internal ranges referring to it. Legacy networks are not supported. For example: https://www.googleapis.com/compute/v1/projects/{project\}/locations/global/networks/{network\} projects/{project\}/locations/global/networks/{network\} {network\}
      */
     network?: string | null;
     /**
@@ -686,6 +694,23 @@ export namespace networkconnectivity_v1 {
      * Policy-based routes to be returned.
      */
     policyBasedRoutes?: Schema$PolicyBasedRoute[];
+    /**
+     * Locations that could not be reached.
+     */
+    unreachable?: string[] | null;
+  }
+  /**
+   * Response for ListRegionalEndpoints.
+   */
+  export interface Schema$ListRegionalEndpointsResponse {
+    /**
+     * The next pagination token in the List response. It should be used as page_token for the following request. An empty value means no more result.
+     */
+    nextPageToken?: string | null;
+    /**
+     * Regional endpoints to be returned.
+     */
+    regionalEndpoints?: Schema$RegionalEndpoint[];
     /**
      * Locations that could not be reached.
      */
@@ -1024,6 +1049,10 @@ export namespace networkconnectivity_v1 {
      */
     gceOperation?: string | null;
     /**
+     * Immutable. An immutable identifier for the producer instance.
+     */
+    producerInstanceId?: string | null;
+    /**
      * The PSC connection id of the PSC forwarding rule.
      */
     pscConnectionId?: string | null;
@@ -1035,6 +1064,59 @@ export namespace networkconnectivity_v1 {
      * State of the PSC Connection
      */
     state?: string | null;
+  }
+  /**
+   * The RegionalEndpoint resource.
+   */
+  export interface Schema$RegionalEndpoint {
+    /**
+     * Required. The access type of this regional endpoint. This field is reflected in the PSC Forwarding Rule configuration to enable global access.
+     */
+    accessType?: string | null;
+    /**
+     * Optional. The IP Address of the Regional Endpoint. When no address is provided, an IP from the subnetwork is allocated. Use one of the following formats: * IPv4 address as in `10.0.0.1` * Address resource URI as in `projects/{project\}/regions/{region\}/addresses/{address_name\}`
+     */
+    address?: string | null;
+    /**
+     * Output only. Time when the RegionalEndpoint was created.
+     */
+    createTime?: string | null;
+    /**
+     * Optional. A description of this resource.
+     */
+    description?: string | null;
+    /**
+     * Output only. The literal IP address of the PSC Forwarding Rule created on behalf of the customer. This field is deprecated. Use address instead.
+     */
+    ipAddress?: string | null;
+    /**
+     * User-defined labels.
+     */
+    labels?: {[key: string]: string} | null;
+    /**
+     * Output only. The name of a RegionalEndpoint. Format: `projects/{project\}/locations/{location\}/regionalEndpoints/{regional_endpoint\}`.
+     */
+    name?: string | null;
+    /**
+     * The name of the VPC network for this private regional endpoint. Format: `projects/{project\}/global/networks/{network\}`
+     */
+    network?: string | null;
+    /**
+     * Output only. The resource reference of the PSC Forwarding Rule created on behalf of the customer. Format: `//compute.googleapis.com/projects/{project\}/regions/{region\}/forwardingRules/{forwarding_rule_name\}`
+     */
+    pscForwardingRule?: string | null;
+    /**
+     * The name of the subnetwork from which the IP address will be allocated. Format: `projects/{project\}/regions/{region\}/subnetworks/{subnetwork\}`
+     */
+    subnetwork?: string | null;
+    /**
+     * Required. The service endpoint this private regional endpoint connects to. Format: `{apiname\}.{region\}.p.rep.googleapis.com` Example: "cloudkms.us-central1.p.rep.googleapis.com".
+     */
+    targetGoogleApi?: string | null;
+    /**
+     * Output only. Time when the RegionalEndpoint was updated.
+     */
+    updateTime?: string | null;
   }
   /**
    * The request for HubService.RejectHubSpoke.
@@ -1561,6 +1643,7 @@ export namespace networkconnectivity_v1 {
     global: Resource$Projects$Locations$Global;
     internalRanges: Resource$Projects$Locations$Internalranges;
     operations: Resource$Projects$Locations$Operations;
+    regionalEndpoints: Resource$Projects$Locations$Regionalendpoints;
     serviceClasses: Resource$Projects$Locations$Serviceclasses;
     serviceConnectionMaps: Resource$Projects$Locations$Serviceconnectionmaps;
     serviceConnectionPolicies: Resource$Projects$Locations$Serviceconnectionpolicies;
@@ -1575,6 +1658,8 @@ export namespace networkconnectivity_v1 {
       this.operations = new Resource$Projects$Locations$Operations(
         this.context
       );
+      this.regionalEndpoints =
+        new Resource$Projects$Locations$Regionalendpoints(this.context);
       this.serviceClasses = new Resource$Projects$Locations$Serviceclasses(
         this.context
       );
@@ -1654,6 +1739,7 @@ export namespace networkconnectivity_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1747,6 +1833,7 @@ export namespace networkconnectivity_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1896,6 +1983,7 @@ export namespace networkconnectivity_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1988,6 +2076,7 @@ export namespace networkconnectivity_v1 {
           {
             url: (rootUrl + '/v1/{+parent}/hubs').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2080,6 +2169,7 @@ export namespace networkconnectivity_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -2165,6 +2255,7 @@ export namespace networkconnectivity_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2254,6 +2345,7 @@ export namespace networkconnectivity_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2339,6 +2431,7 @@ export namespace networkconnectivity_v1 {
           {
             url: (rootUrl + '/v1/{+parent}/hubs').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2435,6 +2528,7 @@ export namespace networkconnectivity_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2527,6 +2621,7 @@ export namespace networkconnectivity_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -2623,6 +2718,7 @@ export namespace networkconnectivity_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2712,6 +2808,7 @@ export namespace networkconnectivity_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2808,6 +2905,7 @@ export namespace networkconnectivity_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3073,6 +3171,7 @@ export namespace networkconnectivity_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3162,6 +3261,7 @@ export namespace networkconnectivity_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3254,6 +3354,7 @@ export namespace networkconnectivity_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3343,6 +3444,7 @@ export namespace networkconnectivity_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3439,6 +3541,7 @@ export namespace networkconnectivity_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3603,6 +3706,7 @@ export namespace networkconnectivity_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3697,6 +3801,7 @@ export namespace networkconnectivity_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3821,6 +3926,7 @@ export namespace networkconnectivity_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3913,6 +4019,7 @@ export namespace networkconnectivity_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4047,6 +4154,7 @@ export namespace networkconnectivity_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4140,6 +4248,7 @@ export namespace networkconnectivity_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -4226,6 +4335,7 @@ export namespace networkconnectivity_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4315,6 +4425,7 @@ export namespace networkconnectivity_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4411,6 +4522,7 @@ export namespace networkconnectivity_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4502,6 +4614,7 @@ export namespace networkconnectivity_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4598,6 +4711,7 @@ export namespace networkconnectivity_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4797,6 +4911,7 @@ export namespace networkconnectivity_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4889,6 +5004,7 @@ export namespace networkconnectivity_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -4974,6 +5090,7 @@ export namespace networkconnectivity_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5069,6 +5186,7 @@ export namespace networkconnectivity_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5161,6 +5279,7 @@ export namespace networkconnectivity_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -5335,6 +5454,7 @@ export namespace networkconnectivity_v1 {
           {
             url: (rootUrl + '/v1/{+name}:cancel').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5420,6 +5540,7 @@ export namespace networkconnectivity_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -5512,6 +5633,7 @@ export namespace networkconnectivity_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5607,6 +5729,7 @@ export namespace networkconnectivity_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5672,6 +5795,451 @@ export namespace networkconnectivity_v1 {
      * The standard list page token.
      */
     pageToken?: string;
+  }
+
+  export class Resource$Projects$Locations$Regionalendpoints {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Creates a new RegionalEndpoint in a given project and location.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Locations$Regionalendpoints$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Projects$Locations$Regionalendpoints$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    create(
+      params: Params$Resource$Projects$Locations$Regionalendpoints$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Regionalendpoints$Create,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Regionalendpoints$Create,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    create(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Regionalendpoints$Create
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Regionalendpoints$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Regionalendpoints$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networkconnectivity.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/regionalEndpoints').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+
+    /**
+     * Deletes a single RegionalEndpoint.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Regionalendpoints$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Regionalendpoints$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    delete(
+      params: Params$Resource$Projects$Locations$Regionalendpoints$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Regionalendpoints$Delete,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Regionalendpoints$Delete,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    delete(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Regionalendpoints$Delete
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Regionalendpoints$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Regionalendpoints$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networkconnectivity.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+
+    /**
+     * Gets details of a single RegionalEndpoint.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Regionalendpoints$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Regionalendpoints$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$RegionalEndpoint>;
+    get(
+      params: Params$Resource$Projects$Locations$Regionalendpoints$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Regionalendpoints$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$RegionalEndpoint>,
+      callback: BodyResponseCallback<Schema$RegionalEndpoint>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Regionalendpoints$Get,
+      callback: BodyResponseCallback<Schema$RegionalEndpoint>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$RegionalEndpoint>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Regionalendpoints$Get
+        | BodyResponseCallback<Schema$RegionalEndpoint>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$RegionalEndpoint>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$RegionalEndpoint>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$RegionalEndpoint> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Regionalendpoints$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Regionalendpoints$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networkconnectivity.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$RegionalEndpoint>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$RegionalEndpoint>(parameters);
+      }
+    }
+
+    /**
+     * Lists RegionalEndpoints in a given project and location.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Regionalendpoints$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Regionalendpoints$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListRegionalEndpointsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Regionalendpoints$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Regionalendpoints$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListRegionalEndpointsResponse>,
+      callback: BodyResponseCallback<Schema$ListRegionalEndpointsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Regionalendpoints$List,
+      callback: BodyResponseCallback<Schema$ListRegionalEndpointsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListRegionalEndpointsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Regionalendpoints$List
+        | BodyResponseCallback<Schema$ListRegionalEndpointsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListRegionalEndpointsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListRegionalEndpointsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListRegionalEndpointsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Regionalendpoints$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Regionalendpoints$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networkconnectivity.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/regionalEndpoints').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListRegionalEndpointsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListRegionalEndpointsResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Regionalendpoints$Create
+    extends StandardParameters {
+    /**
+     * Required. The parent resource's name of the RegionalEndpoint.
+     */
+    parent?: string;
+    /**
+     * Required. Unique id of the Regional Endpoint to be created.
+     */
+    regionalEndpointId?: string;
+    /**
+     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server knows to ignore the request if it has already been completed. The server guarantees that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if the original operation with the same request ID was received, and if so, ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$RegionalEndpoint;
+  }
+  export interface Params$Resource$Projects$Locations$Regionalendpoints$Delete
+    extends StandardParameters {
+    /**
+     * Required. The name of the RegionalEndpoint to delete.
+     */
+    name?: string;
+    /**
+     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server knows to ignore the request if it has already been completed. The server guarantees that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if the original operation with the same request ID was received, and if so, ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Regionalendpoints$Get
+    extends StandardParameters {
+    /**
+     * Required. Name of the RegionalEndpoint resource to get. Format: `projects/{project\}/locations/{location\}/regionalEndpoints/{regional_endpoint\}`
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Regionalendpoints$List
+    extends StandardParameters {
+    /**
+     * A filter expression that filters the results listed in the response.
+     */
+    filter?: string;
+    /**
+     * Sort the results by a certain order.
+     */
+    orderBy?: string;
+    /**
+     * Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.
+     */
+    pageSize?: number;
+    /**
+     * A page token.
+     */
+    pageToken?: string;
+    /**
+     * Required. The parent resource's name of the RegionalEndpoint.
+     */
+    parent?: string;
   }
 
   export class Resource$Projects$Locations$Serviceclasses {
@@ -5754,6 +6322,7 @@ export namespace networkconnectivity_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -5839,6 +6408,7 @@ export namespace networkconnectivity_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5928,6 +6498,7 @@ export namespace networkconnectivity_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6023,6 +6594,7 @@ export namespace networkconnectivity_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6115,6 +6687,7 @@ export namespace networkconnectivity_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -6204,6 +6777,7 @@ export namespace networkconnectivity_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -6300,6 +6874,7 @@ export namespace networkconnectivity_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -6504,6 +7079,7 @@ export namespace networkconnectivity_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -6597,6 +7173,7 @@ export namespace networkconnectivity_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -6688,6 +7265,7 @@ export namespace networkconnectivity_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6777,6 +7355,7 @@ export namespace networkconnectivity_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6873,6 +7452,7 @@ export namespace networkconnectivity_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6968,6 +7548,7 @@ export namespace networkconnectivity_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -7057,6 +7638,7 @@ export namespace networkconnectivity_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -7153,6 +7735,7 @@ export namespace networkconnectivity_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -7377,6 +7960,7 @@ export namespace networkconnectivity_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -7470,6 +8054,7 @@ export namespace networkconnectivity_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -7561,6 +8146,7 @@ export namespace networkconnectivity_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -7650,6 +8236,7 @@ export namespace networkconnectivity_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -7746,6 +8333,7 @@ export namespace networkconnectivity_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -7841,6 +8429,7 @@ export namespace networkconnectivity_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -7930,6 +8519,7 @@ export namespace networkconnectivity_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -8026,6 +8616,7 @@ export namespace networkconnectivity_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -8250,6 +8841,7 @@ export namespace networkconnectivity_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -8343,6 +8935,7 @@ export namespace networkconnectivity_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -8434,6 +9027,7 @@ export namespace networkconnectivity_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -8530,6 +9124,7 @@ export namespace networkconnectivity_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -8700,6 +9295,7 @@ export namespace networkconnectivity_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -8792,6 +9388,7 @@ export namespace networkconnectivity_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -8877,6 +9474,7 @@ export namespace networkconnectivity_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -8965,6 +9563,7 @@ export namespace networkconnectivity_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -9056,6 +9655,7 @@ export namespace networkconnectivity_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -9148,6 +9748,7 @@ export namespace networkconnectivity_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -9236,6 +9837,7 @@ export namespace networkconnectivity_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -9332,6 +9934,7 @@ export namespace networkconnectivity_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
