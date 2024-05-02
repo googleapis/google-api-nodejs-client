@@ -125,23 +125,6 @@ export namespace doubleclickbidmanager_v2 {
   }
 
   /**
-   * A channel grouping defines a set of rules that can be used to categorize events in a path report.
-   */
-  export interface Schema$ChannelGrouping {
-    /**
-     * The name to apply to an event that does not match any of the rules in the channel grouping.
-     */
-    fallbackName?: string | null;
-    /**
-     * Channel Grouping name.
-     */
-    name?: string | null;
-    /**
-     * Rules within Channel Grouping. There is a limit of 100 rules that can be set per channel grouping.
-     */
-    rules?: Schema$Rule[];
-  }
-  /**
    * Report data range.
    */
   export interface Schema$DataRange {
@@ -174,24 +157,6 @@ export namespace doubleclickbidmanager_v2 {
      * Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year.
      */
     year?: number | null;
-  }
-  /**
-   * DisjunctiveMatchStatement that OR's all contained filters.
-   */
-  export interface Schema$DisjunctiveMatchStatement {
-    /**
-     * Filters. There is a limit of 100 filters that can be set per disjunctive match statement.
-     */
-    eventFilters?: Schema$EventFilter[];
-  }
-  /**
-   * Defines the type of filter to be applied to the path, a DV360 event dimension filter.
-   */
-  export interface Schema$EventFilter {
-    /**
-     * Filter on a dimension.
-     */
-    dimensionFilter?: Schema$PathQueryOptionsFilter;
   }
   /**
    * Filter used to match traffic data in your report.
@@ -234,10 +199,6 @@ export namespace doubleclickbidmanager_v2 {
      * Set to true and filter your report by `FILTER_INSERTION_ORDER` or `FILTER_LINE_ITEM` to include data for audience lists specifically targeted by those items.
      */
     includeOnlyTargetedUserLists?: boolean | null;
-    /**
-     * Options that contain Path Filters and Custom Channel Groupings. This field is deprecated and will sunset on **May 1, 2024**. After sunset, requests using this field will return an error.
-     */
-    pathQueryOptions?: Schema$PathQueryOptions;
   }
   /**
    * Parameters of a query or report.
@@ -263,49 +224,6 @@ export namespace doubleclickbidmanager_v2 {
      * The type of the report. The type of the report will dictate what dimesions, filters, and metrics can be used.
      */
     type?: string | null;
-  }
-  /**
-   * Path filters specify which paths to include in a report. A path is the result of combining DV360 events based on User ID to create a workflow of users' actions. When a path filter is set, the resulting report will only include paths that match the specified event at the specified position. All other paths will be excluded.
-   */
-  export interface Schema$PathFilter {
-    /**
-     * Filter on an event to be applied to some part of the path.
-     */
-    eventFilters?: Schema$EventFilter[];
-    /**
-     * The position of the path the filter should match to (first, last, or any event in path).
-     */
-    pathMatchPosition?: string | null;
-  }
-  /**
-   * Path Query Options for Report Options.
-   */
-  export interface Schema$PathQueryOptions {
-    /**
-     * Custom Channel Groupings.
-     */
-    channelGrouping?: Schema$ChannelGrouping;
-    /**
-     * Path Filters. There is a limit of 100 path filters that can be set per report.
-     */
-    pathFilters?: Schema$PathFilter[];
-  }
-  /**
-   * Dimension filter on path events.
-   */
-  export interface Schema$PathQueryOptionsFilter {
-    /**
-     * Dimension the filter is applied to.
-     */
-    filter?: string | null;
-    /**
-     * Match logic of the filter.
-     */
-    match?: string | null;
-    /**
-     * Values to filter on.
-     */
-    values?: string[] | null;
   }
   /**
    * Represents a query.
@@ -443,19 +361,6 @@ export namespace doubleclickbidmanager_v2 {
     state?: string | null;
   }
   /**
-   * A Rule defines a name, and a boolean expression in [conjunctive normal form] (http://mathworld.wolfram.com/ConjunctiveNormalForm.html){.external\} that can be applied to a path event to determine if that name should be applied.
-   */
-  export interface Schema$Rule {
-    /**
-     * DisjunctiveMatchStatements within a Rule. DisjunctiveMatchStatement OR's all contained filters.
-     */
-    disjunctiveMatchStatements?: Schema$DisjunctiveMatchStatement[];
-    /**
-     * Rule name.
-     */
-    name?: string | null;
-  }
-  /**
    * Request to run a stored query to generate a report.
    */
   export interface Schema$RunQueryRequest {
@@ -539,6 +444,7 @@ export namespace doubleclickbidmanager_v2 {
           {
             url: (rootUrl + '/v2/queries').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -624,6 +530,7 @@ export namespace doubleclickbidmanager_v2 {
               '$1'
             ),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -711,6 +618,7 @@ export namespace doubleclickbidmanager_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -798,6 +706,7 @@ export namespace doubleclickbidmanager_v2 {
           {
             url: (rootUrl + '/v2/queries').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -885,6 +794,7 @@ export namespace doubleclickbidmanager_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1028,6 +938,7 @@ export namespace doubleclickbidmanager_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1119,6 +1030,7 @@ export namespace doubleclickbidmanager_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
