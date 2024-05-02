@@ -531,6 +531,31 @@
                         "https://www.googleapis.com/auth/cloud-platform"
                       ]
                     },
+                    "getBackupIndexDownloadUrl": {
+                      "description": "Retrieve the link to the backupIndex.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/backupPlans/{backupPlansId}/backups/{backupsId}:getBackupIndexDownloadUrl",
+                      "httpMethod": "GET",
+                      "id": "gkebackup.projects.locations.backupPlans.backups.getBackupIndexDownloadUrl",
+                      "parameterOrder": [
+                        "backup"
+                      ],
+                      "parameters": {
+                        "backup": {
+                          "description": "Required. Full name of Backup resource. Format: projects/{project}/locations/{location}/backupPlans/{backup_plan}/backups/{backup}",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/backupPlans/[^/]+/backups/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+backup}:getBackupIndexDownloadUrl",
+                      "response": {
+                        "$ref": "GetBackupIndexDownloadUrlResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
                     "getIamPolicy": {
                       "description": "Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.",
                       "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/backupPlans/{backupPlansId}/backups/{backupsId}:getIamPolicy",
@@ -1688,7 +1713,7 @@
       }
     }
   },
-  "revision": "20240313",
+  "revision": "20240424",
   "rootUrl": "https://gkebackup.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -1996,6 +2021,17 @@
           "$ref": "RetentionPolicy",
           "description": "Optional. RetentionPolicy governs lifecycle of Backups created under this plan."
         },
+        "rpoRiskLevel": {
+          "description": "Output only. A number that represents the current risk level of this BackupPlan from RPO perspective with 1 being no risk and 5 being highest risk.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "rpoRiskReason": {
+          "description": "Output only. Human-readable description of why the BackupPlan is in the current rpo_risk_level and action items if any.",
+          "readOnly": true,
+          "type": "string"
+        },
         "state": {
           "description": "Output only. State of the BackupPlan. This State field reflects the various stages a BackupPlan can be in during the Create operation. It will be set to \"DEACTIVATED\" if the BackupPlan is deactivated on an Update",
           "enum": [
@@ -2124,6 +2160,62 @@
       },
       "type": "object"
     },
+    "Date": {
+      "description": "Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: * A full date, with non-zero year, month, and day values. * A month and day, with a zero year (for example, an anniversary). * A year on its own, with a zero month and a zero day. * A year and month, with a zero day (for example, a credit card expiration date). Related types: * google.type.TimeOfDay * google.type.DateTime * google.protobuf.Timestamp",
+      "id": "Date",
+      "properties": {
+        "day": {
+          "description": "Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "month": {
+          "description": "Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "year": {
+          "description": "Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "DayOfWeekList": {
+      "description": "Holds repeated DaysOfWeek values as a container.",
+      "id": "DayOfWeekList",
+      "properties": {
+        "daysOfWeek": {
+          "description": "Optional. A list of days of week.",
+          "items": {
+            "enum": [
+              "DAY_OF_WEEK_UNSPECIFIED",
+              "MONDAY",
+              "TUESDAY",
+              "WEDNESDAY",
+              "THURSDAY",
+              "FRIDAY",
+              "SATURDAY",
+              "SUNDAY"
+            ],
+            "enumDescriptions": [
+              "The day of the week is unspecified.",
+              "Monday",
+              "Tuesday",
+              "Wednesday",
+              "Thursday",
+              "Friday",
+              "Saturday",
+              "Sunday"
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "Empty": {
       "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }",
       "id": "Empty",
@@ -2137,6 +2229,34 @@
         "gcpKmsEncryptionKey": {
           "description": "Optional. Google Cloud KMS encryption key. Format: `projects/*/locations/*/keyRings/*/cryptoKeys/*`",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ExclusionWindow": {
+      "description": "Defines a time window during which no backup should happen. All time and date are in UTC.",
+      "id": "ExclusionWindow",
+      "properties": {
+        "daily": {
+          "description": "The exclusion window occurs every day if set to \"True\". Specifying this field to \"False\" is an error.",
+          "type": "boolean"
+        },
+        "daysOfWeek": {
+          "$ref": "DayOfWeekList",
+          "description": "The exclusion window occurs on these days of each week in UTC."
+        },
+        "duration": {
+          "description": "Required. Specifies duration of the window. Duration must be >= 5 minutes and < (target RPO - 20 minutes). Additional restrictions based on the recurrence type to allow some time for backup to happen: - single_occurrence_date: no restriction, but UI may warn about this when duration >= target RPO - daily window: duration < 24 hours - weekly window: - days of week includes all seven days of a week: duration < 24 hours - all other weekly window: duration < 168 hours (i.e., 24 * 7 hours)",
+          "format": "google-duration",
+          "type": "string"
+        },
+        "singleOccurrenceDate": {
+          "$ref": "Date",
+          "description": "No recurrence. The exclusion window occurs only once and on this date in UTC."
+        },
+        "startTime": {
+          "$ref": "TimeOfDay",
+          "description": "Required. Specifies the start time of the window using time of the day in UTC."
         }
       },
       "type": "object"
@@ -2159,6 +2279,16 @@
         },
         "title": {
           "description": "Optional. Title for the expression, i.e. a short string describing its purpose. This can be used e.g. in UIs which allow to enter the expression.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GetBackupIndexDownloadUrlResponse": {
+      "description": "Response message for GetBackupIndexDownloadUrl.",
+      "id": "GetBackupIndexDownloadUrlResponse",
+      "properties": {
+        "signedUrl": {
           "type": "string"
         }
       },
@@ -2895,6 +3025,25 @@
       },
       "type": "object"
     },
+    "RpoConfig": {
+      "description": "Defines RPO scheduling configuration for automatically creating Backups via this BackupPlan.",
+      "id": "RpoConfig",
+      "properties": {
+        "exclusionWindows": {
+          "description": "Optional. User specified time windows during which backup can NOT happen for this BackupPlan - backups should start and finish outside of any given exclusion window. Note: backup jobs will be scheduled to start and finish outside the duration of the window as much as possible, but running jobs will not get canceled when it runs into the window. All the time and date values in exclusion_windows entry in the API are in UTC. We only allow <=1 recurrence (daily or weekly) exclusion window for a BackupPlan while no restriction on number of single occurrence windows.",
+          "items": {
+            "$ref": "ExclusionWindow"
+          },
+          "type": "array"
+        },
+        "targetRpoMinutes": {
+          "description": "Required. Defines the target RPO for the BackupPlan in minutes, which means the target maximum data loss in time that is acceptable for this BackupPlan. This must be at least 60, i.e., 1 hour, and at most 86400, i.e., 60 days.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
     "Schedule": {
       "description": "Defines scheduling parameters for automatically creating Backups via this BackupPlan.",
       "id": "Schedule",
@@ -2903,9 +3052,19 @@
           "description": "Optional. A standard [cron](https://wikipedia.com/wiki/cron) string that defines a repeating schedule for creating Backups via this BackupPlan. This is mutually exclusive with the rpo_config field since at most one schedule can be defined for a BackupPlan. If this is defined, then backup_retain_days must also be defined. Default (empty): no automatic backup creation will occur.",
           "type": "string"
         },
+        "nextScheduledBackupTime": {
+          "description": "Output only. Start time of next scheduled backup under this BackupPlan by either cron_schedule or rpo config.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
         "paused": {
           "description": "Optional. This flag denotes whether automatic Backup creation is paused for this BackupPlan. Default: False",
           "type": "boolean"
+        },
+        "rpoConfig": {
+          "$ref": "RpoConfig",
+          "description": "Optional. Defines the RPO schedule configuration for this BackupPlan. This is mutually exclusive with the cron_schedule field since at most one schedule can be defined for a BackupPLan. If this is defined, then backup_retain_days must also be defined. Default (empty): no automatic backup creation will occur."
         }
       },
       "type": "object"
@@ -2983,6 +3142,33 @@
             "type": "string"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "TimeOfDay": {
+      "description": "Represents a time of day. The date and time zone are either not significant or are specified elsewhere. An API may choose to allow leap seconds. Related types are google.type.Date and `google.protobuf.Timestamp`.",
+      "id": "TimeOfDay",
+      "properties": {
+        "hours": {
+          "description": "Hours of day in 24 hour format. Should be from 0 to 23. An API may choose to allow the value \"24:00:00\" for scenarios like business closing time.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "minutes": {
+          "description": "Minutes of hour of day. Must be from 0 to 59.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "nanos": {
+          "description": "Fractions of seconds in nanoseconds. Must be from 0 to 999,999,999.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "seconds": {
+          "description": "Seconds of minutes of the time. Must normally be from 0 to 59. An API may allow the value 60 if it allows leap-seconds.",
+          "format": "int32",
+          "type": "integer"
         }
       },
       "type": "object"
