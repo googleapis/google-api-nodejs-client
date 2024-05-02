@@ -416,6 +416,7 @@ export namespace apikeys_v2 {
           {
             url: (rootUrl + '/v2/keys:lookupKey').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -513,6 +514,7 @@ export namespace apikeys_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -629,6 +631,7 @@ export namespace apikeys_v2 {
           {
             url: (rootUrl + '/v2/{+parent}/keys').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -713,6 +716,7 @@ export namespace apikeys_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -797,6 +801,7 @@ export namespace apikeys_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -891,6 +896,7 @@ export namespace apikeys_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -978,6 +984,7 @@ export namespace apikeys_v2 {
           {
             url: (rootUrl + '/v2/{+parent}/keys').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1062,6 +1069,7 @@ export namespace apikeys_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -1149,6 +1157,7 @@ export namespace apikeys_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
