@@ -1250,9 +1250,15 @@
       }
     }
   },
-  "revision": "20240215",
+  "revision": "20240410",
   "rootUrl": "https://datastream.googleapis.com/",
   "schemas": {
+    "AppendOnly": {
+      "description": "AppendOnly mode defines that all changes to a table will be written to the destination table.",
+      "id": "AppendOnly",
+      "properties": {},
+      "type": "object"
+    },
     "AvroFileFormat": {
       "description": "AVRO file format configuration.",
       "id": "AvroFileFormat",
@@ -1358,10 +1364,18 @@
       "description": "BigQuery destination configuration",
       "id": "BigQueryDestinationConfig",
       "properties": {
+        "appendOnly": {
+          "$ref": "AppendOnly",
+          "description": "Append only mode"
+        },
         "dataFreshness": {
           "description": "The guaranteed data freshness (in seconds) when querying tables created by the stream. Editing this field will only affect new tables created in the future, but existing tables will not be impacted. Lower values mean that queries will return fresher data, but may result in higher cost.",
           "format": "google-duration",
           "type": "string"
+        },
+        "merge": {
+          "$ref": "Merge",
+          "description": "The standard mode"
         },
         "singleTargetDataset": {
           "$ref": "SingleTargetDataset",
@@ -1934,6 +1948,12 @@
           "description": "Required. The source object identifier which maps to the stream object."
         }
       },
+      "type": "object"
+    },
+    "Merge": {
+      "description": "Merge mode defines that all changes to a table will be merged at the destination table.",
+      "id": "Merge",
+      "properties": {},
       "type": "object"
     },
     "MostRecentStartPosition": {
