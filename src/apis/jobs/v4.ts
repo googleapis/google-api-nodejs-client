@@ -1387,6 +1387,7 @@ export namespace jobs_v4 {
           {
             url: (rootUrl + '/v4/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1504,6 +1505,7 @@ export namespace jobs_v4 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1591,6 +1593,7 @@ export namespace jobs_v4 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1675,6 +1678,7 @@ export namespace jobs_v4 {
           {
             url: (rootUrl + '/v4/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -1759,6 +1763,7 @@ export namespace jobs_v4 {
           {
             url: (rootUrl + '/v4/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1849,6 +1854,7 @@ export namespace jobs_v4 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1933,6 +1939,7 @@ export namespace jobs_v4 {
           {
             url: (rootUrl + '/v4/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -2116,6 +2123,7 @@ export namespace jobs_v4 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2223,6 +2231,7 @@ export namespace jobs_v4 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2307,6 +2316,7 @@ export namespace jobs_v4 {
           {
             url: (rootUrl + '/v4/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -2391,6 +2401,7 @@ export namespace jobs_v4 {
           {
             url: (rootUrl + '/v4/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2483,6 +2494,7 @@ export namespace jobs_v4 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2567,6 +2579,7 @@ export namespace jobs_v4 {
           {
             url: (rootUrl + '/v4/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -2723,6 +2736,7 @@ export namespace jobs_v4 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2810,6 +2824,7 @@ export namespace jobs_v4 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2897,6 +2912,7 @@ export namespace jobs_v4 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2981,6 +2997,7 @@ export namespace jobs_v4 {
           {
             url: (rootUrl + '/v4/{+parent}/jobs').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3065,6 +3082,7 @@ export namespace jobs_v4 {
           {
             url: (rootUrl + '/v4/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -3149,6 +3167,7 @@ export namespace jobs_v4 {
           {
             url: (rootUrl + '/v4/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3233,6 +3252,7 @@ export namespace jobs_v4 {
           {
             url: (rootUrl + '/v4/{+parent}/jobs').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3317,6 +3337,7 @@ export namespace jobs_v4 {
           {
             url: (rootUrl + '/v4/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -3407,6 +3428,7 @@ export namespace jobs_v4 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3499,6 +3521,7 @@ export namespace jobs_v4 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
