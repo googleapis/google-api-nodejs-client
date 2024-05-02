@@ -952,6 +952,10 @@ export namespace cloudbuild_v2 {
      */
     pipelineSpec?: Schema$PipelineSpec;
     /**
+     * Output only. Inline pipelineSpec yaml string, used by workflow run requests.
+     */
+    pipelineSpecYaml?: string | null;
+    /**
      * Optional. Provenance configuration.
      */
     provenance?: Schema$Provenance;
@@ -1431,6 +1435,14 @@ export namespace cloudbuild_v2 {
      */
     name?: string | null;
     /**
+     * Optional. Optional parameters passed to the StepAction.
+     */
+    params?: Schema$Param[];
+    /**
+     * Optional. Optional reference to a remote StepAction.
+     */
+    ref?: Schema$StepRef;
+    /**
      * The contents of an executable file to execute.
      */
     script?: string | null;
@@ -1450,6 +1462,23 @@ export namespace cloudbuild_v2 {
      * Container's working directory.
      */
     workingDir?: string | null;
+  }
+  /**
+   * A reference to a remote Step, i.e. a StepAction.
+   */
+  export interface Schema$StepRef {
+    /**
+     * Optional. Name of the step.
+     */
+    name?: string | null;
+    /**
+     * Optional. Parameters used to control the resolution.
+     */
+    params?: Schema$Param[];
+    /**
+     * Optional. Type of the resolver.
+     */
+    resolver?: string | null;
   }
   /**
    * StepTemplate can be used as the basis for all step containers within the Task, so that the steps inherit settings on the base container.
@@ -1501,6 +1530,10 @@ export namespace cloudbuild_v2 {
      * The type of data that the result holds.
      */
     type?: string | null;
+    /**
+     * Optional. Optionally used to initialize a Task's result with a Step's result.
+     */
+    value?: Schema$ParamValue;
   }
   /**
    * TaskSpec contains the Spec to instantiate a TaskRun.
@@ -1804,6 +1837,7 @@ export namespace cloudbuild_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1896,6 +1930,7 @@ export namespace cloudbuild_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2020,6 +2055,7 @@ export namespace cloudbuild_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2104,6 +2140,7 @@ export namespace cloudbuild_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -2198,6 +2235,7 @@ export namespace cloudbuild_v2 {
               rootUrl + '/v2/{+connection}:fetchLinkableRepositories'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2284,6 +2322,7 @@ export namespace cloudbuild_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2372,6 +2411,7 @@ export namespace cloudbuild_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2464,6 +2504,7 @@ export namespace cloudbuild_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2548,6 +2589,7 @@ export namespace cloudbuild_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -2636,6 +2678,7 @@ export namespace cloudbuild_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2724,6 +2767,7 @@ export namespace cloudbuild_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2819,6 +2863,7 @@ export namespace cloudbuild_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3065,6 +3110,7 @@ export namespace cloudbuild_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3160,6 +3206,7 @@ export namespace cloudbuild_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3248,6 +3295,7 @@ export namespace cloudbuild_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3336,6 +3384,7 @@ export namespace cloudbuild_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3421,6 +3470,7 @@ export namespace cloudbuild_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -3516,6 +3566,7 @@ export namespace cloudbuild_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3601,6 +3652,7 @@ export namespace cloudbuild_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3694,6 +3746,7 @@ export namespace cloudbuild_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3898,6 +3951,7 @@ export namespace cloudbuild_v2 {
           {
             url: (rootUrl + '/v2/{+name}:cancel').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3982,6 +4036,7 @@ export namespace cloudbuild_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
