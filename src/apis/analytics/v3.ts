@@ -2685,6 +2685,7 @@ export namespace analytics_v3 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2833,6 +2834,7 @@ export namespace analytics_v3 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2970,6 +2972,7 @@ export namespace analytics_v3 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3158,6 +3161,7 @@ export namespace analytics_v3 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3263,6 +3267,7 @@ export namespace analytics_v3 {
               rootUrl + '/analytics/v3/management/accountSummaries'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3367,6 +3372,7 @@ export namespace analytics_v3 {
               '/analytics/v3/management/accounts/{accountId}/entityUserLinks/{linkId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -3454,6 +3460,7 @@ export namespace analytics_v3 {
               '/analytics/v3/management/accounts/{accountId}/entityUserLinks'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3541,6 +3548,7 @@ export namespace analytics_v3 {
               '/analytics/v3/management/accounts/{accountId}/entityUserLinks'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3628,6 +3636,7 @@ export namespace analytics_v3 {
               '/analytics/v3/management/accounts/{accountId}/entityUserLinks/{linkId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
+            apiVersion: '',
           },
           options
         ),
@@ -3783,6 +3792,7 @@ export namespace analytics_v3 {
               rootUrl + '/analytics/v3/management/clientId:hashClientId'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3888,6 +3898,7 @@ export namespace analytics_v3 {
               '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customDataSources'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4002,6 +4013,7 @@ export namespace analytics_v3 {
               '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customDimensions/{customDimensionId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4089,6 +4101,7 @@ export namespace analytics_v3 {
               '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customDimensions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4176,6 +4189,7 @@ export namespace analytics_v3 {
               '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customDimensions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4263,6 +4277,7 @@ export namespace analytics_v3 {
               '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customDimensions/{customDimensionId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -4350,6 +4365,7 @@ export namespace analytics_v3 {
               '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customDimensions/{customDimensionId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
+            apiVersion: '',
           },
           options
         ),
@@ -4543,6 +4559,7 @@ export namespace analytics_v3 {
               '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customMetrics/{customMetricId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4630,6 +4647,7 @@ export namespace analytics_v3 {
               '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customMetrics'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4717,6 +4735,7 @@ export namespace analytics_v3 {
               '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customMetrics'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4804,6 +4823,7 @@ export namespace analytics_v3 {
               '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customMetrics/{customMetricId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -4891,6 +4911,7 @@ export namespace analytics_v3 {
               '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customMetrics/{customMetricId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
+            apiVersion: '',
           },
           options
         ),
@@ -5082,6 +5103,7 @@ export namespace analytics_v3 {
               '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/experiments/{experimentId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -5174,6 +5196,7 @@ export namespace analytics_v3 {
               '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/experiments/{experimentId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5266,6 +5289,7 @@ export namespace analytics_v3 {
               '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/experiments'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5353,6 +5377,7 @@ export namespace analytics_v3 {
               '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/experiments'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5440,6 +5465,7 @@ export namespace analytics_v3 {
               '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/experiments/{experimentId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -5532,6 +5558,7 @@ export namespace analytics_v3 {
               '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/experiments/{experimentId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
+            apiVersion: '',
           },
           options
         ),
@@ -5761,6 +5788,7 @@ export namespace analytics_v3 {
               '/analytics/v3/management/accounts/{accountId}/filters/{filterId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -5848,6 +5876,7 @@ export namespace analytics_v3 {
               '/analytics/v3/management/accounts/{accountId}/filters/{filterId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5934,6 +5963,7 @@ export namespace analytics_v3 {
               rootUrl + '/analytics/v3/management/accounts/{accountId}/filters'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -6020,6 +6050,7 @@ export namespace analytics_v3 {
               rootUrl + '/analytics/v3/management/accounts/{accountId}/filters'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6107,6 +6138,7 @@ export namespace analytics_v3 {
               '/analytics/v3/management/accounts/{accountId}/filters/{filterId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -6194,6 +6226,7 @@ export namespace analytics_v3 {
               '/analytics/v3/management/accounts/{accountId}/filters/{filterId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
+            apiVersion: '',
           },
           options
         ),
@@ -6370,6 +6403,7 @@ export namespace analytics_v3 {
               '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/goals/{goalId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6457,6 +6491,7 @@ export namespace analytics_v3 {
               '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/goals'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -6544,6 +6579,7 @@ export namespace analytics_v3 {
               '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/goals'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6631,6 +6667,7 @@ export namespace analytics_v3 {
               '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/goals/{goalId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -6718,6 +6755,7 @@ export namespace analytics_v3 {
               '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/goals/{goalId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
+            apiVersion: '',
           },
           options
         ),
@@ -6921,6 +6959,7 @@ export namespace analytics_v3 {
               '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/profileFilterLinks/{linkId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -7011,6 +7050,7 @@ export namespace analytics_v3 {
               '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/profileFilterLinks/{linkId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -7101,6 +7141,7 @@ export namespace analytics_v3 {
               '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/profileFilterLinks'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -7191,6 +7232,7 @@ export namespace analytics_v3 {
               '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/profileFilterLinks'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -7281,6 +7323,7 @@ export namespace analytics_v3 {
               '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/profileFilterLinks/{linkId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -7371,6 +7414,7 @@ export namespace analytics_v3 {
               '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/profileFilterLinks/{linkId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
+            apiVersion: '',
           },
           options
         ),
@@ -7593,6 +7637,7 @@ export namespace analytics_v3 {
               '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -7680,6 +7725,7 @@ export namespace analytics_v3 {
               '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -7767,6 +7813,7 @@ export namespace analytics_v3 {
               '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -7854,6 +7901,7 @@ export namespace analytics_v3 {
               '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -7941,6 +7989,7 @@ export namespace analytics_v3 {
               '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -8028,6 +8077,7 @@ export namespace analytics_v3 {
               '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
+            apiVersion: '',
           },
           options
         ),
@@ -8226,6 +8276,7 @@ export namespace analytics_v3 {
               '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/entityUserLinks/{linkId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -8313,6 +8364,7 @@ export namespace analytics_v3 {
               '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/entityUserLinks'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -8400,6 +8452,7 @@ export namespace analytics_v3 {
               '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/entityUserLinks'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -8487,6 +8540,7 @@ export namespace analytics_v3 {
               '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/entityUserLinks/{linkId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
+            apiVersion: '',
           },
           options
         ),
@@ -8666,6 +8720,7 @@ export namespace analytics_v3 {
               '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/remarketingAudiences/{remarketingAudienceId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -8756,6 +8811,7 @@ export namespace analytics_v3 {
               '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/remarketingAudiences/{remarketingAudienceId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -8846,6 +8902,7 @@ export namespace analytics_v3 {
               '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/remarketingAudiences'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -8938,6 +8995,7 @@ export namespace analytics_v3 {
               '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/remarketingAudiences'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -9028,6 +9086,7 @@ export namespace analytics_v3 {
               '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/remarketingAudiences/{remarketingAudienceId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -9118,6 +9177,7 @@ export namespace analytics_v3 {
               '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/remarketingAudiences/{remarketingAudienceId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
+            apiVersion: '',
           },
           options
         ),
@@ -9322,6 +9382,7 @@ export namespace analytics_v3 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -9426,6 +9487,7 @@ export namespace analytics_v3 {
               '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/unsampledReports/{unsampledReportId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -9523,6 +9585,7 @@ export namespace analytics_v3 {
               '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/unsampledReports/{unsampledReportId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -9620,6 +9683,7 @@ export namespace analytics_v3 {
               '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/unsampledReports'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -9707,6 +9771,7 @@ export namespace analytics_v3 {
               '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/unsampledReports'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -9881,6 +9946,7 @@ export namespace analytics_v3 {
               '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customDataSources/{customDataSourceId}/deleteUploadData'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -9968,6 +10034,7 @@ export namespace analytics_v3 {
               '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customDataSources/{customDataSourceId}/uploads/{uploadId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -10065,6 +10132,7 @@ export namespace analytics_v3 {
               '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customDataSources/{customDataSourceId}/uploads'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -10152,6 +10220,7 @@ export namespace analytics_v3 {
               '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customDataSources/{customDataSourceId}/uploads'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -10348,6 +10417,7 @@ export namespace analytics_v3 {
               '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -10435,6 +10505,7 @@ export namespace analytics_v3 {
               '/analytics/v3/management/accounts/{accountId}/webproperties'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -10522,6 +10593,7 @@ export namespace analytics_v3 {
               '/analytics/v3/management/accounts/{accountId}/webproperties'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -10609,6 +10681,7 @@ export namespace analytics_v3 {
               '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -10696,6 +10769,7 @@ export namespace analytics_v3 {
               '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
+            apiVersion: '',
           },
           options
         ),
@@ -10860,6 +10934,7 @@ export namespace analytics_v3 {
               '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/entityAdWordsLinks/{webPropertyAdWordsLinkId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -10954,6 +11029,7 @@ export namespace analytics_v3 {
               '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/entityAdWordsLinks/{webPropertyAdWordsLinkId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -11049,6 +11125,7 @@ export namespace analytics_v3 {
               '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/entityAdWordsLinks'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -11139,6 +11216,7 @@ export namespace analytics_v3 {
               '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/entityAdWordsLinks'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -11229,6 +11307,7 @@ export namespace analytics_v3 {
               '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/entityAdWordsLinks/{webPropertyAdWordsLinkId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -11324,6 +11403,7 @@ export namespace analytics_v3 {
               '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/entityAdWordsLinks/{webPropertyAdWordsLinkId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
+            apiVersion: '',
           },
           options
         ),
@@ -11526,6 +11606,7 @@ export namespace analytics_v3 {
               '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/entityUserLinks/{linkId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -11613,6 +11694,7 @@ export namespace analytics_v3 {
               '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/entityUserLinks'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -11700,6 +11782,7 @@ export namespace analytics_v3 {
               '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/entityUserLinks'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -11787,6 +11870,7 @@ export namespace analytics_v3 {
               '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/entityUserLinks/{linkId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
+            apiVersion: '',
           },
           options
         ),
@@ -11960,6 +12044,7 @@ export namespace analytics_v3 {
               rootUrl + '/analytics/v3/metadata/{reportType}/columns'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -12063,6 +12148,7 @@ export namespace analytics_v3 {
               rootUrl + '/analytics/v3/provisioning/createAccountTicket'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -12154,6 +12240,7 @@ export namespace analytics_v3 {
               rootUrl + '/analytics/v3/provisioning/createAccountTree'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -12276,6 +12363,7 @@ export namespace analytics_v3 {
               rootUrl + '/analytics/v3/userDeletion/userDeletionRequests:upsert'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
