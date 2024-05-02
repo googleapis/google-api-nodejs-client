@@ -290,6 +290,7 @@ export namespace cloudprofiler_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -378,6 +379,7 @@ export namespace cloudprofiler_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -471,6 +473,7 @@ export namespace cloudprofiler_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -556,6 +559,7 @@ export namespace cloudprofiler_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -602,11 +606,11 @@ export namespace cloudprofiler_v2 {
   export interface Params$Resource$Projects$Profiles$List
     extends StandardParameters {
     /**
-     * The maximum number of items to return. Default page_size is 1000. Max limit is 1000.
+     * Optional. The maximum number of items to return. Default page_size is 1000. Max limit is 1000.
      */
     pageSize?: number;
     /**
-     * The token to continue pagination and get profiles from a particular page. When paginating, all other parameters provided to `ListProfiles` must match the call that provided the page token.
+     * Optional. The token to continue pagination and get profiles from a particular page. When paginating, all other parameters provided to `ListProfiles` must match the call that provided the page token.
      */
     pageToken?: string;
     /**
