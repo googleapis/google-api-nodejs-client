@@ -1,5 +1,12 @@
 # Changelog
 
+## [16.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/run-v16.0.0...run-v16.1.0) (2024-05-02)
+
+
+### Features
+
+* **run:** update the API ([4adbdec](https://github.com/googleapis/google-api-nodejs-client/commit/4adbdec9d3771f3c024f978fab7897e547825b11))
+
 ## [16.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/run-v15.0.0...run-v16.0.0) (2024-04-04)
 
 

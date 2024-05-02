@@ -1,5 +1,12 @@
 # Changelog
 
+## [7.0.2](https://github.com/googleapis/google-api-nodejs-client/compare/gkeonprem-v7.0.1...gkeonprem-v7.0.2) (2024-05-02)
+
+
+### Bug Fixes
+
+* **gkeonprem:** update the API ([50b340a](https://github.com/googleapis/google-api-nodejs-client/commit/50b340ab8c56308486f8f47f15cf76c010300137))
+
 ## [7.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/gkeonprem-v7.0.0...gkeonprem-v7.0.1) (2024-04-04)
 
 

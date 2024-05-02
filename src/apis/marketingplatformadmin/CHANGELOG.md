@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/marketingplatformadmin-v0.1.0...marketingplatformadmin-v0.2.0) (2024-05-02)
+
+
+### Features
+
+* **marketingplatformadmin:** update the API ([ff87055](https://github.com/googleapis/google-api-nodejs-client/commit/ff8705570be84e5c2b93bac53dc6dc38923137ef))
+
 ## 0.1.0 (2024-04-04)
 
 
