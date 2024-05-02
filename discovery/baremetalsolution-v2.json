@@ -206,6 +206,34 @@
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
+                "disableHyperthreading": {
+                  "description": "Perform disable hyperthreading operation on a single server.",
+                  "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/instances/{instancesId}:disableHyperthreading",
+                  "httpMethod": "POST",
+                  "id": "baremetalsolution.projects.locations.instances.disableHyperthreading",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The `name` field is used to identify the instance. Format: projects/{project}/locations/{location}/instances/{instance}",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/instances/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2/{+name}:disableHyperthreading",
+                  "request": {
+                    "$ref": "DisableHyperthreadingRequest"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
                 "disableInteractiveSerialConsole": {
                   "description": "Disable the interactive serial console feature on an instance.",
                   "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/instances/{instancesId}:disableInteractiveSerialConsole",
@@ -226,6 +254,34 @@
                   "path": "v2/{+name}:disableInteractiveSerialConsole",
                   "request": {
                     "$ref": "DisableInteractiveSerialConsoleRequest"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "enableHyperthreading": {
+                  "description": "Perform enable hyperthreading operation on a single server.",
+                  "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/instances/{instancesId}:enableHyperthreading",
+                  "httpMethod": "POST",
+                  "id": "baremetalsolution.projects.locations.instances.enableHyperthreading",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The `name` field is used to identify the instance. Format: projects/{project}/locations/{location}/instances/{instance}",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/instances/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2/{+name}:enableHyperthreading",
+                  "request": {
+                    "$ref": "EnableHyperthreadingRequest"
                   },
                   "response": {
                     "$ref": "Operation"
@@ -379,6 +435,34 @@
                   "path": "v2/{+name}",
                   "request": {
                     "$ref": "Instance"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "reimage": {
+                  "description": "Perform reimage operation on a single server.",
+                  "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/instances/{instancesId}:reimage",
+                  "httpMethod": "POST",
+                  "id": "baremetalsolution.projects.locations.instances.reimage",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The `name` field is used to identify the instance. Format: projects/{project}/locations/{location}/instances/{instance}",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/instances/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2/{+name}:reimage",
+                  "request": {
+                    "$ref": "ReimageInstanceRequest"
                   },
                   "response": {
                     "$ref": "Operation"
@@ -1638,7 +1722,7 @@
       }
     }
   },
-  "revision": "20240214",
+  "revision": "20240422",
   "rootUrl": "https://baremetalsolution.googleapis.com/",
   "schemas": {
     "AllowedClient": {
@@ -1707,6 +1791,12 @@
       },
       "type": "object"
     },
+    "DisableHyperthreadingRequest": {
+      "description": "Message requesting to perform disable hyperthreading operation on a server.",
+      "id": "DisableHyperthreadingRequest",
+      "properties": {},
+      "type": "object"
+    },
     "DisableInteractiveSerialConsoleRequest": {
       "description": "Message for disabling the interactive serial console on an instance.",
       "id": "DisableInteractiveSerialConsoleRequest",
@@ -1722,6 +1812,12 @@
     "Empty": {
       "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }",
       "id": "Empty",
+      "properties": {},
+      "type": "object"
+    },
+    "EnableHyperthreadingRequest": {
+      "description": "Message requesting to perform enable hyperthreading operation on a server.",
+      "id": "EnableHyperthreadingRequest",
       "properties": {},
       "type": "object"
     },
@@ -3171,6 +3267,28 @@
           "description": "The bandwidth permitted by the QOS policy, in gbps.",
           "format": "double",
           "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "ReimageInstanceRequest": {
+      "description": "Message requesting to perform reimage operation on a server.",
+      "id": "ReimageInstanceRequest",
+      "properties": {
+        "kmsKeyVersion": {
+          "description": "Optional. Name of the KMS crypto key version used to encrypt the initial passwords. The key has to have ASYMMETRIC_DECRYPT purpose. Format is `projects/{project}/locations/{location}/keyRings/{keyring}/cryptoKeys/{key}/cryptoKeyVersions/{version}`.",
+          "type": "string"
+        },
+        "osImage": {
+          "description": "Required. The OS image code of the image which will be used in the reimage operation.",
+          "type": "string"
+        },
+        "sshKeys": {
+          "description": "Optional. List of SSH Keys used during reimaging an instance.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"

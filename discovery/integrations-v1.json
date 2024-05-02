@@ -236,31 +236,6 @@
               "scopes": [
                 "https://www.googleapis.com/auth/cloud-platform"
               ]
-            },
-            "listTaskEntities": {
-              "description": "This is a UI only method and will be moved away. Returns a list of common tasks.",
-              "flatPath": "v1/projects/{projectsId}/locations/{locationsId}:listTaskEntities",
-              "httpMethod": "GET",
-              "id": "integrations.projects.locations.listTaskEntities",
-              "parameterOrder": [
-                "parent"
-              ],
-              "parameters": {
-                "parent": {
-                  "description": "Required. The location resource of the request. This is not going to be used but preserve the field for future.",
-                  "location": "path",
-                  "pattern": "^projects/[^/]+/locations/[^/]+$",
-                  "required": true,
-                  "type": "string"
-                }
-              },
-              "path": "v1/{+parent}:listTaskEntities",
-              "response": {
-                "$ref": "GoogleCloudIntegrationsV1alphaListTaskEntitiesResponse"
-              },
-              "scopes": [
-                "https://www.googleapis.com/auth/cloud-platform"
-              ]
             }
           },
           "resources": {
@@ -429,7 +404,7 @@
                   ],
                   "parameters": {
                     "filter": {
-                      "description": "Filtering as supported in https://developers.google.com/authorized-buyers/apis/guides/v2/list-filters.",
+                      "description": "Filtering as supported in https://developers.google.com/authorized-buyers/apis/guides/list-filters.",
                       "location": "query",
                       "type": "string"
                     },
@@ -491,7 +466,7 @@
                       "type": "string"
                     },
                     "name": {
-                      "description": "Resource name of the SFDC instance projects/{project}/locations/{location}/authConfigs/{authConfig}.",
+                      "description": "Resource name of the auth config. For more information, see Manage authentication profiles. projects/{project}/locations/{location}/authConfigs/{authConfig}.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/authConfigs/[^/]+$",
                       "required": true,
@@ -607,7 +582,7 @@
                   ],
                   "parameters": {
                     "filter": {
-                      "description": "Filtering as supported in https://developers.google.com/authorized-buyers/apis/guides/v2/list-filters.",
+                      "description": "Filtering as supported in https://developers.google.com/authorized-buyers/apis/guides/list-filters.",
                       "location": "query",
                       "type": "string"
                     },
@@ -737,13 +712,97 @@
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
+                },
+                "replace": {
+                  "description": "Update run-as service account for provisioned client",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/clients:replace",
+                  "httpMethod": "POST",
+                  "id": "integrations.projects.locations.clients.replace",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. Required: The ID of the GCP Project to be provisioned.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/clients:replace",
+                  "request": {
+                    "$ref": "GoogleCloudIntegrationsV1alphaReplaceServiceAccountRequest"
+                  },
+                  "response": {
+                    "$ref": "GoogleProtobufEmpty"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "switch": {
+                  "description": "Update client from GMEK to CMEK",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/clients:switch",
+                  "httpMethod": "POST",
+                  "id": "integrations.projects.locations.clients.switch",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. Required: The ID of the GCP Project to be provisioned.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/clients:switch",
+                  "request": {
+                    "$ref": "GoogleCloudIntegrationsV1alphaSwitchEncryptionRequest"
+                  },
+                  "response": {
+                    "$ref": "GoogleProtobufEmpty"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "switchVariableMasking": {
+                  "description": "Update variable masking for provisioned client",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/clients:switchVariableMasking",
+                  "httpMethod": "POST",
+                  "id": "integrations.projects.locations.clients.switchVariableMasking",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. Required: The ID of the GCP Project to be provisioned.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/clients:switchVariableMasking",
+                  "request": {
+                    "$ref": "GoogleCloudIntegrationsV1alphaSwitchVariableMaskingRequest"
+                  },
+                  "response": {
+                    "$ref": "GoogleProtobufEmpty"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
                 }
               }
             },
             "cloudFunctions": {
               "methods": {
                 "create": {
-                  "description": "Creates an cloud function project.",
+                  "description": "Creates a cloud function project.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/cloudFunctions",
                   "httpMethod": "POST",
                   "id": "integrations.projects.locations.cloudFunctions.create",
@@ -994,6 +1053,43 @@
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
+                "executeEvent": {
+                  "description": "Executes an integration on receiving events from Integration Connector triggers, Eventarc or CPS Trigger. Input data to integration is received in body in json format",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/integrations/{integrationsId}:executeEvent",
+                  "httpMethod": "POST",
+                  "id": "integrations.projects.locations.integrations.executeEvent",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The integration resource name. Format: projects/{gcp_project_id}/locations/{location}/integrations/{integration_id}",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/integrations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "triggerId": {
+                      "description": "Required. Id of the integration trigger config. The trigger_id is in the format: `integration_connector_trigger/projects/{gcp_project_id}/location/{location}/connections/{connection_name}/subscriptions/{subscription_name}`.",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}:executeEvent",
+                  "request": {
+                    "additionalProperties": {
+                      "description": "Properties of the object.",
+                      "type": "any"
+                    },
+                    "type": "object"
+                  },
+                  "response": {
+                    "$ref": "GoogleCloudIntegrationsV1alphaExecuteEventResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
                 "list": {
                   "description": "Returns the list of all integrations in the specified project.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/integrations",
@@ -1035,34 +1131,6 @@
                   "path": "v1/{+parent}/integrations",
                   "response": {
                     "$ref": "GoogleCloudIntegrationsV1alphaListIntegrationsResponse"
-                  },
-                  "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
-                  ]
-                },
-                "monitorexecutionstats": {
-                  "description": "Get execution stats",
-                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/integrations/{integrationsId}:monitorexecutionstats",
-                  "httpMethod": "POST",
-                  "id": "integrations.projects.locations.integrations.monitorexecutionstats",
-                  "parameterOrder": [
-                    "parent"
-                  ],
-                  "parameters": {
-                    "parent": {
-                      "description": "Required. The parent resource name: {parent=projects/*/locations/*}.",
-                      "location": "path",
-                      "pattern": "^projects/[^/]+/locations/[^/]+/integrations/[^/]+$",
-                      "required": true,
-                      "type": "string"
-                    }
-                  },
-                  "path": "v1/{+parent}:monitorexecutionstats",
-                  "request": {
-                    "$ref": "GoogleCloudIntegrationsV1alphaMonitorExecutionStatsRequest"
-                  },
-                  "response": {
-                    "$ref": "GoogleCloudIntegrationsV1alphaMonitorExecutionStatsResponse"
                   },
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform"
@@ -1188,7 +1256,7 @@
                       ],
                       "parameters": {
                         "filter": {
-                          "description": "Optional. Standard filter field, we support filtering on all fields in EventExecutionParamIndexes table. All fields support for EQUALS, in additional: CreateTimestamp support for LESS_THAN, GREATER_THAN ParameterKey, ParameterValue, ParameterType support for HAS For example: \"parameter_value\" HAS \\\"parameter1\\\" Also supports operators like AND, OR, NOT For example, trigger_id=\\\"id1\\\" AND event_execution_state=\\\"FAILED\\\"",
+                          "description": "Optional. Standard filter field, we support filtering on following fields: workflow_name: the name of the integration. CreateTimestamp: the execution created time. event_execution_state: the state of the executions. execution_id: the id of the execution. trigger_id: the id of the trigger. parameter_type: the type of the parameters involved in the execution. All fields support for EQUALS, in additional: CreateTimestamp support for LESS_THAN, GREATER_THAN ParameterType support for HAS For example: \"parameter_type\" HAS \\\"string\\\" Also supports operators like AND, OR, NOT For example, trigger_id=\\\"id1\\\" AND workflow_name=\\\"testWorkflow\\\"",
                           "location": "query",
                           "type": "string"
                         },
@@ -1215,6 +1283,7 @@
                           "type": "string"
                         },
                         "filterParams.parameterKey": {
+                          "deprecated": true,
                           "description": "Param key. DEPRECATED. User parameter_pair_key instead.",
                           "location": "query",
                           "type": "string"
@@ -1235,6 +1304,7 @@
                           "type": "string"
                         },
                         "filterParams.parameterValue": {
+                          "deprecated": true,
                           "description": "Param value. DEPRECATED. User parameter_pair_value instead.",
                           "location": "query",
                           "type": "string"
@@ -1246,6 +1316,7 @@
                           "type": "string"
                         },
                         "filterParams.taskStatuses": {
+                          "deprecated": true,
                           "description": "List of possible task statuses.",
                           "location": "query",
                           "repeated": true,
@@ -1290,7 +1361,13 @@
                           "location": "query",
                           "type": "boolean"
                         },
+                        "snapshotMetadataWithoutParams": {
+                          "description": "Optional. If true, the service will provide execution info with snapshot metadata only i.e. without event parameters.",
+                          "location": "query",
+                          "type": "boolean"
+                        },
                         "truncateParams": {
+                          "deprecated": true,
                           "description": "Optional. If true, the service will truncate the params to only keep the first 1000 characters of string params and empty the executions in order to make response smaller. Only works for UI and when the params fields are not filtered out.",
                           "location": "query",
                           "type": "boolean"
@@ -1309,7 +1386,7 @@
                     "suspensions": {
                       "methods": {
                         "lift": {
-                          "description": "* Lifts suspension for advanced suspension task. Fetch corresponding suspension with provided suspension Id, resolve suspension, and set up suspension result for the Suspension Task.",
+                          "description": "* Lifts suspension for the Suspension task. Fetch corresponding suspension with provided suspension Id, resolve suspension, and set up suspension result for the Suspension Task.",
                           "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/integrations/{integrationsId}/executions/{executionsId}/suspensions/{suspensionsId}:lift",
                           "httpMethod": "POST",
                           "id": "integrations.projects.locations.integrations.executions.suspensions.lift",
@@ -1414,87 +1491,8 @@
                     }
                   }
                 },
-                "executionsnapshots": {
-                  "methods": {
-                    "list": {
-                      "description": "Lists the snapshots of a given integration executions. This RPC is not being used.",
-                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/integrations/{integrationsId}/executionsnapshots",
-                      "httpMethod": "GET",
-                      "id": "integrations.projects.locations.integrations.executionsnapshots.list",
-                      "parameterOrder": [
-                        "parent"
-                      ],
-                      "parameters": {
-                        "filter": {
-                          "description": "Currently supports filter by `execution_info_id` or `execution_snapshot_id`.",
-                          "location": "query",
-                          "type": "string"
-                        },
-                        "pageSize": {
-                          "description": "Number of entries to be returned in a page.",
-                          "format": "int32",
-                          "location": "query",
-                          "type": "integer"
-                        },
-                        "pageToken": {
-                          "description": "The token used to retrieve the next page results.",
-                          "location": "query",
-                          "type": "string"
-                        },
-                        "parent": {
-                          "description": "Required. The parent resource name of the integration execution.",
-                          "location": "path",
-                          "pattern": "^projects/[^/]+/locations/[^/]+/integrations/[^/]+$",
-                          "required": true,
-                          "type": "string"
-                        },
-                        "readMask": {
-                          "description": "View mask for the response data. If set, only the field specified will be returned as part of the result. If not set, all fields in event execution snapshot will be filled and returned.",
-                          "format": "google-fieldmask",
-                          "location": "query",
-                          "type": "string"
-                        }
-                      },
-                      "path": "v1/{+parent}/executionsnapshots",
-                      "response": {
-                        "$ref": "GoogleCloudIntegrationsV1alphaListExecutionSnapshotsResponse"
-                      },
-                      "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform"
-                      ]
-                    }
-                  }
-                },
                 "versions": {
                   "methods": {
-                    "archive": {
-                      "description": "Soft-deletes the integration. Changes the status of the integration to ARCHIVED. If the integration being ARCHIVED is tagged as \"HEAD\", the tag is removed from this snapshot and set to the previous non-ARCHIVED snapshot. The PUBLISH_REQUESTED, DUE_FOR_DELETION tags are removed too. This RPC throws an exception if the version being archived is DRAFT, and if the `locked_by` user is not the same as the user performing the Archive. Audit fields updated include last_modified_timestamp, last_modified_by. Any existing lock is released when Archiving a integration. Currently, there is no unarchive mechanism.",
-                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/integrations/{integrationsId}/versions/{versionsId}:archive",
-                      "httpMethod": "POST",
-                      "id": "integrations.projects.locations.integrations.versions.archive",
-                      "parameterOrder": [
-                        "name"
-                      ],
-                      "parameters": {
-                        "name": {
-                          "description": "Required. The version to archive. Format: projects/{project}/locations/{location}/integrations/{integration}/versions/{version}",
-                          "location": "path",
-                          "pattern": "^projects/[^/]+/locations/[^/]+/integrations/[^/]+/versions/[^/]+$",
-                          "required": true,
-                          "type": "string"
-                        }
-                      },
-                      "path": "v1/{+name}:archive",
-                      "request": {
-                        "$ref": "GoogleCloudIntegrationsV1alphaArchiveIntegrationVersionRequest"
-                      },
-                      "response": {
-                        "$ref": "GoogleCloudIntegrationsV1alphaArchiveIntegrationVersionResponse"
-                      },
-                      "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform"
-                      ]
-                    },
                     "create": {
                       "description": "Create a integration with a draft version in the specified project.",
                       "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/integrations/{integrationsId}/versions",
@@ -1504,6 +1502,11 @@
                         "parent"
                       ],
                       "parameters": {
+                        "createSampleIntegrations": {
+                          "description": "Optional. Optional. Indicates if sample workflow should be created.",
+                          "location": "query",
+                          "type": "boolean"
+                        },
                         "newIntegration": {
                           "description": "Set this flag to true, if draft version is to be created for a brand new integration. False, if the request is for an existing integration. For backward compatibility reasons, even if this flag is set to `false` and no existing integration is found, a new draft integration will still be created.",
                           "location": "query",
@@ -1523,34 +1526,6 @@
                       },
                       "response": {
                         "$ref": "GoogleCloudIntegrationsV1alphaIntegrationVersion"
-                      },
-                      "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform"
-                      ]
-                    },
-                    "deactivate": {
-                      "description": "Sets the status of the ACTIVE integration to SNAPSHOT with a new tag \"PREVIOUSLY_PUBLISHED\" after validating it. The \"HEAD\" and \"PUBLISH_REQUESTED\" tags do not change. This RPC throws an exception if the version being snapshot is not ACTIVE. Audit fields added include action, action_by, action_timestamp.",
-                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/integrations/{integrationsId}/versions/{versionsId}:deactivate",
-                      "httpMethod": "POST",
-                      "id": "integrations.projects.locations.integrations.versions.deactivate",
-                      "parameterOrder": [
-                        "name"
-                      ],
-                      "parameters": {
-                        "name": {
-                          "description": "Required. The version to deactivate. Format: projects/{project}/locations/{location}/integrations/{integration}/versions/{version}",
-                          "location": "path",
-                          "pattern": "^projects/[^/]+/locations/[^/]+/integrations/[^/]+/versions/[^/]+$",
-                          "required": true,
-                          "type": "string"
-                        }
-                      },
-                      "path": "v1/{+name}:deactivate",
-                      "request": {
-                        "$ref": "GoogleCloudIntegrationsV1alphaDeactivateIntegrationVersionRequest"
-                      },
-                      "response": {
-                        "$ref": "GoogleCloudIntegrationsV1alphaDeactivateIntegrationVersionResponse"
                       },
                       "scopes": [
                         "https://www.googleapis.com/auth/cloud-platform"
@@ -1605,6 +1580,22 @@
                           "location": "query",
                           "type": "string"
                         },
+                        "files": {
+                          "description": "Optional. Integration related file to download like Integration Json, Config variable, testcase etc.",
+                          "enum": [
+                            "INTEGRATION_FILE_UNSPECIFIED",
+                            "INTEGRATION",
+                            "INTEGRATION_CONFIG_VARIABLES"
+                          ],
+                          "enumDescriptions": [
+                            "Default value.",
+                            "Integration file.",
+                            "Integration Config variables."
+                          ],
+                          "location": "query",
+                          "repeated": true,
+                          "type": "string"
+                        },
                         "name": {
                           "description": "Required. The version to download. Format: projects/{project}/locations/{location}/integrations/{integration}/versions/{version}",
                           "location": "path",
@@ -1616,6 +1607,47 @@
                       "path": "v1/{+name}:download",
                       "response": {
                         "$ref": "GoogleCloudIntegrationsV1alphaDownloadIntegrationVersionResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "downloadJsonPackage": {
+                      "description": "Downloads an Integration version package like IntegrationVersion,Integration Config etc. Retrieves the IntegrationVersion package for a given `integration_id` and returns the response as a JSON.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/integrations/{integrationsId}/versions/{versionsId}:downloadJsonPackage",
+                      "httpMethod": "GET",
+                      "id": "integrations.projects.locations.integrations.versions.downloadJsonPackage",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "files": {
+                          "description": "Optional. Integration related file to download like Integration Version, Config variable, testcase etc.",
+                          "enum": [
+                            "INTEGRATION_FILE_UNSPECIFIED",
+                            "INTEGRATION",
+                            "INTEGRATION_CONFIG_VARIABLES"
+                          ],
+                          "enumDescriptions": [
+                            "Default value.",
+                            "Integration file.",
+                            "Integration Config variables."
+                          ],
+                          "location": "query",
+                          "repeated": true,
+                          "type": "string"
+                        },
+                        "name": {
+                          "description": "Required. Integration version name Format: projects/{project}/locations/{location}/integrations/{integration}/versions/{version}",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/integrations/[^/]+/versions/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}:downloadJsonPackage",
+                      "response": {
+                        "$ref": "GoogleCloudIntegrationsV1alphaDownloadJsonPackageResponse"
                       },
                       "scopes": [
                         "https://www.googleapis.com/auth/cloud-platform"
@@ -1815,95 +1847,12 @@
                       "scopes": [
                         "https://www.googleapis.com/auth/cloud-platform"
                       ]
-                    },
-                    "validate": {
-                      "description": "Validates the given integration. If the id doesn't exist, a NotFoundException is thrown. If validation fails a CanonicalCodeException is thrown. If there was no failure an empty response is returned.",
-                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/integrations/{integrationsId}/versions/{versionsId}:validate",
-                      "httpMethod": "POST",
-                      "id": "integrations.projects.locations.integrations.versions.validate",
-                      "parameterOrder": [
-                        "name"
-                      ],
-                      "parameters": {
-                        "name": {
-                          "description": "Required. The version to validate. Format: projects/{project}/locations/{location}/integrations/{integration}/versions/{version}",
-                          "location": "path",
-                          "pattern": "^projects/[^/]+/locations/[^/]+/integrations/[^/]+/versions/[^/]+$",
-                          "required": true,
-                          "type": "string"
-                        }
-                      },
-                      "path": "v1/{+name}:validate",
-                      "request": {
-                        "$ref": "GoogleCloudIntegrationsV1alphaValidateIntegrationVersionRequest"
-                      },
-                      "response": {
-                        "$ref": "GoogleCloudIntegrationsV1alphaValidateIntegrationVersionResponse"
-                      },
-                      "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform"
-                      ]
                     }
                   }
                 }
               }
             },
             "products": {
-              "methods": {
-                "createBundle": {
-                  "description": "PROTECT WITH A VISIBILITY LABEL. THIS METHOD WILL BE MOVED TO A SEPARATE SERVICE. Create a bundle.",
-                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/products/{productsId}:createBundle",
-                  "httpMethod": "POST",
-                  "id": "integrations.projects.locations.products.createBundle",
-                  "parameterOrder": [
-                    "parent"
-                  ],
-                  "parameters": {
-                    "parent": {
-                      "description": "Required. The location resource of the request.",
-                      "location": "path",
-                      "pattern": "^projects/[^/]+/locations/[^/]+/products/[^/]+$",
-                      "required": true,
-                      "type": "string"
-                    }
-                  },
-                  "path": "v1/{+parent}:createBundle",
-                  "request": {
-                    "$ref": "GoogleCloudIntegrationsV1alphaCreateBundleRequest"
-                  },
-                  "response": {
-                    "$ref": "GoogleCloudIntegrationsV1alphaCreateBundleResponse"
-                  },
-                  "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
-                  ]
-                },
-                "listTaskEntities": {
-                  "description": "This is a UI only method and will be moved away. Returns a list of common tasks.",
-                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/products/{productsId}:listTaskEntities",
-                  "httpMethod": "GET",
-                  "id": "integrations.projects.locations.products.listTaskEntities",
-                  "parameterOrder": [
-                    "parent"
-                  ],
-                  "parameters": {
-                    "parent": {
-                      "description": "Required. The location resource of the request. This is not going to be used but preserve the field for future.",
-                      "location": "path",
-                      "pattern": "^projects/[^/]+/locations/[^/]+/products/[^/]+$",
-                      "required": true,
-                      "type": "string"
-                    }
-                  },
-                  "path": "v1/{+parent}:listTaskEntities",
-                  "response": {
-                    "$ref": "GoogleCloudIntegrationsV1alphaListTaskEntitiesResponse"
-                  },
-                  "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
-                  ]
-                }
-              },
               "resources": {
                 "authConfigs": {
                   "methods": {
@@ -2010,7 +1959,7 @@
                       ],
                       "parameters": {
                         "filter": {
-                          "description": "Filtering as supported in https://developers.google.com/authorized-buyers/apis/guides/v2/list-filters.",
+                          "description": "Filtering as supported in https://developers.google.com/authorized-buyers/apis/guides/list-filters.",
                           "location": "query",
                           "type": "string"
                         },
@@ -2072,7 +2021,7 @@
                           "type": "string"
                         },
                         "name": {
-                          "description": "Resource name of the SFDC instance projects/{project}/locations/{location}/authConfigs/{authConfig}.",
+                          "description": "Resource name of the auth config. For more information, see Manage authentication profiles. projects/{project}/locations/{location}/authConfigs/{authConfig}.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/products/[^/]+/authConfigs/[^/]+$",
                           "required": true,
@@ -2188,7 +2137,7 @@
                       ],
                       "parameters": {
                         "filter": {
-                          "description": "Filtering as supported in https://developers.google.com/authorized-buyers/apis/guides/v2/list-filters.",
+                          "description": "Filtering as supported in https://developers.google.com/authorized-buyers/apis/guides/list-filters.",
                           "location": "query",
                           "type": "string"
                         },
@@ -2264,7 +2213,7 @@
                 "cloudFunctions": {
                   "methods": {
                     "create": {
-                      "description": "Creates an cloud function project.",
+                      "description": "Creates a cloud function project.",
                       "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/products/{productsId}/cloudFunctions",
                       "httpMethod": "POST",
                       "id": "integrations.projects.locations.products.cloudFunctions.create",
@@ -2295,34 +2244,6 @@
                 },
                 "integrations": {
                   "methods": {
-                    "archiveBundle": {
-                      "description": "PROTECT WITH A VISIBILITY LABEL. THIS METHOD WILL BE MOVED TO A SEPARATE SERVICE. Soft-deletes the bundle.",
-                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/products/{productsId}/integrations/{integrationsId}:archiveBundle",
-                      "httpMethod": "POST",
-                      "id": "integrations.projects.locations.products.integrations.archiveBundle",
-                      "parameterOrder": [
-                        "name"
-                      ],
-                      "parameters": {
-                        "name": {
-                          "description": "Required. The bundle to archive. Format: projects/{project}/locations/{location}/integrations/{integration}",
-                          "location": "path",
-                          "pattern": "^projects/[^/]+/locations/[^/]+/products/[^/]+/integrations/[^/]+$",
-                          "required": true,
-                          "type": "string"
-                        }
-                      },
-                      "path": "v1/{+name}:archiveBundle",
-                      "request": {
-                        "$ref": "GoogleCloudIntegrationsV1alphaArchiveBundleRequest"
-                      },
-                      "response": {
-                        "$ref": "GoogleCloudIntegrationsV1alphaArchiveBundleResponse"
-                      },
-                      "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform"
-                      ]
-                    },
                     "execute": {
                       "description": "Executes integrations synchronously by passing the trigger id in the request body. The request is not returned until the requested executions are either fulfilled or experienced an error. If the integration name is not specified (passing `-`), all of the associated integration under the given trigger_id will be executed. Otherwise only the specified integration for the given `trigger_id` is executed. This is helpful for execution the integration from UI.",
                       "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/products/{productsId}/integrations/{integrationsId}:execute",
@@ -2392,34 +2313,6 @@
                       "path": "v1/{+parent}/integrations",
                       "response": {
                         "$ref": "GoogleCloudIntegrationsV1alphaListIntegrationsResponse"
-                      },
-                      "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform"
-                      ]
-                    },
-                    "monitorexecutionstats": {
-                      "description": "Get execution stats",
-                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/products/{productsId}/integrations/{integrationsId}:monitorexecutionstats",
-                      "httpMethod": "POST",
-                      "id": "integrations.projects.locations.products.integrations.monitorexecutionstats",
-                      "parameterOrder": [
-                        "parent"
-                      ],
-                      "parameters": {
-                        "parent": {
-                          "description": "Required. The parent resource name: {parent=projects/*/locations/*}.",
-                          "location": "path",
-                          "pattern": "^projects/[^/]+/locations/[^/]+/products/[^/]+/integrations/[^/]+$",
-                          "required": true,
-                          "type": "string"
-                        }
-                      },
-                      "path": "v1/{+parent}:monitorexecutionstats",
-                      "request": {
-                        "$ref": "GoogleCloudIntegrationsV1alphaMonitorExecutionStatsRequest"
-                      },
-                      "response": {
-                        "$ref": "GoogleCloudIntegrationsV1alphaMonitorExecutionStatsResponse"
                       },
                       "scopes": [
                         "https://www.googleapis.com/auth/cloud-platform"
@@ -2573,7 +2466,7 @@
                           ],
                           "parameters": {
                             "filter": {
-                              "description": "Optional. Standard filter field, we support filtering on all fields in EventExecutionParamIndexes table. All fields support for EQUALS, in additional: CreateTimestamp support for LESS_THAN, GREATER_THAN ParameterKey, ParameterValue, ParameterType support for HAS For example: \"parameter_value\" HAS \\\"parameter1\\\" Also supports operators like AND, OR, NOT For example, trigger_id=\\\"id1\\\" AND event_execution_state=\\\"FAILED\\\"",
+                              "description": "Optional. Standard filter field, we support filtering on following fields: workflow_name: the name of the integration. CreateTimestamp: the execution created time. event_execution_state: the state of the executions. execution_id: the id of the execution. trigger_id: the id of the trigger. parameter_type: the type of the parameters involved in the execution. All fields support for EQUALS, in additional: CreateTimestamp support for LESS_THAN, GREATER_THAN ParameterType support for HAS For example: \"parameter_type\" HAS \\\"string\\\" Also supports operators like AND, OR, NOT For example, trigger_id=\\\"id1\\\" AND workflow_name=\\\"testWorkflow\\\"",
                               "location": "query",
                               "type": "string"
                             },
@@ -2600,6 +2493,7 @@
                               "type": "string"
                             },
                             "filterParams.parameterKey": {
+                              "deprecated": true,
                               "description": "Param key. DEPRECATED. User parameter_pair_key instead.",
                               "location": "query",
                               "type": "string"
@@ -2620,6 +2514,7 @@
                               "type": "string"
                             },
                             "filterParams.parameterValue": {
+                              "deprecated": true,
                               "description": "Param value. DEPRECATED. User parameter_pair_value instead.",
                               "location": "query",
                               "type": "string"
@@ -2631,6 +2526,7 @@
                               "type": "string"
                             },
                             "filterParams.taskStatuses": {
+                              "deprecated": true,
                               "description": "List of possible task statuses.",
                               "location": "query",
                               "repeated": true,
@@ -2675,7 +2571,13 @@
                               "location": "query",
                               "type": "boolean"
                             },
+                            "snapshotMetadataWithoutParams": {
+                              "description": "Optional. If true, the service will provide execution info with snapshot metadata only i.e. without event parameters.",
+                              "location": "query",
+                              "type": "boolean"
+                            },
                             "truncateParams": {
+                              "deprecated": true,
                               "description": "Optional. If true, the service will truncate the params to only keep the first 1000 characters of string params and empty the executions in order to make response smaller. Only works for UI and when the params fields are not filtered out.",
                               "location": "query",
                               "type": "boolean"
@@ -2694,7 +2596,7 @@
                         "suspensions": {
                           "methods": {
                             "lift": {
-                              "description": "* Lifts suspension for advanced suspension task. Fetch corresponding suspension with provided suspension Id, resolve suspension, and set up suspension result for the Suspension Task.",
+                              "description": "* Lifts suspension for the Suspension task. Fetch corresponding suspension with provided suspension Id, resolve suspension, and set up suspension result for the Suspension Task.",
                               "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/products/{productsId}/integrations/{integrationsId}/executions/{executionsId}/suspensions/{suspensionsId}:lift",
                               "httpMethod": "POST",
                               "id": "integrations.projects.locations.products.integrations.executions.suspensions.lift",
@@ -2799,87 +2701,8 @@
                         }
                       }
                     },
-                    "executionsnapshots": {
-                      "methods": {
-                        "list": {
-                          "description": "Lists the snapshots of a given integration executions. This RPC is not being used.",
-                          "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/products/{productsId}/integrations/{integrationsId}/executionsnapshots",
-                          "httpMethod": "GET",
-                          "id": "integrations.projects.locations.products.integrations.executionsnapshots.list",
-                          "parameterOrder": [
-                            "parent"
-                          ],
-                          "parameters": {
-                            "filter": {
-                              "description": "Currently supports filter by `execution_info_id` or `execution_snapshot_id`.",
-                              "location": "query",
-                              "type": "string"
-                            },
-                            "pageSize": {
-                              "description": "Number of entries to be returned in a page.",
-                              "format": "int32",
-                              "location": "query",
-                              "type": "integer"
-                            },
-                            "pageToken": {
-                              "description": "The token used to retrieve the next page results.",
-                              "location": "query",
-                              "type": "string"
-                            },
-                            "parent": {
-                              "description": "Required. The parent resource name of the integration execution.",
-                              "location": "path",
-                              "pattern": "^projects/[^/]+/locations/[^/]+/products/[^/]+/integrations/[^/]+$",
-                              "required": true,
-                              "type": "string"
-                            },
-                            "readMask": {
-                              "description": "View mask for the response data. If set, only the field specified will be returned as part of the result. If not set, all fields in event execution snapshot will be filled and returned.",
-                              "format": "google-fieldmask",
-                              "location": "query",
-                              "type": "string"
-                            }
-                          },
-                          "path": "v1/{+parent}/executionsnapshots",
-                          "response": {
-                            "$ref": "GoogleCloudIntegrationsV1alphaListExecutionSnapshotsResponse"
-                          },
-                          "scopes": [
-                            "https://www.googleapis.com/auth/cloud-platform"
-                          ]
-                        }
-                      }
-                    },
                     "versions": {
                       "methods": {
-                        "archive": {
-                          "description": "Soft-deletes the integration. Changes the status of the integration to ARCHIVED. If the integration being ARCHIVED is tagged as \"HEAD\", the tag is removed from this snapshot and set to the previous non-ARCHIVED snapshot. The PUBLISH_REQUESTED, DUE_FOR_DELETION tags are removed too. This RPC throws an exception if the version being archived is DRAFT, and if the `locked_by` user is not the same as the user performing the Archive. Audit fields updated include last_modified_timestamp, last_modified_by. Any existing lock is released when Archiving a integration. Currently, there is no unarchive mechanism.",
-                          "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/products/{productsId}/integrations/{integrationsId}/versions/{versionsId}:archive",
-                          "httpMethod": "POST",
-                          "id": "integrations.projects.locations.products.integrations.versions.archive",
-                          "parameterOrder": [
-                            "name"
-                          ],
-                          "parameters": {
-                            "name": {
-                              "description": "Required. The version to archive. Format: projects/{project}/locations/{location}/integrations/{integration}/versions/{version}",
-                              "location": "path",
-                              "pattern": "^projects/[^/]+/locations/[^/]+/products/[^/]+/integrations/[^/]+/versions/[^/]+$",
-                              "required": true,
-                              "type": "string"
-                            }
-                          },
-                          "path": "v1/{+name}:archive",
-                          "request": {
-                            "$ref": "GoogleCloudIntegrationsV1alphaArchiveIntegrationVersionRequest"
-                          },
-                          "response": {
-                            "$ref": "GoogleCloudIntegrationsV1alphaArchiveIntegrationVersionResponse"
-                          },
-                          "scopes": [
-                            "https://www.googleapis.com/auth/cloud-platform"
-                          ]
-                        },
                         "create": {
                           "description": "Create a integration with a draft version in the specified project.",
                           "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/products/{productsId}/integrations/{integrationsId}/versions",
@@ -2889,6 +2712,11 @@
                             "parent"
                           ],
                           "parameters": {
+                            "createSampleIntegrations": {
+                              "description": "Optional. Optional. Indicates if sample workflow should be created.",
+                              "location": "query",
+                              "type": "boolean"
+                            },
                             "newIntegration": {
                               "description": "Set this flag to true, if draft version is to be created for a brand new integration. False, if the request is for an existing integration. For backward compatibility reasons, even if this flag is set to `false` and no existing integration is found, a new draft integration will still be created.",
                               "location": "query",
@@ -2908,34 +2736,6 @@
                           },
                           "response": {
                             "$ref": "GoogleCloudIntegrationsV1alphaIntegrationVersion"
-                          },
-                          "scopes": [
-                            "https://www.googleapis.com/auth/cloud-platform"
-                          ]
-                        },
-                        "deactivate": {
-                          "description": "Sets the status of the ACTIVE integration to SNAPSHOT with a new tag \"PREVIOUSLY_PUBLISHED\" after validating it. The \"HEAD\" and \"PUBLISH_REQUESTED\" tags do not change. This RPC throws an exception if the version being snapshot is not ACTIVE. Audit fields added include action, action_by, action_timestamp.",
-                          "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/products/{productsId}/integrations/{integrationsId}/versions/{versionsId}:deactivate",
-                          "httpMethod": "POST",
-                          "id": "integrations.projects.locations.products.integrations.versions.deactivate",
-                          "parameterOrder": [
-                            "name"
-                          ],
-                          "parameters": {
-                            "name": {
-                              "description": "Required. The version to deactivate. Format: projects/{project}/locations/{location}/integrations/{integration}/versions/{version}",
-                              "location": "path",
-                              "pattern": "^projects/[^/]+/locations/[^/]+/products/[^/]+/integrations/[^/]+/versions/[^/]+$",
-                              "required": true,
-                              "type": "string"
-                            }
-                          },
-                          "path": "v1/{+name}:deactivate",
-                          "request": {
-                            "$ref": "GoogleCloudIntegrationsV1alphaDeactivateIntegrationVersionRequest"
-                          },
-                          "response": {
-                            "$ref": "GoogleCloudIntegrationsV1alphaDeactivateIntegrationVersionResponse"
                           },
                           "scopes": [
                             "https://www.googleapis.com/auth/cloud-platform"
@@ -2990,6 +2790,22 @@
                               "location": "query",
                               "type": "string"
                             },
+                            "files": {
+                              "description": "Optional. Integration related file to download like Integration Json, Config variable, testcase etc.",
+                              "enum": [
+                                "INTEGRATION_FILE_UNSPECIFIED",
+                                "INTEGRATION",
+                                "INTEGRATION_CONFIG_VARIABLES"
+                              ],
+                              "enumDescriptions": [
+                                "Default value.",
+                                "Integration file.",
+                                "Integration Config variables."
+                              ],
+                              "location": "query",
+                              "repeated": true,
+                              "type": "string"
+                            },
                             "name": {
                               "description": "Required. The version to download. Format: projects/{project}/locations/{location}/integrations/{integration}/versions/{version}",
                               "location": "path",
@@ -3026,31 +2842,6 @@
                           "path": "v1/{+name}",
                           "response": {
                             "$ref": "GoogleCloudIntegrationsV1alphaIntegrationVersion"
-                          },
-                          "scopes": [
-                            "https://www.googleapis.com/auth/cloud-platform"
-                          ]
-                        },
-                        "getBundle": {
-                          "description": "PROTECT WITH A VISIBILITY LABEL. THIS METHOD WILL BE MOVED TO A SEPARATE SERVICE. RPC to get details of the Bundle",
-                          "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/products/{productsId}/integrations/{integrationsId}/versions/{versionsId}:getBundle",
-                          "httpMethod": "GET",
-                          "id": "integrations.projects.locations.products.integrations.versions.getBundle",
-                          "parameterOrder": [
-                            "name"
-                          ],
-                          "parameters": {
-                            "name": {
-                              "description": "Required. The bundle name.",
-                              "location": "path",
-                              "pattern": "^projects/[^/]+/locations/[^/]+/products/[^/]+/integrations/[^/]+/versions/[^/]+$",
-                              "required": true,
-                              "type": "string"
-                            }
-                          },
-                          "path": "v1/{+name}:getBundle",
-                          "response": {
-                            "$ref": "GoogleCloudIntegrationsV1alphaGetBundleResponse"
                           },
                           "scopes": [
                             "https://www.googleapis.com/auth/cloud-platform"
@@ -3226,34 +3017,6 @@
                             "https://www.googleapis.com/auth/cloud-platform"
                           ]
                         },
-                        "updateBundle": {
-                          "description": "THIS METHOD WILL BE MOVED TO A SEPARATE SERVICE. RPC to update the Bundle",
-                          "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/products/{productsId}/integrations/{integrationsId}/versions/{versionsId}:updateBundle",
-                          "httpMethod": "PATCH",
-                          "id": "integrations.projects.locations.products.integrations.versions.updateBundle",
-                          "parameterOrder": [
-                            "name"
-                          ],
-                          "parameters": {
-                            "name": {
-                              "description": "Required. Bundle name",
-                              "location": "path",
-                              "pattern": "^projects/[^/]+/locations/[^/]+/products/[^/]+/integrations/[^/]+/versions/[^/]+$",
-                              "required": true,
-                              "type": "string"
-                            }
-                          },
-                          "path": "v1/{+name}:updateBundle",
-                          "request": {
-                            "$ref": "GoogleCloudIntegrationsV1alphaUpdateBundleRequest"
-                          },
-                          "response": {
-                            "$ref": "GoogleCloudIntegrationsV1alphaUpdateBundleResponse"
-                          },
-                          "scopes": [
-                            "https://www.googleapis.com/auth/cloud-platform"
-                          ]
-                        },
                         "upload": {
                           "description": "Uploads an integration. The content can be a previously downloaded integration. Performs the same function as CreateDraftIntegrationVersion, but accepts input in a string format, which holds the complete representation of the IntegrationVersion content.",
                           "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/products/{productsId}/integrations/{integrationsId}/versions:upload",
@@ -3277,34 +3040,6 @@
                           },
                           "response": {
                             "$ref": "GoogleCloudIntegrationsV1alphaUploadIntegrationVersionResponse"
-                          },
-                          "scopes": [
-                            "https://www.googleapis.com/auth/cloud-platform"
-                          ]
-                        },
-                        "validate": {
-                          "description": "Validates the given integration. If the id doesn't exist, a NotFoundException is thrown. If validation fails a CanonicalCodeException is thrown. If there was no failure an empty response is returned.",
-                          "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/products/{productsId}/integrations/{integrationsId}/versions/{versionsId}:validate",
-                          "httpMethod": "POST",
-                          "id": "integrations.projects.locations.products.integrations.versions.validate",
-                          "parameterOrder": [
-                            "name"
-                          ],
-                          "parameters": {
-                            "name": {
-                              "description": "Required. The version to validate. Format: projects/{project}/locations/{location}/integrations/{integration}/versions/{version}",
-                              "location": "path",
-                              "pattern": "^projects/[^/]+/locations/[^/]+/products/[^/]+/integrations/[^/]+/versions/[^/]+$",
-                              "required": true,
-                              "type": "string"
-                            }
-                          },
-                          "path": "v1/{+name}:validate",
-                          "request": {
-                            "$ref": "GoogleCloudIntegrationsV1alphaValidateIntegrationVersionRequest"
-                          },
-                          "response": {
-                            "$ref": "GoogleCloudIntegrationsV1alphaValidateIntegrationVersionResponse"
                           },
                           "scopes": [
                             "https://www.googleapis.com/auth/cloud-platform"
@@ -3404,7 +3139,7 @@
                       ],
                       "parameters": {
                         "filter": {
-                          "description": "Filtering as supported in https://developers.google.com/authorized-buyers/apis/guides/v2/list-filters.",
+                          "description": "Filtering as supported in https://developers.google.com/authorized-buyers/apis/guides/list-filters.",
                           "location": "query",
                           "type": "string"
                         },
@@ -3567,7 +3302,7 @@
                           ],
                           "parameters": {
                             "filter": {
-                              "description": "Filtering as supported in https://developers.google.com/authorized-buyers/apis/guides/v2/list-filters.",
+                              "description": "Filtering as supported in https://developers.google.com/authorized-buyers/apis/guides/list-filters.",
                               "location": "query",
                               "type": "string"
                             },
@@ -3734,7 +3469,7 @@
                   ],
                   "parameters": {
                     "filter": {
-                      "description": "Filtering as supported in https://developers.google.com/authorized-buyers/apis/guides/v2/list-filters.",
+                      "description": "Filtering as supported in https://developers.google.com/authorized-buyers/apis/guides/list-filters.",
                       "location": "query",
                       "type": "string"
                     },
@@ -3897,7 +3632,7 @@
                       ],
                       "parameters": {
                         "filter": {
-                          "description": "Filtering as supported in https://developers.google.com/authorized-buyers/apis/guides/v2/list-filters.",
+                          "description": "Filtering as supported in https://developers.google.com/authorized-buyers/apis/guides/list-filters.",
                           "location": "query",
                           "type": "string"
                         },
@@ -3977,7 +3712,7 @@
       }
     }
   },
-  "revision": "20221215",
+  "revision": "20240428",
   "rootUrl": "https://integrations.googleapis.com/",
   "schemas": {
     "CrmlogErrorCode": {
@@ -4049,6 +3784,70 @@
             "HTTP_EXCEPTION",
             "EXECUTION_CANCELLED"
           ],
+          "enumDeprecated": [
+            false,
+            true,
+            false,
+            false,
+            true,
+            true,
+            true,
+            false,
+            false,
+            true,
+            false,
+            false,
+            false,
+            false,
+            true,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false
+          ],
           "enumDescriptions": [
             "",
             "",
@@ -4113,115 +3912,6 @@
             "",
             ""
           ],
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "EnterpriseCrmCardsCellValue": {
-      "id": "EnterpriseCrmCardsCellValue",
-      "properties": {
-        "booleanValue": {
-          "type": "boolean"
-        },
-        "doubleValue": {
-          "format": "double",
-          "type": "number"
-        },
-        "empty": {
-          "$ref": "GoogleProtobufEmpty"
-        },
-        "longValue": {
-          "format": "int64",
-          "type": "string"
-        },
-        "stringValue": {
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "EnterpriseCrmCardsRow": {
-      "id": "EnterpriseCrmCardsRow",
-      "properties": {
-        "cells": {
-          "description": "Ordered list of cell values within a row.",
-          "items": {
-            "$ref": "EnterpriseCrmCardsCellValue"
-          },
-          "type": "array"
-        }
-      },
-      "type": "object"
-    },
-    "EnterpriseCrmCardsTabularData": {
-      "description": "The generic data format returned from all connectors.",
-      "id": "EnterpriseCrmCardsTabularData",
-      "properties": {
-        "headers": {
-          "description": "Ordered list of column headers.",
-          "items": {
-            "type": "string"
-          },
-          "type": "array"
-        },
-        "rows": {
-          "description": "Ordered list of table rows.",
-          "items": {
-            "$ref": "EnterpriseCrmCardsRow"
-          },
-          "type": "array"
-        }
-      },
-      "type": "object"
-    },
-    "EnterpriseCrmCardsTemplatesAplosSeriesData": {
-      "description": "Data used to render an Aplos Series card.",
-      "id": "EnterpriseCrmCardsTemplatesAplosSeriesData",
-      "properties": {
-        "rows": {
-          "description": "A single Series Row",
-          "items": {
-            "$ref": "EnterpriseCrmCardsTemplatesAplosSeriesDataRow"
-          },
-          "type": "array"
-        }
-      },
-      "type": "object"
-    },
-    "EnterpriseCrmCardsTemplatesAplosSeriesDataRow": {
-      "description": "Aplos series row is exactly two columns labeled x and y.",
-      "id": "EnterpriseCrmCardsTemplatesAplosSeriesDataRow",
-      "properties": {
-        "x": {
-          "$ref": "EnterpriseCrmCardsCellValue"
-        },
-        "y": {
-          "$ref": "EnterpriseCrmCardsCellValue"
-        }
-      },
-      "type": "object"
-    },
-    "EnterpriseCrmCardsTemplatesAplosSeriesListData": {
-      "description": "Data used for Aplos charts that accept multiple Series.",
-      "id": "EnterpriseCrmCardsTemplatesAplosSeriesListData",
-      "properties": {
-        "series": {
-          "items": {
-            "$ref": "EnterpriseCrmCardsTemplatesAplosSeriesListDataSeries"
-          },
-          "type": "array"
-        }
-      },
-      "type": "object"
-    },
-    "EnterpriseCrmCardsTemplatesAplosSeriesListDataSeries": {
-      "id": "EnterpriseCrmCardsTemplatesAplosSeriesListDataSeries",
-      "properties": {
-        "data": {
-          "$ref": "EnterpriseCrmCardsTemplatesAplosSeriesData"
-        },
-        "name": {
           "type": "string"
         }
       },
@@ -4303,7 +3993,7 @@
       "type": "object"
     },
     "EnterpriseCrmEventbusProtoAttributes": {
-      "description": "Attributes are additional options that can be associated with each event property. For more information, see go/integration-platform/event_bus/attributes_registry.md. Next available: 8",
+      "description": "Attributes are additional options that can be associated with each event property. For more information, see",
       "id": "EnterpriseCrmEventbusProtoAttributes",
       "properties": {
         "dataType": {
@@ -4335,12 +4025,21 @@
           "type": "boolean"
         },
         "isSearchable": {
+          "deprecated": true,
           "description": "Used to indicate if a ParameterEntry should be converted to ParamIndexes for ST-Spanner full-text search. DEPRECATED: use searchable.",
           "type": "boolean"
         },
         "logSettings": {
           "$ref": "EnterpriseCrmEventbusProtoLogSettings",
-          "description": "See go/integration-platform/analytics/logging_task.md for details."
+          "description": "See"
+        },
+        "masked": {
+          "description": "True if this workflow parameter should be masked in the logs",
+          "type": "boolean"
+        },
+        "readOnly": {
+          "description": "Used to indicate if the ParameterEntry is a read only field or not.",
+          "type": "boolean"
         },
         "searchable": {
           "enum": [
@@ -4390,7 +4089,7 @@
       "type": "object"
     },
     "EnterpriseCrmEventbusProtoBaseAlertConfigThresholdValue": {
-      "description": "The threshold value of the metric, above or below which the alert should be triggered. See EventAlertConfig or TaskAlertConfig for the different alert metric types in each case. For the *RATE metrics, one or both of these fields may be set. Zero is the default value and can be left at that. For *PERCENTILE_DURATION metrics, one or both of these fields may be set, and also, the duration threshold value should be specified in the threshold_duration_ms member below. For *AVERAGE_DURATION metrics, these fields should not be set at all. A different member, threshold_duration_ms, must be set in the EventAlertConfig or the TaskAlertConfig. See go/eventbus-alert-config-examples",
+      "description": "The threshold value of the metric, above or below which the alert should be triggered. See EventAlertConfig or TaskAlertConfig for the different alert metric types in each case. For the *RATE metrics, one or both of these fields may be set. Zero is the default value and can be left at that. For *PERCENTILE_DURATION metrics, one or both of these fields may be set, and also, the duration threshold value should be specified in the threshold_duration_ms member below. For *AVERAGE_DURATION metrics, these fields should not be set at all. A different member, threshold_duration_ms, must be set in the EventAlertConfig or the TaskAlertConfig.",
       "id": "EnterpriseCrmEventbusProtoBaseAlertConfigThresholdValue",
       "properties": {
         "absolute": {
@@ -4563,6 +4262,36 @@
       },
       "type": "object"
     },
+    "EnterpriseCrmEventbusProtoCloudKmsConfig": {
+      "id": "EnterpriseCrmEventbusProtoCloudKmsConfig",
+      "properties": {
+        "gcpProjectId": {
+          "description": "Optional. The id of GCP project where the KMS key is stored. If not provided, assume the key is stored in the same GCP project defined in Client (tag 14).",
+          "type": "string"
+        },
+        "keyName": {
+          "description": "A Cloud KMS key is a named object containing one or more key versions, along with metadata for the key. A key exists on exactly one key ring tied to a specific location.",
+          "type": "string"
+        },
+        "keyRingName": {
+          "description": "A key ring organizes keys in a specific Google Cloud location and allows you to manage access control on groups of keys. A key ring's name does not need to be unique across a Google Cloud project, but must be unique within a given location.",
+          "type": "string"
+        },
+        "keyVersionName": {
+          "description": "Optional. Each version of a key contains key material used for encryption or signing. A key's version is represented by an integer, starting at 1. To decrypt data or verify a signature, you must use the same key version that was used to encrypt or sign the data.",
+          "type": "string"
+        },
+        "locationName": {
+          "description": "Location name of the key ring, e.g. \"us-west1\".",
+          "type": "string"
+        },
+        "serviceAccount": {
+          "description": "Optional. The service account used for authentication of this KMS key. If this is not provided, the service account in Client.clientSource will be used.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "EnterpriseCrmEventbusProtoCloudSchedulerConfig": {
       "description": "Cloud Scheduler Trigger configuration",
       "id": "EnterpriseCrmEventbusProtoCloudSchedulerConfig",
@@ -4587,6 +4316,7 @@
       "type": "object"
     },
     "EnterpriseCrmEventbusProtoCombinedCondition": {
+      "deprecated": true,
       "description": "This message recursively combines constituent conditions using logical AND.",
       "id": "EnterpriseCrmEventbusProtoCombinedCondition",
       "properties": {
@@ -4601,6 +4331,7 @@
       "type": "object"
     },
     "EnterpriseCrmEventbusProtoCondition": {
+      "deprecated": true,
       "description": "Condition that uses `operator` to evaluate the key against the value.",
       "id": "EnterpriseCrmEventbusProtoCondition",
       "properties": {
@@ -4694,9 +4425,11 @@
             "GET_ENTITY",
             "CREATE_ENTITY",
             "UPDATE_ENTITY",
-            "DELETE_ENTITY"
+            "DELETE_ENTITY",
+            "EXECUTE_QUERY"
           ],
           "enumDescriptions": [
+            "",
             "",
             "",
             "",
@@ -4896,7 +4629,7 @@
       "type": "object"
     },
     "EnterpriseCrmEventbusProtoEventBusProperties": {
-      "description": "LINT.IfChange This message is used for storing key value pair properties for each Event / Task in the EventBus. Please see go/cloud-crm-eng/platform/event_bus.md for more details.",
+      "description": "LINT.IfChange This message is used for storing key value pair properties for each Event / Task in the EventBus.",
       "id": "EnterpriseCrmEventbusProtoEventBusProperties",
       "properties": {
         "properties": {
@@ -4910,7 +4643,7 @@
       "type": "object"
     },
     "EnterpriseCrmEventbusProtoEventExecutionDetails": {
-      "description": "Contains the details of the execution info of this event: this includes the tasks execution details plus the event execution statistics. Next available id: 10",
+      "description": "Contains the details of the execution info of this event: this includes the tasks execution details plus the event execution statistics. Next available id: 11",
       "id": "EnterpriseCrmEventbusProtoEventExecutionDetails",
       "properties": {
         "eventAttemptStats": {
@@ -4924,6 +4657,11 @@
             "$ref": "EnterpriseCrmEventbusProtoEventExecutionSnapshot"
           },
           "type": "array"
+        },
+        "eventExecutionSnapshotsSize": {
+          "description": "Total size of all event_execution_snapshots for an execution",
+          "format": "int64",
+          "type": "string"
         },
         "eventExecutionState": {
           "enum": [
@@ -5041,6 +4779,7 @@
           "type": "array"
         },
         "taskName": {
+          "deprecated": true,
           "description": "The task name associated with this snapshot. Could be empty.",
           "type": "string"
         }
@@ -5050,15 +4789,37 @@
     "EnterpriseCrmEventbusProtoEventExecutionSnapshotEventExecutionSnapshotMetadata": {
       "id": "EnterpriseCrmEventbusProtoEventExecutionSnapshotEventExecutionSnapshotMetadata",
       "properties": {
+        "ancestorIterationNumbers": {
+          "description": "Ancestor iteration number for the task(it will only be non-empty if the task is under 'private workflow')",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "ancestorTaskNumbers": {
+          "description": "Ancestor task number for the task(it will only be non-empty if the task is under 'private workflow')",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
         "eventAttemptNum": {
           "description": "the event attempt number this snapshot belongs to.",
           "format": "int32",
           "type": "integer"
         },
+        "integrationName": {
+          "description": "The direct integration which the event execution snapshots belongs to",
+          "type": "string"
+        },
         "taskAttemptNum": {
           "description": "the task attempt number this snapshot belongs to. Could be empty.",
           "format": "int32",
           "type": "integer"
+        },
+        "taskLabel": {
+          "description": "the task label associated with this snapshot. Could be empty.",
+          "type": "string"
         },
         "taskName": {
           "description": "the task name associated with this snapshot. Could be empty.",
@@ -5072,7 +4833,7 @@
       "type": "object"
     },
     "EnterpriseCrmEventbusProtoEventParameters": {
-      "description": "LINT.IfChange This message is used for processing and persisting (when applicable) key value pair parameters for each event in the event bus. Please see go/integration-platform/event_bus.md for more details. Next id: 4",
+      "description": "LINT.IfChange This message is used for processing and persisting (when applicable) key value pair parameters for each event in the event bus. Please see",
       "id": "EnterpriseCrmEventbusProtoEventParameters",
       "properties": {
         "parameters": {
@@ -5115,6 +4876,10 @@
         "location": {
           "description": "Location for the user's request.",
           "type": "string"
+        },
+        "retryRequestForQuota": {
+          "description": "Enqueue the execution request due to quota issue",
+          "type": "boolean"
         },
         "source": {
           "description": "LINT.ThenChange(//depot/google3/enterprise/crm/eventbus/proto/product.proto:product, //depot/google3/java/com/google/enterprise/crm/integrationplatform/api/utils/ConverterUtils.java:source_to_product)",
@@ -5175,7 +4940,7 @@
       "type": "object"
     },
     "EnterpriseCrmEventbusProtoField": {
-      "description": "Information about the value and type of the field. Next Id: 8",
+      "description": "Information about the value and type of the field.",
       "id": "EnterpriseCrmEventbusProtoField",
       "properties": {
         "cardinality": {
@@ -5192,7 +4957,7 @@
         },
         "defaultValue": {
           "$ref": "EnterpriseCrmEventbusProtoParameterValueType",
-          "description": "This holds the default values for the fields. This value is supplied by user so may or may not contain PII or SPII data. This field will be scrubbed using DatapolScrubber#maybeScrub() with go/proto-sanitizer#level3"
+          "description": "This holds the default values for the fields. This value is supplied by user so may or may not contain PII or SPII data."
         },
         "fieldType": {
           "description": "Specifies the data type of the field.",
@@ -5248,13 +5013,13 @@
         },
         "transformExpression": {
           "$ref": "EnterpriseCrmEventbusProtoTransformExpression",
-          "description": "This is the transform expression to fetch the input field value. for e.g. $param1$.CONCAT('test'). See go/transform-functions-design for more details. Keep points - 1. Only input field can have a transform expression. 2. If a transform expression is provided, reference_key will be ignored. 3. If no value is returned after evaluation of transform expression, default_value can be mapped if provided. 4. The field_type should be the type of the final object returned after the transform expression is evaluated. Scrubs the transform expression before logging as value provided by user so may or may not contain PII or SPII data."
+          "description": "This is the transform expression to fetch the input field value. for e.g. $param1$.CONCAT('test'). Keep points - 1. Only input field can have a transform expression. 2. If a transform expression is provided, reference_key will be ignored. 3. If no value is returned after evaluation of transform expression, default_value can be mapped if provided. 4. The field_type should be the type of the final object returned after the transform expression is evaluated. Scrubs the transform expression before logging as value provided by user so may or may not contain PII or SPII data."
         }
       },
       "type": "object"
     },
     "EnterpriseCrmEventbusProtoFieldMappingConfig": {
-      "description": "Field Mapping Config to map multiple output fields values from input fields values. Next id: 2",
+      "description": "Field Mapping Config to map multiple output fields values from input fields values.",
       "id": "EnterpriseCrmEventbusProtoFieldMappingConfig",
       "properties": {
         "mappedFields": {
@@ -5507,7 +5272,7 @@
       "type": "object"
     },
     "EnterpriseCrmEventbusProtoLogSettings": {
-      "description": "The LogSettings define the logging attributes for an event property. These attributes are used to map the property to the parameter in the log proto. Also used to define scrubbing/truncation behavior and PII information. See go/integration-platform/analytics/logging_task.md for details.",
+      "description": "The LogSettings define the logging attributes for an event property. These attributes are used to map the property to the parameter in the log proto. Also used to define scrubbing/truncation behavior and PII information.",
       "id": "EnterpriseCrmEventbusProtoLogSettings",
       "properties": {
         "logFieldName": {
@@ -5599,7 +5364,7 @@
       "type": "object"
     },
     "EnterpriseCrmEventbusProtoMappedField": {
-      "description": "Mapped field is a pair of input field and output field. Next Id: 3",
+      "description": "Mapped field is a pair of input field and output field.",
       "id": "EnterpriseCrmEventbusProtoMappedField",
       "properties": {
         "inputField": {
@@ -5618,6 +5383,7 @@
       "id": "EnterpriseCrmEventbusProtoNextTask",
       "properties": {
         "combinedConditions": {
+          "deprecated": true,
           "description": "Combined condition for this task to become an eligible next task. Each of these combined_conditions are joined with logical OR. DEPRECATED: use `condition`",
           "items": {
             "$ref": "EnterpriseCrmEventbusProtoCombinedCondition"
@@ -5854,6 +5620,10 @@
         "key": {
           "description": "Key is used to retrieve the corresponding parameter value. This should be unique for a given fired event. These parameters must be predefined in the integration definition.",
           "type": "string"
+        },
+        "masked": {
+          "description": "True if this parameter should be masked in the logs",
+          "type": "boolean"
         },
         "value": {
           "$ref": "EnterpriseCrmEventbusProtoParameterValueType",
@@ -6263,9 +6033,11 @@
             "EQUALS_IGNORE_CASE",
             "REPLACE_ALL",
             "SUBSTRING",
-            "RESOLVE_TEMPLATE"
+            "RESOLVE_TEMPLATE",
+            "DECODE_BASE64_STRING"
           ],
           "enumDescriptions": [
+            "",
             "",
             "",
             "",
@@ -6408,9 +6180,22 @@
         "audit": {
           "$ref": "EnterpriseCrmEventbusProtoSuspensionResolutionInfoAudit"
         },
+        "clientId": {
+          "description": "The event data user sends as request.",
+          "type": "string"
+        },
+        "cloudKmsConfig": {
+          "$ref": "EnterpriseCrmEventbusProtoCloudKmsConfig",
+          "description": "KMS info, used by cmek/gmek integration"
+        },
         "createdTimestamp": {
           "description": "Auto-generated.",
           "format": "google-datetime",
+          "type": "string"
+        },
+        "encryptedSuspensionResolutionInfo": {
+          "description": "Encrypted SuspensionResolutionInfo",
+          "format": "byte",
           "type": "string"
         },
         "eventExecutionInfoId": {
@@ -6446,9 +6231,11 @@
           "enum": [
             "PENDING_UNSPECIFIED",
             "REJECTED",
-            "LIFTED"
+            "LIFTED",
+            "CANCELED"
           ],
           "enumDescriptions": [
+            "",
             "",
             "",
             ""
@@ -6468,6 +6255,11 @@
         },
         "workflowName": {
           "description": "Required. The name of the originating workflow.",
+          "type": "string"
+        },
+        "wrappedDek": {
+          "description": "Wrapped dek",
+          "format": "byte",
           "type": "string"
         }
       },
@@ -6490,7 +6282,7 @@
       "type": "object"
     },
     "EnterpriseCrmEventbusProtoTaskAlertConfig": {
-      "description": "Message to be used to configure alerting in the {@code TaskConfig} protos for tasks in an event. See go/eventbus-alert-config-examples for examples of the different alerts that can be configured.",
+      "description": "Message to be used to configure alerting in the {@code TaskConfig} protos for tasks in an event.",
       "id": "EnterpriseCrmEventbusProtoTaskAlertConfig",
       "properties": {
         "aggregationPeriod": {
@@ -6640,7 +6432,7 @@
       "type": "object"
     },
     "EnterpriseCrmEventbusProtoTaskMetadata": {
-      "description": "TaskMetadata are attributes that are associated to every common Task we have. Next available: 26",
+      "description": "TaskMetadata are attributes that are associated to every common Task we have.",
       "id": "EnterpriseCrmEventbusProtoTaskMetadata",
       "properties": {
         "activeTaskName": {
@@ -6663,7 +6455,8 @@
             "CONNECTOR",
             "HIDDEN",
             "CLOUD_SYSTEMS",
-            "CUSTOM_TASK_TEMPLATE"
+            "CUSTOM_TASK_TEMPLATE",
+            "TASK_RECOMMENDATIONS"
           ],
           "enumDescriptions": [
             "",
@@ -6674,7 +6467,8 @@
             "",
             "Internal IP tasks that should not be available in the UI.",
             "Tasks that are relevant to cloud systems teams and typically",
-            "include connecting to Vector salesforce, CRM Hub Spanner etc. Task entities that derive from a custom task template."
+            "include connecting to Vector salesforce, CRM Hub Spanner etc. Task entities that derive from a custom task template.",
+            "Category to show task recommendations"
           ],
           "type": "string"
         },
@@ -6720,12 +6514,36 @@
           "enum": [
             "UNSPECIFIED_EXTERNAL_CATEGORY",
             "CORE",
-            "CONNECTORS"
+            "CONNECTORS",
+            "EXTERNAL_HTTP",
+            "EXTERNAL_INTEGRATION_SERVICES",
+            "EXTERNAL_CUSTOMER_ACTIONS",
+            "EXTERNAL_FLOW_CONTROL",
+            "EXTERNAL_WORKSPACE",
+            "EXTERNAL_SECURITY",
+            "EXTERNAL_DATABASES",
+            "EXTERNAL_ANALYTICS",
+            "EXTERNAL_BYOC",
+            "EXTERNAL_BYOT",
+            "EXTERNAL_ARTIFICIAL_INTELIGENCE",
+            "EXTERNAL_DATA_MANIPULATION"
           ],
           "enumDescriptions": [
             "",
             "",
-            ""
+            "",
+            "HTTP tasks, e.g. rest api call task",
+            "Integration services, e.g. connector task",
+            "Customer ations, e.g. email task",
+            "Flow control, e.g. while loop task",
+            "Workspace tasks, e.g. list drive task",
+            "Security, e.g. kms related tasks",
+            "Database operation tasks, e.g. read firestore info tasks",
+            "Analytics tasks, e.g. dataflow creattion tasks",
+            "BYOC tasks",
+            "BYOT tasks",
+            "AI related tasks.",
+            "Data manipulation related tasks, e.g. data mapping task"
           ],
           "type": "string"
         },
@@ -6751,7 +6569,7 @@
           "type": "string"
         },
         "iconLink": {
-          "description": "URL to gstatic image icon for this task. This icon shows up on the task list panel along with the task name in the Workflow Editor screen. Use the 24p, 2x, gray color icon image format. See go/icons.",
+          "description": "URL to gstatic image icon for this task. This icon shows up on the task list panel along with the task name in the Workflow Editor screen. Use the 24p, 2x, gray color icon image format.",
           "type": "string"
         },
         "isDeprecated": {
@@ -6833,7 +6651,7 @@
       "type": "object"
     },
     "EnterpriseCrmEventbusProtoTaskUiConfig": {
-      "description": "Task authors would use this type to configure the UI for a particular task by specifying what UI config modules should be included to compose the UI. Learn more about config module framework: go/integration-platform-config-module-framework",
+      "description": "Task authors would use this type to configure the UI for a particular task by specifying what UI config modules should be included to compose the UI. Learn more about config module framework:",
       "id": "EnterpriseCrmEventbusProtoTaskUiConfig",
       "properties": {
         "taskUiModuleConfigs": {
@@ -7027,7 +6845,7 @@
       "type": "object"
     },
     "EnterpriseCrmEventbusProtoWorkflowAlertConfig": {
-      "description": "Message to be used to configure custom alerting in the {@code EventConfig} protos for an event. See go/eventbus-alert-config-examples for examples of the different alerts that can be configured.",
+      "description": "Message to be used to configure custom alerting in the {@code EventConfig} protos for an event.",
       "id": "EnterpriseCrmEventbusProtoWorkflowAlertConfig",
       "properties": {
         "aggregationPeriod": {
@@ -7112,7 +6930,7 @@
         },
         "thresholdValue": {
           "$ref": "EnterpriseCrmEventbusProtoBaseAlertConfigThresholdValue",
-          "description": "The metric value, above or below which the alert should be triggered. See go/eventbus-alert-config-examples."
+          "description": "The metric value, above or below which the alert should be triggered."
         },
         "warningEnumList": {
           "$ref": "EnterpriseCrmEventbusProtoBaseAlertConfigErrorEnumList"
@@ -7235,7 +7053,7 @@
       "type": "object"
     },
     "EnterpriseCrmFrontendsEventbusProtoEventExecutionDetails": {
-      "description": "Contains the details of the execution info of this event: this includes the tasks execution details plus the event execution statistics. Next available id: 10",
+      "description": "Contains the details of the execution info of this event: this includes the tasks execution details plus the event execution statistics. Next available id: 11",
       "id": "EnterpriseCrmFrontendsEventbusProtoEventExecutionDetails",
       "properties": {
         "eventAttemptStats": {
@@ -7250,6 +7068,11 @@
             "$ref": "EnterpriseCrmFrontendsEventbusProtoEventExecutionSnapshot"
           },
           "type": "array"
+        },
+        "eventExecutionSnapshotsSize": {
+          "description": "Total size of all event_execution_snapshots for an execution",
+          "format": "int64",
+          "type": "string"
         },
         "eventExecutionState": {
           "description": "The execution state of this event.",
@@ -7302,7 +7125,7 @@
       "type": "object"
     },
     "EnterpriseCrmFrontendsEventbusProtoEventExecutionInfo": {
-      "description": "Contains all the execution details for a workflow instance. Next available id: 24",
+      "description": "Contains all the execution details for a workflow instance. Next available id: 25",
       "id": "EnterpriseCrmFrontendsEventbusProtoEventExecutionInfo",
       "properties": {
         "clientId": {
@@ -7378,6 +7201,10 @@
           ],
           "type": "string"
         },
+        "replayInfo": {
+          "$ref": "EnterpriseCrmFrontendsEventbusProtoEventExecutionInfoReplayInfo",
+          "description": "Replay info for the execution"
+        },
         "requestId": {
           "description": "Optional. This is used to de-dup incoming request.",
           "type": "string"
@@ -7415,6 +7242,28 @@
           "description": "Time interval in seconds to schedule retry of workflow in manifold when workflow is already running",
           "format": "int64",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "EnterpriseCrmFrontendsEventbusProtoEventExecutionInfoReplayInfo": {
+      "description": "Contains the details of the execution info: this includes the replay reason and replay tree connecting executions in a parent-child relationship",
+      "id": "EnterpriseCrmFrontendsEventbusProtoEventExecutionInfoReplayInfo",
+      "properties": {
+        "originalExecutionInfoId": {
+          "description": "If this execution is a replay of another execution, then this field contains the original execution id.",
+          "type": "string"
+        },
+        "replayReason": {
+          "description": "reason for replay",
+          "type": "string"
+        },
+        "replayedExecutionInfoIds": {
+          "description": "If this execution has been replayed, then this field contains the execution ids of the replayed executions.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -7465,6 +7314,7 @@
           "type": "array"
         },
         "taskName": {
+          "deprecated": true,
           "description": "The task name associated with this snapshot. Could be empty.",
           "type": "string"
         }
@@ -7472,7 +7322,7 @@
       "type": "object"
     },
     "EnterpriseCrmFrontendsEventbusProtoEventParameters": {
-      "description": "LINT.IfChange This message is used for processing and persisting (when applicable) key value pair parameters for each event in the event bus. Please see go/integration-platform/event_bus.md for more details. Next id: 4",
+      "description": "LINT.IfChange This message is used for processing and persisting (when applicable) key value pair parameters for each event in the event bus. Please see",
       "id": "EnterpriseCrmFrontendsEventbusProtoEventParameters",
       "properties": {
         "parameters": {
@@ -7655,6 +7505,10 @@
         "key": {
           "description": "Key is used to retrieve the corresponding parameter value. This should be unique for a given fired event. These parameters must be predefined in the workflow definition.",
           "type": "string"
+        },
+        "masked": {
+          "description": "True if this parameter should be masked in the logs",
+          "type": "boolean"
         },
         "value": {
           "$ref": "EnterpriseCrmFrontendsEventbusProtoParameterValueType",
@@ -7901,7 +7755,7 @@
       "type": "object"
     },
     "EnterpriseCrmFrontendsEventbusProtoTaskConfig": {
-      "description": "The task configuration details. This is not the implementation of Task. There might be multiple TaskConfigs for the same Task. Next available id: 27",
+      "description": "The task configuration details. This is not the implementation of Task. There might be multiple TaskConfigs for the same Task.",
       "id": "EnterpriseCrmFrontendsEventbusProtoTaskConfig",
       "properties": {
         "alertConfigs": {
@@ -7927,6 +7781,23 @@
         "disableStrictTypeValidation": {
           "description": "If this config contains a TypedTask, allow validation to succeed if an input is read from the output of another TypedTask whose output type is declared as a superclass of the requested input type. For instance, if the previous task declares an output of type Message, any task with this flag enabled will pass validation when attempting to read any proto Message type from the resultant Event parameter.",
           "type": "boolean"
+        },
+        "errorCatcherId": {
+          "description": "Optional Error catcher id of the error catch flow which will be executed when execution error happens in the task",
+          "type": "string"
+        },
+        "externalTaskType": {
+          "enum": [
+            "EXTERNAL_TASK_TYPE_UNSPECIFIED",
+            "NORMAL_TASK",
+            "ERROR_TASK"
+          ],
+          "enumDescriptions": [
+            "Default value. External task type is not specified",
+            "Tasks belongs to the normal task flows",
+            "Task belongs to the error catch task flows"
+          ],
+          "type": "string"
         },
         "failurePolicy": {
           "$ref": "EnterpriseCrmEventbusProtoFailurePolicy",
@@ -8043,7 +7914,7 @@
           "type": "string"
         },
         "taskSpec": {
-          "description": "A string template that allows user to configure task parameters (with either literal default values or tokens which will be resolved at execution time) for the task. It will eventually replace the old \"parameters\" field. Please refer to go/eventbus-task-spec-example for detailed usage example.",
+          "description": "A string template that allows user to configure task parameters (with either literal default values or tokens which will be resolved at execution time) for the task. It will eventually replace the old \"parameters\" field.",
           "type": "string"
         },
         "taskTemplateName": {
@@ -8085,6 +7956,7 @@
         },
         "stats": {
           "$ref": "EnterpriseCrmEventbusStats",
+          "deprecated": true,
           "description": "Deprecated - statistics from the Monarch query."
         },
         "taskType": {
@@ -8109,7 +7981,7 @@
       "type": "object"
     },
     "EnterpriseCrmFrontendsEventbusProtoTriggerConfig": {
-      "description": "Configuration detail of a trigger. Next available id: 17",
+      "description": "Configuration detail of a trigger. Next available id: 20",
       "id": "EnterpriseCrmFrontendsEventbusProtoTriggerConfig",
       "properties": {
         "alertConfig": {
@@ -8132,6 +8004,10 @@
             "type": "string"
           },
           "type": "array"
+        },
+        "errorCatcherId": {
+          "description": "Optional Error catcher id of the error catch flow which will be executed when execution error happens in the task",
+          "type": "string"
         },
         "label": {
           "description": "The user created label for a particular trigger.",
@@ -8181,6 +8057,10 @@
           "description": "The backend trigger ID.",
           "type": "string"
         },
+        "triggerName": {
+          "description": "Optional. Name of the trigger This is added to identify the type of trigger. This is avoid the logic on triggerId to identify the trigger_type and push the same to monitoring.",
+          "type": "string"
+        },
         "triggerNumber": {
           "description": "Required. A number to uniquely identify each trigger config within the workflow on UI.",
           "type": "string"
@@ -8199,9 +8079,13 @@
             "CLOUD_PUBSUB_EXTERNAL",
             "SFDC_CDC_CHANNEL",
             "SFDC_PLATFORM_EVENTS_CHANNEL",
-            "CLOUD_SCHEDULER"
+            "CLOUD_SCHEDULER",
+            "INTEGRATION_CONNECTOR_TRIGGER",
+            "PRIVATE_TRIGGER"
           ],
           "enumDescriptions": [
+            "",
+            "",
             "",
             "",
             "",
@@ -8234,6 +8118,10 @@
             "$ref": "EnterpriseCrmFrontendsEventbusProtoWorkflowParameterEntry"
           },
           "type": "array"
+        },
+        "containsLargeData": {
+          "description": "Indicates whether this variable contains large data and need to be uploaded to Cloud Storage.",
+          "type": "boolean"
         },
         "dataType": {
           "description": "The data type of the parameter.",
@@ -8283,6 +8171,10 @@
           "$ref": "EnterpriseCrmFrontendsEventbusProtoParameterValueType",
           "description": "Default values for the defined keys. Each value can either be string, int, double or any proto message or a serialized object."
         },
+        "description": {
+          "description": "Optional. The description about the parameter",
+          "type": "string"
+        },
         "inOutType": {
           "description": "Specifies the input/output type for the parameter.",
           "enum": [
@@ -8300,7 +8192,7 @@
           "type": "string"
         },
         "isTransient": {
-          "description": "Whether this parameter is a transient parameter. go/ip-transient-parameters",
+          "description": "Whether this parameter is a transient parameter.",
           "type": "boolean"
         },
         "jsonSchema": {
@@ -8329,6 +8221,9 @@
         "protoDefPath": {
           "description": "If the data type is of type proto or proto array, this field needs to be populated with the fully qualified proto name. This message, for example, would be \"enterprise.crm.frontends.eventbus.proto.WorkflowParameterEntry\".",
           "type": "string"
+        },
+        "required": {
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -8496,6 +8391,10 @@
           },
           "type": "array"
         },
+        "authKey": {
+          "description": "Identifier key for auth config",
+          "type": "string"
+        },
         "authType": {
           "description": "The type of authentication configured.",
           "enum": [
@@ -8504,7 +8403,8 @@
             "OAUTH2_JWT_BEARER",
             "OAUTH2_CLIENT_CREDENTIALS",
             "SSH_PUBLIC_KEY",
-            "OAUTH2_AUTH_CODE_FLOW"
+            "OAUTH2_AUTH_CODE_FLOW",
+            "GOOGLE_AUTHENTICATION"
           ],
           "enumDescriptions": [
             "Authentication type not specified.",
@@ -8512,9 +8412,14 @@
             "JSON Web Token (JWT) Profile for Oauth 2.0 Authorization Grant based authentication",
             "Oauth 2.0 Client Credentials Grant Authentication",
             "SSH Public Key Authentication",
-            "Oauth 2.0 Authorization Code Flow"
+            "Oauth 2.0 Authorization Code Flow",
+            "Google authentication"
           ],
           "type": "string"
+        },
+        "oauth2AuthCodeFlow": {
+          "$ref": "GoogleCloudConnectorsV1AuthConfigOauth2AuthCodeFlow",
+          "description": "Oauth2AuthCodeFlow."
         },
         "oauth2ClientCredentials": {
           "$ref": "GoogleCloudConnectorsV1AuthConfigOauth2ClientCredentials",
@@ -8531,6 +8436,48 @@
         "userPassword": {
           "$ref": "GoogleCloudConnectorsV1AuthConfigUserPassword",
           "description": "UserPassword."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudConnectorsV1AuthConfigOauth2AuthCodeFlow": {
+      "description": "Parameters to support Oauth 2.0 Auth Code Grant Authentication. See https://www.rfc-editor.org/rfc/rfc6749#section-1.3.1 for more details.",
+      "id": "GoogleCloudConnectorsV1AuthConfigOauth2AuthCodeFlow",
+      "properties": {
+        "authCode": {
+          "description": "Authorization code to be exchanged for access and refresh tokens.",
+          "type": "string"
+        },
+        "authUri": {
+          "description": "Auth URL for Authorization Code Flow",
+          "type": "string"
+        },
+        "clientId": {
+          "description": "Client ID for user-provided OAuth app.",
+          "type": "string"
+        },
+        "clientSecret": {
+          "$ref": "GoogleCloudConnectorsV1Secret",
+          "description": "Client secret for user-provided OAuth app."
+        },
+        "enablePkce": {
+          "description": "Whether to enable PKCE when the user performs the auth code flow.",
+          "type": "boolean"
+        },
+        "pkceVerifier": {
+          "description": "PKCE verifier to be used during the auth code exchange.",
+          "type": "string"
+        },
+        "redirectUri": {
+          "description": "Redirect URI to be provided during the auth code exchange.",
+          "type": "string"
+        },
+        "scopes": {
+          "description": "Scopes the connection will request when the user performs the auth code flow.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -8622,6 +8569,28 @@
       },
       "type": "object"
     },
+    "GoogleCloudConnectorsV1BillingConfig": {
+      "description": "Billing config for the connection.",
+      "id": "GoogleCloudConnectorsV1BillingConfig",
+      "properties": {
+        "billingCategory": {
+          "description": "Output only. Billing category for the connector.",
+          "enum": [
+            "BILLING_CATEGORY_UNSPECIFIED",
+            "GCP_AND_TECHNICAL_CONNECTOR",
+            "NON_GCP_CONNECTOR"
+          ],
+          "enumDescriptions": [
+            "Billing category is not specified.",
+            "GCP/Technical connector.",
+            "Non-GCP connector."
+          ],
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudConnectorsV1ConfigVariable": {
       "description": "ConfigVariable represents a configuration variable present in a Connection. or AuthConfig.",
       "id": "GoogleCloudConnectorsV1ConfigVariable",
@@ -8629,6 +8598,10 @@
         "boolValue": {
           "description": "Value is a bool.",
           "type": "boolean"
+        },
+        "encryptionKeyValue": {
+          "$ref": "GoogleCloudConnectorsV1EncryptionKey",
+          "description": "Value is a Encryption Key."
         },
         "intValue": {
           "description": "Value is an integer",
@@ -8658,6 +8631,11 @@
           "$ref": "GoogleCloudConnectorsV1AuthConfig",
           "description": "Optional. Configuration for establishing the connection's authentication with an external system."
         },
+        "billingConfig": {
+          "$ref": "GoogleCloudConnectorsV1BillingConfig",
+          "description": "Output only. Billing config for the connection.",
+          "readOnly": true
+        },
         "configVariables": {
           "description": "Optional. Configuration for configuring the connection with an external system.",
           "items": {
@@ -8665,8 +8643,38 @@
           },
           "type": "array"
         },
+        "connectionRevision": {
+          "description": "Output only. Connection revision. This field is only updated when the connection is created or updated by User.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
         "connectorVersion": {
           "description": "Required. Connector version on which the connection is created. The format is: projects/*/locations/*/providers/*/connectors/*/versions/* Only global location is supported for ConnectorVersion resource.",
+          "type": "string"
+        },
+        "connectorVersionInfraConfig": {
+          "$ref": "GoogleCloudConnectorsV1ConnectorVersionInfraConfig",
+          "description": "Output only. Infra configs supported by Connector Version.",
+          "readOnly": true
+        },
+        "connectorVersionLaunchStage": {
+          "description": "Output only. Flag to mark the version indicating the launch stage.",
+          "enum": [
+            "LAUNCH_STAGE_UNSPECIFIED",
+            "PREVIEW",
+            "GA",
+            "DEPRECATED",
+            "PRIVATE_PREVIEW"
+          ],
+          "enumDescriptions": [
+            "LAUNCH_STAGE_UNSPECIFIED.",
+            "PREVIEW.",
+            "GA.",
+            "DEPRECATED.",
+            "PRIVATE_PREVIEW."
+          ],
+          "readOnly": true,
           "type": "string"
         },
         "createTime": {
@@ -8691,10 +8699,38 @@
           "readOnly": true,
           "type": "string"
         },
+        "eventingConfig": {
+          "$ref": "GoogleCloudConnectorsV1EventingConfig",
+          "description": "Optional. Eventing config of a connection"
+        },
+        "eventingEnablementType": {
+          "description": "Optional. Eventing enablement type. Will be nil if eventing is not enabled.",
+          "enum": [
+            "EVENTING_ENABLEMENT_TYPE_UNSPECIFIED",
+            "EVENTING_AND_CONNECTION",
+            "ONLY_EVENTING"
+          ],
+          "enumDescriptions": [
+            "Eventing Enablement Type Unspecifeied.",
+            "Both connection and eventing.",
+            "Only Eventing."
+          ],
+          "type": "string"
+        },
+        "eventingRuntimeData": {
+          "$ref": "GoogleCloudConnectorsV1EventingRuntimeData",
+          "description": "Output only. Eventing Runtime Data.",
+          "readOnly": true
+        },
         "imageLocation": {
           "description": "Output only. GCR location where the runtime image is stored. formatted like: gcr.io/{bucketName}/{imageName}",
           "readOnly": true,
           "type": "string"
+        },
+        "isTrustedTester": {
+          "description": "Output only. Is trusted tester program enabled for the project.",
+          "readOnly": true,
+          "type": "boolean"
         },
         "labels": {
           "additionalProperties": {
@@ -8707,6 +8743,10 @@
           "$ref": "GoogleCloudConnectorsV1LockConfig",
           "description": "Optional. Configuration that indicates whether or not the Connection can be edited."
         },
+        "logConfig": {
+          "$ref": "GoogleCloudConnectorsV1LogConfig",
+          "description": "Optional. Log configuration for the connection."
+        },
         "name": {
           "description": "Output only. Resource name of the Connection. Format: projects/{project}/locations/{location}/connections/{connection}",
           "readOnly": true,
@@ -8714,10 +8754,10 @@
         },
         "nodeConfig": {
           "$ref": "GoogleCloudConnectorsV1NodeConfig",
-          "description": "Optional. Configuration for the connection."
+          "description": "Optional. Node configuration for the connection."
         },
         "serviceAccount": {
-          "description": "Optional. Service account needed for runtime plane to access GCP resources.",
+          "description": "Optional. Service account needed for runtime plane to access Google Cloud resources.",
           "type": "string"
         },
         "serviceDirectory": {
@@ -8725,10 +8765,29 @@
           "readOnly": true,
           "type": "string"
         },
+        "sslConfig": {
+          "$ref": "GoogleCloudConnectorsV1SslConfig",
+          "description": "Optional. Ssl config of a connection"
+        },
         "status": {
           "$ref": "GoogleCloudConnectorsV1ConnectionStatus",
           "description": "Output only. Current status of the connection.",
           "readOnly": true
+        },
+        "subscriptionType": {
+          "description": "Output only. This subscription type enum states the subscription type of the project.",
+          "enum": [
+            "SUBSCRIPTION_TYPE_UNSPECIFIED",
+            "PAY_G",
+            "PAID"
+          ],
+          "enumDescriptions": [
+            "Unspecified subscription type.",
+            "PayG subscription.",
+            "Paid Subscription."
+          ],
+          "readOnly": true,
+          "type": "string"
         },
         "suspended": {
           "description": "Optional. Suspended indicates if a user has suspended a connection or not.",
@@ -8760,7 +8819,8 @@
             "INACTIVE",
             "DELETING",
             "UPDATING",
-            "ERROR"
+            "ERROR",
+            "AUTHORIZATION_REQUIRED"
           ],
           "enumDescriptions": [
             "Connection does not have a state yet.",
@@ -8769,12 +8829,72 @@
             "Connection is stopped.",
             "Connection is being deleted.",
             "Connection is being updated.",
-            "Connection is not running due to an error."
+            "Connection is not running due to an error.",
+            "Connection is not running because the authorization configuration is not complete."
           ],
           "type": "string"
         },
         "status": {
           "description": "Status provides detailed information for the state.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudConnectorsV1ConnectorVersionInfraConfig": {
+      "description": "This cofiguration provides infra configs like rate limit threshold which need to be configurable for every connector version",
+      "id": "GoogleCloudConnectorsV1ConnectorVersionInfraConfig",
+      "properties": {
+        "connectionRatelimitWindowSeconds": {
+          "description": "Output only. The window used for ratelimiting runtime requests to connections.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "deploymentModel": {
+          "description": "Optional. Indicates whether connector is deployed on GKE/CloudRun",
+          "enum": [
+            "DEPLOYMENT_MODEL_UNSPECIFIED",
+            "GKE_MST",
+            "CLOUD_RUN_MST"
+          ],
+          "enumDescriptions": [
+            "Deployment model is not specified.",
+            "Default model gke mst.",
+            "Cloud run mst."
+          ],
+          "type": "string"
+        },
+        "hpaConfig": {
+          "$ref": "GoogleCloudConnectorsV1HPAConfig",
+          "description": "Output only. HPA autoscaling config.",
+          "readOnly": true
+        },
+        "internalclientRatelimitThreshold": {
+          "description": "Output only. Max QPS supported for internal requests originating from Connd.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "ratelimitThreshold": {
+          "description": "Output only. Max QPS supported by the connector version before throttling of requests.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "resourceLimits": {
+          "$ref": "GoogleCloudConnectorsV1ResourceLimits",
+          "description": "Output only. System resource limits.",
+          "readOnly": true
+        },
+        "resourceRequests": {
+          "$ref": "GoogleCloudConnectorsV1ResourceRequests",
+          "description": "Output only. System resource requests.",
+          "readOnly": true
+        },
+        "sharedDeployment": {
+          "description": "Output only. The name of shared connector deployment.",
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -8793,6 +8913,7 @@
           "type": "integer"
         },
         "serviceAttachment": {
+          "deprecated": true,
           "description": "PSC service attachments. Format: projects/*/regions/*/serviceAttachments/*",
           "type": "string"
         }
@@ -8817,6 +8938,210 @@
       },
       "type": "object"
     },
+    "GoogleCloudConnectorsV1EncryptionKey": {
+      "description": "Encryption Key value.",
+      "id": "GoogleCloudConnectorsV1EncryptionKey",
+      "properties": {
+        "kmsKeyName": {
+          "description": "The [KMS key name] with which the content of the Operation is encrypted. The expected format: `projects/*/locations/*/keyRings/*/cryptoKeys/*`. Will be empty string if google managed.",
+          "type": "string"
+        },
+        "type": {
+          "description": "Type.",
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "GOOGLE_MANAGED",
+            "CUSTOMER_MANAGED"
+          ],
+          "enumDescriptions": [
+            "Value type is not specified.",
+            "Google Managed.",
+            "Customer Managed."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudConnectorsV1EventingConfig": {
+      "description": "Eventing Configuration of a connection",
+      "id": "GoogleCloudConnectorsV1EventingConfig",
+      "properties": {
+        "additionalVariables": {
+          "description": "Additional eventing related field values",
+          "items": {
+            "$ref": "GoogleCloudConnectorsV1ConfigVariable"
+          },
+          "type": "array"
+        },
+        "authConfig": {
+          "$ref": "GoogleCloudConnectorsV1AuthConfig",
+          "description": "Auth details for the webhook adapter."
+        },
+        "deadLetterConfig": {
+          "$ref": "GoogleCloudConnectorsV1EventingConfigDeadLetterConfig",
+          "description": "Optional. Dead letter configuration for eventing of a connection."
+        },
+        "enrichmentEnabled": {
+          "description": "Enrichment Enabled.",
+          "type": "boolean"
+        },
+        "eventsListenerIngressEndpoint": {
+          "description": "Optional. Ingress endpoint of the event listener. This is used only when private connectivity is enabled.",
+          "type": "string"
+        },
+        "listenerAuthConfig": {
+          "$ref": "GoogleCloudConnectorsV1AuthConfig",
+          "description": "Optional. Auth details for the event listener."
+        },
+        "privateConnectivityEnabled": {
+          "description": "Optional. Private Connectivity Enabled.",
+          "type": "boolean"
+        },
+        "proxyDestinationConfig": {
+          "$ref": "GoogleCloudConnectorsV1DestinationConfig",
+          "description": "Optional. Proxy for Eventing auto-registration."
+        },
+        "registrationDestinationConfig": {
+          "$ref": "GoogleCloudConnectorsV1DestinationConfig",
+          "description": "Registration endpoint for auto registration."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudConnectorsV1EventingConfigDeadLetterConfig": {
+      "description": "Dead Letter configuration details provided by the user.",
+      "id": "GoogleCloudConnectorsV1EventingConfigDeadLetterConfig",
+      "properties": {
+        "projectId": {
+          "description": "Optional. Project which has the topic given.",
+          "type": "string"
+        },
+        "topic": {
+          "description": "Optional. Topic to push events which couldn't be processed.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudConnectorsV1EventingRuntimeData": {
+      "description": "Eventing runtime data has the details related to eventing managed by the system.",
+      "id": "GoogleCloudConnectorsV1EventingRuntimeData",
+      "properties": {
+        "eventsListenerEndpoint": {
+          "description": "Output only. Events listener endpoint. The value will populated after provisioning the events listener.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "eventsListenerPscSa": {
+          "description": "Output only. Events listener PSC Service attachment. The value will be populated after provisioning the events listener with private connectivity enabled.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "status": {
+          "$ref": "GoogleCloudConnectorsV1EventingStatus",
+          "description": "Output only. Current status of eventing.",
+          "readOnly": true
+        },
+        "webhookData": {
+          "$ref": "GoogleCloudConnectorsV1EventingRuntimeDataWebhookData",
+          "description": "Output only. Webhook data.",
+          "readOnly": true
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudConnectorsV1EventingRuntimeDataWebhookData": {
+      "description": "WebhookData has details of webhook configuration.",
+      "id": "GoogleCloudConnectorsV1EventingRuntimeDataWebhookData",
+      "properties": {
+        "additionalVariables": {
+          "description": "Output only. Additional webhook related field values.",
+          "items": {
+            "$ref": "GoogleCloudConnectorsV1ConfigVariable"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "createTime": {
+          "description": "Output only. Timestamp when the webhook was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "id": {
+          "description": "Output only. ID to uniquely identify webhook.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "Output only. Name of the Webhook",
+          "readOnly": true,
+          "type": "string"
+        },
+        "nextRefreshTime": {
+          "description": "Output only. Next webhook refresh time. Will be null if refresh is not supported.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. Timestamp when the webhook was last updated.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudConnectorsV1EventingStatus": {
+      "description": "EventingStatus indicates the state of eventing.",
+      "id": "GoogleCloudConnectorsV1EventingStatus",
+      "properties": {
+        "description": {
+          "description": "Output only. Description of error if State is set to \"ERROR\".",
+          "readOnly": true,
+          "type": "string"
+        },
+        "state": {
+          "description": "Output only. State.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "ACTIVE",
+            "ERROR",
+            "INGRESS_ENDPOINT_REQUIRED"
+          ],
+          "enumDescriptions": [
+            "Default state.",
+            "Eventing is enabled and ready to receive events.",
+            "Eventing is not active due to an error.",
+            "Ingress endpoint required."
+          ],
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudConnectorsV1HPAConfig": {
+      "description": "Autoscaling config for connector deployment system metrics.",
+      "id": "GoogleCloudConnectorsV1HPAConfig",
+      "properties": {
+        "cpuUtilizationThreshold": {
+          "description": "Output only. Percent CPU utilization where HPA triggers autoscaling.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "memoryUtilizationThreshold": {
+          "description": "Output only. Percent Memory utilization where HPA triggers autoscaling.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudConnectorsV1LockConfig": {
       "description": "Determines whether or no a connection is locked. If locked, a reason must be specified.",
       "id": "GoogleCloudConnectorsV1LockConfig",
@@ -8832,8 +9157,19 @@
       },
       "type": "object"
     },
+    "GoogleCloudConnectorsV1LogConfig": {
+      "description": "Log configuration for the connection.",
+      "id": "GoogleCloudConnectorsV1LogConfig",
+      "properties": {
+        "enabled": {
+          "description": "Enabled represents whether logging is enabled or not for a connection.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudConnectorsV1NodeConfig": {
-      "description": "Configuration for the connection.",
+      "description": "Node configuration for the connection.",
       "id": "GoogleCloudConnectorsV1NodeConfig",
       "properties": {
         "maxNodeCount": {
@@ -8849,6 +9185,40 @@
       },
       "type": "object"
     },
+    "GoogleCloudConnectorsV1ResourceLimits": {
+      "description": "Resource limits defined for connection pods of a given connector type.",
+      "id": "GoogleCloudConnectorsV1ResourceLimits",
+      "properties": {
+        "cpu": {
+          "description": "Output only. CPU limit.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "memory": {
+          "description": "Output only. Memory limit.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudConnectorsV1ResourceRequests": {
+      "description": "Resource requests defined for connection pods of a given connector type.",
+      "id": "GoogleCloudConnectorsV1ResourceRequests",
+      "properties": {
+        "cpu": {
+          "description": "Output only. CPU request.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "memory": {
+          "description": "Output only. Memory request.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudConnectorsV1Secret": {
       "description": "Secret provides a reference to entries in Secret Manager.",
       "id": "GoogleCloudConnectorsV1Secret",
@@ -8856,6 +9226,92 @@
         "secretVersion": {
           "description": "The resource name of the secret version in the format, format as: `projects/*/secrets/*/versions/*`.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudConnectorsV1SslConfig": {
+      "description": "SSL Configuration of a connection",
+      "id": "GoogleCloudConnectorsV1SslConfig",
+      "properties": {
+        "additionalVariables": {
+          "description": "Additional SSL related field values",
+          "items": {
+            "$ref": "GoogleCloudConnectorsV1ConfigVariable"
+          },
+          "type": "array"
+        },
+        "clientCertType": {
+          "description": "Type of Client Cert (PEM/JKS/.. etc.)",
+          "enum": [
+            "CERT_TYPE_UNSPECIFIED",
+            "PEM"
+          ],
+          "enumDescriptions": [
+            "Cert type unspecified.",
+            "Privacy Enhanced Mail (PEM) Type"
+          ],
+          "type": "string"
+        },
+        "clientCertificate": {
+          "$ref": "GoogleCloudConnectorsV1Secret",
+          "description": "Client Certificate"
+        },
+        "clientPrivateKey": {
+          "$ref": "GoogleCloudConnectorsV1Secret",
+          "description": "Client Private Key"
+        },
+        "clientPrivateKeyPass": {
+          "$ref": "GoogleCloudConnectorsV1Secret",
+          "description": "Secret containing the passphrase protecting the Client Private Key"
+        },
+        "privateServerCertificate": {
+          "$ref": "GoogleCloudConnectorsV1Secret",
+          "description": "Private Server Certificate. Needs to be specified if trust model is `PRIVATE`."
+        },
+        "serverCertType": {
+          "description": "Type of Server Cert (PEM/JKS/.. etc.)",
+          "enum": [
+            "CERT_TYPE_UNSPECIFIED",
+            "PEM"
+          ],
+          "enumDescriptions": [
+            "Cert type unspecified.",
+            "Privacy Enhanced Mail (PEM) Type"
+          ],
+          "type": "string"
+        },
+        "trustModel": {
+          "description": "Trust Model of the SSL connection",
+          "enum": [
+            "PUBLIC",
+            "PRIVATE",
+            "INSECURE"
+          ],
+          "enumDescriptions": [
+            "Public Trust Model. Takes the Default Java trust store.",
+            "Private Trust Model. Takes custom/private trust store.",
+            "Insecure Trust Model. Accept all certificates."
+          ],
+          "type": "string"
+        },
+        "type": {
+          "description": "Controls the ssl type for the given connector version.",
+          "enum": [
+            "SSL_TYPE_UNSPECIFIED",
+            "TLS",
+            "MTLS"
+          ],
+          "enumDescriptions": [
+            "No SSL configuration required.",
+            "TLS Handshake",
+            "mutual TLS (MTLS) Handshake"
+          ],
+          "type": "string"
+        },
+        "useSsl": {
+          "description": "Bool for enabling SSL",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -8889,41 +9345,17 @@
       },
       "type": "object"
     },
-    "GoogleCloudIntegrationsV1alphaArchiveBundleRequest": {
-      "description": "Request for ArchiveBundle.",
-      "id": "GoogleCloudIntegrationsV1alphaArchiveBundleRequest",
-      "properties": {},
-      "type": "object"
-    },
-    "GoogleCloudIntegrationsV1alphaArchiveBundleResponse": {
-      "description": "Response for ArchiveBundle.",
-      "id": "GoogleCloudIntegrationsV1alphaArchiveBundleResponse",
-      "properties": {},
-      "type": "object"
-    },
-    "GoogleCloudIntegrationsV1alphaArchiveIntegrationVersionRequest": {
-      "description": "Request for ArchiveIntegrationVersion.",
-      "id": "GoogleCloudIntegrationsV1alphaArchiveIntegrationVersionRequest",
-      "properties": {},
-      "type": "object"
-    },
-    "GoogleCloudIntegrationsV1alphaArchiveIntegrationVersionResponse": {
-      "description": "Response for ArchiveIntegrationVersion.",
-      "id": "GoogleCloudIntegrationsV1alphaArchiveIntegrationVersionResponse",
-      "properties": {},
-      "type": "object"
-    },
     "GoogleCloudIntegrationsV1alphaAttemptStats": {
       "description": "Status for the execution attempt.",
       "id": "GoogleCloudIntegrationsV1alphaAttemptStats",
       "properties": {
         "endTime": {
-          "description": "The end time of the event execution for current attempt.",
+          "description": "The end time of the integration execution for current attempt.",
           "format": "google-datetime",
           "type": "string"
         },
         "startTime": {
-          "description": "The start time of the event execution for current attempt. This could be in the future if it's been scheduled.",
+          "description": "The start time of the integration execution for current attempt. This could be in the future if it's been scheduled.",
           "format": "google-datetime",
           "type": "string"
         }
@@ -8989,7 +9421,7 @@
           "type": "string"
         },
         "displayName": {
-          "description": "The name of the auth config.",
+          "description": "Required. The name of the auth config.",
           "type": "string"
         },
         "encryptedCredential": {
@@ -9010,7 +9442,7 @@
           "type": "string"
         },
         "name": {
-          "description": "Resource name of the SFDC instance projects/{project}/locations/{location}/authConfigs/{authConfig}.",
+          "description": "Resource name of the auth config. For more information, see Manage authentication profiles. projects/{project}/locations/{location}/authConfigs/{authConfig}.",
           "type": "string"
         },
         "overrideValidTime": {
@@ -9145,7 +9577,7 @@
           "type": "string"
         },
         "displayName": {
-          "description": "Name of the certificate",
+          "description": "Required. Name of the certificate",
           "type": "string"
         },
         "name": {
@@ -9233,10 +9665,6 @@
           "$ref": "GoogleCloudIntegrationsV1alphaCloudKmsConfig",
           "description": "Cloud KMS config for Auth Module to encrypt/decrypt credentials."
         },
-        "cloudLoggingConfig": {
-          "$ref": "GoogleCloudIntegrationsV1alphaCloudLoggingConfig",
-          "description": "Determines the cloud logging configuration for the project"
-        },
         "createTime": {
           "description": "The timestamp when the client was first created.",
           "format": "google-datetime",
@@ -9246,12 +9674,20 @@
           "description": "Description of what the client is used for",
           "type": "string"
         },
+        "enableVariableMasking": {
+          "description": "Optional. True if variable masking feature should be turned on for this region",
+          "type": "boolean"
+        },
         "id": {
           "description": "Globally unique ID (project_id + region)",
           "type": "string"
         },
+        "isGmek": {
+          "description": "Optional. Indicates the client is provisioned with CMEK or GMEK.",
+          "type": "boolean"
+        },
         "p4ServiceAccount": {
-          "description": "The P4SA account associated with this client",
+          "description": "The service agent associated with this client",
           "type": "string"
         },
         "projectId": {
@@ -9260,6 +9696,10 @@
         },
         "region": {
           "description": "The region the client is linked to.",
+          "type": "string"
+        },
+        "runAsServiceAccount": {
+          "description": "Default run-as service account email, set up during project provision time, that will be used to generate auth token to be used in Connector task, Rest caller task, Cloud function task and Subworkflows.",
           "type": "string"
         }
       },
@@ -9281,6 +9721,10 @@
           "description": "Required. Location name of the key ring, e.g. \"us-west1\".",
           "type": "string"
         },
+        "kmsProjectId": {
+          "description": "Optional. The gcp project id of the project where the kms key stored. If empty, the kms key is stored at the same project as customer's project and ecrypted with CMEK, otherwise, the kms key is stored in the tenant project and encrypted with GMEK",
+          "type": "string"
+        },
         "kmsRing": {
           "description": "Required. A key ring organizes keys in a specific Google Cloud location and allows you to manage access control on groups of keys. A key ring's name does not need to be unique across a Google Cloud project, but must be unique within a given location.",
           "type": "string"
@@ -9288,16 +9732,28 @@
       },
       "type": "object"
     },
-    "GoogleCloudIntegrationsV1alphaCloudLoggingConfig": {
-      "description": "Config info for Cloud Logging",
-      "id": "GoogleCloudIntegrationsV1alphaCloudLoggingConfig",
+    "GoogleCloudIntegrationsV1alphaCloudLoggingDetails": {
+      "description": "Cloud Logging details for execution info",
+      "id": "GoogleCloudIntegrationsV1alphaCloudLoggingDetails",
       "properties": {
-        "bucket": {
-          "description": "Cloud bucket name for the project.",
+        "cloudLoggingSeverity": {
+          "description": "Optional. Severity selected by the customer for the logs to be sent to Cloud Logging, for the integration version getting executed.",
+          "enum": [
+            "CLOUD_LOGGING_SEVERITY_UNSPECIFIED",
+            "INFO",
+            "ERROR",
+            "WARNING"
+          ],
+          "enumDescriptions": [
+            "Unspecified",
+            "If Severity selected is `INFO`, then all the Integration Execution States (`IN_PROCESS`, `ON_HOLD`, `SUCCEEDED`, `SUSPENDED`, `ERROR`, `CANCELLED`) will be sent to Cloud Logging.",
+            "If Severity selected is `ERROR`, then only the following Integration Execution States (`ERROR`, `CANCELLED`) will be sent to Cloud Logging.",
+            "If Severity selected is `WARNING`, then only the following Integration Execution States (`ERROR`, `CANCELLED`) will be sent to Cloud Logging."
+          ],
           "type": "string"
         },
         "enableCloudLogging": {
-          "description": "This field determines whether the logs should be sent to cloud logging api",
+          "description": "Optional. Status of whether Cloud Logging is enabled or not for the integration version getting executed.",
           "type": "boolean"
         }
       },
@@ -9347,6 +9803,23 @@
       },
       "type": "object"
     },
+    "GoogleCloudIntegrationsV1alphaCoordinate": {
+      "description": "Configuration detail of coordinate, it used for UI",
+      "id": "GoogleCloudIntegrationsV1alphaCoordinate",
+      "properties": {
+        "x": {
+          "description": "Required. X axis of the coordinate",
+          "format": "int32",
+          "type": "integer"
+        },
+        "y": {
+          "description": "Required. Y axis of the coordinate",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudIntegrationsV1alphaCreateAppsScriptProjectRequest": {
       "description": "Request for CreateAppsScriptProject rpc call.",
       "id": "GoogleCloudIntegrationsV1alphaCreateAppsScriptProjectRequest",
@@ -9368,43 +9841,6 @@
       "properties": {
         "projectId": {
           "description": "The created AppsScriptProject ID.",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "GoogleCloudIntegrationsV1alphaCreateBundleRequest": {
-      "description": "PROTECT WITH A VISIBILITY LABEL. THIS METHOD WILL BE MOVED TO A SEPARATE SERVICE. Request to create a new Bundle.",
-      "id": "GoogleCloudIntegrationsV1alphaCreateBundleRequest",
-      "properties": {
-        "bundleId": {
-          "description": "Required. name of the bundle that will be created",
-          "type": "string"
-        },
-        "integrations": {
-          "description": "A list of integrations that can be executed by the bundle",
-          "items": {
-            "type": "string"
-          },
-          "type": "array"
-        },
-        "secondaryCustomerOrgId": {
-          "description": "Optional. The prefix for the SA, it should be in the format \"o\". This is an optional field, and if empty service account will be created per project, where we are creating bundle. This should only be used as the org ID for which we want to run the integrations in the bundle.",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "GoogleCloudIntegrationsV1alphaCreateBundleResponse": {
-      "description": "Response for create bundle.",
-      "id": "GoogleCloudIntegrationsV1alphaCreateBundleResponse",
-      "properties": {
-        "config": {
-          "$ref": "GoogleCloudIntegrationsV1alphaIntegrationBundleConfig",
-          "description": "It contains the bundle data"
-        },
-        "triggerId": {
-          "description": "trigger_id of the bundle task",
           "type": "string"
         }
       },
@@ -9511,18 +9947,6 @@
       },
       "type": "object"
     },
-    "GoogleCloudIntegrationsV1alphaDeactivateIntegrationVersionRequest": {
-      "description": "Request for DeactivateIntegrationVersion.",
-      "id": "GoogleCloudIntegrationsV1alphaDeactivateIntegrationVersionRequest",
-      "properties": {},
-      "type": "object"
-    },
-    "GoogleCloudIntegrationsV1alphaDeactivateIntegrationVersionResponse": {
-      "description": "Response for DeactivateIntegrationVersion.",
-      "id": "GoogleCloudIntegrationsV1alphaDeactivateIntegrationVersionResponse",
-      "properties": {},
-      "type": "object"
-    },
     "GoogleCloudIntegrationsV1alphaDeprovisionClientRequest": {
       "description": "Request for the Deprovision rpc",
       "id": "GoogleCloudIntegrationsV1alphaDeprovisionClientRequest",
@@ -9560,8 +9984,29 @@
       "id": "GoogleCloudIntegrationsV1alphaDownloadIntegrationVersionResponse",
       "properties": {
         "content": {
-          "description": "String representation of the integration version.",
+          "description": "String representation of the requested file.",
           "type": "string"
+        },
+        "files": {
+          "description": "List containing String represendation for multiple file with type.",
+          "items": {
+            "$ref": "GoogleCloudIntegrationsV1alphaSerializedFile"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudIntegrationsV1alphaDownloadJsonPackageResponse": {
+      "description": "Response for DownloadJsonPackage.",
+      "id": "GoogleCloudIntegrationsV1alphaDownloadJsonPackageResponse",
+      "properties": {
+        "files": {
+          "description": "List containing JSON for multiple file with type information.",
+          "items": {
+            "$ref": "GoogleCloudIntegrationsV1alphaFile"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -9580,17 +10025,66 @@
       },
       "type": "object"
     },
+    "GoogleCloudIntegrationsV1alphaErrorCatcherConfig": {
+      "description": "Configuration detail of a error catch task",
+      "id": "GoogleCloudIntegrationsV1alphaErrorCatcherConfig",
+      "properties": {
+        "description": {
+          "description": "Optional. User-provided description intended to give more business context about the error catcher config.",
+          "type": "string"
+        },
+        "errorCatcherId": {
+          "description": "Required. An error catcher id is string representation for the error catcher config. Within a workflow, error_catcher_id uniquely identifies an error catcher config among all error catcher configs for the workflow",
+          "type": "string"
+        },
+        "errorCatcherNumber": {
+          "description": "Required. A number to uniquely identify each error catcher config within the workflow on UI.",
+          "type": "string"
+        },
+        "label": {
+          "description": "Optional. The user created label for a particular error catcher. Optional.",
+          "type": "string"
+        },
+        "position": {
+          "$ref": "GoogleCloudIntegrationsV1alphaCoordinate",
+          "description": "Optional. Informs the front-end application where to draw this error catcher config on the UI."
+        },
+        "startErrorTasks": {
+          "description": "Required. The set of start tasks that are to be executed for the error catch flow",
+          "items": {
+            "$ref": "GoogleCloudIntegrationsV1alphaNextTask"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudIntegrationsV1alphaEventParameter": {
-      "description": "This message is used for processing and persisting (when applicable) key value pair parameters for each event in the event bus.",
+      "description": "This message is used for processing and persisting (when applicable) key value pair parameters for each event in the event bus. Next available id: 4",
       "id": "GoogleCloudIntegrationsV1alphaEventParameter",
       "properties": {
         "key": {
           "description": "Key is used to retrieve the corresponding parameter value. This should be unique for a given fired event. These parameters must be predefined in the integration definition.",
           "type": "string"
         },
+        "masked": {
+          "description": "True if this parameter should be masked in the logs",
+          "type": "boolean"
+        },
         "value": {
           "$ref": "GoogleCloudIntegrationsV1alphaValueType",
           "description": "Values for the defined keys. Each value can either be string, int, double or any proto message."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudIntegrationsV1alphaExecuteEventResponse": {
+      "description": "The response for executing an integration.",
+      "id": "GoogleCloudIntegrationsV1alphaExecuteEventResponse",
+      "properties": {
+        "executionId": {
+          "description": "The id of the execution corresponding to this run of integration.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -9604,6 +10098,7 @@
           "type": "boolean"
         },
         "executionId": {
+          "deprecated": true,
           "description": "Optional. The id of the ON_HOLD execution to be resumed.",
           "type": "string"
         },
@@ -9615,6 +10110,7 @@
           "type": "object"
         },
         "parameterEntries": {
+          "deprecated": true,
           "description": "Optional. Parameters are a part of Event and can be used to communicate between different tasks that are part of the same integration execution.",
           "items": {
             "$ref": "EnterpriseCrmFrontendsEventbusProtoParameterEntry"
@@ -9623,6 +10119,7 @@
         },
         "parameters": {
           "$ref": "EnterpriseCrmFrontendsEventbusProtoEventParameters",
+          "deprecated": true,
           "description": "Optional. Passed in as parameters to each integration execution. Redacted"
         },
         "requestId": {
@@ -9642,9 +10139,11 @@
       "properties": {
         "eventParameters": {
           "$ref": "EnterpriseCrmFrontendsEventbusProtoEventParameters",
+          "deprecated": true,
           "description": "Details for the integration that were executed."
         },
         "executionFailed": {
+          "deprecated": true,
           "description": "Is true if any execution in the integration failed. False otherwise.",
           "type": "boolean"
         },
@@ -9661,6 +10160,7 @@
           "type": "object"
         },
         "parameterEntries": {
+          "deprecated": true,
           "description": "Parameters are a part of Event and can be used to communicate between different tasks that are part of the same integration execution.",
           "items": {
             "$ref": "EnterpriseCrmFrontendsEventbusProtoParameterEntry"
@@ -9674,6 +10174,10 @@
       "description": "The Execution resource contains detailed information of an individual integration execution.",
       "id": "GoogleCloudIntegrationsV1alphaExecution",
       "properties": {
+        "cloudLoggingDetails": {
+          "$ref": "GoogleCloudIntegrationsV1alphaCloudLoggingDetails",
+          "description": "Cloud Logging details for the integration version"
+        },
         "createTime": {
           "description": "Output only. Created time of the execution.",
           "format": "google-datetime",
@@ -9689,6 +10193,7 @@
         },
         "eventExecutionDetails": {
           "$ref": "EnterpriseCrmEventbusProtoEventExecutionDetails",
+          "deprecated": true,
           "description": "The execution info about this event."
         },
         "executionDetails": {
@@ -9711,9 +10216,33 @@
           ],
           "type": "string"
         },
+        "integrationVersionState": {
+          "description": "Output only. State of the integration version",
+          "enum": [
+            "INTEGRATION_STATE_UNSPECIFIED",
+            "DRAFT",
+            "ACTIVE",
+            "ARCHIVED",
+            "SNAPSHOT"
+          ],
+          "enumDescriptions": [
+            "Default.",
+            "Draft.",
+            "Active.",
+            "Archived.",
+            "Snapshot."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
         "name": {
           "description": "Auto-generated primary key.",
           "type": "string"
+        },
+        "replayInfo": {
+          "$ref": "GoogleCloudIntegrationsV1alphaExecutionReplayInfo",
+          "description": "Output only. Replay info for the execution",
+          "readOnly": true
         },
         "requestParameters": {
           "additionalProperties": {
@@ -9723,6 +10252,7 @@
           "type": "object"
         },
         "requestParams": {
+          "deprecated": true,
           "description": "Event parameters come in as part of the request.",
           "items": {
             "$ref": "EnterpriseCrmFrontendsEventbusProtoParameterEntry"
@@ -9737,11 +10267,18 @@
           "type": "object"
         },
         "responseParams": {
+          "deprecated": true,
           "description": "Event parameters come out as part of the response.",
           "items": {
             "$ref": "EnterpriseCrmFrontendsEventbusProtoParameterEntry"
           },
           "type": "array"
+        },
+        "snapshotNumber": {
+          "description": "Output only. An increasing sequence that is set when a new snapshot is created",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
         },
         "triggerId": {
           "description": "The trigger id of the integration trigger config. If both trigger_id and client_id is present, the integration is executed from the start tasks provided by the matching trigger config otherwise it is executed from the default start tasks.",
@@ -9766,6 +10303,11 @@
             "$ref": "GoogleCloudIntegrationsV1alphaAttemptStats"
           },
           "type": "array"
+        },
+        "eventExecutionSnapshotsSize": {
+          "description": "Total size of all event_execution_snapshots for an execution",
+          "format": "int64",
+          "type": "string"
         },
         "executionSnapshots": {
           "description": "List of snapshots taken during the execution.",
@@ -9797,6 +10339,28 @@
             "Execution suspended and waiting for manual intervention."
           ],
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudIntegrationsV1alphaExecutionReplayInfo": {
+      "description": "Contains the details of the execution info: this includes the replay reason and replay tree connecting executions in a parent-child relationship",
+      "id": "GoogleCloudIntegrationsV1alphaExecutionReplayInfo",
+      "properties": {
+        "originalExecutionInfoId": {
+          "description": "If this execution is a replay of another execution, then this field contains the original execution id.",
+          "type": "string"
+        },
+        "replayReason": {
+          "description": "reason for replay",
+          "type": "string"
+        },
+        "replayedExecutionInfoIds": {
+          "description": "If this execution has been replayed, then this field contains the execution ids of the replayed executions.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -9834,10 +10398,28 @@
       "description": "Metadata of the execution snapshot.",
       "id": "GoogleCloudIntegrationsV1alphaExecutionSnapshotExecutionSnapshotMetadata",
       "properties": {
+        "ancestorIterationNumbers": {
+          "description": "Ancestor iteration number for the task(it will only be non-empty if the task is under 'private workflow')",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "ancestorTaskNumbers": {
+          "description": "Ancestor task number for the task(it will only be non-empty if the task is under 'private workflow')",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
         "executionAttempt": {
           "description": "the execution attempt number this snapshot belongs to.",
           "format": "int32",
           "type": "integer"
+        },
+        "integrationName": {
+          "description": "The direct integration which the event execution snapshots belongs to",
+          "type": "string"
         },
         "task": {
           "description": "the task name associated with this snapshot.",
@@ -9847,6 +10429,10 @@
           "description": "the task attempt number this snapshot belongs to.",
           "format": "int32",
           "type": "integer"
+        },
+        "taskLabel": {
+          "description": "the task label associated with this snapshot. Could be empty.",
+          "type": "string"
         },
         "taskNumber": {
           "description": "The task number associated with this snapshot.",
@@ -9896,6 +10482,39 @@
       },
       "type": "object"
     },
+    "GoogleCloudIntegrationsV1alphaFile": {
+      "description": "To store Integration version related file i.e. Integration Version, Config variable etc.",
+      "id": "GoogleCloudIntegrationsV1alphaFile",
+      "properties": {
+        "integrationConfig": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "Integration version config file",
+          "type": "object"
+        },
+        "integrationVersion": {
+          "$ref": "GoogleCloudIntegrationsV1alphaIntegrationVersion",
+          "description": "Integration version"
+        },
+        "type": {
+          "description": "File information like Integration version, Integration Config variables etc.",
+          "enum": [
+            "INTEGRATION_FILE_UNSPECIFIED",
+            "INTEGRATION",
+            "INTEGRATION_CONFIG_VARIABLES"
+          ],
+          "enumDescriptions": [
+            "Default value.",
+            "Integration file.",
+            "Integration Config variables."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudIntegrationsV1alphaGenerateTokenResponse": {
       "description": "Returns success or error message",
       "id": "GoogleCloudIntegrationsV1alphaGenerateTokenResponse",
@@ -9903,17 +10522,6 @@
         "message": {
           "description": "The message that notifies the user if the request succeeded or not.",
           "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "GoogleCloudIntegrationsV1alphaGetBundleResponse": {
-      "description": "Response for GetBundle.",
-      "id": "GoogleCloudIntegrationsV1alphaGetBundleResponse",
-      "properties": {
-        "config": {
-          "$ref": "GoogleCloudIntegrationsV1alphaIntegrationBundleConfig",
-          "description": "It contains the bundle data"
         }
       },
       "type": "object"
@@ -9963,8 +10571,23 @@
           "description": "Required. If any integration version is published.",
           "type": "boolean"
         },
+        "createTime": {
+          "description": "Required. Output only. Auto-generated.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "creatorEmail": {
+          "description": "Output only. The creator's email address. Generated based on the End User Credentials/LOAS role of the user making the call.",
+          "readOnly": true,
+          "type": "string"
+        },
         "description": {
           "description": "Optional.",
+          "type": "string"
+        },
+        "lastModifierEmail": {
+          "description": "Required. The last modifier of this integration",
           "type": "string"
         },
         "name": {
@@ -10078,21 +10701,17 @@
       },
       "type": "object"
     },
-    "GoogleCloudIntegrationsV1alphaIntegrationBundleConfig": {
-      "description": "This proto holds the core runner data in the bundle task. It is not expected to be directly edited by the user. Instead, a default value will be provided at the task creation time.",
-      "id": "GoogleCloudIntegrationsV1alphaIntegrationBundleConfig",
+    "GoogleCloudIntegrationsV1alphaIntegrationConfigParameter": {
+      "description": "Integration Config Parameter is defined in the integration config and are used to provide external configuration for integration. It provide information about data types of the expected parameters and provide any default values or value. They can also be used to add custom attributes.",
+      "id": "GoogleCloudIntegrationsV1alphaIntegrationConfigParameter",
       "properties": {
-        "integrations": {
-          "description": "A bundle of integrations that can be executed by the task at runtime.",
-          "items": {
-            "type": "string"
-          },
-          "type": "array"
+        "parameter": {
+          "$ref": "GoogleCloudIntegrationsV1alphaIntegrationParameter",
+          "description": "Optional. Integration Parameter to provide the default value, data type and attributes required for the Integration config variables."
         },
-        "serviceAccount": {
-          "description": "Output only. The service account created and owned by IP and added to the customers GCP project.",
-          "readOnly": true,
-          "type": "string"
+        "value": {
+          "$ref": "GoogleCloudIntegrationsV1alphaValueType",
+          "description": "Values for the defined keys. Each value can either be string, int, double or any proto message or a serialized object."
         }
       },
       "type": "object"
@@ -10101,6 +10720,10 @@
       "description": "Integration Parameter is defined in the integration config and are used to provide information about data types of the expected parameters and provide any default values if needed. They can also be used to add custom attributes. These are static in nature and should not be used for dynamic event definition.",
       "id": "GoogleCloudIntegrationsV1alphaIntegrationParameter",
       "properties": {
+        "containsLargeData": {
+          "description": "Indicates whether this variable contains large data and need to be uploaded to Cloud Storage.",
+          "type": "boolean"
+        },
         "dataType": {
           "description": "Type of the parameter.",
           "enum": [
@@ -10169,6 +10792,10 @@
           "description": "Key is used to retrieve the corresponding parameter value. This should be unique for a given fired event. These parameters must be predefined in the integration definition.",
           "type": "string"
         },
+        "masked": {
+          "description": "True if this parameter should be masked in the logs",
+          "type": "boolean"
+        },
         "producer": {
           "description": "The identifier of the node (TaskConfig/TriggerConfig) this parameter was produced by, if it is a transient param or a copy of an input param.",
           "type": "string"
@@ -10184,27 +10811,55 @@
       "description": "The integration version definition.",
       "id": "GoogleCloudIntegrationsV1alphaIntegrationVersion",
       "properties": {
+        "cloudLoggingDetails": {
+          "$ref": "GoogleCloudIntegrationsV1alphaCloudLoggingDetails",
+          "description": "Optional. Cloud Logging details for the integration version"
+        },
         "createTime": {
           "description": "Output only. Auto-generated.",
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
         },
+        "createdFromTemplate": {
+          "description": "Optional. Optional. The resource name of the template from which the integration is created.",
+          "type": "string"
+        },
         "databasePersistencePolicy": {
           "description": "Optional. Flag to disable database persistence for execution data, including event execution info, execution export info, execution metadata index and execution param index.",
           "enum": [
             "DATABASE_PERSISTENCE_POLICY_UNSPECIFIED",
-            "DATABASE_PERSISTENCE_DISABLED"
+            "DATABASE_PERSISTENCE_DISABLED",
+            "DATABASE_PERSISTENCE_ASYNC"
           ],
           "enumDescriptions": [
             "Enables persistence for all execution data.",
-            "Disables persistence for all execution data."
+            "Disables persistence for all execution data.",
+            "Asynchronously persist all execution data."
           ],
           "type": "string"
         },
         "description": {
           "description": "Optional. The integration description.",
           "type": "string"
+        },
+        "enableVariableMasking": {
+          "description": "Optional. True if variable masking feature should be turned on for this version",
+          "type": "boolean"
+        },
+        "errorCatcherConfigs": {
+          "description": "Optional. Error Catch Task configuration for the integration. It's optional.",
+          "items": {
+            "$ref": "GoogleCloudIntegrationsV1alphaErrorCatcherConfig"
+          },
+          "type": "array"
+        },
+        "integrationConfigParameters": {
+          "description": "Optional. Config Parameters that are expected to be passed to the integration when an integration is published. This consists of all the parameters that are expected to provide configuration in the integration execution. This gives the user the ability to provide default values, value, add information like connection url, project based configuration value and also provide data types of each parameter.",
+          "items": {
+            "$ref": "GoogleCloudIntegrationsV1alphaIntegrationConfigParameter"
+          },
+          "type": "array"
         },
         "integrationParameters": {
           "description": "Optional. Parameters that are expected to be passed to the integration when an event is triggered. This consists of all the parameters that are expected in the integration execution. This gives the user the ability to provide default values, add information like PII and also provide data types of each parameter.",
@@ -10215,6 +10870,7 @@
         },
         "integrationParametersInternal": {
           "$ref": "EnterpriseCrmFrontendsEventbusProtoWorkflowParameters",
+          "deprecated": true,
           "description": "Optional. Parameters that are expected to be passed to the integration when an event is triggered. This consists of all the parameters that are expected in the integration execution. This gives the user the ability to provide default values, add information like PII and also provide data types of each parameter."
         },
         "lastModifierEmail": {
@@ -10231,25 +10887,40 @@
           "type": "string"
         },
         "origin": {
+          "deprecated": true,
           "description": "Optional. The origin that indicates where this integration is coming from.",
           "enum": [
             "UNSPECIFIED",
             "UI",
             "PIPER_V2",
             "PIPER_V3",
-            "APPLICATION_IP_PROVISIONING"
+            "APPLICATION_IP_PROVISIONING",
+            "TEST_CASE"
+          ],
+          "enumDeprecated": [
+            false,
+            false,
+            true,
+            false,
+            false,
+            false
           ],
           "enumDescriptions": [
             "",
             "Workflow is being created via event bus UI.",
             "User checked in this workflow in Piper as v2 textproto format and we synced it into spanner.",
             "User checked in this workflow in piper as v3 textproto format and we synced it into spanner.",
-            "Workflow is being created via Standalone IP Provisioning"
+            "Workflow is being created via Standalone IP Provisioning",
+            "Workflow is being created via Test Case."
           ],
           "type": "string"
         },
         "parentTemplateId": {
           "description": "Optional. The id of the template which was used to create this integration_version.",
+          "type": "string"
+        },
+        "runAsServiceAccount": {
+          "description": "Optional. The run-as service account email, if set and auth config is not configured, that will be used to generate auth token to be used in Connector task, Rest caller task and Cloud function task.",
           "type": "string"
         },
         "snapshotNumber": {
@@ -10277,6 +10948,7 @@
           "type": "string"
         },
         "status": {
+          "deprecated": true,
           "description": "Output only. Generated by eventbus. User should not set it as an input.",
           "enum": [
             "UNKNOWN",
@@ -10303,6 +10975,7 @@
           "type": "array"
         },
         "taskConfigsInternal": {
+          "deprecated": true,
           "description": "Optional. Task configuration for the integration. It's optional, but the integration doesn't do anything without task_configs.",
           "items": {
             "$ref": "EnterpriseCrmFrontendsEventbusProtoTaskConfig"
@@ -10311,6 +10984,7 @@
         },
         "teardown": {
           "$ref": "EnterpriseCrmEventbusProtoTeardown",
+          "deprecated": true,
           "description": "Optional. Contains a graph of tasks that will be executed before putting the event in a terminal state (SUCCEEDED/FAILED/FATAL), regardless of success or failure, similar to \"finally\" in code."
         },
         "triggerConfigs": {
@@ -10321,6 +10995,7 @@
           "type": "array"
         },
         "triggerConfigsInternal": {
+          "deprecated": true,
           "description": "Optional. Trigger configurations.",
           "items": {
             "$ref": "EnterpriseCrmFrontendsEventbusProtoTriggerConfig"
@@ -10461,29 +11136,12 @@
       },
       "type": "object"
     },
-    "GoogleCloudIntegrationsV1alphaListExecutionSnapshotsResponse": {
-      "description": "Response for listing the integration execution snapshot.",
-      "id": "GoogleCloudIntegrationsV1alphaListExecutionSnapshotsResponse",
-      "properties": {
-        "executionSnapshots": {
-          "description": "Required. The detailed information for the execution snapshot.",
-          "items": {
-            "$ref": "EnterpriseCrmEventbusProtoEventExecutionSnapshot"
-          },
-          "type": "array"
-        },
-        "nextPageToken": {
-          "description": "The token returned in the previous response.",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
     "GoogleCloudIntegrationsV1alphaListExecutionsResponse": {
       "description": "Response for listing the integration execution data.",
       "id": "GoogleCloudIntegrationsV1alphaListExecutionsResponse",
       "properties": {
         "executionInfos": {
+          "deprecated": true,
           "description": "Required. The detailed information of requested executions.",
           "items": {
             "$ref": "EnterpriseCrmFrontendsEventbusProtoEventExecutionInfo"
@@ -10630,154 +11288,6 @@
             "$ref": "GoogleCloudIntegrationsV1alphaSuspension"
           },
           "type": "array"
-        }
-      },
-      "type": "object"
-    },
-    "GoogleCloudIntegrationsV1alphaListTaskEntitiesResponse": {
-      "description": "This is a UI only method and will be moved away. Response for ListTaskEntities.",
-      "id": "GoogleCloudIntegrationsV1alphaListTaskEntitiesResponse",
-      "properties": {
-        "taskEntities": {
-          "description": "The list of the tasks.",
-          "items": {
-            "$ref": "EnterpriseCrmFrontendsEventbusProtoTaskEntity"
-          },
-          "type": "array"
-        }
-      },
-      "type": "object"
-    },
-    "GoogleCloudIntegrationsV1alphaMonitorExecutionStatsRequestGroupBy": {
-      "description": "MashQuery GroupBy parameters.",
-      "id": "GoogleCloudIntegrationsV1alphaMonitorExecutionStatsRequestGroupBy",
-      "properties": {
-        "fields": {
-          "description": "Optional. optional, metrics list for GroupBy.",
-          "items": {
-            "type": "string"
-          },
-          "type": "array"
-        },
-        "reducer": {
-          "description": "Optional. optional, reduce function for GroupBy.",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "GoogleCloudIntegrationsV1alphaMonitorExecutionStatsRequestMashQuery": {
-      "description": "The MashQuery for searching data, set both queries for Join Operation.",
-      "id": "GoogleCloudIntegrationsV1alphaMonitorExecutionStatsRequestMashQuery",
-      "properties": {
-        "firstQuery": {
-          "$ref": "GoogleCloudIntegrationsV1alphaMonitorExecutionStatsRequestMashQueryComponent",
-          "description": "Required. The components for constructing a mash query. Set \"point_operation\" if this is a single query"
-        },
-        "operationMode": {
-          "$ref": "GoogleCloudIntegrationsV1alphaMonitorExecutionStatsRequestMashQueryOperationMode",
-          "description": "Optional. optional, only set when joining 2 queries. By default join 2 queries with join operation."
-        },
-        "secondQuery": {
-          "$ref": "GoogleCloudIntegrationsV1alphaMonitorExecutionStatsRequestMashQueryComponent",
-          "description": "Optional. optional, only set when joining 2 queries. Set \"point_operation\" for joined query."
-        }
-      },
-      "type": "object"
-    },
-    "GoogleCloudIntegrationsV1alphaMonitorExecutionStatsRequestMashQueryComponent": {
-      "description": "The components for constructing MashQuery.",
-      "id": "GoogleCloudIntegrationsV1alphaMonitorExecutionStatsRequestMashQueryComponent",
-      "properties": {
-        "borgTaskMetric": {
-          "description": "Required. The metric for monarch.BorgTask.",
-          "enum": [
-            "BORG_TASK_METRIC_UNSPECIFIED",
-            "TASK_INDIVIDUAL_COUNT",
-            "EVENT_COUNT",
-            "EVENT_DURATION",
-            "TASK_INDIVIDUAL_DURATION"
-          ],
-          "enumDescriptions": [
-            "Unknown metric",
-            "Metric end with: \"/task/individual_count\".",
-            "Metric end with: \"/event/count\".",
-            "Metric end with: \"/event/duration\".",
-            "Metric end with: \"/task/individual_duration\"."
-          ],
-          "type": "string"
-        },
-        "dataFilters": {
-          "description": "Optional. optional, filters on fetched data, \"metric:client_id\" not supported.",
-          "items": {
-            "type": "string"
-          },
-          "type": "array"
-        },
-        "fetchFilters": {
-          "description": "Optional. optional, filters for Fetch Raw, \"metric:client_id\" not supported.",
-          "items": {
-            "type": "string"
-          },
-          "type": "array"
-        },
-        "groupBy": {
-          "$ref": "GoogleCloudIntegrationsV1alphaMonitorExecutionStatsRequestGroupBy",
-          "description": "Optional. optional, GroupBy variables."
-        },
-        "pointOperation": {
-          "description": "Optional. optional, Point Operation on single query or joined query.",
-          "type": "string"
-        },
-        "timeDelta": {
-          "description": "Required. Window time delta.",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "GoogleCloudIntegrationsV1alphaMonitorExecutionStatsRequestMashQueryOperationMode": {
-      "description": "Operation between 2 query",
-      "id": "GoogleCloudIntegrationsV1alphaMonitorExecutionStatsRequestMashQueryOperationMode",
-      "properties": {
-        "joinConfig": {
-          "$ref": "GoogleCloudIntegrationsV1alphaMonitorExecutionStatsRequestMashQueryOperationModeJoinConfig",
-          "description": "Optional. join operation"
-        },
-        "operationType": {
-          "description": "Optional. optional operation types.",
-          "enum": [
-            "OPERATION_TYPE_UNSPECIFIED",
-            "UNION",
-            "JOIN"
-          ],
-          "enumDescriptions": [
-            "By default join.",
-            "Union operation",
-            "Join Operation"
-          ],
-          "type": "string"
-        },
-        "unionConfig": {
-          "$ref": "GoogleCloudIntegrationsV1alphaMonitorExecutionStatsRequestMashQueryOperationModeUnionConfig",
-          "description": "Optional. union operation"
-        }
-      },
-      "type": "object"
-    },
-    "GoogleCloudIntegrationsV1alphaMonitorExecutionStatsRequestMashQueryOperationModeJoinConfig": {
-      "description": "Join Operation",
-      "id": "GoogleCloudIntegrationsV1alphaMonitorExecutionStatsRequestMashQueryOperationModeJoinConfig",
-      "properties": {},
-      "type": "object"
-    },
-    "GoogleCloudIntegrationsV1alphaMonitorExecutionStatsRequestMashQueryOperationModeUnionConfig": {
-      "description": "Union operation",
-      "id": "GoogleCloudIntegrationsV1alphaMonitorExecutionStatsRequestMashQueryOperationModeUnionConfig",
-      "properties": {
-        "reducer": {
-          "description": "Optional. optional, reduce function",
-          "type": "string"
         }
       },
       "type": "object"
@@ -11110,6 +11620,26 @@
       "description": "Metadata information for the given project",
       "id": "GoogleCloudIntegrationsV1alphaProjectProperties",
       "properties": {
+        "billingType": {
+          "description": "Required. Required: The client billing type that was requested",
+          "enum": [
+            "BILLING_TYPE_UNSPECIFIED",
+            "APIGEE_TRIALS",
+            "APIGEE_SUBSCRIPTION",
+            "PAYG",
+            "SUBSCRIPTION",
+            "NO_BILLING"
+          ],
+          "enumDescriptions": [
+            "",
+            "A trial org provisioned through Apigee Provisioning Wizard",
+            "Subscription based on concurrency model for Apigee and Application Integration users.",
+            "Consumption based users of IP",
+            "Argentum subscription for Application Integration users. To be used in the future.",
+            "Special billing type to avoid any billing to clients (eg: trusted tester program). This should not be used without consulting with the leads."
+          ],
+          "type": "string"
+        },
         "ipEnablementState": {
           "description": "An enum value of what the enablement state is for the given project",
           "enum": [
@@ -11142,10 +11672,23 @@
       "properties": {
         "cloudKmsConfig": {
           "$ref": "GoogleCloudIntegrationsV1alphaCloudKmsConfig",
-          "description": "Required. Required: Cloud KMS config for AuthModule to encrypt/decrypt credentials."
+          "description": "Optional. OPTIONAL: Cloud KMS config for AuthModule to encrypt/decrypt credentials."
         },
         "createSampleWorkflows": {
           "description": "Optional. Indicates if sample workflow should be created along with provisioning",
+          "type": "boolean"
+        },
+        "provisionGmek": {
+          "deprecated": true,
+          "description": "Optional. Deprecated. Indicates provision with GMEK or CMEK. This field is deprecated and the provision would always be GMEK if cloud_kms_config is not present in the request.",
+          "type": "boolean"
+        },
+        "runAsServiceAccount": {
+          "description": "Optional. User input run-as service account, if empty, will bring up a new default service account",
+          "type": "string"
+        },
+        "skipCpProvision": {
+          "description": "Optional. Indicates if skip CP provision or not",
           "type": "boolean"
         }
       },
@@ -11154,13 +11697,33 @@
     "GoogleCloudIntegrationsV1alphaPublishIntegrationVersionRequest": {
       "description": "Request for PublishIntegrationVersion.",
       "id": "GoogleCloudIntegrationsV1alphaPublishIntegrationVersionRequest",
-      "properties": {},
+      "properties": {
+        "configParameters": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "Optional. Config parameters used during integration execution.",
+          "type": "object"
+        }
+      },
       "type": "object"
     },
     "GoogleCloudIntegrationsV1alphaPublishIntegrationVersionResponse": {
       "description": "Response for PublishIntegrationVersion.",
       "id": "GoogleCloudIntegrationsV1alphaPublishIntegrationVersionResponse",
       "properties": {},
+      "type": "object"
+    },
+    "GoogleCloudIntegrationsV1alphaReplaceServiceAccountRequest": {
+      "description": "Request for the ReplaceServiceAccount rpc",
+      "id": "GoogleCloudIntegrationsV1alphaReplaceServiceAccountRequest",
+      "properties": {
+        "runAsServiceAccount": {
+          "description": "Required. REQUIRED: Run-as service account to be updated",
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "GoogleCloudIntegrationsV1alphaResolveSuspensionRequest": {
@@ -11219,7 +11782,7 @@
       "type": "object"
     },
     "GoogleCloudIntegrationsV1alphaScheduleIntegrationsRequest": {
-      "description": "The request for scheduling an integration.",
+      "description": "The request for scheduling an integration. Next available id: 11",
       "id": "GoogleCloudIntegrationsV1alphaScheduleIntegrationsRequest",
       "properties": {
         "inputParameters": {
@@ -11230,6 +11793,7 @@
           "type": "object"
         },
         "parameterEntries": {
+          "deprecated": true,
           "description": "Parameters are a part of Event and can be used to communicate between different tasks that are part of the same integration execution.",
           "items": {
             "$ref": "EnterpriseCrmFrontendsEventbusProtoParameterEntry"
@@ -11238,6 +11802,7 @@
         },
         "parameters": {
           "$ref": "EnterpriseCrmEventbusProtoEventParameters",
+          "deprecated": true,
           "description": "Passed in as parameters to each integration execution."
         },
         "requestId": {
@@ -11250,7 +11815,11 @@
           "type": "string"
         },
         "triggerId": {
-          "description": "Matched against all {@link TriggerConfig}s across all integrations. i.e. TriggerConfig.trigger_id.equals(trigger_id)",
+          "description": "Required. Matched against all {@link TriggerConfig}s across all integrations. i.e. TriggerConfig.trigger_id.equals(trigger_id)",
+          "type": "string"
+        },
+        "userGeneratedExecutionId": {
+          "description": "Optional. This is a unique id provided by the method caller. If provided this will be used as the execution_id when a new execution info is created. This is a string representation of a UUID. Must have no more than 36 characters and contain only alphanumeric characters and hyphens.",
           "type": "string"
         }
       },
@@ -11266,6 +11835,31 @@
             "type": "string"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudIntegrationsV1alphaSerializedFile": {
+      "description": "To store string representation of Integration file.",
+      "id": "GoogleCloudIntegrationsV1alphaSerializedFile",
+      "properties": {
+        "content": {
+          "description": "String representation of the file content.",
+          "type": "string"
+        },
+        "file": {
+          "description": "File information like Integration version, Integration Config variables etc.",
+          "enum": [
+            "INTEGRATION_FILE_UNSPECIFIED",
+            "INTEGRATION",
+            "INTEGRATION_CONFIG_VARIABLES"
+          ],
+          "enumDescriptions": [
+            "Default value.",
+            "Integration file.",
+            "Integration Config variables."
+          ],
+          "type": "string"
         }
       },
       "type": "object"
@@ -11475,6 +12069,7 @@
         },
         "suspensionConfig": {
           "$ref": "EnterpriseCrmEventbusProtoSuspensionConfig",
+          "deprecated": true,
           "description": "Controls the notifications and resolver permissions for this suspension."
         },
         "taskId": {
@@ -11544,6 +12139,28 @@
       },
       "type": "object"
     },
+    "GoogleCloudIntegrationsV1alphaSwitchEncryptionRequest": {
+      "description": "Request for the SwitchEncryption rpc",
+      "id": "GoogleCloudIntegrationsV1alphaSwitchEncryptionRequest",
+      "properties": {
+        "cloudKmsConfig": {
+          "$ref": "GoogleCloudIntegrationsV1alphaCloudKmsConfig",
+          "description": "Required. REQUIRED: Cloud KMS config for AuthModule to encrypt/decrypt credentials."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudIntegrationsV1alphaSwitchVariableMaskingRequest": {
+      "description": "Request to enable/disable variable masking for a provisioned client",
+      "id": "GoogleCloudIntegrationsV1alphaSwitchVariableMaskingRequest",
+      "properties": {
+        "enableVariableMasking": {
+          "description": "Required. REQUIRED: True if variable masking feature should be turned on for this region",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudIntegrationsV1alphaTakeoverEditLockRequest": {
       "description": "Request for TakeoverEditLock.",
       "id": "GoogleCloudIntegrationsV1alphaTakeoverEditLockRequest",
@@ -11571,6 +12188,24 @@
         },
         "displayName": {
           "description": "Optional. User-provided label that is attached to this TaskConfig in the UI.",
+          "type": "string"
+        },
+        "errorCatcherId": {
+          "description": "Optional. Optional Error catcher id of the error catch flow which will be executed when execution error happens in the task",
+          "type": "string"
+        },
+        "externalTaskType": {
+          "description": "Optional. External task type of the task",
+          "enum": [
+            "EXTERNAL_TASK_TYPE_UNSPECIFIED",
+            "NORMAL_TASK",
+            "ERROR_TASK"
+          ],
+          "enumDescriptions": [
+            "Default value. External task type is not specified",
+            "Tasks belongs to the normal task flows",
+            "Task belongs to the error catch task flows"
+          ],
           "type": "string"
         },
         "failurePolicy": {
@@ -11622,6 +12257,10 @@
           },
           "description": "Optional. The customized parameters the user can pass to this task.",
           "type": "object"
+        },
+        "position": {
+          "$ref": "GoogleCloudIntegrationsV1alphaCoordinate",
+          "description": "Optional. Informs the front-end application where to draw this error catcher config on the UI."
         },
         "successPolicy": {
           "$ref": "GoogleCloudIntegrationsV1alphaSuccessPolicy",
@@ -11696,10 +12335,10 @@
             "Task is under processing.",
             "Task execution successfully finished. There's no more change after this state.",
             "Task execution failed. There's no more change after this state.",
-            "Task execution failed and cause the whole event execution to fail immediately. There's no more change after this state.",
+            "Task execution failed and cause the whole integration execution to fail immediately. There's no more change after this state.",
             "Task execution failed and waiting for retry.",
-            "Task execution skipped. This happens when its precondition wasn't met, or the event execution been canceled before reach to the task. There's no more changes after this state.",
-            "Task execution canceled when in progress. This happens when event execution been canceled or any other task fall in fatal state.",
+            "Task execution skipped. This happens when its precondition wasn't met, or the integration execution been canceled before reach to the task. There's no more changes after this state.",
+            "Task execution canceled when in progress. This happens when integration execution been canceled or any other task fall in fatal state.",
             "Task is waiting for its dependency tasks' rollback to finish to start its rollback.",
             "Task is rolling back.",
             "Task is rolled back. This is the state we will set regardless of rollback succeeding or failing.",
@@ -11722,6 +12361,14 @@
           "description": "Required. This is used to identify the client on whose behalf the event will be executed.",
           "type": "string"
         },
+        "configParameters": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "Optional. Config parameters used during integration execution.",
+          "type": "object"
+        },
         "deadlineSecondsTime": {
           "description": "Optional. custom deadline of the rpc",
           "format": "google-datetime",
@@ -11740,6 +12387,7 @@
         },
         "parameters": {
           "$ref": "EnterpriseCrmFrontendsEventbusProtoEventParameters",
+          "deprecated": true,
           "description": "Optional. Passed in as parameters to each integration execution."
         },
         "testMode": {
@@ -11759,6 +12407,7 @@
       "properties": {
         "eventParameters": {
           "$ref": "EnterpriseCrmFrontendsEventbusProtoEventParameters",
+          "deprecated": true,
           "description": "Details for the integration that were executed."
         },
         "executionFailed": {
@@ -11770,6 +12419,7 @@
           "type": "string"
         },
         "parameterEntries": {
+          "deprecated": true,
           "description": "Parameters are a part of Event and can be used to communicate between different tasks that are part of the same integration execution.",
           "items": {
             "$ref": "EnterpriseCrmFrontendsEventbusProtoParameterEntry"
@@ -11805,6 +12455,10 @@
           "description": "Optional. User-provided description intended to give additional business context about the task.",
           "type": "string"
         },
+        "errorCatcherId": {
+          "description": "Optional. Optional Error catcher id of the error catch flow which will be executed when execution error happens in the task",
+          "type": "string"
+        },
         "label": {
           "description": "Optional. The user created label for a particular trigger.",
           "type": "string"
@@ -11823,6 +12477,10 @@
           ],
           "type": "string"
         },
+        "position": {
+          "$ref": "GoogleCloudIntegrationsV1alphaCoordinate",
+          "description": "Optional. Informs the front-end application where to draw this error catcher config on the UI."
+        },
         "properties": {
           "additionalProperties": {
             "type": "string"
@@ -11836,6 +12494,10 @@
             "$ref": "GoogleCloudIntegrationsV1alphaNextTask"
           },
           "type": "array"
+        },
+        "trigger": {
+          "description": "Optional. Name of the trigger. Example: \"API Trigger\", \"Cloud Pub Sub Trigger\" When set will be sent out to monitoring dashabord for tracking purpose.",
+          "type": "string"
         },
         "triggerId": {
           "description": "Optional. The backend trigger ID.",
@@ -11854,7 +12516,9 @@
             "SFDC_CHANNEL",
             "CLOUD_PUBSUB_EXTERNAL",
             "SFDC_CDC_CHANNEL",
-            "CLOUD_SCHEDULER"
+            "CLOUD_SCHEDULER",
+            "INTEGRATION_CONNECTOR_TRIGGER",
+            "PRIVATE_TRIGGER"
           ],
           "enumDescriptions": [
             "Unknown.",
@@ -11863,7 +12527,9 @@
             "Trigger by Salesforce Channel.",
             "Trigger by Pub/Sub external.",
             "SFDC Channel Trigger for CDC.",
-            "Trigger by Cloud Scheduler job."
+            "Trigger by Cloud Scheduler job.",
+            "Trigger by Connector Event",
+            "Trigger for private workflow"
           ],
           "type": "string"
         }
@@ -11874,28 +12540,6 @@
       "description": "Request for UnpublishIntegrationVersion.",
       "id": "GoogleCloudIntegrationsV1alphaUnpublishIntegrationVersionRequest",
       "properties": {},
-      "type": "object"
-    },
-    "GoogleCloudIntegrationsV1alphaUpdateBundleRequest": {
-      "description": "THIS METHOD WILL BE MOVED TO A SEPARATE SERVICE. Request message for Bundle update",
-      "id": "GoogleCloudIntegrationsV1alphaUpdateBundleRequest",
-      "properties": {
-        "config": {
-          "$ref": "GoogleCloudIntegrationsV1alphaIntegrationBundleConfig",
-          "description": "It contains the updated bundle data"
-        }
-      },
-      "type": "object"
-    },
-    "GoogleCloudIntegrationsV1alphaUpdateBundleResponse": {
-      "description": "Response message for Bundle update",
-      "id": "GoogleCloudIntegrationsV1alphaUpdateBundleResponse",
-      "properties": {
-        "config": {
-          "$ref": "GoogleCloudIntegrationsV1alphaIntegrationBundleConfig",
-          "description": "Contains updated bundle config"
-        }
-      },
       "type": "object"
     },
     "GoogleCloudIntegrationsV1alphaUploadIntegrationVersionRequest": {
@@ -11949,18 +12593,6 @@
       },
       "type": "object"
     },
-    "GoogleCloudIntegrationsV1alphaValidateIntegrationVersionRequest": {
-      "description": "Request for ValidateIntegrationVersion.",
-      "id": "GoogleCloudIntegrationsV1alphaValidateIntegrationVersionRequest",
-      "properties": {},
-      "type": "object"
-    },
-    "GoogleCloudIntegrationsV1alphaValidateIntegrationVersionResponse": {
-      "description": "Response for ValidateIntegrationVersion.",
-      "id": "GoogleCloudIntegrationsV1alphaValidateIntegrationVersionResponse",
-      "properties": {},
-      "type": "object"
-    },
     "GoogleCloudIntegrationsV1alphaValueType": {
       "description": "The type of the parameter.",
       "id": "GoogleCloudIntegrationsV1alphaValueType",
@@ -12007,7 +12639,7 @@
       "type": "object"
     },
     "GoogleInternalCloudCrmEventbusV3PostToQueueWithTriggerIdRequest": {
-      "description": "Use this request to post all workflows associated with a given trigger id. Next available id: 10",
+      "description": "LINT.IfChange Use this request to post all workflows associated with a given trigger id. Next available id: 13",
       "id": "GoogleInternalCloudCrmEventbusV3PostToQueueWithTriggerIdRequest",
       "properties": {
         "clientId": {
@@ -12040,8 +12672,17 @@
           ],
           "type": "string"
         },
+        "quotaRetryCount": {
+          "description": "Optional. This is a field to see the quota retry count for integration execution",
+          "format": "int32",
+          "type": "integer"
+        },
         "requestId": {
           "description": "Optional. This is used to de-dup incoming request: if the duplicate request was detected, the response from the previous execution is returned. Must have no more than 36 characters and contain only alphanumeric characters and hyphens.",
+          "type": "string"
+        },
+        "resourceName": {
+          "description": "This field is only required when using Admin Access. The resource name of target, or the parent resource name. For example: \"projects/*/locations/*/integrations/*\"",
           "type": "string"
         },
         "scheduledTime": {
@@ -12055,6 +12696,10 @@
         },
         "triggerId": {
           "description": "Matched against all {@link TriggerConfig}s across all workflows. i.e. TriggerConfig.trigger_id.equals(trigger_id) Required.",
+          "type": "string"
+        },
+        "userGeneratedExecutionId": {
+          "description": "This is a unique id provided by the method caller. If provided this will be used as the execution_id when a new execution info is created. This is a string representation of a UUID. Must have no more than 36 characters and contain only alphanumeric characters and hyphens.",
           "type": "string"
         },
         "workflowName": {
