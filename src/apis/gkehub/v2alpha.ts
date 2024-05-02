@@ -311,6 +311,7 @@ export namespace gkehub_v2alpha {
           {
             url: (rootUrl + '/v2alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -403,6 +404,7 @@ export namespace gkehub_v2alpha {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -524,6 +526,7 @@ export namespace gkehub_v2alpha {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -608,6 +611,7 @@ export namespace gkehub_v2alpha {
           {
             url: (rootUrl + '/v2alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -700,6 +704,7 @@ export namespace gkehub_v2alpha {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
