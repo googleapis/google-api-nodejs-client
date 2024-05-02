@@ -250,7 +250,7 @@
             "registrations": {
               "methods": {
                 "configureContactSettings": {
-                  "description": "Updates a `Registration`'s contact settings. Some changes require confirmation by the domain's registrant contact .",
+                  "description": "Updates a `Registration`'s contact settings. Some changes require confirmation by the domain's registrant contact . Caution: Please consider carefully any changes to contact privacy settings when changing from `REDACTED_CONTACT_DATA` to `PUBLIC_CONTACT_DATA.` There may be a delay in reflecting updates you make to registrant contact information such that any changes you make to contact privacy (including from `REDACTED_CONTACT_DATA` to `PUBLIC_CONTACT_DATA`) will be applied without delay but changes to registrant contact information may take a limited time to be publicized. This means that changes to contact privacy from `REDACTED_CONTACT_DATA` to `PUBLIC_CONTACT_DATA` may make the previous registrant contact data public until the modified registrant contact details are published.",
                   "flatPath": "v1alpha2/projects/{projectsId}/locations/{locationsId}/registrations/{registrationsId}:configureContactSettings",
                   "httpMethod": "POST",
                   "id": "domains.projects.locations.registrations.configureContactSettings",
@@ -848,7 +848,7 @@
       }
     }
   },
-  "revision": "20240125",
+  "revision": "20240327",
   "rootUrl": "https://domains.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -1858,6 +1858,21 @@
           "$ref": "ContactSettings",
           "description": "Output only. Pending contact settings for the `Registration`. Updates to the `contact_settings` field that change its `registrant_contact` or `privacy` fields require email confirmation by the `registrant_contact` before taking effect. This field is set only if there are pending updates to the `contact_settings` that have not been confirmed. To confirm the changes, the `registrant_contact` must follow the instructions in the email they receive.",
           "readOnly": true
+        },
+        "provider": {
+          "description": "Output only. Current domain management provider.",
+          "enum": [
+            "REGISTRAR_UNSPECIFIED",
+            "GOOGLE_DOMAINS",
+            "SQUARESPACE"
+          ],
+          "enumDescriptions": [
+            "Registrar is not selected.",
+            "Use Google Domains registrar.",
+            "Use Squarespace registrar"
+          ],
+          "readOnly": true,
+          "type": "string"
         },
         "registerFailureReason": {
           "description": "Output only. The reason the domain registration failed. Only set for domains in REGISTRATION_FAILED state.",
