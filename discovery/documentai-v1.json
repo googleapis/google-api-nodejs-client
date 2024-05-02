@@ -1042,7 +1042,7 @@
       }
     }
   },
-  "revision": "20240314",
+  "revision": "20240422",
   "rootUrl": "https://documentai.googleapis.com/",
   "schemas": {
     "GoogleCloudDocumentaiUiv1beta3AutoLabelDocumentsMetadata": {
@@ -3113,19 +3113,19 @@
           "type": "number"
         },
         "smallcaps": {
-          "description": "Whether the text is in small caps.",
+          "description": "Whether the text is in small caps. This feature is not supported yet.",
           "type": "boolean"
         },
         "strikeout": {
-          "description": "Whether the text is strikethrough.",
+          "description": "Whether the text is strikethrough. This feature is not supported yet.",
           "type": "boolean"
         },
         "subscript": {
-          "description": "Whether the text is a subscript.",
+          "description": "Whether the text is a subscript. This feature is not supported yet.",
           "type": "boolean"
         },
         "superscript": {
-          "description": "Whether the text is a superscript.",
+          "description": "Whether the text is a superscript. This feature is not supported yet.",
           "type": "boolean"
         },
         "textColor": {
@@ -4394,11 +4394,11 @@
           "type": "string"
         },
         "name": {
-          "description": "The resource name of the processor version. Format: `projects/{project}/locations/{location}/processors/{processor}/processorVersions/{processor_version}`",
+          "description": "Identifier. The resource name of the processor version. Format: `projects/{project}/locations/{location}/processors/{processor}/processorVersions/{processor_version}`",
           "type": "string"
         },
         "state": {
-          "description": "The state of the processor version.",
+          "description": "Output only. The state of the processor version.",
           "enum": [
             "STATE_UNSPECIFIED",
             "DEPLOYED",
@@ -4421,6 +4421,7 @@
             "The processor version failed and is in an indeterminate state.",
             "The processor version is being imported."
           ],
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -5671,19 +5672,19 @@
           "type": "number"
         },
         "smallcaps": {
-          "description": "Whether the text is in small caps.",
+          "description": "Whether the text is in small caps. This feature is not supported yet.",
           "type": "boolean"
         },
         "strikeout": {
-          "description": "Whether the text is strikethrough.",
+          "description": "Whether the text is strikethrough. This feature is not supported yet.",
           "type": "boolean"
         },
         "subscript": {
-          "description": "Whether the text is a subscript.",
+          "description": "Whether the text is a subscript. This feature is not supported yet.",
           "type": "boolean"
         },
         "superscript": {
-          "description": "Whether the text is a superscript.",
+          "description": "Whether the text is a superscript. This feature is not supported yet.",
           "type": "boolean"
         },
         "textColor": {
@@ -7072,19 +7073,19 @@
           "type": "number"
         },
         "smallcaps": {
-          "description": "Whether the text is in small caps.",
+          "description": "Whether the text is in small caps. This feature is not supported yet.",
           "type": "boolean"
         },
         "strikeout": {
-          "description": "Whether the text is strikethrough.",
+          "description": "Whether the text is strikethrough. This feature is not supported yet.",
           "type": "boolean"
         },
         "subscript": {
-          "description": "Whether the text is a subscript.",
+          "description": "Whether the text is a subscript. This feature is not supported yet.",
           "type": "boolean"
         },
         "superscript": {
-          "description": "Whether the text is a superscript.",
+          "description": "Whether the text is a superscript. This feature is not supported yet.",
           "type": "boolean"
         },
         "textColor": {
