@@ -611,6 +611,7 @@ export namespace fitness_v1 {
               rootUrl + '/fitness/v1/users/{userId}/dataset:aggregate'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -724,6 +725,7 @@ export namespace fitness_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -810,6 +812,7 @@ export namespace fitness_v1 {
               rootUrl + '/fitness/v1/users/{userId}/dataSources/{dataSourceId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -896,6 +899,7 @@ export namespace fitness_v1 {
               rootUrl + '/fitness/v1/users/{userId}/dataSources/{dataSourceId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -988,6 +992,7 @@ export namespace fitness_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1074,6 +1079,7 @@ export namespace fitness_v1 {
               rootUrl + '/fitness/v1/users/{userId}/dataSources/{dataSourceId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
+            apiVersion: '',
           },
           options
         ),
@@ -1237,6 +1243,7 @@ export namespace fitness_v1 {
               '/fitness/v1/users/{userId}/dataSources/{dataSourceId}/dataPointChanges'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1351,6 +1358,7 @@ export namespace fitness_v1 {
               '/fitness/v1/users/{userId}/dataSources/{dataSourceId}/datasets/{datasetId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -1438,6 +1446,7 @@ export namespace fitness_v1 {
               '/fitness/v1/users/{userId}/dataSources/{dataSourceId}/datasets/{datasetId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1525,6 +1534,7 @@ export namespace fitness_v1 {
               '/fitness/v1/users/{userId}/dataSources/{dataSourceId}/datasets/{datasetId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -1675,6 +1685,7 @@ export namespace fitness_v1 {
               rootUrl + '/fitness/v1/users/{userId}/sessions/{sessionId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -1767,6 +1778,7 @@ export namespace fitness_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1853,6 +1865,7 @@ export namespace fitness_v1 {
               rootUrl + '/fitness/v1/users/{userId}/sessions/{sessionId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
+            apiVersion: '',
           },
           options
         ),
