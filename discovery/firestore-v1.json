@@ -356,7 +356,7 @@
             "backupSchedules": {
               "methods": {
                 "create": {
-                  "description": "Creates a backup schedule on a database. At most two backup schedules can be configured on a database, one daily backup schedule with retention up to 7 days and one weekly backup schedule with retention up to 14 weeks.",
+                  "description": "Creates a backup schedule on a database. At most two backup schedules can be configured on a database, one daily backup schedule and one weekly backup schedule.",
                   "flatPath": "v1/projects/{projectsId}/databases/{databasesId}/backupSchedules",
                   "httpMethod": "POST",
                   "id": "firestore.projects.databases.backupSchedules.create",
@@ -539,7 +539,7 @@
                       ],
                       "parameters": {
                         "filter": {
-                          "description": "The filter to apply to list results. Currently, FirestoreAdmin.ListFields only supports listing fields that have been explicitly overridden. To issue this query, call FirestoreAdmin.ListFields with a filter that includes `indexConfig.usesAncestorConfig:false` .",
+                          "description": "The filter to apply to list results. Currently, FirestoreAdmin.ListFields only supports listing fields that have been explicitly overridden. To issue this query, call FirestoreAdmin.ListFields with a filter that includes `indexConfig.usesAncestorConfig:false` or `ttlConfig:*`.",
                           "location": "query",
                           "type": "string"
                         },
@@ -1672,7 +1672,7 @@
       }
     }
   },
-  "revision": "20240317",
+  "revision": "20240420",
   "rootUrl": "https://firestore.googleapis.com/",
   "schemas": {
     "Aggregation": {
@@ -2032,7 +2032,7 @@
       "type": "object"
     },
     "DocumentChange": {
-      "description": "A Document has changed. May be the result of multiple writes, including deletes, that ultimately resulted in a new value for the Document. Multiple DocumentChange messages may be returned for the same logical change, if multiple targets are affected.",
+      "description": "A Document has changed. May be the result of multiple writes, including deletes, that ultimately resulted in a new value for the Document. Multiple DocumentChange messages may be returned for the same logical change, if multiple targets are affected. For PipelineQueryTargets, `document` will be in the new pipeline format, For a Listen stream with both QueryTargets and PipelineQueryTargets present, if a document matches both types of queries, then a separate DocumentChange messages will be sent out one for each set.",
       "id": "DocumentChange",
       "properties": {
         "document": {
@@ -2353,6 +2353,42 @@
       },
       "type": "object"
     },
+    "FindNearest": {
+      "description": "Nearest Neighbors search config.",
+      "id": "FindNearest",
+      "properties": {
+        "distanceMeasure": {
+          "description": "Required. The distance measure to use, required.",
+          "enum": [
+            "DISTANCE_MEASURE_UNSPECIFIED",
+            "EUCLIDEAN",
+            "COSINE",
+            "DOT_PRODUCT"
+          ],
+          "enumDescriptions": [
+            "Should not be set.",
+            "Measures the EUCLIDEAN distance between the vectors. See [Euclidean](https://en.wikipedia.org/wiki/Euclidean_distance) to learn more",
+            "Compares vectors based on the angle between them, which allows you to measure similarity that isn't based on the vectors magnitude. We recommend using DOT_PRODUCT with unit normalized vectors instead of COSINE distance, which is mathematically equivalent with better performance. See [Cosine Similarity](https://en.wikipedia.org/wiki/Cosine_similarity) to learn more.",
+            "Similar to cosine but is affected by the magnitude of the vectors. See [Dot Product](https://en.wikipedia.org/wiki/Dot_product) to learn more."
+          ],
+          "type": "string"
+        },
+        "limit": {
+          "description": "Required. The number of nearest neighbors to return. Must be a positive integer of no more than 1000.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "queryVector": {
+          "$ref": "Value",
+          "description": "Required. The query vector that we are searching on. Must be a vector of no more than 2048 dimensions."
+        },
+        "vectorField": {
+          "$ref": "FieldReference",
+          "description": "Required. An indexed vector field to search upon. Only documents which contain vectors whose dimensionality match the query_vector can be returned."
+        }
+      },
+      "type": "object"
+    },
     "GoogleFirestoreAdminV1Backup": {
       "description": "A Backup of a Cloud Firestore Database. The backup contains all documents and index configurations for the given database at a specific point in time.",
       "id": "GoogleFirestoreAdminV1Backup",
@@ -2421,7 +2457,7 @@
         },
         "dailyRecurrence": {
           "$ref": "GoogleFirestoreAdminV1DailyRecurrence",
-          "description": "For a schedule that runs daily at a specified time."
+          "description": "For a schedule that runs daily."
         },
         "name": {
           "description": "Output only. The unique backup schedule identifier across all locations and databases for the given project. This will be auto-assigned. Format is `projects/{project}/databases/{database}/backupSchedules/{backup_schedule}`",
@@ -2441,7 +2477,7 @@
         },
         "weeklyRecurrence": {
           "$ref": "GoogleFirestoreAdminV1WeeklyRecurrence",
-          "description": "For a schedule that runs weekly on a specific day and time."
+          "description": "For a schedule that runs weekly on a specific day."
         }
       },
       "type": "object"
@@ -2472,7 +2508,7 @@
       "type": "object"
     },
     "GoogleFirestoreAdminV1DailyRecurrence": {
-      "description": "Represents a recurring schedule that runs at a specific time every day. The time zone is UTC.",
+      "description": "Represents a recurring schedule that runs every day. The time zone is UTC.",
       "id": "GoogleFirestoreAdminV1DailyRecurrence",
       "properties": {},
       "type": "object"
@@ -3071,7 +3107,7 @@
         },
         "vectorConfig": {
           "$ref": "GoogleFirestoreAdminV1VectorConfig",
-          "description": "Indicates that this field supports nearest neighbors and distance operations on vector."
+          "description": "Indicates that this field supports nearest neighbor and distance operations on vector."
         }
       },
       "type": "object"
@@ -4030,6 +4066,10 @@
           "$ref": "Cursor",
           "description": "A potential prefix of a position in the result set to end the query at. This is similar to `START_AT` but with it controlling the end position rather than the start position. Requires: * The number of values cannot be greater than the number of fields specified in the `ORDER BY` clause."
         },
+        "findNearest": {
+          "$ref": "FindNearest",
+          "description": "Optional. A potential nearest neighbors search. Applies after all other filters and ordering. Finds the closest vector embeddings to the given query vector."
+        },
         "from": {
           "description": "The collections to query.",
           "items": {
@@ -4216,7 +4256,7 @@
       "properties": {
         "arrayValue": {
           "$ref": "ArrayValue",
-          "description": "An array value. Cannot directly contain another array value, though can contain an map which contains another array."
+          "description": "An array value. Cannot directly contain another array value, though can contain a map which contains another array."
         },
         "booleanValue": {
           "description": "A boolean value.",
