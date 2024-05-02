@@ -327,6 +327,7 @@ export namespace travelimpactmodel_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
