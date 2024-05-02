@@ -1316,6 +1316,7 @@ export namespace realtimebidding_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1403,6 +1404,7 @@ export namespace realtimebidding_v1 {
           {
             url: (rootUrl + '/v1/bidders').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1520,6 +1522,7 @@ export namespace realtimebidding_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1613,6 +1616,7 @@ export namespace realtimebidding_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1741,6 +1745,7 @@ export namespace realtimebidding_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1834,6 +1839,7 @@ export namespace realtimebidding_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1919,6 +1925,7 @@ export namespace realtimebidding_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -2056,6 +2063,7 @@ export namespace realtimebidding_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2149,6 +2157,7 @@ export namespace realtimebidding_v1 {
               rootUrl + '/v1/{+pretargetingConfig}:addTargetedApps'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2242,6 +2251,7 @@ export namespace realtimebidding_v1 {
               rootUrl + '/v1/{+pretargetingConfig}:addTargetedPublishers'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2335,6 +2345,7 @@ export namespace realtimebidding_v1 {
               rootUrl + '/v1/{+pretargetingConfig}:addTargetedSites'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2426,6 +2437,7 @@ export namespace realtimebidding_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2511,6 +2523,7 @@ export namespace realtimebidding_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -2599,6 +2612,7 @@ export namespace realtimebidding_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2694,6 +2708,7 @@ export namespace realtimebidding_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2784,6 +2799,7 @@ export namespace realtimebidding_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -2877,6 +2893,7 @@ export namespace realtimebidding_v1 {
               rootUrl + '/v1/{+pretargetingConfig}:removeTargetedApps'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2970,6 +2987,7 @@ export namespace realtimebidding_v1 {
               rootUrl + '/v1/{+pretargetingConfig}:removeTargetedPublishers'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3063,6 +3081,7 @@ export namespace realtimebidding_v1 {
               rootUrl + '/v1/{+pretargetingConfig}:removeTargetedSites'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3154,6 +3173,7 @@ export namespace realtimebidding_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3410,6 +3430,7 @@ export namespace realtimebidding_v1 {
               rootUrl + '/v1/{+parent}/publisherConnections:batchApprove'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3506,6 +3527,7 @@ export namespace realtimebidding_v1 {
               rootUrl + '/v1/{+parent}/publisherConnections:batchReject'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3596,6 +3618,7 @@ export namespace realtimebidding_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3691,6 +3714,7 @@ export namespace realtimebidding_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3843,6 +3867,7 @@ export namespace realtimebidding_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3938,6 +3963,7 @@ export namespace realtimebidding_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4025,6 +4051,7 @@ export namespace realtimebidding_v1 {
           {
             url: (rootUrl + '/v1/buyers').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4144,6 +4171,7 @@ export namespace realtimebidding_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4229,6 +4257,7 @@ export namespace realtimebidding_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4322,6 +4351,7 @@ export namespace realtimebidding_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4407,6 +4437,7 @@ export namespace realtimebidding_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -4562,6 +4593,7 @@ export namespace realtimebidding_v1 {
           {
             url: (rootUrl + '/v1/{+name}:close').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4650,6 +4682,7 @@ export namespace realtimebidding_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4735,6 +4768,7 @@ export namespace realtimebidding_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4830,6 +4864,7 @@ export namespace realtimebidding_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4923,6 +4958,7 @@ export namespace realtimebidding_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5008,6 +5044,7 @@ export namespace realtimebidding_v1 {
           {
             url: (rootUrl + '/v1/{+name}:open').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5093,6 +5130,7 @@ export namespace realtimebidding_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
+            apiVersion: '',
           },
           options
         ),
