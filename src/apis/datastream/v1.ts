@@ -125,6 +125,10 @@ export namespace datastream_v1 {
   }
 
   /**
+   * AppendOnly mode defines that all changes to a table will be written to the destination table.
+   */
+  export interface Schema$AppendOnly {}
+  /**
    * AVRO file format configuration.
    */
   export interface Schema$AvroFileFormat {}
@@ -183,9 +187,17 @@ export namespace datastream_v1 {
    */
   export interface Schema$BigQueryDestinationConfig {
     /**
+     * Append only mode
+     */
+    appendOnly?: Schema$AppendOnly;
+    /**
      * The guaranteed data freshness (in seconds) when querying tables created by the stream. Editing this field will only affect new tables created in the future, but existing tables will not be impacted. Lower values mean that queries will return fresher data, but may result in higher cost.
      */
     dataFreshness?: string | null;
+    /**
+     * The standard mode
+     */
+    merge?: Schema$Merge;
     /**
      * Single destination dataset.
      */
@@ -628,6 +640,10 @@ export namespace datastream_v1 {
      */
     sourceObjectIdentifier?: Schema$SourceObjectIdentifier;
   }
+  /**
+   * Merge mode defines that all changes to a table will be merged at the destination table.
+   */
+  export interface Schema$Merge {}
   /**
    * CDC strategy to start replicating from the most recent position in the source.
    */
@@ -1788,6 +1804,7 @@ export namespace datastream_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1872,6 +1889,7 @@ export namespace datastream_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1964,6 +1982,7 @@ export namespace datastream_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2101,6 +2120,7 @@ export namespace datastream_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2186,6 +2206,7 @@ export namespace datastream_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -2280,6 +2301,7 @@ export namespace datastream_v1 {
               rootUrl + '/v1/{+parent}/connectionProfiles:discover'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2370,6 +2392,7 @@ export namespace datastream_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2465,6 +2488,7 @@ export namespace datastream_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2552,6 +2576,7 @@ export namespace datastream_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -2753,6 +2778,7 @@ export namespace datastream_v1 {
           {
             url: (rootUrl + '/v1/{+name}:cancel').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2837,6 +2863,7 @@ export namespace datastream_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -2921,6 +2948,7 @@ export namespace datastream_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3013,6 +3041,7 @@ export namespace datastream_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3158,6 +3187,7 @@ export namespace datastream_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3243,6 +3273,7 @@ export namespace datastream_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -3331,6 +3362,7 @@ export namespace datastream_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3426,6 +3458,7 @@ export namespace datastream_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3593,6 +3626,7 @@ export namespace datastream_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3678,6 +3712,7 @@ export namespace datastream_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -3763,6 +3798,7 @@ export namespace datastream_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3854,6 +3890,7 @@ export namespace datastream_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4014,6 +4051,7 @@ export namespace datastream_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4098,6 +4136,7 @@ export namespace datastream_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -4182,6 +4221,7 @@ export namespace datastream_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4272,6 +4312,7 @@ export namespace datastream_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4356,6 +4397,7 @@ export namespace datastream_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -4440,6 +4482,7 @@ export namespace datastream_v1 {
           {
             url: (rootUrl + '/v1/{+name}:run').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4641,6 +4684,7 @@ export namespace datastream_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4735,6 +4779,7 @@ export namespace datastream_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4823,6 +4868,7 @@ export namespace datastream_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4918,6 +4964,7 @@ export namespace datastream_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5013,6 +5060,7 @@ export namespace datastream_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
