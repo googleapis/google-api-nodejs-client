@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.7](https://github.com/googleapis/google-api-nodejs-client/compare/fcmdata-v1.0.6...fcmdata-v1.0.7) (2024-05-02)
+
+
+### Bug Fixes
+
+* **fcmdata:** update the API ([da072ae](https://github.com/googleapis/google-api-nodejs-client/commit/da072ae63e796156028c0b28863adfef9d1887b8))
+
 ## [1.0.6](https://github.com/googleapis/google-api-nodejs-client/compare/fcmdata-v1.0.5...fcmdata-v1.0.6) (2024-05-02)
 
 
