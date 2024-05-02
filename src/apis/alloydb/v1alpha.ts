@@ -367,7 +367,7 @@ export namespace alloydb_v1alpha {
      */
     etag?: string | null;
     /**
-     * Optional. Configuration parameters related to the Gemini in Databases add-on. See go/prd-enable-duet-ai-databases for more details.
+     * Optional. Configuration parameters related to the Gemini in Databases add-on.
      */
     geminiConfig?: Schema$GeminiClusterConfig;
     /**
@@ -378,6 +378,10 @@ export namespace alloydb_v1alpha {
      * Labels as key value pairs
      */
     labels?: {[key: string]: string} | null;
+    /**
+     * Output only. The maintenance schedule for the cluster, generated for a specific rollout if a maintenance window is set.
+     */
+    maintenanceSchedule?: Schema$MaintenanceSchedule;
     /**
      * Optional. The maintenance update policy determines when to allow or deny updates.
      */
@@ -517,23 +521,6 @@ export namespace alloydb_v1alpha {
     pointInTime?: string | null;
   }
   /**
-   * DenyMaintenancePeriod definition. Excepting emergencies, maintenance will not be scheduled to start within this deny period. The start_date must be less than the end_date.
-   */
-  export interface Schema$DenyMaintenancePeriod {
-    /**
-     * Deny period end date. This can be: * A full date, with non-zero year, month and day values. * A month and day value, with a zero year for recurring. Date matching this period will have to be before the end.
-     */
-    endDate?: Schema$GoogleTypeDate;
-    /**
-     * Deny period start date. This can be: * A full date, with non-zero year, month and day values. * A month and day value, with a zero year for recurring. Date matching this period will have to be the same or after the start.
-     */
-    startDate?: Schema$GoogleTypeDate;
-    /**
-     * Time in UTC when the deny period starts on start_date and ends on end_date. This can be: * Full time. * All zeros for 00:00:00 UTC
-     */
-    time?: Schema$GoogleTypeTimeOfDay;
-  }
-  /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
    */
   export interface Schema$Empty {}
@@ -573,7 +560,7 @@ export namespace alloydb_v1alpha {
     validateOnly?: boolean | null;
   }
   /**
-   * Cluster level configuration parameters related to the Gemini in Databases add-on. See go/prd-enable-duet-ai-databases for more details.
+   * Cluster level configuration parameters related to the Gemini in Databases add-on.
    */
   export interface Schema$GeminiClusterConfig {
     /**
@@ -582,7 +569,7 @@ export namespace alloydb_v1alpha {
     entitled?: boolean | null;
   }
   /**
-   * Instance level configuration parameters related to the Gemini in Databases add-on. See go/prd-enable-duet-ai-databases for more details.
+   * Instance level configuration parameters related to the Gemini in Databases add-on.
    */
   export interface Schema$GeminiInstanceConfig {
     /**
@@ -627,23 +614,6 @@ export namespace alloydb_v1alpha {
      * Resource name for the location, which may vary between implementations. For example: `"projects/example-project/locations/us-east1"`
      */
     name?: string | null;
-  }
-  /**
-   * Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: * A full date, with non-zero year, month, and day values. * A month and day, with a zero year (for example, an anniversary). * A year on its own, with a zero month and a zero day. * A year and month, with a zero day (for example, a credit card expiration date). Related types: * google.type.TimeOfDay * google.type.DateTime * google.protobuf.Timestamp
-   */
-  export interface Schema$GoogleTypeDate {
-    /**
-     * Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant.
-     */
-    day?: number | null;
-    /**
-     * Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day.
-     */
-    month?: number | null;
-    /**
-     * Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year.
-     */
-    year?: number | null;
   }
   /**
    * Represents a time of day. The date and time zone are either not significant or are specified elsewhere. An API may choose to allow leap seconds. Related types are google.type.Date and `google.protobuf.Timestamp`.
@@ -724,7 +694,7 @@ export namespace alloydb_v1alpha {
      */
     gceZone?: string | null;
     /**
-     * Optional. Configuration parameters related to the Gemini in Databases add-on. See go/prd-enable-duet-ai-databases for more details.
+     * Optional. Configuration parameters related to the Gemini in Databases add-on.
      */
     geminiConfig?: Schema$GeminiInstanceConfig;
     /**
@@ -938,13 +908,18 @@ export namespace alloydb_v1alpha {
     cpuCount?: number | null;
   }
   /**
+   * MaintenanceSchedule stores the maintenance schedule generated from the MaintenanceUpdatePolicy, once a maintenance rollout is triggered, if MaintenanceWindow is set, and if there is no conflicting DenyPeriod. The schedule is cleared once the update takes place. This field cannot be manually changed; modify the MaintenanceUpdatePolicy instead.
+   */
+  export interface Schema$MaintenanceSchedule {
+    /**
+     * Output only. The scheduled start time for the maintenance.
+     */
+    startTime?: string | null;
+  }
+  /**
    * MaintenanceUpdatePolicy defines the policy for system updates.
    */
   export interface Schema$MaintenanceUpdatePolicy {
-    /**
-     * Periods to deny maintenance. Currently limited to 1.
-     */
-    denyMaintenancePeriods?: Schema$DenyMaintenancePeriod[];
     /**
      * Preferred windows to perform maintenance. Currently limited to 1.
      */
@@ -1149,46 +1124,17 @@ export namespace alloydb_v1alpha {
    */
   export interface Schema$PscInstanceConfig {
     /**
-     * Optional. List of consumer networks that are allowed to create PSC endpoints to service-attachments to this instance.
-     */
-    allowedConsumerNetworks?: string[] | null;
-    /**
      * Optional. List of consumer projects that are allowed to create PSC endpoints to service-attachments to this instance.
      */
     allowedConsumerProjects?: string[] | null;
-    /**
-     * Optional. List of service attachments that this instance has created endpoints to connect with. Currently, only a single outgoing service attachment is supported per instance.
-     */
-    outgoingServiceAttachmentLinks?: string[] | null;
     /**
      * Output only. The DNS name of the instance for PSC connectivity. Name convention: ...alloydb-psc.goog
      */
     pscDnsName?: string | null;
     /**
-     * Optional. Whether PSC connectivity is enabled for this instance. This is populated by referencing the value from the parent cluster.
-     */
-    pscEnabled?: boolean | null;
-    /**
-     * Optional. Configurations for setting up PSC interfaces attached to the instance which are used for outbound connectivity. Only primary instances can have PSC interface attached. All the VMs created for the primary instance will share the same configurations. Currently we only support 0 or 1 PSC interface.
-     */
-    pscInterfaceConfigs?: Schema$PscInterfaceConfig[];
-    /**
      * Output only. The service attachment created when Private Service Connect (PSC) is enabled for the instance. The name of the resource will be in the format of `projects//regions//serviceAttachments/`
      */
     serviceAttachmentLink?: string | null;
-  }
-  /**
-   * Configuration for setting up a PSC interface. This information needs to be provided by the customer. PSC interfaces will be created and added to VMs via SLM (adding a network interface will require recreating the VM). For HA instances this will be done via LDTM.
-   */
-  export interface Schema$PscInterfaceConfig {
-    /**
-     * A list of endpoints in the consumer VPC the interface might initiate outbound connections to. This list has to be provided when the PSC interface is created.
-     */
-    consumerEndpointIps?: string[] | null;
-    /**
-     * The NetworkAttachment resource created in the consumer VPC to which the PSC interface will be linked, in the form of: `projects/${CONSUMER_PROJECT\}/regions/${REGION\}/networkAttachments/${NETWORK_ATTACHMENT_NAME\}`. NetworkAttachment has to be provided when the PSC interface is created.
-     */
-    networkAttachment?: string | null;
   }
   /**
    * A backup's position in a quantity-based retention queue, of backups with the same source cluster and type, with length, retention, specified by the backup's retention policy. Once the position is greater than the retention, the backup is eligible to be garbage collected. Example: 5 backups from the same source cluster and type with a quantity-based retention of 3 and denoted by backup_id (position, retention). Safe: backup_5 (1, 3), backup_4, (2, 3), backup_3 (3, 3). Awaiting garbage collection: backup_2 (4, 3), backup_1 (5, 3)
@@ -1328,6 +1274,10 @@ export namespace alloydb_v1alpha {
      * Availability type. Potential values: * `ZONAL`: The instance serves data from only one zone. Outages in that zone affect data accessibility. * `REGIONAL`: The instance can serve data from more than one zone in a region (it is highly available).
      */
     availabilityType?: string | null;
+    /**
+     * Checks for resources that are configured to have redundancy, and ongoing replication across regions
+     */
+    crossRegionReplicaConfigured?: boolean | null;
     externalReplicaConfigured?: boolean | null;
     promotableReplicaConfigured?: boolean | null;
   }
@@ -1885,6 +1835,7 @@ export namespace alloydb_v1alpha {
           {
             url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1979,6 +1930,7 @@ export namespace alloydb_v1alpha {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2102,6 +2054,7 @@ export namespace alloydb_v1alpha {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2186,6 +2139,7 @@ export namespace alloydb_v1alpha {
           {
             url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -2270,6 +2224,7 @@ export namespace alloydb_v1alpha {
           {
             url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2360,6 +2315,7 @@ export namespace alloydb_v1alpha {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2444,6 +2400,7 @@ export namespace alloydb_v1alpha {
           {
             url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -2646,6 +2603,7 @@ export namespace alloydb_v1alpha {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2733,6 +2691,7 @@ export namespace alloydb_v1alpha {
               rootUrl + '/v1alpha/{+parent}/clusters:createsecondary'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2817,6 +2776,7 @@ export namespace alloydb_v1alpha {
           {
             url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -2901,6 +2861,7 @@ export namespace alloydb_v1alpha {
           {
             url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2993,6 +2954,7 @@ export namespace alloydb_v1alpha {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3077,6 +3039,7 @@ export namespace alloydb_v1alpha {
           {
             url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -3164,6 +3127,7 @@ export namespace alloydb_v1alpha {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3251,6 +3215,7 @@ export namespace alloydb_v1alpha {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3504,6 +3469,7 @@ export namespace alloydb_v1alpha {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3591,6 +3557,7 @@ export namespace alloydb_v1alpha {
               rootUrl + '/v1alpha/{+parent}/instances:createsecondary'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3676,6 +3643,7 @@ export namespace alloydb_v1alpha {
           {
             url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -3764,6 +3732,7 @@ export namespace alloydb_v1alpha {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3849,6 +3818,7 @@ export namespace alloydb_v1alpha {
           {
             url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3939,6 +3909,7 @@ export namespace alloydb_v1alpha {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4027,6 +3998,7 @@ export namespace alloydb_v1alpha {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4120,6 +4092,7 @@ export namespace alloydb_v1alpha {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4205,6 +4178,7 @@ export namespace alloydb_v1alpha {
           {
             url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -4293,6 +4267,7 @@ export namespace alloydb_v1alpha {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4564,6 +4539,7 @@ export namespace alloydb_v1alpha {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4648,6 +4624,7 @@ export namespace alloydb_v1alpha {
           {
             url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -4732,6 +4709,7 @@ export namespace alloydb_v1alpha {
           {
             url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4822,6 +4800,7 @@ export namespace alloydb_v1alpha {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4906,6 +4885,7 @@ export namespace alloydb_v1alpha {
           {
             url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -5098,6 +5078,7 @@ export namespace alloydb_v1alpha {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5182,6 +5163,7 @@ export namespace alloydb_v1alpha {
           {
             url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -5266,6 +5248,7 @@ export namespace alloydb_v1alpha {
           {
             url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5358,6 +5341,7 @@ export namespace alloydb_v1alpha {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5505,6 +5489,7 @@ export namespace alloydb_v1alpha {
               rootUrl + '/v1alpha/{+parent}/supportedDatabaseFlags'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
