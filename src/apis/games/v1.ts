@@ -1487,6 +1487,15 @@ export namespace games_v1 {
     unlinked?: boolean | null;
   }
   /**
+   * Recall token data returned from for the RetrieveDeveloperGamesLastPlayerToken RPC
+   */
+  export interface Schema$RetrieveDeveloperGamesLastPlayerTokenResponse {
+    /**
+     * The recall token associated with the requested PGS Player principal. It can be unset if there is no recall token associated with the requested principal.
+     */
+    token?: Schema$RecallToken;
+  }
+  /**
    * Response for the RetrievePlayerTokens RPC
    */
   export interface Schema$RetrievePlayerTokensResponse {
@@ -1799,6 +1808,7 @@ export namespace games_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1917,6 +1927,7 @@ export namespace games_v1 {
               rootUrl + '/games/v1/achievements/{achievementId}/increment'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2012,6 +2023,7 @@ export namespace games_v1 {
               rootUrl + '/games/v1/players/{playerId}/achievements'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2107,6 +2119,7 @@ export namespace games_v1 {
               rootUrl + '/games/v1/achievements/{achievementId}/reveal'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2200,6 +2213,7 @@ export namespace games_v1 {
               rootUrl + '/games/v1/achievements/{achievementId}/setStepsAtLeast'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2295,6 +2309,7 @@ export namespace games_v1 {
               rootUrl + '/games/v1/achievements/{achievementId}/unlock'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2389,6 +2404,7 @@ export namespace games_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2555,6 +2571,7 @@ export namespace games_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2642,6 +2659,7 @@ export namespace games_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2727,6 +2745,7 @@ export namespace games_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2820,6 +2839,7 @@ export namespace games_v1 {
               rootUrl + '/games/v1/applications/{applicationId}/verify'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2953,6 +2973,7 @@ export namespace games_v1 {
           {
             url: (rootUrl + '/games/v1/events').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3047,6 +3068,7 @@ export namespace games_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3133,6 +3155,7 @@ export namespace games_v1 {
           {
             url: (rootUrl + '/games/v1/events').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3268,6 +3291,7 @@ export namespace games_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3360,6 +3384,7 @@ export namespace games_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3482,6 +3507,7 @@ export namespace games_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3575,6 +3601,7 @@ export namespace games_v1 {
               rootUrl + '/games/v1/players/{playerId}/categories/{collection}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3694,6 +3721,7 @@ export namespace games_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3787,6 +3815,7 @@ export namespace games_v1 {
               rootUrl + '/games/v1/players/me/multipleApplicationPlayerIds'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3878,6 +3907,7 @@ export namespace games_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3966,6 +3996,7 @@ export namespace games_v1 {
               rootUrl + '/games/v1/players/me/players/{collection}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4031,6 +4062,103 @@ export namespace games_v1 {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
+    }
+
+    /**
+     * Retrieve the last Recall token from all developer games that is associated with the PGS Player principal encoded in the provided recall session id. The API is only available for users that have active PGS Player profile.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    lastTokenFromAllDeveloperGames(
+      params: Params$Resource$Recall$Lasttokenfromalldevelopergames,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    lastTokenFromAllDeveloperGames(
+      params?: Params$Resource$Recall$Lasttokenfromalldevelopergames,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$RetrieveDeveloperGamesLastPlayerTokenResponse>;
+    lastTokenFromAllDeveloperGames(
+      params: Params$Resource$Recall$Lasttokenfromalldevelopergames,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    lastTokenFromAllDeveloperGames(
+      params: Params$Resource$Recall$Lasttokenfromalldevelopergames,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$RetrieveDeveloperGamesLastPlayerTokenResponse>,
+      callback: BodyResponseCallback<Schema$RetrieveDeveloperGamesLastPlayerTokenResponse>
+    ): void;
+    lastTokenFromAllDeveloperGames(
+      params: Params$Resource$Recall$Lasttokenfromalldevelopergames,
+      callback: BodyResponseCallback<Schema$RetrieveDeveloperGamesLastPlayerTokenResponse>
+    ): void;
+    lastTokenFromAllDeveloperGames(
+      callback: BodyResponseCallback<Schema$RetrieveDeveloperGamesLastPlayerTokenResponse>
+    ): void;
+    lastTokenFromAllDeveloperGames(
+      paramsOrCallback?:
+        | Params$Resource$Recall$Lasttokenfromalldevelopergames
+        | BodyResponseCallback<Schema$RetrieveDeveloperGamesLastPlayerTokenResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$RetrieveDeveloperGamesLastPlayerTokenResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$RetrieveDeveloperGamesLastPlayerTokenResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$RetrieveDeveloperGamesLastPlayerTokenResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Recall$Lasttokenfromalldevelopergames;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Recall$Lasttokenfromalldevelopergames;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://games.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/games/v1/recall/developerGamesLastPlayerToken/{sessionId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['sessionId'],
+        pathParams: ['sessionId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$RetrieveDeveloperGamesLastPlayerTokenResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$RetrieveDeveloperGamesLastPlayerTokenResponse>(
+          parameters
+        );
+      }
     }
 
     /**
@@ -4107,6 +4235,7 @@ export namespace games_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4201,6 +4330,7 @@ export namespace games_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4295,6 +4425,7 @@ export namespace games_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4391,6 +4522,7 @@ export namespace games_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4410,6 +4542,13 @@ export namespace games_v1 {
     }
   }
 
+  export interface Params$Resource$Recall$Lasttokenfromalldevelopergames
+    extends StandardParameters {
+    /**
+     * Required. Opaque server-generated string that encodes all the necessary information to identify the PGS player / Google user and application.
+     */
+    sessionId?: string;
+  }
   export interface Params$Resource$Recall$Linkpersona
     extends StandardParameters {
     /**
@@ -4518,6 +4657,7 @@ export namespace games_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4625,6 +4765,7 @@ export namespace games_v1 {
               '/games/v1/players/{playerId}/leaderboards/{leaderboardId}/scores/{timeSpan}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4716,6 +4857,7 @@ export namespace games_v1 {
               '/games/v1/leaderboards/{leaderboardId}/scores/{collection}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4806,6 +4948,7 @@ export namespace games_v1 {
               '/games/v1/leaderboards/{leaderboardId}/window/{collection}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4894,6 +5037,7 @@ export namespace games_v1 {
               rootUrl + '/games/v1/leaderboards/{leaderboardId}/scores'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4988,6 +5132,7 @@ export namespace games_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5203,6 +5348,7 @@ export namespace games_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5294,6 +5440,7 @@ export namespace games_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5413,6 +5560,7 @@ export namespace games_v1 {
           {
             url: (rootUrl + '/games/v1/stats').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
