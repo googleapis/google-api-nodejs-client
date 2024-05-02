@@ -532,6 +532,216 @@
                 }
               }
             },
+            "discoveryClients": {
+              "methods": {
+                "create": {
+                  "description": "Creates a new discovery client.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/discoveryClients",
+                  "httpMethod": "POST",
+                  "id": "migrationcenter.projects.locations.discoveryClients.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "discoveryClientId": {
+                      "description": "Required. User specified ID for the discovery client. It will become the last component of the discovery client name. The ID must be unique within the project, is restricted to lower-cased letters and has a maximum length of 63 characters. The ID must match the regular expression: `[a-z]([a-z0-9-]{0,61}[a-z0-9])?`.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. Parent resource.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/discoveryClients",
+                  "request": {
+                    "$ref": "DiscoveryClient"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "delete": {
+                  "description": "Deletes a discovery client.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/discoveryClients/{discoveryClientsId}",
+                  "httpMethod": "DELETE",
+                  "id": "migrationcenter.projects.locations.discoveryClients.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The discovery client name.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/discoveryClients/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "get": {
+                  "description": "Gets the details of a discovery client.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/discoveryClients/{discoveryClientsId}",
+                  "httpMethod": "GET",
+                  "id": "migrationcenter.projects.locations.discoveryClients.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The discovery client name.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/discoveryClients/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "DiscoveryClient"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "Lists all the discovery clients in a given project and location.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/discoveryClients",
+                  "httpMethod": "GET",
+                  "id": "migrationcenter.projects.locations.discoveryClients.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "Optional. Filter expression to filter results by.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "orderBy": {
+                      "description": "Optional. Field to sort by.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "Optional. The maximum number of items to return. The server may return fewer items than requested. If unspecified, the server will pick an appropriate default value.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. A page token, received from a previous `ListDiscoveryClients` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListDiscoveryClients` must match the call that provided the page token.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. Parent resource.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/discoveryClients",
+                  "response": {
+                    "$ref": "ListDiscoveryClientsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "patch": {
+                  "description": "Updates a discovery client.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/discoveryClients/{discoveryClientsId}",
+                  "httpMethod": "PATCH",
+                  "id": "migrationcenter.projects.locations.discoveryClients.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Output only. Identifier. Full name of this discovery client.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/discoveryClients/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "Required. Update mask is used to specify the fields to be overwritten in the `DiscoveryClient` resource by the update. The values specified in the `update_mask` field are relative to the resource, not the full request. A field will be overwritten if it is in the mask. A single * value in the mask lets you to overwrite all fields.",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "request": {
+                    "$ref": "DiscoveryClient"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "sendHeartbeat": {
+                  "description": "Sends a discovery client heartbeat. Healthy clients are expected to send heartbeats regularly (normally every few minutes).",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/discoveryClients/{discoveryClientsId}:sendHeartbeat",
+                  "httpMethod": "POST",
+                  "id": "migrationcenter.projects.locations.discoveryClients.sendHeartbeat",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The discovery client name.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/discoveryClients/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}:sendHeartbeat",
+                  "request": {
+                    "$ref": "SendDiscoveryClientHeartbeatRequest"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            },
             "groups": {
               "methods": {
                 "addAssets": {
@@ -2099,7 +2309,7 @@
       }
     }
   },
-  "revision": "20240122",
+  "revision": "20240421",
   "rootUrl": "https://migrationcenter.googleapis.com/",
   "schemas": {
     "AddAssetsToGroupRequest": {
@@ -2133,7 +2343,7 @@
           "type": "array"
         },
         "filter": {
-          "description": "The aggregation will be performed on assets that match the provided filter.",
+          "description": "Optional. The aggregation will be performed on assets that match the provided filter.",
           "type": "string"
         }
       },
@@ -2386,6 +2596,26 @@
           },
           "description": "Generic asset attributes.",
           "type": "object"
+        },
+        "collectionType": {
+          "description": "Optional. Frame collection type, if not specified the collection type will be based on the source type of the source the frame was reported on.",
+          "enum": [
+            "SOURCE_TYPE_UNKNOWN",
+            "SOURCE_TYPE_UPLOAD",
+            "SOURCE_TYPE_GUEST_OS_SCAN",
+            "SOURCE_TYPE_INVENTORY_SCAN",
+            "SOURCE_TYPE_CUSTOM",
+            "SOURCE_TYPE_DISCOVERY_CLIENT"
+          ],
+          "enumDescriptions": [
+            "Unspecified",
+            "Manually uploaded file (e.g. CSV)",
+            "Guest-level info",
+            "Inventory-level scan",
+            "Third-party owned sources.",
+            "Discovery clients"
+          ],
+          "type": "string"
         },
         "labels": {
           "additionalProperties": {
@@ -2812,6 +3042,106 @@
           "description": "Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year.",
           "format": "int32",
           "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "DiscoveryClient": {
+      "description": "Represents an installed Migration Center Discovery Client instance.",
+      "id": "DiscoveryClient",
+      "properties": {
+        "createTime": {
+          "description": "Output only. Time when the discovery client was first created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "description": {
+          "description": "Optional. Free text description. Maximum length is 1000 characters.",
+          "type": "string"
+        },
+        "displayName": {
+          "description": "Optional. Free text display name. Maximum length is 63 characters.",
+          "type": "string"
+        },
+        "errors": {
+          "description": "Output only. Errors affecting client functionality.",
+          "items": {
+            "$ref": "Status"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "expireTime": {
+          "description": "Optional. Client expiration time in UTC. If specified, the backend will not accept new frames after this time.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "heartbeatTime": {
+          "description": "Output only. Last heartbeat time. Healthy clients are expected to send heartbeats regularly (normally every few minutes).",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. Labels as key value pairs.",
+          "type": "object"
+        },
+        "name": {
+          "description": "Output only. Identifier. Full name of this discovery client.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "serviceAccount": {
+          "description": "Required. Service account used by the discovery client for various operation.",
+          "type": "string"
+        },
+        "signalsEndpoint": {
+          "description": "Output only. This field is intended for internal use.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "source": {
+          "description": "Required. Immutable. Full name of the source object associated with this discovery client.",
+          "type": "string"
+        },
+        "state": {
+          "description": "Output only. Current state of the discovery client.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "ACTIVE",
+            "OFFLINE",
+            "DEGRADED",
+            "EXPIRED"
+          ],
+          "enumDescriptions": [
+            "Client state is unspecified.",
+            "Client is active.",
+            "Client is offline.",
+            "Client is in a degraded state. See the `errors` field for details.",
+            "Client has expired. See the expire_time field for the expire time."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "ttl": {
+          "description": "Optional. Input only. Client time-to-live. If specified, the backend will not accept new frames after this time. This field is input only. The derived expiration time is provided as output through the `expire_time` field.",
+          "format": "google-duration",
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. Time when the discovery client was last updated. This value is not updated by heartbeats, to view the last heartbeat time please refer to the `heartbeat_time` field.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "version": {
+          "description": "Output only. Client version, as reported in recent heartbeat.",
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"
@@ -3675,6 +4005,31 @@
       },
       "type": "object"
     },
+    "ListDiscoveryClientsResponse": {
+      "description": "Response message for listing discovery clients.",
+      "id": "ListDiscoveryClientsResponse",
+      "properties": {
+        "discoveryClients": {
+          "description": "List of discovery clients.",
+          "items": {
+            "$ref": "DiscoveryClient"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token that can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        },
+        "unreachable": {
+          "description": "Locations that could not be reached.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "ListErrorFramesResponse": {
       "description": "A response for listing error frames.",
       "id": "ListErrorFramesResponse",
@@ -4137,11 +4492,11 @@
       "type": "object"
     },
     "MachineSeries": {
-      "description": "A Compute Engine machine series.",
+      "description": "A machine series, for a target product (e.g. Compute Engine, Google Cloud VMware Engine).",
       "id": "MachineSeries",
       "properties": {
         "code": {
-          "description": "Code to identify a Compute Engine machine series. Consult https://cloud.google.com/compute/docs/machine-resource#machine_type_comparison for more details on the available series.",
+          "description": "Code to identify a machine series. Consult this for more details on the available series for Compute Engine: https://cloud.google.com/compute/docs/machine-resource#machine_type_comparison Consult this for more details on the available series for Google Cloud VMware Engine: https://cloud.google.com/vmware-engine/pricing",
           "type": "string"
         }
       },
@@ -4614,7 +4969,7 @@
         },
         "virtualMachinePreferences": {
           "$ref": "VirtualMachinePreferences",
-          "description": "A set of preferences that applies to all virtual machines in the context."
+          "description": "Optional. A set of preferences that applies to all virtual machines in the context."
         }
       },
       "type": "object"
@@ -5328,6 +5683,24 @@
       },
       "type": "object"
     },
+    "SendDiscoveryClientHeartbeatRequest": {
+      "description": "A request to send a discovery client heartbeat.",
+      "id": "SendDiscoveryClientHeartbeatRequest",
+      "properties": {
+        "errors": {
+          "description": "Optional. Errors affecting client functionality.",
+          "items": {
+            "$ref": "Status"
+          },
+          "type": "array"
+        },
+        "version": {
+          "description": "Optional. Client application version.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "Settings": {
       "description": "Describes the Migration Center settings related to the project.",
       "id": "Settings",
@@ -5478,14 +5851,16 @@
             "SOURCE_TYPE_UPLOAD",
             "SOURCE_TYPE_GUEST_OS_SCAN",
             "SOURCE_TYPE_INVENTORY_SCAN",
-            "SOURCE_TYPE_CUSTOM"
+            "SOURCE_TYPE_CUSTOM",
+            "SOURCE_TYPE_DISCOVERY_CLIENT"
           ],
           "enumDescriptions": [
             "Unspecified",
             "Manually uploaded file (e.g. CSV)",
             "Guest-level info",
             "Inventory-level scan",
-            "Third-party owned sources."
+            "Third-party owned sources.",
+            "Discovery clients"
           ],
           "type": "string"
         },
