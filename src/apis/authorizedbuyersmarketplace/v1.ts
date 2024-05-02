@@ -199,13 +199,25 @@ export namespace authorizedbuyersmarketplace_v1 {
      */
     displayName?: string | null;
     /**
+     * Output only. If set, this field contains the list of DSP specific seat ids set by media planners that are eligible to transact on this deal. The seat ID is in the calling DSP's namespace.
+     */
+    eligibleSeatIds?: string[] | null;
+    /**
      * Immutable. The unique identifier for the auction package. Format: `buyers/{accountId\}/auctionPackages/{auctionPackageId\}` The auction_package_id part of name is sent in the BidRequest to all RTB bidders and is returned as deal_id by the bidder in the BidResponse.
      */
     name?: string | null;
     /**
-     * Output only. The list of clients of the current buyer that are subscribed to the AuctionPackage. Format: `buyers/{buyerAccountId\}/clients/{clientAccountId\}`
+     * Output only. The list of buyers that are subscribed to the AuctionPackage. This field is only populated when calling as a bidder. Format: `buyers/{buyerAccountId\}`
+     */
+    subscribedBuyers?: string[] | null;
+    /**
+     * Output only. When calling as a buyer, the list of clients of the current buyer that are subscribed to the AuctionPackage. When calling as a bidder, the list of clients that are subscribed to the AuctionPackage owned by the bidder or its buyers. Format: `buyers/{buyerAccountId\}/clients/{clientAccountId\}`
      */
     subscribedClients?: string[] | null;
+    /**
+     * Output only. The list of media planners that are subscribed to the AuctionPackage. This field is only populated when calling as a bidder.
+     */
+    subscribedMediaPlanners?: Schema$MediaPlanner[];
     /**
      * Output only. Time the auction package was last updated. This value is only increased when this auction package is updated but never when a buyer subscribed.
      */
@@ -1256,11 +1268,137 @@ export namespace authorizedbuyersmarketplace_v1 {
 
   export class Resource$Bidders {
     context: APIRequestContext;
+    auctionPackages: Resource$Bidders$Auctionpackages;
     finalizedDeals: Resource$Bidders$Finalizeddeals;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.auctionPackages = new Resource$Bidders$Auctionpackages(this.context);
       this.finalizedDeals = new Resource$Bidders$Finalizeddeals(this.context);
     }
+  }
+
+  export class Resource$Bidders$Auctionpackages {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * List the auction packages. Buyers can use the URL path "/v1/buyers/{accountId\}/auctionPackages" to list auction packages for the current buyer and its clients. Bidders can use the URL path "/v1/bidders/{accountId\}/auctionPackages" to list auction packages for the bidder, its media planners, its buyers, and all their clients.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Bidders$Auctionpackages$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Bidders$Auctionpackages$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListAuctionPackagesResponse>;
+    list(
+      params: Params$Resource$Bidders$Auctionpackages$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Bidders$Auctionpackages$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListAuctionPackagesResponse>,
+      callback: BodyResponseCallback<Schema$ListAuctionPackagesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Bidders$Auctionpackages$List,
+      callback: BodyResponseCallback<Schema$ListAuctionPackagesResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListAuctionPackagesResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Bidders$Auctionpackages$List
+        | BodyResponseCallback<Schema$ListAuctionPackagesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListAuctionPackagesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListAuctionPackagesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListAuctionPackagesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Bidders$Auctionpackages$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Bidders$Auctionpackages$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl ||
+        'https://authorizedbuyersmarketplace.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/auctionPackages').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListAuctionPackagesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListAuctionPackagesResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Bidders$Auctionpackages$List
+    extends StandardParameters {
+    /**
+     * Optional. Optional query string using the [Cloud API list filtering syntax](/authorized-buyers/apis/guides/list-filters). Only supported when parent is bidder. Supported columns for filtering are: * displayName * createTime * updateTime * eligibleSeatIds
+     */
+    filter?: string;
+    /**
+     * Requested page size. The server may return fewer results than requested. Max allowed page size is 500.
+     */
+    pageSize?: number;
+    /**
+     * The page token as returned. ListAuctionPackagesResponse.nextPageToken
+     */
+    pageToken?: string;
+    /**
+     * Required. Name of the parent buyer that can access the auction package. Format: `buyers/{accountId\}`. When used with a bidder account, the auction packages that the bidder, its media planners, its buyers and clients are subscribed to will be listed, in the format `bidders/{accountId\}`.
+     */
+    parent?: string;
   }
 
   export class Resource$Bidders$Finalizeddeals {
@@ -1347,6 +1485,7 @@ export namespace authorizedbuyersmarketplace_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1483,6 +1622,7 @@ export namespace authorizedbuyersmarketplace_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1502,7 +1642,7 @@ export namespace authorizedbuyersmarketplace_v1 {
     }
 
     /**
-     * List the auction packages subscribed by a buyer and its clients.
+     * List the auction packages. Buyers can use the URL path "/v1/buyers/{accountId\}/auctionPackages" to list auction packages for the current buyer and its clients. Bidders can use the URL path "/v1/bidders/{accountId\}/auctionPackages" to list auction packages for the bidder, its media planners, its buyers, and all their clients.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1579,6 +1719,7 @@ export namespace authorizedbuyersmarketplace_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1668,6 +1809,7 @@ export namespace authorizedbuyersmarketplace_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1759,6 +1901,7 @@ export namespace authorizedbuyersmarketplace_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1848,6 +1991,7 @@ export namespace authorizedbuyersmarketplace_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1940,6 +2084,7 @@ export namespace authorizedbuyersmarketplace_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1969,6 +2114,10 @@ export namespace authorizedbuyersmarketplace_v1 {
   export interface Params$Resource$Buyers$Auctionpackages$List
     extends StandardParameters {
     /**
+     * Optional. Optional query string using the [Cloud API list filtering syntax](/authorized-buyers/apis/guides/list-filters). Only supported when parent is bidder. Supported columns for filtering are: * displayName * createTime * updateTime * eligibleSeatIds
+     */
+    filter?: string;
+    /**
      * Requested page size. The server may return fewer results than requested. Max allowed page size is 500.
      */
     pageSize?: number;
@@ -1977,7 +2126,7 @@ export namespace authorizedbuyersmarketplace_v1 {
      */
     pageToken?: string;
     /**
-     * Required. Name of the parent buyer that can access the auction package. Format: `buyers/{accountId\}`
+     * Required. Name of the parent buyer that can access the auction package. Format: `buyers/{accountId\}`. When used with a bidder account, the auction packages that the bidder, its media planners, its buyers and clients are subscribed to will be listed, in the format `bidders/{accountId\}`.
      */
     parent?: string;
   }
@@ -2109,6 +2258,7 @@ export namespace authorizedbuyersmarketplace_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2198,6 +2348,7 @@ export namespace authorizedbuyersmarketplace_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2287,6 +2438,7 @@ export namespace authorizedbuyersmarketplace_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2373,6 +2525,7 @@ export namespace authorizedbuyersmarketplace_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2465,6 +2618,7 @@ export namespace authorizedbuyersmarketplace_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2551,6 +2705,7 @@ export namespace authorizedbuyersmarketplace_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -2726,6 +2881,7 @@ export namespace authorizedbuyersmarketplace_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2815,6 +2971,7 @@ export namespace authorizedbuyersmarketplace_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2904,6 +3061,7 @@ export namespace authorizedbuyersmarketplace_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2990,6 +3148,7 @@ export namespace authorizedbuyersmarketplace_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -3076,6 +3235,7 @@ export namespace authorizedbuyersmarketplace_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3170,6 +3330,7 @@ export namespace authorizedbuyersmarketplace_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3332,6 +3493,7 @@ export namespace authorizedbuyersmarketplace_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3418,6 +3580,7 @@ export namespace authorizedbuyersmarketplace_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3514,6 +3677,7 @@ export namespace authorizedbuyersmarketplace_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3600,6 +3764,7 @@ export namespace authorizedbuyersmarketplace_v1 {
           {
             url: (rootUrl + '/v1/{+name}:pause').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3686,6 +3851,7 @@ export namespace authorizedbuyersmarketplace_v1 {
           {
             url: (rootUrl + '/v1/{+name}:resume').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3775,6 +3941,7 @@ export namespace authorizedbuyersmarketplace_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3949,6 +4116,7 @@ export namespace authorizedbuyersmarketplace_v1 {
           {
             url: (rootUrl + '/v1/{+name}:accept').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4038,6 +4206,7 @@ export namespace authorizedbuyersmarketplace_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4127,6 +4296,7 @@ export namespace authorizedbuyersmarketplace_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4213,6 +4383,7 @@ export namespace authorizedbuyersmarketplace_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4307,6 +4478,7 @@ export namespace authorizedbuyersmarketplace_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4393,6 +4565,7 @@ export namespace authorizedbuyersmarketplace_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -4482,6 +4655,7 @@ export namespace authorizedbuyersmarketplace_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4676,6 +4850,7 @@ export namespace authorizedbuyersmarketplace_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4762,6 +4937,7 @@ export namespace authorizedbuyersmarketplace_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4854,6 +5030,7 @@ export namespace authorizedbuyersmarketplace_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4940,6 +5117,7 @@ export namespace authorizedbuyersmarketplace_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -5084,6 +5262,7 @@ export namespace authorizedbuyersmarketplace_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5180,6 +5359,7 @@ export namespace authorizedbuyersmarketplace_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
