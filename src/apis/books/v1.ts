@@ -1294,6 +1294,7 @@ export namespace books_v1 {
               rootUrl + '/books/v1/users/{userId}/bookshelves/{shelf}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1380,6 +1381,7 @@ export namespace books_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1498,6 +1500,7 @@ export namespace books_v1 {
               rootUrl + '/books/v1/users/{userId}/bookshelves/{shelf}/volumes'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1627,6 +1630,7 @@ export namespace books_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1714,6 +1718,7 @@ export namespace books_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1808,6 +1813,7 @@ export namespace books_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1936,6 +1942,7 @@ export namespace books_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2038,6 +2045,7 @@ export namespace books_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2125,6 +2133,7 @@ export namespace books_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2212,6 +2221,7 @@ export namespace books_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2348,6 +2358,7 @@ export namespace books_v1 {
               rootUrl + '/books/v1/volumes/{volumeId}/layersummary/{summaryId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2433,6 +2444,7 @@ export namespace books_v1 {
               rootUrl + '/books/v1/volumes/{volumeId}/layersummary'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2573,6 +2585,7 @@ export namespace books_v1 {
               '/books/v1/volumes/{volumeId}/layers/{layerId}/data/{annotationDataId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2664,6 +2677,7 @@ export namespace books_v1 {
               rootUrl + '/books/v1/volumes/{volumeId}/layers/{layerId}/data'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2857,6 +2871,7 @@ export namespace books_v1 {
               '/books/v1/volumes/{volumeId}/layers/{layerId}/annotations/{annotationId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2946,6 +2961,7 @@ export namespace books_v1 {
               rootUrl + '/books/v1/volumes/{volumeId}/layers/{layerId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3127,6 +3143,7 @@ export namespace books_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3216,6 +3233,7 @@ export namespace books_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3308,6 +3326,7 @@ export namespace books_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3395,6 +3414,7 @@ export namespace books_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3484,6 +3504,7 @@ export namespace books_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3688,6 +3709,7 @@ export namespace books_v1 {
               rootUrl + '/books/v1/mylibrary/annotations/{annotationId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -3775,6 +3797,7 @@ export namespace books_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3862,6 +3885,7 @@ export namespace books_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3952,6 +3976,7 @@ export namespace books_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4038,6 +4063,7 @@ export namespace books_v1 {
               rootUrl + '/books/v1/mylibrary/annotations/{annotationId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
+            apiVersion: '',
           },
           options
         ),
@@ -4243,6 +4269,7 @@ export namespace books_v1 {
               rootUrl + '/books/v1/mylibrary/bookshelves/{shelf}/addVolume'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4329,6 +4356,7 @@ export namespace books_v1 {
               rootUrl + '/books/v1/mylibrary/bookshelves/{shelf}/clearVolumes'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4416,6 +4444,7 @@ export namespace books_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4503,6 +4532,7 @@ export namespace books_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4589,6 +4619,7 @@ export namespace books_v1 {
               rootUrl + '/books/v1/mylibrary/bookshelves/{shelf}/moveVolume'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4675,6 +4706,7 @@ export namespace books_v1 {
               rootUrl + '/books/v1/mylibrary/bookshelves/{shelf}/removeVolume'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4855,6 +4887,7 @@ export namespace books_v1 {
               rootUrl + '/books/v1/mylibrary/bookshelves/{shelf}/volumes'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4984,6 +5017,7 @@ export namespace books_v1 {
               rootUrl + '/books/v1/mylibrary/readingpositions/{volumeId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5071,6 +5105,7 @@ export namespace books_v1 {
               '/books/v1/mylibrary/readingpositions/{volumeId}/setPosition'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5211,6 +5246,7 @@ export namespace books_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5320,6 +5356,7 @@ export namespace books_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5407,6 +5444,7 @@ export namespace books_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5535,6 +5573,7 @@ export namespace books_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5645,6 +5684,7 @@ export namespace books_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5732,6 +5772,7 @@ export namespace books_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5818,6 +5859,7 @@ export namespace books_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6006,6 +6048,7 @@ export namespace books_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6107,6 +6150,7 @@ export namespace books_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6224,6 +6268,7 @@ export namespace books_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6307,6 +6352,7 @@ export namespace books_v1 {
           {
             url: (rootUrl + '/books/v1/volumes').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6490,6 +6536,7 @@ export namespace books_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6608,6 +6655,7 @@ export namespace books_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6734,6 +6782,7 @@ export namespace books_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6828,6 +6877,7 @@ export namespace books_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -6959,6 +7009,7 @@ export namespace books_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
