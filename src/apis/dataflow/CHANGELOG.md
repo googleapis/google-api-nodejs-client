@@ -1,5 +1,12 @@
 # Changelog
 
+## [10.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/dataflow-v10.0.0...dataflow-v10.1.0) (2024-05-02)
+
+
+### Features
+
+* **dataflow:** update the API ([ddd9231](https://github.com/googleapis/google-api-nodejs-client/commit/ddd92315d9fff4a5a20493b1ce874f0974df3b82))
+
 ## [10.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/dataflow-v9.0.0...dataflow-v10.0.0) (2024-04-04)
 
 

@@ -1,5 +1,12 @@
 # Changelog
 
+## [7.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/composer-v7.0.0...composer-v7.0.1) (2024-05-02)
+
+
+### Bug Fixes
+
+* **composer:** update the API ([75304a0](https://github.com/googleapis/google-api-nodejs-client/commit/75304a070d61822ec87af425147acf2a3e72afdf))
+
 ## [7.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/composer-v6.2.0...composer-v7.0.0) (2024-04-04)
 
 

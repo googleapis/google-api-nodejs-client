@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.1.1](https://github.com/googleapis/google-api-nodejs-client/compare/recommender-v4.1.0...recommender-v4.1.1) (2024-05-02)
+
+
+### Bug Fixes
+
+* **recommender:** update the API ([827d7fc](https://github.com/googleapis/google-api-nodejs-client/commit/827d7fcf0b01ee4bb097d0e9b258dacfd903d4de))
+
 ## [4.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/recommender-v4.0.0...recommender-v4.1.0) (2024-02-02)
 
 

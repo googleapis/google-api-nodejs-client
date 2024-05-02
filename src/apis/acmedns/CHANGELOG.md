@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.4](https://github.com/googleapis/google-api-nodejs-client/compare/acmedns-v1.0.3...acmedns-v1.0.4) (2024-05-02)
+
+
+### Bug Fixes
+
+* **acmedns:** update the API ([4199c73](https://github.com/googleapis/google-api-nodejs-client/commit/4199c734fcde97cd00126d4531c0acfe7f4aad9a))
+
 ## [1.0.3](https://github.com/googleapis/google-api-nodejs-client/compare/acmedns-v1.0.2...acmedns-v1.0.3) (2023-10-11)
 
 

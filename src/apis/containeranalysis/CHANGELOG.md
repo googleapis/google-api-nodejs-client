@@ -1,5 +1,12 @@
 # Changelog
 
+## [7.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/containeranalysis-v7.0.0...containeranalysis-v7.0.1) (2024-05-02)
+
+
+### Bug Fixes
+
+* **containeranalysis:** update the API ([90afb7b](https://github.com/googleapis/google-api-nodejs-client/commit/90afb7bddfde862f89ed2f599ca74bf8e2002e8c))
+
 ## [7.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/containeranalysis-v6.0.0...containeranalysis-v7.0.0) (2024-04-04)
 
 

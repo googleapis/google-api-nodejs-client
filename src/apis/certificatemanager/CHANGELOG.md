@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/certificatemanager-v3.0.0...certificatemanager-v3.0.1) (2024-05-02)
+
+
+### Bug Fixes
+
+* **certificatemanager:** update the API ([32dd53e](https://github.com/googleapis/google-api-nodejs-client/commit/32dd53e849a341afbd7f0f52548485167556f85d))
+
 ## [3.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/certificatemanager-v2.0.0...certificatemanager-v3.0.0) (2024-04-04)
 
 

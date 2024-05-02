@@ -1,5 +1,12 @@
 # Changelog
 
+## [7.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/documentai-v7.0.0...documentai-v7.1.0) (2024-05-02)
+
+
+### Features
+
+* **documentai:** update the API ([b07b1aa](https://github.com/googleapis/google-api-nodejs-client/commit/b07b1aa83a3be53769729f43afe252bab824b55a))
+
 ## [7.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/documentai-v6.0.0...documentai-v7.0.0) (2024-04-04)
 
 

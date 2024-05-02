@@ -1,5 +1,12 @@
 # Changelog
 
+## [8.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/discoveryengine-v8.0.0...discoveryengine-v8.1.0) (2024-05-02)
+
+
+### Features
+
+* **discoveryengine:** update the API ([ec40fe5](https://github.com/googleapis/google-api-nodejs-client/commit/ec40fe54ac9bc032c370f8eaf436489a10b04159))
+
 ## [8.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/discoveryengine-v7.0.0...discoveryengine-v8.0.0) (2024-04-04)
 
 

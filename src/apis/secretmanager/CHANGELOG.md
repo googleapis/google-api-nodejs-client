@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.1](https://github.com/googleapis/google-api-nodejs-client/compare/secretmanager-v1.2.0...secretmanager-v1.2.1) (2024-05-02)
+
+
+### Bug Fixes
+
+* **secretmanager:** update the API ([0d6d936](https://github.com/googleapis/google-api-nodejs-client/commit/0d6d93683ed834ad4414635c8408d1cbacda2c54))
+
 ## [1.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/secretmanager-v1.1.0...secretmanager-v1.2.0) (2024-04-04)
 
 

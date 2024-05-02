@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.6](https://github.com/googleapis/google-api-nodejs-client/compare/cloudscheduler-v1.1.5...cloudscheduler-v1.1.6) (2024-05-02)
+
+
+### Bug Fixes
+
+* **cloudscheduler:** update the API ([94305b7](https://github.com/googleapis/google-api-nodejs-client/commit/94305b7da4ccfab0e63b613d6a7fcbe33864270d))
+
 ## [1.1.5](https://github.com/googleapis/google-api-nodejs-client/compare/cloudscheduler-v1.1.4...cloudscheduler-v1.1.5) (2024-02-07)
 
 
