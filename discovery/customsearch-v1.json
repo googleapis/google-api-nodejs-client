@@ -373,7 +373,7 @@
               "type": "string"
             },
             "snippetLength": {
-              "description": "Optional. Maximum length of snippet text, in characters, to be returned with results. * Valid values are integers between 1 and 160, inclusive.",
+              "description": "Optional. Maximum length of snippet text, in characters, to be returned with results. Note: this feature is limited to specific engines. * Valid values are integers between 161 and 1000, inclusive.",
               "format": "int32",
               "location": "query",
               "type": "integer"
@@ -675,7 +675,7 @@
                   "type": "string"
                 },
                 "snippetLength": {
-                  "description": "Optional. Maximum length of snippet text, in characters, to be returned with results. * Valid values are integers between 1 and 160, inclusive.",
+                  "description": "Optional. Maximum length of snippet text, in characters, to be returned with results. Note: this feature is limited to specific engines. * Valid values are integers between 161 and 1000, inclusive.",
                   "format": "int32",
                   "location": "query",
                   "type": "integer"
@@ -702,7 +702,7 @@
       }
     }
   },
-  "revision": "20240320",
+  "revision": "20240430",
   "rootUrl": "https://customsearch.googleapis.com/",
   "schemas": {
     "Promotion": {
