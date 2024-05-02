@@ -1638,6 +1638,7 @@ export namespace drive_v3 {
           {
             url: (rootUrl + '/drive/v3/about').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1733,6 +1734,7 @@ export namespace drive_v3 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1816,6 +1818,7 @@ export namespace drive_v3 {
           {
             url: (rootUrl + '/drive/v3/apps').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1933,6 +1936,7 @@ export namespace drive_v3 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2016,6 +2020,7 @@ export namespace drive_v3 {
           {
             url: (rootUrl + '/drive/v3/changes').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2102,6 +2107,7 @@ export namespace drive_v3 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2334,6 +2340,7 @@ export namespace drive_v3 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2434,6 +2441,7 @@ export namespace drive_v3 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2517,6 +2525,7 @@ export namespace drive_v3 {
               rootUrl + '/drive/v3/files/{fileId}/comments/{commentId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -2602,6 +2611,7 @@ export namespace drive_v3 {
               rootUrl + '/drive/v3/files/{fileId}/comments/{commentId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2688,6 +2698,7 @@ export namespace drive_v3 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2773,6 +2784,7 @@ export namespace drive_v3 {
               rootUrl + '/drive/v3/files/{fileId}/comments/{commentId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -2936,6 +2948,7 @@ export namespace drive_v3 {
           {
             url: (rootUrl + '/drive/v3/drives').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3020,6 +3033,7 @@ export namespace drive_v3 {
               '$1'
             ),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -3106,6 +3120,7 @@ export namespace drive_v3 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3192,6 +3207,7 @@ export namespace drive_v3 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3275,6 +3291,7 @@ export namespace drive_v3 {
           {
             url: (rootUrl + '/drive/v3/drives').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3361,6 +3378,7 @@ export namespace drive_v3 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3380,7 +3398,7 @@ export namespace drive_v3 {
     }
 
     /**
-     * Updates the metadate for a shared drive.
+     * Updates the metadata for a shared drive.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3447,6 +3465,7 @@ export namespace drive_v3 {
               '$1'
             ),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -3621,6 +3640,7 @@ export namespace drive_v3 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3704,6 +3724,7 @@ export namespace drive_v3 {
           {
             url: (rootUrl + '/drive/v3/files').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3792,6 +3813,7 @@ export namespace drive_v3 {
               '$1'
             ),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -3876,6 +3898,7 @@ export namespace drive_v3 {
               '$1'
             ),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -3960,6 +3983,7 @@ export namespace drive_v3 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4047,6 +4071,7 @@ export namespace drive_v3 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4133,6 +4158,7 @@ export namespace drive_v3 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4216,6 +4242,7 @@ export namespace drive_v3 {
           {
             url: (rootUrl + '/drive/v3/files').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4302,6 +4329,7 @@ export namespace drive_v3 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4396,6 +4424,7 @@ export namespace drive_v3 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4482,6 +4511,7 @@ export namespace drive_v3 {
               '$1'
             ),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -4572,6 +4602,7 @@ export namespace drive_v3 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5032,6 +5063,7 @@ export namespace drive_v3 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5116,6 +5148,7 @@ export namespace drive_v3 {
               rootUrl + '/drive/v3/files/{fileId}/permissions/{permissionId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -5201,6 +5234,7 @@ export namespace drive_v3 {
               rootUrl + '/drive/v3/files/{fileId}/permissions/{permissionId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5287,6 +5321,7 @@ export namespace drive_v3 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5373,6 +5408,7 @@ export namespace drive_v3 {
               rootUrl + '/drive/v3/files/{fileId}/permissions/{permissionId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -5621,6 +5657,7 @@ export namespace drive_v3 {
               rootUrl + '/drive/v3/files/{fileId}/comments/{commentId}/replies'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5705,6 +5742,7 @@ export namespace drive_v3 {
               '/drive/v3/files/{fileId}/comments/{commentId}/replies/{replyId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -5791,6 +5829,7 @@ export namespace drive_v3 {
               '/drive/v3/files/{fileId}/comments/{commentId}/replies/{replyId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5876,6 +5915,7 @@ export namespace drive_v3 {
               rootUrl + '/drive/v3/files/{fileId}/comments/{commentId}/replies'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5962,6 +6002,7 @@ export namespace drive_v3 {
               '/drive/v3/files/{fileId}/comments/{commentId}/replies/{replyId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -6141,6 +6182,7 @@ export namespace drive_v3 {
               rootUrl + '/drive/v3/files/{fileId}/revisions/{revisionId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -6226,6 +6268,7 @@ export namespace drive_v3 {
               rootUrl + '/drive/v3/files/{fileId}/revisions/{revisionId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6312,6 +6355,7 @@ export namespace drive_v3 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6397,6 +6441,7 @@ export namespace drive_v3 {
               rootUrl + '/drive/v3/files/{fileId}/revisions/{revisionId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -6545,6 +6590,7 @@ export namespace drive_v3 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -6630,6 +6676,7 @@ export namespace drive_v3 {
               '$1'
             ),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -6716,6 +6763,7 @@ export namespace drive_v3 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6802,6 +6850,7 @@ export namespace drive_v3 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6889,6 +6938,7 @@ export namespace drive_v3 {
               '$1'
             ),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),

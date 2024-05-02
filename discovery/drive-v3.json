@@ -891,7 +891,7 @@
           ]
         },
         "update": {
-          "description": "Updates the metadate for a shared drive.",
+          "description": "Updates the metadata for a shared drive.",
           "flatPath": "drives/{driveId}",
           "httpMethod": "PATCH",
           "id": "drive.drives.update",
@@ -2503,7 +2503,7 @@
       }
     }
   },
-  "revision": "20240126",
+  "revision": "20240426",
   "rootUrl": "https://www.googleapis.com/",
   "schemas": {
     "About": {
