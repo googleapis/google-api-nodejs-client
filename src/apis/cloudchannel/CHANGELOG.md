@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.4.2](https://github.com/googleapis/google-api-nodejs-client/compare/cloudchannel-v1.4.1...cloudchannel-v1.4.2) (2024-05-02)
+
+
+### Bug Fixes
+
+* **cloudchannel:** update the API ([a65c068](https://github.com/googleapis/google-api-nodejs-client/commit/a65c068d0595e90214d69be0ab74af66c80ad62d))
+
 ## [1.4.1](https://github.com/googleapis/google-api-nodejs-client/compare/cloudchannel-v1.4.0...cloudchannel-v1.4.1) (2024-02-02)
 
 

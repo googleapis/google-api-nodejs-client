@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/osconfig-v3.0.0...osconfig-v3.0.1) (2024-05-02)
+
+
+### Bug Fixes
+
+* **osconfig:** update the API ([fc51160](https://github.com/googleapis/google-api-nodejs-client/commit/fc5116090ac8e177af2cfe17ed5bb938d1f27470))
+
 ## [3.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/osconfig-v2.0.1...osconfig-v3.0.0) (2024-04-04)
 
 

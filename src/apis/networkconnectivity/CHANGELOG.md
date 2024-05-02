@@ -1,5 +1,12 @@
 # Changelog
 
+## [7.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/networkconnectivity-v7.0.0...networkconnectivity-v7.1.0) (2024-05-02)
+
+
+### Features
+
+* **networkconnectivity:** update the API ([bb6e8ff](https://github.com/googleapis/google-api-nodejs-client/commit/bb6e8ffe0ccc87c117b7acbecf2ad9a52ec76158))
+
 ## [7.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/networkconnectivity-v6.0.0...networkconnectivity-v7.0.0) (2024-04-04)
 
 

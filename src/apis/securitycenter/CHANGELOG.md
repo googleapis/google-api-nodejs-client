@@ -1,5 +1,16 @@
 # Changelog
 
+## [7.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/securitycenter-v6.0.0...securitycenter-v7.0.0) (2024-05-02)
+
+
+### ⚠ BREAKING CHANGES
+
+* **securitycenter:** This release has breaking changes.
+
+### Features
+
+* **securitycenter:** update the API ([8b08aa2](https://github.com/googleapis/google-api-nodejs-client/commit/8b08aa2ac1d8bb8eb264f8bda3089da60b4f4028))
+
 ## [6.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/securitycenter-v5.0.0...securitycenter-v6.0.0) (2024-04-04)
 
 

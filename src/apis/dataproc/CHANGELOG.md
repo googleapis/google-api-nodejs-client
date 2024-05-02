@@ -1,5 +1,12 @@
 # Changelog
 
+## [6.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/dataproc-v6.0.0...dataproc-v6.0.1) (2024-05-02)
+
+
+### Bug Fixes
+
+* **dataproc:** update the API ([abbcb61](https://github.com/googleapis/google-api-nodejs-client/commit/abbcb618952a5c365ef553b83f88bd4fc6a19c68))
+
 ## [6.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/dataproc-v5.0.0...dataproc-v6.0.0) (2024-04-04)
 
 

@@ -1,5 +1,12 @@
 # Changelog
 
+## [7.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/firestore-v7.0.0...firestore-v7.1.0) (2024-05-02)
+
+
+### Features
+
+* **firestore:** update the API ([6d67fed](https://github.com/googleapis/google-api-nodejs-client/commit/6d67fed98433e01900db319bc4747577cb6d6e3d))
+
 ## [7.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/firestore-v6.0.0...firestore-v7.0.0) (2024-04-04)
 
 

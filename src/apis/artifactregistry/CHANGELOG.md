@@ -1,5 +1,12 @@
 # Changelog
 
+## [7.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/artifactregistry-v7.0.0...artifactregistry-v7.1.0) (2024-05-02)
+
+
+### Features
+
+* **artifactregistry:** update the API ([5a5e4aa](https://github.com/googleapis/google-api-nodejs-client/commit/5a5e4aae48f826b6daec0493c4cfe79b4b0dfa4a))
+
 ## [7.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/artifactregistry-v6.0.0...artifactregistry-v7.0.0) (2024-04-04)
 
 

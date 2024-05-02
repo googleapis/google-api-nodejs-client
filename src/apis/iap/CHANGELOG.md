@@ -1,5 +1,12 @@
 # Changelog
 
+## [7.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/iap-v7.0.0...iap-v7.1.0) (2024-05-02)
+
+
+### Features
+
+* **iap:** update the API ([db72cb3](https://github.com/googleapis/google-api-nodejs-client/commit/db72cb3acc75efc17df7dd0d6b4418e17c1c3c81))
+
 ## [7.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/iap-v6.0.1...iap-v7.0.0) (2024-04-04)
 
 
