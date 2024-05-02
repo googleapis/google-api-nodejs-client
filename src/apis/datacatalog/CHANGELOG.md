@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/datacatalog-v5.0.0...datacatalog-v5.0.1) (2024-05-02)
+
+
+### Bug Fixes
+
+* **datacatalog:** update the API ([64c1abc](https://github.com/googleapis/google-api-nodejs-client/commit/64c1abc7e78bbe9a213c1c696a83389ca1b8d313))
+
 ## [5.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/datacatalog-v4.0.0...datacatalog-v5.0.0) (2024-04-04)
 
 

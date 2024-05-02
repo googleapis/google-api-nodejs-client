@@ -1,5 +1,12 @@
 # Changelog
 
+## [6.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/container-v6.0.0...container-v6.1.0) (2024-05-02)
+
+
+### Features
+
+* **container:** update the API ([8cd9863](https://github.com/googleapis/google-api-nodejs-client/commit/8cd986326583b69735627bae07263fad1595b7fb))
+
 ## [6.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/container-v5.0.0...container-v6.0.0) (2024-04-04)
 
 

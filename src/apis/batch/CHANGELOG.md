@@ -1,5 +1,12 @@
 # Changelog
 
+## [8.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/batch-v8.0.0...batch-v8.0.1) (2024-05-02)
+
+
+### Bug Fixes
+
+* **batch:** update the API ([10727a4](https://github.com/googleapis/google-api-nodejs-client/commit/10727a4ccab11bd1203fa95cb14131a67804e7a5))
+
 ## [8.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/batch-v7.0.0...batch-v8.0.0) (2024-04-04)
 
 

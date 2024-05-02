@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/memcache-v2.0.0...memcache-v2.0.1) (2024-05-02)
+
+
+### Bug Fixes
+
+* **memcache:** update the API ([39c011c](https://github.com/googleapis/google-api-nodejs-client/commit/39c011c3681af3e906b370080a2ca8a6caf83fa0))
+
 ## [2.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/memcache-v1.1.1...memcache-v2.0.0) (2024-04-04)
 
 

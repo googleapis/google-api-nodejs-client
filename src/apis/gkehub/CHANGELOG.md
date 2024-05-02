@@ -1,5 +1,12 @@
 # Changelog
 
+## [10.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/gkehub-v10.0.0...gkehub-v10.1.0) (2024-05-02)
+
+
+### Features
+
+* **gkehub:** update the API ([d4c3244](https://github.com/googleapis/google-api-nodejs-client/commit/d4c3244d232a2788ef39e85a3ba451227446ebb2))
+
 ## [10.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/gkehub-v9.0.0...gkehub-v10.0.0) (2024-04-04)
 
 

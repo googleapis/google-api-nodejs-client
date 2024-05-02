@@ -1,5 +1,12 @@
 # Changelog
 
+## [9.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/bigquery-v9.0.0...bigquery-v9.1.0) (2024-05-02)
+
+
+### Features
+
+* **bigquery:** update the API ([72b5d21](https://github.com/googleapis/google-api-nodejs-client/commit/72b5d21ed11f1bcde638a1240c02d6ce03906844))
+
 ## [9.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/bigquery-v8.0.0...bigquery-v9.0.0) (2024-04-04)
 
 

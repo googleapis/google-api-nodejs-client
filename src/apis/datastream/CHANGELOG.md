@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/datastream-v5.0.0...datastream-v5.1.0) (2024-05-02)
+
+
+### Features
+
+* **datastream:** update the API ([57a62ef](https://github.com/googleapis/google-api-nodejs-client/commit/57a62ef7920ab1ca1e18452b2749c3585a981736))
+
 ## [5.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/datastream-v4.0.0...datastream-v5.0.0) (2024-04-04)
 
 

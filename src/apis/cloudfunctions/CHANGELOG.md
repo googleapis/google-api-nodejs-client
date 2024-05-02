@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/cloudfunctions-v3.0.0...cloudfunctions-v3.0.1) (2024-05-02)
+
+
+### Bug Fixes
+
+* **cloudfunctions:** update the API ([fc21faf](https://github.com/googleapis/google-api-nodejs-client/commit/fc21faf20d3f7a4a70c035cea20fc36082a247b9))
+
 ## [3.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/cloudfunctions-v2.0.0...cloudfunctions-v3.0.0) (2024-04-04)
 
 

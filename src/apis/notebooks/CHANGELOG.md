@@ -1,5 +1,12 @@
 # Changelog
 
+## [7.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/notebooks-v7.0.0...notebooks-v7.0.1) (2024-05-02)
+
+
+### Bug Fixes
+
+* **notebooks:** update the API ([71b9980](https://github.com/googleapis/google-api-nodejs-client/commit/71b99805f4a3b99585c09a1b5442e2e43be45d13))
+
 ## [7.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/notebooks-v6.0.0...notebooks-v7.0.0) (2024-04-04)
 
 
