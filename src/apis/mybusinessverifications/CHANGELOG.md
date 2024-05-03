@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.0.2](https://github.com/googleapis/google-api-nodejs-client/compare/mybusinessverifications-v2.0.1...mybusinessverifications-v2.0.2) (2024-05-02)
+
+
+### Bug Fixes
+
+* **mybusinessverifications:** update the API ([60bdbd2](https://github.com/googleapis/google-api-nodejs-client/commit/60bdbd229b5a25345953be1eff11813b10840902))
+
 ## [2.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/mybusinessverifications-v2.0.0...mybusinessverifications-v2.0.1) (2024-05-02)
 
 

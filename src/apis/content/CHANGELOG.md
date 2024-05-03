@@ -1,5 +1,23 @@
 # Changelog
 
+## [24.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/content-v23.0.0...content-v24.0.0) (2024-05-02)
+
+
+### ⚠ BREAKING CHANGES
+
+* **content:** This release has breaking changes.
+* This release has breaking changes.
+* This release has breaking changes.
+* This release has breaking changes.
+
+### Features
+
+* **content:** update the API ([76546b8](https://github.com/googleapis/google-api-nodejs-client/commit/76546b866ac0e675f27b2b9ab1727f4c821c17ac))
+* **content:** update the API ([6a26ecc](https://github.com/googleapis/google-api-nodejs-client/commit/6a26ecc24d64e25562ba79ecd89dd8efc3f1aab6))
+* run the generator ([#3434](https://github.com/googleapis/google-api-nodejs-client/issues/3434)) ([f0db524](https://github.com/googleapis/google-api-nodejs-client/commit/f0db524bb26f05cea3dec4c0ed66b496399e3857))
+* run the generator ([#3441](https://github.com/googleapis/google-api-nodejs-client/issues/3441)) ([f832463](https://github.com/googleapis/google-api-nodejs-client/commit/f832463312572dc58fe89f9254282982a520d1df))
+* run the generator ([#3456](https://github.com/googleapis/google-api-nodejs-client/issues/3456)) ([a865e81](https://github.com/googleapis/google-api-nodejs-client/commit/a865e81539b315d3b321650663ba0b2555b1e5a1))
+
 ## [23.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/content-v22.0.0...content-v23.0.0) (2024-05-02)
 
 

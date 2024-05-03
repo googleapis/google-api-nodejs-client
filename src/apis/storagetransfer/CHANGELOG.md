@@ -1,5 +1,24 @@
 # Changelog
 
+## [7.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/storagetransfer-v6.0.1...storagetransfer-v7.0.0) (2024-05-02)
+
+
+### ⚠ BREAKING CHANGES
+
+* **storagetransfer:** This release has breaking changes.
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#3441](https://github.com/googleapis/google-api-nodejs-client/issues/3441)) ([f832463](https://github.com/googleapis/google-api-nodejs-client/commit/f832463312572dc58fe89f9254282982a520d1df))
+* **storagetransfer:** update the API ([e2ad916](https://github.com/googleapis/google-api-nodejs-client/commit/e2ad916923bebb3224bfda4ee26a8c0b9a5b0139))
+* **storagetransfer:** update the API ([43173f6](https://github.com/googleapis/google-api-nodejs-client/commit/43173f6399dd5f15b2d2def045db02a28a2df32c))
+
+
+### Bug Fixes
+
+* **storagetransfer:** update the API ([aee9c44](https://github.com/googleapis/google-api-nodejs-client/commit/aee9c449cf7b6592a91674d8acf83c3f24089b87))
+
 ## [6.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/storagetransfer-v6.0.0...storagetransfer-v6.0.1) (2024-05-02)
 
 

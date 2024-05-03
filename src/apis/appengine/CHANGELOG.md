@@ -1,5 +1,22 @@
 # Changelog
 
+## [8.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/appengine-v7.1.0...appengine-v8.0.0) (2024-05-02)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+* This release has breaking changes.
+* This release has breaking changes.
+
+### Features
+
+* **appengine:** update the API ([543b45e](https://github.com/googleapis/google-api-nodejs-client/commit/543b45e8cad0556e923f2f44e61d3bf96675e1ca))
+* **appengine:** update the API ([363be51](https://github.com/googleapis/google-api-nodejs-client/commit/363be514b969f2a7854d7c439a6c53ab86fa8f08))
+* run the generator ([#3434](https://github.com/googleapis/google-api-nodejs-client/issues/3434)) ([f0db524](https://github.com/googleapis/google-api-nodejs-client/commit/f0db524bb26f05cea3dec4c0ed66b496399e3857))
+* run the generator ([#3441](https://github.com/googleapis/google-api-nodejs-client/issues/3441)) ([f832463](https://github.com/googleapis/google-api-nodejs-client/commit/f832463312572dc58fe89f9254282982a520d1df))
+* run the generator ([#3447](https://github.com/googleapis/google-api-nodejs-client/issues/3447)) ([873b559](https://github.com/googleapis/google-api-nodejs-client/commit/873b55950bcf04db37f08e8a62caa6e4a9b9c487))
+
 ## [7.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/appengine-v7.0.0...appengine-v7.1.0) (2024-05-02)
 
 

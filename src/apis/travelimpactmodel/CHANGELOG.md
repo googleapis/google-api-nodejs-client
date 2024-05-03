@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.0.2](https://github.com/googleapis/google-api-nodejs-client/compare/travelimpactmodel-v2.0.1...travelimpactmodel-v2.0.2) (2024-05-02)
+
+
+### Bug Fixes
+
+* **travelimpactmodel:** update the API ([be498cd](https://github.com/googleapis/google-api-nodejs-client/commit/be498cde964258f31edd0d32e5032555b4bf0211))
+
 ## [2.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/travelimpactmodel-v2.0.0...travelimpactmodel-v2.0.1) (2024-05-02)
 
 

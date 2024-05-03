@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.7](https://github.com/googleapis/google-api-nodejs-client/compare/domainsrdap-v1.0.6...domainsrdap-v1.0.7) (2024-05-02)
+
+
+### Bug Fixes
+
+* **domainsrdap:** update the API ([f3678df](https://github.com/googleapis/google-api-nodejs-client/commit/f3678df1b0f9621c9319be5c32b5c1ae0257409f))
+
 ## [1.0.6](https://github.com/googleapis/google-api-nodejs-client/compare/domainsrdap-v1.0.5...domainsrdap-v1.0.6) (2024-05-02)
 
 

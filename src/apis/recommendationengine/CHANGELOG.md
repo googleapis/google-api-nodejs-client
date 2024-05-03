@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.4.2](https://github.com/googleapis/google-api-nodejs-client/compare/recommendationengine-v3.4.1...recommendationengine-v3.4.2) (2024-05-02)
+
+
+### Bug Fixes
+
+* **recommendationengine:** update the API ([7b4553c](https://github.com/googleapis/google-api-nodejs-client/commit/7b4553c671f92881f12ca6b0c6d13b9897cff259))
+
 ## [3.4.1](https://github.com/googleapis/google-api-nodejs-client/compare/recommendationengine-v3.4.0...recommendationengine-v3.4.1) (2024-05-02)
 
 
