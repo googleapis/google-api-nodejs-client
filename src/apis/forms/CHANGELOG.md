@@ -1,5 +1,19 @@
 # Changelog
 
+## [2.0.7](https://github.com/googleapis/google-api-nodejs-client/compare/forms-v2.0.6...forms-v2.0.7) (2024-05-02)
+
+
+### Bug Fixes
+
+* **forms:** update the API ([e06cd96](https://github.com/googleapis/google-api-nodejs-client/commit/e06cd96538ce8a44d850c8cc29aabcdf0b180ab9))
+
+## [2.0.6](https://github.com/googleapis/google-api-nodejs-client/compare/forms-v2.0.5...forms-v2.0.6) (2024-05-02)
+
+
+### Bug Fixes
+
+* **forms:** update the API ([e06cd96](https://github.com/googleapis/google-api-nodejs-client/commit/e06cd96538ce8a44d850c8cc29aabcdf0b180ab9))
+
 ## [2.0.5](https://github.com/googleapis/google-api-nodejs-client/compare/forms-v2.0.4...forms-v2.0.5) (2023-10-11)
 
 

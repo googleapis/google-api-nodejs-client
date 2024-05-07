@@ -313,6 +313,7 @@ export namespace domainsrdap_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -413,6 +414,7 @@ export namespace domainsrdap_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -513,6 +515,7 @@ export namespace domainsrdap_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -613,6 +616,7 @@ export namespace domainsrdap_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -717,6 +721,7 @@ export namespace domainsrdap_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -814,6 +819,7 @@ export namespace domainsrdap_v1 {
           {
             url: (rootUrl + '/v1/domains').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -897,6 +903,7 @@ export namespace domainsrdap_v1 {
           {
             url: (rootUrl + '/v1/entities').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -980,6 +987,7 @@ export namespace domainsrdap_v1 {
           {
             url: (rootUrl + '/v1/help').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1063,6 +1071,7 @@ export namespace domainsrdap_v1 {
           {
             url: (rootUrl + '/v1/ip').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1147,6 +1156,7 @@ export namespace domainsrdap_v1 {
           {
             url: (rootUrl + '/v1/nameservers').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),

@@ -211,6 +211,15 @@ export namespace securitycenter_v1beta2 {
     version?: string | null;
   }
   /**
+   * Information about [Google Cloud Armor Adaptive Protection](https://cloud.google.com/armor/docs/cloud-armor-overview#google-cloud-armor-adaptive-protection).
+   */
+  export interface Schema$AdaptiveProtection {
+    /**
+     * A score of 0 means that there is low confidence that the detected event is an actual attack. A score of 1 means that there is high confidence that the detected event is an attack. See the [Adaptive Protection documentation](https://cloud.google.com/armor/docs/adaptive-protection-overview#configure-alert-tuning) for further explanation.
+     */
+    confidence?: number | null;
+  }
+  /**
    * Represents an application associated with a finding.
    */
   export interface Schema$Application {
@@ -222,6 +231,23 @@ export namespace securitycenter_v1beta2 {
      * The full URI with payload that can be used to reproduce the vulnerability. For example, `http://example.com?p=aMmYgI6H`.
      */
     fullUri?: string | null;
+  }
+  /**
+   * Information about DDoS attack volume and classification.
+   */
+  export interface Schema$Attack {
+    /**
+     * Type of attack, for example, 'SYN-flood', 'NTP-udp', or 'CHARGEN-udp'.
+     */
+    classification?: string | null;
+    /**
+     * Total BPS (bytes per second) volume of attack.
+     */
+    volumeBps?: number | null;
+    /**
+     * Total PPS (packets per second) volume of attack.
+     */
+    volumePps?: number | null;
   }
   /**
    * An attack exposure contains the results of an attack path simulation run.
@@ -255,6 +281,58 @@ export namespace securitycenter_v1beta2 {
      * What state this AttackExposure is in. This captures whether or not an attack exposure has been calculated or not.
      */
     state?: string | null;
+  }
+  /**
+   * An AWS account that is a member of an organization.
+   */
+  export interface Schema$AwsAccount {
+    /**
+     * The unique identifier (ID) of the account, containing exactly 12 digits.
+     */
+    id?: string | null;
+    /**
+     * The friendly name of this account.
+     */
+    name?: string | null;
+  }
+  /**
+   * AWS metadata associated with the resource, only applicable if the finding's cloud provider is Amazon Web Services.
+   */
+  export interface Schema$AwsMetadata {
+    /**
+     * The AWS account associated with the resource.
+     */
+    account?: Schema$AwsAccount;
+    /**
+     * The AWS organization associated with the resource.
+     */
+    organization?: Schema$AwsOrganization;
+    /**
+     * A list of AWS organizational units associated with the resource, ordered from lowest level (closest to the account) to highest level.
+     */
+    organizationalUnits?: Schema$AwsOrganizationalUnit[];
+  }
+  /**
+   * An organization is a collection of accounts that are centrally managed together using consolidated billing, organized hierarchically with organizational units (OUs), and controlled with policies.
+   */
+  export interface Schema$AwsOrganization {
+    /**
+     * The unique identifier (ID) for the organization. The regex pattern for an organization ID string requires "o-" followed by from 10 to 32 lowercase letters or digits.
+     */
+    id?: string | null;
+  }
+  /**
+   * An Organizational Unit (OU) is a container of AWS accounts within a root of an organization. Policies that are attached to an OU apply to all accounts contained in that OU and in any child OUs.
+   */
+  export interface Schema$AwsOrganizationalUnit {
+    /**
+     * The unique identifier (ID) associated with this OU. The regex pattern for an organizational unit ID string requires "ou-" followed by from 4 to 32 lowercase letters or digits (the ID of the root that contains the OU). This string is followed by a second "-" dash and from 8 to 32 additional lowercase letters or digits. For example, "ou-ab12-cd34ef56".
+     */
+    id?: string | null;
+    /**
+     * The friendly name of the OU.
+     */
+    name?: string | null;
   }
   /**
    * Information related to Google Cloud Backup and DR Service findings.
@@ -300,6 +378,35 @@ export namespace securitycenter_v1beta2 {
      * The name of the Backup and DR storage pool that the backup and recovery appliance is storing data in. The storage pool could be of type Cloud, Primary, Snapshot, or OnVault. See the [Backup and DR documentation on storage pools](https://cloud.google.com/backup-disaster-recovery/docs/concepts/storage-pools). For example, `DiskPoolOne`.
      */
     storagePool?: string | null;
+  }
+  /**
+   * Fields related to Google Cloud Armor findings.
+   */
+  export interface Schema$CloudArmor {
+    /**
+     * Information about potential Layer 7 DDoS attacks identified by [Google Cloud Armor Adaptive Protection](https://cloud.google.com/armor/docs/adaptive-protection-overview).
+     */
+    adaptiveProtection?: Schema$AdaptiveProtection;
+    /**
+     * Information about DDoS attack volume and classification.
+     */
+    attack?: Schema$Attack;
+    /**
+     * Duration of attack from the start until the current moment (updated every 5 minutes).
+     */
+    duration?: string | null;
+    /**
+     * Information about incoming requests evaluated by [Google Cloud Armor security policies](https://cloud.google.com/armor/docs/security-policy-overview).
+     */
+    requests?: Schema$Requests;
+    /**
+     * Information about the [Google Cloud Armor security policy](https://cloud.google.com/armor/docs/security-policy-overview) relevant to the finding.
+     */
+    securityPolicy?: Schema$SecurityPolicy;
+    /**
+     * Distinguish between volumetric & protocol DDoS attack and application layer attacks. For example, "L3_4" for Layer 3 and Layer 4 DDoS attacks, or "L_7" for Layer 7 DDoS attacks.
+     */
+    threatVector?: string | null;
   }
   /**
    * The [data profile](https://cloud.google.com/dlp/docs/data-profiles) associated with the finding.
@@ -382,6 +489,10 @@ export namespace securitycenter_v1beta2 {
      */
     category?: string | null;
     /**
+     * The cloud provider for the compliance snapshot.
+     */
+    cloudProvider?: string | null;
+    /**
      * The compliance standard (ie CIS).
      */
     complianceStandard?: string | null;
@@ -401,10 +512,6 @@ export namespace securitycenter_v1beta2 {
      * The compliance snapshot name. Format: //sources//complianceSnapshots/
      */
     name?: string | null;
-    /**
-     * The CRM resource display name that is closest to the snapshot the Findings belong to.
-     */
-    projectDisplayName?: string | null;
     /**
      * The snapshot time of the snapshot.
      */
@@ -813,6 +920,10 @@ export namespace securitycenter_v1beta2 {
      */
     category?: string | null;
     /**
+     * Fields related to Cloud Armor findings.
+     */
+    cloudArmor?: Schema$CloudArmor;
+    /**
      * Cloud DLP data profile that is associated with the finding.
      */
     cloudDlpDataProfile?: Schema$CloudDlpDataProfile;
@@ -927,6 +1038,10 @@ export namespace securitycenter_v1beta2 {
      */
     nextSteps?: string | null;
     /**
+     * Notebook associated with the finding.
+     */
+    notebook?: Schema$Notebook;
+    /**
      * Contains information about the org policies associated with the finding.
      */
     orgPolicies?: Schema$OrgPolicy[];
@@ -983,6 +1098,35 @@ export namespace securitycenter_v1beta2 {
      * The user defined display name for this folder.
      */
     resourceFolderDisplayName?: string | null;
+  }
+  /**
+   * GCP metadata associated with the resource, only applicable if the finding's cloud provider is Google Cloud Platform.
+   */
+  export interface Schema$GcpMetadata {
+    /**
+     * Output only. Contains a Folder message for each folder in the assets ancestry. The first folder is the deepest nested folder, and the last folder is the folder directly under the Organization.
+     */
+    folders?: Schema$GoogleCloudSecuritycenterV2Folder[];
+    /**
+     * The name of the organization that the resource belongs to.
+     */
+    organization?: string | null;
+    /**
+     * The full resource name of resource's parent.
+     */
+    parent?: string | null;
+    /**
+     * The human readable name of resource's parent.
+     */
+    parentDisplayName?: string | null;
+    /**
+     * The full resource name of project that the resource belongs to.
+     */
+    project?: string | null;
+    /**
+     * The project ID that the resource belongs to.
+     */
+    projectDisplayName?: string | null;
   }
   /**
    * Represents a geographical location for a given access.
@@ -1386,6 +1530,14 @@ export namespace securitycenter_v1beta2 {
    */
   export interface Schema$GoogleCloudSecuritycenterV1Resource {
     /**
+     * The AWS metadata associated with the finding.
+     */
+    awsMetadata?: Schema$AwsMetadata;
+    /**
+     * Indicates which cloud provider the resource resides in.
+     */
+    cloudProvider?: string | null;
+    /**
      * The human readable name of the resource.
      */
     displayName?: string | null;
@@ -1394,9 +1546,17 @@ export namespace securitycenter_v1beta2 {
      */
     folders?: Schema$Folder[];
     /**
+     * The region or location of the service (if applicable).
+     */
+    location?: string | null;
+    /**
      * The full resource name of the resource. See: https://cloud.google.com/apis/design/resource_names#full_resource_name
      */
     name?: string | null;
+    /**
+     * Indicates which organization or tenant in the cloud provider the finding applies to.
+     */
+    organization?: string | null;
     /**
      * The full resource name of resource's parent.
      */
@@ -1413,6 +1573,18 @@ export namespace securitycenter_v1beta2 {
      * The project ID that the resource belongs to.
      */
     projectDisplayName?: string | null;
+    /**
+     * Provides the path to the resource within the resource hierarchy.
+     */
+    resourcePath?: Schema$ResourcePath;
+    /**
+     * A string representation of the resource path. For Google Cloud, it has the format of organizations/{organization_id\}/folders/{folder_id\}/folders/{folder_id\}/projects/{project_id\} where there can be any number of folders. For AWS, it has the format of org/{organization_id\}/ou/{organizational_unit_id\}/ou/{organizational_unit_id\}/account/{account_id\} where there can be any number of organizational units. For Azure, it has the format of mg/{management_group_id\}/mg/{management_group_id\}/subscription/{subscription_id\}/rg/{resource_group_name\} where there can be any number of management groups.
+     */
+    resourcePathString?: string | null;
+    /**
+     * The parent service or product from which the resource is provided, for example, GKE or SNS.
+     */
+    service?: string | null;
     /**
      * The full resource type of the resource.
      */
@@ -1431,6 +1603,10 @@ export namespace securitycenter_v1beta2 {
    * A resource value config (RVC) is a mapping configuration of user's resources to resource values. Used in Attack path simulations.
    */
   export interface Schema$GoogleCloudSecuritycenterV1ResourceValueConfig {
+    /**
+     * Cloud provider this configuration applies to
+     */
+    cloudProvider?: string | null;
     /**
      * Output only. Timestamp this resource value config was created.
      */
@@ -1614,6 +1790,15 @@ export namespace securitycenter_v1beta2 {
     version?: string | null;
   }
   /**
+   * Information about [Google Cloud Armor Adaptive Protection](https://cloud.google.com/armor/docs/cloud-armor-overview#google-cloud-armor-adaptive-protection).
+   */
+  export interface Schema$GoogleCloudSecuritycenterV2AdaptiveProtection {
+    /**
+     * A score of 0 means that there is low confidence that the detected event is an actual attack. A score of 1 means that there is high confidence that the detected event is an attack. See the [Adaptive Protection documentation](https://cloud.google.com/armor/docs/adaptive-protection-overview#configure-alert-tuning) for further explanation.
+     */
+    confidence?: number | null;
+  }
+  /**
    * Represents an application associated with a finding.
    */
   export interface Schema$GoogleCloudSecuritycenterV2Application {
@@ -1625,6 +1810,23 @@ export namespace securitycenter_v1beta2 {
      * The full URI with payload that could be used to reproduce the vulnerability. For example, `http://example.com?p=aMmYgI6H`.
      */
     fullUri?: string | null;
+  }
+  /**
+   * Information about DDoS attack volume and classification.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV2Attack {
+    /**
+     * Type of attack, for example, 'SYN-flood', 'NTP-udp', or 'CHARGEN-udp'.
+     */
+    classification?: string | null;
+    /**
+     * Total BPS (bytes per second) volume of attack.
+     */
+    volumeBps?: number | null;
+    /**
+     * Total PPS (packets per second) volume of attack.
+     */
+    volumePps?: number | null;
   }
   /**
    * An attack exposure contains the results of an attack path simulation run.
@@ -1658,6 +1860,58 @@ export namespace securitycenter_v1beta2 {
      * Output only. What state this AttackExposure is in. This captures whether or not an attack exposure has been calculated or not.
      */
     state?: string | null;
+  }
+  /**
+   * An AWS account that is a member of an organization.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV2AwsAccount {
+    /**
+     * The unique identifier (ID) of the account, containing exactly 12 digits.
+     */
+    id?: string | null;
+    /**
+     * The friendly name of this account.
+     */
+    name?: string | null;
+  }
+  /**
+   * AWS metadata associated with the resource, only applicable if the finding's cloud provider is Amazon Web Services.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV2AwsMetadata {
+    /**
+     * The AWS account associated with the resource.
+     */
+    account?: Schema$GoogleCloudSecuritycenterV2AwsAccount;
+    /**
+     * The AWS organization associated with the resource.
+     */
+    organization?: Schema$GoogleCloudSecuritycenterV2AwsOrganization;
+    /**
+     * A list of AWS organizational units associated with the resource, ordered from lowest level (closest to the account) to highest level.
+     */
+    organizationalUnits?: Schema$GoogleCloudSecuritycenterV2AwsOrganizationalUnit[];
+  }
+  /**
+   * An organization is a collection of accounts that are centrally managed together using consolidated billing, organized hierarchically with organizational units (OUs), and controlled with policies.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV2AwsOrganization {
+    /**
+     * The unique identifier (ID) for the organization. The regex pattern for an organization ID string requires "o-" followed by from 10 to 32 lowercase letters or digits.
+     */
+    id?: string | null;
+  }
+  /**
+   * An Organizational Unit (OU) is a container of AWS accounts within a root of an organization. Policies that are attached to an OU apply to all accounts contained in that OU and in any child OUs.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV2AwsOrganizationalUnit {
+    /**
+     * The unique identifier (ID) associated with this OU. The regex pattern for an organizational unit ID string requires "ou-" followed by from 4 to 32 lowercase letters or digits (the ID of the root that contains the OU). This string is followed by a second "-" dash and from 8 to 32 additional lowercase letters or digits. For example, "ou-ab12-cd34ef56".
+     */
+    id?: string | null;
+    /**
+     * The friendly name of the OU.
+     */
+    name?: string | null;
   }
   /**
    * Information related to Google Cloud Backup and DR Service findings.
@@ -1766,6 +2020,35 @@ export namespace securitycenter_v1beta2 {
    * The response to a BulkMute request. Contains the LRO information.
    */
   export interface Schema$GoogleCloudSecuritycenterV2BulkMuteFindingsResponse {}
+  /**
+   * Fields related to Google Cloud Armor findings.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV2CloudArmor {
+    /**
+     * Information about potential Layer 7 DDoS attacks identified by [Google Cloud Armor Adaptive Protection](https://cloud.google.com/armor/docs/adaptive-protection-overview).
+     */
+    adaptiveProtection?: Schema$GoogleCloudSecuritycenterV2AdaptiveProtection;
+    /**
+     * Information about DDoS attack volume and classification.
+     */
+    attack?: Schema$GoogleCloudSecuritycenterV2Attack;
+    /**
+     * Duration of attack from the start until the current moment (updated every 5 minutes).
+     */
+    duration?: string | null;
+    /**
+     * Information about incoming requests evaluated by [Google Cloud Armor security policies](https://cloud.google.com/armor/docs/security-policy-overview).
+     */
+    requests?: Schema$GoogleCloudSecuritycenterV2Requests;
+    /**
+     * Information about the [Google Cloud Armor security policy](https://cloud.google.com/armor/docs/security-policy-overview) relevant to the finding.
+     */
+    securityPolicy?: Schema$GoogleCloudSecuritycenterV2SecurityPolicy;
+    /**
+     * Distinguish between volumetric & protocol DDoS attack and application layer attacks. For example, "L3_4" for Layer 3 and Layer 4 DDoS attacks, or "L_7" for Layer 7 DDoS attacks.
+     */
+    threatVector?: string | null;
+  }
   /**
    * The [data profile](https://cloud.google.com/dlp/docs/data-profiles) associated with the finding.
    */
@@ -2193,6 +2476,10 @@ export namespace securitycenter_v1beta2 {
      */
     category?: string | null;
     /**
+     * Fields related to Cloud Armor findings.
+     */
+    cloudArmor?: Schema$GoogleCloudSecuritycenterV2CloudArmor;
+    /**
      * Cloud DLP data profile that is associated with the finding.
      */
     cloudDlpDataProfile?: Schema$GoogleCloudSecuritycenterV2CloudDlpDataProfile;
@@ -2309,6 +2596,10 @@ export namespace securitycenter_v1beta2 {
      */
     nextSteps?: string | null;
     /**
+     * Notebook associated with the finding.
+     */
+    notebook?: Schema$GoogleCloudSecuritycenterV2Notebook;
+    /**
      * Contains information about the org policies associated with the finding.
      */
     orgPolicies?: Schema$GoogleCloudSecuritycenterV2OrgPolicy[];
@@ -2352,6 +2643,19 @@ export namespace securitycenter_v1beta2 {
      * Represents vulnerability-specific fields like CVE and CVSS scores. CVE stands for Common Vulnerabilities and Exposures (https://cve.mitre.org/about/)
      */
     vulnerability?: Schema$GoogleCloudSecuritycenterV2Vulnerability;
+  }
+  /**
+   * Message that contains the resource name and display name of a folder resource.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV2Folder {
+    /**
+     * Full resource name of this folder. See: https://cloud.google.com/apis/design/resource_names#full_resource_name
+     */
+    resourceFolder?: string | null;
+    /**
+     * The user defined display name for this folder.
+     */
+    resourceFolderDisplayName?: string | null;
   }
   /**
    * Represents a geographical location for a given access.
@@ -2599,6 +2903,27 @@ export namespace securitycenter_v1beta2 {
     nodes?: Schema$GoogleCloudSecuritycenterV2Node[];
   }
   /**
+   * Represents a Jupyter notebook IPYNB file, such as a [Colab Enterprise notebook](https://cloud.google.com/colab/docs/introduction) file, that is associated with a finding.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV2Notebook {
+    /**
+     * The user ID of the latest author to modify the notebook.
+     */
+    lastAuthor?: string | null;
+    /**
+     * The name of the notebook.
+     */
+    name?: string | null;
+    /**
+     * The most recent time the notebook was updated.
+     */
+    notebookUpdateTime?: string | null;
+    /**
+     * The source notebook service, for example, "Colab Enterprise".
+     */
+    service?: string | null;
+  }
+  /**
    * Cloud SCC's Notification
    */
   export interface Schema$GoogleCloudSecuritycenterV2NotificationMessage {
@@ -2784,26 +3109,105 @@ export namespace securitycenter_v1beta2 {
     uri?: string | null;
   }
   /**
+   * Information about the requests relevant to the finding.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV2Requests {
+    /**
+     * Allowed RPS (requests per second) over the long term.
+     */
+    longTermAllowed?: number | null;
+    /**
+     * Denied RPS (requests per second) over the long term.
+     */
+    longTermDenied?: number | null;
+    /**
+     * For 'Increasing deny ratio', the ratio is the denied traffic divided by the allowed traffic. For 'Allowed traffic spike', the ratio is the allowed traffic in the short term divided by allowed traffic in the long term.
+     */
+    ratio?: number | null;
+    /**
+     * Allowed RPS (requests per second) in the short term.
+     */
+    shortTermAllowed?: number | null;
+  }
+  /**
    * Information related to the Google Cloud resource.
    */
   export interface Schema$GoogleCloudSecuritycenterV2Resource {
+    /**
+     * The AWS metadata associated with the finding.
+     */
+    awsMetadata?: Schema$GoogleCloudSecuritycenterV2AwsMetadata;
+    /**
+     * Indicates which cloud provider the finding is from.
+     */
+    cloudProvider?: string | null;
     /**
      * The human readable name of the resource.
      */
     displayName?: string | null;
     /**
+     * The GCP metadata associated with the finding.
+     */
+    gcpMetadata?: Schema$GcpMetadata;
+    /**
+     * The region or location of the service (if applicable).
+     */
+    location?: string | null;
+    /**
      * The full resource name of the resource. See: https://cloud.google.com/apis/design/resource_names#full_resource_name
      */
     name?: string | null;
+    /**
+     * Provides the path to the resource within the resource hierarchy.
+     */
+    resourcePath?: Schema$GoogleCloudSecuritycenterV2ResourcePath;
+    /**
+     * A string representation of the resource path. For Google Cloud, it has the format of organizations/{organization_id\}/folders/{folder_id\}/folders/{folder_id\}/projects/{project_id\} where there can be any number of folders. For AWS, it has the format of org/{organization_id\}/ou/{organizational_unit_id\}/ou/{organizational_unit_id\}/account/{account_id\} where there can be any number of organizational units. For Azure, it has the format of mg/{management_group_id\}/mg/{management_group_id\}/subscription/{subscription_id\}/rg/{resource_group_name\} where there can be any number of management groups.
+     */
+    resourcePathString?: string | null;
+    /**
+     * The service or resource provider associated with the resource.
+     */
+    service?: string | null;
     /**
      * The full resource type of the resource.
      */
     type?: string | null;
   }
   /**
+   * Represents the path of resources leading up to the resource this finding is about.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV2ResourcePath {
+    /**
+     * The list of nodes that make the up resource path, ordered from lowest level to highest level.
+     */
+    nodes?: Schema$GoogleCloudSecuritycenterV2ResourcePathNode[];
+  }
+  /**
+   * A node within the resource path. Each node represents a resource within the resource hierarchy.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV2ResourcePathNode {
+    /**
+     * The display name of the resource this node represents.
+     */
+    displayName?: string | null;
+    /**
+     * The ID of the resource this node represents.
+     */
+    id?: string | null;
+    /**
+     * The type of resource this node represents.
+     */
+    nodeType?: string | null;
+  }
+  /**
    * A resource value config (RVC) is a mapping configuration of user's resources to resource values. Used in Attack path simulations.
    */
   export interface Schema$GoogleCloudSecuritycenterV2ResourceValueConfig {
+    /**
+     * Cloud provider this configuration applies to
+     */
+    cloudProvider?: string | null;
     /**
      * Output only. Timestamp this resource value config was created.
      */
@@ -2884,7 +3288,7 @@ export namespace securitycenter_v1beta2 {
    */
   export interface Schema$GoogleCloudSecuritycenterV2SecurityMarks {
     /**
-     * The canonical name of the marks. The following list shows some examples: + `organizations/{organization_id\}/assets/{asset_id\}/securityMarks" + `organizations/{organization_id\}/sources/{source_id\}/findings/{finding_id\}/securityMarks" + `organizations/{organization_id\}/sources/{source_id\}/locations/{location\}/findings/{finding_id\}/securityMarks" + `folders/{folder_id\}/assets/{asset_id\}/securityMarks" + `folders/{folder_id\}/sources/{source_id\}/findings/{finding_id\}/securityMarks" + `folders/{folder_id\}/sources/{source_id\}/locations/{location\}/findings/{finding_id\}/securityMarks" + `projects/{project_number\}/assets/{asset_id\}/securityMarks" + `projects/{project_number\}/sources/{source_id\}/findings/{finding_id\}/securityMarks" + `projects/{project_number\}/sources/{source_id\}/locations/{location\}/findings/{finding_id\}/securityMarks"
+     * The canonical name of the marks. The following list shows some examples: + `organizations/{organization_id\}/assets/{asset_id\}/securityMarks` + `organizations/{organization_id\}/sources/{source_id\}/findings/{finding_id\}/securityMarks` + `organizations/{organization_id\}/sources/{source_id\}/locations/{location\}/findings/{finding_id\}/securityMarks` + `folders/{folder_id\}/assets/{asset_id\}/securityMarks` + `folders/{folder_id\}/sources/{source_id\}/findings/{finding_id\}/securityMarks` + `folders/{folder_id\}/sources/{source_id\}/locations/{location\}/findings/{finding_id\}/securityMarks` + `projects/{project_number\}/assets/{asset_id\}/securityMarks` + `projects/{project_number\}/sources/{source_id\}/findings/{finding_id\}/securityMarks` + `projects/{project_number\}/sources/{source_id\}/locations/{location\}/findings/{finding_id\}/securityMarks`
      */
     canonicalName?: string | null;
     /**
@@ -2895,6 +3299,23 @@ export namespace securitycenter_v1beta2 {
      * The relative resource name of the SecurityMarks. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name The following list shows some examples: + `organizations/{organization_id\}/assets/{asset_id\}/securityMarks` + `organizations/{organization_id\}/sources/{source_id\}/findings/{finding_id\}/securityMarks` + `organizations/{organization_id\}/sources/{source_id\}/locations/{location\}/findings/{finding_id\}/securityMarks`
      */
     name?: string | null;
+  }
+  /**
+   * Information about the [Google Cloud Armor security policy](https://cloud.google.com/armor/docs/security-policy-overview) relevant to the finding.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV2SecurityPolicy {
+    /**
+     * The name of the Google Cloud Armor security policy, for example, "my-security-policy".
+     */
+    name?: string | null;
+    /**
+     * Whether or not the associated rule or policy is in preview mode.
+     */
+    preview?: boolean | null;
+    /**
+     * The type of Google Cloud Armor security policy for example, 'backend security policy', 'edge security policy', 'network edge security policy', or 'always-on DDoS protection'.
+     */
+    type?: string | null;
   }
   /**
    * Represents a posture that is deployed on Google Cloud by the Security Command Center Posture Management service. A posture contains one or more policy sets. A policy set is a group of policies that enforce a set of security rules on Google Cloud.
@@ -3239,6 +3660,27 @@ export namespace securitycenter_v1beta2 {
     nodes?: Schema$Node[];
   }
   /**
+   * Represents a Jupyter notebook IPYNB file, such as a [Colab Enterprise notebook](https://cloud.google.com/colab/docs/introduction) file, that is associated with a finding.
+   */
+  export interface Schema$Notebook {
+    /**
+     * The user ID of the latest author to modify the notebook.
+     */
+    lastAuthor?: string | null;
+    /**
+     * The name of the notebook.
+     */
+    name?: string | null;
+    /**
+     * The most recent time the notebook was updated.
+     */
+    notebookUpdateTime?: string | null;
+    /**
+     * The source notebook service, for example, "Colab Enterprise".
+     */
+    service?: string | null;
+  }
+  /**
    * Kubernetes object related to the finding, uniquely identified by GKNN. Used if the object Kind is not one of Pod, Node, NodePool, Binding, or AccessReview.
    */
   export interface Schema$Object {
@@ -3428,6 +3870,53 @@ export namespace securitycenter_v1beta2 {
     uri?: string | null;
   }
   /**
+   * Information about the requests relevant to the finding.
+   */
+  export interface Schema$Requests {
+    /**
+     * Allowed RPS (requests per second) over the long term.
+     */
+    longTermAllowed?: number | null;
+    /**
+     * Denied RPS (requests per second) over the long term.
+     */
+    longTermDenied?: number | null;
+    /**
+     * For 'Increasing deny ratio', the ratio is the denied traffic divided by the allowed traffic. For 'Allowed traffic spike', the ratio is the allowed traffic in the short term divided by allowed traffic in the long term.
+     */
+    ratio?: number | null;
+    /**
+     * Allowed RPS (requests per second) in the short term.
+     */
+    shortTermAllowed?: number | null;
+  }
+  /**
+   * Represents the path of resources leading up to the resource this finding is about.
+   */
+  export interface Schema$ResourcePath {
+    /**
+     * The list of nodes that make the up resource path, ordered from lowest level to highest level.
+     */
+    nodes?: Schema$ResourcePathNode[];
+  }
+  /**
+   * A node within the resource path. Each node represents a resource within the resource hierarchy.
+   */
+  export interface Schema$ResourcePathNode {
+    /**
+     * The display name of the resource this node represents.
+     */
+    displayName?: string | null;
+    /**
+     * The ID of the resource this node represents.
+     */
+    id?: string | null;
+    /**
+     * The type of resource this node represents.
+     */
+    nodeType?: string | null;
+  }
+  /**
    * Kubernetes Role or ClusterRole.
    */
   export interface Schema$Role {
@@ -3523,6 +4012,23 @@ export namespace securitycenter_v1beta2 {
      * The relative resource name of the SecurityMarks. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name Examples: "organizations/{organization_id\}/assets/{asset_id\}/securityMarks" "organizations/{organization_id\}/sources/{source_id\}/findings/{finding_id\}/securityMarks".
      */
     name?: string | null;
+  }
+  /**
+   * Information about the [Google Cloud Armor security policy](https://cloud.google.com/armor/docs/security-policy-overview) relevant to the finding.
+   */
+  export interface Schema$SecurityPolicy {
+    /**
+     * The name of the Google Cloud Armor security policy, for example, "my-security-policy".
+     */
+    name?: string | null;
+    /**
+     * Whether or not the associated rule or policy is in preview mode.
+     */
+    preview?: boolean | null;
+    /**
+     * The type of Google Cloud Armor security policy for example, 'backend security policy', 'edge security policy', 'network edge security policy', or 'always-on DDoS protection'.
+     */
+    type?: string | null;
   }
   /**
    * Represents a posture that is deployed on Google Cloud by the Security Command Center Posture Management service. A posture contains one or more policy sets. A policy set is a group of policies that enforce a set of security rules on Google Cloud.
@@ -3684,6 +4190,36 @@ export namespace securitycenter_v1beta2 {
     securityBulletin?: Schema$SecurityBulletin;
   }
   /**
+   * Vulnerability count by severity.
+   */
+  export interface Schema$VulnerabilityCountBySeverity {
+    /**
+     * Key is the Severity enum.
+     */
+    severityToFindingCount?: {[key: string]: string} | null;
+  }
+  /**
+   * Result containing the properties and count of a VulnerabilitySnapshot request.
+   */
+  export interface Schema$VulnerabilitySnapshot {
+    /**
+     * The cloud provider for the vulnerability snapshot.
+     */
+    cloudProvider?: string | null;
+    /**
+     * The vulnerability count by severity.
+     */
+    findingCount?: Schema$VulnerabilityCountBySeverity;
+    /**
+     * Identifier. The vulnerability snapshot name. Format: //locations//vulnerabilitySnapshots/
+     */
+    name?: string | null;
+    /**
+     * The time that the snapshot was taken.
+     */
+    snapshotTime?: string | null;
+  }
+  /**
    * Resource capturing the settings for the Web Security Scanner service.
    */
   export interface Schema$WebSecurityScannerSettings {
@@ -3815,6 +4351,7 @@ export namespace securitycenter_v1beta2 {
           {
             url: (rootUrl + '/v1beta2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3909,6 +4446,7 @@ export namespace securitycenter_v1beta2 {
           {
             url: (rootUrl + '/v1beta2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4004,6 +4542,7 @@ export namespace securitycenter_v1beta2 {
           {
             url: (rootUrl + '/v1beta2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4098,6 +4637,7 @@ export namespace securitycenter_v1beta2 {
           {
             url: (rootUrl + '/v1beta2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4191,6 +4731,7 @@ export namespace securitycenter_v1beta2 {
           {
             url: (rootUrl + '/v1beta2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4286,6 +4827,7 @@ export namespace securitycenter_v1beta2 {
           {
             url: (rootUrl + '/v1beta2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4380,6 +4922,7 @@ export namespace securitycenter_v1beta2 {
           {
             url: (rootUrl + '/v1beta2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4473,6 +5016,7 @@ export namespace securitycenter_v1beta2 {
           {
             url: (rootUrl + '/v1beta2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -4568,6 +5112,7 @@ export namespace securitycenter_v1beta2 {
           {
             url: (rootUrl + '/v1beta2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -4663,6 +5208,7 @@ export namespace securitycenter_v1beta2 {
           {
             url: (rootUrl + '/v1beta2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -4758,6 +5304,7 @@ export namespace securitycenter_v1beta2 {
           {
             url: (rootUrl + '/v1beta2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -4853,6 +5400,7 @@ export namespace securitycenter_v1beta2 {
           {
             url: (rootUrl + '/v1beta2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -4947,6 +5495,7 @@ export namespace securitycenter_v1beta2 {
           {
             url: (rootUrl + '/v1beta2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -5196,6 +5745,7 @@ export namespace securitycenter_v1beta2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5309,6 +5859,7 @@ export namespace securitycenter_v1beta2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5422,6 +5973,7 @@ export namespace securitycenter_v1beta2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5535,6 +6087,7 @@ export namespace securitycenter_v1beta2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5648,6 +6201,7 @@ export namespace securitycenter_v1beta2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5761,6 +6315,7 @@ export namespace securitycenter_v1beta2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5895,6 +6450,7 @@ export namespace securitycenter_v1beta2 {
           {
             url: (rootUrl + '/v1beta2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5990,6 +6546,7 @@ export namespace securitycenter_v1beta2 {
           {
             url: (rootUrl + '/v1beta2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6085,6 +6642,7 @@ export namespace securitycenter_v1beta2 {
           {
             url: (rootUrl + '/v1beta2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6179,6 +6737,7 @@ export namespace securitycenter_v1beta2 {
           {
             url: (rootUrl + '/v1beta2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6272,6 +6831,7 @@ export namespace securitycenter_v1beta2 {
           {
             url: (rootUrl + '/v1beta2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6359,6 +6919,7 @@ export namespace securitycenter_v1beta2 {
           {
             url: (rootUrl + '/v1beta2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6452,6 +7013,7 @@ export namespace securitycenter_v1beta2 {
           {
             url: (rootUrl + '/v1beta2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6547,6 +7109,7 @@ export namespace securitycenter_v1beta2 {
           {
             url: (rootUrl + '/v1beta2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6640,6 +7203,7 @@ export namespace securitycenter_v1beta2 {
           {
             url: (rootUrl + '/v1beta2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -6735,6 +7299,7 @@ export namespace securitycenter_v1beta2 {
           {
             url: (rootUrl + '/v1beta2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -6830,6 +7395,7 @@ export namespace securitycenter_v1beta2 {
           {
             url: (rootUrl + '/v1beta2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -6925,6 +7491,7 @@ export namespace securitycenter_v1beta2 {
           {
             url: (rootUrl + '/v1beta2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -7020,6 +7587,7 @@ export namespace securitycenter_v1beta2 {
           {
             url: (rootUrl + '/v1beta2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -7115,6 +7683,7 @@ export namespace securitycenter_v1beta2 {
           {
             url: (rootUrl + '/v1beta2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -7371,6 +7940,7 @@ export namespace securitycenter_v1beta2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -7484,6 +8054,7 @@ export namespace securitycenter_v1beta2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -7597,6 +8168,7 @@ export namespace securitycenter_v1beta2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -7710,6 +8282,7 @@ export namespace securitycenter_v1beta2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -7823,6 +8396,7 @@ export namespace securitycenter_v1beta2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -7936,6 +8510,7 @@ export namespace securitycenter_v1beta2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -8066,6 +8641,7 @@ export namespace securitycenter_v1beta2 {
           {
             url: (rootUrl + '/v1beta2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -8160,6 +8736,7 @@ export namespace securitycenter_v1beta2 {
           {
             url: (rootUrl + '/v1beta2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -8255,6 +8832,7 @@ export namespace securitycenter_v1beta2 {
           {
             url: (rootUrl + '/v1beta2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -8349,6 +8927,7 @@ export namespace securitycenter_v1beta2 {
           {
             url: (rootUrl + '/v1beta2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -8442,6 +9021,7 @@ export namespace securitycenter_v1beta2 {
           {
             url: (rootUrl + '/v1beta2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -8537,6 +9117,7 @@ export namespace securitycenter_v1beta2 {
           {
             url: (rootUrl + '/v1beta2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -8631,6 +9212,7 @@ export namespace securitycenter_v1beta2 {
           {
             url: (rootUrl + '/v1beta2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -8724,6 +9306,7 @@ export namespace securitycenter_v1beta2 {
           {
             url: (rootUrl + '/v1beta2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -8819,6 +9402,7 @@ export namespace securitycenter_v1beta2 {
           {
             url: (rootUrl + '/v1beta2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -8914,6 +9498,7 @@ export namespace securitycenter_v1beta2 {
           {
             url: (rootUrl + '/v1beta2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -9009,6 +9594,7 @@ export namespace securitycenter_v1beta2 {
           {
             url: (rootUrl + '/v1beta2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -9104,6 +9690,7 @@ export namespace securitycenter_v1beta2 {
           {
             url: (rootUrl + '/v1beta2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -9199,6 +9786,7 @@ export namespace securitycenter_v1beta2 {
           {
             url: (rootUrl + '/v1beta2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -9448,6 +10036,7 @@ export namespace securitycenter_v1beta2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -9561,6 +10150,7 @@ export namespace securitycenter_v1beta2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -9685,6 +10275,7 @@ export namespace securitycenter_v1beta2 {
           {
             url: (rootUrl + '/v1beta2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -9780,6 +10371,7 @@ export namespace securitycenter_v1beta2 {
           {
             url: (rootUrl + '/v1beta2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -9909,6 +10501,7 @@ export namespace securitycenter_v1beta2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -10022,6 +10615,7 @@ export namespace securitycenter_v1beta2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -10135,6 +10729,7 @@ export namespace securitycenter_v1beta2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -10248,6 +10843,7 @@ export namespace securitycenter_v1beta2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -10361,6 +10957,7 @@ export namespace securitycenter_v1beta2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),

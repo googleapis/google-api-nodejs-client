@@ -1336,6 +1336,7 @@ export namespace cloudfunctions_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1454,6 +1455,7 @@ export namespace cloudfunctions_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1545,6 +1547,7 @@ export namespace cloudfunctions_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1633,6 +1636,7 @@ export namespace cloudfunctions_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1718,6 +1722,7 @@ export namespace cloudfunctions_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -1814,6 +1819,7 @@ export namespace cloudfunctions_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1909,6 +1915,7 @@ export namespace cloudfunctions_v2 {
               rootUrl + '/v2/{+parent}/functions:generateUploadUrl'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1994,6 +2001,7 @@ export namespace cloudfunctions_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2083,6 +2091,7 @@ export namespace cloudfunctions_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2176,6 +2185,7 @@ export namespace cloudfunctions_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2261,6 +2271,7 @@ export namespace cloudfunctions_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -2351,6 +2362,7 @@ export namespace cloudfunctions_v2 {
               rootUrl + '/v2/{+name}:redirectFunctionUpgradeTraffic'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2441,6 +2453,7 @@ export namespace cloudfunctions_v2 {
               rootUrl + '/v2/{+name}:rollbackFunctionUpgradeTraffic'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2530,6 +2543,7 @@ export namespace cloudfunctions_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2621,6 +2635,7 @@ export namespace cloudfunctions_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2717,6 +2732,7 @@ export namespace cloudfunctions_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3002,6 +3018,7 @@ export namespace cloudfunctions_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3095,6 +3112,7 @@ export namespace cloudfunctions_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3222,6 +3240,7 @@ export namespace cloudfunctions_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),

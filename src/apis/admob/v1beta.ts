@@ -1079,6 +1079,7 @@ export namespace admob_v1beta {
           {
             url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1169,6 +1170,7 @@ export namespace admob_v1beta {
           {
             url: (rootUrl + '/v1beta/accounts').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1289,6 +1291,7 @@ export namespace admob_v1beta {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1404,6 +1407,7 @@ export namespace admob_v1beta {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1520,6 +1524,7 @@ export namespace admob_v1beta {
               rootUrl + '/v1beta/{+parent}/adUnitMappings:batchCreate'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1633,6 +1638,7 @@ export namespace admob_v1beta {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1723,6 +1729,7 @@ export namespace admob_v1beta {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1845,6 +1852,7 @@ export namespace admob_v1beta {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1939,6 +1947,7 @@ export namespace admob_v1beta {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2065,6 +2074,7 @@ export namespace admob_v1beta {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2152,6 +2162,7 @@ export namespace admob_v1beta {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2280,6 +2291,7 @@ export namespace admob_v1beta {
               rootUrl + '/v1beta/{+parent}/campaignReport:generate'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2394,6 +2406,7 @@ export namespace admob_v1beta {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2488,6 +2501,7 @@ export namespace admob_v1beta {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2572,6 +2586,7 @@ export namespace admob_v1beta {
           {
             url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -2720,6 +2735,7 @@ export namespace admob_v1beta {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2813,6 +2829,7 @@ export namespace admob_v1beta {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2938,6 +2955,7 @@ export namespace admob_v1beta {
               rootUrl + '/v1beta/{+parent}/mediationReport:generate'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3054,6 +3072,7 @@ export namespace admob_v1beta {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),

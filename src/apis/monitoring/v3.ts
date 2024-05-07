@@ -614,7 +614,7 @@ export namespace monitoring_v3 {
     range?: Schema$GoogleMonitoringV3Range;
   }
   /**
-   * A content string and a MIME type that describes the content string's format.
+   * Documentation that is included in the notifications and incidents pertaining to this policy.
    */
   export interface Schema$Documentation {
     /**
@@ -897,7 +897,7 @@ export namespace monitoring_v3 {
      */
     acceptedResponseStatusCodes?: Schema$ResponseStatusCode[];
     /**
-     * The authentication information. Optional when creating an HTTP check; defaults to empty.
+     * The authentication information. Optional when creating an HTTP check; defaults to empty. Do not set both auth_method and auth_info.
      */
     authInfo?: Schema$BasicAuthentication;
     /**
@@ -936,6 +936,10 @@ export namespace monitoring_v3 {
      * The HTTP request method to use for the check. If set to METHOD_UNSPECIFIED then request_method defaults to GET.
      */
     requestMethod?: string | null;
+    /**
+     * If specified, Uptime will generate and attach an OIDC JWT token for the Monitoring service agent service account as an Authorization header in the HTTP request when probing.
+     */
+    serviceAgentAuthentication?: Schema$ServiceAgentAuthentication;
     /**
      * If true, use HTTPS instead of HTTP to run the check.
      */
@@ -1905,6 +1909,15 @@ export namespace monitoring_v3 {
     userLabels?: {[key: string]: string} | null;
   }
   /**
+   * Contains information needed for generating an OpenID Connect token (https://developers.google.com/identity/protocols/OpenIDConnect). The OIDC token will be generated for the Monitoring service agent service account.
+   */
+  export interface Schema$ServiceAgentAuthentication {
+    /**
+     * Type of authentication.
+     */
+    type?: string | null;
+  }
+  /**
    * A Service-Level Indicator (SLI) describes the "performance" of a service. For some services, the SLI is well-defined. In such cases, the SLI can be described easily by referencing the well-known SLI and providing the needed parameters. Alternatively, a "custom" SLI can be defined with a query to the underlying metric store. An SLI is defined to be good_service / total_service over any queried time interval. The value of performance always falls into the range 0 <= performance <= 1. A custom SLI describes how to compute this ratio, whether this is by dividing values from a pair of time series, cutting a Distribution into good and bad counts, or counting time windows in which the service complies with a criterion. For separation of concerns, a single Service-Level Indicator measures performance for only one aspect of service quality, such as fraction of successful queries or fast-enough queries.
    */
   export interface Schema$ServiceLevelIndicator {
@@ -2428,6 +2441,7 @@ export namespace monitoring_v3 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2604,6 +2618,7 @@ export namespace monitoring_v3 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2803,6 +2818,7 @@ export namespace monitoring_v3 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2887,6 +2903,7 @@ export namespace monitoring_v3 {
           {
             url: (rootUrl + '/v3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -2971,6 +2988,7 @@ export namespace monitoring_v3 {
           {
             url: (rootUrl + '/v3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3065,6 +3083,7 @@ export namespace monitoring_v3 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3149,6 +3168,7 @@ export namespace monitoring_v3 {
           {
             url: (rootUrl + '/v3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -3316,6 +3336,7 @@ export namespace monitoring_v3 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3424,6 +3445,7 @@ export namespace monitoring_v3 {
           {
             url: (rootUrl + '/v3/{+name}/groups').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3508,6 +3530,7 @@ export namespace monitoring_v3 {
           {
             url: (rootUrl + '/v3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -3592,6 +3615,7 @@ export namespace monitoring_v3 {
           {
             url: (rootUrl + '/v3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3679,6 +3703,7 @@ export namespace monitoring_v3 {
           {
             url: (rootUrl + '/v3/{+name}/groups').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3763,6 +3788,7 @@ export namespace monitoring_v3 {
           {
             url: (rootUrl + '/v3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
+            apiVersion: '',
           },
           options
         ),
@@ -3940,6 +3966,7 @@ export namespace monitoring_v3 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4062,6 +4089,7 @@ export namespace monitoring_v3 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4146,6 +4174,7 @@ export namespace monitoring_v3 {
           {
             url: (rootUrl + '/v3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -4230,6 +4259,7 @@ export namespace monitoring_v3 {
           {
             url: (rootUrl + '/v3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4324,6 +4354,7 @@ export namespace monitoring_v3 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4471,6 +4502,7 @@ export namespace monitoring_v3 {
           {
             url: (rootUrl + '/v3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4566,6 +4598,7 @@ export namespace monitoring_v3 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4694,6 +4727,7 @@ export namespace monitoring_v3 {
           {
             url: (rootUrl + '/v3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4790,6 +4824,7 @@ export namespace monitoring_v3 {
               rootUrl + '/v3/{+name}/notificationChannelDescriptors'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4912,6 +4947,7 @@ export namespace monitoring_v3 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4996,6 +5032,7 @@ export namespace monitoring_v3 {
           {
             url: (rootUrl + '/v3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -5083,6 +5120,7 @@ export namespace monitoring_v3 {
           {
             url: (rootUrl + '/v3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5178,6 +5216,7 @@ export namespace monitoring_v3 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5274,6 +5313,7 @@ export namespace monitoring_v3 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5363,6 +5403,7 @@ export namespace monitoring_v3 {
           {
             url: (rootUrl + '/v3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -5451,6 +5492,7 @@ export namespace monitoring_v3 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5538,6 +5580,7 @@ export namespace monitoring_v3 {
           {
             url: (rootUrl + '/v3/{+name}:verify').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5738,6 +5781,7 @@ export namespace monitoring_v3 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5822,6 +5866,7 @@ export namespace monitoring_v3 {
           {
             url: (rootUrl + '/v3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5912,6 +5957,7 @@ export namespace monitoring_v3 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5996,6 +6042,7 @@ export namespace monitoring_v3 {
           {
             url: (rootUrl + '/v3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -6145,6 +6192,7 @@ export namespace monitoring_v3 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -6232,6 +6280,7 @@ export namespace monitoring_v3 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -6324,6 +6373,7 @@ export namespace monitoring_v3 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6416,6 +6466,7 @@ export namespace monitoring_v3 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -6617,6 +6668,7 @@ export namespace monitoring_v3 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -6701,6 +6753,7 @@ export namespace monitoring_v3 {
           {
             url: (rootUrl + '/v3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -6788,6 +6841,7 @@ export namespace monitoring_v3 {
           {
             url: (rootUrl + '/v3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6882,6 +6936,7 @@ export namespace monitoring_v3 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6971,6 +7026,7 @@ export namespace monitoring_v3 {
           {
             url: (rootUrl + '/v3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -7129,6 +7185,7 @@ export namespace monitoring_v3 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -7212,6 +7269,7 @@ export namespace monitoring_v3 {
           {
             url: (rootUrl + '/v3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -7295,6 +7353,7 @@ export namespace monitoring_v3 {
           {
             url: (rootUrl + '/v3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -7386,6 +7445,7 @@ export namespace monitoring_v3 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -7469,6 +7529,7 @@ export namespace monitoring_v3 {
           {
             url: (rootUrl + '/v3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -7629,6 +7690,7 @@ export namespace monitoring_v3 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -7713,6 +7775,7 @@ export namespace monitoring_v3 {
           {
             url: (rootUrl + '/v3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -7802,6 +7865,7 @@ export namespace monitoring_v3 {
           {
             url: (rootUrl + '/v3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -7896,6 +7960,7 @@ export namespace monitoring_v3 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -7987,6 +8052,7 @@ export namespace monitoring_v3 {
           {
             url: (rootUrl + '/v3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -8159,6 +8225,7 @@ export namespace monitoring_v3 {
           {
             url: (rootUrl + '/v3/uptimeCheckIps').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),

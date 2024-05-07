@@ -1078,7 +1078,7 @@
       }
     }
   },
-  "revision": "20240218",
+  "revision": "20240428",
   "rootUrl": "https://policysimulator.googleapis.com/",
   "schemas": {
     "GoogleCloudOrgpolicyV2AlternatePolicySpec": {
@@ -1133,13 +1133,15 @@
               "METHOD_TYPE_UNSPECIFIED",
               "CREATE",
               "UPDATE",
-              "DELETE"
+              "DELETE",
+              "REMOVE_GRANT"
             ],
             "enumDescriptions": [
               "Unspecified. Results in an error.",
               "Constraint applied when creating the resource.",
               "Constraint applied when updating the resource.",
-              "Constraint applied when deleting the resource. Not supported yet."
+              "Constraint applied when deleting the resource. Not supported yet.",
+              "Constraint applied when removing an IAM grant."
             ],
             "type": "string"
           },

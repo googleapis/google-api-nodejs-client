@@ -1424,6 +1424,149 @@
                 }
               }
             },
+            "regionalEndpoints": {
+              "methods": {
+                "create": {
+                  "description": "Creates a new RegionalEndpoint in a given project and location.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/regionalEndpoints",
+                  "httpMethod": "POST",
+                  "id": "networkconnectivity.projects.locations.regionalEndpoints.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. The parent resource's name of the RegionalEndpoint.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "regionalEndpointId": {
+                      "description": "Required. Unique id of the Regional Endpoint to be created.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server knows to ignore the request if it has already been completed. The server guarantees that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if the original operation with the same request ID was received, and if so, ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/regionalEndpoints",
+                  "request": {
+                    "$ref": "RegionalEndpoint"
+                  },
+                  "response": {
+                    "$ref": "GoogleLongrunningOperation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "delete": {
+                  "description": "Deletes a single RegionalEndpoint.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/regionalEndpoints/{regionalEndpointsId}",
+                  "httpMethod": "DELETE",
+                  "id": "networkconnectivity.projects.locations.regionalEndpoints.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the RegionalEndpoint to delete.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/regionalEndpoints/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server knows to ignore the request if it has already been completed. The server guarantees that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if the original operation with the same request ID was received, and if so, ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "GoogleLongrunningOperation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "get": {
+                  "description": "Gets details of a single RegionalEndpoint.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/regionalEndpoints/{regionalEndpointsId}",
+                  "httpMethod": "GET",
+                  "id": "networkconnectivity.projects.locations.regionalEndpoints.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Name of the RegionalEndpoint resource to get. Format: `projects/{project}/locations/{location}/regionalEndpoints/{regional_endpoint}`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/regionalEndpoints/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "RegionalEndpoint"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "Lists RegionalEndpoints in a given project and location.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/regionalEndpoints",
+                  "httpMethod": "GET",
+                  "id": "networkconnectivity.projects.locations.regionalEndpoints.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "A filter expression that filters the results listed in the response.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "orderBy": {
+                      "description": "Sort the results by a certain order.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "A page token.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The parent resource's name of the RegionalEndpoint.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/regionalEndpoints",
+                  "response": {
+                    "$ref": "ListRegionalEndpointsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            },
             "serviceClasses": {
               "methods": {
                 "delete": {
@@ -2630,7 +2773,7 @@
       }
     }
   },
-  "revision": "20240228",
+  "revision": "20240424",
   "rootUrl": "https://networkconnectivity.googleapis.com/",
   "schemas": {
     "AcceptHubSpokeRequest": {
@@ -2741,6 +2884,10 @@
           "description": "The resource path of the consumer network where PSC connections are allowed to be created in. Note, this network does not need be in the ConsumerPscConfig.project in the case of SharedVPC. Example: projects/{projectNumOrId}/global/networks/{networkId}.",
           "type": "string"
         },
+        "producerInstanceId": {
+          "description": "Immutable. An immutable identifier for the producer instance.",
+          "type": "string"
+        },
         "project": {
           "description": "The consumer project where PSC connections are allowed to be created in.",
           "type": "string"
@@ -2809,6 +2956,10 @@
         },
         "network": {
           "description": "The consumer network whose PSC forwarding rule is connected to the service attachments in this service connection map. Note that the network could be on a different project (shared VPC).",
+          "type": "string"
+        },
+        "producerInstanceId": {
+          "description": "Immutable. An immutable identifier for the producer instance.",
           "type": "string"
         },
         "project": {
@@ -2980,7 +3131,7 @@
           "additionalProperties": {
             "type": "string"
           },
-          "description": "Additional structured details about this error. Keys should match /[a-zA-Z0-9-_]/ and be limited to 64 characters in length. When identifying the current value of an exceeded limit, the units should be contained in the key, not the value. For example, rather than {\"instanceLimit\": \"100/request\"}, should be returned as, {\"instanceLimitPerRequest\": \"100\"}, if the client exceeds the number of instances that can be created in a single (batch) request.",
+          "description": "Additional structured details about this error. Keys must match /a-z+/ but should ideally be lowerCamelCase. Also they must be limited to 64 characters in length. When identifying the current value of an exceeded limit, the units should be contained in the key, not the value. For example, rather than {\"instanceLimit\": \"100/request\"}, should be returned as, {\"instanceLimitPerRequest\": \"100\"}, if the client exceeds the number of instances that can be created in a single (batch) request.",
           "type": "object"
         },
         "reason": {
@@ -3209,7 +3360,7 @@
           "type": "string"
         },
         "network": {
-          "description": "The URL or resource ID of the network in which to reserve the internal range. The network cannot be deleted if there are any reserved internal ranges referring to it. Legacy networks are not supported. This can only be specified for a global internal address. Example: - URL: /compute/v1/projects/{project}/global/networks/{resourceId} - ID: network123",
+          "description": "The URL or resource ID of the network in which to reserve the internal range. The network cannot be deleted if there are any reserved internal ranges referring to it. Legacy networks are not supported. For example: https://www.googleapis.com/compute/v1/projects/{project}/locations/global/networks/{network} projects/{project}/locations/global/networks/{network} {network}",
           "type": "string"
         },
         "overlaps": {
@@ -3504,6 +3655,31 @@
           "description": "Policy-based routes to be returned.",
           "items": {
             "$ref": "PolicyBasedRoute"
+          },
+          "type": "array"
+        },
+        "unreachable": {
+          "description": "Locations that could not be reached.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ListRegionalEndpointsResponse": {
+      "description": "Response for ListRegionalEndpoints.",
+      "id": "ListRegionalEndpointsResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "The next pagination token in the List response. It should be used as page_token for the following request. An empty value means no more result.",
+          "type": "string"
+        },
+        "regionalEndpoints": {
+          "description": "Regional endpoints to be returned.",
+          "items": {
+            "$ref": "RegionalEndpoint"
           },
           "type": "array"
         },
@@ -4000,6 +4176,10 @@
           "description": "The last Compute Engine operation to setup PSC connection.",
           "type": "string"
         },
+        "producerInstanceId": {
+          "description": "Immutable. An immutable identifier for the producer instance.",
+          "type": "string"
+        },
         "pscConnectionId": {
           "description": "The PSC connection id of the PSC forwarding rule.",
           "type": "string"
@@ -4025,6 +4205,82 @@
             "The connection is being created.",
             "The connection is being deleted."
           ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "RegionalEndpoint": {
+      "description": "The RegionalEndpoint resource.",
+      "id": "RegionalEndpoint",
+      "properties": {
+        "accessType": {
+          "description": "Required. The access type of this regional endpoint. This field is reflected in the PSC Forwarding Rule configuration to enable global access.",
+          "enum": [
+            "ACCESS_TYPE_UNSPECIFIED",
+            "GLOBAL",
+            "REGIONAL"
+          ],
+          "enumDescriptions": [
+            "An invalid type as the default case.",
+            "This regional endpoint is accessible from all regions.",
+            "This regional endpoint is only accessible from the same region where it resides."
+          ],
+          "type": "string"
+        },
+        "address": {
+          "description": "Optional. The IP Address of the Regional Endpoint. When no address is provided, an IP from the subnetwork is allocated. Use one of the following formats: * IPv4 address as in `10.0.0.1` * Address resource URI as in `projects/{project}/regions/{region}/addresses/{address_name}`",
+          "type": "string"
+        },
+        "createTime": {
+          "description": "Output only. Time when the RegionalEndpoint was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "description": {
+          "description": "Optional. A description of this resource.",
+          "type": "string"
+        },
+        "ipAddress": {
+          "deprecated": true,
+          "description": "Output only. The literal IP address of the PSC Forwarding Rule created on behalf of the customer. This field is deprecated. Use address instead.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "User-defined labels.",
+          "type": "object"
+        },
+        "name": {
+          "description": "Output only. The name of a RegionalEndpoint. Format: `projects/{project}/locations/{location}/regionalEndpoints/{regional_endpoint}`.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "network": {
+          "description": "The name of the VPC network for this private regional endpoint. Format: `projects/{project}/global/networks/{network}`",
+          "type": "string"
+        },
+        "pscForwardingRule": {
+          "description": "Output only. The resource reference of the PSC Forwarding Rule created on behalf of the customer. Format: `//compute.googleapis.com/projects/{project}/regions/{region}/forwardingRules/{forwarding_rule_name}`",
+          "readOnly": true,
+          "type": "string"
+        },
+        "subnetwork": {
+          "description": "The name of the subnetwork from which the IP address will be allocated. Format: `projects/{project}/regions/{region}/subnetworks/{subnetwork}`",
+          "type": "string"
+        },
+        "targetGoogleApi": {
+          "description": "Required. The service endpoint this private regional endpoint connects to. Format: `{apiname}.{region}.p.rep.googleapis.com` Example: \"cloudkms.us-central1.p.rep.googleapis.com\".",
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. Time when the RegionalEndpoint was updated.",
+          "format": "google-datetime",
+          "readOnly": true,
           "type": "string"
         }
       },

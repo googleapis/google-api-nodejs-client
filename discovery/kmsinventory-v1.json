@@ -242,7 +242,7 @@
       }
     }
   },
-  "revision": "20230716",
+  "revision": "20240427",
   "rootUrl": "https://kmsinventory.googleapis.com/",
   "schemas": {
     "GoogleCloudKmsInventoryV1ListCryptoKeysResponse": {
@@ -494,6 +494,7 @@
             "EC_SIGN_P256_SHA256",
             "EC_SIGN_P384_SHA384",
             "EC_SIGN_SECP256K1_SHA256",
+            "EC_SIGN_ED25519",
             "HMAC_SHA256",
             "HMAC_SHA1",
             "HMAC_SHA384",
@@ -531,6 +532,7 @@
             "ECDSA on the NIST P-256 curve with a SHA256 digest. Other hash functions can also be used: https://cloud.google.com/kms/docs/create-validate-signatures#ecdsa_support_for_other_hash_algorithms",
             "ECDSA on the NIST P-384 curve with a SHA384 digest. Other hash functions can also be used: https://cloud.google.com/kms/docs/create-validate-signatures#ecdsa_support_for_other_hash_algorithms",
             "ECDSA on the non-NIST secp256k1 curve. This curve is only supported for HSM protection level. Other hash functions can also be used: https://cloud.google.com/kms/docs/create-validate-signatures#ecdsa_support_for_other_hash_algorithms",
+            "EdDSA on the Curve25519 in pure mode (taking data as input).",
             "HMAC-SHA256 signing with a 256 bit key.",
             "HMAC-SHA1 signing with a 160 bit key.",
             "HMAC-SHA384 signing with a 384 bit key.",
@@ -698,6 +700,7 @@
             "EC_SIGN_P256_SHA256",
             "EC_SIGN_P384_SHA384",
             "EC_SIGN_SECP256K1_SHA256",
+            "EC_SIGN_ED25519",
             "HMAC_SHA256",
             "HMAC_SHA1",
             "HMAC_SHA384",
@@ -735,6 +738,7 @@
             "ECDSA on the NIST P-256 curve with a SHA256 digest. Other hash functions can also be used: https://cloud.google.com/kms/docs/create-validate-signatures#ecdsa_support_for_other_hash_algorithms",
             "ECDSA on the NIST P-384 curve with a SHA384 digest. Other hash functions can also be used: https://cloud.google.com/kms/docs/create-validate-signatures#ecdsa_support_for_other_hash_algorithms",
             "ECDSA on the non-NIST secp256k1 curve. This curve is only supported for HSM protection level. Other hash functions can also be used: https://cloud.google.com/kms/docs/create-validate-signatures#ecdsa_support_for_other_hash_algorithms",
+            "EdDSA on the Curve25519 in pure mode (taking data as input).",
             "HMAC-SHA256 signing with a 256 bit key.",
             "HMAC-SHA1 signing with a 160 bit key.",
             "HMAC-SHA384 signing with a 384 bit key.",

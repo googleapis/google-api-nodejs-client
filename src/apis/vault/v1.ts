@@ -1214,6 +1214,7 @@ export namespace vault_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1303,6 +1304,7 @@ export namespace vault_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1389,6 +1391,7 @@ export namespace vault_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1472,6 +1475,7 @@ export namespace vault_v1 {
           {
             url: (rootUrl + '/v1/matters').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1558,6 +1562,7 @@ export namespace vault_v1 {
               '$1'
             ),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -1644,6 +1649,7 @@ export namespace vault_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1730,6 +1736,7 @@ export namespace vault_v1 {
           {
             url: (rootUrl + '/v1/matters').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1817,6 +1824,7 @@ export namespace vault_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1908,6 +1916,7 @@ export namespace vault_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1994,6 +2003,7 @@ export namespace vault_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2080,6 +2090,7 @@ export namespace vault_v1 {
               '$1'
             ),
             method: 'PUT',
+            apiVersion: '',
           },
           options
         ),
@@ -2294,6 +2305,7 @@ export namespace vault_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2380,6 +2392,7 @@ export namespace vault_v1 {
               rootUrl + '/v1/matters/{matterId}/exports/{exportId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -2466,6 +2479,7 @@ export namespace vault_v1 {
               rootUrl + '/v1/matters/{matterId}/exports/{exportId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2556,6 +2570,7 @@ export namespace vault_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2708,6 +2723,7 @@ export namespace vault_v1 {
               rootUrl + '/v1/matters/{matterId}/holds/{holdId}:addHeldAccounts'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2795,6 +2811,7 @@ export namespace vault_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2882,6 +2899,7 @@ export namespace vault_v1 {
               '$1'
             ),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -2969,6 +2987,7 @@ export namespace vault_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3059,6 +3078,7 @@ export namespace vault_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3153,6 +3173,7 @@ export namespace vault_v1 {
               '/v1/matters/{matterId}/holds/{holdId}:removeHeldAccounts'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3240,6 +3261,7 @@ export namespace vault_v1 {
               '$1'
             ),
             method: 'PUT',
+            apiVersion: '',
           },
           options
         ),
@@ -3439,6 +3461,7 @@ export namespace vault_v1 {
               rootUrl + '/v1/matters/{matterId}/holds/{holdId}/accounts'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3526,6 +3549,7 @@ export namespace vault_v1 {
               '/v1/matters/{matterId}/holds/{holdId}/accounts/{accountId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -3617,6 +3641,7 @@ export namespace vault_v1 {
               rootUrl + '/v1/matters/{matterId}/holds/{holdId}/accounts'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3754,6 +3779,7 @@ export namespace vault_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3840,6 +3866,7 @@ export namespace vault_v1 {
               rootUrl + '/v1/matters/{matterId}/savedQueries/{savedQueryId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -3926,6 +3953,7 @@ export namespace vault_v1 {
               rootUrl + '/v1/matters/{matterId}/savedQueries/{savedQueryId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4018,6 +4046,7 @@ export namespace vault_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4159,6 +4188,7 @@ export namespace vault_v1 {
           {
             url: (rootUrl + '/v1/{+name}:cancel').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4243,6 +4273,7 @@ export namespace vault_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -4326,6 +4357,7 @@ export namespace vault_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4414,6 +4446,7 @@ export namespace vault_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),

@@ -161,6 +161,10 @@ export namespace analyticshub_v1 {
      */
     dataset?: string | null;
     /**
+     * Optional. If set, restricted export policy will be propagated and enforced on the linked dataset.
+     */
+    restrictedExportPolicy?: Schema$RestrictedExportPolicy;
+    /**
      * Optional. Resources in this dataset that are selectively shared. If this field is empty, then the entire dataset (all resources) are shared. This field is only valid for data clean room exchanges.
      */
     selectedResources?: Schema$SelectedResource[];
@@ -584,6 +588,23 @@ export namespace analyticshub_v1 {
     restrictQueryResult?: boolean | null;
   }
   /**
+   * Restricted export policy used to configure restricted export on linked dataset.
+   */
+  export interface Schema$RestrictedExportPolicy {
+    /**
+     * Optional. If true, enable restricted export.
+     */
+    enabled?: boolean | null;
+    /**
+     * Optional. If true, restrict direct table access (read api/tabledata.list) on linked table.
+     */
+    restrictDirectTableAccess?: boolean | null;
+    /**
+     * Optional. If true, restrict export of query result derived from restricted linked dataset table.
+     */
+    restrictQueryResult?: boolean | null;
+  }
+  /**
    * Message for revoking a subscription.
    */
   export interface Schema$RevokeSubscriptionRequest {}
@@ -674,7 +695,7 @@ export namespace analyticshub_v1 {
    */
   export interface Schema$SubscribeListingRequest {
     /**
-     * BigQuery destination dataset to create for the subscriber.
+     * Input only. BigQuery destination dataset to create for the subscriber.
      */
     destinationDataset?: Schema$DestinationDataset;
   }
@@ -854,6 +875,7 @@ export namespace analyticshub_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -994,6 +1016,7 @@ export namespace analyticshub_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1078,6 +1101,7 @@ export namespace analyticshub_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -1162,6 +1186,7 @@ export namespace analyticshub_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1250,6 +1275,7 @@ export namespace analyticshub_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1344,6 +1370,7 @@ export namespace analyticshub_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1439,6 +1466,7 @@ export namespace analyticshub_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1525,6 +1553,7 @@ export namespace analyticshub_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -1613,6 +1642,7 @@ export namespace analyticshub_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1701,6 +1731,7 @@ export namespace analyticshub_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1796,6 +1827,7 @@ export namespace analyticshub_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2020,6 +2052,7 @@ export namespace analyticshub_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2105,6 +2138,7 @@ export namespace analyticshub_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -2190,6 +2224,7 @@ export namespace analyticshub_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2278,6 +2313,7 @@ export namespace analyticshub_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2371,6 +2407,7 @@ export namespace analyticshub_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2466,6 +2503,7 @@ export namespace analyticshub_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2553,6 +2591,7 @@ export namespace analyticshub_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -2641,6 +2680,7 @@ export namespace analyticshub_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2736,6 +2776,7 @@ export namespace analyticshub_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2831,6 +2872,7 @@ export namespace analyticshub_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3051,6 +3093,7 @@ export namespace analyticshub_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -3135,6 +3178,7 @@ export namespace analyticshub_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3223,6 +3267,7 @@ export namespace analyticshub_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3317,6 +3362,7 @@ export namespace analyticshub_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3404,6 +3450,7 @@ export namespace analyticshub_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3495,6 +3542,7 @@ export namespace analyticshub_v1 {
           {
             url: (rootUrl + '/v1/{+name}:revoke').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3583,6 +3631,7 @@ export namespace analyticshub_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3631,7 +3680,7 @@ export namespace analyticshub_v1 {
   export interface Params$Resource$Projects$Locations$Subscriptions$List
     extends StandardParameters {
     /**
-     * The filter expression may be used to filter by Data Exchange or Listing.
+     * An expression for filtering the results of the request. Eligible fields for filtering are: + `listing` + `data_exchange` Alternatively, a literal wrapped in double quotes may be provided. This will be checked for an exact match against both fields above. In all cases, the full Data Exchange or Listing resource name must be provided. Some example of using filters: + data_exchange="projects/myproject/locations/us/dataExchanges/123" + listing="projects/123/locations/us/dataExchanges/456/listings/789" + "projects/myproject/locations/us/dataExchanges/123"
      */
     filter?: string;
     /**

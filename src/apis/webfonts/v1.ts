@@ -271,6 +271,7 @@ export namespace webfonts_v1 {
           {
             url: (rootUrl + '/v1/webfonts').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),

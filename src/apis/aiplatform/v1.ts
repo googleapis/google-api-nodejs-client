@@ -165,6 +165,10 @@ export namespace aiplatform_v1 {
      */
     generatedSamples?: Schema$CloudAiLargeModelsVisionMedia[];
     /**
+     * Returns rai error message for filtered videos.
+     */
+    raiErrorMessage?: string | null;
+    /**
      * Returns if any videos were filtered due to RAI policies.
      */
     raiMediaFilteredCount?: number | null;
@@ -474,6 +478,10 @@ export namespace aiplatform_v1 {
   }
   export interface Schema$CloudAiNlLlmProtoServiceMessageMetadata {
     /**
+     * Factuality-related debug metadata.
+     */
+    factualityDebugMetadata?: Schema$LearningGenaiRootPerRequestProcessorDebugMetadataFactualityDebugMetadata;
+    /**
      * Filter metadata of the input messages.
      */
     inputFilterInfo?: Schema$LearningServingLlmMessageMetadata;
@@ -510,6 +518,10 @@ export namespace aiplatform_v1 {
      * Inline bytes data
      */
     inlineData?: Schema$CloudAiNlLlmProtoServicePartBlob;
+    /**
+     * Metadata provides extra info for building the LM Root request. Note: High enough tag number for internal only fields.
+     */
+    lmRootMetadata?: Schema$CloudAiNlLlmProtoServicePartLMRootMetadata;
     /**
      * Text input.
      */
@@ -561,6 +573,15 @@ export namespace aiplatform_v1 {
      * The mime type corresponding to this input.
      */
     mimeType?: string | null;
+  }
+  /**
+   * Metadata provides extra info for building the LM Root request.
+   */
+  export interface Schema$CloudAiNlLlmProtoServicePartLMRootMetadata {
+    /**
+     * Chunk id that will be used when mapping the part to the LM Root's chunk.
+     */
+    chunkId?: string | null;
   }
   /**
    * Metadata describes the input video content.
@@ -620,6 +641,10 @@ export namespace aiplatform_v1 {
      * The RAI signals for the text.
      */
     raiSignals?: Schema$CloudAiNlLlmProtoServiceRaiSignal[];
+    /**
+     * Translation request info during RAI for debugging purpose. Each TranslationRequestInfo corresponds to a request sent to the translation server.
+     */
+    translationRequestInfos?: Schema$LearningGenaiRootTranslationRequestInfo[];
     /**
      * Whether the text triggered the blocklist.
      */
@@ -1517,11 +1542,11 @@ export namespace aiplatform_v1 {
     inputUri?: string | null;
   }
   /**
-   * Raw media bytes. Text should not be sent as raw bytes, use the 'text' field.
+   * Content blob. It's preferred to send as text directly rather than raw bytes.
    */
   export interface Schema$GoogleCloudAiplatformV1Blob {
     /**
-     * Required. Raw bytes for media formats.
+     * Required. Raw bytes.
      */
     data?: string | null;
     /**
@@ -1575,6 +1600,10 @@ export namespace aiplatform_v1 {
    * Request message for PipelineService.CancelTrainingPipeline.
    */
   export interface Schema$GoogleCloudAiplatformV1CancelTrainingPipelineRequest {}
+  /**
+   * Request message for GenAiTuningService.CancelTuningJob.
+   */
+  export interface Schema$GoogleCloudAiplatformV1CancelTuningJobRequest {}
   /**
    * A response candidate generated from the model.
    */
@@ -2736,6 +2765,10 @@ export namespace aiplatform_v1 {
      */
     disableContainerLogging?: boolean | null;
     /**
+     * If true, deploy the model without explainable feature, regardless the existence of Model.explanation_spec or explanation_spec.
+     */
+    disableExplanations?: boolean | null;
+    /**
      * The display name of the DeployedModel. If not provided upon creation, the Model's display_name is used.
      */
     displayName?: string | null;
@@ -3005,6 +3038,10 @@ export namespace aiplatform_v1 {
      * Configures the request-response logging for online prediction.
      */
     predictRequestResponseLoggingConfig?: Schema$GoogleCloudAiplatformV1PredictRequestResponseLoggingConfig;
+    /**
+     * Optional. Configuration for private service connect. network and private_service_connect_config are mutually exclusive.
+     */
+    privateServiceConnectConfig?: Schema$GoogleCloudAiplatformV1PrivateServiceConnectConfig;
     /**
      * A map from a DeployedModel's ID to the percentage of this Endpoint's traffic that should be forwarded to that DeployedModel. If a DeployedModel's ID is not listed in this map, then it receives no traffic. The traffic percentage values must add up to 100, or map must be empty if the Endpoint is to not accept any traffic at a moment.
      */
@@ -3987,6 +4024,10 @@ export namespace aiplatform_v1 {
      */
     createTime?: string | null;
     /**
+     * Optional. The dedicated serving endpoint for this FeatureOnlineStore, which is different from common Vertex service endpoint.
+     */
+    dedicatedServingEndpoint?: Schema$GoogleCloudAiplatformV1FeatureOnlineStoreDedicatedServingEndpoint;
+    /**
      * Optional. Used to perform consistent read-modify-write updates. If not set, a blind "overwrite" update happens.
      */
     etag?: string | null;
@@ -3998,6 +4039,10 @@ export namespace aiplatform_v1 {
      * Identifier. Name of the FeatureOnlineStore. Format: `projects/{project\}/locations/{location\}/featureOnlineStores/{featureOnlineStore\}`
      */
     name?: string | null;
+    /**
+     * Contains settings for the Optimized store that will be created to serve featureValues for all FeatureViews under this FeatureOnlineStore. When choose Optimized storage type, need to set PrivateServiceConnectConfig.enable_private_service_connect to use private endpoint. Otherwise will use public endpoint by default.
+     */
+    optimized?: Schema$GoogleCloudAiplatformV1FeatureOnlineStoreOptimized;
     /**
      * Output only. State of the featureOnlineStore.
      */
@@ -4027,6 +4072,19 @@ export namespace aiplatform_v1 {
      */
     minNodeCount?: number | null;
   }
+  /**
+   * The dedicated serving endpoint for this FeatureOnlineStore. Only need to set when you choose Optimized storage type. Public endpoint is provisioned by default.
+   */
+  export interface Schema$GoogleCloudAiplatformV1FeatureOnlineStoreDedicatedServingEndpoint {
+    /**
+     * Output only. This field will be populated with the domain name to use for this FeatureOnlineStore
+     */
+    publicEndpointDomainName?: string | null;
+  }
+  /**
+   * Optimized storage type
+   */
+  export interface Schema$GoogleCloudAiplatformV1FeatureOnlineStoreOptimized {}
   /**
    * Selector for Features of an EntityType.
    */
@@ -4301,6 +4359,10 @@ export namespace aiplatform_v1 {
      */
     featureRegistrySource?: Schema$GoogleCloudAiplatformV1FeatureViewFeatureRegistrySource;
     /**
+     * Optional. Configuration for index preparation for vector search. It contains the required configurations to create an index from source data, so that approximate nearest neighbor (a.k.a ANN) algorithms search can be performed during online serving.
+     */
+    indexConfig?: Schema$GoogleCloudAiplatformV1FeatureViewIndexConfig;
+    /**
      * Optional. The labels with user-defined metadata to organize your FeatureViews. Label keys and values can be no longer than 64 characters (Unicode codepoints), can only contain lowercase letters, numeric characters, underscores and dashes. International characters are allowed. See https://goo.gl/xmQnxf for more information on and examples of labels. No more than 64 user labels can be associated with one FeatureOnlineStore(System labels are excluded)." System reserved label keys are prefixed with "aiplatform.googleapis.com/" and are immutable.
      */
     labels?: {[key: string]: string} | null;
@@ -4374,6 +4436,52 @@ export namespace aiplatform_v1 {
      * Required. Identifiers of features under the feature group.
      */
     featureIds?: string[] | null;
+  }
+  /**
+   * Configuration for vector indexing.
+   */
+  export interface Schema$GoogleCloudAiplatformV1FeatureViewIndexConfig {
+    /**
+     * Optional. Configuration options for using brute force search, which simply implements the standard linear search in the database for each query. It is primarily meant for benchmarking and to generate the ground truth for approximate search.
+     */
+    bruteForceConfig?: Schema$GoogleCloudAiplatformV1FeatureViewIndexConfigBruteForceConfig;
+    /**
+     * Optional. Column of crowding. This column contains crowding attribute which is a constraint on a neighbor list produced by FeatureOnlineStoreService.SearchNearestEntities to diversify search results. If NearestNeighborQuery.per_crowding_attribute_neighbor_count is set to K in SearchNearestEntitiesRequest, it's guaranteed that no more than K entities of the same crowding attribute are returned in the response.
+     */
+    crowdingColumn?: string | null;
+    /**
+     * Optional. The distance measure used in nearest neighbor search.
+     */
+    distanceMeasureType?: string | null;
+    /**
+     * Optional. Column of embedding. This column contains the source data to create index for vector search. embedding_column must be set when using vector search.
+     */
+    embeddingColumn?: string | null;
+    /**
+     * Optional. The number of dimensions of the input embedding.
+     */
+    embeddingDimension?: number | null;
+    /**
+     * Optional. Columns of features that're used to filter vector search results.
+     */
+    filterColumns?: string[] | null;
+    /**
+     * Optional. Configuration options for the tree-AH algorithm (Shallow tree + Asymmetric Hashing). Please refer to this paper for more details: https://arxiv.org/abs/1908.10396
+     */
+    treeAhConfig?: Schema$GoogleCloudAiplatformV1FeatureViewIndexConfigTreeAHConfig;
+  }
+  /**
+   * Configuration options for using brute force search.
+   */
+  export interface Schema$GoogleCloudAiplatformV1FeatureViewIndexConfigBruteForceConfig {}
+  /**
+   * Configuration options for the tree-AH algorithm.
+   */
+  export interface Schema$GoogleCloudAiplatformV1FeatureViewIndexConfigTreeAHConfig {
+    /**
+     * Optional. Number of embeddings on each leaf node. The default value is 1000 if not set.
+     */
+    leafNodeEmbeddingCount?: string | null;
   }
   /**
    * FeatureViewSync is a representation of sync operation which copies data from data source to Feature View in Online Store.
@@ -4505,7 +4613,7 @@ export namespace aiplatform_v1 {
     validationFilter?: string | null;
   }
   /**
-   * LINT.IfChange The request message for MatchService.FindNeighbors.
+   * The request message for MatchService.FindNeighbors.
    */
   export interface Schema$GoogleCloudAiplatformV1FindNeighborsRequest {
     /**
@@ -4577,7 +4685,7 @@ export namespace aiplatform_v1 {
      */
     datapoint?: Schema$GoogleCloudAiplatformV1IndexDatapoint;
     /**
-     * The distance between the neighbor and the query vector.
+     * The distance between the neighbor and the dense embedding query.
      */
     distance?: number | null;
   }
@@ -4676,6 +4784,10 @@ export namespace aiplatform_v1 {
      */
     safetySettings?: Schema$GoogleCloudAiplatformV1SafetySetting[];
     /**
+     * Optional. The user provided system instructions for the model. Note: only text should be used in parts and content in each part will be in a separate paragraph.
+     */
+    systemInstruction?: Schema$GoogleCloudAiplatformV1Content;
+    /**
      * Optional. A list of `Tools` the model may use to generate the next response. A `Tool` is a piece of code that enables the system to interact with external systems to perform an action, or set of actions, outside of knowledge and scope of the model.
      */
     tools?: Schema$GoogleCloudAiplatformV1Tool[];
@@ -4737,9 +4849,21 @@ export namespace aiplatform_v1 {
      */
     candidateCount?: number | null;
     /**
+     * Optional. Frequency penalties.
+     */
+    frequencyPenalty?: number | null;
+    /**
      * Optional. The maximum number of output tokens to generate per message.
      */
     maxOutputTokens?: number | null;
+    /**
+     * Optional. Positive penalties.
+     */
+    presencePenalty?: number | null;
+    /**
+     * Optional. Output response mimetype of the generated candidate text. Supported mimetype: - `text/plain`: (default) Text output. - `application/json`: JSON response in the candidates. The model needs to be prompted to output the appropriate response type, otherwise the behavior is undefined. This is a preview feature.
+     */
+    responseMimeType?: string | null;
     /**
      * Optional. Stop sequences.
      */
@@ -4784,52 +4908,13 @@ export namespace aiplatform_v1 {
     baseModelUri?: string | null;
   }
   /**
-   * Tool to retrieve public web data for grounding, powered by Google.
-   */
-  export interface Schema$GoogleCloudAiplatformV1GoogleSearchRetrieval {
-    /**
-     * Optional. Disable using the result from this tool in detecting grounding attribution. This does not affect how the result is given to the model for generation.
-     */
-    disableAttribution?: boolean | null;
-  }
-  /**
-   * Grounding attribution.
-   */
-  export interface Schema$GoogleCloudAiplatformV1GroundingAttribution {
-    /**
-     * Optional. Output only. Confidence score of the attribution. Ranges from 0 to 1. 1 is the most confident.
-     */
-    confidenceScore?: number | null;
-    /**
-     * Output only. Segment of the content this attribution belongs to.
-     */
-    segment?: Schema$GoogleCloudAiplatformV1Segment;
-    /**
-     * Optional. Attribution from the web.
-     */
-    web?: Schema$GoogleCloudAiplatformV1GroundingAttributionWeb;
-  }
-  /**
-   * Attribution from the web.
-   */
-  export interface Schema$GoogleCloudAiplatformV1GroundingAttributionWeb {
-    /**
-     * Output only. Title of the attribution.
-     */
-    title?: string | null;
-    /**
-     * Output only. URI reference of the attribution.
-     */
-    uri?: string | null;
-  }
-  /**
    * Metadata returned to client when grounding is enabled.
    */
   export interface Schema$GoogleCloudAiplatformV1GroundingMetadata {
     /**
-     * Optional. List of grounding attributions.
+     * Optional. Google search entry for the following-up web searches.
      */
-    groundingAttributions?: Schema$GoogleCloudAiplatformV1GroundingAttribution[];
+    searchEntryPoint?: Schema$GoogleCloudAiplatformV1SearchEntryPoint;
     /**
      * Optional. Web search queries for the following-up web search.
      */
@@ -5138,7 +5223,7 @@ export namespace aiplatform_v1 {
      */
     datapointId?: string | null;
     /**
-     * Required. Feature embedding vector. An array of numbers with the length of [NearestNeighborSearchConfig.dimensions].
+     * Required. Feature embedding vector for dense index. An array of numbers with the length of [NearestNeighborSearchConfig.dimensions].
      */
     featureVector?: number[] | null;
     /**
@@ -5288,7 +5373,7 @@ export namespace aiplatform_v1 {
      */
     shardsCount?: number | null;
     /**
-     * Output only. The number of vectors in the Index.
+     * Output only. The number of dense vectors in the Index.
      */
     vectorsCount?: string | null;
   }
@@ -5991,6 +6076,19 @@ export namespace aiplatform_v1 {
      * The Trials associated with the Study.
      */
     trials?: Schema$GoogleCloudAiplatformV1Trial[];
+  }
+  /**
+   * Response message for GenAiTuningService.ListTuningJobs
+   */
+  export interface Schema$GoogleCloudAiplatformV1ListTuningJobsResponse {
+    /**
+     * A token to retrieve the next page of results. Pass to ListTuningJobsRequest.page_token to obtain that page.
+     */
+    nextPageToken?: string | null;
+    /**
+     * List of TuningJobs in the requested page.
+     */
+    tuningJobs?: Schema$GoogleCloudAiplatformV1TuningJob[];
   }
   /**
    * Request message for VizierService.LookupStudy.
@@ -8430,9 +8528,9 @@ export namespace aiplatform_v1 {
      */
     deployGke?: Schema$GoogleCloudAiplatformV1PublisherModelCallToActionDeployGke;
     /**
-     * Optional. Multiple setups to deploy the PublisherModel to Vertex Endpoint.
+     * Optional. Fine tune the PublisherModel with the third-party model tuning UI.
      */
-    multiDeployVertex?: Schema$GoogleCloudAiplatformV1PublisherModelCallToActionDeployVertex;
+    fineTune?: Schema$GoogleCloudAiplatformV1PublisherModelCallToActionRegionalResourceReferences;
     /**
      * Optional. Open evaluation pipeline of the PublisherModel.
      */
@@ -8495,6 +8593,10 @@ export namespace aiplatform_v1 {
      */
     dedicatedResources?: Schema$GoogleCloudAiplatformV1DedicatedResources;
     /**
+     * Optional. The name of the deploy task (e.g., "text to image generation").
+     */
+    deployTaskName?: string | null;
+    /**
      * Optional. Large model reference. When this is set, model_artifact_spec is not needed.
      */
     largeModelReference?: Schema$GoogleCloudAiplatformV1LargeModelReference;
@@ -8523,15 +8625,6 @@ export namespace aiplatform_v1 {
      * Optional. GKE deployment configuration in yaml format.
      */
     gkeYamlConfigs?: string[] | null;
-  }
-  /**
-   * Multiple setups to deploy the PublisherModel.
-   */
-  export interface Schema$GoogleCloudAiplatformV1PublisherModelCallToActionDeployVertex {
-    /**
-     * Optional. One click deployment configurations.
-     */
-    multiDeployVertex?: Schema$GoogleCloudAiplatformV1PublisherModelCallToActionDeploy[];
   }
   /**
    * Open fine tuning pipelines.
@@ -8792,35 +8885,9 @@ export namespace aiplatform_v1 {
     httpBody?: Schema$GoogleApiHttpBody;
   }
   /**
-   * Configuration for the Ray metrics.
-   */
-  export interface Schema$GoogleCloudAiplatformV1RayMetricSpec {
-    /**
-     * Optional. Flag to disable the Ray metrics collection.
-     */
-    disabled?: boolean | null;
-  }
-  /**
    * Configuration information for the Ray cluster. For experimental launch, Ray cluster creation and Persistent cluster creation are 1:1 mapping: We will provision all the nodes within the Persistent cluster as Ray nodes.
    */
-  export interface Schema$GoogleCloudAiplatformV1RaySpec {
-    /**
-     * Optional. This will be used to indicate which resource pool will serve as the Ray head node(the first node within that pool). Will use the machine from the first workerpool as the head node by default if this field isn't set.
-     */
-    headNodeResourcePoolId?: string | null;
-    /**
-     * Optional. Default image for user to choose a preferred ML framework (for example, TensorFlow or Pytorch) by choosing from [Vertex prebuilt images](https://cloud.google.com/vertex-ai/docs/training/pre-built-containers). Either this or the resource_pool_images is required. Use this field if you need all the resource pools to have the same Ray image. Otherwise, use the {@code resource_pool_images\} field.
-     */
-    imageUri?: string | null;
-    /**
-     * Optional. Ray metrics configurations.
-     */
-    rayMetricSpec?: Schema$GoogleCloudAiplatformV1RayMetricSpec;
-    /**
-     * Optional. Required if image_uri isn't set. A map of resource_pool_id to prebuild Ray image if user need to use different images for different head/worker pools. This map needs to cover all the resource pool ids. Example: { "ray_head_node_pool": "head image" "ray_worker_node_pool1": "worker image" "ray_worker_node_pool2": "another worker image" \}
-     */
-    resourcePoolImages?: {[key: string]: string} | null;
-  }
+  export interface Schema$GoogleCloudAiplatformV1RaySpec {}
   /**
    * Request message for FeaturestoreOnlineServingService.ReadFeatureValues.
    */
@@ -9067,16 +9134,7 @@ export namespace aiplatform_v1 {
   /**
    * Persistent Cluster runtime information as output
    */
-  export interface Schema$GoogleCloudAiplatformV1ResourceRuntime {
-    /**
-     * Output only. URIs for user to connect to the Cluster. Example: { "RAY_HEAD_NODE_INTERNAL_IP": "head-node-IP:10001" "RAY_DASHBOARD_URI": "ray-dashboard-address:8888" \}
-     */
-    accessUris?: {[key: string]: string} | null;
-    /**
-     * Output only. The resource name of NotebookRuntimeTemplate for the RoV Persistent Cluster The NotebokRuntimeTemplate is created in the same VPC (if set), and with the same Ray and Python version as the Persistent Cluster. Example: "projects/1000/locations/us-central1/notebookRuntimeTemplates/abc123"
-     */
-    notebookRuntimeTemplate?: string | null;
-  }
+  export interface Schema$GoogleCloudAiplatformV1ResourceRuntime {}
   /**
    * Configuration for the runtime on a PersistentResource instance, including but not limited to: * Service accounts used to run the workloads. * Whether to make it a dedicated Ray Cluster.
    */
@@ -9887,6 +9945,63 @@ export namespace aiplatform_v1 {
      * Recall (True Positive Rate) for the given confidence threshold.
      */
     recall?: number | null;
+  }
+  /**
+   * Metrics for general pairwise text generation evaluation results.
+   */
+  export interface Schema$GoogleCloudAiplatformV1SchemaModelevaluationMetricsPairwiseTextGenerationEvaluationMetrics {
+    /**
+     * Fraction of cases where the autorater agreed with the human raters.
+     */
+    accuracy?: number | null;
+    /**
+     * Percentage of time the autorater decided the baseline model had the better response.
+     */
+    baselineModelWinRate?: number | null;
+    /**
+     * A measurement of agreement between the autorater and human raters that takes the likelihood of random agreement into account.
+     */
+    cohensKappa?: number | null;
+    /**
+     * Harmonic mean of precision and recall.
+     */
+    f1Score?: number | null;
+    /**
+     * Number of examples where the autorater chose the baseline model, but humans preferred the model.
+     */
+    falseNegativeCount?: string | null;
+    /**
+     * Number of examples where the autorater chose the model, but humans preferred the baseline model.
+     */
+    falsePositiveCount?: string | null;
+    /**
+     * Percentage of time humans decided the baseline model had the better response.
+     */
+    humanPreferenceBaselineModelWinRate?: number | null;
+    /**
+     * Percentage of time humans decided the model had the better response.
+     */
+    humanPreferenceModelWinRate?: number | null;
+    /**
+     * Percentage of time the autorater decided the model had the better response.
+     */
+    modelWinRate?: number | null;
+    /**
+     * Fraction of cases where the autorater and humans thought the model had a better response out of all cases where the autorater thought the model had a better response. True positive divided by all positive.
+     */
+    precision?: number | null;
+    /**
+     * Fraction of cases where the autorater and humans thought the model had a better response out of all cases where the humans thought the model had a better response.
+     */
+    recall?: number | null;
+    /**
+     * Number of examples where both the autorater and humans decided that the model had the worse response.
+     */
+    trueNegativeCount?: string | null;
+    /**
+     * Number of examples where both the autorater and humans decided that the model had the better response.
+     */
+    truePositiveCount?: string | null;
   }
   export interface Schema$GoogleCloudAiplatformV1SchemaModelevaluationMetricsQuestionAnsweringEvaluationMetrics {
     /**
@@ -10807,6 +10922,10 @@ export namespace aiplatform_v1 {
      * Customized stop sequences.
      */
     stopSequences?: string[] | null;
+    /**
+     * The Google Cloud Storage URI that stores the system instruction, starting with gs://.
+     */
+    systemInstructionGcsUri?: string | null;
     /**
      * Temperature value used for sampling set when the dataset was saved. This value is used to tune the degree of randomness.
      */
@@ -12020,6 +12139,19 @@ export namespace aiplatform_v1 {
     nextPageToken?: string | null;
   }
   /**
+   * Google search entry point.
+   */
+  export interface Schema$GoogleCloudAiplatformV1SearchEntryPoint {
+    /**
+     * Optional. Web content snippet that can be embedded in a web page or an app webview.
+     */
+    renderedContent?: string | null;
+    /**
+     * Optional. Base64 encoded JSON representing array of tuple.
+     */
+    sdkBlob?: string | null;
+  }
+  /**
    * Response message for FeaturestoreService.SearchFeatures.
    */
   export interface Schema$GoogleCloudAiplatformV1SearchFeaturesResponse {
@@ -12141,23 +12273,6 @@ export namespace aiplatform_v1 {
     nearestNeighbors?: Schema$GoogleCloudAiplatformV1NearestNeighbors;
   }
   /**
-   * Segment of the content.
-   */
-  export interface Schema$GoogleCloudAiplatformV1Segment {
-    /**
-     * Output only. End index in the given Part, measured in bytes. Offset from the start of the Part, exclusive, starting at zero.
-     */
-    endIndex?: number | null;
-    /**
-     * Output only. The index of a Part object within its parent Content object.
-     */
-    partIndex?: number | null;
-    /**
-     * Output only. Start index in the given Part, measured in bytes. Offset from the start of the Part, inclusive, starting at zero.
-     */
-    startIndex?: number | null;
-  }
-  /**
    * Configuration for the use of custom service account to run the workloads.
    */
   export interface Schema$GoogleCloudAiplatformV1ServiceAccountSpec {
@@ -12166,7 +12281,7 @@ export namespace aiplatform_v1 {
      */
     enableCustomServiceAccount?: boolean | null;
     /**
-     * Optional. Default service account that this PersistentResource's workloads run as. The workloads include: * Any runtime specified via `ResourceRuntimeSpec` on creation time, for example, Ray. * Jobs submitted to PersistentResource, if no other service account specified in the job specs. Only works when custom service account is enabled and users have the `iam.serviceAccounts.actAs` permission on this service account. Required if any containers are specified in `ResourceRuntimeSpec`.
+     * Optional. Required when all below conditions are met * `enable_custom_service_account` is true; * any runtime is specified via `ResourceRuntimeSpec` on creation time, for example, Ray The users must have `iam.serviceAccounts.actAs` permission on this service account and then the specified runtime containers will run as it. Do not set this field if you want to submit jobs using custom service account to this PersistentResource after creation, but only specify the `service_account` inside the job.
      */
     serviceAccount?: string | null;
   }
@@ -12710,6 +12825,131 @@ export namespace aiplatform_v1 {
     trials?: Schema$GoogleCloudAiplatformV1Trial[];
   }
   /**
+   * Hyperparameters for SFT.
+   */
+  export interface Schema$GoogleCloudAiplatformV1SupervisedHyperParameters {
+    /**
+     * Optional. Adapter size for tuning.
+     */
+    adapterSize?: string | null;
+    /**
+     * Optional. Number of training epoches for this tuning job.
+     */
+    epochCount?: string | null;
+    /**
+     * Optional. Learning rate multiplier for tuning.
+     */
+    learningRateMultiplier?: number | null;
+  }
+  /**
+   * Dataset distribution for Supervised Tuning.
+   */
+  export interface Schema$GoogleCloudAiplatformV1SupervisedTuningDatasetDistribution {
+    /**
+     * Output only. Defines the histogram bucket.
+     */
+    buckets?: Schema$GoogleCloudAiplatformV1SupervisedTuningDatasetDistributionDatasetBucket[];
+    /**
+     * Output only. The maximum of the population values.
+     */
+    max?: number | null;
+    /**
+     * Output only. The arithmetic mean of the values in the population.
+     */
+    mean?: number | null;
+    /**
+     * Output only. The median of the values in the population.
+     */
+    median?: number | null;
+    /**
+     * Output only. The minimum of the population values.
+     */
+    min?: number | null;
+    /**
+     * Output only. The 5th percentile of the values in the population.
+     */
+    p5?: number | null;
+    /**
+     * Output only. The 95th percentile of the values in the population.
+     */
+    p95?: number | null;
+    /**
+     * Output only. Sum of a given population of values.
+     */
+    sum?: string | null;
+  }
+  /**
+   * Dataset bucket used to create a histogram for the distribution given a population of values.
+   */
+  export interface Schema$GoogleCloudAiplatformV1SupervisedTuningDatasetDistributionDatasetBucket {
+    /**
+     * Output only. Number of values in the bucket.
+     */
+    count?: number | null;
+    /**
+     * Output only. Left bound of the bucket.
+     */
+    left?: number | null;
+    /**
+     * Output only. Right bound of the bucket.
+     */
+    right?: number | null;
+  }
+  /**
+   * Tuning data statistics for Supervised Tuning.
+   */
+  export interface Schema$GoogleCloudAiplatformV1SupervisedTuningDataStats {
+    /**
+     * Output only. Number of billable characters in the tuning dataset.
+     */
+    totalBillableCharacterCount?: string | null;
+    /**
+     * Output only. Number of tuning characters in the tuning dataset.
+     */
+    totalTuningCharacterCount?: string | null;
+    /**
+     * Output only. Number of examples in the tuning dataset.
+     */
+    tuningDatasetExampleCount?: string | null;
+    /**
+     * Output only. Number of tuning steps for this Tuning Job.
+     */
+    tuningStepCount?: string | null;
+    /**
+     * Output only. Sample user messages in the training dataset uri.
+     */
+    userDatasetExamples?: Schema$GoogleCloudAiplatformV1Content[];
+    /**
+     * Output only. Dataset distributions for the user input tokens.
+     */
+    userInputTokenDistribution?: Schema$GoogleCloudAiplatformV1SupervisedTuningDatasetDistribution;
+    /**
+     * Output only. Dataset distributions for the messages per example.
+     */
+    userMessagePerExampleDistribution?: Schema$GoogleCloudAiplatformV1SupervisedTuningDatasetDistribution;
+    /**
+     * Output only. Dataset distributions for the user output tokens.
+     */
+    userOutputTokenDistribution?: Schema$GoogleCloudAiplatformV1SupervisedTuningDatasetDistribution;
+  }
+  /**
+   * Tuning Spec for Supervised Tuning.
+   */
+  export interface Schema$GoogleCloudAiplatformV1SupervisedTuningSpec {
+    /**
+     * Optional. Hyperparameters for SFT.
+     */
+    hyperParameters?: Schema$GoogleCloudAiplatformV1SupervisedHyperParameters;
+    /**
+     * Required. Cloud Storage path to file containing training dataset for tuning.
+     */
+    trainingDatasetUri?: string | null;
+    /**
+     * Optional. Cloud Storage path to file containing validation dataset for tuning.
+     */
+    validationDatasetUri?: string | null;
+  }
+  /**
    * Request message for FeatureOnlineStoreAdminService.SyncFeatureView.
    */
   export interface Schema$GoogleCloudAiplatformV1SyncFeatureViewRequest {}
@@ -13102,10 +13342,6 @@ export namespace aiplatform_v1 {
      */
     functionDeclarations?: Schema$GoogleCloudAiplatformV1FunctionDeclaration[];
     /**
-     * Optional. GoogleSearchRetrieval tool type. Specialized retrieval tool that is powered by Google search.
-     */
-    googleSearchRetrieval?: Schema$GoogleCloudAiplatformV1GoogleSearchRetrieval;
-    /**
      * Optional. Retrieval tool type. System will always execute the provided retrieval tool(s) to get external knowledge to answer the prompt. Retrieval results are presented to the model for generation.
      */
     retrieval?: Schema$GoogleCloudAiplatformV1Retrieval;
@@ -13270,6 +13506,93 @@ export namespace aiplatform_v1 {
      * Output only. The value of the parameter. `number_value` will be set if a parameter defined in StudySpec is in type 'INTEGER', 'DOUBLE' or 'DISCRETE'. `string_value` will be set if a parameter defined in StudySpec is in type 'CATEGORICAL'.
      */
     value?: any | null;
+  }
+  /**
+   * The Model Registry Model and Online Prediction Endpoint assiociated with this TuningJob.
+   */
+  export interface Schema$GoogleCloudAiplatformV1TunedModel {
+    /**
+     * Output only. A resource name of an Endpoint. Format: `projects/{project\}/locations/{location\}/endpoints/{endpoint\}`.
+     */
+    endpoint?: string | null;
+    /**
+     * Output only. The resource name of the TunedModel. Format: `projects/{project\}/locations/{location\}/models/{model\}`.
+     */
+    model?: string | null;
+  }
+  /**
+   * The tuning data statistic values for TuningJob.
+   */
+  export interface Schema$GoogleCloudAiplatformV1TuningDataStats {
+    /**
+     * The SFT Tuning data stats.
+     */
+    supervisedTuningDataStats?: Schema$GoogleCloudAiplatformV1SupervisedTuningDataStats;
+  }
+  /**
+   * Represents a TuningJob that runs with Google owned models.
+   */
+  export interface Schema$GoogleCloudAiplatformV1TuningJob {
+    /**
+     * Model name for tuning, e.g., "gemini-1.0-pro-002".
+     */
+    baseModel?: string | null;
+    /**
+     * Output only. Time when the TuningJob was created.
+     */
+    createTime?: string | null;
+    /**
+     * Optional. The description of the TuningJob.
+     */
+    description?: string | null;
+    /**
+     * Output only. Time when the TuningJob entered any of the following JobStates: `JOB_STATE_SUCCEEDED`, `JOB_STATE_FAILED`, `JOB_STATE_CANCELLED`, `JOB_STATE_EXPIRED`.
+     */
+    endTime?: string | null;
+    /**
+     * Output only. Only populated when job's state is `JOB_STATE_FAILED` or `JOB_STATE_CANCELLED`.
+     */
+    error?: Schema$GoogleRpcStatus;
+    /**
+     * Output only. The Experiment associated with this TuningJob.
+     */
+    experiment?: string | null;
+    /**
+     * Optional. The labels with user-defined metadata to organize TuningJob and generated resources such as Model and Endpoint. Label keys and values can be no longer than 64 characters (Unicode codepoints), can only contain lowercase letters, numeric characters, underscores and dashes. International characters are allowed. See https://goo.gl/xmQnxf for more information and examples of labels.
+     */
+    labels?: {[key: string]: string} | null;
+    /**
+     * Output only. Identifier. Resource name of a TuningJob. Format: `projects/{project\}/locations/{location\}/tuningJobs/{tuning_job\}`
+     */
+    name?: string | null;
+    /**
+     * Output only. Time when the TuningJob for the first time entered the `JOB_STATE_RUNNING` state.
+     */
+    startTime?: string | null;
+    /**
+     * Output only. The detailed state of the job.
+     */
+    state?: string | null;
+    /**
+     * Tuning Spec for Supervised Fine Tuning.
+     */
+    supervisedTuningSpec?: Schema$GoogleCloudAiplatformV1SupervisedTuningSpec;
+    /**
+     * Output only. The tuned model resources assiociated with this TuningJob.
+     */
+    tunedModel?: Schema$GoogleCloudAiplatformV1TunedModel;
+    /**
+     * Optional. The display name of the TunedModel. The name can be up to 128 characters long and can consist of any UTF-8 characters.
+     */
+    tunedModelDisplayName?: string | null;
+    /**
+     * Output only. The tuning data statistics associated with this TuningJob.
+     */
+    tuningDataStats?: Schema$GoogleCloudAiplatformV1TuningDataStats;
+    /**
+     * Output only. Time when the TuningJob was most recently updated.
+     */
+    updateTime?: string | null;
   }
   /**
    * Runtime operation information for IndexEndpointService.UndeployIndex.
@@ -13585,7 +13908,7 @@ export namespace aiplatform_v1 {
    */
   export interface Schema$GoogleCloudAiplatformV1VertexAISearch {
     /**
-     * Required. Fully-qualified Vertex AI Search's datastore resource ID. Format: projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{dataStore\}
+     * Required. Fully-qualified Vertex AI Search's datastore resource ID. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{dataStore\}`
      */
     datastore?: string | null;
   }
@@ -14069,16 +14392,13 @@ export namespace aiplatform_v1 {
    */
   export interface Schema$LanguageLabsAidaTrustRecitationProtoSegmentResult {
     /**
-     * The dataset the segment came from.
+     * The dataset the segment came from. Datasets change often as model evolves. Treat this field as informational only and avoid depending on it directly.
      */
     attributionDataset?: string | null;
     /**
      * human-friendly string that contains information from doc_attribution which could be shown by clients
      */
     displayAttributionMessage?: string | null;
-    /**
-     * populated when recitation_action == CITE
-     */
     docAttribution?: Schema$LanguageLabsAidaTrustRecitationProtoDocAttribution;
     /**
      * number of documents that contained this segment
@@ -14090,6 +14410,10 @@ export namespace aiplatform_v1 {
      */
     rawText?: string | null;
     segmentRecitationAction?: string | null;
+    /**
+     * The category of the source dataset where the segment came from. This is more stable than Dataset.
+     */
+    sourceCategory?: string | null;
     /**
      * The segment boundary start (inclusive) and end index (exclusive) in the given text. In the streaming RPC, the indexes always start from the beginning of the first text in the entire stream. The indexes are measured in UTF-16 code units.
      */
@@ -14198,16 +14522,13 @@ export namespace aiplatform_v1 {
    */
   export interface Schema$LearningGenaiRecitationSegmentResult {
     /**
-     * The dataset the segment came from.
+     * The dataset the segment came from. Datasets change often as model evolves. Treat this field as informational only and avoid depending on it directly.
      */
     attributionDataset?: string | null;
     /**
      * human-friendly string that contains information from doc_attribution which could be shown by clients
      */
     displayAttributionMessage?: string | null;
-    /**
-     * populated when recitation_action == CITE
-     */
     docAttribution?: Schema$LearningGenaiRecitationDocAttribution;
     /**
      * number of documents that contained this segment
@@ -14219,6 +14540,10 @@ export namespace aiplatform_v1 {
      */
     rawText?: string | null;
     segmentRecitationAction?: string | null;
+    /**
+     * The category of the source dataset where the segment came from. This is more stable than Dataset.
+     */
+    sourceCategory?: string | null;
     /**
      * The segment boundary start (inclusive) and end index (exclusive) in the given text. In the streaming RPC, the indexes always start from the beginning of the first text in the entire stream. The indexes are measured in UTF-16 code units.
      */
@@ -14296,11 +14621,25 @@ export namespace aiplatform_v1 {
     checkpoints?: Schema$LearningGenaiRootCodeyCheckpoint[];
   }
   /**
+   * Stores all metadata relating to GenerateCode.
+   */
+  export interface Schema$LearningGenaiRootCodeyGenerationMetadata {
+    /**
+     * Last state of the sample before getting dropped/returned.
+     */
+    output?: string | null;
+    /**
+     * Last Codey postprocessing step for this sample before getting dropped/returned.
+     */
+    postInferenceStep?: string | null;
+  }
+  /**
    * Top-level wrapper used to store all things codey-related.
    */
   export interface Schema$LearningGenaiRootCodeyOutput {
     codeyChatMetadata?: Schema$LearningGenaiRootCodeyChatMetadata;
     codeyCompletionMetadata?: Schema$LearningGenaiRootCodeyCompletionMetadata;
+    codeyGenerationMetadata?: Schema$LearningGenaiRootCodeyGenerationMetadata;
   }
   /**
    * Metadata describing what was truncated at each checkpoint.
@@ -14314,6 +14653,44 @@ export namespace aiplatform_v1 {
      * Text that was truncated at a specific checkpoint.
      */
     truncatedText?: string | null;
+  }
+  /**
+   * Score threshold for a category.
+   */
+  export interface Schema$LearningGenaiRootControlDecodingConfigThreshold {
+    policy?: string | null;
+    scoreMax?: number | null;
+  }
+  /**
+   * Holds one control decoding record.
+   */
+  export interface Schema$LearningGenaiRootControlDecodingRecord {
+    /**
+     * Prefixes feeded into scorer.
+     */
+    prefixes?: string | null;
+    /**
+     * Per policy scores returned from Scorer. Expect to have the same number of scores as in `thresholds`.
+     */
+    scores?: Schema$LearningGenaiRootControlDecodingRecordPolicyScore[];
+    /**
+     * Suffixes feeded into scorer.
+     */
+    suffiexes?: string | null;
+    /**
+     * Per policy thresholds from user config.
+     */
+    thresholds?: Schema$LearningGenaiRootControlDecodingConfigThreshold[];
+  }
+  export interface Schema$LearningGenaiRootControlDecodingRecordPolicyScore {
+    policy?: string | null;
+    score?: number | null;
+  }
+  export interface Schema$LearningGenaiRootControlDecodingRecords {
+    /**
+     * One ControlDecodingRecord record maps to one rewind.
+     */
+    records?: Schema$LearningGenaiRootControlDecodingRecord[];
   }
   export interface Schema$LearningGenaiRootDataProviderOutput {
     name?: string | null;
@@ -14362,6 +14739,10 @@ export namespace aiplatform_v1 {
     raiOutput?: Schema$LearningGenaiRootRAIOutput;
     raiResult?: Schema$CloudAiNlLlmProtoServiceRaiResult;
     raiSignal?: Schema$CloudAiNlLlmProtoServiceRaiSignal;
+    /**
+     * Number of rewinds by controlled decoding.
+     */
+    records?: Schema$LearningGenaiRootControlDecodingRecords;
     streamRecitationResult?: Schema$LanguageLabsAidaTrustRecitationProtoStreamRecitationResult;
     takedownResult?: Schema$LearningGenaiRootTakedownResult;
     toxicityResult?: Schema$LearningGenaiRootToxicityResult;
@@ -14401,6 +14782,7 @@ export namespace aiplatform_v1 {
     fringe?: boolean | null;
     grailImageHarmType?: Schema$LearningGenaiRootHarmGrailImageHarmType;
     grailTextHarmType?: Schema$LearningGenaiRootHarmGrailTextHarmType;
+    imageChild?: boolean | null;
     imageCsam?: boolean | null;
     imagePedo?: boolean | null;
     /**
@@ -14415,6 +14797,7 @@ export namespace aiplatform_v1 {
      */
     spii?: Schema$LearningGenaiRootHarmSpiiFilter;
     threshold?: number | null;
+    videoFrameChild?: boolean | null;
     videoFrameCsam?: boolean | null;
     videoFramePedo?: boolean | null;
     /**
@@ -14469,6 +14852,16 @@ export namespace aiplatform_v1 {
     numericValue?: number | null;
     status?: Schema$UtilStatusProto;
     stringValue?: string | null;
+  }
+  export interface Schema$LearningGenaiRootPerRequestProcessorDebugMetadataFactualityDebugMetadata {
+    /**
+     * Latency spent on fact retrievals. There might be multiple retrievals from different fact providers.
+     */
+    factRetrievalMillisecondsByProvider?: {[key: string]: string} | null;
+    /**
+     * Latency spent on prompt2query. The procedure generates a search-friendly query given the original prompt.
+     */
+    prompt2queryMilliseconds?: string | null;
   }
   /**
    * This is per harm.
@@ -14547,6 +14940,14 @@ export namespace aiplatform_v1 {
      */
     computedInputTokenLength?: number | null;
     modelId?: string | null;
+    /**
+     * If true, the model was selected as a fallback, since no model met requirements.
+     */
+    pickedAsFallback?: boolean | null;
+    /**
+     * If true, the model was selected since it met the requriements.
+     */
+    selected?: boolean | null;
   }
   export interface Schema$LearningGenaiRootRoutingDecisionMetadataTokenLengthBasedModelMaxTokenMetadata {
     maxNumInputTokens?: number | null;
@@ -14684,6 +15085,19 @@ export namespace aiplatform_v1 {
     score?: number | null;
   }
   /**
+   * Each TranslationRequestInfo corresponds to a request sent to the translation server.
+   */
+  export interface Schema$LearningGenaiRootTranslationRequestInfo {
+    /**
+     * The ISO-639 language code of source text in the initial request, detected automatically, if no source language was passed within the initial request. If the source language was passed, auto-detection of the language does not occur and this field is empty.
+     */
+    detectedLanguageCodes?: string[] | null;
+    /**
+     * The sum of the size of all the contents in the request.
+     */
+    totalContentSize?: string | null;
+  }
+  /**
    * LINT.IfChange This metadata contains additional information required for debugging.
    */
   export interface Schema$LearningServingLlmMessageMetadata {
@@ -14762,7 +15176,7 @@ export namespace aiplatform_v1 {
      */
     streamTerminated?: boolean | null;
     /**
-     * NOT YET IMPLEMENTED. Aggregated number of total tokens decoded so far. For streaming, this is sum of all the tokens decoded so far i.e. aggregated count.
+     * Total tokens decoded so far per response_candidate. For streaming: Count of all the tokens decoded so far (aggregated count). For unary: Count of all the tokens decoded per response_candidate.
      */
     totalDecodedTokenCount?: number | null;
     /**
@@ -15042,6 +15456,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -15136,6 +15551,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -15260,6 +15676,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}:cancel').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -15355,6 +15772,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -15449,6 +15867,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -15541,6 +15960,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -15638,6 +16058,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -15800,6 +16221,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}:cancel').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -15894,6 +16316,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -15987,6 +16410,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -16078,6 +16502,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -16174,6 +16599,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -16333,6 +16759,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}:cancel').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -16421,6 +16848,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -16513,6 +16941,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -16608,6 +17037,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -16702,6 +17132,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}:wait').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -16854,6 +17285,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}:cancel').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -16949,6 +17381,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -17043,6 +17476,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -17134,6 +17568,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -17230,6 +17665,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -17393,6 +17829,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}:cancel').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -17481,6 +17918,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -17573,6 +18011,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -17668,6 +18107,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -17762,6 +18202,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}:wait').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -17933,6 +18374,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -18024,6 +18466,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -18115,6 +18558,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}:export').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -18206,6 +18650,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -18299,6 +18744,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}:import').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -18393,6 +18839,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -18486,6 +18933,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -18583,6 +19031,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -18846,6 +19295,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -18955,6 +19405,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}:cancel').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -19043,6 +19494,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -19135,6 +19587,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -19230,6 +19683,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -19324,6 +19778,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}:wait').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -19488,6 +19943,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -19625,6 +20081,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -19750,6 +20207,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}:cancel').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -19838,6 +20296,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -19930,6 +20389,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -20025,6 +20485,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -20119,6 +20580,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}:wait').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -20266,6 +20728,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}:cancel').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -20354,6 +20817,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -20446,6 +20910,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -20541,6 +21006,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -20635,6 +21101,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}:wait').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -20789,6 +21256,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -20881,6 +21349,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -20973,6 +21442,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -21070,6 +21540,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -21167,6 +21638,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -21327,6 +21799,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}:cancel').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -21415,6 +21888,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -21507,6 +21981,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -21602,6 +22077,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -21696,6 +22172,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}:wait').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -21852,6 +22329,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -21947,6 +22425,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -22079,6 +22558,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}:cancel').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -22167,6 +22647,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -22259,6 +22740,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -22354,6 +22836,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -22448,6 +22931,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}:wait').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -22607,6 +23091,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -22699,6 +23184,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -22791,6 +23277,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -22888,6 +23375,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -22984,6 +23472,7 @@ export namespace aiplatform_v1 {
               rootUrl + '/v1/{+deploymentResourcePool}:queryDeployedModels'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -23138,6 +23627,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}:cancel').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -23226,6 +23716,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -23318,6 +23809,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -23413,6 +23905,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -23507,6 +24000,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}:wait').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -23665,6 +24159,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -23761,6 +24256,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -23857,6 +24353,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -23948,6 +24445,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -24042,6 +24540,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -24137,6 +24636,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -24234,6 +24734,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -24330,6 +24831,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -24427,6 +24929,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -24520,6 +25023,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -24616,6 +25120,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -24713,6 +25218,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -24804,6 +25310,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -24900,6 +25407,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -24992,6 +25500,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -25087,6 +25596,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -25184,6 +25694,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -25279,6 +25790,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -25374,6 +25886,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -25711,6 +26224,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}:cancel').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -25799,6 +26313,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -25891,6 +26406,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -25986,6 +26502,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -26080,6 +26597,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}:wait').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -26240,6 +26758,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -26331,6 +26850,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -26422,6 +26942,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -26518,6 +27039,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -26611,6 +27133,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -26637,7 +27160,7 @@ export namespace aiplatform_v1 {
      */
     featureGroupId?: string;
     /**
-     * Required. The resource name of the Location to create FeatureGroups. Format: `projects/{project\}/locations/{location\}'`
+     * Required. The resource name of the Location to create FeatureGroups. Format: `projects/{project\}/locations/{location\}`
      */
     parent?: string;
 
@@ -26792,6 +27315,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -26884,6 +27408,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -26976,6 +27501,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -27073,6 +27599,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -27167,6 +27694,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -27340,6 +27868,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -27432,6 +27961,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -27524,6 +28054,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}:wait').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -27618,6 +28149,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}:wait').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -27758,6 +28290,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -27850,6 +28383,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -27942,6 +28476,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}:wait').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -28036,6 +28571,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}:wait').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -28193,6 +28729,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -28285,6 +28822,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -28377,6 +28915,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -28474,6 +29013,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -28568,6 +29108,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -28754,6 +29295,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -28846,6 +29388,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -28941,6 +29484,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -29035,6 +29579,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -29132,6 +29677,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -29226,6 +29772,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -29321,6 +29868,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -29418,6 +29966,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -29629,6 +30178,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -29726,6 +30276,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -29854,6 +30405,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -29946,6 +30498,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -30038,6 +30591,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}:wait').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -30132,6 +30686,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}:wait').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -30272,6 +30827,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -30364,6 +30920,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -30456,6 +31013,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}:wait').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -30550,6 +31108,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}:wait').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -30702,6 +31261,7 @@ export namespace aiplatform_v1 {
               rootUrl + '/v1/{+featurestore}:batchReadFeatureValues'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -30796,6 +31356,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -30887,6 +31448,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -30978,6 +31540,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -31073,6 +31636,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -31167,6 +31731,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -31260,6 +31825,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -31354,6 +31920,7 @@ export namespace aiplatform_v1 {
               rootUrl + '/v1/{+location}/featurestores:searchFeatures'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -31449,6 +32016,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -31544,6 +32112,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -31801,6 +32370,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -31893,6 +32463,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -31988,6 +32559,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -32083,6 +32655,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -32175,6 +32748,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -32270,6 +32844,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -32365,6 +32940,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -32460,6 +33036,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -32554,6 +33131,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -32651,6 +33229,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -32746,6 +33325,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -32840,6 +33420,7 @@ export namespace aiplatform_v1 {
               rootUrl + '/v1/{+entityType}:streamingReadFeatureValues'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -32937,6 +33518,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -33034,6 +33616,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -33327,6 +33910,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -33422,6 +34006,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -33514,6 +34099,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -33606,6 +34192,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -33703,6 +34290,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -33797,6 +34385,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -33984,6 +34573,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}:cancel').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -34072,6 +34662,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -34164,6 +34755,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -34259,6 +34851,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -34353,6 +34946,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}:wait').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -34500,6 +35094,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}:cancel').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -34588,6 +35183,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -34680,6 +35276,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -34775,6 +35372,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -34869,6 +35467,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}:wait').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -35016,6 +35615,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}:cancel').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -35104,6 +35704,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -35196,6 +35797,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -35291,6 +35893,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -35385,6 +35988,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}:wait').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -35537,6 +36141,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}:cancel').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -35632,6 +36237,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -35726,6 +36332,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -35818,6 +36425,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -35915,6 +36523,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -36074,6 +36683,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}:cancel').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -36162,6 +36772,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -36254,6 +36865,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -36349,6 +36961,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -36443,6 +37056,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}:wait').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -36599,6 +37213,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -36690,6 +37305,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -36785,6 +37401,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -36880,6 +37497,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -36973,6 +37591,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -37069,6 +37688,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -37166,6 +37786,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -37257,6 +37878,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -37354,6 +37976,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -37451,6 +38074,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -37672,6 +38296,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}:cancel').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -37760,6 +38385,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -37852,6 +38478,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -37947,6 +38574,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -38041,6 +38669,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}:wait').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -38198,6 +38827,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -38289,6 +38919,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -38380,6 +39011,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -38476,6 +39108,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -38569,6 +39202,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -38664,6 +39298,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -38761,6 +39396,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -38948,6 +39584,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}:cancel').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -39036,6 +39673,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -39128,6 +39766,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -39223,6 +39862,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -39317,6 +39957,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}:wait').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -39489,6 +40130,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -39580,6 +40222,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -39671,6 +40314,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -39767,6 +40411,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -39926,6 +40571,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -40020,6 +40666,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -40112,6 +40759,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -40209,6 +40857,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -40303,6 +40952,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -40400,6 +41050,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -40494,6 +41145,7 @@ export namespace aiplatform_v1 {
               rootUrl + '/v1/{+artifact}:queryArtifactLineageSubgraph'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -40696,6 +41348,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}:cancel').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -40784,6 +41437,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -40876,6 +41530,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -40971,6 +41626,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -41065,6 +41721,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}:wait').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -41223,6 +41880,7 @@ export namespace aiplatform_v1 {
               rootUrl + '/v1/{+context}:addContextArtifactsAndExecutions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -41320,6 +41978,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -41417,6 +42076,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -41511,6 +42171,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -41603,6 +42264,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -41700,6 +42362,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -41794,6 +42457,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -41891,6 +42555,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -41985,6 +42650,7 @@ export namespace aiplatform_v1 {
               rootUrl + '/v1/{+context}:queryContextLineageSubgraph'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -42082,6 +42748,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -42316,6 +42983,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}:cancel').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -42404,6 +43072,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -42496,6 +43165,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -42591,6 +43261,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -42685,6 +43356,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}:wait').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -42844,6 +43516,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -42941,6 +43614,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -43035,6 +43709,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -43127,6 +43802,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -43224,6 +43900,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -43318,6 +43995,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -43415,6 +44093,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -43509,6 +44188,7 @@ export namespace aiplatform_v1 {
               rootUrl + '/v1/{+execution}:queryExecutionInputsAndOutputs'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -43715,6 +44395,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}:cancel').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -43803,6 +44484,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -43895,6 +44577,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -43990,6 +44673,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -44084,6 +44768,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}:wait').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -44238,6 +44923,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -44332,6 +45018,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -44429,6 +45116,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -44569,6 +45257,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}:cancel').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -44657,6 +45346,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -44749,6 +45439,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -44844,6 +45535,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -44938,6 +45630,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}:wait').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -45096,6 +45789,7 @@ export namespace aiplatform_v1 {
               rootUrl + '/v1/{+parent}/migratableResources:batchMigrate'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -45191,6 +45885,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -45313,6 +46008,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}:cancel').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -45401,6 +46097,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -45493,6 +46190,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -45588,6 +46286,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -45682,6 +46381,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}:wait').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -45840,6 +46540,7 @@ export namespace aiplatform_v1 {
               rootUrl + '/v1/{+parent}/modelDeploymentMonitoringJobs'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -45934,6 +46635,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -46026,6 +46728,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -46122,6 +46825,7 @@ export namespace aiplatform_v1 {
               rootUrl + '/v1/{+parent}/modelDeploymentMonitoringJobs'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -46216,6 +46920,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -46304,6 +47009,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}:pause').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -46392,6 +47098,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}:resume').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -46487,6 +47194,7 @@ export namespace aiplatform_v1 {
               '/v1/{+modelDeploymentMonitoringJob}:searchModelDeploymentMonitoringStatsAnomalies'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -46686,6 +47394,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}:cancel').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -46774,6 +47483,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -46866,6 +47576,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -46961,6 +47672,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -47055,6 +47767,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}:wait').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -47216,6 +47929,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -47307,6 +48021,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -47401,6 +48116,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -47492,6 +48208,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}:export').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -47583,6 +48300,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -47677,6 +48395,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -47771,6 +48490,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -47867,6 +48587,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -47964,6 +48685,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -48057,6 +48779,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -48151,6 +48874,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -48246,6 +48970,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -48343,6 +49068,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -48437,6 +49163,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -48731,6 +49458,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -48828,6 +49556,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -48925,6 +49654,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -49065,6 +49795,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}:cancel').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -49153,6 +49884,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -49245,6 +49977,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -49340,6 +50073,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -49434,6 +50168,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}:wait').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -49588,6 +50323,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -49682,6 +50418,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -49779,6 +50516,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -49919,6 +50657,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}:cancel').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -50007,6 +50746,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -50098,6 +50838,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -50193,6 +50934,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -50287,6 +51029,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}:wait').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -50436,6 +51179,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}:cancel').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -50530,6 +51274,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -50623,6 +51368,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -50714,6 +51460,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -50810,6 +51557,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -50973,6 +51721,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -51070,6 +51819,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -51197,6 +51947,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -51289,6 +52040,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -51380,6 +52132,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -51476,6 +52229,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -51570,6 +52324,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}:start').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -51665,6 +52420,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -51845,6 +52601,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -51937,6 +52694,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -52029,6 +52787,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -52124,6 +52883,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -52219,6 +52979,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -52314,6 +53075,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -52409,6 +53171,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -52597,6 +53360,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}:cancel').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -52684,6 +53448,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -52775,6 +53540,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -52869,6 +53635,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -52962,6 +53729,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}:wait').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -53121,6 +53889,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -53213,6 +53982,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -53305,6 +54075,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -53402,6 +54173,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -53496,6 +54268,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -53588,6 +54361,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}:reboot').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -53757,6 +54531,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}:cancel').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -53845,6 +54620,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -53937,6 +54713,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -54032,6 +54809,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -54126,6 +54904,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}:wait').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -54284,6 +55063,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -54379,6 +55159,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -54466,6 +55247,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}:cancel').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -54560,6 +55342,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -54653,6 +55436,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -54744,6 +55528,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -54840,6 +55625,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -55031,6 +55817,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}:cancel').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -55119,6 +55906,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -55211,6 +55999,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -55306,6 +56095,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -55400,6 +56190,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}:wait').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -55565,6 +56356,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -55662,6 +56454,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -55759,6 +56552,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -55856,6 +56650,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -55949,6 +56744,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -56044,6 +56840,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -56141,6 +56938,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -56236,6 +57034,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -56438,6 +57237,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -56531,6 +57331,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -56622,6 +57423,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -56718,6 +57520,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -56811,6 +57614,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -56900,6 +57704,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}:pause').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -56987,6 +57792,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}:resume').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -57172,6 +57978,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}:cancel').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -57260,6 +58067,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -57352,6 +58160,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -57447,6 +58256,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -57541,6 +58351,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}:wait').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -57700,6 +58511,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -57792,6 +58604,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -57883,6 +58696,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -57979,6 +58793,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -58072,6 +58887,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -58233,6 +59049,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}:cancel').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -58321,6 +59138,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -58413,6 +59231,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -58508,6 +59327,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -58602,6 +59422,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}:wait').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -58763,6 +59584,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -58852,6 +59674,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -58943,6 +59766,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -59039,6 +59863,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -59135,6 +59960,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -59286,6 +60112,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}:cancel').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -59374,6 +60201,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -59466,6 +60294,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -59561,6 +60390,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -59655,6 +60485,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}:wait').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -59812,6 +60643,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -59908,6 +60740,7 @@ export namespace aiplatform_v1 {
               rootUrl + '/v1/{+trialName}:checkTrialEarlyStoppingState'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -60003,6 +60836,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -60099,6 +60933,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -60188,6 +61023,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -60279,6 +61115,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -60375,6 +61212,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -60472,6 +61310,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -60565,6 +61404,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}:stop').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -60662,6 +61502,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -60871,6 +61712,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}:cancel').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -60959,6 +61801,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -61051,6 +61894,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -61146,6 +61990,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -61240,6 +62085,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}:wait').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -61401,6 +62247,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -61497,6 +62344,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -61588,6 +62436,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -61679,6 +62528,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -61775,6 +62625,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -61868,6 +62719,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -61962,6 +62814,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -62059,6 +62912,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -62267,6 +63121,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -62364,6 +63219,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -62458,6 +63314,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -62550,6 +63407,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -62647,6 +63505,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -62741,6 +63600,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -62838,6 +63698,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -63033,6 +63894,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}:cancel').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -63121,6 +63983,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -63213,6 +64076,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -63308,6 +64172,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -63402,6 +64267,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}:wait').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -63566,6 +64432,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -63660,6 +64527,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+parent}/runs').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -63754,6 +64622,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -63846,6 +64715,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -63940,6 +64810,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+parent}/runs').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -64034,6 +64905,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -64131,6 +65003,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -64326,6 +65199,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}:cancel').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -64414,6 +65288,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -64506,6 +65381,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -64601,6 +65477,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -64695,6 +65572,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}:wait').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -64854,6 +65732,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -64948,6 +65827,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -65043,6 +65923,7 @@ export namespace aiplatform_v1 {
               '/v1/{+tensorboardTimeSeries}:exportTensorboardTimeSeries'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -65137,6 +66018,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -65234,6 +66116,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -65328,6 +66211,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -65425,6 +66309,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -65522,6 +66407,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -65731,6 +66617,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}:cancel').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -65819,6 +66706,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -65911,6 +66799,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -66006,6 +66895,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -66100,6 +66990,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}:wait').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -66247,6 +67138,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}:cancel').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -66335,6 +67227,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -66427,6 +67320,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -66522,6 +67416,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -66616,6 +67511,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}:wait').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -66768,6 +67664,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}:cancel').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -66863,6 +67760,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -66957,6 +67855,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -67048,6 +67947,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -67145,6 +68045,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -67304,6 +68205,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}:cancel').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -67392,6 +68294,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -67484,6 +68387,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -67579,6 +68483,7 @@ export namespace aiplatform_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -67673,6 +68578,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}:wait').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -67753,6 +68659,433 @@ export namespace aiplatform_v1 {
         this.context
       );
     }
+
+    /**
+     * Cancels a TuningJob. Starts asynchronous cancellation on the TuningJob. The server makes a best effort to cancel the job, but success is not guaranteed. Clients can use GenAiTuningService.GetTuningJob or other methods to check whether the cancellation succeeded or whether the job completed despite cancellation. On successful cancellation, the TuningJob is not deleted; instead it becomes a job with a TuningJob.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`, and TuningJob.state is set to `CANCELLED`.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    cancel(
+      params: Params$Resource$Projects$Locations$Tuningjobs$Cancel,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    cancel(
+      params?: Params$Resource$Projects$Locations$Tuningjobs$Cancel,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    cancel(
+      params: Params$Resource$Projects$Locations$Tuningjobs$Cancel,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    cancel(
+      params: Params$Resource$Projects$Locations$Tuningjobs$Cancel,
+      options: MethodOptions | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+    ): void;
+    cancel(
+      params: Params$Resource$Projects$Locations$Tuningjobs$Cancel,
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+    ): void;
+    cancel(callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>): void;
+    cancel(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Tuningjobs$Cancel
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleProtobufEmpty>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Tuningjobs$Cancel;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Tuningjobs$Cancel;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:cancel').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleProtobufEmpty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
+      }
+    }
+
+    /**
+     * Creates a TuningJob. A created TuningJob right away will be attempted to be run.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Locations$Tuningjobs$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Projects$Locations$Tuningjobs$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1TuningJob>;
+    create(
+      params: Params$Resource$Projects$Locations$Tuningjobs$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Tuningjobs$Create,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1TuningJob>,
+      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1TuningJob>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Tuningjobs$Create,
+      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1TuningJob>
+    ): void;
+    create(
+      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1TuningJob>
+    ): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Tuningjobs$Create
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1TuningJob>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1TuningJob>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1TuningJob>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudAiplatformV1TuningJob>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Tuningjobs$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Tuningjobs$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/tuningJobs').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudAiplatformV1TuningJob>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudAiplatformV1TuningJob>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Gets a TuningJob.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Tuningjobs$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Tuningjobs$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1TuningJob>;
+    get(
+      params: Params$Resource$Projects$Locations$Tuningjobs$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Tuningjobs$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1TuningJob>,
+      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1TuningJob>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Tuningjobs$Get,
+      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1TuningJob>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1TuningJob>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Tuningjobs$Get
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1TuningJob>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1TuningJob>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1TuningJob>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudAiplatformV1TuningJob>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Tuningjobs$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Tuningjobs$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudAiplatformV1TuningJob>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudAiplatformV1TuningJob>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Lists TuningJobs in a Location.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Tuningjobs$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Tuningjobs$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1ListTuningJobsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Tuningjobs$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Tuningjobs$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1ListTuningJobsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1ListTuningJobsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Tuningjobs$List,
+      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1ListTuningJobsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1ListTuningJobsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Tuningjobs$List
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1ListTuningJobsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1ListTuningJobsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1ListTuningJobsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudAiplatformV1ListTuningJobsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Tuningjobs$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Tuningjobs$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/tuningJobs').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudAiplatformV1ListTuningJobsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudAiplatformV1ListTuningJobsResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Tuningjobs$Cancel
+    extends StandardParameters {
+    /**
+     * Required. The name of the TuningJob to cancel. Format: `projects/{project\}/locations/{location\}/tuningJobs/{tuning_job\}`
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudAiplatformV1CancelTuningJobRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Tuningjobs$Create
+    extends StandardParameters {
+    /**
+     * Required. The resource name of the Location to create the TuningJob in. Format: `projects/{project\}/locations/{location\}`
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudAiplatformV1TuningJob;
+  }
+  export interface Params$Resource$Projects$Locations$Tuningjobs$Get
+    extends StandardParameters {
+    /**
+     * Required. The name of the TuningJob resource. Format: `projects/{project\}/locations/{location\}/tuningJobs/{tuning_job\}`
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Tuningjobs$List
+    extends StandardParameters {
+    /**
+     * Optional. The standard list filter.
+     */
+    filter?: string;
+    /**
+     * Optional. The standard list page size.
+     */
+    pageSize?: number;
+    /**
+     * Optional. The standard list page token. Typically obtained via ListTuningJob.next_page_token of the previous GenAiTuningService.ListTuningJob][] call.
+     */
+    pageToken?: string;
+    /**
+     * Required. The resource name of the Location to list the TuningJobs from. Format: `projects/{project\}/locations/{location\}`
+     */
+    parent?: string;
   }
 
   export class Resource$Projects$Locations$Tuningjobs$Operations {
@@ -67831,6 +69164,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}:cancel').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -67923,6 +69257,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -67940,6 +69275,104 @@ export namespace aiplatform_v1 {
         return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
       }
     }
+
+    /**
+     * Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Tuningjobs$Operations$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Tuningjobs$Operations$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningListOperationsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Tuningjobs$Operations$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Tuningjobs$Operations$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Tuningjobs$Operations$List,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Tuningjobs$Operations$List
+        | BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningListOperationsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Tuningjobs$Operations$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Tuningjobs$Operations$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}/operations').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningListOperationsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningListOperationsResponse>(
+          parameters
+        );
+      }
+    }
   }
 
   export interface Params$Resource$Projects$Locations$Tuningjobs$Operations$Cancel
@@ -67955,6 +69388,25 @@ export namespace aiplatform_v1 {
      * The name of the operation resource.
      */
     name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Tuningjobs$Operations$List
+    extends StandardParameters {
+    /**
+     * The standard list filter.
+     */
+    filter?: string;
+    /**
+     * The name of the operation's parent resource.
+     */
+    name?: string;
+    /**
+     * The standard list page size.
+     */
+    pageSize?: number;
+    /**
+     * The standard list page token.
+     */
+    pageToken?: string;
   }
 
   export class Resource$Publishers {
@@ -68045,6 +69497,7 @@ export namespace aiplatform_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),

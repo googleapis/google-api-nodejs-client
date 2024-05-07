@@ -4731,7 +4731,7 @@
       }
     }
   },
-  "revision": "20240321",
+  "revision": "20240501",
   "rootUrl": "https://androidpublisher.googleapis.com/",
   "schemas": {
     "Abi": {
@@ -6647,11 +6647,13 @@
               "CAN_MANAGE_ORDERS",
               "CAN_MANAGE_APP_CONTENT",
               "CAN_VIEW_NON_FINANCIAL_DATA",
-              "CAN_VIEW_APP_QUALITY"
+              "CAN_VIEW_APP_QUALITY",
+              "CAN_MANAGE_DEEPLINKS"
             ],
             "enumDeprecated": [
               false,
               true,
+              false,
               false,
               false,
               false,
@@ -6679,7 +6681,8 @@
               "Manage orders and subscriptions.",
               "Manage policy related pages.",
               "View app information (read-only).",
-              "View app quality data such as Vitals, Crashes etc."
+              "View app quality data such as Vitals, Crashes etc.",
+              "Manage the deep links setup of an app."
             ],
             "type": "string"
           },
@@ -7483,6 +7486,12 @@
       },
       "type": "object"
     },
+    "OtherRecurringProduct": {
+      "description": "Details of a recurring external transaction product which doesn't belong to any other more specific category.",
+      "id": "OtherRecurringProduct",
+      "properties": {},
+      "type": "object"
+    },
     "OtherRegionsBasePlanConfig": {
       "description": "Pricing information for any new locations Play may launch in.",
       "id": "OtherRegionsBasePlanConfig",
@@ -7521,6 +7530,10 @@
           "$ref": "OtherRegionsSubscriptionOfferPhasePrices",
           "description": "The absolute amount of money subtracted from the base plan price prorated over the phase duration that the user pays for this offer phase. For example, if the base plan price for this region is $12 for a period of 1 year, then a $1 absolute discount for a phase of a duration of 3 months would correspond to a price of $2. The resulting price may not be smaller than the minimum price allowed for any new locations Play may launch in."
         },
+        "free": {
+          "$ref": "OtherRegionsSubscriptionOfferPhaseFreePriceOverride",
+          "description": "Set to specify this offer is free to obtain."
+        },
         "otherRegionsPrices": {
           "$ref": "OtherRegionsSubscriptionOfferPhasePrices",
           "description": "The absolute price the user pays for this offer phase. The price must not be smaller than the minimum price allowed for any new locations Play may launch in."
@@ -7531,6 +7544,12 @@
           "type": "number"
         }
       },
+      "type": "object"
+    },
+    "OtherRegionsSubscriptionOfferPhaseFreePriceOverride": {
+      "description": "Represents the free price override configuration for any new locations Play may launch for a single offer phase.",
+      "id": "OtherRegionsSubscriptionOfferPhaseFreePriceOverride",
+      "properties": {},
       "type": "object"
     },
     "OtherRegionsSubscriptionOfferPhasePrices": {
@@ -7702,7 +7721,7 @@
           "type": "string"
         },
         "purchaseType": {
-          "description": "The type of purchase of the inapp product. This field is only set if this purchase was not made using the standard in-app billing flow. Possible values are: 0. Test (i.e. purchased from a license testing account) 1. Promo (i.e. purchased using a promo code) 2. Rewarded (i.e. from watching a video ad instead of paying)",
+          "description": "The type of purchase of the inapp product. This field is only set if this purchase was not made using the standard in-app billing flow. Possible values are: 0. Test (i.e. purchased from a license testing account) 1. Promo (i.e. purchased using a promo code). Does not include Play Points purchases. 2. Rewarded (i.e. from watching a video ad instead of paying)",
           "format": "int32",
           "type": "integer"
         },
@@ -7763,6 +7782,10 @@
             "Alternative billing only, where users may only use developer-manager billing."
           ],
           "type": "string"
+        },
+        "otherRecurringProduct": {
+          "$ref": "OtherRecurringProduct",
+          "description": "Details of a recurring external transaction product which doesn't belong to any other specific category."
         }
       },
       "type": "object"
@@ -7859,6 +7882,10 @@
           "$ref": "Money",
           "description": "The absolute amount of money subtracted from the base plan price prorated over the phase duration that the user pays for this offer phase. For example, if the base plan price for this region is $12 for a period of 1 year, then a $1 absolute discount for a phase of a duration of 3 months would correspond to a price of $2. The resulting price may not be smaller than the minimum price allowed for this region."
         },
+        "free": {
+          "$ref": "RegionalSubscriptionOfferPhaseFreePriceOverride",
+          "description": "Set to specify this offer is free to obtain."
+        },
         "price": {
           "$ref": "Money",
           "description": "The absolute price the user pays for this offer phase. The price must not be smaller than the minimum price allowed for this region."
@@ -7873,6 +7900,12 @@
           "type": "number"
         }
       },
+      "type": "object"
+    },
+    "RegionalSubscriptionOfferPhaseFreePriceOverride": {
+      "description": "Represents the free price override configuration for a single phase of a subscription offer",
+      "id": "RegionalSubscriptionOfferPhaseFreePriceOverride",
+      "properties": {},
       "type": "object"
     },
     "RegionalTaxRateInfo": {
@@ -9012,11 +9045,31 @@
       "description": "Defines the scope of subscriptions which a targeting rule can match to target offers to users based on past or current entitlement.",
       "id": "TargetingRuleScope",
       "properties": {
+        "anySubscriptionInApp": {
+          "$ref": "TargetingRuleScopeAnySubscriptionInApp",
+          "description": "The scope of the current targeting rule is any subscription in the parent app."
+        },
         "specificSubscriptionInApp": {
           "description": "The scope of the current targeting rule is the subscription with the specified subscription ID. Must be a subscription within the same parent app.",
           "type": "string"
+        },
+        "thisSubscription": {
+          "$ref": "TargetingRuleScopeThisSubscription",
+          "description": "The scope of the current targeting rule is the subscription in which this offer is defined."
         }
       },
+      "type": "object"
+    },
+    "TargetingRuleScopeAnySubscriptionInApp": {
+      "description": "Represents the targeting rule scope corresponding to any subscription in the parent app.",
+      "id": "TargetingRuleScopeAnySubscriptionInApp",
+      "properties": {},
+      "type": "object"
+    },
+    "TargetingRuleScopeThisSubscription": {
+      "description": "Represents the targeting rule scope corresponding to the subscriptions in which this offer is defined.",
+      "id": "TargetingRuleScopeThisSubscription",
+      "properties": {},
       "type": "object"
     },
     "TargetingUpdate": {
@@ -9482,11 +9535,13 @@
               "CAN_MANAGE_ORDERS_GLOBAL",
               "CAN_MANAGE_APP_CONTENT_GLOBAL",
               "CAN_VIEW_NON_FINANCIAL_DATA_GLOBAL",
-              "CAN_VIEW_APP_QUALITY_GLOBAL"
+              "CAN_VIEW_APP_QUALITY_GLOBAL",
+              "CAN_MANAGE_DEEPLINKS_GLOBAL"
             ],
             "enumDeprecated": [
               false,
               true,
+              false,
               false,
               false,
               false,
@@ -9522,7 +9577,8 @@
               "Manage orders and subscriptions.",
               "Manage policy related pages on all apps for the developer.",
               "View app information and download bulk reports (read-only).",
-              "View app quality information for all apps for the developer."
+              "View app quality information for all apps for the developer.",
+              "Manage the deep links setup for all apps for the developer."
             ],
             "type": "string"
           },

@@ -2614,7 +2614,7 @@
       }
     }
   },
-  "revision": "20240315",
+  "revision": "20240419",
   "rootUrl": "https://run.googleapis.com/",
   "schemas": {
     "Addressable": {
@@ -4853,6 +4853,14 @@
       "description": "JobSpec describes how the job will look.",
       "id": "JobSpec",
       "properties": {
+        "runExecutionToken": {
+          "description": "A unique string used as a suffix for creating a new execution. The Job will become ready when the execution is successfully completed. The sum of job name and token length must be fewer than 63 characters.",
+          "type": "string"
+        },
+        "startExecutionToken": {
+          "description": "A unique string used as a suffix for creating a new execution. The Job will become ready when the execution is successfully started. The sum of job name and token length must be fewer than 63 characters.",
+          "type": "string"
+        },
         "template": {
           "$ref": "ExecutionTemplateSpec",
           "description": "Optional. Describes the execution that will be created when running a job."
@@ -5273,7 +5281,7 @@
       "type": "object"
     },
     "NFSVolumeSource": {
-      "description": "Represents a persistent volume that will be mounted using NFS. This volume will be shared between all instances of the Service and data will not be deleted when the instance is shut down.",
+      "description": "Represents a persistent volume that will be mounted using NFS. This volume will be shared between all instances of the resource and data will not be deleted when the instance is shut down.",
       "id": "NFSVolumeSource",
       "properties": {
         "path": {

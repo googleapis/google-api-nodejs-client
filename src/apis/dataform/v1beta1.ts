@@ -158,6 +158,10 @@ export namespace dataform_v1beta1 {
    */
   export interface Schema$BigQueryAction {
     /**
+     * Output only. The ID of the BigQuery job that executed the SQL in sql_script. Only set once the job has started to run.
+     */
+    jobId?: string | null;
+    /**
      * Output only. The generated BigQuery SQL script that will be executed.
      */
     sqlScript?: string | null;
@@ -203,6 +207,7 @@ export namespace dataform_v1beta1 {
      * Optional. The default BigQuery location to use. Defaults to "US". See the BigQuery docs for a full list of locations: https://cloud.google.com/bigquery/docs/locations.
      */
     defaultLocation?: string | null;
+    defaultNotebookRuntimeOptions?: Schema$NotebookRuntimeOptions;
     /**
      * Optional. The default schema (BigQuery dataset ID).
      */
@@ -396,6 +401,10 @@ export namespace dataform_v1beta1 {
      * The full path including filename in which this action is located, relative to the workspace root.
      */
     filePath?: string | null;
+    /**
+     * The notebook executed by this action.
+     */
+    notebook?: Schema$Notebook;
     /**
      * The database operations executed by this action.
      */
@@ -844,6 +853,43 @@ export namespace dataform_v1beta1 {
    * `MoveFile` response message.
    */
   export interface Schema$MoveFileResponse {}
+  export interface Schema$Notebook {
+    /**
+     * The contents of the notebook.
+     */
+    contents?: string | null;
+    /**
+     * A list of actions that this action depends on.
+     */
+    dependencyTargets?: Schema$Target[];
+    /**
+     * Whether this action is disabled (i.e. should not be run).
+     */
+    disabled?: boolean | null;
+    /**
+     * Arbitrary, user-defined tags on this action.
+     */
+    tags?: string[] | null;
+  }
+  /**
+   * Represents a workflow action that will run against a Notebook runtime.
+   */
+  export interface Schema$NotebookAction {
+    /**
+     * Output only. The code contents of a Notebook to be run.
+     */
+    contents?: string | null;
+    /**
+     * Output only. The ID of the Vertex job that executed the notebook in contents and also the ID used for the outputs created in GCS buckets. Only set once the job has started to run.
+     */
+    jobId?: string | null;
+  }
+  export interface Schema$NotebookRuntimeOptions {
+    /**
+     * Optional. The GCS location to upload the result to. Format: `gs://bucket-name`.
+     */
+    gcsOutputBucket?: string | null;
+  }
   /**
    * Represents the metadata of the long-running operation.
    */
@@ -1362,7 +1408,7 @@ export namespace dataform_v1beta1 {
      */
     invocationConfig?: Schema$InvocationConfig;
     /**
-     * Output only. The workflow config's name.
+     * Identifier. The workflow config's name.
      */
     name?: string | null;
     /**
@@ -1431,6 +1477,10 @@ export namespace dataform_v1beta1 {
      * Output only. This action's timing details. `start_time` will be set if the action is in [RUNNING, SUCCEEDED, CANCELLED, FAILED] state. `end_time` will be set if the action is in [SUCCEEDED, CANCELLED, FAILED] state.
      */
     invocationTiming?: Schema$Interval;
+    /**
+     * Output only. The workflow action's notebook action details.
+     */
+    notebookAction?: Schema$NotebookAction;
     /**
      * Output only. This action's current state.
      */
@@ -1582,6 +1632,7 @@ export namespace dataform_v1beta1 {
           {
             url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1674,6 +1725,7 @@ export namespace dataform_v1beta1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1796,6 +1848,7 @@ export namespace dataform_v1beta1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1884,6 +1937,7 @@ export namespace dataform_v1beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1979,6 +2033,7 @@ export namespace dataform_v1beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2133,6 +2188,7 @@ export namespace dataform_v1beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2227,6 +2283,7 @@ export namespace dataform_v1beta1 {
               rootUrl + '/v1beta1/{+name}:computeAccessTokenStatus'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2316,6 +2373,7 @@ export namespace dataform_v1beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2400,6 +2458,7 @@ export namespace dataform_v1beta1 {
           {
             url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -2495,6 +2554,7 @@ export namespace dataform_v1beta1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2592,6 +2652,7 @@ export namespace dataform_v1beta1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2676,6 +2737,7 @@ export namespace dataform_v1beta1 {
           {
             url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2764,6 +2826,7 @@ export namespace dataform_v1beta1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2856,6 +2919,7 @@ export namespace dataform_v1beta1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2940,6 +3004,7 @@ export namespace dataform_v1beta1 {
           {
             url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -3035,6 +3100,7 @@ export namespace dataform_v1beta1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3131,6 +3197,7 @@ export namespace dataform_v1beta1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3219,6 +3286,7 @@ export namespace dataform_v1beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3314,6 +3382,7 @@ export namespace dataform_v1beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3600,6 +3669,7 @@ export namespace dataform_v1beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3688,6 +3758,7 @@ export namespace dataform_v1beta1 {
           {
             url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3783,6 +3854,7 @@ export namespace dataform_v1beta1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3880,6 +3952,7 @@ export namespace dataform_v1beta1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3926,6 +3999,10 @@ export namespace dataform_v1beta1 {
      * Optional. Filter for the returned list.
      */
     filter?: string;
+    /**
+     * Optional. This field only supports ordering by `name` and `create_time`. If unspecified, the server will choose the ordering. If specified, the default order is ascending for the `name` field.
+     */
+    orderBy?: string;
     /**
      * Optional. Maximum number of compilation results to return. The server may return fewer items than requested. If unspecified, the server will pick an appropriate default.
      */
@@ -4035,6 +4112,7 @@ export namespace dataform_v1beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4120,6 +4198,7 @@ export namespace dataform_v1beta1 {
           {
             url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -4205,6 +4284,7 @@ export namespace dataform_v1beta1 {
           {
             url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4300,6 +4380,7 @@ export namespace dataform_v1beta1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4385,6 +4466,7 @@ export namespace dataform_v1beta1 {
           {
             url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -4542,6 +4624,7 @@ export namespace dataform_v1beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4627,6 +4710,7 @@ export namespace dataform_v1beta1 {
           {
             url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -4712,6 +4796,7 @@ export namespace dataform_v1beta1 {
           {
             url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4807,6 +4892,7 @@ export namespace dataform_v1beta1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4892,6 +4978,7 @@ export namespace dataform_v1beta1 {
           {
             url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -4959,7 +5046,7 @@ export namespace dataform_v1beta1 {
   export interface Params$Resource$Projects$Locations$Repositories$Workflowconfigs$Patch
     extends StandardParameters {
     /**
-     * Output only. The workflow config's name.
+     * Identifier. The workflow config's name.
      */
     name?: string;
     /**
@@ -5049,6 +5136,7 @@ export namespace dataform_v1beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5140,6 +5228,7 @@ export namespace dataform_v1beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5225,6 +5314,7 @@ export namespace dataform_v1beta1 {
           {
             url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -5313,6 +5403,7 @@ export namespace dataform_v1beta1 {
           {
             url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5408,6 +5499,7 @@ export namespace dataform_v1beta1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5505,6 +5597,7 @@ export namespace dataform_v1beta1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5679,6 +5772,7 @@ export namespace dataform_v1beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5767,6 +5861,7 @@ export namespace dataform_v1beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5852,6 +5947,7 @@ export namespace dataform_v1beta1 {
           {
             url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -5947,6 +6043,7 @@ export namespace dataform_v1beta1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6042,6 +6139,7 @@ export namespace dataform_v1beta1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6139,6 +6237,7 @@ export namespace dataform_v1beta1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6224,6 +6323,7 @@ export namespace dataform_v1beta1 {
           {
             url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6312,6 +6412,7 @@ export namespace dataform_v1beta1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6407,6 +6508,7 @@ export namespace dataform_v1beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -6500,6 +6602,7 @@ export namespace dataform_v1beta1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6595,6 +6698,7 @@ export namespace dataform_v1beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -6690,6 +6794,7 @@ export namespace dataform_v1beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -6778,6 +6883,7 @@ export namespace dataform_v1beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -6866,6 +6972,7 @@ export namespace dataform_v1beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -6954,6 +7061,7 @@ export namespace dataform_v1beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -7048,6 +7156,7 @@ export namespace dataform_v1beta1 {
               rootUrl + '/v1beta1/{+workspace}:queryDirectoryContents'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -7138,6 +7247,7 @@ export namespace dataform_v1beta1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -7226,6 +7336,7 @@ export namespace dataform_v1beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -7314,6 +7425,7 @@ export namespace dataform_v1beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -7402,6 +7514,7 @@ export namespace dataform_v1beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -7495,6 +7608,7 @@ export namespace dataform_v1beta1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -7583,6 +7697,7 @@ export namespace dataform_v1beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -7678,6 +7793,7 @@ export namespace dataform_v1beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -7769,6 +7885,7 @@ export namespace dataform_v1beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),

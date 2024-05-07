@@ -716,6 +716,7 @@ export namespace streetviewpublish_v1 {
           {
             url: (rootUrl + '/v1/photo').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -803,6 +804,7 @@ export namespace streetviewpublish_v1 {
               '$1'
             ),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -890,6 +892,7 @@ export namespace streetviewpublish_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -978,6 +981,7 @@ export namespace streetviewpublish_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1062,6 +1066,7 @@ export namespace streetviewpublish_v1 {
           {
             url: (rootUrl + '/v1/photo/{id}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
+            apiVersion: '',
           },
           options
         ),
@@ -1213,6 +1218,7 @@ export namespace streetviewpublish_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1307,6 +1313,7 @@ export namespace streetviewpublish_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1402,6 +1409,7 @@ export namespace streetviewpublish_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1489,6 +1497,7 @@ export namespace streetviewpublish_v1 {
           {
             url: (rootUrl + '/v1/photos').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1632,6 +1641,7 @@ export namespace streetviewpublish_v1 {
           {
             url: (rootUrl + '/v1/photoSequence').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1720,6 +1730,7 @@ export namespace streetviewpublish_v1 {
               '$1'
             ),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -1808,6 +1819,7 @@ export namespace streetviewpublish_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1896,6 +1908,7 @@ export namespace streetviewpublish_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2037,6 +2050,7 @@ export namespace streetviewpublish_v1 {
           {
             url: (rootUrl + '/v1/photoSequences').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),

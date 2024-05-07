@@ -1284,7 +1284,7 @@
       }
     }
   },
-  "revision": "20240314",
+  "revision": "20240422",
   "rootUrl": "https://documentai.googleapis.com/",
   "schemas": {
     "GoogleCloudDocumentaiUiv1beta3AutoLabelDocumentsMetadata": {
@@ -3475,19 +3475,19 @@
           "type": "number"
         },
         "smallcaps": {
-          "description": "Whether the text is in small caps.",
+          "description": "Whether the text is in small caps. This feature is not supported yet.",
           "type": "boolean"
         },
         "strikeout": {
-          "description": "Whether the text is strikethrough.",
+          "description": "Whether the text is strikethrough. This feature is not supported yet.",
           "type": "boolean"
         },
         "subscript": {
-          "description": "Whether the text is a subscript.",
+          "description": "Whether the text is a subscript. This feature is not supported yet.",
           "type": "boolean"
         },
         "superscript": {
-          "description": "Whether the text is a superscript.",
+          "description": "Whether the text is a superscript. This feature is not supported yet.",
           "type": "boolean"
         },
         "textColor": {
@@ -4876,19 +4876,19 @@
           "type": "number"
         },
         "smallcaps": {
-          "description": "Whether the text is in small caps.",
+          "description": "Whether the text is in small caps. This feature is not supported yet.",
           "type": "boolean"
         },
         "strikeout": {
-          "description": "Whether the text is strikethrough.",
+          "description": "Whether the text is strikethrough. This feature is not supported yet.",
           "type": "boolean"
         },
         "subscript": {
-          "description": "Whether the text is a subscript.",
+          "description": "Whether the text is a subscript. This feature is not supported yet.",
           "type": "boolean"
         },
         "superscript": {
-          "description": "Whether the text is a superscript.",
+          "description": "Whether the text is a superscript. This feature is not supported yet.",
           "type": "boolean"
         },
         "textColor": {
@@ -5862,10 +5862,18 @@
       "description": "Document represents the canonical document resource in Document AI. It is an interchange format that provides insights into documents and allows for collaboration between users and Document AI to iterate and optimize for quality.",
       "id": "GoogleCloudDocumentaiV1beta3Document",
       "properties": {
+        "chunkedDocument": {
+          "$ref": "GoogleCloudDocumentaiV1beta3DocumentChunkedDocument",
+          "description": "Document chunked based on chunking config."
+        },
         "content": {
           "description": "Optional. Inline document content, represented as a stream of bytes. Note: As with all `bytes` fields, protobuffers use a pure binary representation, whereas JSON representations use base64.",
           "format": "byte",
           "type": "string"
+        },
+        "documentLayout": {
+          "$ref": "GoogleCloudDocumentaiV1beta3DocumentDocumentLayout",
+          "description": "Parsed layout of the document."
         },
         "entities": {
           "description": "A list of entities detected on Document.text. For document shards, entities in this list may cross shard boundaries.",
@@ -5928,6 +5936,275 @@
         },
         "uri": {
           "description": "Optional. Currently supports Google Cloud Storage URI of the form `gs://bucket_name/object_name`. Object versioning is not supported. For more information, refer to [Google Cloud Storage Request URIs](https://cloud.google.com/storage/docs/reference-uris).",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1beta3DocumentChunkedDocument": {
+      "description": "Represents the chunks that the document is divided into.",
+      "id": "GoogleCloudDocumentaiV1beta3DocumentChunkedDocument",
+      "properties": {
+        "chunks": {
+          "description": "List of chunks.",
+          "items": {
+            "$ref": "GoogleCloudDocumentaiV1beta3DocumentChunkedDocumentChunk"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1beta3DocumentChunkedDocumentChunk": {
+      "description": "Represents a chunk.",
+      "id": "GoogleCloudDocumentaiV1beta3DocumentChunkedDocumentChunk",
+      "properties": {
+        "chunkId": {
+          "description": "ID of the chunk.",
+          "type": "string"
+        },
+        "content": {
+          "description": "Text content of the chunk.",
+          "type": "string"
+        },
+        "pageFooters": {
+          "description": "Page footers associated with the chunk.",
+          "items": {
+            "$ref": "GoogleCloudDocumentaiV1beta3DocumentChunkedDocumentChunkChunkPageFooter"
+          },
+          "type": "array"
+        },
+        "pageHeaders": {
+          "description": "Page headers associated with the chunk.",
+          "items": {
+            "$ref": "GoogleCloudDocumentaiV1beta3DocumentChunkedDocumentChunkChunkPageHeader"
+          },
+          "type": "array"
+        },
+        "pageSpan": {
+          "$ref": "GoogleCloudDocumentaiV1beta3DocumentChunkedDocumentChunkChunkPageSpan",
+          "description": "Page span of the chunk."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1beta3DocumentChunkedDocumentChunkChunkPageFooter": {
+      "description": "Represents the page footer associated with the chunk.",
+      "id": "GoogleCloudDocumentaiV1beta3DocumentChunkedDocumentChunkChunkPageFooter",
+      "properties": {
+        "pageSpan": {
+          "$ref": "GoogleCloudDocumentaiV1beta3DocumentChunkedDocumentChunkChunkPageSpan",
+          "description": "Page span of the footer."
+        },
+        "text": {
+          "description": "Footer in text format.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1beta3DocumentChunkedDocumentChunkChunkPageHeader": {
+      "description": "Represents the page header associated with the chunk.",
+      "id": "GoogleCloudDocumentaiV1beta3DocumentChunkedDocumentChunkChunkPageHeader",
+      "properties": {
+        "pageSpan": {
+          "$ref": "GoogleCloudDocumentaiV1beta3DocumentChunkedDocumentChunkChunkPageSpan",
+          "description": "Page span of the header."
+        },
+        "text": {
+          "description": "Header in text format.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1beta3DocumentChunkedDocumentChunkChunkPageSpan": {
+      "description": "Represents where the chunk starts and ends in the document.",
+      "id": "GoogleCloudDocumentaiV1beta3DocumentChunkedDocumentChunkChunkPageSpan",
+      "properties": {
+        "pageEnd": {
+          "description": "Page where chunk ends in the document.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "pageStart": {
+          "description": "Page where chunk starts in the document.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1beta3DocumentDocumentLayout": {
+      "description": "Represents the parsed layout of a document as a collection of blocks that the document is divided into.",
+      "id": "GoogleCloudDocumentaiV1beta3DocumentDocumentLayout",
+      "properties": {
+        "blocks": {
+          "description": "List of blocks in the document.",
+          "items": {
+            "$ref": "GoogleCloudDocumentaiV1beta3DocumentDocumentLayoutDocumentLayoutBlock"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1beta3DocumentDocumentLayoutDocumentLayoutBlock": {
+      "description": "Represents a block. A block could be one of the various types (text, table, list) supported.",
+      "id": "GoogleCloudDocumentaiV1beta3DocumentDocumentLayoutDocumentLayoutBlock",
+      "properties": {
+        "blockId": {
+          "description": "ID of the block.",
+          "type": "string"
+        },
+        "listBlock": {
+          "$ref": "GoogleCloudDocumentaiV1beta3DocumentDocumentLayoutDocumentLayoutBlockLayoutListBlock",
+          "description": "Block consisting of list content/structure."
+        },
+        "pageSpan": {
+          "$ref": "GoogleCloudDocumentaiV1beta3DocumentDocumentLayoutDocumentLayoutBlockLayoutPageSpan",
+          "description": "Page span of the block."
+        },
+        "tableBlock": {
+          "$ref": "GoogleCloudDocumentaiV1beta3DocumentDocumentLayoutDocumentLayoutBlockLayoutTableBlock",
+          "description": "Block consisting of table content/structure."
+        },
+        "textBlock": {
+          "$ref": "GoogleCloudDocumentaiV1beta3DocumentDocumentLayoutDocumentLayoutBlockLayoutTextBlock",
+          "description": "Block consisting of text content."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1beta3DocumentDocumentLayoutDocumentLayoutBlockLayoutListBlock": {
+      "description": "Represents a list type block.",
+      "id": "GoogleCloudDocumentaiV1beta3DocumentDocumentLayoutDocumentLayoutBlockLayoutListBlock",
+      "properties": {
+        "listEntries": {
+          "description": "List entries that constitute a list block.",
+          "items": {
+            "$ref": "GoogleCloudDocumentaiV1beta3DocumentDocumentLayoutDocumentLayoutBlockLayoutListEntry"
+          },
+          "type": "array"
+        },
+        "type": {
+          "description": "Type of the list_entries (if exist). Available options are `ordered` and `unordered`.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1beta3DocumentDocumentLayoutDocumentLayoutBlockLayoutListEntry": {
+      "description": "Represents an entry in the list.",
+      "id": "GoogleCloudDocumentaiV1beta3DocumentDocumentLayoutDocumentLayoutBlockLayoutListEntry",
+      "properties": {
+        "blocks": {
+          "description": "A list entry is a list of blocks. Repeated blocks support further hierarchies and nested blocks.",
+          "items": {
+            "$ref": "GoogleCloudDocumentaiV1beta3DocumentDocumentLayoutDocumentLayoutBlock"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1beta3DocumentDocumentLayoutDocumentLayoutBlockLayoutPageSpan": {
+      "description": "Represents where the block starts and ends in the document.",
+      "id": "GoogleCloudDocumentaiV1beta3DocumentDocumentLayoutDocumentLayoutBlockLayoutPageSpan",
+      "properties": {
+        "pageEnd": {
+          "description": "Page where block ends in the document.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "pageStart": {
+          "description": "Page where block starts in the document.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1beta3DocumentDocumentLayoutDocumentLayoutBlockLayoutTableBlock": {
+      "description": "Represents a table type block.",
+      "id": "GoogleCloudDocumentaiV1beta3DocumentDocumentLayoutDocumentLayoutBlockLayoutTableBlock",
+      "properties": {
+        "bodyRows": {
+          "description": "Body rows containing main table content.",
+          "items": {
+            "$ref": "GoogleCloudDocumentaiV1beta3DocumentDocumentLayoutDocumentLayoutBlockLayoutTableRow"
+          },
+          "type": "array"
+        },
+        "caption": {
+          "description": "Table caption/title.",
+          "type": "string"
+        },
+        "headerRows": {
+          "description": "Header rows at the top of the table.",
+          "items": {
+            "$ref": "GoogleCloudDocumentaiV1beta3DocumentDocumentLayoutDocumentLayoutBlockLayoutTableRow"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1beta3DocumentDocumentLayoutDocumentLayoutBlockLayoutTableCell": {
+      "description": "Represents a cell in a table row.",
+      "id": "GoogleCloudDocumentaiV1beta3DocumentDocumentLayoutDocumentLayoutBlockLayoutTableCell",
+      "properties": {
+        "blocks": {
+          "description": "A table cell is a list of blocks. Repeated blocks support further hierarchies and nested blocks.",
+          "items": {
+            "$ref": "GoogleCloudDocumentaiV1beta3DocumentDocumentLayoutDocumentLayoutBlock"
+          },
+          "type": "array"
+        },
+        "colSpan": {
+          "description": "How many columns this cell spans.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "rowSpan": {
+          "description": "How many rows this cell spans.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1beta3DocumentDocumentLayoutDocumentLayoutBlockLayoutTableRow": {
+      "description": "Represents a row in a table.",
+      "id": "GoogleCloudDocumentaiV1beta3DocumentDocumentLayoutDocumentLayoutBlockLayoutTableRow",
+      "properties": {
+        "cells": {
+          "description": "A table row is a list of table cells.",
+          "items": {
+            "$ref": "GoogleCloudDocumentaiV1beta3DocumentDocumentLayoutDocumentLayoutBlockLayoutTableCell"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1beta3DocumentDocumentLayoutDocumentLayoutBlockLayoutTextBlock": {
+      "description": "Represents a text type block.",
+      "id": "GoogleCloudDocumentaiV1beta3DocumentDocumentLayoutDocumentLayoutBlockLayoutTextBlock",
+      "properties": {
+        "blocks": {
+          "description": "A text block could further have child blocks. Repeated blocks support further hierarchies and nested blocks.",
+          "items": {
+            "$ref": "GoogleCloudDocumentaiV1beta3DocumentDocumentLayoutDocumentLayoutBlock"
+          },
+          "type": "array"
+        },
+        "text": {
+          "description": "Text content stored in the block.",
+          "type": "string"
+        },
+        "type": {
+          "description": "Type of the text in the block. Available options are: `paragraph`, `subtitle`, `heading-1`, `heading-2`, `heading-3`, `heading-4`, `heading-5`, `header`, `footer`.",
           "type": "string"
         }
       },
@@ -6856,19 +7133,19 @@
           "type": "number"
         },
         "smallcaps": {
-          "description": "Whether the text is in small caps.",
+          "description": "Whether the text is in small caps. This feature is not supported yet.",
           "type": "boolean"
         },
         "strikeout": {
-          "description": "Whether the text is strikethrough.",
+          "description": "Whether the text is strikethrough. This feature is not supported yet.",
           "type": "boolean"
         },
         "subscript": {
-          "description": "Whether the text is a subscript.",
+          "description": "Whether the text is a subscript. This feature is not supported yet.",
           "type": "boolean"
         },
         "superscript": {
-          "description": "Whether the text is a superscript.",
+          "description": "Whether the text is a superscript. This feature is not supported yet.",
           "type": "boolean"
         },
         "textColor": {
@@ -8127,6 +8404,10 @@
           "$ref": "GoogleCloudDocumentaiV1beta3ProcessOptionsIndividualPageSelector",
           "description": "Which pages to process (1-indexed)."
         },
+        "layoutConfig": {
+          "$ref": "GoogleCloudDocumentaiV1beta3ProcessOptionsLayoutConfig",
+          "description": "Optional. Only applicable to `LAYOUT_PARSER_PROCESSOR`. Returns error if set on other processor types."
+        },
         "ocrConfig": {
           "$ref": "GoogleCloudDocumentaiV1beta3OcrConfig",
           "description": "Only applicable to `OCR_PROCESSOR` and `FORM_PARSER_PROCESSOR`. Returns error if set on other processor types."
@@ -8149,6 +8430,42 @@
             "type": "integer"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1beta3ProcessOptionsLayoutConfig": {
+      "description": "Serving config for layout parser processor.",
+      "id": "GoogleCloudDocumentaiV1beta3ProcessOptionsLayoutConfig",
+      "properties": {
+        "chunkingConfig": {
+          "$ref": "GoogleCloudDocumentaiV1beta3ProcessOptionsLayoutConfigChunkingConfig",
+          "description": "Optional. Config for chunking in layout parser processor."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1beta3ProcessOptionsLayoutConfigChunkingConfig": {
+      "description": "Serving config for chunking.",
+      "id": "GoogleCloudDocumentaiV1beta3ProcessOptionsLayoutConfigChunkingConfig",
+      "properties": {
+        "breakpointPercentileThreshold": {
+          "description": "Optional. The percentile of cosine dissimilarity that must be exceeded between a group of tokens and the next. The smaller this number is, the more chunks will be generated.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "chunkSize": {
+          "description": "Optional. The chunk sizes to use when splitting documents, in order of level.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "includeAncestorHeadings": {
+          "description": "Optional. Whether or not to include ancestor headings when splitting.",
+          "type": "boolean"
+        },
+        "semanticChunkingGroupSize": {
+          "description": "Optional. The number of tokens to group together when evaluating semantic similarity.",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -8414,11 +8731,11 @@
           "type": "string"
         },
         "name": {
-          "description": "The resource name of the processor version. Format: `projects/{project}/locations/{location}/processors/{processor}/processorVersions/{processor_version}`",
+          "description": "Identifier. The resource name of the processor version. Format: `projects/{project}/locations/{location}/processors/{processor}/processorVersions/{processor_version}`",
           "type": "string"
         },
         "state": {
-          "description": "The state of the processor version.",
+          "description": "Output only. The state of the processor version.",
           "enum": [
             "STATE_UNSPECIFIED",
             "DEPLOYED",
@@ -8441,6 +8758,7 @@
             "The processor version failed and is in an indeterminate state.",
             "The processor version is being imported."
           ],
+          "readOnly": true,
           "type": "string"
         }
       },

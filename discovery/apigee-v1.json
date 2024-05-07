@@ -9079,6 +9079,38 @@
             }
           }
         },
+        "securityAssessmentResults": {
+          "methods": {
+            "batchCompute": {
+              "description": "Compute RAV2 security scores for a set of resources.",
+              "flatPath": "v1/organizations/{organizationsId}/securityAssessmentResults:batchCompute",
+              "httpMethod": "POST",
+              "id": "apigee.organizations.securityAssessmentResults.batchCompute",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. Name of the organization for which the score needs to be computed in the following format: `organizations/{org}/securityAssessmentResults`",
+                  "location": "path",
+                  "pattern": "^organizations/[^/]+/securityAssessmentResults$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+name}:batchCompute",
+              "request": {
+                "$ref": "GoogleCloudApigeeV1BatchComputeSecurityAssessmentResultsRequest"
+              },
+              "response": {
+                "$ref": "GoogleCloudApigeeV1BatchComputeSecurityAssessmentResultsResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            }
+          }
+        },
         "securityProfiles": {
           "methods": {
             "create": {
@@ -10013,7 +10045,7 @@
       }
     }
   },
-  "revision": "20240318",
+  "revision": "20240430",
   "rootUrl": "https://apigee.googleapis.com/",
   "schemas": {
     "EdgeConfigstoreBundleBadBundle": {
@@ -10416,7 +10448,7 @@
           "type": "string"
         },
         "imageUrl": {
-          "description": "Optional. Location of the image used for the catalog item in the catalog. For portal files, this can have the format `/files/{filename}`. Max length is 2,083 characters.",
+          "description": "Optional. Location of the image used for the catalog item in the catalog. This can be either an image with an external URL or a file path for [image files stored in the portal](/apigee/docs/api-platform/publish/portal/portal-files\"), for example, `/files/book-tree.jpg`. When specifying the URL of an external image, the image won't be uploaded to your assets; additionally, loading the image in the integrated portal will be subject to its availability, which may be blocked or restricted by [content security policies](/apigee/docs/api-platform/publish/portal/csp). Max length of file path is 2,083 characters.",
           "type": "string"
         },
         "modified": {
@@ -11340,6 +11372,104 @@
       },
       "type": "object"
     },
+    "GoogleCloudApigeeV1BatchComputeSecurityAssessmentResultsRequest": {
+      "description": "Request for BatchComputeSecurityAssessmentResults.",
+      "id": "GoogleCloudApigeeV1BatchComputeSecurityAssessmentResultsRequest",
+      "properties": {
+        "include": {
+          "$ref": "GoogleCloudApigeeV1BatchComputeSecurityAssessmentResultsRequestResourceArray",
+          "description": "Include only these resources."
+        },
+        "includeAllResources": {
+          "$ref": "GoogleCloudApigeeV1BatchComputeSecurityAssessmentResultsRequestIncludeAll",
+          "description": "Include all resources under the scope."
+        },
+        "pageSize": {
+          "description": "Optional. The maximum number of results to return. The service may return fewer than this value. If unspecified, at most 50 results will be returned.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "pageToken": {
+          "description": "Optional. A page token, received from a previous `BatchComputeSecurityAssessmentResults` call. Provide this to retrieve the subsequent page.",
+          "type": "string"
+        },
+        "profile": {
+          "description": "Required. Name of the profile that is used for computation.",
+          "type": "string"
+        },
+        "scope": {
+          "description": "Required. Scope of the resources for the computation. For Apigee, the environment is the scope of the resources.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudApigeeV1BatchComputeSecurityAssessmentResultsRequestIncludeAll": {
+      "description": "Message for include_all option.",
+      "id": "GoogleCloudApigeeV1BatchComputeSecurityAssessmentResultsRequestIncludeAll",
+      "properties": {},
+      "type": "object"
+    },
+    "GoogleCloudApigeeV1BatchComputeSecurityAssessmentResultsRequestResourceArray": {
+      "description": "An array of resource messages.",
+      "id": "GoogleCloudApigeeV1BatchComputeSecurityAssessmentResultsRequestResourceArray",
+      "properties": {
+        "resources": {
+          "description": "Required. The array of resources. For Apigee, the proxies are resources.",
+          "items": {
+            "$ref": "GoogleCloudApigeeV1BatchComputeSecurityAssessmentResultsRequestResourceArrayResource"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudApigeeV1BatchComputeSecurityAssessmentResultsRequestResourceArrayResource": {
+      "description": "Resource for which we are computing security assessment.",
+      "id": "GoogleCloudApigeeV1BatchComputeSecurityAssessmentResultsRequestResourceArrayResource",
+      "properties": {
+        "name": {
+          "description": "Required. Name of this resource.",
+          "type": "string"
+        },
+        "type": {
+          "description": "Required. Type of this resource.",
+          "enum": [
+            "RESOURCE_TYPE_UNSPECIFIED",
+            "API_PROXY"
+          ],
+          "enumDescriptions": [
+            "ResourceType not specified.",
+            "Resource is an Apigee Proxy."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudApigeeV1BatchComputeSecurityAssessmentResultsResponse": {
+      "description": "Response for BatchComputeSecurityAssessmentResults.",
+      "id": "GoogleCloudApigeeV1BatchComputeSecurityAssessmentResultsResponse",
+      "properties": {
+        "assessmentTime": {
+          "description": "The time of the assessment api call.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "nextPageToken": {
+          "description": "A token that can be sent as `page_token` to retrieve the next page. If this field is blank, there are no subsequent pages.",
+          "type": "string"
+        },
+        "securityAssessmentResults": {
+          "description": "Default sort order is by resource name in alphabetic order.",
+          "items": {
+            "$ref": "GoogleCloudApigeeV1SecurityAssessmentResult"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudApigeeV1BatchUpdateSecurityIncidentsRequest": {
       "description": "Request for BatchUpdateSecurityIncident.",
       "id": "GoogleCloudApigeeV1BatchUpdateSecurityIncidentsRequest",
@@ -11564,7 +11694,7 @@
         },
         "timeRange": {
           "$ref": "GoogleTypeInterval",
-          "description": "Required. Time range for score calculation. At most 14 days of scores will be returned."
+          "description": "Required. Time range for score calculation. At most 14 days of scores will be returned, and both the start and end dates must be within the last 90 days."
         }
       },
       "type": "object"
@@ -13620,7 +13750,7 @@
           "type": "string"
         },
         "diskEncryptionKeyName": {
-          "description": "Customer Managed Encryption Key (CMEK) used for disk and volume encryption. Required for Apigee paid subscriptions only. Use the following format: `projects/([^/]+)/locations/([^/]+)/keyRings/([^/]+)/cryptoKeys/([^/]+)`",
+          "description": "Customer Managed Encryption Key (CMEK) used for disk and volume encryption. If not specified, a Google-Managed encryption key will be used. Use the following format: `projects/([^/]+)/locations/([^/]+)/keyRings/([^/]+)/cryptoKeys/([^/]+)`",
           "type": "string"
         },
         "displayName": {
@@ -14910,11 +15040,11 @@
           "type": "string"
         },
         "apiConsumerDataEncryptionKeyName": {
-          "description": "Cloud KMS key name used for encrypting API consumer data. Required for US/EU regions when [BillingType](#BillingType) is `SUBSCRIPTION`. When [BillingType](#BillingType) is `EVALUATION` or the region is not US/EU, a Google-Managed encryption key will be used. Format: `projects/*/locations/*/keyRings/*/cryptoKeys/*`",
+          "description": "Cloud KMS key name used for encrypting API consumer data. If not specified or [BillingType](#BillingType) is `EVALUATION`, a Google-Managed encryption key will be used. Format: `projects/*/locations/*/keyRings/*/cryptoKeys/*`",
           "type": "string"
         },
         "apiConsumerDataLocation": {
-          "description": "This field is needed only for customers with control plane in US or EU. Apigee stores some control plane data only in single region. This field determines which single region Apigee should use. For example: \"us-west1\" when control plane is in US or \"europe-west2\" when control plane is in EU.",
+          "description": "This field is needed only for customers using non-default data residency regions. Apigee stores some control plane data only in single region. This field determines which single region Apigee should use. For example: \"us-west1\" when control plane is in US or \"europe-west2\" when control plane is in EU.",
           "type": "string"
         },
         "apigeeProjectId": {
@@ -14956,7 +15086,7 @@
           "type": "string"
         },
         "controlPlaneEncryptionKeyName": {
-          "description": "Cloud KMS key name used for encrypting control plane data that is stored in a multi region. Required when [BillingType](#BillingType) is `SUBSCRIPTION`. When [BillingType](#BillingType) is `EVALUATION`, a Google-Managed encryption key will be used. Format: `projects/*/locations/*/keyRings/*/cryptoKeys/*`",
+          "description": "Cloud KMS key name used for encrypting control plane data that is stored in a multi region. Only used for the data residency region \"US\" or \"EU\". If not specified or [BillingType](#BillingType) is `EVALUATION`, a Google-Managed encryption key will be used. Format: `projects/*/locations/*/keyRings/*/cryptoKeys/*`",
           "type": "string"
         },
         "createdAt": {
@@ -15020,7 +15150,7 @@
           "description": "Properties defined in the Apigee organization profile."
         },
         "runtimeDatabaseEncryptionKeyName": {
-          "description": "Cloud KMS key name used for encrypting the data that is stored and replicated across runtime instances. Update is not allowed after the organization is created. Required when [RuntimeType](#RuntimeType) is `CLOUD`. If not specified when [RuntimeType](#RuntimeType) is `TRIAL`, a Google-Managed encryption key will be used. For example: \"projects/foo/locations/us/keyRings/bar/cryptoKeys/baz\". **Note:** Not supported for Apigee hybrid.",
+          "description": "Cloud KMS key name used for encrypting the data that is stored and replicated across runtime instances. Update is not allowed after the organization is created. If not specified or [RuntimeType](#RuntimeType) is `TRIAL`, a Google-Managed encryption key will be used. For example: \"projects/foo/locations/us/keyRings/bar/cryptoKeys/baz\". **Note:** Not supported for Apigee hybrid.",
           "type": "string"
         },
         "runtimeType": {
@@ -16579,6 +16709,14 @@
           },
           "type": "array"
         },
+        "asns": {
+          "description": "Optional. A list of ASN numbers to act on, e.g. 23. https://en.wikipedia.org/wiki/Autonomous_system_(Internet) This uses int64 instead of uint32 because of https://linter.aip.dev/141/forbidden-types.",
+          "items": {
+            "format": "int64",
+            "type": "string"
+          },
+          "type": "array"
+        },
         "botReasons": {
           "description": "Optional. A list of Bot Reasons. Current options: Flooder, Brute Guessor, Static Content Scraper, OAuth Abuser, Robot Abuser, TorListRule, Advanced Anomaly Detection, Advanced API Scraper, Search Engine Crawlers, Public Clouds, Public Cloud AWS, Public Cloud Azure, and Public Cloud Google.",
           "items": {
@@ -16602,6 +16740,13 @@
         },
         "ipAddressRanges": {
           "description": "Optional. A list of IP addresses. This could be either IPv4 or IPv6. Limited to 100 per action.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "regionCodes": {
+          "description": "Optional. A list of countries/region codes to act on, e.g. US. This follows https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2.",
           "items": {
             "type": "string"
           },
@@ -16674,6 +16819,190 @@
           "description": "Output only. The update time for configuration.",
           "format": "google-datetime",
           "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudApigeeV1SecurityAssessmentResult": {
+      "description": "The security assessment result for one resource.",
+      "id": "GoogleCloudApigeeV1SecurityAssessmentResult",
+      "properties": {
+        "createTime": {
+          "description": "The time of the assessment of this resource. This could lag behind `assessment_time` due to caching within the backend.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "error": {
+          "$ref": "GoogleRpcStatus",
+          "description": "The error status if scoring fails."
+        },
+        "resource": {
+          "$ref": "GoogleCloudApigeeV1SecurityAssessmentResultResource",
+          "description": "The assessed resource."
+        },
+        "scoringResult": {
+          "$ref": "GoogleCloudApigeeV1SecurityAssessmentResultScoringResult",
+          "description": "The result of the assessment."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudApigeeV1SecurityAssessmentResultResource": {
+      "description": "Resource for which we are computing security assessment.",
+      "id": "GoogleCloudApigeeV1SecurityAssessmentResultResource",
+      "properties": {
+        "name": {
+          "description": "Required. Name of this resource.",
+          "type": "string"
+        },
+        "resourceRevisionId": {
+          "description": "The revision id for the resource. In case of Apigee, this is proxy revision id.",
+          "type": "string"
+        },
+        "type": {
+          "description": "Required. Type of this resource.",
+          "enum": [
+            "RESOURCE_TYPE_UNSPECIFIED",
+            "API_PROXY"
+          ],
+          "enumDescriptions": [
+            "ResourceType not specified.",
+            "Resource is an Apigee Proxy."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudApigeeV1SecurityAssessmentResultScoringResult": {
+      "description": "The result of the assessment.",
+      "id": "GoogleCloudApigeeV1SecurityAssessmentResultScoringResult",
+      "properties": {
+        "assessmentRecommendations": {
+          "additionalProperties": {
+            "$ref": "GoogleCloudApigeeV1SecurityAssessmentResultScoringResultAssessmentRecommendation"
+          },
+          "description": "The recommendations of the assessment. The key is the \"name\" of the assessment (not display_name), and the value are the recommendations.",
+          "type": "object"
+        },
+        "dataUpdateTime": {
+          "description": "The time when resource data was last fetched for this resource. This time may be different than when the resource was actually updated due to lag in data collection.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "failedAssessmentPerWeight": {
+          "additionalProperties": {
+            "format": "int32",
+            "type": "integer"
+          },
+          "description": "The number of failed assessments grouped by its weight. Keys are one of the following: \"MAJOR\", \"MODERATE\", \"MINOR\".",
+          "type": "object"
+        },
+        "score": {
+          "description": "The security score of the assessment.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "severity": {
+          "description": "The severity of the assessment.",
+          "enum": [
+            "SEVERITY_UNSPECIFIED",
+            "LOW",
+            "MEDIUM",
+            "HIGH",
+            "MINIMAL"
+          ],
+          "enumDescriptions": [
+            "Severity is not defined.",
+            "Severity is low.",
+            "Severity is medium.",
+            "Severity is high.",
+            "Severity is minimal"
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudApigeeV1SecurityAssessmentResultScoringResultAssessmentRecommendation": {
+      "description": "The message format of a recommendation from the assessment.",
+      "id": "GoogleCloudApigeeV1SecurityAssessmentResultScoringResultAssessmentRecommendation",
+      "properties": {
+        "displayName": {
+          "description": "The display name of the assessment.",
+          "type": "string"
+        },
+        "recommendations": {
+          "description": "The recommended steps of the assessment.",
+          "items": {
+            "$ref": "GoogleCloudApigeeV1SecurityAssessmentResultScoringResultAssessmentRecommendationRecommendation"
+          },
+          "type": "array"
+        },
+        "scoreImpact": {
+          "description": "Score impact indicates the impact on the overall score if the assessment were to pass.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "verdict": {
+          "description": "Verdict indicates the assessment result.",
+          "enum": [
+            "VERDICT_UNSPECIFIED",
+            "PASS",
+            "FAIL"
+          ],
+          "enumDescriptions": [
+            "The verdict is unspecified.",
+            "The assessment has passed.",
+            "The assessment has failed."
+          ],
+          "type": "string"
+        },
+        "weight": {
+          "description": "The weight of the assessment which was set in the profile.",
+          "enum": [
+            "WEIGHT_UNSPECIFIED",
+            "MINOR",
+            "MODERATE",
+            "MAJOR"
+          ],
+          "enumDescriptions": [
+            "The weight is unspecified.",
+            "The weight is minor.",
+            "The weight is moderate.",
+            "The weight is major."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudApigeeV1SecurityAssessmentResultScoringResultAssessmentRecommendationRecommendation": {
+      "description": "The format of the assessment recommendation.",
+      "id": "GoogleCloudApigeeV1SecurityAssessmentResultScoringResultAssessmentRecommendationRecommendation",
+      "properties": {
+        "description": {
+          "description": "The description of the recommendation.",
+          "type": "string"
+        },
+        "link": {
+          "$ref": "GoogleCloudApigeeV1SecurityAssessmentResultScoringResultAssessmentRecommendationRecommendationLink",
+          "description": "The link for the recommendation."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudApigeeV1SecurityAssessmentResultScoringResultAssessmentRecommendationRecommendationLink": {
+      "description": "The format for a link in the recommendation.",
+      "id": "GoogleCloudApigeeV1SecurityAssessmentResultScoringResultAssessmentRecommendationRecommendationLink",
+      "properties": {
+        "text": {
+          "description": "The text of the url. (ie: \"Learn more\")",
+          "type": "string"
+        },
+        "uri": {
+          "description": "The link itself.",
           "type": "string"
         }
       },
@@ -17543,6 +17872,10 @@
           "description": "Required. Enables TLS. If false, neither one-way nor two-way TLS will be enabled.",
           "type": "boolean"
         },
+        "enforce": {
+          "description": "TLS is strictly enforced.",
+          "type": "boolean"
+        },
         "ignoreValidationErrors": {
           "description": "If true, Edge ignores TLS certificate errors. Valid when configuring TLS for target servers and target endpoints, and when configuring virtual hosts that use 2-way TLS. When used with a target endpoint/target server, if the backend system uses SNI and returns a cert with a subject Distinguished Name (DN) that does not match the hostname, there is no way to ignore the error and the connection fails.",
           "type": "boolean"
@@ -17603,6 +17936,10 @@
         },
         "enabled": {
           "description": "Flag that specifies whether one-way TLS is enabled. Set to `true` to enable one-way TLS.",
+          "type": "boolean"
+        },
+        "enforce": {
+          "description": "Flag that enforces TLS settings",
           "type": "boolean"
         },
         "ignoreValidationErrors": {

@@ -146,7 +146,7 @@
       }
     }
   },
-  "revision": "20230807",
+  "revision": "20240423",
   "rootUrl": "https://verifiedaccess.googleapis.com/",
   "schemas": {
     "Challenge": {
@@ -328,6 +328,10 @@
             "type": "string"
           },
           "type": "array"
+        },
+        "profileEnrollmentDomain": {
+          "description": "Enrollment domain of the customer which is currently managing the profile.",
+          "type": "string"
         },
         "realtimeUrlCheckMode": {
           "description": "Whether Enterprise-grade (i.e. custom) unsafe URL scanning is enabled or not. This setting may be controlled by an enterprise policy: https://chromeenterprise.google/policies/#EnterpriseRealTimeUrlCheckMode",

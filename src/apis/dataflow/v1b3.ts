@@ -861,7 +861,7 @@ export namespace dataflow_v1b3 {
      */
     serviceKmsKeyName?: string | null;
     /**
-     * The list of service options to enable. This field should be used for service related experiments only. These experiments, when graduating to GA, should be replaced by dedicated fields or become default (i.e. always on).
+     * Optional. The list of service options to enable. This field should be used for service related experiments only. These experiments, when graduating to GA, should be replaced by dedicated fields or become default (i.e. always on).
      */
     serviceOptions?: string[] | null;
     /**
@@ -1314,7 +1314,7 @@ export namespace dataflow_v1b3 {
      */
     currentStateTime?: string | null;
     /**
-     * The environment for the job.
+     * Optional. The environment for the job.
      */
     environment?: Schema$Environment;
     /**
@@ -1338,7 +1338,7 @@ export namespace dataflow_v1b3 {
      */
     location?: string | null;
     /**
-     * The user-specified Dataflow job name. Only one active job with a given name can exist in a project within one region at any given time. Jobs in different regions can have the same name. If a caller attempts to create a job with the same name as an active job that already exists, the attempt returns the existing job. The name must match the regular expression `[a-z]([-a-z0-9]{0,1022\}[a-z0-9])?`
+     * Optional. The user-specified Dataflow job name. Only one active job with a given name can exist in a project within one region at any given time. Jobs in different regions can have the same name. If a caller attempts to create a job with the same name as an active job that already exists, the attempt returns the existing job. The name must match the regular expression `[a-z]([-a-z0-9]{0,1022\}[a-z0-9])?`
      */
     name?: string | null;
     /**
@@ -1398,7 +1398,7 @@ export namespace dataflow_v1b3 {
      */
     transformNameMapping?: {[key: string]: string} | null;
     /**
-     * The type of Dataflow job.
+     * Optional. The type of Dataflow job.
      */
     type?: string | null;
   }
@@ -3229,6 +3229,10 @@ export namespace dataflow_v1b3 {
      */
     maxWorkItemCommitBytes?: string | null;
     /**
+     * Operational limits for the streaming job. Can be used by the worker to validate outputs sent to the backend.
+     */
+    operationalLimits?: Schema$StreamingOperationalLimits;
+    /**
      * Set of computation configuration information.
      */
     streamingComputationConfigs?: Schema$StreamingComputationConfig[];
@@ -3244,6 +3248,43 @@ export namespace dataflow_v1b3 {
      * If present, the worker must use this port to communicate with Windmill Service dispatchers. Only applicable when windmill_service_endpoint is specified.
      */
     windmillServicePort?: string | null;
+  }
+  /**
+   * Operational limits imposed on streaming jobs by the backend.
+   */
+  export interface Schema$StreamingOperationalLimits {
+    /**
+     * The maximum size for an element in bag state.
+     */
+    maxBagElementBytes?: string | null;
+    /**
+     * The maximum size for an element in global data.
+     */
+    maxGlobalDataBytes?: string | null;
+    /**
+     * The maximum size allowed for a key.
+     */
+    maxKeyBytes?: string | null;
+    /**
+     * The maximum size for a single output element.
+     */
+    maxProductionOutputBytes?: string | null;
+    /**
+     * The maximum size for an element in sorted list state.
+     */
+    maxSortedListElementBytes?: string | null;
+    /**
+     * The maximum size for a source state update.
+     */
+    maxSourceStateBytes?: string | null;
+    /**
+     * The maximum size for a state tag.
+     */
+    maxTagBytes?: string | null;
+    /**
+     * The maximum size for a value state field.
+     */
+    maxValueBytes?: string | null;
   }
   /**
    * Contains per-user worker telemetry used in streaming autoscaling.
@@ -3490,6 +3531,10 @@ export namespace dataflow_v1b3 {
    * Metadata describing a template.
    */
   export interface Schema$TemplateMetadata {
+    /**
+     * Optional. Indicates the default streaming mode for a streaming template. Only valid if both supports_at_least_once and supports_exactly_once are true. Possible values: UNSPECIFIED, EXACTLY_ONCE and AT_LEAST_ONCE
+     */
+    defaultStreamingMode?: string | null;
     /**
      * Optional. A description of the template.
      */
@@ -4193,6 +4238,7 @@ export namespace dataflow_v1b3 {
               '$1'
             ),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -4286,6 +4332,7 @@ export namespace dataflow_v1b3 {
               rootUrl + '/v1b3/projects/{projectId}/WorkerMessages'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4413,6 +4460,7 @@ export namespace dataflow_v1b3 {
               rootUrl + '/v1b3/projects/{projectId}/jobs:aggregated'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4500,6 +4548,7 @@ export namespace dataflow_v1b3 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4587,6 +4636,7 @@ export namespace dataflow_v1b3 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4673,6 +4723,7 @@ export namespace dataflow_v1b3 {
               rootUrl + '/v1b3/projects/{projectId}/jobs/{jobId}/metrics'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4760,6 +4811,7 @@ export namespace dataflow_v1b3 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4846,6 +4898,7 @@ export namespace dataflow_v1b3 {
               rootUrl + '/v1b3/projects/{projectId}/jobs/{jobId}:snapshot'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4933,6 +4986,7 @@ export namespace dataflow_v1b3 {
               '$1'
             ),
             method: 'PUT',
+            apiVersion: '',
           },
           options
         ),
@@ -5199,6 +5253,7 @@ export namespace dataflow_v1b3 {
               '/v1b3/projects/{projectId}/jobs/{jobId}/debug/getConfig'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5293,6 +5348,7 @@ export namespace dataflow_v1b3 {
               '/v1b3/projects/{projectId}/jobs/{jobId}/debug/sendCapture'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5424,6 +5480,7 @@ export namespace dataflow_v1b3 {
               rootUrl + '/v1b3/projects/{projectId}/jobs/{jobId}/messages'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5559,6 +5616,7 @@ export namespace dataflow_v1b3 {
               '/v1b3/projects/{projectId}/jobs/{jobId}/workItems:lease'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5653,6 +5711,7 @@ export namespace dataflow_v1b3 {
               '/v1b3/projects/{projectId}/jobs/{jobId}/workItems:reportStatus'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5799,6 +5858,7 @@ export namespace dataflow_v1b3 {
               '/v1b3/projects/{projectId}/locations/{location}/WorkerMessages'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5917,6 +5977,7 @@ export namespace dataflow_v1b3 {
               '/v1b3/projects/{projectId}/locations/{location}/flexTemplates:launch'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -6043,6 +6104,7 @@ export namespace dataflow_v1b3 {
               rootUrl + '/v1b3/projects/{projectId}/locations/{location}/jobs'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -6130,6 +6192,7 @@ export namespace dataflow_v1b3 {
               '/v1b3/projects/{projectId}/locations/{location}/jobs/{jobId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6223,6 +6286,7 @@ export namespace dataflow_v1b3 {
               '/v1b3/projects/{projectId}/locations/{location}/jobs/{jobId}/executionDetails'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6310,6 +6374,7 @@ export namespace dataflow_v1b3 {
               '/v1b3/projects/{projectId}/locations/{location}/jobs/{jobId}/metrics'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6396,6 +6461,7 @@ export namespace dataflow_v1b3 {
               rootUrl + '/v1b3/projects/{projectId}/locations/{location}/jobs'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6483,6 +6549,7 @@ export namespace dataflow_v1b3 {
               '/v1b3/projects/{projectId}/locations/{location}/jobs/{jobId}:snapshot'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -6570,6 +6637,7 @@ export namespace dataflow_v1b3 {
               '/v1b3/projects/{projectId}/locations/{location}/jobs/{jobId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
+            apiVersion: '',
           },
           options
         ),
@@ -6832,6 +6900,7 @@ export namespace dataflow_v1b3 {
               '/v1b3/projects/{projectId}/locations/{location}/jobs/{jobId}/debug/getConfig'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -6927,6 +6996,7 @@ export namespace dataflow_v1b3 {
               '/v1b3/projects/{projectId}/locations/{location}/jobs/{jobId}/debug/sendCapture'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -7067,6 +7137,7 @@ export namespace dataflow_v1b3 {
               '/v1b3/projects/{projectId}/locations/{location}/jobs/{jobId}/messages'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -7202,6 +7273,7 @@ export namespace dataflow_v1b3 {
               '/v1b3/projects/{projectId}/locations/{location}/jobs/{jobId}/snapshots'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -7320,6 +7392,7 @@ export namespace dataflow_v1b3 {
               '/v1b3/projects/{projectId}/locations/{location}/jobs/{jobId}/stages/{stageId}/executionDetails'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -7455,6 +7528,7 @@ export namespace dataflow_v1b3 {
               '/v1b3/projects/{projectId}/locations/{location}/jobs/{jobId}/workItems:lease'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -7550,6 +7624,7 @@ export namespace dataflow_v1b3 {
               '/v1b3/projects/{projectId}/locations/{location}/jobs/{jobId}/workItems:reportStatus'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -7692,6 +7767,7 @@ export namespace dataflow_v1b3 {
               '/v1b3/projects/{projectId}/locations/{location}/snapshots/{snapshotId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -7779,6 +7855,7 @@ export namespace dataflow_v1b3 {
               '/v1b3/projects/{projectId}/locations/{location}/snapshots/{snapshotId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -7871,6 +7948,7 @@ export namespace dataflow_v1b3 {
               '/v1b3/projects/{projectId}/locations/{location}/snapshots'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -8011,6 +8089,7 @@ export namespace dataflow_v1b3 {
               '/v1b3/projects/{projectId}/locations/{location}/templates'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -8101,6 +8180,7 @@ export namespace dataflow_v1b3 {
               '/v1b3/projects/{projectId}/locations/{location}/templates:get'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -8193,6 +8273,7 @@ export namespace dataflow_v1b3 {
               '/v1b3/projects/{projectId}/locations/{location}/templates:launch'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -8354,6 +8435,7 @@ export namespace dataflow_v1b3 {
               rootUrl + '/v1b3/projects/{projectId}/snapshots/{snapshotId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -8446,6 +8528,7 @@ export namespace dataflow_v1b3 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -8571,6 +8654,7 @@ export namespace dataflow_v1b3 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -8661,6 +8745,7 @@ export namespace dataflow_v1b3 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -8752,6 +8837,7 @@ export namespace dataflow_v1b3 {
               rootUrl + '/v1b3/projects/{projectId}/templates:launch'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),

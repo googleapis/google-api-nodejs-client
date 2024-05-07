@@ -278,6 +278,7 @@ export namespace cloudtrace_v1 {
               '$1'
             ),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -384,6 +385,7 @@ export namespace cloudtrace_v1 {
               rootUrl + '/v1/projects/{projectId}/traces/{traceId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -474,6 +476,7 @@ export namespace cloudtrace_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),

@@ -747,6 +747,35 @@
                 "https://www.googleapis.com/auth/spanner.admin"
               ]
             },
+            "move": {
+              "description": "Moves the instance to the target instance config. The returned long-running operation can be used to track the progress of moving the instance. `MoveInstance` returns `FAILED_PRECONDITION` if the instance meets any of the following criteria: * Has an ongoing move to a different instance config * Has backups * Has an ongoing update * Is under free trial * Contains any CMEK-enabled databases While the operation is pending: * All other attempts to modify the instance, including changes to its compute capacity, are rejected. * The following database and backup admin operations are rejected: * DatabaseAdmin.CreateDatabase, * DatabaseAdmin.UpdateDatabaseDdl (Disabled if default_leader is specified in the request.) * DatabaseAdmin.RestoreDatabase * DatabaseAdmin.CreateBackup * DatabaseAdmin.CopyBackup * Both the source and target instance configs are subject to hourly compute and storage charges. * The instance may experience higher read-write latencies and a higher transaction abort rate. However, moving an instance does not cause any downtime. The returned long-running operation will have a name of the format `/operations/` and can be used to track the move instance operation. The metadata field type is MoveInstanceMetadata. The response field type is Instance, if successful. Cancelling the operation sets its metadata's cancel_time. Cancellation is not immediate since it involves moving any data previously moved to target instance config back to the original instance config. The same operation can be used to track the progress of the cancellation. Upon successful completion of the cancellation, the operation terminates with CANCELLED status. Upon completion(if not cancelled) of the returned operation: * Instance would be successfully moved to the target instance config. * You are billed for compute and storage in target instance config. Authorization requires `spanner.instances.update` permission on the resource instance. For more details, please see [documentation](https://cloud.google.com/spanner/docs/move-instance).",
+              "flatPath": "v1/projects/{projectsId}/instances/{instancesId}:move",
+              "httpMethod": "POST",
+              "id": "spanner.projects.instances.move",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. The instance to move. Values are of the form `projects//instances/`.",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+/instances/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+name}:move",
+              "request": {
+                "$ref": "MoveInstanceRequest"
+              },
+              "response": {
+                "$ref": "Operation"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/spanner.admin"
+              ]
+            },
             "patch": {
               "description": "Updates an instance, and begins allocating or releasing resources as requested. The returned long-running operation can be used to track the progress of updating the instance. If the named instance does not exist, returns `NOT_FOUND`. Immediately upon completion of this request: * For resource types for which a decrease in the instance's allocation has been requested, billing is based on the newly-requested level. Until completion of the returned operation: * Cancelling the operation sets its metadata's cancel_time, and begins restoring resources to their pre-request values. The operation is guaranteed to succeed at undoing all resource changes, after which point it terminates with a `CANCELLED` status. * All other attempts to modify the instance are rejected. * Reading the instance via the API continues to give the pre-request resource levels. Upon completion of the returned operation: * Billing begins for all successfully-allocated resources (some types may have lower than the requested levels). * All newly-reserved resources are available for serving the instance's tables. * The instance's new resource levels are readable via the API. The returned long-running operation will have a name of the format `/operations/` and can be used to track the instance modification. The metadata field type is UpdateInstanceMetadata. The response field type is Instance, if successful. Authorization requires `spanner.instances.update` permission on the resource name.",
               "flatPath": "v1/projects/{projectsId}/instances/{instancesId}",
@@ -2941,7 +2970,7 @@
       }
     }
   },
-  "revision": "20240315",
+  "revision": "20240422",
   "rootUrl": "https://spanner.googleapis.com/",
   "schemas": {
     "AutoscalingConfig": {
@@ -3157,7 +3186,7 @@
       "id": "BatchWriteRequest",
       "properties": {
         "excludeTxnFromChangeStreams": {
-          "description": "Optional. When `exclude_txn_from_change_streams` is set to `true`: * Mutations from all transactions in this batch write operation will not be recorded in change streams with DDL option `allow_txn_exclusion=true` that are tracking columns modified by these transactions. * Mutations from all transactions in this batch write operation will be recorded in change streams with DDL option `allow_txn_exclusion=false or not set` that are tracking columns modified by these transactions. When `exclude_txn_from_change_streams` is set to `false` or not set, mutations from all transactions in this batch write operation will be recorded in all change streams that are tracking columns modified by these transactions.",
+          "description": "Optional. When `exclude_txn_from_change_streams` is set to `true`: * Modifications from all transactions in this batch write operation will not be recorded in change streams with DDL option `allow_txn_exclusion=true` that are tracking columns modified by these transactions. * Modifications from all transactions in this batch write operation will be recorded in change streams with DDL option `allow_txn_exclusion=false or not set` that are tracking columns modified by these transactions. When `exclude_txn_from_change_streams` is set to `false` or not set, Modifications from all transactions in this batch write operation will be recorded in all change streams that are tracking columns modified by these transactions.",
           "type": "boolean"
         },
         "mutationGroups": {
@@ -3260,7 +3289,7 @@
       "id": "CommitRequest",
       "properties": {
         "maxCommitDelay": {
-          "description": "Optional. The amount of latency this request is willing to incur in order to improve throughput. If this field is not set, Spanner assumes requests are relatively latency sensitive and automatically determines an appropriate delay time. You can specify a batching delay value between 0 and 500 ms.",
+          "description": "Optional. The amount of latency this request is configured to incur in order to improve throughput. If this field is not set, Spanner assumes requests are relatively latency sensitive and automatically determines an appropriate delay time. You can specify a commit delay value between 0 and 500 ms.",
           "format": "google-duration",
           "type": "string"
         },
@@ -5040,6 +5069,17 @@
       },
       "type": "object"
     },
+    "MoveInstanceRequest": {
+      "description": "The request for MoveInstance.",
+      "id": "MoveInstanceRequest",
+      "properties": {
+        "targetConfig": {
+          "description": "Required. The target instance config for the instance to move. Values are of the form `projects//instanceConfigs/`.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "Mutation": {
       "description": "A modification to one or more Cloud Spanner rows. Mutations can be applied to a Cloud Spanner database by sending them in a Commit call.",
       "id": "Mutation",
@@ -6097,7 +6137,7 @@
       "id": "TransactionOptions",
       "properties": {
         "excludeTxnFromChangeStreams": {
-          "description": "When `exclude_txn_from_change_streams` is set to `true`: * Mutations from this transaction will not be recorded in change streams with DDL option `allow_txn_exclusion=true` that are tracking columns modified by these transactions. * Mutations from this transaction will be recorded in change streams with DDL option `allow_txn_exclusion=false or not set` that are tracking columns modified by these transactions. When `exclude_txn_from_change_streams` is set to `false` or not set, mutations from this transaction will be recorded in all change streams that are tracking columns modified by these transactions. `exclude_txn_from_change_streams` may only be specified for read-write or partitioned-dml transactions, otherwise the API will return an `INVALID_ARGUMENT` error.",
+          "description": "When `exclude_txn_from_change_streams` is set to `true`: * Modifications from this transaction will not be recorded in change streams with DDL option `allow_txn_exclusion=true` that are tracking columns modified by these transactions. * Modifications from this transaction will be recorded in change streams with DDL option `allow_txn_exclusion=false or not set` that are tracking columns modified by these transactions. When `exclude_txn_from_change_streams` is set to `false` or not set, Modifications from this transaction will be recorded in all change streams that are tracking columns modified by these transactions. `exclude_txn_from_change_streams` may only be specified for read-write or partitioned-dml transactions, otherwise the API will return an `INVALID_ARGUMENT` error.",
           "type": "boolean"
         },
         "partitionedDml": {

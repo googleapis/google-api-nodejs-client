@@ -160,6 +160,10 @@ export namespace iap_v1 {
      */
     gcipSettings?: Schema$GcipSettings;
     /**
+     * Optional. Identity sources that IAP can use to authenticate the end user. Only one identity source can be configured.
+     */
+    identitySources?: string[] | null;
+    /**
      * Settings to configure IAP's OAuth behavior.
      */
     oauthSettings?: Schema$OAuthSettings;
@@ -171,6 +175,10 @@ export namespace iap_v1 {
      * Settings to configure reauthentication policies in IAP.
      */
     reauthSettings?: Schema$ReauthSettings;
+    /**
+     * Optional. Settings to configure the workforce identity federation, including workforce pools and OAuth 2.0 settings.
+     */
+    workforceIdentitySettings?: Schema$WorkforceIdentitySettings;
   }
   /**
    * Configuration for IAP allowed domains. Lets you to restrict access to an app and allow access to only the domains that you list.
@@ -405,6 +413,23 @@ export namespace iap_v1 {
     tunnelDestGroups?: Schema$TunnelDestGroup[];
   }
   /**
+   * The OAuth 2.0 Settings
+   */
+  export interface Schema$OAuth2 {
+    /**
+     * The OAuth 2.0 client ID registered in the workforce identity federation OAuth 2.0 Server.
+     */
+    clientId?: string | null;
+    /**
+     * Input only. The OAuth 2.0 client secret created while registering the client ID.
+     */
+    clientSecret?: string | null;
+    /**
+     * Output only. SHA256 hash value for the client secret. This field is returned by IAP when the settings are retrieved.
+     */
+    clientSecretSha256?: string | null;
+  }
+  /**
    * Configuration for OAuth login&consent flow behavior as well as for OAuth Credentials.
    */
   export interface Schema$OAuthSettings {
@@ -503,15 +528,15 @@ export namespace iap_v1 {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * Name of the resource on which conditions will be evaluated. Must use the Relative Resource Name of the resource, which is the URI path of the resource without the leading "/". Examples are "projects/_/buckets/[BUCKET-ID]" for storage buckets or "projects/[PROJECT-ID]/global/firewalls/[FIREWALL-ID]" for a firewall. This field is required for evaluating conditions with rules on resource names. For a `list` permission check, the resource.name value must be set to the parent resource. If the parent resource is a project, this field should be left unset.
+     * The **relative** name of the resource, which is the URI path of the resource without the leading "/". See https://cloud.google.com/iam/docs/conditions-resource-attributes#resource-name for examples used by other GCP Services. This field is **required** for services integrated with resource-attribute-based IAM conditions and/or CustomOrgPolicy. This field requires special handling for parents-only permissions such as `create` and `list`. See the document linked below for further details. See go/iam-conditions-sig-g3#populate-resource-attributes for specific details on populating this field.
      */
     name?: string | null;
     /**
-     * The name of the service this resource belongs to. It is configured using the official_service_name of the Service as defined in service configurations under //configs/cloud/resourcetypes. For example, the official_service_name of cloud resource manager service is set as 'cloudresourcemanager.googleapis.com' according to //configs/cloud/resourcetypes/google/cloud/resourcemanager/prod.yaml
+     * The name of the service this resource belongs to. It is configured using the official_service_name of the Service as defined in service configurations under //configs/cloud/resourcetypes. For example, the official_service_name of cloud resource manager service is set as 'cloudresourcemanager.googleapis.com' according to //configs/cloud/resourcetypes/google/cloud/resourcemanager/prod.yaml This field is **required** for services integrated with resource-attribute-based IAM conditions and/or CustomOrgPolicy. This field requires special handling for parents-only permissions such as `create` and `list`. See the document linked below for further details. See go/iam-conditions-sig-g3#populate-resource-attributes for specific details on populating this field.
      */
     service?: string | null;
     /**
-     * The public resource type name of the resource on which conditions will be evaluated. It is configured using the official_name of the ResourceType as defined in service configurations under //configs/cloud/resourcetypes. For example, the official_name for GCP projects is set as 'cloudresourcemanager.googleapis.com/Project' according to //configs/cloud/resourcetypes/google/cloud/resourcemanager/prod.yaml For details see go/iam-conditions-integration-guide.
+     * The public resource type name of the resource. It is configured using the official_name of the ResourceType as defined in service configurations under //configs/cloud/resourcetypes. For example, the official_name for GCP projects is set as 'cloudresourcemanager.googleapis.com/Project' according to //configs/cloud/resourcetypes/google/cloud/resourcemanager/prod.yaml This field is **required** for services integrated with resource-attribute-based IAM conditions and/or CustomOrgPolicy. This field requires special handling for parents-only permissions such as `create` and `list`. See the document linked below for further details. See go/iam-conditions-sig-g3#populate-resource-attributes for specific details on populating this field.
      */
     type?: string | null;
   }
@@ -563,6 +588,19 @@ export namespace iap_v1 {
    * API requires a return message, but currently all response strings will fit in the status and public message. In the future, this response can hold AST validation info.
    */
   export interface Schema$ValidateIapAttributeExpressionResponse {}
+  /**
+   * WorkforceIdentitySettings allows customers to configure workforce pools and OAuth 2.0 settings to gate their applications using a third-party IdP with access control.
+   */
+  export interface Schema$WorkforceIdentitySettings {
+    /**
+     * OAuth 2.0 settings for IAP to perform OIDC flow with workforce identity federation services.
+     */
+    oauth2?: Schema$OAuth2;
+    /**
+     * The workforce pool resources. Only one workforce pool is accepted.
+     */
+    workforcePools?: string[] | null;
+  }
 
   export class Resource$Projects {
     context: APIRequestContext;
@@ -653,6 +691,7 @@ export namespace iap_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -737,6 +776,7 @@ export namespace iap_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -827,6 +867,7 @@ export namespace iap_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -956,6 +997,7 @@ export namespace iap_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1041,6 +1083,7 @@ export namespace iap_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -1131,6 +1174,7 @@ export namespace iap_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1226,6 +1270,7 @@ export namespace iap_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1323,6 +1368,7 @@ export namespace iap_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1492,6 +1538,7 @@ export namespace iap_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1577,6 +1624,7 @@ export namespace iap_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -1662,6 +1710,7 @@ export namespace iap_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1757,6 +1806,7 @@ export namespace iap_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1844,6 +1894,7 @@ export namespace iap_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -1999,6 +2050,7 @@ export namespace iap_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2086,6 +2138,7 @@ export namespace iap_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2172,6 +2225,7 @@ export namespace iap_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2266,6 +2320,7 @@ export namespace iap_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2353,6 +2408,7 @@ export namespace iap_v1 {
               '$1'
             ),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -2447,6 +2503,7 @@ export namespace iap_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),

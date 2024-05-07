@@ -443,6 +443,7 @@ export namespace gamesManagement_v1management {
               rootUrl + '/games/v1management/achievements/{achievementId}/reset'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -538,6 +539,7 @@ export namespace gamesManagement_v1management {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -623,6 +625,7 @@ export namespace gamesManagement_v1management {
               rootUrl + '/games/v1management/achievements/resetAllForAllPlayers'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -709,6 +712,7 @@ export namespace gamesManagement_v1management {
               '/games/v1management/achievements/{achievementId}/resetForAllPlayers'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -795,6 +799,7 @@ export namespace gamesManagement_v1management {
               '/games/v1management/achievements/resetMultipleForAllPlayers'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -916,6 +921,7 @@ export namespace gamesManagement_v1management {
               '/games/v1management/applications/{applicationId}/players/hidden'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1023,6 +1029,7 @@ export namespace gamesManagement_v1management {
               rootUrl + '/games/v1management/events/{eventId}/reset'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1108,6 +1115,7 @@ export namespace gamesManagement_v1management {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1193,6 +1201,7 @@ export namespace gamesManagement_v1management {
               rootUrl + '/games/v1management/events/resetAllForAllPlayers'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1279,6 +1288,7 @@ export namespace gamesManagement_v1management {
               '/games/v1management/events/{eventId}/resetForAllPlayers'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1364,6 +1374,7 @@ export namespace gamesManagement_v1management {
               rootUrl + '/games/v1management/events/resetMultipleForAllPlayers'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1480,6 +1491,7 @@ export namespace gamesManagement_v1management {
               '/games/v1management/applications/{applicationId}/players/hidden/{playerId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1565,6 +1577,7 @@ export namespace gamesManagement_v1management {
               '/games/v1management/applications/{applicationId}/players/hidden/{playerId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -1687,6 +1700,7 @@ export namespace gamesManagement_v1management {
               '/games/v1management/leaderboards/{leaderboardId}/scores/reset'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1781,6 +1795,7 @@ export namespace gamesManagement_v1management {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1866,6 +1881,7 @@ export namespace gamesManagement_v1management {
               rootUrl + '/games/v1management/scores/resetAllForAllPlayers'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1952,6 +1968,7 @@ export namespace gamesManagement_v1management {
               '/games/v1management/leaderboards/{leaderboardId}/scores/resetForAllPlayers'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2037,6 +2054,7 @@ export namespace gamesManagement_v1management {
               rootUrl + '/games/v1management/scores/resetMultipleForAllPlayers'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),

@@ -1527,19 +1527,19 @@ export namespace documentai_v1 {
      */
     pixelFontSize?: number | null;
     /**
-     * Whether the text is in small caps.
+     * Whether the text is in small caps. This feature is not supported yet.
      */
     smallcaps?: boolean | null;
     /**
-     * Whether the text is strikethrough.
+     * Whether the text is strikethrough. This feature is not supported yet.
      */
     strikeout?: boolean | null;
     /**
-     * Whether the text is a subscript.
+     * Whether the text is a subscript. This feature is not supported yet.
      */
     subscript?: boolean | null;
     /**
-     * Whether the text is a superscript.
+     * Whether the text is a superscript. This feature is not supported yet.
      */
     superscript?: boolean | null;
     /**
@@ -2546,19 +2546,19 @@ export namespace documentai_v1 {
      */
     pixelFontSize?: number | null;
     /**
-     * Whether the text is in small caps.
+     * Whether the text is in small caps. This feature is not supported yet.
      */
     smallcaps?: boolean | null;
     /**
-     * Whether the text is strikethrough.
+     * Whether the text is strikethrough. This feature is not supported yet.
      */
     strikeout?: boolean | null;
     /**
-     * Whether the text is a subscript.
+     * Whether the text is a subscript. This feature is not supported yet.
      */
     subscript?: boolean | null;
     /**
-     * Whether the text is a superscript.
+     * Whether the text is a superscript. This feature is not supported yet.
      */
     superscript?: boolean | null;
     /**
@@ -4166,19 +4166,19 @@ export namespace documentai_v1 {
      */
     pixelFontSize?: number | null;
     /**
-     * Whether the text is in small caps.
+     * Whether the text is in small caps. This feature is not supported yet.
      */
     smallcaps?: boolean | null;
     /**
-     * Whether the text is strikethrough.
+     * Whether the text is strikethrough. This feature is not supported yet.
      */
     strikeout?: boolean | null;
     /**
-     * Whether the text is a subscript.
+     * Whether the text is a subscript. This feature is not supported yet.
      */
     subscript?: boolean | null;
     /**
-     * Whether the text is a superscript.
+     * Whether the text is a superscript. This feature is not supported yet.
      */
     superscript?: boolean | null;
     /**
@@ -5059,11 +5059,11 @@ export namespace documentai_v1 {
      */
     modelType?: string | null;
     /**
-     * The resource name of the processor version. Format: `projects/{project\}/locations/{location\}/processors/{processor\}/processorVersions/{processor_version\}`
+     * Identifier. The resource name of the processor version. Format: `projects/{project\}/locations/{location\}/processors/{processor\}/processorVersions/{processor_version\}`
      */
     name?: string | null;
     /**
-     * The state of the processor version.
+     * Output only. The state of the processor version.
      */
     state?: string | null;
   }
@@ -5701,6 +5701,7 @@ export namespace documentai_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -5833,6 +5834,7 @@ export namespace documentai_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5926,6 +5928,7 @@ export namespace documentai_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6020,6 +6023,7 @@ export namespace documentai_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6150,6 +6154,7 @@ export namespace documentai_v1 {
           {
             url: (rootUrl + '/v1/{+name}:cancel').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -6241,6 +6246,7 @@ export namespace documentai_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6332,6 +6338,7 @@ export namespace documentai_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6480,6 +6487,7 @@ export namespace documentai_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -6574,6 +6582,7 @@ export namespace documentai_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -6667,6 +6676,7 @@ export namespace documentai_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -6761,6 +6771,7 @@ export namespace documentai_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -6852,6 +6863,7 @@ export namespace documentai_v1 {
           {
             url: (rootUrl + '/v1/{+name}:enable').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -6943,6 +6955,7 @@ export namespace documentai_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -7039,6 +7052,7 @@ export namespace documentai_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -7135,6 +7149,7 @@ export namespace documentai_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -7231,6 +7246,7 @@ export namespace documentai_v1 {
               rootUrl + '/v1/{+processor}:setDefaultProcessorVersion'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -7435,6 +7451,7 @@ export namespace documentai_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -7555,6 +7572,7 @@ export namespace documentai_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -7647,6 +7665,7 @@ export namespace documentai_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -7739,6 +7758,7 @@ export namespace documentai_v1 {
           {
             url: (rootUrl + '/v1/{+name}:deploy').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -7833,6 +7853,7 @@ export namespace documentai_v1 {
               rootUrl + '/v1/{+processorVersion}:evaluateProcessorVersion'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -7925,6 +7946,7 @@ export namespace documentai_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -8022,6 +8044,7 @@ export namespace documentai_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -8119,6 +8142,7 @@ export namespace documentai_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -8216,6 +8240,7 @@ export namespace documentai_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -8311,6 +8336,7 @@ export namespace documentai_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -8512,6 +8538,7 @@ export namespace documentai_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -8609,6 +8636,7 @@ export namespace documentai_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -8732,6 +8760,7 @@ export namespace documentai_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -8828,6 +8857,7 @@ export namespace documentai_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -8951,6 +8981,7 @@ export namespace documentai_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),

@@ -1470,19 +1470,19 @@ export namespace documentai_v1beta2 {
      */
     pixelFontSize?: number | null;
     /**
-     * Whether the text is in small caps.
+     * Whether the text is in small caps. This feature is not supported yet.
      */
     smallcaps?: boolean | null;
     /**
-     * Whether the text is strikethrough.
+     * Whether the text is strikethrough. This feature is not supported yet.
      */
     strikeout?: boolean | null;
     /**
-     * Whether the text is a subscript.
+     * Whether the text is a subscript. This feature is not supported yet.
      */
     subscript?: boolean | null;
     /**
-     * Whether the text is a superscript.
+     * Whether the text is a superscript. This feature is not supported yet.
      */
     superscript?: boolean | null;
     /**
@@ -2507,19 +2507,19 @@ export namespace documentai_v1beta2 {
      */
     pixelFontSize?: number | null;
     /**
-     * Whether the text is in small caps.
+     * Whether the text is in small caps. This feature is not supported yet.
      */
     smallcaps?: boolean | null;
     /**
-     * Whether the text is strikethrough.
+     * Whether the text is strikethrough. This feature is not supported yet.
      */
     strikeout?: boolean | null;
     /**
-     * Whether the text is a subscript.
+     * Whether the text is a subscript. This feature is not supported yet.
      */
     subscript?: boolean | null;
     /**
-     * Whether the text is a superscript.
+     * Whether the text is a superscript. This feature is not supported yet.
      */
     superscript?: boolean | null;
     /**
@@ -4018,6 +4018,7 @@ export namespace documentai_v1beta2 {
               rootUrl + '/v1beta2/{+parent}/documents:batchProcess'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4112,6 +4113,7 @@ export namespace documentai_v1beta2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4253,6 +4255,7 @@ export namespace documentai_v1beta2 {
               rootUrl + '/v1beta2/{+parent}/documents:batchProcess'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4347,6 +4350,7 @@ export namespace documentai_v1beta2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4472,6 +4476,7 @@ export namespace documentai_v1beta2 {
           {
             url: (rootUrl + '/v1beta2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4578,6 +4583,7 @@ export namespace documentai_v1beta2 {
           {
             url: (rootUrl + '/v1beta2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),

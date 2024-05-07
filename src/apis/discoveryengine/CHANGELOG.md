@@ -1,5 +1,33 @@
 # Changelog
 
+## [9.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/discoveryengine-v8.1.0...discoveryengine-v9.0.0) (2024-05-02)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+* **discoveryengine:** This release has breaking changes.
+* This release has breaking changes.
+* This release has breaking changes.
+* **discoveryengine:** This release has breaking changes.
+
+### Features
+
+* **discoveryengine:** update the API ([ec40fe5](https://github.com/googleapis/google-api-nodejs-client/commit/ec40fe54ac9bc032c370f8eaf436489a10b04159))
+* **discoveryengine:** update the API ([e5ab8e6](https://github.com/googleapis/google-api-nodejs-client/commit/e5ab8e651d1b7ff419c33ffff6f1b74e0e950e75))
+* **discoveryengine:** update the API ([64f2232](https://github.com/googleapis/google-api-nodejs-client/commit/64f2232f3ba37f9fe96e34e241172b4979383cc2))
+* **discoveryengine:** update the API ([ce0ec76](https://github.com/googleapis/google-api-nodejs-client/commit/ce0ec76e61b704c53097a4f331b5621e26ac8f84))
+* run the generator ([#3434](https://github.com/googleapis/google-api-nodejs-client/issues/3434)) ([f0db524](https://github.com/googleapis/google-api-nodejs-client/commit/f0db524bb26f05cea3dec4c0ed66b496399e3857))
+* run the generator ([#3447](https://github.com/googleapis/google-api-nodejs-client/issues/3447)) ([873b559](https://github.com/googleapis/google-api-nodejs-client/commit/873b55950bcf04db37f08e8a62caa6e4a9b9c487))
+* run the generator ([#3456](https://github.com/googleapis/google-api-nodejs-client/issues/3456)) ([a865e81](https://github.com/googleapis/google-api-nodejs-client/commit/a865e81539b315d3b321650663ba0b2555b1e5a1))
+
+## [8.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/discoveryengine-v8.0.0...discoveryengine-v8.1.0) (2024-05-02)
+
+
+### Features
+
+* **discoveryengine:** update the API ([ec40fe5](https://github.com/googleapis/google-api-nodejs-client/commit/ec40fe54ac9bc032c370f8eaf436489a10b04159))
+
 ## [8.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/discoveryengine-v7.0.0...discoveryengine-v8.0.0) (2024-04-04)
 
 

@@ -1,5 +1,28 @@
 # Changelog
 
+## [10.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/playintegrity-v9.0.1...playintegrity-v10.0.0) (2024-05-02)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#3456](https://github.com/googleapis/google-api-nodejs-client/issues/3456)) ([a865e81](https://github.com/googleapis/google-api-nodejs-client/commit/a865e81539b315d3b321650663ba0b2555b1e5a1))
+
+
+### Bug Fixes
+
+* **playintegrity:** update the API ([78dfca2](https://github.com/googleapis/google-api-nodejs-client/commit/78dfca25343031a78ba17ce5a9f84b4b449ff3c3))
+
+## [9.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/playintegrity-v9.0.0...playintegrity-v9.0.1) (2024-05-02)
+
+
+### Bug Fixes
+
+* **playintegrity:** update the API ([78dfca2](https://github.com/googleapis/google-api-nodejs-client/commit/78dfca25343031a78ba17ce5a9f84b4b449ff3c3))
+
 ## [9.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/playintegrity-v8.0.0...playintegrity-v9.0.0) (2024-04-04)
 
 

@@ -276,7 +276,7 @@
       }
     }
   },
-  "revision": "20240312",
+  "revision": "20240430",
   "rootUrl": "https://places.googleapis.com/",
   "schemas": {
     "GoogleGeoTypeViewport": {
@@ -493,7 +493,7 @@
         },
         "text": {
           "$ref": "GoogleMapsPlacesV1AutocompletePlacesResponseSuggestionFormattableText",
-          "description": "The predicted text. This text does not represent a Place, but rather a text query that could be used in a search endpoint (for example, TextSearch). `text` is recommended for developers who wish to show a single UI element. Developers who wish to show two separate, but related, UI elements may want to use `structured_format` instead. They are two different ways to represent a query prediction. Users should not try to parse `structured_format` into `text` or vice versa. May be in mixed languages if the request `input` and `language_code` are in different languages or if part of the query does not have a translation from the local language to `language_code`."
+          "description": "The predicted text. This text does not represent a Place, but rather a text query that could be used in a search endpoint (for example, Text Search). `text` is recommended for developers who wish to show a single UI element. Developers who wish to show two separate, but related, UI elements may want to use `structured_format` instead. They are two different ways to represent a query prediction. Users should not try to parse `structured_format` into `text` or vice versa. May be in mixed languages if the request `input` and `language_code` are in different languages or if part of the query does not have a translation from the local language to `language_code`."
         }
       },
       "type": "object"
@@ -924,7 +924,7 @@
             "Place provides inexpensive services.",
             "Place provides moderately priced services.",
             "Place provides expensive services.",
-            "Place provides very expensive service s."
+            "Place provides very expensive services."
           ],
           "type": "string"
         },
@@ -1509,7 +1509,7 @@
               "Place provides inexpensive services.",
               "Place provides moderately priced services.",
               "Place provides expensive services.",
-              "Place provides very expensive service s."
+              "Place provides very expensive services."
             ],
             "type": "string"
           },
@@ -1523,7 +1523,7 @@
             "RELEVANCE"
           ],
           "enumDescriptions": [
-            "RankPreference value not set. Will default to DISTANCE.",
+            "For a categorical query such as \"Restaurants in New York City\", RELEVANCE is the default. For non-categorical queries such as \"Mountain View, CA\" we recommend that you leave rankPreference unset.",
             "Ranks results by distance.",
             "Ranks results by relevance. Sort order determined by normal ranking stack."
           ],
@@ -1549,7 +1549,7 @@
       "id": "GoogleMapsPlacesV1SearchTextRequestEVOptions",
       "properties": {
         "connectorTypes": {
-          "description": "Optional. The list of preferred EV connector types. A place that does not support any of the listed connector types are filter out.",
+          "description": "Optional. The list of preferred EV connector types. A place that does not support any of the listed connector types is filtered out.",
           "items": {
             "enum": [
               "EV_CONNECTOR_TYPE_UNSPECIFIED",
@@ -1580,7 +1580,7 @@
           "type": "array"
         },
         "minimumChargingRateKw": {
-          "description": "Optional. Filtering places by minimum charging rate. Any places with charging a rate less than the minimum charging rate are filtered out.",
+          "description": "Optional. Minimum required charging rate in kilowatts. A place with a charging rate less than the specified rate is filtered out.",
           "format": "double",
           "type": "number"
         }

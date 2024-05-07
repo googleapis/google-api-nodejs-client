@@ -708,6 +708,7 @@ export namespace pubsublite_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -793,6 +794,7 @@ export namespace pubsublite_v1 {
           {
             url: (rootUrl + '/v1/admin/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -877,6 +879,7 @@ export namespace pubsublite_v1 {
           {
             url: (rootUrl + '/v1/admin/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -969,6 +972,7 @@ export namespace pubsublite_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1114,6 +1118,7 @@ export namespace pubsublite_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1199,6 +1204,7 @@ export namespace pubsublite_v1 {
           {
             url: (rootUrl + '/v1/admin/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -1284,6 +1290,7 @@ export namespace pubsublite_v1 {
           {
             url: (rootUrl + '/v1/admin/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1377,6 +1384,7 @@ export namespace pubsublite_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1462,6 +1470,7 @@ export namespace pubsublite_v1 {
           {
             url: (rootUrl + '/v1/admin/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -1626,6 +1635,7 @@ export namespace pubsublite_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1739,6 +1749,7 @@ export namespace pubsublite_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1824,6 +1835,7 @@ export namespace pubsublite_v1 {
           {
             url: (rootUrl + '/v1/admin/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -1909,6 +1921,7 @@ export namespace pubsublite_v1 {
           {
             url: (rootUrl + '/v1/admin/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2004,6 +2017,7 @@ export namespace pubsublite_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2089,6 +2103,7 @@ export namespace pubsublite_v1 {
           {
             url: (rootUrl + '/v1/admin/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -2177,6 +2192,7 @@ export namespace pubsublite_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2354,6 +2370,7 @@ export namespace pubsublite_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2438,6 +2455,7 @@ export namespace pubsublite_v1 {
           {
             url: (rootUrl + '/v1/admin/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -2522,6 +2540,7 @@ export namespace pubsublite_v1 {
           {
             url: (rootUrl + '/v1/admin/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2610,6 +2629,7 @@ export namespace pubsublite_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2700,6 +2720,7 @@ export namespace pubsublite_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2784,6 +2805,7 @@ export namespace pubsublite_v1 {
           {
             url: (rootUrl + '/v1/admin/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -2955,6 +2977,7 @@ export namespace pubsublite_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3109,6 +3132,7 @@ export namespace pubsublite_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3224,6 +3248,7 @@ export namespace pubsublite_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3372,6 +3397,7 @@ export namespace pubsublite_v1 {
               rootUrl + '/v1/topicStats/{+topic}:computeHeadCursor'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3466,6 +3492,7 @@ export namespace pubsublite_v1 {
               rootUrl + '/v1/topicStats/{+topic}:computeMessageStats'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3560,6 +3587,7 @@ export namespace pubsublite_v1 {
               rootUrl + '/v1/topicStats/{+topic}:computeTimeCursor'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),

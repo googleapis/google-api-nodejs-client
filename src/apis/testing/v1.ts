@@ -1784,6 +1784,7 @@ export namespace testing_v1 {
               rootUrl + '/v1/applicationDetailService/getApkDetails'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1899,6 +1900,7 @@ export namespace testing_v1 {
           {
             url: (rootUrl + '/v1/{+name}:cancel').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1986,6 +1988,7 @@ export namespace testing_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2070,6 +2073,7 @@ export namespace testing_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2164,6 +2168,7 @@ export namespace testing_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2248,6 +2253,7 @@ export namespace testing_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -2416,6 +2422,7 @@ export namespace testing_v1 {
               '/v1/projects/{projectId}/testMatrices/{testMatrixId}:cancel'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2503,6 +2510,7 @@ export namespace testing_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2589,6 +2597,7 @@ export namespace testing_v1 {
               rootUrl + '/v1/projects/{projectId}/testMatrices/{testMatrixId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2726,6 +2735,7 @@ export namespace testing_v1 {
               rootUrl + '/v1/testEnvironmentCatalog/{environmentType}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),

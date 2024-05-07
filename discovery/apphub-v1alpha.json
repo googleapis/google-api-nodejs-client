@@ -1438,7 +1438,7 @@
       }
     }
   },
-  "revision": "20240311",
+  "revision": "20240417",
   "rootUrl": "https://apphub.googleapis.com/",
   "schemas": {
     "Application": {
@@ -1649,11 +1649,13 @@
       "id": "Criticality",
       "properties": {
         "level": {
-          "description": "Optional. Criticality level. Can contain only lowercase letters, numeric characters, underscores, and dashes. Can have a maximum length of 63 characters.",
+          "deprecated": true,
+          "description": "Optional. Criticality level. Can contain only lowercase letters, numeric characters, underscores, and dashes. Can have a maximum length of 63 characters. Deprecated: Please refer to type instead.",
           "type": "string"
         },
         "missionCritical": {
-          "description": "Optional. Indicates mission-critical Application, Service, or Workload.",
+          "deprecated": true,
+          "description": "Optional. Indicates mission-critical Application, Service, or Workload. Deprecated: Please refer to type instead.",
           "type": "boolean"
         },
         "type": {
@@ -1742,7 +1744,8 @@
       "id": "Environment",
       "properties": {
         "environment": {
-          "description": "Optional. Environment name. Can contain only lowercase letters, numeric characters, underscores, and dashes. Can have a maximum length of 63 characters.",
+          "deprecated": true,
+          "description": "Optional. Environment name. Can contain only lowercase letters, numeric characters, underscores, and dashes. Can have a maximum length of 63 characters. Deprecated: Please refer to type instead.",
           "type": "string"
         },
         "type": {

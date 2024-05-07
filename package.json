@@ -1,6 +1,6 @@
 {
   "name": "googleapis",
-  "version": "135.0.0",
+  "version": "136.0.0",
   "repository": "googleapis/google-api-nodejs-client",
   "license": "Apache-2.0",
   "description": "Google APIs Client Library for Node.js",
@@ -59,7 +59,7 @@
     "googleapis-common": "^7.0.0"
   },
   "devDependencies": {
-    "@compodoc/compodoc": "^1.1.10",
+    "@compodoc/compodoc": "1.1.23",
     "@types/execa": "^2.0.0",
     "@types/mocha": "^9.0.0",
     "@types/mv": "^2.1.0",

@@ -109,6 +109,34 @@
   "protocol": "rest",
   "resources": {
     "organizations": {
+      "methods": {
+        "get": {
+          "description": "Lookup for a single organization.",
+          "flatPath": "v1alpha/organizations/{organizationsId}",
+          "httpMethod": "GET",
+          "id": "marketingplatformadmin.organizations.get",
+          "parameterOrder": [
+            "name"
+          ],
+          "parameters": {
+            "name": {
+              "description": "Required. The name of the Organization to retrieve. Format: organizations/{org_id}",
+              "location": "path",
+              "pattern": "^organizations/[^/]+$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "v1alpha/{+name}",
+          "response": {
+            "$ref": "Organization"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/marketingplatformadmin.analytics.read",
+            "https://www.googleapis.com/auth/marketingplatformadmin.analytics.update"
+          ]
+        }
+      },
       "resources": {
         "analyticsAccountLinks": {
           "methods": {
@@ -235,7 +263,7 @@
       }
     }
   },
-  "revision": "20240313",
+  "revision": "20240501",
   "rootUrl": "https://marketingplatformadmin.googleapis.com/",
   "schemas": {
     "AnalyticsAccountLink": {
@@ -292,6 +320,21 @@
         },
         "nextPageToken": {
           "description": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "Organization": {
+      "description": "A resource message representing a Google Marketing Platform organization.",
+      "id": "Organization",
+      "properties": {
+        "displayName": {
+          "description": "The human-readable name for the organization.",
+          "type": "string"
+        },
+        "name": {
+          "description": "Identifier. The resource name of the GMP organization. Format: organizations/{org_id}",
           "type": "string"
         }
       },

@@ -428,6 +428,7 @@ export namespace admin_reports_v1 {
               '/admin/reports/v1/activity/users/{userKey}/applications/{applicationName}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -514,6 +515,7 @@ export namespace admin_reports_v1 {
               '/admin/reports/v1/activity/users/{userKey}/applications/{applicationName}/watch'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -711,6 +713,7 @@ export namespace admin_reports_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -812,6 +815,7 @@ export namespace admin_reports_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -926,6 +930,7 @@ export namespace admin_reports_v1 {
               '/admin/reports/v1/usage/{entityType}/{entityKey}/dates/{date}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1055,6 +1060,7 @@ export namespace admin_reports_v1 {
               rootUrl + '/admin/reports/v1/usage/users/{userKey}/dates/{date}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),

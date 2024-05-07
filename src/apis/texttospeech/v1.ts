@@ -372,7 +372,7 @@ export namespace texttospeech_v1 {
      */
     languageCode?: string | null;
     /**
-     * The name of the voice. If not set, the service will choose a voice based on the other parameters such as language_code and gender.
+     * The name of the voice. If both the name and the gender are not set, the service will choose a voice based on the other parameters such as language_code.
      */
     name?: string | null;
     /**
@@ -453,6 +453,7 @@ export namespace texttospeech_v1 {
           {
             url: (rootUrl + '/v1/{+name}:cancel').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -537,6 +538,7 @@ export namespace texttospeech_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -664,6 +666,7 @@ export namespace texttospeech_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -768,6 +771,7 @@ export namespace texttospeech_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -860,6 +864,7 @@ export namespace texttospeech_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -987,6 +992,7 @@ export namespace texttospeech_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1087,6 +1093,7 @@ export namespace texttospeech_v1 {
           {
             url: (rootUrl + '/v1/voices').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),

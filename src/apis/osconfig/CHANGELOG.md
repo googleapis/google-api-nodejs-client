@@ -1,5 +1,29 @@
 # Changelog
 
+## [4.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/osconfig-v3.0.1...osconfig-v4.0.0) (2024-05-02)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#3456](https://github.com/googleapis/google-api-nodejs-client/issues/3456)) ([a865e81](https://github.com/googleapis/google-api-nodejs-client/commit/a865e81539b315d3b321650663ba0b2555b1e5a1))
+
+
+### Bug Fixes
+
+* **osconfig:** update the API ([fc51160](https://github.com/googleapis/google-api-nodejs-client/commit/fc5116090ac8e177af2cfe17ed5bb938d1f27470))
+* **osconfig:** update the API ([aaaf733](https://github.com/googleapis/google-api-nodejs-client/commit/aaaf733832ebbc3bc192987b63fd4a64cda3deca))
+
+## [3.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/osconfig-v3.0.0...osconfig-v3.0.1) (2024-05-02)
+
+
+### Bug Fixes
+
+* **osconfig:** update the API ([fc51160](https://github.com/googleapis/google-api-nodejs-client/commit/fc5116090ac8e177af2cfe17ed5bb938d1f27470))
+
 ## [3.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/osconfig-v2.0.1...osconfig-v3.0.0) (2024-04-04)
 
 

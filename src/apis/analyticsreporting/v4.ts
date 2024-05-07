@@ -1180,6 +1180,7 @@ export namespace analyticsreporting_v4 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1289,6 +1290,7 @@ export namespace analyticsreporting_v4 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),

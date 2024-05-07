@@ -1,5 +1,33 @@
 # Changelog
 
+## [9.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/dlp-v8.1.0...dlp-v9.0.0) (2024-05-02)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+* This release has breaking changes.
+
+### Features
+
+* **dlp:** update the API ([88f0a64](https://github.com/googleapis/google-api-nodejs-client/commit/88f0a640104e95f5aa785b89658997746153915e))
+* **dlp:** update the API ([37c56f8](https://github.com/googleapis/google-api-nodejs-client/commit/37c56f8ad74b4f41e05500aa7c94fb025f5b8bdb))
+* **dlp:** update the API ([c32baf0](https://github.com/googleapis/google-api-nodejs-client/commit/c32baf03aeee40bae4944e45c50e8e9bfc7cafd6))
+* run the generator ([#3434](https://github.com/googleapis/google-api-nodejs-client/issues/3434)) ([f0db524](https://github.com/googleapis/google-api-nodejs-client/commit/f0db524bb26f05cea3dec4c0ed66b496399e3857))
+* run the generator ([#3456](https://github.com/googleapis/google-api-nodejs-client/issues/3456)) ([a865e81](https://github.com/googleapis/google-api-nodejs-client/commit/a865e81539b315d3b321650663ba0b2555b1e5a1))
+
+
+### Bug Fixes
+
+* **dlp:** update the API ([81466f2](https://github.com/googleapis/google-api-nodejs-client/commit/81466f2b97f39409c2bd4aa428755bb6aad85a2f))
+
+## [8.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/dlp-v8.0.0...dlp-v8.1.0) (2024-05-02)
+
+
+### Features
+
+* **dlp:** update the API ([88f0a64](https://github.com/googleapis/google-api-nodejs-client/commit/88f0a640104e95f5aa785b89658997746153915e))
+
 ## [8.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/dlp-v7.0.0...dlp-v8.0.0) (2024-04-04)
 
 

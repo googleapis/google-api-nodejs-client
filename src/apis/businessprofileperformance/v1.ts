@@ -366,6 +366,7 @@ export namespace businessprofileperformance_v1 {
               rootUrl + '/v1/{+location}:fetchMultiDailyMetricsTimeSeries'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -463,6 +464,7 @@ export namespace businessprofileperformance_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -680,6 +682,7 @@ export namespace businessprofileperformance_v1 {
               rootUrl + '/v1/{+parent}/searchkeywords/impressions/monthly'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),

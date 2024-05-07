@@ -142,7 +142,7 @@ export namespace contactcenteraiplatform_v1alpha1 {
    */
   export interface Schema$CancelOperationRequest {}
   /**
-   * Message describing ContactCenter object Next ID: 20
+   * Message describing ContactCenter object Next ID: 22
    */
   export interface Schema$ContactCenter {
     /**
@@ -166,6 +166,10 @@ export namespace contactcenteraiplatform_v1alpha1 {
      */
     displayName?: string | null;
     /**
+     * Optional. Early release channel.
+     */
+    early?: Schema$Early;
+    /**
      * The configuration of this instance, it is currently immutable once created.
      */
     instanceConfig?: Schema$InstanceConfig;
@@ -181,6 +185,10 @@ export namespace contactcenteraiplatform_v1alpha1 {
      * name of resource
      */
     name?: string | null;
+    /**
+     * Optional. Normal release channel.
+     */
+    normal?: Schema$Normal;
     /**
      * Output only. A list of UJET components that should be privately accessed. This field is set by reading settings from the data plane. For more information about the format of the component please refer to go/ccaip-vpc-sc-org-policy. This field is must be fully populated only for Create/Update resource operations. The main use case for this field is OrgPolicy checks via CPE.
      */
@@ -223,6 +231,10 @@ export namespace contactcenteraiplatform_v1alpha1 {
      */
     quotas?: Schema$Quota[];
   }
+  /**
+   * First Channel to receive the updates. Meant to dev/test instances
+   */
+  export interface Schema$Early {}
   /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
    */
@@ -337,6 +349,10 @@ export namespace contactcenteraiplatform_v1alpha1 {
      */
     name?: string | null;
   }
+  /**
+   * Instances in this Channel will receive updates after all instances in `Early` were updated + 2 days.
+   */
+  export interface Schema$Normal {}
   /**
    * This resource represents a long-running operation that is the result of a network API call.
    */
@@ -570,6 +586,7 @@ export namespace contactcenteraiplatform_v1alpha1 {
           {
             url: (rootUrl + '/v1alpha1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -663,6 +680,7 @@ export namespace contactcenteraiplatform_v1alpha1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -756,6 +774,7 @@ export namespace contactcenteraiplatform_v1alpha1 {
               rootUrl + '/v1alpha1/{+parent}:queryContactCenterQuota'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -885,6 +904,7 @@ export namespace contactcenteraiplatform_v1alpha1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -970,6 +990,7 @@ export namespace contactcenteraiplatform_v1alpha1 {
           {
             url: (rootUrl + '/v1alpha1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -1055,6 +1076,7 @@ export namespace contactcenteraiplatform_v1alpha1 {
           {
             url: (rootUrl + '/v1alpha1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1150,6 +1172,7 @@ export namespace contactcenteraiplatform_v1alpha1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1235,6 +1258,7 @@ export namespace contactcenteraiplatform_v1alpha1 {
           {
             url: (rootUrl + '/v1alpha1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -1412,6 +1436,7 @@ export namespace contactcenteraiplatform_v1alpha1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1497,6 +1522,7 @@ export namespace contactcenteraiplatform_v1alpha1 {
           {
             url: (rootUrl + '/v1alpha1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -1582,6 +1608,7 @@ export namespace contactcenteraiplatform_v1alpha1 {
           {
             url: (rootUrl + '/v1alpha1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1675,6 +1702,7 @@ export namespace contactcenteraiplatform_v1alpha1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),

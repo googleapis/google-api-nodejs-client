@@ -670,6 +670,7 @@ export namespace admob_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -760,6 +761,7 @@ export namespace admob_v1 {
           {
             url: (rootUrl + '/v1/accounts').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -876,6 +878,7 @@ export namespace admob_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -983,6 +986,7 @@ export namespace admob_v1 {
           {
             url: (rootUrl + '/v1/{+parent}/apps').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1100,6 +1104,7 @@ export namespace admob_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1216,6 +1221,7 @@ export namespace admob_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),

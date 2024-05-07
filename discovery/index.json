@@ -79,6 +79,21 @@
     },
     {
       "kind": "discovery#directoryItem",
+      "id": "addressvalidation:v1",
+      "name": "addressvalidation",
+      "version": "v1",
+      "title": "Address Validation API",
+      "description": "The Address Validation API allows developers to verify the accuracy of addresses. Given an address, it returns information about the correctness of the components of the parsed address, a geocode, and a verdict on the deliverability of the parsed address.",
+      "discoveryRestUrl": "https://addressvalidation.googleapis.com/$discovery/rest?version=v1",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://developers.google.com/maps/documentation/addressvalidation",
+      "preferred": true
+    },
+    {
+      "kind": "discovery#directoryItem",
       "id": "adexchangebuyer2:v2beta1",
       "name": "adexchangebuyer2",
       "version": "v2beta1",
@@ -1353,6 +1368,36 @@
     },
     {
       "kind": "discovery#directoryItem",
+      "id": "cloudcontrolspartner:v1beta",
+      "name": "cloudcontrolspartner",
+      "version": "v1beta",
+      "title": "Cloud Controls Partner API",
+      "description": "Provides insights about your customers and their Assured Workloads based on your Sovereign Controls by Partners offering.",
+      "discoveryRestUrl": "https://cloudcontrolspartner.googleapis.com/$discovery/rest?version=v1beta",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://cloud.google.com/sovereign-controls-by-partners/docs/sovereign-partners/reference/rest",
+      "preferred": false
+    },
+    {
+      "kind": "discovery#directoryItem",
+      "id": "cloudcontrolspartner:v1",
+      "name": "cloudcontrolspartner",
+      "version": "v1",
+      "title": "Cloud Controls Partner API",
+      "description": "Provides insights about your customers and their Assured Workloads based on your Sovereign Controls by Partners offering.",
+      "discoveryRestUrl": "https://cloudcontrolspartner.googleapis.com/$discovery/rest?version=v1",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://cloud.google.com/sovereign-controls-by-partners/docs/sovereign-partners/reference/rest",
+      "preferred": true
+    },
+    {
+      "kind": "discovery#directoryItem",
       "id": "clouddeploy:v1",
       "name": "clouddeploy",
       "version": "v1",
@@ -1832,6 +1877,21 @@
         "x32": "https://www.google.com/images/icons/product/compute_engine-32.png"
       },
       "documentationLink": "https://developers.google.com/compute/docs/reference/latest/",
+      "preferred": true
+    },
+    {
+      "kind": "discovery#directoryItem",
+      "id": "config:v1",
+      "name": "config",
+      "version": "v1",
+      "title": "Infrastructure Manager API",
+      "description": "Creates and manages Google Cloud Platform resources and infrastructure.",
+      "discoveryRestUrl": "https://config.googleapis.com/$discovery/rest?version=v1",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://cloud.google.com/infrastructure-manager/docs",
       "preferred": true
     },
     {
@@ -2507,6 +2567,21 @@
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
       },
       "documentationLink": "https://cloud.google.com/discovery-engine/docs",
+      "preferred": false
+    },
+    {
+      "kind": "discovery#directoryItem",
+      "id": "discoveryengine:v1",
+      "name": "discoveryengine",
+      "version": "v1",
+      "title": "Discovery Engine API",
+      "description": "Discovery Engine API.",
+      "discoveryRestUrl": "https://discoveryengine.googleapis.com/$discovery/rest?version=v1",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://cloud.google.com/discovery-engine/docs",
       "preferred": true
     },
     {
@@ -3083,6 +3158,21 @@
     },
     {
       "kind": "discovery#directoryItem",
+      "id": "firebaseml:v2beta",
+      "name": "firebaseml",
+      "version": "v2beta",
+      "title": "Firebase ML API",
+      "description": "Access custom machine learning models hosted via Firebase ML.",
+      "discoveryRestUrl": "https://firebaseml.googleapis.com/$discovery/rest?version=v2beta",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://firebase.google.com",
+      "preferred": false
+    },
+    {
+      "kind": "discovery#directoryItem",
       "id": "firebaseml:v1",
       "name": "firebaseml",
       "version": "v1",
@@ -3341,7 +3431,7 @@
       "id": "gkeonprem:v1",
       "name": "gkeonprem",
       "version": "v1",
-      "title": "Anthos On-Prem API",
+      "title": "GDC Virtual API",
       "description": "",
       "discoveryRestUrl": "https://gkeonprem.googleapis.com/$discovery/rest?version=v1",
       "icons": {
@@ -3638,12 +3728,12 @@
     },
     {
       "kind": "discovery#directoryItem",
-      "id": "integrations:v1alpha",
+      "id": "integrations:v1",
       "name": "integrations",
-      "version": "v1alpha",
+      "version": "v1",
       "title": "Application Integration API",
       "description": "",
-      "discoveryRestUrl": "https://integrations.googleapis.com/$discovery/rest?version=v1alpha",
+      "discoveryRestUrl": "https://integrations.googleapis.com/$discovery/rest?version=v1",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
@@ -5600,6 +5690,21 @@
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
       },
       "documentationLink": "https://developers.google.com/nest/device-access",
+      "preferred": true
+    },
+    {
+      "kind": "discovery#directoryItem",
+      "id": "solar:v1",
+      "name": "solar",
+      "version": "v1",
+      "title": "Solar API",
+      "description": "Solar API.",
+      "discoveryRestUrl": "https://solar.googleapis.com/$discovery/rest?version=v1",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://developers.google.com/maps/documentation/solar",
       "preferred": true
     },
     {

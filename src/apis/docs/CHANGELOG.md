@@ -1,5 +1,19 @@
 # Changelog
 
+## [3.0.2](https://github.com/googleapis/google-api-nodejs-client/compare/docs-v3.0.1...docs-v3.0.2) (2024-05-02)
+
+
+### Bug Fixes
+
+* **docs:** update the API ([5c28cc5](https://github.com/googleapis/google-api-nodejs-client/commit/5c28cc5f90c3ec07902952673a54a9439aebaefe))
+
+## [3.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/docs-v3.0.0...docs-v3.0.1) (2024-05-02)
+
+
+### Bug Fixes
+
+* **docs:** update the API ([5c28cc5](https://github.com/googleapis/google-api-nodejs-client/commit/5c28cc5f90c3ec07902952673a54a9439aebaefe))
+
 ## [3.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/docs-v2.0.5...docs-v3.0.0) (2023-10-11)
 
 

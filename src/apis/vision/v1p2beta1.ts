@@ -5093,6 +5093,7 @@ export namespace vision_v1p2beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5182,6 +5183,7 @@ export namespace vision_v1p2beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5296,6 +5298,7 @@ export namespace vision_v1p2beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5385,6 +5388,7 @@ export namespace vision_v1p2beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5513,6 +5517,7 @@ export namespace vision_v1p2beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5601,6 +5606,7 @@ export namespace vision_v1p2beta1 {
               rootUrl + '/v1p2beta1/{+parent}/files:asyncBatchAnnotate'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5727,6 +5733,7 @@ export namespace vision_v1p2beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5815,6 +5822,7 @@ export namespace vision_v1p2beta1 {
               rootUrl + '/v1p2beta1/{+parent}/images:asyncBatchAnnotate'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5952,6 +5960,7 @@ export namespace vision_v1p2beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -6041,6 +6050,7 @@ export namespace vision_v1p2beta1 {
               rootUrl + '/v1p2beta1/{+parent}/files:asyncBatchAnnotate'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -6167,6 +6177,7 @@ export namespace vision_v1p2beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -6256,6 +6267,7 @@ export namespace vision_v1p2beta1 {
               rootUrl + '/v1p2beta1/{+parent}/images:asyncBatchAnnotate'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),

@@ -4671,7 +4671,7 @@
       }
     }
   },
-  "revision": "20240304",
+  "revision": "20240429",
   "rootUrl": "https://admin.googleapis.com/",
   "schemas": {
     "Alias": {
@@ -5403,8 +5403,14 @@
           "type": "string"
         },
         "autoUpdateExpiration": {
-          "description": "(Read-only) The timestamp after which the device will stop receiving Chrome updates or support",
+          "deprecated": true,
+          "description": "(Read-only) The timestamp after which the device will stop receiving Chrome updates or support. Please use \"autoUpdateThrough\" instead.",
           "format": "int64",
+          "type": "string"
+        },
+        "autoUpdateThrough": {
+          "description": "Output only. The timestamp after which the device will stop receiving Chrome updates or support.",
+          "readOnly": true,
           "type": "string"
         },
         "backlightInfo": {
@@ -5665,6 +5671,21 @@
         },
         "ethernetMacAddress0": {
           "description": "(Read-only) MAC address used by the Chromebook’s internal ethernet port, and for onboard network (ethernet) interface. The format is twelve (12) hexadecimal digits without any delimiter (uppercase letters). This is only relevant for some devices.",
+          "type": "string"
+        },
+        "extendedSupportEligible": {
+          "description": "Output only. Whether or not the device requires the extended support opt in.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "extendedSupportEnabled": {
+          "description": "Output only. Whether extended support policy is enabled on the device.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "extendedSupportStart": {
+          "description": "Output only. Date of the device when extended support policy for automatic updates starts.",
+          "readOnly": true,
           "type": "string"
         },
         "firmwareVersion": {

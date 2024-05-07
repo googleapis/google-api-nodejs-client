@@ -466,6 +466,7 @@ export namespace customsearch_v1 {
           {
             url: (rootUrl + '/customsearch/v1').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -603,7 +604,7 @@ export namespace customsearch_v1 {
      */
     siteSearchFilter?: string;
     /**
-     * Optional. Maximum length of snippet text, in characters, to be returned with results. * Valid values are integers between 1 and 160, inclusive.
+     * Optional. Maximum length of snippet text, in characters, to be returned with results. Note: this feature is limited to specific engines. * Valid values are integers between 161 and 1000, inclusive.
      */
     snippetLength?: number;
     /**
@@ -691,6 +692,7 @@ export namespace customsearch_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -829,7 +831,7 @@ export namespace customsearch_v1 {
      */
     siteSearchFilter?: string;
     /**
-     * Optional. Maximum length of snippet text, in characters, to be returned with results. * Valid values are integers between 1 and 160, inclusive.
+     * Optional. Maximum length of snippet text, in characters, to be returned with results. Note: this feature is limited to specific engines. * Valid values are integers between 161 and 1000, inclusive.
      */
     snippetLength?: number;
     /**

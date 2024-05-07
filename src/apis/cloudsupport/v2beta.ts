@@ -284,33 +284,37 @@ export namespace cloudsupport_v2beta {
      * The unique ID for a classification. Must be specified for case creation. To retrieve valid classification IDs for case creation, use `caseClassifications.search`. Classification IDs returned by `caseClassifications.search` are guaranteed to be valid for at least 6 months. If a given classification is deactiveated, it will immediately stop being returned. After 6 months, `case.create` requests using the classification ID will fail.
      */
     id?: string | null;
+    /**
+     * The full product the classification corresponds to.
+     */
+    product?: Schema$Product;
   }
   /**
    * The request message for the CloseCase endpoint.
    */
   export interface Schema$CloseCaseRequest {}
   /**
-   * Case comments are the main way Google Support communicates with a user who has opened a case. When a user responds to Google Support, the user's responses also appear as comments.
+   * A comment associated with a support case. Case comments are the primary way for Google Support to communicate with a user who has opened a case. When a user responds to Google Support, the user's responses also appear as comments.
    */
   export interface Schema$Comment {
     /**
-     * The full comment body. Maximum of 12800 characters. This can contain rich text syntax.
+     * The full comment body. Maximum of 12800 characters.
      */
     body?: string | null;
     /**
-     * Output only. The time when this comment was created.
+     * Output only. The time when the comment was created.
      */
     createTime?: string | null;
     /**
-     * Output only. The user or Google Support agent created this comment.
+     * Output only. The user or Google Support agent who created the comment.
      */
     creator?: Schema$Actor;
     /**
-     * Output only. The resource name for the comment.
+     * Output only. Identifier. The resource name of the comment.
      */
     name?: string | null;
     /**
-     * Output only. DEPRECATED. An automatically generated plain text version of body with all rich text syntax stripped.
+     * Output only. DEPRECATED. DO NOT USE. A duplicate of the `body` field. This field is only present for legacy reasons.
      */
     plainTextBody?: string | null;
   }
@@ -488,6 +492,39 @@ export namespace cloudsupport_v2beta {
     ignoreRange?: boolean | null;
   }
   /**
+   * An email associated with a support case.
+   */
+  export interface Schema$EmailMessage {
+    /**
+     * Output only. The user or Google Support agent that created this email message. This is inferred from the headers on the email message.
+     */
+    actor?: Schema$Actor;
+    /**
+     * Output only. The full email message body. A best-effort attempt is made to remove extraneous reply threads.
+     */
+    bodyContent?: Schema$TextContent;
+    /**
+     * Output only. Email addresses CCed on the email.
+     */
+    ccEmailAddresses?: string[] | null;
+    /**
+     * Output only. Time when this email message object was created.
+     */
+    createTime?: string | null;
+    /**
+     * Identifier. Resource name for the email message.
+     */
+    name?: string | null;
+    /**
+     * Output only. Email addresses the email was sent to.
+     */
+    recipientEmailAddresses?: string[] | null;
+    /**
+     * Output only. Subject of the email.
+     */
+    subject?: string | null;
+  }
+  /**
    * The request message for the EscalateCase endpoint.
    */
   export interface Schema$EscalateCaseRequest {
@@ -508,6 +545,31 @@ export namespace cloudsupport_v2beta {
      * Required. The reason why the Case is being escalated.
      */
     reason?: string | null;
+  }
+  /**
+   * A feed item associated with a support case.
+   */
+  export interface Schema$FeedItem {
+    /**
+     * Output only. An attachment attached to the case.
+     */
+    attachment?: Schema$Attachment;
+    /**
+     * Output only. A comment added to the case.
+     */
+    comment?: Schema$Comment;
+    /**
+     * Output only. A deleted attachment that used to be associated with the support case.
+     */
+    deletedAttachment?: Schema$Attachment;
+    /**
+     * Output only. An email message received in reply to the case.
+     */
+    emailMessage?: Schema$EmailMessage;
+    /**
+     * Output only. Time corresponding to the event of this item.
+     */
+    eventTime?: string | null;
   }
   /**
    * The response message for the ListAttachments endpoint.
@@ -691,6 +753,15 @@ export namespace cloudsupport_v2beta {
     objectName?: string | null;
   }
   /**
+   * The product a case may be associated with.
+   */
+  export interface Schema$Product {
+    /**
+     * The product line of the Product.
+     */
+    productLine?: string | null;
+  }
+  /**
    * The response message for SearchCaseClassifications endpoint.
    */
   export interface Schema$SearchCaseClassificationsResponse {
@@ -715,6 +786,28 @@ export namespace cloudsupport_v2beta {
      * A token to retrieve the next page of results. Set this in the `page_token` field of subsequent `cases.search` requests. If unspecified, there are no more results to retrieve.
      */
     nextPageToken?: string | null;
+  }
+  /**
+   * The response message for the ShowFeed endpoint.
+   */
+  export interface Schema$ShowFeedResponse {
+    /**
+     * The list of feed items associated with the given Case.
+     */
+    feedItems?: Schema$FeedItem[];
+    /**
+     * A token to retrieve the next page of results. This should be set in the `page_token` field of subsequent `ShowFeedRequests`. If unspecified, there are no more results to retrieve.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
+   * Stores text attached to a support object.
+   */
+  export interface Schema$TextContent {
+    /**
+     * Content in this field should be rendered and interpreted as-is.
+     */
+    plainText?: string | null;
   }
   /**
    * Metadata about the operation. Used to lookup the current status.
@@ -816,6 +909,7 @@ export namespace cloudsupport_v2beta {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -847,6 +941,10 @@ export namespace cloudsupport_v2beta {
      * A token identifying the page of results to return. If unspecified, the first page is retrieved.
      */
     pageToken?: string;
+    /**
+     * The product line of the Product.
+     */
+    'product.productLine'?: string;
     /**
      * An expression used to filter case classifications. If it's an empty string, then no filtering happens. Otherwise, case classifications will be returned that match the filter.
      */
@@ -931,6 +1029,7 @@ export namespace cloudsupport_v2beta {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1017,6 +1116,7 @@ export namespace cloudsupport_v2beta {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1103,6 +1203,7 @@ export namespace cloudsupport_v2beta {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1186,6 +1287,7 @@ export namespace cloudsupport_v2beta {
           {
             url: (rootUrl + '/v2beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1275,6 +1377,7 @@ export namespace cloudsupport_v2beta {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1358,6 +1461,7 @@ export namespace cloudsupport_v2beta {
           {
             url: (rootUrl + '/v2beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -1447,6 +1551,7 @@ export namespace cloudsupport_v2beta {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1462,6 +1567,93 @@ export namespace cloudsupport_v2beta {
         );
       } else {
         return createAPIRequest<Schema$SearchCasesResponse>(parameters);
+      }
+    }
+
+    /**
+     * Show items in the feed of this case, including case emails, attachments, and comments.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    showFeed(
+      params: Params$Resource$Cases$Showfeed,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    showFeed(
+      params?: Params$Resource$Cases$Showfeed,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ShowFeedResponse>;
+    showFeed(
+      params: Params$Resource$Cases$Showfeed,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    showFeed(
+      params: Params$Resource$Cases$Showfeed,
+      options: MethodOptions | BodyResponseCallback<Schema$ShowFeedResponse>,
+      callback: BodyResponseCallback<Schema$ShowFeedResponse>
+    ): void;
+    showFeed(
+      params: Params$Resource$Cases$Showfeed,
+      callback: BodyResponseCallback<Schema$ShowFeedResponse>
+    ): void;
+    showFeed(callback: BodyResponseCallback<Schema$ShowFeedResponse>): void;
+    showFeed(
+      paramsOrCallback?:
+        | Params$Resource$Cases$Showfeed
+        | BodyResponseCallback<Schema$ShowFeedResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ShowFeedResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ShowFeedResponse>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$ShowFeedResponse> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Cases$Showfeed;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Cases$Showfeed;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudsupport.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2beta/{+parent}:showFeed').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ShowFeedResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ShowFeedResponse>(parameters);
       }
     }
   }
@@ -1522,6 +1714,10 @@ export namespace cloudsupport_v2beta {
      * Required. The name of a parent to list cases under.
      */
     parent?: string;
+    /**
+     * The product line to request cases for. If unspecified, only Google Cloud cases will be returned.
+     */
+    productLine?: string;
   }
   export interface Params$Resource$Cases$Patch extends StandardParameters {
     /**
@@ -1555,6 +1751,24 @@ export namespace cloudsupport_v2beta {
      * An expression used to filter cases. Expressions use the following fields separated by `AND` and specified with `=`: - `organization`: An organization name in the form `organizations/`. - `project`: A project name in the form `projects/`. - `state`: Can be `OPEN` or `CLOSED`. - `priority`: Can be `P0`, `P1`, `P2`, `P3`, or `P4`. You can specify multiple values for priority using the `OR` operator. For example, `priority=P1 OR priority=P2`. - `creator.email`: The email address of the case creator. You must specify either `organization` or `project`. To search across `displayName`, `description`, and comments, use a global restriction with no keyword or operator. For example, `"my search"`. To search only cases updated after a certain date, use `update_time` restricted with that particular date, time, and timezone in ISO datetime format. For example, `update_time\>"2020-01-01T00:00:00-05:00"`. `update_time` only supports the greater than operator (`\>`). Examples: - `organization="organizations/123456789"` - `project="projects/my-project-id"` - `project="projects/123456789"` - `organization="organizations/123456789" AND state=CLOSED` - `project="projects/my-project-id" AND creator.email="tester@example.com"` - `project="projects/my-project-id" AND (priority=P0 OR priority=P1)`
      */
     query?: string;
+  }
+  export interface Params$Resource$Cases$Showfeed extends StandardParameters {
+    /**
+     * Optional. Field to order feed items by, followed by `asc` or `desc` postfix. The only valid field is `creation_time`. This list is case-insensitive, default sorting order is ascending, and the redundant space characters are insignificant. Example: `creation_time desc`
+     */
+    orderBy?: string;
+    /**
+     * Optional. The maximum number of feed items fetched with each request.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A token identifying the page of results to return. If unspecified, it retrieves the first page.
+     */
+    pageToken?: string;
+    /**
+     * Required. The resource name of the case for which feed items should be listed.
+     */
+    parent?: string;
   }
 
   export class Resource$Cases$Attachments {
@@ -1637,6 +1851,7 @@ export namespace cloudsupport_v2beta {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1747,6 +1962,7 @@ export namespace cloudsupport_v2beta {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1839,6 +2055,7 @@ export namespace cloudsupport_v2beta {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1960,6 +2177,7 @@ export namespace cloudsupport_v2beta {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2046,6 +2264,7 @@ export namespace cloudsupport_v2beta {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),

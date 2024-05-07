@@ -764,6 +764,7 @@ export namespace trafficdirector_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),

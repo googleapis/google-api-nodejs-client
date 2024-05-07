@@ -3173,7 +3173,7 @@
       }
     }
   },
-  "revision": "20240126",
+  "revision": "20240412",
   "rootUrl": "https://vmwareengine.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -4221,12 +4221,18 @@
           "enum": [
             "PROTOCOL_UNSPECIFIED",
             "UDP",
-            "TCP"
+            "TCP",
+            "TLS",
+            "SSL",
+            "RELP"
           ],
           "enumDescriptions": [
             "Unspecified communications protocol. This is the default value.",
             "UDP",
-            "TCP"
+            "TCP",
+            "TLS",
+            "SSL",
+            "RELP"
           ],
           "type": "string"
         },

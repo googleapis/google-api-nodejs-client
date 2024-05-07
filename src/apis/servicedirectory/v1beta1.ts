@@ -502,6 +502,7 @@ export namespace servicedirectory_v1beta1 {
           {
             url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -595,6 +596,7 @@ export namespace servicedirectory_v1beta1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -725,6 +727,7 @@ export namespace servicedirectory_v1beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -810,6 +813,7 @@ export namespace servicedirectory_v1beta1 {
           {
             url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -895,6 +899,7 @@ export namespace servicedirectory_v1beta1 {
           {
             url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -984,6 +989,7 @@ export namespace servicedirectory_v1beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1077,6 +1083,7 @@ export namespace servicedirectory_v1beta1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1162,6 +1169,7 @@ export namespace servicedirectory_v1beta1 {
           {
             url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -1251,6 +1259,7 @@ export namespace servicedirectory_v1beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1347,6 +1356,7 @@ export namespace servicedirectory_v1beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1419,7 +1429,7 @@ export namespace servicedirectory_v1beta1 {
      */
     orderBy?: string;
     /**
-     * Optional. The maximum number of items to return.
+     * Optional. The maximum number of items to return. The default value is 100.
      */
     pageSize?: number;
     /**
@@ -1554,6 +1564,7 @@ export namespace servicedirectory_v1beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1640,6 +1651,7 @@ export namespace servicedirectory_v1beta1 {
           {
             url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -1726,6 +1738,7 @@ export namespace servicedirectory_v1beta1 {
           {
             url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1815,6 +1828,7 @@ export namespace servicedirectory_v1beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1909,6 +1923,7 @@ export namespace servicedirectory_v1beta1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1995,6 +2010,7 @@ export namespace servicedirectory_v1beta1 {
           {
             url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -2091,6 +2107,7 @@ export namespace servicedirectory_v1beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2180,6 +2197,7 @@ export namespace servicedirectory_v1beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2276,6 +2294,7 @@ export namespace servicedirectory_v1beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2348,7 +2367,7 @@ export namespace servicedirectory_v1beta1 {
      */
     orderBy?: string;
     /**
-     * Optional. The maximum number of items to return.
+     * Optional. The maximum number of items to return. The default value is 100.
      */
     pageSize?: number;
     /**
@@ -2490,6 +2509,7 @@ export namespace servicedirectory_v1beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2576,6 +2596,7 @@ export namespace servicedirectory_v1beta1 {
           {
             url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -2662,6 +2683,7 @@ export namespace servicedirectory_v1beta1 {
           {
             url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2756,6 +2778,7 @@ export namespace servicedirectory_v1beta1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2842,6 +2865,7 @@ export namespace servicedirectory_v1beta1 {
           {
             url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -2902,7 +2926,7 @@ export namespace servicedirectory_v1beta1 {
      */
     orderBy?: string;
     /**
-     * Optional. The maximum number of items to return.
+     * Optional. The maximum number of items to return. The default value is 100.
      */
     pageSize?: number;
     /**
@@ -3008,6 +3032,7 @@ export namespace servicedirectory_v1beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3097,6 +3122,7 @@ export namespace servicedirectory_v1beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3193,6 +3219,7 @@ export namespace servicedirectory_v1beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),

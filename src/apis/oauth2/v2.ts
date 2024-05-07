@@ -174,6 +174,7 @@ export namespace oauth2_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -356,6 +357,7 @@ export namespace oauth2_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -457,6 +459,7 @@ export namespace oauth2_v2 {
           {
             url: (rootUrl + '/userinfo/v2/me').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),

@@ -1230,6 +1230,10 @@ export namespace datamigration_v1 {
      */
     tableColumns?: string[] | null;
     /**
+     * For each table_column, mark whether it's sorting order is ascending (false) or descending (true). If no value is defined, assume all columns are sorted in ascending order. Otherwise, the number of items must match that of table_columns with each value specifying the direction of the matched column by its index.
+     */
+    tableColumnsDescending?: boolean[] | null;
+    /**
      * Type of index, for example B-TREE.
      */
     type?: string | null;
@@ -1548,6 +1552,10 @@ export namespace datamigration_v1 {
      */
     dumpPath?: string | null;
     /**
+     * Optional. The type of the data dump. Supported for MySQL to CloudSQL for MySQL migrations only.
+     */
+    dumpType?: string | null;
+    /**
      * Output only. The duration of the migration job (in seconds). A duration in seconds with up to nine fractional digits, terminated by 's'. Example: "3.5s".
      */
     duration?: string | null;
@@ -1572,7 +1580,7 @@ export namespace datamigration_v1 {
      */
     name?: string | null;
     /**
-     * Optional. Data dump parallelism settings used by the migration. Currently applicable only for MySQL to Cloud SQL for MySQL migrations only.
+     * Optional. Data dump parallelism settings used by the migration.
      */
     performanceConfig?: Schema$PerformanceConfig;
     /**
@@ -2003,7 +2011,12 @@ export namespace datamigration_v1 {
   /**
    * Request message for 'ResumeMigrationJob' request.
    */
-  export interface Schema$ResumeMigrationJobRequest {}
+  export interface Schema$ResumeMigrationJobRequest {
+    /**
+     * Optional. Resume the migration job without running prior configuration verification. Defaults to `false`.
+     */
+    skipValidation?: boolean | null;
+  }
   /**
    * The details needed to configure a reverse SSH tunnel between the source and destination databases. These details will be used when calling the generateSshScript method (see https://cloud.google.com/database-migration/docs/reference/rest/v1/projects.locations.migrationJobs/generateSshScript) to produce the script that will help set up the reverse SSH tunnel, and to set up the VPC peering between the Cloud SQL private network and the VPC.
    */
@@ -2906,6 +2919,7 @@ export namespace datamigration_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2991,6 +3005,7 @@ export namespace datamigration_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3084,6 +3099,7 @@ export namespace datamigration_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3222,6 +3238,7 @@ export namespace datamigration_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3308,6 +3325,7 @@ export namespace datamigration_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -3397,6 +3415,7 @@ export namespace datamigration_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3486,6 +3505,7 @@ export namespace datamigration_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3582,6 +3602,7 @@ export namespace datamigration_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3670,6 +3691,7 @@ export namespace datamigration_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -3759,6 +3781,7 @@ export namespace datamigration_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3855,6 +3878,7 @@ export namespace datamigration_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4090,6 +4114,7 @@ export namespace datamigration_v1 {
           {
             url: (rootUrl + '/v1/{+name}:apply').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4176,6 +4201,7 @@ export namespace datamigration_v1 {
           {
             url: (rootUrl + '/v1/{+name}:commit').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4265,6 +4291,7 @@ export namespace datamigration_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4354,6 +4381,7 @@ export namespace datamigration_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4440,6 +4468,7 @@ export namespace datamigration_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -4536,6 +4565,7 @@ export namespace datamigration_v1 {
               '/v1/{+conversionWorkspace}:describeConversionWorkspaceRevisions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4633,6 +4663,7 @@ export namespace datamigration_v1 {
               rootUrl + '/v1/{+conversionWorkspace}:describeDatabaseEntities'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4724,6 +4755,7 @@ export namespace datamigration_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4813,6 +4845,7 @@ export namespace datamigration_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4909,6 +4942,7 @@ export namespace datamigration_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4997,6 +5031,7 @@ export namespace datamigration_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -5086,6 +5121,7 @@ export namespace datamigration_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5181,6 +5217,7 @@ export namespace datamigration_v1 {
               rootUrl + '/v1/{+conversionWorkspace}:searchBackgroundJobs'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5269,6 +5306,7 @@ export namespace datamigration_v1 {
           {
             url: (rootUrl + '/v1/{+name}:seed').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5358,6 +5396,7 @@ export namespace datamigration_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5454,6 +5493,7 @@ export namespace datamigration_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5792,6 +5832,7 @@ export namespace datamigration_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5878,6 +5919,7 @@ export namespace datamigration_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -5964,6 +6006,7 @@ export namespace datamigration_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6053,6 +6096,7 @@ export namespace datamigration_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -6147,6 +6191,7 @@ export namespace datamigration_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6308,6 +6353,7 @@ export namespace datamigration_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -6393,6 +6439,7 @@ export namespace datamigration_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -6482,6 +6529,7 @@ export namespace datamigration_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -6571,6 +6619,7 @@ export namespace datamigration_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -6661,6 +6710,7 @@ export namespace datamigration_v1 {
               rootUrl + '/v1/{+migrationJob}:generateTcpProxyScript'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -6746,6 +6796,7 @@ export namespace datamigration_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6835,6 +6886,7 @@ export namespace datamigration_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6930,6 +6982,7 @@ export namespace datamigration_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -7015,6 +7068,7 @@ export namespace datamigration_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -7103,6 +7157,7 @@ export namespace datamigration_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -7191,6 +7246,7 @@ export namespace datamigration_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -7276,6 +7332,7 @@ export namespace datamigration_v1 {
           {
             url: (rootUrl + '/v1/{+name}:resume').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -7365,6 +7422,7 @@ export namespace datamigration_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -7450,6 +7508,7 @@ export namespace datamigration_v1 {
           {
             url: (rootUrl + '/v1/{+name}:start').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -7535,6 +7594,7 @@ export namespace datamigration_v1 {
           {
             url: (rootUrl + '/v1/{+name}:stop').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -7631,6 +7691,7 @@ export namespace datamigration_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -7716,6 +7777,7 @@ export namespace datamigration_v1 {
           {
             url: (rootUrl + '/v1/{+name}:verify').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -8037,6 +8099,7 @@ export namespace datamigration_v1 {
           {
             url: (rootUrl + '/v1/{+name}:cancel').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -8122,6 +8185,7 @@ export namespace datamigration_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -8207,6 +8271,7 @@ export namespace datamigration_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -8300,6 +8365,7 @@ export namespace datamigration_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -8442,6 +8508,7 @@ export namespace datamigration_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -8528,6 +8595,7 @@ export namespace datamigration_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -8617,6 +8685,7 @@ export namespace datamigration_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -8706,6 +8775,7 @@ export namespace datamigration_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -8802,6 +8872,7 @@ export namespace datamigration_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -8893,6 +8964,7 @@ export namespace datamigration_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -8989,6 +9061,7 @@ export namespace datamigration_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),

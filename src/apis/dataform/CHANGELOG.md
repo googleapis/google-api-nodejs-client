@@ -1,5 +1,36 @@
 # Changelog
 
+## [4.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/dataform-v3.0.0...dataform-v4.0.0) (2024-05-02)
+
+
+### ⚠ BREAKING CHANGES
+
+* **dataform:** This release has breaking changes.
+* **dataform:** This release has breaking changes.
+
+### Features
+
+* **dataform:** update the API ([a43ddce](https://github.com/googleapis/google-api-nodejs-client/commit/a43ddced989c08697f803f6d167f771ae27ecbcb))
+* **dataform:** update the API ([ad1b4a6](https://github.com/googleapis/google-api-nodejs-client/commit/ad1b4a63cfdcb7cd0b0700798e7114cb8c3210b9))
+* **dataform:** update the API ([3b30605](https://github.com/googleapis/google-api-nodejs-client/commit/3b306058e8313f53f4f287fce8141026e74e336a))
+* regenerate index files ([f453603](https://github.com/googleapis/google-api-nodejs-client/commit/f453603e5a2ccd4d90e18b7dff93352aaaf273f4))
+
+
+### Bug Fixes
+
+* **dataform:** update the API ([dec07de](https://github.com/googleapis/google-api-nodejs-client/commit/dec07debe5e4e36cb5d807bd996f09798c7623fa))
+
+## [3.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/dataform-v2.0.0...dataform-v3.0.0) (2024-05-02)
+
+
+### ⚠ BREAKING CHANGES
+
+* **dataform:** This release has breaking changes.
+
+### Features
+
+* **dataform:** update the API ([a43ddce](https://github.com/googleapis/google-api-nodejs-client/commit/a43ddced989c08697f803f6d167f771ae27ecbcb))
+
 ## [2.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/dataform-v1.8.0...dataform-v2.0.0) (2024-04-04)
 
 

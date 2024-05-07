@@ -1,5 +1,28 @@
 # Changelog
 
+## [11.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/gkehub-v10.1.0...gkehub-v11.0.0) (2024-05-02)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+* This release has breaking changes.
+
+### Features
+
+* **gkehub:** update the API ([d4c3244](https://github.com/googleapis/google-api-nodejs-client/commit/d4c3244d232a2788ef39e85a3ba451227446ebb2))
+* **gkehub:** update the API ([105445d](https://github.com/googleapis/google-api-nodejs-client/commit/105445d344768c413a68a12ac460e644c8b54e9a))
+* **gkehub:** update the API ([c7e634b](https://github.com/googleapis/google-api-nodejs-client/commit/c7e634b035e736693d504697775eff3e8f4726f2))
+* run the generator ([#3434](https://github.com/googleapis/google-api-nodejs-client/issues/3434)) ([f0db524](https://github.com/googleapis/google-api-nodejs-client/commit/f0db524bb26f05cea3dec4c0ed66b496399e3857))
+* run the generator ([#3456](https://github.com/googleapis/google-api-nodejs-client/issues/3456)) ([a865e81](https://github.com/googleapis/google-api-nodejs-client/commit/a865e81539b315d3b321650663ba0b2555b1e5a1))
+
+## [10.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/gkehub-v10.0.0...gkehub-v10.1.0) (2024-05-02)
+
+
+### Features
+
+* **gkehub:** update the API ([d4c3244](https://github.com/googleapis/google-api-nodejs-client/commit/d4c3244d232a2788ef39e85a3ba451227446ebb2))
+
 ## [10.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/gkehub-v9.0.0...gkehub-v10.0.0) (2024-04-04)
 
 

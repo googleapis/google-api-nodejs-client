@@ -1,5 +1,28 @@
 # Changelog
 
+## [17.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/androidmanagement-v16.1.0...androidmanagement-v17.0.0) (2024-05-02)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+* This release has breaking changes.
+* **androidmanagement:** This release has breaking changes.
+
+### Features
+
+* **androidmanagement:** update the API ([bb2dc2d](https://github.com/googleapis/google-api-nodejs-client/commit/bb2dc2d1e3d99b2a27bfe9f1b517ab257cc886bf))
+* **androidmanagement:** update the API ([33b061d](https://github.com/googleapis/google-api-nodejs-client/commit/33b061d957b749ec3788dfcb816874c1b22231c3))
+* run the generator ([#3434](https://github.com/googleapis/google-api-nodejs-client/issues/3434)) ([f0db524](https://github.com/googleapis/google-api-nodejs-client/commit/f0db524bb26f05cea3dec4c0ed66b496399e3857))
+* run the generator ([#3447](https://github.com/googleapis/google-api-nodejs-client/issues/3447)) ([873b559](https://github.com/googleapis/google-api-nodejs-client/commit/873b55950bcf04db37f08e8a62caa6e4a9b9c487))
+
+## [16.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/androidmanagement-v16.0.0...androidmanagement-v16.1.0) (2024-05-02)
+
+
+### Features
+
+* **androidmanagement:** update the API ([bb2dc2d](https://github.com/googleapis/google-api-nodejs-client/commit/bb2dc2d1e3d99b2a27bfe9f1b517ab257cc886bf))
+
 ## [16.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/androidmanagement-v15.0.0...androidmanagement-v16.0.0) (2024-04-04)
 
 

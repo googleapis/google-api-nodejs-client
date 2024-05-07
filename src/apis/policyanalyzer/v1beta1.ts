@@ -283,6 +283,7 @@ export namespace policyanalyzer_v1beta1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),

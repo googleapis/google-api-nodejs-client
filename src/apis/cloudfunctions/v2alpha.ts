@@ -1336,6 +1336,7 @@ export namespace cloudfunctions_v2alpha {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1454,6 +1455,7 @@ export namespace cloudfunctions_v2alpha {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1545,6 +1547,7 @@ export namespace cloudfunctions_v2alpha {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1633,6 +1636,7 @@ export namespace cloudfunctions_v2alpha {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1718,6 +1722,7 @@ export namespace cloudfunctions_v2alpha {
           {
             url: (rootUrl + '/v2alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -1814,6 +1819,7 @@ export namespace cloudfunctions_v2alpha {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1909,6 +1915,7 @@ export namespace cloudfunctions_v2alpha {
               rootUrl + '/v2alpha/{+parent}/functions:generateUploadUrl'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1994,6 +2001,7 @@ export namespace cloudfunctions_v2alpha {
           {
             url: (rootUrl + '/v2alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2083,6 +2091,7 @@ export namespace cloudfunctions_v2alpha {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2176,6 +2185,7 @@ export namespace cloudfunctions_v2alpha {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2261,6 +2271,7 @@ export namespace cloudfunctions_v2alpha {
           {
             url: (rootUrl + '/v2alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -2351,6 +2362,7 @@ export namespace cloudfunctions_v2alpha {
               rootUrl + '/v2alpha/{+name}:redirectFunctionUpgradeTraffic'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2441,6 +2453,7 @@ export namespace cloudfunctions_v2alpha {
               rootUrl + '/v2alpha/{+name}:rollbackFunctionUpgradeTraffic'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2530,6 +2543,7 @@ export namespace cloudfunctions_v2alpha {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2620,6 +2634,7 @@ export namespace cloudfunctions_v2alpha {
               rootUrl + '/v2alpha/{+name}:setupFunctionUpgradeConfig'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2716,6 +2731,7 @@ export namespace cloudfunctions_v2alpha {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3001,6 +3017,7 @@ export namespace cloudfunctions_v2alpha {
           {
             url: (rootUrl + '/v2alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3094,6 +3111,7 @@ export namespace cloudfunctions_v2alpha {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3221,6 +3239,7 @@ export namespace cloudfunctions_v2alpha {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),

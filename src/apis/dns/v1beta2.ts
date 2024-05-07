@@ -1057,10 +1057,6 @@ export namespace dns_v1beta2 {
   export interface Schema$RRSetRoutingPolicy {
     geo?: Schema$RRSetRoutingPolicyGeoPolicy;
     geoPolicy?: Schema$RRSetRoutingPolicyGeoPolicy;
-    /**
-     * The selfLink attribute of the HealthCheck resource to use for this RRSetRoutingPolicy. https://cloud.google.com/compute/docs/reference/rest/v1/healthChecks
-     */
-    healthCheck?: string | null;
     kind?: string | null;
     primaryBackup?: Schema$RRSetRoutingPolicyPrimaryBackupPolicy;
     wrr?: Schema$RRSetRoutingPolicyWrrPolicy;
@@ -1103,10 +1099,6 @@ export namespace dns_v1beta2 {
    * HealthCheckTargets describes endpoints to health-check when responding to Routing Policy queries. Only the healthy endpoints will be included in the response. Only one of internal_load_balancer and external_endpoints should be set.
    */
   export interface Schema$RRSetRoutingPolicyHealthCheckTargets {
-    /**
-     * The Internet IP addresses to be health checked. The format matches the format of ResourceRecordSet.rrdata as defined in RFC 1035 (section 5) and RFC 1034 (section 3.6.1)
-     */
-    externalEndpoints?: string[] | null;
     /**
      * Configuration for internal load balancers to be health checked.
      */
@@ -1265,6 +1257,7 @@ export namespace dns_v1beta2 {
               '/dns/v1beta2/projects/{project}/managedZones/{managedZone}/changes'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1351,6 +1344,7 @@ export namespace dns_v1beta2 {
               '/dns/v1beta2/projects/{project}/managedZones/{managedZone}/changes/{changeId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1440,6 +1434,7 @@ export namespace dns_v1beta2 {
               '/dns/v1beta2/projects/{project}/managedZones/{managedZone}/changes'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1597,6 +1592,7 @@ export namespace dns_v1beta2 {
               '/dns/v1beta2/projects/{project}/managedZones/{managedZone}/dnsKeys/{dnsKeyId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1686,6 +1682,7 @@ export namespace dns_v1beta2 {
               '/dns/v1beta2/projects/{project}/managedZones/{managedZone}/dnsKeys'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1825,6 +1822,7 @@ export namespace dns_v1beta2 {
               '/dns/v1beta2/projects/{project}/managedZones/{managedZone}/operations/{operation}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1919,6 +1917,7 @@ export namespace dns_v1beta2 {
               '/dns/v1beta2/projects/{project}/managedZones/{managedZone}/operations'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2057,6 +2056,7 @@ export namespace dns_v1beta2 {
               rootUrl + '/dns/v1beta2/projects/{project}/managedZones'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2142,6 +2142,7 @@ export namespace dns_v1beta2 {
               '/dns/v1beta2/projects/{project}/managedZones/{managedZone}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -2228,6 +2229,7 @@ export namespace dns_v1beta2 {
               '/dns/v1beta2/projects/{project}/managedZones/{managedZone}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2320,6 +2322,7 @@ export namespace dns_v1beta2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2411,6 +2414,7 @@ export namespace dns_v1beta2 {
               rootUrl + '/dns/v1beta2/projects/{project}/managedZones'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2498,6 +2502,7 @@ export namespace dns_v1beta2 {
               '/dns/v1beta2/projects/{project}/managedZones/{managedZone}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -2590,6 +2595,7 @@ export namespace dns_v1beta2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2683,6 +2689,7 @@ export namespace dns_v1beta2 {
               rootUrl + '/dns/v1beta2/{+resource}:testIamPermissions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2772,6 +2779,7 @@ export namespace dns_v1beta2 {
               '/dns/v1beta2/projects/{project}/managedZones/{managedZone}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
+            apiVersion: '',
           },
           options
         ),
@@ -3006,6 +3014,7 @@ export namespace dns_v1beta2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3089,6 +3098,7 @@ export namespace dns_v1beta2 {
               rootUrl + '/dns/v1beta2/projects/{project}/policies/{policy}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -3174,6 +3184,7 @@ export namespace dns_v1beta2 {
               rootUrl + '/dns/v1beta2/projects/{project}/policies/{policy}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3265,6 +3276,7 @@ export namespace dns_v1beta2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3355,6 +3367,7 @@ export namespace dns_v1beta2 {
               rootUrl + '/dns/v1beta2/projects/{project}/policies/{policy}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -3445,6 +3458,7 @@ export namespace dns_v1beta2 {
               rootUrl + '/dns/v1beta2/projects/{project}/policies/{policy}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
+            apiVersion: '',
           },
           options
         ),
@@ -3634,6 +3648,7 @@ export namespace dns_v1beta2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3742,6 +3757,7 @@ export namespace dns_v1beta2 {
               '/dns/v1beta2/projects/{project}/managedZones/{managedZone}/rrsets'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3827,6 +3843,7 @@ export namespace dns_v1beta2 {
               '/dns/v1beta2/projects/{project}/managedZones/{managedZone}/rrsets/{name}/{type}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -3917,6 +3934,7 @@ export namespace dns_v1beta2 {
               '/dns/v1beta2/projects/{project}/managedZones/{managedZone}/rrsets/{name}/{type}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4011,6 +4029,7 @@ export namespace dns_v1beta2 {
               '/dns/v1beta2/projects/{project}/managedZones/{managedZone}/rrsets'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4103,6 +4122,7 @@ export namespace dns_v1beta2 {
               '/dns/v1beta2/projects/{project}/managedZones/{managedZone}/rrsets/{name}/{type}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -4318,6 +4338,7 @@ export namespace dns_v1beta2 {
               rootUrl + '/dns/v1beta2/projects/{project}/responsePolicies'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4403,6 +4424,7 @@ export namespace dns_v1beta2 {
               '/dns/v1beta2/projects/{project}/responsePolicies/{responsePolicy}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -4490,6 +4512,7 @@ export namespace dns_v1beta2 {
               '/dns/v1beta2/projects/{project}/responsePolicies/{responsePolicy}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4583,6 +4606,7 @@ export namespace dns_v1beta2 {
               rootUrl + '/dns/v1beta2/projects/{project}/responsePolicies'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4679,6 +4703,7 @@ export namespace dns_v1beta2 {
               '/dns/v1beta2/projects/{project}/responsePolicies/{responsePolicy}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -4775,6 +4800,7 @@ export namespace dns_v1beta2 {
               '/dns/v1beta2/projects/{project}/responsePolicies/{responsePolicy}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
+            apiVersion: '',
           },
           options
         ),
@@ -4976,6 +5002,7 @@ export namespace dns_v1beta2 {
               '/dns/v1beta2/projects/{project}/responsePolicies/{responsePolicy}/rules'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5061,6 +5088,7 @@ export namespace dns_v1beta2 {
               '/dns/v1beta2/projects/{project}/responsePolicies/{responsePolicy}/rules/{responsePolicyRule}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -5151,6 +5179,7 @@ export namespace dns_v1beta2 {
               '/dns/v1beta2/projects/{project}/responsePolicies/{responsePolicy}/rules/{responsePolicyRule}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5245,6 +5274,7 @@ export namespace dns_v1beta2 {
               '/dns/v1beta2/projects/{project}/responsePolicies/{responsePolicy}/rules'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5341,6 +5371,7 @@ export namespace dns_v1beta2 {
               '/dns/v1beta2/projects/{project}/responsePolicies/{responsePolicy}/rules/{responsePolicyRule}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -5437,6 +5468,7 @@ export namespace dns_v1beta2 {
               '/dns/v1beta2/projects/{project}/responsePolicies/{responsePolicy}/rules/{responsePolicyRule}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
+            apiVersion: '',
           },
           options
         ),
