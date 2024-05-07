@@ -4032,12 +4032,53 @@
                 "$ref": "CommentThread"
               }
             }
+          },
+          "resources": {
+            "liveChat": {
+              "resources": {
+                "messages": {
+                  "methods": {
+                    "transition": {
+                      "description": "Transition a durable chat event.",
+                      "flatPath": "youtube/v3/liveChat/messages/transition",
+                      "httpMethod": "POST",
+                      "id": "youtube.youtube.v3.liveChat.messages.transition",
+                      "parameterOrder": [],
+                      "parameters": {
+                        "id": {
+                          "description": "The ID that uniquely identify the chat message event to transition.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "status": {
+                          "description": "The status to which the chat event is going to transition.",
+                          "enum": [
+                            "statusUnspecified",
+                            "closed"
+                          ],
+                          "enumDescriptions": [
+                            "Default unknown enum value.",
+                            "The durable chat event is over."
+                          ],
+                          "location": "query",
+                          "type": "string"
+                        }
+                      },
+                      "path": "youtube/v3/liveChat/messages/transition",
+                      "response": {
+                        "$ref": "LiveChatMessage"
+                      }
+                    }
+                  }
+                }
+              }
+            }
           }
         }
       }
     }
   },
-  "revision": "20240429",
+  "revision": "20240505",
   "rootUrl": "https://youtube.googleapis.com/",
   "schemas": {
     "AbuseReport": {
