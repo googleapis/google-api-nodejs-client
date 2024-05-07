@@ -256,10 +256,6 @@ export namespace sts_v1beta {
      */
     accessBoundary?: Schema$GoogleIdentityStsV1betaAccessBoundary;
     /**
-     * The intended audience(s) of the credential. The audience value(s) should be the name(s) of services intended to receive the credential. Example: `["https://pubsub.googleapis.com/", "https://storage.googleapis.com/"]`. A maximum of 5 audiences can be included. For each provided audience, the maximum length is 262 characters.
-     */
-    audiences?: string[] | null;
-    /**
      * A Google project used for quota and billing purposes when the credential is used to access Google APIs. The provided project overrides the project bound to the credential. The value must be a project number or a project ID. Example: `my-sample-project-191923`. The maximum length is 32 characters.
      */
     userProject?: string | null;
@@ -272,10 +268,6 @@ export namespace sts_v1beta {
      * An access boundary that defines the upper bound of permissions the credential may have. The value should be a JSON object of AccessBoundary. The access boundary can include up to 10 rules. The size of the parameter value should not exceed 2048 characters.
      */
     accessBoundary?: Schema$GoogleIdentityStsV1AccessBoundary;
-    /**
-     * The intended audience(s) of the credential. The audience value(s) should be the name(s) of services intended to receive the credential. Example: `["https://pubsub.googleapis.com/", "https://storage.googleapis.com/"]`. A maximum of 5 audiences can be included. For each provided audience, the maximum length is 262 characters.
-     */
-    audiences?: string[] | null;
     /**
      * A Google project used for quota and billing purposes when the credential is used to access Google APIs. The provided project overrides the project bound to the credential. The value must be a project number or a project ID. Example: `my-sample-project-191923`. The maximum length is 32 characters.
      */
