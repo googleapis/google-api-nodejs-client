@@ -206,7 +206,7 @@
       }
     }
   },
-  "revision": "20240429",
+  "revision": "20240503",
   "rootUrl": "https://firebaseml.googleapis.com/",
   "schemas": {
     "Blob": {
@@ -625,6 +625,22 @@
         },
         "responseMimeType": {
           "description": "Optional. Output response mimetype of the generated candidate text. Supported mimetype: - `text/plain`: (default) Text output. - `application/json`: JSON response in the candidates. The model needs to be prompted to output the appropriate response type, otherwise the behavior is undefined. This is a preview feature.",
+          "type": "string"
+        },
+        "responseStyle": {
+          "description": "Optional. Control Three levels of creativity in the model output. Default: RESPONSE_STYLE_BALANCED",
+          "enum": [
+            "RESPONSE_STYLE_UNSPECIFIED",
+            "RESPONSE_STYLE_PRECISE",
+            "RESPONSE_STYLE_BALANCED",
+            "RESPONSE_STYLE_CREATIVE"
+          ],
+          "enumDescriptions": [
+            "response style unspecified.",
+            "Precise response.",
+            "Default response style.",
+            "Creative response style."
+          ],
           "type": "string"
         },
         "stopSequences": {
