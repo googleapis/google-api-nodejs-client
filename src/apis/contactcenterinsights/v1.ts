@@ -1603,6 +1603,10 @@ export namespace contactcenterinsights_v1 {
      */
     redactionConfig?: Schema$GoogleCloudContactcenterinsightsV1alpha1RedactionConfig;
     /**
+     * Optional. If set, this fields indicates the number of objects to ingest from the Cloud Storage bucket. If empty, the entire bucket will be ingested. Note that conversations produced via sampling will not be ingested by subsequent ingest requests unless they are first deleted.
+     */
+    sampleSize?: number | null;
+    /**
      * Optional. Default Speech-to-Text configuration. Optional, will default to the config specified in Settings.
      */
     speechConfig?: Schema$GoogleCloudContactcenterinsightsV1alpha1SpeechConfig;
@@ -1620,7 +1624,7 @@ export namespace contactcenterinsights_v1 {
      */
     agentChannel?: number | null;
     /**
-     * An opaque, user-specified string representing the human agent who handled the conversations.
+     * Optional. An opaque, user-specified string representing a human agent who handled all conversations in the import. Note that this will be overridden if per-conversation metadata is provided via the `metadata_bucket_uri`.
      */
     agentId?: string | null;
     /**
@@ -1841,7 +1845,7 @@ export namespace contactcenterinsights_v1 {
     phraseMatcher?: string | null;
   }
   /**
-   * DLP resources used for redaction while ingesting conversations.
+   * DLP resources used for redaction while ingesting conversations. DLP settings are applied to conversations ingested from the UploadConversation and IngestConversations endpoints, including conversation coming from CCAI Platform. They are not applied to conversations ingested from the CreateConversation endpoint or the Dialogflow / Agent Assist runtime integrations. When using Dialogflow / Agent Assist runtime integrations redaction should be performed in Dialogflow / Agent Assist.
    */
   export interface Schema$GoogleCloudContactcenterinsightsV1alpha1RedactionConfig {
     /**
@@ -2020,7 +2024,7 @@ export namespace contactcenterinsights_v1 {
     reply?: string | null;
   }
   /**
-   * Speech-to-Text configuration.
+   * Speech-to-Text configuration. Speech-to-Text settings are applied to conversations ingested from the UploadConversation and IngestConversations endpoints, including conversation coming from CCAI Platform. They are not applied to conversations ingested from the CreateConversation endpoint.
    */
   export interface Schema$GoogleCloudContactcenterinsightsV1alpha1SpeechConfig {
     /**
@@ -3494,6 +3498,10 @@ export namespace contactcenterinsights_v1 {
      */
     redactionConfig?: Schema$GoogleCloudContactcenterinsightsV1RedactionConfig;
     /**
+     * Optional. If set, this fields indicates the number of objects to ingest from the Cloud Storage bucket. If empty, the entire bucket will be ingested. Note that conversations produced via sampling will not be ingested by subsequent ingest requests unless they are first deleted.
+     */
+    sampleSize?: number | null;
+    /**
      * Optional. Default Speech-to-Text configuration. Optional, will default to the config specified in Settings.
      */
     speechConfig?: Schema$GoogleCloudContactcenterinsightsV1SpeechConfig;
@@ -3511,7 +3519,7 @@ export namespace contactcenterinsights_v1 {
      */
     agentChannel?: number | null;
     /**
-     * An opaque, user-specified string representing the human agent who handled the conversations.
+     * Optional. An opaque, user-specified string representing a human agent who handled all conversations in the import. Note that this will be overridden if per-conversation metadata is provided via the `metadata_bucket_uri`.
      */
     agentId?: string | null;
     /**
@@ -3915,7 +3923,7 @@ export namespace contactcenterinsights_v1 {
     type?: string | null;
   }
   /**
-   * DLP resources used for redaction while ingesting conversations.
+   * DLP resources used for redaction while ingesting conversations. DLP settings are applied to conversations ingested from the UploadConversation and IngestConversations endpoints, including conversation coming from CCAI Platform. They are not applied to conversations ingested from the CreateConversation endpoint or the Dialogflow / Agent Assist runtime integrations. When using Dialogflow / Agent Assist runtime integrations redaction should be performed in Dialogflow / Agent Assist.
    */
   export interface Schema$GoogleCloudContactcenterinsightsV1RedactionConfig {
     /**
@@ -4076,11 +4084,11 @@ export namespace contactcenterinsights_v1 {
      */
     pubsubNotificationSettings?: {[key: string]: string} | null;
     /**
-     * Default DLP redaction resources to be applied while ingesting conversations.
+     * Default DLP redaction resources to be applied while ingesting conversations. This applies to conversations ingested from the UploadConversation and IngestConversations endpoints, including conversations coming from CCAI Platform.
      */
     redactionConfig?: Schema$GoogleCloudContactcenterinsightsV1RedactionConfig;
     /**
-     * Optional. Default Speech-to-Text resources to be used while ingesting audio files. Optional, CCAI Insights will create a default if not provided.
+     * Optional. Default Speech-to-Text resources to be used while ingesting audio files. Optional, CCAI Insights will create a default if not provided. This applies to conversations ingested from the UploadConversation and IngestConversations endpoints, including conversations coming from CCAI Platform.
      */
     speechConfig?: Schema$GoogleCloudContactcenterinsightsV1SpeechConfig;
     /**
@@ -4152,7 +4160,7 @@ export namespace contactcenterinsights_v1 {
     reply?: string | null;
   }
   /**
-   * Speech-to-Text configuration.
+   * Speech-to-Text configuration. Speech-to-Text settings are applied to conversations ingested from the UploadConversation and IngestConversations endpoints, including conversation coming from CCAI Platform. They are not applied to conversations ingested from the CreateConversation endpoint.
    */
   export interface Schema$GoogleCloudContactcenterinsightsV1SpeechConfig {
     /**
@@ -4902,7 +4910,7 @@ export namespace contactcenterinsights_v1 {
     }
 
     /**
-     * Creates a conversation.
+     * Creates a conversation. DEPRECATED: Use UploadConversation instead. CreateConversation does not support audio transcription or DLP redaction.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
