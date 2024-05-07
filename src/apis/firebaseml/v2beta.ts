@@ -412,6 +412,10 @@ export namespace firebaseml_v2beta {
      */
     responseMimeType?: string | null;
     /**
+     * Optional. Control Three levels of creativity in the model output. Default: RESPONSE_STYLE_BALANCED
+     */
+    responseStyle?: string | null;
+    /**
      * Optional. Stop sequences.
      */
     stopSequences?: string[] | null;
