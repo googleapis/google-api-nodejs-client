@@ -807,6 +807,15 @@ export namespace run_v2 {
     server?: string | null;
   }
   /**
+   * Hardware constraints configuration.
+   */
+  export interface Schema$GoogleCloudRunV2NodeSelector {
+    /**
+     * Required. GPU accelerator type to attach to an instance.
+     */
+    accelerator?: string | null;
+  }
+  /**
    * RunJob Overrides that contains Execution fields to be overridden.
    */
   export interface Schema$GoogleCloudRunV2Overrides {
@@ -946,6 +955,10 @@ export namespace run_v2 {
      */
     name?: string | null;
     /**
+     * The node selector for the revision.
+     */
+    nodeSelector?: Schema$GoogleCloudRunV2NodeSelector;
+    /**
      * Output only. The generation of this Revision currently serving traffic. See comments in `reconciling` for additional information on reconciliation process in Cloud Run.
      */
     observedGeneration?: string | null;
@@ -1052,6 +1065,10 @@ export namespace run_v2 {
      * Optional. Sets the maximum number of requests that each serving instance can receive.
      */
     maxInstanceRequestConcurrency?: number | null;
+    /**
+     * Optional. The node selector for the revision template.
+     */
+    nodeSelector?: Schema$GoogleCloudRunV2NodeSelector;
     /**
      * Optional. The unique name for the revision. If this field is omitted, it will be automatically generated based on the Service name.
      */
@@ -1689,6 +1706,10 @@ export namespace run_v2 {
      */
     finishTime?: string | null;
     /**
+     * Optional. Configuration for git operations.
+     */
+    gitConfig?: Schema$GoogleDevtoolsCloudbuildV1GitConfig;
+    /**
      * Output only. Unique identifier of the build.
      */
     id?: string | null;
@@ -1980,6 +2001,23 @@ export namespace run_v2 {
     revision?: string | null;
   }
   /**
+   * This config defines the location of a source through Developer Connect.
+   */
+  export interface Schema$GoogleDevtoolsCloudbuildV1DeveloperConnectConfig {
+    /**
+     * Required. Directory, relative to the source root, in which to run the build.
+     */
+    dir?: string | null;
+    /**
+     * Required. The Developer Connect Git repository link, formatted as `projects/x/locations/x/connections/x/gitRepositoryLink/x`.
+     */
+    gitRepositoryLink?: string | null;
+    /**
+     * Required. The revision to fetch from the Git repository such as a branch, a tag, a commit SHA, or any Git ref.
+     */
+    revision?: string | null;
+  }
+  /**
    * A fatal problem encountered during the execution of the build.
    */
   export interface Schema$GoogleDevtoolsCloudbuildV1FailureInfo {
@@ -2000,6 +2038,15 @@ export namespace run_v2 {
      * Collection of file hashes.
      */
     fileHash?: Schema$GoogleDevtoolsCloudbuildV1Hash[];
+  }
+  /**
+   * GitConfig is a configuration for git operations.
+   */
+  export interface Schema$GoogleDevtoolsCloudbuildV1GitConfig {
+    /**
+     * Configuration for HTTP related git operations.
+     */
+    http?: Schema$GoogleDevtoolsCloudbuildV1HttpConfig;
   }
   /**
    * Location of the source in any accessible Git repository.
@@ -2030,6 +2077,15 @@ export namespace run_v2 {
      * The hash value.
      */
     value?: string | null;
+  }
+  /**
+   * HttpConfig is a configuration for HTTP related git operations.
+   */
+  export interface Schema$GoogleDevtoolsCloudbuildV1HttpConfig {
+    /**
+     * SecretVersion resource of the HTTP proxy URL. The proxy URL should be in format protocol://@]proxyhost[:port].
+     */
+    proxySecretVersionName?: string | null;
   }
   /**
    * Pairs a set of secret environment variables mapped to encrypted values with the Cloud KMS key to use to decrypt the value.
@@ -2158,7 +2214,7 @@ export namespace run_v2 {
      */
     buildStepImages?: string[] | null;
     /**
-     * List of build step outputs, produced by builder images, in the order corresponding to build step indices. [Cloud Builders](https://cloud.google.com/cloud-build/docs/cloud-builders) can produce this output by writing to `$BUILDER_OUTPUT/output`. Only the first 50KB of data is stored.
+     * List of build step outputs, produced by builder images, in the order corresponding to build step indices. [Cloud Builders](https://cloud.google.com/cloud-build/docs/cloud-builders) can produce this output by writing to `$BUILDER_OUTPUT/output`. Only the first 50KB of data is stored. Note that the `$BUILDER_OUTPUT` variable is read-only and can't be substituted.
      */
     buildStepOutputs?: string[] | null;
     /**
@@ -2229,6 +2285,10 @@ export namespace run_v2 {
      * Optional. If provided, get the source from this 2nd-gen Google Cloud Build repository resource.
      */
     connectedRepository?: Schema$GoogleDevtoolsCloudbuildV1ConnectedRepository;
+    /**
+     * If provided, get the source from this Developer Connect config.
+     */
+    developerConnectConfig?: Schema$GoogleDevtoolsCloudbuildV1DeveloperConnectConfig;
     /**
      * If provided, get the source from this Git repository.
      */
