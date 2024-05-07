@@ -1501,6 +1501,35 @@ export namespace servicecontrol_v1 {
     line?: string | null;
   }
   /**
+   * Report v2 extension proto for passing the resource metadata associated with a resource create/update/delete/undelete event from ESF to Chemist. ResourceEvent proto should be serialized into the ReportRequest.operations.extensions.
+   */
+  export interface Schema$V1ResourceEvent {
+    /**
+     * The destinations field determines which backend services should handle the event. This should be specified as a comma-delimited string.
+     */
+    destinations?: string | null;
+    /**
+     * The parent resource for the resource.
+     */
+    parent?: Schema$Resource;
+    /**
+     * The api path the resource event was created in. This should match the source of the `payload` field. For direct integrations with Chemist, this should generally be the RESPONSE. go/resource-event-pipeline-type
+     */
+    path?: string | null;
+    /**
+     * The payload contains metadata associated with the resource event. A ResourceEventPayloadStatus is provided instead if the original payload cannot be returned due to a limitation (e.g. size limit).
+     */
+    payload?: {[key: string]: any} | null;
+    /**
+     * The resource associated with the event.
+     */
+    resource?: Schema$Resource;
+    /**
+     * The resource event type determines how the backend service should process the event.
+     */
+    type?: string | null;
+  }
+  /**
    * Provides information about the Policy violation info for this request.
    */
   export interface Schema$ViolationInfo {
