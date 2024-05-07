@@ -168,14 +168,6 @@ export namespace beyondcorp_v1 {
      */
     name?: string | null;
     /**
-     * Output only. Reserved for future use.
-     */
-    satisfiesPzi?: boolean | null;
-    /**
-     * Output only. Reserved for future use.
-     */
-    satisfiesPzs?: boolean | null;
-    /**
      * Output only. The current state of the AppGateway.
      */
     state?: string | null;
@@ -368,14 +360,6 @@ export namespace beyondcorp_v1 {
      * Required. Unique resource name of the AppConnection. The name is ignored when creating a AppConnection.
      */
     name?: string | null;
-    /**
-     * Output only. Reserved for future use.
-     */
-    satisfiesPzi?: boolean | null;
-    /**
-     * Output only. Reserved for future use.
-     */
-    satisfiesPzs?: boolean | null;
     /**
      * Output only. The current state of the AppConnection.
      */
