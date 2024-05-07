@@ -1,5 +1,12 @@
 # Changelog
 
+## [9.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/contentwarehouse-v9.0.0...contentwarehouse-v9.1.0) (2024-05-07)
+
+
+### Features
+
+* run the generator ([181f2d5](https://github.com/googleapis/google-api-nodejs-client/commit/181f2d5118e33081dcd33a485ff79c5d6a7e1c43))
+
 ## [9.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/contentwarehouse-v8.0.0...contentwarehouse-v9.0.0) (2024-05-02)
 
 

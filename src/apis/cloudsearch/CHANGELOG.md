@@ -1,5 +1,12 @@
 # Changelog
 
+## [14.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/cloudsearch-v14.1.6...cloudsearch-v14.2.0) (2024-05-07)
+
+
+### Features
+
+* run the generator ([181f2d5](https://github.com/googleapis/google-api-nodejs-client/commit/181f2d5118e33081dcd33a485ff79c5d6a7e1c43))
+
 ## [14.1.6](https://github.com/googleapis/google-api-nodejs-client/compare/cloudsearch-v14.1.5...cloudsearch-v14.1.6) (2024-05-02)
 
 
