@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/logging-v4.0.0...logging-v4.0.1) (2024-05-07)
+
+
+### Bug Fixes
+
+* **logging:** update the API ([0492f02](https://github.com/googleapis/google-api-nodejs-client/commit/0492f020bca2c500308848aeb25ee484c9614914))
+
 ## [4.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/logging-v3.1.0...logging-v4.0.0) (2024-05-02)
 
 

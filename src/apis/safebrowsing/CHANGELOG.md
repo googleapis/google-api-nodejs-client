@@ -1,5 +1,12 @@
 # Changelog
 
+## [9.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/safebrowsing-v9.0.0...safebrowsing-v9.0.1) (2024-05-07)
+
+
+### Bug Fixes
+
+* **safebrowsing:** update the API ([1cd8913](https://github.com/googleapis/google-api-nodejs-client/commit/1cd8913ce301e739276a811206e6aac367c41e16))
+
 ## [9.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/safebrowsing-v8.0.1...safebrowsing-v9.0.0) (2024-05-02)
 
 

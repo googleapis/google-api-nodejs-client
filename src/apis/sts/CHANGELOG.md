@@ -1,5 +1,16 @@
 # Changelog
 
+## [6.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/sts-v5.0.0...sts-v6.0.0) (2024-05-07)
+
+
+### ⚠ BREAKING CHANGES
+
+* **sts:** This release has breaking changes.
+
+### Features
+
+* **sts:** update the API ([9f4b7de](https://github.com/googleapis/google-api-nodejs-client/commit/9f4b7de7dbccee7440ecafcd10f869c8ff30c2ff))
+
 ## [5.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/sts-v4.0.1...sts-v5.0.0) (2024-05-02)
 
 
