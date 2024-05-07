@@ -4653,6 +4653,19 @@ export namespace aiplatform_v1 {
      * Crowding is a constraint on a neighbor list produced by nearest neighbor search requiring that no more than some value k' of the k neighbors returned have the same value of crowding_attribute. It's used for improving result diversity. This field is the maximum number of matches with the same crowding tag.
      */
     perCrowdingAttributeNeighborCount?: number | null;
+    /**
+     * Optional. Represents RRF algorithm that combines search results.
+     */
+    rrf?: Schema$GoogleCloudAiplatformV1FindNeighborsRequestQueryRRF;
+  }
+  /**
+   * Parameters for RRF algorithm that combines search results.
+   */
+  export interface Schema$GoogleCloudAiplatformV1FindNeighborsRequestQueryRRF {
+    /**
+     * Required. Users can provide an alpha value to give more weight to dense vs sparse results. For example, if the alpha is 0, we only return sparse and if the alpha is 1, we only return dense.
+     */
+    alpha?: number | null;
   }
   /**
    * The response message for MatchService.FindNeighbors.
@@ -4688,6 +4701,10 @@ export namespace aiplatform_v1 {
      * The distance between the neighbor and the dense embedding query.
      */
     distance?: number | null;
+    /**
+     * The distance between the neighbor and the query sparse_embedding.
+     */
+    sparseDistance?: number | null;
   }
   /**
    * Assigns the input data to training, validation, and test sets as per the given fractions. Any of `training_fraction`, `validation_fraction` and `test_fraction` may optionally be provided, they must sum to up to 1. If the provided ones sum to less than 1, the remainder is assigned to sets as decided by Vertex AI. If none of the fractions are set, by default roughly 80% of data is used for training, 10% for validation, and 10% for test.
@@ -5234,6 +5251,10 @@ export namespace aiplatform_v1 {
      * Optional. List of Restrict of the datapoint, used to perform "restricted searches" where boolean rule are used to filter the subset of the database eligible for matching. This uses categorical tokens. See: https://cloud.google.com/vertex-ai/docs/matching-engine/filtering
      */
     restricts?: Schema$GoogleCloudAiplatformV1IndexDatapointRestriction[];
+    /**
+     * Optional. Feature embedding vector for sparse index.
+     */
+    sparseEmbedding?: Schema$GoogleCloudAiplatformV1IndexDatapointSparseEmbedding;
   }
   /**
    * Crowding tag is a constraint on a neighbor list produced by nearest neighbor search requiring that no more than some value k' of the k neighbors returned have the same value of crowding_attribute.
@@ -5285,6 +5306,19 @@ export namespace aiplatform_v1 {
      * The namespace of this restriction. e.g.: color.
      */
     namespace?: string | null;
+  }
+  /**
+   * Feature embedding vector for sparse index. An array of numbers whose values are located in the specified dimensions.
+   */
+  export interface Schema$GoogleCloudAiplatformV1IndexDatapointSparseEmbedding {
+    /**
+     * Optional. The list of indexes for the embedding values of the sparse vector.
+     */
+    dimensions?: string[] | null;
+    /**
+     * Optional. The list of embedding values of the sparse vector.
+     */
+    values?: number[] | null;
   }
   /**
    * Indexes are deployed into it. An IndexEndpoint can have multiple DeployedIndexes.
@@ -5372,6 +5406,10 @@ export namespace aiplatform_v1 {
      * Output only. The number of shards in the Index.
      */
     shardsCount?: number | null;
+    /**
+     * Output only. The number of sparse vectors in the Index.
+     */
+    sparseVectorsCount?: string | null;
     /**
      * Output only. The number of dense vectors in the Index.
      */
@@ -7851,7 +7889,7 @@ export namespace aiplatform_v1 {
      */
     machineSpec?: Schema$GoogleCloudAiplatformV1MachineSpec;
     /**
-     * Output only. The resource name of the NotebookRuntimeTemplate.
+     * The resource name of the NotebookRuntimeTemplate.
      */
     name?: string | null;
     /**
@@ -12833,11 +12871,11 @@ export namespace aiplatform_v1 {
      */
     adapterSize?: string | null;
     /**
-     * Optional. Number of training epoches for this tuning job.
+     * Optional. Number of complete passes the model makes over the entire training dataset during training.
      */
     epochCount?: string | null;
     /**
-     * Optional. Learning rate multiplier for tuning.
+     * Optional. Multiplier for adjusting the default learning rate.
      */
     learningRateMultiplier?: number | null;
   }
@@ -12941,11 +12979,11 @@ export namespace aiplatform_v1 {
      */
     hyperParameters?: Schema$GoogleCloudAiplatformV1SupervisedHyperParameters;
     /**
-     * Required. Cloud Storage path to file containing training dataset for tuning.
+     * Required. Cloud Storage path to file containing training dataset for tuning. The dataset must be formatted as a JSONL file.
      */
     trainingDatasetUri?: string | null;
     /**
-     * Optional. Cloud Storage path to file containing validation dataset for tuning.
+     * Optional. Cloud Storage path to file containing validation dataset for tuning. The dataset must be formatted as a JSONL file.
      */
     validationDatasetUri?: string | null;
   }
@@ -13534,7 +13572,7 @@ export namespace aiplatform_v1 {
    */
   export interface Schema$GoogleCloudAiplatformV1TuningJob {
     /**
-     * Model name for tuning, e.g., "gemini-1.0-pro-002".
+     * The base model that is being tuned, e.g., "gemini-1.0-pro-002".
      */
     baseModel?: string | null;
     /**
@@ -15097,10 +15135,15 @@ export namespace aiplatform_v1 {
      */
     totalContentSize?: string | null;
   }
+  export interface Schema$LearningServingLlmAtlasOutputMetadata {
+    requestTopic?: string | null;
+    source?: string | null;
+  }
   /**
-   * LINT.IfChange This metadata contains additional information required for debugging.
+   * LINT.IfChange This metadata contains additional information required for debugging. Next ID: 28
    */
   export interface Schema$LearningServingLlmMessageMetadata {
+    atlasMetadata?: Schema$LearningServingLlmAtlasOutputMetadata;
     /**
      * Summary of classifier output. We attach this to all messages regardless of whether classification rules triggered or not.
      */
@@ -15152,9 +15195,13 @@ export namespace aiplatform_v1 {
      */
     originalText?: string | null;
     /**
-     * NOT YET IMPLEMENTED. Applies to streaming only. Number of tokens decoded / emitted by the model as part of this stream. This may be different from token_count, which contains number of tokens returned in this response after any response rewriting / truncation.
+     * Number of tokens decoded by the model as part of a stream. This count may be different from `per_stream_returned_token_count` which, is counted after any response rewriting or truncation. Applies to streaming response only.
      */
     perStreamDecodedTokenCount?: number | null;
+    /**
+     * Number of tokens returned per stream in a response candidate after any response rewriting or truncation. Applies to streaming response only. Applies to Gemini models only.
+     */
+    perStreamReturnedTokenCount?: number | null;
     /**
      * Results of running RAI on the query or this response candidate. One output per rai_config. It will be populated regardless of whether the threshold is exceeded or not.
      */
@@ -15164,7 +15211,7 @@ export namespace aiplatform_v1 {
      */
     recitationResult?: Schema$LearningGenaiRecitationRecitationResult;
     /**
-     * NOT YET IMPLEMENTED. Number of tokens returned as part of this candidate.
+     * NOT IMPLEMENTED TODO (b/334187574) Remove this field after Labs migrates to per_stream_returned_token_count and total_returned_token_count.
      */
     returnTokenCount?: number | null;
     /**
@@ -15179,6 +15226,10 @@ export namespace aiplatform_v1 {
      * Total tokens decoded so far per response_candidate. For streaming: Count of all the tokens decoded so far (aggregated count). For unary: Count of all the tokens decoded per response_candidate.
      */
     totalDecodedTokenCount?: number | null;
+    /**
+     * Total number of tokens returned in a response candidate. For streaming, it is the aggregated count (i.e. total so far) Applies to Gemini models only.
+     */
+    totalReturnedTokenCount?: number | null;
     /**
      * Translated user-prompt used for RAI post processing. This is for internal processing only. We will translate in pre-processor and pass the translated text to the post processor using this field. It will be empty if non of the signals requested need translation.
      */
