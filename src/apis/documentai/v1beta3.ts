@@ -3284,6 +3284,10 @@ export namespace documentai_v1beta3 {
      * Page span of the chunk.
      */
     pageSpan?: Schema$GoogleCloudDocumentaiV1beta3DocumentChunkedDocumentChunkChunkPageSpan;
+    /**
+     * DO NOT USE. List of all parsed documents layout source blocks used to generate the chunk.
+     */
+    sourceBlockIds?: string[] | null;
   }
   /**
    * Represents the page footer associated with the chunk.

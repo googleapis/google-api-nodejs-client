@@ -1284,7 +1284,7 @@
       }
     }
   },
-  "revision": "20240422",
+  "revision": "20240502",
   "rootUrl": "https://documentai.googleapis.com/",
   "schemas": {
     "GoogleCloudDocumentaiUiv1beta3AutoLabelDocumentsMetadata": {
@@ -5984,6 +5984,13 @@
         "pageSpan": {
           "$ref": "GoogleCloudDocumentaiV1beta3DocumentChunkedDocumentChunkChunkPageSpan",
           "description": "Page span of the chunk."
+        },
+        "sourceBlockIds": {
+          "description": "DO NOT USE. List of all parsed documents layout source blocks used to generate the chunk.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
