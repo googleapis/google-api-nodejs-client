@@ -112,6 +112,7 @@ export namespace aiplatform_v1beta1 {
    */
   export class Aiplatform {
     context: APIRequestContext;
+    media: Resource$Media;
     projects: Resource$Projects;
     publishers: Resource$Publishers;
 
@@ -121,6 +122,7 @@ export namespace aiplatform_v1beta1 {
         google,
       };
 
+      this.media = new Resource$Media(this.context);
       this.projects = new Resource$Projects(this.context);
       this.publishers = new Resource$Publishers(this.context);
     }
@@ -2338,6 +2340,23 @@ export namespace aiplatform_v1beta1 {
     genericMetadata?: Schema$GoogleCloudAiplatformV1beta1GenericOperationMetadata;
   }
   /**
+   * Request message for [NotebookService.CreateNotebookExecutionJob]
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1CreateNotebookExecutionJobRequest {
+    /**
+     * Required. The NotebookExecutionJob to create.
+     */
+    notebookExecutionJob?: Schema$GoogleCloudAiplatformV1beta1NotebookExecutionJob;
+    /**
+     * Optional. User specified ID for the NotebookExecutionJob.
+     */
+    notebookExecutionJobId?: string | null;
+    /**
+     * Required. The resource name of the Location to create the NotebookExecutionJob. Format: `projects/{project\}/locations/{location\}`
+     */
+    parent?: string | null;
+  }
+  /**
    * Metadata information for NotebookService.CreateNotebookRuntimeTemplate.
    */
   export interface Schema$GoogleCloudAiplatformV1beta1CreateNotebookRuntimeTemplateOperationMetadata {
@@ -3233,6 +3252,10 @@ export namespace aiplatform_v1beta1 {
      */
     output?: string | null;
   }
+  /**
+   * The input content is encapsulated and uploaded in the request.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1DirectUploadSource {}
   /**
    * Represents the spec of disk options.
    */
@@ -5371,6 +5394,19 @@ export namespace aiplatform_v1beta1 {
      * Crowding is a constraint on a neighbor list produced by nearest neighbor search requiring that no more than some value k' of the k neighbors returned have the same value of crowding_attribute. It's used for improving result diversity. This field is the maximum number of matches with the same crowding tag.
      */
     perCrowdingAttributeNeighborCount?: number | null;
+    /**
+     * Optional. Represents RRF algorithm that combines search results.
+     */
+    rrf?: Schema$GoogleCloudAiplatformV1beta1FindNeighborsRequestQueryRRF;
+  }
+  /**
+   * Parameters for RRF algorithm that combines search results.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1FindNeighborsRequestQueryRRF {
+    /**
+     * Required. Users can provide an alpha value to give more weight to dense vs sparse results. For example, if the alpha is 0, we only return sparse and if the alpha is 1, we only return dense.
+     */
+    alpha?: number | null;
   }
   /**
    * The response message for MatchService.FindNeighbors.
@@ -5406,6 +5442,10 @@ export namespace aiplatform_v1beta1 {
      * The distance between the neighbor and the dense embedding query.
      */
     distance?: number | null;
+    /**
+     * The distance between the neighbor and the query sparse_embedding.
+     */
+    sparseDistance?: number | null;
   }
   /**
    * Input for fluency metric.
@@ -5777,6 +5817,28 @@ export namespace aiplatform_v1beta1 {
     baseModelUri?: string | null;
   }
   /**
+   * The Google Drive location for the input content.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1GoogleDriveSource {
+    /**
+     * Required. Google Drive resource IDs.
+     */
+    resourceIds?: Schema$GoogleCloudAiplatformV1beta1GoogleDriveSourceResourceId[];
+  }
+  /**
+   * The type and ID of the Google Drive resource.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1GoogleDriveSourceResourceId {
+    /**
+     * Required. The ID of the Google Drive resource.
+     */
+    resourceId?: string | null;
+    /**
+     * Required. The type of the Google Drive resource.
+     */
+    resourceType?: string | null;
+  }
+  /**
    * Input for groundedness metric.
    */
   export interface Schema$GoogleCloudAiplatformV1beta1GroundednessInput {
@@ -6088,6 +6150,32 @@ export namespace aiplatform_v1beta1 {
     modelEvaluation?: Schema$GoogleCloudAiplatformV1beta1ModelEvaluation;
   }
   /**
+   * Config for importing RagFiles.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1ImportRagFilesConfig {
+    /**
+     * Google Cloud Storage location. Supports importing individual files as well as entire Google Cloud Storage directories. Sample formats: - `gs://bucket_name/my_directory/object_name/my_file.txt` - `gs://bucket_name/my_directory`
+     */
+    gcsSource?: Schema$GoogleCloudAiplatformV1beta1GcsSource;
+    /**
+     * Google Drive location. Supports importing individual files as well as Google Drive folders.
+     */
+    googleDriveSource?: Schema$GoogleCloudAiplatformV1beta1GoogleDriveSource;
+    /**
+     * Specifies the size and overlap of chunks after importing RagFiles.
+     */
+    ragFileChunkingConfig?: Schema$GoogleCloudAiplatformV1beta1RagFileChunkingConfig;
+  }
+  /**
+   * Request message for VertexRagDataService.ImportRagFiles.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1ImportRagFilesRequest {
+    /**
+     * Required. The config for the RagFiles to be synced and imported into the RagCorpus. VertexRagDataService.ImportRagFiles.
+     */
+    importRagFilesConfig?: Schema$GoogleCloudAiplatformV1beta1ImportRagFilesConfig;
+  }
+  /**
    * A representation of a collection of database items organized in a way that allows for approximate nearest neighbor (a.k.a ANN) algorithms search.
    */
   export interface Schema$GoogleCloudAiplatformV1beta1Index {
@@ -6168,6 +6256,10 @@ export namespace aiplatform_v1beta1 {
      * Optional. List of Restrict of the datapoint, used to perform "restricted searches" where boolean rule are used to filter the subset of the database eligible for matching. This uses categorical tokens. See: https://cloud.google.com/vertex-ai/docs/matching-engine/filtering
      */
     restricts?: Schema$GoogleCloudAiplatformV1beta1IndexDatapointRestriction[];
+    /**
+     * Optional. Feature embedding vector for sparse index.
+     */
+    sparseEmbedding?: Schema$GoogleCloudAiplatformV1beta1IndexDatapointSparseEmbedding;
   }
   /**
    * Crowding tag is a constraint on a neighbor list produced by nearest neighbor search requiring that no more than some value k' of the k neighbors returned have the same value of crowding_attribute.
@@ -6219,6 +6311,19 @@ export namespace aiplatform_v1beta1 {
      * The namespace of this restriction. e.g.: color.
      */
     namespace?: string | null;
+  }
+  /**
+   * Feature embedding vector for sparse index. An array of numbers whose values are located in the specified dimensions.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1IndexDatapointSparseEmbedding {
+    /**
+     * Optional. The list of indexes for the embedding values of the sparse vector.
+     */
+    dimensions?: string[] | null;
+    /**
+     * Optional. The list of embedding values of the sparse vector.
+     */
+    values?: number[] | null;
   }
   /**
    * Indexes are deployed into it. An IndexEndpoint can have multiple DeployedIndexes.
@@ -6306,6 +6411,10 @@ export namespace aiplatform_v1beta1 {
      * Output only. The number of shards in the Index.
      */
     shardsCount?: number | null;
+    /**
+     * Output only. The number of sparse vectors in the Index.
+     */
+    sparseVectorsCount?: string | null;
     /**
      * Output only. The number of dense vectors in the Index.
      */
@@ -6958,6 +7067,32 @@ export namespace aiplatform_v1beta1 {
      * List of PublisherModels in the requested page.
      */
     publisherModels?: Schema$GoogleCloudAiplatformV1beta1PublisherModel[];
+  }
+  /**
+   * Response message for VertexRagDataService.ListRagCorpora.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1ListRagCorporaResponse {
+    /**
+     * A token to retrieve the next page of results. Pass to ListRagCorporaRequest.page_token to obtain that page.
+     */
+    nextPageToken?: string | null;
+    /**
+     * List of RagCorpora in the requested page.
+     */
+    ragCorpora?: Schema$GoogleCloudAiplatformV1beta1RagCorpus[];
+  }
+  /**
+   * Response message for VertexRagDataService.ListRagFiles.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1ListRagFilesResponse {
+    /**
+     * A token to retrieve the next page of results. Pass to ListRagFilesRequest.page_token to obtain that page.
+     */
+    nextPageToken?: string | null;
+    /**
+     * List of RagFiles in the requested page.
+     */
+    ragFiles?: Schema$GoogleCloudAiplatformV1beta1RagFile[];
   }
   /**
    * Response message for ReasoningEngineService.ListReasoningEngines
@@ -9578,7 +9713,7 @@ export namespace aiplatform_v1beta1 {
      */
     machineSpec?: Schema$GoogleCloudAiplatformV1beta1MachineSpec;
     /**
-     * Output only. The resource name of the NotebookRuntimeTemplate.
+     * The resource name of the NotebookRuntimeTemplate.
      */
     name?: string | null;
     /**
@@ -11058,6 +11193,128 @@ export namespace aiplatform_v1beta1 {
     version?: number | null;
   }
   /**
+   * Relevant contexts for one query.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1RagContexts {
+    /**
+     * All its contexts.
+     */
+    contexts?: Schema$GoogleCloudAiplatformV1beta1RagContextsContext[];
+  }
+  /**
+   * A context of the query.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1RagContextsContext {
+    /**
+     * The distance between the query vector and the context text vector.
+     */
+    distance?: number | null;
+    /**
+     * For vertex RagStore, if the file is imported from Cloud Storage or Google Drive, source_uri will be original file URI in Cloud Storage or Google Drive; if file is uploaded, source_uri will be file display name.
+     */
+    sourceUri?: string | null;
+    /**
+     * The text chunk.
+     */
+    text?: string | null;
+  }
+  /**
+   * A RagCorpus is a RagFile container and a project can have multiple RagCorpora.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1RagCorpus {
+    /**
+     * Output only. Timestamp when this RagCorpus was created.
+     */
+    createTime?: string | null;
+    /**
+     * Optional. The description of the RagCorpus.
+     */
+    description?: string | null;
+    /**
+     * Required. The display name of the RagCorpus. The name can be up to 128 characters long and can consist of any UTF-8 characters.
+     */
+    displayName?: string | null;
+    /**
+     * Output only. The resource name of the RagCorpus.
+     */
+    name?: string | null;
+    /**
+     * Output only. Timestamp when this RagCorpus was last updated.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * A RagFile contains user data for chunking, embedding and indexing.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1RagFile {
+    /**
+     * Output only. Timestamp when this RagFile was created.
+     */
+    createTime?: string | null;
+    /**
+     * Optional. The description of the RagFile.
+     */
+    description?: string | null;
+    /**
+     * Output only. The RagFile is encapsulated and uploaded in the UploadRagFile request.
+     */
+    directUploadSource?: Schema$GoogleCloudAiplatformV1beta1DirectUploadSource;
+    /**
+     * Required. The display name of the RagFile. The name can be up to 128 characters long and can consist of any UTF-8 characters.
+     */
+    displayName?: string | null;
+    /**
+     * Output only. Google Cloud Storage location of the RagFile. It does not support wildcards in the Cloud Storage uri for now.
+     */
+    gcsSource?: Schema$GoogleCloudAiplatformV1beta1GcsSource;
+    /**
+     * Output only. Google Drive location. Supports importing individual files as well as Google Drive folders.
+     */
+    googleDriveSource?: Schema$GoogleCloudAiplatformV1beta1GoogleDriveSource;
+    /**
+     * Output only. The resource name of the RagFile.
+     */
+    name?: string | null;
+    /**
+     * Output only. The type of the RagFile.
+     */
+    ragFileType?: string | null;
+    /**
+     * Output only. The size of the RagFile in bytes.
+     */
+    sizeBytes?: string | null;
+    /**
+     * Output only. Timestamp when this RagFile was last updated.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * Specifies the size and overlap of chunks for RagFiles.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1RagFileChunkingConfig {
+    /**
+     * The overlap between chunks.
+     */
+    chunkOverlap?: number | null;
+    /**
+     * The size of the chunks.
+     */
+    chunkSize?: number | null;
+  }
+  /**
+   * A query to retrieve relevant contexts.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1RagQuery {
+    /**
+     * Optional. The number of contexts to retrieve.
+     */
+    similarityTopK?: number | null;
+    /**
+     * Optional. The query in text format to get relevant contexts.
+     */
+    text?: string | null;
+  }
+  /**
    * Request message for PredictionService.RawPredict.
    */
   export interface Schema$GoogleCloudAiplatformV1beta1RawPredictRequest {
@@ -11536,6 +11793,58 @@ export namespace aiplatform_v1beta1 {
     vertexRagStore?: Schema$GoogleCloudAiplatformV1beta1VertexRagStore;
   }
   /**
+   * Request message for VertexRagService.RetrieveContexts.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1RetrieveContextsRequest {
+    /**
+     * Required. Single RAG retrieve query.
+     */
+    query?: Schema$GoogleCloudAiplatformV1beta1RagQuery;
+    /**
+     * The data source for Vertex RagStore.
+     */
+    vertexRagStore?: Schema$GoogleCloudAiplatformV1beta1RetrieveContextsRequestVertexRagStore;
+  }
+  /**
+   * The data source for Vertex RagStore.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1RetrieveContextsRequestVertexRagStore {
+    /**
+     * Optional. Deprecated. Please use rag_resources to specify the data source.
+     */
+    ragCorpora?: string[] | null;
+    /**
+     * Optional. The representation of the rag source. It can be used to specify corpus only or ragfiles. Currently only support one corpus or multiple files from one corpus. In the future we may open up multiple corpora support.
+     */
+    ragResources?: Schema$GoogleCloudAiplatformV1beta1RetrieveContextsRequestVertexRagStoreRagResource[];
+    /**
+     * Optional. Only return contexts with vector distance smaller than the threshold.
+     */
+    vectorDistanceThreshold?: number | null;
+  }
+  /**
+   * The definition of the Rag resource.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1RetrieveContextsRequestVertexRagStoreRagResource {
+    /**
+     * Optional. RagCorpora resource name. Format: `projects/{project\}/locations/{location\}/ragCorpora/{rag_corpus\}`
+     */
+    ragCorpus?: string | null;
+    /**
+     * Optional. rag_file_id. The files should be in the same rag_corpus set in rag_corpus field.
+     */
+    ragFileIds?: string[] | null;
+  }
+  /**
+   * Response message for VertexRagService.RetrieveContexts.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1RetrieveContextsResponse {
+    /**
+     * The contexts of the query.
+     */
+    contexts?: Schema$GoogleCloudAiplatformV1beta1RagContexts;
+  }
+  /**
    * Input for rouge metric.
    */
   export interface Schema$GoogleCloudAiplatformV1beta1RougeInput {
@@ -11625,7 +11934,11 @@ export namespace aiplatform_v1beta1 {
   }
   export interface Schema$GoogleCloudAiplatformV1beta1RuntimeConfigVertexAISearchRuntimeConfig {
     /**
-     * Required. Vertext AI Search serving config name. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/engines/{engine\}/servingConfigs/{serving_config\}`
+     * Vertex AI Search App ID. This is used to construct the search request. By setting this app_id, API will construct the serving config which is required to call search API for the user. The app_id and serving_config_name cannot both be empty at the same time.
+     */
+    appId?: string | null;
+    /**
+     * [Deprecated] Please use app_id instead. Vertex AI Search serving config name. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/engines/{engine\}/servingConfigs/{serving_config\}`
      */
     servingConfigName?: string | null;
   }
@@ -11837,6 +12150,10 @@ export namespace aiplatform_v1beta1 {
      * Request for ModelMonitoringService.CreateModelMonitoringJob.
      */
     createModelMonitoringJobRequest?: Schema$GoogleCloudAiplatformV1beta1CreateModelMonitoringJobRequest;
+    /**
+     * Request for NotebookService.CreateNotebookExecutionJob.
+     */
+    createNotebookExecutionJobRequest?: Schema$GoogleCloudAiplatformV1beta1CreateNotebookExecutionJobRequest;
     /**
      * Request for PipelineService.CreatePipelineJob. CreatePipelineJobRequest.parent field is required (format: projects/{project\}/locations/{location\}).
      */
@@ -16681,6 +16998,41 @@ export namespace aiplatform_v1beta1 {
     modelVersionId?: string | null;
   }
   /**
+   * Config for uploading RagFile.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1UploadRagFileConfig {
+    /**
+     * Specifies the size and overlap of chunks after uploading RagFile.
+     */
+    ragFileChunkingConfig?: Schema$GoogleCloudAiplatformV1beta1RagFileChunkingConfig;
+  }
+  /**
+   * Request message for VertexRagDataService.UploadRagFile.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1UploadRagFileRequest {
+    /**
+     * Required. The RagFile to upload.
+     */
+    ragFile?: Schema$GoogleCloudAiplatformV1beta1RagFile;
+    /**
+     * Required. The config for the RagFiles to be uploaded into the RagCorpus. VertexRagDataService.UploadRagFile.
+     */
+    uploadRagFileConfig?: Schema$GoogleCloudAiplatformV1beta1UploadRagFileConfig;
+  }
+  /**
+   * Response message for VertexRagDataService.UploadRagFile.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1UploadRagFileResponse {
+    /**
+     * The error that occurred while processing the RagFile.
+     */
+    error?: Schema$GoogleRpcStatus;
+    /**
+     * The RagFile that had been uploaded into the RagCorpus.
+     */
+    ragFile?: Schema$GoogleCloudAiplatformV1beta1RagFile;
+  }
+  /**
    * Request message for IndexService.UpsertDatapoints
    */
   export interface Schema$GoogleCloudAiplatformV1beta1UpsertDatapointsRequest {
@@ -16745,9 +17097,13 @@ export namespace aiplatform_v1beta1 {
    */
   export interface Schema$GoogleCloudAiplatformV1beta1VertexRagStore {
     /**
-     * Required. Vertex RAG Store corpus resource name: `projects/{project\}/locations/{location\}/ragCorpora/{ragCorpus\}` Currently only one corpus is allowed. In the future we may open up multiple corpora support. However, they should be from the same project and location.
+     * Optional. Deprecated. Please use rag_resources instead.
      */
     ragCorpora?: string[] | null;
+    /**
+     * Optional. The representation of the rag source. It can be used to specify corpus only or ragfiles. Currently only support one corpus or multiple files from one corpus. In the future we may open up multiple corpora support.
+     */
+    ragResources?: Schema$GoogleCloudAiplatformV1beta1VertexRagStoreRagResource[];
     /**
      * Optional. Number of top k results to return from the selected corpora.
      */
@@ -16756,6 +17112,19 @@ export namespace aiplatform_v1beta1 {
      * Optional. Only return results with vector distance smaller than the threshold.
      */
     vectorDistanceThreshold?: number | null;
+  }
+  /**
+   * The definition of the Rag resource.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1VertexRagStoreRagResource {
+    /**
+     * Optional. RagCorpora resource name. Format: `projects/{project\}/locations/{location\}/ragCorpora/{rag_corpus\}`
+     */
+    ragCorpus?: string | null;
+    /**
+     * Optional. rag_file_id. The files should be in the same rag_corpus set in rag_corpus field.
+     */
+    ragFileIds?: string[] | null;
   }
   /**
    * Metadata describes the input video content.
@@ -17969,10 +18338,15 @@ export namespace aiplatform_v1beta1 {
      */
     totalContentSize?: string | null;
   }
+  export interface Schema$LearningServingLlmAtlasOutputMetadata {
+    requestTopic?: string | null;
+    source?: string | null;
+  }
   /**
-   * LINT.IfChange This metadata contains additional information required for debugging.
+   * LINT.IfChange This metadata contains additional information required for debugging. Next ID: 28
    */
   export interface Schema$LearningServingLlmMessageMetadata {
+    atlasMetadata?: Schema$LearningServingLlmAtlasOutputMetadata;
     /**
      * Summary of classifier output. We attach this to all messages regardless of whether classification rules triggered or not.
      */
@@ -18024,9 +18398,13 @@ export namespace aiplatform_v1beta1 {
      */
     originalText?: string | null;
     /**
-     * NOT YET IMPLEMENTED. Applies to streaming only. Number of tokens decoded / emitted by the model as part of this stream. This may be different from token_count, which contains number of tokens returned in this response after any response rewriting / truncation.
+     * Number of tokens decoded by the model as part of a stream. This count may be different from `per_stream_returned_token_count` which, is counted after any response rewriting or truncation. Applies to streaming response only.
      */
     perStreamDecodedTokenCount?: number | null;
+    /**
+     * Number of tokens returned per stream in a response candidate after any response rewriting or truncation. Applies to streaming response only. Applies to Gemini models only.
+     */
+    perStreamReturnedTokenCount?: number | null;
     /**
      * Results of running RAI on the query or this response candidate. One output per rai_config. It will be populated regardless of whether the threshold is exceeded or not.
      */
@@ -18036,7 +18414,7 @@ export namespace aiplatform_v1beta1 {
      */
     recitationResult?: Schema$LearningGenaiRecitationRecitationResult;
     /**
-     * NOT YET IMPLEMENTED. Number of tokens returned as part of this candidate.
+     * NOT IMPLEMENTED TODO (b/334187574) Remove this field after Labs migrates to per_stream_returned_token_count and total_returned_token_count.
      */
     returnTokenCount?: number | null;
     /**
@@ -18051,6 +18429,10 @@ export namespace aiplatform_v1beta1 {
      * Total tokens decoded so far per response_candidate. For streaming: Count of all the tokens decoded so far (aggregated count). For unary: Count of all the tokens decoded per response_candidate.
      */
     totalDecodedTokenCount?: number | null;
+    /**
+     * Total number of tokens returned in a response candidate. For streaming, it is the aggregated count (i.e. total so far) Applies to Gemini models only.
+     */
+    totalReturnedTokenCount?: number | null;
     /**
      * Translated user-prompt used for RAI post processing. This is for internal processing only. We will translate in pre-processor and pass the translated text to the post processor using this field. It will be empty if non of the signals requested need translation.
      */
@@ -18143,6 +18525,139 @@ export namespace aiplatform_v1beta1 {
      * The following are usually only present when code != 0 Space to which this status belongs
      */
     space?: string | null;
+  }
+
+  export class Resource$Media {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Upload a file into a RagCorpus.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    upload(
+      params: Params$Resource$Media$Upload,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    upload(
+      params?: Params$Resource$Media$Upload,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1beta1UploadRagFileResponse>;
+    upload(
+      params: Params$Resource$Media$Upload,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    upload(
+      params: Params$Resource$Media$Upload,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1beta1UploadRagFileResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1beta1UploadRagFileResponse>
+    ): void;
+    upload(
+      params: Params$Resource$Media$Upload,
+      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1beta1UploadRagFileResponse>
+    ): void;
+    upload(
+      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1beta1UploadRagFileResponse>
+    ): void;
+    upload(
+      paramsOrCallback?:
+        | Params$Resource$Media$Upload
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1beta1UploadRagFileResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1beta1UploadRagFileResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1beta1UploadRagFileResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudAiplatformV1beta1UploadRagFileResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Media$Upload;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Media$Upload;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+parent}/ragFiles:upload').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        mediaUrl: (
+          rootUrl + '/upload/v1beta1/{+parent}/ragFiles:upload'
+        ).replace(/([^:]\/)\/+/g, '$1'),
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudAiplatformV1beta1UploadRagFileResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudAiplatformV1beta1UploadRagFileResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Media$Upload extends StandardParameters {
+    /**
+     * Required. The name of the RagCorpus resource into which to upload the file. Format: `projects/{project\}/locations/{location\}/ragCorpora/{rag_corpus\}`
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudAiplatformV1beta1UploadRagFileRequest;
+
+    /**
+     * Media metadata
+     */
+    media?: {
+      /**
+       * Media mime-type
+       */
+      mimeType?: string;
+
+      /**
+       * Media body contents
+       */
+      body?: any;
+    };
   }
 
   export class Resource$Projects {
@@ -18782,6 +19297,103 @@ export namespace aiplatform_v1beta1 {
         );
       }
     }
+
+    /**
+     * Retrieves relevant contexts for a query.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    retrieveContexts(
+      params: Params$Resource$Projects$Locations$Retrievecontexts,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    retrieveContexts(
+      params?: Params$Resource$Projects$Locations$Retrievecontexts,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1beta1RetrieveContextsResponse>;
+    retrieveContexts(
+      params: Params$Resource$Projects$Locations$Retrievecontexts,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    retrieveContexts(
+      params: Params$Resource$Projects$Locations$Retrievecontexts,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1beta1RetrieveContextsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1beta1RetrieveContextsResponse>
+    ): void;
+    retrieveContexts(
+      params: Params$Resource$Projects$Locations$Retrievecontexts,
+      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1beta1RetrieveContextsResponse>
+    ): void;
+    retrieveContexts(
+      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1beta1RetrieveContextsResponse>
+    ): void;
+    retrieveContexts(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Retrievecontexts
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1beta1RetrieveContextsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1beta1RetrieveContextsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1beta1RetrieveContextsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudAiplatformV1beta1RetrieveContextsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Retrievecontexts;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Retrievecontexts;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+parent}:retrieveContexts').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudAiplatformV1beta1RetrieveContextsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudAiplatformV1beta1RetrieveContextsResponse>(
+          parameters
+        );
+      }
+    }
   }
 
   export interface Params$Resource$Projects$Locations$Evaluateinstances
@@ -18821,6 +19433,18 @@ export namespace aiplatform_v1beta1 {
      * A page token received from the `next_page_token` field in the response. Send that page token to receive the subsequent page.
      */
     pageToken?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Retrievecontexts
+    extends StandardParameters {
+    /**
+     * Required. The resource name of the Location from which to retrieve RagContexts. The users must have permission to make a call in the project. Format: `projects/{project\}/locations/{location\}`.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudAiplatformV1beta1RetrieveContextsRequest;
   }
 
   export class Resource$Projects$Locations$Agents {
@@ -68486,6 +69110,430 @@ export namespace aiplatform_v1beta1 {
         this.context
       );
     }
+
+    /**
+     * Creates a RagCorpus.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Locations$Ragcorpora$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Projects$Locations$Ragcorpora$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    create(
+      params: Params$Resource$Projects$Locations$Ragcorpora$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Ragcorpora$Create,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Ragcorpora$Create,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    create(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Ragcorpora$Create
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Ragcorpora$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Ragcorpora$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+parent}/ragCorpora').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+
+    /**
+     * Deletes a RagCorpus.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Ragcorpora$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Ragcorpora$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    delete(
+      params: Params$Resource$Projects$Locations$Ragcorpora$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Ragcorpora$Delete,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Ragcorpora$Delete,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    delete(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Ragcorpora$Delete
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Ragcorpora$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Ragcorpora$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+
+    /**
+     * Gets a RagCorpus.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Ragcorpora$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Ragcorpora$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1beta1RagCorpus>;
+    get(
+      params: Params$Resource$Projects$Locations$Ragcorpora$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Ragcorpora$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1beta1RagCorpus>,
+      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1beta1RagCorpus>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Ragcorpora$Get,
+      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1beta1RagCorpus>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1beta1RagCorpus>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Ragcorpora$Get
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1beta1RagCorpus>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1beta1RagCorpus>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1beta1RagCorpus>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudAiplatformV1beta1RagCorpus>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Ragcorpora$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Ragcorpora$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudAiplatformV1beta1RagCorpus>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudAiplatformV1beta1RagCorpus>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Lists RagCorpora in a Location.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Ragcorpora$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Ragcorpora$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1beta1ListRagCorporaResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Ragcorpora$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Ragcorpora$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1beta1ListRagCorporaResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1beta1ListRagCorporaResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Ragcorpora$List,
+      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1beta1ListRagCorporaResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1beta1ListRagCorporaResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Ragcorpora$List
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1beta1ListRagCorporaResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1beta1ListRagCorporaResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1beta1ListRagCorporaResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudAiplatformV1beta1ListRagCorporaResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Ragcorpora$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Ragcorpora$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+parent}/ragCorpora').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudAiplatformV1beta1ListRagCorporaResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudAiplatformV1beta1ListRagCorporaResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Ragcorpora$Create
+    extends StandardParameters {
+    /**
+     * Required. The resource name of the Location to create the RagCorpus in. Format: `projects/{project\}/locations/{location\}`
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudAiplatformV1beta1RagCorpus;
+  }
+  export interface Params$Resource$Projects$Locations$Ragcorpora$Delete
+    extends StandardParameters {
+    /**
+     * Optional. If set to true, any RagFiles in this RagCorpus will also be deleted. Otherwise, the request will only work if the RagCorpus has no RagFiles.
+     */
+    force?: boolean;
+    /**
+     * Required. The name of the RagCorpus resource to be deleted. Format: `projects/{project\}/locations/{location\}/ragCorpora/{rag_corpus\}`
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Ragcorpora$Get
+    extends StandardParameters {
+    /**
+     * Required. The name of the RagCorpus resource. Format: `projects/{project\}/locations/{location\}/ragCorpora/{rag_corpus\}`
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Ragcorpora$List
+    extends StandardParameters {
+    /**
+     * Optional. The standard list page size.
+     */
+    pageSize?: number;
+    /**
+     * Optional. The standard list page token. Typically obtained via ListRagCorporaResponse.next_page_token of the previous VertexRagDataService.ListRagCorpora call.
+     */
+    pageToken?: string;
+    /**
+     * Required. The resource name of the Location from which to list the RagCorpora. Format: `projects/{project\}/locations/{location\}`
+     */
+    parent?: string;
   }
 
   export class Resource$Projects$Locations$Ragcorpora$Operations {
@@ -69025,6 +70073,430 @@ export namespace aiplatform_v1beta1 {
           this.context
         );
     }
+
+    /**
+     * Deletes a RagFile.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Ragcorpora$Ragfiles$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Ragcorpora$Ragfiles$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    delete(
+      params: Params$Resource$Projects$Locations$Ragcorpora$Ragfiles$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Ragcorpora$Ragfiles$Delete,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Ragcorpora$Ragfiles$Delete,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    delete(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Ragcorpora$Ragfiles$Delete
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Ragcorpora$Ragfiles$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Ragcorpora$Ragfiles$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+
+    /**
+     * Gets a RagFile.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Ragcorpora$Ragfiles$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Ragcorpora$Ragfiles$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1beta1RagFile>;
+    get(
+      params: Params$Resource$Projects$Locations$Ragcorpora$Ragfiles$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Ragcorpora$Ragfiles$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1beta1RagFile>,
+      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1beta1RagFile>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Ragcorpora$Ragfiles$Get,
+      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1beta1RagFile>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1beta1RagFile>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Ragcorpora$Ragfiles$Get
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1beta1RagFile>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1beta1RagFile>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1beta1RagFile>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudAiplatformV1beta1RagFile>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Ragcorpora$Ragfiles$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Ragcorpora$Ragfiles$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudAiplatformV1beta1RagFile>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudAiplatformV1beta1RagFile>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Import files from Google Cloud Storage or Google Drive into a RagCorpus.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    import(
+      params: Params$Resource$Projects$Locations$Ragcorpora$Ragfiles$Import,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    import(
+      params?: Params$Resource$Projects$Locations$Ragcorpora$Ragfiles$Import,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    import(
+      params: Params$Resource$Projects$Locations$Ragcorpora$Ragfiles$Import,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    import(
+      params: Params$Resource$Projects$Locations$Ragcorpora$Ragfiles$Import,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    import(
+      params: Params$Resource$Projects$Locations$Ragcorpora$Ragfiles$Import,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    import(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    import(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Ragcorpora$Ragfiles$Import
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Ragcorpora$Ragfiles$Import;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Ragcorpora$Ragfiles$Import;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+parent}/ragFiles:import').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+
+    /**
+     * Lists RagFiles in a RagCorpus.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Ragcorpora$Ragfiles$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Ragcorpora$Ragfiles$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1beta1ListRagFilesResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Ragcorpora$Ragfiles$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Ragcorpora$Ragfiles$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1beta1ListRagFilesResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1beta1ListRagFilesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Ragcorpora$Ragfiles$List,
+      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1beta1ListRagFilesResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1beta1ListRagFilesResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Ragcorpora$Ragfiles$List
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1beta1ListRagFilesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1beta1ListRagFilesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1beta1ListRagFilesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudAiplatformV1beta1ListRagFilesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Ragcorpora$Ragfiles$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Ragcorpora$Ragfiles$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+parent}/ragFiles').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudAiplatformV1beta1ListRagFilesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudAiplatformV1beta1ListRagFilesResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Ragcorpora$Ragfiles$Delete
+    extends StandardParameters {
+    /**
+     * Required. The name of the RagFile resource to be deleted. Format: `projects/{project\}/locations/{location\}/ragCorpora/{rag_corpus\}/ragFiles/{rag_file\}`
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Ragcorpora$Ragfiles$Get
+    extends StandardParameters {
+    /**
+     * Required. The name of the RagFile resource. Format: `projects/{project\}/locations/{location\}/ragCorpora/{rag_corpus\}/ragFiles/{rag_file\}`
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Ragcorpora$Ragfiles$Import
+    extends StandardParameters {
+    /**
+     * Required. The name of the RagCorpus resource into which to import files. Format: `projects/{project\}/locations/{location\}/ragCorpora/{rag_corpus\}`
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudAiplatformV1beta1ImportRagFilesRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Ragcorpora$Ragfiles$List
+    extends StandardParameters {
+    /**
+     * Optional. The standard list page size.
+     */
+    pageSize?: number;
+    /**
+     * Optional. The standard list page token. Typically obtained via ListRagFilesResponse.next_page_token of the previous VertexRagDataService.ListRagFiles call.
+     */
+    pageToken?: string;
+    /**
+     * Required. The resource name of the RagCorpus from which to list the RagFiles. Format: `projects/{project\}/locations/{location\}/ragCorpora/{rag_corpus\}`
+     */
+    parent?: string;
   }
 
   export class Resource$Projects$Locations$Ragcorpora$Ragfiles$Operations {
