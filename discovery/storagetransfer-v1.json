@@ -632,7 +632,7 @@
       }
     }
   },
-  "revision": "20240429",
+  "revision": "20240504",
   "rootUrl": "https://storagetransfer.googleapis.com/",
   "schemas": {
     "AgentPool": {
@@ -732,6 +732,10 @@
         "credentialsSecret": {
           "description": "Optional. The Resource name of a secret in Secret Manager. AWS credentials must be stored in Secret Manager in JSON format: { \"access_key_id\": \"ACCESS_KEY_ID\", \"secret_access_key\": \"SECRET_ACCESS_KEY\" } GoogleServiceAccount must be granted `roles/secretmanager.secretAccessor` for the resource. See [Configure access to a source: Amazon S3] (https://cloud.google.com/storage-transfer/docs/source-amazon-s3#secret_manager) for more information. If `credentials_secret` is specified, do not specify role_arn or aws_access_key. Format: `projects/{project_number}/secrets/{secret_name}`",
           "type": "string"
+        },
+        "managedPrivateNetwork": {
+          "description": "Egress bytes over a Google-managed private network. This network is shared between other users of Storage Transfer Service.",
+          "type": "boolean"
         },
         "path": {
           "description": "Root path to transfer objects. Must be an empty string or full path name that ends with a '/'. This field is treated as an object prefix. As such, it should generally not begin with a '/'.",

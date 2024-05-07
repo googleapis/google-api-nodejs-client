@@ -212,6 +212,10 @@ export namespace storagetransfer_v1 {
      */
     credentialsSecret?: string | null;
     /**
+     * Egress bytes over a Google-managed private network. This network is shared between other users of Storage Transfer Service.
+     */
+    managedPrivateNetwork?: boolean | null;
+    /**
      * Root path to transfer objects. Must be an empty string or full path name that ends with a '/'. This field is treated as an object prefix. As such, it should generally not begin with a '/'.
      */
     path?: string | null;
