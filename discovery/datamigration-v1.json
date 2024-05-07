@@ -2125,7 +2125,7 @@
       }
     }
   },
-  "revision": "20240421",
+  "revision": "20240430",
   "rootUrl": "https://datamigration.googleapis.com/",
   "schemas": {
     "AlloyDbConnectionProfile": {
@@ -2530,6 +2530,7 @@
             "MYSQL_8_0_33",
             "MYSQL_8_0_34",
             "MYSQL_8_0_35",
+            "MYSQL_8_0_36",
             "POSTGRES_9_6",
             "POSTGRES_11",
             "POSTGRES_10",
@@ -2553,6 +2554,7 @@
             "The database major version is MySQL 8.0 and the minor version is 33.",
             "The database major version is MySQL 8.0 and the minor version is 34.",
             "The database major version is MySQL 8.0 and the minor version is 35.",
+            "The database major version is MySQL 8.0 and the minor version is 36.",
             "PostgreSQL 9.6.",
             "PostgreSQL 11.",
             "PostgreSQL 10.",

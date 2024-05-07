@@ -391,7 +391,7 @@ export namespace migrationcenter_v1alpha1 {
    */
   export interface Schema$AssetPerformanceData {
     /**
-     * Daily resource usage aggregations. Contains all of the data available for an asset, up to the last 420 days. Aggregations are sorted from oldest to most recent.
+     * Daily resource usage aggregations. Contains all of the data available for an asset, up to the last 40 days. Aggregations are sorted from oldest to most recent.
      */
     dailyResourceUsageAggregations?: Schema$DailyResourceUsageAggregation[];
   }
@@ -910,6 +910,10 @@ export namespace migrationcenter_v1alpha1 {
    */
   export interface Schema$DatabaseInstance {
     /**
+     * Optional. The instance's hosts.
+     */
+    hosts?: Schema$DatabaseInstanceHost[];
+    /**
      * The instance's name.
      */
     instanceName?: string | null;
@@ -917,6 +921,15 @@ export namespace migrationcenter_v1alpha1 {
      * The instance role in the database engine.
      */
     role?: string | null;
+  }
+  /**
+   * Details of a host of a database instance.
+   */
+  export interface Schema$DatabaseInstanceHost {
+    /**
+     * Optional. The host name of the host.
+     */
+    hostName?: string | null;
   }
   /**
    * Details of a group of database objects.
@@ -1026,13 +1039,25 @@ export namespace migrationcenter_v1alpha1 {
    */
   export interface Schema$DatabaseSchema {
     /**
+     * Details of a Mysql schema.
+     */
+    mysql?: Schema$MySqlSchemaDetails;
+    /**
      * List of details of objects by category.
      */
     objects?: Schema$DatabaseObjects[];
     /**
+     * Details of a PostgreSql schema.
+     */
+    postgresql?: Schema$PostgreSqlSchemaDetails;
+    /**
      * The name of the schema.
      */
     schemaName?: string | null;
+    /**
+     * Details of a SqlServer schema.
+     */
+    sqlServer?: Schema$SqlServerSchemaDetails;
     /**
      * The total size of tables in bytes.
      */
@@ -2188,6 +2213,18 @@ export namespace migrationcenter_v1alpha1 {
      * Optional. List of MySql plugins.
      */
     plugins?: Schema$MySqlPlugin[];
+    /**
+     * Optional. List of MySql properties.
+     */
+    properties?: Schema$MySqlProperty[];
+    /**
+     * Optional. Number of resource groups.
+     */
+    resourceGroupsCount?: number | null;
+    /**
+     * Optional. List of MySql variables.
+     */
+    variables?: Schema$MySqlVariable[];
   }
   /**
    * MySql plugin.
@@ -2205,6 +2242,66 @@ export namespace migrationcenter_v1alpha1 {
      * Required. The plugin version.
      */
     version?: string | null;
+  }
+  /**
+   * MySql property.
+   */
+  export interface Schema$MySqlProperty {
+    /**
+     * Required. The property is enabled.
+     */
+    enabled?: boolean | null;
+    /**
+     * Required. The property numeric value.
+     */
+    numericValue?: string | null;
+    /**
+     * Required. The property name.
+     */
+    property?: string | null;
+  }
+  /**
+   * Specific details for a Mysql database.
+   */
+  export interface Schema$MySqlSchemaDetails {
+    /**
+     * Optional. Mysql storage engine tables.
+     */
+    storageEngines?: Schema$MySqlStorageEngineDetails[];
+  }
+  /**
+   * Mysql storage engine tables.
+   */
+  export interface Schema$MySqlStorageEngineDetails {
+    /**
+     * Optional. The number of encrypted tables.
+     */
+    encryptedTableCount?: number | null;
+    /**
+     * Required. The storage engine.
+     */
+    engine?: string | null;
+    /**
+     * Optional. The number of tables.
+     */
+    tableCount?: number | null;
+  }
+  /**
+   * MySql variable.
+   */
+  export interface Schema$MySqlVariable {
+    /**
+     * Required. The variable category.
+     */
+    category?: string | null;
+    /**
+     * Required. The variable value.
+     */
+    value?: string | null;
+    /**
+     * Required. The variable name.
+     */
+    variable?: string | null;
   }
   /**
    * Details of network adapter.
@@ -2507,7 +2604,92 @@ export namespace migrationcenter_v1alpha1 {
   /**
    * Specific details for a PostgreSQL database deployment.
    */
-  export interface Schema$PostgreSqlDatabaseDeployment {}
+  export interface Schema$PostgreSqlDatabaseDeployment {
+    /**
+     * Optional. List of PostgreSql properties.
+     */
+    properties?: Schema$PostgreSqlProperty[];
+    /**
+     * Optional. List of PostgreSql settings.
+     */
+    settings?: Schema$PostgreSqlSetting[];
+  }
+  /**
+   * PostgreSql extension.
+   */
+  export interface Schema$PostgreSqlExtension {
+    /**
+     * Required. The extension name.
+     */
+    extension?: string | null;
+    /**
+     * Required. The extension version.
+     */
+    version?: string | null;
+  }
+  /**
+   * PostgreSql property.
+   */
+  export interface Schema$PostgreSqlProperty {
+    /**
+     * Required. The property is enabled.
+     */
+    enabled?: boolean | null;
+    /**
+     * Required. The property numeric value.
+     */
+    numericValue?: string | null;
+    /**
+     * Required. The property name.
+     */
+    property?: string | null;
+  }
+  /**
+   * Specific details for a PostgreSql schema.
+   */
+  export interface Schema$PostgreSqlSchemaDetails {
+    /**
+     * Optional. PostgreSql foreign tables.
+     */
+    foreignTablesCount?: number | null;
+    /**
+     * Optional. PostgreSql extensions.
+     */
+    postgresqlExtensions?: Schema$PostgreSqlExtension[];
+  }
+  /**
+   * PostgreSql setting.
+   */
+  export interface Schema$PostgreSqlSetting {
+    /**
+     * Required. The setting boolean value.
+     */
+    boolValue?: boolean | null;
+    /**
+     * Required. The setting int value.
+     */
+    intValue?: string | null;
+    /**
+     * Required. The setting real value.
+     */
+    realValue?: number | null;
+    /**
+     * Required. The setting name.
+     */
+    setting?: string | null;
+    /**
+     * Required. The setting source.
+     */
+    source?: string | null;
+    /**
+     * Required. The setting string value. Notice that enum values are stored as strings.
+     */
+    stringValue?: string | null;
+    /**
+     * Optional. The setting unit.
+     */
+    unit?: string | null;
+  }
   /**
    * The preferences that apply to all assets in a given context.
    */
@@ -3302,6 +3484,10 @@ export namespace migrationcenter_v1alpha1 {
      */
     featureName?: string | null;
   }
+  /**
+   * Specific details for a SqlServer database.
+   */
+  export interface Schema$SqlServerSchemaDetails {}
   /**
    * SQL Server server flag details.
    */

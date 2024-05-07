@@ -424,7 +424,7 @@
       }
     }
   },
-  "revision": "20240430",
+  "revision": "20240505",
   "rootUrl": "https://workspaceevents.googleapis.com/",
   "schemas": {
     "ListSubscriptionsResponse": {

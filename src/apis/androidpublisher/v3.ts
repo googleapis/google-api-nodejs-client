@@ -3072,7 +3072,7 @@ export namespace androidpublisher_v3 {
      */
     acknowledgementState?: string | null;
     /**
-     * Additional context around canceled subscriptions. Only present if the subscription currently has subscription_state SUBSCRIPTION_STATE_CANCELED.
+     * Additional context around canceled subscriptions. Only present if the subscription currently has subscription_state SUBSCRIPTION_STATE_CANCELED or SUBSCRIPTION_STATE_EXPIRED.
      */
     canceledStateContext?: Schema$CanceledStateContext;
     /**
