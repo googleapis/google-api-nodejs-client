@@ -146,7 +146,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Name of insight type config. Eg, projects/[PROJECT_NUMBER]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]/config",
+                      "description": "Identifier. Name of insight type config. Eg, projects/[PROJECT_NUMBER]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]/config",
                       "location": "path",
                       "pattern": "^billingAccounts/[^/]+/locations/[^/]+/insightTypes/[^/]+/config$",
                       "required": true,
@@ -314,7 +314,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Name of recommender config. Eg, projects/[PROJECT_NUMBER]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]/config",
+                      "description": "Identifier. Name of recommender config. Eg, projects/[PROJECT_NUMBER]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]/config",
                       "location": "path",
                       "pattern": "^billingAccounts/[^/]+/locations/[^/]+/recommenders/[^/]+/config$",
                       "required": true,
@@ -870,7 +870,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Name of insight type config. Eg, projects/[PROJECT_NUMBER]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]/config",
+                      "description": "Identifier. Name of insight type config. Eg, projects/[PROJECT_NUMBER]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]/config",
                       "location": "path",
                       "pattern": "^organizations/[^/]+/locations/[^/]+/insightTypes/[^/]+/config$",
                       "required": true,
@@ -1038,7 +1038,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Name of recommender config. Eg, projects/[PROJECT_NUMBER]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]/config",
+                      "description": "Identifier. Name of recommender config. Eg, projects/[PROJECT_NUMBER]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]/config",
                       "location": "path",
                       "pattern": "^organizations/[^/]+/locations/[^/]+/recommenders/[^/]+/config$",
                       "required": true,
@@ -1298,7 +1298,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Name of insight type config. Eg, projects/[PROJECT_NUMBER]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]/config",
+                      "description": "Identifier. Name of insight type config. Eg, projects/[PROJECT_NUMBER]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]/config",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/insightTypes/[^/]+/config$",
                       "required": true,
@@ -1466,7 +1466,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Name of recommender config. Eg, projects/[PROJECT_NUMBER]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]/config",
+                      "description": "Identifier. Name of recommender config. Eg, projects/[PROJECT_NUMBER]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]/config",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/recommenders/[^/]+/config$",
                       "required": true,
@@ -1686,7 +1686,7 @@
       }
     }
   },
-  "revision": "20240421",
+  "revision": "20240428",
   "rootUrl": "https://recommender.googleapis.com/",
   "schemas": {
     "GoogleCloudRecommenderV1CostProjection": {
@@ -1918,7 +1918,7 @@
           "description": "InsightTypeGenerationConfig which configures the generation of insights for this insight type."
         },
         "name": {
-          "description": "Name of insight type config. Eg, projects/[PROJECT_NUMBER]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]/config",
+          "description": "Identifier. Name of insight type config. Eg, projects/[PROJECT_NUMBER]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]/config",
           "type": "string"
         },
         "revisionId": {
@@ -2305,7 +2305,7 @@
           "type": "string"
         },
         "name": {
-          "description": "Name of recommender config. Eg, projects/[PROJECT_NUMBER]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]/config",
+          "description": "Identifier. Name of recommender config. Eg, projects/[PROJECT_NUMBER]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]/config",
           "type": "string"
         },
         "recommenderGenerationConfig": {

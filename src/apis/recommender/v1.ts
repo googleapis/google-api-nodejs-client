@@ -268,7 +268,7 @@ export namespace recommender_v1 {
      */
     insightTypeGenerationConfig?: Schema$GoogleCloudRecommenderV1InsightTypeGenerationConfig;
     /**
-     * Name of insight type config. Eg, projects/[PROJECT_NUMBER]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]/config
+     * Identifier. Name of insight type config. Eg, projects/[PROJECT_NUMBER]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]/config
      */
     name?: string | null;
     /**
@@ -541,7 +541,7 @@ export namespace recommender_v1 {
      */
     etag?: string | null;
     /**
-     * Name of recommender config. Eg, projects/[PROJECT_NUMBER]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]/config
+     * Identifier. Name of recommender config. Eg, projects/[PROJECT_NUMBER]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]/config
      */
     name?: string | null;
     /**
@@ -864,7 +864,7 @@ export namespace recommender_v1 {
   export interface Params$Resource$Billingaccounts$Locations$Insighttypes$Updateconfig
     extends StandardParameters {
     /**
-     * Name of insight type config. Eg, projects/[PROJECT_NUMBER]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]/config
+     * Identifier. Name of insight type config. Eg, projects/[PROJECT_NUMBER]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]/config
      */
     name?: string;
     /**
@@ -1431,7 +1431,7 @@ export namespace recommender_v1 {
   export interface Params$Resource$Billingaccounts$Locations$Recommenders$Updateconfig
     extends StandardParameters {
     /**
-     * Name of recommender config. Eg, projects/[PROJECT_NUMBER]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]/config
+     * Identifier. Name of recommender config. Eg, projects/[PROJECT_NUMBER]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]/config
      */
     name?: string;
     /**
@@ -3403,7 +3403,7 @@ export namespace recommender_v1 {
   export interface Params$Resource$Organizations$Locations$Insighttypes$Updateconfig
     extends StandardParameters {
     /**
-     * Name of insight type config. Eg, projects/[PROJECT_NUMBER]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]/config
+     * Identifier. Name of insight type config. Eg, projects/[PROJECT_NUMBER]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]/config
      */
     name?: string;
     /**
@@ -3970,7 +3970,7 @@ export namespace recommender_v1 {
   export interface Params$Resource$Organizations$Locations$Recommenders$Updateconfig
     extends StandardParameters {
     /**
-     * Name of recommender config. Eg, projects/[PROJECT_NUMBER]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]/config
+     * Identifier. Name of recommender config. Eg, projects/[PROJECT_NUMBER]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]/config
      */
     name?: string;
     /**
@@ -4890,7 +4890,7 @@ export namespace recommender_v1 {
   export interface Params$Resource$Projects$Locations$Insighttypes$Updateconfig
     extends StandardParameters {
     /**
-     * Name of insight type config. Eg, projects/[PROJECT_NUMBER]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]/config
+     * Identifier. Name of insight type config. Eg, projects/[PROJECT_NUMBER]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]/config
      */
     name?: string;
     /**
@@ -5457,7 +5457,7 @@ export namespace recommender_v1 {
   export interface Params$Resource$Projects$Locations$Recommenders$Updateconfig
     extends StandardParameters {
     /**
-     * Name of recommender config. Eg, projects/[PROJECT_NUMBER]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]/config
+     * Identifier. Name of recommender config. Eg, projects/[PROJECT_NUMBER]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]/config
      */
     name?: string;
     /**
