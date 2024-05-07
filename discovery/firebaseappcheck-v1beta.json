@@ -1823,7 +1823,7 @@
       }
     }
   },
-  "revision": "20240422",
+  "revision": "20240429",
   "rootUrl": "https://firebaseappcheck.googleapis.com/",
   "schemas": {
     "GoogleFirebaseAppcheckV1betaAppAttestConfig": {
@@ -2060,6 +2060,12 @@
         },
         "token": {
           "description": "Required. Input only. Immutable. The secret token itself. Must be provided during creation, and must be a UUID4, case insensitive. This field is immutable once set, and cannot be provided during an UpdateDebugToken request. You can, however, delete this debug token using DeleteDebugToken to revoke it. For security reasons, this field will never be populated in any response.",
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. Timestamp when this debug token was most recently updated.",
+          "format": "google-datetime",
+          "readOnly": true,
           "type": "string"
         }
       },
