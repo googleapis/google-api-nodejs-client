@@ -1521,6 +1521,15 @@ export namespace gkehub_v1beta {
     idAttribute?: string | null;
   }
   /**
+   * Holds non-protocol-related configuration options.
+   */
+  export interface Schema$IdentityServiceIdentityServiceOptions {
+    /**
+     * Optional. Determines the lifespan of STS tokens issued by Anthos Identity Service.
+     */
+    sessionDuration?: string | null;
+  }
+  /**
    * Configuration for the LDAP Auth flow.
    */
   export interface Schema$IdentityServiceLdapConfig {
@@ -1549,6 +1558,10 @@ export namespace gkehub_v1beta {
      * A member may support multiple auth methods.
      */
     authMethods?: Schema$IdentityServiceAuthMethod[];
+    /**
+     * Optional. non-protocol-related configuration options.
+     */
+    identityServiceOptions?: Schema$IdentityServiceIdentityServiceOptions;
   }
   /**
    * **Anthos Identity Service**: State for a single Membership.
@@ -2861,6 +2874,10 @@ export namespace gkehub_v1beta {
      * Explanation of state.
      */
     details?: Schema$ServiceMeshStatusDetails[];
+    /**
+     * Output only. Implementation of managed control plane.
+     */
+    implementation?: string | null;
     /**
      * LifecycleState of control plane management.
      */
