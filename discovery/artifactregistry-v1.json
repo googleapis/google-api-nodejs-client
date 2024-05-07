@@ -115,38 +115,6 @@
   },
   "protocol": "rest",
   "resources": {
-    "media": {
-      "methods": {
-        "download": {
-          "description": "Download a file.",
-          "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/repositories/{repositoriesId}/files/{filesId}:download",
-          "httpMethod": "GET",
-          "id": "artifactregistry.media.download",
-          "parameterOrder": [
-            "name"
-          ],
-          "parameters": {
-            "name": {
-              "description": "Required. The name of the file to download.",
-              "location": "path",
-              "pattern": "^projects/[^/]+/locations/[^/]+/repositories/[^/]+/files/[^/]+$",
-              "required": true,
-              "type": "string"
-            }
-          },
-          "path": "v1/{+name}:download",
-          "response": {
-            "$ref": "DownloadFileResponse"
-          },
-          "scopes": [
-            "https://www.googleapis.com/auth/cloud-platform",
-            "https://www.googleapis.com/auth/cloud-platform.read-only"
-          ],
-          "supportsMediaDownload": true,
-          "useMediaDownloadService": true
-        }
-      }
-    },
     "projects": {
       "methods": {
         "getProjectSettings": {
@@ -538,7 +506,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "The name of the repository, for example: `projects/p1/locations/us-central1/repositories/repo1`.",
+                      "description": "The name of the repository, for example: `projects/p1/locations/us-central1/repositories/repo1`. For each location in a project, repository names must be unique.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/repositories/[^/]+$",
                       "required": true,
@@ -767,6 +735,34 @@
                 },
                 "files": {
                   "methods": {
+                    "download": {
+                      "description": "Download a file.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/repositories/{repositoriesId}/files/{filesId}:download",
+                      "httpMethod": "GET",
+                      "id": "artifactregistry.projects.locations.repositories.files.download",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The name of the file to download.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/repositories/[^/]+/files/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}:download",
+                      "response": {
+                        "$ref": "DownloadFileResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/cloud-platform.read-only"
+                      ],
+                      "supportsMediaDownload": true,
+                      "useMediaDownloadService": true
+                    },
                     "get": {
                       "description": "Gets a file.",
                       "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/repositories/{repositoriesId}/files/{filesId}",
@@ -1782,7 +1778,7 @@
       }
     }
   },
-  "revision": "20240425",
+  "revision": "20240501",
   "rootUrl": "https://artifactregistry.googleapis.com/",
   "schemas": {
     "AptArtifact": {
@@ -2224,7 +2220,7 @@
           "type": "array"
         },
         "name": {
-          "description": "The name of the file, for example: \"projects/p1/locations/us-central1/repositories/repo1/files/a%2Fb%2Fc.txt\". If the file ID part contains slashes, they are escaped.",
+          "description": "The name of the file, for example: `projects/p1/locations/us-central1/repositories/repo1/files/a%2Fb%2Fc.txt`. If the file ID part contains slashes, they are escaped.",
           "type": "string"
         },
         "owner": {
@@ -3319,12 +3315,17 @@
           "type": "string"
         },
         "name": {
-          "description": "The name of the repository, for example: `projects/p1/locations/us-central1/repositories/repo1`.",
+          "description": "The name of the repository, for example: `projects/p1/locations/us-central1/repositories/repo1`. For each location in a project, repository names must be unique.",
           "type": "string"
         },
         "remoteRepositoryConfig": {
           "$ref": "RemoteRepositoryConfig",
           "description": "Configuration specific for a Remote Repository."
+        },
+        "satisfiesPzi": {
+          "description": "Output only. If set, the repository satisfies physical zone isolation.",
+          "readOnly": true,
+          "type": "boolean"
         },
         "satisfiesPzs": {
           "description": "Output only. If set, the repository satisfies physical zone separation.",
@@ -3754,7 +3755,7 @@
       "type": "object"
     },
     "VirtualRepositoryConfig": {
-      "description": "Virtual repository configuration.",
+      "description": "LINT.IfChange Virtual repository configuration.",
       "id": "VirtualRepositoryConfig",
       "properties": {
         "upstreamPolicies": {
