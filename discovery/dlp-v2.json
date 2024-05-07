@@ -4451,7 +4451,7 @@
       }
     }
   },
-  "revision": "20240421",
+  "revision": "20240428",
   "rootUrl": "https://dlp.googleapis.com/",
   "schemas": {
     "GooglePrivacyDlpV2Action": {
@@ -7536,7 +7536,7 @@
       "type": "object"
     },
     "GooglePrivacyDlpV2InfoTypeCategory": {
-      "description": "Classification of infoTypes to organize them according to geographic location, industry, and data type. NEXT_ID: 47",
+      "description": "Classification of infoTypes to organize them according to geographic location, industry, and data type. NEXT_ID: 48",
       "id": "GooglePrivacyDlpV2InfoTypeCategory",
       "properties": {
         "industryCategory": {
@@ -7580,6 +7580,7 @@
             "ISRAEL",
             "ITALY",
             "JAPAN",
+            "KAZAKHSTAN",
             "KOREA",
             "MEXICO",
             "THE_NETHERLANDS",
@@ -7629,6 +7630,7 @@
             "The infoType is typically used in Israel.",
             "The infoType is typically used in Italy.",
             "The infoType is typically used in Japan.",
+            "The infoType is typically used in Kazakhstan.",
             "The infoType is typically used in Korea.",
             "The infoType is typically used in Mexico.",
             "The infoType is typically used in the Netherlands.",
