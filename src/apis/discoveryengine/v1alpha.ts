@@ -112,7 +112,6 @@ export namespace discoveryengine_v1alpha {
    */
   export class Discoveryengine {
     context: APIRequestContext;
-    locations: Resource$Locations;
     projects: Resource$Projects;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
@@ -121,7 +120,6 @@ export namespace discoveryengine_v1alpha {
         google,
       };
 
-      this.locations = new Resource$Locations(this.context);
       this.projects = new Resource$Projects(this.context);
     }
   }
@@ -253,15 +251,6 @@ export namespace discoveryengine_v1alpha {
      * Immutable. The full resource name of the acl configuration. Format: `projects/{project\}/locations/{location\}/aclConfig`. This field must be a UTF-8 encoded string with a length limit of 1024 characters.
      */
     name?: string | null;
-  }
-  /**
-   * AdditionalParams message for WidgetService methods for security and privacy enhancement.
-   */
-  export interface Schema$GoogleCloudDiscoveryengineV1alphaAdditionalParams {
-    /**
-     * Token that used for non-human user check.
-     */
-    token?: string | null;
   }
   /**
    * Defines an answer.
@@ -1005,7 +994,7 @@ export namespace discoveryengine_v1alpha {
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaCheckGroundingRequest {
     /**
-     * Answer candidate to check.
+     * Answer candidate to check. Can have a maximum length of 1024 characters.
      */
     answerCandidate?: string | null;
     /**
@@ -1016,6 +1005,10 @@ export namespace discoveryengine_v1alpha {
      * Configuration of the grounding check.
      */
     groundingSpec?: Schema$GoogleCloudDiscoveryengineV1alphaCheckGroundingSpec;
+    /**
+     * The user labels applied to a resource must meet the following requirements: * Each resource can have multiple labels, up to a maximum of 64. * Each label must be a key-value pair. * Keys have a minimum length of 1 character and a maximum length of 63 characters and cannot be empty. Values can be empty and have a maximum length of 63 characters. * Keys and values can contain only lowercase letters, numeric characters, underscores, and dashes. All characters must use UTF-8 encoding, and international characters are allowed. * The key portion of a label must be unique. However, you can use the same key with multiple resources. * Keys must start with a lowercase letter or international character. See [Google Cloud Document](https://cloud.google.com/resource-manager/docs/creating-managing-labels#requirements) for more details.
+     */
+    userLabels?: {[key: string]: string} | null;
   }
   /**
    * Response message for the GroundedGenerationService.CheckGrounding method.
@@ -1050,6 +1043,10 @@ export namespace discoveryengine_v1alpha {
      * Position indicating the end of the claim in the answer candidate, exclusive.
      */
     endPos?: number | null;
+    /**
+     * Indicates that this claim required grounding check. When the system decided this claim doesn't require attribution/grounding check, this field will be set to false. In that case, no grounding check was done for the claim and therefore citation_indices, and anti_citation_indices should not be returned.
+     */
+    groundingCheckRequired?: boolean | null;
     /**
      * Position indicating the start of the claim in the answer candidate, measured in bytes.
      */
@@ -1170,31 +1167,6 @@ export namespace discoveryengine_v1alpha {
     tableId?: string | null;
   }
   /**
-   * Request message for CompletionService.CompleteQuery method.
-   */
-  export interface Schema$GoogleCloudDiscoveryengineV1alphaCompleteQueryRequest {
-    /**
-     * Required. The parent data store resource name for which the completion is performed, such as `projects/x/locations/global/collections/default_collection/dataStores/default_data_store`.
-     */
-    dataStore?: string | null;
-    /**
-     * Indicates if tail suggestions should be returned if there are no suggestions that match the full query. Even if set to true, if there are suggestions that match the full query, those are returned and no tail suggestions are returned.
-     */
-    includeTailSuggestions?: boolean | null;
-    /**
-     * Required. The typeahead input used to fetch suggestions. Maximum length is 128 characters.
-     */
-    query?: string | null;
-    /**
-     * Specifies the autocomplete data model. This overrides any model specified in the Configuration \> Autocomplete section of the Cloud console. Currently supported values: * `document` - Using suggestions generated from user-imported documents. * `search-history` - Using suggestions generated from the past history of SearchService.Search API calls. Do not use it when there is no traffic for Search API. * `user-event` - Using suggestions generated from user-imported search events. * `document-completable` - Using suggestions taken directly from user-imported document fields marked as completable. Default values: * `document` is the default model for regular dataStores. * `search-history` is the default model for site search dataStores.
-     */
-    queryModel?: string | null;
-    /**
-     * A unique identifier for tracking visitors. For example, this could be implemented with an HTTP cookie, which should be able to uniquely identify a visitor on a single device. This unique identifier should not change if the visitor logs in or out of the website. This field should NOT have a fixed value such as `unknown_visitor`. This should be the same identifier as UserEvent.user_pseudo_id and SearchRequest.user_pseudo_id. The field must be a UTF-8 encoded string with a length limit of 128 characters. Otherwise, an `INVALID_ARGUMENT` error is returned.
-     */
-    userPseudoId?: string | null;
-  }
-  /**
    * Response message for CompletionService.CompleteQuery method.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaCompleteQueryResponse {
@@ -1308,10 +1280,6 @@ export namespace discoveryengine_v1alpha {
      * The filter syntax consists of an expression language for constructing a predicate from one or more fields of the documents being filtered. Filter expression is case-sensitive. This will be used to filter search results which may affect the summary response. If this field is unrecognizable, an `INVALID_ARGUMENT` is returned. Filtering in Vertex AI Search is done by mapping the LHS filter key to a key property defined in the Vertex AI Search backend -- this mapping is defined by the customer in their schema. For example a media customer might have a field 'name' in their schema. In this case the filter would look like this: filter --\> name:'ANY("king kong")' For more information about filtering including syntax and filter operators, see [Filter](https://cloud.google.com/generative-ai-app-builder/docs/filter-search-metadata)
      */
     filter?: string | null;
-    /**
-     * Required. The resource name of the Conversation to get. Format: `projects/{project_number\}/locations/{location_id\}/collections/{collection\}/dataStores/{data_store_id\}/conversations/{conversation_id\}`. Use `projects/{project_number\}/locations/{location_id\}/collections/{collection\}/dataStores/{data_store_id\}/conversations/-` to activate auto session mode, which automatically creates a new conversation inside a ConverseConversation session.
-     */
-    name?: string | null;
     /**
      * Required. Current user input.
      */
@@ -1440,6 +1408,32 @@ export namespace discoveryengine_v1alpha {
      * Whether or not to enable and include custom fine tuned search adaptor model.
      */
     enableSearchAdaptor?: boolean | null;
+  }
+  /**
+   * Metadata that describes a custom tuned model.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaCustomTuningModel {
+    /**
+     * Timestamp the Model was created at.
+     */
+    createTime?: string | null;
+    /**
+     * The display name of the model.
+     */
+    displayName?: string | null;
+    /**
+     * The state that the model is in (e.g.`TRAINING` or `TRAINING_FAILED`).
+     */
+    modelState?: string | null;
+    modelVersion?: string | null;
+    /**
+     * Required. The fully qualified resource name of the model. Format: `projects/{project_number\}/locations/{location\}/collections/{collection\}/dataStores/{data_store\}/customTuningModels/{custom_tuning_model\}` model must be an alpha-numerical string with limit of 40 characters.
+     */
+    name?: string | null;
+    /**
+     * Timestamp the model training was initiated.
+     */
+    trainingStartTime?: string | null;
   }
   /**
    * DataStore captures global settings and configs at the DataStore level.
@@ -2060,6 +2054,10 @@ export namespace discoveryengine_v1alpha {
      */
     chunkText?: string | null;
     /**
+     * The index of this chunk. Currently, only used for the streaming mode.
+     */
+    index?: number | null;
+    /**
      * Source from which this fact chunk was retrieved. If it was retrieved from the GroundingFacts provided in the request then this field will contain the index of the specific fact from which this chunk was retrieved.
      */
     source?: string | null;
@@ -2514,6 +2512,15 @@ export namespace discoveryengine_v1alpha {
     nextPageToken?: string | null;
   }
   /**
+   * Response message for SearchTuningService.ListCustomModels method.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaListCustomModelsResponse {
+    /**
+     * List of custom tuning models.
+     */
+    models?: Schema$GoogleCloudDiscoveryengineV1alphaCustomTuningModel[];
+  }
+  /**
    * Response message for DataStoreService.ListDataStores method.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaListDataStoresResponse {
@@ -2607,24 +2614,6 @@ export namespace discoveryengine_v1alpha {
      * The total number of items matching the request. This will always be populated in the response.
      */
     totalSize?: number | null;
-  }
-  /**
-   * Request message for WidgetService.LookupWidgetConfig method.
-   */
-  export interface Schema$GoogleCloudDiscoveryengineV1alphaLookupWidgetConfigRequest {
-    /**
-     * Required. The UUID of the Widget Config.
-     */
-    widgetConfigId?: string | null;
-  }
-  /**
-   * Response message for WidgetService.LookupWidgetConfig method.
-   */
-  export interface Schema$GoogleCloudDiscoveryengineV1alphaLookupWidgetConfigResponse {
-    /**
-     * The Anonymous Widget Config associated with the UUID.
-     */
-    anonymousWidgetConfig?: Schema$GoogleCloudDiscoveryengineV1alphaWidgetConfig;
   }
   /**
    * Media-specific user event information.
@@ -3281,7 +3270,7 @@ export namespace discoveryengine_v1alpha {
      */
     offset?: number | null;
     /**
-     * The order in which documents are returned. Documents can be ordered by a field in an Document object. Leave it unset if ordered by relevance. `order_by` expression is case-sensitive. For more information on ordering, see [Ordering](https://cloud.google.com/retail/docs/filter-and-order#order) If this field is unrecognizable, an `INVALID_ARGUMENT` is returned.
+     * The order in which documents are returned. Documents can be ordered by a field in an Document object. Leave it unset if ordered by relevance. `order_by` expression is case-sensitive. For more information on ordering for retail search, see [Ordering](https://cloud.google.com/retail/docs/filter-and-order#order) If this field is unrecognizable, an `INVALID_ARGUMENT` is returned.
      */
     orderBy?: string | null;
     /**
@@ -3312,10 +3301,6 @@ export namespace discoveryengine_v1alpha {
      * Whether to turn on safe search. This is only supported for website search.
      */
     safeSearch?: boolean | null;
-    /**
-     * Required. The resource name of the Search serving config, such as `projects/x/locations/global/collections/default_collection/engines/x/servingConfigs/default_serving_config`, or `projects/x/locations/global/collections/default_collection/dataStores/default_data_store/servingConfigs/default_serving_config`. This field is used to identify the serving configuration name, set of models used to make the search.
-     */
-    servingConfig?: string | null;
     /**
      * The spell correction specification that specifies the mode under which spell correction takes effect.
      */
@@ -4173,6 +4158,10 @@ export namespace discoveryengine_v1alpha {
      */
     providedUriPattern?: string | null;
     /**
+     * Output only. Root domain of the provided_uri_pattern.
+     */
+    rootDomainUri?: string | null;
+    /**
      * Output only. Site ownership and validity verification status.
      */
     siteVerificationInfo?: Schema$GoogleCloudDiscoveryengineV1alphaSiteVerificationInfo;
@@ -4242,6 +4231,10 @@ export namespace discoveryengine_v1alpha {
      */
     gcsTrainingInput?: Schema$GoogleCloudDiscoveryengineV1alphaTrainCustomModelRequestGcsTrainingInput;
     /**
+     * If not provided, a UUID will be generated.
+     */
+    modelId?: string | null;
+    /**
      * Model to be trained. Supported values are: * **search-tuning**: Fine tuning the search system based on data provided.
      */
     modelType?: string | null;
@@ -4283,6 +4276,10 @@ export namespace discoveryengine_v1alpha {
      * The metrics of the trained model.
      */
     metrics?: {[key: string]: number} | null;
+    /**
+     * Fully qualified name of the CustomTuningModel.
+     */
+    modelName?: string | null;
     /**
      * The trained model status. Possible values are: * **bad-data**: The training data quality is bad. * **no-improvement**: Tuning didn't improve performance. Won't deploy. * **in-progress**: Model training job creation is in progress. * **training**: Model is actively training. * **evaluating**: The model is evaluating trained metrics. * **indexing**: The model trained metrics are indexing. * **ready**: The model is ready for serving.
      */
@@ -4453,323 +4450,6 @@ export namespace discoveryengine_v1alpha {
     userId?: string | null;
   }
   /**
-   * Request message for WidgetService.WidgetCompleteQuery method.
-   */
-  export interface Schema$GoogleCloudDiscoveryengineV1alphaWidgetCompleteQueryRequest {
-    /**
-     * Additional params for security and privacy enhancement.
-     */
-    additionalParams?: Schema$GoogleCloudDiscoveryengineV1alphaAdditionalParams;
-    /**
-     * Required. The CompleteQuery request to perform auto-complete suggestion query.
-     */
-    completeQueryRequest?: Schema$GoogleCloudDiscoveryengineV1alphaCompleteQueryRequest;
-    /**
-     * Required. The UUID of the WidgetConfig. This field is used to identify the widget configuration, set of models used to make the auto complete query.
-     */
-    configId?: string | null;
-  }
-  /**
-   * Response message for WidgetService.WidgetCompleteQuery method.
-   */
-  export interface Schema$GoogleCloudDiscoveryengineV1alphaWidgetCompleteQueryResponse {
-    /**
-     * The token in response.
-     */
-    uToken?: string | null;
-    /**
-     * Results of the matched query suggestions in widget. The result list is ordered and the first result is a top suggestion.
-     */
-    widgetQuerySuggestions?: Schema$GoogleCloudDiscoveryengineV1alphaWidgetCompleteQueryResponseWidgetQuerySuggestion[];
-  }
-  /**
-   * Suggestions as search queries.
-   */
-  export interface Schema$GoogleCloudDiscoveryengineV1alphaWidgetCompleteQueryResponseWidgetQuerySuggestion {
-    /**
-     * The suggestion for the query.
-     */
-    suggestion?: string | null;
-  }
-  /**
-   * WidgetConfig captures configs at the Widget level.
-   */
-  export interface Schema$GoogleCloudDiscoveryengineV1alphaWidgetConfig {
-    /**
-     * Allowlisted domains that can load this widget.
-     */
-    allowlistedDomains?: string[] | null;
-    /**
-     * Whether allow no-auth integration with widget. If set true, public access to search or other solutions from widget is allowed without authenication token provided by customer hosted backend server.
-     */
-    allowPublicAccess?: boolean | null;
-    /**
-     * Output only. Collection components that lists all collections and child data stores associated with the widget config, those data sources can be used for filtering in widget service APIs, users can return results that from selected data sources.
-     */
-    collectionComponents?: Schema$GoogleCloudDiscoveryengineV1alphaWidgetConfigCollectionComponent[];
-    /**
-     * Output only. Unique obfuscated identifier of a WidgetConfig.
-     */
-    configId?: string | null;
-    /**
-     * The content search spec that configs the desired behavior of content search.
-     */
-    contentSearchSpec?: Schema$GoogleCloudDiscoveryengineV1alphaSearchRequestContentSearchSpec;
-    /**
-     * Output only. Timestamp the WidgetConfig was created.
-     */
-    createTime?: string | null;
-    /**
-     * Output only. The type of the parent data store.
-     */
-    dataStoreType?: string | null;
-    /**
-     * Configurable UI configurations per data store.
-     */
-    dataStoreUiConfigs?: Schema$GoogleCloudDiscoveryengineV1alphaWidgetConfigDataStoreUiConfig[];
-    /**
-     * Required. The human readable widget config display name. Used in Discovery UI. This field must be a UTF-8 encoded string with a length limit of 128 characters. Otherwise, an INVALID_ARGUMENT error is returned.
-     */
-    displayName?: string | null;
-    /**
-     * Whether or not to enable autocomplete.
-     */
-    enableAutocomplete?: boolean | null;
-    /**
-     * Whether to allow conversational search (LLM, multi-turn) or not (non-LLM, single-turn).
-     */
-    enableConversationalSearch?: boolean | null;
-    /**
-     * Turn on or off collecting the search result quality feedback from end users.
-     */
-    enableQualityFeedback?: boolean | null;
-    /**
-     * Whether to show the result score.
-     */
-    enableResultScore?: boolean | null;
-    /**
-     * Whether to enable safe search.
-     */
-    enableSafeSearch?: boolean | null;
-    /**
-     * Whether to enable search-as-you-type behavior for the search widget
-     */
-    enableSearchAsYouType?: boolean | null;
-    /**
-     * Turn on or off summary for each snippets result.
-     */
-    enableSnippetResultSummary?: boolean | null;
-    /**
-     * Turn on or off summarization for the search response.
-     */
-    enableSummarization?: boolean | null;
-    /**
-     * Whether to enable standalone web app.
-     */
-    enableWebApp?: boolean | null;
-    /**
-     * The configuration and appearance of facets in the end user view.
-     */
-    facetField?: Schema$GoogleCloudDiscoveryengineV1alphaWidgetConfigFacetField[];
-    /**
-     * The key is the UI component. Mock. Currently supported `title`, `thumbnail`, `url`, `custom1`, `custom2`, `custom3`. The value is the name of the field along with its device visibility. The 3 custom fields are optional and can be added or removed. `title`, `thumbnail`, `url` are required UI components that cannot be removed.
-     */
-    fieldsUiComponentsMap?: {
-      [
-        key: string
-      ]: Schema$GoogleCloudDiscoveryengineV1alphaWidgetConfigUIComponentField;
-    } | null;
-    /**
-     * Output only. The industry vertical that the WidgetConfig registers. The WidgetConfig industry vertical is based on the associated Engine.
-     */
-    industryVertical?: string | null;
-    /**
-     * Output only. Whether LLM is enabled in the corresponding data store.
-     */
-    llmEnabled?: boolean | null;
-    /**
-     * Output only. Whether the customer accepted data use terms.
-     */
-    minimumDataTermAccepted?: boolean | null;
-    /**
-     * Immutable. The full resource name of the widget config. Format: `projects/{project\}/locations/{location\}/collections/{collection_id\}/dataStores/{data_store_id\}/widgetConfigs/{widget_config_id\}`. This field must be a UTF-8 encoded string with a length limit of 1024 characters.
-     */
-    name?: string | null;
-    /**
-     * The type of snippet to display in UCS widget. - RESULT_DISPLAY_TYPE_UNSPECIFIED for existing users. - SNIPPET for new non-enterprise search users. - EXTRACTIVE_ANSWER for new enterprise search users.
-     */
-    resultDisplayType?: string | null;
-    /**
-     * Required. Immutable. Specifies the solution type that this WidgetConfig can be used for.
-     */
-    solutionType?: string | null;
-    /**
-     * Output only. Timestamp the WidgetConfig was updated.
-     */
-    updateTime?: string | null;
-  }
-  /**
-   * Read-only collection component that contains data store collections fields that may be used for filtering
-   */
-  export interface Schema$GoogleCloudDiscoveryengineV1alphaWidgetConfigCollectionComponent {
-    /**
-     * For the data store collection, list of the children data stores.
-     */
-    dataStoreComponents?: Schema$GoogleCloudDiscoveryengineV1alphaWidgetConfigDataStoreComponent[];
-    /**
-     * The display name of the collection.
-     */
-    displayName?: string | null;
-    /**
-     * Output only. the identifier of the collection, used for widget service. For now it refers to collection_id, in the future we will migrate the field to encrypted collection name UUID.
-     */
-    id?: string | null;
-    /**
-     * The name of the collection. It should be collection resource name. Format: `projects/{project_number\}/locations/{location\}/collections/{collection_id\}`. For APIs under WidgetService, such as LookUpWidgetConfig, the project number and location part is erased in this field.
-     */
-    name?: string | null;
-  }
-  /**
-   * Read-only data store component that contains data stores fields that may be used for filtering, it's the child of `CollectionComponent`.
-   */
-  export interface Schema$GoogleCloudDiscoveryengineV1alphaWidgetConfigDataStoreComponent {
-    /**
-     * The display name of the data store.
-     */
-    displayName?: string | null;
-    /**
-     * Output only. the identifier of the data store, used for widget service. For now it refers to data_store_id, in the future we will migrate the field to encrypted data store name UUID.
-     */
-    id?: string | null;
-    /**
-     * The name of the data store. It should be data store resource name Format: `projects/{project_number\}/locations/{location\}/collections/{collection_id\}/dataStores/{data_store_id\}`. For APIs under WidgetService, such as LookUpWidgetConfig, the project number and location part is erased in this field.
-     */
-    name?: string | null;
-  }
-  /**
-   * UI component configuration for data store.
-   */
-  export interface Schema$GoogleCloudDiscoveryengineV1alphaWidgetConfigDataStoreUiConfig {
-    /**
-     * Facet fields that store the mapping of fields to end user widget appearance.
-     */
-    facetField?: Schema$GoogleCloudDiscoveryengineV1alphaWidgetConfigFacetField[];
-    /**
-     * The key is the UI component. Mock. Currently supported `title`, `thumbnail`, `url`, `custom1`, `custom2`, `custom3`. The value is the name of the field along with its device visibility. The 3 custom fields are optional and can be added or removed. `title`, `thumbnail`, `url` are required UI components that cannot be removed.
-     */
-    fieldsUiComponentsMap?: {
-      [
-        key: string
-      ]: Schema$GoogleCloudDiscoveryengineV1alphaWidgetConfigUIComponentField;
-    } | null;
-    /**
-     * Output only. the identifier of the data store, used for widget service. For now it refers to data_store_id, in the future we will migrate the field to encrypted data store name UUID.
-     */
-    id?: string | null;
-    /**
-     * The name of the data store. It should be data store resource name Format: `projects/{project_number\}/locations/{location\}/collections/{collection_id\}/dataStores/{data_store_id\}`. For APIs under WidgetService, such as LookUpWidgetConfig, the project number and location part is erased in this field.
-     */
-    name?: string | null;
-  }
-  /**
-   * Facet fields that store the mapping of fields to end user widget appearance.
-   */
-  export interface Schema$GoogleCloudDiscoveryengineV1alphaWidgetConfigFacetField {
-    /**
-     * Optional. The field name that end users will see.
-     */
-    displayName?: string | null;
-    /**
-     * Required. Registered field name. The format is `field.abc`.
-     */
-    field?: string | null;
-  }
-  /**
-   * Facet field that maps to a UI Component.
-   */
-  export interface Schema$GoogleCloudDiscoveryengineV1alphaWidgetConfigUIComponentField {
-    /**
-     * The field visibility on different types of devices.
-     */
-    deviceVisibility?: string[] | null;
-    /**
-     * The template to customize how the field is displayed. An example value would be a string that looks like: "Price: {value\}".
-     */
-    displayTemplate?: string | null;
-    /**
-     * Required. Registered field name. The format is `field.abc`.
-     */
-    field?: string | null;
-  }
-  /**
-   * Request message for WidgetService.WidgetConverseConversation method.
-   */
-  export interface Schema$GoogleCloudDiscoveryengineV1alphaWidgetConverseConversationRequest {
-    /**
-     * Additional params for security and privacy enhancement.
-     */
-    additionalParams?: Schema$GoogleCloudDiscoveryengineV1alphaAdditionalParams;
-    /**
-     * Required. The UUID of the WidgetConfig. This field is used to identify the widget configuration, set of models used to make the user event collection.
-     */
-    configId?: string | null;
-    /**
-     * The id of the Conversation to get. Use "-" to activate auto session mode, which automatically creates a new conversation inside a ConverseConversation session.
-     */
-    conversationId?: string | null;
-    /**
-     * Required. The ConverseConversationRequest request to perform converse a conversation. The ServingConfig id will be `default_search` by default.
-     */
-    converseConversationRequest?: Schema$GoogleCloudDiscoveryengineV1alphaConverseConversationRequest;
-  }
-  /**
-   * Response message for WidgetService.WidgetConverseConversation method.
-   */
-  export interface Schema$GoogleCloudDiscoveryengineV1alphaWidgetConverseConversationResponse {
-    /**
-     * The id of the Conversation returned.
-     */
-    conversationId?: string | null;
-    /**
-     * ConverseConversationResponse returned from ConversationalSearchService.ConverseConversation.
-     */
-    converseConversationResponse?: Schema$GoogleCloudDiscoveryengineV1alphaConverseConversationResponse;
-    /**
-     * The token in response.
-     */
-    uToken?: string | null;
-  }
-  /**
-   * Request message for WidgetService.WidgetSearch method.
-   */
-  export interface Schema$GoogleCloudDiscoveryengineV1alphaWidgetSearchRequest {
-    /**
-     * Additional params for security and privacy enhancement.
-     */
-    additionalParams?: Schema$GoogleCloudDiscoveryengineV1alphaAdditionalParams;
-    /**
-     * Required. The UUID of the Search WidgetConfig. This field is used to identify the search widget configuration, set of models used to make the search.
-     */
-    configId?: string | null;
-    /**
-     * Required. The search request to perform search.
-     */
-    searchRequest?: Schema$GoogleCloudDiscoveryengineV1alphaSearchRequest;
-  }
-  /**
-   * Response message for WidgetService.WidgetSearch method.
-   */
-  export interface Schema$GoogleCloudDiscoveryengineV1alphaWidgetSearchResponse {
-    /**
-     * The search response after performing search.
-     */
-    searchResponse?: Schema$GoogleCloudDiscoveryengineV1alphaSearchResponse;
-    /**
-     * The token in response.
-     */
-    uToken?: string | null;
-  }
-  /**
    * Metadata related to the progress of the SiteSearchEngineService.BatchCreateTargetSites operation. This will be returned by the google.longrunning.Operation.metadata field.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1BatchCreateTargetSiteMetadata {
@@ -4864,6 +4544,32 @@ export namespace discoveryengine_v1alpha {
      * Operation last update time. If the operation is done, this is also the finish time.
      */
     updateTime?: string | null;
+  }
+  /**
+   * Metadata that describes a custom tuned model.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaCustomTuningModel {
+    /**
+     * Timestamp the Model was created at.
+     */
+    createTime?: string | null;
+    /**
+     * The display name of the model.
+     */
+    displayName?: string | null;
+    /**
+     * The state that the model is in (e.g.`TRAINING` or `TRAINING_FAILED`).
+     */
+    modelState?: string | null;
+    modelVersion?: string | null;
+    /**
+     * Required. The fully qualified resource name of the model. Format: `projects/{project_number\}/locations/{location\}/collections/{collection\}/dataStores/{data_store\}/customTuningModels/{custom_tuning_model\}` model must be an alpha-numerical string with limit of 40 characters.
+     */
+    name?: string | null;
+    /**
+     * Timestamp the model training was initiated.
+     */
+    trainingStartTime?: string | null;
   }
   /**
    * DataStore captures global settings and configs at the DataStore level.
@@ -5277,6 +4983,15 @@ export namespace discoveryengine_v1alpha {
     unjoinedEventsCount?: string | null;
   }
   /**
+   * Response message for SearchTuningService.ListCustomModels method.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaListCustomModelsResponse {
+    /**
+     * List of custom tuning models.
+     */
+    models?: Schema$GoogleCloudDiscoveryengineV1betaCustomTuningModel[];
+  }
+  /**
    * Metadata related to the progress of the PurgeDocuments operation. This will be returned by the google.longrunning.Operation.metadata field.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1betaPurgeDocumentsMetadata {
@@ -5399,6 +5114,10 @@ export namespace discoveryengine_v1alpha {
      */
     providedUriPattern?: string | null;
     /**
+     * Output only. Root domain of the provided_uri_pattern.
+     */
+    rootDomainUri?: string | null;
+    /**
      * Output only. Site ownership and validity verification status.
      */
     siteVerificationInfo?: Schema$GoogleCloudDiscoveryengineV1betaSiteVerificationInfo;
@@ -5458,6 +5177,10 @@ export namespace discoveryengine_v1alpha {
      * The metrics of the trained model.
      */
     metrics?: {[key: string]: number} | null;
+    /**
+     * Fully qualified name of the CustomTuningModel.
+     */
+    modelName?: string | null;
     /**
      * The trained model status. Possible values are: * **bad-data**: The training data quality is bad. * **no-improvement**: Tuning didn't improve performance. Won't deploy. * **in-progress**: Model training job creation is in progress. * **training**: Model is actively training. * **evaluating**: The model is evaluating trained metrics. * **indexing**: The model trained metrics are indexing. * **ready**: The model is ready for serving.
      */
@@ -6088,6 +5811,10 @@ export namespace discoveryengine_v1alpha {
      */
     providedUriPattern?: string | null;
     /**
+     * Output only. Root domain of the provided_uri_pattern.
+     */
+    rootDomainUri?: string | null;
+    /**
      * Output only. Site ownership and validity verification status.
      */
     siteVerificationInfo?: Schema$GoogleCloudDiscoveryengineV1SiteVerificationInfo;
@@ -6219,453 +5946,6 @@ export namespace discoveryengine_v1alpha {
      * Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year.
      */
     year?: number | null;
-  }
-
-  export class Resource$Locations {
-    context: APIRequestContext;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-    }
-
-    /**
-     * Gets the Widget Config using the uuid.
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    lookupWidgetConfig(
-      params: Params$Resource$Locations$Lookupwidgetconfig,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    lookupWidgetConfig(
-      params?: Params$Resource$Locations$Lookupwidgetconfig,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDiscoveryengineV1alphaLookupWidgetConfigResponse>;
-    lookupWidgetConfig(
-      params: Params$Resource$Locations$Lookupwidgetconfig,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    lookupWidgetConfig(
-      params: Params$Resource$Locations$Lookupwidgetconfig,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaLookupWidgetConfigResponse>,
-      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaLookupWidgetConfigResponse>
-    ): void;
-    lookupWidgetConfig(
-      params: Params$Resource$Locations$Lookupwidgetconfig,
-      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaLookupWidgetConfigResponse>
-    ): void;
-    lookupWidgetConfig(
-      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaLookupWidgetConfigResponse>
-    ): void;
-    lookupWidgetConfig(
-      paramsOrCallback?:
-        | Params$Resource$Locations$Lookupwidgetconfig
-        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaLookupWidgetConfigResponse>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaLookupWidgetConfigResponse>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaLookupWidgetConfigResponse>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$GoogleCloudDiscoveryengineV1alphaLookupWidgetConfigResponse>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Locations$Lookupwidgetconfig;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Locations$Lookupwidgetconfig;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl =
-        options.rootUrl || 'https://discoveryengine.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1alpha/{+location}/lookupWidgetConfig').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'POST',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['location'],
-        pathParams: ['location'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleCloudDiscoveryengineV1alphaLookupWidgetConfigResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleCloudDiscoveryengineV1alphaLookupWidgetConfigResponse>(
-          parameters
-        );
-      }
-    }
-
-    /**
-     * Performs a user input completion with keyword suggestion. Similar to the CompletionService.CompleteQuery method, but a widget version that allows CompleteQuery without API Key. It supports CompleteQuery with or without JWT token.
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    widgetCompleteQuery(
-      params: Params$Resource$Locations$Widgetcompletequery,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    widgetCompleteQuery(
-      params?: Params$Resource$Locations$Widgetcompletequery,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDiscoveryengineV1alphaWidgetCompleteQueryResponse>;
-    widgetCompleteQuery(
-      params: Params$Resource$Locations$Widgetcompletequery,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    widgetCompleteQuery(
-      params: Params$Resource$Locations$Widgetcompletequery,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaWidgetCompleteQueryResponse>,
-      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaWidgetCompleteQueryResponse>
-    ): void;
-    widgetCompleteQuery(
-      params: Params$Resource$Locations$Widgetcompletequery,
-      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaWidgetCompleteQueryResponse>
-    ): void;
-    widgetCompleteQuery(
-      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaWidgetCompleteQueryResponse>
-    ): void;
-    widgetCompleteQuery(
-      paramsOrCallback?:
-        | Params$Resource$Locations$Widgetcompletequery
-        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaWidgetCompleteQueryResponse>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaWidgetCompleteQueryResponse>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaWidgetCompleteQueryResponse>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$GoogleCloudDiscoveryengineV1alphaWidgetCompleteQueryResponse>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Locations$Widgetcompletequery;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Locations$Widgetcompletequery;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl =
-        options.rootUrl || 'https://discoveryengine.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1alpha/{+location}/widgetCompleteQuery').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'POST',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['location'],
-        pathParams: ['location'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleCloudDiscoveryengineV1alphaWidgetCompleteQueryResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleCloudDiscoveryengineV1alphaWidgetCompleteQueryResponse>(
-          parameters
-        );
-      }
-    }
-
-    /**
-     * Converse a conversation with Widget.
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    widgetConverseConversation(
-      params: Params$Resource$Locations$Widgetconverseconversation,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    widgetConverseConversation(
-      params?: Params$Resource$Locations$Widgetconverseconversation,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDiscoveryengineV1alphaWidgetConverseConversationResponse>;
-    widgetConverseConversation(
-      params: Params$Resource$Locations$Widgetconverseconversation,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    widgetConverseConversation(
-      params: Params$Resource$Locations$Widgetconverseconversation,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaWidgetConverseConversationResponse>,
-      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaWidgetConverseConversationResponse>
-    ): void;
-    widgetConverseConversation(
-      params: Params$Resource$Locations$Widgetconverseconversation,
-      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaWidgetConverseConversationResponse>
-    ): void;
-    widgetConverseConversation(
-      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaWidgetConverseConversationResponse>
-    ): void;
-    widgetConverseConversation(
-      paramsOrCallback?:
-        | Params$Resource$Locations$Widgetconverseconversation
-        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaWidgetConverseConversationResponse>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaWidgetConverseConversationResponse>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaWidgetConverseConversationResponse>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$GoogleCloudDiscoveryengineV1alphaWidgetConverseConversationResponse>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Locations$Widgetconverseconversation;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Locations$Widgetconverseconversation;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl =
-        options.rootUrl || 'https://discoveryengine.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (
-              rootUrl + '/v1alpha/{+location}/widgetConverseConversation'
-            ).replace(/([^:]\/)\/+/g, '$1'),
-            method: 'POST',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['location'],
-        pathParams: ['location'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleCloudDiscoveryengineV1alphaWidgetConverseConversationResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleCloudDiscoveryengineV1alphaWidgetConverseConversationResponse>(
-          parameters
-        );
-      }
-    }
-
-    /**
-     * Performs a search. Similar to the SearchService.Search method, but a widget version that allows search without API Key. It supports search with or without JWT token.
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    widgetSearch(
-      params: Params$Resource$Locations$Widgetsearch,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    widgetSearch(
-      params?: Params$Resource$Locations$Widgetsearch,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDiscoveryengineV1alphaWidgetSearchResponse>;
-    widgetSearch(
-      params: Params$Resource$Locations$Widgetsearch,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    widgetSearch(
-      params: Params$Resource$Locations$Widgetsearch,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaWidgetSearchResponse>,
-      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaWidgetSearchResponse>
-    ): void;
-    widgetSearch(
-      params: Params$Resource$Locations$Widgetsearch,
-      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaWidgetSearchResponse>
-    ): void;
-    widgetSearch(
-      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaWidgetSearchResponse>
-    ): void;
-    widgetSearch(
-      paramsOrCallback?:
-        | Params$Resource$Locations$Widgetsearch
-        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaWidgetSearchResponse>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaWidgetSearchResponse>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaWidgetSearchResponse>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$GoogleCloudDiscoveryengineV1alphaWidgetSearchResponse>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Locations$Widgetsearch;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Locations$Widgetsearch;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl =
-        options.rootUrl || 'https://discoveryengine.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1alpha/{+location}/widgetSearch').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'POST',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['location'],
-        pathParams: ['location'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleCloudDiscoveryengineV1alphaWidgetSearchResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleCloudDiscoveryengineV1alphaWidgetSearchResponse>(
-          parameters
-        );
-      }
-    }
-  }
-
-  export interface Params$Resource$Locations$Lookupwidgetconfig
-    extends StandardParameters {
-    /**
-     * Required. The location resource where lookup widget will be performed. Format: `locations/{location\}`
-     */
-    location?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$GoogleCloudDiscoveryengineV1alphaLookupWidgetConfigRequest;
-  }
-  export interface Params$Resource$Locations$Widgetcompletequery
-    extends StandardParameters {
-    /**
-     * Required. The location resource where widget complete query will be performed. Format: `locations/{location\}`
-     */
-    location?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$GoogleCloudDiscoveryengineV1alphaWidgetCompleteQueryRequest;
-  }
-  export interface Params$Resource$Locations$Widgetconverseconversation
-    extends StandardParameters {
-    /**
-     * Required. The location resource where widget converse conversation will be performed. Format: `locations/{location\}`
-     */
-    location?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$GoogleCloudDiscoveryengineV1alphaWidgetConverseConversationRequest;
-  }
-  export interface Params$Resource$Locations$Widgetsearch
-    extends StandardParameters {
-    /**
-     * Required. The location resource where widget search will be performed. Format: `locations/{location\}`
-     */
-    location?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$GoogleCloudDiscoveryengineV1alphaWidgetSearchRequest;
   }
 
   export class Resource$Projects {
@@ -7620,6 +6900,7 @@ export namespace discoveryengine_v1alpha {
     context: APIRequestContext;
     branches: Resource$Projects$Locations$Collections$Datastores$Branches;
     conversations: Resource$Projects$Locations$Collections$Datastores$Conversations;
+    customModels: Resource$Projects$Locations$Collections$Datastores$Custommodels;
     models: Resource$Projects$Locations$Collections$Datastores$Models;
     operations: Resource$Projects$Locations$Collections$Datastores$Operations;
     schemas: Resource$Projects$Locations$Collections$Datastores$Schemas;
@@ -7636,6 +6917,10 @@ export namespace discoveryengine_v1alpha {
         );
       this.conversations =
         new Resource$Projects$Locations$Collections$Datastores$Conversations(
+          this.context
+        );
+      this.customModels =
+        new Resource$Projects$Locations$Collections$Datastores$Custommodels(
           this.context
         );
       this.models =
@@ -8713,7 +7998,7 @@ export namespace discoveryengine_v1alpha {
   export interface Params$Resource$Projects$Locations$Collections$Datastores$List
     extends StandardParameters {
     /**
-     * Filter by solution type. For example: filter = 'solution_type:SOLUTION_TYPE_SEARCH'
+     * Filter by solution type . For example: filter = 'solution_type:SOLUTION_TYPE_SEARCH'
      */
     filter?: string;
     /**
@@ -10795,6 +10080,120 @@ export namespace discoveryengine_v1alpha {
      * Request body metadata
      */
     requestBody?: Schema$GoogleCloudDiscoveryengineV1alphaConversation;
+  }
+
+  export class Resource$Projects$Locations$Collections$Datastores$Custommodels {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Gets a list of all the custom models.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Collections$Datastores$Custommodels$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Collections$Datastores$Custommodels$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDiscoveryengineV1alphaListCustomModelsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Collections$Datastores$Custommodels$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Collections$Datastores$Custommodels$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaListCustomModelsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaListCustomModelsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Collections$Datastores$Custommodels$List,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaListCustomModelsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaListCustomModelsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Collections$Datastores$Custommodels$List
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaListCustomModelsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaListCustomModelsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaListCustomModelsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDiscoveryengineV1alphaListCustomModelsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Collections$Datastores$Custommodels$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Collections$Datastores$Custommodels$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://discoveryengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+dataStore}/customModels').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['dataStore'],
+        pathParams: ['dataStore'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDiscoveryengineV1alphaListCustomModelsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDiscoveryengineV1alphaListCustomModelsResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Collections$Datastores$Custommodels$List
+    extends StandardParameters {
+    /**
+     * Required. The resource name of the parent Data Store, such as `projects/x/locations/global/collections/default_collection/dataStores/default_data_store`. This field is used to identify the data store where to fetch the models from.
+     */
+    dataStore?: string;
   }
 
   export class Resource$Projects$Locations$Collections$Datastores$Models {
@@ -20077,7 +19476,7 @@ export namespace discoveryengine_v1alpha {
   export interface Params$Resource$Projects$Locations$Datastores$List
     extends StandardParameters {
     /**
-     * Filter by solution type. For example: filter = 'solution_type:SOLUTION_TYPE_SEARCH'
+     * Filter by solution type . For example: filter = 'solution_type:SOLUTION_TYPE_SEARCH'
      */
     filter?: string;
     /**
