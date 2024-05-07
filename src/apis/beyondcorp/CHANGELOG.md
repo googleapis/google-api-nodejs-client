@@ -1,5 +1,16 @@
 # Changelog
 
+## [12.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/beyondcorp-v11.0.0...beyondcorp-v12.0.0) (2024-05-07)
+
+
+### ⚠ BREAKING CHANGES
+
+* **beyondcorp:** This release has breaking changes.
+
+### Features
+
+* **beyondcorp:** update the API ([739d6c2](https://github.com/googleapis/google-api-nodejs-client/commit/739d6c273a99446c919e78ac79ab3920a31af663))
+
 ## [11.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/beyondcorp-v10.0.0...beyondcorp-v11.0.0) (2024-05-02)
 
 

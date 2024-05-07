@@ -1,5 +1,16 @@
 # Changelog
 
+## [9.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/artifactregistry-v8.0.0...artifactregistry-v9.0.0) (2024-05-07)
+
+
+### ⚠ BREAKING CHANGES
+
+* **artifactregistry:** This release has breaking changes.
+
+### Features
+
+* **artifactregistry:** update the API ([2c2b2f8](https://github.com/googleapis/google-api-nodejs-client/commit/2c2b2f8723be04c3b0e3788bcd5ed94ea3a81549))
+
 ## [8.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/artifactregistry-v7.1.0...artifactregistry-v8.0.0) (2024-05-02)
 
 

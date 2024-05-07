@@ -1,5 +1,12 @@
 # Changelog
 
+## [16.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/run-v16.1.0...run-v16.2.0) (2024-05-07)
+
+
+### Features
+
+* **run:** update the API ([df2306a](https://github.com/googleapis/google-api-nodejs-client/commit/df2306ae0a2f8fa008b6797f81517d0dd4b0d627))
+
 ## [16.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/run-v16.0.0...run-v16.1.0) (2024-05-02)
 
 

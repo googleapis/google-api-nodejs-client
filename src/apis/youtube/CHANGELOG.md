@@ -1,5 +1,12 @@
 # Changelog
 
+## [16.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/youtube-v16.0.0...youtube-v16.1.0) (2024-05-07)
+
+
+### Features
+
+* **youtube:** update the API ([f596fa7](https://github.com/googleapis/google-api-nodejs-client/commit/f596fa7393c37e0554abd6884e676fc66c9ca3ec))
+
 ## [16.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/youtube-v15.1.0...youtube-v16.0.0) (2024-05-02)
 
 

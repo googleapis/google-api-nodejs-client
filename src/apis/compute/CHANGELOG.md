@@ -1,5 +1,12 @@
 # Changelog
 
+## [12.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/compute-v12.0.0...compute-v12.1.0) (2024-05-07)
+
+
+### Features
+
+* **compute:** update the API ([0ef7bad](https://github.com/googleapis/google-api-nodejs-client/commit/0ef7badccb8299d4412873505bbba8e402a53b88))
+
 ## [12.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/compute-v11.0.0...compute-v12.0.0) (2024-05-02)
 
 

@@ -1,5 +1,16 @@
 # Changelog
 
+## [20.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/bigtableadmin-v19.0.0...bigtableadmin-v20.0.0) (2024-05-07)
+
+
+### ⚠ BREAKING CHANGES
+
+* **bigtableadmin:** This release has breaking changes.
+
+### Features
+
+* **bigtableadmin:** update the API ([423100f](https://github.com/googleapis/google-api-nodejs-client/commit/423100f708c03a702ff6633ddc30f27e7cf3da1d))
+
 ## [19.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/bigtableadmin-v18.1.0...bigtableadmin-v19.0.0) (2024-05-02)
 
 
