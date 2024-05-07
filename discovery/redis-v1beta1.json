@@ -821,7 +821,7 @@
       }
     }
   },
-  "revision": "20240418",
+  "revision": "20240425",
   "rootUrl": "https://redis.googleapis.com/",
   "schemas": {
     "AOFConfig": {
@@ -2957,6 +2957,7 @@
             "PRODUCT_TYPE_ON_PREM",
             "ON_PREM",
             "PRODUCT_TYPE_MEMORYSTORE",
+            "PRODUCT_TYPE_BIGTABLE",
             "PRODUCT_TYPE_OTHER"
           ],
           "enumDeprecated": [
@@ -2968,6 +2969,7 @@
             false,
             false,
             true,
+            false,
             false,
             false
           ],
@@ -2981,6 +2983,7 @@
             "On premises database product.",
             "On premises database product.",
             "Memorystore product area in GCP",
+            "Bigtable product area in GCP",
             "Other refers to rest of other product type. This is to be when product type is known, but it is not present in this enum."
           ],
           "type": "string"

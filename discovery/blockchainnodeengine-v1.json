@@ -487,7 +487,7 @@
       }
     }
   },
-  "revision": "20240425",
+  "revision": "20240504",
   "rootUrl": "https://blockchainnodeengine.googleapis.com/",
   "schemas": {
     "BlockchainNode": {
@@ -547,7 +547,8 @@
             "ERROR",
             "UPDATING",
             "REPAIRING",
-            "RECONCILING"
+            "RECONCILING",
+            "SYNCING"
           ],
           "enumDescriptions": [
             "The state has not been specified.",
@@ -557,7 +558,8 @@
             "The node is in an unexpected or errored state.",
             "The node is currently being updated.",
             "The node is currently being repaired.",
-            "The node is currently being reconciled."
+            "The node is currently being reconciled.",
+            "The node is syncing, which is the process by which it obtains the latest block and current global state."
           ],
           "readOnly": true,
           "type": "string"

@@ -2903,21 +2903,6 @@
     },
     {
       "kind": "discovery#directoryItem",
-      "id": "eventarc:v1beta1",
-      "name": "eventarc",
-      "version": "v1beta1",
-      "title": "Eventarc API",
-      "description": "Build event-driven applications on Google Cloud Platform.",
-      "discoveryRestUrl": "https://eventarc.googleapis.com/$discovery/rest?version=v1beta1",
-      "icons": {
-        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
-        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
-      },
-      "documentationLink": "https://cloud.google.com/eventarc",
-      "preferred": false
-    },
-    {
-      "kind": "discovery#directoryItem",
       "id": "eventarc:v1",
       "name": "eventarc",
       "version": "v1",

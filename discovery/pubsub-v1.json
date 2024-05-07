@@ -1583,7 +1583,7 @@
       }
     }
   },
-  "revision": "20240416",
+  "revision": "20240430",
   "rootUrl": "https://pubsub.googleapis.com/",
   "schemas": {
     "AcknowledgeRequest": {
@@ -1774,14 +1774,16 @@
             "ACTIVE",
             "PERMISSION_DENIED",
             "NOT_FOUND",
-            "IN_TRANSIT_LOCATION_RESTRICTION"
+            "IN_TRANSIT_LOCATION_RESTRICTION",
+            "SCHEMA_MISMATCH"
           ],
           "enumDescriptions": [
             "Default value. This value is unused.",
             "The subscription can actively send messages to Cloud Storage.",
             "Cannot write to the Cloud Storage bucket because of permission denied errors.",
             "Cannot write to the Cloud Storage bucket because it does not exist.",
-            "Cannot write to the destination because enforce_in_transit is set to true and the destination locations are not in the allowed regions."
+            "Cannot write to the destination because enforce_in_transit is set to true and the destination locations are not in the allowed regions.",
+            "Cannot write to the Cloud Storage bucket due to an incompatibility between the topic schema and subscription settings."
           ],
           "readOnly": true,
           "type": "string"
