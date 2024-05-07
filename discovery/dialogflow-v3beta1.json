@@ -4551,7 +4551,7 @@
       }
     }
   },
-  "revision": "20240422",
+  "revision": "20240430",
   "rootUrl": "https://dialogflow.googleapis.com/",
   "schemas": {
     "GoogleCloudDialogflowCxV3AdvancedSettings": {
@@ -10615,7 +10615,8 @@
             "PARAMETER_FILLING",
             "NO_MATCH",
             "NO_INPUT",
-            "EVENT"
+            "EVENT",
+            "LLM"
           ],
           "enumDescriptions": [
             "Not specified. Should never be used.",
@@ -10624,7 +10625,8 @@
             "The query was used for parameter filling.",
             "No match was found for the query.",
             "Indicates an empty query.",
-            "The query directly triggered an event."
+            "The query directly triggered an event.",
+            "The query was handled by an LLM."
           ],
           "type": "string"
         },
