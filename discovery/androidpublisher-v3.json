@@ -4731,7 +4731,7 @@
       }
     }
   },
-  "revision": "20240501",
+  "revision": "20240507",
   "rootUrl": "https://androidpublisher.googleapis.com/",
   "schemas": {
     "Abi": {
@@ -8800,7 +8800,7 @@
         },
         "canceledStateContext": {
           "$ref": "CanceledStateContext",
-          "description": "Additional context around canceled subscriptions. Only present if the subscription currently has subscription_state SUBSCRIPTION_STATE_CANCELED."
+          "description": "Additional context around canceled subscriptions. Only present if the subscription currently has subscription_state SUBSCRIPTION_STATE_CANCELED or SUBSCRIPTION_STATE_EXPIRED."
         },
         "externalAccountIdentifiers": {
           "$ref": "ExternalAccountIdentifiers",
