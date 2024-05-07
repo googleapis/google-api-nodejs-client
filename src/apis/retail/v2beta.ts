@@ -4911,6 +4911,10 @@ export namespace retail_v2beta {
      */
     deviceType?: string;
     /**
+     * If true, attribute suggestions are enabled and provided in response. This field is only available for "cloud-retail" dataset.
+     */
+    enableAttributeSuggestions?: boolean;
+    /**
      * The entity for customers who run multiple entities, domains, sites, or regions, for example, `Google US`, `Google Ads`, `Waymo`, `google.com`, `youtube.com`, etc. If this is set, it must be an exact match with UserEvent.entity to get per-entity autocomplete results.
      */
     entity?: string;

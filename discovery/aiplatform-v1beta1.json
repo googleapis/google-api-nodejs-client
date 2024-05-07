@@ -31,8 +31,8 @@
     },
     {
       "description": "Locational Endpoint",
-      "endpointUrl": "https://asia-east2-aiplatform.googleapis.com/",
-      "location": "asia-east2"
+      "location": "asia-east2",
+      "endpointUrl": "https://asia-east2-aiplatform.googleapis.com/"
     },
     {
       "location": "asia-northeast1",
@@ -45,6 +45,7 @@
       "location": "asia-northeast2"
     },
     {
+      "endpointUrl": "https://asia-northeast3-aiplatform.googleapis.com/",
       "description": "Locational Endpoint",
       "endpointUrl": "https://asia-northeast3-aiplatform.googleapis.com/",
       "location": "asia-northeast3"
@@ -76,13 +77,13 @@
     },
     {
       "location": "europe-central2",
-      "description": "Locational Endpoint",
-      "endpointUrl": "https://europe-central2-aiplatform.googleapis.com/"
+      "endpointUrl": "https://europe-central2-aiplatform.googleapis.com/",
+      "description": "Locational Endpoint"
     },
     {
-      "endpointUrl": "https://europe-north1-aiplatform.googleapis.com/",
       "location": "europe-north1",
-      "description": "Locational Endpoint"
+      "description": "Locational Endpoint",
+      "endpointUrl": "https://europe-north1-aiplatform.googleapis.com/"
     },
     {
       "location": "europe-southwest1",
@@ -105,9 +106,9 @@
       "location": "europe-west3"
     },
     {
-      "location": "europe-west4",
+      "endpointUrl": "https://europe-west4-aiplatform.googleapis.com/",
       "description": "Locational Endpoint",
-      "endpointUrl": "https://europe-west4-aiplatform.googleapis.com/"
+      "location": "europe-west4"
     },
     {
       "description": "Locational Endpoint",
@@ -115,9 +116,9 @@
       "location": "europe-west6"
     },
     {
-      "location": "europe-west8",
+      "description": "Locational Endpoint",
       "endpointUrl": "https://europe-west8-aiplatform.googleapis.com/",
-      "description": "Locational Endpoint"
+      "location": "europe-west8"
     },
     {
       "description": "Locational Endpoint",
@@ -145,8 +146,18 @@
       "description": "Locational Endpoint"
     },
     {
+      "location": "me-central2",
       "description": "Locational Endpoint",
+      "endpointUrl": "https://me-central2-aiplatform.googleapis.com/"
+    },
+    {
+      "endpointUrl": "https://me-west1-aiplatform.googleapis.com/",
+      "description": "Locational Endpoint",
+      "location": "me-west1"
+    },
+    {
       "endpointUrl": "https://northamerica-northeast1-aiplatform.googleapis.com/",
+      "description": "Locational Endpoint",
       "location": "northamerica-northeast1"
     },
     {

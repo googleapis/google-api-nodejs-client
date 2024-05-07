@@ -81,8 +81,8 @@
     },
     {
       "endpointUrl": "https://europe-north1-aiplatform.googleapis.com/",
-      "location": "europe-north1",
-      "description": "Locational Endpoint"
+      "description": "Locational Endpoint",
+      "location": "europe-north1"
     },
     {
       "endpointUrl": "https://europe-southwest1-aiplatform.googleapis.com/",
@@ -145,13 +145,18 @@
       "description": "Locational Endpoint"
     },
     {
+      "location": "me-west1",
       "description": "Locational Endpoint",
-      "location": "northamerica-northeast1",
-      "endpointUrl": "https://northamerica-northeast1-aiplatform.googleapis.com/"
+      "endpointUrl": "https://me-west1-aiplatform.googleapis.com/"
     },
     {
-      "endpointUrl": "https://northamerica-northeast2-aiplatform.googleapis.com/",
+      "endpointUrl": "https://northamerica-northeast1-aiplatform.googleapis.com/",
+      "location": "northamerica-northeast1",
+      "description": "Locational Endpoint"
+    },
+    {
       "description": "Locational Endpoint",
+      "endpointUrl": "https://northamerica-northeast2-aiplatform.googleapis.com/",
       "location": "northamerica-northeast2"
     },
     {
