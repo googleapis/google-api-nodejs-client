@@ -2096,7 +2096,7 @@
       }
     }
   },
-  "revision": "20230831",
+  "revision": "20240501",
   "rootUrl": "https://cloudsearch.googleapis.com/",
   "schemas": {
     "Action": {
@@ -6996,6 +6996,68 @@
             "Treat the match with higher importance than body text.",
             "Treat the match with lower importance than body text.",
             "Do not match against this field during retrieval. The property can still be used for operator matching, faceting, and suggest if desired."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "RewrittenQueries": {
+      "description": "The rewritten queries returned by Apps Search Query Understanding service.",
+      "id": "RewrittenQueries",
+      "properties": {
+        "rewrittenQueries": {
+          "items": {
+            "$ref": "RewrittenQuery"
+          },
+          "type": "array"
+        },
+        "selectedQueryIndex": {
+          "description": "The index of the selected query in `rewritten_queries` that is used by QAPI to call CSSR to get search results. If none of the queries were used (i.e. they all give empty search results), `selected_query_index` would default to -1.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "RewrittenQuery": {
+      "id": "RewrittenQuery",
+      "properties": {
+        "rewrittenQuery": {
+          "type": "string"
+        },
+        "score": {
+          "format": "double",
+          "type": "number"
+        },
+        "sortBy": {
+          "enum": [
+            "SORTBY_UNSUPPORTED",
+            "SORTBY_RELEVANCY",
+            "SORTBY_LATEST",
+            "SORTBY_OLDEST",
+            "SORTBY_LARGEST",
+            "SORTBY_SMALLEST",
+            "SORTBY_MODIFY_LATEST",
+            "SORTBY_MODIFY_OLDEST",
+            "SORTBY_VIEW_LATEST",
+            "SORTBY_VIEW_OLDEST",
+            "SORTBY_CREATE_LATEST",
+            "SORTBY_CREATE_OLDEST"
+          ],
+          "enumDescriptions": [
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            ""
           ],
           "type": "string"
         }
