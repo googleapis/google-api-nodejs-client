@@ -591,7 +591,7 @@
       }
     }
   },
-  "revision": "20240417",
+  "revision": "20240424",
   "rootUrl": "https://networkmanagement.googleapis.com/",
   "schemas": {
     "AbortInfo": {
@@ -1113,6 +1113,8 @@
             "CLOUD_FUNCTION_NOT_ACTIVE",
             "VPC_CONNECTOR_NOT_SET",
             "VPC_CONNECTOR_NOT_RUNNING",
+            "VPC_CONNECTOR_SERVERLESS_TRAFFIC_BLOCKED",
+            "VPC_CONNECTOR_HEALTH_CHECK_TRAFFIC_BLOCKED",
             "FORWARDING_RULE_REGION_MISMATCH",
             "PSC_CONNECTION_NOT_ACCEPTED",
             "PSC_ENDPOINT_ACCESSED_FROM_PEERED_NETWORK",
@@ -1175,6 +1177,8 @@
             "Packet could be dropped because the Cloud Function is not in an active status.",
             "Packet could be dropped because no VPC connector is set.",
             "Packet could be dropped because the VPC connector is not in a running state.",
+            "Packet could be dropped because the traffic from the serverless service to the VPC connector is not allowed.",
+            "Packet could be dropped because the health check traffic to the VPC connector is not allowed.",
             "Packet could be dropped because it was sent from a different region to a regional forwarding without global access.",
             "The Private Service Connect endpoint is in a project that is not approved to connect to the service.",
             "The packet is sent to the Private Service Connect endpoint over the peering, but [it's not supported](https://cloud.google.com/vpc/docs/configure-private-service-connect-services#on-premises).",
