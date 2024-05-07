@@ -850,6 +850,10 @@ export namespace run_v1 {
      */
     finishTime?: string | null;
     /**
+     * Optional. Configuration for git operations.
+     */
+    gitConfig?: Schema$GoogleDevtoolsCloudbuildV1GitConfig;
+    /**
      * Output only. Unique identifier of the build.
      */
     id?: string | null;
@@ -1141,6 +1145,23 @@ export namespace run_v1 {
     revision?: string | null;
   }
   /**
+   * This config defines the location of a source through Developer Connect.
+   */
+  export interface Schema$GoogleDevtoolsCloudbuildV1DeveloperConnectConfig {
+    /**
+     * Required. Directory, relative to the source root, in which to run the build.
+     */
+    dir?: string | null;
+    /**
+     * Required. The Developer Connect Git repository link, formatted as `projects/x/locations/x/connections/x/gitRepositoryLink/x`.
+     */
+    gitRepositoryLink?: string | null;
+    /**
+     * Required. The revision to fetch from the Git repository such as a branch, a tag, a commit SHA, or any Git ref.
+     */
+    revision?: string | null;
+  }
+  /**
    * A fatal problem encountered during the execution of the build.
    */
   export interface Schema$GoogleDevtoolsCloudbuildV1FailureInfo {
@@ -1161,6 +1182,15 @@ export namespace run_v1 {
      * Collection of file hashes.
      */
     fileHash?: Schema$GoogleDevtoolsCloudbuildV1Hash[];
+  }
+  /**
+   * GitConfig is a configuration for git operations.
+   */
+  export interface Schema$GoogleDevtoolsCloudbuildV1GitConfig {
+    /**
+     * Configuration for HTTP related git operations.
+     */
+    http?: Schema$GoogleDevtoolsCloudbuildV1HttpConfig;
   }
   /**
    * Location of the source in any accessible Git repository.
@@ -1191,6 +1221,15 @@ export namespace run_v1 {
      * The hash value.
      */
     value?: string | null;
+  }
+  /**
+   * HttpConfig is a configuration for HTTP related git operations.
+   */
+  export interface Schema$GoogleDevtoolsCloudbuildV1HttpConfig {
+    /**
+     * SecretVersion resource of the HTTP proxy URL. The proxy URL should be in format protocol://@]proxyhost[:port].
+     */
+    proxySecretVersionName?: string | null;
   }
   /**
    * Pairs a set of secret environment variables mapped to encrypted values with the Cloud KMS key to use to decrypt the value.
@@ -1390,6 +1429,10 @@ export namespace run_v1 {
      * Optional. If provided, get the source from this 2nd-gen Google Cloud Build repository resource.
      */
     connectedRepository?: Schema$GoogleDevtoolsCloudbuildV1ConnectedRepository;
+    /**
+     * If provided, get the source from this Developer Connect config.
+     */
+    developerConnectConfig?: Schema$GoogleDevtoolsCloudbuildV1DeveloperConnectConfig;
     /**
      * If provided, get the source from this Git repository.
      */
@@ -2303,6 +2346,10 @@ export namespace run_v1 {
      * Not supported by Cloud Run.
      */
     imagePullSecrets?: Schema$LocalObjectReference[];
+    /**
+     * Optional. The Node Selector configuration. Map of selector key to a value which matches a node.
+     */
+    nodeSelector?: {[key: string]: string} | null;
     /**
      * Email address of the IAM service account associated with the revision of the service. The service account represents the identity of the running revision, and determines what permissions the revision has. If not provided, the revision will use the project's default service account.
      */

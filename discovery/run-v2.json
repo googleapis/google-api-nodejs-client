@@ -1469,7 +1469,7 @@
       }
     }
   },
-  "revision": "20240419",
+  "revision": "20240426",
   "rootUrl": "https://run.googleapis.com/",
   "schemas": {
     "GoogleCloudRunV2BinaryAuthorization": {
@@ -2540,6 +2540,17 @@
       },
       "type": "object"
     },
+    "GoogleCloudRunV2NodeSelector": {
+      "description": "Hardware constraints configuration.",
+      "id": "GoogleCloudRunV2NodeSelector",
+      "properties": {
+        "accelerator": {
+          "description": "Required. GPU accelerator type to attach to an instance.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudRunV2Overrides": {
       "description": "RunJob Overrides that contains Execution fields to be overridden.",
       "id": "GoogleCloudRunV2Overrides",
@@ -2765,6 +2776,10 @@
           "readOnly": true,
           "type": "string"
         },
+        "nodeSelector": {
+          "$ref": "GoogleCloudRunV2NodeSelector",
+          "description": "The node selector for the revision."
+        },
         "observedGeneration": {
           "description": "Output only. The generation of this Revision currently serving traffic. See comments in `reconciling` for additional information on reconciliation process in Cloud Run.",
           "format": "int64",
@@ -2913,6 +2928,10 @@
           "description": "Optional. Sets the maximum number of requests that each serving instance can receive.",
           "format": "int32",
           "type": "integer"
+        },
+        "nodeSelector": {
+          "$ref": "GoogleCloudRunV2NodeSelector",
+          "description": "Optional. The node selector for the revision template."
         },
         "revision": {
           "description": "Optional. The unique name for the revision. If this field is omitted, it will be automatically generated based on the Service name.",
@@ -3832,6 +3851,10 @@
           "readOnly": true,
           "type": "string"
         },
+        "gitConfig": {
+          "$ref": "GoogleDevtoolsCloudbuildV1GitConfig",
+          "description": "Optional. Configuration for git operations."
+        },
         "id": {
           "description": "Output only. Unique identifier of the build.",
           "readOnly": true,
@@ -4371,6 +4394,25 @@
       },
       "type": "object"
     },
+    "GoogleDevtoolsCloudbuildV1DeveloperConnectConfig": {
+      "description": "This config defines the location of a source through Developer Connect.",
+      "id": "GoogleDevtoolsCloudbuildV1DeveloperConnectConfig",
+      "properties": {
+        "dir": {
+          "description": "Required. Directory, relative to the source root, in which to run the build.",
+          "type": "string"
+        },
+        "gitRepositoryLink": {
+          "description": "Required. The Developer Connect Git repository link, formatted as `projects/*/locations/*/connections/*/gitRepositoryLink/*`.",
+          "type": "string"
+        },
+        "revision": {
+          "description": "Required. The revision to fetch from the Git repository such as a branch, a tag, a commit SHA, or any Git ref.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleDevtoolsCloudbuildV1FailureInfo": {
       "description": "A fatal problem encountered during the execution of the build.",
       "id": "GoogleDevtoolsCloudbuildV1FailureInfo",
@@ -4418,6 +4460,17 @@
       },
       "type": "object"
     },
+    "GoogleDevtoolsCloudbuildV1GitConfig": {
+      "description": "GitConfig is a configuration for git operations.",
+      "id": "GoogleDevtoolsCloudbuildV1GitConfig",
+      "properties": {
+        "http": {
+          "$ref": "GoogleDevtoolsCloudbuildV1HttpConfig",
+          "description": "Configuration for HTTP related git operations."
+        }
+      },
+      "type": "object"
+    },
     "GoogleDevtoolsCloudbuildV1GitSource": {
       "description": "Location of the source in any accessible Git repository.",
       "id": "GoogleDevtoolsCloudbuildV1GitSource",
@@ -4460,6 +4513,17 @@
         "value": {
           "description": "The hash value.",
           "format": "byte",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleDevtoolsCloudbuildV1HttpConfig": {
+      "description": "HttpConfig is a configuration for HTTP related git operations.",
+      "id": "GoogleDevtoolsCloudbuildV1HttpConfig",
+      "properties": {
+        "proxySecretVersionName": {
+          "description": "SecretVersion resource of the HTTP proxy URL. The proxy URL should be in format protocol://@]proxyhost[:port].",
           "type": "string"
         }
       },
@@ -4722,6 +4786,10 @@
         "connectedRepository": {
           "$ref": "GoogleDevtoolsCloudbuildV1ConnectedRepository",
           "description": "Optional. If provided, get the source from this 2nd-gen Google Cloud Build repository resource."
+        },
+        "developerConnectConfig": {
+          "$ref": "GoogleDevtoolsCloudbuildV1DeveloperConnectConfig",
+          "description": "If provided, get the source from this Developer Connect config."
         },
         "gitSource": {
           "$ref": "GoogleDevtoolsCloudbuildV1GitSource",
