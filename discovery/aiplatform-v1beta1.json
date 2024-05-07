@@ -28,11 +28,14 @@
       "description": "Locational Endpoint",
       "location": "asia-east1",
       "endpointUrl": "https://asia-east1-aiplatform.googleapis.com/"
+<<<<<<< HEAD
     },
     {
       "description": "Locational Endpoint",
       "location": "asia-east1",
       "endpointUrl": "https://asia-east1-aiplatform.googleapis.com/"
+=======
+>>>>>>> aefbfc725 (merge conflicts)
     },
     {
       "description": "Locational Endpoint",
@@ -43,14 +46,25 @@
       "location": "asia-northeast1",
       "endpointUrl": "https://asia-northeast1-aiplatform.googleapis.com/",
       "description": "Locational Endpoint"
+<<<<<<< HEAD
+=======
     },
     {
       "description": "Locational Endpoint",
       "endpointUrl": "https://asia-northeast2-aiplatform.googleapis.com/",
       "location": "asia-northeast2"
+>>>>>>> aefbfc725 (merge conflicts)
     },
     {
       "description": "Locational Endpoint",
+<<<<<<< HEAD
+      "endpointUrl": "https://asia-northeast2-aiplatform.googleapis.com/",
+      "location": "asia-northeast2"
+    },
+    {
+      "description": "Locational Endpoint",
+=======
+>>>>>>> aefbfc725 (merge conflicts)
       "endpointUrl": "https://asia-northeast3-aiplatform.googleapis.com/",
       "location": "asia-northeast3"
     },
@@ -147,11 +161,14 @@
     {
       "endpointUrl": "https://me-west1-aiplatform.googleapis.com/",
       "location": "me-west1",
+<<<<<<< HEAD
       "description": "Locational Endpoint"
     },
     {
       "endpointUrl": "https://me-west1-aiplatform.googleapis.com/",
       "location": "me-west1",
+=======
+>>>>>>> aefbfc725 (merge conflicts)
       "description": "Locational Endpoint"
     },
     {
