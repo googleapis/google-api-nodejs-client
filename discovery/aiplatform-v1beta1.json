@@ -20,19 +20,19 @@
   "documentationLink": "https://cloud.google.com/vertex-ai/",
   "endpoints": [
     {
+      "description": "Locational Endpoint",
       "location": "africa-south1",
-      "endpointUrl": "https://africa-south1-aiplatform.googleapis.com/",
-      "description": "Locational Endpoint"
+      "endpointUrl": "https://africa-south1-aiplatform.googleapis.com/"
     },
     {
-      "endpointUrl": "https://asia-east1-aiplatform.googleapis.com/",
       "description": "Locational Endpoint",
+      "endpointUrl": "https://asia-east1-aiplatform.googleapis.com/",
       "location": "asia-east1"
     },
     {
       "description": "Locational Endpoint",
-      "endpointUrl": "https://asia-east2-aiplatform.googleapis.com/",
-      "location": "asia-east2"
+      "location": "asia-east2",
+      "endpointUrl": "https://asia-east2-aiplatform.googleapis.com/"
     },
     {
       "location": "asia-northeast1",
@@ -40,88 +40,88 @@
       "endpointUrl": "https://asia-northeast1-aiplatform.googleapis.com/"
     },
     {
-      "description": "Locational Endpoint",
       "location": "asia-northeast2",
-      "endpointUrl": "https://asia-northeast2-aiplatform.googleapis.com/"
+      "endpointUrl": "https://asia-northeast2-aiplatform.googleapis.com/",
+      "description": "Locational Endpoint"
     },
     {
+      "endpointUrl": "https://asia-northeast3-aiplatform.googleapis.com/",
       "description": "Locational Endpoint",
-      "location": "asia-northeast3",
-      "endpointUrl": "https://asia-northeast3-aiplatform.googleapis.com/"
+      "location": "asia-northeast3"
     },
     {
-      "location": "asia-south1",
       "endpointUrl": "https://asia-south1-aiplatform.googleapis.com/",
-      "description": "Locational Endpoint"
+      "description": "Locational Endpoint",
+      "location": "asia-south1"
     },
     {
-      "endpointUrl": "https://asia-southeast1-aiplatform.googleapis.com/",
       "location": "asia-southeast1",
-      "description": "Locational Endpoint"
+      "description": "Locational Endpoint",
+      "endpointUrl": "https://asia-southeast1-aiplatform.googleapis.com/"
     },
     {
       "endpointUrl": "https://asia-southeast2-aiplatform.googleapis.com/",
-      "location": "asia-southeast2",
-      "description": "Locational Endpoint"
+      "description": "Locational Endpoint",
+      "location": "asia-southeast2"
     },
     {
-      "description": "Locational Endpoint",
       "endpointUrl": "https://australia-southeast1-aiplatform.googleapis.com/",
+      "description": "Locational Endpoint",
       "location": "australia-southeast1"
     },
     {
+      "location": "australia-southeast2",
       "endpointUrl": "https://australia-southeast2-aiplatform.googleapis.com/",
-      "description": "Locational Endpoint",
-      "location": "australia-southeast2"
+      "description": "Locational Endpoint"
     },
     {
       "location": "europe-central2",
-      "description": "Locational Endpoint",
-      "endpointUrl": "https://europe-central2-aiplatform.googleapis.com/"
+      "endpointUrl": "https://europe-central2-aiplatform.googleapis.com/",
+      "description": "Locational Endpoint"
     },
     {
-      "endpointUrl": "https://europe-north1-aiplatform.googleapis.com/",
       "location": "europe-north1",
-      "description": "Locational Endpoint"
+      "description": "Locational Endpoint",
+      "endpointUrl": "https://europe-north1-aiplatform.googleapis.com/"
     },
     {
-      "location": "europe-southwest1",
+      "description": "Locational Endpoint",
       "endpointUrl": "https://europe-southwest1-aiplatform.googleapis.com/",
-      "description": "Locational Endpoint"
+      "location": "europe-southwest1"
     },
     {
-      "endpointUrl": "https://europe-west1-aiplatform.googleapis.com/",
+      "location": "europe-west1",
       "description": "Locational Endpoint",
-      "location": "europe-west1"
+      "endpointUrl": "https://europe-west1-aiplatform.googleapis.com/"
     },
     {
-      "endpointUrl": "https://europe-west2-aiplatform.googleapis.com/",
+      "location": "europe-west2",
       "description": "Locational Endpoint",
-      "location": "europe-west2"
+      "endpointUrl": "https://europe-west2-aiplatform.googleapis.com/"
     },
     {
       "location": "europe-west3",
-      "endpointUrl": "https://europe-west3-aiplatform.googleapis.com/",
-      "description": "Locational Endpoint"
+      "description": "Locational Endpoint",
+      "endpointUrl": "https://europe-west3-aiplatform.googleapis.com/"
     },
     {
-      "location": "europe-west4",
+      "endpointUrl": "https://europe-west4-aiplatform.googleapis.com/",
       "description": "Locational Endpoint",
-      "endpointUrl": "https://europe-west4-aiplatform.googleapis.com/"
+      "location": "europe-west4"
     },
     {
-      "description": "Locational Endpoint",
       "location": "europe-west6",
+      "description": "Locational Endpoint",
       "endpointUrl": "https://europe-west6-aiplatform.googleapis.com/"
     },
     {
-      "location": "europe-west8",
+      "description": "Locational Endpoint",
       "endpointUrl": "https://europe-west8-aiplatform.googleapis.com/",
-      "description": "Locational Endpoint"
+      "location": "europe-west8"
     },
     {
-      "location": "europe-west9",
       "endpointUrl": "https://europe-west9-aiplatform.googleapis.com/",
+      "location": "europe-west9",
       "description": "Locational Endpoint"
     },
     {
@@ -130,29 +130,29 @@
       "endpointUrl": "https://europe-west12-aiplatform.googleapis.com/"
     },
     {
-      "description": "Locational Endpoint",
       "location": "me-central1",
-      "endpointUrl": "https://me-central1-aiplatform.googleapis.com/"
-    },
-    {
-      "description": "Locational Endpoint",
-      "location": "me-central2",
-      "endpointUrl": "https://me-central2-aiplatform.googleapis.com/"
-    },
-    {
-      "location": "me-west1",
-      "endpointUrl": "https://me-west1-aiplatform.googleapis.com/",
+      "endpointUrl": "https://me-central1-aiplatform.googleapis.com/",
       "description": "Locational Endpoint"
     },
     {
+      "location": "me-central2",
       "description": "Locational Endpoint",
+      "endpointUrl": "https://me-central2-aiplatform.googleapis.com/"
+    },
+    {
+      "endpointUrl": "https://me-west1-aiplatform.googleapis.com/",
+      "description": "Locational Endpoint",
+      "location": "me-west1"
+    },
+    {
       "endpointUrl": "https://northamerica-northeast1-aiplatform.googleapis.com/",
+      "description": "Locational Endpoint",
       "location": "northamerica-northeast1"
     },
     {
-      "endpointUrl": "https://northamerica-northeast2-aiplatform.googleapis.com/",
       "description": "Locational Endpoint",
-      "location": "northamerica-northeast2"
+      "location": "northamerica-northeast2",
+      "endpointUrl": "https://northamerica-northeast2-aiplatform.googleapis.com/"
     },
     {
       "endpointUrl": "https://southamerica-east1-aiplatform.googleapis.com/",
@@ -160,24 +160,24 @@
       "description": "Locational Endpoint"
     },
     {
-      "endpointUrl": "https://southamerica-west1-aiplatform.googleapis.com/",
-      "location": "southamerica-west1",
-      "description": "Locational Endpoint"
-    },
-    {
-      "endpointUrl": "https://us-central1-aiplatform.googleapis.com/",
-      "location": "us-central1",
-      "description": "Locational Endpoint"
-    },
-    {
       "description": "Locational Endpoint",
+      "endpointUrl": "https://southamerica-west1-aiplatform.googleapis.com/",
+      "location": "southamerica-west1"
+    },
+    {
+      "location": "us-central1",
+      "endpointUrl": "https://us-central1-aiplatform.googleapis.com/",
+      "description": "Locational Endpoint"
+    },
+    {
       "location": "us-central2",
-      "endpointUrl": "https://us-central2-aiplatform.googleapis.com/"
+      "endpointUrl": "https://us-central2-aiplatform.googleapis.com/",
+      "description": "Locational Endpoint"
     },
     {
       "endpointUrl": "https://us-east1-aiplatform.googleapis.com/",
-      "location": "us-east1",
-      "description": "Locational Endpoint"
+      "description": "Locational Endpoint",
+      "location": "us-east1"
     },
     {
       "endpointUrl": "https://us-east4-aiplatform.googleapis.com/",
@@ -185,19 +185,19 @@
       "description": "Locational Endpoint"
     },
     {
-      "description": "Locational Endpoint",
       "endpointUrl": "https://us-south1-aiplatform.googleapis.com/",
-      "location": "us-south1"
+      "location": "us-south1",
+      "description": "Locational Endpoint"
     },
     {
-      "endpointUrl": "https://us-west1-aiplatform.googleapis.com/",
       "description": "Locational Endpoint",
+      "endpointUrl": "https://us-west1-aiplatform.googleapis.com/",
       "location": "us-west1"
     },
     {
-      "description": "Locational Endpoint",
+      "endpointUrl": "https://us-west2-aiplatform.googleapis.com/",
       "location": "us-west2",
-      "endpointUrl": "https://us-west2-aiplatform.googleapis.com/"
+      "description": "Locational Endpoint"
     },
     {
       "description": "Locational Endpoint",
@@ -205,9 +205,9 @@
       "endpointUrl": "https://us-west3-aiplatform.googleapis.com/"
     },
     {
-      "endpointUrl": "https://us-west4-aiplatform.googleapis.com/",
+      "location": "us-west4",
       "description": "Locational Endpoint",
-      "location": "us-west4"
+      "endpointUrl": "https://us-west4-aiplatform.googleapis.com/"
     },
     {
       "location": "us-east5",
@@ -305,6 +305,50 @@
   },
   "protocol": "rest",
   "resources": {
+    "media": {
+      "methods": {
+        "upload": {
+          "description": "Upload a file into a RagCorpus.",
+          "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/ragCorpora/{ragCorporaId}/ragFiles:upload",
+          "httpMethod": "POST",
+          "id": "aiplatform.media.upload",
+          "mediaUpload": {
+            "accept": [
+              "*/*"
+            ],
+            "protocols": {
+              "simple": {
+                "multipart": true,
+                "path": "/upload/v1beta1/{+parent}/ragFiles:upload"
+              }
+            }
+          },
+          "parameterOrder": [
+            "parent"
+          ],
+          "parameters": {
+            "parent": {
+              "description": "Required. The name of the RagCorpus resource into which to upload the file. Format: `projects/{project}/locations/{location}/ragCorpora/{rag_corpus}`",
+              "location": "path",
+              "pattern": "^projects/[^/]+/locations/[^/]+/ragCorpora/[^/]+$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "v1beta1/{+parent}/ragFiles:upload",
+          "request": {
+            "$ref": "GoogleCloudAiplatformV1beta1UploadRagFileRequest"
+          },
+          "response": {
+            "$ref": "GoogleCloudAiplatformV1beta1UploadRagFileResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform"
+          ],
+          "supportsMediaUpload": true
+        }
+      }
+    },
     "projects": {
       "methods": {
         "getCacheConfig": {
@@ -453,6 +497,34 @@
               "path": "v1beta1/{+name}/locations",
               "response": {
                 "$ref": "GoogleCloudLocationListLocationsResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
+            "retrieveContexts": {
+              "description": "Retrieves relevant contexts for a query.",
+              "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}:retrieveContexts",
+              "httpMethod": "POST",
+              "id": "aiplatform.projects.locations.retrieveContexts",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "parent": {
+                  "description": "Required. The resource name of the Location from which to retrieve RagContexts. The users must have permission to make a call in the project. Format: `projects/{project}/locations/{location}`.",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+/locations/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1beta1/{+parent}:retrieveContexts",
+              "request": {
+                "$ref": "GoogleCloudAiplatformV1beta1RetrieveContextsRequest"
+              },
+              "response": {
+                "$ref": "GoogleCloudAiplatformV1beta1RetrieveContextsResponse"
               },
               "scopes": [
                 "https://www.googleapis.com/auth/cloud-platform"
@@ -14964,6 +15036,127 @@
               }
             },
             "ragCorpora": {
+              "methods": {
+                "create": {
+                  "description": "Creates a RagCorpus.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/ragCorpora",
+                  "httpMethod": "POST",
+                  "id": "aiplatform.projects.locations.ragCorpora.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. The resource name of the Location to create the RagCorpus in. Format: `projects/{project}/locations/{location}`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+parent}/ragCorpora",
+                  "request": {
+                    "$ref": "GoogleCloudAiplatformV1beta1RagCorpus"
+                  },
+                  "response": {
+                    "$ref": "GoogleLongrunningOperation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "delete": {
+                  "description": "Deletes a RagCorpus.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/ragCorpora/{ragCorporaId}",
+                  "httpMethod": "DELETE",
+                  "id": "aiplatform.projects.locations.ragCorpora.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "force": {
+                      "description": "Optional. If set to true, any RagFiles in this RagCorpus will also be deleted. Otherwise, the request will only work if the RagCorpus has no RagFiles.",
+                      "location": "query",
+                      "type": "boolean"
+                    },
+                    "name": {
+                      "description": "Required. The name of the RagCorpus resource to be deleted. Format: `projects/{project}/locations/{location}/ragCorpora/{rag_corpus}`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/ragCorpora/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+name}",
+                  "response": {
+                    "$ref": "GoogleLongrunningOperation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "get": {
+                  "description": "Gets a RagCorpus.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/ragCorpora/{ragCorporaId}",
+                  "httpMethod": "GET",
+                  "id": "aiplatform.projects.locations.ragCorpora.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the RagCorpus resource. Format: `projects/{project}/locations/{location}/ragCorpora/{rag_corpus}`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/ragCorpora/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+name}",
+                  "response": {
+                    "$ref": "GoogleCloudAiplatformV1beta1RagCorpus"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "Lists RagCorpora in a Location.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/ragCorpora",
+                  "httpMethod": "GET",
+                  "id": "aiplatform.projects.locations.ragCorpora.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "pageSize": {
+                      "description": "Optional. The standard list page size.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. The standard list page token. Typically obtained via ListRagCorporaResponse.next_page_token of the previous VertexRagDataService.ListRagCorpora call.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The resource name of the Location from which to list the RagCorpora. Format: `projects/{project}/locations/{location}`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+parent}/ragCorpora",
+                  "response": {
+                    "$ref": "GoogleCloudAiplatformV1beta1ListRagCorporaResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              },
               "resources": {
                 "operations": {
                   "methods": {
@@ -15117,6 +15310,122 @@
                   }
                 },
                 "ragFiles": {
+                  "methods": {
+                    "delete": {
+                      "description": "Deletes a RagFile.",
+                      "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/ragCorpora/{ragCorporaId}/ragFiles/{ragFilesId}",
+                      "httpMethod": "DELETE",
+                      "id": "aiplatform.projects.locations.ragCorpora.ragFiles.delete",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The name of the RagFile resource to be deleted. Format: `projects/{project}/locations/{location}/ragCorpora/{rag_corpus}/ragFiles/{rag_file}`",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/ragCorpora/[^/]+/ragFiles/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta1/{+name}",
+                      "response": {
+                        "$ref": "GoogleLongrunningOperation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "get": {
+                      "description": "Gets a RagFile.",
+                      "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/ragCorpora/{ragCorporaId}/ragFiles/{ragFilesId}",
+                      "httpMethod": "GET",
+                      "id": "aiplatform.projects.locations.ragCorpora.ragFiles.get",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The name of the RagFile resource. Format: `projects/{project}/locations/{location}/ragCorpora/{rag_corpus}/ragFiles/{rag_file}`",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/ragCorpora/[^/]+/ragFiles/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta1/{+name}",
+                      "response": {
+                        "$ref": "GoogleCloudAiplatformV1beta1RagFile"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "import": {
+                      "description": "Import files from Google Cloud Storage or Google Drive into a RagCorpus.",
+                      "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/ragCorpora/{ragCorporaId}/ragFiles:import",
+                      "httpMethod": "POST",
+                      "id": "aiplatform.projects.locations.ragCorpora.ragFiles.import",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "parent": {
+                          "description": "Required. The name of the RagCorpus resource into which to import files. Format: `projects/{project}/locations/{location}/ragCorpora/{rag_corpus}`",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/ragCorpora/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta1/{+parent}/ragFiles:import",
+                      "request": {
+                        "$ref": "GoogleCloudAiplatformV1beta1ImportRagFilesRequest"
+                      },
+                      "response": {
+                        "$ref": "GoogleLongrunningOperation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "list": {
+                      "description": "Lists RagFiles in a RagCorpus.",
+                      "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/ragCorpora/{ragCorporaId}/ragFiles",
+                      "httpMethod": "GET",
+                      "id": "aiplatform.projects.locations.ragCorpora.ragFiles.list",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "pageSize": {
+                          "description": "Optional. The standard list page size.",
+                          "format": "int32",
+                          "location": "query",
+                          "type": "integer"
+                        },
+                        "pageToken": {
+                          "description": "Optional. The standard list page token. Typically obtained via ListRagFilesResponse.next_page_token of the previous VertexRagDataService.ListRagFiles call.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "parent": {
+                          "description": "Required. The resource name of the RagCorpus from which to list the RagFiles. Format: `projects/{project}/locations/{location}/ragCorpora/{rag_corpus}`",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/ragCorpora/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta1/{+parent}/ragFiles",
+                      "response": {
+                        "$ref": "GoogleCloudAiplatformV1beta1ListRagFilesResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    }
+                  },
                   "resources": {
                     "operations": {
                       "methods": {
@@ -19126,7 +19435,7 @@
       }
     }
   },
-  "revision": "20240429",
+  "revision": "20240501",
   "rootUrl": "https://aiplatform.googleapis.com/",
   "schemas": {
     "CloudAiLargeModelsVisionEmbedVideoResponse": {
@@ -19184,7 +19493,8 @@
             "CHILD_TEXT",
             "DANGEROUS_CONTENT",
             "RECITATION_TEXT",
-            "CELEBRITY_IMG"
+            "CELEBRITY_IMG",
+            "WATERMARK_IMG_REMOVAL"
           ],
           "enumDescriptions": [
             "",
@@ -19221,7 +19531,8 @@
             "",
             "Text category from SafetyCat v3",
             "",
-            ""
+            "",
+            "Error message when user attempts to remove watermark from editing image"
           ],
           "type": "string"
         },
@@ -19536,9 +19847,9 @@
             "The maximum number of tokens as specified in the request was reached.",
             "The token generation was stopped as the response was flagged for safety reasons. NOTE: When streaming the Candidate.content will be empty if content filters blocked the output.",
             "The token generation was stopped as the response was flagged for unauthorized citations.",
-            "All other reasons that stopped the token generation.",
+            "All other reasons that stopped the token generation (currently only language filter).",
             "The token generation was stopped as the response was flagged for the terms which are included from the terminology blocklist.",
-            "The token generation was stopped as the response was flagged for the prohibited contents.",
+            "The token generation was stopped as the response was flagged for the prohibited contents (currently only CSAM).",
             "The token generation was stopped as the response was flagged for Sensitive Personally Identifiable Information (SPII) contents."
           ],
           "type": "string"
@@ -19883,9 +20194,9 @@
           "enumDescriptions": [
             "Unspecified blocked reason.",
             "Candidates blocked due to safety.",
-            "Candidates blocked due to other reason.",
+            "Candidates blocked due to other reason (currently only language filter).",
             "Candidates blocked due to the terms which are included from the terminology blocklist.",
-            "Candidates blocked due to prohibited content."
+            "Candidates blocked due to prohibited content (currently only CSAM)."
           ],
           "type": "string"
         },
@@ -22401,6 +22712,25 @@
       },
       "type": "object"
     },
+    "GoogleCloudAiplatformV1beta1CreateNotebookExecutionJobRequest": {
+      "description": "Request message for [NotebookService.CreateNotebookExecutionJob]",
+      "id": "GoogleCloudAiplatformV1beta1CreateNotebookExecutionJobRequest",
+      "properties": {
+        "notebookExecutionJob": {
+          "$ref": "GoogleCloudAiplatformV1beta1NotebookExecutionJob",
+          "description": "Required. The NotebookExecutionJob to create."
+        },
+        "notebookExecutionJobId": {
+          "description": "Optional. User specified ID for the NotebookExecutionJob.",
+          "type": "string"
+        },
+        "parent": {
+          "description": "Required. The resource name of the Location to create the NotebookExecutionJob. Format: `projects/{project}/locations/{location}`",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudAiplatformV1beta1CreateNotebookRuntimeTemplateOperationMetadata": {
       "description": "Metadata information for NotebookService.CreateNotebookRuntimeTemplate.",
       "id": "GoogleCloudAiplatformV1beta1CreateNotebookRuntimeTemplateOperationMetadata",
@@ -23572,6 +23902,12 @@
           "type": "string"
         }
       },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1DirectUploadSource": {
+      "description": "The input content is encapsulated and uploaded in the request.",
+      "id": "GoogleCloudAiplatformV1beta1DirectUploadSource",
+      "properties": {},
       "type": "object"
     },
     "GoogleCloudAiplatformV1beta1DiskSpec": {
@@ -26517,6 +26853,22 @@
           "description": "Crowding is a constraint on a neighbor list produced by nearest neighbor search requiring that no more than some value k' of the k neighbors returned have the same value of crowding_attribute. It's used for improving result diversity. This field is the maximum number of matches with the same crowding tag.",
           "format": "int32",
           "type": "integer"
+        },
+        "rrf": {
+          "$ref": "GoogleCloudAiplatformV1beta1FindNeighborsRequestQueryRRF",
+          "description": "Optional. Represents RRF algorithm that combines search results."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1FindNeighborsRequestQueryRRF": {
+      "description": "Parameters for RRF algorithm that combines search results.",
+      "id": "GoogleCloudAiplatformV1beta1FindNeighborsRequestQueryRRF",
+      "properties": {
+        "alpha": {
+          "description": "Required. Users can provide an alpha value to give more weight to dense vs sparse results. For example, if the alpha is 0, we only return sparse and if the alpha is 1, we only return dense.",
+          "format": "float",
+          "type": "number"
         }
       },
       "type": "object"
@@ -26563,6 +26915,11 @@
         },
         "distance": {
           "description": "The distance between the neighbor and the dense embedding query.",
+          "format": "double",
+          "type": "number"
+        },
+        "sparseDistance": {
+          "description": "The distance between the neighbor and the query sparse_embedding.",
           "format": "double",
           "type": "number"
         }
@@ -27085,6 +27442,45 @@
       },
       "type": "object"
     },
+    "GoogleCloudAiplatformV1beta1GoogleDriveSource": {
+      "description": "The Google Drive location for the input content.",
+      "id": "GoogleCloudAiplatformV1beta1GoogleDriveSource",
+      "properties": {
+        "resourceIds": {
+          "description": "Required. Google Drive resource IDs.",
+          "items": {
+            "$ref": "GoogleCloudAiplatformV1beta1GoogleDriveSourceResourceId"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1GoogleDriveSourceResourceId": {
+      "description": "The type and ID of the Google Drive resource.",
+      "id": "GoogleCloudAiplatformV1beta1GoogleDriveSourceResourceId",
+      "properties": {
+        "resourceId": {
+          "description": "Required. The ID of the Google Drive resource.",
+          "type": "string"
+        },
+        "resourceType": {
+          "description": "Required. The type of the Google Drive resource.",
+          "enum": [
+            "RESOURCE_TYPE_UNSPECIFIED",
+            "RESOURCE_TYPE_FILE",
+            "RESOURCE_TYPE_FOLDER"
+          ],
+          "enumDescriptions": [
+            "Unspecified resource type.",
+            "File resource type.",
+            "Folder resource type."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudAiplatformV1beta1GroundednessInput": {
       "description": "Input for groundedness metric.",
       "id": "GoogleCloudAiplatformV1beta1GroundednessInput",
@@ -27529,6 +27925,36 @@
       },
       "type": "object"
     },
+    "GoogleCloudAiplatformV1beta1ImportRagFilesConfig": {
+      "description": "Config for importing RagFiles.",
+      "id": "GoogleCloudAiplatformV1beta1ImportRagFilesConfig",
+      "properties": {
+        "gcsSource": {
+          "$ref": "GoogleCloudAiplatformV1beta1GcsSource",
+          "description": "Google Cloud Storage location. Supports importing individual files as well as entire Google Cloud Storage directories. Sample formats: - `gs://bucket_name/my_directory/object_name/my_file.txt` - `gs://bucket_name/my_directory`"
+        },
+        "googleDriveSource": {
+          "$ref": "GoogleCloudAiplatformV1beta1GoogleDriveSource",
+          "description": "Google Drive location. Supports importing individual files as well as Google Drive folders."
+        },
+        "ragFileChunkingConfig": {
+          "$ref": "GoogleCloudAiplatformV1beta1RagFileChunkingConfig",
+          "description": "Specifies the size and overlap of chunks after importing RagFiles."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1ImportRagFilesRequest": {
+      "description": "Request message for VertexRagDataService.ImportRagFiles.",
+      "id": "GoogleCloudAiplatformV1beta1ImportRagFilesRequest",
+      "properties": {
+        "importRagFilesConfig": {
+          "$ref": "GoogleCloudAiplatformV1beta1ImportRagFilesConfig",
+          "description": "Required. The config for the RagFiles to be synced and imported into the RagCorpus. VertexRagDataService.ImportRagFiles."
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudAiplatformV1beta1Index": {
       "description": "A representation of a collection of database items organized in a way that allows for approximate nearest neighbor (a.k.a ANN) algorithms search.",
       "id": "GoogleCloudAiplatformV1beta1Index",
@@ -27644,6 +28070,10 @@
             "$ref": "GoogleCloudAiplatformV1beta1IndexDatapointRestriction"
           },
           "type": "array"
+        },
+        "sparseEmbedding": {
+          "$ref": "GoogleCloudAiplatformV1beta1IndexDatapointSparseEmbedding",
+          "description": "Optional. Feature embedding vector for sparse index."
         }
       },
       "type": "object"
@@ -27728,6 +28158,29 @@
         "namespace": {
           "description": "The namespace of this restriction. e.g.: color.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1IndexDatapointSparseEmbedding": {
+      "description": "Feature embedding vector for sparse index. An array of numbers whose values are located in the specified dimensions.",
+      "id": "GoogleCloudAiplatformV1beta1IndexDatapointSparseEmbedding",
+      "properties": {
+        "dimensions": {
+          "description": "Optional. The list of indexes for the embedding values of the sparse vector.",
+          "items": {
+            "format": "int64",
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "values": {
+          "description": "Optional. The list of embedding values of the sparse vector.",
+          "items": {
+            "format": "float",
+            "type": "number"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -27843,6 +28296,12 @@
           "format": "int32",
           "readOnly": true,
           "type": "integer"
+        },
+        "sparseVectorsCount": {
+          "description": "Output only. The number of sparse vectors in the Index.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
         },
         "vectorsCount": {
           "description": "Output only. The number of dense vectors in the Index.",
@@ -28764,6 +29223,42 @@
           "description": "List of PublisherModels in the requested page.",
           "items": {
             "$ref": "GoogleCloudAiplatformV1beta1PublisherModel"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1ListRagCorporaResponse": {
+      "description": "Response message for VertexRagDataService.ListRagCorpora.",
+      "id": "GoogleCloudAiplatformV1beta1ListRagCorporaResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "A token to retrieve the next page of results. Pass to ListRagCorporaRequest.page_token to obtain that page.",
+          "type": "string"
+        },
+        "ragCorpora": {
+          "description": "List of RagCorpora in the requested page.",
+          "items": {
+            "$ref": "GoogleCloudAiplatformV1beta1RagCorpus"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1ListRagFilesResponse": {
+      "description": "Response message for VertexRagDataService.ListRagFiles.",
+      "id": "GoogleCloudAiplatformV1beta1ListRagFilesResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "A token to retrieve the next page of results. Pass to ListRagFilesRequest.page_token to obtain that page.",
+          "type": "string"
+        },
+        "ragFiles": {
+          "description": "List of RagFiles in the requested page.",
+          "items": {
+            "$ref": "GoogleCloudAiplatformV1beta1RagFile"
           },
           "type": "array"
         }
@@ -31883,7 +32378,9 @@
             "MULTIPLE_VALUES",
             "INVALID_NUMERIC_VALUE",
             "INVALID_ENCODING",
-            "INVALID_TOKEN_VALUE"
+            "INVALID_SPARSE_DIMENSIONS",
+            "INVALID_TOKEN_VALUE",
+            "INVALID_SPARSE_EMBEDDING"
           ],
           "enumDescriptions": [
             "Default, shall not be used.",
@@ -31900,7 +32397,9 @@
             "Numeric restrict has multiple values specified.",
             "Numeric restrict has invalid numeric value specified.",
             "File is not in UTF_8 format.",
-            "Token restrict value is invalid."
+            "Error parsing sparse dimensions field.",
+            "Token restrict value is invalid.",
+            "Invalid sparse embedding."
           ],
           "type": "string"
         },
@@ -32432,8 +32931,7 @@
           "description": "Optional. Immutable. The specification of a single machine for the template."
         },
         "name": {
-          "description": "Output only. The resource name of the NotebookRuntimeTemplate.",
-          "readOnly": true,
+          "description": "The resource name of the NotebookRuntimeTemplate.",
           "type": "string"
         },
         "networkSpec": {
@@ -34483,6 +34981,173 @@
       },
       "type": "object"
     },
+    "GoogleCloudAiplatformV1beta1RagContexts": {
+      "description": "Relevant contexts for one query.",
+      "id": "GoogleCloudAiplatformV1beta1RagContexts",
+      "properties": {
+        "contexts": {
+          "description": "All its contexts.",
+          "items": {
+            "$ref": "GoogleCloudAiplatformV1beta1RagContextsContext"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1RagContextsContext": {
+      "description": "A context of the query.",
+      "id": "GoogleCloudAiplatformV1beta1RagContextsContext",
+      "properties": {
+        "distance": {
+          "description": "The distance between the query vector and the context text vector.",
+          "format": "double",
+          "type": "number"
+        },
+        "sourceUri": {
+          "description": "For vertex RagStore, if the file is imported from Cloud Storage or Google Drive, source_uri will be original file URI in Cloud Storage or Google Drive; if file is uploaded, source_uri will be file display name.",
+          "type": "string"
+        },
+        "text": {
+          "description": "The text chunk.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1RagCorpus": {
+      "description": "A RagCorpus is a RagFile container and a project can have multiple RagCorpora.",
+      "id": "GoogleCloudAiplatformV1beta1RagCorpus",
+      "properties": {
+        "createTime": {
+          "description": "Output only. Timestamp when this RagCorpus was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "description": {
+          "description": "Optional. The description of the RagCorpus.",
+          "type": "string"
+        },
+        "displayName": {
+          "description": "Required. The display name of the RagCorpus. The name can be up to 128 characters long and can consist of any UTF-8 characters.",
+          "type": "string"
+        },
+        "name": {
+          "description": "Output only. The resource name of the RagCorpus.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. Timestamp when this RagCorpus was last updated.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1RagFile": {
+      "description": "A RagFile contains user data for chunking, embedding and indexing.",
+      "id": "GoogleCloudAiplatformV1beta1RagFile",
+      "properties": {
+        "createTime": {
+          "description": "Output only. Timestamp when this RagFile was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "description": {
+          "description": "Optional. The description of the RagFile.",
+          "type": "string"
+        },
+        "directUploadSource": {
+          "$ref": "GoogleCloudAiplatformV1beta1DirectUploadSource",
+          "description": "Output only. The RagFile is encapsulated and uploaded in the UploadRagFile request.",
+          "readOnly": true
+        },
+        "displayName": {
+          "description": "Required. The display name of the RagFile. The name can be up to 128 characters long and can consist of any UTF-8 characters.",
+          "type": "string"
+        },
+        "gcsSource": {
+          "$ref": "GoogleCloudAiplatformV1beta1GcsSource",
+          "description": "Output only. Google Cloud Storage location of the RagFile. It does not support wildcards in the Cloud Storage uri for now.",
+          "readOnly": true
+        },
+        "googleDriveSource": {
+          "$ref": "GoogleCloudAiplatformV1beta1GoogleDriveSource",
+          "description": "Output only. Google Drive location. Supports importing individual files as well as Google Drive folders.",
+          "readOnly": true
+        },
+        "name": {
+          "description": "Output only. The resource name of the RagFile.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "ragFileType": {
+          "description": "Output only. The type of the RagFile.",
+          "enum": [
+            "RAG_FILE_TYPE_UNSPECIFIED",
+            "RAG_FILE_TYPE_TXT",
+            "RAG_FILE_TYPE_PDF"
+          ],
+          "enumDescriptions": [
+            "RagFile type is unspecified.",
+            "RagFile type is TXT.",
+            "RagFile type is PDF."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "sizeBytes": {
+          "description": "Output only. The size of the RagFile in bytes.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. Timestamp when this RagFile was last updated.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1RagFileChunkingConfig": {
+      "description": "Specifies the size and overlap of chunks for RagFiles.",
+      "id": "GoogleCloudAiplatformV1beta1RagFileChunkingConfig",
+      "properties": {
+        "chunkOverlap": {
+          "description": "The overlap between chunks.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "chunkSize": {
+          "description": "The size of the chunks.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1RagQuery": {
+      "description": "A query to retrieve relevant contexts.",
+      "id": "GoogleCloudAiplatformV1beta1RagQuery",
+      "properties": {
+        "similarityTopK": {
+          "description": "Optional. The number of contexts to retrieve.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "text": {
+          "description": "Optional. The query in text format to get relevant contexts.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudAiplatformV1beta1RawPredictRequest": {
       "description": "Request message for PredictionService.RawPredict.",
       "id": "GoogleCloudAiplatformV1beta1RawPredictRequest",
@@ -35122,6 +35787,77 @@
       },
       "type": "object"
     },
+    "GoogleCloudAiplatformV1beta1RetrieveContextsRequest": {
+      "description": "Request message for VertexRagService.RetrieveContexts.",
+      "id": "GoogleCloudAiplatformV1beta1RetrieveContextsRequest",
+      "properties": {
+        "query": {
+          "$ref": "GoogleCloudAiplatformV1beta1RagQuery",
+          "description": "Required. Single RAG retrieve query."
+        },
+        "vertexRagStore": {
+          "$ref": "GoogleCloudAiplatformV1beta1RetrieveContextsRequestVertexRagStore",
+          "description": "The data source for Vertex RagStore."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1RetrieveContextsRequestVertexRagStore": {
+      "description": "The data source for Vertex RagStore.",
+      "id": "GoogleCloudAiplatformV1beta1RetrieveContextsRequestVertexRagStore",
+      "properties": {
+        "ragCorpora": {
+          "deprecated": true,
+          "description": "Optional. Deprecated. Please use rag_resources to specify the data source.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "ragResources": {
+          "description": "Optional. The representation of the rag source. It can be used to specify corpus only or ragfiles. Currently only support one corpus or multiple files from one corpus. In the future we may open up multiple corpora support.",
+          "items": {
+            "$ref": "GoogleCloudAiplatformV1beta1RetrieveContextsRequestVertexRagStoreRagResource"
+          },
+          "type": "array"
+        },
+        "vectorDistanceThreshold": {
+          "description": "Optional. Only return contexts with vector distance smaller than the threshold.",
+          "format": "double",
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1RetrieveContextsRequestVertexRagStoreRagResource": {
+      "description": "The definition of the Rag resource.",
+      "id": "GoogleCloudAiplatformV1beta1RetrieveContextsRequestVertexRagStoreRagResource",
+      "properties": {
+        "ragCorpus": {
+          "description": "Optional. RagCorpora resource name. Format: `projects/{project}/locations/{location}/ragCorpora/{rag_corpus}`",
+          "type": "string"
+        },
+        "ragFileIds": {
+          "description": "Optional. rag_file_id. The files should be in the same rag_corpus set in rag_corpus field.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1RetrieveContextsResponse": {
+      "description": "Response message for VertexRagService.RetrieveContexts.",
+      "id": "GoogleCloudAiplatformV1beta1RetrieveContextsResponse",
+      "properties": {
+        "contexts": {
+          "$ref": "GoogleCloudAiplatformV1beta1RagContexts",
+          "description": "The contexts of the query."
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudAiplatformV1beta1RougeInput": {
       "description": "Input for rouge metric.",
       "id": "GoogleCloudAiplatformV1beta1RougeInput",
@@ -35242,8 +35978,13 @@
     "GoogleCloudAiplatformV1beta1RuntimeConfigVertexAISearchRuntimeConfig": {
       "id": "GoogleCloudAiplatformV1beta1RuntimeConfigVertexAISearchRuntimeConfig",
       "properties": {
+        "appId": {
+          "description": "Vertex AI Search App ID. This is used to construct the search request. By setting this app_id, API will construct the serving config which is required to call search API for the user. The app_id and serving_config_name cannot both be empty at the same time.",
+          "type": "string"
+        },
         "servingConfigName": {
-          "description": "Required. Vertext AI Search serving config name. Format: `projects/{project}/locations/{location}/collections/{collection}/engines/{engine}/servingConfigs/{serving_config}`",
+          "deprecated": true,
+          "description": "[Deprecated] Please use app_id instead. Vertex AI Search serving config name. Format: `projects/{project}/locations/{location}/collections/{collection}/engines/{engine}/servingConfigs/{serving_config}`",
           "type": "string"
         }
       },
@@ -35597,6 +36338,10 @@
         "createModelMonitoringJobRequest": {
           "$ref": "GoogleCloudAiplatformV1beta1CreateModelMonitoringJobRequest",
           "description": "Request for ModelMonitoringService.CreateModelMonitoringJob."
+        },
+        "createNotebookExecutionJobRequest": {
+          "$ref": "GoogleCloudAiplatformV1beta1CreateNotebookExecutionJobRequest",
+          "description": "Request for NotebookService.CreateNotebookExecutionJob."
         },
         "createPipelineJobRequest": {
           "$ref": "GoogleCloudAiplatformV1beta1CreatePipelineJobRequest",
@@ -42481,6 +43226,47 @@
       },
       "type": "object"
     },
+    "GoogleCloudAiplatformV1beta1UploadRagFileConfig": {
+      "description": "Config for uploading RagFile.",
+      "id": "GoogleCloudAiplatformV1beta1UploadRagFileConfig",
+      "properties": {
+        "ragFileChunkingConfig": {
+          "$ref": "GoogleCloudAiplatformV1beta1RagFileChunkingConfig",
+          "description": "Specifies the size and overlap of chunks after uploading RagFile."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1UploadRagFileRequest": {
+      "description": "Request message for VertexRagDataService.UploadRagFile.",
+      "id": "GoogleCloudAiplatformV1beta1UploadRagFileRequest",
+      "properties": {
+        "ragFile": {
+          "$ref": "GoogleCloudAiplatformV1beta1RagFile",
+          "description": "Required. The RagFile to upload."
+        },
+        "uploadRagFileConfig": {
+          "$ref": "GoogleCloudAiplatformV1beta1UploadRagFileConfig",
+          "description": "Required. The config for the RagFiles to be uploaded into the RagCorpus. VertexRagDataService.UploadRagFile."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1UploadRagFileResponse": {
+      "description": "Response message for VertexRagDataService.UploadRagFile.",
+      "id": "GoogleCloudAiplatformV1beta1UploadRagFileResponse",
+      "properties": {
+        "error": {
+          "$ref": "GoogleRpcStatus",
+          "description": "The error that occurred while processing the RagFile."
+        },
+        "ragFile": {
+          "$ref": "GoogleCloudAiplatformV1beta1RagFile",
+          "description": "The RagFile that had been uploaded into the RagCorpus."
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudAiplatformV1beta1UpsertDatapointsRequest": {
       "description": "Request message for IndexService.UpsertDatapoints",
       "id": "GoogleCloudAiplatformV1beta1UpsertDatapointsRequest",
@@ -42562,9 +43348,16 @@
       "id": "GoogleCloudAiplatformV1beta1VertexRagStore",
       "properties": {
         "ragCorpora": {
-          "description": "Required. Vertex RAG Store corpus resource name: `projects/{project}/locations/{location}/ragCorpora/{ragCorpus}` Currently only one corpus is allowed. In the future we may open up multiple corpora support. However, they should be from the same project and location.",
+          "description": "Optional. Deprecated. Please use rag_resources instead.",
           "items": {
             "type": "string"
+          },
+          "type": "array"
+        },
+        "ragResources": {
+          "description": "Optional. The representation of the rag source. It can be used to specify corpus only or ragfiles. Currently only support one corpus or multiple files from one corpus. In the future we may open up multiple corpora support.",
+          "items": {
+            "$ref": "GoogleCloudAiplatformV1beta1VertexRagStoreRagResource"
           },
           "type": "array"
         },
@@ -42577,6 +43370,24 @@
           "description": "Optional. Only return results with vector distance smaller than the threshold.",
           "format": "double",
           "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1VertexRagStoreRagResource": {
+      "description": "The definition of the Rag resource.",
+      "id": "GoogleCloudAiplatformV1beta1VertexRagStoreRagResource",
+      "properties": {
+        "ragCorpus": {
+          "description": "Optional. RagCorpora resource name. Format: `projects/{project}/locations/{location}/ragCorpora/{rag_corpus}`",
+          "type": "string"
+        },
+        "ragFileIds": {
+          "description": "Optional. rag_file_id. The files should be in the same rag_corpus set in rag_corpus field.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -43551,7 +44362,14 @@
             "GEMINI_V2_TAIL_PATCH_OPEN_BOOKS_QA_UNANSWERABLE",
             "GEMINI_V2_TAIL_PATCH_PMC",
             "GEMINI_V2_TAIL_PATCH_VOXPOPULI",
-            "GEMINI_V2_TAIL_PATCH_FLEURS"
+            "GEMINI_V2_TAIL_PATCH_FLEURS",
+            "GEMINI_V2_SSFS",
+            "GEMINI_V2_CODE_TRANSFORM_SYNTHETIC_ERROR_FIX",
+            "GEMINI_V2_CODE_TRANSFORM_GITHUB_COMMITS",
+            "GEMINI_V2_CODE_TRANSFORM_GITHUB_PR",
+            "GEMINI_V2_SQL_REPAIR_SFT",
+            "GEMINI_V2_JSON_MODE_SYS_INSTRUCTION",
+            "YT_CONTENT_INSPIRATION"
           ],
           "enumDescriptions": [
             "",
@@ -43901,7 +44719,14 @@
             "",
             "Gemini V2 only tail patch.",
             "",
-            ""
+            "",
+            "Gemini V2 rev10",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "Youtube Content Inpsiration."
           ],
           "type": "string"
         },
@@ -44365,7 +45190,14 @@
             "GEMINI_V2_TAIL_PATCH_OPEN_BOOKS_QA_UNANSWERABLE",
             "GEMINI_V2_TAIL_PATCH_PMC",
             "GEMINI_V2_TAIL_PATCH_VOXPOPULI",
-            "GEMINI_V2_TAIL_PATCH_FLEURS"
+            "GEMINI_V2_TAIL_PATCH_FLEURS",
+            "GEMINI_V2_SSFS",
+            "GEMINI_V2_CODE_TRANSFORM_SYNTHETIC_ERROR_FIX",
+            "GEMINI_V2_CODE_TRANSFORM_GITHUB_COMMITS",
+            "GEMINI_V2_CODE_TRANSFORM_GITHUB_PR",
+            "GEMINI_V2_SQL_REPAIR_SFT",
+            "GEMINI_V2_JSON_MODE_SYS_INSTRUCTION",
+            "YT_CONTENT_INSPIRATION"
           ],
           "enumDescriptions": [
             "",
@@ -44715,7 +45547,14 @@
             "",
             "Gemini V2 only tail patch.",
             "",
-            ""
+            "",
+            "Gemini V2 rev10",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "Youtube Content Inpsiration."
           ],
           "type": "string"
         },
@@ -45215,7 +46054,14 @@
             "GEMINI_V2_TAIL_PATCH_OPEN_BOOKS_QA_UNANSWERABLE",
             "GEMINI_V2_TAIL_PATCH_PMC",
             "GEMINI_V2_TAIL_PATCH_VOXPOPULI",
-            "GEMINI_V2_TAIL_PATCH_FLEURS"
+            "GEMINI_V2_TAIL_PATCH_FLEURS",
+            "GEMINI_V2_SSFS",
+            "GEMINI_V2_CODE_TRANSFORM_SYNTHETIC_ERROR_FIX",
+            "GEMINI_V2_CODE_TRANSFORM_GITHUB_COMMITS",
+            "GEMINI_V2_CODE_TRANSFORM_GITHUB_PR",
+            "GEMINI_V2_SQL_REPAIR_SFT",
+            "GEMINI_V2_JSON_MODE_SYS_INSTRUCTION",
+            "YT_CONTENT_INSPIRATION"
           ],
           "enumDescriptions": [
             "",
@@ -45565,7 +46411,14 @@
             "",
             "Gemini V2 only tail patch.",
             "",
-            ""
+            "",
+            "Gemini V2 rev10",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "Youtube Content Inspiration FT datasets."
           ],
           "type": "string"
         },
@@ -46029,7 +46882,14 @@
             "GEMINI_V2_TAIL_PATCH_OPEN_BOOKS_QA_UNANSWERABLE",
             "GEMINI_V2_TAIL_PATCH_PMC",
             "GEMINI_V2_TAIL_PATCH_VOXPOPULI",
-            "GEMINI_V2_TAIL_PATCH_FLEURS"
+            "GEMINI_V2_TAIL_PATCH_FLEURS",
+            "GEMINI_V2_SSFS",
+            "GEMINI_V2_CODE_TRANSFORM_SYNTHETIC_ERROR_FIX",
+            "GEMINI_V2_CODE_TRANSFORM_GITHUB_COMMITS",
+            "GEMINI_V2_CODE_TRANSFORM_GITHUB_PR",
+            "GEMINI_V2_SQL_REPAIR_SFT",
+            "GEMINI_V2_JSON_MODE_SYS_INSTRUCTION",
+            "YT_CONTENT_INSPIRATION"
           ],
           "enumDescriptions": [
             "",
@@ -46379,7 +47239,14 @@
             "",
             "Gemini V2 only tail patch.",
             "",
-            ""
+            "",
+            "Gemini V2 rev10",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "Youtube Content Inspiration FT datasets."
           ],
           "type": "string"
         },
@@ -47925,10 +48792,37 @@
       },
       "type": "object"
     },
+    "LearningServingLlmAtlasOutputMetadata": {
+      "id": "LearningServingLlmAtlasOutputMetadata",
+      "properties": {
+        "requestTopic": {
+          "type": "string"
+        },
+        "source": {
+          "enum": [
+            "UNKNOWN",
+            "FACTUALITY",
+            "INFOBOT",
+            "LLM"
+          ],
+          "enumDescriptions": [
+            "",
+            "",
+            "",
+            ""
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "LearningServingLlmMessageMetadata": {
-      "description": "LINT.IfChange This metadata contains additional information required for debugging.",
+      "description": "LINT.IfChange This metadata contains additional information required for debugging. Next ID: 28",
       "id": "LearningServingLlmMessageMetadata",
       "properties": {
+        "atlasMetadata": {
+          "$ref": "LearningServingLlmAtlasOutputMetadata"
+        },
         "classifierSummary": {
           "$ref": "LearningGenaiRootClassifierOutputSummary",
           "description": "Summary of classifier output. We attach this to all messages regardless of whether classification rules triggered or not."
@@ -48004,7 +48898,12 @@
           "type": "string"
         },
         "perStreamDecodedTokenCount": {
-          "description": "NOT YET IMPLEMENTED. Applies to streaming only. Number of tokens decoded / emitted by the model as part of this stream. This may be different from token_count, which contains number of tokens returned in this response after any response rewriting / truncation.",
+          "description": "Number of tokens decoded by the model as part of a stream. This count may be different from `per_stream_returned_token_count` which, is counted after any response rewriting or truncation. Applies to streaming response only.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "perStreamReturnedTokenCount": {
+          "description": "Number of tokens returned per stream in a response candidate after any response rewriting or truncation. Applies to streaming response only. Applies to Gemini models only.",
           "format": "int32",
           "type": "integer"
         },
@@ -48020,7 +48919,7 @@
           "description": "Recitation Results. It will be populated as long as Recitation processing is enabled, regardless of recitation outcome."
         },
         "returnTokenCount": {
-          "description": "NOT YET IMPLEMENTED. Number of tokens returned as part of this candidate.",
+          "description": "NOT IMPLEMENTED TODO (b/334187574) Remove this field after Labs migrates to per_stream_returned_token_count and total_returned_token_count.",
           "format": "int32",
           "type": "integer"
         },
@@ -48037,6 +48936,11 @@
         },
         "totalDecodedTokenCount": {
           "description": "Total tokens decoded so far per response_candidate. For streaming: Count of all the tokens decoded so far (aggregated count). For unary: Count of all the tokens decoded per response_candidate.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "totalReturnedTokenCount": {
+          "description": "Total number of tokens returned in a response candidate. For streaming, it is the aggregated count (i.e. total so far) Applies to Gemini models only.",
           "format": "int32",
           "type": "integer"
         },
