@@ -307,6 +307,15 @@ export namespace dataform_v1beta1 {
     requiredHeadCommitSha?: string | null;
   }
   /**
+   * `CommitRepositoryChanges` response message.
+   */
+  export interface Schema$CommitRepositoryChangesResponse {
+    /**
+     * The commit SHA of the current commit.
+     */
+    commitSha?: string | null;
+  }
+  /**
    * `CommitWorkspaceChanges` request message.
    */
   export interface Schema$CommitWorkspaceChangesRequest {
@@ -356,6 +365,10 @@ export namespace dataform_v1beta1 {
      * Output only. Errors encountered during project compilation.
      */
     compilationErrors?: Schema$CompilationError[];
+    /**
+     * Output only. Only set if the repository has a KMS Key.
+     */
+    dataEncryptionState?: Schema$DataEncryptionState;
     /**
      * Output only. The version of `@dataform/core` that was used for compilation.
      */
@@ -426,6 +439,15 @@ export namespace dataform_v1beta1 {
      * Indicates the status of the Git access token.
      */
     tokenStatus?: string | null;
+  }
+  /**
+   * Describes encryption state of a resource.
+   */
+  export interface Schema$DataEncryptionState {
+    /**
+     * The KMS key version name with which data of a resource is encrypted.
+     */
+    kmsKeyVersionName?: string | null;
   }
   /**
    * Represents a relation which is not managed by Dataform but which may be referenced by Dataform actions.
@@ -1203,6 +1225,10 @@ export namespace dataform_v1beta1 {
      */
     createTime?: string | null;
     /**
+     * Output only. A data encryption state of a Git repository if this Repository is protected by a KMS key.
+     */
+    dataEncryptionState?: Schema$DataEncryptionState;
+    /**
      * Optional. The repository's user-friendly name.
      */
     displayName?: string | null;
@@ -1210,6 +1236,10 @@ export namespace dataform_v1beta1 {
      * Optional. If set, configures this repository to be linked to a Git remote.
      */
     gitRemoteSettings?: Schema$GitRemoteSettings;
+    /**
+     * Optional. The reference to a KMS encryption key. If provided, it will be used to encrypt user data in the repository and all child resources. It is not possible to add or update the encryption key after the repository is created. Example: `projects/[kms_project_id]/locations/[region]/keyRings/[key_region]/cryptoKeys/[key]`
+     */
+    kmsKeyName?: string | null;
     /**
      * Optional. Repository user labels.
      */
@@ -1433,6 +1463,10 @@ export namespace dataform_v1beta1 {
      */
     compilationResult?: string | null;
     /**
+     * Output only. Only set if the repository has a KMS Key.
+     */
+    dataEncryptionState?: Schema$DataEncryptionState;
+    /**
      * Immutable. If left unset, a default InvocationConfig will be used.
      */
     invocationConfig?: Schema$InvocationConfig;
@@ -1494,6 +1528,10 @@ export namespace dataform_v1beta1 {
    * Represents a Dataform Git workspace.
    */
   export interface Schema$Workspace {
+    /**
+     * Output only. A data encryption state of a Git repository if this Workspace is protected by a KMS key.
+     */
+    dataEncryptionState?: Schema$DataEncryptionState;
     /**
      * Identifier. The workspace's name.
      */
@@ -2134,7 +2172,7 @@ export namespace dataform_v1beta1 {
     commit(
       params?: Params$Resource$Projects$Locations$Repositories$Commit,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosPromise<Schema$CommitRepositoryChangesResponse>;
     commit(
       params: Params$Resource$Projects$Locations$Repositories$Commit,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2142,28 +2180,35 @@ export namespace dataform_v1beta1 {
     ): void;
     commit(
       params: Params$Resource$Projects$Locations$Repositories$Commit,
-      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback: BodyResponseCallback<Schema$Empty>
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$CommitRepositoryChangesResponse>,
+      callback: BodyResponseCallback<Schema$CommitRepositoryChangesResponse>
     ): void;
     commit(
       params: Params$Resource$Projects$Locations$Repositories$Commit,
-      callback: BodyResponseCallback<Schema$Empty>
+      callback: BodyResponseCallback<Schema$CommitRepositoryChangesResponse>
     ): void;
-    commit(callback: BodyResponseCallback<Schema$Empty>): void;
+    commit(
+      callback: BodyResponseCallback<Schema$CommitRepositoryChangesResponse>
+    ): void;
     commit(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Repositories$Commit
-        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Schema$CommitRepositoryChangesResponse>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Schema$CommitRepositoryChangesResponse>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Schema$CommitRepositoryChangesResponse>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosPromise<Schema$CommitRepositoryChangesResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Repositories$Commit;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2198,12 +2243,14 @@ export namespace dataform_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(
+        createAPIRequest<Schema$CommitRepositoryChangesResponse>(
           parameters,
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<Schema$Empty>(parameters);
+        return createAPIRequest<Schema$CommitRepositoryChangesResponse>(
+          parameters
+        );
       }
     }
 
