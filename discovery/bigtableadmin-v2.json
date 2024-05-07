@@ -1998,7 +1998,7 @@
                           "type": "string"
                         },
                         "view": {
-                          "description": "Optional. The resource_view to be applied to the returned AuthorizedViews' fields. Default to NAME_ONLY.",
+                          "description": "Optional. The resource_view to be applied to the returned views' fields. Default to NAME_ONLY.",
                           "enum": [
                             "RESPONSE_VIEW_UNSPECIFIED",
                             "NAME_ONLY",
@@ -2194,7 +2194,7 @@
       }
     }
   },
-  "revision": "20240429",
+  "revision": "20240413",
   "rootUrl": "https://bigtableadmin.googleapis.com/",
   "schemas": {
     "AppProfile": {
@@ -2747,7 +2747,7 @@
         },
         "originalRequest": {
           "$ref": "CreateAuthorizedViewRequest",
-          "description": "The request that prompted the initiation of this CreateAuthorizedView operation."
+          "description": "The request that prompted the initiation of this CreateInstance operation."
         },
         "requestTime": {
           "description": "The time at which the original request was received.",
@@ -3292,11 +3292,6 @@
         "name": {
           "description": "The unique name of the instance. Values are of the form `projects/{project}/instances/a-z+[a-z0-9]`.",
           "type": "string"
-        },
-        "satisfiesPzi": {
-          "description": "Output only. Reserved for future use.",
-          "readOnly": true,
-          "type": "boolean"
         },
         "satisfiesPzs": {
           "description": "Output only. Reserved for future use.",
