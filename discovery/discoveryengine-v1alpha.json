@@ -105,122 +105,6 @@
   },
   "protocol": "rest",
   "resources": {
-    "locations": {
-      "methods": {
-        "lookupWidgetConfig": {
-          "description": "Gets the Widget Config using the uuid.",
-          "flatPath": "v1alpha/locations/{locationsId}/lookupWidgetConfig",
-          "httpMethod": "POST",
-          "id": "discoveryengine.locations.lookupWidgetConfig",
-          "parameterOrder": [
-            "location"
-          ],
-          "parameters": {
-            "location": {
-              "description": "Required. The location resource where lookup widget will be performed. Format: `locations/{location}`",
-              "location": "path",
-              "pattern": "^locations/[^/]+$",
-              "required": true,
-              "type": "string"
-            }
-          },
-          "path": "v1alpha/{+location}/lookupWidgetConfig",
-          "request": {
-            "$ref": "GoogleCloudDiscoveryengineV1alphaLookupWidgetConfigRequest"
-          },
-          "response": {
-            "$ref": "GoogleCloudDiscoveryengineV1alphaLookupWidgetConfigResponse"
-          },
-          "scopes": [
-            "https://www.googleapis.com/auth/cloud-platform"
-          ]
-        },
-        "widgetCompleteQuery": {
-          "description": "Performs a user input completion with keyword suggestion. Similar to the CompletionService.CompleteQuery method, but a widget version that allows CompleteQuery without API Key. It supports CompleteQuery with or without JWT token.",
-          "flatPath": "v1alpha/locations/{locationsId}/widgetCompleteQuery",
-          "httpMethod": "POST",
-          "id": "discoveryengine.locations.widgetCompleteQuery",
-          "parameterOrder": [
-            "location"
-          ],
-          "parameters": {
-            "location": {
-              "description": "Required. The location resource where widget complete query will be performed. Format: `locations/{location}`",
-              "location": "path",
-              "pattern": "^locations/[^/]+$",
-              "required": true,
-              "type": "string"
-            }
-          },
-          "path": "v1alpha/{+location}/widgetCompleteQuery",
-          "request": {
-            "$ref": "GoogleCloudDiscoveryengineV1alphaWidgetCompleteQueryRequest"
-          },
-          "response": {
-            "$ref": "GoogleCloudDiscoveryengineV1alphaWidgetCompleteQueryResponse"
-          },
-          "scopes": [
-            "https://www.googleapis.com/auth/cloud-platform"
-          ]
-        },
-        "widgetConverseConversation": {
-          "description": "Converse a conversation with Widget.",
-          "flatPath": "v1alpha/locations/{locationsId}/widgetConverseConversation",
-          "httpMethod": "POST",
-          "id": "discoveryengine.locations.widgetConverseConversation",
-          "parameterOrder": [
-            "location"
-          ],
-          "parameters": {
-            "location": {
-              "description": "Required. The location resource where widget converse conversation will be performed. Format: `locations/{location}`",
-              "location": "path",
-              "pattern": "^locations/[^/]+$",
-              "required": true,
-              "type": "string"
-            }
-          },
-          "path": "v1alpha/{+location}/widgetConverseConversation",
-          "request": {
-            "$ref": "GoogleCloudDiscoveryengineV1alphaWidgetConverseConversationRequest"
-          },
-          "response": {
-            "$ref": "GoogleCloudDiscoveryengineV1alphaWidgetConverseConversationResponse"
-          },
-          "scopes": [
-            "https://www.googleapis.com/auth/cloud-platform"
-          ]
-        },
-        "widgetSearch": {
-          "description": "Performs a search. Similar to the SearchService.Search method, but a widget version that allows search without API Key. It supports search with or without JWT token.",
-          "flatPath": "v1alpha/locations/{locationsId}/widgetSearch",
-          "httpMethod": "POST",
-          "id": "discoveryengine.locations.widgetSearch",
-          "parameterOrder": [
-            "location"
-          ],
-          "parameters": {
-            "location": {
-              "description": "Required. The location resource where widget search will be performed. Format: `locations/{location}`",
-              "location": "path",
-              "pattern": "^locations/[^/]+$",
-              "required": true,
-              "type": "string"
-            }
-          },
-          "path": "v1alpha/{+location}/widgetSearch",
-          "request": {
-            "$ref": "GoogleCloudDiscoveryengineV1alphaWidgetSearchRequest"
-          },
-          "response": {
-            "$ref": "GoogleCloudDiscoveryengineV1alphaWidgetSearchResponse"
-          },
-          "scopes": [
-            "https://www.googleapis.com/auth/cloud-platform"
-          ]
-        }
-      }
-    },
     "projects": {
       "methods": {
         "get": {
@@ -662,7 +546,7 @@
                       ],
                       "parameters": {
                         "filter": {
-                          "description": "Filter by solution type. For example: filter = 'solution_type:SOLUTION_TYPE_SEARCH'",
+                          "description": "Filter by solution type . For example: filter = 'solution_type:SOLUTION_TYPE_SEARCH'",
                           "location": "query",
                           "type": "string"
                         },
@@ -912,12 +796,14 @@
                                   "enum": [
                                     "PROCESSED_DOCUMENT_TYPE_UNSPECIFIED",
                                     "PARSED_DOCUMENT",
-                                    "CHUNKED_DOCUMENT"
+                                    "CHUNKED_DOCUMENT",
+                                    "PNG_CONVERTED_DOCUMENT"
                                   ],
                                   "enumDescriptions": [
                                     "Default value.",
                                     "Available for all data store parsing configs.",
-                                    "Only available if ChunkingConfig is enabeld on the data store."
+                                    "Only available if ChunkingConfig is enabled on the data store.",
+                                    "Returns the converted PNG Image bytes if available."
                                   ],
                                   "location": "query",
                                   "type": "string"
@@ -1386,6 +1272,35 @@
                           },
                           "response": {
                             "$ref": "GoogleCloudDiscoveryengineV1alphaConversation"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        }
+                      }
+                    },
+                    "customModels": {
+                      "methods": {
+                        "list": {
+                          "description": "Gets a list of all the custom models.",
+                          "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/dataStores/{dataStoresId}/customModels",
+                          "httpMethod": "GET",
+                          "id": "discoveryengine.projects.locations.collections.dataStores.customModels.list",
+                          "parameterOrder": [
+                            "dataStore"
+                          ],
+                          "parameters": {
+                            "dataStore": {
+                              "description": "Required. The resource name of the parent Data Store, such as `projects/*/locations/global/collections/default_collection/dataStores/default_data_store`. This field is used to identify the data store where to fetch the models from.",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/dataStores/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1alpha/{+dataStore}/customModels",
+                          "response": {
+                            "$ref": "GoogleCloudDiscoveryengineV1alphaListCustomModelsResponse"
                           },
                           "scopes": [
                             "https://www.googleapis.com/auth/cloud-platform"
@@ -3953,7 +3868,7 @@
                   ],
                   "parameters": {
                     "filter": {
-                      "description": "Filter by solution type. For example: filter = 'solution_type:SOLUTION_TYPE_SEARCH'",
+                      "description": "Filter by solution type . For example: filter = 'solution_type:SOLUTION_TYPE_SEARCH'",
                       "location": "query",
                       "type": "string"
                     },
@@ -4175,12 +4090,14 @@
                               "enum": [
                                 "PROCESSED_DOCUMENT_TYPE_UNSPECIFIED",
                                 "PARSED_DOCUMENT",
-                                "CHUNKED_DOCUMENT"
+                                "CHUNKED_DOCUMENT",
+                                "PNG_CONVERTED_DOCUMENT"
                               ],
                               "enumDescriptions": [
                                 "Default value.",
                                 "Available for all data store parsing configs.",
-                                "Only available if ChunkingConfig is enabeld on the data store."
+                                "Only available if ChunkingConfig is enabled on the data store.",
+                                "Returns the converted PNG Image bytes if available."
                               ],
                               "location": "query",
                               "type": "string"
@@ -6094,7 +6011,7 @@
       }
     }
   },
-  "revision": "20240415",
+  "revision": "20240502",
   "rootUrl": "https://discoveryengine.googleapis.com/",
   "schemas": {
     "GoogleApiHttpBody": {
@@ -7127,6 +7044,11 @@
           "description": "Required. Input only. The user provided URI pattern from which the `generated_uri_pattern` is generated.",
           "type": "string"
         },
+        "rootDomainUri": {
+          "description": "Output only. Root domain of the provided_uri_pattern.",
+          "readOnly": true,
+          "type": "string"
+        },
         "siteVerificationInfo": {
           "$ref": "GoogleCloudDiscoveryengineV1SiteVerificationInfo",
           "description": "Output only. Site ownership and validity verification status.",
@@ -7222,17 +7144,6 @@
         },
         "name": {
           "description": "Immutable. The full resource name of the acl configuration. Format: `projects/{project}/locations/{location}/aclConfig`. This field must be a UTF-8 encoded string with a length limit of 1024 characters.",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "GoogleCloudDiscoveryengineV1alphaAdditionalParams": {
-      "description": "AdditionalParams message for WidgetService methods for security and privacy enhancement.",
-      "id": "GoogleCloudDiscoveryengineV1alphaAdditionalParams",
-      "properties": {
-        "token": {
-          "description": "Token that used for non-human user check.",
           "type": "string"
         }
       },
@@ -8272,7 +8183,7 @@
       "id": "GoogleCloudDiscoveryengineV1alphaCheckGroundingRequest",
       "properties": {
         "answerCandidate": {
-          "description": "Answer candidate to check.",
+          "description": "Answer candidate to check. Can have a maximum length of 1024 characters.",
           "type": "string"
         },
         "facts": {
@@ -8285,6 +8196,13 @@
         "groundingSpec": {
           "$ref": "GoogleCloudDiscoveryengineV1alphaCheckGroundingSpec",
           "description": "Configuration of the grounding check."
+        },
+        "userLabels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "The user labels applied to a resource must meet the following requirements: * Each resource can have multiple labels, up to a maximum of 64. * Each label must be a key-value pair. * Keys have a minimum length of 1 character and a maximum length of 63 characters and cannot be empty. Values can be empty and have a maximum length of 63 characters. * Keys and values can contain only lowercase letters, numeric characters, underscores, and dashes. All characters must use UTF-8 encoding, and international characters are allowed. * The key portion of a label must be unique. However, you can use the same key with multiple resources. * Keys must start with a lowercase letter or international character. See [Google Cloud Document](https://cloud.google.com/resource-manager/docs/creating-managing-labels#requirements) for more details.",
+          "type": "object"
         }
       },
       "type": "object"
@@ -8335,6 +8253,10 @@
           "description": "Position indicating the end of the claim in the answer candidate, exclusive.",
           "format": "int32",
           "type": "integer"
+        },
+        "groundingCheckRequired": {
+          "description": "Indicates that this claim required grounding check. When the system decided this claim doesn't require attribution/grounding check, this field will be set to false. In that case, no grounding check was done for the claim and therefore citation_indices, and anti_citation_indices should not be returned.",
+          "type": "boolean"
         },
         "startPos": {
           "description": "Position indicating the start of the claim in the answer candidate, measured in bytes.",
@@ -8484,33 +8406,6 @@
         },
         "tableId": {
           "description": "Required. The Cloud SQL table to copy the data from with a length limit of 256 characters.",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "GoogleCloudDiscoveryengineV1alphaCompleteQueryRequest": {
-      "description": "Request message for CompletionService.CompleteQuery method.",
-      "id": "GoogleCloudDiscoveryengineV1alphaCompleteQueryRequest",
-      "properties": {
-        "dataStore": {
-          "description": "Required. The parent data store resource name for which the completion is performed, such as `projects/*/locations/global/collections/default_collection/dataStores/default_data_store`.",
-          "type": "string"
-        },
-        "includeTailSuggestions": {
-          "description": "Indicates if tail suggestions should be returned if there are no suggestions that match the full query. Even if set to true, if there are suggestions that match the full query, those are returned and no tail suggestions are returned.",
-          "type": "boolean"
-        },
-        "query": {
-          "description": "Required. The typeahead input used to fetch suggestions. Maximum length is 128 characters.",
-          "type": "string"
-        },
-        "queryModel": {
-          "description": "Specifies the autocomplete data model. This overrides any model specified in the Configuration > Autocomplete section of the Cloud console. Currently supported values: * `document` - Using suggestions generated from user-imported documents. * `search-history` - Using suggestions generated from the past history of SearchService.Search API calls. Do not use it when there is no traffic for Search API. * `user-event` - Using suggestions generated from user-imported search events. * `document-completable` - Using suggestions taken directly from user-imported document fields marked as completable. Default values: * `document` is the default model for regular dataStores. * `search-history` is the default model for site search dataStores.",
-          "type": "string"
-        },
-        "userPseudoId": {
-          "description": "A unique identifier for tracking visitors. For example, this could be implemented with an HTTP cookie, which should be able to uniquely identify a visitor on a single device. This unique identifier should not change if the visitor logs in or out of the website. This field should NOT have a fixed value such as `unknown_visitor`. This should be the same identifier as UserEvent.user_pseudo_id and SearchRequest.user_pseudo_id. The field must be a UTF-8 encoded string with a length limit of 128 characters. Otherwise, an `INVALID_ARGUMENT` error is returned.",
           "type": "string"
         }
       },
@@ -8669,10 +8564,6 @@
         },
         "filter": {
           "description": "The filter syntax consists of an expression language for constructing a predicate from one or more fields of the documents being filtered. Filter expression is case-sensitive. This will be used to filter search results which may affect the summary response. If this field is unrecognizable, an `INVALID_ARGUMENT` is returned. Filtering in Vertex AI Search is done by mapping the LHS filter key to a key property defined in the Vertex AI Search backend -- this mapping is defined by the customer in their schema. For example a media customer might have a field 'name' in their schema. In this case the filter would look like this: filter --> name:'ANY(\"king kong\")' For more information about filtering including syntax and filter operators, see [Filter](https://cloud.google.com/generative-ai-app-builder/docs/filter-search-metadata)",
-          "type": "string"
-        },
-        "name": {
-          "description": "Required. The resource name of the Conversation to get. Format: `projects/{project_number}/locations/{location_id}/collections/{collection}/dataStores/{data_store_id}/conversations/{conversation_id}`. Use `projects/{project_number}/locations/{location_id}/collections/{collection}/dataStores/{data_store_id}/conversations/-` to activate auto session mode, which automatically creates a new conversation inside a ConverseConversation session.",
           "type": "string"
         },
         "query": {
@@ -8842,6 +8733,55 @@
         "enableSearchAdaptor": {
           "description": "Whether or not to enable and include custom fine tuned search adaptor model.",
           "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaCustomTuningModel": {
+      "description": "Metadata that describes a custom tuned model.",
+      "id": "GoogleCloudDiscoveryengineV1alphaCustomTuningModel",
+      "properties": {
+        "createTime": {
+          "description": "Timestamp the Model was created at.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "displayName": {
+          "description": "The display name of the model.",
+          "type": "string"
+        },
+        "modelState": {
+          "description": "The state that the model is in (e.g.`TRAINING` or `TRAINING_FAILED`).",
+          "enum": [
+            "MODEL_STATE_UNSPECIFIED",
+            "TRAINING_PAUSED",
+            "TRAINING",
+            "TRAINING_COMPLETE",
+            "READY_FOR_SERVING",
+            "TRAINING_FAILED"
+          ],
+          "enumDescriptions": [
+            "",
+            "The model is in a paused training state.",
+            "The model is currently training.",
+            "The model has successfully completed training.",
+            "The model is ready for serving.",
+            "The model training failed."
+          ],
+          "type": "string"
+        },
+        "modelVersion": {
+          "format": "int64",
+          "type": "string"
+        },
+        "name": {
+          "description": "Required. The fully qualified resource name of the model. Format: `projects/{project_number}/locations/{location}/collections/{collection}/dataStores/{data_store}/customTuningModels/{custom_tuning_model}` model must be an alpha-numerical string with limit of 40 characters.",
+          "type": "string"
+        },
+        "trainingStartTime": {
+          "description": "Timestamp the model training was initiated.",
+          "format": "google-datetime",
+          "type": "string"
         }
       },
       "type": "object"
@@ -9733,6 +9673,11 @@
           "description": "Text content of the fact chunk. Can be at most 10K characters long.",
           "type": "string"
         },
+        "index": {
+          "description": "The index of this chunk. Currently, only used for the streaming mode.",
+          "format": "int32",
+          "type": "integer"
+        },
         "source": {
           "description": "Source from which this fact chunk was retrieved. If it was retrieved from the GroundingFacts provided in the request then this field will contain the index of the specific fact from which this chunk was retrieved.",
           "type": "string"
@@ -9857,8 +9802,8 @@
             "Field value type is Number.",
             "Field value type is Integer.",
             "Field value type is Boolean.",
-            "Field value type is Geolocation.",
-            "Field value type is Datetime."
+            "Field value type is Geolocation. Geolocation is expressed as an object with the following keys: * `id`: a string representing the location id * `longitude`: a number representing the longitude coordinate of the location * `latitude`: a number repesenting the latitude coordinate of the location * `address`: a string representing the full address of the location `latitude` and `longitude` must always be provided together. At least one of a) `address` or b) `latitude`-`longitude` pair must be provided.",
+            "Field value type is Datetime. Datetime can be expressed as either: * a number representing milliseconds-since-the-epoch * a string representing milliseconds-since-the-epoch. e.g. `\"1420070400001\"` * a string representing the [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date or date and time. e.g. `\"2015-01-01\"` or `\"2015-01-01T12:10:30Z\"`"
           ],
           "readOnly": true,
           "type": "string"
@@ -10412,6 +10357,20 @@
       },
       "type": "object"
     },
+    "GoogleCloudDiscoveryengineV1alphaListCustomModelsResponse": {
+      "description": "Response message for SearchTuningService.ListCustomModels method.",
+      "id": "GoogleCloudDiscoveryengineV1alphaListCustomModelsResponse",
+      "properties": {
+        "models": {
+          "description": "List of custom tuning models.",
+          "items": {
+            "$ref": "GoogleCloudDiscoveryengineV1alphaCustomTuningModel"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDiscoveryengineV1alphaListDataStoresResponse": {
       "description": "Response message for DataStoreService.ListDataStores method.",
       "id": "GoogleCloudDiscoveryengineV1alphaListDataStoresResponse",
@@ -10539,28 +10498,6 @@
           "description": "The total number of items matching the request. This will always be populated in the response.",
           "format": "int32",
           "type": "integer"
-        }
-      },
-      "type": "object"
-    },
-    "GoogleCloudDiscoveryengineV1alphaLookupWidgetConfigRequest": {
-      "description": "Request message for WidgetService.LookupWidgetConfig method.",
-      "id": "GoogleCloudDiscoveryengineV1alphaLookupWidgetConfigRequest",
-      "properties": {
-        "widgetConfigId": {
-          "description": "Required. The UUID of the Widget Config.",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "GoogleCloudDiscoveryengineV1alphaLookupWidgetConfigResponse": {
-      "description": "Response message for WidgetService.LookupWidgetConfig method.",
-      "id": "GoogleCloudDiscoveryengineV1alphaLookupWidgetConfigResponse",
-      "properties": {
-        "anonymousWidgetConfig": {
-          "$ref": "GoogleCloudDiscoveryengineV1alphaWidgetConfig",
-          "description": "The Anonymous Widget Config associated with the UUID."
         }
       },
       "type": "object"
@@ -11426,7 +11363,7 @@
           "type": "integer"
         },
         "orderBy": {
-          "description": "The order in which documents are returned. Documents can be ordered by a field in an Document object. Leave it unset if ordered by relevance. `order_by` expression is case-sensitive. For more information on ordering, see [Ordering](https://cloud.google.com/retail/docs/filter-and-order#order) If this field is unrecognizable, an `INVALID_ARGUMENT` is returned.",
+          "description": "The order in which documents are returned. Documents can be ordered by a field in an Document object. Leave it unset if ordered by relevance. `order_by` expression is case-sensitive. For more information on ordering for retail search, see [Ordering](https://cloud.google.com/retail/docs/filter-and-order#order) If this field is unrecognizable, an `INVALID_ARGUMENT` is returned.",
           "type": "string"
         },
         "pageSize": {
@@ -11460,10 +11397,6 @@
         "safeSearch": {
           "description": "Whether to turn on safe search. This is only supported for website search.",
           "type": "boolean"
-        },
-        "servingConfig": {
-          "description": "Required. The resource name of the Search serving config, such as `projects/*/locations/global/collections/default_collection/engines/*/servingConfigs/default_serving_config`, or `projects/*/locations/global/collections/default_collection/dataStores/default_data_store/servingConfigs/default_serving_config`. This field is used to identify the serving configuration name, set of models used to make the search.",
-          "type": "string"
         },
         "spellCorrectionSpec": {
           "$ref": "GoogleCloudDiscoveryengineV1alphaSearchRequestSpellCorrectionSpec",
@@ -12672,6 +12605,11 @@
           "description": "Required. Input only. The user provided URI pattern from which the `generated_uri_pattern` is generated.",
           "type": "string"
         },
+        "rootDomainUri": {
+          "description": "Output only. Root domain of the provided_uri_pattern.",
+          "readOnly": true,
+          "type": "string"
+        },
         "siteVerificationInfo": {
           "$ref": "GoogleCloudDiscoveryengineV1alphaSiteVerificationInfo",
           "description": "Output only. Site ownership and validity verification status.",
@@ -12767,6 +12705,10 @@
           "$ref": "GoogleCloudDiscoveryengineV1alphaTrainCustomModelRequestGcsTrainingInput",
           "description": "Cloud Storage training input."
         },
+        "modelId": {
+          "description": "If not provided, a UUID will be generated.",
+          "type": "string"
+        },
         "modelType": {
           "description": "Model to be trained. Supported values are: * **search-tuning**: Fine tuning the search system based on data provided.",
           "type": "string"
@@ -12819,6 +12761,10 @@
           },
           "description": "The metrics of the trained model.",
           "type": "object"
+        },
+        "modelName": {
+          "description": "Fully qualified name of the CustomTuningModel.",
+          "type": "string"
         },
         "modelStatus": {
           "description": "The trained model status. Possible values are: * **bad-data**: The training data quality is bad. * **no-improvement**: Tuning didn't improve performance. Won't deploy. * **in-progress**: Model training job creation is in progress. * **training**: Model is actively training. * **evaluating**: The model is evaluating trained metrics. * **indexing**: The model trained metrics are indexing. * **ready**: The model is ready for serving.",
@@ -13026,444 +12972,6 @@
       },
       "type": "object"
     },
-    "GoogleCloudDiscoveryengineV1alphaWidgetCompleteQueryRequest": {
-      "description": "Request message for WidgetService.WidgetCompleteQuery method.",
-      "id": "GoogleCloudDiscoveryengineV1alphaWidgetCompleteQueryRequest",
-      "properties": {
-        "additionalParams": {
-          "$ref": "GoogleCloudDiscoveryengineV1alphaAdditionalParams",
-          "description": "Additional params for security and privacy enhancement."
-        },
-        "completeQueryRequest": {
-          "$ref": "GoogleCloudDiscoveryengineV1alphaCompleteQueryRequest",
-          "description": "Required. The CompleteQuery request to perform auto-complete suggestion query."
-        },
-        "configId": {
-          "description": "Required. The UUID of the WidgetConfig. This field is used to identify the widget configuration, set of models used to make the auto complete query.",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "GoogleCloudDiscoveryengineV1alphaWidgetCompleteQueryResponse": {
-      "description": "Response message for WidgetService.WidgetCompleteQuery method.",
-      "id": "GoogleCloudDiscoveryengineV1alphaWidgetCompleteQueryResponse",
-      "properties": {
-        "uToken": {
-          "description": "The token in response.",
-          "type": "string"
-        },
-        "widgetQuerySuggestions": {
-          "description": "Results of the matched query suggestions in widget. The result list is ordered and the first result is a top suggestion.",
-          "items": {
-            "$ref": "GoogleCloudDiscoveryengineV1alphaWidgetCompleteQueryResponseWidgetQuerySuggestion"
-          },
-          "type": "array"
-        }
-      },
-      "type": "object"
-    },
-    "GoogleCloudDiscoveryengineV1alphaWidgetCompleteQueryResponseWidgetQuerySuggestion": {
-      "description": "Suggestions as search queries.",
-      "id": "GoogleCloudDiscoveryengineV1alphaWidgetCompleteQueryResponseWidgetQuerySuggestion",
-      "properties": {
-        "suggestion": {
-          "description": "The suggestion for the query.",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "GoogleCloudDiscoveryengineV1alphaWidgetConfig": {
-      "description": "WidgetConfig captures configs at the Widget level.",
-      "id": "GoogleCloudDiscoveryengineV1alphaWidgetConfig",
-      "properties": {
-        "allowPublicAccess": {
-          "description": "Whether allow no-auth integration with widget. If set true, public access to search or other solutions from widget is allowed without authenication token provided by customer hosted backend server.",
-          "type": "boolean"
-        },
-        "allowlistedDomains": {
-          "description": "Allowlisted domains that can load this widget.",
-          "items": {
-            "type": "string"
-          },
-          "type": "array"
-        },
-        "collectionComponents": {
-          "description": "Output only. Collection components that lists all collections and child data stores associated with the widget config, those data sources can be used for filtering in widget service APIs, users can return results that from selected data sources.",
-          "items": {
-            "$ref": "GoogleCloudDiscoveryengineV1alphaWidgetConfigCollectionComponent"
-          },
-          "readOnly": true,
-          "type": "array"
-        },
-        "configId": {
-          "description": "Output only. Unique obfuscated identifier of a WidgetConfig.",
-          "readOnly": true,
-          "type": "string"
-        },
-        "contentSearchSpec": {
-          "$ref": "GoogleCloudDiscoveryengineV1alphaSearchRequestContentSearchSpec",
-          "description": "The content search spec that configs the desired behavior of content search."
-        },
-        "createTime": {
-          "description": "Output only. Timestamp the WidgetConfig was created.",
-          "format": "google-datetime",
-          "readOnly": true,
-          "type": "string"
-        },
-        "dataStoreType": {
-          "description": "Output only. The type of the parent data store.",
-          "enum": [
-            "DATA_STORE_TYPE_UNSPECIFIED",
-            "SITE_SEARCH",
-            "STRUCTURED",
-            "UNSTRUCTURED",
-            "BLENDED"
-          ],
-          "enumDescriptions": [
-            "Unspecified data store type.",
-            "The parent data store contains a site search engine.",
-            "The parent data store contains a search engine for structured data.",
-            "The parent data store contains a search engine for unstructured data.",
-            "The parent data store is served for blended search with multiple data stores."
-          ],
-          "readOnly": true,
-          "type": "string"
-        },
-        "dataStoreUiConfigs": {
-          "description": "Configurable UI configurations per data store.",
-          "items": {
-            "$ref": "GoogleCloudDiscoveryengineV1alphaWidgetConfigDataStoreUiConfig"
-          },
-          "type": "array"
-        },
-        "displayName": {
-          "description": "Required. The human readable widget config display name. Used in Discovery UI. This field must be a UTF-8 encoded string with a length limit of 128 characters. Otherwise, an INVALID_ARGUMENT error is returned.",
-          "type": "string"
-        },
-        "enableAutocomplete": {
-          "description": "Whether or not to enable autocomplete.",
-          "type": "boolean"
-        },
-        "enableConversationalSearch": {
-          "description": "Whether to allow conversational search (LLM, multi-turn) or not (non-LLM, single-turn).",
-          "type": "boolean"
-        },
-        "enableQualityFeedback": {
-          "description": "Turn on or off collecting the search result quality feedback from end users.",
-          "type": "boolean"
-        },
-        "enableResultScore": {
-          "description": "Whether to show the result score.",
-          "type": "boolean"
-        },
-        "enableSafeSearch": {
-          "description": "Whether to enable safe search.",
-          "type": "boolean"
-        },
-        "enableSearchAsYouType": {
-          "description": "Whether to enable search-as-you-type behavior for the search widget",
-          "type": "boolean"
-        },
-        "enableSnippetResultSummary": {
-          "description": "Turn on or off summary for each snippets result.",
-          "type": "boolean"
-        },
-        "enableSummarization": {
-          "description": "Turn on or off summarization for the search response.",
-          "type": "boolean"
-        },
-        "enableWebApp": {
-          "description": "Whether to enable standalone web app.",
-          "type": "boolean"
-        },
-        "facetField": {
-          "description": "The configuration and appearance of facets in the end user view.",
-          "items": {
-            "$ref": "GoogleCloudDiscoveryengineV1alphaWidgetConfigFacetField"
-          },
-          "type": "array"
-        },
-        "fieldsUiComponentsMap": {
-          "additionalProperties": {
-            "$ref": "GoogleCloudDiscoveryengineV1alphaWidgetConfigUIComponentField"
-          },
-          "description": "The key is the UI component. Mock. Currently supported `title`, `thumbnail`, `url`, `custom1`, `custom2`, `custom3`. The value is the name of the field along with its device visibility. The 3 custom fields are optional and can be added or removed. `title`, `thumbnail`, `url` are required UI components that cannot be removed.",
-          "type": "object"
-        },
-        "industryVertical": {
-          "description": "Output only. The industry vertical that the WidgetConfig registers. The WidgetConfig industry vertical is based on the associated Engine.",
-          "enum": [
-            "INDUSTRY_VERTICAL_UNSPECIFIED",
-            "GENERIC",
-            "MEDIA",
-            "HEALTHCARE_FHIR"
-          ],
-          "enumDescriptions": [
-            "Value used when unset.",
-            "The generic vertical for documents that are not specific to any industry vertical.",
-            "The media industry vertical.",
-            "The healthcare FHIR vertical."
-          ],
-          "readOnly": true,
-          "type": "string"
-        },
-        "llmEnabled": {
-          "description": "Output only. Whether LLM is enabled in the corresponding data store.",
-          "readOnly": true,
-          "type": "boolean"
-        },
-        "minimumDataTermAccepted": {
-          "description": "Output only. Whether the customer accepted data use terms.",
-          "readOnly": true,
-          "type": "boolean"
-        },
-        "name": {
-          "description": "Immutable. The full resource name of the widget config. Format: `projects/{project}/locations/{location}/collections/{collection_id}/dataStores/{data_store_id}/widgetConfigs/{widget_config_id}`. This field must be a UTF-8 encoded string with a length limit of 1024 characters.",
-          "type": "string"
-        },
-        "resultDisplayType": {
-          "description": "The type of snippet to display in UCS widget. - RESULT_DISPLAY_TYPE_UNSPECIFIED for existing users. - SNIPPET for new non-enterprise search users. - EXTRACTIVE_ANSWER for new enterprise search users.",
-          "enum": [
-            "RESULT_DISPLAY_TYPE_UNSPECIFIED",
-            "SNIPPET",
-            "EXTRACTIVE_ANSWER"
-          ],
-          "enumDescriptions": [
-            "Unspecified display type (default to showing snippet).",
-            "Display results from the snippet field.",
-            "Display results from extractive answers field."
-          ],
-          "type": "string"
-        },
-        "solutionType": {
-          "description": "Required. Immutable. Specifies the solution type that this WidgetConfig can be used for.",
-          "enum": [
-            "SOLUTION_TYPE_UNSPECIFIED",
-            "SOLUTION_TYPE_RECOMMENDATION",
-            "SOLUTION_TYPE_SEARCH",
-            "SOLUTION_TYPE_CHAT",
-            "SOLUTION_TYPE_GENERATIVE_CHAT"
-          ],
-          "enumDescriptions": [
-            "Default value.",
-            "Used for Recommendations AI.",
-            "Used for Discovery Search.",
-            "Used for use cases related to the Generative AI agent.",
-            "Used for use cases related to the Generative Chat agent. It's used for Generative chat engine only, the associated data stores must enrolled with `SOLUTION_TYPE_CHAT` solution."
-          ],
-          "type": "string"
-        },
-        "updateTime": {
-          "description": "Output only. Timestamp the WidgetConfig was updated.",
-          "format": "google-datetime",
-          "readOnly": true,
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "GoogleCloudDiscoveryengineV1alphaWidgetConfigCollectionComponent": {
-      "description": "Read-only collection component that contains data store collections fields that may be used for filtering",
-      "id": "GoogleCloudDiscoveryengineV1alphaWidgetConfigCollectionComponent",
-      "properties": {
-        "dataStoreComponents": {
-          "description": "For the data store collection, list of the children data stores.",
-          "items": {
-            "$ref": "GoogleCloudDiscoveryengineV1alphaWidgetConfigDataStoreComponent"
-          },
-          "type": "array"
-        },
-        "displayName": {
-          "description": "The display name of the collection.",
-          "type": "string"
-        },
-        "id": {
-          "description": "Output only. the identifier of the collection, used for widget service. For now it refers to collection_id, in the future we will migrate the field to encrypted collection name UUID.",
-          "readOnly": true,
-          "type": "string"
-        },
-        "name": {
-          "description": "The name of the collection. It should be collection resource name. Format: `projects/{project_number}/locations/{location}/collections/{collection_id}`. For APIs under WidgetService, such as LookUpWidgetConfig, the project number and location part is erased in this field.",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "GoogleCloudDiscoveryengineV1alphaWidgetConfigDataStoreComponent": {
-      "description": "Read-only data store component that contains data stores fields that may be used for filtering, it's the child of `CollectionComponent`.",
-      "id": "GoogleCloudDiscoveryengineV1alphaWidgetConfigDataStoreComponent",
-      "properties": {
-        "displayName": {
-          "description": "The display name of the data store.",
-          "type": "string"
-        },
-        "id": {
-          "description": "Output only. the identifier of the data store, used for widget service. For now it refers to data_store_id, in the future we will migrate the field to encrypted data store name UUID.",
-          "readOnly": true,
-          "type": "string"
-        },
-        "name": {
-          "description": "The name of the data store. It should be data store resource name Format: `projects/{project_number}/locations/{location}/collections/{collection_id}/dataStores/{data_store_id}`. For APIs under WidgetService, such as LookUpWidgetConfig, the project number and location part is erased in this field.",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "GoogleCloudDiscoveryengineV1alphaWidgetConfigDataStoreUiConfig": {
-      "description": "UI component configuration for data store.",
-      "id": "GoogleCloudDiscoveryengineV1alphaWidgetConfigDataStoreUiConfig",
-      "properties": {
-        "facetField": {
-          "description": "Facet fields that store the mapping of fields to end user widget appearance.",
-          "items": {
-            "$ref": "GoogleCloudDiscoveryengineV1alphaWidgetConfigFacetField"
-          },
-          "type": "array"
-        },
-        "fieldsUiComponentsMap": {
-          "additionalProperties": {
-            "$ref": "GoogleCloudDiscoveryengineV1alphaWidgetConfigUIComponentField"
-          },
-          "description": "The key is the UI component. Mock. Currently supported `title`, `thumbnail`, `url`, `custom1`, `custom2`, `custom3`. The value is the name of the field along with its device visibility. The 3 custom fields are optional and can be added or removed. `title`, `thumbnail`, `url` are required UI components that cannot be removed.",
-          "type": "object"
-        },
-        "id": {
-          "description": "Output only. the identifier of the data store, used for widget service. For now it refers to data_store_id, in the future we will migrate the field to encrypted data store name UUID.",
-          "readOnly": true,
-          "type": "string"
-        },
-        "name": {
-          "description": "The name of the data store. It should be data store resource name Format: `projects/{project_number}/locations/{location}/collections/{collection_id}/dataStores/{data_store_id}`. For APIs under WidgetService, such as LookUpWidgetConfig, the project number and location part is erased in this field.",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "GoogleCloudDiscoveryengineV1alphaWidgetConfigFacetField": {
-      "description": "Facet fields that store the mapping of fields to end user widget appearance.",
-      "id": "GoogleCloudDiscoveryengineV1alphaWidgetConfigFacetField",
-      "properties": {
-        "displayName": {
-          "description": "Optional. The field name that end users will see.",
-          "type": "string"
-        },
-        "field": {
-          "description": "Required. Registered field name. The format is `field.abc`.",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "GoogleCloudDiscoveryengineV1alphaWidgetConfigUIComponentField": {
-      "description": "Facet field that maps to a UI Component.",
-      "id": "GoogleCloudDiscoveryengineV1alphaWidgetConfigUIComponentField",
-      "properties": {
-        "deviceVisibility": {
-          "description": "The field visibility on different types of devices.",
-          "items": {
-            "enum": [
-              "DEVICE_VISIBILITY_UNSPECIFIED",
-              "MOBILE",
-              "DESKTOP"
-            ],
-            "enumDescriptions": [
-              "Default value when not specified. Server returns INVALID_ARGUMENT if used in requests.",
-              "The UI component is visible on Mobile devices.",
-              "The UI component is visible on Browser-based client."
-            ],
-            "type": "string"
-          },
-          "type": "array"
-        },
-        "displayTemplate": {
-          "description": "The template to customize how the field is displayed. An example value would be a string that looks like: \"Price: {value}\".",
-          "type": "string"
-        },
-        "field": {
-          "description": "Required. Registered field name. The format is `field.abc`.",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "GoogleCloudDiscoveryengineV1alphaWidgetConverseConversationRequest": {
-      "description": "Request message for WidgetService.WidgetConverseConversation method.",
-      "id": "GoogleCloudDiscoveryengineV1alphaWidgetConverseConversationRequest",
-      "properties": {
-        "additionalParams": {
-          "$ref": "GoogleCloudDiscoveryengineV1alphaAdditionalParams",
-          "description": "Additional params for security and privacy enhancement."
-        },
-        "configId": {
-          "description": "Required. The UUID of the WidgetConfig. This field is used to identify the widget configuration, set of models used to make the user event collection.",
-          "type": "string"
-        },
-        "conversationId": {
-          "description": "The id of the Conversation to get. Use \"-\" to activate auto session mode, which automatically creates a new conversation inside a ConverseConversation session.",
-          "type": "string"
-        },
-        "converseConversationRequest": {
-          "$ref": "GoogleCloudDiscoveryengineV1alphaConverseConversationRequest",
-          "description": "Required. The ConverseConversationRequest request to perform converse a conversation. The ServingConfig id will be `default_search` by default."
-        }
-      },
-      "type": "object"
-    },
-    "GoogleCloudDiscoveryengineV1alphaWidgetConverseConversationResponse": {
-      "description": "Response message for WidgetService.WidgetConverseConversation method.",
-      "id": "GoogleCloudDiscoveryengineV1alphaWidgetConverseConversationResponse",
-      "properties": {
-        "conversationId": {
-          "description": "The id of the Conversation returned.",
-          "type": "string"
-        },
-        "converseConversationResponse": {
-          "$ref": "GoogleCloudDiscoveryengineV1alphaConverseConversationResponse",
-          "description": "ConverseConversationResponse returned from ConversationalSearchService.ConverseConversation."
-        },
-        "uToken": {
-          "description": "The token in response.",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "GoogleCloudDiscoveryengineV1alphaWidgetSearchRequest": {
-      "description": "Request message for WidgetService.WidgetSearch method.",
-      "id": "GoogleCloudDiscoveryengineV1alphaWidgetSearchRequest",
-      "properties": {
-        "additionalParams": {
-          "$ref": "GoogleCloudDiscoveryengineV1alphaAdditionalParams",
-          "description": "Additional params for security and privacy enhancement."
-        },
-        "configId": {
-          "description": "Required. The UUID of the Search WidgetConfig. This field is used to identify the search widget configuration, set of models used to make the search.",
-          "type": "string"
-        },
-        "searchRequest": {
-          "$ref": "GoogleCloudDiscoveryengineV1alphaSearchRequest",
-          "description": "Required. The search request to perform search."
-        }
-      },
-      "type": "object"
-    },
-    "GoogleCloudDiscoveryengineV1alphaWidgetSearchResponse": {
-      "description": "Response message for WidgetService.WidgetSearch method.",
-      "id": "GoogleCloudDiscoveryengineV1alphaWidgetSearchResponse",
-      "properties": {
-        "searchResponse": {
-          "$ref": "GoogleCloudDiscoveryengineV1alphaSearchResponse",
-          "description": "The search response after performing search."
-        },
-        "uToken": {
-          "description": "The token in response.",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
     "GoogleCloudDiscoveryengineV1betaBatchCreateTargetSiteMetadata": {
       "description": "Metadata related to the progress of the SiteSearchEngineService.BatchCreateTargetSites operation. This will be returned by the google.longrunning.Operation.metadata field.",
       "id": "GoogleCloudDiscoveryengineV1betaBatchCreateTargetSiteMetadata",
@@ -13557,6 +13065,55 @@
         },
         "updateTime": {
           "description": "Operation last update time. If the operation is done, this is also the finish time.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaCustomTuningModel": {
+      "description": "Metadata that describes a custom tuned model.",
+      "id": "GoogleCloudDiscoveryengineV1betaCustomTuningModel",
+      "properties": {
+        "createTime": {
+          "description": "Timestamp the Model was created at.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "displayName": {
+          "description": "The display name of the model.",
+          "type": "string"
+        },
+        "modelState": {
+          "description": "The state that the model is in (e.g.`TRAINING` or `TRAINING_FAILED`).",
+          "enum": [
+            "MODEL_STATE_UNSPECIFIED",
+            "TRAINING_PAUSED",
+            "TRAINING",
+            "TRAINING_COMPLETE",
+            "READY_FOR_SERVING",
+            "TRAINING_FAILED"
+          ],
+          "enumDescriptions": [
+            "",
+            "The model is in a paused training state.",
+            "The model is currently training.",
+            "The model has successfully completed training.",
+            "The model is ready for serving.",
+            "The model training failed."
+          ],
+          "type": "string"
+        },
+        "modelVersion": {
+          "format": "int64",
+          "type": "string"
+        },
+        "name": {
+          "description": "Required. The fully qualified resource name of the model. Format: `projects/{project_number}/locations/{location}/collections/{collection}/dataStores/{data_store}/customTuningModels/{custom_tuning_model}` model must be an alpha-numerical string with limit of 40 characters.",
+          "type": "string"
+        },
+        "trainingStartTime": {
+          "description": "Timestamp the model training was initiated.",
           "format": "google-datetime",
           "type": "string"
         }
@@ -14164,6 +13721,20 @@
       },
       "type": "object"
     },
+    "GoogleCloudDiscoveryengineV1betaListCustomModelsResponse": {
+      "description": "Response message for SearchTuningService.ListCustomModels method.",
+      "id": "GoogleCloudDiscoveryengineV1betaListCustomModelsResponse",
+      "properties": {
+        "models": {
+          "description": "List of custom tuning models.",
+          "items": {
+            "$ref": "GoogleCloudDiscoveryengineV1betaCustomTuningModel"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDiscoveryengineV1betaPurgeDocumentsMetadata": {
       "description": "Metadata related to the progress of the PurgeDocuments operation. This will be returned by the google.longrunning.Operation.metadata field.",
       "id": "GoogleCloudDiscoveryengineV1betaPurgeDocumentsMetadata",
@@ -14348,6 +13919,11 @@
           "description": "Required. Input only. The user provided URI pattern from which the `generated_uri_pattern` is generated.",
           "type": "string"
         },
+        "rootDomainUri": {
+          "description": "Output only. Root domain of the provided_uri_pattern.",
+          "readOnly": true,
+          "type": "string"
+        },
         "siteVerificationInfo": {
           "$ref": "GoogleCloudDiscoveryengineV1betaSiteVerificationInfo",
           "description": "Output only. Site ownership and validity verification status.",
@@ -14438,6 +14014,10 @@
           },
           "description": "The metrics of the trained model.",
           "type": "object"
+        },
+        "modelName": {
+          "description": "Fully qualified name of the CustomTuningModel.",
+          "type": "string"
         },
         "modelStatus": {
           "description": "The trained model status. Possible values are: * **bad-data**: The training data quality is bad. * **no-improvement**: Tuning didn't improve performance. Won't deploy. * **in-progress**: Model training job creation is in progress. * **training**: Model is actively training. * **evaluating**: The model is evaluating trained metrics. * **indexing**: The model trained metrics are indexing. * **ready**: The model is ready for serving.",

@@ -617,6 +617,32 @@ export namespace discoveryengine_v1 {
     updateTime?: string | null;
   }
   /**
+   * Metadata that describes a custom tuned model.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaCustomTuningModel {
+    /**
+     * Timestamp the Model was created at.
+     */
+    createTime?: string | null;
+    /**
+     * The display name of the model.
+     */
+    displayName?: string | null;
+    /**
+     * The state that the model is in (e.g.`TRAINING` or `TRAINING_FAILED`).
+     */
+    modelState?: string | null;
+    modelVersion?: string | null;
+    /**
+     * Required. The fully qualified resource name of the model. Format: `projects/{project_number\}/locations/{location\}/collections/{collection\}/dataStores/{data_store\}/customTuningModels/{custom_tuning_model\}` model must be an alpha-numerical string with limit of 40 characters.
+     */
+    name?: string | null;
+    /**
+     * Timestamp the model training was initiated.
+     */
+    trainingStartTime?: string | null;
+  }
+  /**
    * DataStore captures global settings and configs at the DataStore level.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaDataStore {
@@ -1230,6 +1256,15 @@ export namespace discoveryengine_v1 {
     unjoinedEventsCount?: string | null;
   }
   /**
+   * Response message for SearchTuningService.ListCustomModels method.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaListCustomModelsResponse {
+    /**
+     * List of custom tuning models.
+     */
+    models?: Schema$GoogleCloudDiscoveryengineV1alphaCustomTuningModel[];
+  }
+  /**
    * Metadata and configurations for a Google Cloud project in the service.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaProject {
@@ -1567,6 +1602,10 @@ export namespace discoveryengine_v1 {
      */
     providedUriPattern?: string | null;
     /**
+     * Output only. Root domain of the provided_uri_pattern.
+     */
+    rootDomainUri?: string | null;
+    /**
      * Output only. Site ownership and validity verification status.
      */
     siteVerificationInfo?: Schema$GoogleCloudDiscoveryengineV1alphaSiteVerificationInfo;
@@ -1626,6 +1665,10 @@ export namespace discoveryengine_v1 {
      * The metrics of the trained model.
      */
     metrics?: {[key: string]: number} | null;
+    /**
+     * Fully qualified name of the CustomTuningModel.
+     */
+    modelName?: string | null;
     /**
      * The trained model status. Possible values are: * **bad-data**: The training data quality is bad. * **no-improvement**: Tuning didn't improve performance. Won't deploy. * **in-progress**: Model training job creation is in progress. * **training**: Model is actively training. * **evaluating**: The model is evaluating trained metrics. * **indexing**: The model trained metrics are indexing. * **ready**: The model is ready for serving.
      */
@@ -1778,6 +1821,32 @@ export namespace discoveryengine_v1 {
      * Operation last update time. If the operation is done, this is also the finish time.
      */
     updateTime?: string | null;
+  }
+  /**
+   * Metadata that describes a custom tuned model.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaCustomTuningModel {
+    /**
+     * Timestamp the Model was created at.
+     */
+    createTime?: string | null;
+    /**
+     * The display name of the model.
+     */
+    displayName?: string | null;
+    /**
+     * The state that the model is in (e.g.`TRAINING` or `TRAINING_FAILED`).
+     */
+    modelState?: string | null;
+    modelVersion?: string | null;
+    /**
+     * Required. The fully qualified resource name of the model. Format: `projects/{project_number\}/locations/{location\}/collections/{collection\}/dataStores/{data_store\}/customTuningModels/{custom_tuning_model\}` model must be an alpha-numerical string with limit of 40 characters.
+     */
+    name?: string | null;
+    /**
+     * Timestamp the model training was initiated.
+     */
+    trainingStartTime?: string | null;
   }
   /**
    * DataStore captures global settings and configs at the DataStore level.
@@ -2191,6 +2260,15 @@ export namespace discoveryengine_v1 {
     unjoinedEventsCount?: string | null;
   }
   /**
+   * Response message for SearchTuningService.ListCustomModels method.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaListCustomModelsResponse {
+    /**
+     * List of custom tuning models.
+     */
+    models?: Schema$GoogleCloudDiscoveryengineV1betaCustomTuningModel[];
+  }
+  /**
    * Metadata related to the progress of the PurgeDocuments operation. This will be returned by the google.longrunning.Operation.metadata field.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1betaPurgeDocumentsMetadata {
@@ -2313,6 +2391,10 @@ export namespace discoveryengine_v1 {
      */
     providedUriPattern?: string | null;
     /**
+     * Output only. Root domain of the provided_uri_pattern.
+     */
+    rootDomainUri?: string | null;
+    /**
      * Output only. Site ownership and validity verification status.
      */
     siteVerificationInfo?: Schema$GoogleCloudDiscoveryengineV1betaSiteVerificationInfo;
@@ -2372,6 +2454,10 @@ export namespace discoveryengine_v1 {
      * The metrics of the trained model.
      */
     metrics?: {[key: string]: number} | null;
+    /**
+     * Fully qualified name of the CustomTuningModel.
+     */
+    modelName?: string | null;
     /**
      * The trained model status. Possible values are: * **bad-data**: The training data quality is bad. * **no-improvement**: Tuning didn't improve performance. Won't deploy. * **in-progress**: Model training job creation is in progress. * **training**: Model is actively training. * **evaluating**: The model is evaluating trained metrics. * **indexing**: The model trained metrics are indexing. * **ready**: The model is ready for serving.
      */
@@ -3867,7 +3953,7 @@ export namespace discoveryengine_v1 {
      */
     offset?: number | null;
     /**
-     * The order in which documents are returned. Documents can be ordered by a field in an Document object. Leave it unset if ordered by relevance. `order_by` expression is case-sensitive. For more information on ordering, see [Ordering](https://cloud.google.com/retail/docs/filter-and-order#order) If this field is unrecognizable, an `INVALID_ARGUMENT` is returned.
+     * The order in which documents are returned. Documents can be ordered by a field in an Document object. Leave it unset if ordered by relevance. `order_by` expression is case-sensitive. For more information on ordering for retail search, see [Ordering](https://cloud.google.com/retail/docs/filter-and-order#order) If this field is unrecognizable, an `INVALID_ARGUMENT` is returned.
      */
     orderBy?: string | null;
     /**
@@ -4450,6 +4536,10 @@ export namespace discoveryengine_v1 {
      * Required. Input only. The user provided URI pattern from which the `generated_uri_pattern` is generated.
      */
     providedUriPattern?: string | null;
+    /**
+     * Output only. Root domain of the provided_uri_pattern.
+     */
+    rootDomainUri?: string | null;
     /**
      * Output only. Site ownership and validity verification status.
      */
@@ -5809,7 +5899,7 @@ export namespace discoveryengine_v1 {
   export interface Params$Resource$Projects$Locations$Collections$Datastores$List
     extends StandardParameters {
     /**
-     * Filter by solution type. For example: filter = 'solution_type:SOLUTION_TYPE_SEARCH'
+     * Filter by solution type . For example: filter = 'solution_type:SOLUTION_TYPE_SEARCH'
      */
     filter?: string;
     /**
@@ -13936,7 +14026,7 @@ export namespace discoveryengine_v1 {
   export interface Params$Resource$Projects$Locations$Datastores$List
     extends StandardParameters {
     /**
-     * Filter by solution type. For example: filter = 'solution_type:SOLUTION_TYPE_SEARCH'
+     * Filter by solution type . For example: filter = 'solution_type:SOLUTION_TYPE_SEARCH'
      */
     filter?: string;
     /**

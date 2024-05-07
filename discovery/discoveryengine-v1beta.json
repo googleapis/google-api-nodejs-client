@@ -355,7 +355,7 @@
                       ],
                       "parameters": {
                         "filter": {
-                          "description": "Filter by solution type. For example: filter = 'solution_type:SOLUTION_TYPE_SEARCH'",
+                          "description": "Filter by solution type . For example: filter = 'solution_type:SOLUTION_TYPE_SEARCH'",
                           "location": "query",
                           "type": "string"
                         },
@@ -925,6 +925,35 @@
                           },
                           "response": {
                             "$ref": "GoogleCloudDiscoveryengineV1betaConversation"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        }
+                      }
+                    },
+                    "customModels": {
+                      "methods": {
+                        "list": {
+                          "description": "Gets a list of all the custom models.",
+                          "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/dataStores/{dataStoresId}/customModels",
+                          "httpMethod": "GET",
+                          "id": "discoveryengine.projects.locations.collections.dataStores.customModels.list",
+                          "parameterOrder": [
+                            "dataStore"
+                          ],
+                          "parameters": {
+                            "dataStore": {
+                              "description": "Required. The resource name of the parent Data Store, such as `projects/*/locations/global/collections/default_collection/dataStores/default_data_store`. This field is used to identify the data store where to fetch the models from.",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/dataStores/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1beta/{+dataStore}/customModels",
+                          "response": {
+                            "$ref": "GoogleCloudDiscoveryengineV1betaListCustomModelsResponse"
                           },
                           "scopes": [
                             "https://www.googleapis.com/auth/cloud-platform"
@@ -3439,7 +3468,7 @@
                   ],
                   "parameters": {
                     "filter": {
-                      "description": "Filter by solution type. For example: filter = 'solution_type:SOLUTION_TYPE_SEARCH'",
+                      "description": "Filter by solution type . For example: filter = 'solution_type:SOLUTION_TYPE_SEARCH'",
                       "location": "query",
                       "type": "string"
                     },
@@ -5332,7 +5361,7 @@
       }
     }
   },
-  "revision": "20240415",
+  "revision": "20240502",
   "rootUrl": "https://discoveryengine.googleapis.com/",
   "schemas": {
     "GoogleApiHttpBody": {
@@ -6365,6 +6394,11 @@
           "description": "Required. Input only. The user provided URI pattern from which the `generated_uri_pattern` is generated.",
           "type": "string"
         },
+        "rootDomainUri": {
+          "description": "Output only. Root domain of the provided_uri_pattern.",
+          "readOnly": true,
+          "type": "string"
+        },
         "siteVerificationInfo": {
           "$ref": "GoogleCloudDiscoveryengineV1SiteVerificationInfo",
           "description": "Output only. Site ownership and validity verification status.",
@@ -6976,6 +7010,55 @@
         },
         "updateTime": {
           "description": "Operation last update time. If the operation is done, this is also the finish time.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaCustomTuningModel": {
+      "description": "Metadata that describes a custom tuned model.",
+      "id": "GoogleCloudDiscoveryengineV1alphaCustomTuningModel",
+      "properties": {
+        "createTime": {
+          "description": "Timestamp the Model was created at.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "displayName": {
+          "description": "The display name of the model.",
+          "type": "string"
+        },
+        "modelState": {
+          "description": "The state that the model is in (e.g.`TRAINING` or `TRAINING_FAILED`).",
+          "enum": [
+            "MODEL_STATE_UNSPECIFIED",
+            "TRAINING_PAUSED",
+            "TRAINING",
+            "TRAINING_COMPLETE",
+            "READY_FOR_SERVING",
+            "TRAINING_FAILED"
+          ],
+          "enumDescriptions": [
+            "",
+            "The model is in a paused training state.",
+            "The model is currently training.",
+            "The model has successfully completed training.",
+            "The model is ready for serving.",
+            "The model training failed."
+          ],
+          "type": "string"
+        },
+        "modelVersion": {
+          "format": "int64",
+          "type": "string"
+        },
+        "name": {
+          "description": "Required. The fully qualified resource name of the model. Format: `projects/{project_number}/locations/{location}/collections/{collection}/dataStores/{data_store}/customTuningModels/{custom_tuning_model}` model must be an alpha-numerical string with limit of 40 characters.",
+          "type": "string"
+        },
+        "trainingStartTime": {
+          "description": "Timestamp the model training was initiated.",
           "format": "google-datetime",
           "type": "string"
         }
@@ -7695,8 +7778,8 @@
             "Field value type is Number.",
             "Field value type is Integer.",
             "Field value type is Boolean.",
-            "Field value type is Geolocation.",
-            "Field value type is Datetime."
+            "Field value type is Geolocation. Geolocation is expressed as an object with the following keys: * `id`: a string representing the location id * `longitude`: a number representing the longitude coordinate of the location * `latitude`: a number repesenting the latitude coordinate of the location * `address`: a string representing the full address of the location `latitude` and `longitude` must always be provided together. At least one of a) `address` or b) `latitude`-`longitude` pair must be provided.",
+            "Field value type is Datetime. Datetime can be expressed as either: * a number representing milliseconds-since-the-epoch * a string representing milliseconds-since-the-epoch. e.g. `\"1420070400001\"` * a string representing the [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date or date and time. e.g. `\"2015-01-01\"` or `\"2015-01-01T12:10:30Z\"`"
           ],
           "readOnly": true,
           "type": "string"
@@ -7954,6 +8037,20 @@
           "description": "Count of user events imported, but with Document information not found in the existing Branch.",
           "format": "int64",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaListCustomModelsResponse": {
+      "description": "Response message for SearchTuningService.ListCustomModels method.",
+      "id": "GoogleCloudDiscoveryengineV1alphaListCustomModelsResponse",
+      "properties": {
+        "models": {
+          "description": "List of custom tuning models.",
+          "items": {
+            "$ref": "GoogleCloudDiscoveryengineV1alphaCustomTuningModel"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -8452,6 +8549,11 @@
           "description": "Required. Input only. The user provided URI pattern from which the `generated_uri_pattern` is generated.",
           "type": "string"
         },
+        "rootDomainUri": {
+          "description": "Output only. Root domain of the provided_uri_pattern.",
+          "readOnly": true,
+          "type": "string"
+        },
         "siteVerificationInfo": {
           "$ref": "GoogleCloudDiscoveryengineV1alphaSiteVerificationInfo",
           "description": "Output only. Site ownership and validity verification status.",
@@ -8542,6 +8644,10 @@
           },
           "description": "The metrics of the trained model.",
           "type": "object"
+        },
+        "modelName": {
+          "description": "Fully qualified name of the CustomTuningModel.",
+          "type": "string"
         },
         "modelStatus": {
           "description": "The trained model status. Possible values are: * **bad-data**: The training data quality is bad. * **no-improvement**: Tuning didn't improve performance. Won't deploy. * **in-progress**: Model training job creation is in progress. * **training**: Model is actively training. * **evaluating**: The model is evaluating trained metrics. * **indexing**: The model trained metrics are indexing. * **ready**: The model is ready for serving.",
@@ -9617,7 +9723,7 @@
       "id": "GoogleCloudDiscoveryengineV1betaCheckGroundingRequest",
       "properties": {
         "answerCandidate": {
-          "description": "Answer candidate to check.",
+          "description": "Answer candidate to check. Can have a maximum length of 1024 characters.",
           "type": "string"
         },
         "facts": {
@@ -9630,6 +9736,13 @@
         "groundingSpec": {
           "$ref": "GoogleCloudDiscoveryengineV1betaCheckGroundingSpec",
           "description": "Configuration of the grounding check."
+        },
+        "userLabels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "The user labels applied to a resource must meet the following requirements: * Each resource can have multiple labels, up to a maximum of 64. * Each label must be a key-value pair. * Keys have a minimum length of 1 character and a maximum length of 63 characters and cannot be empty. Values can be empty and have a maximum length of 63 characters. * Keys and values can contain only lowercase letters, numeric characters, underscores, and dashes. All characters must use UTF-8 encoding, and international characters are allowed. * The key portion of a label must be unique. However, you can use the same key with multiple resources. * Keys must start with a lowercase letter or international character. See [Google Cloud Document](https://cloud.google.com/resource-manager/docs/creating-managing-labels#requirements) for more details.",
+          "type": "object"
         }
       },
       "type": "object"
@@ -9680,6 +9793,10 @@
           "description": "Position indicating the end of the claim in the answer candidate, exclusive.",
           "format": "int32",
           "type": "integer"
+        },
+        "groundingCheckRequired": {
+          "description": "Indicates that this claim required grounding check. When the system decided this claim doesn't require attribution/grounding check, this field will be set to false. In that case, no grounding check was done for the claim and therefore citation_indices, and anti_citation_indices should not be returned.",
+          "type": "boolean"
         },
         "startPos": {
           "description": "Position indicating the start of the claim in the answer candidate, measured in bytes.",
@@ -10043,6 +10160,55 @@
             "type": "string"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaCustomTuningModel": {
+      "description": "Metadata that describes a custom tuned model.",
+      "id": "GoogleCloudDiscoveryengineV1betaCustomTuningModel",
+      "properties": {
+        "createTime": {
+          "description": "Timestamp the Model was created at.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "displayName": {
+          "description": "The display name of the model.",
+          "type": "string"
+        },
+        "modelState": {
+          "description": "The state that the model is in (e.g.`TRAINING` or `TRAINING_FAILED`).",
+          "enum": [
+            "MODEL_STATE_UNSPECIFIED",
+            "TRAINING_PAUSED",
+            "TRAINING",
+            "TRAINING_COMPLETE",
+            "READY_FOR_SERVING",
+            "TRAINING_FAILED"
+          ],
+          "enumDescriptions": [
+            "",
+            "The model is in a paused training state.",
+            "The model is currently training.",
+            "The model has successfully completed training.",
+            "The model is ready for serving.",
+            "The model training failed."
+          ],
+          "type": "string"
+        },
+        "modelVersion": {
+          "format": "int64",
+          "type": "string"
+        },
+        "name": {
+          "description": "Required. The fully qualified resource name of the model. Format: `projects/{project_number}/locations/{location}/collections/{collection}/dataStores/{data_store}/customTuningModels/{custom_tuning_model}` model must be an alpha-numerical string with limit of 40 characters.",
+          "type": "string"
+        },
+        "trainingStartTime": {
+          "description": "Timestamp the model training was initiated.",
+          "format": "google-datetime",
+          "type": "string"
         }
       },
       "type": "object"
@@ -10642,6 +10808,11 @@
           "description": "Text content of the fact chunk. Can be at most 10K characters long.",
           "type": "string"
         },
+        "index": {
+          "description": "The index of this chunk. Currently, only used for the streaming mode.",
+          "format": "int32",
+          "type": "integer"
+        },
         "source": {
           "description": "Source from which this fact chunk was retrieved. If it was retrieved from the GroundingFacts provided in the request then this field will contain the index of the specific fact from which this chunk was retrieved.",
           "type": "string"
@@ -11101,6 +11272,20 @@
         "nextPageToken": {
           "description": "Pagination token, if not returned indicates the last page.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaListCustomModelsResponse": {
+      "description": "Response message for SearchTuningService.ListCustomModels method.",
+      "id": "GoogleCloudDiscoveryengineV1betaListCustomModelsResponse",
+      "properties": {
+        "models": {
+          "description": "List of custom tuning models.",
+          "items": {
+            "$ref": "GoogleCloudDiscoveryengineV1betaCustomTuningModel"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -11753,7 +11938,7 @@
           "type": "integer"
         },
         "orderBy": {
-          "description": "The order in which documents are returned. Documents can be ordered by a field in an Document object. Leave it unset if ordered by relevance. `order_by` expression is case-sensitive. For more information on ordering, see [Ordering](https://cloud.google.com/retail/docs/filter-and-order#order) If this field is unrecognizable, an `INVALID_ARGUMENT` is returned.",
+          "description": "The order in which documents are returned. Documents can be ordered by a field in an Document object. Leave it unset if ordered by relevance. `order_by` expression is case-sensitive. For more information on ordering for retail search, see [Ordering](https://cloud.google.com/retail/docs/filter-and-order#order) If this field is unrecognizable, an `INVALID_ARGUMENT` is returned.",
           "type": "string"
         },
         "pageSize": {
@@ -12948,6 +13133,11 @@
           "description": "Required. Input only. The user provided URI pattern from which the `generated_uri_pattern` is generated.",
           "type": "string"
         },
+        "rootDomainUri": {
+          "description": "Output only. Root domain of the provided_uri_pattern.",
+          "readOnly": true,
+          "type": "string"
+        },
         "siteVerificationInfo": {
           "$ref": "GoogleCloudDiscoveryengineV1betaSiteVerificationInfo",
           "description": "Output only. Site ownership and validity verification status.",
@@ -13043,6 +13233,10 @@
           "$ref": "GoogleCloudDiscoveryengineV1betaTrainCustomModelRequestGcsTrainingInput",
           "description": "Cloud Storage training input."
         },
+        "modelId": {
+          "description": "If not provided, a UUID will be generated.",
+          "type": "string"
+        },
         "modelType": {
           "description": "Model to be trained. Supported values are: * **search-tuning**: Fine tuning the search system based on data provided.",
           "type": "string"
@@ -13095,6 +13289,10 @@
           },
           "description": "The metrics of the trained model.",
           "type": "object"
+        },
+        "modelName": {
+          "description": "Fully qualified name of the CustomTuningModel.",
+          "type": "string"
         },
         "modelStatus": {
           "description": "The trained model status. Possible values are: * **bad-data**: The training data quality is bad. * **no-improvement**: Tuning didn't improve performance. Won't deploy. * **in-progress**: Model training job creation is in progress. * **training**: Model is actively training. * **evaluating**: The model is evaluating trained metrics. * **indexing**: The model trained metrics are indexing. * **ready**: The model is ready for serving.",

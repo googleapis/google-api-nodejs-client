@@ -617,6 +617,32 @@ export namespace discoveryengine_v1beta {
     updateTime?: string | null;
   }
   /**
+   * Metadata that describes a custom tuned model.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaCustomTuningModel {
+    /**
+     * Timestamp the Model was created at.
+     */
+    createTime?: string | null;
+    /**
+     * The display name of the model.
+     */
+    displayName?: string | null;
+    /**
+     * The state that the model is in (e.g.`TRAINING` or `TRAINING_FAILED`).
+     */
+    modelState?: string | null;
+    modelVersion?: string | null;
+    /**
+     * Required. The fully qualified resource name of the model. Format: `projects/{project_number\}/locations/{location\}/collections/{collection\}/dataStores/{data_store\}/customTuningModels/{custom_tuning_model\}` model must be an alpha-numerical string with limit of 40 characters.
+     */
+    name?: string | null;
+    /**
+     * Timestamp the model training was initiated.
+     */
+    trainingStartTime?: string | null;
+  }
+  /**
    * DataStore captures global settings and configs at the DataStore level.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaDataStore {
@@ -1230,6 +1256,15 @@ export namespace discoveryengine_v1beta {
     unjoinedEventsCount?: string | null;
   }
   /**
+   * Response message for SearchTuningService.ListCustomModels method.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaListCustomModelsResponse {
+    /**
+     * List of custom tuning models.
+     */
+    models?: Schema$GoogleCloudDiscoveryengineV1alphaCustomTuningModel[];
+  }
+  /**
    * Metadata and configurations for a Google Cloud project in the service.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaProject {
@@ -1567,6 +1602,10 @@ export namespace discoveryengine_v1beta {
      */
     providedUriPattern?: string | null;
     /**
+     * Output only. Root domain of the provided_uri_pattern.
+     */
+    rootDomainUri?: string | null;
+    /**
      * Output only. Site ownership and validity verification status.
      */
     siteVerificationInfo?: Schema$GoogleCloudDiscoveryengineV1alphaSiteVerificationInfo;
@@ -1626,6 +1665,10 @@ export namespace discoveryengine_v1beta {
      * The metrics of the trained model.
      */
     metrics?: {[key: string]: number} | null;
+    /**
+     * Fully qualified name of the CustomTuningModel.
+     */
+    modelName?: string | null;
     /**
      * The trained model status. Possible values are: * **bad-data**: The training data quality is bad. * **no-improvement**: Tuning didn't improve performance. Won't deploy. * **in-progress**: Model training job creation is in progress. * **training**: Model is actively training. * **evaluating**: The model is evaluating trained metrics. * **indexing**: The model trained metrics are indexing. * **ready**: The model is ready for serving.
      */
@@ -2426,7 +2469,7 @@ export namespace discoveryengine_v1beta {
    */
   export interface Schema$GoogleCloudDiscoveryengineV1betaCheckGroundingRequest {
     /**
-     * Answer candidate to check.
+     * Answer candidate to check. Can have a maximum length of 1024 characters.
      */
     answerCandidate?: string | null;
     /**
@@ -2437,6 +2480,10 @@ export namespace discoveryengine_v1beta {
      * Configuration of the grounding check.
      */
     groundingSpec?: Schema$GoogleCloudDiscoveryengineV1betaCheckGroundingSpec;
+    /**
+     * The user labels applied to a resource must meet the following requirements: * Each resource can have multiple labels, up to a maximum of 64. * Each label must be a key-value pair. * Keys have a minimum length of 1 character and a maximum length of 63 characters and cannot be empty. Values can be empty and have a maximum length of 63 characters. * Keys and values can contain only lowercase letters, numeric characters, underscores, and dashes. All characters must use UTF-8 encoding, and international characters are allowed. * The key portion of a label must be unique. However, you can use the same key with multiple resources. * Keys must start with a lowercase letter or international character. See [Google Cloud Document](https://cloud.google.com/resource-manager/docs/creating-managing-labels#requirements) for more details.
+     */
+    userLabels?: {[key: string]: string} | null;
   }
   /**
    * Response message for the GroundedGenerationService.CheckGrounding method.
@@ -2471,6 +2518,10 @@ export namespace discoveryengine_v1beta {
      * Position indicating the end of the claim in the answer candidate, exclusive.
      */
     endPos?: number | null;
+    /**
+     * Indicates that this claim required grounding check. When the system decided this claim doesn't require attribution/grounding check, this field will be set to false. In that case, no grounding check was done for the claim and therefore citation_indices, and anti_citation_indices should not be returned.
+     */
+    groundingCheckRequired?: boolean | null;
     /**
      * Position indicating the start of the claim in the answer candidate, measured in bytes.
      */
@@ -2747,6 +2798,32 @@ export namespace discoveryengine_v1beta {
      * The textual values of this custom attribute. For example, `["yellow", "green"]` when the key is "color". Empty string is not allowed. Otherwise, an `INVALID_ARGUMENT` error is returned. Exactly one of CustomAttribute.text or CustomAttribute.numbers should be set. Otherwise, an `INVALID_ARGUMENT` error is returned.
      */
     text?: string[] | null;
+  }
+  /**
+   * Metadata that describes a custom tuned model.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaCustomTuningModel {
+    /**
+     * Timestamp the Model was created at.
+     */
+    createTime?: string | null;
+    /**
+     * The display name of the model.
+     */
+    displayName?: string | null;
+    /**
+     * The state that the model is in (e.g.`TRAINING` or `TRAINING_FAILED`).
+     */
+    modelState?: string | null;
+    modelVersion?: string | null;
+    /**
+     * Required. The fully qualified resource name of the model. Format: `projects/{project_number\}/locations/{location\}/collections/{collection\}/dataStores/{data_store\}/customTuningModels/{custom_tuning_model\}` model must be an alpha-numerical string with limit of 40 characters.
+     */
+    name?: string | null;
+    /**
+     * Timestamp the model training was initiated.
+     */
+    trainingStartTime?: string | null;
   }
   /**
    * DataStore captures global settings and configs at the DataStore level.
@@ -3158,6 +3235,10 @@ export namespace discoveryengine_v1beta {
      */
     chunkText?: string | null;
     /**
+     * The index of this chunk. Currently, only used for the streaming mode.
+     */
+    index?: number | null;
+    /**
      * Source from which this fact chunk was retrieved. If it was retrieved from the GroundingFacts provided in the request then this field will contain the index of the specific fact from which this chunk was retrieved.
      */
     source?: string | null;
@@ -3513,6 +3594,15 @@ export namespace discoveryengine_v1beta {
      * Pagination token, if not returned indicates the last page.
      */
     nextPageToken?: string | null;
+  }
+  /**
+   * Response message for SearchTuningService.ListCustomModels method.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaListCustomModelsResponse {
+    /**
+     * List of custom tuning models.
+     */
+    models?: Schema$GoogleCloudDiscoveryengineV1betaCustomTuningModel[];
   }
   /**
    * Response message for DataStoreService.ListDataStores method.
@@ -4014,7 +4104,7 @@ export namespace discoveryengine_v1beta {
      */
     offset?: number | null;
     /**
-     * The order in which documents are returned. Documents can be ordered by a field in an Document object. Leave it unset if ordered by relevance. `order_by` expression is case-sensitive. For more information on ordering, see [Ordering](https://cloud.google.com/retail/docs/filter-and-order#order) If this field is unrecognizable, an `INVALID_ARGUMENT` is returned.
+     * The order in which documents are returned. Documents can be ordered by a field in an Document object. Leave it unset if ordered by relevance. `order_by` expression is case-sensitive. For more information on ordering for retail search, see [Ordering](https://cloud.google.com/retail/docs/filter-and-order#order) If this field is unrecognizable, an `INVALID_ARGUMENT` is returned.
      */
     orderBy?: string | null;
     /**
@@ -4869,6 +4959,10 @@ export namespace discoveryengine_v1beta {
      */
     providedUriPattern?: string | null;
     /**
+     * Output only. Root domain of the provided_uri_pattern.
+     */
+    rootDomainUri?: string | null;
+    /**
      * Output only. Site ownership and validity verification status.
      */
     siteVerificationInfo?: Schema$GoogleCloudDiscoveryengineV1betaSiteVerificationInfo;
@@ -4938,6 +5032,10 @@ export namespace discoveryengine_v1beta {
      */
     gcsTrainingInput?: Schema$GoogleCloudDiscoveryengineV1betaTrainCustomModelRequestGcsTrainingInput;
     /**
+     * If not provided, a UUID will be generated.
+     */
+    modelId?: string | null;
+    /**
      * Model to be trained. Supported values are: * **search-tuning**: Fine tuning the search system based on data provided.
      */
     modelType?: string | null;
@@ -4979,6 +5077,10 @@ export namespace discoveryengine_v1beta {
      * The metrics of the trained model.
      */
     metrics?: {[key: string]: number} | null;
+    /**
+     * Fully qualified name of the CustomTuningModel.
+     */
+    modelName?: string | null;
     /**
      * The trained model status. Possible values are: * **bad-data**: The training data quality is bad. * **no-improvement**: Tuning didn't improve performance. Won't deploy. * **in-progress**: Model training job creation is in progress. * **training**: Model is actively training. * **evaluating**: The model is evaluating trained metrics. * **indexing**: The model trained metrics are indexing. * **ready**: The model is ready for serving.
      */
@@ -5734,6 +5836,10 @@ export namespace discoveryengine_v1beta {
      */
     providedUriPattern?: string | null;
     /**
+     * Output only. Root domain of the provided_uri_pattern.
+     */
+    rootDomainUri?: string | null;
+    /**
      * Output only. Site ownership and validity verification status.
      */
     siteVerificationInfo?: Schema$GoogleCloudDiscoveryengineV1SiteVerificationInfo;
@@ -6174,6 +6280,7 @@ export namespace discoveryengine_v1beta {
     context: APIRequestContext;
     branches: Resource$Projects$Locations$Collections$Datastores$Branches;
     conversations: Resource$Projects$Locations$Collections$Datastores$Conversations;
+    customModels: Resource$Projects$Locations$Collections$Datastores$Custommodels;
     models: Resource$Projects$Locations$Collections$Datastores$Models;
     operations: Resource$Projects$Locations$Collections$Datastores$Operations;
     schemas: Resource$Projects$Locations$Collections$Datastores$Schemas;
@@ -6190,6 +6297,10 @@ export namespace discoveryengine_v1beta {
         );
       this.conversations =
         new Resource$Projects$Locations$Collections$Datastores$Conversations(
+          this.context
+        );
+      this.customModels =
+        new Resource$Projects$Locations$Collections$Datastores$Custommodels(
           this.context
         );
       this.models =
@@ -7068,7 +7179,7 @@ export namespace discoveryengine_v1beta {
   export interface Params$Resource$Projects$Locations$Collections$Datastores$List
     extends StandardParameters {
     /**
-     * Filter by solution type. For example: filter = 'solution_type:SOLUTION_TYPE_SEARCH'
+     * Filter by solution type . For example: filter = 'solution_type:SOLUTION_TYPE_SEARCH'
      */
     filter?: string;
     /**
@@ -8790,6 +8901,120 @@ export namespace discoveryengine_v1beta {
      * Request body metadata
      */
     requestBody?: Schema$GoogleCloudDiscoveryengineV1betaConversation;
+  }
+
+  export class Resource$Projects$Locations$Collections$Datastores$Custommodels {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Gets a list of all the custom models.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Collections$Datastores$Custommodels$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Collections$Datastores$Custommodels$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDiscoveryengineV1betaListCustomModelsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Collections$Datastores$Custommodels$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Collections$Datastores$Custommodels$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaListCustomModelsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaListCustomModelsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Collections$Datastores$Custommodels$List,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaListCustomModelsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaListCustomModelsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Collections$Datastores$Custommodels$List
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaListCustomModelsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaListCustomModelsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaListCustomModelsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDiscoveryengineV1betaListCustomModelsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Collections$Datastores$Custommodels$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Collections$Datastores$Custommodels$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://discoveryengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta/{+dataStore}/customModels').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['dataStore'],
+        pathParams: ['dataStore'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDiscoveryengineV1betaListCustomModelsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDiscoveryengineV1betaListCustomModelsResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Collections$Datastores$Custommodels$List
+    extends StandardParameters {
+    /**
+     * Required. The resource name of the parent Data Store, such as `projects/x/locations/global/collections/default_collection/dataStores/default_data_store`. This field is used to identify the data store where to fetch the models from.
+     */
+    dataStore?: string;
   }
 
   export class Resource$Projects$Locations$Collections$Datastores$Models {
@@ -17765,7 +17990,7 @@ export namespace discoveryengine_v1beta {
   export interface Params$Resource$Projects$Locations$Datastores$List
     extends StandardParameters {
     /**
-     * Filter by solution type. For example: filter = 'solution_type:SOLUTION_TYPE_SEARCH'
+     * Filter by solution type . For example: filter = 'solution_type:SOLUTION_TYPE_SEARCH'
      */
     filter?: string;
     /**
