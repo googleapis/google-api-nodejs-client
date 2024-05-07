@@ -169,7 +169,7 @@
       }
     }
   },
-  "revision": "20240419",
+  "revision": "20240426",
   "rootUrl": "https://servicecontrol.googleapis.com/",
   "schemas": {
     "Api": {
@@ -1180,6 +1180,65 @@
         "line": {
           "description": "Optional. Line within the source file. 1-based; 0 indicates no line number available.",
           "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "V2ResourceEvent": {
+      "description": "Report v2 extension proto for passing the resource metadata associated with a resource create/update/delete/undelete event from ESF to Chemist. ResourceEvent proto should be serialized into the ReportRequest.operations.extensions.",
+      "id": "V2ResourceEvent",
+      "properties": {
+        "destinations": {
+          "description": "The destinations field determines which backend services should handle the event. This should be specified as a comma-delimited string.",
+          "type": "string"
+        },
+        "parent": {
+          "$ref": "Resource",
+          "description": "The parent resource for the resource."
+        },
+        "path": {
+          "description": "The api path the resource event was created in. This should match the source of the `payload` field. For direct integrations with Chemist, this should generally be the RESPONSE. go/resource-event-pipeline-type",
+          "enum": [
+            "API_PATH_UNSPECIFIED",
+            "REQUEST",
+            "RESPONSE"
+          ],
+          "enumDescriptions": [
+            "Default value. Do not use.",
+            "The request path.",
+            "The response path."
+          ],
+          "type": "string"
+        },
+        "payload": {
+          "additionalProperties": {
+            "description": "Properties of the object. Contains field @type with type URL.",
+            "type": "any"
+          },
+          "description": "The payload contains metadata associated with the resource event. A ResourceEventPayloadStatus is provided instead if the original payload cannot be returned due to a limitation (e.g. size limit).",
+          "type": "object"
+        },
+        "resource": {
+          "$ref": "Resource",
+          "description": "The resource associated with the event."
+        },
+        "type": {
+          "description": "The resource event type determines how the backend service should process the event.",
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "CREATE",
+            "UPDATE",
+            "DELETE",
+            "UNDELETE"
+          ],
+          "enumDescriptions": [
+            "The resource event type is unclear. We do not expect any events to fall into this category.",
+            "The resource is created/inserted.",
+            "The resource is updated.",
+            "The resource is deleted.",
+            "The resource is un-deleted."
+          ],
           "type": "string"
         }
       },
