@@ -179,7 +179,7 @@ export namespace artifactregistry_v1beta1 {
      */
     hashes?: Schema$Hash[];
     /**
-     * The name of the file, for example: "projects/p1/locations/us-central1/repositories/repo1/files/a%2Fb%2Fc.txt". If the file ID part contains slashes, they are escaped.
+     * The name of the file, for example: `projects/p1/locations/us-central1/repositories/repo1/files/a%2Fb%2Fc.txt`. If the file ID part contains slashes, they are escaped.
      */
     name?: string | null;
     /**
@@ -399,9 +399,13 @@ export namespace artifactregistry_v1beta1 {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * The name of the repository, for example: `projects/p1/locations/us-central1/repositories/repo1`.
+     * The name of the repository, for example: `projects/p1/locations/us-central1/repositories/repo1`. For each location in a project, repository names must be unique.
      */
     name?: string | null;
+    /**
+     * Output only. If set, the repository satisfies physical zone isolation.
+     */
+    satisfiesPzi?: boolean | null;
     /**
      * Output only. If set, the repository satisfies physical zone separation.
      */
@@ -1622,7 +1626,7 @@ export namespace artifactregistry_v1beta1 {
   export interface Params$Resource$Projects$Locations$Repositories$Patch
     extends StandardParameters {
     /**
-     * The name of the repository, for example: `projects/p1/locations/us-central1/repositories/repo1`.
+     * The name of the repository, for example: `projects/p1/locations/us-central1/repositories/repo1`. For each location in a project, repository names must be unique.
      */
     name?: string;
     /**
