@@ -2714,7 +2714,7 @@
       }
     }
   },
-  "revision": "20240414",
+  "revision": "20240427",
   "rootUrl": "https://monitoring.googleapis.com/",
   "schemas": {
     "Aggregation": {
@@ -5389,7 +5389,7 @@
       "type": "object"
     },
     "ServiceAgentAuthentication": {
-      "description": "Contains information needed for generating an OpenID Connect token (https://developers.google.com/identity/protocols/OpenIDConnect). The OIDC token will be generated for the Monitoring service agent service account.",
+      "description": "Contains information needed for generating either an OpenID Connect token (https://developers.google.com/identity/protocols/OpenIDConnect) or OAuth token (https://developers.google.com/identity/protocols/oauth2). The token will be generated for the Monitoring service agent service account.",
       "id": "ServiceAgentAuthentication",
       "properties": {
         "type": {

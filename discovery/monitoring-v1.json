@@ -753,7 +753,7 @@
       }
     }
   },
-  "revision": "20240121",
+  "revision": "20240427",
   "rootUrl": "https://monitoring.googleapis.com/",
   "schemas": {
     "Aggregation": {
@@ -1086,6 +1086,10 @@
       "description": "A filter to reduce the amount of data charted in relevant widgets.",
       "id": "DashboardFilter",
       "properties": {
+        "applyToNewWidgets": {
+          "description": "Whether to apply this filter to new widgets by default",
+          "type": "boolean"
+        },
         "filterType": {
           "description": "The specified filter type",
           "enum": [
