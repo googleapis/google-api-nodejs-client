@@ -90,6 +90,14 @@
       "description": "Locational Endpoint"
     },
     {
+<<<<<<< HEAD
+=======
+      "endpointUrl": "https://europe-southwest1-aiplatform.googleapis.com/",
+      "location": "europe-southwest1",
+      "description": "Locational Endpoint"
+    },
+    {
+>>>>>>> fa2a9177f (feat(aiplatform)!: update the API)
       "location": "europe-west1",
       "endpointUrl": "https://europe-west1-aiplatform.googleapis.com/",
       "description": "Locational Endpoint"
@@ -97,6 +105,7 @@
     {
       "location": "europe-west2",
       "endpointUrl": "https://europe-west2-aiplatform.googleapis.com/",
+<<<<<<< HEAD
       "description": "Locational Endpoint"
     },
     {
@@ -152,10 +161,64 @@
     {
       "endpointUrl": "https://northamerica-northeast1-aiplatform.googleapis.com/",
       "location": "northamerica-northeast1",
+=======
+>>>>>>> fa2a9177f (feat(aiplatform)!: update the API)
       "description": "Locational Endpoint"
     },
     {
       "description": "Locational Endpoint",
+<<<<<<< HEAD
+=======
+      "location": "europe-west3",
+      "endpointUrl": "https://europe-west3-aiplatform.googleapis.com/"
+    },
+    {
+      "endpointUrl": "https://europe-west4-aiplatform.googleapis.com/",
+      "location": "europe-west4",
+      "description": "Locational Endpoint"
+    },
+    {
+      "location": "europe-west6",
+      "endpointUrl": "https://europe-west6-aiplatform.googleapis.com/",
+      "description": "Locational Endpoint"
+    },
+    {
+      "location": "europe-west8",
+      "endpointUrl": "https://europe-west8-aiplatform.googleapis.com/",
+      "description": "Locational Endpoint"
+    },
+    {
+      "description": "Locational Endpoint",
+      "endpointUrl": "https://europe-west9-aiplatform.googleapis.com/",
+      "location": "europe-west9"
+    },
+    {
+      "endpointUrl": "https://europe-west12-aiplatform.googleapis.com/",
+      "description": "Locational Endpoint",
+      "location": "europe-west12"
+    },
+    {
+      "location": "me-central1",
+      "description": "Locational Endpoint",
+      "endpointUrl": "https://me-central1-aiplatform.googleapis.com/"
+    },
+    {
+      "location": "me-central2",
+      "description": "Locational Endpoint",
+      "endpointUrl": "https://me-central2-aiplatform.googleapis.com/"
+    },
+    {
+      "endpointUrl": "https://me-west1-aiplatform.googleapis.com/",
+      "location": "me-west1",
+      "description": "Locational Endpoint"
+    },
+    {
+      "description": "Locational Endpoint",
+      "location": "northamerica-northeast1",
+      "endpointUrl": "https://northamerica-northeast1-aiplatform.googleapis.com/"
+    },
+    {
+>>>>>>> fa2a9177f (feat(aiplatform)!: update the API)
       "endpointUrl": "https://northamerica-northeast2-aiplatform.googleapis.com/",
       "location": "northamerica-northeast2"
     },
