@@ -1,5 +1,12 @@
 # Changelog
 
+## [12.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/compute-v12.1.0...compute-v12.2.0) (2024-05-07)
+
+
+### Features
+
+* run the generator ([181f2d5](https://github.com/googleapis/google-api-nodejs-client/commit/181f2d5118e33081dcd33a485ff79c5d6a7e1c43))
+
 ## [12.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/compute-v12.0.0...compute-v12.1.0) (2024-05-07)
 
 
