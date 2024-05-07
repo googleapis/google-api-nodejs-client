@@ -2247,7 +2247,7 @@ export namespace dlp_v2 {
     version?: string | null;
   }
   /**
-   * Classification of infoTypes to organize them according to geographic location, industry, and data type. NEXT_ID: 47
+   * Classification of infoTypes to organize them according to geographic location, industry, and data type. NEXT_ID: 48
    */
   export interface Schema$GooglePrivacyDlpV2InfoTypeCategory {
     /**
