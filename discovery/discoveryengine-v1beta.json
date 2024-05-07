@@ -5361,7 +5361,7 @@
       }
     }
   },
-  "revision": "20240502",
+  "revision": "20240503",
   "rootUrl": "https://discoveryengine.googleapis.com/",
   "schemas": {
     "GoogleApiHttpBody": {
