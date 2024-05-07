@@ -1290,7 +1290,7 @@
       }
     }
   },
-  "revision": "20240424",
+  "revision": "20240429",
   "rootUrl": "https://accesscontextmanager.googleapis.com/",
   "schemas": {
     "AccessContextManagerOperationMetadata": {
@@ -1369,6 +1369,21 @@
         },
         "serviceName": {
           "description": "The name of the API whose methods or permissions the IngressPolicy or EgressPolicy want to allow. A single ApiOperation with `service_name` field set to `*` will allow all methods AND permissions for all services.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "Application": {
+      "description": "An application that accesses Google Cloud APIs.",
+      "id": "Application",
+      "properties": {
+        "clientId": {
+          "description": "The OAuth client ID of the application.",
+          "type": "string"
+        },
+        "name": {
+          "description": "The name of the application. Example: \"Cloud Console\"",
           "type": "string"
         }
       },
@@ -1843,6 +1858,13 @@
         "name": {
           "description": "Immutable. Assigned by the server during creation. The last segment has an arbitrary length and has only URI unreserved characters (as defined by [RFC 3986 Section 2.3](https://tools.ietf.org/html/rfc3986#section-2.3)). Should not be specified by the client during creation. Example: \"organizations/256/gcpUserAccessBindings/b3-BhcX_Ud5N\"",
           "type": "string"
+        },
+        "restrictedClientApplications": {
+          "description": "Optional. A list of applications that are subject to this binding's restrictions. If the list is empty, the binding restrictions will universally apply to all applications.",
+          "items": {
+            "$ref": "Application"
+          },
+          "type": "array"
         }
       },
       "type": "object"

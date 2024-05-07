@@ -198,6 +198,19 @@ export namespace accesscontextmanager_v1 {
     serviceName?: string | null;
   }
   /**
+   * An application that accesses Google Cloud APIs.
+   */
+  export interface Schema$Application {
+    /**
+     * The OAuth client ID of the application.
+     */
+    clientId?: string | null;
+    /**
+     * The name of the application. Example: "Cloud Console"
+     */
+    name?: string | null;
+  }
+  /**
    * Specifies the audit configuration for a service. The configuration determines which permission types are logged, and what identities, if any, are exempted from logging. An AuditConfig must have one or more AuditLogConfigs. If there are AuditConfigs for both `allServices` and a specific service, the union of the two AuditConfigs is used for that service: the log_types specified in each AuditConfig are enabled, and the exempted_members in each AuditLogConfig are exempted. Example Policy with multiple AuditConfigs: { "audit_configs": [ { "service": "allServices", "audit_log_configs": [ { "log_type": "DATA_READ", "exempted_members": [ "user:jose@example.com" ] \}, { "log_type": "DATA_WRITE" \}, { "log_type": "ADMIN_READ" \} ] \}, { "service": "sampleservice.googleapis.com", "audit_log_configs": [ { "log_type": "DATA_READ" \}, { "log_type": "DATA_WRITE", "exempted_members": [ "user:aliya@example.com" ] \} ] \} ] \} For sampleservice, this policy enables DATA_READ, DATA_WRITE and ADMIN_READ logging. It also exempts `jose@example.com` from DATA_READ logging, and `aliya@example.com` from DATA_WRITE logging.
    */
   export interface Schema$AuditConfig {
@@ -476,6 +489,10 @@ export namespace accesscontextmanager_v1 {
      * Immutable. Assigned by the server during creation. The last segment has an arbitrary length and has only URI unreserved characters (as defined by [RFC 3986 Section 2.3](https://tools.ietf.org/html/rfc3986#section-2.3)). Should not be specified by the client during creation. Example: "organizations/256/gcpUserAccessBindings/b3-BhcX_Ud5N"
      */
     name?: string | null;
+    /**
+     * Optional. A list of applications that are subject to this binding's restrictions. If the list is empty, the binding restrictions will universally apply to all applications.
+     */
+    restrictedClientApplications?: Schema$Application[];
   }
   /**
    * Metadata of GCP Access Binding Long Running Operations.
