@@ -2309,7 +2309,7 @@
       }
     }
   },
-  "revision": "20240502",
+  "revision": "20240421",
   "rootUrl": "https://migrationcenter.googleapis.com/",
   "schemas": {
     "AddAssetsToGroupRequest": {
@@ -2666,7 +2666,7 @@
       "id": "AssetPerformanceData",
       "properties": {
         "dailyResourceUsageAggregations": {
-          "description": "Daily resource usage aggregations. Contains all of the data available for an asset, up to the last 40 days. Aggregations are sorted from oldest to most recent.",
+          "description": "Daily resource usage aggregations. Contains all of the data available for an asset, up to the last 420 days. Aggregations are sorted from oldest to most recent.",
           "items": {
             "$ref": "DailyResourceUsageAggregation"
           },
