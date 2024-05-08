@@ -1804,7 +1804,7 @@
       }
     }
   },
-  "revision": "20240417",
+  "revision": "20240424",
   "rootUrl": "https://beyondcorp.googleapis.com/",
   "schemas": {
     "AllocatedConnection": {
@@ -1867,6 +1867,16 @@
         "name": {
           "description": "Required. Unique resource name of the AppGateway. The name is ignored when creating an AppGateway.",
           "type": "string"
+        },
+        "satisfiesPzi": {
+          "description": "Output only. Reserved for future use.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "satisfiesPzs": {
+          "description": "Output only. Reserved for future use.",
+          "readOnly": true,
+          "type": "boolean"
         },
         "state": {
           "description": "Output only. The current state of the AppGateway.",
@@ -2093,6 +2103,16 @@
         "name": {
           "description": "Required. Unique resource name of the AppConnection. The name is ignored when creating a AppConnection.",
           "type": "string"
+        },
+        "satisfiesPzi": {
+          "description": "Output only. Reserved for future use.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "satisfiesPzs": {
+          "description": "Output only. Reserved for future use.",
+          "readOnly": true,
+          "type": "boolean"
         },
         "state": {
           "description": "Output only. The current state of the AppConnection.",

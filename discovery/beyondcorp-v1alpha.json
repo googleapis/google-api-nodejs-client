@@ -1206,6 +1206,33 @@
             },
             "subscriptions": {
               "methods": {
+                "cancel": {
+                  "description": "Cancels an existing BeyondCorp Enterprise Subscription in a given organization. Location will always be global as BeyondCorp subscriptions are per organization. Returns the timestamp for when the cancellation will become effective",
+                  "flatPath": "v1alpha/organizations/{organizationsId}/locations/{locationsId}/subscriptions/{subscriptionsId}:cancel",
+                  "httpMethod": "GET",
+                  "id": "beyondcorp.organizations.locations.subscriptions.cancel",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Name of the resource.",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/locations/[^/]+/subscriptions/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha/{+name}:cancel",
+                  "response": {
+                    "$ref": "GoogleCloudBeyondcorpSaasplatformSubscriptionsV1alphaCancelSubscriptionResponse"
+                  }
+                },
                 "create": {
                   "description": "Creates a new BeyondCorp Enterprise Subscription in a given organization. Location will always be global as BeyondCorp subscriptions are per organization.",
                   "flatPath": "v1alpha/organizations/{organizationsId}/locations/{locationsId}/subscriptions",
@@ -1308,7 +1335,7 @@
                       "type": "string"
                     },
                     "updateMask": {
-                      "description": "Required. Field mask is used to specify the fields to be overwritten in the Subscription resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all mutable fields will be overwritten. Mutable fields: type, state.",
+                      "description": "Required. Field mask is used to specify the fields to be overwritten in the Subscription resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. Mutable fields: seat_count.",
                       "format": "google-fieldmask",
                       "location": "query",
                       "type": "string"
@@ -3939,7 +3966,7 @@
       }
     }
   },
-  "revision": "20240417",
+  "revision": "20240424",
   "rootUrl": "https://beyondcorp.googleapis.com/",
   "schemas": {
     "AllocatedConnection": {
@@ -4002,6 +4029,16 @@
         "name": {
           "description": "Required. Unique resource name of the AppGateway. The name is ignored when creating an AppGateway.",
           "type": "string"
+        },
+        "satisfiesPzi": {
+          "description": "Output only. Reserved for future use.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "satisfiesPzs": {
+          "description": "Output only. Reserved for future use.",
+          "readOnly": true,
+          "type": "boolean"
         },
         "state": {
           "description": "Output only. The current state of the AppGateway.",
@@ -4644,6 +4681,16 @@
         "name": {
           "description": "Required. Unique resource name of the AppConnection. The name is ignored when creating a AppConnection.",
           "type": "string"
+        },
+        "satisfiesPzi": {
+          "description": "Output only. Reserved for future use.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "satisfiesPzs": {
+          "description": "Output only. Reserved for future use.",
+          "readOnly": true,
+          "type": "boolean"
         },
         "state": {
           "description": "Output only. The current state of the AppConnection.",
@@ -5936,6 +5983,18 @@
       },
       "type": "object"
     },
+    "GoogleCloudBeyondcorpSaasplatformSubscriptionsV1alphaCancelSubscriptionResponse": {
+      "description": "Response message for BeyondCorp.CancelSubscription",
+      "id": "GoogleCloudBeyondcorpSaasplatformSubscriptionsV1alphaCancelSubscriptionResponse",
+      "properties": {
+        "effectiveCancellationTime": {
+          "description": "Time when the cancellation will become effective",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudBeyondcorpSaasplatformSubscriptionsV1alphaListSubscriptionsResponse": {
       "description": "Response message for BeyondCorp.ListSubscriptions.",
       "id": "GoogleCloudBeyondcorpSaasplatformSubscriptionsV1alphaListSubscriptionsResponse",
@@ -5962,6 +6021,10 @@
           "description": "Output only. Represents that, if subscription will renew or end when the term ends.",
           "readOnly": true,
           "type": "boolean"
+        },
+        "billingAccount": {
+          "description": "Optional. Name of the billing account in the format. e.g. billingAccounts/123456-123456-123456 Required if Subscription is of Paid type.",
+          "type": "string"
         },
         "createTime": {
           "description": "Output only. Create time of the subscription.",
