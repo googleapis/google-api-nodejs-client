@@ -112,7 +112,6 @@ export namespace artifactregistry_v1 {
    */
   export class Artifactregistry {
     context: APIRequestContext;
-    media: Resource$Media;
     projects: Resource$Projects;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
@@ -121,7 +120,6 @@ export namespace artifactregistry_v1 {
         google,
       };
 
-      this.media = new Resource$Media(this.context);
       this.projects = new Resource$Projects(this.context);
     }
   }
@@ -434,7 +432,7 @@ export namespace artifactregistry_v1 {
      */
     hashes?: Schema$Hash[];
     /**
-     * The name of the file, for example: "projects/p1/locations/us-central1/repositories/repo1/files/a%2Fb%2Fc.txt". If the file ID part contains slashes, they are escaped.
+     * The name of the file, for example: `projects/p1/locations/us-central1/repositories/repo1/files/a%2Fb%2Fc.txt`. If the file ID part contains slashes, they are escaped.
      */
     name?: string | null;
     /**
@@ -1184,13 +1182,17 @@ export namespace artifactregistry_v1 {
      */
     mode?: string | null;
     /**
-     * The name of the repository, for example: `projects/p1/locations/us-central1/repositories/repo1`.
+     * The name of the repository, for example: `projects/p1/locations/us-central1/repositories/repo1`. For each location in a project, repository names must be unique.
      */
     name?: string | null;
     /**
      * Configuration specific for a Remote Repository.
      */
     remoteRepositoryConfig?: Schema$RemoteRepositoryConfig;
+    /**
+     * Output only. If set, the repository satisfies physical zone isolation.
+     */
+    satisfiesPzi?: boolean | null;
     /**
      * Output only. If set, the repository satisfies physical zone separation.
      */
@@ -1489,7 +1491,7 @@ export namespace artifactregistry_v1 {
     updateTime?: string | null;
   }
   /**
-   * Virtual repository configuration.
+   * LINT.IfChange Virtual repository configuration.
    */
   export interface Schema$VirtualRepositoryConfig {
     /**
@@ -1543,113 +1545,6 @@ export namespace artifactregistry_v1 {
      * One of the publicly available Yum repositories supported by Artifact Registry.
      */
     publicRepository?: Schema$GoogleDevtoolsArtifactregistryV1RemoteRepositoryConfigYumRepositoryPublicRepository;
-  }
-
-  export class Resource$Media {
-    context: APIRequestContext;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-    }
-
-    /**
-     * Download a file.
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    download(
-      params: Params$Resource$Media$Download,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    download(
-      params?: Params$Resource$Media$Download,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$DownloadFileResponse>;
-    download(
-      params: Params$Resource$Media$Download,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    download(
-      params: Params$Resource$Media$Download,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$DownloadFileResponse>,
-      callback: BodyResponseCallback<Schema$DownloadFileResponse>
-    ): void;
-    download(
-      params: Params$Resource$Media$Download,
-      callback: BodyResponseCallback<Schema$DownloadFileResponse>
-    ): void;
-    download(callback: BodyResponseCallback<Schema$DownloadFileResponse>): void;
-    download(
-      paramsOrCallback?:
-        | Params$Resource$Media$Download
-        | BodyResponseCallback<Schema$DownloadFileResponse>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$DownloadFileResponse>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$DownloadFileResponse>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$DownloadFileResponse>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback || {}) as Params$Resource$Media$Download;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Media$Download;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl =
-        options.rootUrl || 'https://artifactregistry.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+name}:download').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'GET',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$DownloadFileResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$DownloadFileResponse>(parameters);
-      }
-    }
-  }
-
-  export interface Params$Resource$Media$Download extends StandardParameters {
-    /**
-     * Required. The name of the file to download.
-     */
-    name?: string;
   }
 
   export class Resource$Projects {
@@ -3210,7 +3105,7 @@ export namespace artifactregistry_v1 {
   export interface Params$Resource$Projects$Locations$Repositories$Patch
     extends StandardParameters {
     /**
-     * The name of the repository, for example: `projects/p1/locations/us-central1/repositories/repo1`.
+     * The name of the repository, for example: `projects/p1/locations/us-central1/repositories/repo1`. For each location in a project, repository names must be unique.
      */
     name?: string;
     /**
@@ -3710,6 +3605,101 @@ export namespace artifactregistry_v1 {
     }
 
     /**
+     * Download a file.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    download(
+      params: Params$Resource$Projects$Locations$Repositories$Files$Download,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    download(
+      params?: Params$Resource$Projects$Locations$Repositories$Files$Download,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$DownloadFileResponse>;
+    download(
+      params: Params$Resource$Projects$Locations$Repositories$Files$Download,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    download(
+      params: Params$Resource$Projects$Locations$Repositories$Files$Download,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$DownloadFileResponse>,
+      callback: BodyResponseCallback<Schema$DownloadFileResponse>
+    ): void;
+    download(
+      params: Params$Resource$Projects$Locations$Repositories$Files$Download,
+      callback: BodyResponseCallback<Schema$DownloadFileResponse>
+    ): void;
+    download(callback: BodyResponseCallback<Schema$DownloadFileResponse>): void;
+    download(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Repositories$Files$Download
+        | BodyResponseCallback<Schema$DownloadFileResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$DownloadFileResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$DownloadFileResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$DownloadFileResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Repositories$Files$Download;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Repositories$Files$Download;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://artifactregistry.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:download').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$DownloadFileResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$DownloadFileResponse>(parameters);
+      }
+    }
+
+    /**
      * Gets a file.
      *
      * @param params - Parameters for request
@@ -3899,6 +3889,13 @@ export namespace artifactregistry_v1 {
     }
   }
 
+  export interface Params$Resource$Projects$Locations$Repositories$Files$Download
+    extends StandardParameters {
+    /**
+     * Required. The name of the file to download.
+     */
+    name?: string;
+  }
   export interface Params$Resource$Projects$Locations$Repositories$Files$Get
     extends StandardParameters {
     /**
