@@ -1123,11 +1123,11 @@ export namespace iam_v1 {
      */
     disabled?: boolean | null;
     /**
-     * optional. If the key is disabled, it may have a DisableReason describing why it was disabled.
+     * Output only. optional. If the key is disabled, it may have a DisableReason describing why it was disabled.
      */
     disableReason?: string | null;
     /**
-     * Extended Status provides permanent information about a service account key. For example, if this key was detected as exposed or compromised, that information will remain for the lifetime of the key in the extended_status.
+     * Output only. Extended Status provides permanent information about a service account key. For example, if this key was detected as exposed or compromised, that information will remain for the lifetime of the key in the extended_status.
      */
     extendedStatus?: Schema$ExtendedStatus[];
     /**
