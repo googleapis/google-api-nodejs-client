@@ -512,7 +512,7 @@ export namespace bigtableadmin_v2 {
      */
     finishTime?: string | null;
     /**
-     * The request that prompted the initiation of this CreateInstance operation.
+     * The request that prompted the initiation of this CreateAuthorizedView operation.
      */
     originalRequest?: Schema$CreateAuthorizedViewRequest;
     /**
@@ -931,6 +931,10 @@ export namespace bigtableadmin_v2 {
      * The unique name of the instance. Values are of the form `projects/{project\}/instances/a-z+[a-z0-9]`.
      */
     name?: string | null;
+    /**
+     * Output only. Reserved for future use.
+     */
+    satisfiesPzi?: boolean | null;
     /**
      * Output only. Reserved for future use.
      */
@@ -7225,7 +7229,7 @@ export namespace bigtableadmin_v2 {
      */
     parent?: string;
     /**
-     * Optional. The resource_view to be applied to the returned views' fields. Default to NAME_ONLY.
+     * Optional. The resource_view to be applied to the returned AuthorizedViews' fields. Default to NAME_ONLY.
      */
     view?: string;
   }
