@@ -206,7 +206,7 @@
       }
     }
   },
-  "revision": "20240503",
+  "revision": "20240508",
   "rootUrl": "https://firebaseml.googleapis.com/",
   "schemas": {
     "Blob": {
@@ -668,6 +668,12 @@
       },
       "type": "object"
     },
+    "GoogleSearchRetrieval": {
+      "description": "Tool to retrieve public web data for grounding, powered by Google.",
+      "id": "GoogleSearchRetrieval",
+      "properties": {},
+      "type": "object"
+    },
     "GroundingMetadata": {
       "description": "Metadata returned to client when grounding is enabled.",
       "id": "GroundingMetadata",
@@ -1110,6 +1116,10 @@
             "$ref": "FunctionDeclaration"
           },
           "type": "array"
+        },
+        "googleSearchRetrieval": {
+          "$ref": "GoogleSearchRetrieval",
+          "description": "Optional. GoogleSearchRetrieval tool type. Specialized retrieval tool that is powered by Google search."
         },
         "retrieval": {
           "$ref": "Retrieval",
