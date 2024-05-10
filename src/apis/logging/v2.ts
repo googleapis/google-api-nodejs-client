@@ -1172,6 +1172,10 @@ export namespace logging_v2 {
      */
     name?: string | null;
     /**
+     * Output only. The resource name of the metric: "projects/[PROJECT_ID]/metrics/[METRIC_ID]"
+     */
+    resourceName?: string | null;
+    /**
      * Output only. The last update timestamp of the metric.This field may not be present for older metrics.
      */
     updateTime?: string | null;
