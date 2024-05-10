@@ -734,6 +734,10 @@ export namespace firestore_v1 {
      */
     deleteProtectionState?: string | null;
     /**
+     * Output only. The timestamp at which this database was soft deleted. Only set if the database has been soft deleted.
+     */
+    deleteTime?: string | null;
+    /**
      * Output only. The earliest timestamp at which older versions of the data can be read from the database. See [version_retention_period] above; this field is populated with `now - version_retention_period`. This value is continuously updated, and becomes stale the moment it is queried. If you are using this value to recover data, make sure to account for the time from the moment when the value is queried to the moment when you initiate the recovery.
      */
     earliestVersionTime?: string | null;
@@ -2826,6 +2830,10 @@ export namespace firestore_v1 {
      * Required. A parent name of the form `projects/{project_id\}`
      */
     parent?: string;
+    /**
+     * If true, also returns deleted resources.
+     */
+    showDeleted?: boolean;
   }
   export interface Params$Resource$Projects$Databases$Patch
     extends StandardParameters {
