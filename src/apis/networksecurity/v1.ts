@@ -988,7 +988,7 @@ export namespace networksecurity_v1 {
     sources?: Schema$Source[];
   }
   /**
-   * SecurityProfile is a resource that defines the behavior for one of many ProfileTypes. Next ID: 9
+   * SecurityProfile is a resource that defines the behavior for one of many ProfileTypes. Next ID: 10
    */
   export interface Schema$SecurityProfile {
     /**
@@ -1025,7 +1025,7 @@ export namespace networksecurity_v1 {
     updateTime?: string | null;
   }
   /**
-   * SecurityProfileGroup is a resource that defines the behavior for various ProfileTypes. Next ID: 8
+   * SecurityProfileGroup is a resource that defines the behavior for various ProfileTypes. Next ID: 9
    */
   export interface Schema$SecurityProfileGroup {
     /**

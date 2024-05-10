@@ -168,10 +168,6 @@ export namespace networksecurity_v1beta1 {
      */
     name?: string | null;
     /**
-     * Optional. List of supported purposes of the Address Group.
-     */
-    purpose?: string[] | null;
-    /**
      * Output only. Server-defined fully-qualified URL for this resource.
      */
     selfLink?: string | null;
@@ -992,7 +988,7 @@ export namespace networksecurity_v1beta1 {
     sources?: Schema$Source[];
   }
   /**
-   * SecurityProfile is a resource that defines the behavior for one of many ProfileTypes. Next ID: 10
+   * SecurityProfile is a resource that defines the behavior for one of many ProfileTypes. Next ID: 9
    */
   export interface Schema$SecurityProfile {
     /**
@@ -1029,7 +1025,7 @@ export namespace networksecurity_v1beta1 {
     updateTime?: string | null;
   }
   /**
-   * SecurityProfileGroup is a resource that defines the behavior for various ProfileTypes. Next ID: 9
+   * SecurityProfileGroup is a resource that defines the behavior for various ProfileTypes. Next ID: 8
    */
   export interface Schema$SecurityProfileGroup {
     /**
