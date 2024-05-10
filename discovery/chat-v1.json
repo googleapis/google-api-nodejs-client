@@ -12,7 +12,7 @@
           "description": "Import spaces, messages, and memberships into Google Chat."
         },
         "https://www.googleapis.com/auth/chat.memberships": {
-          "description": "View, add, and remove members from conversations in Google Chat"
+          "description": "View, add, update, and remove members from conversations in Google Chat"
         },
         "https://www.googleapis.com/auth/chat.memberships.app": {
           "description": "Add and remove itself from conversations in Google Chat"
@@ -595,7 +595,7 @@
               ]
             },
             "patch": {
-              "description": "Updates a membership. Requires [user authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user).",
+              "description": "Updates a membership. For an example, see [Update a user's membership in a space](https://developers.google.com/workspace/chat/update-members). Requires [user authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user).",
               "flatPath": "v1/spaces/{spacesId}/members/{membersId}",
               "httpMethod": "PATCH",
               "id": "chat.spaces.members.patch",
@@ -1119,7 +1119,7 @@
         "spaces": {
           "methods": {
             "getSpaceReadState": {
-              "description": "Returns details about a user's read state within a space, used to identify read and unread messages. Requires [user authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user).",
+              "description": "Returns details about a user's read state within a space, used to identify read and unread messages. For an example, see [Get details about a user's space read state](https://developers.google.com/workspace/chat/get-space-read-state). Requires [user authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user).",
               "flatPath": "v1/users/{usersId}/spaces/{spacesId}/spaceReadState",
               "httpMethod": "GET",
               "id": "chat.users.spaces.getSpaceReadState",
@@ -1145,7 +1145,7 @@
               ]
             },
             "updateSpaceReadState": {
-              "description": "Updates a user's read state within a space, used to identify read and unread messages. Requires [user authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user).",
+              "description": "Updates a user's read state within a space, used to identify read and unread messages. For an example, see [Update a user's space read state](https://developers.google.com/workspace/chat/update-space-read-state). Requires [user authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user).",
               "flatPath": "v1/users/{usersId}/spaces/{spacesId}/spaceReadState",
               "httpMethod": "PATCH",
               "id": "chat.users.spaces.updateSpaceReadState",
@@ -1183,7 +1183,7 @@
             "threads": {
               "methods": {
                 "getThreadReadState": {
-                  "description": "Returns details about a user's read state within a thread, used to identify read and unread messages. Requires [user authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user).",
+                  "description": "Returns details about a user's read state within a thread, used to identify read and unread messages. For an example, see [Get details about a user's thread read state](https://developers.google.com/workspace/chat/get-thread-read-state). Requires [user authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user).",
                   "flatPath": "v1/users/{usersId}/spaces/{spacesId}/threads/{threadsId}/threadReadState",
                   "httpMethod": "GET",
                   "id": "chat.users.spaces.threads.getThreadReadState",
@@ -1215,7 +1215,7 @@
       }
     }
   },
-  "revision": "20240427",
+  "revision": "20240507",
   "rootUrl": "https://chat.googleapis.com/",
   "schemas": {
     "AccessoryWidget": {
