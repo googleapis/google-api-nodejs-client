@@ -757,6 +757,10 @@ export namespace cloudidentity_v1 {
      */
     serialNumber?: string | null;
     /**
+     * Output only. Unified device id of the device.
+     */
+    unifiedDeviceId?: string | null;
+    /**
      * WiFi MAC addresses of device.
      */
     wifiMacAddresses?: string[] | null;

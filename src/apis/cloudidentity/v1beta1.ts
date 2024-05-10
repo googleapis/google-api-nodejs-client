@@ -641,6 +641,10 @@ export namespace cloudidentity_v1beta1 {
      */
     serialNumber?: string | null;
     /**
+     * Output only. Unified device id of the device.
+     */
+    unifiedDeviceId?: string | null;
+    /**
      * WiFi MAC addresses of device.
      */
     wifiMacAddresses?: string[] | null;
@@ -1222,6 +1226,10 @@ export namespace cloudidentity_v1beta1 {
      * Serial Number of device. Example: HT82V1A01076.
      */
     serialNumber?: string | null;
+    /**
+     * Output only. Unified device id of the device.
+     */
+    unifiedDeviceId?: string | null;
     /**
      * WiFi MAC addresses of device.
      */
