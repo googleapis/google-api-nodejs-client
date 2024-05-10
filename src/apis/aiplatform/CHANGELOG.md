@@ -1,5 +1,18 @@
 # Changelog
 
+## [12.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/aiplatform-v11.0.0...aiplatform-v12.0.0) (2024-05-10)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#3484](https://github.com/googleapis/google-api-nodejs-client/issues/3484)) ([99b6c8d](https://github.com/googleapis/google-api-nodejs-client/commit/99b6c8de5beb8447d177048a64a977ee39ee5ee6))
+* run the generator ([#3487](https://github.com/googleapis/google-api-nodejs-client/issues/3487)) ([673c364](https://github.com/googleapis/google-api-nodejs-client/commit/673c364a557c466c34052bef761d00e542f96516))
+
 ## [11.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/aiplatform-v10.0.0...aiplatform-v11.0.0) (2024-05-07)
 
 
