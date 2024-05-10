@@ -116,7 +116,7 @@
       }
     }
   },
-  "revision": "20240425",
+  "revision": "20240501",
   "rootUrl": "https://sts.googleapis.com/",
   "schemas": {
     "GoogleIamV1Binding": {
@@ -194,7 +194,7 @@
           "type": "string"
         },
         "requestedTokenType": {
-          "description": "Required. An identifier for the type of requested security token. Must be `urn:ietf:params:oauth:token-type:access_token`.",
+          "description": "Required. An identifier for the type of requested security token. Can be `urn:ietf:params:oauth:token-type:access_token` or `urn:ietf:params:oauth:token-type:access_boundary_intermediate_token`.",
           "type": "string"
         },
         "scope": {
