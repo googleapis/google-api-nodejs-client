@@ -700,13 +700,17 @@ export namespace authorizedbuyersmarketplace_v1 {
     publisherProfiles?: Schema$PublisherProfile[];
   }
   /**
-   * Targeting represents different criteria that can be used to target inventory. For example, they can choose to target inventory only if the user is in the US. Multiple types of targeting are always applied as a logical AND, unless noted otherwise.
+   * Targeting represents different criteria that can be used to target deals or auction packages. For example, they can choose to target inventory only if the user is in the US. Multiple types of targeting are always applied as a logical AND, unless noted otherwise.
    */
   export interface Schema$MarketplaceTargeting {
     /**
      * Daypart targeting information.
      */
     daypartTargeting?: Schema$DayPartTargeting;
+    /**
+     * Output only. The sensitive content category label IDs excluded. Refer to this file https://storage.googleapis.com/adx-rtb-dictionaries/content-labels.txt for category IDs.
+     */
+    excludedSensitiveCategoryIds?: string[] | null;
     /**
      * Output only. Geo criteria IDs to be included/excluded.
      */
@@ -731,6 +735,10 @@ export namespace authorizedbuyersmarketplace_v1 {
      * Buyer user list targeting information. User lists can be uploaded using https://developers.google.com/authorized-buyers/rtb/bulk-uploader.
      */
     userListTargeting?: Schema$CriteriaTargeting;
+    /**
+     * Output only. The verticals included or excluded as defined in https://developers.google.com/authorized-buyers/rtb/downloads/publisher-verticals
+     */
+    verticalTargeting?: Schema$CriteriaTargeting;
     /**
      * Output only. Video targeting information.
      */
@@ -1388,6 +1396,10 @@ export namespace authorizedbuyersmarketplace_v1 {
      */
     filter?: string;
     /**
+     * Optional. An optional query string to sort auction packages using the [Cloud API sorting syntax](https://cloud.google.com/apis/design/design_patterns#sorting_order). If no sort order is specified, results will be returned in an arbitrary order. Only supported when parent is bidder. Supported columns for sorting are: * displayName * createTime * updateTime
+     */
+    orderBy?: string;
+    /**
      * Requested page size. The server may return fewer results than requested. Max allowed page size is 500.
      */
     pageSize?: number;
@@ -1512,7 +1524,7 @@ export namespace authorizedbuyersmarketplace_v1 {
      */
     filter?: string;
     /**
-     * An optional query string to sort finalized deals using the [Cloud API sorting syntax](https://cloud.google.com/apis/design/design_patterns#sorting_order). If no sort order is specified, results will be returned in an arbitrary order. Supported columns for sorting are: * deal.displayName * deal.createTime * deal.updateTime * deal.flightStartTime * deal.flightEndTime * rtbMetrics.bidRequests7Days * rtbMetrics.bids7Days * rtbMetrics.adImpressions7Days * rtbMetrics.bidRate7Days * rtbMetrics.filteredBidRate7Days * rtbMetrics.mustBidRateCurrentMonth Example: 'deal.displayName, deal.updateTime desc'
+     * An optional query string to sort finalized deals using the [Cloud API sorting syntax](https://cloud.google.com/apis/design/design_patterns#sorting_order). If no sort order is specified, results will be returned in an arbitrary order. Supported columns for sorting are: * deal.displayName * deal.createTime * deal.updateTime * deal.flightStartTime * deal.flightEndTime * rtbMetrics.bidRequests7Days * rtbMetrics.bids7Days * rtbMetrics.adImpressions7Days * rtbMetrics.bidRate7Days * rtbMetrics.filteredBidRate7Days * rtbMetrics.mustBidRateCurrentMonth
      */
     orderBy?: string;
     /**
@@ -2117,6 +2129,10 @@ export namespace authorizedbuyersmarketplace_v1 {
      * Optional. Optional query string using the [Cloud API list filtering syntax](/authorized-buyers/apis/guides/list-filters). Only supported when parent is bidder. Supported columns for filtering are: * displayName * createTime * updateTime * eligibleSeatIds
      */
     filter?: string;
+    /**
+     * Optional. An optional query string to sort auction packages using the [Cloud API sorting syntax](https://cloud.google.com/apis/design/design_patterns#sorting_order). If no sort order is specified, results will be returned in an arbitrary order. Only supported when parent is bidder. Supported columns for sorting are: * displayName * createTime * updateTime
+     */
+    orderBy?: string;
     /**
      * Requested page size. The server may return fewer results than requested. Max allowed page size is 500.
      */
@@ -3987,7 +4003,7 @@ export namespace authorizedbuyersmarketplace_v1 {
      */
     filter?: string;
     /**
-     * An optional query string to sort finalized deals using the [Cloud API sorting syntax](https://cloud.google.com/apis/design/design_patterns#sorting_order). If no sort order is specified, results will be returned in an arbitrary order. Supported columns for sorting are: * deal.displayName * deal.createTime * deal.updateTime * deal.flightStartTime * deal.flightEndTime * rtbMetrics.bidRequests7Days * rtbMetrics.bids7Days * rtbMetrics.adImpressions7Days * rtbMetrics.bidRate7Days * rtbMetrics.filteredBidRate7Days * rtbMetrics.mustBidRateCurrentMonth Example: 'deal.displayName, deal.updateTime desc'
+     * An optional query string to sort finalized deals using the [Cloud API sorting syntax](https://cloud.google.com/apis/design/design_patterns#sorting_order). If no sort order is specified, results will be returned in an arbitrary order. Supported columns for sorting are: * deal.displayName * deal.createTime * deal.updateTime * deal.flightStartTime * deal.flightEndTime * rtbMetrics.bidRequests7Days * rtbMetrics.bids7Days * rtbMetrics.adImpressions7Days * rtbMetrics.bidRate7Days * rtbMetrics.filteredBidRate7Days * rtbMetrics.mustBidRateCurrentMonth
      */
     orderBy?: string;
     /**
