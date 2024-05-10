@@ -3162,7 +3162,7 @@
       }
     }
   },
-  "revision": "20240505",
+  "revision": "20240320",
   "rootUrl": "https://networksecurity.googleapis.com/",
   "schemas": {
     "AddAddressGroupItemsRequest": {
@@ -3219,23 +3219,6 @@
         "name": {
           "description": "Required. Name of the AddressGroup resource. It matches pattern `projects/*/locations/{location}/addressGroups/`.",
           "type": "string"
-        },
-        "purpose": {
-          "description": "Optional. List of supported purposes of the Address Group.",
-          "items": {
-            "enum": [
-              "PURPOSE_UNSPECIFIED",
-              "DEFAULT",
-              "CLOUD_ARMOR"
-            ],
-            "enumDescriptions": [
-              "Default value. Should never happen.",
-              "Address Group is distributed to VMC, and is usable in Firewall Policies and other systems that rely on VMC.",
-              "Address Group is usable in Cloud Armor."
-            ],
-            "type": "string"
-          },
-          "type": "array"
         },
         "selfLink": {
           "description": "Output only. Server-defined fully-qualified URL for this resource.",
@@ -4425,7 +4408,7 @@
       "type": "object"
     },
     "SecurityProfile": {
-      "description": "SecurityProfile is a resource that defines the behavior for one of many ProfileTypes. Next ID: 10",
+      "description": "SecurityProfile is a resource that defines the behavior for one of many ProfileTypes. Next ID: 9",
       "id": "SecurityProfile",
       "properties": {
         "createTime": {
@@ -4480,7 +4463,7 @@
       "type": "object"
     },
     "SecurityProfileGroup": {
-      "description": "SecurityProfileGroup is a resource that defines the behavior for various ProfileTypes. Next ID: 9",
+      "description": "SecurityProfileGroup is a resource that defines the behavior for various ProfileTypes. Next ID: 8",
       "id": "SecurityProfileGroup",
       "properties": {
         "createTime": {

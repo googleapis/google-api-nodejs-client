@@ -3162,7 +3162,7 @@
       }
     }
   },
-  "revision": "20240306",
+  "revision": "20240505",
   "rootUrl": "https://networksecurity.googleapis.com/",
   "schemas": {
     "AddAddressGroupItemsRequest": {
@@ -4408,7 +4408,7 @@
       "type": "object"
     },
     "SecurityProfile": {
-      "description": "SecurityProfile is a resource that defines the behavior for one of many ProfileTypes. Next ID: 9",
+      "description": "SecurityProfile is a resource that defines the behavior for one of many ProfileTypes. Next ID: 10",
       "id": "SecurityProfile",
       "properties": {
         "createTime": {
@@ -4463,7 +4463,7 @@
       "type": "object"
     },
     "SecurityProfileGroup": {
-      "description": "SecurityProfileGroup is a resource that defines the behavior for various ProfileTypes. Next ID: 8",
+      "description": "SecurityProfileGroup is a resource that defines the behavior for various ProfileTypes. Next ID: 9",
       "id": "SecurityProfileGroup",
       "properties": {
         "createTime": {

@@ -753,7 +753,7 @@
       }
     }
   },
-  "revision": "20240427",
+  "revision": "20240505",
   "rootUrl": "https://monitoring.googleapis.com/",
   "schemas": {
     "Aggregation": {
@@ -1037,6 +1037,10 @@
       "description": "A Google Stackdriver dashboard. Dashboards define the content and layout of pages in the Stackdriver web application.",
       "id": "Dashboard",
       "properties": {
+        "annotations": {
+          "$ref": "DashboardAnnotations",
+          "description": "Configuration for event annotations to display on this dashboard."
+        },
         "columnLayout": {
           "$ref": "ColumnLayout",
           "description": "The content is divided into equally spaced columns and the widgets are arranged vertically."
@@ -1078,6 +1082,27 @@
         "rowLayout": {
           "$ref": "RowLayout",
           "description": "The content is divided into equally spaced rows and the widgets are arranged horizontally."
+        }
+      },
+      "type": "object"
+    },
+    "DashboardAnnotations": {
+      "description": "Dashboard-level configuration for annotations",
+      "id": "DashboardAnnotations",
+      "properties": {
+        "defaultResourceNames": {
+          "description": "Dashboard level defaults for names of logging resources to search for events. Currently only projects are supported. Each individual EventAnnotation may have its own overrides. If both this field and the per annotation field is empty, then the scoping project is used. Limit: 50 projects. For example: “projects/some-project-id” ",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "eventAnnotations": {
+          "description": "List of annotation configurations for this dashboard. Each entry specifies one event type.",
+          "items": {
+            "$ref": "EventAnnotation"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -1293,6 +1318,80 @@
         },
         "versions": {
           "description": "Represents the source code version that the developer provided, which could represent a version label or a Git SHA-1 hash, for example. For App Engine standard environment, the version is set to the version of the app.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "EventAnnotation": {
+      "description": "Annotation configuration for one event type on a dashboard",
+      "id": "EventAnnotation",
+      "properties": {
+        "displayName": {
+          "description": "Solely for UI display. Should not be used programmatically.",
+          "type": "string"
+        },
+        "enabled": {
+          "description": "Whether or not to show the events on the dashboard by default",
+          "type": "boolean"
+        },
+        "eventType": {
+          "description": "The type of event to display.",
+          "enum": [
+            "EVENT_TYPE_UNSPECIFIED",
+            "GKE_WORKLOAD_DEPLOYMENT",
+            "GKE_POD_CRASH",
+            "GKE_POD_UNSCHEDULABLE",
+            "GKE_CONTAINER_CREATION_FAILED",
+            "GKE_CLUSTER_CREATE_DELETE",
+            "GKE_CLUSTER_UPDATE",
+            "GKE_NODE_POOL_UPDATE",
+            "GKE_CLUSTER_AUTOSCALER",
+            "GKE_POD_AUTOSCALER",
+            "VM_TERMINATION",
+            "VM_GUEST_OS_ERROR",
+            "VM_START_FAILED",
+            "MIG_UPDATE",
+            "MIG_AUTOSCALER",
+            "CLOUD_RUN_DEPLOYMENT",
+            "CLOUD_SQL_FAILOVER",
+            "CLOUD_SQL_START_STOP",
+            "CLOUD_SQL_STORAGE",
+            "UPTIME_CHECK_FAILURE"
+          ],
+          "enumDescriptions": [
+            "No event type specified.",
+            "Patch/update of GKE workload.",
+            "Crash events for a GKE Pod.",
+            "Scheduling failures for GKE Pods.",
+            "Failure to create a GKE container.",
+            "Create/delete of a GKE cluster.",
+            "Update of a GKE cluster.",
+            "Update of a GKE node pool.",
+            "GKE cluster autoscaler event.",
+            "GKE pod autoscaler event.",
+            "Termination of a virtual machine.",
+            "Guest OS error on a virtual machine.",
+            "Start failure on a virtual machine.",
+            "Update of a managed instance group.",
+            "Autoscaler event for a managed instance group.",
+            "New deployment of a Cloud Run service.",
+            "Failover of a Cloud SQL instance.",
+            "Start/stop of a Cloud SQL instance.",
+            "Storage event for a Cloud SQL instance.",
+            "Failure of a Cloud Monitoring uptime check."
+          ],
+          "type": "string"
+        },
+        "filter": {
+          "description": "string filtering the events - event dependant. Example values: \"resource.labels.pod_name = 'pod-1'\" \"protoPayload.authenticationInfo.principalEmail='user@example.com'\" ",
+          "type": "string"
+        },
+        "resourceNames": {
+          "description": "Per annotation level override for the names of logging resources to search for events. Currently only projects are supported. If both this field and the per annotation field is empty, it will default to the host project. Limit: 50 projects. For example: “projects/another-project-id” ",
           "items": {
             "type": "string"
           },
