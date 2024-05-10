@@ -4,6 +4,34 @@
 
 [1]: https://www.npmjs.com/package/googleapis?activeTab=versions
 
+## [138.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/googleapis-v137.1.0...googleapis-v138.0.0) (2024-05-10)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+* This release has breaking changes.
+* **networkmanagement:** This release has breaking changes.
+* **artifactregistry:** This release has breaking changes.
+
+### Features
+
+* **artifactregistry:** update the API ([4fba2fd](https://github.com/googleapis/google-api-nodejs-client/commit/4fba2fd0d25183c449f0dbeee2142a49408162b6))
+* **beyondcorp:** update the API ([fb8a1bd](https://github.com/googleapis/google-api-nodejs-client/commit/fb8a1bd5083cd67b8c1a37808c1896da9149bc52))
+* **bigtableadmin:** update the API ([751fcf5](https://github.com/googleapis/google-api-nodejs-client/commit/751fcf5b1313ec866e35ecc1bc7848fd81e6444c))
+* **compute:** update the API ([899847d](https://github.com/googleapis/google-api-nodejs-client/commit/899847dfccc952548adaad6f337a3a5020cfb305))
+* **iam:** update the API ([a49b6ea](https://github.com/googleapis/google-api-nodejs-client/commit/a49b6ea79a8c80916b989a4ccceede04410c181a))
+* **networkmanagement:** update the API ([86387b3](https://github.com/googleapis/google-api-nodejs-client/commit/86387b3df9701285e658df189d6974dd6e469379))
+* regenerate index files ([6d90240](https://github.com/googleapis/google-api-nodejs-client/commit/6d902405aaa88aeb99dffd8f922c4311f6ef50d7))
+* run the generator ([#3484](https://github.com/googleapis/google-api-nodejs-client/issues/3484)) ([99b6c8d](https://github.com/googleapis/google-api-nodejs-client/commit/99b6c8de5beb8447d177048a64a977ee39ee5ee6))
+* run the generator ([#3487](https://github.com/googleapis/google-api-nodejs-client/issues/3487)) ([673c364](https://github.com/googleapis/google-api-nodejs-client/commit/673c364a557c466c34052bef761d00e542f96516))
+
+
+### Bug Fixes
+
+* **migrationcenter:** update the API ([75aec49](https://github.com/googleapis/google-api-nodejs-client/commit/75aec49d87f32e8c35c509cb8116906690918cc2))
+* **safebrowsing:** update the API ([b11bfcb](https://github.com/googleapis/google-api-nodejs-client/commit/b11bfcbe006131454b4c49286fd9696022b25dfe))
+
 ## [137.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/googleapis-v137.0.0...googleapis-v137.1.0) (2024-05-07)
 
 
