@@ -2681,7 +2681,7 @@
       }
     }
   },
-  "revision": "20240501",
+  "revision": "20240509",
   "rootUrl": "https://walletobjects.googleapis.com/",
   "schemas": {
     "ActivationOptions": {
@@ -2776,7 +2776,8 @@
         },
         "iosAppLinkInfo": {
           "$ref": "AppLinkDataAppLinkInfo",
-          "description": "Optional information about the partner app link. If included, the app link link module will be rendered on the valuable details on the ios client."
+          "deprecated": true,
+          "description": "Deprecated. Links to open iOS apps are not supported."
         },
         "webAppLinkInfo": {
           "$ref": "AppLinkDataAppLinkInfo",
