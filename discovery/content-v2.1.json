@@ -6219,7 +6219,7 @@
       }
     }
   },
-  "revision": "20240430",
+  "revision": "20240508",
   "rootUrl": "https://shoppingcontent.googleapis.com/",
   "schemas": {
     "Account": {
@@ -14015,6 +14015,22 @@
       "description": "Price insights fields requested by the merchant in the query. Field values are only set if the merchant queries `PriceInsightsProductView`. https://support.google.com/merchants/answer/11916926",
       "id": "PriceInsights",
       "properties": {
+        "effectiveness": {
+          "description": "The predicted effectiveness of applying the price suggestion, bucketed.",
+          "enum": [
+            "EFFECTIVENESS_UNSPECIFIED",
+            "LOW",
+            "MEDIUM",
+            "HIGH"
+          ],
+          "enumDescriptions": [
+            "Effectiveness is unknown.",
+            "Effectiveness is low.",
+            "Effectiveness is medium.",
+            "Effectiveness is high."
+          ],
+          "type": "string"
+        },
         "predictedClicksChangeFraction": {
           "description": "The predicted change in clicks as a fraction after introducing the suggested price compared to current active price. For example, 0.05 is a 5% predicted increase in clicks.",
           "format": "double",

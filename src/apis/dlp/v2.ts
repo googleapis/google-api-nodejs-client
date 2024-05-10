@@ -566,7 +566,7 @@ export namespace dlp_v2 {
      */
     cloudSqlIam?: Schema$GooglePrivacyDlpV2CloudSqlIamCredential;
     /**
-     * Optional. Immutable. The Cloud SQL instance for which the connection is defined. Only one connection per instance is allowed. This can only be set at creation time, and cannot be updated. It is an error to use a connection_name from different project or region than the one that holds the connection. For example, a Connection resource for Cloud SQL connection_name "project-id:us-central1:sql-instance" must be created under the parent "projects/project-id/locations/us-central1"
+     * Optional. Immutable. The Cloud SQL instance for which the connection is defined. Only one connection per instance is allowed. This can only be set at creation time, and cannot be updated. It is an error to use a connection_name from different project or region than the one that holds the connection. For example, a Connection resource for Cloud SQL connection_name `project-id:us-central1:sql-instance` must be created under the parent `projects/project-id/locations/us-central1`
      */
     connectionName?: string | null;
     /**
@@ -787,7 +787,7 @@ export namespace dlp_v2 {
      */
     errors?: Schema$GooglePrivacyDlpV2Error[];
     /**
-     * Output only. Name of the connection: projects/{project\}/locations/{location\}/connections/{name\}.
+     * Output only. Name of the connection: `projects/{project\}/locations/{location\}/connections/{name\}`.
      */
     name?: string | null;
     /**
@@ -2247,7 +2247,7 @@ export namespace dlp_v2 {
     version?: string | null;
   }
   /**
-   * Classification of infoTypes to organize them according to geographic location, industry, and data type. NEXT_ID: 48
+   * Classification of infoTypes to organize them according to geographic location, industry, and data type.
    */
   export interface Schema$GooglePrivacyDlpV2InfoTypeCategory {
     /**
@@ -3769,7 +3769,7 @@ export namespace dlp_v2 {
    */
   export interface Schema$GooglePrivacyDlpV2SecretManagerCredential {
     /**
-     * Required. The name of the Secret Manager resource that stores the password, in the form "projects/project-id/secrets/secret-name/versions/version".
+     * Required. The name of the Secret Manager resource that stores the password, in the form `projects/project-id/secrets/secret-name/versions/version`.
      */
     passwordSecretVersionName?: string | null;
     /**
@@ -4135,7 +4135,7 @@ export namespace dlp_v2 {
    */
   export interface Schema$GooglePrivacyDlpV2TimespanConfig {
     /**
-     * When the job is started by a JobTrigger we will automatically figure out a valid start_time to avoid scanning files that have not been modified since the last time the JobTrigger executed. This will be based on the time of the execution of the last run of the JobTrigger or the timespan end_time used in the last run of the JobTrigger. *For BigQuery* Inspect jobs triggered by automatic population will scan data that is at least three hours old when the job starts. This is because streaming buffer rows are not read during inspection and reading up to the current timestamp will result in skipped rows. See the [known issue](https://cloud.google.com/sensitive-data-protection/docs/known-issues#recently-streamed-data) related to this operation.
+     * When the job is started by a JobTrigger we will automatically figure out a valid start_time to avoid scanning files that have not been modified since the last time the JobTrigger executed. This will be based on the time of the execution of the last run of the JobTrigger or the timespan end_time used in the last run of the JobTrigger. **For BigQuery** Inspect jobs triggered by automatic population will scan data that is at least three hours old when the job starts. This is because streaming buffer rows are not read during inspection and reading up to the current timestamp will result in skipped rows. See the [known issue](https://cloud.google.com/sensitive-data-protection/docs/known-issues#recently-streamed-data) related to this operation.
      */
     enableAutoPopulationOfTimespanConfig?: boolean | null;
     /**
@@ -6306,7 +6306,7 @@ export namespace dlp_v2 {
      */
     pageToken?: string;
     /**
-     * Required. Parent name, typically an organization, without location. For example: "organizations/12345678".
+     * Required. Parent name, typically an organization, without location. For example: `organizations/12345678`.
      */
     parent?: string;
   }
@@ -13867,7 +13867,7 @@ export namespace dlp_v2 {
   export interface Params$Resource$Projects$Locations$Connections$Create
     extends StandardParameters {
     /**
-     * Required. Parent resource name in the format: "projects/{project\}/locations/{location\}".
+     * Required. Parent resource name in the format: `projects/{project\}/locations/{location\}`.
      */
     parent?: string;
 
@@ -13879,14 +13879,14 @@ export namespace dlp_v2 {
   export interface Params$Resource$Projects$Locations$Connections$Delete
     extends StandardParameters {
     /**
-     * Required. Resource name of the Connection to be deleted, in the format: "projects/{project\}/locations/{location\}/connections/{connection\}".
+     * Required. Resource name of the Connection to be deleted, in the format: `projects/{project\}/locations/{location\}/connections/{connection\}`.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Connections$Get
     extends StandardParameters {
     /**
-     * Required. Resource name in the format: "projects/{project\}/locations/{location\}/connections/{connection\}".
+     * Required. Resource name in the format: `projects/{project\}/locations/{location\}/connections/{connection\}`.
      */
     name?: string;
   }
@@ -13905,14 +13905,14 @@ export namespace dlp_v2 {
      */
     pageToken?: string;
     /**
-     * Required. Parent name, for example: "projects/project-id/locations/global".
+     * Required. Parent name, for example: `projects/project-id/locations/global`.
      */
     parent?: string;
   }
   export interface Params$Resource$Projects$Locations$Connections$Patch
     extends StandardParameters {
     /**
-     * Required. Resource name in the format: "projects/{project\}/locations/{location\}/connections/{connection\}".
+     * Required. Resource name in the format: `projects/{project\}/locations/{location\}/connections/{connection\}`.
      */
     name?: string;
 
@@ -13936,7 +13936,7 @@ export namespace dlp_v2 {
      */
     pageToken?: string;
     /**
-     * Required. Parent name, typically an organization, without location. For example: "organizations/12345678".
+     * Required. Parent name, typically an organization, without location. For example: `organizations/12345678`.
      */
     parent?: string;
   }

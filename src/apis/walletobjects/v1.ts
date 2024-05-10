@@ -213,7 +213,7 @@ export namespace walletobjects_v1 {
      */
     androidAppLinkInfo?: Schema$AppLinkDataAppLinkInfo;
     /**
-     * Optional information about the partner app link. If included, the app link link module will be rendered on the valuable details on the ios client.
+     * Deprecated. Links to open iOS apps are not supported.
      */
     iosAppLinkInfo?: Schema$AppLinkDataAppLinkInfo;
     /**

@@ -612,7 +612,7 @@
                       "type": "string"
                     },
                     "parent": {
-                      "description": "Required. Parent name, typically an organization, without location. For example: \"organizations/12345678\".",
+                      "description": "Required. Parent name, typically an organization, without location. For example: `organizations/12345678`.",
                       "location": "path",
                       "pattern": "^organizations/[^/]+/locations/[^/]+$",
                       "required": true,
@@ -2732,7 +2732,7 @@
                   ],
                   "parameters": {
                     "parent": {
-                      "description": "Required. Parent resource name in the format: \"projects/{project}/locations/{location}\".",
+                      "description": "Required. Parent resource name in the format: `projects/{project}/locations/{location}`.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
@@ -2760,7 +2760,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. Resource name of the Connection to be deleted, in the format: \"projects/{project}/locations/{location}/connections/{connection}\".",
+                      "description": "Required. Resource name of the Connection to be deleted, in the format: `projects/{project}/locations/{location}/connections/{connection}`.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/connections/[^/]+$",
                       "required": true,
@@ -2785,7 +2785,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. Resource name in the format: \"projects/{project}/locations/{location}/connections/{connection}\".",
+                      "description": "Required. Resource name in the format: `projects/{project}/locations/{location}/connections/{connection}`.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/connections/[^/]+$",
                       "required": true,
@@ -2826,7 +2826,7 @@
                       "type": "string"
                     },
                     "parent": {
-                      "description": "Required. Parent name, for example: \"projects/project-id/locations/global\".",
+                      "description": "Required. Parent name, for example: `projects/project-id/locations/global`.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
@@ -2851,7 +2851,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. Resource name in the format: \"projects/{project}/locations/{location}/connections/{connection}\".",
+                      "description": "Required. Resource name in the format: `projects/{project}/locations/{location}/connections/{connection}`.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/connections/[^/]+$",
                       "required": true,
@@ -2895,7 +2895,7 @@
                       "type": "string"
                     },
                     "parent": {
-                      "description": "Required. Parent name, typically an organization, without location. For example: \"organizations/12345678\".",
+                      "description": "Required. Parent name, typically an organization, without location. For example: `organizations/12345678`.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
@@ -4451,7 +4451,7 @@
       }
     }
   },
-  "revision": "20240428",
+  "revision": "20240505",
   "rootUrl": "https://dlp.googleapis.com/",
   "schemas": {
     "GooglePrivacyDlpV2Action": {
@@ -5061,7 +5061,7 @@
           "description": "Built-in IAM authentication (must be configured in Cloud SQL)."
         },
         "connectionName": {
-          "description": "Optional. Immutable. The Cloud SQL instance for which the connection is defined. Only one connection per instance is allowed. This can only be set at creation time, and cannot be updated. It is an error to use a connection_name from different project or region than the one that holds the connection. For example, a Connection resource for Cloud SQL connection_name \"project-id:us-central1:sql-instance\" must be created under the parent \"projects/project-id/locations/us-central1\"",
+          "description": "Optional. Immutable. The Cloud SQL instance for which the connection is defined. Only one connection per instance is allowed. This can only be set at creation time, and cannot be updated. It is an error to use a connection_name from different project or region than the one that holds the connection. For example, a Connection resource for Cloud SQL connection_name `project-id:us-central1:sql-instance` must be created under the parent `projects/project-id/locations/us-central1`",
           "type": "string"
         },
         "databaseEngine": {
@@ -5284,9 +5284,9 @@
             "Decimal type.",
             "Json type.",
             "Interval type.",
-            "Range type.",
-            "Range type.",
-            "Range type."
+            "`Range` type.",
+            "`Range` type.",
+            "`Range` type."
           ],
           "type": "string"
         },
@@ -5480,7 +5480,7 @@
           "type": "array"
         },
         "name": {
-          "description": "Output only. Name of the connection: projects/{project}/locations/{location}/connections/{name}.",
+          "description": "Output only. Name of the connection: `projects/{project}/locations/{location}/connections/{name}`.",
           "readOnly": true,
           "type": "string"
         },
@@ -6016,7 +6016,7 @@
           "enumDescriptions": [
             "Unused.",
             "New profile (not a re-profile).",
-            "Changed one of the following profile metrics: * Table data risk score * Table sensitivity score * Table resource visibility * Table encryption type * Table predicted infoTypes * Table other infoTypes",
+            "Changed one of the following profile metrics: * Data risk score * Sensitivity score * Resource visibility * Encryption type * Predicted infoTypes * Other infoTypes",
             "Table data risk score or sensitivity score increased.",
             "A user (non-internal) error occurred."
           ],
@@ -7536,7 +7536,7 @@
       "type": "object"
     },
     "GooglePrivacyDlpV2InfoTypeCategory": {
-      "description": "Classification of infoTypes to organize them according to geographic location, industry, and data type. NEXT_ID: 48",
+      "description": "Classification of infoTypes to organize them according to geographic location, industry, and data type.",
       "id": "GooglePrivacyDlpV2InfoTypeCategory",
       "properties": {
         "industryCategory": {
@@ -9195,7 +9195,7 @@
           "enumDescriptions": [
             "Unused.",
             "The full table data profile.",
-            "The resource name of the table."
+            "The name of the profiled resource."
           ],
           "type": "string"
         },
@@ -9211,7 +9211,7 @@
           "enumDescriptions": [
             "Unused.",
             "New profile (not a re-profile).",
-            "Changed one of the following profile metrics: * Table data risk score * Table sensitivity score * Table resource visibility * Table encryption type * Table predicted infoTypes * Table other infoTypes",
+            "Changed one of the following profile metrics: * Data risk score * Sensitivity score * Resource visibility * Encryption type * Predicted infoTypes * Other infoTypes",
             "Table data risk score or sensitivity score increased.",
             "A user (non-internal) error occurred."
           ],
@@ -9791,7 +9791,7 @@
       "id": "GooglePrivacyDlpV2SecretManagerCredential",
       "properties": {
         "passwordSecretVersionName": {
-          "description": "Required. The name of the Secret Manager resource that stores the password, in the form \"projects/project-id/secrets/secret-name/versions/version\".",
+          "description": "Required. The name of the Secret Manager resource that stores the password, in the form `projects/project-id/secrets/secret-name/versions/version`.",
           "type": "string"
         },
         "username": {
@@ -10185,11 +10185,13 @@
           "enum": [
             "RESOURCE_VISIBILITY_UNSPECIFIED",
             "RESOURCE_VISIBILITY_PUBLIC",
+            "RESOURCE_VISIBILITY_INCONCLUSIVE",
             "RESOURCE_VISIBILITY_RESTRICTED"
           ],
           "enumDescriptions": [
             "Unused.",
             "Visible to any user.",
+            "May contain public items. For example, if a GCS bucket has uniform bucket level access disabled, some objects inside it may be public.",
             "Visible only to specific users."
           ],
           "type": "string"
@@ -10335,7 +10337,7 @@
       "id": "GooglePrivacyDlpV2TimespanConfig",
       "properties": {
         "enableAutoPopulationOfTimespanConfig": {
-          "description": "When the job is started by a JobTrigger we will automatically figure out a valid start_time to avoid scanning files that have not been modified since the last time the JobTrigger executed. This will be based on the time of the execution of the last run of the JobTrigger or the timespan end_time used in the last run of the JobTrigger. *For BigQuery* Inspect jobs triggered by automatic population will scan data that is at least three hours old when the job starts. This is because streaming buffer rows are not read during inspection and reading up to the current timestamp will result in skipped rows. See the [known issue](https://cloud.google.com/sensitive-data-protection/docs/known-issues#recently-streamed-data) related to this operation.",
+          "description": "When the job is started by a JobTrigger we will automatically figure out a valid start_time to avoid scanning files that have not been modified since the last time the JobTrigger executed. This will be based on the time of the execution of the last run of the JobTrigger or the timespan end_time used in the last run of the JobTrigger. **For BigQuery** Inspect jobs triggered by automatic population will scan data that is at least three hours old when the job starts. This is because streaming buffer rows are not read during inspection and reading up to the current timestamp will result in skipped rows. See the [known issue](https://cloud.google.com/sensitive-data-protection/docs/known-issues#recently-streamed-data) related to this operation.",
           "type": "boolean"
         },
         "endTime": {

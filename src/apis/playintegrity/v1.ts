@@ -151,11 +151,15 @@ export namespace playintegrity_v1 {
    */
   export interface Schema$AppAccessRiskVerdict {
     /**
-     * App access risk verdict related to apps that are not installed by Google Play, and are not preloaded on the system image by the device manufacturer.
+     * List of detected app types signalled for App Access Risk.
+     */
+    appsDetected?: string[] | null;
+    /**
+     * Deprecated: this field will be removed, please use apps_detected instead. App access risk verdict related to apps that are not installed by Google Play, and are not preloaded on the system image by the device manufacturer.
      */
     otherApps?: string | null;
     /**
-     * App access risk verdict related to apps that are not installed by the Google Play Store, and are not preloaded on the system image by the device manufacturer.
+     * Deprecated: this field will be removed, please use apps_detected instead. App access risk verdict related to apps that are not installed by the Google Play Store, and are not preloaded on the system image by the device manufacturer.
      */
     playOrSystemApps?: string | null;
   }

@@ -10045,7 +10045,7 @@
       }
     }
   },
-  "revision": "20240430",
+  "revision": "20240507",
   "rootUrl": "https://apigee.googleapis.com/",
   "schemas": {
     "EdgeConfigstoreBundleBadBundle": {
@@ -16733,6 +16733,13 @@
         },
         "developers": {
           "description": "Optional. A list of developers. Limit 1000 per action.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "httpMethods": {
+          "description": "Optional. Act only on particular HTTP methods. E.g. A read-only API can block POST/PUT/DELETE methods. Accepted values are: GET, HEAD, POST, PUT, DELETE, CONNECT, OPTIONS, TRACE and PATCH.",
           "items": {
             "type": "string"
           },

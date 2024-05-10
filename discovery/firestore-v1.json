@@ -276,6 +276,11 @@
                   "pattern": "^projects/[^/]+$",
                   "required": true,
                   "type": "string"
+                },
+                "showDeleted": {
+                  "description": "If true, also returns deleted resources.",
+                  "location": "query",
+                  "type": "boolean"
                 }
               },
               "path": "v1/{+parent}/databases",
@@ -1672,7 +1677,7 @@
       }
     }
   },
-  "revision": "20240420",
+  "revision": "20240430",
   "rootUrl": "https://firestore.googleapis.com/",
   "schemas": {
     "Aggregation": {
@@ -2569,6 +2574,12 @@
             "Delete protection is disabled",
             "Delete protection is enabled"
           ],
+          "type": "string"
+        },
+        "deleteTime": {
+          "description": "Output only. The timestamp at which this database was soft deleted. Only set if the database has been soft deleted.",
+          "format": "google-datetime",
+          "readOnly": true,
           "type": "string"
         },
         "earliestVersionTime": {

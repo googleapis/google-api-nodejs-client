@@ -395,6 +395,10 @@ export namespace aiplatform_v1 {
    */
   export interface Schema$CloudAiNlLlmProtoServiceContent {
     /**
+     * If true, the content is from a cached content.
+     */
+    isCached?: boolean | null;
+    /**
      * The parts of the message.
      */
     parts?: Schema$CloudAiNlLlmProtoServicePart[];
@@ -614,7 +618,7 @@ export namespace aiplatform_v1 {
     safetyRatings?: Schema$CloudAiNlLlmProtoServiceSafetyRating[];
   }
   /**
-   * The RAI results for a given text.
+   * The RAI results for a given text. Next ID: 12
    */
   export interface Schema$CloudAiNlLlmProtoServiceRaiResult {
     /**
@@ -637,6 +641,10 @@ export namespace aiplatform_v1 {
      * Language filter result from SAFT LangId.
      */
     languageFilterResult?: Schema$LearningGenaiRootLanguageFilterResult;
+    /**
+     * Multi modal recitation results. It will be populated as long as Multi modal Recitation processor is invoked.
+     */
+    mmRecitationResult?: Schema$LearningGenaiRecitationMMRecitationCheckResult;
     /**
      * The RAI signals for the text.
      */
@@ -2477,6 +2485,10 @@ export namespace aiplatform_v1 {
      */
     metadataSchemaUri?: string | null;
     /**
+     * Optional. Reference to the public base model last used by the dataset. Only set for prompt datasets.
+     */
+    modelReference?: string | null;
+    /**
      * Output only. The resource name of the Dataset.
      */
     name?: string | null;
@@ -2513,6 +2525,10 @@ export namespace aiplatform_v1 {
      * Required. Output only. Additional information about the DatasetVersion.
      */
     metadata?: any | null;
+    /**
+     * Output only. Reference to the public base model last used by the dataset version. Only set for prompt dataset versions.
+     */
+    modelReference?: string | null;
     /**
      * Output only. The resource name of the DatasetVersion.
      */
@@ -3935,7 +3951,7 @@ export namespace aiplatform_v1 {
    */
   export interface Schema$GoogleCloudAiplatformV1FeatureGroup {
     /**
-     * Indicates that features for this group come from BigQuery Table/View. By default treats the source as a sparse time series source, which is required to have an entity_id and a feature_timestamp column in the source.
+     * Indicates that features for this group come from BigQuery Table/View. By default treats the source as a sparse time series source. The BigQuery source table or view must have at least one entity ID column and a column named `feature_timestamp`.
      */
     bigQuery?: Schema$GoogleCloudAiplatformV1FeatureGroupBigQuery;
     /**
@@ -4653,19 +4669,6 @@ export namespace aiplatform_v1 {
      * Crowding is a constraint on a neighbor list produced by nearest neighbor search requiring that no more than some value k' of the k neighbors returned have the same value of crowding_attribute. It's used for improving result diversity. This field is the maximum number of matches with the same crowding tag.
      */
     perCrowdingAttributeNeighborCount?: number | null;
-    /**
-     * Optional. Represents RRF algorithm that combines search results.
-     */
-    rrf?: Schema$GoogleCloudAiplatformV1FindNeighborsRequestQueryRRF;
-  }
-  /**
-   * Parameters for RRF algorithm that combines search results.
-   */
-  export interface Schema$GoogleCloudAiplatformV1FindNeighborsRequestQueryRRF {
-    /**
-     * Required. Users can provide an alpha value to give more weight to dense vs sparse results. For example, if the alpha is 0, we only return sparse and if the alpha is 1, we only return dense.
-     */
-    alpha?: number | null;
   }
   /**
    * The response message for MatchService.FindNeighbors.
@@ -4701,10 +4704,6 @@ export namespace aiplatform_v1 {
      * The distance between the neighbor and the dense embedding query.
      */
     distance?: number | null;
-    /**
-     * The distance between the neighbor and the query sparse_embedding.
-     */
-    sparseDistance?: number | null;
   }
   /**
    * Assigns the input data to training, validation, and test sets as per the given fractions. Any of `training_fraction`, `validation_fraction` and `test_fraction` may optionally be provided, they must sum to up to 1. If the provided ones sum to less than 1, the remainder is assigned to sets as decided by Vertex AI. If none of the fractions are set, by default roughly 80% of data is used for training, 10% for validation, and 10% for test.
@@ -4881,6 +4880,10 @@ export namespace aiplatform_v1 {
      * Optional. Output response mimetype of the generated candidate text. Supported mimetype: - `text/plain`: (default) Text output. - `application/json`: JSON response in the candidates. The model needs to be prompted to output the appropriate response type, otherwise the behavior is undefined. This is a preview feature.
      */
     responseMimeType?: string | null;
+    /**
+     * Optional. Control Three levels of creativity in the model output. Default: RESPONSE_STYLE_BALANCED
+     */
+    responseStyle?: string | null;
     /**
      * Optional. Stop sequences.
      */
@@ -5251,10 +5254,6 @@ export namespace aiplatform_v1 {
      * Optional. List of Restrict of the datapoint, used to perform "restricted searches" where boolean rule are used to filter the subset of the database eligible for matching. This uses categorical tokens. See: https://cloud.google.com/vertex-ai/docs/matching-engine/filtering
      */
     restricts?: Schema$GoogleCloudAiplatformV1IndexDatapointRestriction[];
-    /**
-     * Optional. Feature embedding vector for sparse index.
-     */
-    sparseEmbedding?: Schema$GoogleCloudAiplatformV1IndexDatapointSparseEmbedding;
   }
   /**
    * Crowding tag is a constraint on a neighbor list produced by nearest neighbor search requiring that no more than some value k' of the k neighbors returned have the same value of crowding_attribute.
@@ -5306,19 +5305,6 @@ export namespace aiplatform_v1 {
      * The namespace of this restriction. e.g.: color.
      */
     namespace?: string | null;
-  }
-  /**
-   * Feature embedding vector for sparse index. An array of numbers whose values are located in the specified dimensions.
-   */
-  export interface Schema$GoogleCloudAiplatformV1IndexDatapointSparseEmbedding {
-    /**
-     * Optional. The list of indexes for the embedding values of the sparse vector.
-     */
-    dimensions?: string[] | null;
-    /**
-     * Optional. The list of embedding values of the sparse vector.
-     */
-    values?: number[] | null;
   }
   /**
    * Indexes are deployed into it. An IndexEndpoint can have multiple DeployedIndexes.
@@ -5406,10 +5392,6 @@ export namespace aiplatform_v1 {
      * Output only. The number of shards in the Index.
      */
     shardsCount?: number | null;
-    /**
-     * Output only. The number of sparse vectors in the Index.
-     */
-    sparseVectorsCount?: string | null;
     /**
      * Output only. The number of dense vectors in the Index.
      */
@@ -7626,6 +7608,10 @@ export namespace aiplatform_v1 {
      */
     invalidRecordCount?: string | null;
     /**
+     * Number of sparse records in this file we skipped due to validate errors.
+     */
+    invalidSparseRecordCount?: string | null;
+    /**
      * The detail information of the partial failures encountered for those invalid records that couldn't be parsed. Up to 50 partial errors will be reported.
      */
     partialErrors?: Schema$GoogleCloudAiplatformV1NearestNeighborSearchOperationMetadataRecordError[];
@@ -7637,6 +7623,10 @@ export namespace aiplatform_v1 {
      * Number of records in this file that were successfully processed.
      */
     validRecordCount?: string | null;
+    /**
+     * Number of sparse records in this file that were successfully processed.
+     */
+    validSparseRecordCount?: string | null;
   }
   export interface Schema$GoogleCloudAiplatformV1NearestNeighborSearchOperationMetadataRecordError {
     /**
@@ -7831,6 +7821,14 @@ export namespace aiplatform_v1 {
      * Required. The user email of the NotebookRuntime.
      */
     runtimeUser?: string | null;
+    /**
+     * Output only. Reserved for future use.
+     */
+    satisfiesPzi?: boolean | null;
+    /**
+     * Output only. Reserved for future use.
+     */
+    satisfiesPzs?: boolean | null;
     /**
      * Output only. The service account that the NotebookRuntime workload runs as.
      */
@@ -13584,6 +13582,10 @@ export namespace aiplatform_v1 {
      */
     description?: string | null;
     /**
+     * Customer-managed encryption key options for a TuningJob. If this is set, then all resources created by the TuningJob will be encrypted with the provided encryption key.
+     */
+    encryptionSpec?: Schema$GoogleCloudAiplatformV1EncryptionSpec;
+    /**
      * Output only. Time when the TuningJob entered any of the following JobStates: `JOB_STATE_SUCCEEDED`, `JOB_STATE_FAILED`, `JOB_STATE_CANCELLED`, `JOB_STATE_EXPIRED`.
      */
     endTime?: string | null;
@@ -14479,6 +14481,13 @@ export namespace aiplatform_v1 {
     trainingSegmentResults?: Schema$LanguageLabsAidaTrustRecitationProtoSegmentResult[];
   }
   /**
+   * Recitation check result for a single content chunk.
+   */
+  export interface Schema$LearningGenaiRecitationContentChunkRecitationCheckResult {
+    imageResult?: Schema$LearningGenaiRecitationImageRecitationCheckResult;
+    textResult?: Schema$LearningGenaiRecitationRecitationResult;
+  }
+  /**
    * The proto defines the attribution information for a document using whatever fields are most applicable for that document's datasource. For example, a Wikipedia article's attribution is in the form of its article title, a website is in the form of a URL, and a Github repo is in the form of a repo name. Next id: 30
    */
   export interface Schema$LearningGenaiRecitationDocAttribution {
@@ -14543,6 +14552,57 @@ export namespace aiplatform_v1 {
      */
     wikipediaArticleTitle?: string | null;
     youtubeVideoId?: string | null;
+  }
+  /**
+   * Attribution information about the recited image.
+   */
+  export interface Schema$LearningGenaiRecitationImageDocAttribution {
+    /**
+     * Unique ID of the image.
+     */
+    datasetName?: string | null;
+    /**
+     * Doc ID to identify the image. These could be urls of images or amarna id.
+     */
+    stringDocids?: string | null;
+  }
+  export interface Schema$LearningGenaiRecitationImageRecitationCheckResult {
+    /**
+     * Only has NO_ACTION or BLOCK to start with.
+     */
+    recitationAction?: string | null;
+    /**
+     * Images that are similar to the requested image.
+     */
+    recitedImages?: Schema$LearningGenaiRecitationImageRecitationCheckResultSimilarImage[];
+  }
+  export interface Schema$LearningGenaiRecitationImageRecitationCheckResultSimilarImage {
+    /**
+     * Attribution information about the image
+     */
+    docAttribution?: Schema$LearningGenaiRecitationImageDocAttribution;
+    /**
+     * The memorization embedding model that returned this image
+     */
+    embeddingModel?: string | null;
+    /**
+     * Image ID corresponding of the image corresponding to the score. `image_id` serves for debugging purposes and can't be used by clients to retrieve an image.
+     */
+    imageId?: string | null;
+    /**
+     * Similarity score of requested image compared with image in training data.
+     */
+    scores?: number | null;
+  }
+  /**
+   * Recitation check result for a stream of content chunks (e.g. a model response).
+   */
+  export interface Schema$LearningGenaiRecitationMMRecitationCheckResult {
+    chunkResults?: Schema$LearningGenaiRecitationContentChunkRecitationCheckResult[];
+    /**
+     * Overall recommended recitation action for the content.
+     */
+    recitationAction?: string | null;
   }
   /**
    * The recitation result for one input
@@ -14856,9 +14916,15 @@ export namespace aiplatform_v1 {
   export interface Schema$LearningGenaiRootHarmGrailTextHarmType {
     harmType?: string[] | null;
   }
+  /**
+   * LINT.ThenChange(//depot/google3/learning/genai/root/util/classifier/backends/grail/grail.cc)
+   */
   export interface Schema$LearningGenaiRootHarmSafetyCatCategories {
     categories?: string[] | null;
   }
+  /**
+   * LINT.IfChange
+   */
   export interface Schema$LearningGenaiRootHarmSpiiFilter {
     usBankRoutingMicr?: boolean | null;
     usEmployerIdentificationNumber?: boolean | null;
@@ -14900,6 +14966,10 @@ export namespace aiplatform_v1 {
      * Latency spent on prompt2query. The procedure generates a search-friendly query given the original prompt.
      */
     prompt2queryMilliseconds?: string | null;
+    /**
+     * Latency if use GroundedGeneration service for the whole retrieval & augmentation.
+     */
+    retrievalAugmentMilliseconds?: string | null;
   }
   /**
    * This is per harm.
@@ -14919,6 +14989,70 @@ export namespace aiplatform_v1 {
      * Regex used to decide that query or response should be taken down. Empty when query or response is kept.
      */
     takedownRegex?: string | null;
+  }
+  export interface Schema$LearningGenaiRootRequestMetrics {
+    /**
+     * Metrics for audio samples in the request.
+     */
+    audioMetrics?: Schema$LearningGenaiRootRequestMetricsAudioMetrics;
+    /**
+     * Metrics for image samples in the request.
+     */
+    imageMetrics?: Schema$LearningGenaiRootRequestMetricsImageMetrics;
+    /**
+     * Number of text tokens extracted from the request.
+     */
+    textTokenCount?: number | null;
+    /**
+     * Total number of tokens in the request.
+     */
+    totalTokenCount?: number | null;
+    /**
+     * Metrics for video samples in the request.
+     */
+    videoMetrics?: Schema$LearningGenaiRootRequestMetricsVideoMetrics;
+  }
+  export interface Schema$LearningGenaiRootRequestMetricsAudioMetrics {
+    /**
+     * Duration of the audio sample in seconds.
+     */
+    audioDuration?: string | null;
+    /**
+     * Number of tokens derived directly from audio data.
+     */
+    audioTokenCount?: number | null;
+    /**
+     * Number of audio frames in the audio.
+     */
+    numAudioFrames?: number | null;
+  }
+  export interface Schema$LearningGenaiRootRequestMetricsImageMetrics {
+    /**
+     * Number of tokens extracted from image bytes.
+     */
+    imageTokenCount?: number | null;
+    /**
+     * Number of images in the request.
+     */
+    numImages?: number | null;
+  }
+  export interface Schema$LearningGenaiRootRequestMetricsVideoMetrics {
+    /**
+     * Metrics associated with audio sample in the video.
+     */
+    audioSample?: Schema$LearningGenaiRootRequestMetricsAudioMetrics;
+    /**
+     * Number of video frames in the video.
+     */
+    numVideoFrames?: number | null;
+    /**
+     * Duration of the video sample in seconds.
+     */
+    videoDuration?: string | null;
+    /**
+     * Number of tokens extracted from video frames.
+     */
+    videoFramesTokenCount?: number | null;
   }
   export interface Schema$LearningGenaiRootRequestResponseTakedownResult {
     /**
@@ -15140,7 +15274,7 @@ export namespace aiplatform_v1 {
     source?: string | null;
   }
   /**
-   * LINT.IfChange This metadata contains additional information required for debugging. Next ID: 28
+   * LINT.IfChange This metadata contains additional information required for debugging.
    */
   export interface Schema$LearningServingLlmMessageMetadata {
     atlasMetadata?: Schema$LearningServingLlmAtlasOutputMetadata;
@@ -15191,6 +15325,18 @@ export namespace aiplatform_v1 {
      */
     lmPrefix?: string | null;
     /**
+     * FOR LMROOT INTERNAL USE ONLY. Externally, use learning.genai.root.RequestMetadata.RequestMetrics. Request metrics per modality including token count, duration, num_frames.
+     */
+    lmrootInternalRequestMetrics?: Schema$LearningGenaiRootRequestMetrics;
+    /**
+     * Multi modal recitation results. It will be populated as long as Multi modal Recitation processor is invoked.
+     */
+    mmRecitationResult?: Schema$LearningGenaiRecitationMMRecitationCheckResult;
+    /**
+     * Number of Controlled Decoding rewind and repeats that have happened for this response.
+     */
+    numRewinds?: number | null;
+    /**
      * The original text generated by LLM. This is the raw output for debugging purposes.
      */
     originalText?: string | null;
@@ -15210,10 +15356,6 @@ export namespace aiplatform_v1 {
      * Recitation Results. It will be populated as long as Recitation processing is enabled, regardless of recitation outcome.
      */
     recitationResult?: Schema$LearningGenaiRecitationRecitationResult;
-    /**
-     * NOT IMPLEMENTED TODO (b/334187574) Remove this field after Labs migrates to per_stream_returned_token_count and total_returned_token_count.
-     */
-    returnTokenCount?: number | null;
     /**
      * All the different scores for a message are logged here.
      */
@@ -21613,6 +21755,101 @@ export namespace aiplatform_v1 {
     }
 
     /**
+     * Updates a DatasetVersion.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Locations$Datasets$Datasetversions$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Projects$Locations$Datasets$Datasetversions$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1DatasetVersion>;
+    patch(
+      params: Params$Resource$Projects$Locations$Datasets$Datasetversions$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Datasets$Datasetversions$Patch,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1DatasetVersion>,
+      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1DatasetVersion>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Datasets$Datasetversions$Patch,
+      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1DatasetVersion>
+    ): void;
+    patch(
+      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1DatasetVersion>
+    ): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Datasetversions$Patch
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1DatasetVersion>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1DatasetVersion>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1DatasetVersion>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudAiplatformV1DatasetVersion>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Datasetversions$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Datasets$Datasetversions$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudAiplatformV1DatasetVersion>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudAiplatformV1DatasetVersion>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Restores a dataset version.
      *
      * @param params - Parameters for request
@@ -21765,6 +22002,22 @@ export namespace aiplatform_v1 {
      * Optional. Mask specifying which fields to read.
      */
     readMask?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Datasets$Datasetversions$Patch
+    extends StandardParameters {
+    /**
+     * Output only. The resource name of the DatasetVersion.
+     */
+    name?: string;
+    /**
+     * Required. The update mask applies to the resource. For the `FieldMask` definition, see google.protobuf.FieldMask. Updatable fields: * `display_name`
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudAiplatformV1DatasetVersion;
   }
   export interface Params$Resource$Projects$Locations$Datasets$Datasetversions$Restore
     extends StandardParameters {

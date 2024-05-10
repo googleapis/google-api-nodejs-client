@@ -662,6 +662,10 @@ export namespace admin_directory_v1 {
      */
     bootMode?: string | null;
     /**
+     * Output only. Chrome OS type of the device.
+     */
+    chromeOsType?: string | null;
+    /**
      * Information regarding CPU specs in the device.
      */
     cpuInfo?: Array<{
@@ -742,6 +746,10 @@ export namespace admin_directory_v1 {
      * Output only. Date of the device when extended support policy for automatic updates starts.
      */
     extendedSupportStart?: string | null;
+    /**
+     * Output only. Fan information for the device.
+     */
+    fanInfo?: Schema$FanInfo[];
     /**
      * The Chrome device's firmware version.
      */
@@ -1192,6 +1200,15 @@ export namespace admin_directory_v1 {
      * Id of a failed printer.
      */
     printerId?: string | null;
+  }
+  /**
+   * Information about the device's fan.
+   */
+  export interface Schema$FanInfo {
+    /**
+     * Output only. Fan speed in RPM.
+     */
+    speedRpm?: number | null;
   }
   /**
    * JSON template for Feature object in Directory API.
@@ -3839,7 +3856,7 @@ export namespace admin_directory_v1 {
      */
     includeChildOrgunits?: boolean;
     /**
-     * Maximum number of results to return.
+     * Maximum number of results to return, value should not exceed 300.
      */
     maxResults?: number;
     /**
@@ -3855,7 +3872,7 @@ export namespace admin_directory_v1 {
      */
     pageToken?: string;
     /**
-     * Restrict information returned to a set of selected fields.
+     * Determines whether the response contains the full list of properties or only a subset.
      */
     projection?: string;
     /**
@@ -3894,7 +3911,7 @@ export namespace admin_directory_v1 {
      */
     deviceId?: string;
     /**
-     * Restrict information returned to a set of selected fields.
+     * Determines whether the response contains the full list of properties or only a subset.
      */
     projection?: string;
 
@@ -3914,7 +3931,7 @@ export namespace admin_directory_v1 {
      */
     deviceId?: string;
     /**
-     * Restrict information returned to a set of selected fields.
+     * Determines whether the response contains the full list of properties or only a subset.
      */
     projection?: string;
 

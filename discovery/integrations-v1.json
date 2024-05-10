@@ -3712,7 +3712,7 @@
       }
     }
   },
-  "revision": "20240428",
+  "revision": "20240505",
   "rootUrl": "https://integrations.googleapis.com/",
   "schemas": {
     "CrmlogErrorCode": {
@@ -4288,6 +4288,33 @@
         "serviceAccount": {
           "description": "Optional. The service account used for authentication of this KMS key. If this is not provided, the service account in Client.clientSource will be used.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "EnterpriseCrmEventbusProtoCloudLoggingDetails": {
+      "description": "Cloud Logging details, selected by the user for the integration version (workflow). This message field will be also used in ExecutionInfo, to indicate the CloudLoggingDetails config at the time of workflow (integration version) execution, since this field value can be changed for an unpublished workflow.",
+      "id": "EnterpriseCrmEventbusProtoCloudLoggingDetails",
+      "properties": {
+        "cloudLoggingSeverity": {
+          "description": "Severity selected by the customer for the logs to be sent to Cloud Logging, for the integration version getting executed.",
+          "enum": [
+            "CLOUD_LOGGING_SEVERITY_UNSPECIFIED",
+            "INFO",
+            "ERROR",
+            "WARNING"
+          ],
+          "enumDescriptions": [
+            "Unspecified",
+            "If Severity selected is `INFO`, then all the Integration Execution States (`IN_PROCESS`, `ON_HOLD`, `SUCCEEDED`, `SUSPENDED`, `ERROR`, `CANCELLED`) will be sent to Cloud Logging.",
+            "If Severity selected is `ERROR`, then only the following Integration Execution States (`ERROR`, `CANCELLED`) will be sent to Cloud Logging.",
+            "If Severity selected is `WARNING`, then only the following Integration Execution States (`ERROR`, `CANCELLED`) will be sent to Cloud Logging."
+          ],
+          "type": "string"
+        },
+        "enableCloudLogging": {
+          "description": "Status of whether Cloud Logging is enabled or not for the integration version getting executed.",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -7125,12 +7152,16 @@
       "type": "object"
     },
     "EnterpriseCrmFrontendsEventbusProtoEventExecutionInfo": {
-      "description": "Contains all the execution details for a workflow instance. Next available id: 25",
+      "description": "Contains all the execution details for a workflow instance. Next available id: 26",
       "id": "EnterpriseCrmFrontendsEventbusProtoEventExecutionInfo",
       "properties": {
         "clientId": {
           "description": "The event data user sends as request.",
           "type": "string"
+        },
+        "cloudLoggingDetails": {
+          "$ref": "EnterpriseCrmEventbusProtoCloudLoggingDetails",
+          "description": "Cloud Logging details for execution info"
         },
         "createTime": {
           "description": "Auto-generated.",
@@ -9164,6 +9195,22 @@
         "enabled": {
           "description": "Enabled represents whether logging is enabled or not for a connection.",
           "type": "boolean"
+        },
+        "level": {
+          "description": "Optional. Log configuration level.",
+          "enum": [
+            "LOG_LEVEL_UNSPECIFIED",
+            "ERROR",
+            "INFO",
+            "DEBUG"
+          ],
+          "enumDescriptions": [
+            "Log level unspecified.",
+            "Only error logs are enabled.",
+            "Info and error logs are enabled.",
+            "Debug and high verbosity logs are enabled."
+          ],
+          "type": "string"
         }
       },
       "type": "object"

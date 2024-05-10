@@ -141,7 +141,7 @@ export namespace clouddeploy_v1 {
    */
   export interface Schema$AdvanceChildRolloutJobRun {
     /**
-     * Output only. Name of the `ChildRollout`. Format is `projects/{project\}/locations/{location\}/deliveryPipelines/{deliveryPipeline\}/releases/{release\}/rollouts/a-z{0,62\}`.
+     * Output only. Name of the `ChildRollout`. Format is `projects/{project\}/locations/{location\}/deliveryPipelines/{deliveryPipeline\}/releases/{release\}/rollouts/{rollout\}`.
      */
     rollout?: string | null;
     /**
@@ -192,7 +192,7 @@ export namespace clouddeploy_v1 {
      */
     condition?: Schema$AutomationRuleCondition;
     /**
-     * Required. ID of the rule. This id must be unique in the `Automation` resource to which this rule belongs. The format is `a-z{0,62\}`.
+     * Required. ID of the rule. This id must be unique in the `Automation` resource to which this rule belongs. The format is `[a-z]([a-z0-9-]{0,61\}[a-z0-9])?`.
      */
     id?: string | null;
     /**
@@ -671,7 +671,7 @@ export namespace clouddeploy_v1 {
    */
   export interface Schema$CreateChildRolloutJobRun {
     /**
-     * Output only. Name of the `ChildRollout`. Format is `projects/{project\}/locations/{location\}/deliveryPipelines/{deliveryPipeline\}/releases/{release\}/rollouts/a-z{0,62\}`.
+     * Output only. Name of the `ChildRollout`. Format is `projects/{project\}/locations/{location\}/deliveryPipelines/{deliveryPipeline\}/releases/{release\}/rollouts/{rollout\}`.
      */
     rollout?: string | null;
     /**
@@ -765,7 +765,7 @@ export namespace clouddeploy_v1 {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * Optional. Name of the `CustomTargetType`. Format is `projects/{project\}/locations/{location\}/customTargetTypes/a-z{0,62\}`.
+     * Optional. Name of the `CustomTargetType`. Format is `projects/{project\}/locations/{location\}/customTargetTypes/{customTargetType\}`. The `customTargetType` component must match `[a-z]([a-z0-9-]{0,61\}[a-z0-9])?`
      */
     name?: string | null;
     /**
@@ -836,7 +836,7 @@ export namespace clouddeploy_v1 {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * Optional. Name of the `DeliveryPipeline`. Format is `projects/{project\}/locations/{location\}/deliveryPipelines/a-z{0,62\}`.
+     * Optional. Name of the `DeliveryPipeline`. Format is `projects/{project\}/locations/{location\}/deliveryPipelines/{deliveryPipeline\}`. The `deliveryPipeline` component must match `[a-z]([a-z0-9-]{0,61\}[a-z0-9])?`
      */
     name?: string | null;
     /**
@@ -1765,7 +1765,7 @@ export namespace clouddeploy_v1 {
      */
     destinationTargetId?: string | null;
     /**
-     * Required. ID of the rule. This id must be unique in the `Automation` resource to which this rule belongs. The format is `a-z{0,62\}`.
+     * Required. ID of the rule. This id must be unique in the `Automation` resource to which this rule belongs. The format is `[a-z]([a-z0-9-]{0,61\}[a-z0-9])?`.
      */
     id?: string | null;
     /**
@@ -1822,7 +1822,7 @@ export namespace clouddeploy_v1 {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * Optional. Name of the `Release`. Format is `projects/{project\}/locations/{location\}/deliveryPipelines/{deliveryPipeline\}/releases/a-z{0,62\}`.
+     * Optional. Name of the `Release`. Format is `projects/{project\}/locations/{location\}/deliveryPipelines/{deliveryPipeline\}/releases/{release\}`. The `release` component must match `[a-z]([a-z0-9-]{0,61\}[a-z0-9])?`
      */
     name?: string | null;
     /**
@@ -2011,7 +2011,7 @@ export namespace clouddeploy_v1 {
      */
     condition?: Schema$AutomationRuleCondition;
     /**
-     * Required. ID of the rule. This id must be unique in the `Automation` resource to which this rule belongs. The format is `a-z{0,62\}`.
+     * Required. ID of the rule. This id must be unique in the `Automation` resource to which this rule belongs. The format is `[a-z]([a-z0-9-]{0,61\}[a-z0-9])?`.
      */
     id?: string | null;
     /**
@@ -2205,7 +2205,7 @@ export namespace clouddeploy_v1 {
      */
     approveTime?: string | null;
     /**
-     * Output only. Name of the `ControllerRollout`. Format is `projects/{project\}/locations/{location\}/deliveryPipelines/{deliveryPipeline\}/releases/{release\}/rollouts/a-z{0,62\}`.
+     * Output only. Name of the `ControllerRollout`. Format is `projects/{project\}/locations/{location\}/deliveryPipelines/{deliveryPipeline\}/releases/{release\}/rollouts/{rollout\}`.
      */
     controllerRollout?: string | null;
     /**
@@ -2253,7 +2253,7 @@ export namespace clouddeploy_v1 {
      */
     metadata?: Schema$Metadata;
     /**
-     * Optional. Name of the `Rollout`. Format is `projects/{project\}/locations/{location\}/deliveryPipelines/{deliveryPipeline\}/releases/{release\}/rollouts/a-z{0,62\}`.
+     * Optional. Name of the `Rollout`. Format is `projects/{project\}/locations/{location\}/deliveryPipelines/{deliveryPipeline\}/releases/{release\}/rollouts/{rollout\}`. The `rollout` component must match `[a-z]([a-z0-9-]{0,61\}[a-z0-9])?`
      */
     name?: string | null;
     /**
@@ -2634,7 +2634,7 @@ export namespace clouddeploy_v1 {
      */
     multiTarget?: Schema$MultiTarget;
     /**
-     * Optional. Name of the `Target`. Format is `projects/{project\}/locations/{location\}/targets/a-z{0,62\}`.
+     * Optional. Name of the `Target`. Format is `projects/{project\}/locations/{location\}/targets/{target\}`. The `target` component must match `[a-z]([a-z0-9-]{0,61\}[a-z0-9])?`
      */
     name?: string | null;
     /**
@@ -3869,7 +3869,7 @@ export namespace clouddeploy_v1 {
      */
     allowMissing?: boolean;
     /**
-     * Optional. Name of the `CustomTargetType`. Format is `projects/{project\}/locations/{location\}/customTargetTypes/a-z{0,62\}`.
+     * Optional. Name of the `CustomTargetType`. Format is `projects/{project\}/locations/{location\}/customTargetTypes/{customTargetType\}`. The `customTargetType` component must match `[a-z]([a-z0-9-]{0,61\}[a-z0-9])?`
      */
     name?: string;
     /**
@@ -4838,7 +4838,7 @@ export namespace clouddeploy_v1 {
      */
     allowMissing?: boolean;
     /**
-     * Optional. Name of the `DeliveryPipeline`. Format is `projects/{project\}/locations/{location\}/deliveryPipelines/a-z{0,62\}`.
+     * Optional. Name of the `DeliveryPipeline`. Format is `projects/{project\}/locations/{location\}/deliveryPipelines/{deliveryPipeline\}`. The `deliveryPipeline` component must match `[a-z]([a-z0-9-]{0,61\}[a-z0-9])?`
      */
     name?: string;
     /**
@@ -8616,7 +8616,7 @@ export namespace clouddeploy_v1 {
      */
     allowMissing?: boolean;
     /**
-     * Optional. Name of the `Target`. Format is `projects/{project\}/locations/{location\}/targets/a-z{0,62\}`.
+     * Optional. Name of the `Target`. Format is `projects/{project\}/locations/{location\}/targets/{target\}`. The `target` component must match `[a-z]([a-z0-9-]{0,61\}[a-z0-9])?`
      */
     name?: string;
     /**

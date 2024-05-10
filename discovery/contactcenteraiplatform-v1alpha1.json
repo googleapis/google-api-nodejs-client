@@ -512,7 +512,7 @@
       }
     }
   },
-  "revision": "20240426",
+  "revision": "20240506",
   "rootUrl": "https://contactcenteraiplatform.googleapis.com/",
   "schemas": {
     "AdminUser": {
@@ -740,7 +740,13 @@
             "STANDARD_XLARGE",
             "STANDARD_2XLARGE",
             "STANDARD_3XLARGE",
-            "DEV_XSMALL"
+            "DEV_XSMALL",
+            "MULTIREGION_SMALL",
+            "MULTIREGION_MEDIUM",
+            "MULTIREGION_LARGE",
+            "MULTIREGION_XLARGE",
+            "MULTIREGION_2XLARGE",
+            "MULTIREGION_3XLARGE"
           ],
           "enumDescriptions": [
             "The default value. This value is used if the state is omitted.",
@@ -750,7 +756,13 @@
             "Instance Size STANDARD_XLARGE.",
             "Instance Size STANDARD_2XLARGE.",
             "Instance Size STANDARD_3XLARGE.",
-            "Instance Size DEV_EXTRA_SMALL."
+            "Instance Size DEV_EXTRA_SMALL.",
+            "Instance Size MULTIREGION_SMALL",
+            "Instance Size MULTIREGION_MEDIUM",
+            "Instance Size MULTIREGION_LARGE",
+            "Instance Size MULTIREGION_XLARGE",
+            "Instance Size MULTIREGION_2XLARGE.",
+            "Instance Size MULTIREGION_3XLARGE."
           ],
           "type": "string"
         }
@@ -965,7 +977,13 @@
             "STANDARD_XLARGE",
             "STANDARD_2XLARGE",
             "STANDARD_3XLARGE",
-            "DEV_XSMALL"
+            "DEV_XSMALL",
+            "MULTIREGION_SMALL",
+            "MULTIREGION_MEDIUM",
+            "MULTIREGION_LARGE",
+            "MULTIREGION_XLARGE",
+            "MULTIREGION_2XLARGE",
+            "MULTIREGION_3XLARGE"
           ],
           "enumDescriptions": [
             "The default value. This value is used if the state is omitted.",
@@ -975,7 +993,13 @@
             "Instance Size STANDARD_XLARGE.",
             "Instance Size STANDARD_2XLARGE.",
             "Instance Size STANDARD_3XLARGE.",
-            "Instance Size DEV_EXTRA_SMALL."
+            "Instance Size DEV_EXTRA_SMALL.",
+            "Instance Size MULTIREGION_SMALL",
+            "Instance Size MULTIREGION_MEDIUM",
+            "Instance Size MULTIREGION_LARGE",
+            "Instance Size MULTIREGION_XLARGE",
+            "Instance Size MULTIREGION_2XLARGE.",
+            "Instance Size MULTIREGION_3XLARGE."
           ],
           "type": "string"
         }

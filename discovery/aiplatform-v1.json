@@ -20,54 +20,54 @@
   "documentationLink": "https://cloud.google.com/vertex-ai/",
   "endpoints": [
     {
-      "description": "Locational Endpoint",
       "location": "africa-south1",
-      "endpointUrl": "https://africa-south1-aiplatform.googleapis.com/"
+      "endpointUrl": "https://africa-south1-aiplatform.googleapis.com/",
+      "description": "Locational Endpoint"
     },
     {
-      "description": "Locational Endpoint",
+      "endpointUrl": "https://asia-east1-aiplatform.googleapis.com/",
       "location": "asia-east1",
-      "endpointUrl": "https://asia-east1-aiplatform.googleapis.com/"
+      "description": "Locational Endpoint"
     },
     {
-      "description": "Locational Endpoint",
       "endpointUrl": "https://asia-east2-aiplatform.googleapis.com/",
+      "description": "Locational Endpoint",
       "location": "asia-east2"
     },
     {
-      "location": "asia-northeast1",
       "endpointUrl": "https://asia-northeast1-aiplatform.googleapis.com/",
-      "description": "Locational Endpoint"
+      "description": "Locational Endpoint",
+      "location": "asia-northeast1"
     },
     {
-      "endpointUrl": "https://asia-northeast2-aiplatform.googleapis.com/",
       "description": "Locational Endpoint",
-      "location": "asia-northeast2"
+      "location": "asia-northeast2",
+      "endpointUrl": "https://asia-northeast2-aiplatform.googleapis.com/"
     },
     {
       "endpointUrl": "https://asia-northeast3-aiplatform.googleapis.com/",
-      "location": "asia-northeast3",
-      "description": "Locational Endpoint"
+      "description": "Locational Endpoint",
+      "location": "asia-northeast3"
     },
     {
       "endpointUrl": "https://asia-south1-aiplatform.googleapis.com/",
-      "location": "asia-south1",
-      "description": "Locational Endpoint"
+      "description": "Locational Endpoint",
+      "location": "asia-south1"
     },
     {
-      "location": "asia-southeast1",
       "description": "Locational Endpoint",
+      "location": "asia-southeast1",
       "endpointUrl": "https://asia-southeast1-aiplatform.googleapis.com/"
     },
     {
-      "location": "asia-southeast2",
+      "endpointUrl": "https://asia-southeast2-aiplatform.googleapis.com/",
       "description": "Locational Endpoint",
-      "endpointUrl": "https://asia-southeast2-aiplatform.googleapis.com/"
+      "location": "asia-southeast2"
     },
     {
-      "description": "Locational Endpoint",
       "location": "australia-southeast1",
-      "endpointUrl": "https://australia-southeast1-aiplatform.googleapis.com/"
+      "endpointUrl": "https://australia-southeast1-aiplatform.googleapis.com/",
+      "description": "Locational Endpoint"
     },
     {
       "description": "Locational Endpoint",
@@ -75,24 +75,24 @@
       "location": "australia-southeast2"
     },
     {
-      "location": "europe-central2",
       "endpointUrl": "https://europe-central2-aiplatform.googleapis.com/",
+      "location": "europe-central2",
       "description": "Locational Endpoint"
     },
     {
-      "location": "europe-north1",
       "description": "Locational Endpoint",
+      "location": "europe-north1",
       "endpointUrl": "https://europe-north1-aiplatform.googleapis.com/"
     },
     {
-      "endpointUrl": "https://europe-southwest1-aiplatform.googleapis.com/",
+      "location": "europe-southwest1",
       "description": "Locational Endpoint",
-      "location": "europe-southwest1"
+      "endpointUrl": "https://europe-southwest1-aiplatform.googleapis.com/"
     },
     {
       "location": "europe-west1",
-      "description": "Locational Endpoint",
-      "endpointUrl": "https://europe-west1-aiplatform.googleapis.com/"
+      "endpointUrl": "https://europe-west1-aiplatform.googleapis.com/",
+      "description": "Locational Endpoint"
     },
     {
       "endpointUrl": "https://europe-west2-aiplatform.googleapis.com/",
@@ -100,118 +100,118 @@
       "location": "europe-west2"
     },
     {
-      "location": "europe-west3",
       "description": "Locational Endpoint",
-      "endpointUrl": "https://europe-west3-aiplatform.googleapis.com/"
+      "endpointUrl": "https://europe-west3-aiplatform.googleapis.com/",
+      "location": "europe-west3"
     },
     {
-      "description": "Locational Endpoint",
       "location": "europe-west4",
-      "endpointUrl": "https://europe-west4-aiplatform.googleapis.com/"
+      "endpointUrl": "https://europe-west4-aiplatform.googleapis.com/",
+      "description": "Locational Endpoint"
     },
     {
-      "location": "europe-west6",
       "description": "Locational Endpoint",
+      "location": "europe-west6",
       "endpointUrl": "https://europe-west6-aiplatform.googleapis.com/"
     },
     {
-      "endpointUrl": "https://europe-west8-aiplatform.googleapis.com/",
+      "description": "Locational Endpoint",
       "location": "europe-west8",
-      "description": "Locational Endpoint"
+      "endpointUrl": "https://europe-west8-aiplatform.googleapis.com/"
     },
     {
-      "endpointUrl": "https://europe-west9-aiplatform.googleapis.com/",
       "location": "europe-west9",
-      "description": "Locational Endpoint"
+      "description": "Locational Endpoint",
+      "endpointUrl": "https://europe-west9-aiplatform.googleapis.com/"
     },
     {
+      "description": "Locational Endpoint",
       "location": "europe-west12",
-      "endpointUrl": "https://europe-west12-aiplatform.googleapis.com/",
-      "description": "Locational Endpoint"
+      "endpointUrl": "https://europe-west12-aiplatform.googleapis.com/"
     },
     {
       "location": "me-central1",
-      "description": "Locational Endpoint",
-      "endpointUrl": "https://me-central1-aiplatform.googleapis.com/"
+      "endpointUrl": "https://me-central1-aiplatform.googleapis.com/",
+      "description": "Locational Endpoint"
     },
     {
-      "endpointUrl": "https://me-central2-aiplatform.googleapis.com/",
+      "location": "me-central2",
       "description": "Locational Endpoint",
-      "location": "me-central2"
+      "endpointUrl": "https://me-central2-aiplatform.googleapis.com/"
     },
     {
       "location": "me-west1",
-      "endpointUrl": "https://me-west1-aiplatform.googleapis.com/",
-      "description": "Locational Endpoint"
+      "description": "Locational Endpoint",
+      "endpointUrl": "https://me-west1-aiplatform.googleapis.com/"
     },
     {
-      "endpointUrl": "https://northamerica-northeast1-aiplatform.googleapis.com/",
+      "description": "Locational Endpoint",
       "location": "northamerica-northeast1",
-      "description": "Locational Endpoint"
+      "endpointUrl": "https://northamerica-northeast1-aiplatform.googleapis.com/"
     },
     {
       "description": "Locational Endpoint",
-      "location": "northamerica-northeast2",
-      "endpointUrl": "https://northamerica-northeast2-aiplatform.googleapis.com/"
+      "endpointUrl": "https://northamerica-northeast2-aiplatform.googleapis.com/",
+      "location": "northamerica-northeast2"
     },
     {
-      "description": "Locational Endpoint",
       "location": "southamerica-east1",
+      "description": "Locational Endpoint",
       "endpointUrl": "https://southamerica-east1-aiplatform.googleapis.com/"
     },
     {
       "location": "southamerica-west1",
-      "endpointUrl": "https://southamerica-west1-aiplatform.googleapis.com/",
-      "description": "Locational Endpoint"
+      "description": "Locational Endpoint",
+      "endpointUrl": "https://southamerica-west1-aiplatform.googleapis.com/"
     },
     {
-      "description": "Locational Endpoint",
+      "location": "us-central1",
       "endpointUrl": "https://us-central1-aiplatform.googleapis.com/",
-      "location": "us-central1"
+      "description": "Locational Endpoint"
     },
     {
-      "location": "us-central2",
       "description": "Locational Endpoint",
-      "endpointUrl": "https://us-central2-aiplatform.googleapis.com/"
+      "endpointUrl": "https://us-central2-aiplatform.googleapis.com/",
+      "location": "us-central2"
     },
     {
-      "endpointUrl": "https://us-east1-aiplatform.googleapis.com/",
+      "location": "us-east1",
       "description": "Locational Endpoint",
-      "location": "us-east1"
+      "endpointUrl": "https://us-east1-aiplatform.googleapis.com/"
     },
     {
-      "endpointUrl": "https://us-east4-aiplatform.googleapis.com/",
+      "location": "us-east4",
       "description": "Locational Endpoint",
-      "location": "us-east4"
+      "endpointUrl": "https://us-east4-aiplatform.googleapis.com/"
     },
     {
+      "location": "us-south1",
       "endpointUrl": "https://us-south1-aiplatform.googleapis.com/",
-      "description": "Locational Endpoint",
-      "location": "us-south1"
+      "description": "Locational Endpoint"
     },
     {
-      "description": "Locational Endpoint",
+      "endpointUrl": "https://us-west1-aiplatform.googleapis.com/",
       "location": "us-west1",
-      "endpointUrl": "https://us-west1-aiplatform.googleapis.com/"
+      "description": "Locational Endpoint"
     },
     {
-      "endpointUrl": "https://us-west2-aiplatform.googleapis.com/",
       "location": "us-west2",
-      "description": "Locational Endpoint"
-    },
-    {
-      "endpointUrl": "https://us-west3-aiplatform.googleapis.com/",
       "description": "Locational Endpoint",
-      "location": "us-west3"
+      "endpointUrl": "https://us-west2-aiplatform.googleapis.com/"
     },
     {
-      "endpointUrl": "https://us-west4-aiplatform.googleapis.com/",
+      "description": "Locational Endpoint",
+      "location": "us-west3",
+      "endpointUrl": "https://us-west3-aiplatform.googleapis.com/"
+    },
+    {
       "location": "us-west4",
+      "endpointUrl": "https://us-west4-aiplatform.googleapis.com/",
       "description": "Locational Endpoint"
     },
     {
-      "description": "Locational Endpoint",
       "endpointUrl": "https://us-east5-aiplatform.googleapis.com/",
+      "description": "Locational Endpoint",
       "location": "us-east5"
     }
   ],
@@ -2225,6 +2225,40 @@
                       "path": "v1/{+parent}/datasetVersions",
                       "response": {
                         "$ref": "GoogleCloudAiplatformV1ListDatasetVersionsResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "patch": {
+                      "description": "Updates a DatasetVersion.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/datasets/{datasetsId}/datasetVersions/{datasetVersionsId}",
+                      "httpMethod": "PATCH",
+                      "id": "aiplatform.projects.locations.datasets.datasetVersions.patch",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Output only. The resource name of the DatasetVersion.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/datasets/[^/]+/datasetVersions/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "updateMask": {
+                          "description": "Required. The update mask applies to the resource. For the `FieldMask` definition, see google.protobuf.FieldMask. Updatable fields: * `display_name`",
+                          "format": "google-fieldmask",
+                          "location": "query",
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}",
+                      "request": {
+                        "$ref": "GoogleCloudAiplatformV1DatasetVersion"
+                      },
+                      "response": {
+                        "$ref": "GoogleCloudAiplatformV1DatasetVersion"
                       },
                       "scopes": [
                         "https://www.googleapis.com/auth/cloud-platform"
@@ -16204,7 +16238,7 @@
       }
     }
   },
-  "revision": "20240501",
+  "revision": "20240507",
   "rootUrl": "https://aiplatform.googleapis.com/",
   "schemas": {
     "CloudAiLargeModelsVisionEmbedVideoResponse": {
@@ -16693,6 +16727,10 @@
       "description": "The content of a single message from a participant.",
       "id": "CloudAiNlLlmProtoServiceContent",
       "properties": {
+        "isCached": {
+          "description": "If true, the content is from a cached content.",
+          "type": "boolean"
+        },
         "parts": {
           "description": "The parts of the message.",
           "items": {
@@ -16984,7 +17022,7 @@
       "type": "object"
     },
     "CloudAiNlLlmProtoServiceRaiResult": {
-      "description": "The RAI results for a given text.",
+      "description": "The RAI results for a given text. Next ID: 12",
       "id": "CloudAiNlLlmProtoServiceRaiResult",
       "properties": {
         "aidaRecitationResult": {
@@ -17011,6 +17049,10 @@
         "languageFilterResult": {
           "$ref": "LearningGenaiRootLanguageFilterResult",
           "description": "Language filter result from SAFT LangId."
+        },
+        "mmRecitationResult": {
+          "$ref": "LearningGenaiRecitationMMRecitationCheckResult",
+          "description": "Multi modal recitation results. It will be populated as long as Multi modal Recitation processor is invoked."
         },
         "raiSignals": {
           "description": "The RAI signals for the text.",
@@ -19676,6 +19718,10 @@
           "description": "Required. Points to a YAML file stored on Google Cloud Storage describing additional information about the Dataset. The schema is defined as an OpenAPI 3.0.2 Schema Object. The schema files that can be used here are found in gs://google-cloud-aiplatform/schema/dataset/metadata/.",
           "type": "string"
         },
+        "modelReference": {
+          "description": "Optional. Reference to the public base model last used by the dataset. Only set for prompt datasets.",
+          "type": "string"
+        },
         "name": {
           "description": "Output only. The resource name of the Dataset.",
           "readOnly": true,
@@ -19724,6 +19770,11 @@
           "description": "Required. Output only. Additional information about the DatasetVersion.",
           "readOnly": true,
           "type": "any"
+        },
+        "modelReference": {
+          "description": "Output only. Reference to the public base model last used by the dataset version. Only set for prompt dataset versions.",
+          "readOnly": true,
+          "type": "string"
         },
         "name": {
           "description": "Output only. The resource name of the DatasetVersion.",
@@ -21677,7 +21728,7 @@
       "properties": {
         "bigQuery": {
           "$ref": "GoogleCloudAiplatformV1FeatureGroupBigQuery",
-          "description": "Indicates that features for this group come from BigQuery Table/View. By default treats the source as a sparse time series source, which is required to have an entity_id and a feature_timestamp column in the source."
+          "description": "Indicates that features for this group come from BigQuery Table/View. By default treats the source as a sparse time series source. The BigQuery source table or view must have at least one entity ID column and a column named `feature_timestamp`."
         },
         "createTime": {
           "description": "Output only. Timestamp when this FeatureGroup was created.",
@@ -22664,22 +22715,6 @@
           "description": "Crowding is a constraint on a neighbor list produced by nearest neighbor search requiring that no more than some value k' of the k neighbors returned have the same value of crowding_attribute. It's used for improving result diversity. This field is the maximum number of matches with the same crowding tag.",
           "format": "int32",
           "type": "integer"
-        },
-        "rrf": {
-          "$ref": "GoogleCloudAiplatformV1FindNeighborsRequestQueryRRF",
-          "description": "Optional. Represents RRF algorithm that combines search results."
-        }
-      },
-      "type": "object"
-    },
-    "GoogleCloudAiplatformV1FindNeighborsRequestQueryRRF": {
-      "description": "Parameters for RRF algorithm that combines search results.",
-      "id": "GoogleCloudAiplatformV1FindNeighborsRequestQueryRRF",
-      "properties": {
-        "alpha": {
-          "description": "Required. Users can provide an alpha value to give more weight to dense vs sparse results. For example, if the alpha is 0, we only return sparse and if the alpha is 1, we only return dense.",
-          "format": "float",
-          "type": "number"
         }
       },
       "type": "object"
@@ -22726,11 +22761,6 @@
         },
         "distance": {
           "description": "The distance between the neighbor and the dense embedding query.",
-          "format": "double",
-          "type": "number"
-        },
-        "sparseDistance": {
-          "description": "The distance between the neighbor and the query sparse_embedding.",
           "format": "double",
           "type": "number"
         }
@@ -22987,6 +23017,22 @@
         },
         "responseMimeType": {
           "description": "Optional. Output response mimetype of the generated candidate text. Supported mimetype: - `text/plain`: (default) Text output. - `application/json`: JSON response in the candidates. The model needs to be prompted to output the appropriate response type, otherwise the behavior is undefined. This is a preview feature.",
+          "type": "string"
+        },
+        "responseStyle": {
+          "description": "Optional. Control Three levels of creativity in the model output. Default: RESPONSE_STYLE_BALANCED",
+          "enum": [
+            "RESPONSE_STYLE_UNSPECIFIED",
+            "RESPONSE_STYLE_PRECISE",
+            "RESPONSE_STYLE_BALANCED",
+            "RESPONSE_STYLE_CREATIVE"
+          ],
+          "enumDescriptions": [
+            "response style unspecified.",
+            "Precise response.",
+            "Default response style.",
+            "Creative response style."
+          ],
           "type": "string"
         },
         "stopSequences": {
@@ -23527,10 +23573,6 @@
             "$ref": "GoogleCloudAiplatformV1IndexDatapointRestriction"
           },
           "type": "array"
-        },
-        "sparseEmbedding": {
-          "$ref": "GoogleCloudAiplatformV1IndexDatapointSparseEmbedding",
-          "description": "Optional. Feature embedding vector for sparse index."
         }
       },
       "type": "object"
@@ -23615,29 +23657,6 @@
         "namespace": {
           "description": "The namespace of this restriction. e.g.: color.",
           "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "GoogleCloudAiplatformV1IndexDatapointSparseEmbedding": {
-      "description": "Feature embedding vector for sparse index. An array of numbers whose values are located in the specified dimensions.",
-      "id": "GoogleCloudAiplatformV1IndexDatapointSparseEmbedding",
-      "properties": {
-        "dimensions": {
-          "description": "Optional. The list of indexes for the embedding values of the sparse vector.",
-          "items": {
-            "format": "int64",
-            "type": "string"
-          },
-          "type": "array"
-        },
-        "values": {
-          "description": "Optional. The list of embedding values of the sparse vector.",
-          "items": {
-            "format": "float",
-            "type": "number"
-          },
-          "type": "array"
         }
       },
       "type": "object"
@@ -23753,12 +23772,6 @@
           "format": "int32",
           "readOnly": true,
           "type": "integer"
-        },
-        "sparseVectorsCount": {
-          "description": "Output only. The number of sparse vectors in the Index.",
-          "format": "int64",
-          "readOnly": true,
-          "type": "string"
         },
         "vectorsCount": {
           "description": "Output only. The number of dense vectors in the Index.",
@@ -26856,6 +26869,11 @@
           "format": "int64",
           "type": "string"
         },
+        "invalidSparseRecordCount": {
+          "description": "Number of sparse records in this file we skipped due to validate errors.",
+          "format": "int64",
+          "type": "string"
+        },
         "partialErrors": {
           "description": "The detail information of the partial failures encountered for those invalid records that couldn't be parsed. Up to 50 partial errors will be reported.",
           "items": {
@@ -26869,6 +26887,11 @@
         },
         "validRecordCount": {
           "description": "Number of records in this file that were successfully processed.",
+          "format": "int64",
+          "type": "string"
+        },
+        "validSparseRecordCount": {
+          "description": "Number of sparse records in this file that were successfully processed.",
           "format": "int64",
           "type": "string"
         }
@@ -26903,9 +26926,7 @@
             "MULTIPLE_VALUES",
             "INVALID_NUMERIC_VALUE",
             "INVALID_ENCODING",
-            "INVALID_SPARSE_DIMENSIONS",
-            "INVALID_TOKEN_VALUE",
-            "INVALID_SPARSE_EMBEDDING"
+            "INVALID_TOKEN_VALUE"
           ],
           "enumDescriptions": [
             "Default, shall not be used.",
@@ -26922,9 +26943,7 @@
             "Numeric restrict has multiple values specified.",
             "Numeric restrict has invalid numeric value specified.",
             "File is not in UTF_8 format.",
-            "Error parsing sparse dimensions field.",
-            "Token restrict value is invalid.",
-            "Invalid sparse embedding."
+            "Token restrict value is invalid."
           ],
           "type": "string"
         },
@@ -27216,6 +27235,16 @@
         "runtimeUser": {
           "description": "Required. The user email of the NotebookRuntime.",
           "type": "string"
+        },
+        "satisfiesPzi": {
+          "description": "Output only. Reserved for future use.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "satisfiesPzs": {
+          "description": "Output only. Reserved for future use.",
+          "readOnly": true,
+          "type": "boolean"
         },
         "serviceAccount": {
           "description": "Output only. The service account that the NotebookRuntime workload runs as.",
@@ -35550,6 +35579,10 @@
           "description": "Optional. The description of the TuningJob.",
           "type": "string"
         },
+        "encryptionSpec": {
+          "$ref": "GoogleCloudAiplatformV1EncryptionSpec",
+          "description": "Customer-managed encryption key options for a TuningJob. If this is set, then all resources created by the TuningJob will be encrypted with the provided encryption key."
+        },
         "endTime": {
           "description": "Output only. Time when the TuningJob entered any of the following JobStates: `JOB_STATE_SUCCEEDED`, `JOB_STATE_FAILED`, `JOB_STATE_CANCELLED`, `JOB_STATE_EXPIRED`.",
           "format": "google-datetime",
@@ -38280,6 +38313,19 @@
       },
       "type": "object"
     },
+    "LearningGenaiRecitationContentChunkRecitationCheckResult": {
+      "description": "Recitation check result for a single content chunk.",
+      "id": "LearningGenaiRecitationContentChunkRecitationCheckResult",
+      "properties": {
+        "imageResult": {
+          "$ref": "LearningGenaiRecitationImageRecitationCheckResult"
+        },
+        "textResult": {
+          "$ref": "LearningGenaiRecitationRecitationResult"
+        }
+      },
+      "type": "object"
+    },
     "LearningGenaiRecitationDocAttribution": {
       "description": "The proto defines the attribution information for a document using whatever fields are most applicable for that document's datasource. For example, a Wikipedia article's attribution is in the form of its article title, a website is in the form of a URL, and a Github repo is in the form of a repo name. Next id: 30",
       "id": "LearningGenaiRecitationDocAttribution",
@@ -39093,6 +39139,147 @@
           "type": "string"
         },
         "youtubeVideoId": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "LearningGenaiRecitationImageDocAttribution": {
+      "description": "Attribution information about the recited image.",
+      "id": "LearningGenaiRecitationImageDocAttribution",
+      "properties": {
+        "datasetName": {
+          "description": "Unique ID of the image.",
+          "enum": [
+            "IMAGE_DATA_SET_UNSPECIFIED",
+            "JUNO_SHUTTERSTOCK_V1",
+            "JUNO_V1_HIPR",
+            "JUNO_V1_WEBLI_AESTHETICS_V2_4_5",
+            "JUNO_V1_TIGG_DATA_V1",
+            "JUNO_V1_PINTEREST_A",
+            "JUNO_V1_PINTEREST_B",
+            "JUNO_V1_IMAGEJOINS",
+            "JUNO_V1_M1",
+            "JUNO_V1_M2_MISC",
+            "JUNO_V1_M2_ART",
+            "JUNO_V1_DEVIANTAR",
+            "IMAGE_PASSAGE"
+          ],
+          "enumDescriptions": [
+            "",
+            "go/tigg-shutterstock",
+            "go/hipr-in-tigg-notes",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "go/image-passage"
+          ],
+          "type": "string"
+        },
+        "stringDocids": {
+          "description": "Doc ID to identify the image. These could be urls of images or amarna id.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "LearningGenaiRecitationImageRecitationCheckResult": {
+      "id": "LearningGenaiRecitationImageRecitationCheckResult",
+      "properties": {
+        "recitationAction": {
+          "description": "Only has NO_ACTION or BLOCK to start with.",
+          "enum": [
+            "ACTION_UNSPECIFIED",
+            "CITE",
+            "BLOCK",
+            "NO_ACTION",
+            "EXEMPT_FOUND_IN_PROMPT"
+          ],
+          "enumDescriptions": [
+            "",
+            "indicate that attribution must be shown for a Segment",
+            "indicate that a Segment should be blocked from being used",
+            "for tagging high-frequency code snippets",
+            "The recitation was found in prompt and is exempted from overall results"
+          ],
+          "type": "string"
+        },
+        "recitedImages": {
+          "description": "Images that are similar to the requested image.",
+          "items": {
+            "$ref": "LearningGenaiRecitationImageRecitationCheckResultSimilarImage"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "LearningGenaiRecitationImageRecitationCheckResultSimilarImage": {
+      "id": "LearningGenaiRecitationImageRecitationCheckResultSimilarImage",
+      "properties": {
+        "docAttribution": {
+          "$ref": "LearningGenaiRecitationImageDocAttribution",
+          "description": "Attribution information about the image"
+        },
+        "embeddingModel": {
+          "description": "The memorization embedding model that returned this image",
+          "enum": [
+            "EMBEDDING_MODEL_UNSPECIFIED",
+            "STARBURST_V4",
+            "REISIM"
+          ],
+          "enumDescriptions": [
+            "",
+            "Starburst V4, 64 float features.",
+            "Reisim, 128 Byte float feature"
+          ],
+          "type": "string"
+        },
+        "imageId": {
+          "description": "Image ID corresponding of the image corresponding to the score. `image_id` serves for debugging purposes and can't be used by clients to retrieve an image.",
+          "format": "uint64",
+          "type": "string"
+        },
+        "scores": {
+          "description": "Similarity score of requested image compared with image in training data.",
+          "format": "float",
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "LearningGenaiRecitationMMRecitationCheckResult": {
+      "description": "Recitation check result for a stream of content chunks (e.g. a model response).",
+      "id": "LearningGenaiRecitationMMRecitationCheckResult",
+      "properties": {
+        "chunkResults": {
+          "items": {
+            "$ref": "LearningGenaiRecitationContentChunkRecitationCheckResult"
+          },
+          "type": "array"
+        },
+        "recitationAction": {
+          "description": "Overall recommended recitation action for the content.",
+          "enum": [
+            "ACTION_UNSPECIFIED",
+            "CITE",
+            "BLOCK",
+            "NO_ACTION",
+            "EXEMPT_FOUND_IN_PROMPT"
+          ],
+          "enumDescriptions": [
+            "",
+            "indicate that attribution must be shown for a Segment",
+            "indicate that a Segment should be blocked from being used",
+            "for tagging high-frequency code snippets",
+            "The recitation was found in prompt and is exempted from overall results"
+          ],
           "type": "string"
         }
       },
@@ -40772,6 +40959,7 @@
       "type": "object"
     },
     "LearningGenaiRootHarmSafetyCatCategories": {
+      "description": "LINT.ThenChange(//depot/google3/learning/genai/root/util/classifier/backends/grail/grail.cc)",
       "id": "LearningGenaiRootHarmSafetyCatCategories",
       "properties": {
         "categories": {
@@ -40832,6 +41020,7 @@
       "type": "object"
     },
     "LearningGenaiRootHarmSpiiFilter": {
+      "description": "LINT.IfChange",
       "id": "LearningGenaiRootHarmSpiiFilter",
       "properties": {
         "usBankRoutingMicr": {
@@ -40915,6 +41104,11 @@
           "description": "Latency spent on prompt2query. The procedure generates a search-friendly query given the original prompt.",
           "format": "int64",
           "type": "string"
+        },
+        "retrievalAugmentMilliseconds": {
+          "description": "Latency if use GroundedGeneration service for the whole retrieval & augmentation.",
+          "format": "int64",
+          "type": "string"
         }
       },
       "type": "object"
@@ -40949,6 +41143,96 @@
         "takedownRegex": {
           "description": "Regex used to decide that query or response should be taken down. Empty when query or response is kept.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "LearningGenaiRootRequestMetrics": {
+      "id": "LearningGenaiRootRequestMetrics",
+      "properties": {
+        "audioMetrics": {
+          "$ref": "LearningGenaiRootRequestMetricsAudioMetrics",
+          "description": "Metrics for audio samples in the request."
+        },
+        "imageMetrics": {
+          "$ref": "LearningGenaiRootRequestMetricsImageMetrics",
+          "description": "Metrics for image samples in the request."
+        },
+        "textTokenCount": {
+          "description": "Number of text tokens extracted from the request.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "totalTokenCount": {
+          "description": "Total number of tokens in the request.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "videoMetrics": {
+          "$ref": "LearningGenaiRootRequestMetricsVideoMetrics",
+          "description": "Metrics for video samples in the request."
+        }
+      },
+      "type": "object"
+    },
+    "LearningGenaiRootRequestMetricsAudioMetrics": {
+      "id": "LearningGenaiRootRequestMetricsAudioMetrics",
+      "properties": {
+        "audioDuration": {
+          "description": "Duration of the audio sample in seconds.",
+          "format": "google-duration",
+          "type": "string"
+        },
+        "audioTokenCount": {
+          "description": "Number of tokens derived directly from audio data.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "numAudioFrames": {
+          "description": "Number of audio frames in the audio.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "LearningGenaiRootRequestMetricsImageMetrics": {
+      "id": "LearningGenaiRootRequestMetricsImageMetrics",
+      "properties": {
+        "imageTokenCount": {
+          "description": "Number of tokens extracted from image bytes.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "numImages": {
+          "description": "Number of images in the request.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "LearningGenaiRootRequestMetricsVideoMetrics": {
+      "id": "LearningGenaiRootRequestMetricsVideoMetrics",
+      "properties": {
+        "audioSample": {
+          "$ref": "LearningGenaiRootRequestMetricsAudioMetrics",
+          "description": "Metrics associated with audio sample in the video."
+        },
+        "numVideoFrames": {
+          "description": "Number of video frames in the video.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "videoDuration": {
+          "description": "Duration of the video sample in seconds.",
+          "format": "google-duration",
+          "type": "string"
+        },
+        "videoFramesTokenCount": {
+          "description": "Number of tokens extracted from video frames.",
+          "format": "int32",
+          "type": "integer"
         }
       },
       "type": "object"
@@ -41424,7 +41708,7 @@
       "type": "object"
     },
     "LearningServingLlmMessageMetadata": {
-      "description": "LINT.IfChange This metadata contains additional information required for debugging. Next ID: 28",
+      "description": "LINT.IfChange This metadata contains additional information required for debugging.",
       "id": "LearningServingLlmMessageMetadata",
       "properties": {
         "atlasMetadata": {
@@ -41500,6 +41784,19 @@
           "description": "The LM prefix used to generate this response.",
           "type": "string"
         },
+        "lmrootInternalRequestMetrics": {
+          "$ref": "LearningGenaiRootRequestMetrics",
+          "description": "FOR LMROOT INTERNAL USE ONLY. Externally, use learning.genai.root.RequestMetadata.RequestMetrics. Request metrics per modality including token count, duration, num_frames."
+        },
+        "mmRecitationResult": {
+          "$ref": "LearningGenaiRecitationMMRecitationCheckResult",
+          "description": "Multi modal recitation results. It will be populated as long as Multi modal Recitation processor is invoked."
+        },
+        "numRewinds": {
+          "description": "Number of Controlled Decoding rewind and repeats that have happened for this response.",
+          "format": "uint32",
+          "type": "integer"
+        },
         "originalText": {
           "description": "The original text generated by LLM. This is the raw output for debugging purposes.",
           "type": "string"
@@ -41524,11 +41821,6 @@
         "recitationResult": {
           "$ref": "LearningGenaiRecitationRecitationResult",
           "description": "Recitation Results. It will be populated as long as Recitation processing is enabled, regardless of recitation outcome."
-        },
-        "returnTokenCount": {
-          "description": "NOT IMPLEMENTED TODO (b/334187574) Remove this field after Labs migrates to per_stream_returned_token_count and total_returned_token_count.",
-          "format": "int32",
-          "type": "integer"
         },
         "scores": {
           "description": "All the different scores for a message are logged here.",
