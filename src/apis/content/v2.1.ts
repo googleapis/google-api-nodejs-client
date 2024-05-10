@@ -5948,6 +5948,10 @@ export namespace content_v2_1 {
    */
   export interface Schema$PriceInsights {
     /**
+     * The predicted effectiveness of applying the price suggestion, bucketed.
+     */
+    effectiveness?: string | null;
+    /**
      * The predicted change in clicks as a fraction after introducing the suggested price compared to current active price. For example, 0.05 is a 5% predicted increase in clicks.
      */
     predictedClicksChangeFraction?: number | null;
