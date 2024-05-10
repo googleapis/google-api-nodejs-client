@@ -744,7 +744,7 @@ export namespace androidpublisher_v3 {
    */
   export interface Schema$CancelAppRecoveryResponse {}
   /**
-   * Information specific to a subscription in canceled state.
+   * Information specific to a subscription in the SUBSCRIPTION_STATE_CANCELED or SUBSCRIPTION_STATE_EXPIRED state.
    */
   export interface Schema$CanceledStateContext {
     /**
