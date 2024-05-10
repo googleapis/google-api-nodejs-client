@@ -858,6 +858,14 @@ export namespace container_v1beta1 {
      */
     resourceUsageExportConfig?: Schema$ResourceUsageExportConfig;
     /**
+     * Output only. Reserved for future use.
+     */
+    satisfiesPzi?: boolean | null;
+    /**
+     * Output only. Reserved for future use.
+     */
+    satisfiesPzs?: boolean | null;
+    /**
      * Secret CSI driver configuration.
      */
     secretManagerConfig?: Schema$SecretManagerConfig;
@@ -1113,6 +1121,14 @@ export namespace container_v1beta1 {
      * The desired network performance config.
      */
     desiredNetworkPerformanceConfig?: Schema$ClusterNetworkPerformanceConfig;
+    /**
+     * The desired node kubelet config for the cluster.
+     */
+    desiredNodeKubeletConfig?: Schema$NodeKubeletConfig;
+    /**
+     * The desired node kubelet config for all auto-provisioned node pools in autopilot clusters and node auto-provisioning enabled clusters.
+     */
+    desiredNodePoolAutoConfigKubeletConfig?: Schema$NodeKubeletConfig;
     /**
      * The desired network tags that apply to all auto-provisioned node pools in autopilot clusters and node auto-provisioning enabled clusters.
      */
@@ -2532,6 +2548,10 @@ export namespace container_v1beta1 {
      * Logging configuration for node pools.
      */
     loggingConfig?: Schema$NodePoolLoggingConfig;
+    /**
+     * NodeKubeletConfig controls the defaults for new node-pools. Currently only `insecure_kubelet_readonly_port_enabled` can be set here.
+     */
+    nodeKubeletConfig?: Schema$NodeKubeletConfig;
   }
   /**
    * Node kubelet configs.
@@ -2722,6 +2742,10 @@ export namespace container_v1beta1 {
      * The list of instance tags applied to all nodes. Tags are used to identify valid sources or targets for network firewalls and are specified by the client during cluster creation. Each tag within the list must comply with RFC1035.
      */
     networkTags?: Schema$NetworkTags;
+    /**
+     * NodeKubeletConfig controls the defaults for autoprovisioned node-pools. Currently only `insecure_kubelet_readonly_port_enabled` can be set here.
+     */
+    nodeKubeletConfig?: Schema$NodeKubeletConfig;
     /**
      * Resource manager tag keys and values to be attached to the nodes for managing Compute Engine firewalls using Network Firewall Policies.
      */
