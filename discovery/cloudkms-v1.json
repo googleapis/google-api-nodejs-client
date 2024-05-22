@@ -125,7 +125,100 @@
   },
   "protocol": "rest",
   "resources": {
+    "folders": {
+      "methods": {
+        "getAutokeyConfig": {
+          "description": "Returns the AutokeyConfig for a folder.",
+          "flatPath": "v1/folders/{foldersId}/autokeyConfig",
+          "httpMethod": "GET",
+          "id": "cloudkms.folders.getAutokeyConfig",
+          "parameterOrder": [
+            "name"
+          ],
+          "parameters": {
+            "name": {
+              "description": "Required. Name of the AutokeyConfig resource, e.g. `folders/{FOLDER_NUMBER}/autokeyConfig`.",
+              "location": "path",
+              "pattern": "^folders/[^/]+/autokeyConfig$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "v1/{+name}",
+          "response": {
+            "$ref": "AutokeyConfig"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/cloudkms"
+          ]
+        },
+        "updateAutokeyConfig": {
+          "description": "Updates the AutokeyConfig for a folder. The caller must have both `cloudkms.autokeyConfigs.update` permission on the parent folder and `cloudkms.cryptoKeys.setIamPolicy` permission on the provided key project. An empty key project may be provided to clear the configuration.",
+          "flatPath": "v1/folders/{foldersId}/autokeyConfig",
+          "httpMethod": "PATCH",
+          "id": "cloudkms.folders.updateAutokeyConfig",
+          "parameterOrder": [
+            "name"
+          ],
+          "parameters": {
+            "name": {
+              "description": "Identifier. Name of the AutokeyConfig resource, e.g. `folders/{FOLDER_NUMBER}/autokeyConfig`.",
+              "location": "path",
+              "pattern": "^folders/[^/]+/autokeyConfig$",
+              "required": true,
+              "type": "string"
+            },
+            "updateMask": {
+              "description": "Required. Masks which fields of the AutokeyConfig to update, e.g. `keyProject`.",
+              "format": "google-fieldmask",
+              "location": "query",
+              "type": "string"
+            }
+          },
+          "path": "v1/{+name}",
+          "request": {
+            "$ref": "AutokeyConfig"
+          },
+          "response": {
+            "$ref": "AutokeyConfig"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/cloudkms"
+          ]
+        }
+      }
+    },
     "projects": {
+      "methods": {
+        "showEffectiveAutokeyConfig": {
+          "description": "Returns the effective Cloud KMS Autokey configuration for a given project.",
+          "flatPath": "v1/projects/{projectsId}:showEffectiveAutokeyConfig",
+          "httpMethod": "GET",
+          "id": "cloudkms.projects.showEffectiveAutokeyConfig",
+          "parameterOrder": [
+            "parent"
+          ],
+          "parameters": {
+            "parent": {
+              "description": "Required. Name of the resource project to the show effective Cloud KMS Autokey configuration for. This may be helpful for interrogating the effect of nested folder configurations on a given resource project.",
+              "location": "path",
+              "pattern": "^projects/[^/]+$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "v1/{+parent}:showEffectiveAutokeyConfig",
+          "response": {
+            "$ref": "ShowEffectiveAutokeyConfigResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/cloudkms"
+          ]
+        }
+      },
       "resources": {
         "locations": {
           "methods": {
@@ -637,6 +730,101 @@
                   "path": "v1/{+name}:verifyConnectivity",
                   "response": {
                     "$ref": "VerifyConnectivityResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/cloudkms"
+                  ]
+                }
+              }
+            },
+            "keyHandles": {
+              "methods": {
+                "create": {
+                  "description": "Creates a new KeyHandle, triggering the provisioning of a new CryptoKey for CMEK use with the given resource type in the configured key project and the same location. GetOperation should be used to resolve the resulting long-running operation and get the resulting KeyHandle and CryptoKey.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/keyHandles",
+                  "httpMethod": "POST",
+                  "id": "cloudkms.projects.locations.keyHandles.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "keyHandleId": {
+                      "description": "Optional. Id of the KeyHandle. Must be unique to the resource project and location. If not provided by the caller, a new UUID is used.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. Name of the resource project and location to create the KeyHandle in, e.g. `projects/{PROJECT_ID}/locations/{LOCATION}`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/keyHandles",
+                  "request": {
+                    "$ref": "KeyHandle"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/cloudkms"
+                  ]
+                },
+                "get": {
+                  "description": "Returns the KeyHandle.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/keyHandles/{keyHandlesId}",
+                  "httpMethod": "GET",
+                  "id": "cloudkms.projects.locations.keyHandles.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Name of the KeyHandle resource, e.g. `projects/{PROJECT_ID}/locations/{LOCATION}/keyHandles/{KEY_HANDLE_ID}`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/keyHandles/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "KeyHandle"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/cloudkms"
+                  ]
+                },
+                "list": {
+                  "description": "Lists KeyHandles.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/keyHandles",
+                  "httpMethod": "GET",
+                  "id": "cloudkms.projects.locations.keyHandles.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "Optional. Filter to apply when listing KeyHandles, e.g. `resource_type_selector=\"{SERVICE}.googleapis.com/{TYPE}\"`.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. Name of the resource project and location from which to list KeyHandles, e.g. `projects/{PROJECT_ID}/locations/{LOCATION}`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/keyHandles",
+                  "response": {
+                    "$ref": "ListKeyHandlesResponse"
                   },
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform",
@@ -1832,13 +2020,43 @@
                   }
                 }
               }
+            },
+            "operations": {
+              "methods": {
+                "get": {
+                  "description": "Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/operations/{operationsId}",
+                  "httpMethod": "GET",
+                  "id": "cloudkms.projects.locations.operations.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "The name of the operation resource.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/operations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/cloudkms"
+                  ]
+                }
+              }
             }
           }
         }
       }
     }
   },
-  "revision": "20240219",
+  "revision": "20240425",
   "rootUrl": "https://cloudkms.googleapis.com/",
   "schemas": {
     "AsymmetricDecryptRequest": {
@@ -2013,6 +2231,21 @@
             "Data writes. Example: CloudSQL Users create",
             "Data reads. Example: CloudSQL Users list"
           ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AutokeyConfig": {
+      "description": "Cloud KMS Autokey configuration for a folder.",
+      "id": "AutokeyConfig",
+      "properties": {
+        "keyProject": {
+          "description": "Optional. Name of the key project, e.g. `projects/{PROJECT_ID}` or `projects/{PROJECT_NUMBER}`, where Cloud KMS Autokey will provision new CryptoKeys. On UpdateAutokeyConfig, the caller will require `cloudkms.cryptoKeys.setIamPolicy` permission on this key project. Once configured, for Cloud KMS Autokey to function properly, this key project must have the Cloud KMS API activated and the Cloud KMS Service Agent for this key project must be granted the `cloudkms.admin` role (or pertinent permissions).",
+          "type": "string"
+        },
+        "name": {
+          "description": "Identifier. Name of the AutokeyConfig resource, e.g. `folders/{FOLDER_NUMBER}/autokeyConfig`.",
           "type": "string"
         }
       },
@@ -2238,6 +2471,7 @@
             "EC_SIGN_P256_SHA256",
             "EC_SIGN_P384_SHA384",
             "EC_SIGN_SECP256K1_SHA256",
+            "EC_SIGN_ED25519",
             "HMAC_SHA256",
             "HMAC_SHA1",
             "HMAC_SHA384",
@@ -2275,6 +2509,7 @@
             "ECDSA on the NIST P-256 curve with a SHA256 digest. Other hash functions can also be used: https://cloud.google.com/kms/docs/create-validate-signatures#ecdsa_support_for_other_hash_algorithms",
             "ECDSA on the NIST P-384 curve with a SHA384 digest. Other hash functions can also be used: https://cloud.google.com/kms/docs/create-validate-signatures#ecdsa_support_for_other_hash_algorithms",
             "ECDSA on the non-NIST secp256k1 curve. This curve is only supported for HSM protection level. Other hash functions can also be used: https://cloud.google.com/kms/docs/create-validate-signatures#ecdsa_support_for_other_hash_algorithms",
+            "EdDSA on the Curve25519 in pure mode (taking data as input).",
             "HMAC-SHA256 signing with a 256 bit key.",
             "HMAC-SHA1 signing with a 160 bit key.",
             "HMAC-SHA384 signing with a 384 bit key.",
@@ -2442,6 +2677,7 @@
             "EC_SIGN_P256_SHA256",
             "EC_SIGN_P384_SHA384",
             "EC_SIGN_SECP256K1_SHA256",
+            "EC_SIGN_ED25519",
             "HMAC_SHA256",
             "HMAC_SHA1",
             "HMAC_SHA384",
@@ -2479,6 +2715,7 @@
             "ECDSA on the NIST P-256 curve with a SHA256 digest. Other hash functions can also be used: https://cloud.google.com/kms/docs/create-validate-signatures#ecdsa_support_for_other_hash_algorithms",
             "ECDSA on the NIST P-384 curve with a SHA384 digest. Other hash functions can also be used: https://cloud.google.com/kms/docs/create-validate-signatures#ecdsa_support_for_other_hash_algorithms",
             "ECDSA on the non-NIST secp256k1 curve. This curve is only supported for HSM protection level. Other hash functions can also be used: https://cloud.google.com/kms/docs/create-validate-signatures#ecdsa_support_for_other_hash_algorithms",
+            "EdDSA on the Curve25519 in pure mode (taking data as input).",
             "HMAC-SHA256 signing with a 256 bit key.",
             "HMAC-SHA1 signing with a 160 bit key.",
             "HMAC-SHA384 signing with a 384 bit key.",
@@ -2861,6 +3098,7 @@
             "EC_SIGN_P256_SHA256",
             "EC_SIGN_P384_SHA384",
             "EC_SIGN_SECP256K1_SHA256",
+            "EC_SIGN_ED25519",
             "HMAC_SHA256",
             "HMAC_SHA1",
             "HMAC_SHA384",
@@ -2898,6 +3136,7 @@
             "ECDSA on the NIST P-256 curve with a SHA256 digest. Other hash functions can also be used: https://cloud.google.com/kms/docs/create-validate-signatures#ecdsa_support_for_other_hash_algorithms",
             "ECDSA on the NIST P-384 curve with a SHA384 digest. Other hash functions can also be used: https://cloud.google.com/kms/docs/create-validate-signatures#ecdsa_support_for_other_hash_algorithms",
             "ECDSA on the non-NIST secp256k1 curve. This curve is only supported for HSM protection level. Other hash functions can also be used: https://cloud.google.com/kms/docs/create-validate-signatures#ecdsa_support_for_other_hash_algorithms",
+            "EdDSA on the Curve25519 in pure mode (taking data as input).",
             "HMAC-SHA256 signing with a 256 bit key.",
             "HMAC-SHA1 signing with a 160 bit key.",
             "HMAC-SHA384 signing with a 384 bit key.",
@@ -3026,6 +3265,27 @@
             "This job can no longer be used and may not leave this state once entered."
           ],
           "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "KeyHandle": {
+      "description": "Resource-oriented representation of a request to Cloud KMS Autokey and the resulting provisioning of a CryptoKey.",
+      "id": "KeyHandle",
+      "properties": {
+        "kmsKey": {
+          "description": "Output only. Name of a CryptoKey that has been provisioned for Customer Managed Encryption Key (CMEK) use in the KeyHandle's project and location for the requested resource type.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "Output only. Identifier. Name of the [KeyHandle] resource, e.g. `projects/{PROJECT_ID}/locations/{LOCATION}/keyHandles/{KEY_HANDLE_ID}`.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "resourceTypeSelector": {
+          "description": "Required. Indicates the resource type that the resulting CryptoKey is meant to protect, e.g. `{SERVICE}.googleapis.com/{TYPE}`. See documentation for supported resource types.",
           "type": "string"
         }
       },
@@ -3170,6 +3430,20 @@
           "description": "The total number of ImportJobs that matched the query.",
           "format": "int32",
           "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "ListKeyHandlesResponse": {
+      "description": "Response message for Autokey.ListKeyHandles.",
+      "id": "ListKeyHandlesResponse",
+      "properties": {
+        "keyHandles": {
+          "description": "Resulting KeyHandles.",
+          "items": {
+            "$ref": "KeyHandle"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -3396,6 +3670,41 @@
       },
       "type": "object"
     },
+    "Operation": {
+      "description": "This resource represents a long-running operation that is the result of a network API call.",
+      "id": "Operation",
+      "properties": {
+        "done": {
+          "description": "If the value is `false`, it means the operation is still in progress. If `true`, the operation is completed, and either `error` or `response` is available.",
+          "type": "boolean"
+        },
+        "error": {
+          "$ref": "Status",
+          "description": "The error result of the operation in case of failure or cancellation."
+        },
+        "metadata": {
+          "additionalProperties": {
+            "description": "Properties of the object. Contains field @type with type URL.",
+            "type": "any"
+          },
+          "description": "Service-specific metadata associated with the operation. It typically contains progress information and common metadata such as create time. Some services might not provide such metadata. Any method that returns a long-running operation should document the metadata type, if any.",
+          "type": "object"
+        },
+        "name": {
+          "description": "The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`.",
+          "type": "string"
+        },
+        "response": {
+          "additionalProperties": {
+            "description": "Properties of the object. Contains field @type with type URL.",
+            "type": "any"
+          },
+          "description": "The normal, successful response of the operation. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.",
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
     "Policy": {
       "description": "An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members`, or principals, to a single `role`. Principals can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** ``` { \"bindings\": [ { \"role\": \"roles/resourcemanager.organizationAdmin\", \"members\": [ \"user:mike@example.com\", \"group:admins@example.com\", \"domain:google.com\", \"serviceAccount:my-project-id@appspot.gserviceaccount.com\" ] }, { \"role\": \"roles/resourcemanager.organizationViewer\", \"members\": [ \"user:eve@example.com\" ], \"condition\": { \"title\": \"expirable access\", \"description\": \"Does not grant access after Sep 2020\", \"expression\": \"request.time < timestamp('2020-10-01T00:00:00.000Z')\", } } ], \"etag\": \"BwWWja0YfJA=\", \"version\": 3 } ``` **YAML example:** ``` bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time < timestamp('2020-10-01T00:00:00.000Z') etag: BwWWja0YfJA= version: 3 ``` For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).",
       "id": "Policy",
@@ -3463,6 +3772,7 @@
             "EC_SIGN_P256_SHA256",
             "EC_SIGN_P384_SHA384",
             "EC_SIGN_SECP256K1_SHA256",
+            "EC_SIGN_ED25519",
             "HMAC_SHA256",
             "HMAC_SHA1",
             "HMAC_SHA384",
@@ -3500,6 +3810,7 @@
             "ECDSA on the NIST P-256 curve with a SHA256 digest. Other hash functions can also be used: https://cloud.google.com/kms/docs/create-validate-signatures#ecdsa_support_for_other_hash_algorithms",
             "ECDSA on the NIST P-384 curve with a SHA384 digest. Other hash functions can also be used: https://cloud.google.com/kms/docs/create-validate-signatures#ecdsa_support_for_other_hash_algorithms",
             "ECDSA on the non-NIST secp256k1 curve. This curve is only supported for HSM protection level. Other hash functions can also be used: https://cloud.google.com/kms/docs/create-validate-signatures#ecdsa_support_for_other_hash_algorithms",
+            "EdDSA on the Curve25519 in pure mode (taking data as input).",
             "HMAC-SHA256 signing with a 256 bit key.",
             "HMAC-SHA1 signing with a 160 bit key.",
             "HMAC-SHA384 signing with a 384 bit key.",
@@ -3514,11 +3825,11 @@
           "type": "string"
         },
         "pem": {
-          "description": "A public key encoded in PEM format, populated only when GetPublicKey returns one key. For more information, see the [RFC 7468](https://tools.ietf.org/html/rfc7468) sections for [General Considerations](https://tools.ietf.org/html/rfc7468#section-2) and [Textual Encoding of Subject Public Key Info] (https://tools.ietf.org/html/rfc7468#section-13).",
+          "description": "The public key, encoded in PEM format. For more information, see the [RFC 7468](https://tools.ietf.org/html/rfc7468) sections for [General Considerations](https://tools.ietf.org/html/rfc7468#section-2) and [Textual Encoding of Subject Public Key Info] (https://tools.ietf.org/html/rfc7468#section-13).",
           "type": "string"
         },
         "pemCrc32c": {
-          "description": "Integrity verification field: A CRC32C checksum of the returned PublicKey.pem. It is only populated when GetPublicKey returns one key. An integrity check of PublicKey.pem can be performed by computing the CRC32C checksum of PublicKey.pem and comparing your results to this field. Discard the response in case of non-matching checksum values, and perform a limited number of retries. A persistent mismatch may indicate an issue in your computation of the CRC32C checksum. Note: This field is defined as int64 for reasons of compatibility across different languages. However, it is a non-negative integer, which will never exceed 2^32-1, and can be safely downconverted to uint32 in languages that support this type. NOTE: This field is in Beta.",
+          "description": "Integrity verification field. A CRC32C checksum of the returned PublicKey.pem. An integrity check of PublicKey.pem can be performed by computing the CRC32C checksum of PublicKey.pem and comparing your results to this field. Discard the response in case of non-matching checksum values, and perform a limited number of retries. A persistent mismatch may indicate an issue in your computation of the CRC32C checksum. Note: This field is defined as int64 for reasons of compatibility across different languages. However, it is a non-negative integer, which will never exceed 2^32-1, and can be safely downconverted to uint32 in languages that support this type. NOTE: This field is in Beta.",
           "format": "int64",
           "type": "string"
         },
@@ -3778,6 +4089,44 @@
         "updateMask": {
           "description": "OPTIONAL: A FieldMask specifying which fields of the policy to modify. Only the fields in the mask will be modified. If no mask is provided, the following default mask is used: `paths: \"bindings, etag\"`",
           "format": "google-fieldmask",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ShowEffectiveAutokeyConfigResponse": {
+      "description": "Response message for ShowEffectiveAutokeyConfig.",
+      "id": "ShowEffectiveAutokeyConfigResponse",
+      "properties": {
+        "keyProject": {
+          "description": "Name of the key project configured in the resource project's folder ancestry.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "Status": {
+      "description": "The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).",
+      "id": "Status",
+      "properties": {
+        "code": {
+          "description": "The status code, which should be an enum value of google.rpc.Code.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "details": {
+          "description": "A list of messages that carry the error details. There is a common set of message types for APIs to use.",
+          "items": {
+            "additionalProperties": {
+              "description": "Properties of the object. Contains field @type with type URL.",
+              "type": "any"
+            },
+            "type": "object"
+          },
+          "type": "array"
+        },
+        "message": {
+          "description": "A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.",
           "type": "string"
         }
       },

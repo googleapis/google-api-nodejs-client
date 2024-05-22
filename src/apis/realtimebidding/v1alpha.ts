@@ -254,6 +254,7 @@ export namespace realtimebidding_v1alpha {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -342,6 +343,7 @@ export namespace realtimebidding_v1alpha {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -430,6 +432,7 @@ export namespace realtimebidding_v1alpha {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -525,6 +528,7 @@ export namespace realtimebidding_v1alpha {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),

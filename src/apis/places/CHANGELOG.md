@@ -1,5 +1,30 @@
 # Changelog
 
+## [9.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/places-v8.0.1...places-v9.0.0) (2024-05-02)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* **places:** update the API ([6eba24a](https://github.com/googleapis/google-api-nodejs-client/commit/6eba24ad4915697dc035d8cb9ba64e2d5da495ff))
+* run the generator ([#3434](https://github.com/googleapis/google-api-nodejs-client/issues/3434)) ([f0db524](https://github.com/googleapis/google-api-nodejs-client/commit/f0db524bb26f05cea3dec4c0ed66b496399e3857))
+
+
+### Bug Fixes
+
+* **places:** update the API ([7dd5993](https://github.com/googleapis/google-api-nodejs-client/commit/7dd5993f4d5adbfd6eeed73bad1c066594fa8ffe))
+* **places:** update the API ([14129bb](https://github.com/googleapis/google-api-nodejs-client/commit/14129bb351cc7c8d1a050f7e12ba0e6af6070de9))
+
+## [8.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/places-v8.0.0...places-v8.0.1) (2024-05-02)
+
+
+### Bug Fixes
+
+* **places:** update the API ([7dd5993](https://github.com/googleapis/google-api-nodejs-client/commit/7dd5993f4d5adbfd6eeed73bad1c066594fa8ffe))
+
 ## [8.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/places-v7.0.0...places-v8.0.0) (2024-04-04)
 
 

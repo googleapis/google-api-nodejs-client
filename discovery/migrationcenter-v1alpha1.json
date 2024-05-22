@@ -541,6 +541,216 @@
                 }
               }
             },
+            "discoveryClients": {
+              "methods": {
+                "create": {
+                  "description": "Creates a new discovery client.",
+                  "flatPath": "v1alpha1/projects/{projectsId}/locations/{locationsId}/discoveryClients",
+                  "httpMethod": "POST",
+                  "id": "migrationcenter.projects.locations.discoveryClients.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "discoveryClientId": {
+                      "description": "Required. User specified ID for the discovery client. It will become the last component of the discovery client name. The ID must be unique within the project, is restricted to lower-cased letters and has a maximum length of 63 characters. The ID must match the regular expression: `[a-z]([a-z0-9-]{0,61}[a-z0-9])?`.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. Parent resource.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha1/{+parent}/discoveryClients",
+                  "request": {
+                    "$ref": "DiscoveryClient"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "delete": {
+                  "description": "Deletes a discovery client.",
+                  "flatPath": "v1alpha1/projects/{projectsId}/locations/{locationsId}/discoveryClients/{discoveryClientsId}",
+                  "httpMethod": "DELETE",
+                  "id": "migrationcenter.projects.locations.discoveryClients.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The discovery client name.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/discoveryClients/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha1/{+name}",
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "get": {
+                  "description": "Gets the details of a discovery client.",
+                  "flatPath": "v1alpha1/projects/{projectsId}/locations/{locationsId}/discoveryClients/{discoveryClientsId}",
+                  "httpMethod": "GET",
+                  "id": "migrationcenter.projects.locations.discoveryClients.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The discovery client name.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/discoveryClients/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha1/{+name}",
+                  "response": {
+                    "$ref": "DiscoveryClient"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "Lists all the discovery clients in a given project and location.",
+                  "flatPath": "v1alpha1/projects/{projectsId}/locations/{locationsId}/discoveryClients",
+                  "httpMethod": "GET",
+                  "id": "migrationcenter.projects.locations.discoveryClients.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "Optional. Filter expression to filter results by.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "orderBy": {
+                      "description": "Optional. Field to sort by.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "Optional. The maximum number of items to return. The server may return fewer items than requested. If unspecified, the server will pick an appropriate default value.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. A page token, received from a previous `ListDiscoveryClients` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListDiscoveryClients` must match the call that provided the page token.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. Parent resource.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha1/{+parent}/discoveryClients",
+                  "response": {
+                    "$ref": "ListDiscoveryClientsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "patch": {
+                  "description": "Updates a discovery client.",
+                  "flatPath": "v1alpha1/projects/{projectsId}/locations/{locationsId}/discoveryClients/{discoveryClientsId}",
+                  "httpMethod": "PATCH",
+                  "id": "migrationcenter.projects.locations.discoveryClients.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Output only. Identifier. Full name of this discovery client.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/discoveryClients/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "Required. Update mask is used to specify the fields to be overwritten in the `DiscoveryClient` resource by the update. The values specified in the `update_mask` field are relative to the resource, not the full request. A field will be overwritten if it is in the mask. A single * value in the mask lets you to overwrite all fields.",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha1/{+name}",
+                  "request": {
+                    "$ref": "DiscoveryClient"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "sendHeartbeat": {
+                  "description": "Sends a discovery client heartbeat. Healthy clients are expected to send heartbeats regularly (normally every few minutes).",
+                  "flatPath": "v1alpha1/projects/{projectsId}/locations/{locationsId}/discoveryClients/{discoveryClientsId}:sendHeartbeat",
+                  "httpMethod": "POST",
+                  "id": "migrationcenter.projects.locations.discoveryClients.sendHeartbeat",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The discovery client name.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/discoveryClients/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha1/{+name}:sendHeartbeat",
+                  "request": {
+                    "$ref": "SendDiscoveryClientHeartbeatRequest"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            },
             "groups": {
               "methods": {
                 "addAssets": {
@@ -2107,7 +2317,7 @@
       }
     }
   },
-  "revision": "20240307",
+  "revision": "20240502",
   "rootUrl": "https://migrationcenter.googleapis.com/",
   "schemas": {
     "AddAssetsToGroupRequest": {
@@ -2141,7 +2351,7 @@
           "type": "array"
         },
         "filter": {
-          "description": "The aggregation will be performed on assets that match the provided filter.",
+          "description": "Optional. The aggregation will be performed on assets that match the provided filter.",
           "type": "string"
         },
         "showHidden": {
@@ -2344,6 +2554,16 @@
           "readOnly": true,
           "type": "string"
         },
+        "databaseDeploymentDetails": {
+          "$ref": "DatabaseDeploymentDetails",
+          "description": "Output only. Asset information specific for database deployments.",
+          "readOnly": true
+        },
+        "databaseDetails": {
+          "$ref": "DatabaseDetails",
+          "description": "Output only. Asset information specific for logical databases.",
+          "readOnly": true
+        },
         "hidden": {
           "description": "Optional. Indicates if the asset is hidden.",
           "type": "boolean"
@@ -2388,6 +2608,11 @@
           "readOnly": true,
           "type": "array"
         },
+        "title": {
+          "description": "Output only. Server generated human readable name of the asset.",
+          "readOnly": true,
+          "type": "string"
+        },
         "updateTime": {
           "description": "Output only. The timestamp when the asset was last updated.",
           "format": "google-datetime",
@@ -2412,6 +2637,34 @@
           },
           "description": "Generic asset attributes.",
           "type": "object"
+        },
+        "collectionType": {
+          "description": "Optional. Frame collection type, if not specified the collection type will be based on the source type of the source the frame was reported on.",
+          "enum": [
+            "SOURCE_TYPE_UNKNOWN",
+            "SOURCE_TYPE_UPLOAD",
+            "SOURCE_TYPE_GUEST_OS_SCAN",
+            "SOURCE_TYPE_INVENTORY_SCAN",
+            "SOURCE_TYPE_CUSTOM",
+            "SOURCE_TYPE_DISCOVERY_CLIENT"
+          ],
+          "enumDescriptions": [
+            "Unspecified",
+            "Manually uploaded file (e.g. CSV)",
+            "Guest-level info",
+            "Inventory-level scan",
+            "Third-party owned sources.",
+            "Discovery clients"
+          ],
+          "type": "string"
+        },
+        "databaseDeploymentDetails": {
+          "$ref": "DatabaseDeploymentDetails",
+          "description": "Asset information specific for database deployments."
+        },
+        "databaseDetails": {
+          "$ref": "DatabaseDetails",
+          "description": "Asset information specific for logical databases."
         },
         "labels": {
           "additionalProperties": {
@@ -2462,7 +2715,7 @@
       "id": "AssetPerformanceData",
       "properties": {
         "dailyResourceUsageAggregations": {
-          "description": "Daily resource usage aggregations. Contains all of the data available for an asset, up to the last 420 days. Aggregations are sorted from oldest to most recent.",
+          "description": "Daily resource usage aggregations. Contains all of the data available for an asset, up to the last 40 days. Aggregations are sorted from oldest to most recent.",
           "items": {
             "$ref": "DailyResourceUsageAggregation"
           },
@@ -2584,6 +2837,300 @@
       "properties": {},
       "type": "object"
     },
+    "CloudDatabaseMigrationTarget": {
+      "description": "Cloud database migration target.",
+      "id": "CloudDatabaseMigrationTarget",
+      "properties": {
+        "cloudSqlForMysqlShape": {
+          "$ref": "CloudSqlForMySqlShape",
+          "description": "Cloud SQL for MySQL database shape."
+        },
+        "cloudSqlForPostgresqlShape": {
+          "$ref": "CloudSqlForPostgreSqlShape",
+          "description": "Cloud SQL for Postgres database shape."
+        },
+        "cloudSqlShape": {
+          "$ref": "CloudSqlForSqlServerShape",
+          "description": "Cloud SQL for SQL Server database shape."
+        }
+      },
+      "type": "object"
+    },
+    "CloudSqlForMySqlShape": {
+      "description": "Cloud SQL for MySQL database shape.",
+      "id": "CloudSqlForMySqlShape",
+      "properties": {
+        "backupStorageGb": {
+          "description": "Output only. Predicted backup storage size in GiB.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "edition": {
+          "description": "Output only. Cloud SQL edition.",
+          "enum": [
+            "CLOUD_SQL_EDITION_UNSPECIFIED",
+            "CLOUD_SQL_EDITION_ENTERPRISE",
+            "CLOUD_SQL_EDITION_ENTERPRISE_PLUS"
+          ],
+          "enumDescriptions": [
+            "An unspecified Cloud SQL edition.",
+            "Provides all core capabilities of Cloud SQL and is suitable for applications requiring a balance of performance, availability, and cost.",
+            "Provides the best performance and availability to run applications requiring the highest level of availability and performance in addition to the capabilities of the Cloud SQL Enterprise edition. Note: SQL Server is not available in Enterprise Plus edition. For SQL Server, Enterprise will always be recommended."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "egressGbPerMonth": {
+          "description": "Output only. Predicted Network Out traffic GiB per month.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "logicalCoreCount": {
+          "description": "Output only. Number of logical cores.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "memoryMb": {
+          "description": "Output only. Predicted amount of memory in MiB.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "storage": {
+          "$ref": "ComputeStorageDescriptor",
+          "description": "Output only. Predicted storage shape.",
+          "readOnly": true
+        },
+        "version": {
+          "description": "Output only. MySQL version to be used on the Cloud SQL for MySQL instance.",
+          "enum": [
+            "MY_SQL_VERSION_UNSPECIFIED",
+            "MY_SQL_VERSION_5_6",
+            "MY_SQL_VERSION_5_7",
+            "MY_SQL_VERSION_8_0"
+          ],
+          "enumDescriptions": [
+            "Unspecified MySQL version.",
+            "MySQL 5.6.",
+            "MySQL 5.7.",
+            "MySQL 8.0."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "zoneAvailability": {
+          "description": "Output only. Cloud SQL zone availability.",
+          "enum": [
+            "CLOUD_SQL_ZONE_AVAILABILITY_UNSPECIFIED",
+            "CLOUD_SQL_ZONE_AVAILABILITY_ZONAL",
+            "CLOUD_SQL_ZONE_AVAILABILITY_REGIONAL"
+          ],
+          "enumDescriptions": [
+            "An unspecified Cloud SQL zone availability.",
+            "The instance serves data from only one zone. In case of outage, no failover. Not recommended for production.",
+            "The instance can serve data from multiple zones in a region. Highly available. Automatic failover to another zone within your selected region. Recommended for production instances. Increases cost."
+          ],
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "CloudSqlForPostgreSqlShape": {
+      "description": "Cloud SQL for Postgres database shape.",
+      "id": "CloudSqlForPostgreSqlShape",
+      "properties": {
+        "backupStorageGb": {
+          "description": "Output only. Predicted backup storage size in GiB.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "edition": {
+          "description": "Output only. Cloud SQL edition.",
+          "enum": [
+            "CLOUD_SQL_EDITION_UNSPECIFIED",
+            "CLOUD_SQL_EDITION_ENTERPRISE",
+            "CLOUD_SQL_EDITION_ENTERPRISE_PLUS"
+          ],
+          "enumDescriptions": [
+            "An unspecified Cloud SQL edition.",
+            "Provides all core capabilities of Cloud SQL and is suitable for applications requiring a balance of performance, availability, and cost.",
+            "Provides the best performance and availability to run applications requiring the highest level of availability and performance in addition to the capabilities of the Cloud SQL Enterprise edition. Note: SQL Server is not available in Enterprise Plus edition. For SQL Server, Enterprise will always be recommended."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "egressGbPerMonth": {
+          "description": "Output only. Predicted Network Out traffic GiB per month.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "logicalCoreCount": {
+          "description": "Output only. Number of logical cores.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "memoryMb": {
+          "description": "Output only. Predicted amount of memory in MiB.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "storage": {
+          "$ref": "ComputeStorageDescriptor",
+          "description": "Output only. Predicted storage shape.",
+          "readOnly": true
+        },
+        "version": {
+          "description": "Output only. PostgreSql version to be used on the Cloud SQL for PostgreSql instance.",
+          "enum": [
+            "POSTGRESQL_VERSION_UNSPECIFIED",
+            "POSTGRESQL_VERSION_9_6",
+            "POSTGRESQL_VERSION_10",
+            "POSTGRESQL_VERSION_11",
+            "POSTGRESQL_VERSION_12",
+            "POSTGRESQL_VERSION_13",
+            "POSTGRESQL_VERSION_14",
+            "POSTGRESQL_VERSION_15"
+          ],
+          "enumDescriptions": [
+            "Unspecified PostgreSQL version.",
+            "PostgreSQL 9.6.",
+            "PostgreSQL 10",
+            "PostgreSQL 11",
+            "PostgreSQL 12",
+            "PostgreSQL 13",
+            "PostgreSQL 14",
+            "PostgreSQL 15"
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "zoneAvailability": {
+          "description": "Output only. Cloud SQL zone availability.",
+          "enum": [
+            "CLOUD_SQL_ZONE_AVAILABILITY_UNSPECIFIED",
+            "CLOUD_SQL_ZONE_AVAILABILITY_ZONAL",
+            "CLOUD_SQL_ZONE_AVAILABILITY_REGIONAL"
+          ],
+          "enumDescriptions": [
+            "An unspecified Cloud SQL zone availability.",
+            "The instance serves data from only one zone. In case of outage, no failover. Not recommended for production.",
+            "The instance can serve data from multiple zones in a region. Highly available. Automatic failover to another zone within your selected region. Recommended for production instances. Increases cost."
+          ],
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "CloudSqlForSqlServerShape": {
+      "description": "Cloud SQL for SQL Server database shape.",
+      "id": "CloudSqlForSqlServerShape",
+      "properties": {
+        "backupStorageGb": {
+          "description": "Output only. Predicted backup storage size in GiB.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "edition": {
+          "description": "Output only. Cloud SQL edition.",
+          "enum": [
+            "CLOUD_SQL_EDITION_UNSPECIFIED",
+            "CLOUD_SQL_EDITION_ENTERPRISE",
+            "CLOUD_SQL_EDITION_ENTERPRISE_PLUS"
+          ],
+          "enumDescriptions": [
+            "An unspecified Cloud SQL edition.",
+            "Provides all core capabilities of Cloud SQL and is suitable for applications requiring a balance of performance, availability, and cost.",
+            "Provides the best performance and availability to run applications requiring the highest level of availability and performance in addition to the capabilities of the Cloud SQL Enterprise edition. Note: SQL Server is not available in Enterprise Plus edition. For SQL Server, Enterprise will always be recommended."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "egressGbPerMonth": {
+          "description": "Output only. Predicted Network Out traffic GiB per month.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "logicalCoreCount": {
+          "description": "Output only. Number of logical cores.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "memoryMb": {
+          "description": "Output only. Predicted amount of memory in MiB.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "storage": {
+          "$ref": "ComputeStorageDescriptor",
+          "description": "Output only. Predicted storage shape.",
+          "readOnly": true
+        },
+        "version": {
+          "description": "Output only. Microsoft SQL Server version to be used on the Cloud SQL for SQL server instance.",
+          "enum": [
+            "SQL_SERVER_VERSION_UNSPECIFIED",
+            "SQL_SERVER_VERSION_2017_EXPRESS",
+            "SQL_SERVER_VERSION_2017_WEB",
+            "SQL_SERVER_VERSION_2017_STANDARD",
+            "SQL_SERVER_VERSION_2017_ENTERPRISE",
+            "SQL_SERVER_VERSION_2019_EXPRESS",
+            "SQL_SERVER_VERSION_2019_WEB",
+            "SQL_SERVER_VERSION_2019_STANDARD",
+            "SQL_SERVER_VERSION_2019_ENTERPRISE",
+            "SQL_SERVER_VERSION_2022_EXPRESS",
+            "SQL_SERVER_VERSION_2022_WEB",
+            "SQL_SERVER_VERSION_2022_STANDARD",
+            "SQL_SERVER_VERSION_2022_ENTERPRISE"
+          ],
+          "enumDescriptions": [
+            "Unspecified SQL Server version.",
+            "The database version is SQL Server 2017 Express.",
+            "The database version is SQL Server 2017 Web.",
+            "The database version is SQL Server 2017 Standard.",
+            "The database version is SQL Server 2017 Enterprise.",
+            "The database version is SQL Server 2019 Express.",
+            "The database version is SQL Server 2019 Web.",
+            "The database version is SQL Server 2019 Standard.",
+            "The database version is SQL Server 2019 Enterprise.",
+            "The database version is SQL Server 2022 Express.",
+            "The database version is SQL Server 2022 Web.",
+            "The database version is SQL Server 2022 Standard.",
+            "The database version is SQL Server 2022 Enterprise."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "zoneAvailability": {
+          "description": "Output only. Cloud SQL zone availability.",
+          "enum": [
+            "CLOUD_SQL_ZONE_AVAILABILITY_UNSPECIFIED",
+            "CLOUD_SQL_ZONE_AVAILABILITY_ZONAL",
+            "CLOUD_SQL_ZONE_AVAILABILITY_REGIONAL"
+          ],
+          "enumDescriptions": [
+            "An unspecified Cloud SQL zone availability.",
+            "The instance serves data from only one zone. In case of outage, no failover. Not recommended for production.",
+            "The instance can serve data from multiple zones in a region. Highly available. Automatic failover to another zone within your selected region. Recommended for production instances. Increases cost."
+          ],
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ComputeEngineMigrationTarget": {
       "description": "Compute engine migration target.",
       "id": "ComputeEngineMigrationTarget",
@@ -2641,33 +3188,39 @@
       "id": "ComputeEngineShapeDescriptor",
       "properties": {
         "logicalCoreCount": {
-          "description": "Number of logical cores.",
+          "description": "Output only. Number of logical cores.",
           "format": "int32",
+          "readOnly": true,
           "type": "integer"
         },
         "machineType": {
-          "description": "Compute Engine machine type.",
+          "description": "Output only. Compute Engine machine type.",
+          "readOnly": true,
           "type": "string"
         },
         "memoryMb": {
-          "description": "Memory in mebibytes.",
+          "description": "Output only. Memory in mebibytes.",
           "format": "int32",
+          "readOnly": true,
           "type": "integer"
         },
         "physicalCoreCount": {
-          "description": "Number of physical cores.",
+          "description": "Output only. Number of physical cores.",
           "format": "int32",
+          "readOnly": true,
           "type": "integer"
         },
         "series": {
-          "description": "Compute Engine machine series.",
+          "description": "Output only. Compute Engine machine series.",
+          "readOnly": true,
           "type": "string"
         },
         "storage": {
-          "description": "Compute Engine storage. Never empty.",
+          "description": "Output only. Compute Engine storage. Never empty.",
           "items": {
             "$ref": "ComputeStorageDescriptor"
           },
+          "readOnly": true,
           "type": "array"
         }
       },
@@ -2764,6 +3317,14 @@
         "iops": {
           "$ref": "DailyResourceUsageAggregationStats",
           "description": "Disk I/O operations per second."
+        },
+        "readIops": {
+          "$ref": "DailyResourceUsageAggregationStats",
+          "description": "Disk read I/O operations per second."
+        },
+        "writeIops": {
+          "$ref": "DailyResourceUsageAggregationStats",
+          "description": "Disk write I/O operations per second."
         }
       },
       "type": "object"
@@ -2817,6 +3378,461 @@
           "description": "Peak usage value.",
           "format": "float",
           "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "DatabaseDeploymentDetails": {
+      "description": "The details of a database deployment asset.",
+      "id": "DatabaseDeploymentDetails",
+      "properties": {
+        "aggregatedStats": {
+          "$ref": "DatabaseDeploymentDetailsAggregatedStats",
+          "description": "Output only. Aggregated stats for the database deployment.",
+          "readOnly": true
+        },
+        "edition": {
+          "description": "The database deployment edition.",
+          "type": "string"
+        },
+        "generatedId": {
+          "description": "The database deployment generated ID.",
+          "type": "string"
+        },
+        "manualUniqueId": {
+          "description": "A manual unique ID set by the user.",
+          "type": "string"
+        },
+        "mysql": {
+          "$ref": "MysqlDatabaseDeployment",
+          "description": "Details of a MYSQL database deployment."
+        },
+        "postgresql": {
+          "$ref": "PostgreSqlDatabaseDeployment",
+          "description": "Details of a PostgreSQL database deployment."
+        },
+        "sqlServer": {
+          "$ref": "SqlServerDatabaseDeployment",
+          "description": "Details of a Microsoft SQL Server database deployment."
+        },
+        "topology": {
+          "$ref": "DatabaseDeploymentTopology",
+          "description": "Details of the database deployment topology."
+        },
+        "version": {
+          "description": "The database deployment version.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "DatabaseDeploymentDetailsAggregatedStats": {
+      "description": "Aggregated stats for the database deployment.",
+      "id": "DatabaseDeploymentDetailsAggregatedStats",
+      "properties": {
+        "databaseCount": {
+          "description": "Output only. The number of databases in the deployment.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "DatabaseDeploymentTopology": {
+      "description": "Details of database deployment's topology.",
+      "id": "DatabaseDeploymentTopology",
+      "properties": {
+        "coreCount": {
+          "description": "Optional. Number of total cores.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "coreLimit": {
+          "description": "Optional. Number of total cores limited by db deployment.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "diskAllocatedBytes": {
+          "description": "Optional. Disk allocated in bytes.",
+          "format": "int64",
+          "type": "string"
+        },
+        "diskUsedBytes": {
+          "description": "Optional. Disk used in bytes.",
+          "format": "int64",
+          "type": "string"
+        },
+        "instances": {
+          "description": "Optional. List of database instances.",
+          "items": {
+            "$ref": "DatabaseInstance"
+          },
+          "type": "array"
+        },
+        "memoryBytes": {
+          "description": "Optional. Total memory in bytes.",
+          "format": "int64",
+          "type": "string"
+        },
+        "memoryLimitBytes": {
+          "description": "Optional. Total memory in bytes limited by db deployment.",
+          "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "DatabaseDetails": {
+      "description": "Details of a logical database.",
+      "id": "DatabaseDetails",
+      "properties": {
+        "allocatedStorageBytes": {
+          "description": "The allocated storage for the database in bytes.",
+          "format": "int64",
+          "type": "string"
+        },
+        "databaseName": {
+          "description": "The name of the database.",
+          "type": "string"
+        },
+        "parentDatabaseDeployment": {
+          "$ref": "DatabaseDetailsParentDatabaseDeployment",
+          "description": "The parent database deployment that contains the logical database."
+        },
+        "schemas": {
+          "description": "The database schemas.",
+          "items": {
+            "$ref": "DatabaseSchema"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "DatabaseDetailsParentDatabaseDeployment": {
+      "description": "The identifiers of the parent database deployment.",
+      "id": "DatabaseDetailsParentDatabaseDeployment",
+      "properties": {
+        "generatedId": {
+          "description": "The parent database deployment generated ID.",
+          "type": "string"
+        },
+        "manualUniqueId": {
+          "description": "The parent database deployment optional manual unique ID set by the user.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "DatabaseInstance": {
+      "description": "Details of a database instance.",
+      "id": "DatabaseInstance",
+      "properties": {
+        "hosts": {
+          "description": "Optional. The instance's hosts.",
+          "items": {
+            "$ref": "DatabaseInstanceHost"
+          },
+          "type": "array"
+        },
+        "instanceName": {
+          "description": "The instance's name.",
+          "type": "string"
+        },
+        "role": {
+          "description": "The instance role in the database engine.",
+          "enum": [
+            "ROLE_UNSPECIFIED",
+            "PRIMARY",
+            "SECONDARY",
+            "ARBITER"
+          ],
+          "enumDescriptions": [
+            "Unspecified.",
+            "Primary.",
+            "Secondary.",
+            "Arbiter."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "DatabaseInstanceHost": {
+      "description": "Details of a host of a database instance.",
+      "id": "DatabaseInstanceHost",
+      "properties": {
+        "hostName": {
+          "description": "Optional. The host name of the host.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "DatabaseObjects": {
+      "description": "Details of a group of database objects.",
+      "id": "DatabaseObjects",
+      "properties": {
+        "category": {
+          "description": "The category of the objects.",
+          "enum": [
+            "CATEGORY_UNSPECIFIED",
+            "TABLE",
+            "INDEX",
+            "CONSTRAINTS",
+            "VIEWS",
+            "SOURCE_CODE",
+            "OTHER"
+          ],
+          "enumDescriptions": [
+            "Unspecified type.",
+            "Table.",
+            "Index.",
+            "Constraints.",
+            "Views.",
+            "Source code, e.g. procedures.",
+            "Uncategorized objects."
+          ],
+          "type": "string"
+        },
+        "count": {
+          "description": "The number of objects.",
+          "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "DatabasePreferences": {
+      "description": "DatabasePreferences enables you to create sets of preferences for your migrated databases.",
+      "id": "DatabasePreferences",
+      "properties": {
+        "mssqlToCloudSqlForSqlServerPreferences": {
+          "$ref": "DatabasePreferencesCloudSqlSqlServer",
+          "description": "Optional. Preferences for target SQL Server on Cloud SQL when migrating from source Microsoft SQL server."
+        },
+        "mysqlToCloudSqlForMysqlPreferences": {
+          "$ref": "DatabasePreferencesCloudSqlMySql",
+          "description": "Optional. Preferences for target MySQL on Cloud SQL when migrating from source MySQL."
+        },
+        "postgresqlToCloudSqlForPostgresqlPreferences": {
+          "$ref": "DatabasePreferencesCloudSqlPostgreSql",
+          "description": "Optional. Preferences for target PostgreSQL on Cloud SQL when migrating from source PostgreSQL."
+        }
+      },
+      "type": "object"
+    },
+    "DatabasePreferencesCloudSqlCommon": {
+      "description": "Preferences common to Cloud SQL databases.",
+      "id": "DatabasePreferencesCloudSqlCommon",
+      "properties": {
+        "backup": {
+          "$ref": "DatabasePreferencesCloudSqlCommonBackup",
+          "description": "Optional. Preferences for database backups."
+        },
+        "commitmentPlan": {
+          "description": "Optional. Commitment plan to consider when calculating costs. Only regular CUDs (not flexible) are currently available.",
+          "enum": [
+            "COMMITMENT_PLAN_UNSPECIFIED",
+            "COMMITMENT_PLAN_NONE",
+            "COMMITMENT_PLAN_ONE_YEAR",
+            "COMMITMENT_PLAN_THREE_YEARS"
+          ],
+          "enumDescriptions": [
+            "Unspecified commitment plan.",
+            "No commitment plan.",
+            "1-year regular committed use discount.",
+            "3-year regular committed use discount."
+          ],
+          "type": "string"
+        },
+        "edition": {
+          "description": "Optional. Cloud SQL edition. For SQL Server, only Enterprise is available.",
+          "enum": [
+            "CLOUD_SQL_EDITION_UNSPECIFIED",
+            "CLOUD_SQL_EDITION_ENTERPRISE",
+            "CLOUD_SQL_EDITION_ENTERPRISE_PLUS"
+          ],
+          "enumDescriptions": [
+            "An unspecified Cloud SQL edition.",
+            "Provides all core capabilities of Cloud SQL and is suitable for applications requiring a balance of performance, availability, and cost.",
+            "Provides the best performance and availability to run applications requiring the highest level of availability and performance in addition to the capabilities of the Cloud SQL Enterprise edition. Note: SQL Server is not available in Enterprise Plus edition. For SQL Server, Enterprise will always be recommended."
+          ],
+          "type": "string"
+        },
+        "persistentDiskType": {
+          "description": "Optional. Persistent disk type to use. If unspecified, a disk type is recommended based on available usage data. For SQL Server, only SSD is available. For MySQL and PostgreSQL, only STANDARD (HDD) and SSD types are available.",
+          "enum": [
+            "PERSISTENT_DISK_TYPE_UNSPECIFIED",
+            "PERSISTENT_DISK_TYPE_STANDARD",
+            "PERSISTENT_DISK_TYPE_BALANCED",
+            "PERSISTENT_DISK_TYPE_SSD"
+          ],
+          "enumDescriptions": [
+            "Unspecified (default value). Selecting this value allows the system to use any disk type according to reported usage. This a good value to start with.",
+            "Standard HDD Persistent Disk.",
+            "Balanced Persistent Disk.",
+            "SSD Persistent Disk."
+          ],
+          "type": "string"
+        },
+        "sizingOptimizationStrategy": {
+          "description": "Optional. Sizing optimization strategy of the database. Currently supported for Cloud SQL are just two values: SIZING_OPTIMIZATION_STRATEGY_MODERATE and SIZING_OPTIMIZATION_STRATEGY_SAME_AS_SOURCE. SIZING_OPTIMIZATION_STRATEGY_UNSPECIFIED will behave like SIZING_OPTIMIZATION_STRATEGY_MODERATE.",
+          "enum": [
+            "SIZING_OPTIMIZATION_STRATEGY_UNSPECIFIED",
+            "SIZING_OPTIMIZATION_STRATEGY_SAME_AS_SOURCE",
+            "SIZING_OPTIMIZATION_STRATEGY_MODERATE",
+            "SIZING_OPTIMIZATION_STRATEGY_AGGRESSIVE",
+            "SIZING_OPTIMIZATION_STRATEGY_CUSTOM"
+          ],
+          "enumDescriptions": [
+            "Unspecified (default value).",
+            "No optimization applied. Virtual machine sizing matches as closely as possible the machine shape on the source site, not considering any actual performance data.",
+            "Virtual machine sizing will match the reported usage and shape, with some slack. This a good value to start with.",
+            "Virtual machine sizing will match the reported usage, with little slack. Using this option can help reduce costs.",
+            "Virtual machine sizing will be determined by custom parameters. While not supported in the v1 API, this value is converted to UNSPECIFIED in conversions to the v1 API."
+          ],
+          "type": "string"
+        },
+        "zoneAvailability": {
+          "description": "Optional. Preferred zone availability.",
+          "enum": [
+            "CLOUD_SQL_ZONE_AVAILABILITY_UNSPECIFIED",
+            "CLOUD_SQL_ZONE_AVAILABILITY_ZONAL",
+            "CLOUD_SQL_ZONE_AVAILABILITY_REGIONAL"
+          ],
+          "enumDescriptions": [
+            "An unspecified Cloud SQL zone availability.",
+            "The instance serves data from only one zone. In case of outage, no failover. Not recommended for production.",
+            "The instance can serve data from multiple zones in a region. Highly available. Automatic failover to another zone within your selected region. Recommended for production instances. Increases cost."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "DatabasePreferencesCloudSqlCommonBackup": {
+      "description": "Preferences for database backups.",
+      "id": "DatabasePreferencesCloudSqlCommonBackup",
+      "properties": {
+        "backupMode": {
+          "description": "Optional. Mode of automated backups.",
+          "enum": [
+            "BACKUP_MODE_UNSPECIFIED",
+            "BACKUP_MODE_DISABLED",
+            "BACKUP_MODE_ENABLED"
+          ],
+          "enumDescriptions": [
+            "An unspecified database backup mode.",
+            "Automatic backups disabled, no additional charges for storage.",
+            "Automatic backups enabled, there will be additional charges for storage."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "DatabasePreferencesCloudSqlMySql": {
+      "description": "Preferences for MySQL on Cloud SQL.",
+      "id": "DatabasePreferencesCloudSqlMySql",
+      "properties": {
+        "common": {
+          "$ref": "DatabasePreferencesCloudSqlCommon",
+          "description": "Optional. Preferences to Cloud SQL databases."
+        }
+      },
+      "type": "object"
+    },
+    "DatabasePreferencesCloudSqlPostgreSql": {
+      "description": "Preferences for PostgreSQL on Cloud SQL.",
+      "id": "DatabasePreferencesCloudSqlPostgreSql",
+      "properties": {
+        "common": {
+          "$ref": "DatabasePreferencesCloudSqlCommon",
+          "description": "Optional. Preferences to Cloud SQL databases."
+        }
+      },
+      "type": "object"
+    },
+    "DatabasePreferencesCloudSqlSqlServer": {
+      "description": "Preferences for SQL Server on Cloud SQL.",
+      "id": "DatabasePreferencesCloudSqlSqlServer",
+      "properties": {
+        "common": {
+          "$ref": "DatabasePreferencesCloudSqlCommon",
+          "description": "Optional. Preferences to Cloud SQL databases."
+        },
+        "multithreading": {
+          "description": "Optional. Preferences for multithreading support.",
+          "enum": [
+            "MULTITHREADING_UNSPECIFIED",
+            "MULTITHREADING_DISABLED",
+            "MULTITHREADING_ENABLED",
+            "MULTITHREADING_AUTO_SELECT"
+          ],
+          "enumDescriptions": [
+            "Same as MULTITHREADING_AUTO_SELECT.",
+            "No multithreading support.",
+            "Allow multithreading support.",
+            "Choose to enable/disable multithreading according to which is lowest cost for your workload."
+          ],
+          "type": "string"
+        },
+        "versionType": {
+          "description": "Optional. Edition of Microsoft SQL version that is used on a Cloud SQL for SQL server instance.",
+          "enum": [
+            "VERSION_TYPE_UNSPECIFIED",
+            "VERSION_TYPE_AUTO",
+            "VERSION_TYPE_EXPRESS",
+            "VERSION_TYPE_WEB",
+            "VERSION_TYPE_STANDARD",
+            "VERSION_TYPE_ENTERPRISE"
+          ],
+          "enumDescriptions": [
+            "Unspecified SQL Server version type.",
+            "Version will be deduced from the source asset.",
+            "Version will be one of \"Express\" versions.",
+            "Version will be one of \"Web\" versions.",
+            "Version will be one of \"Standard\" versions.",
+            "Version will be one of \"Enterprise\" versions."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "DatabaseSchema": {
+      "description": "Details of a database schema.",
+      "id": "DatabaseSchema",
+      "properties": {
+        "mysql": {
+          "$ref": "MySqlSchemaDetails",
+          "description": "Details of a Mysql schema."
+        },
+        "objects": {
+          "description": "List of details of objects by category.",
+          "items": {
+            "$ref": "DatabaseObjects"
+          },
+          "type": "array"
+        },
+        "postgresql": {
+          "$ref": "PostgreSqlSchemaDetails",
+          "description": "Details of a PostgreSql schema."
+        },
+        "schemaName": {
+          "description": "The name of the schema.",
+          "type": "string"
+        },
+        "sqlServer": {
+          "$ref": "SqlServerSchemaDetails",
+          "description": "Details of a SqlServer schema."
+        },
+        "tablesSizeBytes": {
+          "description": "The total size of tables in bytes.",
+          "format": "int64",
+          "type": "string"
         }
       },
       "type": "object"
@@ -2905,6 +3921,106 @@
         },
         "softwareName": {
           "description": "Output only. Software's name.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "DiscoveryClient": {
+      "description": "Represents an installed Migration Center Discovery Client instance.",
+      "id": "DiscoveryClient",
+      "properties": {
+        "createTime": {
+          "description": "Output only. Time when the discovery client was first created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "description": {
+          "description": "Optional. Free text description. Maximum length is 1000 characters.",
+          "type": "string"
+        },
+        "displayName": {
+          "description": "Optional. Free text display name. Maximum length is 63 characters.",
+          "type": "string"
+        },
+        "errors": {
+          "description": "Output only. Errors affecting client functionality.",
+          "items": {
+            "$ref": "Status"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "expireTime": {
+          "description": "Optional. Client expiration time in UTC. If specified, the backend will not accept new frames after this time.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "heartbeatTime": {
+          "description": "Output only. Last heartbeat time. Healthy clients are expected to send heartbeats regularly (normally every few minutes).",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. Labels as key value pairs.",
+          "type": "object"
+        },
+        "name": {
+          "description": "Output only. Identifier. Full name of this discovery client.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "serviceAccount": {
+          "description": "Required. Service account used by the discovery client for various operation.",
+          "type": "string"
+        },
+        "signalsEndpoint": {
+          "description": "Output only. This field is intended for internal use.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "source": {
+          "description": "Required. Full name of the source object associated with this discovery client.",
+          "type": "string"
+        },
+        "state": {
+          "description": "Output only. Current state of the discovery client.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "ACTIVE",
+            "OFFLINE",
+            "DEGRADED",
+            "EXPIRED"
+          ],
+          "enumDescriptions": [
+            "Client state is unspecified.",
+            "Client is active.",
+            "Client is offline.",
+            "Client is in a degraded state. See the `errors` field for details.",
+            "Client has expired. See the expire_time field for the expire time."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "ttl": {
+          "description": "Optional. Input only. Client time-to-live. If specified, the backend will not accept new frames after this time. This field is input only. The derived expiration time is provided as output through the `expire_time` field.",
+          "format": "google-duration",
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. Time when the discovery client was last updated. This value is not updated by heartbeats, to view the last heartbeat time please refer to the `heartbeat_time` field.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "version": {
+          "description": "Output only. Client version, as reported in recent heartbeat.",
           "readOnly": true,
           "type": "string"
         }
@@ -3027,6 +4143,16 @@
       "properties": {
         "averageIops": {
           "description": "Average IOPS sampled over a short window. Must be non-negative. Must be equal to the sum of read and write if one of them is positive. if both read and write are zero they are ignored.",
+          "format": "float",
+          "type": "number"
+        },
+        "averageReadIops": {
+          "description": "Average read IOPS sampled over a short window. Must be non-negative.",
+          "format": "float",
+          "type": "number"
+        },
+        "averageWriteIops": {
+          "description": "Average write IOPS sampled over a short window. Must be non-negative.",
           "format": "float",
           "type": "number"
         }
@@ -3240,11 +4366,13 @@
             "IMPORT_JOB_FORMAT_RVTOOLS_CSV",
             "IMPORT_JOB_FORMAT_EXPORTED_AWS_CSV",
             "IMPORT_JOB_FORMAT_EXPORTED_AZURE_CSV",
-            "IMPORT_JOB_FORMAT_MANUAL_CSV"
+            "IMPORT_JOB_FORMAT_MANUAL_CSV",
+            "IMPORT_JOB_FORMAT_DATABASE_ZIP"
           ],
           "enumDeprecated": [
             false,
             true,
+            false,
             false,
             false,
             false,
@@ -3256,9 +4384,10 @@
             "Configuration management DB format.",
             "RVTools format (XLSX).",
             "RVTools format (CSV).",
-            "CSV format exported from AWS using the AWS collection script.",
-            "CSV format exported from Azure using the Azure collection script.",
-            "CSV format created manually. For more information, see Manually create and upload data tables."
+            "CSV format exported from AWS using the [AWS collection script](https://github.com/GoogleCloudPlatform/aws-to-stratozone-export).",
+            "CSV format exported from Azure using the [Azure collection script](https://github.com/GoogleCloudPlatform/azure-to-stratozone-export).",
+            "CSV format created manually. For more information, see [Manually create and upload data tables](https://cloud.google.com/migrate/stratozone/docs/import-data-portal).",
+            "ZIP file with nested CSV files generated by a database collector."
           ],
           "type": "string"
         },
@@ -3535,11 +4664,13 @@
             "IMPORT_JOB_FORMAT_RVTOOLS_CSV",
             "IMPORT_JOB_FORMAT_EXPORTED_AWS_CSV",
             "IMPORT_JOB_FORMAT_EXPORTED_AZURE_CSV",
-            "IMPORT_JOB_FORMAT_MANUAL_CSV"
+            "IMPORT_JOB_FORMAT_MANUAL_CSV",
+            "IMPORT_JOB_FORMAT_DATABASE_ZIP"
           ],
           "enumDeprecated": [
             false,
             true,
+            false,
             false,
             false,
             false,
@@ -3551,9 +4682,10 @@
             "Configuration management DB format.",
             "RVTools format (XLSX).",
             "RVTools format (CSV).",
-            "CSV format exported from AWS using the AWS collection script.",
-            "CSV format exported from Azure using the Azure collection script.",
-            "CSV format created manually. For more information, see Manually create and upload data tables."
+            "CSV format exported from AWS using the [AWS collection script](https://github.com/GoogleCloudPlatform/aws-to-stratozone-export).",
+            "CSV format exported from Azure using the [Azure collection script](https://github.com/GoogleCloudPlatform/azure-to-stratozone-export).",
+            "CSV format created manually. For more information, see [Manually create and upload data tables](https://cloud.google.com/migrate/stratozone/docs/import-data-portal).",
+            "ZIP file with nested CSV files generated by a database collector."
           ],
           "type": "string"
         },
@@ -3704,12 +4836,28 @@
       "description": "A resource that reports the import job errors at row level.",
       "id": "ImportRowError",
       "properties": {
+        "archiveError": {
+          "$ref": "ImportRowErrorArchiveErrorDetails",
+          "description": "Error details for an archive file."
+        },
+        "assetTitle": {
+          "description": "The asset title.",
+          "type": "string"
+        },
+        "csvError": {
+          "$ref": "ImportRowErrorCsvErrorDetails",
+          "description": "Error details for a CSV file."
+        },
         "errors": {
           "description": "The list of errors detected in the row.",
           "items": {
             "$ref": "ImportError"
           },
           "type": "array"
+        },
+        "jsonError": {
+          "$ref": "ImportRowErrorJsonErrorDetails",
+          "description": "Error details for a JSON file."
         },
         "rowNumber": {
           "deprecated": true,
@@ -3723,6 +4871,59 @@
         },
         "vmUuid": {
           "description": "The VM UUID.",
+          "type": "string"
+        },
+        "xlsxError": {
+          "$ref": "ImportRowErrorXlsxErrorDetails",
+          "description": "Error details for an XLSX file."
+        }
+      },
+      "type": "object"
+    },
+    "ImportRowErrorArchiveErrorDetails": {
+      "description": "Error details for an archive file.",
+      "id": "ImportRowErrorArchiveErrorDetails",
+      "properties": {
+        "csvError": {
+          "$ref": "ImportRowErrorCsvErrorDetails",
+          "description": "Error details for a CSV file."
+        },
+        "filePath": {
+          "description": "The file path inside the archive where the error was detected.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ImportRowErrorCsvErrorDetails": {
+      "description": "Error details for a CSV file.",
+      "id": "ImportRowErrorCsvErrorDetails",
+      "properties": {
+        "rowNumber": {
+          "description": "The row number where the error was detected.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "ImportRowErrorJsonErrorDetails": {
+      "description": "Error details for a JSON file.",
+      "id": "ImportRowErrorJsonErrorDetails",
+      "properties": {},
+      "type": "object"
+    },
+    "ImportRowErrorXlsxErrorDetails": {
+      "description": "Error details for an XLSX file.",
+      "id": "ImportRowErrorXlsxErrorDetails",
+      "properties": {
+        "rowNumber": {
+          "description": "The row number where the error was detected.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "sheet": {
+          "description": "The name of the sheet where the error was detected.",
           "type": "string"
         }
       },
@@ -3741,11 +4942,13 @@
             "IMPORT_JOB_FORMAT_RVTOOLS_CSV",
             "IMPORT_JOB_FORMAT_EXPORTED_AWS_CSV",
             "IMPORT_JOB_FORMAT_EXPORTED_AZURE_CSV",
-            "IMPORT_JOB_FORMAT_MANUAL_CSV"
+            "IMPORT_JOB_FORMAT_MANUAL_CSV",
+            "IMPORT_JOB_FORMAT_DATABASE_ZIP"
           ],
           "enumDeprecated": [
             false,
             true,
+            false,
             false,
             false,
             false,
@@ -3757,9 +4960,10 @@
             "Configuration management DB format.",
             "RVTools format (XLSX).",
             "RVTools format (CSV).",
-            "CSV format exported from AWS using the AWS collection script.",
-            "CSV format exported from Azure using the Azure collection script.",
-            "CSV format created manually. For more information, see Manually create and upload data tables."
+            "CSV format exported from AWS using the [AWS collection script](https://github.com/GoogleCloudPlatform/aws-to-stratozone-export).",
+            "CSV format exported from Azure using the [Azure collection script](https://github.com/GoogleCloudPlatform/azure-to-stratozone-export).",
+            "CSV format created manually. For more information, see [Manually create and upload data tables](https://cloud.google.com/migrate/stratozone/docs/import-data-portal).",
+            "ZIP file with nested CSV files generated by a database collector."
           ],
           "type": "string"
         },
@@ -3816,6 +5020,77 @@
       },
       "type": "object"
     },
+    "Issue": {
+      "description": "An issue associated with a migration.",
+      "id": "Issue",
+      "properties": {
+        "compatibilityIssue": {
+          "$ref": "IssueCompatibilityIssue",
+          "description": "Output only. Details about a compatibility issue.",
+          "readOnly": true
+        },
+        "description": {
+          "description": "Output only. English description of the issue.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "issueCode": {
+          "description": "Output only. Unique identifier for this issue type.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "IssueCompatibilityIssue": {
+      "description": "Details about a compatibility issue.",
+      "id": "IssueCompatibilityIssue",
+      "properties": {
+        "associatedObject": {
+          "description": "Output only. Name of the object associated with this compatibility issue relative to the relevant asset. Does not represent a fully qualified resource name and is not intended for programmatic use.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "associatedObjectType": {
+          "description": "Output only. Type of object associated with this migration compatibility issue.",
+          "enum": [
+            "OBJECT_TYPE_UNSPECIFIED",
+            "DATABASE_DEPLOYMENT",
+            "DATABASE",
+            "SCHEMA"
+          ],
+          "enumDescriptions": [
+            "An unspecified object type.",
+            "A database deployment object type.",
+            "A logical database object type.",
+            "A schema object type."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "associatedValue": {
+          "description": "Output only. A string representation of actual value associated with this issue. Some values may contain aggregated information, such as a flag name and the actual value assigned to it.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "category": {
+          "description": "Output only. Category of this compatibility issue.",
+          "enum": [
+            "CATEGORY_UNSPECIFIED",
+            "DATABASE_FLAG",
+            "DATABASE_FEATURE"
+          ],
+          "enumDescriptions": [
+            "An unspecified compatibility category.",
+            "Database flag compatibility category.",
+            "Database feature compatibility category."
+          ],
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ListAssetsResponse": {
       "description": "Response message for listing assets.",
       "id": "ListAssetsResponse",
@@ -3829,6 +5104,31 @@
         },
         "nextPageToken": {
           "description": "A token identifying a page of results the server should return.",
+          "type": "string"
+        },
+        "unreachable": {
+          "description": "Locations that could not be reached.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ListDiscoveryClientsResponse": {
+      "description": "Response message for listing discovery clients.",
+      "id": "ListDiscoveryClientsResponse",
+      "properties": {
+        "discoveryClients": {
+          "description": "List of discovery clients.",
+          "items": {
+            "$ref": "DiscoveryClient"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token that can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
           "type": "string"
         },
         "unreachable": {
@@ -4126,11 +5426,11 @@
       "type": "object"
     },
     "MachineSeries": {
-      "description": "A Compute Engine machine series.",
+      "description": "A machine series, for a target product (e.g. Compute Engine, Google Cloud VMware Engine).",
       "id": "MachineSeries",
       "properties": {
         "code": {
-          "description": "Code to identify a Compute Engine machine series. Consult https://cloud.google.com/compute/docs/machine-resource#machine_type_comparison for more details on the available series.",
+          "description": "Code to identify a machine series. Consult this for more details on the available series for Compute Engine: https://cloud.google.com/compute/docs/machine-resource#machine_type_comparison Consult this for more details on the available series for Google Cloud VMware Engine: https://cloud.google.com/vmware-engine/pricing",
           "type": "string"
         }
       },
@@ -4152,6 +5452,11 @@
       "description": "An insight about potential migrations for an asset.",
       "id": "MigrationInsight",
       "properties": {
+        "cloudDatabaseTarget": {
+          "$ref": "CloudDatabaseMigrationTarget",
+          "description": "Output only. A Cloud database migration target.",
+          "readOnly": true
+        },
         "computeEngineSoleTenantTarget": {
           "$ref": "ComputeEngineSoleTenantMigrationTarget",
           "description": "Output only. A Google Compute Engine Sole Tenant target.",
@@ -4171,6 +5476,14 @@
           "$ref": "GoogleKubernetesEngineMigrationTarget",
           "description": "Output only. A Google Kubernetes Engine target.",
           "readOnly": true
+        },
+        "issues": {
+          "description": "Output only. Issues associated with this migration.",
+          "items": {
+            "$ref": "Issue"
+          },
+          "readOnly": true,
+          "type": "array"
         },
         "vmwareEngineTarget": {
           "$ref": "VmwareEngineMigrationTarget",
@@ -4197,6 +5510,160 @@
           "description": "The whole units of the amount. For example if `currencyCode` is `\"USD\"`, then 1 unit is one US dollar.",
           "format": "int64",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "MySqlPlugin": {
+      "description": "MySql plugin.",
+      "id": "MySqlPlugin",
+      "properties": {
+        "enabled": {
+          "description": "Required. The plugin is active.",
+          "type": "boolean"
+        },
+        "plugin": {
+          "description": "Required. The plugin name.",
+          "type": "string"
+        },
+        "version": {
+          "description": "Required. The plugin version.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "MySqlProperty": {
+      "description": "MySql property.",
+      "id": "MySqlProperty",
+      "properties": {
+        "enabled": {
+          "description": "Required. The property is enabled.",
+          "type": "boolean"
+        },
+        "numericValue": {
+          "description": "Required. The property numeric value.",
+          "format": "int64",
+          "type": "string"
+        },
+        "property": {
+          "description": "Required. The property name.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "MySqlSchemaDetails": {
+      "description": "Specific details for a Mysql database.",
+      "id": "MySqlSchemaDetails",
+      "properties": {
+        "storageEngines": {
+          "description": "Optional. Mysql storage engine tables.",
+          "items": {
+            "$ref": "MySqlStorageEngineDetails"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "MySqlStorageEngineDetails": {
+      "description": "Mysql storage engine tables.",
+      "id": "MySqlStorageEngineDetails",
+      "properties": {
+        "encryptedTableCount": {
+          "description": "Optional. The number of encrypted tables.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "engine": {
+          "description": "Required. The storage engine.",
+          "enum": [
+            "ENGINE_UNSPECIFIED",
+            "INNODB",
+            "MYISAM",
+            "MEMORY",
+            "CSV",
+            "ARCHIVE",
+            "BLACKHOLE",
+            "NDB",
+            "MERGE",
+            "FEDERATED",
+            "EXAMPLE",
+            "OTHER"
+          ],
+          "enumDescriptions": [
+            "Unspecified storage engine.",
+            "InnoDB.",
+            "MyISAM.",
+            "Memory.",
+            "CSV.",
+            "Archive.",
+            "Blackhole.",
+            "NDB.",
+            "Merge.",
+            "Federated.",
+            "Example.",
+            "Other."
+          ],
+          "type": "string"
+        },
+        "tableCount": {
+          "description": "Optional. The number of tables.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "MySqlVariable": {
+      "description": "MySql variable.",
+      "id": "MySqlVariable",
+      "properties": {
+        "category": {
+          "description": "Required. The variable category.",
+          "type": "string"
+        },
+        "value": {
+          "description": "Required. The variable value.",
+          "type": "string"
+        },
+        "variable": {
+          "description": "Required. The variable name.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "MysqlDatabaseDeployment": {
+      "description": "Specific details for a Mysql database deployment.",
+      "id": "MysqlDatabaseDeployment",
+      "properties": {
+        "plugins": {
+          "description": "Optional. List of MySql plugins.",
+          "items": {
+            "$ref": "MySqlPlugin"
+          },
+          "type": "array"
+        },
+        "properties": {
+          "description": "Optional. List of MySql properties.",
+          "items": {
+            "$ref": "MySqlProperty"
+          },
+          "type": "array"
+        },
+        "resourceGroupsCount": {
+          "description": "Optional. Number of resource groups.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "variables": {
+          "description": "Optional. List of MySql variables.",
+          "items": {
+            "$ref": "MySqlVariable"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -4587,6 +6054,118 @@
       },
       "type": "object"
     },
+    "PostgreSqlDatabaseDeployment": {
+      "description": "Specific details for a PostgreSQL database deployment.",
+      "id": "PostgreSqlDatabaseDeployment",
+      "properties": {
+        "properties": {
+          "description": "Optional. List of PostgreSql properties.",
+          "items": {
+            "$ref": "PostgreSqlProperty"
+          },
+          "type": "array"
+        },
+        "settings": {
+          "description": "Optional. List of PostgreSql settings.",
+          "items": {
+            "$ref": "PostgreSqlSetting"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "PostgreSqlExtension": {
+      "description": "PostgreSql extension.",
+      "id": "PostgreSqlExtension",
+      "properties": {
+        "extension": {
+          "description": "Required. The extension name.",
+          "type": "string"
+        },
+        "version": {
+          "description": "Required. The extension version.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "PostgreSqlProperty": {
+      "description": "PostgreSql property.",
+      "id": "PostgreSqlProperty",
+      "properties": {
+        "enabled": {
+          "description": "Required. The property is enabled.",
+          "type": "boolean"
+        },
+        "numericValue": {
+          "description": "Required. The property numeric value.",
+          "format": "int64",
+          "type": "string"
+        },
+        "property": {
+          "description": "Required. The property name.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "PostgreSqlSchemaDetails": {
+      "description": "Specific details for a PostgreSql schema.",
+      "id": "PostgreSqlSchemaDetails",
+      "properties": {
+        "foreignTablesCount": {
+          "description": "Optional. PostgreSql foreign tables.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "postgresqlExtensions": {
+          "description": "Optional. PostgreSql extensions.",
+          "items": {
+            "$ref": "PostgreSqlExtension"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "PostgreSqlSetting": {
+      "description": "PostgreSql setting.",
+      "id": "PostgreSqlSetting",
+      "properties": {
+        "boolValue": {
+          "description": "Required. The setting boolean value.",
+          "type": "boolean"
+        },
+        "intValue": {
+          "description": "Required. The setting int value.",
+          "format": "int64",
+          "type": "string"
+        },
+        "realValue": {
+          "description": "Required. The setting real value.",
+          "format": "float",
+          "type": "number"
+        },
+        "setting": {
+          "description": "Required. The setting name.",
+          "type": "string"
+        },
+        "source": {
+          "description": "Required. The setting source.",
+          "type": "string"
+        },
+        "stringValue": {
+          "description": "Required. The setting string value. Notice that enum values are stored as strings.",
+          "type": "string"
+        },
+        "unit": {
+          "description": "Optional. The setting unit.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "PreferenceSet": {
       "description": "The preferences that apply to all assets in a given context.",
       "id": "PreferenceSet",
@@ -4596,6 +6175,10 @@
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
+        },
+        "databasePreferences": {
+          "$ref": "DatabasePreferences",
+          "description": "Optional. A set of preferences that applies to all databases in the context."
         },
         "description": {
           "description": "A description of the preference set.",
@@ -4609,6 +6192,10 @@
           "description": "Output only. Name of the preference set.",
           "readOnly": true,
           "type": "string"
+        },
+        "regionPreferences": {
+          "$ref": "RegionPreferences",
+          "description": "Optional. Region preferences for assets using this preference set. If you are unsure which value to set, the migration service API region is often a good value to start with. If unspecified, VirtualMachinePreferences.RegionPreferences is used."
         },
         "updateTime": {
           "description": "Output only. The timestamp when the preference set was last updated.",
@@ -4789,12 +6376,22 @@
           "$ref": "ReportSummaryAssetAggregateStats",
           "description": "Aggregate statistics for unique assets across all the groups."
         },
+        "databaseStats": {
+          "$ref": "ReportSummaryAssetAggregateStats",
+          "description": "Output only. Aggregate statistics for unique database assets across all the groups.",
+          "readOnly": true
+        },
         "groupFindings": {
           "description": "Findings for each Group included in this report.",
           "items": {
             "$ref": "ReportSummaryGroupFinding"
           },
           "type": "array"
+        },
+        "virtualMachineStats": {
+          "$ref": "ReportSummaryAssetAggregateStats",
+          "description": "Output only. Aggregate statistics for unique virtual machine assets across all the groups.",
+          "readOnly": true
         }
       },
       "type": "object"
@@ -4811,6 +6408,11 @@
         "coreCountHistogram": {
           "$ref": "ReportSummaryHistogramChartData",
           "description": "Histogram showing a distribution of CPU core counts."
+        },
+        "databaseTypes": {
+          "$ref": "ReportSummaryChartData",
+          "description": "Output only. Count of assets grouped by database type. Keys here are taken from DatabaseType enum. Only present for databases.",
+          "readOnly": true
         },
         "memoryBytesHistogram": {
           "$ref": "ReportSummaryHistogramChartData",
@@ -4895,6 +6497,25 @@
       },
       "type": "object"
     },
+    "ReportSummaryDatabaseFinding": {
+      "description": "DatabaseFinding contains an aggregate costs and shapes for a single database type.",
+      "id": "ReportSummaryDatabaseFinding",
+      "properties": {
+        "allocatedAssetCount": {
+          "description": "Output only. Number of database assets which were successfully assigned in this finding.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "totalAssets": {
+          "description": "Output only. Number of database assets in this finding.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ReportSummaryGroupFinding": {
       "description": "Summary Findings for a specific Group.",
       "id": "ReportSummaryGroupFinding",
@@ -4903,12 +6524,49 @@
           "$ref": "ReportSummaryAssetAggregateStats",
           "description": "Summary statistics for all the assets in this group."
         },
+        "assetType": {
+          "description": "Output only. Asset type for the group finding.",
+          "enum": [
+            "ASSET_TYPE_UNSPECIFIED",
+            "VIRTUAL_MACHINE",
+            "DATABASE"
+          ],
+          "enumDescriptions": [
+            "Unknown asset type.",
+            "Virtual Machine asset type",
+            "Database asset type"
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "databaseType": {
+          "description": "Output only. Source asset database type for the group finding. Only present for databases.",
+          "enum": [
+            "DATABASE_TYPE_UNSPECIFIED",
+            "SQL_SERVER",
+            "MYSQL",
+            "POSTGRES"
+          ],
+          "enumDescriptions": [
+            "Unknown database type.",
+            "SQL Server database.",
+            "MySQL database.",
+            "Postgres database."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
         "description": {
           "description": "Description for this group finding.",
           "type": "string"
         },
         "displayName": {
           "description": "Display Name for this group finding.",
+          "type": "string"
+        },
+        "group": {
+          "description": "Output only. Full name of the group.",
+          "readOnly": true,
           "type": "string"
         },
         "overlappingAssetCount": {
@@ -4931,6 +6589,11 @@
       "description": "Summary Findings for a specific Group/PreferenceSet combination.",
       "id": "ReportSummaryGroupPreferenceSetFinding",
       "properties": {
+        "databaseFinding": {
+          "$ref": "ReportSummaryDatabaseFinding",
+          "description": "Output only. Details about databases in this finding. Only present for databases.",
+          "readOnly": true
+        },
         "description": {
           "description": "Description for the Preference Set.",
           "type": "string"
@@ -4952,6 +6615,16 @@
           "$ref": "Money",
           "description": "Compute monthly cost for this preference set."
         },
+        "monthlyCostDatabaseBackup": {
+          "$ref": "Money",
+          "description": "Output only. Backup monthly cost for this preference set. Only present for databases.",
+          "readOnly": true
+        },
+        "monthlyCostDatabaseLicensing": {
+          "$ref": "Money",
+          "description": "Output only. Database licensing monthly cost for this preference set. For virtual machines denotes the cost of licenses for hosted databases.",
+          "readOnly": true
+        },
         "monthlyCostNetworkEgress": {
           "$ref": "Money",
           "description": "Network Egress monthly cost for this preference set. Only present for virtual machines."
@@ -4971,6 +6644,11 @@
         "monthlyCostTotal": {
           "$ref": "Money",
           "description": "Total monthly cost for this preference set."
+        },
+        "preferenceSet": {
+          "$ref": "PreferenceSet",
+          "description": "Output only. A copy of the preference set used for this finding.",
+          "readOnly": true
         },
         "preferredRegion": {
           "deprecated": true,
@@ -5357,6 +7035,24 @@
       },
       "type": "object"
     },
+    "SendDiscoveryClientHeartbeatRequest": {
+      "description": "A request to send a discovery client heartbeat.",
+      "id": "SendDiscoveryClientHeartbeatRequest",
+      "properties": {
+        "errors": {
+          "description": "Optional. Errors affecting client functionality.",
+          "items": {
+            "$ref": "Status"
+          },
+          "type": "array"
+        },
+        "version": {
+          "description": "Optional. Client application version.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "Settings": {
       "description": "Describes the Migration Center settings related to the project.",
       "id": "Settings",
@@ -5519,14 +7215,16 @@
             "SOURCE_TYPE_UPLOAD",
             "SOURCE_TYPE_GUEST_OS_SCAN",
             "SOURCE_TYPE_INVENTORY_SCAN",
-            "SOURCE_TYPE_CUSTOM"
+            "SOURCE_TYPE_CUSTOM",
+            "SOURCE_TYPE_DISCOVERY_CLIENT"
           ],
           "enumDescriptions": [
             "Unspecified",
             "Manually uploaded file (e.g. CSV)",
             "Guest-level info",
             "Inventory-level scan",
-            "Third-party owned sources."
+            "Third-party owned sources.",
+            "Discovery clients"
           ],
           "type": "string"
         },
@@ -5534,6 +7232,101 @@
           "description": "Output only. The timestamp when the source was last updated.",
           "format": "google-datetime",
           "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SqlServerDatabaseDeployment": {
+      "description": "Specific details for a Microsoft SQL Server database deployment.",
+      "id": "SqlServerDatabaseDeployment",
+      "properties": {
+        "features": {
+          "description": "Optional. List of SQL Server features.",
+          "items": {
+            "$ref": "SqlServerFeature"
+          },
+          "type": "array"
+        },
+        "serverFlags": {
+          "description": "Optional. List of SQL Server server flags.",
+          "items": {
+            "$ref": "SqlServerServerFlag"
+          },
+          "type": "array"
+        },
+        "traceFlags": {
+          "description": "Optional. List of SQL Server trace flags.",
+          "items": {
+            "$ref": "SqlServerTraceFlag"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "SqlServerFeature": {
+      "description": "SQL Server feature details.",
+      "id": "SqlServerFeature",
+      "properties": {
+        "enabled": {
+          "description": "Required. Field enabled is set when a feature is used on the source deployment.",
+          "type": "boolean"
+        },
+        "featureName": {
+          "description": "Required. The feature name.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SqlServerSchemaDetails": {
+      "description": "Specific details for a SqlServer database.",
+      "id": "SqlServerSchemaDetails",
+      "properties": {},
+      "type": "object"
+    },
+    "SqlServerServerFlag": {
+      "description": "SQL Server server flag details.",
+      "id": "SqlServerServerFlag",
+      "properties": {
+        "serverFlagName": {
+          "description": "Required. The server flag name.",
+          "type": "string"
+        },
+        "value": {
+          "description": "Required. The server flag value set by the user.",
+          "type": "string"
+        },
+        "valueInUse": {
+          "description": "Required. The server flag actual value. If `value_in_use` is different from `value` it means that either the configuration change was not applied or it is an expected behavior. See SQL Server documentation for more details.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SqlServerTraceFlag": {
+      "description": "SQL Server trace flag details.",
+      "id": "SqlServerTraceFlag",
+      "properties": {
+        "scope": {
+          "description": "Required. The trace flag scope.",
+          "enum": [
+            "SCOPE_UNSPECIFIED",
+            "OFF",
+            "GLOBAL",
+            "SESSION"
+          ],
+          "enumDescriptions": [
+            "Unspecified.",
+            "Off.",
+            "Global.",
+            "Session."
+          ],
+          "type": "string"
+        },
+        "traceFlagName": {
+          "description": "Required. The trace flag name.",
           "type": "string"
         }
       },

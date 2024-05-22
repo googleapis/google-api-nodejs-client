@@ -1988,6 +1988,7 @@ export namespace tagmanager_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2079,6 +2080,7 @@ export namespace tagmanager_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2165,6 +2167,7 @@ export namespace tagmanager_v2 {
               '$1'
             ),
             method: 'PUT',
+            apiVersion: '',
           },
           options
         ),
@@ -2309,6 +2312,7 @@ export namespace tagmanager_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2396,6 +2400,7 @@ export namespace tagmanager_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2481,6 +2486,7 @@ export namespace tagmanager_v2 {
               '$1'
             ),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -2568,6 +2574,7 @@ export namespace tagmanager_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2660,6 +2667,7 @@ export namespace tagmanager_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2746,6 +2754,7 @@ export namespace tagmanager_v2 {
               rootUrl + '/tagmanager/v2/accounts/containers:lookup'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2833,6 +2842,7 @@ export namespace tagmanager_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2927,6 +2937,7 @@ export namespace tagmanager_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3014,6 +3025,7 @@ export namespace tagmanager_v2 {
               '$1'
             ),
             method: 'PUT',
+            apiVersion: '',
           },
           options
         ),
@@ -3226,6 +3238,7 @@ export namespace tagmanager_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3312,6 +3325,7 @@ export namespace tagmanager_v2 {
               rootUrl + '/tagmanager/v2/{+parent}/destinations:link'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3404,6 +3418,7 @@ export namespace tagmanager_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3528,6 +3543,7 @@ export namespace tagmanager_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3613,6 +3629,7 @@ export namespace tagmanager_v2 {
               '$1'
             ),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -3700,6 +3717,7 @@ export namespace tagmanager_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3792,6 +3810,7 @@ export namespace tagmanager_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3880,6 +3899,7 @@ export namespace tagmanager_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3967,6 +3987,7 @@ export namespace tagmanager_v2 {
               '$1'
             ),
             method: 'PUT',
+            apiVersion: '',
           },
           options
         ),
@@ -4125,6 +4146,7 @@ export namespace tagmanager_v2 {
               '$1'
             ),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -4212,6 +4234,7 @@ export namespace tagmanager_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4299,6 +4322,7 @@ export namespace tagmanager_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4393,6 +4417,7 @@ export namespace tagmanager_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4482,6 +4507,7 @@ export namespace tagmanager_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4569,6 +4595,7 @@ export namespace tagmanager_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4656,6 +4683,7 @@ export namespace tagmanager_v2 {
               '$1'
             ),
             method: 'PUT',
+            apiVersion: '',
           },
           options
         ),
@@ -4822,6 +4850,7 @@ export namespace tagmanager_v2 {
               rootUrl + '/tagmanager/v2/{+parent}/version_headers:latest'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4916,6 +4945,7 @@ export namespace tagmanager_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5076,6 +5106,7 @@ export namespace tagmanager_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5171,6 +5202,7 @@ export namespace tagmanager_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5258,6 +5290,7 @@ export namespace tagmanager_v2 {
               '$1'
             ),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -5345,6 +5378,7 @@ export namespace tagmanager_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5439,6 +5473,7 @@ export namespace tagmanager_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5531,6 +5566,7 @@ export namespace tagmanager_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5626,6 +5662,7 @@ export namespace tagmanager_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5712,6 +5749,7 @@ export namespace tagmanager_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5804,6 +5842,7 @@ export namespace tagmanager_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5891,6 +5930,7 @@ export namespace tagmanager_v2 {
               '$1'
             ),
             method: 'PUT',
+            apiVersion: '',
           },
           options
         ),
@@ -6095,6 +6135,7 @@ export namespace tagmanager_v2 {
               rootUrl + '/tagmanager/v2/{+parent}/built_in_variables'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -6183,6 +6224,7 @@ export namespace tagmanager_v2 {
               '$1'
             ),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -6277,6 +6319,7 @@ export namespace tagmanager_v2 {
               rootUrl + '/tagmanager/v2/{+parent}/built_in_variables'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6373,6 +6416,7 @@ export namespace tagmanager_v2 {
               rootUrl + '/tagmanager/v2/{+path}/built_in_variables:revert'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -6515,6 +6559,7 @@ export namespace tagmanager_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -6601,6 +6646,7 @@ export namespace tagmanager_v2 {
               '$1'
             ),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -6689,6 +6735,7 @@ export namespace tagmanager_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6780,6 +6827,7 @@ export namespace tagmanager_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6873,6 +6921,7 @@ export namespace tagmanager_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -6961,6 +7010,7 @@ export namespace tagmanager_v2 {
               '$1'
             ),
             method: 'PUT',
+            apiVersion: '',
           },
           options
         ),
@@ -7121,6 +7171,7 @@ export namespace tagmanager_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -7207,6 +7258,7 @@ export namespace tagmanager_v2 {
               '$1'
             ),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -7295,6 +7347,7 @@ export namespace tagmanager_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -7383,6 +7436,7 @@ export namespace tagmanager_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -7474,6 +7528,7 @@ export namespace tagmanager_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -7559,6 +7614,7 @@ export namespace tagmanager_v2 {
               rootUrl + '/tagmanager/v2/{+path}:move_entities_to_folder'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -7652,6 +7708,7 @@ export namespace tagmanager_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -7740,6 +7797,7 @@ export namespace tagmanager_v2 {
               '$1'
             ),
             method: 'PUT',
+            apiVersion: '',
           },
           options
         ),
@@ -7935,6 +7993,7 @@ export namespace tagmanager_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -8021,6 +8080,7 @@ export namespace tagmanager_v2 {
               '$1'
             ),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -8109,6 +8169,7 @@ export namespace tagmanager_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -8202,6 +8263,7 @@ export namespace tagmanager_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -8290,6 +8352,7 @@ export namespace tagmanager_v2 {
               '$1'
             ),
             method: 'PUT',
+            apiVersion: '',
           },
           options
         ),
@@ -8439,6 +8502,7 @@ export namespace tagmanager_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -8525,6 +8589,7 @@ export namespace tagmanager_v2 {
               '$1'
             ),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -8612,6 +8677,7 @@ export namespace tagmanager_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -8699,6 +8765,7 @@ export namespace tagmanager_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -8790,6 +8857,7 @@ export namespace tagmanager_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -8878,6 +8946,7 @@ export namespace tagmanager_v2 {
               '$1'
             ),
             method: 'PUT',
+            apiVersion: '',
           },
           options
         ),
@@ -9038,6 +9107,7 @@ export namespace tagmanager_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -9124,6 +9194,7 @@ export namespace tagmanager_v2 {
               '$1'
             ),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -9212,6 +9283,7 @@ export namespace tagmanager_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -9305,6 +9377,7 @@ export namespace tagmanager_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -9398,6 +9471,7 @@ export namespace tagmanager_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -9486,6 +9560,7 @@ export namespace tagmanager_v2 {
               '$1'
             ),
             method: 'PUT',
+            apiVersion: '',
           },
           options
         ),
@@ -9646,6 +9721,7 @@ export namespace tagmanager_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -9732,6 +9808,7 @@ export namespace tagmanager_v2 {
               '$1'
             ),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -9820,6 +9897,7 @@ export namespace tagmanager_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -9915,6 +9993,7 @@ export namespace tagmanager_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -10010,6 +10089,7 @@ export namespace tagmanager_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -10100,6 +10180,7 @@ export namespace tagmanager_v2 {
               '$1'
             ),
             method: 'PUT',
+            apiVersion: '',
           },
           options
         ),
@@ -10260,6 +10341,7 @@ export namespace tagmanager_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -10346,6 +10428,7 @@ export namespace tagmanager_v2 {
               '$1'
             ),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -10434,6 +10517,7 @@ export namespace tagmanager_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -10527,6 +10611,7 @@ export namespace tagmanager_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -10620,6 +10705,7 @@ export namespace tagmanager_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -10708,6 +10794,7 @@ export namespace tagmanager_v2 {
               '$1'
             ),
             method: 'PUT',
+            apiVersion: '',
           },
           options
         ),
@@ -10868,6 +10955,7 @@ export namespace tagmanager_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -10954,6 +11042,7 @@ export namespace tagmanager_v2 {
               '$1'
             ),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -11042,6 +11131,7 @@ export namespace tagmanager_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -11135,6 +11225,7 @@ export namespace tagmanager_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -11228,6 +11319,7 @@ export namespace tagmanager_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -11316,6 +11408,7 @@ export namespace tagmanager_v2 {
               '$1'
             ),
             method: 'PUT',
+            apiVersion: '',
           },
           options
         ),
@@ -11476,6 +11569,7 @@ export namespace tagmanager_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -11562,6 +11656,7 @@ export namespace tagmanager_v2 {
               '$1'
             ),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -11649,6 +11744,7 @@ export namespace tagmanager_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -11740,6 +11836,7 @@ export namespace tagmanager_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -11831,6 +11928,7 @@ export namespace tagmanager_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -11919,6 +12017,7 @@ export namespace tagmanager_v2 {
               '$1'
             ),
             method: 'PUT',
+            apiVersion: '',
           },
           options
         ),
@@ -12077,6 +12176,7 @@ export namespace tagmanager_v2 {
               rootUrl + '/tagmanager/v2/{+parent}/user_permissions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -12162,6 +12262,7 @@ export namespace tagmanager_v2 {
               '$1'
             ),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -12249,6 +12350,7 @@ export namespace tagmanager_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -12342,6 +12444,7 @@ export namespace tagmanager_v2 {
               rootUrl + '/tagmanager/v2/{+parent}/user_permissions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -12429,6 +12532,7 @@ export namespace tagmanager_v2 {
               '$1'
             ),
             method: 'PUT',
+            apiVersion: '',
           },
           options
         ),

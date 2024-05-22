@@ -622,6 +622,7 @@ export namespace blogger_v2 {
           {
             url: (rootUrl + '/v2/blogs/{blogId}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -708,6 +709,7 @@ export namespace blogger_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -813,6 +815,7 @@ export namespace blogger_v2 {
               rootUrl + '/v2/blogs/{blogId}/posts/{postId}/comments/{commentId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -898,6 +901,7 @@ export namespace blogger_v2 {
               rootUrl + '/v2/blogs/{blogId}/posts/{postId}/comments'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1032,6 +1036,7 @@ export namespace blogger_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1118,6 +1123,7 @@ export namespace blogger_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1232,6 +1238,7 @@ export namespace blogger_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1318,6 +1325,7 @@ export namespace blogger_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1441,6 +1449,7 @@ export namespace blogger_v2 {
           {
             url: (rootUrl + '/v2/users/{userId}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),

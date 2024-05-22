@@ -664,6 +664,7 @@ export namespace cloudresourcemanager_v2 {
           {
             url: (rootUrl + '/v2/folders').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -748,6 +749,7 @@ export namespace cloudresourcemanager_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -832,6 +834,7 @@ export namespace cloudresourcemanager_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -920,6 +923,7 @@ export namespace cloudresourcemanager_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1007,6 +1011,7 @@ export namespace cloudresourcemanager_v2 {
           {
             url: (rootUrl + '/v2/folders').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1091,6 +1096,7 @@ export namespace cloudresourcemanager_v2 {
           {
             url: (rootUrl + '/v2/{+name}:move').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1175,6 +1181,7 @@ export namespace cloudresourcemanager_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -1264,6 +1271,7 @@ export namespace cloudresourcemanager_v2 {
           {
             url: (rootUrl + '/v2/folders:search').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1352,6 +1360,7 @@ export namespace cloudresourcemanager_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1447,6 +1456,7 @@ export namespace cloudresourcemanager_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1534,6 +1544,7 @@ export namespace cloudresourcemanager_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1746,6 +1757,7 @@ export namespace cloudresourcemanager_v2 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),

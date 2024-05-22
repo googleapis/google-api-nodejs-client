@@ -1,5 +1,37 @@
 # Changelog
 
+## [13.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/cloudidentity-v12.4.0...cloudidentity-v13.0.0) (2024-05-10)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#3484](https://github.com/googleapis/google-api-nodejs-client/issues/3484)) ([99b6c8d](https://github.com/googleapis/google-api-nodejs-client/commit/99b6c8de5beb8447d177048a64a977ee39ee5ee6))
+
+## [12.4.0](https://github.com/googleapis/google-api-nodejs-client/compare/cloudidentity-v12.3.1...cloudidentity-v12.4.0) (2024-05-02)
+
+
+### Features
+
+* **cloudidentity:** update the API ([ba88c53](https://github.com/googleapis/google-api-nodejs-client/commit/ba88c53f37a67b2830c2ab992832a0caa54d51c0))
+* regenerate index files ([f453603](https://github.com/googleapis/google-api-nodejs-client/commit/f453603e5a2ccd4d90e18b7dff93352aaaf273f4))
+
+
+### Bug Fixes
+
+* **cloudidentity:** update the API ([3d288c6](https://github.com/googleapis/google-api-nodejs-client/commit/3d288c674958a8ece72b1bb73764b9549b3cbc1c))
+* **cloudidentity:** update the API ([f35c89f](https://github.com/googleapis/google-api-nodejs-client/commit/f35c89f62bf0faa103541994af9d6b1413539d0f))
+
+## [12.3.1](https://github.com/googleapis/google-api-nodejs-client/compare/cloudidentity-v12.3.0...cloudidentity-v12.3.1) (2024-05-02)
+
+
+### Bug Fixes
+
+* **cloudidentity:** update the API ([3d288c6](https://github.com/googleapis/google-api-nodejs-client/commit/3d288c674958a8ece72b1bb73764b9549b3cbc1c))
+
 ## [12.3.0](https://github.com/googleapis/google-api-nodejs-client/compare/cloudidentity-v12.2.1...cloudidentity-v12.3.0) (2024-04-04)
 
 

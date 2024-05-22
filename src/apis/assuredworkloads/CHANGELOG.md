@@ -1,5 +1,19 @@
 # Changelog
 
+## [6.0.2](https://github.com/googleapis/google-api-nodejs-client/compare/assuredworkloads-v6.0.1...assuredworkloads-v6.0.2) (2024-05-02)
+
+
+### Bug Fixes
+
+* **assuredworkloads:** update the API ([3dc3798](https://github.com/googleapis/google-api-nodejs-client/commit/3dc3798f56c03f0cf7136eb5d5e625ef2c3c21ee))
+
+## [6.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/assuredworkloads-v6.0.0...assuredworkloads-v6.0.1) (2024-05-02)
+
+
+### Bug Fixes
+
+* **assuredworkloads:** update the API ([3dc3798](https://github.com/googleapis/google-api-nodejs-client/commit/3dc3798f56c03f0cf7136eb5d5e625ef2c3c21ee))
+
 ## [6.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/assuredworkloads-v5.1.0...assuredworkloads-v6.0.0) (2024-01-05)
 
 

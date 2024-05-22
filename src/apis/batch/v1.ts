@@ -447,7 +447,7 @@ export namespace batch_v1 {
      */
     placement?: Schema$PlacementPolicy;
     /**
-     * Service account that VMs will run as.
+     * Defines the service account for Batch-created VMs. If omitted, the [default Compute Engine service account](https://cloud.google.com/compute/docs/access/service-accounts#default_service_account) is used. Must match the service account specified in any used instance template configured in the Batch job. Includes the following fields: * email: The service account's email address. If not set, the default Compute Engine service account is used. * scopes: Additional OAuth scopes to grant the service account, beyond the default cloud-platform scope. (list of strings)
      */
     serviceAccount?: Schema$ServiceAccount;
     /**
@@ -868,7 +868,7 @@ export namespace batch_v1 {
   }
   export interface Schema$LocationPolicy {
     /**
-     * A list of allowed location names represented by internal URLs. Each location can be a region or a zone. Only one region or multiple zones in one region is supported now. For example, ["regions/us-central1"] allow VMs in any zones in region us-central1. ["zones/us-central1-a", "zones/us-central1-c"] only allow VMs in zones us-central1-a and us-central1-c. All locations end up in different regions would cause errors. For example, ["regions/us-central1", "zones/us-central1-a", "zones/us-central1-b", "zones/us-west1-a"] contains 2 regions "us-central1" and "us-west1". An error is expected in this case.
+     * A list of allowed location names represented by internal URLs. Each location can be a region or a zone. Only one region or multiple zones in one region is supported now. For example, ["regions/us-central1"] allow VMs in any zones in region us-central1. ["zones/us-central1-a", "zones/us-central1-c"] only allow VMs in zones us-central1-a and us-central1-c. Mixing locations from different regions would cause errors. For example, ["regions/us-central1", "zones/us-central1-a", "zones/us-central1-b", "zones/us-west1-a"] contains locations from two distinct regions: us-central1 and us-west1. This combination will trigger an error.
      */
     allowedLocations?: string[] | null;
   }
@@ -1117,11 +1117,11 @@ export namespace batch_v1 {
    */
   export interface Schema$ServiceAccount {
     /**
-     * Email address of the service account. If not specified, the default Compute Engine service account for the project will be used. If instance template is being used, the service account has to be specified in the instance template and it has to match the email field here.
+     * Email address of the service account.
      */
     email?: string | null;
     /**
-     * List of scopes to be enabled for this service account on the VM, in addition to the cloud-platform API scope that will be added by default.
+     * List of scopes to be enabled for this service account.
      */
     scopes?: string[] | null;
   }
@@ -1185,7 +1185,7 @@ export namespace batch_v1 {
    */
   export interface Schema$TaskExecution {
     /**
-     * When task is completed as the status of FAILED or SUCCEEDED, exit code is for one task execution result, default is 0 as success.
+     * The exit code of a finished task. If the task succeeded, the exit code will be 0. If the task failed but not due to the following reasons, the exit code will be 50000. Otherwise, it can be from different sources: - Batch known failures as https://cloud.google.com/batch/docs/troubleshooting#reserved-exit-codes. - Batch runnable execution failures: You can rely on Batch logs for further diagnose: https://cloud.google.com/batch/docs/analyze-job-using-logs. If there are multiple runnables failures, Batch only exposes the first error caught for now.
      */
     exitCode?: number | null;
   }
@@ -1412,6 +1412,7 @@ export namespace batch_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1504,6 +1505,7 @@ export namespace batch_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1626,6 +1628,7 @@ export namespace batch_v1 {
           {
             url: (rootUrl + '/v1/{+parent}/jobs').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1710,6 +1713,7 @@ export namespace batch_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -1794,6 +1798,7 @@ export namespace batch_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1878,6 +1883,7 @@ export namespace batch_v1 {
           {
             url: (rootUrl + '/v1/{+parent}/jobs').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2047,6 +2053,7 @@ export namespace batch_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2138,6 +2145,7 @@ export namespace batch_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2256,6 +2264,7 @@ export namespace batch_v1 {
           {
             url: (rootUrl + '/v1/{+name}:cancel').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2340,6 +2349,7 @@ export namespace batch_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -2424,6 +2434,7 @@ export namespace batch_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2516,6 +2527,7 @@ export namespace batch_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2663,6 +2675,7 @@ export namespace batch_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),

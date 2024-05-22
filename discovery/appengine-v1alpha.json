@@ -946,7 +946,7 @@
       }
     }
   },
-  "revision": "20240226",
+  "revision": "20240422",
   "rootUrl": "https://appengine.googleapis.com/",
   "schemas": {
     "AuthorizedCertificate": {
@@ -1498,8 +1498,9 @@
           "type": "string"
         },
         "phase": {
+          "description": "Phase indicates when in the container event propagation this event is being communicated. Events are sent before and after the per-resource events are propagated. required",
           "enum": [
-            "UNKNOWN",
+            "CONTAINER_EVENT_PHASE_UNSPECIFIED",
             "BEFORE_RESOURCE_HANDLING",
             "AFTER_RESOURCE_HANDLING"
           ],
@@ -1516,7 +1517,7 @@
         },
         "state": {
           "$ref": "ContainerState",
-          "description": "The state of the project that led to this event."
+          "description": "The state of the organization that led to this event."
         }
       },
       "type": "object"

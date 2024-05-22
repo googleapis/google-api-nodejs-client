@@ -342,7 +342,7 @@
                       ]
                     },
                     "patch": {
-                      "description": "Updates the configuration of an existing `ConnectivityTest`. After you update a test, the reachability analysis is performed as part of the long running operation, which completes when the analysis completes. The Reachability state in the test resource is updated with the new result. If the endpoint specifications in `ConnectivityTest` are invalid (for example, they contain non-existent resources in the network, or the user does not have read permissions to the network configurations of listed projects), then the reachability result returns a value of UNKNOWN. If the endpoint specifications in `ConnectivityTest` are incomplete, the reachability result returns a value of `AMBIGUOUS`. See the documentation in `ConnectivityTest` for for more details.",
+                      "description": "Updates the configuration of an existing `ConnectivityTest`. After you update a test, the reachability analysis is performed as part of the long running operation, which completes when the analysis completes. The Reachability state in the test resource is updated with the new result. If the endpoint specifications in `ConnectivityTest` are invalid (for example, they contain non-existent resources in the network, or the user does not have read permissions to the network configurations of listed projects), then the reachability result returns a value of UNKNOWN. If the endpoint specifications in `ConnectivityTest` are incomplete, the reachability result returns a value of `AMBIGUOUS`. See the documentation in `ConnectivityTest` for more details.",
                       "flatPath": "v1beta1/projects/{projectsId}/locations/global/connectivityTests/{connectivityTestsId}",
                       "httpMethod": "PATCH",
                       "id": "networkmanagement.projects.locations.global.connectivityTests.patch",
@@ -351,7 +351,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "Required. Unique name of the resource using the form: `projects/{project_id}/locations/global/connectivityTests/{test}`",
+                          "description": "Identifier. Unique name of the resource using the form: `projects/{project_id}/locations/global/connectivityTests/{test}`",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/global/connectivityTests/[^/]+$",
                           "required": true,
@@ -591,7 +591,7 @@
       }
     }
   },
-  "revision": "20240313",
+  "revision": "20240501",
   "rootUrl": "https://networkmanagement.googleapis.com/",
   "schemas": {
     "AbortInfo": {
@@ -611,6 +611,7 @@
             "DESTINATION_ENDPOINT_NOT_FOUND",
             "MISMATCHED_DESTINATION_NETWORK",
             "UNKNOWN_IP",
+            "GOOGLE_MANAGED_SERVICE_UNKNOWN_IP",
             "SOURCE_IP_ADDRESS_NOT_IN_SOURCE_NETWORK",
             "PERMISSION_DENIED",
             "PERMISSION_DENIED_NO_CLOUD_NAT_CONFIGS",
@@ -666,6 +667,7 @@
             false,
             false,
             false,
+            false,
             false
           ],
           "enumDescriptions": [
@@ -679,6 +681,7 @@
             "Aborted because the destination endpoint could not be found. Deprecated, not used in the new tests.",
             "Aborted because the destination network does not match the destination endpoint. Deprecated, not used in the new tests.",
             "Aborted because no endpoint with the packet's destination IP address is found.",
+            "Aborted because no endpoint with the packet's destination IP is found in the Google-managed project.",
             "Aborted because the source IP address doesn't belong to any of the subnets of the source VPC network.",
             "Aborted because user lacks permission to access all or part of the network configurations required to run the test.",
             "Aborted because user lacks permission to access Cloud NAT configs required to run the test.",
@@ -890,11 +893,6 @@
           "description": "Location in which this revision is deployed.",
           "type": "string"
         },
-        "serviceName": {
-          "deprecated": true,
-          "description": "ID of Cloud Run Service this revision belongs to.",
-          "type": "string"
-        },
         "serviceUri": {
           "description": "URI of Cloud Run service this revision belongs to.",
           "type": "string"
@@ -972,7 +970,7 @@
           "type": "object"
         },
         "name": {
-          "description": "Required. Unique name of the resource using the form: `projects/{project_id}/locations/global/connectivityTests/{test}`",
+          "description": "Identifier. Unique name of the resource using the form: `projects/{project_id}/locations/global/connectivityTests/{test}`",
           "type": "string"
         },
         "probingDetails": {
@@ -1115,6 +1113,8 @@
             "CLOUD_FUNCTION_NOT_ACTIVE",
             "VPC_CONNECTOR_NOT_SET",
             "VPC_CONNECTOR_NOT_RUNNING",
+            "VPC_CONNECTOR_SERVERLESS_TRAFFIC_BLOCKED",
+            "VPC_CONNECTOR_HEALTH_CHECK_TRAFFIC_BLOCKED",
             "FORWARDING_RULE_REGION_MISMATCH",
             "PSC_CONNECTION_NOT_ACCEPTED",
             "PSC_ENDPOINT_ACCESSED_FROM_PEERED_NETWORK",
@@ -1140,7 +1140,7 @@
             "Packet is sent to a wrong (unintended) network. Example: you trace a packet from VM1:Network1 to VM2:Network2, however, the route configured in Network1 sends the packet destined for VM2's IP address to Network3.",
             "Route's next hop IP address cannot be resolved to a GCP resource.",
             "Route's next hop resource is not found.",
-            "Route's next hop instance doesn't hace a NIC in the route's network.",
+            "Route's next hop instance doesn't have a NIC in the route's network.",
             "Route's next hop IP address is not a primary IP address of the next hop instance.",
             "Route's next hop forwarding rule doesn't match next hop IP address.",
             "Route's next hop VPN tunnel is down (does not have valid IKE SAs).",
@@ -1177,6 +1177,8 @@
             "Packet could be dropped because the Cloud Function is not in an active status.",
             "Packet could be dropped because no VPC connector is set.",
             "Packet could be dropped because the VPC connector is not in a running state.",
+            "Packet could be dropped because the traffic from the serverless service to the VPC connector is not allowed.",
+            "Packet could be dropped because the health check traffic to the VPC connector is not allowed.",
             "Packet could be dropped because it was sent from a different region to a regional forwarding without global access.",
             "The Private Service Connect endpoint is in a project that is not approved to connect to the service.",
             "The packet is sent to the Private Service Connect endpoint over the peering, but [it's not supported](https://cloud.google.com/vpc/docs/configure-private-service-connect-services#on-premises).",

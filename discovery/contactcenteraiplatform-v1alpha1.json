@@ -512,7 +512,7 @@
       }
     }
   },
-  "revision": "20240214",
+  "revision": "20240506",
   "rootUrl": "https://contactcenteraiplatform.googleapis.com/",
   "schemas": {
     "AdminUser": {
@@ -537,7 +537,7 @@
       "type": "object"
     },
     "ContactCenter": {
-      "description": "Message describing ContactCenter object Next ID: 20",
+      "description": "Message describing ContactCenter object Next ID: 22",
       "id": "ContactCenter",
       "properties": {
         "adminUser": {
@@ -562,6 +562,10 @@
           "description": "Required. A user friendly name for the ContactCenter.",
           "type": "string"
         },
+        "early": {
+          "$ref": "Early",
+          "description": "Optional. Early release channel."
+        },
         "instanceConfig": {
           "$ref": "InstanceConfig",
           "description": "The configuration of this instance, it is currently immutable once created."
@@ -580,6 +584,10 @@
         "name": {
           "description": "name of resource",
           "type": "string"
+        },
+        "normal": {
+          "$ref": "Normal",
+          "description": "Optional. Normal release channel."
         },
         "privateComponents": {
           "description": "Output only. A list of UJET components that should be privately accessed. This field is set by reading settings from the data plane. For more information about the format of the component please refer to go/ccaip-vpc-sc-org-policy. This field is must be fully populated only for Create/Update resource operations. The main use case for this field is OrgPolicy checks via CPE.",
@@ -662,6 +670,12 @@
       },
       "type": "object"
     },
+    "Early": {
+      "description": "First Channel to receive the updates. Meant to dev/test instances",
+      "id": "Early",
+      "properties": {},
+      "type": "object"
+    },
     "Empty": {
       "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }",
       "id": "Empty",
@@ -726,7 +740,13 @@
             "STANDARD_XLARGE",
             "STANDARD_2XLARGE",
             "STANDARD_3XLARGE",
-            "DEV_XSMALL"
+            "DEV_XSMALL",
+            "MULTIREGION_SMALL",
+            "MULTIREGION_MEDIUM",
+            "MULTIREGION_LARGE",
+            "MULTIREGION_XLARGE",
+            "MULTIREGION_2XLARGE",
+            "MULTIREGION_3XLARGE"
           ],
           "enumDescriptions": [
             "The default value. This value is used if the state is omitted.",
@@ -736,7 +756,13 @@
             "Instance Size STANDARD_XLARGE.",
             "Instance Size STANDARD_2XLARGE.",
             "Instance Size STANDARD_3XLARGE.",
-            "Instance Size DEV_EXTRA_SMALL."
+            "Instance Size DEV_EXTRA_SMALL.",
+            "Instance Size MULTIREGION_SMALL",
+            "Instance Size MULTIREGION_MEDIUM",
+            "Instance Size MULTIREGION_LARGE",
+            "Instance Size MULTIREGION_XLARGE",
+            "Instance Size MULTIREGION_2XLARGE.",
+            "Instance Size MULTIREGION_3XLARGE."
           ],
           "type": "string"
         }
@@ -836,6 +862,12 @@
           "type": "string"
         }
       },
+      "type": "object"
+    },
+    "Normal": {
+      "description": "Instances in this Channel will receive updates after all instances in `Early` were updated + 2 days.",
+      "id": "Normal",
+      "properties": {},
       "type": "object"
     },
     "Operation": {
@@ -945,7 +977,13 @@
             "STANDARD_XLARGE",
             "STANDARD_2XLARGE",
             "STANDARD_3XLARGE",
-            "DEV_XSMALL"
+            "DEV_XSMALL",
+            "MULTIREGION_SMALL",
+            "MULTIREGION_MEDIUM",
+            "MULTIREGION_LARGE",
+            "MULTIREGION_XLARGE",
+            "MULTIREGION_2XLARGE",
+            "MULTIREGION_3XLARGE"
           ],
           "enumDescriptions": [
             "The default value. This value is used if the state is omitted.",
@@ -955,7 +993,13 @@
             "Instance Size STANDARD_XLARGE.",
             "Instance Size STANDARD_2XLARGE.",
             "Instance Size STANDARD_3XLARGE.",
-            "Instance Size DEV_EXTRA_SMALL."
+            "Instance Size DEV_EXTRA_SMALL.",
+            "Instance Size MULTIREGION_SMALL",
+            "Instance Size MULTIREGION_MEDIUM",
+            "Instance Size MULTIREGION_LARGE",
+            "Instance Size MULTIREGION_XLARGE",
+            "Instance Size MULTIREGION_2XLARGE.",
+            "Instance Size MULTIREGION_3XLARGE."
           ],
           "type": "string"
         }

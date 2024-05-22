@@ -532,7 +532,7 @@ export namespace bigquerydatatransfer_v1 {
      */
     encryptionConfiguration?: Schema$EncryptionConfiguration;
     /**
-     * The resource name of the transfer config. Transfer config names have the form either `projects/{project_id\}/locations/{region\}/transferConfigs/{config_id\}` or `projects/{project_id\}/transferConfigs/{config_id\}`, where `config_id` is usually a UUID, even though it is not guaranteed or required. The name is ignored when creating a transfer config.
+     * Identifier. The resource name of the transfer config. Transfer config names have the form either `projects/{project_id\}/locations/{region\}/transferConfigs/{config_id\}` or `projects/{project_id\}/transferConfigs/{config_id\}`, where `config_id` is usually a UUID, even though it is not guaranteed or required. The name is ignored when creating a transfer config.
      */
     name?: string | null;
     /**
@@ -614,7 +614,7 @@ export namespace bigquerydatatransfer_v1 {
      */
     errorStatus?: Schema$Status;
     /**
-     * The resource name of the transfer run. Transfer run names have the form `projects/{project_id\}/locations/{location\}/transferConfigs/{config_id\}/runs/{run_id\}`. The name is ignored when creating a transfer run.
+     * Identifier. The resource name of the transfer run. Transfer run names have the form `projects/{project_id\}/locations/{location\}/transferConfigs/{config_id\}/runs/{run_id\}`. The name is ignored when creating a transfer run.
      */
     name?: string | null;
     /**
@@ -757,6 +757,7 @@ export namespace bigquerydatatransfer_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -779,7 +780,7 @@ export namespace bigquerydatatransfer_v1 {
   export interface Params$Resource$Projects$Enrolldatasources
     extends StandardParameters {
     /**
-     * The name of the project resource in the form: `projects/{project_id\}`
+     * Required. The name of the project resource in the form: `projects/{project_id\}`
      */
     name?: string;
 
@@ -872,6 +873,7 @@ export namespace bigquerydatatransfer_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -957,6 +959,7 @@ export namespace bigquerydatatransfer_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1050,6 +1053,7 @@ export namespace bigquerydatatransfer_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1188,6 +1192,7 @@ export namespace bigquerydatatransfer_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1273,6 +1278,7 @@ export namespace bigquerydatatransfer_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1366,6 +1372,7 @@ export namespace bigquerydatatransfer_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1454,6 +1461,7 @@ export namespace bigquerydatatransfer_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1476,7 +1484,7 @@ export namespace bigquerydatatransfer_v1 {
   export interface Params$Resource$Projects$Locations$Enrolldatasources
     extends StandardParameters {
     /**
-     * The name of the project resource in the form: `projects/{project_id\}`
+     * Required. The name of the project resource in the form: `projects/{project_id\}`
      */
     name?: string;
 
@@ -1514,7 +1522,7 @@ export namespace bigquerydatatransfer_v1 {
   export interface Params$Resource$Projects$Locations$Unenrolldatasources
     extends StandardParameters {
     /**
-     * The name of the project resource in the form: `projects/{project_id\}`
+     * Required. The name of the project resource in the form: `projects/{project_id\}`
      */
     name?: string;
 
@@ -1608,6 +1616,7 @@ export namespace bigquerydatatransfer_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1693,6 +1702,7 @@ export namespace bigquerydatatransfer_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1786,6 +1796,7 @@ export namespace bigquerydatatransfer_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1921,6 +1932,7 @@ export namespace bigquerydatatransfer_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2007,6 +2019,7 @@ export namespace bigquerydatatransfer_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -2092,6 +2105,7 @@ export namespace bigquerydatatransfer_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2187,6 +2201,7 @@ export namespace bigquerydatatransfer_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2272,6 +2287,7 @@ export namespace bigquerydatatransfer_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -2368,6 +2384,7 @@ export namespace bigquerydatatransfer_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2466,6 +2483,7 @@ export namespace bigquerydatatransfer_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2551,7 +2569,7 @@ export namespace bigquerydatatransfer_v1 {
      */
     authorizationCode?: string;
     /**
-     * The resource name of the transfer config. Transfer config names have the form either `projects/{project_id\}/locations/{region\}/transferConfigs/{config_id\}` or `projects/{project_id\}/transferConfigs/{config_id\}`, where `config_id` is usually a UUID, even though it is not guaranteed or required. The name is ignored when creating a transfer config.
+     * Identifier. The resource name of the transfer config. Transfer config names have the form either `projects/{project_id\}/locations/{region\}/transferConfigs/{config_id\}` or `projects/{project_id\}/transferConfigs/{config_id\}`, where `config_id` is usually a UUID, even though it is not guaranteed or required. The name is ignored when creating a transfer config.
      */
     name?: string;
     /**
@@ -2587,7 +2605,7 @@ export namespace bigquerydatatransfer_v1 {
   export interface Params$Resource$Projects$Locations$Transferconfigs$Startmanualruns
     extends StandardParameters {
     /**
-     * Transfer configuration name in the form: `projects/{project_id\}/transferConfigs/{config_id\}` or `projects/{project_id\}/locations/{location_id\}/transferConfigs/{config_id\}`.
+     * Required. Transfer configuration name in the form: `projects/{project_id\}/transferConfigs/{config_id\}` or `projects/{project_id\}/locations/{location_id\}/transferConfigs/{config_id\}`.
      */
     parent?: string;
 
@@ -2676,6 +2694,7 @@ export namespace bigquerydatatransfer_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -2762,6 +2781,7 @@ export namespace bigquerydatatransfer_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2853,6 +2873,7 @@ export namespace bigquerydatatransfer_v1 {
           {
             url: (rootUrl + '/v1/{+parent}/runs').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2992,6 +3013,7 @@ export namespace bigquerydatatransfer_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3109,6 +3131,7 @@ export namespace bigquerydatatransfer_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3194,6 +3217,7 @@ export namespace bigquerydatatransfer_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -3279,6 +3303,7 @@ export namespace bigquerydatatransfer_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3374,6 +3399,7 @@ export namespace bigquerydatatransfer_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3459,6 +3485,7 @@ export namespace bigquerydatatransfer_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -3554,6 +3581,7 @@ export namespace bigquerydatatransfer_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3651,6 +3679,7 @@ export namespace bigquerydatatransfer_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3736,7 +3765,7 @@ export namespace bigquerydatatransfer_v1 {
      */
     authorizationCode?: string;
     /**
-     * The resource name of the transfer config. Transfer config names have the form either `projects/{project_id\}/locations/{region\}/transferConfigs/{config_id\}` or `projects/{project_id\}/transferConfigs/{config_id\}`, where `config_id` is usually a UUID, even though it is not guaranteed or required. The name is ignored when creating a transfer config.
+     * Identifier. The resource name of the transfer config. Transfer config names have the form either `projects/{project_id\}/locations/{region\}/transferConfigs/{config_id\}` or `projects/{project_id\}/transferConfigs/{config_id\}`, where `config_id` is usually a UUID, even though it is not guaranteed or required. The name is ignored when creating a transfer config.
      */
     name?: string;
     /**
@@ -3772,7 +3801,7 @@ export namespace bigquerydatatransfer_v1 {
   export interface Params$Resource$Projects$Transferconfigs$Startmanualruns
     extends StandardParameters {
     /**
-     * Transfer configuration name in the form: `projects/{project_id\}/transferConfigs/{config_id\}` or `projects/{project_id\}/locations/{location_id\}/transferConfigs/{config_id\}`.
+     * Required. Transfer configuration name in the form: `projects/{project_id\}/transferConfigs/{config_id\}` or `projects/{project_id\}/locations/{location_id\}/transferConfigs/{config_id\}`.
      */
     parent?: string;
 
@@ -3858,6 +3887,7 @@ export namespace bigquerydatatransfer_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -3943,6 +3973,7 @@ export namespace bigquerydatatransfer_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4033,6 +4064,7 @@ export namespace bigquerydatatransfer_v1 {
           {
             url: (rootUrl + '/v1/{+parent}/runs').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4172,6 +4204,7 @@ export namespace bigquerydatatransfer_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),

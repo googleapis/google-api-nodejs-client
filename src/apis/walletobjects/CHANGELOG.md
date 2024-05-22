@@ -1,5 +1,23 @@
 # Changelog
 
+## [4.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/walletobjects-v3.0.1...walletobjects-v4.0.0) (2024-05-10)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#3484](https://github.com/googleapis/google-api-nodejs-client/issues/3484)) ([99b6c8d](https://github.com/googleapis/google-api-nodejs-client/commit/99b6c8de5beb8447d177048a64a977ee39ee5ee6))
+
+## [3.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/walletobjects-v3.0.0...walletobjects-v3.0.1) (2024-05-02)
+
+
+### Bug Fixes
+
+* **walletobjects:** update the API ([58fe19c](https://github.com/googleapis/google-api-nodejs-client/commit/58fe19cf6606af287f80afa88f6846a0df9a23c6))
+
 ## [3.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/walletobjects-v2.0.0...walletobjects-v3.0.0) (2024-04-04)
 
 

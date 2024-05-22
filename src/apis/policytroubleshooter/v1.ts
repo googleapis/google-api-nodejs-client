@@ -427,6 +427,7 @@ export namespace policytroubleshooter_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),

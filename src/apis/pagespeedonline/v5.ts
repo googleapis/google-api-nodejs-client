@@ -879,6 +879,7 @@ export namespace pagespeedonline_v5 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),

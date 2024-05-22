@@ -1098,6 +1098,7 @@ export namespace forms_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1181,6 +1182,7 @@ export namespace forms_v1 {
           {
             url: (rootUrl + '/v1/forms').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1264,6 +1266,7 @@ export namespace forms_v1 {
           {
             url: (rootUrl + '/v1/forms/{formId}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1382,6 +1385,7 @@ export namespace forms_v1 {
               rootUrl + '/v1/forms/{formId}/responses/{responseId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1476,6 +1480,7 @@ export namespace forms_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1601,6 +1606,7 @@ export namespace forms_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1688,6 +1694,7 @@ export namespace forms_v1 {
               '$1'
             ),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -1778,6 +1785,7 @@ export namespace forms_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1864,6 +1872,7 @@ export namespace forms_v1 {
               rootUrl + '/v1/forms/{formId}/watches/{watchId}:renew'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),

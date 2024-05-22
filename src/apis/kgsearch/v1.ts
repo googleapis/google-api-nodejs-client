@@ -216,6 +216,7 @@ export namespace kgsearch_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),

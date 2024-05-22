@@ -274,10 +274,6 @@ export namespace networkmanagement_v1beta1 {
      */
     location?: string | null;
     /**
-     * ID of Cloud Run Service this revision belongs to.
-     */
-    serviceName?: string | null;
-    /**
      * URI of Cloud Run service this revision belongs to.
      */
     serviceUri?: string | null;
@@ -344,7 +340,7 @@ export namespace networkmanagement_v1beta1 {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * Required. Unique name of the resource using the form: `projects/{project_id\}/locations/global/connectivityTests/{test\}`
+     * Identifier. Unique name of the resource using the form: `projects/{project_id\}/locations/global/connectivityTests/{test\}`
      */
     name?: string | null;
     /**
@@ -1601,6 +1597,7 @@ export namespace networkmanagement_v1beta1 {
           {
             url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1694,6 +1691,7 @@ export namespace networkmanagement_v1beta1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1831,6 +1829,7 @@ export namespace networkmanagement_v1beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1917,6 +1916,7 @@ export namespace networkmanagement_v1beta1 {
           {
             url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -2003,6 +2003,7 @@ export namespace networkmanagement_v1beta1 {
           {
             url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2092,6 +2093,7 @@ export namespace networkmanagement_v1beta1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2188,6 +2190,7 @@ export namespace networkmanagement_v1beta1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2209,7 +2212,7 @@ export namespace networkmanagement_v1beta1 {
     }
 
     /**
-     * Updates the configuration of an existing `ConnectivityTest`. After you update a test, the reachability analysis is performed as part of the long running operation, which completes when the analysis completes. The Reachability state in the test resource is updated with the new result. If the endpoint specifications in `ConnectivityTest` are invalid (for example, they contain non-existent resources in the network, or the user does not have read permissions to the network configurations of listed projects), then the reachability result returns a value of UNKNOWN. If the endpoint specifications in `ConnectivityTest` are incomplete, the reachability result returns a value of `AMBIGUOUS`. See the documentation in `ConnectivityTest` for for more details.
+     * Updates the configuration of an existing `ConnectivityTest`. After you update a test, the reachability analysis is performed as part of the long running operation, which completes when the analysis completes. The Reachability state in the test resource is updated with the new result. If the endpoint specifications in `ConnectivityTest` are invalid (for example, they contain non-existent resources in the network, or the user does not have read permissions to the network configurations of listed projects), then the reachability result returns a value of UNKNOWN. If the endpoint specifications in `ConnectivityTest` are incomplete, the reachability result returns a value of `AMBIGUOUS`. See the documentation in `ConnectivityTest` for more details.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2276,6 +2279,7 @@ export namespace networkmanagement_v1beta1 {
           {
             url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -2365,6 +2369,7 @@ export namespace networkmanagement_v1beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2454,6 +2459,7 @@ export namespace networkmanagement_v1beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2550,6 +2556,7 @@ export namespace networkmanagement_v1beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2636,7 +2643,7 @@ export namespace networkmanagement_v1beta1 {
   export interface Params$Resource$Projects$Locations$Global$Connectivitytests$Patch
     extends StandardParameters {
     /**
-     * Required. Unique name of the resource using the form: `projects/{project_id\}/locations/global/connectivityTests/{test\}`
+     * Identifier. Unique name of the resource using the form: `projects/{project_id\}/locations/global/connectivityTests/{test\}`
      */
     name?: string;
     /**
@@ -2763,6 +2770,7 @@ export namespace networkmanagement_v1beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2849,6 +2857,7 @@ export namespace networkmanagement_v1beta1 {
           {
             url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -2934,6 +2943,7 @@ export namespace networkmanagement_v1beta1 {
           {
             url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3028,6 +3038,7 @@ export namespace networkmanagement_v1beta1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),

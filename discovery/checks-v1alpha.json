@@ -414,7 +414,7 @@
       }
     }
   },
-  "revision": "20240321",
+  "revision": "20240430",
   "rootUrl": "https://checks.googleapis.com/",
   "schemas": {
     "CancelOperationRequest": {
@@ -673,7 +673,8 @@
             "DATA_MONITORING_PERMISSIONS_DENYLIST_VIOLATION",
             "DATA_MONITORING_ENDPOINTS_DENYLIST_VIOLATION",
             "DATA_MONITORING_OUTDATED_SDK_VERSION",
-            "DATA_MONITORING_CRITICAL_SDK_ISSUE"
+            "DATA_MONITORING_CRITICAL_SDK_ISSUE",
+            "PRIVACY_POLICY_DATA_TYPE_SENSITIVE_INFO"
           ],
           "enumDescriptions": [
             "Not specified.",
@@ -762,7 +763,8 @@
             "Checks if any permissions were detected that are specified in the denylist.",
             "Checks if any endpoints were detected that are specified in the denylist.",
             "Checks if there are any outdated SDKs.",
-            "Checks if there are any SDKs with critical issues."
+            "Checks if there are any SDKs with critical issues.",
+            "Checks if the Sensitive Information data type declaration matches usage."
           ],
           "type": "string"
         }
@@ -798,7 +800,11 @@
             "CHINA_PIPL",
             "SOUTH_KOREA_PIPA",
             "SOUTH_AFRICA_POPIA",
-            "JAPAN_APPI"
+            "JAPAN_APPI",
+            "INDIA_DPDPA",
+            "OCPA",
+            "TDPSA",
+            "MCDPA"
           ],
           "enumDescriptions": [
             "Not specified.",
@@ -823,7 +829,11 @@
             "China Personal Information Protection Law.",
             "South Korea Personal Information Protection Act.",
             "South Africa Protection of Personal Information Act.",
-            "Japan Act on the Protection of Personal Information."
+            "Japan Act on the Protection of Personal Information.",
+            "India: The Digital Personal Data Protection Act, 2023.",
+            "Oregon Consumer Privacy Act.",
+            "Texas Data Privacy and Security Act.",
+            "Montana Consumer Data Privacy Act."
           ],
           "type": "string"
         }

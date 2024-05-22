@@ -3162,7 +3162,7 @@
       }
     }
   },
-  "revision": "20240229",
+  "revision": "20240320",
   "rootUrl": "https://networksecurity.googleapis.com/",
   "schemas": {
     "AddAddressGroupItemsRequest": {

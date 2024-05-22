@@ -982,6 +982,7 @@ export namespace domains_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1074,6 +1075,7 @@ export namespace domains_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1192,6 +1194,7 @@ export namespace domains_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1284,6 +1287,7 @@ export namespace domains_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1337,7 +1341,7 @@ export namespace domains_v1 {
     }
 
     /**
-     * Updates a `Registration`'s contact settings. Some changes require confirmation by the domain's registrant contact .
+     * Updates a `Registration`'s contact settings. Some changes require confirmation by the domain's registrant contact . Caution: Please consider carefully any changes to contact privacy settings when changing from `REDACTED_CONTACT_DATA` to `PUBLIC_CONTACT_DATA.` There may be a delay in reflecting updates you make to registrant contact information such that any changes you make to contact privacy (including from `REDACTED_CONTACT_DATA` to `PUBLIC_CONTACT_DATA`) will be applied without delay but changes to registrant contact information may take a limited time to be publicized. This means that changes to contact privacy from `REDACTED_CONTACT_DATA` to `PUBLIC_CONTACT_DATA` may make the previous registrant contact data public until the modified registrant contact details are published.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1407,6 +1411,7 @@ export namespace domains_v1 {
               rootUrl + '/v1/{+registration}:configureContactSettings'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1497,6 +1502,7 @@ export namespace domains_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1586,6 +1592,7 @@ export namespace domains_v1 {
               rootUrl + '/v1/{+registration}:configureManagementSettings'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1670,6 +1677,7 @@ export namespace domains_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -1754,6 +1762,7 @@ export namespace domains_v1 {
           {
             url: (rootUrl + '/v1/{+name}:export').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1838,6 +1847,7 @@ export namespace domains_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1926,6 +1936,7 @@ export namespace domains_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2013,6 +2024,7 @@ export namespace domains_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2107,6 +2119,7 @@ export namespace domains_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2191,6 +2204,7 @@ export namespace domains_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -2279,6 +2293,7 @@ export namespace domains_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2371,6 +2386,7 @@ export namespace domains_v1 {
               rootUrl + '/v1/{+registration}:resetAuthorizationCode'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2463,6 +2479,7 @@ export namespace domains_v1 {
               rootUrl + '/v1/{+registration}:retrieveAuthorizationCode'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2558,6 +2575,7 @@ export namespace domains_v1 {
               '/v1/{+location}/registrations:retrieveImportableDomains'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2655,6 +2673,7 @@ export namespace domains_v1 {
               '/v1/{+location}/registrations:retrieveRegisterParameters'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2752,6 +2771,7 @@ export namespace domains_v1 {
               '/v1/{+location}/registrations:retrieveTransferParameters'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2848,6 +2868,7 @@ export namespace domains_v1 {
               rootUrl + '/v1/{+location}/registrations:searchDomains'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2936,6 +2957,7 @@ export namespace domains_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3031,6 +3053,7 @@ export namespace domains_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3119,6 +3142,7 @@ export namespace domains_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),

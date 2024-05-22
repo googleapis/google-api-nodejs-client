@@ -507,6 +507,7 @@ export namespace adsensehost_v4_1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -593,6 +594,7 @@ export namespace adsensehost_v4_1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -700,6 +702,7 @@ export namespace adsensehost_v4_1 {
               '/adsensehost/v4.1/accounts/{accountId}/adclients/{adClientId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -786,6 +789,7 @@ export namespace adsensehost_v4_1 {
               rootUrl + '/adsensehost/v4.1/accounts/{accountId}/adclients'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -907,6 +911,7 @@ export namespace adsensehost_v4_1 {
               '/adsensehost/v4.1/accounts/{accountId}/adclients/{adClientId}/adunits/{adUnitId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -994,6 +999,7 @@ export namespace adsensehost_v4_1 {
               '/adsensehost/v4.1/accounts/{accountId}/adclients/{adClientId}/adunits/{adUnitId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1081,6 +1087,7 @@ export namespace adsensehost_v4_1 {
               '/adsensehost/v4.1/accounts/{accountId}/adclients/{adClientId}/adunits/{adUnitId}/adcode'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1168,6 +1175,7 @@ export namespace adsensehost_v4_1 {
               '/adsensehost/v4.1/accounts/{accountId}/adclients/{adClientId}/adunits'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1255,6 +1263,7 @@ export namespace adsensehost_v4_1 {
               '/adsensehost/v4.1/accounts/{accountId}/adclients/{adClientId}/adunits'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1342,6 +1351,7 @@ export namespace adsensehost_v4_1 {
               '/adsensehost/v4.1/accounts/{accountId}/adclients/{adClientId}/adunits'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -1429,6 +1439,7 @@ export namespace adsensehost_v4_1 {
               '/adsensehost/v4.1/accounts/{accountId}/adclients/{adClientId}/adunits'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
+            apiVersion: '',
           },
           options
         ),
@@ -1647,6 +1658,7 @@ export namespace adsensehost_v4_1 {
               rootUrl + '/adsensehost/v4.1/accounts/{accountId}/reports'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1784,6 +1796,7 @@ export namespace adsensehost_v4_1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1870,6 +1883,7 @@ export namespace adsensehost_v4_1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1983,6 +1997,7 @@ export namespace adsensehost_v4_1 {
               rootUrl + '/adsensehost/v4.1/associationsessions/start'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2072,6 +2087,7 @@ export namespace adsensehost_v4_1 {
               rootUrl + '/adsensehost/v4.1/associationsessions/verify'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2197,6 +2213,7 @@ export namespace adsensehost_v4_1 {
               '/adsensehost/v4.1/adclients/{adClientId}/customchannels/{customChannelId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -2284,6 +2301,7 @@ export namespace adsensehost_v4_1 {
               '/adsensehost/v4.1/adclients/{adClientId}/customchannels/{customChannelId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2371,6 +2389,7 @@ export namespace adsensehost_v4_1 {
               '/adsensehost/v4.1/adclients/{adClientId}/customchannels'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2458,6 +2477,7 @@ export namespace adsensehost_v4_1 {
               '/adsensehost/v4.1/adclients/{adClientId}/customchannels'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2545,6 +2565,7 @@ export namespace adsensehost_v4_1 {
               '/adsensehost/v4.1/adclients/{adClientId}/customchannels'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -2632,6 +2653,7 @@ export namespace adsensehost_v4_1 {
               '/adsensehost/v4.1/adclients/{adClientId}/customchannels'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
+            apiVersion: '',
           },
           options
         ),
@@ -2803,6 +2825,7 @@ export namespace adsensehost_v4_1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2936,6 +2959,7 @@ export namespace adsensehost_v4_1 {
               '/adsensehost/v4.1/adclients/{adClientId}/urlchannels/{urlChannelId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -3022,6 +3046,7 @@ export namespace adsensehost_v4_1 {
               rootUrl + '/adsensehost/v4.1/adclients/{adClientId}/urlchannels'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3107,6 +3132,7 @@ export namespace adsensehost_v4_1 {
               rootUrl + '/adsensehost/v4.1/adclients/{adClientId}/urlchannels'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),

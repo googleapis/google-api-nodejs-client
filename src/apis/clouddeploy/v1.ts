@@ -141,7 +141,7 @@ export namespace clouddeploy_v1 {
    */
   export interface Schema$AdvanceChildRolloutJobRun {
     /**
-     * Output only. Name of the `ChildRollout`. Format is `projects/{project\}/locations/{location\}/deliveryPipelines/{deliveryPipeline\}/releases/{release\}/rollouts/a-z{0,62\}`.
+     * Output only. Name of the `ChildRollout`. Format is `projects/{project\}/locations/{location\}/deliveryPipelines/{deliveryPipeline\}/releases/{release\}/rollouts/{rollout\}`.
      */
     rollout?: string | null;
     /**
@@ -192,7 +192,7 @@ export namespace clouddeploy_v1 {
      */
     condition?: Schema$AutomationRuleCondition;
     /**
-     * Required. ID of the rule. This id must be unique in the `Automation` resource to which this rule belongs. The format is `a-z{0,62\}`.
+     * Required. ID of the rule. This id must be unique in the `Automation` resource to which this rule belongs. The format is `[a-z]([a-z0-9-]{0,61\}[a-z0-9])?`.
      */
     id?: string | null;
     /**
@@ -209,7 +209,7 @@ export namespace clouddeploy_v1 {
    */
   export interface Schema$AnthosCluster {
     /**
-     * Membership of the GKE Hub-registered cluster to which to apply the Skaffold configuration. Format is `projects/{project\}/locations/{location\}/memberships/{membership_name\}`.
+     * Optional. Membership of the GKE Hub-registered cluster to which to apply the Skaffold configuration. Format is `projects/{project\}/locations/{location\}/memberships/{membership_name\}`.
      */
     membership?: string | null;
   }
@@ -671,7 +671,7 @@ export namespace clouddeploy_v1 {
    */
   export interface Schema$CreateChildRolloutJobRun {
     /**
-     * Output only. Name of the `ChildRollout`. Format is `projects/{project\}/locations/{location\}/deliveryPipelines/{deliveryPipeline\}/releases/{release\}/rollouts/a-z{0,62\}`.
+     * Output only. Name of the `ChildRollout`. Format is `projects/{project\}/locations/{location\}/deliveryPipelines/{deliveryPipeline\}/releases/{release\}/rollouts/{rollout\}`.
      */
     rollout?: string | null;
     /**
@@ -765,7 +765,7 @@ export namespace clouddeploy_v1 {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * Optional. Name of the `CustomTargetType`. Format is `projects/{project\}/locations/{location\}/customTargetTypes/a-z{0,62\}`.
+     * Optional. Name of the `CustomTargetType`. Format is `projects/{project\}/locations/{location\}/customTargetTypes/{customTargetType\}`. The `customTargetType` component must match `[a-z]([a-z0-9-]{0,61\}[a-z0-9])?`
      */
     name?: string | null;
     /**
@@ -836,7 +836,7 @@ export namespace clouddeploy_v1 {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * Optional. Name of the `DeliveryPipeline`. Format is `projects/{project\}/locations/{location\}/deliveryPipelines/a-z{0,62\}`.
+     * Optional. Name of the `DeliveryPipeline`. Format is `projects/{project\}/locations/{location\}/deliveryPipelines/{deliveryPipeline\}`. The `deliveryPipeline` component must match `[a-z]([a-z0-9-]{0,61\}[a-z0-9])?`
      */
     name?: string | null;
     /**
@@ -1058,7 +1058,7 @@ export namespace clouddeploy_v1 {
    */
   export interface Schema$GkeCluster {
     /**
-     * Information specifying a GKE Cluster. Format is `projects/{project_id\}/locations/{location_id\}/clusters/{cluster_id\}`.
+     * Optional. Information specifying a GKE Cluster. Format is `projects/{project_id\}/locations/{location_id\}/clusters/{cluster_id\}`.
      */
     cluster?: string | null;
     /**
@@ -1765,7 +1765,7 @@ export namespace clouddeploy_v1 {
      */
     destinationTargetId?: string | null;
     /**
-     * Required. ID of the rule. This id must be unique in the `Automation` resource to which this rule belongs. The format is `a-z{0,62\}`.
+     * Required. ID of the rule. This id must be unique in the `Automation` resource to which this rule belongs. The format is `[a-z]([a-z0-9-]{0,61\}[a-z0-9])?`.
      */
     id?: string | null;
     /**
@@ -1822,7 +1822,7 @@ export namespace clouddeploy_v1 {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * Optional. Name of the `Release`. Format is `projects/{project\}/locations/{location\}/deliveryPipelines/{deliveryPipeline\}/releases/a-z{0,62\}`.
+     * Optional. Name of the `Release`. Format is `projects/{project\}/locations/{location\}/deliveryPipelines/{deliveryPipeline\}/releases/{release\}`. The `release` component must match `[a-z]([a-z0-9-]{0,61\}[a-z0-9])?`
      */
     name?: string | null;
     /**
@@ -2011,7 +2011,7 @@ export namespace clouddeploy_v1 {
      */
     condition?: Schema$AutomationRuleCondition;
     /**
-     * Required. ID of the rule. This id must be unique in the `Automation` resource to which this rule belongs. The format is `a-z{0,62\}`.
+     * Required. ID of the rule. This id must be unique in the `Automation` resource to which this rule belongs. The format is `[a-z]([a-z0-9-]{0,61\}[a-z0-9])?`.
      */
     id?: string | null;
     /**
@@ -2205,7 +2205,7 @@ export namespace clouddeploy_v1 {
      */
     approveTime?: string | null;
     /**
-     * Output only. Name of the `ControllerRollout`. Format is `projects/{project\}/locations/{location\}/deliveryPipelines/{deliveryPipeline\}/releases/{release\}/rollouts/a-z{0,62\}`.
+     * Output only. Name of the `ControllerRollout`. Format is `projects/{project\}/locations/{location\}/deliveryPipelines/{deliveryPipeline\}/releases/{release\}/rollouts/{rollout\}`.
      */
     controllerRollout?: string | null;
     /**
@@ -2253,7 +2253,7 @@ export namespace clouddeploy_v1 {
      */
     metadata?: Schema$Metadata;
     /**
-     * Optional. Name of the `Rollout`. Format is `projects/{project\}/locations/{location\}/deliveryPipelines/{deliveryPipeline\}/releases/{release\}/rollouts/a-z{0,62\}`.
+     * Optional. Name of the `Rollout`. Format is `projects/{project\}/locations/{location\}/deliveryPipelines/{deliveryPipeline\}/releases/{release\}/rollouts/{rollout\}`. The `rollout` component must match `[a-z]([a-z0-9-]{0,61\}[a-z0-9])?`
      */
     name?: string | null;
     /**
@@ -2408,6 +2408,23 @@ export namespace clouddeploy_v1 {
     updateMask?: string | null;
   }
   /**
+   * Cloud Build V2 Repository containing Skaffold Configs.
+   */
+  export interface Schema$SkaffoldGCBRepoSource {
+    /**
+     * Optional. Relative path from the repository root to the Skaffold Config file.
+     */
+    path?: string | null;
+    /**
+     * Optional. Branch or tag to use when cloning the repository.
+     */
+    ref?: string | null;
+    /**
+     * Required. Name of the Cloud Build V2 Repository. Format is projects/{project\}/locations/{location\}/connections/{connection\}/repositories/{repository\}.
+     */
+    repository?: string | null;
+  }
+  /**
    * Cloud Storage bucket containing Skaffold Config modules.
    */
   export interface Schema$SkaffoldGCSSource {
@@ -2429,7 +2446,7 @@ export namespace clouddeploy_v1 {
      */
     path?: string | null;
     /**
-     * Optional. Git ref the package should be cloned from.
+     * Optional. Git branch or tag to use when cloning the repository.
      */
     ref?: string | null;
     /**
@@ -2449,6 +2466,10 @@ export namespace clouddeploy_v1 {
      * Remote git repository containing the Skaffold Config modules.
      */
     git?: Schema$SkaffoldGitSource;
+    /**
+     * Cloud Build V2 repository containing the Skaffold Config modules.
+     */
+    googleCloudBuildRepo?: Schema$SkaffoldGCBRepoSource;
     /**
      * Cloud Storage bucket containing the Skaffold Config modules.
      */
@@ -2613,7 +2634,7 @@ export namespace clouddeploy_v1 {
      */
     multiTarget?: Schema$MultiTarget;
     /**
-     * Optional. Name of the `Target`. Format is `projects/{project\}/locations/{location\}/targets/a-z{0,62\}`.
+     * Optional. Name of the `Target`. Format is `projects/{project\}/locations/{location\}/targets/{target\}`. The `target` component must match `[a-z]([a-z0-9-]{0,61\}[a-z0-9])?`
      */
     name?: string | null;
     /**
@@ -2892,6 +2913,7 @@ export namespace clouddeploy_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2976,6 +2998,7 @@ export namespace clouddeploy_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3068,6 +3091,7 @@ export namespace clouddeploy_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3197,6 +3221,7 @@ export namespace clouddeploy_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3282,6 +3307,7 @@ export namespace clouddeploy_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -3366,6 +3392,7 @@ export namespace clouddeploy_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3454,6 +3481,7 @@ export namespace clouddeploy_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3549,6 +3577,7 @@ export namespace clouddeploy_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3636,6 +3665,7 @@ export namespace clouddeploy_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -3724,6 +3754,7 @@ export namespace clouddeploy_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3838,7 +3869,7 @@ export namespace clouddeploy_v1 {
      */
     allowMissing?: boolean;
     /**
-     * Optional. Name of the `CustomTargetType`. Format is `projects/{project\}/locations/{location\}/customTargetTypes/a-z{0,62\}`.
+     * Optional. Name of the `CustomTargetType`. Format is `projects/{project\}/locations/{location\}/customTargetTypes/{customTargetType\}`. The `customTargetType` component must match `[a-z]([a-z0-9-]{0,61\}[a-z0-9])?`
      */
     name?: string;
     /**
@@ -3963,6 +3994,7 @@ export namespace clouddeploy_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4048,6 +4080,7 @@ export namespace clouddeploy_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -4132,6 +4165,7 @@ export namespace clouddeploy_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4220,6 +4254,7 @@ export namespace clouddeploy_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4315,6 +4350,7 @@ export namespace clouddeploy_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4402,6 +4438,7 @@ export namespace clouddeploy_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -4497,6 +4534,7 @@ export namespace clouddeploy_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4585,6 +4623,7 @@ export namespace clouddeploy_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4680,6 +4719,7 @@ export namespace clouddeploy_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4798,7 +4838,7 @@ export namespace clouddeploy_v1 {
      */
     allowMissing?: boolean;
     /**
-     * Optional. Name of the `DeliveryPipeline`. Format is `projects/{project\}/locations/{location\}/deliveryPipelines/a-z{0,62\}`.
+     * Optional. Name of the `DeliveryPipeline`. Format is `projects/{project\}/locations/{location\}/deliveryPipelines/{deliveryPipeline\}`. The `deliveryPipeline` component must match `[a-z]([a-z0-9-]{0,61\}[a-z0-9])?`
      */
     name?: string;
     /**
@@ -4936,6 +4976,7 @@ export namespace clouddeploy_v1 {
           {
             url: (rootUrl + '/v1/{+name}:cancel').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5021,6 +5062,7 @@ export namespace clouddeploy_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5116,6 +5158,7 @@ export namespace clouddeploy_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5254,6 +5297,7 @@ export namespace clouddeploy_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5339,6 +5383,7 @@ export namespace clouddeploy_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -5424,6 +5469,7 @@ export namespace clouddeploy_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5517,6 +5563,7 @@ export namespace clouddeploy_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5602,6 +5649,7 @@ export namespace clouddeploy_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -5815,6 +5863,7 @@ export namespace clouddeploy_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5903,6 +5952,7 @@ export namespace clouddeploy_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5988,6 +6038,7 @@ export namespace clouddeploy_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6081,6 +6132,7 @@ export namespace clouddeploy_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6255,6 +6307,7 @@ export namespace clouddeploy_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -6350,6 +6403,7 @@ export namespace clouddeploy_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -6440,6 +6494,7 @@ export namespace clouddeploy_v1 {
           {
             url: (rootUrl + '/v1/{+name}:cancel').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -6528,6 +6583,7 @@ export namespace clouddeploy_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -6613,6 +6669,7 @@ export namespace clouddeploy_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6704,6 +6761,7 @@ export namespace clouddeploy_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -6797,6 +6855,7 @@ export namespace clouddeploy_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6885,6 +6944,7 @@ export namespace clouddeploy_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -7096,6 +7156,7 @@ export namespace clouddeploy_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -7187,6 +7248,7 @@ export namespace clouddeploy_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -7282,6 +7344,7 @@ export namespace clouddeploy_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -7416,6 +7479,7 @@ export namespace clouddeploy_v1 {
           {
             url: (rootUrl + '/v1/{+name}:cancel').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -7500,6 +7564,7 @@ export namespace clouddeploy_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -7584,6 +7649,7 @@ export namespace clouddeploy_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -7676,6 +7742,7 @@ export namespace clouddeploy_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -7816,6 +7883,7 @@ export namespace clouddeploy_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -7900,6 +7968,7 @@ export namespace clouddeploy_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -7984,6 +8053,7 @@ export namespace clouddeploy_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -8071,6 +8141,7 @@ export namespace clouddeploy_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -8161,6 +8232,7 @@ export namespace clouddeploy_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -8245,6 +8317,7 @@ export namespace clouddeploy_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -8332,6 +8405,7 @@ export namespace clouddeploy_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -8427,6 +8501,7 @@ export namespace clouddeploy_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -8541,7 +8616,7 @@ export namespace clouddeploy_v1 {
      */
     allowMissing?: boolean;
     /**
-     * Optional. Name of the `Target`. Format is `projects/{project\}/locations/{location\}/targets/a-z{0,62\}`.
+     * Optional. Name of the `Target`. Format is `projects/{project\}/locations/{location\}/targets/{target\}`. The `target` component must match `[a-z]([a-z0-9-]{0,61\}[a-z0-9])?`
      */
     name?: string;
     /**

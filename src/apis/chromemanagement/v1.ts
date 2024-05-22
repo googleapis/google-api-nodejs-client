@@ -2198,6 +2198,7 @@ export namespace chromemanagement_v1 {
               rootUrl + '/v1/{+customer}/apps:countChromeAppRequests'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2295,6 +2296,7 @@ export namespace chromemanagement_v1 {
               rootUrl + '/v1/{+customer}/apps:fetchDevicesRequestingExtension'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2392,6 +2394,7 @@ export namespace chromemanagement_v1 {
               rootUrl + '/v1/{+customer}/apps:fetchUsersRequestingExtension'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2563,6 +2566,7 @@ export namespace chromemanagement_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2672,6 +2676,7 @@ export namespace chromemanagement_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2781,6 +2786,7 @@ export namespace chromemanagement_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2894,6 +2900,7 @@ export namespace chromemanagement_v1 {
               '/v1/{+customer}/reports:countChromeBrowsersNeedingAttention'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2990,6 +2997,7 @@ export namespace chromemanagement_v1 {
               rootUrl + '/v1/{+customer}/reports:countChromeCrashEvents'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3088,6 +3096,7 @@ export namespace chromemanagement_v1 {
               '/v1/{+customer}/reports:countChromeDevicesReachingAutoExpirationDate'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3186,6 +3195,7 @@ export namespace chromemanagement_v1 {
               '/v1/{+customer}/reports:countChromeDevicesThatNeedAttention'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3284,6 +3294,7 @@ export namespace chromemanagement_v1 {
               '/v1/{+customer}/reports:countChromeHardwareFleetDevices'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3380,6 +3391,7 @@ export namespace chromemanagement_v1 {
               rootUrl + '/v1/{+customer}/reports:countChromeVersions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3476,6 +3488,7 @@ export namespace chromemanagement_v1 {
               rootUrl + '/v1/{+customer}/reports:countInstalledApps'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3573,6 +3586,7 @@ export namespace chromemanagement_v1 {
               rootUrl + '/v1/{+customer}/reports:countPrintJobsByPrinter'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3669,6 +3683,7 @@ export namespace chromemanagement_v1 {
               rootUrl + '/v1/{+customer}/reports:countPrintJobsByUser'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3765,6 +3780,7 @@ export namespace chromemanagement_v1 {
               rootUrl + '/v1/{+customer}/reports:enumeratePrintJobs'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3862,6 +3878,7 @@ export namespace chromemanagement_v1 {
               rootUrl + '/v1/{+customer}/reports:findInstalledAppDevices'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4225,6 +4242,7 @@ export namespace chromemanagement_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4322,6 +4340,7 @@ export namespace chromemanagement_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4461,6 +4480,7 @@ export namespace chromemanagement_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4589,6 +4609,7 @@ export namespace chromemanagement_v1 {
               rootUrl + '/v1/{+parent}/telemetry/notificationConfigs'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4680,6 +4701,7 @@ export namespace chromemanagement_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -4775,6 +4797,7 @@ export namespace chromemanagement_v1 {
               rootUrl + '/v1/{+parent}/telemetry/notificationConfigs'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4911,6 +4934,7 @@ export namespace chromemanagement_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5008,6 +5032,7 @@ export namespace chromemanagement_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),

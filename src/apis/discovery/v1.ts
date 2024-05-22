@@ -358,6 +358,10 @@ export namespace discovery_v1 {
   }
   export interface Schema$RestMethod {
     /**
+     * The API Version of this method, as passed in via the `X-Goog-Api-Version` header or `$apiVersion` query parameter.
+     */
+    apiVersion?: string | null;
+    /**
      * Whether this method is deprecated.
      */
     deprecated?: boolean | null;
@@ -522,6 +526,7 @@ export namespace discovery_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -605,6 +610,7 @@ export namespace discovery_v1 {
           {
             url: (rootUrl + '/discovery/v1/apis').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),

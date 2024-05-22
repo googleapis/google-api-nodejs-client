@@ -1151,6 +1151,23 @@ export namespace dialogflow_v2 {
     triggerFulfillment?: Schema$GoogleCloudDialogflowCxV3beta1Fulfillment;
   }
   /**
+   * Represents the language information of the request.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1LanguageInfo {
+    /**
+     * The confidence score of the detected language between 0 and 1.
+     */
+    confidenceScore?: number | null;
+    /**
+     * The language code specified in the original request.
+     */
+    inputLanguageCode?: string | null;
+    /**
+     * The language code detected for this request based on the user conversation.
+     */
+    resolvedLanguageCode?: string | null;
+  }
+  /**
    * A Dialogflow CX conversation (session) can be described and visualized as a state machine. The states of a CX session are represented by pages. For each flow, you define many pages, where your combined pages can handle a complete conversation on the topics the flow is designed for. At any given moment, exactly one page is the current page, the current page is considered active, and the flow associated with that page is considered active. Every flow has a special start page. When a flow initially becomes active, the start page page becomes the current page. For each conversational turn, the current page will either stay the same or transition to another page. You configure each page to collect information from the end-user that is relevant for the conversational state represented by the page. For more information, see the [Page guide](https://cloud.google.com/dialogflow/cx/docs/concept/page).
    */
   export interface Schema$GoogleCloudDialogflowCxV3beta1Page {
@@ -1822,6 +1839,10 @@ export namespace dialogflow_v2 {
      * The language code specified in the original request.
      */
     languageCode?: string | null;
+    /**
+     * Information about the language of the request.
+     */
+    languageInfo?: Schema$GoogleCloudDialogflowCxV3beta1LanguageInfo;
     /**
      * The list of rich message responses to present to the user. Webhook can choose to append or replace this list in WebhookResponse.fulfillment_response;
      */
@@ -2769,6 +2790,23 @@ export namespace dialogflow_v2 {
     triggerFulfillment?: Schema$GoogleCloudDialogflowCxV3Fulfillment;
   }
   /**
+   * Represents the language information of the request.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3LanguageInfo {
+    /**
+     * The confidence score of the detected language between 0 and 1.
+     */
+    confidenceScore?: number | null;
+    /**
+     * The language code specified in the original request.
+     */
+    inputLanguageCode?: string | null;
+    /**
+     * The language code detected for this request based on the user conversation.
+     */
+    resolvedLanguageCode?: string | null;
+  }
+  /**
    * A Dialogflow CX conversation (session) can be described and visualized as a state machine. The states of a CX session are represented by pages. For each flow, you define many pages, where your combined pages can handle a complete conversation on the topics the flow is designed for. At any given moment, exactly one page is the current page, the current page is considered active, and the flow associated with that page is considered active. Every flow has a special start page. When a flow initially becomes active, the start page page becomes the current page. For each conversational turn, the current page will either stay the same or transition to another page. You configure each page to collect information from the end-user that is relevant for the conversational state represented by the page. For more information, see the [Page guide](https://cloud.google.com/dialogflow/cx/docs/concept/page).
    */
   export interface Schema$GoogleCloudDialogflowCxV3Page {
@@ -3444,6 +3482,10 @@ export namespace dialogflow_v2 {
      * The language code specified in the original request.
      */
     languageCode?: string | null;
+    /**
+     * Information about the language of the request.
+     */
+    languageInfo?: Schema$GoogleCloudDialogflowCxV3LanguageInfo;
     /**
      * The list of rich message responses to present to the user. Webhook can choose to append or replace this list in WebhookResponse.fulfillment_response;
      */
@@ -9228,6 +9270,7 @@ export namespace dialogflow_v2 {
               '$1'
             ),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -9322,6 +9365,7 @@ export namespace dialogflow_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -9418,6 +9462,7 @@ export namespace dialogflow_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -9568,6 +9613,7 @@ export namespace dialogflow_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -9659,6 +9705,7 @@ export namespace dialogflow_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -9755,6 +9802,7 @@ export namespace dialogflow_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -9851,6 +9899,7 @@ export namespace dialogflow_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -9945,6 +9994,7 @@ export namespace dialogflow_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -10039,6 +10089,7 @@ export namespace dialogflow_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -10135,6 +10186,7 @@ export namespace dialogflow_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -10226,6 +10278,7 @@ export namespace dialogflow_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -10431,6 +10484,7 @@ export namespace dialogflow_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -10525,6 +10579,7 @@ export namespace dialogflow_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -10619,6 +10674,7 @@ export namespace dialogflow_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -10708,6 +10764,7 @@ export namespace dialogflow_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -10799,6 +10856,7 @@ export namespace dialogflow_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -10895,6 +10953,7 @@ export namespace dialogflow_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -10988,6 +11047,7 @@ export namespace dialogflow_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -11190,6 +11250,7 @@ export namespace dialogflow_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -11285,6 +11346,7 @@ export namespace dialogflow_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -11380,6 +11442,7 @@ export namespace dialogflow_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -11524,6 +11587,7 @@ export namespace dialogflow_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -11613,6 +11677,7 @@ export namespace dialogflow_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -11704,6 +11769,7 @@ export namespace dialogflow_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -11800,6 +11866,7 @@ export namespace dialogflow_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -11896,6 +11963,7 @@ export namespace dialogflow_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -11989,6 +12057,7 @@ export namespace dialogflow_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -12173,6 +12242,7 @@ export namespace dialogflow_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -12320,6 +12390,7 @@ export namespace dialogflow_v2 {
               '$1'
             ),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -12415,6 +12486,7 @@ export namespace dialogflow_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -12539,6 +12611,7 @@ export namespace dialogflow_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -12629,6 +12702,7 @@ export namespace dialogflow_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -12721,6 +12795,7 @@ export namespace dialogflow_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -12818,6 +12893,7 @@ export namespace dialogflow_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -12912,6 +12988,7 @@ export namespace dialogflow_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -13074,6 +13151,7 @@ export namespace dialogflow_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -13164,6 +13242,7 @@ export namespace dialogflow_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -13256,6 +13335,7 @@ export namespace dialogflow_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -13353,6 +13433,7 @@ export namespace dialogflow_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -13447,6 +13528,7 @@ export namespace dialogflow_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -13608,6 +13690,7 @@ export namespace dialogflow_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -13702,6 +13785,7 @@ export namespace dialogflow_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -13796,6 +13880,7 @@ export namespace dialogflow_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -13885,6 +13970,7 @@ export namespace dialogflow_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -13976,6 +14062,7 @@ export namespace dialogflow_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -14072,6 +14159,7 @@ export namespace dialogflow_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -14165,6 +14253,7 @@ export namespace dialogflow_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -14386,6 +14475,7 @@ export namespace dialogflow_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -14475,6 +14565,7 @@ export namespace dialogflow_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -14566,6 +14657,7 @@ export namespace dialogflow_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -14662,6 +14754,7 @@ export namespace dialogflow_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -14755,6 +14848,7 @@ export namespace dialogflow_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -14925,6 +15019,7 @@ export namespace dialogflow_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -15017,6 +15112,7 @@ export namespace dialogflow_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -15109,6 +15205,7 @@ export namespace dialogflow_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -15206,6 +15303,7 @@ export namespace dialogflow_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -15300,6 +15398,7 @@ export namespace dialogflow_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -15392,6 +15491,7 @@ export namespace dialogflow_v2 {
           {
             url: (rootUrl + '/v2/{+name}:reload').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -15573,6 +15673,7 @@ export namespace dialogflow_v2 {
               '$1'
             ),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -15667,6 +15768,7 @@ export namespace dialogflow_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -15790,6 +15892,7 @@ export namespace dialogflow_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -15879,6 +15982,7 @@ export namespace dialogflow_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -15970,6 +16074,7 @@ export namespace dialogflow_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -16066,6 +16171,7 @@ export namespace dialogflow_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -16159,6 +16265,7 @@ export namespace dialogflow_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -16321,6 +16428,7 @@ export namespace dialogflow_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -16411,6 +16519,7 @@ export namespace dialogflow_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -16502,6 +16611,7 @@ export namespace dialogflow_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -16598,6 +16708,7 @@ export namespace dialogflow_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -16692,6 +16803,7 @@ export namespace dialogflow_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -16853,6 +16965,7 @@ export namespace dialogflow_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -16942,6 +17055,7 @@ export namespace dialogflow_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -17033,6 +17147,7 @@ export namespace dialogflow_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -17129,6 +17244,7 @@ export namespace dialogflow_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -17222,6 +17338,7 @@ export namespace dialogflow_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -17383,6 +17500,7 @@ export namespace dialogflow_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -17476,6 +17594,7 @@ export namespace dialogflow_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -17612,6 +17731,7 @@ export namespace dialogflow_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -17709,6 +17829,7 @@ export namespace dialogflow_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -17803,6 +17924,7 @@ export namespace dialogflow_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -17945,6 +18067,7 @@ export namespace dialogflow_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -18036,6 +18159,7 @@ export namespace dialogflow_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -18127,6 +18251,7 @@ export namespace dialogflow_v2 {
           {
             url: (rootUrl + '/v2/{+name}:deploy').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -18218,6 +18343,7 @@ export namespace dialogflow_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -18314,6 +18440,7 @@ export namespace dialogflow_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -18410,6 +18537,7 @@ export namespace dialogflow_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -18575,6 +18703,7 @@ export namespace dialogflow_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -18672,6 +18801,7 @@ export namespace dialogflow_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -18799,6 +18929,7 @@ export namespace dialogflow_v2 {
               '/v2/{+conversationProfile}:clearSuggestionFeatureConfig'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -18893,6 +19024,7 @@ export namespace dialogflow_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -18982,6 +19114,7 @@ export namespace dialogflow_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -19073,6 +19206,7 @@ export namespace dialogflow_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -19169,6 +19303,7 @@ export namespace dialogflow_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -19262,6 +19397,7 @@ export namespace dialogflow_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -19358,6 +19494,7 @@ export namespace dialogflow_v2 {
               rootUrl + '/v2/{+conversationProfile}:setSuggestionFeatureConfig'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -19553,6 +19690,7 @@ export namespace dialogflow_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -19649,6 +19787,7 @@ export namespace dialogflow_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -19742,6 +19881,7 @@ export namespace dialogflow_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -19838,6 +19978,7 @@ export namespace dialogflow_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -19996,6 +20137,7 @@ export namespace dialogflow_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -20125,6 +20267,7 @@ export namespace dialogflow_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -20222,6 +20365,7 @@ export namespace dialogflow_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -20315,6 +20459,7 @@ export namespace dialogflow_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -20411,6 +20556,7 @@ export namespace dialogflow_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -20505,6 +20651,7 @@ export namespace dialogflow_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -20671,6 +20818,7 @@ export namespace dialogflow_v2 {
               rootUrl + '/v2/{+parent}/suggestions:suggestArticles'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -20767,6 +20915,7 @@ export namespace dialogflow_v2 {
               rootUrl + '/v2/{+parent}/suggestions:suggestFaqAnswers'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -20863,6 +21012,7 @@ export namespace dialogflow_v2 {
               rootUrl + '/v2/{+parent}/suggestions:suggestSmartReplies'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -21003,6 +21153,7 @@ export namespace dialogflow_v2 {
               rootUrl + '/v2/{+conversation}/suggestions:searchKnowledge'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -21100,6 +21251,7 @@ export namespace dialogflow_v2 {
               '/v2/{+conversation}/suggestions:suggestConversationSummary'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -21232,6 +21384,7 @@ export namespace dialogflow_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -21321,6 +21474,7 @@ export namespace dialogflow_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -21412,6 +21566,7 @@ export namespace dialogflow_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -21508,6 +21663,7 @@ export namespace dialogflow_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -21601,6 +21757,7 @@ export namespace dialogflow_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -21770,6 +21927,7 @@ export namespace dialogflow_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -21861,6 +22019,7 @@ export namespace dialogflow_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -21952,6 +22111,7 @@ export namespace dialogflow_v2 {
           {
             url: (rootUrl + '/v2/{+name}:export').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -22043,6 +22203,7 @@ export namespace dialogflow_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -22139,6 +22300,7 @@ export namespace dialogflow_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -22233,6 +22395,7 @@ export namespace dialogflow_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -22326,6 +22489,7 @@ export namespace dialogflow_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -22417,6 +22581,7 @@ export namespace dialogflow_v2 {
           {
             url: (rootUrl + '/v2/{+name}:reload').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -22645,6 +22810,7 @@ export namespace dialogflow_v2 {
               '$1'
             ),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -22736,6 +22902,7 @@ export namespace dialogflow_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -22830,6 +22997,7 @@ export namespace dialogflow_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -22926,6 +23094,7 @@ export namespace dialogflow_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -23022,6 +23191,7 @@ export namespace dialogflow_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -23202,6 +23372,7 @@ export namespace dialogflow_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -23293,6 +23464,7 @@ export namespace dialogflow_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -23390,6 +23562,7 @@ export namespace dialogflow_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -23486,6 +23659,7 @@ export namespace dialogflow_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -23580,6 +23754,7 @@ export namespace dialogflow_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -23674,6 +23849,7 @@ export namespace dialogflow_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -23770,6 +23946,7 @@ export namespace dialogflow_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -23862,6 +24039,7 @@ export namespace dialogflow_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -24069,6 +24247,7 @@ export namespace dialogflow_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -24164,6 +24343,7 @@ export namespace dialogflow_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -24259,6 +24439,7 @@ export namespace dialogflow_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -24349,6 +24530,7 @@ export namespace dialogflow_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -24440,6 +24622,7 @@ export namespace dialogflow_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -24537,6 +24720,7 @@ export namespace dialogflow_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -24631,6 +24815,7 @@ export namespace dialogflow_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -24833,6 +25018,7 @@ export namespace dialogflow_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -24928,6 +25114,7 @@ export namespace dialogflow_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -25023,6 +25210,7 @@ export namespace dialogflow_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -25170,6 +25358,7 @@ export namespace dialogflow_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -25260,6 +25449,7 @@ export namespace dialogflow_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -25352,6 +25542,7 @@ export namespace dialogflow_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -25449,6 +25640,7 @@ export namespace dialogflow_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -25546,6 +25738,7 @@ export namespace dialogflow_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -25640,6 +25833,7 @@ export namespace dialogflow_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -25825,6 +26019,7 @@ export namespace dialogflow_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -25973,6 +26168,7 @@ export namespace dialogflow_v2 {
               '$1'
             ),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -26068,6 +26264,7 @@ export namespace dialogflow_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -26192,6 +26389,7 @@ export namespace dialogflow_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -26282,6 +26480,7 @@ export namespace dialogflow_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -26374,6 +26573,7 @@ export namespace dialogflow_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -26471,6 +26671,7 @@ export namespace dialogflow_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -26565,6 +26766,7 @@ export namespace dialogflow_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -26727,6 +26929,7 @@ export namespace dialogflow_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -26817,6 +27020,7 @@ export namespace dialogflow_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -26909,6 +27113,7 @@ export namespace dialogflow_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -27006,6 +27211,7 @@ export namespace dialogflow_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -27100,6 +27306,7 @@ export namespace dialogflow_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -27262,6 +27469,7 @@ export namespace dialogflow_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -27357,6 +27565,7 @@ export namespace dialogflow_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -27451,6 +27660,7 @@ export namespace dialogflow_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -27540,6 +27750,7 @@ export namespace dialogflow_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -27631,6 +27842,7 @@ export namespace dialogflow_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -27727,6 +27939,7 @@ export namespace dialogflow_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -27820,6 +28033,7 @@ export namespace dialogflow_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -28045,6 +28259,7 @@ export namespace dialogflow_v2 {
               '$1'
             ),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -28140,6 +28355,7 @@ export namespace dialogflow_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -28264,6 +28480,7 @@ export namespace dialogflow_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -28354,6 +28571,7 @@ export namespace dialogflow_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -28446,6 +28664,7 @@ export namespace dialogflow_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -28543,6 +28762,7 @@ export namespace dialogflow_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -28637,6 +28857,7 @@ export namespace dialogflow_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -28799,6 +29020,7 @@ export namespace dialogflow_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -28889,6 +29111,7 @@ export namespace dialogflow_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -28981,6 +29204,7 @@ export namespace dialogflow_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -29078,6 +29302,7 @@ export namespace dialogflow_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -29172,6 +29397,7 @@ export namespace dialogflow_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -29333,6 +29559,7 @@ export namespace dialogflow_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -29422,6 +29649,7 @@ export namespace dialogflow_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -29513,6 +29741,7 @@ export namespace dialogflow_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -29609,6 +29838,7 @@ export namespace dialogflow_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -29702,6 +29932,7 @@ export namespace dialogflow_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -29863,6 +30094,7 @@ export namespace dialogflow_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -29956,6 +30188,7 @@ export namespace dialogflow_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -30096,6 +30329,7 @@ export namespace dialogflow_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -30188,6 +30422,7 @@ export namespace dialogflow_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -30280,6 +30515,7 @@ export namespace dialogflow_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -30377,6 +30613,7 @@ export namespace dialogflow_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -30472,6 +30709,7 @@ export namespace dialogflow_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -30635,6 +30873,7 @@ export namespace dialogflow_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -30727,6 +30966,7 @@ export namespace dialogflow_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -30819,6 +31059,7 @@ export namespace dialogflow_v2 {
           {
             url: (rootUrl + '/v2/{+name}:deploy').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -30911,6 +31152,7 @@ export namespace dialogflow_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -31008,6 +31250,7 @@ export namespace dialogflow_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -31105,6 +31348,7 @@ export namespace dialogflow_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -31273,6 +31517,7 @@ export namespace dialogflow_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -31365,6 +31610,7 @@ export namespace dialogflow_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -31462,6 +31708,7 @@ export namespace dialogflow_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -31601,6 +31848,7 @@ export namespace dialogflow_v2 {
               '/v2/{+conversationProfile}:clearSuggestionFeatureConfig'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -31696,6 +31944,7 @@ export namespace dialogflow_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -31786,6 +32035,7 @@ export namespace dialogflow_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -31878,6 +32128,7 @@ export namespace dialogflow_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -31975,6 +32226,7 @@ export namespace dialogflow_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -32069,6 +32321,7 @@ export namespace dialogflow_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -32165,6 +32418,7 @@ export namespace dialogflow_v2 {
               rootUrl + '/v2/{+conversationProfile}:setSuggestionFeatureConfig'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -32361,6 +32615,7 @@ export namespace dialogflow_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -32457,6 +32712,7 @@ export namespace dialogflow_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -32550,6 +32806,7 @@ export namespace dialogflow_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -32646,6 +32903,7 @@ export namespace dialogflow_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -32805,6 +33063,7 @@ export namespace dialogflow_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -32934,6 +33193,7 @@ export namespace dialogflow_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -33031,6 +33291,7 @@ export namespace dialogflow_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -33125,6 +33386,7 @@ export namespace dialogflow_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -33222,6 +33484,7 @@ export namespace dialogflow_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -33316,6 +33579,7 @@ export namespace dialogflow_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -33482,6 +33746,7 @@ export namespace dialogflow_v2 {
               rootUrl + '/v2/{+parent}/suggestions:suggestArticles'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -33578,6 +33843,7 @@ export namespace dialogflow_v2 {
               rootUrl + '/v2/{+parent}/suggestions:suggestFaqAnswers'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -33674,6 +33940,7 @@ export namespace dialogflow_v2 {
               rootUrl + '/v2/{+parent}/suggestions:suggestSmartReplies'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -33814,6 +34081,7 @@ export namespace dialogflow_v2 {
               rootUrl + '/v2/{+conversation}/suggestions:searchKnowledge'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -33911,6 +34179,7 @@ export namespace dialogflow_v2 {
               '/v2/{+conversation}/suggestions:suggestConversationSummary'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -34043,6 +34312,7 @@ export namespace dialogflow_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -34132,6 +34402,7 @@ export namespace dialogflow_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -34223,6 +34494,7 @@ export namespace dialogflow_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -34319,6 +34591,7 @@ export namespace dialogflow_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -34412,6 +34685,7 @@ export namespace dialogflow_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -34582,6 +34856,7 @@ export namespace dialogflow_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -34674,6 +34949,7 @@ export namespace dialogflow_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -34766,6 +35042,7 @@ export namespace dialogflow_v2 {
           {
             url: (rootUrl + '/v2/{+name}:export').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -34858,6 +35135,7 @@ export namespace dialogflow_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -34955,6 +35233,7 @@ export namespace dialogflow_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -35050,6 +35329,7 @@ export namespace dialogflow_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -35144,6 +35424,7 @@ export namespace dialogflow_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -35236,6 +35517,7 @@ export namespace dialogflow_v2 {
           {
             url: (rootUrl + '/v2/{+name}:reload').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -35428,6 +35710,7 @@ export namespace dialogflow_v2 {
           {
             url: (rootUrl + '/v2/{+name}:cancel').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -35519,6 +35802,7 @@ export namespace dialogflow_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -35613,6 +35897,7 @@ export namespace dialogflow_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -35750,6 +36035,7 @@ export namespace dialogflow_v2 {
               rootUrl + '/v2/{+parent}/suggestions:generateStatelessSummary'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -35846,6 +36132,7 @@ export namespace dialogflow_v2 {
               rootUrl + '/v2/{+parent}/suggestions:searchKnowledge'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -35967,6 +36254,7 @@ export namespace dialogflow_v2 {
           {
             url: (rootUrl + '/v2/{+name}:cancel').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -36058,6 +36346,7 @@ export namespace dialogflow_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -36152,6 +36441,7 @@ export namespace dialogflow_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -36289,6 +36579,7 @@ export namespace dialogflow_v2 {
               rootUrl + '/v2/{+parent}/suggestions:generateStatelessSummary'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -36384,6 +36675,7 @@ export namespace dialogflow_v2 {
               rootUrl + '/v2/{+parent}/suggestions:searchKnowledge'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),

@@ -384,7 +384,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "The name of the repository, for example: `projects/p1/locations/us-central1/repositories/repo1`.",
+                      "description": "The name of the repository, for example: `projects/p1/locations/us-central1/repositories/repo1`. For each location in a project, repository names must be unique.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/repositories/[^/]+$",
                       "required": true,
@@ -936,7 +936,7 @@
       }
     }
   },
-  "revision": "20240122",
+  "revision": "20240501",
   "rootUrl": "https://artifactregistry.googleapis.com/",
   "schemas": {
     "Binding": {
@@ -1008,7 +1008,7 @@
           "type": "array"
         },
         "name": {
-          "description": "The name of the file, for example: \"projects/p1/locations/us-central1/repositories/repo1/files/a%2Fb%2Fc.txt\". If the file ID part contains slashes, they are escaped.",
+          "description": "The name of the file, for example: `projects/p1/locations/us-central1/repositories/repo1/files/a%2Fb%2Fc.txt`. If the file ID part contains slashes, they are escaped.",
           "type": "string"
         },
         "owner": {
@@ -1331,8 +1331,13 @@
           "type": "object"
         },
         "name": {
-          "description": "The name of the repository, for example: `projects/p1/locations/us-central1/repositories/repo1`.",
+          "description": "The name of the repository, for example: `projects/p1/locations/us-central1/repositories/repo1`. For each location in a project, repository names must be unique.",
           "type": "string"
+        },
+        "satisfiesPzi": {
+          "description": "Output only. If set, the repository satisfies physical zone isolation.",
+          "readOnly": true,
+          "type": "boolean"
         },
         "satisfiesPzs": {
           "description": "Output only. If set, the repository satisfies physical zone separation.",

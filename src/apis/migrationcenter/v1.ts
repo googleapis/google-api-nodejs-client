@@ -150,7 +150,7 @@ export namespace migrationcenter_v1 {
      */
     aggregations?: Schema$Aggregation[];
     /**
-     * The aggregation will be performed on assets that match the provided filter.
+     * Optional. The aggregation will be performed on assets that match the provided filter.
      */
     filter?: string | null;
   }
@@ -317,6 +317,10 @@ export namespace migrationcenter_v1 {
      */
     attributes?: {[key: string]: string} | null;
     /**
+     * Optional. Frame collection type, if not specified the collection type will be based on the source type of the source the frame was reported on.
+     */
+    collectionType?: string | null;
+    /**
      * Labels as key value pairs.
      */
     labels?: {[key: string]: string} | null;
@@ -351,7 +355,7 @@ export namespace migrationcenter_v1 {
    */
   export interface Schema$AssetPerformanceData {
     /**
-     * Daily resource usage aggregations. Contains all of the data available for an asset, up to the last 420 days. Aggregations are sorted from oldest to most recent.
+     * Daily resource usage aggregations. Contains all of the data available for an asset, up to the last 40 days. Aggregations are sorted from oldest to most recent.
      */
     dailyResourceUsageAggregations?: Schema$DailyResourceUsageAggregation[];
   }
@@ -628,6 +632,71 @@ export namespace migrationcenter_v1 {
      * Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year.
      */
     year?: number | null;
+  }
+  /**
+   * Represents an installed Migration Center Discovery Client instance.
+   */
+  export interface Schema$DiscoveryClient {
+    /**
+     * Output only. Time when the discovery client was first created.
+     */
+    createTime?: string | null;
+    /**
+     * Optional. Free text description. Maximum length is 1000 characters.
+     */
+    description?: string | null;
+    /**
+     * Optional. Free text display name. Maximum length is 63 characters.
+     */
+    displayName?: string | null;
+    /**
+     * Output only. Errors affecting client functionality.
+     */
+    errors?: Schema$Status[];
+    /**
+     * Optional. Client expiration time in UTC. If specified, the backend will not accept new frames after this time.
+     */
+    expireTime?: string | null;
+    /**
+     * Output only. Last heartbeat time. Healthy clients are expected to send heartbeats regularly (normally every few minutes).
+     */
+    heartbeatTime?: string | null;
+    /**
+     * Optional. Labels as key value pairs.
+     */
+    labels?: {[key: string]: string} | null;
+    /**
+     * Output only. Identifier. Full name of this discovery client.
+     */
+    name?: string | null;
+    /**
+     * Required. Service account used by the discovery client for various operation.
+     */
+    serviceAccount?: string | null;
+    /**
+     * Output only. This field is intended for internal use.
+     */
+    signalsEndpoint?: string | null;
+    /**
+     * Required. Immutable. Full name of the source object associated with this discovery client.
+     */
+    source?: string | null;
+    /**
+     * Output only. Current state of the discovery client.
+     */
+    state?: string | null;
+    /**
+     * Optional. Input only. Client time-to-live. If specified, the backend will not accept new frames after this time. This field is input only. The derived expiration time is provided as output through the `expire_time` field.
+     */
+    ttl?: string | null;
+    /**
+     * Output only. Time when the discovery client was last updated. This value is not updated by heartbeats, to view the last heartbeat time please refer to the `heartbeat_time` field.
+     */
+    updateTime?: string | null;
+    /**
+     * Output only. Client version, as reported in recent heartbeat.
+     */
+    version?: string | null;
   }
   /**
    * Single disk entry.
@@ -1212,6 +1281,23 @@ export namespace migrationcenter_v1 {
     unreachable?: string[] | null;
   }
   /**
+   * Response message for listing discovery clients.
+   */
+  export interface Schema$ListDiscoveryClientsResponse {
+    /**
+     * List of discovery clients.
+     */
+    discoveryClients?: Schema$DiscoveryClient[];
+    /**
+     * A token that can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
+    /**
+     * Locations that could not be reached.
+     */
+    unreachable?: string[] | null;
+  }
+  /**
    * A response for listing error frames.
    */
   export interface Schema$ListErrorFramesResponse {
@@ -1532,11 +1618,11 @@ export namespace migrationcenter_v1 {
     allowedMachineSeries?: Schema$MachineSeries[];
   }
   /**
-   * A Compute Engine machine series.
+   * A machine series, for a target product (e.g. Compute Engine, Google Cloud VMware Engine).
    */
   export interface Schema$MachineSeries {
     /**
-     * Code to identify a Compute Engine machine series. Consult https://cloud.google.com/compute/docs/machine-resource#machine_type_comparison for more details on the available series.
+     * Code to identify a machine series. Consult this for more details on the available series for Compute Engine: https://cloud.google.com/compute/docs/machine-resource#machine_type_comparison Consult this for more details on the available series for Google Cloud VMware Engine: https://cloud.google.com/vmware-engine/pricing
      */
     code?: string | null;
   }
@@ -1889,7 +1975,7 @@ export namespace migrationcenter_v1 {
      */
     updateTime?: string | null;
     /**
-     * A set of preferences that applies to all virtual machines in the context.
+     * Optional. A set of preferences that applies to all virtual machines in the context.
      */
     virtualMachinePreferences?: Schema$VirtualMachinePreferences;
   }
@@ -2405,6 +2491,19 @@ export namespace migrationcenter_v1 {
     scanTime?: string | null;
   }
   /**
+   * A request to send a discovery client heartbeat.
+   */
+  export interface Schema$SendDiscoveryClientHeartbeatRequest {
+    /**
+     * Optional. Errors affecting client functionality.
+     */
+    errors?: Schema$Status[];
+    /**
+     * Optional. Client application version.
+     */
+    version?: string | null;
+  }
+  /**
    * Describes the Migration Center settings related to the project.
    */
   export interface Schema$Settings {
@@ -2690,6 +2789,7 @@ export namespace migrationcenter_v1 {
   export class Resource$Projects$Locations {
     context: APIRequestContext;
     assets: Resource$Projects$Locations$Assets;
+    discoveryClients: Resource$Projects$Locations$Discoveryclients;
     groups: Resource$Projects$Locations$Groups;
     importJobs: Resource$Projects$Locations$Importjobs;
     operations: Resource$Projects$Locations$Operations;
@@ -2699,6 +2799,9 @@ export namespace migrationcenter_v1 {
     constructor(context: APIRequestContext) {
       this.context = context;
       this.assets = new Resource$Projects$Locations$Assets(this.context);
+      this.discoveryClients = new Resource$Projects$Locations$Discoveryclients(
+        this.context
+      );
       this.groups = new Resource$Projects$Locations$Groups(this.context);
       this.importJobs = new Resource$Projects$Locations$Importjobs(
         this.context
@@ -2782,6 +2885,7 @@ export namespace migrationcenter_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2867,6 +2971,7 @@ export namespace migrationcenter_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2960,6 +3065,7 @@ export namespace migrationcenter_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3045,6 +3151,7 @@ export namespace migrationcenter_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -3202,6 +3309,7 @@ export namespace migrationcenter_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3292,6 +3400,7 @@ export namespace migrationcenter_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3387,6 +3496,7 @@ export namespace migrationcenter_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3472,6 +3582,7 @@ export namespace migrationcenter_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -3557,6 +3668,7 @@ export namespace migrationcenter_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3648,6 +3760,7 @@ export namespace migrationcenter_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3733,6 +3846,7 @@ export namespace migrationcenter_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -3829,6 +3943,7 @@ export namespace migrationcenter_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3970,6 +4085,645 @@ export namespace migrationcenter_v1 {
     requestBody?: Schema$Frames;
   }
 
+  export class Resource$Projects$Locations$Discoveryclients {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Creates a new discovery client.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Locations$Discoveryclients$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Projects$Locations$Discoveryclients$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    create(
+      params: Params$Resource$Projects$Locations$Discoveryclients$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Discoveryclients$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Discoveryclients$Create,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$Operation>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Discoveryclients$Create
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Discoveryclients$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Discoveryclients$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://migrationcenter.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/discoveryClients').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Deletes a discovery client.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Discoveryclients$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Discoveryclients$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    delete(
+      params: Params$Resource$Projects$Locations$Discoveryclients$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Discoveryclients$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Discoveryclients$Delete,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Discoveryclients$Delete
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Discoveryclients$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Discoveryclients$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://migrationcenter.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Gets the details of a discovery client.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Discoveryclients$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Discoveryclients$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$DiscoveryClient>;
+    get(
+      params: Params$Resource$Projects$Locations$Discoveryclients$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Discoveryclients$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$DiscoveryClient>,
+      callback: BodyResponseCallback<Schema$DiscoveryClient>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Discoveryclients$Get,
+      callback: BodyResponseCallback<Schema$DiscoveryClient>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$DiscoveryClient>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Discoveryclients$Get
+        | BodyResponseCallback<Schema$DiscoveryClient>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$DiscoveryClient>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$DiscoveryClient>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$DiscoveryClient> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Discoveryclients$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Discoveryclients$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://migrationcenter.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$DiscoveryClient>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$DiscoveryClient>(parameters);
+      }
+    }
+
+    /**
+     * Lists all the discovery clients in a given project and location.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Discoveryclients$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Discoveryclients$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListDiscoveryClientsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Discoveryclients$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Discoveryclients$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListDiscoveryClientsResponse>,
+      callback: BodyResponseCallback<Schema$ListDiscoveryClientsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Discoveryclients$List,
+      callback: BodyResponseCallback<Schema$ListDiscoveryClientsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListDiscoveryClientsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Discoveryclients$List
+        | BodyResponseCallback<Schema$ListDiscoveryClientsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListDiscoveryClientsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListDiscoveryClientsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListDiscoveryClientsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Discoveryclients$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Discoveryclients$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://migrationcenter.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/discoveryClients').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListDiscoveryClientsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListDiscoveryClientsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Updates a discovery client.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Locations$Discoveryclients$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Projects$Locations$Discoveryclients$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    patch(
+      params: Params$Resource$Projects$Locations$Discoveryclients$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Discoveryclients$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Discoveryclients$Patch,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$Operation>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Discoveryclients$Patch
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Discoveryclients$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Discoveryclients$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://migrationcenter.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Sends a discovery client heartbeat. Healthy clients are expected to send heartbeats regularly (normally every few minutes).
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    sendHeartbeat(
+      params: Params$Resource$Projects$Locations$Discoveryclients$Sendheartbeat,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    sendHeartbeat(
+      params?: Params$Resource$Projects$Locations$Discoveryclients$Sendheartbeat,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    sendHeartbeat(
+      params: Params$Resource$Projects$Locations$Discoveryclients$Sendheartbeat,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    sendHeartbeat(
+      params: Params$Resource$Projects$Locations$Discoveryclients$Sendheartbeat,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    sendHeartbeat(
+      params: Params$Resource$Projects$Locations$Discoveryclients$Sendheartbeat,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    sendHeartbeat(callback: BodyResponseCallback<Schema$Operation>): void;
+    sendHeartbeat(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Discoveryclients$Sendheartbeat
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Discoveryclients$Sendheartbeat;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Discoveryclients$Sendheartbeat;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://migrationcenter.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:sendHeartbeat').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Discoveryclients$Create
+    extends StandardParameters {
+    /**
+     * Required. User specified ID for the discovery client. It will become the last component of the discovery client name. The ID must be unique within the project, is restricted to lower-cased letters and has a maximum length of 63 characters. The ID must match the regular expression: `[a-z]([a-z0-9-]{0,61\}[a-z0-9])?`.
+     */
+    discoveryClientId?: string;
+    /**
+     * Required. Parent resource.
+     */
+    parent?: string;
+    /**
+     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$DiscoveryClient;
+  }
+  export interface Params$Resource$Projects$Locations$Discoveryclients$Delete
+    extends StandardParameters {
+    /**
+     * Required. The discovery client name.
+     */
+    name?: string;
+    /**
+     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Discoveryclients$Get
+    extends StandardParameters {
+    /**
+     * Required. The discovery client name.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Discoveryclients$List
+    extends StandardParameters {
+    /**
+     * Optional. Filter expression to filter results by.
+     */
+    filter?: string;
+    /**
+     * Optional. Field to sort by.
+     */
+    orderBy?: string;
+    /**
+     * Optional. The maximum number of items to return. The server may return fewer items than requested. If unspecified, the server will pick an appropriate default value.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A page token, received from a previous `ListDiscoveryClients` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListDiscoveryClients` must match the call that provided the page token.
+     */
+    pageToken?: string;
+    /**
+     * Required. Parent resource.
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Discoveryclients$Patch
+    extends StandardParameters {
+    /**
+     * Output only. Identifier. Full name of this discovery client.
+     */
+    name?: string;
+    /**
+     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+    /**
+     * Required. Update mask is used to specify the fields to be overwritten in the `DiscoveryClient` resource by the update. The values specified in the `update_mask` field are relative to the resource, not the full request. A field will be overwritten if it is in the mask. A single * value in the mask lets you to overwrite all fields.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$DiscoveryClient;
+  }
+  export interface Params$Resource$Projects$Locations$Discoveryclients$Sendheartbeat
+    extends StandardParameters {
+    /**
+     * Required. The discovery client name.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$SendDiscoveryClientHeartbeatRequest;
+  }
+
   export class Resource$Projects$Locations$Groups {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
@@ -4046,6 +4800,7 @@ export namespace migrationcenter_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4134,6 +4889,7 @@ export namespace migrationcenter_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4219,6 +4975,7 @@ export namespace migrationcenter_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -4304,6 +5061,7 @@ export namespace migrationcenter_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4395,6 +5153,7 @@ export namespace migrationcenter_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4480,6 +5239,7 @@ export namespace migrationcenter_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -4568,6 +5328,7 @@ export namespace migrationcenter_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4774,6 +5535,7 @@ export namespace migrationcenter_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4859,6 +5621,7 @@ export namespace migrationcenter_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -4944,6 +5707,7 @@ export namespace migrationcenter_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5037,6 +5801,7 @@ export namespace migrationcenter_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5122,6 +5887,7 @@ export namespace migrationcenter_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -5207,6 +5973,7 @@ export namespace migrationcenter_v1 {
           {
             url: (rootUrl + '/v1/{+name}:run').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5295,6 +6062,7 @@ export namespace migrationcenter_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5509,6 +6277,7 @@ export namespace migrationcenter_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5595,6 +6364,7 @@ export namespace migrationcenter_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -5681,6 +6451,7 @@ export namespace migrationcenter_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5777,6 +6548,7 @@ export namespace migrationcenter_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5931,6 +6703,7 @@ export namespace migrationcenter_v1 {
           {
             url: (rootUrl + '/v1/{+name}:cancel').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -6016,6 +6789,7 @@ export namespace migrationcenter_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -6101,6 +6875,7 @@ export namespace migrationcenter_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6194,6 +6969,7 @@ export namespace migrationcenter_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6335,6 +7111,7 @@ export namespace migrationcenter_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -6420,6 +7197,7 @@ export namespace migrationcenter_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -6505,6 +7283,7 @@ export namespace migrationcenter_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6600,6 +7379,7 @@ export namespace migrationcenter_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6685,6 +7465,7 @@ export namespace migrationcenter_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -6862,6 +7643,7 @@ export namespace migrationcenter_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -6947,6 +7729,7 @@ export namespace migrationcenter_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -7032,6 +7815,7 @@ export namespace migrationcenter_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -7127,6 +7911,7 @@ export namespace migrationcenter_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -7289,6 +8074,7 @@ export namespace migrationcenter_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -7375,6 +8161,7 @@ export namespace migrationcenter_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -7461,6 +8248,7 @@ export namespace migrationcenter_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -7553,6 +8341,7 @@ export namespace migrationcenter_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -7722,6 +8511,7 @@ export namespace migrationcenter_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -7807,6 +8597,7 @@ export namespace migrationcenter_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -7892,6 +8683,7 @@ export namespace migrationcenter_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -7983,6 +8775,7 @@ export namespace migrationcenter_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -8068,6 +8861,7 @@ export namespace migrationcenter_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -8243,6 +9037,7 @@ export namespace migrationcenter_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -8337,6 +9132,7 @@ export namespace migrationcenter_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),

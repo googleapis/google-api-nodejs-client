@@ -1,5 +1,40 @@
 # Changelog
 
+## [25.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/chat-v24.0.0...chat-v25.0.0) (2024-05-10)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#3484](https://github.com/googleapis/google-api-nodejs-client/issues/3484)) ([99b6c8d](https://github.com/googleapis/google-api-nodejs-client/commit/99b6c8de5beb8447d177048a64a977ee39ee5ee6))
+
+## [24.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/chat-v23.1.0...chat-v24.0.0) (2024-05-02)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+* This release has breaking changes.
+* This release has breaking changes.
+
+### Features
+
+* **chat:** update the API ([0810516](https://github.com/googleapis/google-api-nodejs-client/commit/081051658a22c7bf2cd8915838608f53fb620cd6))
+* **chat:** update the API ([2ac1b12](https://github.com/googleapis/google-api-nodejs-client/commit/2ac1b12dc6b8d84f33ce94eebf545161a58fa9fd))
+* run the generator ([#3434](https://github.com/googleapis/google-api-nodejs-client/issues/3434)) ([f0db524](https://github.com/googleapis/google-api-nodejs-client/commit/f0db524bb26f05cea3dec4c0ed66b496399e3857))
+* run the generator ([#3441](https://github.com/googleapis/google-api-nodejs-client/issues/3441)) ([f832463](https://github.com/googleapis/google-api-nodejs-client/commit/f832463312572dc58fe89f9254282982a520d1df))
+* run the generator ([#3456](https://github.com/googleapis/google-api-nodejs-client/issues/3456)) ([a865e81](https://github.com/googleapis/google-api-nodejs-client/commit/a865e81539b315d3b321650663ba0b2555b1e5a1))
+
+## [23.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/chat-v23.0.0...chat-v23.1.0) (2024-05-02)
+
+
+### Features
+
+* **chat:** update the API ([0810516](https://github.com/googleapis/google-api-nodejs-client/commit/081051658a22c7bf2cd8915838608f53fb620cd6))
+
 ## [23.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/chat-v22.0.0...chat-v23.0.0) (2024-04-04)
 
 

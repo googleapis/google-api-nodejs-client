@@ -660,7 +660,7 @@
       }
     }
   },
-  "revision": "20240319",
+  "revision": "20240415",
   "rootUrl": "https://connectors.googleapis.com/",
   "schemas": {
     "AccessCredentials": {
@@ -861,6 +861,28 @@
         "name": {
           "description": "The name of the entity type.",
           "type": "string"
+        },
+        "operations": {
+          "items": {
+            "enum": [
+              "OPERATION_UNSPECIFIED",
+              "LIST",
+              "GET",
+              "CREATE",
+              "UPDATE",
+              "DELETE"
+            ],
+            "enumDescriptions": [
+              "Operation unspecified.",
+              "This operation means entity type supports LIST method.",
+              "This operation means entity type supports GET method.",
+              "This operation means entity type supports CREATE method.",
+              "This operation means entity type supports UPDATE method.",
+              "This operation means entity type supports DELETE method."
+            ],
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"

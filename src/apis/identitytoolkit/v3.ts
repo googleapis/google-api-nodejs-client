@@ -1615,6 +1615,7 @@ export namespace identitytoolkit_v3 {
               rootUrl + '/identitytoolkit/v3/relyingparty/createAuthUri'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1708,6 +1709,7 @@ export namespace identitytoolkit_v3 {
               rootUrl + '/identitytoolkit/v3/relyingparty/deleteAccount'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1801,6 +1803,7 @@ export namespace identitytoolkit_v3 {
               rootUrl + '/identitytoolkit/v3/relyingparty/downloadAccount'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1894,6 +1897,7 @@ export namespace identitytoolkit_v3 {
               rootUrl + '/identitytoolkit/v3/relyingparty/emailLinkSignin'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1987,6 +1991,7 @@ export namespace identitytoolkit_v3 {
               rootUrl + '/identitytoolkit/v3/relyingparty/getAccountInfo'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2081,6 +2086,7 @@ export namespace identitytoolkit_v3 {
               '/identitytoolkit/v3/relyingparty/getOobConfirmationCode'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2176,6 +2182,7 @@ export namespace identitytoolkit_v3 {
               rootUrl + '/identitytoolkit/v3/relyingparty/getProjectConfig'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2271,6 +2278,7 @@ export namespace identitytoolkit_v3 {
               rootUrl + '/identitytoolkit/v3/relyingparty/publicKeys'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2366,6 +2374,7 @@ export namespace identitytoolkit_v3 {
               rootUrl + '/identitytoolkit/v3/relyingparty/getRecaptchaParam'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2459,6 +2468,7 @@ export namespace identitytoolkit_v3 {
               rootUrl + '/identitytoolkit/v3/relyingparty/resetPassword'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2552,6 +2562,7 @@ export namespace identitytoolkit_v3 {
               rootUrl + '/identitytoolkit/v3/relyingparty/sendVerificationCode'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2647,6 +2658,7 @@ export namespace identitytoolkit_v3 {
               rootUrl + '/identitytoolkit/v3/relyingparty/setAccountInfo'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2740,6 +2752,7 @@ export namespace identitytoolkit_v3 {
               rootUrl + '/identitytoolkit/v3/relyingparty/setProjectConfig'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2835,6 +2848,7 @@ export namespace identitytoolkit_v3 {
               rootUrl + '/identitytoolkit/v3/relyingparty/signOutUser'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2930,6 +2944,7 @@ export namespace identitytoolkit_v3 {
               rootUrl + '/identitytoolkit/v3/relyingparty/signupNewUser'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3023,6 +3038,7 @@ export namespace identitytoolkit_v3 {
               rootUrl + '/identitytoolkit/v3/relyingparty/uploadAccount'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3116,6 +3132,7 @@ export namespace identitytoolkit_v3 {
               rootUrl + '/identitytoolkit/v3/relyingparty/verifyAssertion'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3209,6 +3226,7 @@ export namespace identitytoolkit_v3 {
               rootUrl + '/identitytoolkit/v3/relyingparty/verifyCustomToken'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3302,6 +3320,7 @@ export namespace identitytoolkit_v3 {
               rootUrl + '/identitytoolkit/v3/relyingparty/verifyPassword'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3395,6 +3414,7 @@ export namespace identitytoolkit_v3 {
               rootUrl + '/identitytoolkit/v3/relyingparty/verifyPhoneNumber'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),

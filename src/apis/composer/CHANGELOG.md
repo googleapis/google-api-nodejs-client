@@ -1,5 +1,31 @@
 # Changelog
 
+## [8.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/composer-v7.0.1...composer-v8.0.0) (2024-05-02)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* **composer:** update the API ([0893491](https://github.com/googleapis/google-api-nodejs-client/commit/089349119edd00a095bcbafe00ada0d33ac774d1))
+* **composer:** update the API ([079615e](https://github.com/googleapis/google-api-nodejs-client/commit/079615eea24e9233d5226dbad40c2bce666c2486))
+* regenerate index files ([f453603](https://github.com/googleapis/google-api-nodejs-client/commit/f453603e5a2ccd4d90e18b7dff93352aaaf273f4))
+* run the generator ([#3456](https://github.com/googleapis/google-api-nodejs-client/issues/3456)) ([a865e81](https://github.com/googleapis/google-api-nodejs-client/commit/a865e81539b315d3b321650663ba0b2555b1e5a1))
+
+
+### Bug Fixes
+
+* **composer:** update the API ([75304a0](https://github.com/googleapis/google-api-nodejs-client/commit/75304a070d61822ec87af425147acf2a3e72afdf))
+
+## [7.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/composer-v7.0.0...composer-v7.0.1) (2024-05-02)
+
+
+### Bug Fixes
+
+* **composer:** update the API ([75304a0](https://github.com/googleapis/google-api-nodejs-client/commit/75304a070d61822ec87af425147acf2a3e72afdf))
+
 ## [7.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/composer-v6.2.0...composer-v7.0.0) (2024-04-04)
 
 

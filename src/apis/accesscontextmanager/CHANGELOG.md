@@ -1,5 +1,37 @@
 # Changelog
 
+## [7.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/accesscontextmanager-v7.0.0...accesscontextmanager-v7.1.0) (2024-05-07)
+
+
+### Features
+
+* **accesscontextmanager:** update the API ([9307046](https://github.com/googleapis/google-api-nodejs-client/commit/9307046d9275d490a1b0ad8a399f3053dc782b0a))
+
+## [7.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/accesscontextmanager-v6.0.1...accesscontextmanager-v7.0.0) (2024-05-02)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#3434](https://github.com/googleapis/google-api-nodejs-client/issues/3434)) ([f0db524](https://github.com/googleapis/google-api-nodejs-client/commit/f0db524bb26f05cea3dec4c0ed66b496399e3857))
+* run the generator ([#3441](https://github.com/googleapis/google-api-nodejs-client/issues/3441)) ([f832463](https://github.com/googleapis/google-api-nodejs-client/commit/f832463312572dc58fe89f9254282982a520d1df))
+
+
+### Bug Fixes
+
+* **accesscontextmanager:** update the API ([413c833](https://github.com/googleapis/google-api-nodejs-client/commit/413c833b3273a224f9df5fc36fae40669724e4fb))
+
+## [6.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/accesscontextmanager-v6.0.0...accesscontextmanager-v6.0.1) (2024-05-02)
+
+
+### Bug Fixes
+
+* **accesscontextmanager:** update the API ([413c833](https://github.com/googleapis/google-api-nodejs-client/commit/413c833b3273a224f9df5fc36fae40669724e4fb))
+
 ## [6.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/accesscontextmanager-v5.0.0...accesscontextmanager-v6.0.0) (2024-04-04)
 
 

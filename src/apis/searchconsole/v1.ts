@@ -704,6 +704,7 @@ export namespace searchconsole_v1 {
               rootUrl + '/webmasters/v3/sites/{siteUrl}/searchAnalytics/query'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -810,6 +811,7 @@ export namespace searchconsole_v1 {
               rootUrl + '/webmasters/v3/sites/{siteUrl}/sitemaps/{feedpath}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -896,6 +898,7 @@ export namespace searchconsole_v1 {
               rootUrl + '/webmasters/v3/sites/{siteUrl}/sitemaps/{feedpath}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -988,6 +991,7 @@ export namespace searchconsole_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1072,6 +1076,7 @@ export namespace searchconsole_v1 {
               rootUrl + '/webmasters/v3/sites/{siteUrl}/sitemaps/{feedpath}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
+            apiVersion: '',
           },
           options
         ),
@@ -1205,6 +1210,7 @@ export namespace searchconsole_v1 {
               '$1'
             ),
             method: 'PUT',
+            apiVersion: '',
           },
           options
         ),
@@ -1290,6 +1296,7 @@ export namespace searchconsole_v1 {
               '$1'
             ),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -1377,6 +1384,7 @@ export namespace searchconsole_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1467,6 +1475,7 @@ export namespace searchconsole_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1598,6 +1607,7 @@ export namespace searchconsole_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1718,6 +1728,7 @@ export namespace searchconsole_v1 {
               rootUrl + '/v1/urlTestingTools/mobileFriendlyTest:run'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),

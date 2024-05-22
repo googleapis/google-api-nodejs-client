@@ -129,11 +129,15 @@ export namespace run_v2 {
    */
   export interface Schema$GoogleCloudRunV2BinaryAuthorization {
     /**
-     * If present, indicates to use Breakglass using this justification. If use_default is False, then it must be empty. For more information on breakglass, see https://cloud.google.com/binary-authorization/docs/using-breakglass
+     * Optional. If present, indicates to use Breakglass using this justification. If use_default is False, then it must be empty. For more information on breakglass, see https://cloud.google.com/binary-authorization/docs/using-breakglass
      */
     breakglassJustification?: string | null;
     /**
-     * If True, indicates to use the default project's binary authorization policy. If False, binary authorization will be disabled.
+     * Optional. The path to a binary authorization policy. Format: projects/{project\}/platforms/cloudRun/{policy-name\}
+     */
+    policy?: string | null;
+    /**
+     * Optional. If True, indicates to use the default project's binary authorization policy. If False, binary authorization will be disabled.
      */
     useDefault?: boolean | null;
   }
@@ -164,7 +168,7 @@ export namespace run_v2 {
    */
   export interface Schema$GoogleCloudRunV2Condition {
     /**
-     * A reason for the execution condition.
+     * Output only. A reason for the execution condition.
      */
     executionReason?: string | null;
     /**
@@ -176,11 +180,11 @@ export namespace run_v2 {
      */
     message?: string | null;
     /**
-     * A common (service-level) reason for this condition.
+     * Output only. A common (service-level) reason for this condition.
      */
     reason?: string | null;
     /**
-     * A reason for the revision condition.
+     * Output only. A reason for the revision condition.
      */
     revisionReason?: string | null;
     /**
@@ -478,15 +482,50 @@ export namespace run_v2 {
     template?: Schema$GoogleCloudRunV2TaskTemplate;
   }
   /**
-   * Represents a GCS Bucket mounted as a volume.
+   * Request message for exporting Cloud Run image.
+   */
+  export interface Schema$GoogleCloudRunV2ExportImageRequest {
+    /**
+     * Required. The export destination url (the Artifact Registry repo).
+     */
+    destinationRepo?: string | null;
+  }
+  /**
+   * ExportImageResponse contains an operation Id to track the image export operation.
+   */
+  export interface Schema$GoogleCloudRunV2ExportImageResponse {
+    /**
+     * An operation ID used to track the status of image exports tied to the original pod ID in the request.
+     */
+    operationId?: string | null;
+  }
+  /**
+   * ExportStatusResponse contains the status of image export operation, with the status of each image export job.
+   */
+  export interface Schema$GoogleCloudRunV2ExportStatusResponse {
+    /**
+     * The status of each image export job.
+     */
+    imageExportStatuses?: Schema$GoogleCloudRunV2ImageExportStatus[];
+    /**
+     * The operation id.
+     */
+    operationId?: string | null;
+    /**
+     * Output only. The state of the overall export operation.
+     */
+    operationState?: string | null;
+  }
+  /**
+   * Represents a volume backed by a Cloud Storage bucket using Cloud Storage FUSE.
    */
   export interface Schema$GoogleCloudRunV2GCSVolumeSource {
     /**
-     * GCS Bucket name
+     * Cloud Storage Bucket name.
      */
     bucket?: string | null;
     /**
-     * If true, mount the GCS bucket as read-only
+     * If true, the volume will be mounted as read only for all mounts.
      */
     readOnly?: boolean | null;
   }
@@ -495,11 +534,11 @@ export namespace run_v2 {
    */
   export interface Schema$GoogleCloudRunV2GRPCAction {
     /**
-     * Port number of the gRPC service. Number must be in the range 1 to 65535. If not specified, defaults to the exposed port of the container, which is the value of container.ports[0].containerPort.
+     * Optional. Port number of the gRPC service. Number must be in the range 1 to 65535. If not specified, defaults to the exposed port of the container, which is the value of container.ports[0].containerPort.
      */
     port?: number | null;
     /**
-     * Service is the name of the service to place in the gRPC HealthCheckRequest (see https://github.com/grpc/grpc/blob/master/doc/health-checking.md ). If this is not specified, the default behavior is defined by gRPC.
+     * Optional. Service is the name of the service to place in the gRPC HealthCheckRequest (see https://github.com/grpc/grpc/blob/master/doc/health-checking.md ). If this is not specified, the default behavior is defined by gRPC.
      */
     service?: string | null;
   }
@@ -508,15 +547,15 @@ export namespace run_v2 {
    */
   export interface Schema$GoogleCloudRunV2HTTPGetAction {
     /**
-     * Custom headers to set in the request. HTTP allows repeated headers.
+     * Optional. Custom headers to set in the request. HTTP allows repeated headers.
      */
     httpHeaders?: Schema$GoogleCloudRunV2HTTPHeader[];
     /**
-     * Path to access on the HTTP server. Defaults to '/'.
+     * Optional. Path to access on the HTTP server. Defaults to '/'.
      */
     path?: string | null;
     /**
-     * Port number to access on the container. Must be in the range 1 to 65535. If not specified, defaults to the exposed port of the container, which is the value of container.ports[0].containerPort.
+     * Optional. Port number to access on the container. Must be in the range 1 to 65535. If not specified, defaults to the exposed port of the container, which is the value of container.ports[0].containerPort.
      */
     port?: number | null;
   }
@@ -529,9 +568,30 @@ export namespace run_v2 {
      */
     name?: string | null;
     /**
-     * The header field value
+     * Optional. The header field value
      */
     value?: string | null;
+  }
+  /**
+   * The status of an image export job.
+   */
+  export interface Schema$GoogleCloudRunV2ImageExportStatus {
+    /**
+     * The exported image ID as it will appear in Artifact Registry.
+     */
+    exportedImageDigest?: string | null;
+    /**
+     * Output only. Has the image export job finished (regardless of successful or failure).
+     */
+    exportJobState?: string | null;
+    /**
+     * The status of the export task if done.
+     */
+    status?: Schema$UtilStatusProto;
+    /**
+     * The image tag as it will appear in Artifact Registry.
+     */
+    tag?: string | null;
   }
   /**
    * Job represents the configuration of a single job, which references a container image that is run to completion.
@@ -618,6 +678,10 @@ export namespace run_v2 {
      */
     satisfiesPzs?: boolean | null;
     /**
+     * A unique string used as a suffix creating a new execution. The Job will become ready when the execution is successfully started. The sum of job name and token length must be fewer than 63 characters.
+     */
+    startExecutionToken?: string | null;
+    /**
      * Required. The template used to create executions for this Job.
      */
     template?: Schema$GoogleCloudRunV2ExecutionTemplate;
@@ -700,19 +764,28 @@ export namespace run_v2 {
     tasks?: Schema$GoogleCloudRunV2Task[];
   }
   /**
+   * Metadata represents the JSON encoded generated customer metadata.
+   */
+  export interface Schema$GoogleCloudRunV2Metadata {
+    /**
+     * JSON encoded Google-generated Customer Metadata for a given resource/project.
+     */
+    metadata?: string | null;
+  }
+  /**
    * Direct VPC egress settings.
    */
   export interface Schema$GoogleCloudRunV2NetworkInterface {
     /**
-     * The VPC network that the Cloud Run resource will be able to send traffic to. At least one of network or subnetwork must be specified. If both network and subnetwork are specified, the given VPC subnetwork must belong to the given VPC network. If network is not specified, it will be looked up from the subnetwork.
+     * Optional. The VPC network that the Cloud Run resource will be able to send traffic to. At least one of network or subnetwork must be specified. If both network and subnetwork are specified, the given VPC subnetwork must belong to the given VPC network. If network is not specified, it will be looked up from the subnetwork.
      */
     network?: string | null;
     /**
-     * The VPC subnetwork that the Cloud Run resource will get IPs from. At least one of network or subnetwork must be specified. If both network and subnetwork are specified, the given VPC subnetwork must belong to the given VPC network. If subnetwork is not specified, the subnetwork with the same name with the network will be used.
+     * Optional. The VPC subnetwork that the Cloud Run resource will get IPs from. At least one of network or subnetwork must be specified. If both network and subnetwork are specified, the given VPC subnetwork must belong to the given VPC network. If subnetwork is not specified, the subnetwork with the same name with the network will be used.
      */
     subnetwork?: string | null;
     /**
-     * Network tags applied to this Cloud Run resource.
+     * Optional. Network tags applied to this Cloud Run resource.
      */
     tags?: string[] | null;
   }
@@ -725,13 +798,22 @@ export namespace run_v2 {
      */
     path?: string | null;
     /**
-     * If true, mount the NFS volume as read only
+     * If true, the volume will be mounted as read only for all mounts.
      */
     readOnly?: boolean | null;
     /**
      * Hostname or IP address of the NFS server
      */
     server?: string | null;
+  }
+  /**
+   * Hardware constraints configuration.
+   */
+  export interface Schema$GoogleCloudRunV2NodeSelector {
+    /**
+     * Required. GPU accelerator type to attach to an instance.
+     */
+    accelerator?: string | null;
   }
   /**
    * RunJob Overrides that contains Execution fields to be overridden.
@@ -755,31 +837,31 @@ export namespace run_v2 {
    */
   export interface Schema$GoogleCloudRunV2Probe {
     /**
-     * Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1.
+     * Optional. Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1.
      */
     failureThreshold?: number | null;
     /**
-     * GRPC specifies an action involving a gRPC port. Exactly one of httpGet, tcpSocket, or grpc must be specified.
+     * Optional. GRPC specifies an action involving a gRPC port. Exactly one of httpGet, tcpSocket, or grpc must be specified.
      */
     grpc?: Schema$GoogleCloudRunV2GRPCAction;
     /**
-     * HTTPGet specifies the http request to perform. Exactly one of httpGet, tcpSocket, or grpc must be specified.
+     * Optional. HTTPGet specifies the http request to perform. Exactly one of httpGet, tcpSocket, or grpc must be specified.
      */
     httpGet?: Schema$GoogleCloudRunV2HTTPGetAction;
     /**
-     * Number of seconds after the container has started before the probe is initiated. Defaults to 0 seconds. Minimum value is 0. Maximum value for liveness probe is 3600. Maximum value for startup probe is 240.
+     * Optional. Number of seconds after the container has started before the probe is initiated. Defaults to 0 seconds. Minimum value is 0. Maximum value for liveness probe is 3600. Maximum value for startup probe is 240.
      */
     initialDelaySeconds?: number | null;
     /**
-     * How often (in seconds) to perform the probe. Default to 10 seconds. Minimum value is 1. Maximum value for liveness probe is 3600. Maximum value for startup probe is 240. Must be greater or equal than timeout_seconds.
+     * Optional. How often (in seconds) to perform the probe. Default to 10 seconds. Minimum value is 1. Maximum value for liveness probe is 3600. Maximum value for startup probe is 240. Must be greater or equal than timeout_seconds.
      */
     periodSeconds?: number | null;
     /**
-     * TCPSocket specifies an action involving a TCP port. Exactly one of httpGet, tcpSocket, or grpc must be specified.
+     * Optional. TCPSocket specifies an action involving a TCP port. Exactly one of httpGet, tcpSocket, or grpc must be specified.
      */
     tcpSocket?: Schema$GoogleCloudRunV2TCPSocketAction;
     /**
-     * Number of seconds after which the probe times out. Defaults to 1 second. Minimum value is 1. Maximum value is 3600. Must be smaller than period_seconds.
+     * Optional. Number of seconds after which the probe times out. Defaults to 1 second. Minimum value is 1. Maximum value is 3600. Must be smaller than period_seconds.
      */
     timeoutSeconds?: number | null;
   }
@@ -873,6 +955,10 @@ export namespace run_v2 {
      */
     name?: string | null;
     /**
+     * The node selector for the revision.
+     */
+    nodeSelector?: Schema$GoogleCloudRunV2NodeSelector;
+    /**
      * Output only. The generation of this Revision currently serving traffic. See comments in `reconciling` for additional information on reconciliation process in Cloud Run.
      */
     observedGeneration?: string | null;
@@ -930,11 +1016,11 @@ export namespace run_v2 {
    */
   export interface Schema$GoogleCloudRunV2RevisionScaling {
     /**
-     * Maximum number of serving instances that this resource should have.
+     * Optional. Maximum number of serving instances that this resource should have.
      */
     maxInstanceCount?: number | null;
     /**
-     * Minimum number of serving instances that this resource should have.
+     * Optional. Minimum number of serving instances that this resource should have.
      */
     minInstanceCount?: number | null;
   }
@@ -952,7 +1038,7 @@ export namespace run_v2 {
    */
   export interface Schema$GoogleCloudRunV2RevisionTemplate {
     /**
-     * Unstructured key value map that may be set by external tools to store and arbitrary metadata. They are not queryable and should be preserved when modifying objects. Cloud Run API v2 does not support annotations with `run.googleapis.com`, `cloud.googleapis.com`, `serving.knative.dev`, or `autoscaling.knative.dev` namespaces, and they will be rejected. All system annotations in v1 now have a corresponding field in v2 RevisionTemplate. This field follows Kubernetes annotations' namespacing, limits, and rules.
+     * Optional. Unstructured key value map that may be set by external tools to store and arbitrary metadata. They are not queryable and should be preserved when modifying objects. Cloud Run API v2 does not support annotations with `run.googleapis.com`, `cloud.googleapis.com`, `serving.knative.dev`, or `autoscaling.knative.dev` namespaces, and they will be rejected. All system annotations in v1 now have a corresponding field in v2 RevisionTemplate. This field follows Kubernetes annotations' namespacing, limits, and rules.
      */
     annotations?: {[key: string]: string} | null;
     /**
@@ -964,7 +1050,7 @@ export namespace run_v2 {
      */
     encryptionKey?: string | null;
     /**
-     * The sandbox environment to host this Revision.
+     * Optional. The sandbox environment to host this Revision.
      */
     executionEnvironment?: string | null;
     /**
@@ -972,23 +1058,27 @@ export namespace run_v2 {
      */
     healthCheckDisabled?: boolean | null;
     /**
-     * Unstructured key value map that can be used to organize and categorize objects. User-provided labels are shared with Google's billing system, so they can be used to filter, or break down billing charges by team, component, environment, state, etc. For more information, visit https://cloud.google.com/resource-manager/docs/creating-managing-labels or https://cloud.google.com/run/docs/configuring/labels. Cloud Run API v2 does not support labels with `run.googleapis.com`, `cloud.googleapis.com`, `serving.knative.dev`, or `autoscaling.knative.dev` namespaces, and they will be rejected. All system labels in v1 now have a corresponding field in v2 RevisionTemplate.
+     * Optional. Unstructured key value map that can be used to organize and categorize objects. User-provided labels are shared with Google's billing system, so they can be used to filter, or break down billing charges by team, component, environment, state, etc. For more information, visit https://cloud.google.com/resource-manager/docs/creating-managing-labels or https://cloud.google.com/run/docs/configuring/labels. Cloud Run API v2 does not support labels with `run.googleapis.com`, `cloud.googleapis.com`, `serving.knative.dev`, or `autoscaling.knative.dev` namespaces, and they will be rejected. All system labels in v1 now have a corresponding field in v2 RevisionTemplate.
      */
     labels?: {[key: string]: string} | null;
     /**
-     * Sets the maximum number of requests that each serving instance can receive.
+     * Optional. Sets the maximum number of requests that each serving instance can receive.
      */
     maxInstanceRequestConcurrency?: number | null;
     /**
-     * The unique name for the revision. If this field is omitted, it will be automatically generated based on the Service name.
+     * Optional. The node selector for the revision template.
+     */
+    nodeSelector?: Schema$GoogleCloudRunV2NodeSelector;
+    /**
+     * Optional. The unique name for the revision. If this field is omitted, it will be automatically generated based on the Service name.
      */
     revision?: string | null;
     /**
-     * Scaling settings for this Revision.
+     * Optional. Scaling settings for this Revision.
      */
     scaling?: Schema$GoogleCloudRunV2RevisionScaling;
     /**
-     * Email address of the IAM service account associated with the revision of the service. The service account represents the identity of the running revision, and determines what permissions the revision has. If not provided, the revision will use the project's default service account.
+     * Optional. Email address of the IAM service account associated with the revision of the service. The service account represents the identity of the running revision, and determines what permissions the revision has. If not provided, the revision will use the project's default service account.
      */
     serviceAccount?: string | null;
     /**
@@ -996,15 +1086,15 @@ export namespace run_v2 {
      */
     sessionAffinity?: boolean | null;
     /**
-     * Max allowed time for an instance to respond to a request.
+     * Optional. Max allowed time for an instance to respond to a request.
      */
     timeout?: string | null;
     /**
-     * A list of Volumes to make available to containers.
+     * Optional. A list of Volumes to make available to containers.
      */
     volumes?: Schema$GoogleCloudRunV2Volume[];
     /**
-     * VPC Access configuration to use for this Revision. For more information, visit https://cloud.google.com/run/docs/configuring/connecting-vpc.
+     * Optional. VPC Access configuration to use for this Revision. For more information, visit https://cloud.google.com/run/docs/configuring/connecting-vpc.
      */
     vpcAccess?: Schema$GoogleCloudRunV2VpcAccess;
   }
@@ -1064,7 +1154,7 @@ export namespace run_v2 {
      */
     annotations?: {[key: string]: string} | null;
     /**
-     * Settings for the Binary Authorization feature.
+     * Optional. Settings for the Binary Authorization feature.
      */
     binaryAuthorization?: Schema$GoogleCloudRunV2BinaryAuthorization;
     /**
@@ -1116,7 +1206,7 @@ export namespace run_v2 {
      */
     generation?: string | null;
     /**
-     * Provides the ingress settings for this Service. On output, returns the currently observed ingress settings, or INGRESS_TRAFFIC_UNSPECIFIED if no revision is active.
+     * Optional. Provides the ingress settings for this Service. On output, returns the currently observed ingress settings, or INGRESS_TRAFFIC_UNSPECIFIED if no revision is active.
      */
     ingress?: string | null;
     /**
@@ -1136,7 +1226,7 @@ export namespace run_v2 {
      */
     latestReadyRevision?: string | null;
     /**
-     * The launch stage as defined by [Google Cloud Platform Launch Stages](https://cloud.google.com/terms/launch-stages). Cloud Run supports `ALPHA`, `BETA`, and `GA`. If no value is specified, GA is assumed. Set the launch stage to a preview stage on input to allow use of preview features in that stage. On read (or output), describes whether the resource uses preview features. For example, if ALPHA is provided as input, but only BETA and GA-level features are used, this field will be BETA on output.
+     * Optional. The launch stage as defined by [Google Cloud Platform Launch Stages](https://cloud.google.com/terms/launch-stages). Cloud Run supports `ALPHA`, `BETA`, and `GA`. If no value is specified, GA is assumed. Set the launch stage to a preview stage on input to allow use of preview features in that stage. On read (or output), describes whether the resource uses preview features. For example, if ALPHA is provided as input, but only BETA and GA-level features are used, this field will be BETA on output.
      */
     launchStage?: string | null;
     /**
@@ -1168,7 +1258,7 @@ export namespace run_v2 {
      */
     terminalCondition?: Schema$GoogleCloudRunV2Condition;
     /**
-     * Specifies how to distribute traffic over a collection of Revisions belonging to the Service. If traffic is empty or not provided, defaults to 100% traffic to the latest `Ready` Revision.
+     * Optional. Specifies how to distribute traffic over a collection of Revisions belonging to the Service. If traffic is empty or not provided, defaults to 100% traffic to the latest `Ready` Revision.
      */
     traffic?: Schema$GoogleCloudRunV2TrafficTarget[];
     /**
@@ -1193,7 +1283,7 @@ export namespace run_v2 {
    */
   export interface Schema$GoogleCloudRunV2ServiceScaling {
     /**
-     * total min instances for the service. This number of instances is divided among all revisions with specified traffic based on the percent of traffic they are receiving. (BETA)
+     * Optional. total min instances for the service. This number of instances is divided among all revisions with specified traffic based on the percent of traffic they are receiving. (BETA)
      */
     minInstanceCount?: number | null;
   }
@@ -1352,7 +1442,7 @@ export namespace run_v2 {
      */
     encryptionKey?: string | null;
     /**
-     * The execution environment being used to host this Task.
+     * Optional. The execution environment being used to host this Task.
      */
     executionEnvironment?: string | null;
     /**
@@ -1360,19 +1450,19 @@ export namespace run_v2 {
      */
     maxRetries?: number | null;
     /**
-     * Email address of the IAM service account associated with the Task of a Job. The service account represents the identity of the running task, and determines what permissions the task has. If not provided, the task will use the project's default service account.
+     * Optional. Email address of the IAM service account associated with the Task of a Job. The service account represents the identity of the running task, and determines what permissions the task has. If not provided, the task will use the project's default service account.
      */
     serviceAccount?: string | null;
     /**
-     * Max allowed time duration the Task may be active before the system will actively try to mark it failed and kill associated containers. This applies per attempt of a task, meaning each retry can run for the full timeout. Defaults to 600 seconds.
+     * Optional. Max allowed time duration the Task may be active before the system will actively try to mark it failed and kill associated containers. This applies per attempt of a task, meaning each retry can run for the full timeout. Defaults to 600 seconds.
      */
     timeout?: string | null;
     /**
-     * A list of Volumes to make available to containers.
+     * Optional. A list of Volumes to make available to containers.
      */
     volumes?: Schema$GoogleCloudRunV2Volume[];
     /**
-     * VPC Access configuration to use for this Task. For more information, visit https://cloud.google.com/run/docs/configuring/connecting-vpc.
+     * Optional. VPC Access configuration to use for this Task. For more information, visit https://cloud.google.com/run/docs/configuring/connecting-vpc.
      */
     vpcAccess?: Schema$GoogleCloudRunV2VpcAccess;
   }
@@ -1381,7 +1471,7 @@ export namespace run_v2 {
    */
   export interface Schema$GoogleCloudRunV2TCPSocketAction {
     /**
-     * Port number to access on the container. Must be in the range 1 to 65535. If not specified, defaults to the exposed port of the container, which is the value of container.ports[0].containerPort.
+     * Optional. Port number to access on the container. Must be in the range 1 to 65535. If not specified, defaults to the exposed port of the container, which is the value of container.ports[0].containerPort.
      */
     port?: number | null;
   }
@@ -1499,11 +1589,11 @@ export namespace run_v2 {
      */
     connector?: string | null;
     /**
-     * Traffic VPC egress settings. If not provided, it defaults to PRIVATE_RANGES_ONLY.
+     * Optional. Traffic VPC egress settings. If not provided, it defaults to PRIVATE_RANGES_ONLY.
      */
     egress?: string | null;
     /**
-     * Direct VPC egress settings. Currently only single network interface is supported.
+     * Optional. Direct VPC egress settings. Currently only single network interface is supported.
      */
     networkInterfaces?: Schema$GoogleCloudRunV2NetworkInterface[];
   }
@@ -1615,6 +1705,10 @@ export namespace run_v2 {
      * Output only. Time at which execution of the build was finished. The difference between finish_time and start_time is the duration of the build's execution.
      */
     finishTime?: string | null;
+    /**
+     * Optional. Configuration for git operations.
+     */
+    gitConfig?: Schema$GoogleDevtoolsCloudbuildV1GitConfig;
     /**
      * Output only. Unique identifier of the build.
      */
@@ -1907,6 +2001,23 @@ export namespace run_v2 {
     revision?: string | null;
   }
   /**
+   * This config defines the location of a source through Developer Connect.
+   */
+  export interface Schema$GoogleDevtoolsCloudbuildV1DeveloperConnectConfig {
+    /**
+     * Required. Directory, relative to the source root, in which to run the build.
+     */
+    dir?: string | null;
+    /**
+     * Required. The Developer Connect Git repository link, formatted as `projects/x/locations/x/connections/x/gitRepositoryLink/x`.
+     */
+    gitRepositoryLink?: string | null;
+    /**
+     * Required. The revision to fetch from the Git repository such as a branch, a tag, a commit SHA, or any Git ref.
+     */
+    revision?: string | null;
+  }
+  /**
    * A fatal problem encountered during the execution of the build.
    */
   export interface Schema$GoogleDevtoolsCloudbuildV1FailureInfo {
@@ -1927,6 +2038,15 @@ export namespace run_v2 {
      * Collection of file hashes.
      */
     fileHash?: Schema$GoogleDevtoolsCloudbuildV1Hash[];
+  }
+  /**
+   * GitConfig is a configuration for git operations.
+   */
+  export interface Schema$GoogleDevtoolsCloudbuildV1GitConfig {
+    /**
+     * Configuration for HTTP related git operations.
+     */
+    http?: Schema$GoogleDevtoolsCloudbuildV1HttpConfig;
   }
   /**
    * Location of the source in any accessible Git repository.
@@ -1957,6 +2077,15 @@ export namespace run_v2 {
      * The hash value.
      */
     value?: string | null;
+  }
+  /**
+   * HttpConfig is a configuration for HTTP related git operations.
+   */
+  export interface Schema$GoogleDevtoolsCloudbuildV1HttpConfig {
+    /**
+     * SecretVersion resource of the HTTP proxy URL. The proxy URL should be in format protocol://@]proxyhost[:port].
+     */
+    proxySecretVersionName?: string | null;
   }
   /**
    * Pairs a set of secret environment variables mapped to encrypted values with the Cloud KMS key to use to decrypt the value.
@@ -2085,7 +2214,7 @@ export namespace run_v2 {
      */
     buildStepImages?: string[] | null;
     /**
-     * List of build step outputs, produced by builder images, in the order corresponding to build step indices. [Cloud Builders](https://cloud.google.com/cloud-build/docs/cloud-builders) can produce this output by writing to `$BUILDER_OUTPUT/output`. Only the first 50KB of data is stored.
+     * List of build step outputs, produced by builder images, in the order corresponding to build step indices. [Cloud Builders](https://cloud.google.com/cloud-build/docs/cloud-builders) can produce this output by writing to `$BUILDER_OUTPUT/output`. Only the first 50KB of data is stored. Note that the `$BUILDER_OUTPUT` variable is read-only and can't be substituted.
      */
     buildStepOutputs?: string[] | null;
     /**
@@ -2156,6 +2285,10 @@ export namespace run_v2 {
      * Optional. If provided, get the source from this 2nd-gen Google Cloud Build repository resource.
      */
     connectedRepository?: Schema$GoogleDevtoolsCloudbuildV1ConnectedRepository;
+    /**
+     * If provided, get the source from this Developer Connect config.
+     */
+    developerConnectConfig?: Schema$GoogleDevtoolsCloudbuildV1DeveloperConnectConfig;
     /**
      * If provided, get the source from this Git repository.
      */
@@ -2516,6 +2649,35 @@ export namespace run_v2 {
      */
     title?: string | null;
   }
+  /**
+   * This is proto2's version of MessageSet.
+   */
+  export interface Schema$Proto2BridgeMessageSet {}
+  /**
+   * Wire-format for a Status object
+   */
+  export interface Schema$UtilStatusProto {
+    /**
+     * The canonical error code (see codes.proto) that most closely corresponds to this status. This may be missing, and in the common case of the generic space, it definitely will be.
+     */
+    canonicalCode?: number | null;
+    /**
+     * Numeric code drawn from the space specified below. Often, this is the canonical error space, and code is drawn from google3/util/task/codes.proto
+     */
+    code?: number | null;
+    /**
+     * Detail message
+     */
+    message?: string | null;
+    /**
+     * message_set associates an arbitrary proto message with the status.
+     */
+    messageSet?: Schema$Proto2BridgeMessageSet;
+    /**
+     * The following are usually only present when code != 0 Space to which this status belongs
+     */
+    space?: string | null;
+  }
 
   export class Resource$Projects {
     context: APIRequestContext;
@@ -2539,6 +2701,320 @@ export namespace run_v2 {
       );
       this.services = new Resource$Projects$Locations$Services(this.context);
     }
+
+    /**
+     * Export image for a given resource.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    exportImage(
+      params: Params$Resource$Projects$Locations$Exportimage,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    exportImage(
+      params?: Params$Resource$Projects$Locations$Exportimage,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudRunV2ExportImageResponse>;
+    exportImage(
+      params: Params$Resource$Projects$Locations$Exportimage,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    exportImage(
+      params: Params$Resource$Projects$Locations$Exportimage,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudRunV2ExportImageResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudRunV2ExportImageResponse>
+    ): void;
+    exportImage(
+      params: Params$Resource$Projects$Locations$Exportimage,
+      callback: BodyResponseCallback<Schema$GoogleCloudRunV2ExportImageResponse>
+    ): void;
+    exportImage(
+      callback: BodyResponseCallback<Schema$GoogleCloudRunV2ExportImageResponse>
+    ): void;
+    exportImage(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Exportimage
+        | BodyResponseCallback<Schema$GoogleCloudRunV2ExportImageResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudRunV2ExportImageResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudRunV2ExportImageResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudRunV2ExportImageResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Exportimage;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Exportimage;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://run.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+name}:exportImage').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudRunV2ExportImageResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudRunV2ExportImageResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Export image metadata for a given resource.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    exportImageMetadata(
+      params: Params$Resource$Projects$Locations$Exportimagemetadata,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    exportImageMetadata(
+      params?: Params$Resource$Projects$Locations$Exportimagemetadata,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudRunV2Metadata>;
+    exportImageMetadata(
+      params: Params$Resource$Projects$Locations$Exportimagemetadata,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    exportImageMetadata(
+      params: Params$Resource$Projects$Locations$Exportimagemetadata,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudRunV2Metadata>,
+      callback: BodyResponseCallback<Schema$GoogleCloudRunV2Metadata>
+    ): void;
+    exportImageMetadata(
+      params: Params$Resource$Projects$Locations$Exportimagemetadata,
+      callback: BodyResponseCallback<Schema$GoogleCloudRunV2Metadata>
+    ): void;
+    exportImageMetadata(
+      callback: BodyResponseCallback<Schema$GoogleCloudRunV2Metadata>
+    ): void;
+    exportImageMetadata(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Exportimagemetadata
+        | BodyResponseCallback<Schema$GoogleCloudRunV2Metadata>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudRunV2Metadata>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudRunV2Metadata>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudRunV2Metadata>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Exportimagemetadata;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Exportimagemetadata;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://run.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+name}:exportImageMetadata').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudRunV2Metadata>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudRunV2Metadata>(parameters);
+      }
+    }
+
+    /**
+     * Export generated customer metadata for a given resource.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    exportMetadata(
+      params: Params$Resource$Projects$Locations$Exportmetadata,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    exportMetadata(
+      params?: Params$Resource$Projects$Locations$Exportmetadata,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudRunV2Metadata>;
+    exportMetadata(
+      params: Params$Resource$Projects$Locations$Exportmetadata,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    exportMetadata(
+      params: Params$Resource$Projects$Locations$Exportmetadata,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudRunV2Metadata>,
+      callback: BodyResponseCallback<Schema$GoogleCloudRunV2Metadata>
+    ): void;
+    exportMetadata(
+      params: Params$Resource$Projects$Locations$Exportmetadata,
+      callback: BodyResponseCallback<Schema$GoogleCloudRunV2Metadata>
+    ): void;
+    exportMetadata(
+      callback: BodyResponseCallback<Schema$GoogleCloudRunV2Metadata>
+    ): void;
+    exportMetadata(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Exportmetadata
+        | BodyResponseCallback<Schema$GoogleCloudRunV2Metadata>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudRunV2Metadata>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudRunV2Metadata>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudRunV2Metadata>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Exportmetadata;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Exportmetadata;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://run.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+name}:exportMetadata').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudRunV2Metadata>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudRunV2Metadata>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Exportimage
+    extends StandardParameters {
+    /**
+     * Required. The name of the resource of which image metadata should be exported. Format: `projects/{project_id_or_number\}/locations/{location\}/services/{service\}/revisions/{revision\}` for Revision `projects/{project_id_or_number\}/locations/{location\}/jobs/{job\}/executions/{execution\}` for Execution
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudRunV2ExportImageRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Exportimagemetadata
+    extends StandardParameters {
+    /**
+     * Required. The name of the resource of which image metadata should be exported. Format: `projects/{project_id_or_number\}/locations/{location\}/services/{service\}/revisions/{revision\}` for Revision `projects/{project_id_or_number\}/locations/{location\}/jobs/{job\}/executions/{execution\}` for Execution
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Exportmetadata
+    extends StandardParameters {
+    /**
+     * Required. The name of the resource of which metadata should be exported. Format: `projects/{project_id_or_number\}/locations/{location\}/services/{service\}` for Service `projects/{project_id_or_number\}/locations/{location\}/services/{service\}/revisions/{revision\}` for Revision `projects/{project_id_or_number\}/locations/{location\}/jobs/{job\}/executions/{execution\}` for Execution
+     */
+    name?: string;
   }
 
   export class Resource$Projects$Locations$Jobs {
@@ -2624,6 +3100,7 @@ export namespace run_v2 {
           {
             url: (rootUrl + '/v2/{+parent}/jobs').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2715,6 +3192,7 @@ export namespace run_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -2802,6 +3280,7 @@ export namespace run_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2894,6 +3373,7 @@ export namespace run_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2985,6 +3465,7 @@ export namespace run_v2 {
           {
             url: (rootUrl + '/v2/{+parent}/jobs').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3078,6 +3559,7 @@ export namespace run_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -3169,6 +3651,7 @@ export namespace run_v2 {
           {
             url: (rootUrl + '/v2/{+name}:run').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3261,6 +3744,7 @@ export namespace run_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3356,6 +3840,7 @@ export namespace run_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3452,7 +3937,7 @@ export namespace run_v2 {
   export interface Params$Resource$Projects$Locations$Jobs$Patch
     extends StandardParameters {
     /**
-     * If set to true, and if the Job does not exist, it will create a new one. Caller must have both create and update permissions for this call if this is set to true.
+     * Optional. If set to true, and if the Job does not exist, it will create a new one. Caller must have both create and update permissions for this call if this is set to true.
      */
     allowMissing?: boolean;
     /**
@@ -3590,6 +4075,7 @@ export namespace run_v2 {
           {
             url: (rootUrl + '/v2/{+name}:cancel').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3682,6 +4168,7 @@ export namespace run_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -3697,6 +4184,104 @@ export namespace run_v2 {
         );
       } else {
         return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+
+    /**
+     * Read the status of an image export operation.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    exportStatus(
+      params: Params$Resource$Projects$Locations$Jobs$Executions$Exportstatus,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    exportStatus(
+      params?: Params$Resource$Projects$Locations$Jobs$Executions$Exportstatus,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudRunV2ExportStatusResponse>;
+    exportStatus(
+      params: Params$Resource$Projects$Locations$Jobs$Executions$Exportstatus,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    exportStatus(
+      params: Params$Resource$Projects$Locations$Jobs$Executions$Exportstatus,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudRunV2ExportStatusResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudRunV2ExportStatusResponse>
+    ): void;
+    exportStatus(
+      params: Params$Resource$Projects$Locations$Jobs$Executions$Exportstatus,
+      callback: BodyResponseCallback<Schema$GoogleCloudRunV2ExportStatusResponse>
+    ): void;
+    exportStatus(
+      callback: BodyResponseCallback<Schema$GoogleCloudRunV2ExportStatusResponse>
+    ): void;
+    exportStatus(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Jobs$Executions$Exportstatus
+        | BodyResponseCallback<Schema$GoogleCloudRunV2ExportStatusResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudRunV2ExportStatusResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudRunV2ExportStatusResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudRunV2ExportStatusResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Jobs$Executions$Exportstatus;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Jobs$Executions$Exportstatus;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://run.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+name}/{+operationId}:exportStatus').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name', 'operationId'],
+        pathParams: ['name', 'operationId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudRunV2ExportStatusResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudRunV2ExportStatusResponse>(
+          parameters
+        );
       }
     }
 
@@ -3771,6 +4356,7 @@ export namespace run_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3865,6 +4451,7 @@ export namespace run_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3912,6 +4499,17 @@ export namespace run_v2 {
      * Indicates that the request should be validated without actually deleting any resources.
      */
     validateOnly?: boolean;
+  }
+  export interface Params$Resource$Projects$Locations$Jobs$Executions$Exportstatus
+    extends StandardParameters {
+    /**
+     * Required. The name of the resource of which image export operation status has to be fetched. Format: `projects/{project_id_or_number\}/locations/{location\}/services/{service\}/revisions/{revision\}` for Revision `projects/{project_id_or_number\}/locations/{location\}/jobs/{job\}/executions/{execution\}` for Execution
+     */
+    name?: string;
+    /**
+     * Required. The operation id returned from ExportImage.
+     */
+    operationId?: string;
   }
   export interface Params$Resource$Projects$Locations$Jobs$Executions$Get
     extends StandardParameters {
@@ -4018,6 +4616,7 @@ export namespace run_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4113,6 +4712,7 @@ export namespace run_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4236,6 +4836,7 @@ export namespace run_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -4327,6 +4928,7 @@ export namespace run_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4421,6 +5023,7 @@ export namespace run_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4514,6 +5117,7 @@ export namespace run_v2 {
           {
             url: (rootUrl + '/v2/{+name}:wait').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4665,6 +5269,7 @@ export namespace run_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4756,6 +5361,7 @@ export namespace run_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -4845,6 +5451,7 @@ export namespace run_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4937,6 +5544,7 @@ export namespace run_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5031,6 +5639,7 @@ export namespace run_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5124,6 +5733,7 @@ export namespace run_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -5216,6 +5826,7 @@ export namespace run_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5311,6 +5922,7 @@ export namespace run_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5407,7 +6019,7 @@ export namespace run_v2 {
   export interface Params$Resource$Projects$Locations$Services$Patch
     extends StandardParameters {
     /**
-     * If set to true, and if the Service does not exist, it will create a new one. The caller must have 'run.services.create' permissions if this is set to true and the Service does not exist.
+     * Optional. If set to true, and if the Service does not exist, it will create a new one. The caller must have 'run.services.create' permissions if this is set to true and the Service does not exist.
      */
     allowMissing?: boolean;
     /**
@@ -5533,6 +6145,7 @@ export namespace run_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -5548,6 +6161,104 @@ export namespace run_v2 {
         );
       } else {
         return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+
+    /**
+     * Read the status of an image export operation.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    exportStatus(
+      params: Params$Resource$Projects$Locations$Services$Revisions$Exportstatus,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    exportStatus(
+      params?: Params$Resource$Projects$Locations$Services$Revisions$Exportstatus,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudRunV2ExportStatusResponse>;
+    exportStatus(
+      params: Params$Resource$Projects$Locations$Services$Revisions$Exportstatus,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    exportStatus(
+      params: Params$Resource$Projects$Locations$Services$Revisions$Exportstatus,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudRunV2ExportStatusResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudRunV2ExportStatusResponse>
+    ): void;
+    exportStatus(
+      params: Params$Resource$Projects$Locations$Services$Revisions$Exportstatus,
+      callback: BodyResponseCallback<Schema$GoogleCloudRunV2ExportStatusResponse>
+    ): void;
+    exportStatus(
+      callback: BodyResponseCallback<Schema$GoogleCloudRunV2ExportStatusResponse>
+    ): void;
+    exportStatus(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Services$Revisions$Exportstatus
+        | BodyResponseCallback<Schema$GoogleCloudRunV2ExportStatusResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudRunV2ExportStatusResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudRunV2ExportStatusResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudRunV2ExportStatusResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Services$Revisions$Exportstatus;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Services$Revisions$Exportstatus;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://run.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+name}/{+operationId}:exportStatus').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name', 'operationId'],
+        pathParams: ['name', 'operationId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudRunV2ExportStatusResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudRunV2ExportStatusResponse>(
+          parameters
+        );
       }
     }
 
@@ -5623,6 +6334,7 @@ export namespace run_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5718,6 +6430,7 @@ export namespace run_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5753,6 +6466,17 @@ export namespace run_v2 {
      * Indicates that the request should be validated without actually deleting any resources.
      */
     validateOnly?: boolean;
+  }
+  export interface Params$Resource$Projects$Locations$Services$Revisions$Exportstatus
+    extends StandardParameters {
+    /**
+     * Required. The name of the resource of which image export operation status has to be fetched. Format: `projects/{project_id_or_number\}/locations/{location\}/services/{service\}/revisions/{revision\}` for Revision `projects/{project_id_or_number\}/locations/{location\}/jobs/{job\}/executions/{execution\}` for Execution
+     */
+    name?: string;
+    /**
+     * Required. The operation id returned from ExportImage.
+     */
+    operationId?: string;
   }
   export interface Params$Resource$Projects$Locations$Services$Revisions$Get
     extends StandardParameters {

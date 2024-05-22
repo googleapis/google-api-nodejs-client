@@ -1,5 +1,32 @@
 # Changelog
 
+## [18.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/displayvideo-v17.1.0...displayvideo-v18.0.0) (2024-05-02)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+* This release has breaking changes.
+
+### Features
+
+* **displayvideo:** update the API ([90937cd](https://github.com/googleapis/google-api-nodejs-client/commit/90937cda7d6475fd0f04ac2332f3351f53f08b22))
+* **displayvideo:** update the API ([d50a81a](https://github.com/googleapis/google-api-nodejs-client/commit/d50a81acf1bd2260254213206f318090eb7bec37))
+* run the generator ([#3434](https://github.com/googleapis/google-api-nodejs-client/issues/3434)) ([f0db524](https://github.com/googleapis/google-api-nodejs-client/commit/f0db524bb26f05cea3dec4c0ed66b496399e3857))
+* run the generator ([#3456](https://github.com/googleapis/google-api-nodejs-client/issues/3456)) ([a865e81](https://github.com/googleapis/google-api-nodejs-client/commit/a865e81539b315d3b321650663ba0b2555b1e5a1))
+
+
+### Bug Fixes
+
+* **displayvideo:** update the API ([0a0acce](https://github.com/googleapis/google-api-nodejs-client/commit/0a0acce896d648437ed2676ea5923d10784e8e34))
+
+## [17.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/displayvideo-v17.0.0...displayvideo-v17.1.0) (2024-05-02)
+
+
+### Features
+
+* **displayvideo:** update the API ([90937cd](https://github.com/googleapis/google-api-nodejs-client/commit/90937cda7d6475fd0f04ac2332f3351f53f08b22))
+
 ## [17.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/displayvideo-v16.0.0...displayvideo-v17.0.0) (2024-04-04)
 
 

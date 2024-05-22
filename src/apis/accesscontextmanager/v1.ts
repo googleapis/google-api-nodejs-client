@@ -198,6 +198,19 @@ export namespace accesscontextmanager_v1 {
     serviceName?: string | null;
   }
   /**
+   * An application that accesses Google Cloud APIs.
+   */
+  export interface Schema$Application {
+    /**
+     * The OAuth client ID of the application.
+     */
+    clientId?: string | null;
+    /**
+     * The name of the application. Example: "Cloud Console"
+     */
+    name?: string | null;
+  }
+  /**
    * Specifies the audit configuration for a service. The configuration determines which permission types are logged, and what identities, if any, are exempted from logging. An AuditConfig must have one or more AuditLogConfigs. If there are AuditConfigs for both `allServices` and a specific service, the union of the two AuditConfigs is used for that service: the log_types specified in each AuditConfig are enabled, and the exempted_members in each AuditLogConfig are exempted. Example Policy with multiple AuditConfigs: { "audit_configs": [ { "service": "allServices", "audit_log_configs": [ { "log_type": "DATA_READ", "exempted_members": [ "user:jose@example.com" ] \}, { "log_type": "DATA_WRITE" \}, { "log_type": "ADMIN_READ" \} ] \}, { "service": "sampleservice.googleapis.com", "audit_log_configs": [ { "log_type": "DATA_READ" \}, { "log_type": "DATA_WRITE", "exempted_members": [ "user:aliya@example.com" ] \} ] \} ] \} For sampleservice, this policy enables DATA_READ, DATA_WRITE and ADMIN_READ logging. It also exempts `jose@example.com` from DATA_READ logging, and `aliya@example.com` from DATA_WRITE logging.
    */
   export interface Schema$AuditConfig {
@@ -376,7 +389,7 @@ export namespace accesscontextmanager_v1 {
    */
   export interface Schema$EgressFrom {
     /**
-     * A list of identities that are allowed access through this [EgressPolicy], in the format of `user:{email_id\}` or `serviceAccount:{email_id\}`.
+     * A list of identities that are allowed access through [EgressPolicy]. Identities can be an individual user, service account, Google group, or third-party identity. The `v1` identities that have the prefix `user`, `group`, `serviceAccount`, `principal`, and `principalSet` in https://cloud.google.com/iam/docs/principal-identifiers#v1 are supported.
      */
     identities?: string[] | null;
     /**
@@ -419,7 +432,7 @@ export namespace accesscontextmanager_v1 {
    */
   export interface Schema$EgressTo {
     /**
-     * A list of external resources that are allowed to be accessed. Only AWS and Azure resources are supported. For Amazon S3, the supported format is s3://BUCKET_NAME. For Azure Storage, the supported format is azure://myaccount.blob.core.windows.net/CONTAINER_NAME. A request matches if it contains an external resource in this list (Example: s3://bucket/path). Currently '*' is not allowed.
+     * A list of external resources that are allowed to be accessed. Only AWS and Azure resources are supported. For Amazon S3, the supported formats are s3://BUCKET_NAME, s3a://BUCKET_NAME, and s3n://BUCKET_NAME. For Azure Storage, the supported format is azure://myaccount.blob.core.windows.net/CONTAINER_NAME. A request matches if it contains an external resource in this list (Example: s3://bucket/path). Currently '*' is not allowed.
      */
     externalResources?: string[] | null;
     /**
@@ -476,6 +489,10 @@ export namespace accesscontextmanager_v1 {
      * Immutable. Assigned by the server during creation. The last segment has an arbitrary length and has only URI unreserved characters (as defined by [RFC 3986 Section 2.3](https://tools.ietf.org/html/rfc3986#section-2.3)). Should not be specified by the client during creation. Example: "organizations/256/gcpUserAccessBindings/b3-BhcX_Ud5N"
      */
     name?: string | null;
+    /**
+     * Optional. A list of applications that are subject to this binding's restrictions. If the list is empty, the binding restrictions will universally apply to all applications.
+     */
+    restrictedClientApplications?: Schema$Application[];
   }
   /**
    * Metadata of GCP Access Binding Long Running Operations.
@@ -504,7 +521,7 @@ export namespace accesscontextmanager_v1 {
    */
   export interface Schema$IngressFrom {
     /**
-     * A list of identities that are allowed access through this ingress policy, in the format of `user:{email_id\}` or `serviceAccount:{email_id\}`.
+     * A list of identities that are allowed access through [IngressPolicy]. Identities can be an individual user, service account, Google group, or third-party identity. The `v1` identities that have the prefix `user`, `group`, `serviceAccount`, `principal`, and `principalSet` in https://cloud.google.com/iam/docs/principal-identifiers#v1 are supported.
      */
     identities?: string[] | null;
     /**
@@ -1025,6 +1042,7 @@ export namespace accesscontextmanager_v1 {
           {
             url: (rootUrl + '/v1/accessPolicies').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1110,6 +1128,7 @@ export namespace accesscontextmanager_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -1195,6 +1214,7 @@ export namespace accesscontextmanager_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1283,6 +1303,7 @@ export namespace accesscontextmanager_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1375,6 +1396,7 @@ export namespace accesscontextmanager_v1 {
           {
             url: (rootUrl + '/v1/accessPolicies').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1460,6 +1482,7 @@ export namespace accesscontextmanager_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -1548,6 +1571,7 @@ export namespace accesscontextmanager_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1643,6 +1667,7 @@ export namespace accesscontextmanager_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1827,6 +1852,7 @@ export namespace accesscontextmanager_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1912,6 +1938,7 @@ export namespace accesscontextmanager_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -1997,6 +2024,7 @@ export namespace accesscontextmanager_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2090,6 +2118,7 @@ export namespace accesscontextmanager_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2175,6 +2204,7 @@ export namespace accesscontextmanager_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -2263,6 +2293,7 @@ export namespace accesscontextmanager_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2359,6 +2390,7 @@ export namespace accesscontextmanager_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2545,6 +2577,7 @@ export namespace accesscontextmanager_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2631,6 +2664,7 @@ export namespace accesscontextmanager_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -2719,6 +2753,7 @@ export namespace accesscontextmanager_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2814,6 +2849,7 @@ export namespace accesscontextmanager_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2901,6 +2937,7 @@ export namespace accesscontextmanager_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -3054,6 +3091,7 @@ export namespace accesscontextmanager_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3142,6 +3180,7 @@ export namespace accesscontextmanager_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3227,6 +3266,7 @@ export namespace accesscontextmanager_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -3312,6 +3352,7 @@ export namespace accesscontextmanager_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3407,6 +3448,7 @@ export namespace accesscontextmanager_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3494,6 +3536,7 @@ export namespace accesscontextmanager_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -3582,6 +3625,7 @@ export namespace accesscontextmanager_v1 {
               rootUrl + '/v1/{+parent}/servicePerimeters:replaceAll'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3678,6 +3722,7 @@ export namespace accesscontextmanager_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3864,6 +3909,7 @@ export namespace accesscontextmanager_v1 {
           {
             url: (rootUrl + '/v1/{+name}:cancel').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3949,6 +3995,7 @@ export namespace accesscontextmanager_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -4033,6 +4080,7 @@ export namespace accesscontextmanager_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4122,6 +4170,7 @@ export namespace accesscontextmanager_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4272,6 +4321,7 @@ export namespace accesscontextmanager_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4358,6 +4408,7 @@ export namespace accesscontextmanager_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -4448,6 +4499,7 @@ export namespace accesscontextmanager_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4543,6 +4595,7 @@ export namespace accesscontextmanager_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4631,6 +4684,7 @@ export namespace accesscontextmanager_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -4783,6 +4837,7 @@ export namespace accesscontextmanager_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4874,6 +4929,7 @@ export namespace accesscontextmanager_v1 {
           {
             url: (rootUrl + '/v1/services').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),

@@ -1,5 +1,40 @@
 # Changelog
 
+## [8.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/securitycenter-v8.0.0...securitycenter-v8.1.0) (2024-05-07)
+
+
+### Features
+
+* run the generator ([181f2d5](https://github.com/googleapis/google-api-nodejs-client/commit/181f2d5118e33081dcd33a485ff79c5d6a7e1c43))
+
+## [8.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/securitycenter-v7.0.0...securitycenter-v8.0.0) (2024-05-02)
+
+
+### ⚠ BREAKING CHANGES
+
+* **securitycenter:** This release has breaking changes.
+* This release has breaking changes.
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#3434](https://github.com/googleapis/google-api-nodejs-client/issues/3434)) ([f0db524](https://github.com/googleapis/google-api-nodejs-client/commit/f0db524bb26f05cea3dec4c0ed66b496399e3857))
+* run the generator ([#3441](https://github.com/googleapis/google-api-nodejs-client/issues/3441)) ([f832463](https://github.com/googleapis/google-api-nodejs-client/commit/f832463312572dc58fe89f9254282982a520d1df))
+* **securitycenter:** update the API ([8b08aa2](https://github.com/googleapis/google-api-nodejs-client/commit/8b08aa2ac1d8bb8eb264f8bda3089da60b4f4028))
+* **securitycenter:** update the API ([9d85876](https://github.com/googleapis/google-api-nodejs-client/commit/9d85876587045e8997c96b2887494cf11c4c5a06))
+* **securitycenter:** update the API ([1f28c20](https://github.com/googleapis/google-api-nodejs-client/commit/1f28c2008eb3bf425d47430fa46b81645f2f8d84))
+
+## [7.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/securitycenter-v6.0.0...securitycenter-v7.0.0) (2024-05-02)
+
+
+### ⚠ BREAKING CHANGES
+
+* **securitycenter:** This release has breaking changes.
+
+### Features
+
+* **securitycenter:** update the API ([8b08aa2](https://github.com/googleapis/google-api-nodejs-client/commit/8b08aa2ac1d8bb8eb264f8bda3089da60b4f4028))
+
 ## [6.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/securitycenter-v5.0.0...securitycenter-v6.0.0) (2024-04-04)
 
 

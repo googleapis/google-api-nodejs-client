@@ -1,5 +1,31 @@
 # Changelog
 
+## [9.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/cloudbuild-v8.1.0...cloudbuild-v9.0.0) (2024-05-02)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+* **cloudbuild:** This release has breaking changes.
+* This release has breaking changes.
+* This release has breaking changes.
+
+### Features
+
+* **cloudbuild:** update the API ([d20db7b](https://github.com/googleapis/google-api-nodejs-client/commit/d20db7be93195c69e6b1345bcf196aeab8b57b35))
+* **cloudbuild:** update the API ([5ed8cc6](https://github.com/googleapis/google-api-nodejs-client/commit/5ed8cc66f925e0472f2931bc984ccd23c6408ed4))
+* **cloudbuild:** update the API ([b6dd51c](https://github.com/googleapis/google-api-nodejs-client/commit/b6dd51c59572421639c7defb015d56690d5c6df5))
+* run the generator ([#3434](https://github.com/googleapis/google-api-nodejs-client/issues/3434)) ([f0db524](https://github.com/googleapis/google-api-nodejs-client/commit/f0db524bb26f05cea3dec4c0ed66b496399e3857))
+* run the generator ([#3447](https://github.com/googleapis/google-api-nodejs-client/issues/3447)) ([873b559](https://github.com/googleapis/google-api-nodejs-client/commit/873b55950bcf04db37f08e8a62caa6e4a9b9c487))
+* run the generator ([#3456](https://github.com/googleapis/google-api-nodejs-client/issues/3456)) ([a865e81](https://github.com/googleapis/google-api-nodejs-client/commit/a865e81539b315d3b321650663ba0b2555b1e5a1))
+
+## [8.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/cloudbuild-v8.0.0...cloudbuild-v8.1.0) (2024-05-02)
+
+
+### Features
+
+* **cloudbuild:** update the API ([d20db7b](https://github.com/googleapis/google-api-nodejs-client/commit/d20db7be93195c69e6b1345bcf196aeab8b57b35))
+
 ## [8.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/cloudbuild-v7.0.0...cloudbuild-v8.0.0) (2024-04-04)
 
 

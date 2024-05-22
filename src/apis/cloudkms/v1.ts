@@ -112,6 +112,7 @@ export namespace cloudkms_v1 {
    */
   export class Cloudkms {
     context: APIRequestContext;
+    folders: Resource$Folders;
     projects: Resource$Projects;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
@@ -120,6 +121,7 @@ export namespace cloudkms_v1 {
         google,
       };
 
+      this.folders = new Resource$Folders(this.context);
       this.projects = new Resource$Projects(this.context);
     }
   }
@@ -233,6 +235,19 @@ export namespace cloudkms_v1 {
      * The log type that this config enables.
      */
     logType?: string | null;
+  }
+  /**
+   * Cloud KMS Autokey configuration for a folder.
+   */
+  export interface Schema$AutokeyConfig {
+    /**
+     * Optional. Name of the key project, e.g. `projects/{PROJECT_ID\}` or `projects/{PROJECT_NUMBER\}`, where Cloud KMS Autokey will provision new CryptoKeys. On UpdateAutokeyConfig, the caller will require `cloudkms.cryptoKeys.setIamPolicy` permission on this key project. Once configured, for Cloud KMS Autokey to function properly, this key project must have the Cloud KMS API activated and the Cloud KMS Service Agent for this key project must be granted the `cloudkms.admin` role (or pertinent permissions).
+     */
+    keyProject?: string | null;
+    /**
+     * Identifier. Name of the AutokeyConfig resource, e.g. `folders/{FOLDER_NUMBER\}/autokeyConfig`.
+     */
+    name?: string | null;
   }
   /**
    * Associates `members`, or principals, with a `role`.
@@ -726,6 +741,23 @@ export namespace cloudkms_v1 {
     state?: string | null;
   }
   /**
+   * Resource-oriented representation of a request to Cloud KMS Autokey and the resulting provisioning of a CryptoKey.
+   */
+  export interface Schema$KeyHandle {
+    /**
+     * Output only. Name of a CryptoKey that has been provisioned for Customer Managed Encryption Key (CMEK) use in the KeyHandle's project and location for the requested resource type.
+     */
+    kmsKey?: string | null;
+    /**
+     * Output only. Identifier. Name of the [KeyHandle] resource, e.g. `projects/{PROJECT_ID\}/locations/{LOCATION\}/keyHandles/{KEY_HANDLE_ID\}`.
+     */
+    name?: string | null;
+    /**
+     * Required. Indicates the resource type that the resulting CryptoKey is meant to protect, e.g. `{SERVICE\}.googleapis.com/{TYPE\}`. See documentation for supported resource types.
+     */
+    resourceTypeSelector?: string | null;
+  }
+  /**
    * Contains an HSM-generated attestation about a key operation. For more information, see [Verifying attestations] (https://cloud.google.com/kms/docs/attest-key).
    */
   export interface Schema$KeyOperationAttestation {
@@ -822,6 +854,15 @@ export namespace cloudkms_v1 {
      * The total number of ImportJobs that matched the query.
      */
     totalSize?: number | null;
+  }
+  /**
+   * Response message for Autokey.ListKeyHandles.
+   */
+  export interface Schema$ListKeyHandlesResponse {
+    /**
+     * Resulting KeyHandles.
+     */
+    keyHandles?: Schema$KeyHandle[];
   }
   /**
    * Response message for KeyManagementService.ListKeyRings.
@@ -980,6 +1021,31 @@ export namespace cloudkms_v1 {
     verifiedSuccessIntegrity?: boolean | null;
   }
   /**
+   * This resource represents a long-running operation that is the result of a network API call.
+   */
+  export interface Schema$Operation {
+    /**
+     * If the value is `false`, it means the operation is still in progress. If `true`, the operation is completed, and either `error` or `response` is available.
+     */
+    done?: boolean | null;
+    /**
+     * The error result of the operation in case of failure or cancellation.
+     */
+    error?: Schema$Status;
+    /**
+     * Service-specific metadata associated with the operation. It typically contains progress information and common metadata such as create time. Some services might not provide such metadata. Any method that returns a long-running operation should document the metadata type, if any.
+     */
+    metadata?: {[key: string]: any} | null;
+    /**
+     * The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id\}`.
+     */
+    name?: string | null;
+    /**
+     * The normal, successful response of the operation. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
+     */
+    response?: {[key: string]: any} | null;
+  }
+  /**
    * An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members`, or principals, to a single `role`. Principals can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** ``` { "bindings": [ { "role": "roles/resourcemanager.organizationAdmin", "members": [ "user:mike@example.com", "group:admins@example.com", "domain:google.com", "serviceAccount:my-project-id@appspot.gserviceaccount.com" ] \}, { "role": "roles/resourcemanager.organizationViewer", "members": [ "user:eve@example.com" ], "condition": { "title": "expirable access", "description": "Does not grant access after Sep 2020", "expression": "request.time < timestamp('2020-10-01T00:00:00.000Z')", \} \} ], "etag": "BwWWja0YfJA=", "version": 3 \} ``` **YAML example:** ``` bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time < timestamp('2020-10-01T00:00:00.000Z') etag: BwWWja0YfJA= version: 3 ``` For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).
    */
   export interface Schema$Policy {
@@ -1013,11 +1079,11 @@ export namespace cloudkms_v1 {
      */
     name?: string | null;
     /**
-     * A public key encoded in PEM format, populated only when GetPublicKey returns one key. For more information, see the [RFC 7468](https://tools.ietf.org/html/rfc7468) sections for [General Considerations](https://tools.ietf.org/html/rfc7468#section-2) and [Textual Encoding of Subject Public Key Info] (https://tools.ietf.org/html/rfc7468#section-13).
+     * The public key, encoded in PEM format. For more information, see the [RFC 7468](https://tools.ietf.org/html/rfc7468) sections for [General Considerations](https://tools.ietf.org/html/rfc7468#section-2) and [Textual Encoding of Subject Public Key Info] (https://tools.ietf.org/html/rfc7468#section-13).
      */
     pem?: string | null;
     /**
-     * Integrity verification field: A CRC32C checksum of the returned PublicKey.pem. It is only populated when GetPublicKey returns one key. An integrity check of PublicKey.pem can be performed by computing the CRC32C checksum of PublicKey.pem and comparing your results to this field. Discard the response in case of non-matching checksum values, and perform a limited number of retries. A persistent mismatch may indicate an issue in your computation of the CRC32C checksum. Note: This field is defined as int64 for reasons of compatibility across different languages. However, it is a non-negative integer, which will never exceed 2^32-1, and can be safely downconverted to uint32 in languages that support this type. NOTE: This field is in Beta.
+     * Integrity verification field. A CRC32C checksum of the returned PublicKey.pem. An integrity check of PublicKey.pem can be performed by computing the CRC32C checksum of PublicKey.pem and comparing your results to this field. Discard the response in case of non-matching checksum values, and perform a limited number of retries. A persistent mismatch may indicate an issue in your computation of the CRC32C checksum. Note: This field is defined as int64 for reasons of compatibility across different languages. However, it is a non-negative integer, which will never exceed 2^32-1, and can be safely downconverted to uint32 in languages that support this type. NOTE: This field is in Beta.
      */
     pemCrc32c?: string | null;
     /**
@@ -1200,6 +1266,32 @@ export namespace cloudkms_v1 {
     updateMask?: string | null;
   }
   /**
+   * Response message for ShowEffectiveAutokeyConfig.
+   */
+  export interface Schema$ShowEffectiveAutokeyConfigResponse {
+    /**
+     * Name of the key project configured in the resource project's folder ancestry.
+     */
+    keyProject?: string | null;
+  }
+  /**
+   * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
+   */
+  export interface Schema$Status {
+    /**
+     * The status code, which should be an enum value of google.rpc.Code.
+     */
+    code?: number | null;
+    /**
+     * A list of messages that carry the error details. There is a common set of message types for APIs to use.
+     */
+    details?: Array<{[key: string]: any}> | null;
+    /**
+     * A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.
+     */
+    message?: string | null;
+  }
+  /**
    * Request message for `TestIamPermissions` method.
    */
   export interface Schema$TestIamPermissionsRequest {
@@ -1240,6 +1332,211 @@ export namespace cloudkms_v1 {
     pem?: string | null;
   }
 
+  export class Resource$Folders {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Returns the AutokeyConfig for a folder.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getAutokeyConfig(
+      params: Params$Resource$Folders$Getautokeyconfig,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getAutokeyConfig(
+      params?: Params$Resource$Folders$Getautokeyconfig,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AutokeyConfig>;
+    getAutokeyConfig(
+      params: Params$Resource$Folders$Getautokeyconfig,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getAutokeyConfig(
+      params: Params$Resource$Folders$Getautokeyconfig,
+      options: MethodOptions | BodyResponseCallback<Schema$AutokeyConfig>,
+      callback: BodyResponseCallback<Schema$AutokeyConfig>
+    ): void;
+    getAutokeyConfig(
+      params: Params$Resource$Folders$Getautokeyconfig,
+      callback: BodyResponseCallback<Schema$AutokeyConfig>
+    ): void;
+    getAutokeyConfig(
+      callback: BodyResponseCallback<Schema$AutokeyConfig>
+    ): void;
+    getAutokeyConfig(
+      paramsOrCallback?:
+        | Params$Resource$Folders$Getautokeyconfig
+        | BodyResponseCallback<Schema$AutokeyConfig>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AutokeyConfig>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AutokeyConfig>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$AutokeyConfig> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Folders$Getautokeyconfig;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Folders$Getautokeyconfig;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudkms.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$AutokeyConfig>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$AutokeyConfig>(parameters);
+      }
+    }
+
+    /**
+     * Updates the AutokeyConfig for a folder. The caller must have both `cloudkms.autokeyConfigs.update` permission on the parent folder and `cloudkms.cryptoKeys.setIamPolicy` permission on the provided key project. An empty key project may be provided to clear the configuration.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    updateAutokeyConfig(
+      params: Params$Resource$Folders$Updateautokeyconfig,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    updateAutokeyConfig(
+      params?: Params$Resource$Folders$Updateautokeyconfig,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AutokeyConfig>;
+    updateAutokeyConfig(
+      params: Params$Resource$Folders$Updateautokeyconfig,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    updateAutokeyConfig(
+      params: Params$Resource$Folders$Updateautokeyconfig,
+      options: MethodOptions | BodyResponseCallback<Schema$AutokeyConfig>,
+      callback: BodyResponseCallback<Schema$AutokeyConfig>
+    ): void;
+    updateAutokeyConfig(
+      params: Params$Resource$Folders$Updateautokeyconfig,
+      callback: BodyResponseCallback<Schema$AutokeyConfig>
+    ): void;
+    updateAutokeyConfig(
+      callback: BodyResponseCallback<Schema$AutokeyConfig>
+    ): void;
+    updateAutokeyConfig(
+      paramsOrCallback?:
+        | Params$Resource$Folders$Updateautokeyconfig
+        | BodyResponseCallback<Schema$AutokeyConfig>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AutokeyConfig>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AutokeyConfig>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$AutokeyConfig> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Folders$Updateautokeyconfig;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Folders$Updateautokeyconfig;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudkms.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$AutokeyConfig>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$AutokeyConfig>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Folders$Getautokeyconfig
+    extends StandardParameters {
+    /**
+     * Required. Name of the AutokeyConfig resource, e.g. `folders/{FOLDER_NUMBER\}/autokeyConfig`.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Folders$Updateautokeyconfig
+    extends StandardParameters {
+    /**
+     * Identifier. Name of the AutokeyConfig resource, e.g. `folders/{FOLDER_NUMBER\}/autokeyConfig`.
+     */
+    name?: string;
+    /**
+     * Required. Masks which fields of the AutokeyConfig to update, e.g. `keyProject`.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$AutokeyConfig;
+  }
+
   export class Resource$Projects {
     context: APIRequestContext;
     locations: Resource$Projects$Locations;
@@ -1247,20 +1544,133 @@ export namespace cloudkms_v1 {
       this.context = context;
       this.locations = new Resource$Projects$Locations(this.context);
     }
+
+    /**
+     * Returns the effective Cloud KMS Autokey configuration for a given project.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    showEffectiveAutokeyConfig(
+      params: Params$Resource$Projects$Showeffectiveautokeyconfig,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    showEffectiveAutokeyConfig(
+      params?: Params$Resource$Projects$Showeffectiveautokeyconfig,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ShowEffectiveAutokeyConfigResponse>;
+    showEffectiveAutokeyConfig(
+      params: Params$Resource$Projects$Showeffectiveautokeyconfig,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    showEffectiveAutokeyConfig(
+      params: Params$Resource$Projects$Showeffectiveautokeyconfig,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ShowEffectiveAutokeyConfigResponse>,
+      callback: BodyResponseCallback<Schema$ShowEffectiveAutokeyConfigResponse>
+    ): void;
+    showEffectiveAutokeyConfig(
+      params: Params$Resource$Projects$Showeffectiveautokeyconfig,
+      callback: BodyResponseCallback<Schema$ShowEffectiveAutokeyConfigResponse>
+    ): void;
+    showEffectiveAutokeyConfig(
+      callback: BodyResponseCallback<Schema$ShowEffectiveAutokeyConfigResponse>
+    ): void;
+    showEffectiveAutokeyConfig(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Showeffectiveautokeyconfig
+        | BodyResponseCallback<Schema$ShowEffectiveAutokeyConfigResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ShowEffectiveAutokeyConfigResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ShowEffectiveAutokeyConfigResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ShowEffectiveAutokeyConfigResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Showeffectiveautokeyconfig;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Showeffectiveautokeyconfig;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudkms.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}:showEffectiveAutokeyConfig').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ShowEffectiveAutokeyConfigResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ShowEffectiveAutokeyConfigResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Showeffectiveautokeyconfig
+    extends StandardParameters {
+    /**
+     * Required. Name of the resource project to the show effective Cloud KMS Autokey configuration for. This may be helpful for interrogating the effect of nested folder configurations on a given resource project.
+     */
+    parent?: string;
   }
 
   export class Resource$Projects$Locations {
     context: APIRequestContext;
     ekmConfig: Resource$Projects$Locations$Ekmconfig;
     ekmConnections: Resource$Projects$Locations$Ekmconnections;
+    keyHandles: Resource$Projects$Locations$Keyhandles;
     keyRings: Resource$Projects$Locations$Keyrings;
+    operations: Resource$Projects$Locations$Operations;
     constructor(context: APIRequestContext) {
       this.context = context;
       this.ekmConfig = new Resource$Projects$Locations$Ekmconfig(this.context);
       this.ekmConnections = new Resource$Projects$Locations$Ekmconnections(
         this.context
       );
+      this.keyHandles = new Resource$Projects$Locations$Keyhandles(
+        this.context
+      );
       this.keyRings = new Resource$Projects$Locations$Keyrings(this.context);
+      this.operations = new Resource$Projects$Locations$Operations(
+        this.context
+      );
     }
 
     /**
@@ -1339,6 +1749,7 @@ export namespace cloudkms_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1423,6 +1834,7 @@ export namespace cloudkms_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1507,6 +1919,7 @@ export namespace cloudkms_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1599,6 +2012,7 @@ export namespace cloudkms_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1683,6 +2097,7 @@ export namespace cloudkms_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -1840,6 +2255,7 @@ export namespace cloudkms_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1928,6 +2344,7 @@ export namespace cloudkms_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2023,6 +2440,7 @@ export namespace cloudkms_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2153,6 +2571,7 @@ export namespace cloudkms_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2237,6 +2656,7 @@ export namespace cloudkms_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2325,6 +2745,7 @@ export namespace cloudkms_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2419,6 +2840,7 @@ export namespace cloudkms_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2503,6 +2925,7 @@ export namespace cloudkms_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -2591,6 +3014,7 @@ export namespace cloudkms_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2686,6 +3110,7 @@ export namespace cloudkms_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2781,6 +3206,7 @@ export namespace cloudkms_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2905,6 +3331,314 @@ export namespace cloudkms_v1 {
     name?: string;
   }
 
+  export class Resource$Projects$Locations$Keyhandles {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Creates a new KeyHandle, triggering the provisioning of a new CryptoKey for CMEK use with the given resource type in the configured key project and the same location. GetOperation should be used to resolve the resulting long-running operation and get the resulting KeyHandle and CryptoKey.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Locations$Keyhandles$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Projects$Locations$Keyhandles$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    create(
+      params: Params$Resource$Projects$Locations$Keyhandles$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Keyhandles$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Keyhandles$Create,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$Operation>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Keyhandles$Create
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Keyhandles$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Keyhandles$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudkms.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/keyHandles').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Returns the KeyHandle.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Keyhandles$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Keyhandles$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$KeyHandle>;
+    get(
+      params: Params$Resource$Projects$Locations$Keyhandles$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Keyhandles$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$KeyHandle>,
+      callback: BodyResponseCallback<Schema$KeyHandle>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Keyhandles$Get,
+      callback: BodyResponseCallback<Schema$KeyHandle>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$KeyHandle>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Keyhandles$Get
+        | BodyResponseCallback<Schema$KeyHandle>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$KeyHandle>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$KeyHandle>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$KeyHandle> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Keyhandles$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Keyhandles$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudkms.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$KeyHandle>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$KeyHandle>(parameters);
+      }
+    }
+
+    /**
+     * Lists KeyHandles.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Keyhandles$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Keyhandles$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListKeyHandlesResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Keyhandles$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Keyhandles$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListKeyHandlesResponse>,
+      callback: BodyResponseCallback<Schema$ListKeyHandlesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Keyhandles$List,
+      callback: BodyResponseCallback<Schema$ListKeyHandlesResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListKeyHandlesResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Keyhandles$List
+        | BodyResponseCallback<Schema$ListKeyHandlesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListKeyHandlesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListKeyHandlesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListKeyHandlesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Keyhandles$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Keyhandles$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudkms.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/keyHandles').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListKeyHandlesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListKeyHandlesResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Keyhandles$Create
+    extends StandardParameters {
+    /**
+     * Optional. Id of the KeyHandle. Must be unique to the resource project and location. If not provided by the caller, a new UUID is used.
+     */
+    keyHandleId?: string;
+    /**
+     * Required. Name of the resource project and location to create the KeyHandle in, e.g. `projects/{PROJECT_ID\}/locations/{LOCATION\}`.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$KeyHandle;
+  }
+  export interface Params$Resource$Projects$Locations$Keyhandles$Get
+    extends StandardParameters {
+    /**
+     * Required. Name of the KeyHandle resource, e.g. `projects/{PROJECT_ID\}/locations/{LOCATION\}/keyHandles/{KEY_HANDLE_ID\}`.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Keyhandles$List
+    extends StandardParameters {
+    /**
+     * Optional. Filter to apply when listing KeyHandles, e.g. `resource_type_selector="{SERVICE\}.googleapis.com/{TYPE\}"`.
+     */
+    filter?: string;
+    /**
+     * Required. Name of the resource project and location from which to list KeyHandles, e.g. `projects/{PROJECT_ID\}/locations/{LOCATION\}`.
+     */
+    parent?: string;
+  }
+
   export class Resource$Projects$Locations$Keyrings {
     context: APIRequestContext;
     cryptoKeys: Resource$Projects$Locations$Keyrings$Cryptokeys;
@@ -2988,6 +3722,7 @@ export namespace cloudkms_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3072,6 +3807,7 @@ export namespace cloudkms_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3159,6 +3895,7 @@ export namespace cloudkms_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3251,6 +3988,7 @@ export namespace cloudkms_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3338,6 +4076,7 @@ export namespace cloudkms_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3433,6 +4172,7 @@ export namespace cloudkms_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3615,6 +4355,7 @@ export namespace cloudkms_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3703,6 +4444,7 @@ export namespace cloudkms_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3791,6 +4533,7 @@ export namespace cloudkms_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3876,6 +4619,7 @@ export namespace cloudkms_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3964,6 +4708,7 @@ export namespace cloudkms_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4057,6 +4802,7 @@ export namespace cloudkms_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4142,6 +4888,7 @@ export namespace cloudkms_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -4230,6 +4977,7 @@ export namespace cloudkms_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4325,6 +5073,7 @@ export namespace cloudkms_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4415,6 +5164,7 @@ export namespace cloudkms_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4659,6 +5409,7 @@ export namespace cloudkms_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4754,6 +5505,7 @@ export namespace cloudkms_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4842,6 +5594,7 @@ export namespace cloudkms_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4930,6 +5683,7 @@ export namespace cloudkms_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5015,6 +5769,7 @@ export namespace cloudkms_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5103,6 +5858,7 @@ export namespace cloudkms_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5191,6 +5947,7 @@ export namespace cloudkms_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5286,6 +6043,7 @@ export namespace cloudkms_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5376,6 +6134,7 @@ export namespace cloudkms_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5467,6 +6226,7 @@ export namespace cloudkms_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5552,6 +6312,7 @@ export namespace cloudkms_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -5643,6 +6404,7 @@ export namespace cloudkms_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5734,6 +6496,7 @@ export namespace cloudkms_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5822,6 +6585,7 @@ export namespace cloudkms_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -6095,6 +6859,7 @@ export namespace cloudkms_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -6180,6 +6945,7 @@ export namespace cloudkms_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6268,6 +7034,7 @@ export namespace cloudkms_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6361,6 +7128,7 @@ export namespace cloudkms_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6449,6 +7217,7 @@ export namespace cloudkms_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -6544,6 +7313,7 @@ export namespace cloudkms_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -6643,5 +7413,105 @@ export namespace cloudkms_v1 {
      * Request body metadata
      */
     requestBody?: Schema$TestIamPermissionsRequest;
+  }
+
+  export class Resource$Projects$Locations$Operations {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Operations$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Operations$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    get(
+      params: Params$Resource$Projects$Locations$Operations$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Operations$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Operations$Get,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$Operation>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Operations$Get
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Operations$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Operations$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudkms.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Operations$Get
+    extends StandardParameters {
+    /**
+     * The name of the operation resource.
+     */
+    name?: string;
   }
 }

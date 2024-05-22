@@ -403,7 +403,7 @@
             },
             "maxResults": {
               "default": "100",
-              "description": "Maximum number of results to return.",
+              "description": "Maximum number of results to return, value should not exceed 300.",
               "format": "int32",
               "location": "query",
               "minimum": "1",
@@ -441,7 +441,7 @@
               "type": "string"
             },
             "projection": {
-              "description": "Restrict information returned to a set of selected fields.",
+              "description": "Determines whether the response contains the full list of properties or only a subset.",
               "enum": [
                 "BASIC",
                 "FULL"
@@ -535,7 +535,7 @@
               "type": "string"
             },
             "projection": {
-              "description": "Restrict information returned to a set of selected fields.",
+              "description": "Determines whether the response contains the full list of properties or only a subset.",
               "enum": [
                 "BASIC",
                 "FULL"
@@ -582,7 +582,7 @@
               "type": "string"
             },
             "projection": {
-              "description": "Restrict information returned to a set of selected fields.",
+              "description": "Determines whether the response contains the full list of properties or only a subset.",
               "enum": [
                 "BASIC",
                 "FULL"
@@ -4671,7 +4671,7 @@
       }
     }
   },
-  "revision": "20240304",
+  "revision": "20240509",
   "rootUrl": "https://admin.googleapis.com/",
   "schemas": {
     "Alias": {
@@ -5403,8 +5403,14 @@
           "type": "string"
         },
         "autoUpdateExpiration": {
-          "description": "(Read-only) The timestamp after which the device will stop receiving Chrome updates or support",
+          "deprecated": true,
+          "description": "(Read-only) The timestamp after which the device will stop receiving Chrome updates or support. Please use \"autoUpdateThrough\" instead.",
           "format": "int64",
+          "type": "string"
+        },
+        "autoUpdateThrough": {
+          "description": "Output only. The timestamp after which the device will stop receiving Chrome updates or support.",
+          "readOnly": true,
           "type": "string"
         },
         "backlightInfo": {
@@ -5417,6 +5423,21 @@
         },
         "bootMode": {
           "description": "The boot mode for the device. The possible values are: * `Verified`: The device is running a valid version of the Chrome OS. * `Dev`: The devices's developer hardware switch is enabled. When booted, the device has a command line shell. For an example of a developer switch, see the [Chromebook developer information](https://www.chromium.org/chromium-os/developer-information-for-chrome-os-devices/samsung-series-5-chromebook#TOC-Developer-switch).",
+          "type": "string"
+        },
+        "chromeOsType": {
+          "description": "Output only. Chrome OS type of the device.",
+          "enum": [
+            "chromeOsTypeUnspecified",
+            "chromeOsFlex",
+            "chromeOs"
+          ],
+          "enumDescriptions": [
+            "Chrome OS Type unspecified.",
+            "Chrome OS Type Chrome OS Flex.",
+            "Chrome OS Type Chrome OS."
+          ],
+          "readOnly": true,
           "type": "string"
         },
         "cpuInfo": {
@@ -5666,6 +5687,29 @@
         "ethernetMacAddress0": {
           "description": "(Read-only) MAC address used by the Chromebook’s internal ethernet port, and for onboard network (ethernet) interface. The format is twelve (12) hexadecimal digits without any delimiter (uppercase letters). This is only relevant for some devices.",
           "type": "string"
+        },
+        "extendedSupportEligible": {
+          "description": "Output only. Whether or not the device requires the extended support opt in.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "extendedSupportEnabled": {
+          "description": "Output only. Whether extended support policy is enabled on the device.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "extendedSupportStart": {
+          "description": "Output only. Date of the device when extended support policy for automatic updates starts.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "fanInfo": {
+          "description": "Output only. Fan information for the device.",
+          "items": {
+            "$ref": "FanInfo"
+          },
+          "readOnly": true,
+          "type": "array"
         },
         "firmwareVersion": {
           "description": "The Chrome device's firmware version.",
@@ -6407,6 +6451,19 @@
         "printerId": {
           "description": "Id of a failed printer.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "FanInfo": {
+      "description": "Information about the device's fan.",
+      "id": "FanInfo",
+      "properties": {
+        "speedRpm": {
+          "description": "Output only. Fan speed in RPM.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
         }
       },
       "type": "object"

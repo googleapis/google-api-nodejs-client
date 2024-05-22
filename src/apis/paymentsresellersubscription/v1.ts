@@ -554,6 +554,10 @@ export namespace paymentsresellersubscription_v1 {
      */
     promotionSpecs?: Schema$GoogleCloudPaymentsResellerSubscriptionV1SubscriptionPromotionSpec[];
     /**
+     * Optional. The timestamp when the user transaction was made with the Partner. Specify for the case of "bundle with choice", and it must be before the provision_time (when the user makes a selection).
+     */
+    purchaseTime?: string | null;
+    /**
      * Output only. The place where partners should redirect the end-user to after creation. This field might also be populated when creation failed. However, Partners should always prepare a default URL to redirect the user in case this field is empty.
      */
     redirectUri?: string | null;
@@ -616,7 +620,7 @@ export namespace paymentsresellersubscription_v1 {
      */
     lineItemIndex?: number | null;
     /**
-     * Optional. The promotions applied on the line item. It can be: - a free trial promotion, which overrides the subscription-level free trial promotion. - an introductory pricing promotion. When used as input in Create or Provision API, specify its resource name only.
+     * Optional. The promotions applied on the line item. It can be: - an introductory pricing promotion. - a free trial promotion. This feature is not enabled. If used, the request will be rejected. When used as input in Create or Provision API, specify its resource name only.
      */
     lineItemPromotionSpecs?: Schema$GoogleCloudPaymentsResellerSubscriptionV1SubscriptionPromotionSpec[];
     /**
@@ -859,6 +863,7 @@ export namespace paymentsresellersubscription_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -984,6 +989,7 @@ export namespace paymentsresellersubscription_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1082,6 +1088,7 @@ export namespace paymentsresellersubscription_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1216,6 +1223,7 @@ export namespace paymentsresellersubscription_v1 {
           {
             url: (rootUrl + '/v1/{+name}:cancel').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1314,6 +1322,7 @@ export namespace paymentsresellersubscription_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1412,6 +1421,7 @@ export namespace paymentsresellersubscription_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1507,6 +1517,7 @@ export namespace paymentsresellersubscription_v1 {
           {
             url: (rootUrl + '/v1/{+name}:extend').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1602,6 +1613,7 @@ export namespace paymentsresellersubscription_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1700,6 +1712,7 @@ export namespace paymentsresellersubscription_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1798,6 +1811,7 @@ export namespace paymentsresellersubscription_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),

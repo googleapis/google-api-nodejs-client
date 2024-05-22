@@ -213,6 +213,7 @@ export namespace groupsmigration_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),

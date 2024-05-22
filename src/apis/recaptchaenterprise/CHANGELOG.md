@@ -1,5 +1,27 @@
 # Changelog
 
+## [6.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/recaptchaenterprise-v5.1.0...recaptchaenterprise-v6.0.0) (2024-05-02)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+* This release has breaking changes.
+
+### Features
+
+* **recaptchaenterprise:** update the API ([cd6af58](https://github.com/googleapis/google-api-nodejs-client/commit/cd6af586c85f638a9e59647f9e14e13fbf4500c4))
+* **recaptchaenterprise:** update the API ([abe83f6](https://github.com/googleapis/google-api-nodejs-client/commit/abe83f6639138f1eb5414d289e2f9332a3c6999e))
+* run the generator ([#3434](https://github.com/googleapis/google-api-nodejs-client/issues/3434)) ([f0db524](https://github.com/googleapis/google-api-nodejs-client/commit/f0db524bb26f05cea3dec4c0ed66b496399e3857))
+* run the generator ([#3456](https://github.com/googleapis/google-api-nodejs-client/issues/3456)) ([a865e81](https://github.com/googleapis/google-api-nodejs-client/commit/a865e81539b315d3b321650663ba0b2555b1e5a1))
+
+## [5.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/recaptchaenterprise-v5.0.0...recaptchaenterprise-v5.1.0) (2024-05-02)
+
+
+### Features
+
+* **recaptchaenterprise:** update the API ([cd6af58](https://github.com/googleapis/google-api-nodejs-client/commit/cd6af586c85f638a9e59647f9e14e13fbf4500c4))
+
 ## [5.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/recaptchaenterprise-v4.0.0...recaptchaenterprise-v5.0.0) (2024-04-04)
 
 

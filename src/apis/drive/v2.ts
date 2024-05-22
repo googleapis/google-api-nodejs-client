@@ -2026,6 +2026,7 @@ export namespace drive_v2 {
           {
             url: (rootUrl + '/drive/v2/about').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2134,6 +2135,7 @@ export namespace drive_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2217,6 +2219,7 @@ export namespace drive_v2 {
           {
             url: (rootUrl + '/drive/v2/apps').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2331,6 +2334,7 @@ export namespace drive_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2420,6 +2424,7 @@ export namespace drive_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2503,6 +2508,7 @@ export namespace drive_v2 {
           {
             url: (rootUrl + '/drive/v2/changes').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2589,6 +2595,7 @@ export namespace drive_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2851,6 +2858,7 @@ export namespace drive_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2948,6 +2956,7 @@ export namespace drive_v2 {
               rootUrl + '/drive/v2/files/{folderId}/children/{childId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -3033,6 +3042,7 @@ export namespace drive_v2 {
               rootUrl + '/drive/v2/files/{folderId}/children/{childId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3119,6 +3129,7 @@ export namespace drive_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3205,6 +3216,7 @@ export namespace drive_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3365,6 +3377,7 @@ export namespace drive_v2 {
               rootUrl + '/drive/v2/files/{fileId}/comments/{commentId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -3450,6 +3463,7 @@ export namespace drive_v2 {
               rootUrl + '/drive/v2/files/{fileId}/comments/{commentId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3536,6 +3550,7 @@ export namespace drive_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3622,6 +3637,7 @@ export namespace drive_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3707,6 +3723,7 @@ export namespace drive_v2 {
               rootUrl + '/drive/v2/files/{fileId}/comments/{commentId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -3792,6 +3809,7 @@ export namespace drive_v2 {
               rootUrl + '/drive/v2/files/{fileId}/comments/{commentId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
+            apiVersion: '',
           },
           options
         ),
@@ -3971,6 +3989,7 @@ export namespace drive_v2 {
               '$1'
             ),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -4057,6 +4076,7 @@ export namespace drive_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4143,6 +4163,7 @@ export namespace drive_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4226,6 +4247,7 @@ export namespace drive_v2 {
           {
             url: (rootUrl + '/drive/v2/drives').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4309,6 +4331,7 @@ export namespace drive_v2 {
           {
             url: (rootUrl + '/drive/v2/drives').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4395,6 +4418,7 @@ export namespace drive_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4481,6 +4505,7 @@ export namespace drive_v2 {
               '$1'
             ),
             method: 'PUT',
+            apiVersion: '',
           },
           options
         ),
@@ -4655,6 +4680,7 @@ export namespace drive_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4739,6 +4765,7 @@ export namespace drive_v2 {
               '$1'
             ),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -4823,6 +4850,7 @@ export namespace drive_v2 {
               '$1'
             ),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -4907,6 +4935,7 @@ export namespace drive_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4994,6 +5023,7 @@ export namespace drive_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5080,6 +5110,7 @@ export namespace drive_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5163,6 +5194,7 @@ export namespace drive_v2 {
           {
             url: (rootUrl + '/drive/v2/files').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5250,6 +5282,7 @@ export namespace drive_v2 {
           {
             url: (rootUrl + '/drive/v2/files').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5336,6 +5369,7 @@ export namespace drive_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5430,6 +5464,7 @@ export namespace drive_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5516,6 +5551,7 @@ export namespace drive_v2 {
               '$1'
             ),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -5602,6 +5638,7 @@ export namespace drive_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5688,6 +5725,7 @@ export namespace drive_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5774,6 +5812,7 @@ export namespace drive_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5860,6 +5899,7 @@ export namespace drive_v2 {
               '$1'
             ),
             method: 'PUT',
+            apiVersion: '',
           },
           options
         ),
@@ -5950,6 +5990,7 @@ export namespace drive_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -6647,6 +6688,7 @@ export namespace drive_v2 {
               rootUrl + '/drive/v2/files/{fileId}/parents/{parentId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -6732,6 +6774,7 @@ export namespace drive_v2 {
               rootUrl + '/drive/v2/files/{fileId}/parents/{parentId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6818,6 +6861,7 @@ export namespace drive_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -6904,6 +6948,7 @@ export namespace drive_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -7049,6 +7094,7 @@ export namespace drive_v2 {
               rootUrl + '/drive/v2/files/{fileId}/permissions/{permissionId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -7134,6 +7180,7 @@ export namespace drive_v2 {
               rootUrl + '/drive/v2/files/{fileId}/permissions/{permissionId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -7221,6 +7268,7 @@ export namespace drive_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -7308,6 +7356,7 @@ export namespace drive_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -7394,6 +7443,7 @@ export namespace drive_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -7480,6 +7530,7 @@ export namespace drive_v2 {
               rootUrl + '/drive/v2/files/{fileId}/permissions/{permissionId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -7566,6 +7617,7 @@ export namespace drive_v2 {
               rootUrl + '/drive/v2/files/{fileId}/permissions/{permissionId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
+            apiVersion: '',
           },
           options
         ),
@@ -7852,6 +7904,7 @@ export namespace drive_v2 {
               rootUrl + '/drive/v2/files/{fileId}/properties/{propertyKey}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -7937,6 +7990,7 @@ export namespace drive_v2 {
               rootUrl + '/drive/v2/files/{fileId}/properties/{propertyKey}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -8024,6 +8078,7 @@ export namespace drive_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -8110,6 +8165,7 @@ export namespace drive_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -8195,6 +8251,7 @@ export namespace drive_v2 {
               rootUrl + '/drive/v2/files/{fileId}/properties/{propertyKey}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -8281,6 +8338,7 @@ export namespace drive_v2 {
               rootUrl + '/drive/v2/files/{fileId}/properties/{propertyKey}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
+            apiVersion: '',
           },
           options
         ),
@@ -8459,6 +8517,7 @@ export namespace drive_v2 {
               '/drive/v2/files/{fileId}/comments/{commentId}/replies/{replyId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -8545,6 +8604,7 @@ export namespace drive_v2 {
               '/drive/v2/files/{fileId}/comments/{commentId}/replies/{replyId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -8630,6 +8690,7 @@ export namespace drive_v2 {
               rootUrl + '/drive/v2/files/{fileId}/comments/{commentId}/replies'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -8715,6 +8776,7 @@ export namespace drive_v2 {
               rootUrl + '/drive/v2/files/{fileId}/comments/{commentId}/replies'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -8801,6 +8863,7 @@ export namespace drive_v2 {
               '/drive/v2/files/{fileId}/comments/{commentId}/replies/{replyId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -8887,6 +8950,7 @@ export namespace drive_v2 {
               '/drive/v2/files/{fileId}/comments/{commentId}/replies/{replyId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
+            apiVersion: '',
           },
           options
         ),
@@ -9085,6 +9149,7 @@ export namespace drive_v2 {
               rootUrl + '/drive/v2/files/{fileId}/revisions/{revisionId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -9170,6 +9235,7 @@ export namespace drive_v2 {
               rootUrl + '/drive/v2/files/{fileId}/revisions/{revisionId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -9256,6 +9322,7 @@ export namespace drive_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -9341,6 +9408,7 @@ export namespace drive_v2 {
               rootUrl + '/drive/v2/files/{fileId}/revisions/{revisionId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -9426,6 +9494,7 @@ export namespace drive_v2 {
               rootUrl + '/drive/v2/files/{fileId}/revisions/{revisionId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
+            apiVersion: '',
           },
           options
         ),
@@ -9583,6 +9652,7 @@ export namespace drive_v2 {
               '$1'
             ),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -9669,6 +9739,7 @@ export namespace drive_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -9756,6 +9827,7 @@ export namespace drive_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -9842,6 +9914,7 @@ export namespace drive_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -9929,6 +10002,7 @@ export namespace drive_v2 {
               '$1'
             ),
             method: 'PUT',
+            apiVersion: '',
           },
           options
         ),

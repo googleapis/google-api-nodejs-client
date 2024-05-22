@@ -4578,7 +4578,7 @@
                       "type": "string"
                     },
                     "targetingType": {
-                      "description": "Required. Identifies the type of this assigned targeting option. Supported targeting types: * `TARGETING_TYPE_CHANNEL` * `TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION` * `TARGETING_TYPE_OMID` * `TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION`",
+                      "description": "Required. Identifies the type of this assigned targeting option. Supported targeting types: * `TARGETING_TYPE_CHANNEL` * `TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION` * `TARGETING_TYPE_OMID` * `TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION` * `TARGETING_TYPE_KEYWORD`",
                       "enum": [
                         "TARGETING_TYPE_UNSPECIFIED",
                         "TARGETING_TYPE_CHANNEL",
@@ -4725,7 +4725,7 @@
                       "type": "string"
                     },
                     "targetingType": {
-                      "description": "Required. Identifies the type of this assigned targeting option. Supported targeting types: * `TARGETING_TYPE_CHANNEL` * `TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION` * `TARGETING_TYPE_OMID` * `TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION`",
+                      "description": "Required. Identifies the type of this assigned targeting option. Supported targeting types: * `TARGETING_TYPE_CHANNEL` * `TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION` * `TARGETING_TYPE_OMID` * `TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION` * `TARGETING_TYPE_KEYWORD`",
                       "enum": [
                         "TARGETING_TYPE_UNSPECIFIED",
                         "TARGETING_TYPE_CHANNEL",
@@ -9267,7 +9267,7 @@
       }
     }
   },
-  "revision": "20240314",
+  "revision": "20240425",
   "rootUrl": "https://displayvideo.googleapis.com/",
   "schemas": {
     "ActivateManualTriggerRequest": {
@@ -10649,14 +10649,14 @@
       "id": "BulkEditAdvertiserAssignedTargetingOptionsRequest",
       "properties": {
         "createRequests": {
-          "description": "The assigned targeting options to create in batch, specified as a list of `CreateAssignedTargetingOptionsRequest`. Supported targeting types: * `TARGETING_TYPE_CHANNEL` * `TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION` * `TARGETING_TYPE_OMID` * `TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION`",
+          "description": "The assigned targeting options to create in batch, specified as a list of `CreateAssignedTargetingOptionsRequest`. Supported targeting types: * `TARGETING_TYPE_CHANNEL` * `TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION` * `TARGETING_TYPE_OMID` * `TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION` * `TARGETING_TYPE_KEYWORD`",
           "items": {
             "$ref": "CreateAssignedTargetingOptionsRequest"
           },
           "type": "array"
         },
         "deleteRequests": {
-          "description": "The assigned targeting options to delete in batch, specified as a list of `DeleteAssignedTargetingOptionsRequest`. Supported targeting types: * `TARGETING_TYPE_CHANNEL` * `TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION` * `TARGETING_TYPE_OMID` * `TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION`",
+          "description": "The assigned targeting options to delete in batch, specified as a list of `DeleteAssignedTargetingOptionsRequest`. Supported targeting types: * `TARGETING_TYPE_CHANNEL` * `TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION` * `TARGETING_TYPE_OMID` * `TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION` * `TARGETING_TYPE_KEYWORD`",
           "items": {
             "$ref": "DeleteAssignedTargetingOptionsRequest"
           },
@@ -14096,6 +14096,7 @@
             "EXCHANGE_CONNATIX",
             "EXCHANGE_RESET_DIGITAL",
             "EXCHANGE_HIVESTACK",
+            "EXCHANGE_DRAX",
             "EXCHANGE_APPLOVIN_GBID",
             "EXCHANGE_FYBER_GBID",
             "EXCHANGE_UNITY_GBID",
@@ -14179,6 +14180,7 @@
             "Connatix.",
             "Reset Digital.",
             "Hivestack.",
+            "Drax.",
             "AppLovin MAX.",
             "DT Fairbid.",
             "Unity LevelPlay.",
@@ -14287,6 +14289,7 @@
             "EXCHANGE_CONNATIX",
             "EXCHANGE_RESET_DIGITAL",
             "EXCHANGE_HIVESTACK",
+            "EXCHANGE_DRAX",
             "EXCHANGE_APPLOVIN_GBID",
             "EXCHANGE_FYBER_GBID",
             "EXCHANGE_UNITY_GBID",
@@ -14370,6 +14373,7 @@
             "Connatix.",
             "Reset Digital.",
             "Hivestack.",
+            "Drax.",
             "AppLovin MAX.",
             "DT Fairbid.",
             "Unity LevelPlay.",
@@ -14479,6 +14483,7 @@
             "EXCHANGE_CONNATIX",
             "EXCHANGE_RESET_DIGITAL",
             "EXCHANGE_HIVESTACK",
+            "EXCHANGE_DRAX",
             "EXCHANGE_APPLOVIN_GBID",
             "EXCHANGE_FYBER_GBID",
             "EXCHANGE_UNITY_GBID",
@@ -14562,6 +14567,7 @@
             "Connatix.",
             "Reset Digital.",
             "Hivestack.",
+            "Drax.",
             "AppLovin MAX.",
             "DT Fairbid.",
             "Unity LevelPlay.",
@@ -14672,6 +14678,7 @@
             "EXCHANGE_CONNATIX",
             "EXCHANGE_RESET_DIGITAL",
             "EXCHANGE_HIVESTACK",
+            "EXCHANGE_DRAX",
             "EXCHANGE_APPLOVIN_GBID",
             "EXCHANGE_FYBER_GBID",
             "EXCHANGE_UNITY_GBID",
@@ -14755,6 +14762,7 @@
             "Connatix.",
             "Reset Digital.",
             "Hivestack.",
+            "Drax.",
             "AppLovin MAX.",
             "DT Fairbid.",
             "Unity LevelPlay.",
@@ -15716,6 +15724,7 @@
             "EXCHANGE_CONNATIX",
             "EXCHANGE_RESET_DIGITAL",
             "EXCHANGE_HIVESTACK",
+            "EXCHANGE_DRAX",
             "EXCHANGE_APPLOVIN_GBID",
             "EXCHANGE_FYBER_GBID",
             "EXCHANGE_UNITY_GBID",
@@ -15799,6 +15808,7 @@
             "Connatix.",
             "Reset Digital.",
             "Hivestack.",
+            "Drax.",
             "AppLovin MAX.",
             "DT Fairbid.",
             "Unity LevelPlay.",
@@ -16625,6 +16635,7 @@
             "EXCHANGE_CONNATIX",
             "EXCHANGE_RESET_DIGITAL",
             "EXCHANGE_HIVESTACK",
+            "EXCHANGE_DRAX",
             "EXCHANGE_APPLOVIN_GBID",
             "EXCHANGE_FYBER_GBID",
             "EXCHANGE_UNITY_GBID",
@@ -16708,6 +16719,7 @@
             "Connatix.",
             "Reset Digital.",
             "Hivestack.",
+            "Drax.",
             "AppLovin MAX.",
             "DT Fairbid.",
             "Unity LevelPlay.",

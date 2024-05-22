@@ -870,6 +870,7 @@ export namespace civicinfo_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -978,6 +979,7 @@ export namespace civicinfo_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1070,6 +1072,7 @@ export namespace civicinfo_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1203,6 +1206,7 @@ export namespace civicinfo_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1298,6 +1302,7 @@ export namespace civicinfo_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),

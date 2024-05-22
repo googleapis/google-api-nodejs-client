@@ -1067,7 +1067,7 @@
                       ]
                     },
                     "getIamPolicy": {
-                      "description": "Gets the access control policy for a Table or Backup resource. Returns an empty policy if the resource exists but does not have a policy set.",
+                      "description": "Gets the access control policy for a Bigtable resource. Returns an empty policy if the resource exists but does not have a policy set.",
                       "flatPath": "v2/projects/{projectsId}/instances/{instancesId}/clusters/{clustersId}/backups/{backupsId}:getIamPolicy",
                       "httpMethod": "POST",
                       "id": "bigtableadmin.projects.instances.clusters.backups.getIamPolicy",
@@ -1187,7 +1187,7 @@
                       ]
                     },
                     "setIamPolicy": {
-                      "description": "Sets the access control policy on a Table or Backup resource. Replaces any existing policy.",
+                      "description": "Sets the access control policy on a Bigtable resource. Replaces any existing policy.",
                       "flatPath": "v2/projects/{projectsId}/instances/{instancesId}/clusters/{clustersId}/backups/{backupsId}:setIamPolicy",
                       "httpMethod": "POST",
                       "id": "bigtableadmin.projects.instances.clusters.backups.setIamPolicy",
@@ -1219,7 +1219,7 @@
                       ]
                     },
                     "testIamPermissions": {
-                      "description": "Returns permissions that the caller has on the specified Table or Backup resource.",
+                      "description": "Returns permissions that the caller has on the specified Bigtable resource.",
                       "flatPath": "v2/projects/{projectsId}/instances/{instancesId}/clusters/{clustersId}/backups/{backupsId}:testIamPermissions",
                       "httpMethod": "POST",
                       "id": "bigtableadmin.projects.instances.clusters.backups.testIamPermissions",
@@ -1524,7 +1524,7 @@
                   ]
                 },
                 "getIamPolicy": {
-                  "description": "Gets the access control policy for a Table or Backup resource. Returns an empty policy if the resource exists but does not have a policy set.",
+                  "description": "Gets the access control policy for a Bigtable resource. Returns an empty policy if the resource exists but does not have a policy set.",
                   "flatPath": "v2/projects/{projectsId}/instances/{instancesId}/tables/{tablesId}:getIamPolicy",
                   "httpMethod": "POST",
                   "id": "bigtableadmin.projects.instances.tables.getIamPolicy",
@@ -1722,7 +1722,7 @@
                   ]
                 },
                 "setIamPolicy": {
-                  "description": "Sets the access control policy on a Table or Backup resource. Replaces any existing policy.",
+                  "description": "Sets the access control policy on a Bigtable resource. Replaces any existing policy.",
                   "flatPath": "v2/projects/{projectsId}/instances/{instancesId}/tables/{tablesId}:setIamPolicy",
                   "httpMethod": "POST",
                   "id": "bigtableadmin.projects.instances.tables.setIamPolicy",
@@ -1754,7 +1754,7 @@
                   ]
                 },
                 "testIamPermissions": {
-                  "description": "Returns permissions that the caller has on the specified Table or Backup resource.",
+                  "description": "Returns permissions that the caller has on the specified Bigtable resource.",
                   "flatPath": "v2/projects/{projectsId}/instances/{instancesId}/tables/{tablesId}:testIamPermissions",
                   "httpMethod": "POST",
                   "id": "bigtableadmin.projects.instances.tables.testIamPermissions",
@@ -1938,6 +1938,38 @@
                         "https://www.googleapis.com/auth/cloud-platform"
                       ]
                     },
+                    "getIamPolicy": {
+                      "description": "Gets the access control policy for a Bigtable resource. Returns an empty policy if the resource exists but does not have a policy set.",
+                      "flatPath": "v2/projects/{projectsId}/instances/{instancesId}/tables/{tablesId}/authorizedViews/{authorizedViewsId}:getIamPolicy",
+                      "httpMethod": "POST",
+                      "id": "bigtableadmin.projects.instances.tables.authorizedViews.getIamPolicy",
+                      "parameterOrder": [
+                        "resource"
+                      ],
+                      "parameters": {
+                        "resource": {
+                          "description": "REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/instances/[^/]+/tables/[^/]+/authorizedViews/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v2/{+resource}:getIamPolicy",
+                      "request": {
+                        "$ref": "GetIamPolicyRequest"
+                      },
+                      "response": {
+                        "$ref": "Policy"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/bigtable.admin",
+                        "https://www.googleapis.com/auth/bigtable.admin.table",
+                        "https://www.googleapis.com/auth/cloud-bigtable.admin",
+                        "https://www.googleapis.com/auth/cloud-bigtable.admin.table",
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
                     "list": {
                       "description": "Lists all AuthorizedViews from a specific table.",
                       "flatPath": "v2/projects/{projectsId}/instances/{instancesId}/tables/{tablesId}/authorizedViews",
@@ -1966,7 +1998,7 @@
                           "type": "string"
                         },
                         "view": {
-                          "description": "Optional. The resource_view to be applied to the returned views' fields. Default to NAME_ONLY.",
+                          "description": "Optional. The resource_view to be applied to the returned AuthorizedViews' fields. Default to NAME_ONLY.",
                           "enum": [
                             "RESPONSE_VIEW_UNSPECIFIED",
                             "NAME_ONLY",
@@ -2037,6 +2069,70 @@
                         "https://www.googleapis.com/auth/cloud-bigtable.admin.table",
                         "https://www.googleapis.com/auth/cloud-platform"
                       ]
+                    },
+                    "setIamPolicy": {
+                      "description": "Sets the access control policy on a Bigtable resource. Replaces any existing policy.",
+                      "flatPath": "v2/projects/{projectsId}/instances/{instancesId}/tables/{tablesId}/authorizedViews/{authorizedViewsId}:setIamPolicy",
+                      "httpMethod": "POST",
+                      "id": "bigtableadmin.projects.instances.tables.authorizedViews.setIamPolicy",
+                      "parameterOrder": [
+                        "resource"
+                      ],
+                      "parameters": {
+                        "resource": {
+                          "description": "REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/instances/[^/]+/tables/[^/]+/authorizedViews/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v2/{+resource}:setIamPolicy",
+                      "request": {
+                        "$ref": "SetIamPolicyRequest"
+                      },
+                      "response": {
+                        "$ref": "Policy"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/bigtable.admin",
+                        "https://www.googleapis.com/auth/bigtable.admin.table",
+                        "https://www.googleapis.com/auth/cloud-bigtable.admin",
+                        "https://www.googleapis.com/auth/cloud-bigtable.admin.table",
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "testIamPermissions": {
+                      "description": "Returns permissions that the caller has on the specified Bigtable resource.",
+                      "flatPath": "v2/projects/{projectsId}/instances/{instancesId}/tables/{tablesId}/authorizedViews/{authorizedViewsId}:testIamPermissions",
+                      "httpMethod": "POST",
+                      "id": "bigtableadmin.projects.instances.tables.authorizedViews.testIamPermissions",
+                      "parameterOrder": [
+                        "resource"
+                      ],
+                      "parameters": {
+                        "resource": {
+                          "description": "REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/instances/[^/]+/tables/[^/]+/authorizedViews/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v2/{+resource}:testIamPermissions",
+                      "request": {
+                        "$ref": "TestIamPermissionsRequest"
+                      },
+                      "response": {
+                        "$ref": "TestIamPermissionsResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/bigtable.admin",
+                        "https://www.googleapis.com/auth/bigtable.admin.table",
+                        "https://www.googleapis.com/auth/cloud-bigtable.admin",
+                        "https://www.googleapis.com/auth/cloud-bigtable.admin.table",
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
                     }
                   }
                 }
@@ -2098,7 +2194,7 @@
       }
     }
   },
-  "revision": "20240318",
+  "revision": "20240429",
   "rootUrl": "https://bigtableadmin.googleapis.com/",
   "schemas": {
     "AppProfile": {
@@ -2202,7 +2298,7 @@
       "type": "object"
     },
     "AuthorizedView": {
-      "description": "Placeholder for admin API work while we work out the internals.",
+      "description": "An Authorized View of a Cloud Bigtable Table.",
       "id": "AuthorizedView",
       "properties": {
         "deletionProtection": {
@@ -2651,7 +2747,7 @@
         },
         "originalRequest": {
           "$ref": "CreateAuthorizedViewRequest",
-          "description": "The request that prompted the initiation of this CreateInstance operation."
+          "description": "The request that prompted the initiation of this CreateAuthorizedView operation."
         },
         "requestTime": {
           "description": "The time at which the original request was received.",
@@ -2822,7 +2918,7 @@
       "type": "object"
     },
     "DataBoostIsolationReadOnly": {
-      "description": "Data Boost is a serverless compute capability that lets you run high-throughput read jobs on your Bigtable data, without impacting the performance of the clusters that handle your application traffic. Currently, Data Boost exclusively supports read-only use-cases with single-cluster routing. Data Boost reads are only guaranteed to see the results of writes that were written at least 30 minutes ago. This means newly written values may not become visible for up to 30m, and also means that old values may remain visible for up to 30m after being deleted or overwritten. To mitigate the staleness of the data, users may either wait 30m, or use CheckConsistency.",
+      "description": "Data Boost is a serverless compute capability that lets you run high-throughput read jobs and queries on your Bigtable data, without impacting the performance of the clusters that handle your application traffic. Data Boost supports read-only use cases with single-cluster routing.",
       "id": "DataBoostIsolationReadOnly",
       "properties": {
         "computeBillingOwner": {
@@ -3196,6 +3292,11 @@
         "name": {
           "description": "The unique name of the instance. Values are of the form `projects/{project}/instances/a-z+[a-z0-9]`.",
           "type": "string"
+        },
+        "satisfiesPzi": {
+          "description": "Output only. Reserved for future use.",
+          "readOnly": true,
+          "type": "boolean"
         },
         "satisfiesPzs": {
           "description": "Output only. Reserved for future use.",
@@ -4094,7 +4195,7 @@
       "properties": {
         "authorizedView": {
           "$ref": "AuthorizedView",
-          "description": "Required. The AuthorizedView to update. The `name` in `authorized_view` is used to identify the AuthorizedView. AuthorizedView name must in this format projects//instances//tables//authorizedViews/"
+          "description": "Required. The AuthorizedView to update. The `name` in `authorized_view` is used to identify the AuthorizedView. AuthorizedView name must in this format: `projects/{project}/instances/{instance}/tables/{table}/authorizedViews/{authorized_view}`."
         },
         "ignoreWarnings": {
           "description": "Optional. If true, ignore the safety checks when updating the AuthorizedView.",

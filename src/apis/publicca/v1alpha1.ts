@@ -240,6 +240,7 @@ export namespace publicca_v1alpha1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),

@@ -292,7 +292,7 @@
       }
     }
   },
-  "revision": "20240223",
+  "revision": "20240422",
   "rootUrl": "https://documentai.googleapis.com/",
   "schemas": {
     "GoogleCloudDocumentaiUiv1beta3AutoLabelDocumentsMetadata": {
@@ -2483,19 +2483,19 @@
           "type": "number"
         },
         "smallcaps": {
-          "description": "Whether the text is in small caps.",
+          "description": "Whether the text is in small caps. This feature is not supported yet.",
           "type": "boolean"
         },
         "strikeout": {
-          "description": "Whether the text is strikethrough.",
+          "description": "Whether the text is strikethrough. This feature is not supported yet.",
           "type": "boolean"
         },
         "subscript": {
-          "description": "Whether the text is a subscript.",
+          "description": "Whether the text is a subscript. This feature is not supported yet.",
           "type": "boolean"
         },
         "superscript": {
-          "description": "Whether the text is a superscript.",
+          "description": "Whether the text is a superscript. This feature is not supported yet.",
           "type": "boolean"
         },
         "textColor": {
@@ -3909,19 +3909,19 @@
           "type": "number"
         },
         "smallcaps": {
-          "description": "Whether the text is in small caps.",
+          "description": "Whether the text is in small caps. This feature is not supported yet.",
           "type": "boolean"
         },
         "strikeout": {
-          "description": "Whether the text is strikethrough.",
+          "description": "Whether the text is strikethrough. This feature is not supported yet.",
           "type": "boolean"
         },
         "subscript": {
-          "description": "Whether the text is a subscript.",
+          "description": "Whether the text is a subscript. This feature is not supported yet.",
           "type": "boolean"
         },
         "superscript": {
-          "description": "Whether the text is a superscript.",
+          "description": "Whether the text is a superscript. This feature is not supported yet.",
           "type": "boolean"
         },
         "textColor": {

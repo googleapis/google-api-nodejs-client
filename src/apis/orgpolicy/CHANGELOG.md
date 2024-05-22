@@ -1,5 +1,19 @@
 # Changelog
 
+## [1.4.0](https://github.com/googleapis/google-api-nodejs-client/compare/orgpolicy-v1.3.0...orgpolicy-v1.4.0) (2024-05-02)
+
+
+### Features
+
+* **orgpolicy:** update the API ([9abcb3a](https://github.com/googleapis/google-api-nodejs-client/commit/9abcb3ab05e3f8ceac3d5f6fb77b69b6312d3d78))
+
+## [1.3.0](https://github.com/googleapis/google-api-nodejs-client/compare/orgpolicy-v1.2.0...orgpolicy-v1.3.0) (2024-05-02)
+
+
+### Features
+
+* **orgpolicy:** update the API ([9abcb3a](https://github.com/googleapis/google-api-nodejs-client/commit/9abcb3ab05e3f8ceac3d5f6fb77b69b6312d3d78))
+
 ## [1.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/orgpolicy-v1.1.0...orgpolicy-v1.2.0) (2024-01-05)
 
 

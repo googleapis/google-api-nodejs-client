@@ -264,6 +264,10 @@ export namespace servicecontrol_v2 {
      */
     claims?: {[key: string]: any} | null;
     /**
+     * Identifies the client credential id used for authentication. credential_id is in the format of AUTH_METHOD:IDENTIFIER, e.g. "serviceaccount:XXXXX, apikey:XXXXX" where the format of the IDENTIFIER can vary for different AUTH_METHODs.
+     */
+    credentialId?: string | null;
+    /**
      * The authorized presenter of the credential. Reflects the optional Authorized Presenter (`azp`) claim within a JWT or the OAuth client id. For example, a Google Cloud Platform client id looks as follows: "123456789012.apps.googleusercontent.com".
      */
     presenter?: string | null;
@@ -317,6 +321,10 @@ export namespace servicecontrol_v2 {
      * The required IAM permission.
      */
     permission?: string | null;
+    /**
+     * The type of the permission that was checked. For data access audit logs this corresponds with the permission type that must be enabled in the project/folder/organization IAM policy in order for the log to be written.
+     */
+    permissionType?: string | null;
     /**
      * The resource being accessed, as a REST-style or cloud resource string. For example: bigquery.googleapis.com/projects/PROJECTID/datasets/DATASETID or projects/PROJECTID/datasets/DATASETID
      */
@@ -444,7 +452,12 @@ export namespace servicecontrol_v2 {
   /**
    * Response message for the Report method.
    */
-  export interface Schema$ReportResponse {}
+  export interface Schema$ReportResponse {
+    /**
+     * The extension field to store serialized OTel responses. e.g. ExportLogsServiceResponse, ExportMetricsServiceResponse.
+     */
+    extensions?: {[key: string]: any} | null;
+  }
   /**
    * This message defines attributes for an HTTP request. If the actual request is not an HTTP request, the runtime system should try to map the actual request to an equivalent HTTP request.
    */
@@ -882,6 +895,35 @@ export namespace servicecontrol_v2 {
     line?: string | null;
   }
   /**
+   * Report v2 extension proto for passing the resource metadata associated with a resource create/update/delete/undelete event from ESF to Chemist. ResourceEvent proto should be serialized into the ReportRequest.operations.extensions.
+   */
+  export interface Schema$V2ResourceEvent {
+    /**
+     * The destinations field determines which backend services should handle the event. This should be specified as a comma-delimited string.
+     */
+    destinations?: string | null;
+    /**
+     * The parent resource for the resource.
+     */
+    parent?: Schema$Resource;
+    /**
+     * The api path the resource event was created in. This should match the source of the `payload` field. For direct integrations with Chemist, this should generally be the RESPONSE. go/resource-event-pipeline-type
+     */
+    path?: string | null;
+    /**
+     * The payload contains metadata associated with the resource event. A ResourceEventPayloadStatus is provided instead if the original payload cannot be returned due to a limitation (e.g. size limit).
+     */
+    payload?: {[key: string]: any} | null;
+    /**
+     * The resource associated with the event.
+     */
+    resource?: Schema$Resource;
+    /**
+     * The resource event type determines how the backend service should process the event.
+     */
+    type?: string | null;
+  }
+  /**
    * Provides information about the Policy violation info for this request.
    */
   export interface Schema$ViolationInfo {
@@ -978,6 +1020,7 @@ export namespace servicecontrol_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1065,6 +1108,7 @@ export namespace servicecontrol_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),

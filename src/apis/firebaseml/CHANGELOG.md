@@ -1,5 +1,37 @@
 # Changelog
 
+## [2.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/firebaseml-v1.1.0...firebaseml-v2.0.0) (2024-05-10)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#3484](https://github.com/googleapis/google-api-nodejs-client/issues/3484)) ([99b6c8d](https://github.com/googleapis/google-api-nodejs-client/commit/99b6c8de5beb8447d177048a64a977ee39ee5ee6))
+
+## [1.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/firebaseml-v1.0.8...firebaseml-v1.1.0) (2024-05-07)
+
+
+### Features
+
+* **firebaseml:** update the API ([2f8891d](https://github.com/googleapis/google-api-nodejs-client/commit/2f8891d80a8ec6484a0ae24092c79957a7367cc7))
+
+## [1.0.8](https://github.com/googleapis/google-api-nodejs-client/compare/firebaseml-v1.0.7...firebaseml-v1.0.8) (2024-05-02)
+
+
+### Bug Fixes
+
+* **firebaseml:** update the API ([eef0dfe](https://github.com/googleapis/google-api-nodejs-client/commit/eef0dfe82ab1c082959cdb168d9c8e438b98606b))
+
+## [1.0.7](https://github.com/googleapis/google-api-nodejs-client/compare/firebaseml-v1.0.6...firebaseml-v1.0.7) (2024-05-02)
+
+
+### Bug Fixes
+
+* **firebaseml:** update the API ([eef0dfe](https://github.com/googleapis/google-api-nodejs-client/commit/eef0dfe82ab1c082959cdb168d9c8e438b98606b))
+
 ## [1.0.6](https://github.com/googleapis/google-api-nodejs-client/compare/firebaseml-v1.0.5...firebaseml-v1.0.6) (2023-10-11)
 
 

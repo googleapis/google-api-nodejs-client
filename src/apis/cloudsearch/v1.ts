@@ -3070,6 +3070,21 @@ export namespace cloudsearch_v1 {
     importance?: string | null;
   }
   /**
+   * The rewritten queries returned by Apps Search Query Understanding service.
+   */
+  export interface Schema$RewrittenQueries {
+    rewrittenQueries?: Schema$RewrittenQuery[];
+    /**
+     * The index of the selected query in `rewritten_queries` that is used by QAPI to call CSSR to get search results. If none of the queries were used (i.e. they all give empty search results), `selected_query_index` would default to -1.
+     */
+    selectedQueryIndex?: number | null;
+  }
+  export interface Schema$RewrittenQuery {
+    rewrittenQuery?: string | null;
+    score?: number | null;
+    sortBy?: string | null;
+  }
+  /**
    * IMPORTANT: It is unsafe to accept this message from an untrusted source, since it's trivial for an attacker to forge serialized messages that don't fulfill the type's safety contract -- for example, it could contain attacker controlled script. A system which receives a SafeHtmlProto implicitly trusts the producer of the SafeHtmlProto. So, it's generally safe to return this message in RPC responses, but generally unsafe to accept it in RPC requests.
    */
   export interface Schema$SafeHtmlProto {
@@ -3843,6 +3858,7 @@ export namespace cloudsearch_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3937,6 +3953,7 @@ export namespace cloudsearch_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4069,6 +4086,7 @@ export namespace cloudsearch_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4205,6 +4223,7 @@ export namespace cloudsearch_v1 {
               rootUrl + '/v1/debug/{+parent}/items:forunmappedidentity'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4336,6 +4355,7 @@ export namespace cloudsearch_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4467,6 +4487,7 @@ export namespace cloudsearch_v1 {
               '$1'
             ),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -4554,6 +4575,7 @@ export namespace cloudsearch_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4641,6 +4663,7 @@ export namespace cloudsearch_v1 {
               '$1'
             ),
             method: 'PUT',
+            apiVersion: '',
           },
           options
         ),
@@ -4770,6 +4793,7 @@ export namespace cloudsearch_v1 {
               '$1'
             ),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -4857,6 +4881,7 @@ export namespace cloudsearch_v1 {
               rootUrl + '/v1/indexing/{+name}/items:deleteQueueItems'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4944,6 +4969,7 @@ export namespace cloudsearch_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5031,6 +5057,7 @@ export namespace cloudsearch_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5121,6 +5148,7 @@ export namespace cloudsearch_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5211,6 +5239,7 @@ export namespace cloudsearch_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5298,6 +5327,7 @@ export namespace cloudsearch_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5385,6 +5415,7 @@ export namespace cloudsearch_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5472,6 +5503,7 @@ export namespace cloudsearch_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5703,6 +5735,7 @@ export namespace cloudsearch_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5826,6 +5859,7 @@ export namespace cloudsearch_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5929,6 +5963,7 @@ export namespace cloudsearch_v1 {
           {
             url: (rootUrl + '/v1/{+name}/lro').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6052,6 +6087,7 @@ export namespace cloudsearch_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -6135,6 +6171,7 @@ export namespace cloudsearch_v1 {
           {
             url: (rootUrl + '/v1/query/search').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -6218,6 +6255,7 @@ export namespace cloudsearch_v1 {
           {
             url: (rootUrl + '/v1/query/suggest').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -6334,6 +6372,7 @@ export namespace cloudsearch_v1 {
           {
             url: (rootUrl + '/v1/query/sources').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6458,6 +6497,7 @@ export namespace cloudsearch_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6545,6 +6585,7 @@ export namespace cloudsearch_v1 {
               '$1'
             ),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -6654,6 +6695,7 @@ export namespace cloudsearch_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -6741,6 +6783,7 @@ export namespace cloudsearch_v1 {
               '$1'
             ),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -6828,6 +6871,7 @@ export namespace cloudsearch_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6920,6 +6964,7 @@ export namespace cloudsearch_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -7007,6 +7052,7 @@ export namespace cloudsearch_v1 {
               '$1'
             ),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -7094,6 +7140,7 @@ export namespace cloudsearch_v1 {
               '$1'
             ),
             method: 'PUT',
+            apiVersion: '',
           },
           options
         ),
@@ -7265,6 +7312,7 @@ export namespace cloudsearch_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -7352,6 +7400,7 @@ export namespace cloudsearch_v1 {
               '$1'
             ),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -7442,6 +7491,7 @@ export namespace cloudsearch_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -7536,6 +7586,7 @@ export namespace cloudsearch_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -7625,6 +7676,7 @@ export namespace cloudsearch_v1 {
               '$1'
             ),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -7712,6 +7764,7 @@ export namespace cloudsearch_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -7799,6 +7852,7 @@ export namespace cloudsearch_v1 {
               '$1'
             ),
             method: 'PUT',
+            apiVersion: '',
           },
           options
         ),
@@ -7993,6 +8047,7 @@ export namespace cloudsearch_v1 {
           {
             url: (rootUrl + '/v1/stats/index').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -8085,6 +8140,7 @@ export namespace cloudsearch_v1 {
           {
             url: (rootUrl + '/v1/stats/query').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -8181,6 +8237,7 @@ export namespace cloudsearch_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -8273,6 +8330,7 @@ export namespace cloudsearch_v1 {
           {
             url: (rootUrl + '/v1/stats/session').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -8365,6 +8423,7 @@ export namespace cloudsearch_v1 {
           {
             url: (rootUrl + '/v1/stats/user').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -8609,6 +8668,7 @@ export namespace cloudsearch_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -8755,6 +8815,7 @@ export namespace cloudsearch_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -8901,6 +8962,7 @@ export namespace cloudsearch_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -9047,6 +9109,7 @@ export namespace cloudsearch_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -9175,6 +9238,7 @@ export namespace cloudsearch_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
