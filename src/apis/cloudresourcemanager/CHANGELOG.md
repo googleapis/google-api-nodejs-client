@@ -1,5 +1,31 @@
 # Changelog
 
+## [1.3.0](https://github.com/googleapis/google-api-nodejs-client/compare/cloudresourcemanager-v1.2.1...cloudresourcemanager-v1.3.0) (2024-05-02)
+
+
+### Features
+
+* **cloudresourcemanager:** update the API ([de01fce](https://github.com/googleapis/google-api-nodejs-client/commit/de01fce516bea73d0f2417cd1fd433dff0357a33))
+
+
+### Bug Fixes
+
+* **cloudresourcemanager:** update the API ([76f0f51](https://github.com/googleapis/google-api-nodejs-client/commit/76f0f511f97312e3aa7a41f14befa836ce44df55))
+
+## [1.2.1](https://github.com/googleapis/google-api-nodejs-client/compare/cloudresourcemanager-v1.2.0...cloudresourcemanager-v1.2.1) (2024-05-02)
+
+
+### Bug Fixes
+
+* **cloudresourcemanager:** update the API ([76f0f51](https://github.com/googleapis/google-api-nodejs-client/commit/76f0f511f97312e3aa7a41f14befa836ce44df55))
+
+## [1.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/cloudresourcemanager-v1.1.5...cloudresourcemanager-v1.2.0) (2024-04-04)
+
+
+### Features
+
+* **cloudresourcemanager:** update the API ([de01fce](https://github.com/googleapis/google-api-nodejs-client/commit/de01fce516bea73d0f2417cd1fd433dff0357a33))
+
 ## [1.1.5](https://github.com/googleapis/google-api-nodejs-client/compare/cloudresourcemanager-v1.1.4...cloudresourcemanager-v1.1.5) (2024-02-02)
 
 

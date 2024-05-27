@@ -115,38 +115,6 @@
   },
   "protocol": "rest",
   "resources": {
-    "media": {
-      "methods": {
-        "download": {
-          "description": "Download a file.",
-          "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/repositories/{repositoriesId}/files/{filesId}:download",
-          "httpMethod": "GET",
-          "id": "artifactregistry.media.download",
-          "parameterOrder": [
-            "name"
-          ],
-          "parameters": {
-            "name": {
-              "description": "Required. The name of the file to download.",
-              "location": "path",
-              "pattern": "^projects/[^/]+/locations/[^/]+/repositories/[^/]+/files/[^/]+$",
-              "required": true,
-              "type": "string"
-            }
-          },
-          "path": "v1/{+name}:download",
-          "response": {
-            "$ref": "DownloadFileResponse"
-          },
-          "scopes": [
-            "https://www.googleapis.com/auth/cloud-platform",
-            "https://www.googleapis.com/auth/cloud-platform.read-only"
-          ],
-          "supportsMediaDownload": true,
-          "useMediaDownloadService": true
-        }
-      }
-    },
     "projects": {
       "methods": {
         "getProjectSettings": {
@@ -538,7 +506,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "The name of the repository, for example: `projects/p1/locations/us-central1/repositories/repo1`.",
+                      "description": "The name of the repository, for example: `projects/p1/locations/us-central1/repositories/repo1`. For each location in a project, repository names must be unique.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/repositories/[^/]+$",
                       "required": true,
@@ -767,6 +735,34 @@
                 },
                 "files": {
                   "methods": {
+                    "download": {
+                      "description": "Download a file.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/repositories/{repositoriesId}/files/{filesId}:download",
+                      "httpMethod": "GET",
+                      "id": "artifactregistry.projects.locations.repositories.files.download",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The name of the file to download.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/repositories/[^/]+/files/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}:download",
+                      "response": {
+                        "$ref": "DownloadFileResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/cloud-platform.read-only"
+                      ],
+                      "supportsMediaDownload": true,
+                      "useMediaDownloadService": true
+                    },
                     "get": {
                       "description": "Gets a file.",
                       "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/repositories/{repositoriesId}/files/{filesId}",
@@ -839,6 +835,54 @@
                         "https://www.googleapis.com/auth/cloud-platform",
                         "https://www.googleapis.com/auth/cloud-platform.read-only"
                       ]
+                    }
+                  }
+                },
+                "genericArtifacts": {
+                  "methods": {
+                    "upload": {
+                      "description": "Directly uploads a Generic artifact. The returned Operation will complete once the resources are uploaded. Package, Version, and File resources are created based on the uploaded artifact. Uploaded artifacts that conflict with existing resources will raise an ALREADY_EXISTS error.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/repositories/{repositoriesId}/genericArtifacts:create",
+                      "httpMethod": "POST",
+                      "id": "artifactregistry.projects.locations.repositories.genericArtifacts.upload",
+                      "mediaUpload": {
+                        "accept": [
+                          "*/*"
+                        ],
+                        "protocols": {
+                          "resumable": {
+                            "multipart": true,
+                            "path": "/resumable/upload/v1/{+parent}/genericArtifacts:create"
+                          },
+                          "simple": {
+                            "multipart": true,
+                            "path": "/upload/v1/{+parent}/genericArtifacts:create"
+                          }
+                        }
+                      },
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "parent": {
+                          "description": "The resource name of the repository where the generic artifact will be uploaded.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/repositories/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+parent}/genericArtifacts:create",
+                      "request": {
+                        "$ref": "UploadGenericArtifactRequest"
+                      },
+                      "response": {
+                        "$ref": "UploadGenericArtifactMediaResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ],
+                      "supportsMediaUpload": true
                     }
                   }
                 },
@@ -1734,7 +1778,7 @@
       }
     }
   },
-  "revision": "20240308",
+  "revision": "20240501",
   "rootUrl": "https://artifactregistry.googleapis.com/",
   "schemas": {
     "AptArtifact": {
@@ -2076,6 +2120,33 @@
       },
       "type": "object"
     },
+    "GenericArtifact": {
+      "description": "GenericArtifact represents a generic artifact",
+      "id": "GenericArtifact",
+      "properties": {
+        "createTime": {
+          "description": "Output only. The time when the Generic module is created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "Resource name of the generic artifact. project, location, repository, package_id and version_id create a unique generic artifact. i.e. \"projects/test-project/locations/us-west4/repositories/test-repo/ genericArtifacts/package_id:version_id\"",
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. The time when the Generic module is updated.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "version": {
+          "description": "The version of the generic artifact.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoModule": {
       "description": "GoModule represents a Go module.",
       "id": "GoModule",
@@ -2149,7 +2220,7 @@
           "type": "array"
         },
         "name": {
-          "description": "The name of the file, for example: \"projects/p1/locations/us-central1/repositories/repo1/files/a%2Fb%2Fc.txt\". If the file ID part contains slashes, they are escaped.",
+          "description": "The name of the file, for example: `projects/p1/locations/us-central1/repositories/repo1/files/a%2Fb%2Fc.txt`. If the file ID part contains slashes, they are escaped.",
           "type": "string"
         },
         "owner": {
@@ -3192,7 +3263,8 @@
             "GOOGET",
             "PYTHON",
             "KFP",
-            "GO"
+            "GO",
+            "GENERIC"
           ],
           "enumDescriptions": [
             "Unspecified package format.",
@@ -3204,7 +3276,8 @@
             "GooGet package format.",
             "Python package format.",
             "Kubeflow Pipelines package format.",
-            "Go package format."
+            "Go package format.",
+            "Generic package format."
           ],
           "type": "string"
         },
@@ -3229,23 +3302,30 @@
             "MODE_UNSPECIFIED",
             "STANDARD_REPOSITORY",
             "VIRTUAL_REPOSITORY",
-            "REMOTE_REPOSITORY"
+            "REMOTE_REPOSITORY",
+            "AOSS_REPOSITORY"
           ],
           "enumDescriptions": [
             "Unspecified mode.",
             "A standard repository storing artifacts.",
             "A virtual repository to serve artifacts from one or more sources.",
-            "A remote repository to serve artifacts from a remote source."
+            "A remote repository to serve artifacts from a remote source.",
+            "An AOSS repository provides artifacts from AOSS upstreams."
           ],
           "type": "string"
         },
         "name": {
-          "description": "The name of the repository, for example: `projects/p1/locations/us-central1/repositories/repo1`.",
+          "description": "The name of the repository, for example: `projects/p1/locations/us-central1/repositories/repo1`. For each location in a project, repository names must be unique.",
           "type": "string"
         },
         "remoteRepositoryConfig": {
           "$ref": "RemoteRepositoryConfig",
           "description": "Configuration specific for a Remote Repository."
+        },
+        "satisfiesPzi": {
+          "description": "Output only. If set, the repository satisfies physical zone isolation.",
+          "readOnly": true,
+          "type": "boolean"
         },
         "satisfiesPzs": {
           "description": "Output only. If set, the repository satisfies physical zone separation.",
@@ -3385,6 +3465,47 @@
             "$ref": "AptArtifact"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "UploadGenericArtifactMediaResponse": {
+      "description": "The response to upload a generic artifact.",
+      "id": "UploadGenericArtifactMediaResponse",
+      "properties": {
+        "operation": {
+          "$ref": "Operation",
+          "description": "Operation that will be returned to the user."
+        }
+      },
+      "type": "object"
+    },
+    "UploadGenericArtifactMetadata": {
+      "description": "The operation metadata for uploading generic artifacts.",
+      "id": "UploadGenericArtifactMetadata",
+      "properties": {},
+      "type": "object"
+    },
+    "UploadGenericArtifactRequest": {
+      "description": "The request to upload a generic artifact. The created GenericArtifact will have the resource name {parent}/genericArtifacts/package_id:version_id. The created file will have the resource name {parent}/files/package_id:version_id:filename.",
+      "id": "UploadGenericArtifactRequest",
+      "properties": {
+        "filename": {
+          "description": "The name of the file of the generic artifact to be uploaded. E.g. \"example-file.zip\" The filename should only include letters, numbers, and url safe characters, i.e. [a-zA-Z0-9-_.~@].",
+          "type": "string"
+        },
+        "name": {
+          "deprecated": true,
+          "description": "Deprecated. Use package_id, version_id and filename instead. The resource name of the generic artifact. E.g. \"projects/math/locations/us/repositories/operations/genericArtifacts/addition/1.0.0/add.py\"",
+          "type": "string"
+        },
+        "packageId": {
+          "description": "The ID of the package of the generic artifact. If the package does not exist, a new package will be created. E.g. \"pkg-1\" The package_id must start with a letter, end with a letter or number, only contain letters, numbers, hyphens and periods i.e. [a-z0-9-.], and cannot exceed 256 characters.",
+          "type": "string"
+        },
+        "versionId": {
+          "description": "The ID of the version of the generic artifact. If the version does not exist, a new version will be created. E.g.\"1.0.0\" The version_id must start and end with a letter or number, can only contain lowercase letters, numbers, hyphens and periods, i.e. [a-z0-9-.] and cannot exceed a total of 128 characters. While \"latest\" is a well-known name for the latest version of a package, it is not yet supported and is reserved for future use. Creating a version called \"latest\" is not allowed.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -3634,7 +3755,7 @@
       "type": "object"
     },
     "VirtualRepositoryConfig": {
-      "description": "Virtual repository configuration.",
+      "description": "LINT.IfChange Virtual repository configuration.",
       "id": "VirtualRepositoryConfig",
       "properties": {
         "upstreamPolicies": {

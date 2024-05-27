@@ -384,7 +384,7 @@ export namespace firestore_v1 {
     updateTime?: string | null;
   }
   /**
-   * A Document has changed. May be the result of multiple writes, including deletes, that ultimately resulted in a new value for the Document. Multiple DocumentChange messages may be returned for the same logical change, if multiple targets are affected.
+   * A Document has changed. May be the result of multiple writes, including deletes, that ultimately resulted in a new value for the Document. Multiple DocumentChange messages may be returned for the same logical change, if multiple targets are affected. For PipelineQueryTargets, `document` will be in the new pipeline format, For a Listen stream with both QueryTargets and PipelineQueryTargets present, if a document matches both types of queries, then a separate DocumentChange messages will be sent out one for each set.
    */
   export interface Schema$DocumentChange {
     /**
@@ -606,6 +606,27 @@ export namespace firestore_v1 {
     unaryFilter?: Schema$UnaryFilter;
   }
   /**
+   * Nearest Neighbors search config.
+   */
+  export interface Schema$FindNearest {
+    /**
+     * Required. The distance measure to use, required.
+     */
+    distanceMeasure?: string | null;
+    /**
+     * Required. The number of nearest neighbors to return. Must be a positive integer of no more than 1000.
+     */
+    limit?: number | null;
+    /**
+     * Required. The query vector that we are searching on. Must be a vector of no more than 2048 dimensions.
+     */
+    queryVector?: Schema$Value;
+    /**
+     * Required. An indexed vector field to search upon. Only documents which contain vectors whose dimensionality match the query_vector can be returned.
+     */
+    vectorField?: Schema$FieldReference;
+  }
+  /**
    * A Backup of a Cloud Firestore Database. The backup contains all documents and index configurations for the given database at a specific point in time.
    */
   export interface Schema$GoogleFirestoreAdminV1Backup {
@@ -647,7 +668,7 @@ export namespace firestore_v1 {
      */
     createTime?: string | null;
     /**
-     * For a schedule that runs daily at a specified time.
+     * For a schedule that runs daily.
      */
     dailyRecurrence?: Schema$GoogleFirestoreAdminV1DailyRecurrence;
     /**
@@ -663,7 +684,7 @@ export namespace firestore_v1 {
      */
     updateTime?: string | null;
     /**
-     * For a schedule that runs weekly on a specific day and time.
+     * For a schedule that runs weekly on a specific day.
      */
     weeklyRecurrence?: Schema$GoogleFirestoreAdminV1WeeklyRecurrence;
   }
@@ -685,7 +706,7 @@ export namespace firestore_v1 {
    */
   export interface Schema$GoogleFirestoreAdminV1CreateDatabaseMetadata {}
   /**
-   * Represents a recurring schedule that runs at a specific time every day. The time zone is UTC.
+   * Represents a recurring schedule that runs every day. The time zone is UTC.
    */
   export interface Schema$GoogleFirestoreAdminV1DailyRecurrence {}
   /**
@@ -712,6 +733,10 @@ export namespace firestore_v1 {
      * State of delete protection for the database.
      */
     deleteProtectionState?: string | null;
+    /**
+     * Output only. The timestamp at which this database was soft deleted. Only set if the database has been soft deleted.
+     */
+    deleteTime?: string | null;
     /**
      * Output only. The earliest timestamp at which older versions of the data can be read from the database. See [version_retention_period] above; this field is populated with `now - version_retention_period`. This value is continuously updated, and becomes stale the moment it is queried. If you are using this value to recover data, make sure to account for the time from the moment when the value is queried to the moment when you initiate the recovery.
      */
@@ -1029,7 +1054,7 @@ export namespace firestore_v1 {
      */
     order?: string | null;
     /**
-     * Indicates that this field supports nearest neighbors and distance operations on vector.
+     * Indicates that this field supports nearest neighbor and distance operations on vector.
      */
     vectorConfig?: Schema$GoogleFirestoreAdminV1VectorConfig;
   }
@@ -1695,6 +1720,10 @@ export namespace firestore_v1 {
      */
     endAt?: Schema$Cursor;
     /**
+     * Optional. A potential nearest neighbors search. Applies after all other filters and ordering. Finds the closest vector embeddings to the given query vector.
+     */
+    findNearest?: Schema$FindNearest;
+    /**
      * The collections to query.
      */
     from?: Schema$CollectionSelector[];
@@ -1821,7 +1850,7 @@ export namespace firestore_v1 {
    */
   export interface Schema$Value {
     /**
-     * An array value. Cannot directly contain another array value, though can contain an map which contains another array.
+     * An array value. Cannot directly contain another array value, though can contain a map which contains another array.
      */
     arrayValue?: Schema$ArrayValue;
     /**
@@ -2057,6 +2086,7 @@ export namespace firestore_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2148,6 +2178,7 @@ export namespace firestore_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -2242,6 +2273,7 @@ export namespace firestore_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2333,6 +2365,7 @@ export namespace firestore_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2429,6 +2462,7 @@ export namespace firestore_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2523,6 +2557,7 @@ export namespace firestore_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2616,6 +2651,7 @@ export namespace firestore_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -2710,6 +2746,7 @@ export namespace firestore_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2793,6 +2830,10 @@ export namespace firestore_v1 {
      * Required. A parent name of the form `projects/{project_id\}`
      */
     parent?: string;
+    /**
+     * If true, also returns deleted resources.
+     */
+    showDeleted?: boolean;
   }
   export interface Params$Resource$Projects$Databases$Patch
     extends StandardParameters {
@@ -2830,7 +2871,7 @@ export namespace firestore_v1 {
     }
 
     /**
-     * Creates a backup schedule on a database. At most two backup schedules can be configured on a database, one daily backup schedule with retention up to 7 days and one weekly backup schedule with retention up to 14 weeks.
+     * Creates a backup schedule on a database. At most two backup schedules can be configured on a database, one daily backup schedule and one weekly backup schedule.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2906,6 +2947,7 @@ export namespace firestore_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2993,6 +3035,7 @@ export namespace firestore_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -3084,6 +3127,7 @@ export namespace firestore_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3180,6 +3224,7 @@ export namespace firestore_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3273,6 +3318,7 @@ export namespace firestore_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -3439,6 +3485,7 @@ export namespace firestore_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3534,6 +3581,7 @@ export namespace firestore_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3628,6 +3676,7 @@ export namespace firestore_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -3657,7 +3706,7 @@ export namespace firestore_v1 {
   export interface Params$Resource$Projects$Databases$Collectiongroups$Fields$List
     extends StandardParameters {
     /**
-     * The filter to apply to list results. Currently, FirestoreAdmin.ListFields only supports listing fields that have been explicitly overridden. To issue this query, call FirestoreAdmin.ListFields with a filter that includes `indexConfig.usesAncestorConfig:false` .
+     * The filter to apply to list results. Currently, FirestoreAdmin.ListFields only supports listing fields that have been explicitly overridden. To issue this query, call FirestoreAdmin.ListFields with a filter that includes `indexConfig.usesAncestorConfig:false` or `ttlConfig:*`.
      */
     filter?: string;
     /**
@@ -3773,6 +3822,7 @@ export namespace firestore_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3858,6 +3908,7 @@ export namespace firestore_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -3950,6 +4001,7 @@ export namespace firestore_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4045,6 +4097,7 @@ export namespace firestore_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4194,6 +4247,7 @@ export namespace firestore_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4284,6 +4338,7 @@ export namespace firestore_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4378,6 +4433,7 @@ export namespace firestore_v1 {
               rootUrl + '/v1/{+database}/documents:beginTransaction'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4465,6 +4521,7 @@ export namespace firestore_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4553,6 +4610,7 @@ export namespace firestore_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4637,6 +4695,7 @@ export namespace firestore_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -4721,6 +4780,7 @@ export namespace firestore_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4813,6 +4873,7 @@ export namespace firestore_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4908,6 +4969,7 @@ export namespace firestore_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5003,6 +5065,7 @@ export namespace firestore_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5090,6 +5153,7 @@ export namespace firestore_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5185,6 +5249,7 @@ export namespace firestore_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5269,6 +5334,7 @@ export namespace firestore_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -5356,6 +5422,7 @@ export namespace firestore_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5451,6 +5518,7 @@ export namespace firestore_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5538,6 +5606,7 @@ export namespace firestore_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5625,6 +5694,7 @@ export namespace firestore_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -6013,6 +6083,7 @@ export namespace firestore_v1 {
           {
             url: (rootUrl + '/v1/{+name}:cancel').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -6097,6 +6168,7 @@ export namespace firestore_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -6188,6 +6260,7 @@ export namespace firestore_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6282,6 +6355,7 @@ export namespace firestore_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6423,6 +6497,7 @@ export namespace firestore_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6515,6 +6590,7 @@ export namespace firestore_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6633,6 +6709,7 @@ export namespace firestore_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -6724,6 +6801,7 @@ export namespace firestore_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6820,6 +6898,7 @@ export namespace firestore_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),

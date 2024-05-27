@@ -1,5 +1,72 @@
 # Changelog
 
+## [14.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/networkservices-v13.0.0...networkservices-v14.0.0) (2024-05-10)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#3484](https://github.com/googleapis/google-api-nodejs-client/issues/3484)) ([99b6c8d](https://github.com/googleapis/google-api-nodejs-client/commit/99b6c8de5beb8447d177048a64a977ee39ee5ee6))
+* run the generator ([#3487](https://github.com/googleapis/google-api-nodejs-client/issues/3487)) ([673c364](https://github.com/googleapis/google-api-nodejs-client/commit/673c364a557c466c34052bef761d00e542f96516))
+
+## [13.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/networkservices-v12.0.1...networkservices-v13.0.0) (2024-05-02)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+* This release has breaking changes.
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#3434](https://github.com/googleapis/google-api-nodejs-client/issues/3434)) ([f0db524](https://github.com/googleapis/google-api-nodejs-client/commit/f0db524bb26f05cea3dec4c0ed66b496399e3857))
+* run the generator ([#3447](https://github.com/googleapis/google-api-nodejs-client/issues/3447)) ([873b559](https://github.com/googleapis/google-api-nodejs-client/commit/873b55950bcf04db37f08e8a62caa6e4a9b9c487))
+* run the generator ([#3456](https://github.com/googleapis/google-api-nodejs-client/issues/3456)) ([a865e81](https://github.com/googleapis/google-api-nodejs-client/commit/a865e81539b315d3b321650663ba0b2555b1e5a1))
+
+
+### Bug Fixes
+
+* **networkservices:** update the API ([0cf9456](https://github.com/googleapis/google-api-nodejs-client/commit/0cf9456b33165b03510406f5173f875aa67b15c8))
+* **networkservices:** update the API ([6354932](https://github.com/googleapis/google-api-nodejs-client/commit/635493216451f719ea3ee2f5408c73b1737c857b))
+* **networkservices:** update the API ([7a5dbfc](https://github.com/googleapis/google-api-nodejs-client/commit/7a5dbfc6167ba0a465bf85c822175e07bf85d74c))
+* **networkservices:** update the API ([e97d268](https://github.com/googleapis/google-api-nodejs-client/commit/e97d268f06ebe99b2302e7c0d132cbca2a688470))
+
+## [12.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/networkservices-v12.0.0...networkservices-v12.0.1) (2024-05-02)
+
+
+### Bug Fixes
+
+* **networkservices:** update the API ([0cf9456](https://github.com/googleapis/google-api-nodejs-client/commit/0cf9456b33165b03510406f5173f875aa67b15c8))
+
+## [12.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/networkservices-v11.0.0...networkservices-v12.0.0) (2024-04-04)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+* This release has breaking changes.
+* This release has breaking changes.
+
+### Features
+
+* **networkservices:** update the API ([076de17](https://github.com/googleapis/google-api-nodejs-client/commit/076de17ce5a6588459729c00d6f8fd2de91a9d0c))
+* run the generator ([#3434](https://github.com/googleapis/google-api-nodejs-client/issues/3434)) ([f0db524](https://github.com/googleapis/google-api-nodejs-client/commit/f0db524bb26f05cea3dec4c0ed66b496399e3857))
+* run the generator ([#3447](https://github.com/googleapis/google-api-nodejs-client/issues/3447)) ([873b559](https://github.com/googleapis/google-api-nodejs-client/commit/873b55950bcf04db37f08e8a62caa6e4a9b9c487))
+* run the generator ([#3456](https://github.com/googleapis/google-api-nodejs-client/issues/3456)) ([a865e81](https://github.com/googleapis/google-api-nodejs-client/commit/a865e81539b315d3b321650663ba0b2555b1e5a1))
+
+
+### Bug Fixes
+
+* **networkservices:** update the API ([6354932](https://github.com/googleapis/google-api-nodejs-client/commit/635493216451f719ea3ee2f5408c73b1737c857b))
+* **networkservices:** update the API ([7a5dbfc](https://github.com/googleapis/google-api-nodejs-client/commit/7a5dbfc6167ba0a465bf85c822175e07bf85d74c))
+* **networkservices:** update the API ([e97d268](https://github.com/googleapis/google-api-nodejs-client/commit/e97d268f06ebe99b2302e7c0d132cbca2a688470))
+* **networkservices:** update the API ([029d25c](https://github.com/googleapis/google-api-nodejs-client/commit/029d25c56efe992b5c7e69607d5a128794922599))
+
 ## [11.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/networkservices-v10.0.2...networkservices-v11.0.0) (2024-03-12)
 
 

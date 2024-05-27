@@ -1,5 +1,56 @@
 # Changelog
 
+## [17.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/sqladmin-v17.0.0...sqladmin-v17.0.1) (2024-05-07)
+
+
+### Bug Fixes
+
+* **sqladmin:** update the API ([975e692](https://github.com/googleapis/google-api-nodejs-client/commit/975e6928315d2b380b565d81d09356e6819988c4))
+
+## [17.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/sqladmin-v16.1.0...sqladmin-v17.0.0) (2024-05-02)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#3434](https://github.com/googleapis/google-api-nodejs-client/issues/3434)) ([f0db524](https://github.com/googleapis/google-api-nodejs-client/commit/f0db524bb26f05cea3dec4c0ed66b496399e3857))
+* run the generator ([#3456](https://github.com/googleapis/google-api-nodejs-client/issues/3456)) ([a865e81](https://github.com/googleapis/google-api-nodejs-client/commit/a865e81539b315d3b321650663ba0b2555b1e5a1))
+* **sqladmin:** update the API ([7cc6d5e](https://github.com/googleapis/google-api-nodejs-client/commit/7cc6d5e1283e44228e54acf2bdb10bbe5436996c))
+* **sqladmin:** update the API ([f17c99a](https://github.com/googleapis/google-api-nodejs-client/commit/f17c99aed62a4d186e4d56756b9fa24b038552e8))
+* **sqladmin:** update the API ([a80b25a](https://github.com/googleapis/google-api-nodejs-client/commit/a80b25a55667abdc7afeca561b5744ddd55eca3b))
+
+## [16.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/sqladmin-v16.0.0...sqladmin-v16.1.0) (2024-05-02)
+
+
+### Features
+
+* **sqladmin:** update the API ([7cc6d5e](https://github.com/googleapis/google-api-nodejs-client/commit/7cc6d5e1283e44228e54acf2bdb10bbe5436996c))
+
+## [16.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/sqladmin-v15.0.0...sqladmin-v16.0.0) (2024-04-04)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#3434](https://github.com/googleapis/google-api-nodejs-client/issues/3434)) ([f0db524](https://github.com/googleapis/google-api-nodejs-client/commit/f0db524bb26f05cea3dec4c0ed66b496399e3857))
+* run the generator ([#3456](https://github.com/googleapis/google-api-nodejs-client/issues/3456)) ([a865e81](https://github.com/googleapis/google-api-nodejs-client/commit/a865e81539b315d3b321650663ba0b2555b1e5a1))
+* **sqladmin:** update the API ([f17c99a](https://github.com/googleapis/google-api-nodejs-client/commit/f17c99aed62a4d186e4d56756b9fa24b038552e8))
+* **sqladmin:** update the API ([a80b25a](https://github.com/googleapis/google-api-nodejs-client/commit/a80b25a55667abdc7afeca561b5744ddd55eca3b))
+* **sqladmin:** update the API ([dcc2567](https://github.com/googleapis/google-api-nodejs-client/commit/dcc2567d656c302e16214032a55317b4512362b7))
+
+
+### Bug Fixes
+
+* **sqladmin:** update the API ([de59e8d](https://github.com/googleapis/google-api-nodejs-client/commit/de59e8dd225ab7cf53698a47b6c5dac578749292))
+
 ## [15.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/sqladmin-v14.1.0...sqladmin-v15.0.0) (2024-03-12)
 
 

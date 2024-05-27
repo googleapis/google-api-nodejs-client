@@ -2721,6 +2721,7 @@ export namespace language_v1beta2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2814,6 +2815,7 @@ export namespace language_v1beta2 {
               rootUrl + '/v1beta2/documents:analyzeEntitySentiment'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2910,6 +2912,7 @@ export namespace language_v1beta2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3004,6 +3007,7 @@ export namespace language_v1beta2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3098,6 +3102,7 @@ export namespace language_v1beta2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3192,6 +3197,7 @@ export namespace language_v1beta2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3286,6 +3292,7 @@ export namespace language_v1beta2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),

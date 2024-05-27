@@ -30,6 +30,10 @@ import {
 } from './accesscontextmanager';
 import {VERSIONS as acmednsVersions, acmedns} from './acmedns';
 import {
+  VERSIONS as addressvalidationVersions,
+  addressvalidation,
+} from './addressvalidation';
+import {
   VERSIONS as adexchangebuyerVersions,
   adexchangebuyer,
 } from './adexchangebuyer';
@@ -177,6 +181,10 @@ import {VERSIONS as cloudbillingVersions, cloudbilling} from './cloudbilling';
 import {VERSIONS as cloudbuildVersions, cloudbuild} from './cloudbuild';
 import {VERSIONS as cloudchannelVersions, cloudchannel} from './cloudchannel';
 import {
+  VERSIONS as cloudcontrolspartnerVersions,
+  cloudcontrolspartner,
+} from './cloudcontrolspartner';
+import {
   VERSIONS as clouddebuggerVersions,
   clouddebugger,
 } from './clouddebugger';
@@ -214,6 +222,7 @@ import {VERSIONS as cloudtasksVersions, cloudtasks} from './cloudtasks';
 import {VERSIONS as cloudtraceVersions, cloudtrace} from './cloudtrace';
 import {VERSIONS as composerVersions, composer} from './composer';
 import {VERSIONS as computeVersions, compute} from './compute';
+import {VERSIONS as configVersions, config} from './config';
 import {VERSIONS as connectorsVersions, connectors} from './connectors';
 import {
   VERSIONS as contactcenteraiplatformVersions,
@@ -603,6 +612,7 @@ import {
   VERSIONS as smartdevicemanagementVersions,
   smartdevicemanagement,
 } from './smartdevicemanagement';
+import {VERSIONS as solarVersions, solar} from './solar';
 import {VERSIONS as sourcerepoVersions, sourcerepo} from './sourcerepo';
 import {VERSIONS as spannerVersions, spanner} from './spanner';
 import {VERSIONS as speechVersions, speech} from './speech';
@@ -698,6 +708,7 @@ export const APIS: APIList = {
   accessapproval: accessapprovalVersions,
   accesscontextmanager: accesscontextmanagerVersions,
   acmedns: acmednsVersions,
+  addressvalidation: addressvalidationVersions,
   adexchangebuyer: adexchangebuyerVersions,
   adexchangebuyer2: adexchangebuyer2Versions,
   adexperiencereport: adexperiencereportVersions,
@@ -758,6 +769,7 @@ export const APIS: APIList = {
   cloudbilling: cloudbillingVersions,
   cloudbuild: cloudbuildVersions,
   cloudchannel: cloudchannelVersions,
+  cloudcontrolspartner: cloudcontrolspartnerVersions,
   clouddebugger: clouddebuggerVersions,
   clouddeploy: clouddeployVersions,
   clouderrorreporting: clouderrorreportingVersions,
@@ -775,6 +787,7 @@ export const APIS: APIList = {
   cloudtrace: cloudtraceVersions,
   composer: composerVersions,
   compute: computeVersions,
+  config: configVersions,
   connectors: connectorsVersions,
   contactcenteraiplatform: contactcenteraiplatformVersions,
   contactcenterinsights: contactcenterinsightsVersions,
@@ -939,6 +952,7 @@ export const APIS: APIList = {
   siteVerification: siteVerificationVersions,
   slides: slidesVersions,
   smartdevicemanagement: smartdevicemanagementVersions,
+  solar: solarVersions,
   sourcerepo: sourcerepoVersions,
   spanner: spannerVersions,
   speech: speechVersions,
@@ -988,6 +1002,7 @@ export class GeneratedAPIs {
   accessapproval = accessapproval;
   accesscontextmanager = accesscontextmanager;
   acmedns = acmedns;
+  addressvalidation = addressvalidation;
   adexchangebuyer = adexchangebuyer;
   adexchangebuyer2 = adexchangebuyer2;
   adexperiencereport = adexperiencereport;
@@ -1048,6 +1063,7 @@ export class GeneratedAPIs {
   cloudbilling = cloudbilling;
   cloudbuild = cloudbuild;
   cloudchannel = cloudchannel;
+  cloudcontrolspartner = cloudcontrolspartner;
   clouddebugger = clouddebugger;
   clouddeploy = clouddeploy;
   clouderrorreporting = clouderrorreporting;
@@ -1065,6 +1081,7 @@ export class GeneratedAPIs {
   cloudtrace = cloudtrace;
   composer = composer;
   compute = compute;
+  config = config;
   connectors = connectors;
   contactcenteraiplatform = contactcenteraiplatform;
   contactcenterinsights = contactcenterinsights;
@@ -1229,6 +1246,7 @@ export class GeneratedAPIs {
   siteVerification = siteVerification;
   slides = slides;
   smartdevicemanagement = smartdevicemanagement;
+  solar = solar;
   sourcerepo = sourcerepo;
   spanner = spanner;
   speech = speech;

@@ -1239,13 +1239,16 @@ export namespace appengine_v1 {
      * The unique ID for this project event. CLHs can use this value to dedup repeated calls. required
      */
     eventId?: string | null;
+    /**
+     * Phase indicates when in the container event propagation this event is being communicated. Events are sent before and after the per-resource events are propagated. required
+     */
     phase?: string | null;
     /**
      * The projects metadata for this project. required
      */
     projectMetadata?: Schema$ProjectsMetadata;
     /**
-     * The state of the project that led to this event.
+     * The state of the organization that led to this event.
      */
     state?: Schema$ContainerState;
   }
@@ -1931,6 +1934,7 @@ export namespace appengine_v1 {
           {
             url: (rootUrl + '/v1/apps').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2014,6 +2018,7 @@ export namespace appengine_v1 {
           {
             url: (rootUrl + '/v1/apps/{appsId}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2108,6 +2113,7 @@ export namespace appengine_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2191,6 +2197,7 @@ export namespace appengine_v1 {
           {
             url: (rootUrl + '/v1/apps/{appsId}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -2277,6 +2284,7 @@ export namespace appengine_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2430,6 +2438,7 @@ export namespace appengine_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2517,6 +2526,7 @@ export namespace appengine_v1 {
               '/v1/apps/{appsId}/authorizedCertificates/{authorizedCertificatesId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -2609,6 +2619,7 @@ export namespace appengine_v1 {
               '/v1/apps/{appsId}/authorizedCertificates/{authorizedCertificatesId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2703,6 +2714,7 @@ export namespace appengine_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2797,6 +2809,7 @@ export namespace appengine_v1 {
               '/v1/apps/{appsId}/authorizedCertificates/{authorizedCertificatesId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -2976,6 +2989,7 @@ export namespace appengine_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3088,6 +3102,7 @@ export namespace appengine_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3174,6 +3189,7 @@ export namespace appengine_v1 {
               rootUrl + '/v1/apps/{appsId}/domainMappings/{domainMappingsId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -3260,6 +3276,7 @@ export namespace appengine_v1 {
               rootUrl + '/v1/apps/{appsId}/domainMappings/{domainMappingsId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3354,6 +3371,7 @@ export namespace appengine_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3440,6 +3458,7 @@ export namespace appengine_v1 {
               rootUrl + '/v1/apps/{appsId}/domainMappings/{domainMappingsId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -3623,6 +3642,7 @@ export namespace appengine_v1 {
               rootUrl + '/v1/apps/{appsId}/firewall/ingressRules:batchUpdate'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3712,6 +3732,7 @@ export namespace appengine_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3799,6 +3820,7 @@ export namespace appengine_v1 {
               '/v1/apps/{appsId}/firewall/ingressRules/{ingressRulesId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -3886,6 +3908,7 @@ export namespace appengine_v1 {
               '/v1/apps/{appsId}/firewall/ingressRules/{ingressRulesId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3978,6 +4001,7 @@ export namespace appengine_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4065,6 +4089,7 @@ export namespace appengine_v1 {
               '/v1/apps/{appsId}/firewall/ingressRules/{ingressRulesId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -4244,6 +4269,7 @@ export namespace appengine_v1 {
               rootUrl + '/v1/apps/{appsId}/locations/{locationsId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4336,6 +4362,7 @@ export namespace appengine_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4460,6 +4487,7 @@ export namespace appengine_v1 {
               rootUrl + '/v1/apps/{appsId}/operations/{operationsId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4552,6 +4580,7 @@ export namespace appengine_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4679,6 +4708,7 @@ export namespace appengine_v1 {
               '$1'
             ),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -4766,6 +4796,7 @@ export namespace appengine_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4858,6 +4889,7 @@ export namespace appengine_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4945,6 +4977,7 @@ export namespace appengine_v1 {
               '$1'
             ),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -5104,6 +5137,7 @@ export namespace appengine_v1 {
               rootUrl + '/v1/apps/{appsId}/services/{servicesId}/versions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5191,6 +5225,7 @@ export namespace appengine_v1 {
               '/v1/apps/{appsId}/services/{servicesId}/versions/{versionsId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -5278,6 +5313,7 @@ export namespace appengine_v1 {
               '/v1/apps/{appsId}/services/{servicesId}/versions/{versionsId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5369,6 +5405,7 @@ export namespace appengine_v1 {
               rootUrl + '/v1/apps/{appsId}/services/{servicesId}/versions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5456,6 +5493,7 @@ export namespace appengine_v1 {
               '/v1/apps/{appsId}/services/{servicesId}/versions/{versionsId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -5648,6 +5686,7 @@ export namespace appengine_v1 {
               '/v1/apps/{appsId}/services/{servicesId}/versions/{versionsId}/instances/{instancesId}:debug'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5735,6 +5774,7 @@ export namespace appengine_v1 {
               '/v1/apps/{appsId}/services/{servicesId}/versions/{versionsId}/instances/{instancesId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -5822,6 +5862,7 @@ export namespace appengine_v1 {
               '/v1/apps/{appsId}/services/{servicesId}/versions/{versionsId}/instances/{instancesId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5914,6 +5955,7 @@ export namespace appengine_v1 {
               '/v1/apps/{appsId}/services/{servicesId}/versions/{versionsId}/instances'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6134,6 +6176,7 @@ export namespace appengine_v1 {
               '/v1/projects/{projectsId}/locations/{locationsId}/applications/{applicationsId}/authorizedDomains'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),

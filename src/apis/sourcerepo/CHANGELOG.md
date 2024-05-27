@@ -1,5 +1,46 @@
 # Changelog
 
+## [4.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/sourcerepo-v3.0.1...sourcerepo-v4.0.0) (2024-05-02)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#3447](https://github.com/googleapis/google-api-nodejs-client/issues/3447)) ([873b559](https://github.com/googleapis/google-api-nodejs-client/commit/873b55950bcf04db37f08e8a62caa6e4a9b9c487))
+
+
+### Bug Fixes
+
+* **sourcerepo:** update the API ([0889507](https://github.com/googleapis/google-api-nodejs-client/commit/088950701aeffc7aa8e6f2f17f955023e05494e1))
+* **sourcerepo:** update the API ([3dad20b](https://github.com/googleapis/google-api-nodejs-client/commit/3dad20b96dabd02e4c1a5cc1a897ccd6cb07f2b9))
+
+## [3.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/sourcerepo-v3.0.0...sourcerepo-v3.0.1) (2024-05-02)
+
+
+### Bug Fixes
+
+* **sourcerepo:** update the API ([0889507](https://github.com/googleapis/google-api-nodejs-client/commit/088950701aeffc7aa8e6f2f17f955023e05494e1))
+
+## [3.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/sourcerepo-v2.0.0...sourcerepo-v3.0.0) (2024-04-04)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#3447](https://github.com/googleapis/google-api-nodejs-client/issues/3447)) ([873b559](https://github.com/googleapis/google-api-nodejs-client/commit/873b55950bcf04db37f08e8a62caa6e4a9b9c487))
+
+
+### Bug Fixes
+
+* **sourcerepo:** update the API ([3dad20b](https://github.com/googleapis/google-api-nodejs-client/commit/3dad20b96dabd02e4c1a5cc1a897ccd6cb07f2b9))
+* **sourcerepo:** update the API ([1965102](https://github.com/googleapis/google-api-nodejs-client/commit/19651026aed9d4a97452b390cbc45b0bc8f97fa9))
+
 ## [2.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/sourcerepo-v1.0.8...sourcerepo-v2.0.0) (2024-03-12)
 
 

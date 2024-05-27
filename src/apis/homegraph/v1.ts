@@ -485,6 +485,7 @@ export namespace homegraph_v1 {
           {
             url: (rootUrl + '/v1/{+agentUserId}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -587,6 +588,7 @@ export namespace homegraph_v1 {
           {
             url: (rootUrl + '/v1/devices:query').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -681,6 +683,7 @@ export namespace homegraph_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -777,6 +780,7 @@ export namespace homegraph_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -860,6 +864,7 @@ export namespace homegraph_v1 {
           {
             url: (rootUrl + '/v1/devices:sync').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),

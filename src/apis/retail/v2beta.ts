@@ -2209,7 +2209,7 @@ export namespace retail_v2beta {
      */
     brands?: string[] | null;
     /**
-     * Product categories. This field is repeated for supporting one product belonging to several parallel categories. Strongly recommended using the full path for better search / recommendation quality. To represent full path of category, use '\>' sign to separate different hierarchies. If '\>' is part of the category name, replace it with other character(s). For example, if a shoes product belongs to both ["Shoes & Accessories" -\> "Shoes"] and ["Sports & Fitness" -\> "Athletic Clothing" -\> "Shoes"], it could be represented as: "categories": [ "Shoes & Accessories \> Shoes", "Sports & Fitness \> Athletic Clothing \> Shoes" ] Must be set for Type.PRIMARY Product otherwise an INVALID_ARGUMENT error is returned. At most 250 values are allowed per Product unless overridden via pantheon UI. Empty values are not allowed. Each value must be a UTF-8 encoded string with a length limit of 5,000 characters. Otherwise, an INVALID_ARGUMENT error is returned. Corresponding properties: Google Merchant Center property google_product_category. Schema.org property [Product.category] (https://schema.org/category). [mc_google_product_category]: https://support.google.com/merchants/answer/6324436
+     * Product categories. This field is repeated for supporting one product belonging to several parallel categories. Strongly recommended using the full path for better search / recommendation quality. To represent full path of category, use '\>' sign to separate different hierarchies. If '\>' is part of the category name, replace it with other character(s). For example, if a shoes product belongs to both ["Shoes & Accessories" -\> "Shoes"] and ["Sports & Fitness" -\> "Athletic Clothing" -\> "Shoes"], it could be represented as: "categories": [ "Shoes & Accessories \> Shoes", "Sports & Fitness \> Athletic Clothing \> Shoes" ] Must be set for Type.PRIMARY Product otherwise an INVALID_ARGUMENT error is returned. At most 250 values are allowed per Product unless overridden through the Google Cloud console. Empty values are not allowed. Each value must be a UTF-8 encoded string with a length limit of 5,000 characters. Otherwise, an INVALID_ARGUMENT error is returned. Corresponding properties: Google Merchant Center property google_product_category. Schema.org property [Product.category] (https://schema.org/category). [mc_google_product_category]: https://support.google.com/merchants/answer/6324436
      */
     categories?: string[] | null;
     /**
@@ -3183,6 +3183,10 @@ export namespace retail_v2beta {
      */
     ignoreControlIds?: string[] | null;
     /**
+     * When the flag is enabled, the products in the denylist will not be filtered out in the recommendation filtering results.
+     */
+    ignoreRecsDenylist?: boolean | null;
+    /**
      * The id of the model in the same Catalog to use at serving time. Currently only RecommendationModels are supported: https://cloud.google.com/retail/recommendations-ai/docs/create-models Can be changed but only to a compatible model (e.g. others-you-may-like CTR to others-you-may-like CVR). Required when solution_types is SOLUTION_TYPE_RECOMMENDATION.
      */
     modelId?: string | null;
@@ -4012,6 +4016,7 @@ export namespace retail_v2beta {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4108,6 +4113,7 @@ export namespace retail_v2beta {
               rootUrl + '/v2beta/{+catalog}:exportAnalyticsMetrics'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4200,6 +4206,7 @@ export namespace retail_v2beta {
           {
             url: (rootUrl + '/v2beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4294,6 +4301,7 @@ export namespace retail_v2beta {
           {
             url: (rootUrl + '/v2beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4391,6 +4399,7 @@ export namespace retail_v2beta {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4487,6 +4496,7 @@ export namespace retail_v2beta {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4580,6 +4590,7 @@ export namespace retail_v2beta {
           {
             url: (rootUrl + '/v2beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -4675,6 +4686,7 @@ export namespace retail_v2beta {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4767,6 +4779,7 @@ export namespace retail_v2beta {
           {
             url: (rootUrl + '/v2beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -4861,6 +4874,7 @@ export namespace retail_v2beta {
           {
             url: (rootUrl + '/v2beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -4896,6 +4910,10 @@ export namespace retail_v2beta {
      * The device type context for completion suggestions. We recommend that you leave this field empty. It can apply different suggestions on different device types, e.g. `DESKTOP`, `MOBILE`. If it is empty, the suggestions are across all device types. Supported formats: * `UNKNOWN_DEVICE_TYPE` * `DESKTOP` * `MOBILE` * A customized string starts with `OTHER_`, e.g. `OTHER_IPHONE`.
      */
     deviceType?: string;
+    /**
+     * If true, attribute suggestions are enabled and provided in response. This field is only available for "cloud-retail" dataset.
+     */
+    enableAttributeSuggestions?: boolean;
     /**
      * The entity for customers who run multiple entities, domains, sites, or regions, for example, `Google US`, `Google Ads`, `Waymo`, `google.com`, `youtube.com`, etc. If this is set, it must be an exact match with UserEvent.entity to get per-entity autocomplete results.
      */
@@ -5108,6 +5126,7 @@ export namespace retail_v2beta {
               rootUrl + '/v2beta/{+attributesConfig}:addCatalogAttribute'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5205,6 +5224,7 @@ export namespace retail_v2beta {
               '/v2beta/{+attributesConfig}:batchRemoveCatalogAttributes'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5301,6 +5321,7 @@ export namespace retail_v2beta {
               rootUrl + '/v2beta/{+attributesConfig}:removeCatalogAttribute'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5397,6 +5418,7 @@ export namespace retail_v2beta {
               rootUrl + '/v2beta/{+attributesConfig}:replaceCatalogAttribute'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5564,6 +5586,7 @@ export namespace retail_v2beta {
           {
             url: (rootUrl + '/v2beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5674,6 +5697,7 @@ export namespace retail_v2beta {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5769,6 +5793,7 @@ export namespace retail_v2beta {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5864,6 +5889,7 @@ export namespace retail_v2beta {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5954,6 +5980,7 @@ export namespace retail_v2beta {
           {
             url: (rootUrl + '/v2beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -6046,6 +6073,7 @@ export namespace retail_v2beta {
           {
             url: (rootUrl + '/v2beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6143,6 +6171,7 @@ export namespace retail_v2beta {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -6238,6 +6267,7 @@ export namespace retail_v2beta {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6332,6 +6362,7 @@ export namespace retail_v2beta {
           {
             url: (rootUrl + '/v2beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -6429,6 +6460,7 @@ export namespace retail_v2beta {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -6523,6 +6555,7 @@ export namespace retail_v2beta {
               rootUrl + '/v2beta/{+product}:removeFulfillmentPlaces'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -6617,6 +6650,7 @@ export namespace retail_v2beta {
               rootUrl + '/v2beta/{+product}:removeLocalInventories'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -6712,6 +6746,7 @@ export namespace retail_v2beta {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -6972,6 +7007,7 @@ export namespace retail_v2beta {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -7087,6 +7123,7 @@ export namespace retail_v2beta {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -7177,6 +7214,7 @@ export namespace retail_v2beta {
           {
             url: (rootUrl + '/v2beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -7268,6 +7306,7 @@ export namespace retail_v2beta {
           {
             url: (rootUrl + '/v2beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -7365,6 +7404,7 @@ export namespace retail_v2beta {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -7459,6 +7499,7 @@ export namespace retail_v2beta {
           {
             url: (rootUrl + '/v2beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -7629,6 +7670,7 @@ export namespace retail_v2beta {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -7717,6 +7759,7 @@ export namespace retail_v2beta {
           {
             url: (rootUrl + '/v2beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -7808,6 +7851,7 @@ export namespace retail_v2beta {
           {
             url: (rootUrl + '/v2beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -7904,6 +7948,7 @@ export namespace retail_v2beta {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -7997,6 +8042,7 @@ export namespace retail_v2beta {
           {
             url: (rootUrl + '/v2beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -8093,6 +8139,7 @@ export namespace retail_v2beta {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -8190,6 +8237,7 @@ export namespace retail_v2beta {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -8286,6 +8334,7 @@ export namespace retail_v2beta {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -8483,6 +8532,7 @@ export namespace retail_v2beta {
           {
             url: (rootUrl + '/v2beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -8578,6 +8628,7 @@ export namespace retail_v2beta {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -8709,6 +8760,7 @@ export namespace retail_v2beta {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -8806,6 +8858,7 @@ export namespace retail_v2beta {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -8935,6 +8988,7 @@ export namespace retail_v2beta {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -9032,6 +9086,7 @@ export namespace retail_v2beta {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -9122,6 +9177,7 @@ export namespace retail_v2beta {
           {
             url: (rootUrl + '/v2beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -9214,6 +9270,7 @@ export namespace retail_v2beta {
           {
             url: (rootUrl + '/v2beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -9311,6 +9368,7 @@ export namespace retail_v2beta {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -9405,6 +9463,7 @@ export namespace retail_v2beta {
           {
             url: (rootUrl + '/v2beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -9502,6 +9561,7 @@ export namespace retail_v2beta {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -9599,6 +9659,7 @@ export namespace retail_v2beta {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -9696,6 +9757,7 @@ export namespace retail_v2beta {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -9906,6 +9968,7 @@ export namespace retail_v2beta {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -10001,6 +10064,7 @@ export namespace retail_v2beta {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -10096,6 +10160,7 @@ export namespace retail_v2beta {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -10191,6 +10256,7 @@ export namespace retail_v2beta {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -10286,6 +10352,7 @@ export namespace retail_v2beta {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -10466,6 +10533,7 @@ export namespace retail_v2beta {
           {
             url: (rootUrl + '/v2beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -10560,6 +10628,7 @@ export namespace retail_v2beta {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -10687,6 +10756,7 @@ export namespace retail_v2beta {
           {
             url: (rootUrl + '/v2beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -10781,6 +10851,7 @@ export namespace retail_v2beta {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),

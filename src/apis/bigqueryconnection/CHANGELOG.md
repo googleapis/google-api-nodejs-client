@@ -1,5 +1,19 @@
 # Changelog
 
+## [1.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/bigqueryconnection-v1.1.0...bigqueryconnection-v1.2.0) (2024-05-02)
+
+
+### Features
+
+* **bigqueryconnection:** update the API ([0e56135](https://github.com/googleapis/google-api-nodejs-client/commit/0e56135413c3799c0543bb45510dede96970cb63))
+
+## [1.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/bigqueryconnection-v1.0.4...bigqueryconnection-v1.1.0) (2024-05-02)
+
+
+### Features
+
+* **bigqueryconnection:** update the API ([0e56135](https://github.com/googleapis/google-api-nodejs-client/commit/0e56135413c3799c0543bb45510dede96970cb63))
+
 ## [1.0.4](https://github.com/googleapis/google-api-nodejs-client/compare/bigqueryconnection-v1.0.3...bigqueryconnection-v1.0.4) (2024-02-02)
 
 

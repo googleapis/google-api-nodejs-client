@@ -1,5 +1,62 @@
 # Changelog
 
+## [10.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/artifactregistry-v9.0.0...artifactregistry-v10.0.0) (2024-05-10)
+
+
+### ⚠ BREAKING CHANGES
+
+* **artifactregistry:** This release has breaking changes.
+
+### Features
+
+* **artifactregistry:** update the API ([4fba2fd](https://github.com/googleapis/google-api-nodejs-client/commit/4fba2fd0d25183c449f0dbeee2142a49408162b6))
+
+## [9.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/artifactregistry-v8.0.0...artifactregistry-v9.0.0) (2024-05-07)
+
+
+### ⚠ BREAKING CHANGES
+
+* **artifactregistry:** This release has breaking changes.
+
+### Features
+
+* **artifactregistry:** update the API ([2c2b2f8](https://github.com/googleapis/google-api-nodejs-client/commit/2c2b2f8723be04c3b0e3788bcd5ed94ea3a81549))
+
+## [8.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/artifactregistry-v7.1.0...artifactregistry-v8.0.0) (2024-05-02)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* **artifactregistry:** update the API ([5a5e4aa](https://github.com/googleapis/google-api-nodejs-client/commit/5a5e4aae48f826b6daec0493c4cfe79b4b0dfa4a))
+* **artifactregistry:** update the API ([f660310](https://github.com/googleapis/google-api-nodejs-client/commit/f660310c8a488a4fc3cb105285b227251d26cf32))
+* run the generator ([#3434](https://github.com/googleapis/google-api-nodejs-client/issues/3434)) ([f0db524](https://github.com/googleapis/google-api-nodejs-client/commit/f0db524bb26f05cea3dec4c0ed66b496399e3857))
+
+## [7.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/artifactregistry-v7.0.0...artifactregistry-v7.1.0) (2024-05-02)
+
+
+### Features
+
+* **artifactregistry:** update the API ([5a5e4aa](https://github.com/googleapis/google-api-nodejs-client/commit/5a5e4aae48f826b6daec0493c4cfe79b4b0dfa4a))
+
+## [7.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/artifactregistry-v6.0.0...artifactregistry-v7.0.0) (2024-04-04)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+* **artifactregistry:** This release has breaking changes.
+
+### Features
+
+* **artifactregistry:** update the API ([f660310](https://github.com/googleapis/google-api-nodejs-client/commit/f660310c8a488a4fc3cb105285b227251d26cf32))
+* **artifactregistry:** update the API ([19c744c](https://github.com/googleapis/google-api-nodejs-client/commit/19c744c7fc9099afde208738dc0b815a1523958b))
+* **artifactregistry:** update the API ([6fda22c](https://github.com/googleapis/google-api-nodejs-client/commit/6fda22c4875bb65a8d3aaca4bf3b8a0a5beec127))
+* run the generator ([#3434](https://github.com/googleapis/google-api-nodejs-client/issues/3434)) ([f0db524](https://github.com/googleapis/google-api-nodejs-client/commit/f0db524bb26f05cea3dec4c0ed66b496399e3857))
+
 ## [6.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/artifactregistry-v5.1.0...artifactregistry-v6.0.0) (2024-03-12)
 
 

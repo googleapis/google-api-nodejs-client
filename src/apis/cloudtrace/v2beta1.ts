@@ -252,6 +252,7 @@ export namespace cloudtrace_v2beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -336,6 +337,7 @@ export namespace cloudtrace_v2beta1 {
           {
             url: (rootUrl + '/v2beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -420,6 +422,7 @@ export namespace cloudtrace_v2beta1 {
           {
             url: (rootUrl + '/v2beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -512,6 +515,7 @@ export namespace cloudtrace_v2beta1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -596,6 +600,7 @@ export namespace cloudtrace_v2beta1 {
           {
             url: (rootUrl + '/v2beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),

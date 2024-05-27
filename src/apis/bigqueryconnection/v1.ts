@@ -368,6 +368,10 @@ export namespace bigqueryconnection_v1 {
    */
   export interface Schema$ConnectorConfiguration {
     /**
+     * Optional. Data asset.
+     */
+    asset?: Schema$ConnectorConfigurationAsset;
+    /**
      * Client authentication.
      */
     authentication?: Schema$ConnectorConfigurationAuthentication;
@@ -379,6 +383,23 @@ export namespace bigqueryconnection_v1 {
      * Specifies how to reach the remote system this connection is pointing to.
      */
     endpoint?: Schema$ConnectorConfigurationEndpoint;
+    /**
+     * Networking configuration.
+     */
+    network?: Schema$ConnectorConfigurationNetwork;
+  }
+  /**
+   * Data Asset - a resource within instance of the system, reachable under specified endpoint. For example a database name in a SQL DB.
+   */
+  export interface Schema$ConnectorConfigurationAsset {
+    /**
+     * Optional. Name of the database.
+     */
+    database?: string | null;
+    /**
+     * Full Google Cloud resource name - https://cloud.google.com/apis/design/resource_names#full_resource_name. Example: `//library.googleapis.com/shelves/shelf1/books/book2`
+     */
+    googleCloudResource?: string | null;
   }
   /**
    * Client authentication.
@@ -397,6 +418,24 @@ export namespace bigqueryconnection_v1 {
      * Host and port in a format of `hostname:port` as defined in https://www.ietf.org/rfc/rfc3986.html#section-3.2.2 and https://www.ietf.org/rfc/rfc3986.html#section-3.2.3.
      */
     hostPort?: string | null;
+  }
+  /**
+   * Network related configuration.
+   */
+  export interface Schema$ConnectorConfigurationNetwork {
+    /**
+     * Private Service Connect networking configuration.
+     */
+    privateServiceConnect?: Schema$ConnectorConfigurationPrivateServiceConnect;
+  }
+  /**
+   * Private Service Connect configuration.
+   */
+  export interface Schema$ConnectorConfigurationPrivateServiceConnect {
+    /**
+     * Required. Network Attachment name in the format of `projects/{project\}/regions/{region\}/networkAttachments/{networkattachment\}`.
+     */
+    networkAttachment?: string | null;
   }
   /**
    * Secret value parameter.
@@ -681,6 +720,7 @@ export namespace bigqueryconnection_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -766,6 +806,7 @@ export namespace bigqueryconnection_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -851,6 +892,7 @@ export namespace bigqueryconnection_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -940,6 +982,7 @@ export namespace bigqueryconnection_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1033,6 +1076,7 @@ export namespace bigqueryconnection_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1118,6 +1162,7 @@ export namespace bigqueryconnection_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -1207,6 +1252,7 @@ export namespace bigqueryconnection_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1303,6 +1349,7 @@ export namespace bigqueryconnection_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),

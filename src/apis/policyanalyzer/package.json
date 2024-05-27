@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/policyanalyzer",
-  "version": "1.0.3",
+  "version": "1.0.5",
   "description": "policyanalyzer",
   "main": "build/index.js",
   "types": "build/index.d.ts",

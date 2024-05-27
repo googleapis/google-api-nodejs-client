@@ -1705,15 +1705,15 @@ export namespace osconfig_v1 {
    */
   export interface Schema$PausePatchDeploymentRequest {}
   /**
-   * ProjectFeatureSettings represents the features settings for the VM Manager. The project features settings can be set for a project.
+   * ProjectFeatureSettings represents the VM Manager feature settings in a project. For more information, see Enable full VM Manager functionality.
    */
   export interface Schema$ProjectFeatureSettings {
     /**
-     * Required. Immutable. Name of the config, e.g. projects/12345/locations/global/projectFeatureSettings
+     * Required. Immutable. Name specifies the URL for the ProjectFeatureSettings resource: projects/project_id/locations/global/projectFeatureSettings.
      */
     name?: string | null;
     /**
-     * Currently set PatchAndConfigFeatureSet for name.
+     * Set PatchAndConfigFeatureSet for the project.
      */
     patchAndConfigFeatureSet?: string | null;
   }
@@ -2052,7 +2052,7 @@ export namespace osconfig_v1 {
     }
 
     /**
-     * GetProjectFeatureSettings returns the feature settings for a project
+     * GetProjectFeatureSettings returns the VM Manager feature settings for a project.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2125,6 +2125,7 @@ export namespace osconfig_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2144,7 +2145,7 @@ export namespace osconfig_v1 {
     }
 
     /**
-     * UpdateProjectFeatureSettings sets the feature settings for a project.
+     * UpdateProjectFeatureSettings sets the VM Manager features for a project.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2217,6 +2218,7 @@ export namespace osconfig_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -2239,14 +2241,14 @@ export namespace osconfig_v1 {
   export interface Params$Resource$Projects$Locations$Global$Getprojectfeaturesettings
     extends StandardParameters {
     /**
-     * Required. Name of the billing config. "projects//locations/global/projectFeatureSettings"
+     * Required. Name specifies the URL for the ProjectFeatureSettings resource: projects/project_id/locations/global/projectFeatureSettings.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Global$Updateprojectfeaturesettings
     extends StandardParameters {
     /**
-     * Required. Immutable. Name of the config, e.g. projects/12345/locations/global/projectFeatureSettings
+     * Required. Immutable. Name specifies the URL for the ProjectFeatureSettings resource: projects/project_id/locations/global/projectFeatureSettings.
      */
     name?: string;
     /**
@@ -2354,6 +2356,7 @@ export namespace osconfig_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2447,6 +2450,7 @@ export namespace osconfig_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2591,6 +2595,7 @@ export namespace osconfig_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2686,6 +2691,7 @@ export namespace osconfig_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2810,6 +2816,7 @@ export namespace osconfig_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2905,6 +2912,7 @@ export namespace osconfig_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3034,6 +3042,7 @@ export namespace osconfig_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3119,6 +3128,7 @@ export namespace osconfig_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -3207,6 +3217,7 @@ export namespace osconfig_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3302,6 +3313,7 @@ export namespace osconfig_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3399,6 +3411,7 @@ export namespace osconfig_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3486,6 +3499,7 @@ export namespace osconfig_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -3655,6 +3669,7 @@ export namespace osconfig_v1 {
           {
             url: (rootUrl + '/v1/{+name}:cancel').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3740,6 +3755,7 @@ export namespace osconfig_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3854,6 +3870,7 @@ export namespace osconfig_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3938,6 +3955,7 @@ export namespace osconfig_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -4022,6 +4040,7 @@ export namespace osconfig_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4116,6 +4135,7 @@ export namespace osconfig_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4202,6 +4222,7 @@ export namespace osconfig_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -4286,6 +4307,7 @@ export namespace osconfig_v1 {
           {
             url: (rootUrl + '/v1/{+name}:pause').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4370,6 +4392,7 @@ export namespace osconfig_v1 {
           {
             url: (rootUrl + '/v1/{+name}:resume').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4551,6 +4574,7 @@ export namespace osconfig_v1 {
           {
             url: (rootUrl + '/v1/{+name}:cancel').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4638,6 +4662,7 @@ export namespace osconfig_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4722,6 +4747,7 @@ export namespace osconfig_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4814,6 +4840,7 @@ export namespace osconfig_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4966,6 +4993,7 @@ export namespace osconfig_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),

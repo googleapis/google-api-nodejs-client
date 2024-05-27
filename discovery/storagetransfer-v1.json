@@ -632,11 +632,11 @@
       }
     }
   },
-  "revision": "20240311",
+  "revision": "20240427",
   "rootUrl": "https://storagetransfer.googleapis.com/",
   "schemas": {
     "AgentPool": {
-      "description": "Represents an On-Premises Agent pool.",
+      "description": "Represents an agent pool.",
       "id": "AgentPool",
       "properties": {
         "bandwidthLimit": {
@@ -661,7 +661,7 @@
           ],
           "enumDescriptions": [
             "Default value. This value is unused.",
-            "This is an initialization state. During this stage, the resources such as Pub/Sub topics are allocated for the AgentPool.",
+            "This is an initialization state. During this stage, resources are allocated for the AgentPool.",
             "Determines that the AgentPool is created for use. At this state, Agents can join the AgentPool and participate in the transfer jobs in that pool.",
             "Determines that the AgentPool deletion has been initiated, and all the resources are scheduled to be cleaned up and freed."
           ],
@@ -732,6 +732,10 @@
         "credentialsSecret": {
           "description": "Optional. The Resource name of a secret in Secret Manager. AWS credentials must be stored in Secret Manager in JSON format: { \"access_key_id\": \"ACCESS_KEY_ID\", \"secret_access_key\": \"SECRET_ACCESS_KEY\" } GoogleServiceAccount must be granted `roles/secretmanager.secretAccessor` for the resource. See [Configure access to a source: Amazon S3] (https://cloud.google.com/storage-transfer/docs/source-amazon-s3#secret_manager) for more information. If `credentials_secret` is specified, do not specify role_arn or aws_access_key. Format: `projects/{project_number}/secrets/{secret_name}`",
           "type": "string"
+        },
+        "managedPrivateNetwork": {
+          "description": "Egress bytes over a Google-managed private network. This network is shared between other users of Storage Transfer Service.",
+          "type": "boolean"
         },
         "path": {
           "description": "Root path to transfer objects. Must be an empty string or full path name that ends with a '/'. This field is treated as an object prefix. As such, it should generally not begin with a '/'.",
@@ -1196,7 +1200,7 @@
           "type": "string"
         },
         "timeCreated": {
-          "description": "Specifies how each object's `timeCreated` metadata is preserved for transfers. If unspecified, the default behavior is the same as TIME_CREATED_SKIP.",
+          "description": "Specifies how each object's `timeCreated` metadata is preserved for transfers. If unspecified, the default behavior is the same as TIME_CREATED_SKIP. This behavior is supported for transfers to GCS buckets from GCS, S3, Azure, S3 Compatible, and Azure sources.",
           "enum": [
             "TIME_CREATED_UNSPECIFIED",
             "TIME_CREATED_SKIP",
@@ -1704,7 +1708,7 @@
         },
         "notificationConfig": {
           "$ref": "NotificationConfig",
-          "description": "Notification configuration. This is not supported for transfers involving PosixFilesystem."
+          "description": "Notification configuration."
         },
         "projectId": {
           "description": "The ID of the Google Cloud project that owns the job.",

@@ -1,5 +1,43 @@
 # Changelog
 
+## [11.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/dataflow-v10.1.0...dataflow-v11.0.0) (2024-05-02)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+* This release has breaking changes.
+
+### Features
+
+* **dataflow:** update the API ([ddd9231](https://github.com/googleapis/google-api-nodejs-client/commit/ddd92315d9fff4a5a20493b1ce874f0974df3b82))
+* run the generator ([#3434](https://github.com/googleapis/google-api-nodejs-client/issues/3434)) ([f0db524](https://github.com/googleapis/google-api-nodejs-client/commit/f0db524bb26f05cea3dec4c0ed66b496399e3857))
+* run the generator ([#3456](https://github.com/googleapis/google-api-nodejs-client/issues/3456)) ([a865e81](https://github.com/googleapis/google-api-nodejs-client/commit/a865e81539b315d3b321650663ba0b2555b1e5a1))
+
+## [10.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/dataflow-v10.0.0...dataflow-v10.1.0) (2024-05-02)
+
+
+### Features
+
+* **dataflow:** update the API ([ddd9231](https://github.com/googleapis/google-api-nodejs-client/commit/ddd92315d9fff4a5a20493b1ce874f0974df3b82))
+
+## [10.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/dataflow-v9.0.0...dataflow-v10.0.0) (2024-04-04)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+* This release has breaking changes.
+* **dataflow:** This release has breaking changes.
+
+### Features
+
+* **dataflow:** update the API ([83ba2b6](https://github.com/googleapis/google-api-nodejs-client/commit/83ba2b6ab8deb82933a489cc66e769ba1de7fdd8))
+* **dataflow:** update the API ([9721cda](https://github.com/googleapis/google-api-nodejs-client/commit/9721cda955b70096a509f7d8984b317ef5ba1a1d))
+* **dataflow:** update the API ([2f7ff38](https://github.com/googleapis/google-api-nodejs-client/commit/2f7ff38cc99a315ad3bf7798f026ec9eb1790da8))
+* run the generator ([#3434](https://github.com/googleapis/google-api-nodejs-client/issues/3434)) ([f0db524](https://github.com/googleapis/google-api-nodejs-client/commit/f0db524bb26f05cea3dec4c0ed66b496399e3857))
+* run the generator ([#3456](https://github.com/googleapis/google-api-nodejs-client/issues/3456)) ([a865e81](https://github.com/googleapis/google-api-nodejs-client/commit/a865e81539b315d3b321650663ba0b2555b1e5a1))
+
 ## [9.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/dataflow-v8.0.0...dataflow-v9.0.0) (2024-03-12)
 
 

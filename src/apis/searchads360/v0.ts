@@ -424,7 +424,7 @@ export namespace searchads360_v0 {
    */
   export interface Schema$GoogleAdsSearchads360V0Common__Metrics {
     /**
-     * The percent of your ad impressions that are shown as the very first ad above the organic search results.
+     * Search absolute top impression share is the percentage of your Search ad impressions that are shown in the most prominent Search position.
      */
     absoluteTopImpressionPercentage?: number | null;
     /**
@@ -700,7 +700,7 @@ export namespace searchads360_v0 {
      */
     searchAbsoluteTopImpressionShare?: number | null;
     /**
-     * The number estimating how often your ad wasn't the very first ad above the organic search results due to a low budget. Note: Search budget lost absolute top impression share is reported in the range of 0 to 0.9. Any value above 0.9 is reported as 0.9001.
+     * The number estimating how often your ad wasn't the very first ad among the top ads in the search results due to a low budget. Note: Search budget lost absolute top impression share is reported in the range of 0 to 0.9. Any value above 0.9 is reported as 0.9001.
      */
     searchBudgetLostAbsoluteTopImpressionShare?: number | null;
     /**
@@ -708,7 +708,7 @@ export namespace searchads360_v0 {
      */
     searchBudgetLostImpressionShare?: number | null;
     /**
-     * The number estimating how often your ad didn't show anywhere above the organic search results due to a low budget. Note: Search budget lost top impression share is reported in the range of 0 to 0.9. Any value above 0.9 is reported as 0.9001.
+     * The number estimating how often your ad didn't show adjacent to the top organic search results due to a low budget. Note: Search budget lost top impression share is reported in the range of 0 to 0.9. Any value above 0.9 is reported as 0.9001.
      */
     searchBudgetLostTopImpressionShare?: number | null;
     /**
@@ -724,7 +724,7 @@ export namespace searchads360_v0 {
      */
     searchImpressionShare?: number | null;
     /**
-     * The number estimating how often your ad wasn't the very first ad above the organic search results due to poor Ad Rank. Note: Search rank lost absolute top impression share is reported in the range of 0 to 0.9. Any value above 0.9 is reported as 0.9001.
+     * The number estimating how often your ad wasn't the very first ad among the top ads in the search results due to poor Ad Rank. Note: Search rank lost absolute top impression share is reported in the range of 0 to 0.9. Any value above 0.9 is reported as 0.9001.
      */
     searchRankLostAbsoluteTopImpressionShare?: number | null;
     /**
@@ -732,15 +732,15 @@ export namespace searchads360_v0 {
      */
     searchRankLostImpressionShare?: number | null;
     /**
-     * The number estimating how often your ad didn't show anywhere above the organic search results due to poor Ad Rank. Note: Search rank lost top impression share is reported in the range of 0 to 0.9. Any value above 0.9 is reported as 0.9001.
+     * The number estimating how often your ad didn't show adjacent to the top organic search results due to poor Ad Rank. Note: Search rank lost top impression share is reported in the range of 0 to 0.9. Any value above 0.9 is reported as 0.9001.
      */
     searchRankLostTopImpressionShare?: number | null;
     /**
-     * The impressions you've received in the top location (anywhere above the organic search results) compared to the estimated number of impressions you were eligible to receive in the top location. Note: Search top impression share is reported in the range of 0.1 to 1. Any value below 0.1 is reported as 0.0999.
+     * The impressions you've received among the top ads compared to the estimated number of impressions you were eligible to receive among the top ads. Note: Search top impression share is reported in the range of 0.1 to 1. Any value below 0.1 is reported as 0.0999. Top ads are generally above the top organic results, although they may show below the top organic results on certain queries.
      */
     searchTopImpressionShare?: number | null;
     /**
-     * The percent of your ad impressions that are shown anywhere above the organic search results.
+     * The percent of your ad impressions that are shown adjacent to the top organic search results.
      */
     topImpressionPercentage?: number | null;
     /**
@@ -1631,6 +1631,76 @@ export namespace searchads360_v0 {
     requestId?: string | null;
   }
   /**
+   * An automated bidding strategy to help get the most conversions for your campaigns while spending your budget.
+   */
+  export interface Schema$GoogleAdsSearchads360V0Resources_AccessibleBiddingStrategy_MaximizeConversions {
+    /**
+     * Output only. The target cost per acquisition (CPA) option. This is the average amount that you would like to spend per acquisition.
+     */
+    targetCpa?: string | null;
+    /**
+     * Output only. The target cost per acquisition (CPA) option. This is the average amount that you would like to spend per acquisition.
+     */
+    targetCpaMicros?: string | null;
+  }
+  /**
+   * An automated bidding strategy to help get the most conversion value for your campaigns while spending your budget.
+   */
+  export interface Schema$GoogleAdsSearchads360V0Resources_AccessibleBiddingStrategy_MaximizeConversionValue {
+    /**
+     * Output only. The target return on ad spend (ROAS) option. If set, the bid strategy will maximize revenue while averaging the target return on ad spend. If the target ROAS is high, the bid strategy may not be able to spend the full budget. If the target ROAS is not set, the bid strategy will aim to achieve the highest possible ROAS for the budget.
+     */
+    targetRoas?: number | null;
+  }
+  /**
+   * An automated bid strategy that sets bids to help get as many conversions as possible at the target cost-per-acquisition (CPA) you set.
+   */
+  export interface Schema$GoogleAdsSearchads360V0Resources_AccessibleBiddingStrategy_TargetCpa {
+    /**
+     * Output only. Average CPA target. This target should be greater than or equal to minimum billable unit based on the currency for the account.
+     */
+    targetCpaMicros?: string | null;
+  }
+  /**
+   * An automated bidding strategy that sets bids so that a certain percentage of search ads are shown at the top of the first page (or other targeted location).
+   */
+  export interface Schema$GoogleAdsSearchads360V0Resources_AccessibleBiddingStrategy_TargetImpressionShare {
+    /**
+     * Output only. The highest CPC bid the automated bidding system is permitted to specify. This is a required field entered by the advertiser that sets the ceiling and specified in local micros.
+     */
+    cpcBidCeilingMicros?: string | null;
+    /**
+     * Output only. The targeted location on the search results page.
+     */
+    location?: string | null;
+    /**
+     * The chosen fraction of ads to be shown in the targeted location in micros. For example, 1% equals 10,000.
+     */
+    locationFractionMicros?: string | null;
+  }
+  /**
+   * An automated bidding strategy that helps you maximize revenue while averaging a specific target return on ad spend (ROAS).
+   */
+  export interface Schema$GoogleAdsSearchads360V0Resources_AccessibleBiddingStrategy_TargetRoas {
+    /**
+     * Output only. The chosen revenue (based on conversion data) per unit of spend.
+     */
+    targetRoas?: number | null;
+  }
+  /**
+   * An automated bid strategy that sets your bids to help get as many clicks as possible within your budget.
+   */
+  export interface Schema$GoogleAdsSearchads360V0Resources_AccessibleBiddingStrategy_TargetSpend {
+    /**
+     * Output only. Maximum bid limit that can be set by the bid strategy. The limit applies to all keywords managed by the strategy.
+     */
+    cpcBidCeilingMicros?: string | null;
+    /**
+     * Output only. The spend target under which to maximize clicks. A TargetSpend bidder will attempt to spend the smaller of this value or the natural throttling spend amount. If not specified, the budget is used as the spend target. This field is deprecated and should no longer be used. See https://ads-developers.googleblog.com/2020/05/reminder-about-sunset-creation-of.html for details.
+     */
+    targetSpendMicros?: string | null;
+  }
+  /**
    * Estimates for criterion bids at various positions.
    */
   export interface Schema$GoogleAdsSearchads360V0Resources_AdGroupCriterion_PositionEstimates {
@@ -1891,6 +1961,59 @@ export namespace searchads360_v0 {
     value?: string | null;
   }
   /**
+   * Represents a view of BiddingStrategies owned by and shared with the customer. In contrast to BiddingStrategy, this resource includes strategies owned by managers of the customer and shared with this customer - in addition to strategies owned by this customer. This resource does not provide metrics and only exposes a limited subset of the BiddingStrategy attributes.
+   */
+  export interface Schema$GoogleAdsSearchads360V0Resources__AccessibleBiddingStrategy {
+    /**
+     * Output only. The ID of the bidding strategy.
+     */
+    id?: string | null;
+    /**
+     * Output only. An automated bidding strategy to help get the most conversions for your campaigns while spending your budget.
+     */
+    maximizeConversions?: Schema$GoogleAdsSearchads360V0Resources_AccessibleBiddingStrategy_MaximizeConversions;
+    /**
+     * Output only. An automated bidding strategy to help get the most conversion value for your campaigns while spending your budget.
+     */
+    maximizeConversionValue?: Schema$GoogleAdsSearchads360V0Resources_AccessibleBiddingStrategy_MaximizeConversionValue;
+    /**
+     * Output only. The name of the bidding strategy.
+     */
+    name?: string | null;
+    /**
+     * Output only. The ID of the Customer which owns the bidding strategy.
+     */
+    ownerCustomerId?: string | null;
+    /**
+     * Output only. descriptive_name of the Customer which owns the bidding strategy.
+     */
+    ownerDescriptiveName?: string | null;
+    /**
+     * Output only. The resource name of the accessible bidding strategy. AccessibleBiddingStrategy resource names have the form: `customers/{customer_id\}/accessibleBiddingStrategies/{bidding_strategy_id\}`
+     */
+    resourceName?: string | null;
+    /**
+     * Output only. A bidding strategy that sets bids to help get as many conversions as possible at the target cost-per-acquisition (CPA) you set.
+     */
+    targetCpa?: Schema$GoogleAdsSearchads360V0Resources_AccessibleBiddingStrategy_TargetCpa;
+    /**
+     * Output only. A bidding strategy that automatically optimizes towards a chosen percentage of impressions.
+     */
+    targetImpressionShare?: Schema$GoogleAdsSearchads360V0Resources_AccessibleBiddingStrategy_TargetImpressionShare;
+    /**
+     * Output only. A bidding strategy that helps you maximize revenue while averaging a specific target Return On Ad Spend (ROAS).
+     */
+    targetRoas?: Schema$GoogleAdsSearchads360V0Resources_AccessibleBiddingStrategy_TargetRoas;
+    /**
+     * Output only. A bid strategy that sets your bids to help get as many clicks as possible within your budget.
+     */
+    targetSpend?: Schema$GoogleAdsSearchads360V0Resources_AccessibleBiddingStrategy_TargetSpend;
+    /**
+     * Output only. The type of the bidding strategy.
+     */
+    type?: string | null;
+  }
+  /**
    * An ad.
    */
   export interface Schema$GoogleAdsSearchads360V0Resources__Ad {
@@ -2131,7 +2254,7 @@ export namespace searchads360_v0 {
     resourceName?: string | null;
   }
   /**
-   * An ad group criterion.
+   * An ad group criterion. The ad_group_criterion report only returns criteria that were explicitly added to the ad group.
    */
   export interface Schema$GoogleAdsSearchads360V0Resources__AdGroupCriterion {
     /**
@@ -2231,7 +2354,7 @@ export namespace searchads360_v0 {
      */
     type?: string | null;
     /**
-     * Immutable. User List. The Similar Audiences sunset starts May 2023. Refer to https://ads-developers.googleblog.com/2022/11/announcing-deprecation-and-sunset-of.html for other options.
+     * Immutable. User List.
      */
     userList?: Schema$GoogleAdsSearchads360V0Common__UserListInfo;
     /**
@@ -2646,6 +2769,10 @@ export namespace searchads360_v0 {
    */
   export interface Schema$GoogleAdsSearchads360V0Resources__Campaign {
     /**
+     * Output only. Resource name of AccessibleBiddingStrategy, a read-only view of the unrestricted attributes of the attached portfolio bidding strategy identified by 'bidding_strategy'. Empty, if the campaign does not use a portfolio strategy. Unrestricted strategy attributes are available to all customers with whom the strategy is shared and are read from the AccessibleBiddingStrategy resource. In contrast, restricted attributes are only available to the owner customer of the strategy and their managers. Restricted attributes can only be read from the BiddingStrategy resource.
+     */
+    accessibleBiddingStrategy?: string | null;
+    /**
      * The ad serving optimization status of the campaign.
      */
     adServingOptimizationStatus?: string | null;
@@ -2959,7 +3086,7 @@ export namespace searchads360_v0 {
      */
     type?: string | null;
     /**
-     * Immutable. User List. The Similar Audiences sunset starts May 2023. Refer to https://ads-developers.googleblog.com/2022/11/announcing-deprecation-and-sunset-of.html for other options.
+     * Immutable. User List.
      */
     userList?: Schema$GoogleAdsSearchads360V0Common__UserListInfo;
     /**
@@ -3498,7 +3625,7 @@ export namespace searchads360_v0 {
     resourceName?: string | null;
   }
   /**
-   * A gender view.
+   * A gender view. The gender_view resource reflects the effective serving state, rather than what criteria were added. An ad group without gender criteria by default shows to all genders, so all genders appear in gender_view with stats.
    */
   export interface Schema$GoogleAdsSearchads360V0Resources__GenderView {
     /**
@@ -3645,7 +3772,7 @@ export namespace searchads360_v0 {
     dimensions?: Schema$GoogleAdsSearchads360V0Resources__ListingGroupFilterDimension[];
   }
   /**
-   * A location view summarizes the performance of campaigns by Location criteria.
+   * A location view summarizes the performance of campaigns by a Location criterion.
    */
   export interface Schema$GoogleAdsSearchads360V0Resources__LocationView {
     /**
@@ -3951,6 +4078,10 @@ export namespace searchads360_v0 {
    * A returned row from the query.
    */
   export interface Schema$GoogleAdsSearchads360V0Services__SearchAds360Row {
+    /**
+     * The accessible bidding strategy referenced in the query.
+     */
+    accessibleBiddingStrategy?: Schema$GoogleAdsSearchads360V0Resources__AccessibleBiddingStrategy;
     /**
      * The ad group referenced in the query.
      */
@@ -4359,6 +4490,7 @@ export namespace searchads360_v0 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4465,6 +4597,7 @@ export namespace searchads360_v0 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4560,6 +4693,7 @@ export namespace searchads360_v0 {
               rootUrl + '/v0/customers/{+customerId}/customColumns'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4677,6 +4811,7 @@ export namespace searchads360_v0 {
               rootUrl + '/v0/customers/{+customerId}/searchAds360:search'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4793,6 +4928,7 @@ export namespace searchads360_v0 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4814,7 +4950,7 @@ export namespace searchads360_v0 {
     }
 
     /**
-     * Returns all fields that match the search query. List of thrown errors: [AuthenticationError]() [AuthorizationError]() [HeaderError]() [InternalError]() [QueryError]() [QuotaError]() [RequestError]()
+     * Returns all fields that match the search [query](/search-ads/reporting/concepts/field-service#use_a_query_to_get_field_details). List of thrown errors: [AuthenticationError]() [AuthorizationError]() [HeaderError]() [InternalError]() [QueryError]() [QuotaError]() [RequestError]()
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4889,6 +5025,7 @@ export namespace searchads360_v0 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),

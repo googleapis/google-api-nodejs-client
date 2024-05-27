@@ -1,5 +1,59 @@
 # Changelog
 
+## [7.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/spanner-v7.0.0...spanner-v7.1.0) (2024-05-07)
+
+
+### Features
+
+* **spanner:** update the API ([e7a0d9a](https://github.com/googleapis/google-api-nodejs-client/commit/e7a0d9adec446d3558727d8a15139bfe1d6b9677))
+
+## [7.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/spanner-v6.1.0...spanner-v7.0.0) (2024-05-02)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#3434](https://github.com/googleapis/google-api-nodejs-client/issues/3434)) ([f0db524](https://github.com/googleapis/google-api-nodejs-client/commit/f0db524bb26f05cea3dec4c0ed66b496399e3857))
+* run the generator ([#3456](https://github.com/googleapis/google-api-nodejs-client/issues/3456)) ([a865e81](https://github.com/googleapis/google-api-nodejs-client/commit/a865e81539b315d3b321650663ba0b2555b1e5a1))
+* **spanner:** update the API ([2d2e0f6](https://github.com/googleapis/google-api-nodejs-client/commit/2d2e0f64b7ceb23e7695939c367d74c7ce14fc2b))
+* **spanner:** update the API ([420bebb](https://github.com/googleapis/google-api-nodejs-client/commit/420bebbe23f63ffec76bb92674798f4eb2c1f219))
+* **spanner:** update the API ([b648ca3](https://github.com/googleapis/google-api-nodejs-client/commit/b648ca3e2d31e38a1e45df582749a086a4023c1b))
+* **spanner:** update the API ([7c371a3](https://github.com/googleapis/google-api-nodejs-client/commit/7c371a3d5168c00352c0e0971a4d967c787b509b))
+
+## [6.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/spanner-v6.0.0...spanner-v6.1.0) (2024-05-02)
+
+
+### Features
+
+* **spanner:** update the API ([2d2e0f6](https://github.com/googleapis/google-api-nodejs-client/commit/2d2e0f64b7ceb23e7695939c367d74c7ce14fc2b))
+
+## [6.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/spanner-v5.0.0...spanner-v6.0.0) (2024-04-04)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#3434](https://github.com/googleapis/google-api-nodejs-client/issues/3434)) ([f0db524](https://github.com/googleapis/google-api-nodejs-client/commit/f0db524bb26f05cea3dec4c0ed66b496399e3857))
+* run the generator ([#3456](https://github.com/googleapis/google-api-nodejs-client/issues/3456)) ([a865e81](https://github.com/googleapis/google-api-nodejs-client/commit/a865e81539b315d3b321650663ba0b2555b1e5a1))
+* **spanner:** update the API ([420bebb](https://github.com/googleapis/google-api-nodejs-client/commit/420bebbe23f63ffec76bb92674798f4eb2c1f219))
+* **spanner:** update the API ([b648ca3](https://github.com/googleapis/google-api-nodejs-client/commit/b648ca3e2d31e38a1e45df582749a086a4023c1b))
+* **spanner:** update the API ([7c371a3](https://github.com/googleapis/google-api-nodejs-client/commit/7c371a3d5168c00352c0e0971a4d967c787b509b))
+* **spanner:** update the API ([19c8a5e](https://github.com/googleapis/google-api-nodejs-client/commit/19c8a5e40f233682de4a75d7f802e0fd7d80f8ef))
+
+
+### Bug Fixes
+
+* **spanner:** update the API ([0e40d67](https://github.com/googleapis/google-api-nodejs-client/commit/0e40d674369b7cc93147e1f97186ca7063eeb770))
+* **spanner:** update the API ([ce99980](https://github.com/googleapis/google-api-nodejs-client/commit/ce99980e717cffd3c2cb50d3fd969c55f20b16b2))
+
 ## [5.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/spanner-v4.3.0...spanner-v5.0.0) (2024-03-12)
 
 

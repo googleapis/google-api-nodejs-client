@@ -1583,7 +1583,7 @@
       }
     }
   },
-  "revision": "20240227",
+  "revision": "20240430",
   "rootUrl": "https://pubsub.googleapis.com/",
   "schemas": {
     "AcknowledgeRequest": {
@@ -1741,6 +1741,10 @@
           "description": "Required. User-provided name for the Cloud Storage bucket. The bucket must be created by the user. The bucket name must be without any prefix like \"gs://\". See the [bucket naming requirements] (https://cloud.google.com/storage/docs/buckets#naming).",
           "type": "string"
         },
+        "filenameDatetimeFormat": {
+          "description": "Optional. User-provided format string specifying how to represent datetimes in Cloud Storage filenames. See the [datetime format guidance](https://cloud.google.com/pubsub/docs/create-cloudstorage-subscription#file_names).",
+          "type": "string"
+        },
         "filenamePrefix": {
           "description": "Optional. User-provided prefix for Cloud Storage filename. See the [object naming requirements](https://cloud.google.com/storage/docs/objects#naming).",
           "type": "string"
@@ -1770,14 +1774,16 @@
             "ACTIVE",
             "PERMISSION_DENIED",
             "NOT_FOUND",
-            "IN_TRANSIT_LOCATION_RESTRICTION"
+            "IN_TRANSIT_LOCATION_RESTRICTION",
+            "SCHEMA_MISMATCH"
           ],
           "enumDescriptions": [
             "Default value. This value is unused.",
             "The subscription can actively send messages to Cloud Storage.",
             "Cannot write to the Cloud Storage bucket because of permission denied errors.",
             "Cannot write to the Cloud Storage bucket because it does not exist.",
-            "Cannot write to the destination because enforce_in_transit is set to true and the destination locations are not in the allowed regions."
+            "Cannot write to the destination because enforce_in_transit is set to true and the destination locations are not in the allowed regions.",
+            "Cannot write to the Cloud Storage bucket due to an incompatibility between the topic schema and subscription settings."
           ],
           "readOnly": true,
           "type": "string"

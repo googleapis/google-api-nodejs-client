@@ -310,6 +310,86 @@
     "projects": {
       "resources": {
         "locations": {
+          "methods": {
+            "exportImage": {
+              "description": "Export image for a given resource.",
+              "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/{locationsId1}:exportImage",
+              "httpMethod": "POST",
+              "id": "run.projects.locations.exportImage",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. The name of the resource of which image metadata should be exported. Format: `projects/{project_id_or_number}/locations/{location}/services/{service}/revisions/{revision}` for Revision `projects/{project_id_or_number}/locations/{location}/jobs/{job}/executions/{execution}` for Execution",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+/locations/[^/]+/.*$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v2/{+name}:exportImage",
+              "request": {
+                "$ref": "GoogleCloudRunV2ExportImageRequest"
+              },
+              "response": {
+                "$ref": "GoogleCloudRunV2ExportImageResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
+            "exportImageMetadata": {
+              "description": "Export image metadata for a given resource.",
+              "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/{locationsId1}:exportImageMetadata",
+              "httpMethod": "GET",
+              "id": "run.projects.locations.exportImageMetadata",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. The name of the resource of which image metadata should be exported. Format: `projects/{project_id_or_number}/locations/{location}/services/{service}/revisions/{revision}` for Revision `projects/{project_id_or_number}/locations/{location}/jobs/{job}/executions/{execution}` for Execution",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+/locations/[^/]+/.*$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v2/{+name}:exportImageMetadata",
+              "response": {
+                "$ref": "GoogleCloudRunV2Metadata"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
+            "exportMetadata": {
+              "description": "Export generated customer metadata for a given resource.",
+              "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/{locationsId1}:exportMetadata",
+              "httpMethod": "GET",
+              "id": "run.projects.locations.exportMetadata",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. The name of the resource of which metadata should be exported. Format: `projects/{project_id_or_number}/locations/{location}/services/{service}` for Service `projects/{project_id_or_number}/locations/{location}/services/{service}/revisions/{revision}` for Revision `projects/{project_id_or_number}/locations/{location}/jobs/{job}/executions/{execution}` for Execution",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+/locations/[^/]+/.*$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v2/{+name}:exportMetadata",
+              "response": {
+                "$ref": "GoogleCloudRunV2Metadata"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            }
+          },
           "resources": {
             "jobs": {
               "methods": {
@@ -493,7 +573,7 @@
                   ],
                   "parameters": {
                     "allowMissing": {
-                      "description": "If set to true, and if the Job does not exist, it will create a new one. Caller must have both create and update permissions for this call if this is set to true.",
+                      "description": "Optional. If set to true, and if the Job does not exist, it will create a new one. Caller must have both create and update permissions for this call if this is set to true.",
                       "location": "query",
                       "type": "boolean"
                     },
@@ -667,6 +747,39 @@
                       "path": "v2/{+name}",
                       "response": {
                         "$ref": "GoogleLongrunningOperation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "exportStatus": {
+                      "description": "Read the status of an image export operation.",
+                      "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/jobs/{jobsId}/executions/{executionsId}/{executionsId1}:exportStatus",
+                      "httpMethod": "GET",
+                      "id": "run.projects.locations.jobs.executions.exportStatus",
+                      "parameterOrder": [
+                        "name",
+                        "operationId"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The name of the resource of which image export operation status has to be fetched. Format: `projects/{project_id_or_number}/locations/{location}/services/{service}/revisions/{revision}` for Revision `projects/{project_id_or_number}/locations/{location}/jobs/{job}/executions/{execution}` for Execution",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/jobs/[^/]+/executions/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "operationId": {
+                          "description": "Required. The operation id returned from ExportImage.",
+                          "location": "path",
+                          "pattern": "^[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v2/{+name}/{+operationId}:exportStatus",
+                      "response": {
+                        "$ref": "GoogleCloudRunV2ExportStatusResponse"
                       },
                       "scopes": [
                         "https://www.googleapis.com/auth/cloud-platform"
@@ -1119,7 +1232,7 @@
                   ],
                   "parameters": {
                     "allowMissing": {
-                      "description": "If set to true, and if the Service does not exist, it will create a new one. The caller must have 'run.services.create' permissions if this is set to true and the Service does not exist.",
+                      "description": "Optional. If set to true, and if the Service does not exist, it will create a new one. The caller must have 'run.services.create' permissions if this is set to true and the Service does not exist.",
                       "location": "query",
                       "type": "boolean"
                     },
@@ -1248,6 +1361,39 @@
                         "https://www.googleapis.com/auth/cloud-platform"
                       ]
                     },
+                    "exportStatus": {
+                      "description": "Read the status of an image export operation.",
+                      "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/services/{servicesId}/revisions/{revisionsId}/{revisionsId1}:exportStatus",
+                      "httpMethod": "GET",
+                      "id": "run.projects.locations.services.revisions.exportStatus",
+                      "parameterOrder": [
+                        "name",
+                        "operationId"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The name of the resource of which image export operation status has to be fetched. Format: `projects/{project_id_or_number}/locations/{location}/services/{service}/revisions/{revision}` for Revision `projects/{project_id_or_number}/locations/{location}/jobs/{job}/executions/{execution}` for Execution",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/services/[^/]+/revisions/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "operationId": {
+                          "description": "Required. The operation id returned from ExportImage.",
+                          "location": "path",
+                          "pattern": "^[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v2/{+name}/{+operationId}:exportStatus",
+                      "response": {
+                        "$ref": "GoogleCloudRunV2ExportStatusResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
                     "get": {
                       "description": "Gets information about a Revision.",
                       "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/services/{servicesId}/revisions/{revisionsId}",
@@ -1323,7 +1469,7 @@
       }
     }
   },
-  "revision": "20240315",
+  "revision": "20240503",
   "rootUrl": "https://run.googleapis.com/",
   "schemas": {
     "GoogleCloudRunV2BinaryAuthorization": {
@@ -1331,11 +1477,15 @@
       "id": "GoogleCloudRunV2BinaryAuthorization",
       "properties": {
         "breakglassJustification": {
-          "description": "If present, indicates to use Breakglass using this justification. If use_default is False, then it must be empty. For more information on breakglass, see https://cloud.google.com/binary-authorization/docs/using-breakglass",
+          "description": "Optional. If present, indicates to use Breakglass using this justification. If use_default is False, then it must be empty. For more information on breakglass, see https://cloud.google.com/binary-authorization/docs/using-breakglass",
+          "type": "string"
+        },
+        "policy": {
+          "description": "Optional. The path to a binary authorization policy. Format: projects/{project}/platforms/cloudRun/{policy-name}",
           "type": "string"
         },
         "useDefault": {
-          "description": "If True, indicates to use the default project's binary authorization policy. If False, binary authorization will be disabled.",
+          "description": "Optional. If True, indicates to use the default project's binary authorization policy. If False, binary authorization will be disabled.",
           "type": "boolean"
         }
       },
@@ -1375,7 +1525,7 @@
       "id": "GoogleCloudRunV2Condition",
       "properties": {
         "executionReason": {
-          "description": "A reason for the execution condition.",
+          "description": "Output only. A reason for the execution condition.",
           "enum": [
             "EXECUTION_REASON_UNDEFINED",
             "JOB_STATUS_SERVICE_POLLING_ERROR",
@@ -1392,6 +1542,7 @@
             "The execution is in the process of being cancelled.",
             "The execution was deleted."
           ],
+          "readOnly": true,
           "type": "string"
         },
         "lastTransitionTime": {
@@ -1404,7 +1555,7 @@
           "type": "string"
         },
         "reason": {
-          "description": "A common (service-level) reason for this condition.",
+          "description": "Output only. A common (service-level) reason for this condition.",
           "enum": [
             "COMMON_REASON_UNDEFINED",
             "UNKNOWN",
@@ -1439,10 +1590,11 @@
             "System will retry later; current attempt failed.",
             "An internal error occurred. Further information may be in the message."
           ],
+          "readOnly": true,
           "type": "string"
         },
         "revisionReason": {
-          "description": "A reason for the revision condition.",
+          "description": "Output only. A reason for the revision condition.",
           "enum": [
             "REVISION_REASON_UNDEFINED",
             "PENDING",
@@ -1473,6 +1625,7 @@
             "A revision's container has no port specified since the revision is of a manually scaled service with 0 instance count",
             "A revision with min_instance_count > 0 was created and is waiting for enough instances to begin a traffic migration."
           ],
+          "readOnly": true,
           "type": "string"
         },
         "severity": {
@@ -1928,16 +2081,71 @@
       },
       "type": "object"
     },
+    "GoogleCloudRunV2ExportImageRequest": {
+      "description": "Request message for exporting Cloud Run image.",
+      "id": "GoogleCloudRunV2ExportImageRequest",
+      "properties": {
+        "destinationRepo": {
+          "description": "Required. The export destination url (the Artifact Registry repo).",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRunV2ExportImageResponse": {
+      "description": "ExportImageResponse contains an operation Id to track the image export operation.",
+      "id": "GoogleCloudRunV2ExportImageResponse",
+      "properties": {
+        "operationId": {
+          "description": "An operation ID used to track the status of image exports tied to the original pod ID in the request.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRunV2ExportStatusResponse": {
+      "description": "ExportStatusResponse contains the status of image export operation, with the status of each image export job.",
+      "id": "GoogleCloudRunV2ExportStatusResponse",
+      "properties": {
+        "imageExportStatuses": {
+          "description": "The status of each image export job.",
+          "items": {
+            "$ref": "GoogleCloudRunV2ImageExportStatus"
+          },
+          "type": "array"
+        },
+        "operationId": {
+          "description": "The operation id.",
+          "type": "string"
+        },
+        "operationState": {
+          "description": "Output only. The state of the overall export operation.",
+          "enum": [
+            "OPERATION_STATE_UNSPECIFIED",
+            "IN_PROGRESS",
+            "FINISHED"
+          ],
+          "enumDescriptions": [
+            "State unspecified.",
+            "Operation still in progress.",
+            "Operation finished."
+          ],
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudRunV2GCSVolumeSource": {
-      "description": "Represents a GCS Bucket mounted as a volume.",
+      "description": "Represents a volume backed by a Cloud Storage bucket using Cloud Storage FUSE.",
       "id": "GoogleCloudRunV2GCSVolumeSource",
       "properties": {
         "bucket": {
-          "description": "GCS Bucket name",
+          "description": "Cloud Storage Bucket name.",
           "type": "string"
         },
         "readOnly": {
-          "description": "If true, mount the GCS bucket as read-only",
+          "description": "If true, the volume will be mounted as read only for all mounts.",
           "type": "boolean"
         }
       },
@@ -1948,12 +2156,12 @@
       "id": "GoogleCloudRunV2GRPCAction",
       "properties": {
         "port": {
-          "description": "Port number of the gRPC service. Number must be in the range 1 to 65535. If not specified, defaults to the exposed port of the container, which is the value of container.ports[0].containerPort.",
+          "description": "Optional. Port number of the gRPC service. Number must be in the range 1 to 65535. If not specified, defaults to the exposed port of the container, which is the value of container.ports[0].containerPort.",
           "format": "int32",
           "type": "integer"
         },
         "service": {
-          "description": "Service is the name of the service to place in the gRPC HealthCheckRequest (see https://github.com/grpc/grpc/blob/master/doc/health-checking.md ). If this is not specified, the default behavior is defined by gRPC.",
+          "description": "Optional. Service is the name of the service to place in the gRPC HealthCheckRequest (see https://github.com/grpc/grpc/blob/master/doc/health-checking.md ). If this is not specified, the default behavior is defined by gRPC.",
           "type": "string"
         }
       },
@@ -1964,18 +2172,18 @@
       "id": "GoogleCloudRunV2HTTPGetAction",
       "properties": {
         "httpHeaders": {
-          "description": "Custom headers to set in the request. HTTP allows repeated headers.",
+          "description": "Optional. Custom headers to set in the request. HTTP allows repeated headers.",
           "items": {
             "$ref": "GoogleCloudRunV2HTTPHeader"
           },
           "type": "array"
         },
         "path": {
-          "description": "Path to access on the HTTP server. Defaults to '/'.",
+          "description": "Optional. Path to access on the HTTP server. Defaults to '/'.",
           "type": "string"
         },
         "port": {
-          "description": "Port number to access on the container. Must be in the range 1 to 65535. If not specified, defaults to the exposed port of the container, which is the value of container.ports[0].containerPort.",
+          "description": "Optional. Port number to access on the container. Must be in the range 1 to 65535. If not specified, defaults to the exposed port of the container, which is the value of container.ports[0].containerPort.",
           "format": "int32",
           "type": "integer"
         }
@@ -1991,7 +2199,41 @@
           "type": "string"
         },
         "value": {
-          "description": "The header field value",
+          "description": "Optional. The header field value",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRunV2ImageExportStatus": {
+      "description": "The status of an image export job.",
+      "id": "GoogleCloudRunV2ImageExportStatus",
+      "properties": {
+        "exportJobState": {
+          "description": "Output only. Has the image export job finished (regardless of successful or failure).",
+          "enum": [
+            "EXPORT_JOB_STATE_UNSPECIFIED",
+            "IN_PROGRESS",
+            "FINISHED"
+          ],
+          "enumDescriptions": [
+            "State unspecified.",
+            "Job still in progress.",
+            "Job finished."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "exportedImageDigest": {
+          "description": "The exported image ID as it will appear in Artifact Registry.",
+          "type": "string"
+        },
+        "status": {
+          "$ref": "UtilStatusProto",
+          "description": "The status of the export task if done."
+        },
+        "tag": {
+          "description": "The image tag as it will appear in Artifact Registry.",
           "type": "string"
         }
       },
@@ -2129,6 +2371,10 @@
           "readOnly": true,
           "type": "boolean"
         },
+        "startExecutionToken": {
+          "description": "A unique string used as a suffix creating a new execution. The Job will become ready when the execution is successfully started. The sum of job name and token length must be fewer than 63 characters.",
+          "type": "string"
+        },
         "template": {
           "$ref": "GoogleCloudRunV2ExecutionTemplate",
           "description": "Required. The template used to create executions for this Job."
@@ -2242,6 +2488,17 @@
       },
       "type": "object"
     },
+    "GoogleCloudRunV2Metadata": {
+      "description": "Metadata represents the JSON encoded generated customer metadata.",
+      "id": "GoogleCloudRunV2Metadata",
+      "properties": {
+        "metadata": {
+          "description": "JSON encoded Google-generated Customer Metadata for a given resource/project.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudRunV2NFSVolumeSource": {
       "description": "Represents an NFS mount.",
       "id": "GoogleCloudRunV2NFSVolumeSource",
@@ -2251,7 +2508,7 @@
           "type": "string"
         },
         "readOnly": {
-          "description": "If true, mount the NFS volume as read only",
+          "description": "If true, the volume will be mounted as read only for all mounts.",
           "type": "boolean"
         },
         "server": {
@@ -2266,19 +2523,30 @@
       "id": "GoogleCloudRunV2NetworkInterface",
       "properties": {
         "network": {
-          "description": "The VPC network that the Cloud Run resource will be able to send traffic to. At least one of network or subnetwork must be specified. If both network and subnetwork are specified, the given VPC subnetwork must belong to the given VPC network. If network is not specified, it will be looked up from the subnetwork.",
+          "description": "Optional. The VPC network that the Cloud Run resource will be able to send traffic to. At least one of network or subnetwork must be specified. If both network and subnetwork are specified, the given VPC subnetwork must belong to the given VPC network. If network is not specified, it will be looked up from the subnetwork.",
           "type": "string"
         },
         "subnetwork": {
-          "description": "The VPC subnetwork that the Cloud Run resource will get IPs from. At least one of network or subnetwork must be specified. If both network and subnetwork are specified, the given VPC subnetwork must belong to the given VPC network. If subnetwork is not specified, the subnetwork with the same name with the network will be used.",
+          "description": "Optional. The VPC subnetwork that the Cloud Run resource will get IPs from. At least one of network or subnetwork must be specified. If both network and subnetwork are specified, the given VPC subnetwork must belong to the given VPC network. If subnetwork is not specified, the subnetwork with the same name with the network will be used.",
           "type": "string"
         },
         "tags": {
-          "description": "Network tags applied to this Cloud Run resource.",
+          "description": "Optional. Network tags applied to this Cloud Run resource.",
           "items": {
             "type": "string"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRunV2NodeSelector": {
+      "description": "Hardware constraints configuration.",
+      "id": "GoogleCloudRunV2NodeSelector",
+      "properties": {
+        "accelerator": {
+          "description": "Required. GPU accelerator type to attach to an instance.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -2312,34 +2580,34 @@
       "id": "GoogleCloudRunV2Probe",
       "properties": {
         "failureThreshold": {
-          "description": "Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1.",
+          "description": "Optional. Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1.",
           "format": "int32",
           "type": "integer"
         },
         "grpc": {
           "$ref": "GoogleCloudRunV2GRPCAction",
-          "description": "GRPC specifies an action involving a gRPC port. Exactly one of httpGet, tcpSocket, or grpc must be specified."
+          "description": "Optional. GRPC specifies an action involving a gRPC port. Exactly one of httpGet, tcpSocket, or grpc must be specified."
         },
         "httpGet": {
           "$ref": "GoogleCloudRunV2HTTPGetAction",
-          "description": "HTTPGet specifies the http request to perform. Exactly one of httpGet, tcpSocket, or grpc must be specified."
+          "description": "Optional. HTTPGet specifies the http request to perform. Exactly one of httpGet, tcpSocket, or grpc must be specified."
         },
         "initialDelaySeconds": {
-          "description": "Number of seconds after the container has started before the probe is initiated. Defaults to 0 seconds. Minimum value is 0. Maximum value for liveness probe is 3600. Maximum value for startup probe is 240.",
+          "description": "Optional. Number of seconds after the container has started before the probe is initiated. Defaults to 0 seconds. Minimum value is 0. Maximum value for liveness probe is 3600. Maximum value for startup probe is 240.",
           "format": "int32",
           "type": "integer"
         },
         "periodSeconds": {
-          "description": "How often (in seconds) to perform the probe. Default to 10 seconds. Minimum value is 1. Maximum value for liveness probe is 3600. Maximum value for startup probe is 240. Must be greater or equal than timeout_seconds.",
+          "description": "Optional. How often (in seconds) to perform the probe. Default to 10 seconds. Minimum value is 1. Maximum value for liveness probe is 3600. Maximum value for startup probe is 240. Must be greater or equal than timeout_seconds.",
           "format": "int32",
           "type": "integer"
         },
         "tcpSocket": {
           "$ref": "GoogleCloudRunV2TCPSocketAction",
-          "description": "TCPSocket specifies an action involving a TCP port. Exactly one of httpGet, tcpSocket, or grpc must be specified."
+          "description": "Optional. TCPSocket specifies an action involving a TCP port. Exactly one of httpGet, tcpSocket, or grpc must be specified."
         },
         "timeoutSeconds": {
-          "description": "Number of seconds after which the probe times out. Defaults to 1 second. Minimum value is 1. Maximum value is 3600. Must be smaller than period_seconds.",
+          "description": "Optional. Number of seconds after which the probe times out. Defaults to 1 second. Minimum value is 1. Maximum value is 3600. Must be smaller than period_seconds.",
           "format": "int32",
           "type": "integer"
         }
@@ -2508,6 +2776,10 @@
           "readOnly": true,
           "type": "string"
         },
+        "nodeSelector": {
+          "$ref": "GoogleCloudRunV2NodeSelector",
+          "description": "The node selector for the revision."
+        },
         "observedGeneration": {
           "description": "Output only. The generation of this Revision currently serving traffic. See comments in `reconciling` for additional information on reconciliation process in Cloud Run.",
           "format": "int64",
@@ -2581,12 +2853,12 @@
       "id": "GoogleCloudRunV2RevisionScaling",
       "properties": {
         "maxInstanceCount": {
-          "description": "Maximum number of serving instances that this resource should have.",
+          "description": "Optional. Maximum number of serving instances that this resource should have.",
           "format": "int32",
           "type": "integer"
         },
         "minInstanceCount": {
-          "description": "Minimum number of serving instances that this resource should have.",
+          "description": "Optional. Minimum number of serving instances that this resource should have.",
           "format": "int32",
           "type": "integer"
         }
@@ -2613,7 +2885,7 @@
           "additionalProperties": {
             "type": "string"
           },
-          "description": "Unstructured key value map that may be set by external tools to store and arbitrary metadata. They are not queryable and should be preserved when modifying objects. Cloud Run API v2 does not support annotations with `run.googleapis.com`, `cloud.googleapis.com`, `serving.knative.dev`, or `autoscaling.knative.dev` namespaces, and they will be rejected. All system annotations in v1 now have a corresponding field in v2 RevisionTemplate. This field follows Kubernetes annotations' namespacing, limits, and rules.",
+          "description": "Optional. Unstructured key value map that may be set by external tools to store and arbitrary metadata. They are not queryable and should be preserved when modifying objects. Cloud Run API v2 does not support annotations with `run.googleapis.com`, `cloud.googleapis.com`, `serving.knative.dev`, or `autoscaling.knative.dev` namespaces, and they will be rejected. All system annotations in v1 now have a corresponding field in v2 RevisionTemplate. This field follows Kubernetes annotations' namespacing, limits, and rules.",
           "type": "object"
         },
         "containers": {
@@ -2628,7 +2900,7 @@
           "type": "string"
         },
         "executionEnvironment": {
-          "description": "The sandbox environment to host this Revision.",
+          "description": "Optional. The sandbox environment to host this Revision.",
           "enum": [
             "EXECUTION_ENVIRONMENT_UNSPECIFIED",
             "EXECUTION_ENVIRONMENT_GEN1",
@@ -2649,24 +2921,28 @@
           "additionalProperties": {
             "type": "string"
           },
-          "description": "Unstructured key value map that can be used to organize and categorize objects. User-provided labels are shared with Google's billing system, so they can be used to filter, or break down billing charges by team, component, environment, state, etc. For more information, visit https://cloud.google.com/resource-manager/docs/creating-managing-labels or https://cloud.google.com/run/docs/configuring/labels. Cloud Run API v2 does not support labels with `run.googleapis.com`, `cloud.googleapis.com`, `serving.knative.dev`, or `autoscaling.knative.dev` namespaces, and they will be rejected. All system labels in v1 now have a corresponding field in v2 RevisionTemplate.",
+          "description": "Optional. Unstructured key value map that can be used to organize and categorize objects. User-provided labels are shared with Google's billing system, so they can be used to filter, or break down billing charges by team, component, environment, state, etc. For more information, visit https://cloud.google.com/resource-manager/docs/creating-managing-labels or https://cloud.google.com/run/docs/configuring/labels. Cloud Run API v2 does not support labels with `run.googleapis.com`, `cloud.googleapis.com`, `serving.knative.dev`, or `autoscaling.knative.dev` namespaces, and they will be rejected. All system labels in v1 now have a corresponding field in v2 RevisionTemplate.",
           "type": "object"
         },
         "maxInstanceRequestConcurrency": {
-          "description": "Sets the maximum number of requests that each serving instance can receive.",
+          "description": "Optional. Sets the maximum number of requests that each serving instance can receive.",
           "format": "int32",
           "type": "integer"
         },
+        "nodeSelector": {
+          "$ref": "GoogleCloudRunV2NodeSelector",
+          "description": "Optional. The node selector for the revision template."
+        },
         "revision": {
-          "description": "The unique name for the revision. If this field is omitted, it will be automatically generated based on the Service name.",
+          "description": "Optional. The unique name for the revision. If this field is omitted, it will be automatically generated based on the Service name.",
           "type": "string"
         },
         "scaling": {
           "$ref": "GoogleCloudRunV2RevisionScaling",
-          "description": "Scaling settings for this Revision."
+          "description": "Optional. Scaling settings for this Revision."
         },
         "serviceAccount": {
-          "description": "Email address of the IAM service account associated with the revision of the service. The service account represents the identity of the running revision, and determines what permissions the revision has. If not provided, the revision will use the project's default service account.",
+          "description": "Optional. Email address of the IAM service account associated with the revision of the service. The service account represents the identity of the running revision, and determines what permissions the revision has. If not provided, the revision will use the project's default service account.",
           "type": "string"
         },
         "sessionAffinity": {
@@ -2674,12 +2950,12 @@
           "type": "boolean"
         },
         "timeout": {
-          "description": "Max allowed time for an instance to respond to a request.",
+          "description": "Optional. Max allowed time for an instance to respond to a request.",
           "format": "google-duration",
           "type": "string"
         },
         "volumes": {
-          "description": "A list of Volumes to make available to containers.",
+          "description": "Optional. A list of Volumes to make available to containers.",
           "items": {
             "$ref": "GoogleCloudRunV2Volume"
           },
@@ -2687,7 +2963,7 @@
         },
         "vpcAccess": {
           "$ref": "GoogleCloudRunV2VpcAccess",
-          "description": "VPC Access configuration to use for this Revision. For more information, visit https://cloud.google.com/run/docs/configuring/connecting-vpc."
+          "description": "Optional. VPC Access configuration to use for this Revision. For more information, visit https://cloud.google.com/run/docs/configuring/connecting-vpc."
         }
       },
       "type": "object"
@@ -2762,7 +3038,7 @@
         },
         "binaryAuthorization": {
           "$ref": "GoogleCloudRunV2BinaryAuthorization",
-          "description": "Settings for the Binary Authorization feature."
+          "description": "Optional. Settings for the Binary Authorization feature."
         },
         "client": {
           "description": "Arbitrary identifier for the API client.",
@@ -2830,7 +3106,7 @@
           "type": "string"
         },
         "ingress": {
-          "description": "Provides the ingress settings for this Service. On output, returns the currently observed ingress settings, or INGRESS_TRAFFIC_UNSPECIFIED if no revision is active.",
+          "description": "Optional. Provides the ingress settings for this Service. On output, returns the currently observed ingress settings, or INGRESS_TRAFFIC_UNSPECIFIED if no revision is active.",
           "enum": [
             "INGRESS_TRAFFIC_UNSPECIFIED",
             "INGRESS_TRAFFIC_ALL",
@@ -2870,7 +3146,7 @@
           "type": "string"
         },
         "launchStage": {
-          "description": "The launch stage as defined by [Google Cloud Platform Launch Stages](https://cloud.google.com/terms/launch-stages). Cloud Run supports `ALPHA`, `BETA`, and `GA`. If no value is specified, GA is assumed. Set the launch stage to a preview stage on input to allow use of preview features in that stage. On read (or output), describes whether the resource uses preview features. For example, if ALPHA is provided as input, but only BETA and GA-level features are used, this field will be BETA on output.",
+          "description": "Optional. The launch stage as defined by [Google Cloud Platform Launch Stages](https://cloud.google.com/terms/launch-stages). Cloud Run supports `ALPHA`, `BETA`, and `GA`. If no value is specified, GA is assumed. Set the launch stage to a preview stage on input to allow use of preview features in that stage. On read (or output), describes whether the resource uses preview features. For example, if ALPHA is provided as input, but only BETA and GA-level features are used, this field will be BETA on output.",
           "enum": [
             "LAUNCH_STAGE_UNSPECIFIED",
             "UNIMPLEMENTED",
@@ -2927,7 +3203,7 @@
           "readOnly": true
         },
         "traffic": {
-          "description": "Specifies how to distribute traffic over a collection of Revisions belonging to the Service. If traffic is empty or not provided, defaults to 100% traffic to the latest `Ready` Revision.",
+          "description": "Optional. Specifies how to distribute traffic over a collection of Revisions belonging to the Service. If traffic is empty or not provided, defaults to 100% traffic to the latest `Ready` Revision.",
           "items": {
             "$ref": "GoogleCloudRunV2TrafficTarget"
           },
@@ -2965,7 +3241,7 @@
       "id": "GoogleCloudRunV2ServiceScaling",
       "properties": {
         "minInstanceCount": {
-          "description": "total min instances for the service. This number of instances is divided among all revisions with specified traffic based on the percent of traffic they are receiving. (BETA)",
+          "description": "Optional. total min instances for the service. This number of instances is divided among all revisions with specified traffic based on the percent of traffic they are receiving. (BETA)",
           "format": "int32",
           "type": "integer"
         }
@@ -2977,7 +3253,7 @@
       "id": "GoogleCloudRunV2TCPSocketAction",
       "properties": {
         "port": {
-          "description": "Port number to access on the container. Must be in the range 1 to 65535. If not specified, defaults to the exposed port of the container, which is the value of container.ports[0].containerPort.",
+          "description": "Optional. Port number to access on the container. Must be in the range 1 to 65535. If not specified, defaults to the exposed port of the container, which is the value of container.ports[0].containerPort.",
           "format": "int32",
           "type": "integer"
         }
@@ -3212,7 +3488,7 @@
           "type": "string"
         },
         "executionEnvironment": {
-          "description": "The execution environment being used to host this Task.",
+          "description": "Optional. The execution environment being used to host this Task.",
           "enum": [
             "EXECUTION_ENVIRONMENT_UNSPECIFIED",
             "EXECUTION_ENVIRONMENT_GEN1",
@@ -3231,16 +3507,16 @@
           "type": "integer"
         },
         "serviceAccount": {
-          "description": "Email address of the IAM service account associated with the Task of a Job. The service account represents the identity of the running task, and determines what permissions the task has. If not provided, the task will use the project's default service account.",
+          "description": "Optional. Email address of the IAM service account associated with the Task of a Job. The service account represents the identity of the running task, and determines what permissions the task has. If not provided, the task will use the project's default service account.",
           "type": "string"
         },
         "timeout": {
-          "description": "Max allowed time duration the Task may be active before the system will actively try to mark it failed and kill associated containers. This applies per attempt of a task, meaning each retry can run for the full timeout. Defaults to 600 seconds.",
+          "description": "Optional. Max allowed time duration the Task may be active before the system will actively try to mark it failed and kill associated containers. This applies per attempt of a task, meaning each retry can run for the full timeout. Defaults to 600 seconds.",
           "format": "google-duration",
           "type": "string"
         },
         "volumes": {
-          "description": "A list of Volumes to make available to containers.",
+          "description": "Optional. A list of Volumes to make available to containers.",
           "items": {
             "$ref": "GoogleCloudRunV2Volume"
           },
@@ -3248,7 +3524,7 @@
         },
         "vpcAccess": {
           "$ref": "GoogleCloudRunV2VpcAccess",
-          "description": "VPC Access configuration to use for this Task. For more information, visit https://cloud.google.com/run/docs/configuring/connecting-vpc."
+          "description": "Optional. VPC Access configuration to use for this Task. For more information, visit https://cloud.google.com/run/docs/configuring/connecting-vpc."
         }
       },
       "type": "object"
@@ -3400,7 +3676,7 @@
           "type": "string"
         },
         "egress": {
-          "description": "Traffic VPC egress settings. If not provided, it defaults to PRIVATE_RANGES_ONLY.",
+          "description": "Optional. Traffic VPC egress settings. If not provided, it defaults to PRIVATE_RANGES_ONLY.",
           "enum": [
             "VPC_EGRESS_UNSPECIFIED",
             "ALL_TRAFFIC",
@@ -3414,7 +3690,7 @@
           "type": "string"
         },
         "networkInterfaces": {
-          "description": "Direct VPC egress settings. Currently only single network interface is supported.",
+          "description": "Optional. Direct VPC egress settings. Currently only single network interface is supported.",
           "items": {
             "$ref": "GoogleCloudRunV2NetworkInterface"
           },
@@ -3574,6 +3850,10 @@
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
+        },
+        "gitConfig": {
+          "$ref": "GoogleDevtoolsCloudbuildV1GitConfig",
+          "description": "Optional. Configuration for git operations."
         },
         "id": {
           "description": "Output only. Unique identifier of the build.",
@@ -4114,6 +4394,25 @@
       },
       "type": "object"
     },
+    "GoogleDevtoolsCloudbuildV1DeveloperConnectConfig": {
+      "description": "This config defines the location of a source through Developer Connect.",
+      "id": "GoogleDevtoolsCloudbuildV1DeveloperConnectConfig",
+      "properties": {
+        "dir": {
+          "description": "Required. Directory, relative to the source root, in which to run the build.",
+          "type": "string"
+        },
+        "gitRepositoryLink": {
+          "description": "Required. The Developer Connect Git repository link, formatted as `projects/*/locations/*/connections/*/gitRepositoryLink/*`.",
+          "type": "string"
+        },
+        "revision": {
+          "description": "Required. The revision to fetch from the Git repository such as a branch, a tag, a commit SHA, or any Git ref.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleDevtoolsCloudbuildV1FailureInfo": {
       "description": "A fatal problem encountered during the execution of the build.",
       "id": "GoogleDevtoolsCloudbuildV1FailureInfo",
@@ -4161,6 +4460,17 @@
       },
       "type": "object"
     },
+    "GoogleDevtoolsCloudbuildV1GitConfig": {
+      "description": "GitConfig is a configuration for git operations.",
+      "id": "GoogleDevtoolsCloudbuildV1GitConfig",
+      "properties": {
+        "http": {
+          "$ref": "GoogleDevtoolsCloudbuildV1HttpConfig",
+          "description": "Configuration for HTTP related git operations."
+        }
+      },
+      "type": "object"
+    },
     "GoogleDevtoolsCloudbuildV1GitSource": {
       "description": "Location of the source in any accessible Git repository.",
       "id": "GoogleDevtoolsCloudbuildV1GitSource",
@@ -4203,6 +4513,17 @@
         "value": {
           "description": "The hash value.",
           "format": "byte",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleDevtoolsCloudbuildV1HttpConfig": {
+      "description": "HttpConfig is a configuration for HTTP related git operations.",
+      "id": "GoogleDevtoolsCloudbuildV1HttpConfig",
+      "properties": {
+        "proxySecretVersionName": {
+          "description": "SecretVersion resource of the HTTP proxy URL. The proxy URL should be in format protocol://@]proxyhost[:port].",
           "type": "string"
         }
       },
@@ -4360,7 +4681,7 @@
           "type": "array"
         },
         "buildStepOutputs": {
-          "description": "List of build step outputs, produced by builder images, in the order corresponding to build step indices. [Cloud Builders](https://cloud.google.com/cloud-build/docs/cloud-builders) can produce this output by writing to `$BUILDER_OUTPUT/output`. Only the first 50KB of data is stored.",
+          "description": "List of build step outputs, produced by builder images, in the order corresponding to build step indices. [Cloud Builders](https://cloud.google.com/cloud-build/docs/cloud-builders) can produce this output by writing to `$BUILDER_OUTPUT/output`. Only the first 50KB of data is stored. Note that the `$BUILDER_OUTPUT` variable is read-only and can't be substituted.",
           "items": {
             "format": "byte",
             "type": "string"
@@ -4465,6 +4786,10 @@
         "connectedRepository": {
           "$ref": "GoogleDevtoolsCloudbuildV1ConnectedRepository",
           "description": "Optional. If provided, get the source from this 2nd-gen Google Cloud Build repository resource."
+        },
+        "developerConnectConfig": {
+          "$ref": "GoogleDevtoolsCloudbuildV1DeveloperConnectConfig",
+          "description": "If provided, get the source from this Developer Connect config."
         },
         "gitSource": {
           "$ref": "GoogleDevtoolsCloudbuildV1GitSource",
@@ -4956,6 +5281,41 @@
         },
         "title": {
           "description": "Optional. Title for the expression, i.e. a short string describing its purpose. This can be used e.g. in UIs which allow to enter the expression.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "Proto2BridgeMessageSet": {
+      "description": "This is proto2's version of MessageSet.",
+      "id": "Proto2BridgeMessageSet",
+      "properties": {},
+      "type": "object"
+    },
+    "UtilStatusProto": {
+      "description": "Wire-format for a Status object",
+      "id": "UtilStatusProto",
+      "properties": {
+        "canonicalCode": {
+          "description": "The canonical error code (see codes.proto) that most closely corresponds to this status. This may be missing, and in the common case of the generic space, it definitely will be.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "code": {
+          "description": "Numeric code drawn from the space specified below. Often, this is the canonical error space, and code is drawn from google3/util/task/codes.proto",
+          "format": "int32",
+          "type": "integer"
+        },
+        "message": {
+          "description": "Detail message",
+          "type": "string"
+        },
+        "messageSet": {
+          "$ref": "Proto2BridgeMessageSet",
+          "description": "message_set associates an arbitrary proto message with the status."
+        },
+        "space": {
+          "description": "The following are usually only present when code != 0 Space to which this status belongs",
           "type": "string"
         }
       },

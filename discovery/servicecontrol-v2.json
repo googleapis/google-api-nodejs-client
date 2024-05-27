@@ -169,7 +169,7 @@
       }
     }
   },
-  "revision": "20230805",
+  "revision": "20240426",
   "rootUrl": "https://servicecontrol.googleapis.com/",
   "schemas": {
     "Api": {
@@ -359,6 +359,10 @@
           "description": "Structured claims presented with the credential. JWTs include `{key: value}` pairs for standard and private claims. The following is a subset of the standard required and optional claims that would typically be presented for a Google-based JWT: {'iss': 'accounts.google.com', 'sub': '113289723416554971153', 'aud': ['123456789012', 'pubsub.googleapis.com'], 'azp': '123456789012.apps.googleusercontent.com', 'email': 'jsmith@example.com', 'iat': 1353601026, 'exp': 1353604926} SAML assertions are similarly specified, but with an identity provider dependent structure.",
           "type": "object"
         },
+        "credentialId": {
+          "description": "Identifies the client credential id used for authentication. credential_id is in the format of AUTH_METHOD:IDENTIFIER, e.g. \"serviceaccount:XXXXX, apikey:XXXXX\" where the format of the IDENTIFIER can vary for different AUTH_METHODs.",
+          "type": "string"
+        },
         "presenter": {
           "description": "The authorized presenter of the credential. Reflects the optional Authorized Presenter (`azp`) claim within a JWT or the OAuth client id. For example, a Google Cloud Platform client id looks as follows: \"123456789012.apps.googleusercontent.com\".",
           "type": "string"
@@ -422,6 +426,24 @@
         },
         "permission": {
           "description": "The required IAM permission.",
+          "type": "string"
+        },
+        "permissionType": {
+          "description": "The type of the permission that was checked. For data access audit logs this corresponds with the permission type that must be enabled in the project/folder/organization IAM policy in order for the log to be written.",
+          "enum": [
+            "PERMISSION_TYPE_UNSPECIFIED",
+            "ADMIN_READ",
+            "ADMIN_WRITE",
+            "DATA_READ",
+            "DATA_WRITE"
+          ],
+          "enumDescriptions": [
+            "Default. Should not be used.",
+            "Permissions that gate reading resource configuration or metadata.",
+            "Permissions that gate modification of resource configuration or metadata.",
+            "Permissions that gate reading user-provided data.",
+            "Permissions that gate writing user-provided data."
+          ],
           "type": "string"
         },
         "resource": {
@@ -594,7 +616,16 @@
     "ReportResponse": {
       "description": "Response message for the Report method.",
       "id": "ReportResponse",
-      "properties": {},
+      "properties": {
+        "extensions": {
+          "additionalProperties": {
+            "description": "Properties of the object. Contains field @type with type URL.",
+            "type": "any"
+          },
+          "description": "The extension field to store serialized OTel responses. e.g. ExportLogsServiceResponse, ExportMetricsServiceResponse.",
+          "type": "object"
+        }
+      },
       "type": "object"
     },
     "Request": {
@@ -1149,6 +1180,65 @@
         "line": {
           "description": "Optional. Line within the source file. 1-based; 0 indicates no line number available.",
           "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "V2ResourceEvent": {
+      "description": "Report v2 extension proto for passing the resource metadata associated with a resource create/update/delete/undelete event from ESF to Chemist. ResourceEvent proto should be serialized into the ReportRequest.operations.extensions.",
+      "id": "V2ResourceEvent",
+      "properties": {
+        "destinations": {
+          "description": "The destinations field determines which backend services should handle the event. This should be specified as a comma-delimited string.",
+          "type": "string"
+        },
+        "parent": {
+          "$ref": "Resource",
+          "description": "The parent resource for the resource."
+        },
+        "path": {
+          "description": "The api path the resource event was created in. This should match the source of the `payload` field. For direct integrations with Chemist, this should generally be the RESPONSE. go/resource-event-pipeline-type",
+          "enum": [
+            "API_PATH_UNSPECIFIED",
+            "REQUEST",
+            "RESPONSE"
+          ],
+          "enumDescriptions": [
+            "Default value. Do not use.",
+            "The request path.",
+            "The response path."
+          ],
+          "type": "string"
+        },
+        "payload": {
+          "additionalProperties": {
+            "description": "Properties of the object. Contains field @type with type URL.",
+            "type": "any"
+          },
+          "description": "The payload contains metadata associated with the resource event. A ResourceEventPayloadStatus is provided instead if the original payload cannot be returned due to a limitation (e.g. size limit).",
+          "type": "object"
+        },
+        "resource": {
+          "$ref": "Resource",
+          "description": "The resource associated with the event."
+        },
+        "type": {
+          "description": "The resource event type determines how the backend service should process the event.",
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "CREATE",
+            "UPDATE",
+            "DELETE",
+            "UNDELETE"
+          ],
+          "enumDescriptions": [
+            "The resource event type is unclear. We do not expect any events to fall into this category.",
+            "The resource is created/inserted.",
+            "The resource is updated.",
+            "The resource is deleted.",
+            "The resource is un-deleted."
+          ],
           "type": "string"
         }
       },

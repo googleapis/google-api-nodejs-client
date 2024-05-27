@@ -1,5 +1,19 @@
 # Changelog
 
+## [1.4.3](https://github.com/googleapis/google-api-nodejs-client/compare/analyticsdata-v1.4.2...analyticsdata-v1.4.3) (2024-05-02)
+
+
+### Bug Fixes
+
+* **analyticsdata:** update the API ([9c8dcf8](https://github.com/googleapis/google-api-nodejs-client/commit/9c8dcf8f9aae5858d453a0dae64ca9837672bc87))
+
+## [1.4.2](https://github.com/googleapis/google-api-nodejs-client/compare/analyticsdata-v1.4.1...analyticsdata-v1.4.2) (2024-05-02)
+
+
+### Bug Fixes
+
+* **analyticsdata:** update the API ([9c8dcf8](https://github.com/googleapis/google-api-nodejs-client/commit/9c8dcf8f9aae5858d453a0dae64ca9837672bc87))
+
 ## [1.4.1](https://github.com/googleapis/google-api-nodejs-client/compare/analyticsdata-v1.4.0...analyticsdata-v1.4.1) (2024-02-02)
 
 

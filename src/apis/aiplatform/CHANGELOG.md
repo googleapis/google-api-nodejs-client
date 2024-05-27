@@ -1,5 +1,60 @@
 # Changelog
 
+## [12.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/aiplatform-v11.0.0...aiplatform-v12.0.0) (2024-05-10)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#3484](https://github.com/googleapis/google-api-nodejs-client/issues/3484)) ([99b6c8d](https://github.com/googleapis/google-api-nodejs-client/commit/99b6c8de5beb8447d177048a64a977ee39ee5ee6))
+* run the generator ([#3487](https://github.com/googleapis/google-api-nodejs-client/issues/3487)) ([673c364](https://github.com/googleapis/google-api-nodejs-client/commit/673c364a557c466c34052bef761d00e542f96516))
+
+## [11.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/aiplatform-v10.0.0...aiplatform-v11.0.0) (2024-05-07)
+
+
+### ⚠ BREAKING CHANGES
+
+* **aiplatform:** This release has breaking changes.
+
+### Features
+
+* **aiplatform:** update the API ([925c9eb](https://github.com/googleapis/google-api-nodejs-client/commit/925c9eb50717f3bd5ef9440caf2ef0c1d15052a7))
+
+## [10.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/aiplatform-v9.0.0...aiplatform-v10.0.0) (2024-05-02)
+
+
+### ⚠ BREAKING CHANGES
+
+* **aiplatform:** This release has breaking changes.
+
+### Features
+
+* **aiplatform:** update the API ([56cde03](https://github.com/googleapis/google-api-nodejs-client/commit/56cde03e4eb6283561515ecac8435ad28f49dda9))
+
+## [9.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/aiplatform-v8.0.0...aiplatform-v9.0.0) (2024-04-04)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+* This release has breaking changes.
+* This release has breaking changes.
+* **aiplatform:** This release has breaking changes.
+* **aiplatform:** This release has breaking changes.
+
+### Features
+
+* **aiplatform:** update the API ([bee5953](https://github.com/googleapis/google-api-nodejs-client/commit/bee5953b9728ff802c37430e5dd03e0aab16e0fd))
+* **aiplatform:** update the API ([cba6496](https://github.com/googleapis/google-api-nodejs-client/commit/cba6496a2e9e243ca70cf83020e51938d8acb72d))
+* **aiplatform:** update the API ([66739ce](https://github.com/googleapis/google-api-nodejs-client/commit/66739ce6244a9936791970333a30eabe9ea379f6))
+* run the generator ([#3434](https://github.com/googleapis/google-api-nodejs-client/issues/3434)) ([f0db524](https://github.com/googleapis/google-api-nodejs-client/commit/f0db524bb26f05cea3dec4c0ed66b496399e3857))
+* run the generator ([#3441](https://github.com/googleapis/google-api-nodejs-client/issues/3441)) ([f832463](https://github.com/googleapis/google-api-nodejs-client/commit/f832463312572dc58fe89f9254282982a520d1df))
+* run the generator ([#3456](https://github.com/googleapis/google-api-nodejs-client/issues/3456)) ([a865e81](https://github.com/googleapis/google-api-nodejs-client/commit/a865e81539b315d3b321650663ba0b2555b1e5a1))
+
 ## [8.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/aiplatform-v7.0.0...aiplatform-v8.0.0) (2024-03-12)
 
 

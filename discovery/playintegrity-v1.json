@@ -138,7 +138,7 @@
       }
     }
   },
-  "revision": "20240321",
+  "revision": "20240508",
   "rootUrl": "https://playintegrity.googleapis.com/",
   "schemas": {
     "AccountActivity": {
@@ -199,8 +199,38 @@
       "description": "Contains signals about others apps on the device which could be used to access or control the requesting app.",
       "id": "AppAccessRiskVerdict",
       "properties": {
+        "appsDetected": {
+          "description": "List of detected app types signalled for App Access Risk.",
+          "items": {
+            "enum": [
+              "APPS_DETECTED_UNSPECIFIED",
+              "KNOWN_INSTALLED",
+              "KNOWN_CAPTURING",
+              "KNOWN_OVERLAYS",
+              "KNOWN_CONTROLLING",
+              "UNKNOWN_INSTALLED",
+              "UNKNOWN_CAPTURING",
+              "UNKNOWN_OVERLAYS",
+              "UNKNOWN_CONTROLLING"
+            ],
+            "enumDescriptions": [
+              "Apps detected is unspecified.",
+              "One or more apps is installed by Google Play or preloaded on the system partition by the device manufacturer.",
+              "One or more apps installed by Google Play or preloaded on the device is running that could be used to read or capture the requesting app, such as a screen recording app.",
+              "One or more apps installed by Google Play or preloaded on the device is running that could be used to display overlays over the requesting app.",
+              "One or more apps installed by Google Play or preloaded on the device is running that could be used to control the device, such as a remote support app.",
+              "One or more unknown apps is installed, that were not installed by Google Play or preloaded on the system partition by the device manufacturer.",
+              "One or more unknown apps, which were not installed by Google Play or preloaded on the device, is running that could be used to read or capture the requesting app, such as a screen recording app.",
+              "One or more unknown apps, which were not installed by Google Play or preloaded on the device, is running that could be used to display overlays over the requesting app.",
+              "One or more unknown apps, which were not installed by Google Play or preloaded on the device, is running that could be used to control the device, such as a remote support app."
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        },
         "otherApps": {
-          "description": "Required. App access risk verdict related to apps that are not installed by Google Play, and are not preloaded on the system image by the device manufacturer.",
+          "deprecated": true,
+          "description": "Deprecated: this field will be removed, please use apps_detected instead. App access risk verdict related to apps that are not installed by Google Play, and are not preloaded on the system image by the device manufacturer.",
           "enum": [
             "UNKNOWN",
             "UNEVALUATED",
@@ -220,7 +250,8 @@
           "type": "string"
         },
         "playOrSystemApps": {
-          "description": "Required. App access risk verdict related to apps that are not installed by the Google Play Store, and are not preloaded on the system image by the device manufacturer.",
+          "deprecated": true,
+          "description": "Deprecated: this field will be removed, please use apps_detected instead. App access risk verdict related to apps that are not installed by the Google Play Store, and are not preloaded on the system image by the device manufacturer.",
           "enum": [
             "UNKNOWN",
             "UNEVALUATED",

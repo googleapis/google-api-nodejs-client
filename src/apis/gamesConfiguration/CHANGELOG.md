@@ -1,5 +1,19 @@
 # Changelog
 
+## [2.0.7](https://github.com/googleapis/google-api-nodejs-client/compare/gamesconfiguration-v2.0.6...gamesconfiguration-v2.0.7) (2024-05-02)
+
+
+### Bug Fixes
+
+* **gamesConfiguration:** update the API ([b26b164](https://github.com/googleapis/google-api-nodejs-client/commit/b26b16406b25d2cc66aeb21bbb4eb7d366c4f6ac))
+
+## [2.0.6](https://github.com/googleapis/google-api-nodejs-client/compare/gamesconfiguration-v2.0.5...gamesconfiguration-v2.0.6) (2024-05-02)
+
+
+### Bug Fixes
+
+* **gamesConfiguration:** update the API ([b26b164](https://github.com/googleapis/google-api-nodejs-client/commit/b26b16406b25d2cc66aeb21bbb4eb7d366c4f6ac))
+
 ## [2.0.5](https://github.com/googleapis/google-api-nodejs-client/compare/gamesconfiguration-v2.0.4...gamesconfiguration-v2.0.5) (2023-10-11)
 
 

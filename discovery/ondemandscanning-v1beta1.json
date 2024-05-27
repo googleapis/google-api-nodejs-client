@@ -339,7 +339,7 @@
       }
     }
   },
-  "revision": "20231218",
+  "revision": "20240429",
   "rootUrl": "https://ondemandscanning.googleapis.com/",
   "schemas": {
     "AliasContext": {
@@ -940,6 +940,29 @@
             "$ref": "NonCompliantFile"
           },
           "type": "array"
+        },
+        "version": {
+          "$ref": "ComplianceVersion",
+          "description": "The OS and config version the benchmark was run on."
+        }
+      },
+      "type": "object"
+    },
+    "ComplianceVersion": {
+      "description": "Describes the CIS benchmark version that is applicable to a given OS and os version.",
+      "id": "ComplianceVersion",
+      "properties": {
+        "benchmarkDocument": {
+          "description": "The name of the document that defines this benchmark, e.g. \"CIS Container-Optimized OS\".",
+          "type": "string"
+        },
+        "cpeUri": {
+          "description": "The CPE URI (https://cpe.mitre.org/specification/) this benchmark is applicable to.",
+          "type": "string"
+        },
+        "version": {
+          "description": "The version of the benchmark. This is set to the version of the OS-specific CIS document the benchmark is defined in.",
+          "type": "string"
         }
       },
       "type": "object"

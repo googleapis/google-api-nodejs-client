@@ -2,9 +2,6 @@
   "auth": {
     "oauth2": {
       "scopes": {
-        "https://www.googleapis.com/auth/dataportability.alerts.subscriptions": {
-          "description": "Move a copy of the Google Alerts subscriptions you created."
-        },
         "https://www.googleapis.com/auth/dataportability.businessmessaging.conversations": {
           "description": "Move a copy of messages between you and the businesses you have conversations with across Google services."
         },
@@ -58,9 +55,6 @@
         },
         "https://www.googleapis.com/auth/dataportability.maps.photos_videos": {
           "description": "Move a copy of the photos and videos you posted on Maps."
-        },
-        "https://www.googleapis.com/auth/dataportability.maps.post_trip_feedback": {
-          "description": "Move a copy of feedback you gave after completing trips using Maps directions."
         },
         "https://www.googleapis.com/auth/dataportability.maps.questions_answers": {
           "description": "Move a copy of the questions and answers you posted on Maps."
@@ -321,7 +315,6 @@
             "$ref": "PortabilityArchiveState"
           },
           "scopes": [
-            "https://www.googleapis.com/auth/dataportability.alerts.subscriptions",
             "https://www.googleapis.com/auth/dataportability.businessmessaging.conversations",
             "https://www.googleapis.com/auth/dataportability.chrome.autofill",
             "https://www.googleapis.com/auth/dataportability.chrome.bookmarks",
@@ -340,7 +333,6 @@
             "https://www.googleapis.com/auth/dataportability.maps.factual_contributions",
             "https://www.googleapis.com/auth/dataportability.maps.offering_contributions",
             "https://www.googleapis.com/auth/dataportability.maps.photos_videos",
-            "https://www.googleapis.com/auth/dataportability.maps.post_trip_feedback",
             "https://www.googleapis.com/auth/dataportability.maps.questions_answers",
             "https://www.googleapis.com/auth/dataportability.maps.reviews",
             "https://www.googleapis.com/auth/dataportability.maps.starred_places",
@@ -413,7 +405,6 @@
             "$ref": "RetryPortabilityArchiveResponse"
           },
           "scopes": [
-            "https://www.googleapis.com/auth/dataportability.alerts.subscriptions",
             "https://www.googleapis.com/auth/dataportability.businessmessaging.conversations",
             "https://www.googleapis.com/auth/dataportability.chrome.autofill",
             "https://www.googleapis.com/auth/dataportability.chrome.bookmarks",
@@ -432,7 +423,6 @@
             "https://www.googleapis.com/auth/dataportability.maps.factual_contributions",
             "https://www.googleapis.com/auth/dataportability.maps.offering_contributions",
             "https://www.googleapis.com/auth/dataportability.maps.photos_videos",
-            "https://www.googleapis.com/auth/dataportability.maps.post_trip_feedback",
             "https://www.googleapis.com/auth/dataportability.maps.questions_answers",
             "https://www.googleapis.com/auth/dataportability.maps.reviews",
             "https://www.googleapis.com/auth/dataportability.maps.starred_places",
@@ -499,7 +489,6 @@
             "$ref": "Empty"
           },
           "scopes": [
-            "https://www.googleapis.com/auth/dataportability.alerts.subscriptions",
             "https://www.googleapis.com/auth/dataportability.businessmessaging.conversations",
             "https://www.googleapis.com/auth/dataportability.chrome.autofill",
             "https://www.googleapis.com/auth/dataportability.chrome.bookmarks",
@@ -518,7 +507,6 @@
             "https://www.googleapis.com/auth/dataportability.maps.factual_contributions",
             "https://www.googleapis.com/auth/dataportability.maps.offering_contributions",
             "https://www.googleapis.com/auth/dataportability.maps.photos_videos",
-            "https://www.googleapis.com/auth/dataportability.maps.post_trip_feedback",
             "https://www.googleapis.com/auth/dataportability.maps.questions_answers",
             "https://www.googleapis.com/auth/dataportability.maps.reviews",
             "https://www.googleapis.com/auth/dataportability.maps.starred_places",
@@ -585,7 +573,6 @@
             "$ref": "InitiatePortabilityArchiveResponse"
           },
           "scopes": [
-            "https://www.googleapis.com/auth/dataportability.alerts.subscriptions",
             "https://www.googleapis.com/auth/dataportability.businessmessaging.conversations",
             "https://www.googleapis.com/auth/dataportability.chrome.autofill",
             "https://www.googleapis.com/auth/dataportability.chrome.bookmarks",
@@ -604,7 +591,6 @@
             "https://www.googleapis.com/auth/dataportability.maps.factual_contributions",
             "https://www.googleapis.com/auth/dataportability.maps.offering_contributions",
             "https://www.googleapis.com/auth/dataportability.maps.photos_videos",
-            "https://www.googleapis.com/auth/dataportability.maps.post_trip_feedback",
             "https://www.googleapis.com/auth/dataportability.maps.questions_answers",
             "https://www.googleapis.com/auth/dataportability.maps.reviews",
             "https://www.googleapis.com/auth/dataportability.maps.starred_places",
@@ -655,7 +641,7 @@
       }
     }
   },
-  "revision": "20240321",
+  "revision": "20240430",
   "rootUrl": "https://dataportability.googleapis.com/",
   "schemas": {
     "Empty": {

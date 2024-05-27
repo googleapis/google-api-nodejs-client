@@ -844,7 +844,7 @@
       }
     }
   },
-  "revision": "20240314",
+  "revision": "20240427",
   "rootUrl": "https://cloudbuild.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -1872,13 +1872,15 @@
             "RESOLVER_NAME_UNSPECIFIED",
             "BUNDLES",
             "GCB_REPO",
-            "GIT"
+            "GIT",
+            "DEVELOPER_CONNECT"
           ],
           "enumDescriptions": [
             "Default enum type; should not be used.",
             "Bundles resolver. https://tekton.dev/docs/pipelines/bundle-resolver/",
             "GCB repo resolver.",
-            "Simple Git resolver. https://tekton.dev/docs/pipelines/git-resolver/"
+            "Simple Git resolver. https://tekton.dev/docs/pipelines/git-resolver/",
+            "Developer Connect resolver."
           ],
           "type": "string"
         }
@@ -2012,6 +2014,11 @@
         "pipelineSpec": {
           "$ref": "PipelineSpec",
           "description": "PipelineSpec defines the desired state of Pipeline."
+        },
+        "pipelineSpecYaml": {
+          "description": "Output only. Inline pipelineSpec yaml string, used by workflow run requests.",
+          "readOnly": true,
+          "type": "string"
         },
         "provenance": {
           "$ref": "Provenance",
@@ -2716,6 +2723,17 @@
           "description": "Name of the container specified as a DNS_LABEL.",
           "type": "string"
         },
+        "params": {
+          "description": "Optional. Optional parameters passed to the StepAction.",
+          "items": {
+            "$ref": "Param"
+          },
+          "type": "array"
+        },
+        "ref": {
+          "$ref": "StepRef",
+          "description": "Optional. Optional reference to a remote StepAction."
+        },
         "script": {
           "description": "The contents of an executable file to execute.",
           "type": "string"
@@ -2738,6 +2756,42 @@
         },
         "workingDir": {
           "description": "Container's working directory.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "StepRef": {
+      "description": "A reference to a remote Step, i.e. a StepAction.",
+      "id": "StepRef",
+      "properties": {
+        "name": {
+          "description": "Optional. Name of the step.",
+          "type": "string"
+        },
+        "params": {
+          "description": "Optional. Parameters used to control the resolution.",
+          "items": {
+            "$ref": "Param"
+          },
+          "type": "array"
+        },
+        "resolver": {
+          "description": "Optional. Type of the resolver.",
+          "enum": [
+            "RESOLVER_NAME_UNSPECIFIED",
+            "BUNDLES",
+            "GCB_REPO",
+            "GIT",
+            "DEVELOPER_CONNECT"
+          ],
+          "enumDescriptions": [
+            "Default enum type; should not be used.",
+            "Bundles resolver. https://tekton.dev/docs/pipelines/bundle-resolver/",
+            "GCB repo resolver.",
+            "Simple Git resolver. https://tekton.dev/docs/pipelines/git-resolver/",
+            "Developer Connect resolver."
+          ],
           "type": "string"
         }
       },
@@ -2786,13 +2840,15 @@
             "RESOLVER_NAME_UNSPECIFIED",
             "BUNDLES",
             "GCB_REPO",
-            "GIT"
+            "GIT",
+            "DEVELOPER_CONNECT"
           ],
           "enumDescriptions": [
             "Default enum type; should not be used.",
             "Bundles resolver. https://tekton.dev/docs/pipelines/bundle-resolver/",
             "GCB repo resolver.",
-            "Simple Git resolver. https://tekton.dev/docs/pipelines/git-resolver/"
+            "Simple Git resolver. https://tekton.dev/docs/pipelines/git-resolver/",
+            "Developer Connect resolver."
           ],
           "type": "string"
         }
@@ -2833,6 +2889,10 @@
             "Object type"
           ],
           "type": "string"
+        },
+        "value": {
+          "$ref": "ParamValue",
+          "description": "Optional. Optionally used to initialize a Task's result with a Step's result."
         }
       },
       "type": "object"

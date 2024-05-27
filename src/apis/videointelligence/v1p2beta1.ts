@@ -3450,6 +3450,7 @@ export namespace videointelligence_v1p2beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),

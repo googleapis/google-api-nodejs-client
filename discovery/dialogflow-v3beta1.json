@@ -595,6 +595,104 @@
                     }
                   }
                 },
+                "conversations": {
+                  "methods": {
+                    "delete": {
+                      "description": "Deletes the specified conversation.",
+                      "flatPath": "v3beta1/projects/{projectsId}/locations/{locationsId}/agents/{agentsId}/conversations/{conversationsId}",
+                      "httpMethod": "DELETE",
+                      "id": "dialogflow.projects.locations.agents.conversations.delete",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The name of the conversation. Format: `projects//locations//agents//conversations/`.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/agents/[^/]+/conversations/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v3beta1/{+name}",
+                      "response": {
+                        "$ref": "GoogleProtobufEmpty"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/dialogflow"
+                      ]
+                    },
+                    "get": {
+                      "description": "Retrieves the specified conversation.",
+                      "flatPath": "v3beta1/projects/{projectsId}/locations/{locationsId}/agents/{agentsId}/conversations/{conversationsId}",
+                      "httpMethod": "GET",
+                      "id": "dialogflow.projects.locations.agents.conversations.get",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The name of the conversation. Format: `projects//locations//agents//conversations/`.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/agents/[^/]+/conversations/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v3beta1/{+name}",
+                      "response": {
+                        "$ref": "GoogleCloudDialogflowCxV3beta1Conversation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/dialogflow"
+                      ]
+                    },
+                    "list": {
+                      "description": "Returns the list of all conversations.",
+                      "flatPath": "v3beta1/projects/{projectsId}/locations/{locationsId}/agents/{agentsId}/conversations",
+                      "httpMethod": "GET",
+                      "id": "dialogflow.projects.locations.agents.conversations.list",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "filter": {
+                          "description": "Optional. The filter string. Supports filter by create_time, metrics.has_end_interaction, metrics.has_live_agent_handoff, intents.display_name, pages.display_name and flows.display_name. Timestamps expect an RFC-3339 formatted string (e.g. 2012-04-21T11:30:00-04:00). UTC offsets are supported. Some examples: 1. By create time: create_time > \"2022-04-21T11:30:00-04:00\" 2. By intent display name: intents.display_name : \"billing\" 3. By end interaction signal: metrics.has_end_interaction = true",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "pageSize": {
+                          "description": "Optional. The maximum number of items to return in a single page. By default 100 and at most 1000.",
+                          "format": "int32",
+                          "location": "query",
+                          "type": "integer"
+                        },
+                        "pageToken": {
+                          "description": "Optional. The next_page_token value returned from a previous list request.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "parent": {
+                          "description": "Required. The agent to list all conversations for. Format: `projects//locations//agents/`.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/agents/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v3beta1/{+parent}/conversations",
+                      "response": {
+                        "$ref": "GoogleCloudDialogflowCxV3beta1ListConversationsResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/dialogflow"
+                      ]
+                    }
+                  }
+                },
                 "entityTypes": {
                   "methods": {
                     "create": {
@@ -4453,7 +4551,7 @@
       }
     }
   },
-  "revision": "20240311",
+  "revision": "20240430",
   "rootUrl": "https://dialogflow.googleapis.com/",
   "schemas": {
     "GoogleCloudDialogflowCxV3AdvancedSettings": {
@@ -5686,6 +5784,26 @@
       },
       "type": "object"
     },
+    "GoogleCloudDialogflowCxV3LanguageInfo": {
+      "description": "Represents the language information of the request.",
+      "id": "GoogleCloudDialogflowCxV3LanguageInfo",
+      "properties": {
+        "confidenceScore": {
+          "description": "The confidence score of the detected language between 0 and 1.",
+          "format": "float",
+          "type": "number"
+        },
+        "inputLanguageCode": {
+          "description": "The language code specified in the original request.",
+          "type": "string"
+        },
+        "resolvedLanguageCode": {
+          "description": "The language code detected for this request based on the user conversation.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDialogflowCxV3Page": {
       "description": "A Dialogflow CX conversation (session) can be described and visualized as a state machine. The states of a CX session are represented by pages. For each flow, you define many pages, where your combined pages can handle a complete conversation on the topics the flow is designed for. At any given moment, exactly one page is the current page, the current page is considered active, and the flow associated with that page is considered active. Every flow has a special start page. When a flow initially becomes active, the start page page becomes the current page. For each conversational turn, the current page will either stay the same or transition to another page. You configure each page to collect information from the end-user that is relevant for the conversational state represented by the page. For more information, see the [Page guide](https://cloud.google.com/dialogflow/cx/docs/concept/page).",
       "id": "GoogleCloudDialogflowCxV3Page",
@@ -6618,6 +6736,10 @@
           "description": "The language code specified in the original request.",
           "type": "string"
         },
+        "languageInfo": {
+          "$ref": "GoogleCloudDialogflowCxV3LanguageInfo",
+          "description": "Information about the language of the request."
+        },
         "messages": {
           "description": "The list of rich message responses to present to the user. Webhook can choose to append or replace this list in WebhookResponse.fulfillment_response;",
           "items": {
@@ -6925,6 +7047,10 @@
         "displayName": {
           "description": "Required. The human-readable name of the agent, unique within the location.",
           "type": "string"
+        },
+        "enableMultiLanguageTraining": {
+          "description": "Optional. Enable training multi-lingual models for this agent. These models will be trained on all the languages supported by the agent.",
+          "type": "boolean"
         },
         "enableSpellCorrection": {
           "description": "Indicates if automatic spell correction is enabled in detect intent requests.",
@@ -7403,6 +7529,268 @@
             "type": "string"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3beta1Conversation": {
+      "description": "Represents a conversation.",
+      "id": "GoogleCloudDialogflowCxV3beta1Conversation",
+      "properties": {
+        "duration": {
+          "description": "Duration of the conversation.",
+          "format": "google-duration",
+          "type": "string"
+        },
+        "environment": {
+          "$ref": "GoogleCloudDialogflowCxV3beta1Environment",
+          "description": "Environment of the conversation. Only `name` and `display_name` are filled in this message."
+        },
+        "flowVersions": {
+          "additionalProperties": {
+            "format": "int64",
+            "type": "string"
+          },
+          "description": "Flow versions used in the conversation.",
+          "type": "object"
+        },
+        "flows": {
+          "description": "All the Flow the conversation has went through. Only `name` and `display_name` are filled in this message.",
+          "items": {
+            "$ref": "GoogleCloudDialogflowCxV3beta1Flow"
+          },
+          "type": "array"
+        },
+        "intents": {
+          "description": "All the matched Intent in the conversation. Only `name` and `display_name` are filled in this message.",
+          "items": {
+            "$ref": "GoogleCloudDialogflowCxV3beta1Intent"
+          },
+          "type": "array"
+        },
+        "interactions": {
+          "description": "Interactions of the conversation. Only populated for `GetConversation` and empty for `ListConversations`.",
+          "items": {
+            "$ref": "GoogleCloudDialogflowCxV3beta1ConversationInteraction"
+          },
+          "type": "array"
+        },
+        "languageCode": {
+          "description": "The language of the conversation, which is the language of the first request in the conversation.",
+          "type": "string"
+        },
+        "metrics": {
+          "$ref": "GoogleCloudDialogflowCxV3beta1ConversationMetrics",
+          "description": "Conversation metrics."
+        },
+        "name": {
+          "description": "Identifier. The identifier of the conversation. If conversation ID is reused, interactions happened later than 48 hours of the conversation's create time will be ignored. Format: `projects//locations//agents//conversations/`",
+          "type": "string"
+        },
+        "pages": {
+          "description": "All the Page the conversation has went through. Only `name` and `display_name` are filled in this message.",
+          "items": {
+            "$ref": "GoogleCloudDialogflowCxV3beta1Page"
+          },
+          "type": "array"
+        },
+        "startTime": {
+          "description": "Start time of the conversation, which is the time of the first request of the conversation.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "type": {
+          "description": "The type of the conversation.",
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "AUDIO",
+            "TEXT",
+            "UNDETERMINED"
+          ],
+          "enumDescriptions": [
+            "Not specified. This value should never be used.",
+            "Audio conversation. A conversation is classified as an audio conversation if any request has STT input audio or any response has TTS output audio.",
+            "Text conversation. A conversation is classified as a text conversation if any request has text input and no request has STT input audio and no response has TTS output audio.",
+            "Default conversation type for a conversation. A conversation is classified as undetermined if none of the requests contain text or audio input (eg. event or intent input)."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3beta1ConversationInteraction": {
+      "description": "Represents an interaction between an end user and a Dialogflow CX agent using V3 (Streaming)DetectIntent API, or an interaction between an end user and a Dialogflow CX agent using V2 (Streaming)AnalyzeContent API.",
+      "id": "GoogleCloudDialogflowCxV3beta1ConversationInteraction",
+      "properties": {
+        "createTime": {
+          "description": "The time that the interaction was created.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "missingTransition": {
+          "$ref": "GoogleCloudDialogflowCxV3beta1ConversationInteractionMissingTransition",
+          "description": "Missing transition predicted for the interaction. This field is set only if the interaction match type was no-match."
+        },
+        "partialResponses": {
+          "description": "The partial responses of the interaction. Empty if there is no partial response in the interaction. See the partial response documentation.",
+          "items": {
+            "$ref": "GoogleCloudDialogflowCxV3beta1DetectIntentResponse"
+          },
+          "type": "array"
+        },
+        "request": {
+          "$ref": "GoogleCloudDialogflowCxV3beta1DetectIntentRequest",
+          "description": "The request of the interaction."
+        },
+        "requestUtterances": {
+          "description": "The input text or the transcript of the input audio in the request.",
+          "type": "string"
+        },
+        "response": {
+          "$ref": "GoogleCloudDialogflowCxV3beta1DetectIntentResponse",
+          "description": "The final response of the interaction."
+        },
+        "responseUtterances": {
+          "description": "The output text or the transcript of the output audio in the responses. If multiple output messages are returned, they will be concatenated into one.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3beta1ConversationInteractionMissingTransition": {
+      "description": "Information collected for DF CX agents in case NLU predicted an intent that was filtered out as being inactive which may indicate a missing transition and/or absent functionality.",
+      "id": "GoogleCloudDialogflowCxV3beta1ConversationInteractionMissingTransition",
+      "properties": {
+        "intentDisplayName": {
+          "description": "Name of the intent that could have triggered.",
+          "type": "string"
+        },
+        "score": {
+          "description": "Score of the above intent. The higher it is the more likely a transition was missed on a given page.",
+          "format": "float",
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3beta1ConversationMetrics": {
+      "description": "Represents metrics for the conversation.",
+      "id": "GoogleCloudDialogflowCxV3beta1ConversationMetrics",
+      "properties": {
+        "averageMatchConfidence": {
+          "description": "The average confidence all of the Match in the conversation. Values range from 0.0 (completely uncertain) to 1.0 (completely certain).",
+          "format": "float",
+          "type": "number"
+        },
+        "hasEndInteraction": {
+          "description": "A signal that indicates the interaction with the Dialogflow agent has ended. If any response has the ResponseMessage.end_interaction signal, this is set to true.",
+          "type": "boolean"
+        },
+        "hasLiveAgentHandoff": {
+          "description": "Hands off conversation to a human agent. If any response has the ResponseMessage.live_agent_handoffsignal, this is set to true.",
+          "type": "boolean"
+        },
+        "inputAudioDuration": {
+          "description": "Duration of all the input's audio in the conversation.",
+          "format": "google-duration",
+          "type": "string"
+        },
+        "interactionCount": {
+          "description": "The number of interactions in the conversation.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "matchTypeCount": {
+          "$ref": "GoogleCloudDialogflowCxV3beta1ConversationMetricsMatchTypeCount",
+          "description": "Match type counts."
+        },
+        "maxWebhookLatency": {
+          "description": "Maximum latency of the Webhook calls in the conversation.",
+          "format": "google-duration",
+          "type": "string"
+        },
+        "outputAudioDuration": {
+          "description": "Duration of all the output's audio in the conversation.",
+          "format": "google-duration",
+          "type": "string"
+        },
+        "queryInputCount": {
+          "$ref": "GoogleCloudDialogflowCxV3beta1ConversationMetricsQueryInputCount",
+          "description": "Query input counts."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3beta1ConversationMetricsMatchTypeCount": {
+      "description": "Count by Match.MatchType of the matches in the conversation.",
+      "id": "GoogleCloudDialogflowCxV3beta1ConversationMetricsMatchTypeCount",
+      "properties": {
+        "directIntentCount": {
+          "description": "The number of matches with type Match.MatchType.DIRECT_INTENT.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "eventCount": {
+          "description": "The number of matches with type Match.MatchType.EVENT.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "intentCount": {
+          "description": "The number of matches with type Match.MatchType.INTENT.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "noInputCount": {
+          "description": "The number of matches with type Match.MatchType.NO_INPUT.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "noMatchCount": {
+          "description": "The number of matches with type Match.MatchType.NO_MATCH.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "parameterFillingCount": {
+          "description": "The number of matches with type Match.MatchType.PARAMETER_FILLING.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "unspecifiedCount": {
+          "description": "The number of matches with type Match.MatchType.MATCH_TYPE_UNSPECIFIED.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3beta1ConversationMetricsQueryInputCount": {
+      "description": "Count by types of QueryInput of the requests in the conversation.",
+      "id": "GoogleCloudDialogflowCxV3beta1ConversationMetricsQueryInputCount",
+      "properties": {
+        "audioCount": {
+          "description": "The number of AudioInput in the conversation.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "dtmfCount": {
+          "description": "The number of DtmfInput in the conversation.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "eventCount": {
+          "description": "The number of EventInput in the conversation.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "intentCount": {
+          "description": "The number of IntentInput in the conversation.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "textCount": {
+          "description": "The number of TextInput in the conversation.",
+          "format": "int32",
+          "type": "integer"
         }
       },
       "type": "object"
@@ -7906,6 +8294,10 @@
         "queryParams": {
           "$ref": "GoogleCloudDialogflowCxV3beta1QueryParameters",
           "description": "The parameters of this query."
+        },
+        "session": {
+          "description": "Required. The name of the session this query is sent to. Format: `projects//locations//agents//sessions/` or `projects//locations//agents//environments//sessions/`. If `Environment ID` is not specified, we assume default 'draft' environment. It's up to the API caller to choose an appropriate `Session ID`. It can be a random number or some type of session identifiers (preferably hashed). The length of the `Session ID` must not exceed 36 characters. For more information, see the [sessions guide](https://cloud.google.com/dialogflow/cx/docs/concept/session). Note: Always use agent versions for production traffic. See [Versions and environments](https://cloud.google.com/dialogflow/cx/docs/concept/version).",
+          "type": "string"
         }
       },
       "type": "object"
@@ -8736,6 +9128,10 @@
           "$ref": "GoogleCloudDialogflowCxV3beta1KnowledgeConnectorSettings",
           "description": "Optional. Knowledge connector configuration."
         },
+        "multiLanguageSettings": {
+          "$ref": "GoogleCloudDialogflowCxV3beta1FlowMultiLanguageSettings",
+          "description": "Optional. Multi-lingual agent settings for this flow."
+        },
         "name": {
           "description": "The unique identifier of the flow. Format: `projects//locations//agents//flows/`.",
           "type": "string"
@@ -8784,6 +9180,24 @@
             "Throw error if a conflict is encountered."
           ],
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3beta1FlowMultiLanguageSettings": {
+      "description": "Settings for multi-lingual agents.",
+      "id": "GoogleCloudDialogflowCxV3beta1FlowMultiLanguageSettings",
+      "properties": {
+        "enableMultiLanguageDetection": {
+          "description": "Optional. Enable multi-language detection for this flow. This can be set only if agent level multi language setting is enabled.",
+          "type": "boolean"
+        },
+        "supportedResponseLanguageCodes": {
+          "description": "Optional. Agent will respond in the detected language if the detected language code is in the supported resolved languages for this flow. This will be used only if multi-language training is enabled in the agent and multi-language detection is enabled in the flow. The supported languages must be a subset of the languages supported by the agent.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -9784,6 +10198,26 @@
       },
       "type": "object"
     },
+    "GoogleCloudDialogflowCxV3beta1LanguageInfo": {
+      "description": "Represents the language information of the request.",
+      "id": "GoogleCloudDialogflowCxV3beta1LanguageInfo",
+      "properties": {
+        "confidenceScore": {
+          "description": "The confidence score of the detected language between 0 and 1.",
+          "format": "float",
+          "type": "number"
+        },
+        "inputLanguageCode": {
+          "description": "The language code specified in the original request.",
+          "type": "string"
+        },
+        "resolvedLanguageCode": {
+          "description": "The language code detected for this request based on the user conversation.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDialogflowCxV3beta1ListAgentsResponse": {
       "description": "The response message for Agents.ListAgents.",
       "id": "GoogleCloudDialogflowCxV3beta1ListAgentsResponse",
@@ -9828,6 +10262,24 @@
           "description": "The list of continuous test results.",
           "items": {
             "$ref": "GoogleCloudDialogflowCxV3beta1ContinuousTestResult"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "Token to retrieve the next page of results, or empty if there are no more results in the list.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3beta1ListConversationsResponse": {
+      "description": "The response message for Conversations.ListConversations.",
+      "id": "GoogleCloudDialogflowCxV3beta1ListConversationsResponse",
+      "properties": {
+        "conversations": {
+          "description": "The list of conversations. There will be a maximum number of items returned based on the page_size field. The returned conversations will be sorted by start_time in descending order (newest conversation first).",
+          "items": {
+            "$ref": "GoogleCloudDialogflowCxV3beta1Conversation"
           },
           "type": "array"
         },
@@ -10163,7 +10615,8 @@
             "PARAMETER_FILLING",
             "NO_MATCH",
             "NO_INPUT",
-            "EVENT"
+            "EVENT",
+            "LLM"
           ],
           "enumDescriptions": [
             "Not specified. Should never be used.",
@@ -10172,7 +10625,8 @@
             "The query was used for parameter filling.",
             "No match was found for the query.",
             "Indicates an empty query.",
-            "The query directly triggered an event."
+            "The query directly triggered an event.",
+            "The query was handled by an LLM."
           ],
           "type": "string"
         },
@@ -12311,6 +12765,10 @@
         "languageCode": {
           "description": "The language code specified in the original request.",
           "type": "string"
+        },
+        "languageInfo": {
+          "$ref": "GoogleCloudDialogflowCxV3beta1LanguageInfo",
+          "description": "Information about the language of the request."
         },
         "messages": {
           "description": "The list of rich message responses to present to the user. Webhook can choose to append or replace this list in WebhookResponse.fulfillment_response;",

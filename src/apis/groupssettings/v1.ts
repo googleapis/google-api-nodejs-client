@@ -638,6 +638,7 @@ export namespace groupssettings_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -724,6 +725,7 @@ export namespace groupssettings_v1 {
               '$1'
             ),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -810,6 +812,7 @@ export namespace groupssettings_v1 {
               '$1'
             ),
             method: 'PUT',
+            apiVersion: '',
           },
           options
         ),

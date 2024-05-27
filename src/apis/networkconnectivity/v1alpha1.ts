@@ -313,7 +313,7 @@ export namespace networkconnectivity_v1alpha1 {
      */
     name?: string | null;
     /**
-     * The URL or resource ID of the network in which to reserve the internal range. The network cannot be deleted if there are any reserved internal ranges referring to it. Legacy networks are not supported. This can only be specified for a global internal address. Example: - URL: /compute/v1/projects/{project\}/global/networks/{resourceId\} - ID: network123
+     * The URL or resource ID of the network in which to reserve the internal range. The network cannot be deleted if there are any reserved internal ranges referring to it. Legacy networks are not supported. For example: https://www.googleapis.com/compute/v1/projects/{project\}/locations/global/networks/{network\} projects/{project\}/locations/global/networks/{network\} {network\}
      */
     network?: string | null;
     /**
@@ -677,6 +677,7 @@ export namespace networkconnectivity_v1alpha1 {
           {
             url: (rootUrl + '/v1alpha1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -770,6 +771,7 @@ export namespace networkconnectivity_v1alpha1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -908,6 +910,7 @@ export namespace networkconnectivity_v1alpha1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1000,6 +1003,7 @@ export namespace networkconnectivity_v1alpha1 {
           {
             url: (rootUrl + '/v1alpha1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -1085,6 +1089,7 @@ export namespace networkconnectivity_v1alpha1 {
           {
             url: (rootUrl + '/v1alpha1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1174,6 +1179,7 @@ export namespace networkconnectivity_v1alpha1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1262,6 +1268,7 @@ export namespace networkconnectivity_v1alpha1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1354,6 +1361,7 @@ export namespace networkconnectivity_v1alpha1 {
           {
             url: (rootUrl + '/v1alpha1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -1443,6 +1451,7 @@ export namespace networkconnectivity_v1alpha1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1539,6 +1548,7 @@ export namespace networkconnectivity_v1alpha1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1758,6 +1768,7 @@ export namespace networkconnectivity_v1alpha1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1850,6 +1861,7 @@ export namespace networkconnectivity_v1alpha1 {
           {
             url: (rootUrl + '/v1alpha1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -1935,6 +1947,7 @@ export namespace networkconnectivity_v1alpha1 {
           {
             url: (rootUrl + '/v1alpha1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2024,6 +2037,7 @@ export namespace networkconnectivity_v1alpha1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2119,6 +2133,7 @@ export namespace networkconnectivity_v1alpha1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2211,6 +2226,7 @@ export namespace networkconnectivity_v1alpha1 {
           {
             url: (rootUrl + '/v1alpha1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -2300,6 +2316,7 @@ export namespace networkconnectivity_v1alpha1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2396,6 +2413,7 @@ export namespace networkconnectivity_v1alpha1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2608,6 +2626,7 @@ export namespace networkconnectivity_v1alpha1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2693,6 +2712,7 @@ export namespace networkconnectivity_v1alpha1 {
           {
             url: (rootUrl + '/v1alpha1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -2785,6 +2805,7 @@ export namespace networkconnectivity_v1alpha1 {
           {
             url: (rootUrl + '/v1alpha1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2880,6 +2901,7 @@ export namespace networkconnectivity_v1alpha1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3030,6 +3052,7 @@ export namespace networkconnectivity_v1alpha1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3122,6 +3145,7 @@ export namespace networkconnectivity_v1alpha1 {
           {
             url: (rootUrl + '/v1alpha1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -3207,6 +3231,7 @@ export namespace networkconnectivity_v1alpha1 {
           {
             url: (rootUrl + '/v1alpha1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3295,6 +3320,7 @@ export namespace networkconnectivity_v1alpha1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3386,6 +3412,7 @@ export namespace networkconnectivity_v1alpha1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3478,6 +3505,7 @@ export namespace networkconnectivity_v1alpha1 {
           {
             url: (rootUrl + '/v1alpha1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -3566,6 +3594,7 @@ export namespace networkconnectivity_v1alpha1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3662,6 +3691,7 @@ export namespace networkconnectivity_v1alpha1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),

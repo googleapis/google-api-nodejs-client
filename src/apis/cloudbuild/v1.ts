@@ -487,6 +487,10 @@ export namespace cloudbuild_v1 {
      */
     finishTime?: string | null;
     /**
+     * Optional. Configuration for git operations.
+     */
+    gitConfig?: Schema$GitConfig;
+    /**
      * Output only. Unique identifier of the build.
      */
     id?: string | null;
@@ -1087,6 +1091,23 @@ export namespace cloudbuild_v1 {
     workerPool?: string | null;
   }
   /**
+   * This config defines the location of a source through Developer Connect.
+   */
+  export interface Schema$DeveloperConnectConfig {
+    /**
+     * Required. Directory, relative to the source root, in which to run the build.
+     */
+    dir?: string | null;
+    /**
+     * Required. The Developer Connect Git repository link, formatted as `projects/x/locations/x/connections/x/gitRepositoryLink/x`.
+     */
+    gitRepositoryLink?: string | null;
+    /**
+     * Required. The revision to fetch from the Git repository such as a branch, a tag, a commit SHA, or any Git ref.
+     */
+    revision?: string | null;
+  }
+  /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
    */
   export interface Schema$Empty {}
@@ -1111,6 +1132,15 @@ export namespace cloudbuild_v1 {
      * Collection of file hashes.
      */
     fileHash?: Schema$Hash[];
+  }
+  /**
+   * GitConfig is a configuration for git operations.
+   */
+  export interface Schema$GitConfig {
+    /**
+     * Configuration for HTTP related git operations.
+     */
+    http?: Schema$HttpConfig;
   }
   /**
    * GitFileSource describes a file within a (possibly remote) code repository.
@@ -1478,6 +1508,15 @@ export namespace cloudbuild_v1 {
      * Application specific response metadata. Must be set in the first response for streaming APIs.
      */
     extensions?: Array<{[key: string]: any}> | null;
+  }
+  /**
+   * HttpConfig is a configuration for HTTP related git operations.
+   */
+  export interface Schema$HttpConfig {
+    /**
+     * SecretVersion resource of the HTTP proxy URL. The proxy URL should be in format protocol://@]proxyhost[:port].
+     */
+    proxySecretVersionName?: string | null;
   }
   /**
    * Pairs a set of secret environment variables mapped to encrypted values with the Cloud KMS key to use to decrypt the value.
@@ -2024,6 +2063,10 @@ export namespace cloudbuild_v1 {
      */
     connectedRepository?: Schema$ConnectedRepository;
     /**
+     * If provided, get the source from this Developer Connect config.
+     */
+    developerConnectConfig?: Schema$DeveloperConnectConfig;
+    /**
      * If provided, get the source from this Git repository.
      */
     gitSource?: Schema$GitSource;
@@ -2429,6 +2472,7 @@ export namespace cloudbuild_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2536,6 +2580,7 @@ export namespace cloudbuild_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2644,6 +2689,7 @@ export namespace cloudbuild_v1 {
           {
             url: (rootUrl + '/v1/{+name}:cancel').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2727,6 +2773,7 @@ export namespace cloudbuild_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2856,6 +2903,7 @@ export namespace cloudbuild_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2942,6 +2990,7 @@ export namespace cloudbuild_v1 {
               rootUrl + '/v1/projects/{projectId}/builds/{id}:cancel'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3029,6 +3078,7 @@ export namespace cloudbuild_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3116,6 +3166,7 @@ export namespace cloudbuild_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3206,6 +3257,7 @@ export namespace cloudbuild_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3292,6 +3344,7 @@ export namespace cloudbuild_v1 {
               rootUrl + '/v1/projects/{projectId}/builds/{id}:retry'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3485,6 +3538,7 @@ export namespace cloudbuild_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3569,6 +3623,7 @@ export namespace cloudbuild_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -3658,6 +3713,7 @@ export namespace cloudbuild_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3752,6 +3808,7 @@ export namespace cloudbuild_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3838,6 +3895,7 @@ export namespace cloudbuild_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -4037,6 +4095,7 @@ export namespace cloudbuild_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4149,6 +4208,7 @@ export namespace cloudbuild_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4234,6 +4294,7 @@ export namespace cloudbuild_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -4324,6 +4385,7 @@ export namespace cloudbuild_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4419,6 +4481,7 @@ export namespace cloudbuild_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4506,6 +4569,7 @@ export namespace cloudbuild_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -4595,6 +4659,7 @@ export namespace cloudbuild_v1 {
               rootUrl + '/v1/{+config}:removeBitbucketServerConnectedRepository'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4763,6 +4828,7 @@ export namespace cloudbuild_v1 {
               rootUrl + '/v1/{+parent}/connectedRepositories:batchCreate'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4878,6 +4944,7 @@ export namespace cloudbuild_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4990,6 +5057,7 @@ export namespace cloudbuild_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5074,6 +5142,7 @@ export namespace cloudbuild_v1 {
           {
             url: (rootUrl + '/v1/{+name}:cancel').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5161,6 +5230,7 @@ export namespace cloudbuild_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5245,6 +5315,7 @@ export namespace cloudbuild_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5335,6 +5406,7 @@ export namespace cloudbuild_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5419,6 +5491,7 @@ export namespace cloudbuild_v1 {
           {
             url: (rootUrl + '/v1/{+name}:retry').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5605,6 +5678,7 @@ export namespace cloudbuild_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5690,6 +5764,7 @@ export namespace cloudbuild_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -5780,6 +5855,7 @@ export namespace cloudbuild_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5875,6 +5951,7 @@ export namespace cloudbuild_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5962,6 +6039,7 @@ export namespace cloudbuild_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -6143,6 +6221,7 @@ export namespace cloudbuild_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -6227,6 +6306,7 @@ export namespace cloudbuild_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -6311,6 +6391,7 @@ export namespace cloudbuild_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6405,6 +6486,7 @@ export namespace cloudbuild_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6489,6 +6571,7 @@ export namespace cloudbuild_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -6578,6 +6661,7 @@ export namespace cloudbuild_v1 {
               rootUrl + '/v1/{+config}:removeGitLabConnectedRepository'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -6746,6 +6830,7 @@ export namespace cloudbuild_v1 {
               rootUrl + '/v1/{+parent}/connectedRepositories:batchCreate'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -6861,6 +6946,7 @@ export namespace cloudbuild_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6970,6 +7056,7 @@ export namespace cloudbuild_v1 {
           {
             url: (rootUrl + '/v1/{+name}:cancel').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -7054,6 +7141,7 @@ export namespace cloudbuild_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -7168,6 +7256,7 @@ export namespace cloudbuild_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -7252,6 +7341,7 @@ export namespace cloudbuild_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -7336,6 +7426,7 @@ export namespace cloudbuild_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -7430,6 +7521,7 @@ export namespace cloudbuild_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -7517,6 +7609,7 @@ export namespace cloudbuild_v1 {
               '$1'
             ),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -7601,6 +7694,7 @@ export namespace cloudbuild_v1 {
           {
             url: (rootUrl + '/v1/{+name}:run').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -7695,6 +7789,7 @@ export namespace cloudbuild_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -7917,6 +8012,7 @@ export namespace cloudbuild_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -8001,6 +8097,7 @@ export namespace cloudbuild_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -8085,6 +8182,7 @@ export namespace cloudbuild_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -8177,6 +8275,7 @@ export namespace cloudbuild_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -8261,6 +8360,7 @@ export namespace cloudbuild_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -8437,6 +8537,7 @@ export namespace cloudbuild_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -8523,6 +8624,7 @@ export namespace cloudbuild_v1 {
               rootUrl + '/v1/projects/{projectId}/triggers/{triggerId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -8609,6 +8711,7 @@ export namespace cloudbuild_v1 {
               rootUrl + '/v1/projects/{projectId}/triggers/{triggerId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -8703,6 +8806,7 @@ export namespace cloudbuild_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -8789,6 +8893,7 @@ export namespace cloudbuild_v1 {
               rootUrl + '/v1/projects/{projectId}/triggers/{triggerId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -8875,6 +8980,7 @@ export namespace cloudbuild_v1 {
               rootUrl + '/v1/projects/{projectId}/triggers/{triggerId}:run'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -8968,6 +9074,7 @@ export namespace cloudbuild_v1 {
               rootUrl + '/v1/projects/{projectId}/triggers/{trigger}:webhook'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -9190,6 +9297,7 @@ export namespace cloudbuild_v1 {
           {
             url: (rootUrl + '/v1/webhook').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),

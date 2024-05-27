@@ -1,5 +1,51 @@
 # Changelog
 
+## [5.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/clouddeploy-v4.0.0...clouddeploy-v5.0.0) (2024-05-10)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#3484](https://github.com/googleapis/google-api-nodejs-client/issues/3484)) ([99b6c8d](https://github.com/googleapis/google-api-nodejs-client/commit/99b6c8de5beb8447d177048a64a977ee39ee5ee6))
+
+## [4.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/clouddeploy-v3.1.0...clouddeploy-v4.0.0) (2024-05-02)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* **clouddeploy:** update the API ([cd5014b](https://github.com/googleapis/google-api-nodejs-client/commit/cd5014bd87adbfbc2729f78f7d56bb4b8d42b7d7))
+* **clouddeploy:** update the API ([7537bf0](https://github.com/googleapis/google-api-nodejs-client/commit/7537bf0701b1b1504860e4ca2b3dc0070aaff85f))
+* run the generator ([#3434](https://github.com/googleapis/google-api-nodejs-client/issues/3434)) ([f0db524](https://github.com/googleapis/google-api-nodejs-client/commit/f0db524bb26f05cea3dec4c0ed66b496399e3857))
+
+## [3.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/clouddeploy-v3.0.0...clouddeploy-v3.1.0) (2024-05-02)
+
+
+### Features
+
+* **clouddeploy:** update the API ([cd5014b](https://github.com/googleapis/google-api-nodejs-client/commit/cd5014bd87adbfbc2729f78f7d56bb4b8d42b7d7))
+
+## [3.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/clouddeploy-v2.0.0...clouddeploy-v3.0.0) (2024-04-04)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* **clouddeploy:** update the API ([7537bf0](https://github.com/googleapis/google-api-nodejs-client/commit/7537bf0701b1b1504860e4ca2b3dc0070aaff85f))
+* **clouddeploy:** update the API ([862139c](https://github.com/googleapis/google-api-nodejs-client/commit/862139c06e2c4b36027a650007ebf99a579abad2))
+* **clouddeploy:** update the API ([62d7fd6](https://github.com/googleapis/google-api-nodejs-client/commit/62d7fd607039bc8d95a46d36845dbef6d2657219))
+* **clouddeploy:** update the API ([8523b8e](https://github.com/googleapis/google-api-nodejs-client/commit/8523b8ea6e8589c66afbf07fd0d28a4df9a98c1a))
+* run the generator ([#3434](https://github.com/googleapis/google-api-nodejs-client/issues/3434)) ([f0db524](https://github.com/googleapis/google-api-nodejs-client/commit/f0db524bb26f05cea3dec4c0ed66b496399e3857))
+
 ## [2.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/clouddeploy-v1.6.0...clouddeploy-v2.0.0) (2024-03-12)
 
 

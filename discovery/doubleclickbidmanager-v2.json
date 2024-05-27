@@ -319,31 +319,9 @@
       }
     }
   },
-  "revision": "20240305",
+  "revision": "20240424",
   "rootUrl": "https://doubleclickbidmanager.googleapis.com/",
   "schemas": {
-    "ChannelGrouping": {
-      "description": "A channel grouping defines a set of rules that can be used to categorize events in a path report.",
-      "id": "ChannelGrouping",
-      "properties": {
-        "fallbackName": {
-          "description": "The name to apply to an event that does not match any of the rules in the channel grouping.",
-          "type": "string"
-        },
-        "name": {
-          "description": "Channel Grouping name.",
-          "type": "string"
-        },
-        "rules": {
-          "description": "Rules within Channel Grouping. There is a limit of 100 rules that can be set per channel grouping.",
-          "items": {
-            "$ref": "Rule"
-          },
-          "type": "array"
-        }
-      },
-      "type": "object"
-    },
     "DataRange": {
       "description": "Report data range.",
       "id": "DataRange",
@@ -427,31 +405,6 @@
       },
       "type": "object"
     },
-    "DisjunctiveMatchStatement": {
-      "description": "DisjunctiveMatchStatement that OR's all contained filters.",
-      "id": "DisjunctiveMatchStatement",
-      "properties": {
-        "eventFilters": {
-          "description": "Filters. There is a limit of 100 filters that can be set per disjunctive match statement.",
-          "items": {
-            "$ref": "EventFilter"
-          },
-          "type": "array"
-        }
-      },
-      "type": "object"
-    },
-    "EventFilter": {
-      "description": "Defines the type of filter to be applied to the path, a DV360 event dimension filter.",
-      "id": "EventFilter",
-      "properties": {
-        "dimensionFilter": {
-          "$ref": "PathQueryOptionsFilter",
-          "description": "Filter on a dimension."
-        }
-      },
-      "type": "object"
-    },
     "FilterPair": {
       "description": "Filter used to match traffic data in your report.",
       "id": "FilterPair",
@@ -508,10 +461,6 @@
         "includeOnlyTargetedUserLists": {
           "description": "Set to true and filter your report by `FILTER_INSERTION_ORDER` or `FILTER_LINE_ITEM` to include data for audience lists specifically targeted by those items.",
           "type": "boolean"
-        },
-        "pathQueryOptions": {
-          "$ref": "PathQueryOptions",
-          "description": "Options that contain Path Filters and Custom Channel Groupings. This field is deprecated and will sunset on **May 1, 2024**. After sunset, requests using this field will return an error."
         }
       },
       "type": "object"
@@ -557,17 +506,13 @@
             "GRP",
             "YOUTUBE_PROGRAMMATIC_GUARANTEED",
             "REACH",
-            "UNIQUE_REACH_AUDIENCE",
-            "FULL_PATH",
-            "PATH_ATTRIBUTION"
+            "UNIQUE_REACH_AUDIENCE"
           ],
           "enumDeprecated": [
             false,
             false,
             false,
             true,
-            false,
-            false,
             false,
             false,
             false,
@@ -585,95 +530,9 @@
             "GRP report.",
             "YouTube Programmatic Guaranteed report.",
             "Reach report.",
-            "Unique Reach Audience report.",
-            "Full Path report. This report type is deprecated and will sunset on **May 1, 2024**. After sunset, requests retrieving, creating, or running reports of this type will return an error.",
-            "Path Attribution report. This report type is deprecated and will sunset on **May 1, 2024**. After sunset, requests retrieving, creating, or running reports of this type will return an error."
+            "Unique Reach Audience report."
           ],
           "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "PathFilter": {
-      "description": "Path filters specify which paths to include in a report. A path is the result of combining DV360 events based on User ID to create a workflow of users' actions. When a path filter is set, the resulting report will only include paths that match the specified event at the specified position. All other paths will be excluded.",
-      "id": "PathFilter",
-      "properties": {
-        "eventFilters": {
-          "description": "Filter on an event to be applied to some part of the path.",
-          "items": {
-            "$ref": "EventFilter"
-          },
-          "type": "array"
-        },
-        "pathMatchPosition": {
-          "description": "The position of the path the filter should match to (first, last, or any event in path).",
-          "enum": [
-            "PATH_MATCH_POSITION_UNSPECIFIED",
-            "ANY",
-            "FIRST",
-            "LAST"
-          ],
-          "enumDescriptions": [
-            "Default value when path match position is not specified or is unknown in this version.",
-            "Any position in the path.",
-            "The first position in the path.",
-            "The last position in the path."
-          ],
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "PathQueryOptions": {
-      "description": "Path Query Options for Report Options.",
-      "id": "PathQueryOptions",
-      "properties": {
-        "channelGrouping": {
-          "$ref": "ChannelGrouping",
-          "description": "Custom Channel Groupings."
-        },
-        "pathFilters": {
-          "description": "Path Filters. There is a limit of 100 path filters that can be set per report.",
-          "items": {
-            "$ref": "PathFilter"
-          },
-          "type": "array"
-        }
-      },
-      "type": "object"
-    },
-    "PathQueryOptionsFilter": {
-      "description": "Dimension filter on path events.",
-      "id": "PathQueryOptionsFilter",
-      "properties": {
-        "filter": {
-          "description": "Dimension the filter is applied to.",
-          "type": "string"
-        },
-        "match": {
-          "description": "Match logic of the filter.",
-          "enum": [
-            "UNKNOWN",
-            "EXACT",
-            "PARTIAL",
-            "BEGINS_WITH",
-            "WILDCARD_EXPRESSION"
-          ],
-          "enumDescriptions": [
-            "Default value when match is not specified or is unknown in this version.",
-            "Matches a value exactly.",
-            "Matches a value partially.",
-            "Begins with a value.",
-            "Matches a value, utilizing wildcard character logic in the value."
-          ],
-          "type": "string"
-        },
-        "values": {
-          "description": "Values to filter on.",
-          "items": {
-            "type": "string"
-          },
-          "type": "array"
         }
       },
       "type": "object"
@@ -889,24 +748,6 @@
             "The report has finished running in failure."
           ],
           "readOnly": true,
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "Rule": {
-      "description": "A Rule defines a name, and a boolean expression in [conjunctive normal form] (http://mathworld.wolfram.com/ConjunctiveNormalForm.html){.external} that can be applied to a path event to determine if that name should be applied.",
-      "id": "Rule",
-      "properties": {
-        "disjunctiveMatchStatements": {
-          "description": "DisjunctiveMatchStatements within a Rule. DisjunctiveMatchStatement OR's all contained filters.",
-          "items": {
-            "$ref": "DisjunctiveMatchStatement"
-          },
-          "type": "array"
-        },
-        "name": {
-          "description": "Rule name.",
           "type": "string"
         }
       },

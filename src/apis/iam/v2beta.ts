@@ -485,6 +485,7 @@ export namespace iam_v2beta {
           {
             url: (rootUrl + '/v2beta/{+parent}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -575,6 +576,7 @@ export namespace iam_v2beta {
           {
             url: (rootUrl + '/v2beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -663,6 +665,7 @@ export namespace iam_v2beta {
           {
             url: (rootUrl + '/v2beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -754,6 +757,7 @@ export namespace iam_v2beta {
           {
             url: (rootUrl + '/v2beta/{+parent}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -846,6 +850,7 @@ export namespace iam_v2beta {
           {
             url: (rootUrl + '/v2beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
+            apiVersion: '',
           },
           options
         ),
@@ -1003,6 +1008,7 @@ export namespace iam_v2beta {
           {
             url: (rootUrl + '/v2beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),

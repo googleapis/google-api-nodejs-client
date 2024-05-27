@@ -269,6 +269,10 @@ export namespace backupdr_v1 {
    */
   export interface Schema$ManagementServer {
     /**
+     * Output only. The hostname or ip address of the exposed AGM endpoints, used by BAs to connect to BA proxy.
+     */
+    baProxyUri?: string[] | null;
+    /**
      * Output only. The time when the instance was created.
      */
     createTime?: string | null;
@@ -597,6 +601,7 @@ export namespace backupdr_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -689,6 +694,7 @@ export namespace backupdr_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -818,6 +824,7 @@ export namespace backupdr_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -926,6 +933,7 @@ export namespace backupdr_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1011,6 +1019,7 @@ export namespace backupdr_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -1095,6 +1104,7 @@ export namespace backupdr_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1183,6 +1193,7 @@ export namespace backupdr_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1278,6 +1289,7 @@ export namespace backupdr_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1368,6 +1380,7 @@ export namespace backupdr_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1463,6 +1476,7 @@ export namespace backupdr_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1651,6 +1665,7 @@ export namespace backupdr_v1 {
           {
             url: (rootUrl + '/v1/{+name}:cancel').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1735,6 +1750,7 @@ export namespace backupdr_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -1819,6 +1835,7 @@ export namespace backupdr_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1911,6 +1928,7 @@ export namespace backupdr_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),

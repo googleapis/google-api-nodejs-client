@@ -2346,7 +2346,7 @@
       }
     }
   },
-  "revision": "20240310",
+  "revision": "20240427",
   "rootUrl": "https://cloudbuild.googleapis.com/",
   "schemas": {
     "ApprovalConfig": {
@@ -2803,6 +2803,10 @@
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
+        },
+        "gitConfig": {
+          "$ref": "GitConfig",
+          "description": "Optional. Configuration for git operations."
         },
         "id": {
           "description": "Output only. Unique identifier of the build.",
@@ -3734,6 +3738,25 @@
       },
       "type": "object"
     },
+    "DeveloperConnectConfig": {
+      "description": "This config defines the location of a source through Developer Connect.",
+      "id": "DeveloperConnectConfig",
+      "properties": {
+        "dir": {
+          "description": "Required. Directory, relative to the source root, in which to run the build.",
+          "type": "string"
+        },
+        "gitRepositoryLink": {
+          "description": "Required. The Developer Connect Git repository link, formatted as `projects/*/locations/*/connections/*/gitRepositoryLink/*`.",
+          "type": "string"
+        },
+        "revision": {
+          "description": "Required. The revision to fetch from the Git repository such as a branch, a tag, a commit SHA, or any Git ref.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "Empty": {
       "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }",
       "id": "Empty",
@@ -3783,6 +3806,17 @@
             "$ref": "Hash"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GitConfig": {
+      "description": "GitConfig is a configuration for git operations.",
+      "id": "GitConfig",
+      "properties": {
+        "http": {
+          "$ref": "HttpConfig",
+          "description": "Configuration for HTTP related git operations."
         }
       },
       "type": "object"
@@ -4252,6 +4286,17 @@
             "type": "object"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "HttpConfig": {
+      "description": "HttpConfig is a configuration for HTTP related git operations.",
+      "id": "HttpConfig",
+      "properties": {
+        "proxySecretVersionName": {
+          "description": "SecretVersion resource of the HTTP proxy URL. The proxy URL should be in format protocol://@]proxyhost[:port].",
+          "type": "string"
         }
       },
       "type": "object"
@@ -5000,6 +5045,10 @@
         "connectedRepository": {
           "$ref": "ConnectedRepository",
           "description": "Optional. If provided, get the source from this 2nd-gen Google Cloud Build repository resource."
+        },
+        "developerConnectConfig": {
+          "$ref": "DeveloperConnectConfig",
+          "description": "If provided, get the source from this Developer Connect config."
         },
         "gitSource": {
           "$ref": "GitSource",

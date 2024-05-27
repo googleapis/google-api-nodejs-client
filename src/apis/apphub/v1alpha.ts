@@ -268,11 +268,11 @@ export namespace apphub_v1alpha {
    */
   export interface Schema$Criticality {
     /**
-     * Optional. Criticality level. Can contain only lowercase letters, numeric characters, underscores, and dashes. Can have a maximum length of 63 characters.
+     * Optional. Criticality level. Can contain only lowercase letters, numeric characters, underscores, and dashes. Can have a maximum length of 63 characters. Deprecated: Please refer to type instead.
      */
     level?: string | null;
     /**
-     * Optional. Indicates mission-critical Application, Service, or Workload.
+     * Optional. Indicates mission-critical Application, Service, or Workload. Deprecated: Please refer to type instead.
      */
     missionCritical?: boolean | null;
     /**
@@ -331,7 +331,7 @@ export namespace apphub_v1alpha {
    */
   export interface Schema$Environment {
     /**
-     * Optional. Environment name. Can contain only lowercase letters, numeric characters, underscores, and dashes. Can have a maximum length of 63 characters.
+     * Optional. Environment name. Can contain only lowercase letters, numeric characters, underscores, and dashes. Can have a maximum length of 63 characters. Deprecated: Please refer to type instead.
      */
     environment?: string | null;
     /**
@@ -998,6 +998,7 @@ export namespace apphub_v1alpha {
               rootUrl + '/v1alpha/{+name}:detachServiceProjectAttachment'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1084,6 +1085,7 @@ export namespace apphub_v1alpha {
           {
             url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1176,6 +1178,7 @@ export namespace apphub_v1alpha {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1270,6 +1273,7 @@ export namespace apphub_v1alpha {
               rootUrl + '/v1alpha/{+name}:lookupServiceProjectAttachment'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1420,6 +1424,7 @@ export namespace apphub_v1alpha {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1504,6 +1509,7 @@ export namespace apphub_v1alpha {
           {
             url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -1588,6 +1594,7 @@ export namespace apphub_v1alpha {
           {
             url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1676,6 +1683,7 @@ export namespace apphub_v1alpha {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1768,6 +1776,7 @@ export namespace apphub_v1alpha {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1852,6 +1861,7 @@ export namespace apphub_v1alpha {
           {
             url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -1940,6 +1950,7 @@ export namespace apphub_v1alpha {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2035,6 +2046,7 @@ export namespace apphub_v1alpha {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2247,6 +2259,7 @@ export namespace apphub_v1alpha {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2332,6 +2345,7 @@ export namespace apphub_v1alpha {
           {
             url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -2417,6 +2431,7 @@ export namespace apphub_v1alpha {
           {
             url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2510,6 +2525,7 @@ export namespace apphub_v1alpha {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2595,6 +2611,7 @@ export namespace apphub_v1alpha {
           {
             url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -2772,6 +2789,7 @@ export namespace apphub_v1alpha {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2857,6 +2875,7 @@ export namespace apphub_v1alpha {
           {
             url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -2942,6 +2961,7 @@ export namespace apphub_v1alpha {
           {
             url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3035,6 +3055,7 @@ export namespace apphub_v1alpha {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3120,6 +3141,7 @@ export namespace apphub_v1alpha {
           {
             url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -3303,6 +3325,7 @@ export namespace apphub_v1alpha {
               rootUrl + '/v1alpha/{+parent}/discoveredServices:findUnregistered'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3393,6 +3416,7 @@ export namespace apphub_v1alpha {
           {
             url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3488,6 +3512,7 @@ export namespace apphub_v1alpha {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3584,6 +3609,7 @@ export namespace apphub_v1alpha {
               rootUrl + '/v1alpha/{+parent}/discoveredServices:lookup'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3753,6 +3779,7 @@ export namespace apphub_v1alpha {
               '/v1alpha/{+parent}/discoveredWorkloads:findUnregistered'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3843,6 +3870,7 @@ export namespace apphub_v1alpha {
           {
             url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3938,6 +3966,7 @@ export namespace apphub_v1alpha {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4034,6 +4063,7 @@ export namespace apphub_v1alpha {
               rootUrl + '/v1alpha/{+parent}/discoveredWorkloads:lookup'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4195,6 +4225,7 @@ export namespace apphub_v1alpha {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4279,6 +4310,7 @@ export namespace apphub_v1alpha {
           {
             url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -4363,6 +4395,7 @@ export namespace apphub_v1alpha {
           {
             url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4455,6 +4488,7 @@ export namespace apphub_v1alpha {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4595,6 +4629,7 @@ export namespace apphub_v1alpha {
               rootUrl + '/v1alpha/{+parent}/serviceProjectAttachments'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4680,6 +4715,7 @@ export namespace apphub_v1alpha {
           {
             url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -4770,6 +4806,7 @@ export namespace apphub_v1alpha {
           {
             url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4864,6 +4901,7 @@ export namespace apphub_v1alpha {
               rootUrl + '/v1alpha/{+parent}/serviceProjectAttachments'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),

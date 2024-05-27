@@ -259,7 +259,8 @@
                   ]
                 },
                 "create": {
-                  "description": "Creates a conversation.",
+                  "deprecated": true,
+                  "description": "Creates a conversation. DEPRECATED: Use UploadConversation instead. CreateConversation does not support audio transcription or DLP redaction.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/conversations",
                   "httpMethod": "POST",
                   "id": "contactcenterinsights.projects.locations.conversations.create",
@@ -1473,9 +1474,131 @@
       }
     }
   },
-  "revision": "20240311",
+  "revision": "20240506",
   "rootUrl": "https://contactcenterinsights.googleapis.com/",
   "schemas": {
+    "GoogleCloudContactcenterinsightsV1AgentCoachingInstruction": {
+      "description": "Agent Coaching instructions that customer can configure.",
+      "id": "GoogleCloudContactcenterinsightsV1AgentCoachingInstruction",
+      "properties": {
+        "agentAction": {
+          "description": "Optional. The action that human agent should take. For example, \"apologize for the slow shipping\". If the users only want to use agent coaching for intent detection, agent_action can be empty",
+          "type": "string"
+        },
+        "condition": {
+          "description": "Optional. The condition of the instruction. For example, \"the customer wants to cancel an order\". If the users want the instruction to be triggered unconditionally, the condition can be empty.",
+          "type": "string"
+        },
+        "description": {
+          "description": "Optional. The detailed description of this instruction.",
+          "type": "string"
+        },
+        "displayName": {
+          "description": "Optional. Display name for the instruction.",
+          "type": "string"
+        },
+        "metadata": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. Additional information attached to this instruction.",
+          "type": "object"
+        },
+        "systemAction": {
+          "description": "Optional. The action that system should take. For example, \"call GetOrderTime with order_number={order number provided by the customer}\". If the users don't have plugins or don't want to trigger plugins, the system_action can be empty",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1AgentCoachingSuggestion": {
+      "description": "Suggestion for coaching agents.",
+      "id": "GoogleCloudContactcenterinsightsV1AgentCoachingSuggestion",
+      "properties": {
+        "agentActionSuggestions": {
+          "description": "Optional. Suggested actions for the agent to take.",
+          "items": {
+            "$ref": "GoogleCloudContactcenterinsightsV1AgentCoachingSuggestionAgentActionSuggestion"
+          },
+          "type": "array"
+        },
+        "applicableInstructions": {
+          "description": "Optional. Instructions applicable based on the current context.",
+          "items": {
+            "$ref": "GoogleCloudContactcenterinsightsV1AgentCoachingInstruction"
+          },
+          "type": "array"
+        },
+        "sampleResponses": {
+          "description": "Optional. Sample response for the Agent.",
+          "items": {
+            "$ref": "GoogleCloudContactcenterinsightsV1AgentCoachingSuggestionSampleResponse"
+          },
+          "type": "array"
+        },
+        "suggestionEval": {
+          "$ref": "GoogleCloudContactcenterinsightsV1AgentCoachingSuggestionAgentCoachingSuggestionEval",
+          "description": "Self evaluation of the suggestion."
+        },
+        "suggestionReasoning": {
+          "$ref": "GoogleCloudContactcenterinsightsV1AgentCoachingSuggestionAgentCoachingSuggestionReasoning",
+          "description": "Reasoning for the suggestion."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1AgentCoachingSuggestionAgentActionSuggestion": {
+      "description": "Actions suggested for the agent. This is based on applicable instructions.",
+      "id": "GoogleCloudContactcenterinsightsV1AgentCoachingSuggestionAgentActionSuggestion",
+      "properties": {
+        "agentAction": {
+          "description": "Optional. The suggested action for the agent.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1AgentCoachingSuggestionAgentCoachingSuggestionEval": {
+      "description": "Self evaluations of the suggestion.",
+      "id": "GoogleCloudContactcenterinsightsV1AgentCoachingSuggestionAgentCoachingSuggestionEval",
+      "properties": {
+        "actionActionSuggestionEval": {
+          "description": "Optional. Eval for Agent action suggestion.",
+          "type": "string"
+        },
+        "sampleResponseEval": {
+          "description": "Optional. Eval for sample response.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1AgentCoachingSuggestionAgentCoachingSuggestionReasoning": {
+      "description": "Reasoning for the suggestion.",
+      "id": "GoogleCloudContactcenterinsightsV1AgentCoachingSuggestionAgentCoachingSuggestionReasoning",
+      "properties": {
+        "agentActionTaken": {
+          "description": "Optional. The actions that the agent has taken already.",
+          "type": "string"
+        },
+        "issueSummary": {
+          "description": "Optional. Summary of the issue.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1AgentCoachingSuggestionSampleResponse": {
+      "description": "Sample response that the agent can use. This could be based on applicable instructions and ingested data from other systems.",
+      "id": "GoogleCloudContactcenterinsightsV1AgentCoachingSuggestionSampleResponse",
+      "properties": {
+        "responseText": {
+          "description": "Optional. Sample response for Agent in text.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudContactcenterinsightsV1Analysis": {
       "description": "The analysis resource.",
       "id": "GoogleCloudContactcenterinsightsV1Analysis",
@@ -1566,6 +1689,10 @@
             "$ref": "GoogleCloudContactcenterinsightsV1ConversationLevelSentiment"
           },
           "type": "array"
+        },
+        "silence": {
+          "$ref": "GoogleCloudContactcenterinsightsV1ConversationLevelSilence",
+          "description": "Overall conversation-level silence during the call."
         }
       },
       "type": "object"
@@ -2205,6 +2332,23 @@
         "sentimentData": {
           "$ref": "GoogleCloudContactcenterinsightsV1SentimentData",
           "description": "Data specifying sentiment."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1ConversationLevelSilence": {
+      "description": "Conversation-level silence data.",
+      "id": "GoogleCloudContactcenterinsightsV1ConversationLevelSilence",
+      "properties": {
+        "silenceDuration": {
+          "description": "Amount of time calculated to be in silence.",
+          "format": "google-duration",
+          "type": "string"
+        },
+        "silencePercentage": {
+          "description": "Percentage of the total conversation spent in silence.",
+          "format": "float",
+          "type": "number"
         }
       },
       "type": "object"
@@ -2905,6 +3049,24 @@
       },
       "type": "object"
     },
+    "GoogleCloudContactcenterinsightsV1FreeFormSuggestion": {
+      "description": "Suggestion generated using free form generator.",
+      "id": "GoogleCloudContactcenterinsightsV1FreeFormSuggestion",
+      "properties": {
+        "labels": {
+          "description": "Optional. Labels for the generator.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "response": {
+          "description": "Required. Free form suggestion.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudContactcenterinsightsV1GcsSource": {
       "description": "A Cloud Storage source of conversation data.",
       "id": "GoogleCloudContactcenterinsightsV1GcsSource",
@@ -2916,6 +3078,162 @@
         "transcriptUri": {
           "description": "Immutable. Cloud Storage URI that points to a file that contains the conversation transcript.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1GeneratorSuggestion": {
+      "description": "Suggestion generated using a Generator.",
+      "id": "GoogleCloudContactcenterinsightsV1GeneratorSuggestion",
+      "properties": {
+        "agentCoachingSuggestion": {
+          "$ref": "GoogleCloudContactcenterinsightsV1AgentCoachingSuggestion",
+          "description": "Optional. Suggestion to coach the agent."
+        },
+        "freeFormSuggestion": {
+          "$ref": "GoogleCloudContactcenterinsightsV1FreeFormSuggestion",
+          "description": "Optional. Free form suggestion."
+        },
+        "summarySuggestion": {
+          "$ref": "GoogleCloudContactcenterinsightsV1SummarySuggestion",
+          "description": "Optional. Suggested summary."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1GetGeneratorSuggestionResponse": {
+      "description": "Represents response from generators.",
+      "id": "GoogleCloudContactcenterinsightsV1GetGeneratorSuggestionResponse",
+      "properties": {
+        "generatorSuggestion": {
+          "$ref": "GoogleCloudContactcenterinsightsV1GeneratorSuggestion",
+          "description": "The suggestion generated from the Generator."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1GetKnowledgeAssistResponse": {
+      "description": "Response for Knowledge Assist. Contains suggested query and optionally includes an answer for the query.",
+      "id": "GoogleCloudContactcenterinsightsV1GetKnowledgeAssistResponse",
+      "properties": {
+        "suggestedQuery": {
+          "$ref": "GoogleCloudContactcenterinsightsV1GetKnowledgeAssistResponseSuggestedQuery",
+          "description": "The query suggested based on the context. Suggestion is made only if it is different from the previous suggestion."
+        },
+        "suggestedQueryAnswer": {
+          "$ref": "GoogleCloudContactcenterinsightsV1GetKnowledgeAssistResponseKnowledgeAnswer",
+          "description": "The answer generated for the suggested query. Whether or not an answer is generated depends on how confident we are about the generated query."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1GetKnowledgeAssistResponseKnowledgeAnswer": {
+      "description": "Represents an answer from Knowledge. Cuurently supports FAQ and Generative answers.",
+      "id": "GoogleCloudContactcenterinsightsV1GetKnowledgeAssistResponseKnowledgeAnswer",
+      "properties": {
+        "answerText": {
+          "description": "The piece of text from the `source` that answers this suggested query.",
+          "type": "string"
+        },
+        "faqSource": {
+          "$ref": "GoogleCloudContactcenterinsightsV1GetKnowledgeAssistResponseKnowledgeAnswerFaqSource",
+          "description": "Populated if the prediction came from FAQ."
+        },
+        "generativeSource": {
+          "$ref": "GoogleCloudContactcenterinsightsV1GetKnowledgeAssistResponseKnowledgeAnswerGenerativeSource",
+          "description": "Populated if the prediction was Generative."
+        },
+        "intentMatchingSource": {
+          "$ref": "GoogleCloudContactcenterinsightsV1GetKnowledgeAssistResponseKnowledgeAnswerIntentMatchingSource",
+          "description": "Populated if the prediction was from intent matching."
+        },
+        "matchConfidence": {
+          "description": "The system's confidence score that this answer is a good match for this conversational query. The range is from 0.0 (completely uncertain) to 1.0 (completely certain).",
+          "format": "float",
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1GetKnowledgeAssistResponseKnowledgeAnswerFaqSource": {
+      "description": "Details about source of FAQ answer.",
+      "id": "GoogleCloudContactcenterinsightsV1GetKnowledgeAssistResponseKnowledgeAnswerFaqSource",
+      "properties": {
+        "document": {
+          "description": "Indicates which Knowledge Document this answer was extracted from. Format: `projects//knowledgeBases//documents/`.",
+          "type": "string"
+        },
+        "question": {
+          "description": "The corresponding FAQ question.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1GetKnowledgeAssistResponseKnowledgeAnswerGenerativeSource": {
+      "description": "Details about source of Generative answer.",
+      "id": "GoogleCloudContactcenterinsightsV1GetKnowledgeAssistResponseKnowledgeAnswerGenerativeSource",
+      "properties": {
+        "snippets": {
+          "description": "All snippets used for this Generative Prediction, with their source URI and data.",
+          "items": {
+            "$ref": "GoogleCloudContactcenterinsightsV1GetKnowledgeAssistResponseKnowledgeAnswerGenerativeSourceSnippet"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1GetKnowledgeAssistResponseKnowledgeAnswerGenerativeSourceSnippet": {
+      "description": "Snippet Source for a Generative Prediction.",
+      "id": "GoogleCloudContactcenterinsightsV1GetKnowledgeAssistResponseKnowledgeAnswerGenerativeSourceSnippet",
+      "properties": {
+        "document": {
+          "description": "Indicates which Knowledge Document this snippet was extracted from. Format: `projects//knowledgeBases//documents/`.",
+          "type": "string"
+        },
+        "text": {
+          "description": "text taken from that URI.",
+          "type": "string"
+        },
+        "title": {
+          "description": "Title of the document.",
+          "type": "string"
+        },
+        "uri": {
+          "description": "URI the data is sourced from.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1GetKnowledgeAssistResponseKnowledgeAnswerIntentMatchingSource": {
+      "description": "Details about source of Intent Matching answer.",
+      "id": "GoogleCloudContactcenterinsightsV1GetKnowledgeAssistResponseKnowledgeAnswerIntentMatchingSource",
+      "properties": {
+        "title": {
+          "description": "Title of the document.",
+          "type": "string"
+        },
+        "uri": {
+          "description": "URI the data is sourced from.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1GetKnowledgeAssistResponseSuggestedQuery": {
+      "description": "Represents a suggested query.",
+      "id": "GoogleCloudContactcenterinsightsV1GetKnowledgeAssistResponseSuggestedQuery",
+      "properties": {
+        "queryText": {
+          "description": "Suggested query text.",
+          "type": "string"
+        },
+        "score": {
+          "description": "Suggested query score.",
+          "format": "float",
+          "type": "number"
         }
       },
       "type": "object"
@@ -3071,6 +3389,11 @@
           "$ref": "GoogleCloudContactcenterinsightsV1RedactionConfig",
           "description": "Optional. DLP settings for transcript redaction. Optional, will default to the config specified in Settings."
         },
+        "sampleSize": {
+          "description": "Optional. If set, this fields indicates the number of objects to ingest from the Cloud Storage bucket. If empty, the entire bucket will be ingested. Note that conversations produced via sampling will not be ingested by subsequent ingest requests unless they are first deleted.",
+          "format": "int32",
+          "type": "integer"
+        },
         "speechConfig": {
           "$ref": "GoogleCloudContactcenterinsightsV1SpeechConfig",
           "description": "Optional. Default Speech-to-Text configuration. Optional, will default to the config specified in Settings."
@@ -3092,7 +3415,7 @@
           "type": "integer"
         },
         "agentId": {
-          "description": "An opaque, user-specified string representing the human agent who handled the conversations.",
+          "description": "Optional. An opaque, user-specified string representing a human agent who handled all conversations in the import. Note that this will be overridden if per-conversation metadata is provided via the `metadata_bucket_uri`.",
           "type": "string"
         },
         "customerChannel": {
@@ -3698,7 +4021,7 @@
       "type": "object"
     },
     "GoogleCloudContactcenterinsightsV1RedactionConfig": {
-      "description": "DLP resources used for redaction while ingesting conversations.",
+      "description": "DLP resources used for redaction while ingesting conversations. DLP settings are applied to conversations ingested from the UploadConversation and IngestConversations endpoints, including conversation coming from CCAI Platform. They are not applied to conversations ingested from the CreateConversation endpoint or the Dialogflow / Agent Assist runtime integrations. When using Dialogflow / Agent Assist runtime integrations redaction should be performed in Dialogflow / Agent Assist.",
       "id": "GoogleCloudContactcenterinsightsV1RedactionConfig",
       "properties": {
         "deidentifyTemplate": {
@@ -3749,6 +4072,18 @@
           "$ref": "GoogleCloudContactcenterinsightsV1FaqAnswerData",
           "description": "Agent Assist FAQ answer data."
         },
+        "generatorSuggestionResult": {
+          "$ref": "GoogleCloudContactcenterinsightsV1GetGeneratorSuggestionResponse",
+          "description": "The generator suggestion result."
+        },
+        "knowledgeAssistResult": {
+          "$ref": "GoogleCloudContactcenterinsightsV1GetKnowledgeAssistResponse",
+          "description": "The Knowledge Assist result."
+        },
+        "knowledgeSearchResult": {
+          "$ref": "GoogleCloudContactcenterinsightsV1SearchKnowledgeAnswer",
+          "description": "The Knowledge Search result."
+        },
         "smartComposeSuggestion": {
           "$ref": "GoogleCloudContactcenterinsightsV1SmartComposeSuggestionData",
           "description": "Agent Assist Smart Compose suggestion data."
@@ -3760,6 +4095,72 @@
         "startBoundary": {
           "$ref": "GoogleCloudContactcenterinsightsV1AnnotationBoundary",
           "description": "The boundary in the conversation where the annotation starts, inclusive."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1SearchKnowledgeAnswer": {
+      "description": "Represents a SearchKnowledge answer.",
+      "id": "GoogleCloudContactcenterinsightsV1SearchKnowledgeAnswer",
+      "properties": {
+        "answer": {
+          "description": "The piece of text from the knowledge base documents that answers the search query",
+          "type": "string"
+        },
+        "answerRecord": {
+          "description": "The name of the answer record. Format: `projects//locations//answer Records/`",
+          "type": "string"
+        },
+        "answerSources": {
+          "description": "All sources used to generate the answer.",
+          "items": {
+            "$ref": "GoogleCloudContactcenterinsightsV1SearchKnowledgeAnswerAnswerSource"
+          },
+          "type": "array"
+        },
+        "answerType": {
+          "description": "The type of the answer.",
+          "enum": [
+            "ANSWER_TYPE_UNSPECIFIED",
+            "FAQ",
+            "GENERATIVE",
+            "INTENT"
+          ],
+          "enumDescriptions": [
+            "The answer has a unspecified type.",
+            "The answer is from FAQ documents.",
+            "The answer is from generative model.",
+            "The answer is from intent matching."
+          ],
+          "type": "string"
+        },
+        "confidenceScore": {
+          "description": "The confidence score in [0.0, 1.0] range.",
+          "format": "float",
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1SearchKnowledgeAnswerAnswerSource": {
+      "description": "The sources of the answers.",
+      "id": "GoogleCloudContactcenterinsightsV1SearchKnowledgeAnswerAnswerSource",
+      "properties": {
+        "document": {
+          "description": "The document from which the snippet was extracted. Format: `projects//knowledgeBases//documents/`",
+          "type": "string"
+        },
+        "snippet": {
+          "description": "The relevant snippet of the article.",
+          "type": "string"
+        },
+        "title": {
+          "description": "The title of the article.",
+          "type": "string"
+        },
+        "uri": {
+          "description": "The URI of the article.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -3817,11 +4218,11 @@
         },
         "redactionConfig": {
           "$ref": "GoogleCloudContactcenterinsightsV1RedactionConfig",
-          "description": "Default DLP redaction resources to be applied while ingesting conversations."
+          "description": "Default DLP redaction resources to be applied while ingesting conversations. This applies to conversations ingested from the UploadConversation and IngestConversations endpoints, including conversations coming from CCAI Platform."
         },
         "speechConfig": {
           "$ref": "GoogleCloudContactcenterinsightsV1SpeechConfig",
-          "description": "Optional. Default Speech-to-Text resources to be used while ingesting audio files. Optional, CCAI Insights will create a default if not provided."
+          "description": "Optional. Default Speech-to-Text resources to be used while ingesting audio files. Optional, CCAI Insights will create a default if not provided. This applies to conversations ingested from the UploadConversation and IngestConversations endpoints, including conversations coming from CCAI Platform."
         },
         "updateTime": {
           "description": "Output only. The time at which the settings were last updated.",
@@ -3914,11 +4315,40 @@
       "type": "object"
     },
     "GoogleCloudContactcenterinsightsV1SpeechConfig": {
-      "description": "Speech-to-Text configuration.",
+      "description": "Speech-to-Text configuration. Speech-to-Text settings are applied to conversations ingested from the UploadConversation and IngestConversations endpoints, including conversation coming from CCAI Platform. They are not applied to conversations ingested from the CreateConversation endpoint.",
       "id": "GoogleCloudContactcenterinsightsV1SpeechConfig",
       "properties": {
         "speechRecognizer": {
           "description": "The fully-qualified Speech Recognizer resource name. Format: `projects/{project_id}/locations/{location}/recognizer/{recognizer}`",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1SummarySuggestion": {
+      "description": "Suggested summary of the conversation.",
+      "id": "GoogleCloudContactcenterinsightsV1SummarySuggestion",
+      "properties": {
+        "summarySections": {
+          "description": "Required. All the parts of generated summary.",
+          "items": {
+            "$ref": "GoogleCloudContactcenterinsightsV1SummarySuggestionSummarySection"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1SummarySuggestionSummarySection": {
+      "description": "A component of the generated summary.",
+      "id": "GoogleCloudContactcenterinsightsV1SummarySuggestionSummarySection",
+      "properties": {
+        "section": {
+          "description": "Required. Name of the section.",
+          "type": "string"
+        },
+        "summary": {
+          "description": "Required. Summary text for the section.",
           "type": "string"
         }
       },
@@ -4056,6 +4486,128 @@
       },
       "type": "object"
     },
+    "GoogleCloudContactcenterinsightsV1alpha1AgentCoachingInstruction": {
+      "description": "Agent Coaching instructions that customer can configure.",
+      "id": "GoogleCloudContactcenterinsightsV1alpha1AgentCoachingInstruction",
+      "properties": {
+        "agentAction": {
+          "description": "Optional. The action that human agent should take. For example, \"apologize for the slow shipping\". If the users only want to use agent coaching for intent detection, agent_action can be empty",
+          "type": "string"
+        },
+        "condition": {
+          "description": "Optional. The condition of the instruction. For example, \"the customer wants to cancel an order\". If the users want the instruction to be triggered unconditionally, the condition can be empty.",
+          "type": "string"
+        },
+        "description": {
+          "description": "Optional. The detailed description of this instruction.",
+          "type": "string"
+        },
+        "displayName": {
+          "description": "Optional. Display name for the instruction.",
+          "type": "string"
+        },
+        "metadata": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. Additional information attached to this instruction.",
+          "type": "object"
+        },
+        "systemAction": {
+          "description": "Optional. The action that system should take. For example, \"call GetOrderTime with order_number={order number provided by the customer}\". If the users don't have plugins or don't want to trigger plugins, the system_action can be empty",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1alpha1AgentCoachingSuggestion": {
+      "description": "Suggestion for coaching agents.",
+      "id": "GoogleCloudContactcenterinsightsV1alpha1AgentCoachingSuggestion",
+      "properties": {
+        "agentActionSuggestions": {
+          "description": "Optional. Suggested actions for the agent to take.",
+          "items": {
+            "$ref": "GoogleCloudContactcenterinsightsV1alpha1AgentCoachingSuggestionAgentActionSuggestion"
+          },
+          "type": "array"
+        },
+        "applicableInstructions": {
+          "description": "Optional. Instructions applicable based on the current context.",
+          "items": {
+            "$ref": "GoogleCloudContactcenterinsightsV1alpha1AgentCoachingInstruction"
+          },
+          "type": "array"
+        },
+        "sampleResponses": {
+          "description": "Optional. Sample response for the Agent.",
+          "items": {
+            "$ref": "GoogleCloudContactcenterinsightsV1alpha1AgentCoachingSuggestionSampleResponse"
+          },
+          "type": "array"
+        },
+        "suggestionEval": {
+          "$ref": "GoogleCloudContactcenterinsightsV1alpha1AgentCoachingSuggestionAgentCoachingSuggestionEval",
+          "description": "Self evaluation of the suggestion."
+        },
+        "suggestionReasoning": {
+          "$ref": "GoogleCloudContactcenterinsightsV1alpha1AgentCoachingSuggestionAgentCoachingSuggestionReasoning",
+          "description": "Reasoning for the suggestion."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1alpha1AgentCoachingSuggestionAgentActionSuggestion": {
+      "description": "Actions suggested for the agent. This is based on applicable instructions.",
+      "id": "GoogleCloudContactcenterinsightsV1alpha1AgentCoachingSuggestionAgentActionSuggestion",
+      "properties": {
+        "agentAction": {
+          "description": "Optional. The suggested action for the agent.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1alpha1AgentCoachingSuggestionAgentCoachingSuggestionEval": {
+      "description": "Self evaluations of the suggestion.",
+      "id": "GoogleCloudContactcenterinsightsV1alpha1AgentCoachingSuggestionAgentCoachingSuggestionEval",
+      "properties": {
+        "actionActionSuggestionEval": {
+          "description": "Optional. Eval for Agent action suggestion.",
+          "type": "string"
+        },
+        "sampleResponseEval": {
+          "description": "Optional. Eval for sample response.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1alpha1AgentCoachingSuggestionAgentCoachingSuggestionReasoning": {
+      "description": "Reasoning for the suggestion.",
+      "id": "GoogleCloudContactcenterinsightsV1alpha1AgentCoachingSuggestionAgentCoachingSuggestionReasoning",
+      "properties": {
+        "agentActionTaken": {
+          "description": "Optional. The actions that the agent has taken already.",
+          "type": "string"
+        },
+        "issueSummary": {
+          "description": "Optional. Summary of the issue.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1alpha1AgentCoachingSuggestionSampleResponse": {
+      "description": "Sample response that the agent can use. This could be based on applicable instructions and ingested data from other systems.",
+      "id": "GoogleCloudContactcenterinsightsV1alpha1AgentCoachingSuggestionSampleResponse",
+      "properties": {
+        "responseText": {
+          "description": "Optional. Sample response for Agent in text.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudContactcenterinsightsV1alpha1Analysis": {
       "description": "The analysis resource.",
       "id": "GoogleCloudContactcenterinsightsV1alpha1Analysis",
@@ -4146,6 +4698,10 @@
             "$ref": "GoogleCloudContactcenterinsightsV1alpha1ConversationLevelSentiment"
           },
           "type": "array"
+        },
+        "silence": {
+          "$ref": "GoogleCloudContactcenterinsightsV1alpha1ConversationLevelSilence",
+          "description": "Overall conversation-level silence during the call."
         }
       },
       "type": "object"
@@ -4680,6 +5236,23 @@
         "sentimentData": {
           "$ref": "GoogleCloudContactcenterinsightsV1alpha1SentimentData",
           "description": "Data specifying sentiment."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1alpha1ConversationLevelSilence": {
+      "description": "Conversation-level silence data.",
+      "id": "GoogleCloudContactcenterinsightsV1alpha1ConversationLevelSilence",
+      "properties": {
+        "silenceDuration": {
+          "description": "Amount of time calculated to be in silence.",
+          "format": "google-duration",
+          "type": "string"
+        },
+        "silencePercentage": {
+          "description": "Percentage of the total conversation spent in silence.",
+          "format": "float",
+          "type": "number"
         }
       },
       "type": "object"
@@ -5369,6 +5942,24 @@
       },
       "type": "object"
     },
+    "GoogleCloudContactcenterinsightsV1alpha1FreeFormSuggestion": {
+      "description": "Suggestion generated using free form generator.",
+      "id": "GoogleCloudContactcenterinsightsV1alpha1FreeFormSuggestion",
+      "properties": {
+        "labels": {
+          "description": "Optional. Labels for the generator.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "response": {
+          "description": "Required. Free form suggestion.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudContactcenterinsightsV1alpha1GcsSource": {
       "description": "A Cloud Storage source of conversation data.",
       "id": "GoogleCloudContactcenterinsightsV1alpha1GcsSource",
@@ -5380,6 +5971,162 @@
         "transcriptUri": {
           "description": "Immutable. Cloud Storage URI that points to a file that contains the conversation transcript.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1alpha1GeneratorSuggestion": {
+      "description": "Suggestion generated using a Generator.",
+      "id": "GoogleCloudContactcenterinsightsV1alpha1GeneratorSuggestion",
+      "properties": {
+        "agentCoachingSuggestion": {
+          "$ref": "GoogleCloudContactcenterinsightsV1alpha1AgentCoachingSuggestion",
+          "description": "Optional. Suggestion to coach the agent."
+        },
+        "freeFormSuggestion": {
+          "$ref": "GoogleCloudContactcenterinsightsV1alpha1FreeFormSuggestion",
+          "description": "Optional. Free form suggestion."
+        },
+        "summarySuggestion": {
+          "$ref": "GoogleCloudContactcenterinsightsV1alpha1SummarySuggestion",
+          "description": "Optional. Suggested summary."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1alpha1GetGeneratorSuggestionResponse": {
+      "description": "Represents response from generators.",
+      "id": "GoogleCloudContactcenterinsightsV1alpha1GetGeneratorSuggestionResponse",
+      "properties": {
+        "generatorSuggestion": {
+          "$ref": "GoogleCloudContactcenterinsightsV1alpha1GeneratorSuggestion",
+          "description": "The suggestion generated from the Generator."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1alpha1GetKnowledgeAssistResponse": {
+      "description": "Response for Knowledge Assist. Contains suggested query and optionally includes an answer for the query.",
+      "id": "GoogleCloudContactcenterinsightsV1alpha1GetKnowledgeAssistResponse",
+      "properties": {
+        "suggestedQuery": {
+          "$ref": "GoogleCloudContactcenterinsightsV1alpha1GetKnowledgeAssistResponseSuggestedQuery",
+          "description": "The query suggested based on the context. Suggestion is made only if it is different from the previous suggestion."
+        },
+        "suggestedQueryAnswer": {
+          "$ref": "GoogleCloudContactcenterinsightsV1alpha1GetKnowledgeAssistResponseKnowledgeAnswer",
+          "description": "The answer generated for the suggested query. Whether or not an answer is generated depends on how confident we are about the generated query."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1alpha1GetKnowledgeAssistResponseKnowledgeAnswer": {
+      "description": "Represents an answer from Knowledge. Cuurently supports FAQ and Generative answers.",
+      "id": "GoogleCloudContactcenterinsightsV1alpha1GetKnowledgeAssistResponseKnowledgeAnswer",
+      "properties": {
+        "answerText": {
+          "description": "The piece of text from the `source` that answers this suggested query.",
+          "type": "string"
+        },
+        "faqSource": {
+          "$ref": "GoogleCloudContactcenterinsightsV1alpha1GetKnowledgeAssistResponseKnowledgeAnswerFaqSource",
+          "description": "Populated if the prediction came from FAQ."
+        },
+        "generativeSource": {
+          "$ref": "GoogleCloudContactcenterinsightsV1alpha1GetKnowledgeAssistResponseKnowledgeAnswerGenerativeSource",
+          "description": "Populated if the prediction was Generative."
+        },
+        "intentMatchingSource": {
+          "$ref": "GoogleCloudContactcenterinsightsV1alpha1GetKnowledgeAssistResponseKnowledgeAnswerIntentMatchingSource",
+          "description": "Populated if the prediction was from intent matching."
+        },
+        "matchConfidence": {
+          "description": "The system's confidence score that this answer is a good match for this conversational query. The range is from 0.0 (completely uncertain) to 1.0 (completely certain).",
+          "format": "float",
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1alpha1GetKnowledgeAssistResponseKnowledgeAnswerFaqSource": {
+      "description": "Details about source of FAQ answer.",
+      "id": "GoogleCloudContactcenterinsightsV1alpha1GetKnowledgeAssistResponseKnowledgeAnswerFaqSource",
+      "properties": {
+        "document": {
+          "description": "Indicates which Knowledge Document this answer was extracted from. Format: `projects//knowledgeBases//documents/`.",
+          "type": "string"
+        },
+        "question": {
+          "description": "The corresponding FAQ question.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1alpha1GetKnowledgeAssistResponseKnowledgeAnswerGenerativeSource": {
+      "description": "Details about source of Generative answer.",
+      "id": "GoogleCloudContactcenterinsightsV1alpha1GetKnowledgeAssistResponseKnowledgeAnswerGenerativeSource",
+      "properties": {
+        "snippets": {
+          "description": "All snippets used for this Generative Prediction, with their source URI and data.",
+          "items": {
+            "$ref": "GoogleCloudContactcenterinsightsV1alpha1GetKnowledgeAssistResponseKnowledgeAnswerGenerativeSourceSnippet"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1alpha1GetKnowledgeAssistResponseKnowledgeAnswerGenerativeSourceSnippet": {
+      "description": "Snippet Source for a Generative Prediction.",
+      "id": "GoogleCloudContactcenterinsightsV1alpha1GetKnowledgeAssistResponseKnowledgeAnswerGenerativeSourceSnippet",
+      "properties": {
+        "document": {
+          "description": "Indicates which Knowledge Document this snippet was extracted from. Format: `projects//knowledgeBases//documents/`.",
+          "type": "string"
+        },
+        "text": {
+          "description": "text taken from that URI.",
+          "type": "string"
+        },
+        "title": {
+          "description": "Title of the document.",
+          "type": "string"
+        },
+        "uri": {
+          "description": "URI the data is sourced from.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1alpha1GetKnowledgeAssistResponseKnowledgeAnswerIntentMatchingSource": {
+      "description": "Details about source of Intent Matching answer.",
+      "id": "GoogleCloudContactcenterinsightsV1alpha1GetKnowledgeAssistResponseKnowledgeAnswerIntentMatchingSource",
+      "properties": {
+        "title": {
+          "description": "Title of the document.",
+          "type": "string"
+        },
+        "uri": {
+          "description": "URI the data is sourced from.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1alpha1GetKnowledgeAssistResponseSuggestedQuery": {
+      "description": "Represents a suggested query.",
+      "id": "GoogleCloudContactcenterinsightsV1alpha1GetKnowledgeAssistResponseSuggestedQuery",
+      "properties": {
+        "queryText": {
+          "description": "Suggested query text.",
+          "type": "string"
+        },
+        "score": {
+          "description": "Suggested query score.",
+          "format": "float",
+          "type": "number"
         }
       },
       "type": "object"
@@ -5535,6 +6282,11 @@
           "$ref": "GoogleCloudContactcenterinsightsV1alpha1RedactionConfig",
           "description": "Optional. DLP settings for transcript redaction. Optional, will default to the config specified in Settings."
         },
+        "sampleSize": {
+          "description": "Optional. If set, this fields indicates the number of objects to ingest from the Cloud Storage bucket. If empty, the entire bucket will be ingested. Note that conversations produced via sampling will not be ingested by subsequent ingest requests unless they are first deleted.",
+          "format": "int32",
+          "type": "integer"
+        },
         "speechConfig": {
           "$ref": "GoogleCloudContactcenterinsightsV1alpha1SpeechConfig",
           "description": "Optional. Default Speech-to-Text configuration. Optional, will default to the config specified in Settings."
@@ -5556,7 +6308,7 @@
           "type": "integer"
         },
         "agentId": {
-          "description": "An opaque, user-specified string representing the human agent who handled the conversations.",
+          "description": "Optional. An opaque, user-specified string representing a human agent who handled all conversations in the import. Note that this will be overridden if per-conversation metadata is provided via the `metadata_bucket_uri`.",
           "type": "string"
         },
         "customerChannel": {
@@ -5884,7 +6636,7 @@
       "type": "object"
     },
     "GoogleCloudContactcenterinsightsV1alpha1RedactionConfig": {
-      "description": "DLP resources used for redaction while ingesting conversations.",
+      "description": "DLP resources used for redaction while ingesting conversations. DLP settings are applied to conversations ingested from the UploadConversation and IngestConversations endpoints, including conversation coming from CCAI Platform. They are not applied to conversations ingested from the CreateConversation endpoint or the Dialogflow / Agent Assist runtime integrations. When using Dialogflow / Agent Assist runtime integrations redaction should be performed in Dialogflow / Agent Assist.",
       "id": "GoogleCloudContactcenterinsightsV1alpha1RedactionConfig",
       "properties": {
         "deidentifyTemplate": {
@@ -5935,6 +6687,18 @@
           "$ref": "GoogleCloudContactcenterinsightsV1alpha1FaqAnswerData",
           "description": "Agent Assist FAQ answer data."
         },
+        "generatorSuggestionResult": {
+          "$ref": "GoogleCloudContactcenterinsightsV1alpha1GetGeneratorSuggestionResponse",
+          "description": "The generator suggestion result."
+        },
+        "knowledgeAssistResult": {
+          "$ref": "GoogleCloudContactcenterinsightsV1alpha1GetKnowledgeAssistResponse",
+          "description": "The Knowledge Assist result."
+        },
+        "knowledgeSearchResult": {
+          "$ref": "GoogleCloudContactcenterinsightsV1alpha1SearchKnowledgeAnswer",
+          "description": "The Knowledge Search result."
+        },
         "smartComposeSuggestion": {
           "$ref": "GoogleCloudContactcenterinsightsV1alpha1SmartComposeSuggestionData",
           "description": "Agent Assist Smart Compose suggestion data."
@@ -5946,6 +6710,72 @@
         "startBoundary": {
           "$ref": "GoogleCloudContactcenterinsightsV1alpha1AnnotationBoundary",
           "description": "The boundary in the conversation where the annotation starts, inclusive."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1alpha1SearchKnowledgeAnswer": {
+      "description": "Represents a SearchKnowledge answer.",
+      "id": "GoogleCloudContactcenterinsightsV1alpha1SearchKnowledgeAnswer",
+      "properties": {
+        "answer": {
+          "description": "The piece of text from the knowledge base documents that answers the search query",
+          "type": "string"
+        },
+        "answerRecord": {
+          "description": "The name of the answer record. Format: `projects//locations//answer Records/`",
+          "type": "string"
+        },
+        "answerSources": {
+          "description": "All sources used to generate the answer.",
+          "items": {
+            "$ref": "GoogleCloudContactcenterinsightsV1alpha1SearchKnowledgeAnswerAnswerSource"
+          },
+          "type": "array"
+        },
+        "answerType": {
+          "description": "The type of the answer.",
+          "enum": [
+            "ANSWER_TYPE_UNSPECIFIED",
+            "FAQ",
+            "GENERATIVE",
+            "INTENT"
+          ],
+          "enumDescriptions": [
+            "The answer has a unspecified type.",
+            "The answer is from FAQ documents.",
+            "The answer is from generative model.",
+            "The answer is from intent matching."
+          ],
+          "type": "string"
+        },
+        "confidenceScore": {
+          "description": "The confidence score in [0.0, 1.0] range.",
+          "format": "float",
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1alpha1SearchKnowledgeAnswerAnswerSource": {
+      "description": "The sources of the answers.",
+      "id": "GoogleCloudContactcenterinsightsV1alpha1SearchKnowledgeAnswerAnswerSource",
+      "properties": {
+        "document": {
+          "description": "The document from which the snippet was extracted. Format: `projects//knowledgeBases//documents/`",
+          "type": "string"
+        },
+        "snippet": {
+          "description": "The relevant snippet of the article.",
+          "type": "string"
+        },
+        "title": {
+          "description": "The title of the article.",
+          "type": "string"
+        },
+        "uri": {
+          "description": "The URI of the article.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -6028,11 +6858,40 @@
       "type": "object"
     },
     "GoogleCloudContactcenterinsightsV1alpha1SpeechConfig": {
-      "description": "Speech-to-Text configuration.",
+      "description": "Speech-to-Text configuration. Speech-to-Text settings are applied to conversations ingested from the UploadConversation and IngestConversations endpoints, including conversation coming from CCAI Platform. They are not applied to conversations ingested from the CreateConversation endpoint.",
       "id": "GoogleCloudContactcenterinsightsV1alpha1SpeechConfig",
       "properties": {
         "speechRecognizer": {
           "description": "The fully-qualified Speech Recognizer resource name. Format: `projects/{project_id}/locations/{location}/recognizer/{recognizer}`",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1alpha1SummarySuggestion": {
+      "description": "Suggested summary of the conversation.",
+      "id": "GoogleCloudContactcenterinsightsV1alpha1SummarySuggestion",
+      "properties": {
+        "summarySections": {
+          "description": "Required. All the parts of generated summary.",
+          "items": {
+            "$ref": "GoogleCloudContactcenterinsightsV1alpha1SummarySuggestionSummarySection"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1alpha1SummarySuggestionSummarySection": {
+      "description": "A component of the generated summary.",
+      "id": "GoogleCloudContactcenterinsightsV1alpha1SummarySuggestionSummarySection",
+      "properties": {
+        "section": {
+          "description": "Required. Name of the section.",
+          "type": "string"
+        },
+        "summary": {
+          "description": "Required. Summary text for the section.",
           "type": "string"
         }
       },

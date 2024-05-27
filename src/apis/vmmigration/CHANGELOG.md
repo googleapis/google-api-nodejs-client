@@ -1,5 +1,47 @@
 # Changelog
 
+## [9.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/vmmigration-v8.0.1...vmmigration-v9.0.0) (2024-05-02)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#3447](https://github.com/googleapis/google-api-nodejs-client/issues/3447)) ([873b559](https://github.com/googleapis/google-api-nodejs-client/commit/873b55950bcf04db37f08e8a62caa6e4a9b9c487))
+
+
+### Bug Fixes
+
+* **vmmigration:** update the API ([2664ee2](https://github.com/googleapis/google-api-nodejs-client/commit/2664ee2f9c1f01d51d8545f4cab82535fac59846))
+* **vmmigration:** update the API ([5ae80ff](https://github.com/googleapis/google-api-nodejs-client/commit/5ae80ff8788154f48906c4a3ef1f61fb0984414a))
+
+## [8.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/vmmigration-v8.0.0...vmmigration-v8.0.1) (2024-05-02)
+
+
+### Bug Fixes
+
+* **vmmigration:** update the API ([2664ee2](https://github.com/googleapis/google-api-nodejs-client/commit/2664ee2f9c1f01d51d8545f4cab82535fac59846))
+
+## [8.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/vmmigration-v7.0.0...vmmigration-v8.0.0) (2024-04-04)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#3447](https://github.com/googleapis/google-api-nodejs-client/issues/3447)) ([873b559](https://github.com/googleapis/google-api-nodejs-client/commit/873b55950bcf04db37f08e8a62caa6e4a9b9c487))
+* **vmmigration:** update the API ([79663be](https://github.com/googleapis/google-api-nodejs-client/commit/79663bea5fa5c94a40f21f595d33d7de1e4381bb))
+
+
+### Bug Fixes
+
+* **vmmigration:** update the API ([5ae80ff](https://github.com/googleapis/google-api-nodejs-client/commit/5ae80ff8788154f48906c4a3ef1f61fb0984414a))
+* **vmmigration:** update the API ([68a1d5f](https://github.com/googleapis/google-api-nodejs-client/commit/68a1d5fede479cce01e9543588460cede8f567b0))
+
 ## [7.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/vmmigration-v6.0.1...vmmigration-v7.0.0) (2024-03-12)
 
 

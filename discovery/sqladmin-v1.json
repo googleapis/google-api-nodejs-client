@@ -1084,7 +1084,7 @@
           ]
         },
         "promoteReplica": {
-          "description": "Promotes the read replica instance to be a stand-alone Cloud SQL instance. Using this operation might cause your instance to restart.",
+          "description": "Promotes the read replica instance to be an independent Cloud SQL primary instance. Using this operation might cause your instance to restart.",
           "flatPath": "v1/projects/{project}/instances/{instance}/promoteReplica",
           "httpMethod": "POST",
           "id": "sql.instances.promoteReplica",
@@ -1094,7 +1094,7 @@
           ],
           "parameters": {
             "failover": {
-              "description": "Set to true if the promote operation should attempt to re-add the original primary as a replica when it comes back online. Otherwise, if this value is false or not set, the original primary will be a standalone instance.",
+              "description": "Set to true to invoke a replica failover to the designated DR replica. As part of replica failover, the promote operation attempts to add the original primary instance as a replica of the promoted DR replica when the original primary instance comes back online. If set to false or not specified, then the original primary instance becomes an independent Cloud SQL primary instance. Only applicable to MySQL.",
               "location": "query",
               "type": "boolean"
             },
@@ -1386,7 +1386,7 @@
           ]
         },
         "switchover": {
-          "description": "Switches over from the primary instance to the replica instance.",
+          "description": "Switches over from the primary instance to the designated DR replica instance.",
           "flatPath": "v1/projects/{project}/instances/{instance}/switchover",
           "httpMethod": "POST",
           "id": "sql.instances.switchover",
@@ -2267,7 +2267,7 @@
       }
     }
   },
-  "revision": "20240317",
+  "revision": "20240425",
   "rootUrl": "https://sqladmin.googleapis.com/",
   "schemas": {
     "AclEntry": {
@@ -2405,7 +2405,7 @@
           "type": "integer"
         },
         "transactionalLogStorageState": {
-          "description": "Output only. This value contains the storage location of transactional logs for the database for point-in-time recovery.",
+          "description": "Output only. This value contains the storage location of transactional logs used to perform point-in-time recovery (PITR) for the database.",
           "enum": [
             "TRANSACTIONAL_LOG_STORAGE_STATE_UNSPECIFIED",
             "DISK",
@@ -2415,10 +2415,10 @@
           ],
           "enumDescriptions": [
             "Unspecified.",
-            "The transaction logs for the instance are stored on a data disk.",
-            "The transaction logs for the instance are switching from being stored on a data disk to being stored in Cloud Storage.",
-            "The transaction logs for the instance are now stored in Cloud Storage. Previously, they were stored on a data disk.",
-            "The transaction logs for the instance are stored in Cloud Storage."
+            "The transaction logs used for PITR for the instance are stored on a data disk.",
+            "The transaction logs used for PITR for the instance are switching from being stored on a data disk to being stored in Cloud Storage. Only applicable to MySQL.",
+            "The transaction logs used for PITR for the instance are now stored in Cloud Storage. Previously, they were stored on a data disk. Only applicable to MySQL.",
+            "The transaction logs used for PITR for the instance are stored in Cloud Storage. Only applicable to MySQL and PostgreSQL."
           ],
           "readOnly": true,
           "type": "string"
@@ -3184,7 +3184,7 @@
         },
         "geminiConfig": {
           "$ref": "GeminiInstanceConfig",
-          "description": "Gemini configuration."
+          "description": "Gemini instance configuration."
         },
         "instanceType": {
           "description": "The instance type.",
@@ -3276,7 +3276,7 @@
         },
         "replicationCluster": {
           "$ref": "ReplicationCluster",
-          "description": "Optional. The pair of a primary instance and disaster recovery (DR) replica. A DR replica is a cross-region replica that you designate for failover in the event that the primary instance has regional failure."
+          "description": "Optional. A primary instance and disaster recovery (DR) replica pair. A DR replica is a cross-region replica that you designate for failover in the event that the primary instance experiences regional failure. Only applicable to MySQL."
         },
         "rootPassword": {
           "description": "Initial root password. Use only on creation. You must set root passwords before you can connect to PostgreSQL instances.",
@@ -3935,36 +3935,36 @@
       "type": "object"
     },
     "GeminiInstanceConfig": {
-      "description": "Gemini configuration.",
+      "description": "Gemini instance configuration.",
       "id": "GeminiInstanceConfig",
       "properties": {
         "activeQueryEnabled": {
-          "description": "Output only. Whether active query is enabled.",
+          "description": "Output only. Whether the active query is enabled.",
           "readOnly": true,
           "type": "boolean"
         },
         "entitled": {
-          "description": "Output only. Whether gemini is enabled.",
+          "description": "Output only. Whether Gemini is enabled.",
           "readOnly": true,
           "type": "boolean"
         },
         "flagRecommenderEnabled": {
-          "description": "Output only. Whether flag recommender is enabled.",
+          "description": "Output only. Whether the flag recommender is enabled.",
           "readOnly": true,
           "type": "boolean"
         },
         "googleVacuumMgmtEnabled": {
-          "description": "Output only. Whether vacuum management is enabled.",
+          "description": "Output only. Whether the vacuum management is enabled.",
           "readOnly": true,
           "type": "boolean"
         },
         "indexAdvisorEnabled": {
-          "description": "Output only. Whether index advisor is enabled.",
+          "description": "Output only. Whether the index advisor is enabled.",
           "readOnly": true,
           "type": "boolean"
         },
         "oomSessionCancelEnabled": {
-          "description": "Output only. Whether oom session cancel is enabled.",
+          "description": "Output only. Whether canceling the out-of-memory (OOM) session is enabled.",
           "readOnly": true,
           "type": "boolean"
         }
@@ -4131,6 +4131,21 @@
         "kind": {
           "description": "This is always `sql#importContext`.",
           "type": "string"
+        },
+        "sqlImportOptions": {
+          "description": "Optional. Options for importing data from SQL statements.",
+          "properties": {
+            "parallel": {
+              "description": "Optional. Whether or not the import should be parallel.",
+              "type": "boolean"
+            },
+            "threads": {
+              "description": "Optional. The number of threads to use for parallel import.",
+              "format": "int32",
+              "type": "integer"
+            }
+          },
+          "type": "object"
         },
         "uri": {
           "description": "Path to the import file in Cloud Storage, in the form `gs://bucketName/fileName`. Compressed gzip files (.gz) are supported when `fileType` is `SQL`. The instance must have write permissions to the bucket and read access to the file.",
@@ -4390,11 +4405,11 @@
           "description": "PSC settings for this instance."
         },
         "requireSsl": {
-          "description": "Use `ssl_mode` instead for MySQL and PostgreSQL. SQL Server uses this flag. Whether SSL/TLS connections over IP are enforced. If set to false, then allow both non-SSL/non-TLS and SSL/TLS connections. For SSL/TLS connections, the client certificate won't be verified. If set to true, then only allow connections encrypted with SSL/TLS and with valid client certificates. If you want to enforce SSL/TLS without enforcing the requirement for valid client certificates, then use the `ssl_mode` flag instead of the `require_ssl` flag.",
+          "description": "Use `ssl_mode` instead. Whether SSL/TLS connections over IP are enforced. If set to false, then allow both non-SSL/non-TLS and SSL/TLS connections. For SSL/TLS connections, the client certificate won't be verified. If set to true, then only allow connections encrypted with SSL/TLS and with valid client certificates. If you want to enforce SSL/TLS without enforcing the requirement for valid client certificates, then use the `ssl_mode` flag instead of the `require_ssl` flag.",
           "type": "boolean"
         },
         "sslMode": {
-          "description": "Specify how SSL/TLS is enforced in database connections. MySQL and PostgreSQL use the `ssl_mode` flag. If you must use the `require_ssl` flag for backward compatibility, then only the following value pairs are valid: * `ssl_mode=ALLOW_UNENCRYPTED_AND_ENCRYPTED` and `require_ssl=false` * `ssl_mode=ENCRYPTED_ONLY` and `require_ssl=false` * `ssl_mode=TRUSTED_CLIENT_CERTIFICATE_REQUIRED` and `require_ssl=true` The value of `ssl_mode` gets priority over the value of `require_ssl`. For example, for the pair `ssl_mode=ENCRYPTED_ONLY` and `require_ssl=false`, the `ssl_mode=ENCRYPTED_ONLY` means only accept SSL connections, while the `require_ssl=false` means accept both non-SSL and SSL connections. MySQL and PostgreSQL databases respect `ssl_mode` in this case and accept only SSL connections. SQL Server uses the `require_ssl` flag. You can set the value for this flag to `true` or `false`.",
+          "description": "Specify how SSL/TLS is enforced in database connections. If you must use the `require_ssl` flag for backward compatibility, then only the following value pairs are valid: For PostgreSQL and MySQL: * `ssl_mode=ALLOW_UNENCRYPTED_AND_ENCRYPTED` and `require_ssl=false` * `ssl_mode=ENCRYPTED_ONLY` and `require_ssl=false` * `ssl_mode=TRUSTED_CLIENT_CERTIFICATE_REQUIRED` and `require_ssl=true` For SQL Server: * `ssl_mode=ALLOW_UNENCRYPTED_AND_ENCRYPTED` and `require_ssl=false` * `ssl_mode=ENCRYPTED_ONLY` and `require_ssl=true` The value of `ssl_mode` has priority over the value of `require_ssl`. For example, for the pair `ssl_mode=ENCRYPTED_ONLY` and `require_ssl=false`, `ssl_mode=ENCRYPTED_ONLY` means accept only SSL connections, while `require_ssl=false` means accept both non-SSL and SSL connections. In this case, MySQL and PostgreSQL databases respect `ssl_mode` and accepts only SSL connections.",
           "enum": [
             "SSL_MODE_UNSPECIFIED",
             "ALLOW_UNENCRYPTED_AND_ENCRYPTED",
@@ -4403,9 +4418,9 @@
           ],
           "enumDescriptions": [
             "The SSL mode is unknown.",
-            "Allow non-SSL/non-TLS and SSL/TLS connections. For SSL/TLS connections, the client certificate won't be verified. When this value is used, the legacy `require_ssl` flag must be false or cleared to avoid the conflict between values of two flags.",
-            "Only allow connections encrypted with SSL/TLS. When this value is used, the legacy `require_ssl` flag must be false or cleared to avoid the conflict between values of two flags.",
-            "Only allow connections encrypted with SSL/TLS and with valid client certificates. When this value is used, the legacy `require_ssl` flag must be true or cleared to avoid the conflict between values of two flags. PostgreSQL clients or users that connect using IAM database authentication must use either the [Cloud SQL Auth Proxy](https://cloud.google.com/sql/docs/postgres/connect-auth-proxy) or [Cloud SQL Connectors](https://cloud.google.com/sql/docs/postgres/connect-connectors) to enforce client identity verification."
+            "Allow non-SSL/non-TLS and SSL/TLS connections. For SSL connections to MySQL and PostgreSQL, the client certificate isn't verified. When this value is used, the legacy `require_ssl` flag must be false or cleared to avoid a conflict between the values of the two flags.",
+            "Only allow connections encrypted with SSL/TLS. For SSL connections to MySQL and PostgreSQL, the client certificate isn't verified. When this value is used, the legacy `require_ssl` flag must be false or cleared to avoid a conflict between the values of the two flags.",
+            "Only allow connections encrypted with SSL/TLS and with valid client certificates. When this value is used, the legacy `require_ssl` flag must be true or cleared to avoid the conflict between values of two flags. PostgreSQL clients or users that connect using IAM database authentication must use either the [Cloud SQL Auth Proxy](https://cloud.google.com/sql/docs/postgres/connect-auth-proxy) or [Cloud SQL Connectors](https://cloud.google.com/sql/docs/postgres/connect-connectors) to enforce client identity verification. Only applicable to MySQL and PostgreSQL. Not applicable to SQL Server."
           ],
           "type": "string"
         }
@@ -5062,16 +5077,16 @@
       "type": "object"
     },
     "ReplicationCluster": {
-      "description": "Primary-DR replica pair",
+      "description": "A primary instance and disaster recovery (DR) replica pair. A DR replica is a cross-region replica that you designate for failover in the event that the primary instance experiences regional failure. Only applicable to MySQL.",
       "id": "ReplicationCluster",
       "properties": {
         "drReplica": {
-          "description": "Output only. read-only field that indicates if the replica is a dr_replica; not set for a primary.",
+          "description": "Output only. Read-only field that indicates whether the replica is a DR replica. This field is not set if the instance is a primary instance.",
           "readOnly": true,
           "type": "boolean"
         },
         "failoverDrReplicaName": {
-          "description": "Optional. If the instance is a primary instance, then this field identifies the disaster recovery (DR) replica. A DR replica is an optional configuration for Enterprise Plus edition instances. If the instance is a read replica, then the field is not set. Users can set this field to set a designated DR replica for a primary. Removing this field removes the DR replica.",
+          "description": "Optional. If the instance is a primary instance, then this field identifies the disaster recovery (DR) replica. A DR replica is an optional configuration for Enterprise Plus edition instances. If the instance is a read replica, then the field is not set. Set this field to a replica name to designate a DR replica for a primary instance. Remove the replica name to remove the DR replica designation.",
           "type": "string"
         }
       },
@@ -5594,16 +5609,16 @@
       "id": "SqlInstancesStartExternalSyncRequest",
       "properties": {
         "migrationType": {
-          "description": "Optional. MigrationType decides if the migration is a physical file based migration or logical migration.",
+          "description": "Optional. MigrationType configures the migration to use physical files or logical dump files. If not set, then the logical dump file configuration is used. Valid values are `LOGICAL` or `PHYSICAL`. Only applicable to MySQL.",
           "enum": [
             "MIGRATION_TYPE_UNSPECIFIED",
             "LOGICAL",
             "PHYSICAL"
           ],
           "enumDescriptions": [
-            "Default value is logical migration",
-            "Logical Migrations",
-            "Physical file based Migrations"
+            "Default value is a logical dump file-based migration",
+            "Logical dump file-based migration",
+            "Physical file-based migration"
           ],
           "type": "string"
         },
@@ -5653,16 +5668,16 @@
       "id": "SqlInstancesVerifyExternalSyncSettingsRequest",
       "properties": {
         "migrationType": {
-          "description": "Optional. MigrationType decides if the migration is a physical file based migration or logical migration",
+          "description": "Optional. MigrationType configures the migration to use physical files or logical dump files. If not set, then the logical dump file configuration is used. Valid values are `LOGICAL` or `PHYSICAL`. Only applicable to MySQL.",
           "enum": [
             "MIGRATION_TYPE_UNSPECIFIED",
             "LOGICAL",
             "PHYSICAL"
           ],
           "enumDescriptions": [
-            "Default value is logical migration",
-            "Logical Migrations",
-            "Physical file based Migrations"
+            "Default value is a logical dump file-based migration",
+            "Logical dump file-based migration",
+            "Physical file-based migration"
           ],
           "type": "string"
         },
@@ -5685,7 +5700,7 @@
           "type": "string"
         },
         "syncParallelLevel": {
-          "description": "Optional. Parallel level for initial data sync. Currently only applicable for PostgreSQL.",
+          "description": "Optional. Parallel level for initial data sync. Only applicable for PostgreSQL.",
           "enum": [
             "EXTERNAL_SYNC_PARALLEL_LEVEL_UNSPECIFIED",
             "MIN",

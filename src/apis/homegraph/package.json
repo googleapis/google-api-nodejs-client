@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/homegraph",
-  "version": "4.0.7",
+  "version": "4.0.9",
   "description": "homegraph",
   "main": "build/index.js",
   "types": "build/index.d.ts",

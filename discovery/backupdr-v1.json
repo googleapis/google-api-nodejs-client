@@ -567,7 +567,7 @@
       }
     }
   },
-  "revision": "20240221",
+  "revision": "20240417",
   "rootUrl": "https://backupdr.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -774,6 +774,14 @@
       "description": "ManagementServer describes a single BackupDR ManagementServer instance.",
       "id": "ManagementServer",
       "properties": {
+        "baProxyUri": {
+          "description": "Output only. The hostname or ip address of the exposed AGM endpoints, used by BAs to connect to BA proxy.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
         "createTime": {
           "description": "Output only. The time when the instance was created.",
           "format": "google-datetime",

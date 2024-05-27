@@ -1,5 +1,19 @@
 # Changelog
 
+## [4.0.9](https://github.com/googleapis/google-api-nodejs-client/compare/classroom-v4.0.8...classroom-v4.0.9) (2024-05-02)
+
+
+### Bug Fixes
+
+* **classroom:** update the API ([2183745](https://github.com/googleapis/google-api-nodejs-client/commit/2183745a478778c1009d91ab160f1546526c7746))
+
+## [4.0.8](https://github.com/googleapis/google-api-nodejs-client/compare/classroom-v4.0.7...classroom-v4.0.8) (2024-05-02)
+
+
+### Bug Fixes
+
+* **classroom:** update the API ([2183745](https://github.com/googleapis/google-api-nodejs-client/commit/2183745a478778c1009d91ab160f1546526c7746))
+
 ## [4.0.7](https://github.com/googleapis/google-api-nodejs-client/compare/classroom-v4.0.6...classroom-v4.0.7) (2024-01-05)
 
 

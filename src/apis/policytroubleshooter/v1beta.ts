@@ -406,6 +406,7 @@ export namespace policytroubleshooter_v1beta {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),

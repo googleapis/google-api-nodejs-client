@@ -1,5 +1,62 @@
 # Changelog
 
+## [10.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/safebrowsing-v9.0.1...safebrowsing-v10.0.0) (2024-05-10)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#3484](https://github.com/googleapis/google-api-nodejs-client/issues/3484)) ([99b6c8d](https://github.com/googleapis/google-api-nodejs-client/commit/99b6c8de5beb8447d177048a64a977ee39ee5ee6))
+
+
+### Bug Fixes
+
+* **safebrowsing:** update the API ([b11bfcb](https://github.com/googleapis/google-api-nodejs-client/commit/b11bfcbe006131454b4c49286fd9696022b25dfe))
+
+## [9.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/safebrowsing-v9.0.0...safebrowsing-v9.0.1) (2024-05-07)
+
+
+### Bug Fixes
+
+* **safebrowsing:** update the API ([1cd8913](https://github.com/googleapis/google-api-nodejs-client/commit/1cd8913ce301e739276a811206e6aac367c41e16))
+
+## [9.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/safebrowsing-v8.0.1...safebrowsing-v9.0.0) (2024-05-02)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#3434](https://github.com/googleapis/google-api-nodejs-client/issues/3434)) ([f0db524](https://github.com/googleapis/google-api-nodejs-client/commit/f0db524bb26f05cea3dec4c0ed66b496399e3857))
+
+
+### Bug Fixes
+
+* **safebrowsing:** update the API ([ec3ca1a](https://github.com/googleapis/google-api-nodejs-client/commit/ec3ca1abec9b9a90efafba0840ad34bcaf28a24c))
+
+## [8.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/safebrowsing-v8.0.0...safebrowsing-v8.0.1) (2024-05-02)
+
+
+### Bug Fixes
+
+* **safebrowsing:** update the API ([ec3ca1a](https://github.com/googleapis/google-api-nodejs-client/commit/ec3ca1abec9b9a90efafba0840ad34bcaf28a24c))
+
+## [8.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/safebrowsing-v7.0.0...safebrowsing-v8.0.0) (2024-04-04)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#3434](https://github.com/googleapis/google-api-nodejs-client/issues/3434)) ([f0db524](https://github.com/googleapis/google-api-nodejs-client/commit/f0db524bb26f05cea3dec4c0ed66b496399e3857))
+
 ## [7.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/safebrowsing-v6.0.0...safebrowsing-v7.0.0) (2024-03-12)
 
 

@@ -464,6 +464,7 @@ export namespace pubsub_v1beta1a {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -551,6 +552,7 @@ export namespace pubsub_v1beta1a {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -638,6 +640,7 @@ export namespace pubsub_v1beta1a {
               '$1'
             ),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -725,6 +728,7 @@ export namespace pubsub_v1beta1a {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -819,6 +823,7 @@ export namespace pubsub_v1beta1a {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -905,6 +910,7 @@ export namespace pubsub_v1beta1a {
               rootUrl + '/v1beta1a/subscriptions/modifyAckDeadline'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -992,6 +998,7 @@ export namespace pubsub_v1beta1a {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1079,6 +1086,7 @@ export namespace pubsub_v1beta1a {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1169,6 +1177,7 @@ export namespace pubsub_v1beta1a {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1331,6 +1340,7 @@ export namespace pubsub_v1beta1a {
           {
             url: (rootUrl + '/v1beta1a/topics').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1417,6 +1427,7 @@ export namespace pubsub_v1beta1a {
               '$1'
             ),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -1503,6 +1514,7 @@ export namespace pubsub_v1beta1a {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1589,6 +1601,7 @@ export namespace pubsub_v1beta1a {
           {
             url: (rootUrl + '/v1beta1a/topics').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1675,6 +1688,7 @@ export namespace pubsub_v1beta1a {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1769,6 +1783,7 @@ export namespace pubsub_v1beta1a {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),

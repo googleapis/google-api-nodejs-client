@@ -1,5 +1,40 @@
 # Changelog
 
+## [10.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/identitytoolkit-v9.0.1...identitytoolkit-v10.0.0) (2024-05-02)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#3456](https://github.com/googleapis/google-api-nodejs-client/issues/3456)) ([a865e81](https://github.com/googleapis/google-api-nodejs-client/commit/a865e81539b315d3b321650663ba0b2555b1e5a1))
+
+
+### Bug Fixes
+
+* **identitytoolkit:** update the API ([99534fb](https://github.com/googleapis/google-api-nodejs-client/commit/99534fba8b394219448155ab565154cfa5710b15))
+* **identitytoolkit:** update the API ([9b113bd](https://github.com/googleapis/google-api-nodejs-client/commit/9b113bd57d558d7cf1778d100677152d95956e27))
+
+## [9.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/identitytoolkit-v9.0.0...identitytoolkit-v9.0.1) (2024-05-02)
+
+
+### Bug Fixes
+
+* **identitytoolkit:** update the API ([99534fb](https://github.com/googleapis/google-api-nodejs-client/commit/99534fba8b394219448155ab565154cfa5710b15))
+
+## [9.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/identitytoolkit-v8.0.1...identitytoolkit-v9.0.0) (2024-04-04)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#3456](https://github.com/googleapis/google-api-nodejs-client/issues/3456)) ([a865e81](https://github.com/googleapis/google-api-nodejs-client/commit/a865e81539b315d3b321650663ba0b2555b1e5a1))
+
 ## [8.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/identitytoolkit-v8.0.0...identitytoolkit-v8.0.1) (2024-02-02)
 
 

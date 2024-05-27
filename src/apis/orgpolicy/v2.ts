@@ -162,6 +162,10 @@ export namespace orgpolicy_v2 {
      */
     displayName?: string | null;
     /**
+     * Defines this constraint as being a GoogleManagedConstraint.
+     */
+    googleManagedConstraint?: Schema$GoogleCloudOrgpolicyV2ConstraintGoogleManagedConstraint;
+    /**
      * Defines this constraint as being a ListConstraint.
      */
     listConstraint?: Schema$GoogleCloudOrgpolicyV2ConstraintListConstraint;
@@ -178,6 +182,27 @@ export namespace orgpolicy_v2 {
    * A constraint that is either enforced or not. For example, a constraint `constraints/compute.disableSerialPortAccess`. If it is enforced on a VM instance, serial port connections will not be opened to that instance.
    */
   export interface Schema$GoogleCloudOrgpolicyV2ConstraintBooleanConstraint {}
+  /**
+   * A Google managed constraint. This represents a subset of fields missing from Constraint proto that are required to describe CustomConstraint
+   */
+  export interface Schema$GoogleCloudOrgpolicyV2ConstraintGoogleManagedConstraint {
+    /**
+     * Allow or deny type.
+     */
+    actionType?: string | null;
+    /**
+     * Org policy condition/expression. For example: `resource.instanceName.matches("[production|test]_.*_(\d)+")` or, `resource.management.auto_upgrade == true` The max length of the condition is 1000 characters.
+     */
+    condition?: string | null;
+    /**
+     * All the operations being applied for this constraint.
+     */
+    methodTypes?: string[] | null;
+    /**
+     * The resource instance type on which this policy applies. Format will be of the form : `/` Example: * `compute.googleapis.com/Instance`.
+     */
+    resourceTypes?: string[] | null;
+  }
   /**
    * A constraint that allows or disallows a list of string values, which are configured by an Organization Policy administrator with a policy.
    */
@@ -474,6 +499,7 @@ export namespace orgpolicy_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -593,6 +619,7 @@ export namespace orgpolicy_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -682,6 +709,7 @@ export namespace orgpolicy_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -773,6 +801,7 @@ export namespace orgpolicy_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -869,6 +898,7 @@ export namespace orgpolicy_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -965,6 +995,7 @@ export namespace orgpolicy_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1058,6 +1089,7 @@ export namespace orgpolicy_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -1245,6 +1277,7 @@ export namespace orgpolicy_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1364,6 +1397,7 @@ export namespace orgpolicy_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1453,6 +1487,7 @@ export namespace orgpolicy_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -1544,6 +1579,7 @@ export namespace orgpolicy_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1640,6 +1676,7 @@ export namespace orgpolicy_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1733,6 +1770,7 @@ export namespace orgpolicy_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -1890,6 +1928,7 @@ export namespace orgpolicy_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1979,6 +2018,7 @@ export namespace orgpolicy_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -2070,6 +2110,7 @@ export namespace orgpolicy_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2167,6 +2208,7 @@ export namespace orgpolicy_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2263,6 +2305,7 @@ export namespace orgpolicy_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2356,6 +2399,7 @@ export namespace orgpolicy_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -2539,6 +2583,7 @@ export namespace orgpolicy_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2658,6 +2703,7 @@ export namespace orgpolicy_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2747,6 +2793,7 @@ export namespace orgpolicy_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -2838,6 +2885,7 @@ export namespace orgpolicy_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2934,6 +2982,7 @@ export namespace orgpolicy_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3030,6 +3079,7 @@ export namespace orgpolicy_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3123,6 +3173,7 @@ export namespace orgpolicy_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),

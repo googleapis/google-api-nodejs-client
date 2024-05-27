@@ -821,7 +821,7 @@
       }
     }
   },
-  "revision": "20240319",
+  "revision": "20240425",
   "rootUrl": "https://redis.googleapis.com/",
   "schemas": {
     "AOFConfig": {
@@ -868,6 +868,10 @@
             "For rest of the other category"
           ],
           "type": "string"
+        },
+        "crossRegionReplicaConfigured": {
+          "description": "Checks for resources that are configured to have redundancy, and ongoing replication across regions",
+          "type": "boolean"
         },
         "externalReplicaConfigured": {
           "type": "boolean"
@@ -983,6 +987,10 @@
           "readOnly": true,
           "type": "string"
         },
+        "deletionProtectionEnabled": {
+          "description": "Optional. The delete operation will fail when the value is set to true.",
+          "type": "boolean"
+        },
         "discoveryEndpoints": {
           "description": "Output only. Endpoints created on each given network, for Redis clients to connect to the cluster. Currently only one discovery endpoint is supported.",
           "items": {
@@ -995,9 +1003,33 @@
           "description": "Required. Unique name of the resource in this scope including project and location using the form: `projects/{project_id}/locations/{location_id}/clusters/{cluster_id}`",
           "type": "string"
         },
+        "nodeType": {
+          "description": "Optional. The type of a redis node in the cluster. NodeType determines the underlying machine-type of a redis node.",
+          "enum": [
+            "NODE_TYPE_UNSPECIFIED",
+            "REDIS_SHARED_CORE_NANO",
+            "REDIS_HIGHMEM_MEDIUM",
+            "REDIS_HIGHMEM_XLARGE",
+            "REDIS_STANDARD_SMALL"
+          ],
+          "enumDescriptions": [
+            "",
+            "Redis shared core nano node_type.",
+            "Redis highmem medium node_type.",
+            "Redis highmem xlarge node_type.",
+            "Redis standard small node_type."
+          ],
+          "type": "string"
+        },
         "persistenceConfig": {
           "$ref": "ClusterPersistenceConfig",
           "description": "Optional. Persistence config (RDB, AOF) for the cluster."
+        },
+        "preciseSizeGb": {
+          "description": "Output only. Precise value of redis memory size in GB for the entire cluster.",
+          "format": "double",
+          "readOnly": true,
+          "type": "number"
         },
         "pscConfigs": {
           "description": "Required. Each PscConfig configures the consumer network where IPs will be designated to the cluster for client access through Private Service Connect Automation. Currently, only one PscConfig is supported.",
@@ -2046,17 +2078,10 @@
           "description": "An enum that represents the type of this entitlement.",
           "enum": [
             "ENTITLEMENT_TYPE_UNSPECIFIED",
-            "DUET_AI",
             "GEMINI"
-          ],
-          "enumDeprecated": [
-            false,
-            true,
-            false
           ],
           "enumDescriptions": [
             "",
-            "The root entitlement representing Duet AI package ownership.",
             "The root entitlement representing Gemini package ownership."
           ],
           "type": "string"
@@ -2925,6 +2950,7 @@
             "PRODUCT_TYPE_ON_PREM",
             "ON_PREM",
             "PRODUCT_TYPE_MEMORYSTORE",
+            "PRODUCT_TYPE_BIGTABLE",
             "PRODUCT_TYPE_OTHER"
           ],
           "enumDeprecated": [
@@ -2936,6 +2962,7 @@
             false,
             false,
             true,
+            false,
             false,
             false
           ],
@@ -2949,6 +2976,7 @@
             "On premises database product.",
             "On premises database product.",
             "Memorystore product area in GCP",
+            "Bigtable product area in GCP",
             "Other refers to rest of other product type. This is to be when product type is known, but it is not present in this enum."
           ],
           "type": "string"

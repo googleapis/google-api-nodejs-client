@@ -498,6 +498,7 @@ export namespace kmsinventory_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -636,6 +637,7 @@ export namespace kmsinventory_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -776,6 +778,7 @@ export namespace kmsinventory_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),

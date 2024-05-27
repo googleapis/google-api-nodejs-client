@@ -231,6 +231,10 @@ export namespace verifiedaccess_v2 {
      */
     profileAffiliationIds?: string[] | null;
     /**
+     * Enrollment domain of the customer which is currently managing the profile.
+     */
+    profileEnrollmentDomain?: string | null;
+    /**
      * Whether Enterprise-grade (i.e. custom) unsafe URL scanning is enabled or not. This setting may be controlled by an enterprise policy: https://chromeenterprise.google/policies/#EnterpriseRealTimeUrlCheckMode
      */
     realtimeUrlCheckMode?: string | null;
@@ -422,6 +426,7 @@ export namespace verifiedaccess_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -516,6 +521,7 @@ export namespace verifiedaccess_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),

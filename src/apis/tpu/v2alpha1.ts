@@ -830,6 +830,10 @@ export namespace tpu_v2alpha1 {
      */
     name?: string | null;
     standard?: Schema$Standard;
+    /**
+     * Output only. The state of the Reservation.
+     */
+    state?: string | null;
   }
   /**
    * Request for ResetQueuedResource.
@@ -1108,6 +1112,7 @@ export namespace tpu_v2alpha1 {
               rootUrl + '/v2alpha1/{+parent}:generateServiceIdentity'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1194,6 +1199,7 @@ export namespace tpu_v2alpha1 {
           {
             url: (rootUrl + '/v2alpha1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1286,6 +1292,7 @@ export namespace tpu_v2alpha1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1416,6 +1423,7 @@ export namespace tpu_v2alpha1 {
           {
             url: (rootUrl + '/v2alpha1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1510,6 +1518,7 @@ export namespace tpu_v2alpha1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1637,6 +1646,7 @@ export namespace tpu_v2alpha1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1721,6 +1731,7 @@ export namespace tpu_v2alpha1 {
           {
             url: (rootUrl + '/v2alpha1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -1805,6 +1816,7 @@ export namespace tpu_v2alpha1 {
           {
             url: (rootUrl + '/v2alpha1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1900,6 +1912,7 @@ export namespace tpu_v2alpha1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1990,6 +2003,7 @@ export namespace tpu_v2alpha1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2074,6 +2088,7 @@ export namespace tpu_v2alpha1 {
           {
             url: (rootUrl + '/v2alpha1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -2163,6 +2178,7 @@ export namespace tpu_v2alpha1 {
               rootUrl + '/v2alpha1/{+name}:simulateMaintenanceEvent'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2250,6 +2266,7 @@ export namespace tpu_v2alpha1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2337,6 +2354,7 @@ export namespace tpu_v2alpha1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2549,6 +2567,7 @@ export namespace tpu_v2alpha1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2633,6 +2652,7 @@ export namespace tpu_v2alpha1 {
           {
             url: (rootUrl + '/v2alpha1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -2717,6 +2737,7 @@ export namespace tpu_v2alpha1 {
           {
             url: (rootUrl + '/v2alpha1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2809,6 +2830,7 @@ export namespace tpu_v2alpha1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2945,6 +2967,7 @@ export namespace tpu_v2alpha1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3030,6 +3053,7 @@ export namespace tpu_v2alpha1 {
           {
             url: (rootUrl + '/v2alpha1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -3114,6 +3138,7 @@ export namespace tpu_v2alpha1 {
           {
             url: (rootUrl + '/v2alpha1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3208,6 +3233,7 @@ export namespace tpu_v2alpha1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3295,6 +3321,7 @@ export namespace tpu_v2alpha1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3464,6 +3491,7 @@ export namespace tpu_v2alpha1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3571,6 +3599,7 @@ export namespace tpu_v2alpha1 {
           {
             url: (rootUrl + '/v2alpha1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3665,6 +3694,7 @@ export namespace tpu_v2alpha1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),

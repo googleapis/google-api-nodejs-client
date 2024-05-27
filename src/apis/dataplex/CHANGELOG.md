@@ -1,5 +1,47 @@
 # Changelog
 
+## [7.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/dataplex-v6.0.0...dataplex-v7.0.0) (2024-05-02)
+
+
+### ⚠ BREAKING CHANGES
+
+* **dataplex:** This release has breaking changes.
+* This release has breaking changes.
+
+### Features
+
+* **dataplex:** update the API ([20e701c](https://github.com/googleapis/google-api-nodejs-client/commit/20e701c6dc51978418c70f58907d0d2c8d5d407d))
+* **dataplex:** update the API ([14a6f0e](https://github.com/googleapis/google-api-nodejs-client/commit/14a6f0e581e9be4d14b43b02769711e4e3020c00))
+* run the generator ([#3456](https://github.com/googleapis/google-api-nodejs-client/issues/3456)) ([a865e81](https://github.com/googleapis/google-api-nodejs-client/commit/a865e81539b315d3b321650663ba0b2555b1e5a1))
+
+
+### Bug Fixes
+
+* **dataplex:** update the API ([ad3a394](https://github.com/googleapis/google-api-nodejs-client/commit/ad3a394ced0f99e3e540aac155cfc3539808ccc8))
+
+## [6.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/dataplex-v5.0.0...dataplex-v6.0.0) (2024-05-02)
+
+
+### ⚠ BREAKING CHANGES
+
+* **dataplex:** This release has breaking changes.
+
+### Features
+
+* **dataplex:** update the API ([20e701c](https://github.com/googleapis/google-api-nodejs-client/commit/20e701c6dc51978418c70f58907d0d2c8d5d407d))
+
+## [5.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/dataplex-v4.0.2...dataplex-v5.0.0) (2024-04-04)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* **dataplex:** update the API ([14a6f0e](https://github.com/googleapis/google-api-nodejs-client/commit/14a6f0e581e9be4d14b43b02769711e4e3020c00))
+* run the generator ([#3456](https://github.com/googleapis/google-api-nodejs-client/issues/3456)) ([a865e81](https://github.com/googleapis/google-api-nodejs-client/commit/a865e81539b315d3b321650663ba0b2555b1e5a1))
+
 ## [4.0.2](https://github.com/googleapis/google-api-nodejs-client/compare/dataplex-v4.0.1...dataplex-v4.0.2) (2024-02-07)
 
 

@@ -682,7 +682,7 @@
       }
     }
   },
-  "revision": "20240315",
+  "revision": "20240430",
   "rootUrl": "https://iap.googleapis.com/",
   "schemas": {
     "AccessDeniedPageSettings": {
@@ -720,6 +720,21 @@
           "$ref": "GcipSettings",
           "description": "GCIP claims and endpoint configurations for 3p identity providers."
         },
+        "identitySources": {
+          "description": "Optional. Identity sources that IAP can use to authenticate the end user. Only one identity source can be configured.",
+          "items": {
+            "enum": [
+              "IDENTITY_SOURCE_UNSPECIFIED",
+              "WORKFORCE_IDENTITY_FEDERATION"
+            ],
+            "enumDescriptions": [
+              "IdentitySource Unspecified. When selected, IAP relies on which identity settings are fully configured to redirect the traffic to. The precedence order is WorkforceIdentitySettings > GcipSettings. If none is set, default to use Google identity.",
+              "Use external identities set up on Google Cloud Workforce Identity Federation."
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        },
         "oauthSettings": {
           "$ref": "OAuthSettings",
           "description": "Settings to configure IAP's OAuth behavior."
@@ -731,6 +746,10 @@
         "reauthSettings": {
           "$ref": "ReauthSettings",
           "description": "Settings to configure reauthentication policies in IAP."
+        },
+        "workforceIdentitySettings": {
+          "$ref": "WorkforceIdentitySettings",
+          "description": "Optional. Settings to configure the workforce identity federation, including workforce pools and OAuth 2.0 settings."
         }
       },
       "type": "object"
@@ -1039,6 +1058,26 @@
       },
       "type": "object"
     },
+    "OAuth2": {
+      "description": "The OAuth 2.0 Settings",
+      "id": "OAuth2",
+      "properties": {
+        "clientId": {
+          "description": "The OAuth 2.0 client ID registered in the workforce identity federation OAuth 2.0 Server.",
+          "type": "string"
+        },
+        "clientSecret": {
+          "description": "Input only. The OAuth 2.0 client secret created while registering the client ID.",
+          "type": "string"
+        },
+        "clientSecretSha256": {
+          "description": "Output only. SHA256 hash value for the client secret. This field is returned by IAP when the settings are retrieved.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "OAuthSettings": {
       "description": "Configuration for OAuth login&consent flow behavior as well as for OAuth Credentials.",
       "id": "OAuthSettings",
@@ -1199,15 +1238,15 @@
           "type": "object"
         },
         "name": {
-          "description": "Name of the resource on which conditions will be evaluated. Must use the Relative Resource Name of the resource, which is the URI path of the resource without the leading \"/\". Examples are \"projects/_/buckets/[BUCKET-ID]\" for storage buckets or \"projects/[PROJECT-ID]/global/firewalls/[FIREWALL-ID]\" for a firewall. This field is required for evaluating conditions with rules on resource names. For a `list` permission check, the resource.name value must be set to the parent resource. If the parent resource is a project, this field should be left unset.",
+          "description": "The **relative** name of the resource, which is the URI path of the resource without the leading \"/\". See https://cloud.google.com/iam/docs/conditions-resource-attributes#resource-name for examples used by other GCP Services. This field is **required** for services integrated with resource-attribute-based IAM conditions and/or CustomOrgPolicy. This field requires special handling for parents-only permissions such as `create` and `list`. See the document linked below for further details. See go/iam-conditions-sig-g3#populate-resource-attributes for specific details on populating this field.",
           "type": "string"
         },
         "service": {
-          "description": "The name of the service this resource belongs to. It is configured using the official_service_name of the Service as defined in service configurations under //configs/cloud/resourcetypes. For example, the official_service_name of cloud resource manager service is set as 'cloudresourcemanager.googleapis.com' according to //configs/cloud/resourcetypes/google/cloud/resourcemanager/prod.yaml",
+          "description": "The name of the service this resource belongs to. It is configured using the official_service_name of the Service as defined in service configurations under //configs/cloud/resourcetypes. For example, the official_service_name of cloud resource manager service is set as 'cloudresourcemanager.googleapis.com' according to //configs/cloud/resourcetypes/google/cloud/resourcemanager/prod.yaml This field is **required** for services integrated with resource-attribute-based IAM conditions and/or CustomOrgPolicy. This field requires special handling for parents-only permissions such as `create` and `list`. See the document linked below for further details. See go/iam-conditions-sig-g3#populate-resource-attributes for specific details on populating this field.",
           "type": "string"
         },
         "type": {
-          "description": "The public resource type name of the resource on which conditions will be evaluated. It is configured using the official_name of the ResourceType as defined in service configurations under //configs/cloud/resourcetypes. For example, the official_name for GCP projects is set as 'cloudresourcemanager.googleapis.com/Project' according to //configs/cloud/resourcetypes/google/cloud/resourcemanager/prod.yaml For details see go/iam-conditions-integration-guide.",
+          "description": "The public resource type name of the resource. It is configured using the official_name of the ResourceType as defined in service configurations under //configs/cloud/resourcetypes. For example, the official_name for GCP projects is set as 'cloudresourcemanager.googleapis.com/Project' according to //configs/cloud/resourcetypes/google/cloud/resourcemanager/prod.yaml This field is **required** for services integrated with resource-attribute-based IAM conditions and/or CustomOrgPolicy. This field requires special handling for parents-only permissions such as `create` and `list`. See the document linked below for further details. See go/iam-conditions-sig-g3#populate-resource-attributes for specific details on populating this field.",
           "type": "string"
         }
       },
@@ -1281,6 +1320,24 @@
       "description": "API requires a return message, but currently all response strings will fit in the status and public message. In the future, this response can hold AST validation info.",
       "id": "ValidateIapAttributeExpressionResponse",
       "properties": {},
+      "type": "object"
+    },
+    "WorkforceIdentitySettings": {
+      "description": "WorkforceIdentitySettings allows customers to configure workforce pools and OAuth 2.0 settings to gate their applications using a third-party IdP with access control.",
+      "id": "WorkforceIdentitySettings",
+      "properties": {
+        "oauth2": {
+          "$ref": "OAuth2",
+          "description": "OAuth 2.0 settings for IAP to perform OIDC flow with workforce identity federation services."
+        },
+        "workforcePools": {
+          "description": "The workforce pool resources. Only one workforce pool is accepted.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
       "type": "object"
     }
   },

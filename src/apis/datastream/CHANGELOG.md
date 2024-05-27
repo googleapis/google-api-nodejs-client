@@ -1,5 +1,38 @@
 # Changelog
 
+## [6.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/datastream-v5.1.0...datastream-v6.0.0) (2024-05-02)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* **datastream:** update the API ([57a62ef](https://github.com/googleapis/google-api-nodejs-client/commit/57a62ef7920ab1ca1e18452b2749c3585a981736))
+* run the generator ([#3434](https://github.com/googleapis/google-api-nodejs-client/issues/3434)) ([f0db524](https://github.com/googleapis/google-api-nodejs-client/commit/f0db524bb26f05cea3dec4c0ed66b496399e3857))
+
+## [5.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/datastream-v5.0.0...datastream-v5.1.0) (2024-05-02)
+
+
+### Features
+
+* **datastream:** update the API ([57a62ef](https://github.com/googleapis/google-api-nodejs-client/commit/57a62ef7920ab1ca1e18452b2749c3585a981736))
+
+## [5.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/datastream-v4.0.0...datastream-v5.0.0) (2024-04-04)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+* **datastream:** This release has breaking changes.
+
+### Features
+
+* **datastream:** update the API ([a5d1c9c](https://github.com/googleapis/google-api-nodejs-client/commit/a5d1c9c4c4e0ae44d7b405b85602090c0af633a5))
+* **datastream:** update the API ([79e2484](https://github.com/googleapis/google-api-nodejs-client/commit/79e2484ab92984816c9000ad673adfe919cfdf09))
+* run the generator ([#3434](https://github.com/googleapis/google-api-nodejs-client/issues/3434)) ([f0db524](https://github.com/googleapis/google-api-nodejs-client/commit/f0db524bb26f05cea3dec4c0ed66b496399e3857))
+
 ## [4.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/datastream-v3.1.0...datastream-v4.0.0) (2024-03-12)
 
 

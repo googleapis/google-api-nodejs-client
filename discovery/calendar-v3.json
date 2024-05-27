@@ -877,7 +877,7 @@
           ]
         },
         "import": {
-          "description": "Imports an event. This operation is used to add a private copy of an existing event to a calendar.",
+          "description": "Imports an event. This operation is used to add a private copy of an existing event to a calendar. Only events with an eventType of default may be imported.\nDeprecated behavior: If a non-default event is imported, its type will be changed to default and any event-type-specific properties it may have will be dropped.",
           "httpMethod": "POST",
           "id": "calendar.events.import",
           "parameterOrder": [
@@ -1088,7 +1088,7 @@
               "type": "string"
             },
             "eventTypes": {
-              "description": "Event types to return. Optional. This parameter can be repeated multiple times to return events of different types. The default is [\"default\", \"focusTime\", \"outOfOffice\"].",
+              "description": "Event types to return. Optional. This parameter can be repeated multiple times to return events of different types. If unset, returns all event types.",
               "enum": [
                 "default",
                 "focusTime",
@@ -1503,7 +1503,7 @@
               "type": "string"
             },
             "eventTypes": {
-              "description": "Event types to return. Optional. This parameter can be repeated multiple times to return events of different types. The default is [\"default\", \"focusTime\", \"outOfOffice\"].",
+              "description": "Event types to return. Optional. This parameter can be repeated multiple times to return events of different types. If unset, returns all event types.",
               "enum": [
                 "default",
                 "focusTime",
@@ -1759,7 +1759,7 @@
       }
     }
   },
-  "revision": "20240125",
+  "revision": "20240425",
   "rootUrl": "https://www.googleapis.com/",
   "schemas": {
     "Acl": {
@@ -2416,7 +2416,7 @@
         },
         "eventType": {
           "default": "default",
-          "description": "Specific type of the event. This cannot be modified after the event is created. Possible values are:  \n- \"default\" - A regular event or not further specified. \n- \"outOfOffice\" - An out-of-office event. \n- \"focusTime\" - A focus-time event. \n- \"workingLocation\" - A working location event.  Currently, only \"default \" and \"workingLocation\" events can be created using the API. Extended support for other event types will be made available in later releases.",
+          "description": "Specific type of the event. This cannot be modified after the event is created. Possible values are:  \n- \"default\" - A regular event or not further specified. \n- \"outOfOffice\" - An out-of-office event. \n- \"focusTime\" - A focus-time event. \n- \"workingLocation\" - A working location event.",
           "type": "string"
         },
         "extendedProperties": {

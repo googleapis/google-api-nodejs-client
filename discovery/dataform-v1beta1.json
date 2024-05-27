@@ -291,7 +291,7 @@
                     "$ref": "CommitRepositoryChangesRequest"
                   },
                   "response": {
-                    "$ref": "Empty"
+                    "$ref": "CommitRepositoryChangesResponse"
                   },
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform"
@@ -721,6 +721,69 @@
                 }
               },
               "resources": {
+                "commentThreads": {
+                  "methods": {
+                    "getIamPolicy": {
+                      "description": "Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.",
+                      "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/repositories/{repositoriesId}/commentThreads/{commentThreadsId}:getIamPolicy",
+                      "httpMethod": "GET",
+                      "id": "dataform.projects.locations.repositories.commentThreads.getIamPolicy",
+                      "parameterOrder": [
+                        "resource"
+                      ],
+                      "parameters": {
+                        "options.requestedPolicyVersion": {
+                          "description": "Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).",
+                          "format": "int32",
+                          "location": "query",
+                          "type": "integer"
+                        },
+                        "resource": {
+                          "description": "REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/repositories/[^/]+/commentThreads/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta1/{+resource}:getIamPolicy",
+                      "response": {
+                        "$ref": "Policy"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "setIamPolicy": {
+                      "description": "Sets the access control policy on the specified resource. Replaces any existing policy. Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.",
+                      "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/repositories/{repositoriesId}/commentThreads/{commentThreadsId}:setIamPolicy",
+                      "httpMethod": "POST",
+                      "id": "dataform.projects.locations.repositories.commentThreads.setIamPolicy",
+                      "parameterOrder": [
+                        "resource"
+                      ],
+                      "parameters": {
+                        "resource": {
+                          "description": "REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/repositories/[^/]+/commentThreads/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta1/{+resource}:setIamPolicy",
+                      "request": {
+                        "$ref": "SetIamPolicyRequest"
+                      },
+                      "response": {
+                        "$ref": "Policy"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    }
+                  }
+                },
                 "compilationResults": {
                   "methods": {
                     "create": {
@@ -787,6 +850,11 @@
                       "parameters": {
                         "filter": {
                           "description": "Optional. Filter for the returned list.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "orderBy": {
+                          "description": "Optional. This field only supports ordering by `name` and `create_time`. If unspecified, the server will choose the ordering. If specified, the default order is ascending for the `name` field.",
                           "location": "query",
                           "type": "string"
                         },
@@ -1148,7 +1216,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "Output only. The workflow config's name.",
+                          "description": "Identifier. The workflow config's name.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/repositories/[^/]+/workflowConfigs/[^/]+$",
                           "required": true,
@@ -2103,7 +2171,7 @@
       }
     }
   },
-  "revision": "20240310",
+  "revision": "20240504",
   "rootUrl": "https://dataform.googleapis.com/",
   "schemas": {
     "Assertion": {
@@ -2147,6 +2215,11 @@
       "description": "Represents a workflow action that will run against BigQuery.",
       "id": "BigQueryAction",
       "properties": {
+        "jobId": {
+          "description": "Output only. The ID of the BigQuery job that executed the SQL in sql_script. Only set once the job has started to run.",
+          "readOnly": true,
+          "type": "string"
+        },
         "sqlScript": {
           "description": "Output only. The generated BigQuery SQL script that will be executed.",
           "readOnly": true,
@@ -2202,6 +2275,9 @@
         "defaultLocation": {
           "description": "Optional. The default BigQuery location to use. Defaults to \"US\". See the BigQuery docs for a full list of locations: https://cloud.google.com/bigquery/docs/locations.",
           "type": "string"
+        },
+        "defaultNotebookRuntimeOptions": {
+          "$ref": "NotebookRuntimeOptions"
         },
         "defaultSchema": {
           "description": "Optional. The default schema (BigQuery dataset ID).",
@@ -2326,6 +2402,17 @@
       },
       "type": "object"
     },
+    "CommitRepositoryChangesResponse": {
+      "description": "`CommitRepositoryChanges` response message.",
+      "id": "CommitRepositoryChangesResponse",
+      "properties": {
+        "commitSha": {
+          "description": "The commit SHA of the current commit.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "CommitWorkspaceChangesRequest": {
       "description": "`CommitWorkspaceChanges` request message.",
       "id": "CommitWorkspaceChangesRequest",
@@ -2391,6 +2478,11 @@
           "readOnly": true,
           "type": "array"
         },
+        "dataEncryptionState": {
+          "$ref": "DataEncryptionState",
+          "description": "Output only. Only set if the repository has a KMS Key.",
+          "readOnly": true
+        },
         "dataformCoreVersion": {
           "description": "Output only. The version of `@dataform/core` that was used for compilation.",
           "readOnly": true,
@@ -2441,6 +2533,10 @@
           "description": "The full path including filename in which this action is located, relative to the workspace root.",
           "type": "string"
         },
+        "notebook": {
+          "$ref": "Notebook",
+          "description": "The notebook executed by this action."
+        },
         "operations": {
           "$ref": "Operations",
           "description": "The database operations executed by this action."
@@ -2474,6 +2570,17 @@
             "The token could not be used to authenticate against the Git remote.",
             "The token was used successfully to authenticate against the Git remote."
           ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "DataEncryptionState": {
+      "description": "Describes encryption state of a resource.",
+      "id": "DataEncryptionState",
+      "properties": {
+        "kmsKeyVersionName": {
+          "description": "The KMS key version name with which data of a resource is encrypted.",
           "type": "string"
         }
       },
@@ -3059,6 +3166,61 @@
       "properties": {},
       "type": "object"
     },
+    "Notebook": {
+      "id": "Notebook",
+      "properties": {
+        "contents": {
+          "description": "The contents of the notebook.",
+          "type": "string"
+        },
+        "dependencyTargets": {
+          "description": "A list of actions that this action depends on.",
+          "items": {
+            "$ref": "Target"
+          },
+          "type": "array"
+        },
+        "disabled": {
+          "description": "Whether this action is disabled (i.e. should not be run).",
+          "type": "boolean"
+        },
+        "tags": {
+          "description": "Arbitrary, user-defined tags on this action.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "NotebookAction": {
+      "description": "Represents a workflow action that will run against a Notebook runtime.",
+      "id": "NotebookAction",
+      "properties": {
+        "contents": {
+          "description": "Output only. The code contents of a Notebook to be run.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "jobId": {
+          "description": "Output only. The ID of the Vertex job that executed the notebook in contents and also the ID used for the outputs created in GCS buckets. Only set once the job has started to run.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "NotebookRuntimeOptions": {
+      "id": "NotebookRuntimeOptions",
+      "properties": {
+        "gcsOutputBucket": {
+          "description": "Optional. The GCS location to upload the result to. Format: `gs://bucket-name`.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "OperationMetadata": {
       "description": "Represents the metadata of the long-running operation.",
       "id": "OperationMetadata",
@@ -3485,6 +3647,11 @@
           "readOnly": true,
           "type": "string"
         },
+        "dataEncryptionState": {
+          "$ref": "DataEncryptionState",
+          "description": "Output only. A data encryption state of a Git repository if this Repository is protected by a KMS key.",
+          "readOnly": true
+        },
         "displayName": {
           "description": "Optional. The repository's user-friendly name.",
           "type": "string"
@@ -3492,6 +3659,10 @@
         "gitRemoteSettings": {
           "$ref": "GitRemoteSettings",
           "description": "Optional. If set, configures this repository to be linked to a Git remote."
+        },
+        "kmsKeyName": {
+          "description": "Optional. The reference to a KMS encryption key. If provided, it will be used to encrypt user data in the repository and all child resources. It is not possible to add or update the encryption key after the repository is created. Example: `projects/[kms_project_id]/locations/[region]/keyRings/[key_region]/cryptoKeys/[key]`",
+          "type": "string"
         },
         "labels": {
           "additionalProperties": {
@@ -3756,8 +3927,7 @@
           "description": "Optional. If left unset, a default InvocationConfig will be used."
         },
         "name": {
-          "description": "Output only. The workflow config's name.",
-          "readOnly": true,
+          "description": "Identifier. The workflow config's name.",
           "type": "string"
         },
         "recentScheduledExecutionRecords": {
@@ -3786,6 +3956,11 @@
         "compilationResult": {
           "description": "Immutable. The name of the compilation result to use for this invocation. Must be in the format `projects/*/locations/*/repositories/*/compilationResults/*`.",
           "type": "string"
+        },
+        "dataEncryptionState": {
+          "$ref": "DataEncryptionState",
+          "description": "Output only. Only set if the repository has a KMS Key.",
+          "readOnly": true
         },
         "invocationConfig": {
           "$ref": "InvocationConfig",
@@ -3858,6 +4033,11 @@
           "description": "Output only. This action's timing details. `start_time` will be set if the action is in [RUNNING, SUCCEEDED, CANCELLED, FAILED] state. `end_time` will be set if the action is in [SUCCEEDED, CANCELLED, FAILED] state.",
           "readOnly": true
         },
+        "notebookAction": {
+          "$ref": "NotebookAction",
+          "description": "Output only. The workflow action's notebook action details.",
+          "readOnly": true
+        },
         "state": {
           "description": "Output only. This action's current state.",
           "enum": [
@@ -3893,6 +4073,11 @@
       "description": "Represents a Dataform Git workspace.",
       "id": "Workspace",
       "properties": {
+        "dataEncryptionState": {
+          "$ref": "DataEncryptionState",
+          "description": "Output only. A data encryption state of a Git repository if this Workspace is protected by a KMS key.",
+          "readOnly": true
+        },
         "name": {
           "description": "Identifier. The workspace's name.",
           "type": "string"

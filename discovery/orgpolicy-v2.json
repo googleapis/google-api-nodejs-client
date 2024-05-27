@@ -930,7 +930,7 @@
       }
     }
   },
-  "revision": "20231217",
+  "revision": "20240506",
   "rootUrl": "https://orgpolicy.googleapis.com/",
   "schemas": {
     "GoogleCloudOrgpolicyV2AlternatePolicySpec": {
@@ -978,6 +978,10 @@
           "description": "The human readable name. Mutable.",
           "type": "string"
         },
+        "googleManagedConstraint": {
+          "$ref": "GoogleCloudOrgpolicyV2ConstraintGoogleManagedConstraint",
+          "description": "Defines this constraint as being a GoogleManagedConstraint."
+        },
         "listConstraint": {
           "$ref": "GoogleCloudOrgpolicyV2ConstraintListConstraint",
           "description": "Defines this constraint as being a ListConstraint."
@@ -997,6 +1001,57 @@
       "description": "A constraint that is either enforced or not. For example, a constraint `constraints/compute.disableSerialPortAccess`. If it is enforced on a VM instance, serial port connections will not be opened to that instance.",
       "id": "GoogleCloudOrgpolicyV2ConstraintBooleanConstraint",
       "properties": {},
+      "type": "object"
+    },
+    "GoogleCloudOrgpolicyV2ConstraintGoogleManagedConstraint": {
+      "description": "A Google managed constraint. This represents a subset of fields missing from Constraint proto that are required to describe CustomConstraint",
+      "id": "GoogleCloudOrgpolicyV2ConstraintGoogleManagedConstraint",
+      "properties": {
+        "actionType": {
+          "description": "Allow or deny type.",
+          "enum": [
+            "ACTION_TYPE_UNSPECIFIED",
+            "ALLOW",
+            "DENY"
+          ],
+          "enumDescriptions": [
+            "Unspecified. Results in an error.",
+            "Allowed action type.",
+            "Deny action type."
+          ],
+          "type": "string"
+        },
+        "condition": {
+          "description": "Org policy condition/expression. For example: `resource.instanceName.matches(\"[production|test]_.*_(\\d)+\")` or, `resource.management.auto_upgrade == true` The max length of the condition is 1000 characters.",
+          "type": "string"
+        },
+        "methodTypes": {
+          "description": "All the operations being applied for this constraint.",
+          "items": {
+            "enum": [
+              "METHOD_TYPE_UNSPECIFIED",
+              "CREATE",
+              "UPDATE",
+              "DELETE"
+            ],
+            "enumDescriptions": [
+              "Unspecified. Results in an error.",
+              "Constraint applied when creating the resource.",
+              "Constraint applied when updating the resource.",
+              "Constraint applied when deleting the resource. Not supported yet."
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "resourceTypes": {
+          "description": "The resource instance type on which this policy applies. Format will be of the form : `/` Example: * `compute.googleapis.com/Instance`.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
       "type": "object"
     },
     "GoogleCloudOrgpolicyV2ConstraintListConstraint": {
@@ -1051,13 +1106,17 @@
               "METHOD_TYPE_UNSPECIFIED",
               "CREATE",
               "UPDATE",
-              "DELETE"
+              "DELETE",
+              "REMOVE_GRANT",
+              "GOVERN_TAGS"
             ],
             "enumDescriptions": [
               "Unspecified. Results in an error.",
               "Constraint applied when creating the resource.",
               "Constraint applied when updating the resource.",
-              "Constraint applied when deleting the resource. Not supported yet."
+              "Constraint applied when deleting the resource. Not supported yet.",
+              "Constraint applied when removing an IAM grant.",
+              "Constraint applied when enforcing forced tagging."
             ],
             "type": "string"
           },

@@ -1990,7 +1990,7 @@
       }
     }
   },
-  "revision": "20240312",
+  "revision": "20240507",
   "rootUrl": "https://cloudidentity.googleapis.com/",
   "schemas": {
     "AddIdpCredentialOperationMetadata": {
@@ -2953,6 +2953,11 @@
         },
         "serialNumber": {
           "description": "Serial Number of device. Example: HT82V1A01076.",
+          "type": "string"
+        },
+        "unifiedDeviceId": {
+          "description": "Output only. Unified device id of the device.",
+          "readOnly": true,
           "type": "string"
         },
         "wifiMacAddresses": {

@@ -1118,6 +1118,7 @@ export namespace driveactivity_v2 {
           {
             url: (rootUrl + '/v2/activity:query').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),

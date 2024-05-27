@@ -1,5 +1,36 @@
 # Changelog
 
+## [6.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/metastore-v6.0.0...metastore-v6.1.0) (2024-05-02)
+
+
+### Features
+
+* **metastore:** update the API ([57b1763](https://github.com/googleapis/google-api-nodejs-client/commit/57b1763cd49724b461a5f85f8a6ef1cdebfdd500))
+
+## [6.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/metastore-v5.0.0...metastore-v6.0.0) (2024-04-04)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+* This release has breaking changes.
+* This release has breaking changes.
+* **metastore:** This release has breaking changes.
+
+### Features
+
+* **metastore:** update the API ([805d5a3](https://github.com/googleapis/google-api-nodejs-client/commit/805d5a3647fb25248b13d108522edeebafacb998))
+* **metastore:** update the API ([6887f67](https://github.com/googleapis/google-api-nodejs-client/commit/6887f67506173992f1a6c4df2d5768ca472228a8))
+* **metastore:** update the API ([1a19ff2](https://github.com/googleapis/google-api-nodejs-client/commit/1a19ff2987dd9ec5aa071fc475fb2d8033efa2d7))
+* run the generator ([#3434](https://github.com/googleapis/google-api-nodejs-client/issues/3434)) ([f0db524](https://github.com/googleapis/google-api-nodejs-client/commit/f0db524bb26f05cea3dec4c0ed66b496399e3857))
+* run the generator ([#3441](https://github.com/googleapis/google-api-nodejs-client/issues/3441)) ([f832463](https://github.com/googleapis/google-api-nodejs-client/commit/f832463312572dc58fe89f9254282982a520d1df))
+* run the generator ([#3456](https://github.com/googleapis/google-api-nodejs-client/issues/3456)) ([a865e81](https://github.com/googleapis/google-api-nodejs-client/commit/a865e81539b315d3b321650663ba0b2555b1e5a1))
+
+
+### Bug Fixes
+
+* **metastore:** update the API ([b720258](https://github.com/googleapis/google-api-nodejs-client/commit/b720258d759e16128327f54c04dc246044603486))
+
 ## [5.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/metastore-v4.0.1...metastore-v5.0.0) (2024-03-12)
 
 

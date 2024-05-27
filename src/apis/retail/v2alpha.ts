@@ -475,6 +475,77 @@ export namespace retail_v2alpha {
     tableId?: string | null;
   }
   /**
+   * A data branch that stores Products.
+   */
+  export interface Schema$GoogleCloudRetailV2alphaBranch {
+    /**
+     * Output only. Human readable name of the branch to display in the UI.
+     */
+    displayName?: string | null;
+    /**
+     * Output only. Indicates whether this branch is set as the default branch of its parent catalog.
+     */
+    isDefault?: boolean | null;
+    /**
+     * Output only. Timestamp of last import through ProductService.ImportProducts. Empty value means no import has been made to this branch.
+     */
+    lastProductImportTime?: string | null;
+    /**
+     * Immutable. Full resource name of the branch, such as `projects/x/locations/global/catalogs/default_catalog/branches/branch_id`.
+     */
+    name?: string | null;
+    /**
+     * Output only. The number of products in different groups that this branch has. The key is a group representing a set of products, and the value is the number of products in that group. Note: keys in this map may change over time. Possible keys: * "primary-in-stock", products have Product.Type.PRIMARY type and Product.Availability.IN_STOCK availability. * "primary-out-of-stock", products have Product.Type.PRIMARY type and Product.Availability.OUT_OF_STOCK availability. * "primary-preorder", products have Product.Type.PRIMARY type and Product.Availability.PREORDER availability. * "primary-backorder", products have Product.Type.PRIMARY type and Product.Availability.BACKORDER availability. * "variant-in-stock", products have Product.Type.VARIANT type and Product.Availability.IN_STOCK availability. * "variant-out-of-stock", products have Product.Type.VARIANT type and Product.Availability.OUT_OF_STOCK availability. * "variant-preorder", products have Product.Type.VARIANT type and Product.Availability.PREORDER availability. * "variant-backorder", products have Product.Type.VARIANT type and Product.Availability.BACKORDER availability. * "price-discounted", products have [Product.price_info.price] < [Product.price_info.original_price]. This field is not populated in BranchView.BASIC view.
+     */
+    productCounts?: {[key: string]: string} | null;
+    /**
+     * Output only. Statistics for number of products in the branch, provided for different scopes. This field is not populated in BranchView.BASIC view.
+     */
+    productCountStats?: Schema$GoogleCloudRetailV2alphaBranchProductCountStatistic[];
+    /**
+     * Output only. The quality metrics measured among products of this branch. See QualityMetric.requirement_key for supported metrics. Metrics could be missing if failed to retrieve. This field is not populated in BranchView.BASIC view.
+     */
+    qualityMetrics?: Schema$GoogleCloudRetailV2alphaBranchQualityMetric[];
+  }
+  /**
+   * A statistic about the number of products in a branch.
+   */
+  export interface Schema$GoogleCloudRetailV2alphaBranchProductCountStatistic {
+    /**
+     * The number of products in scope broken down into different groups. The key is a group representing a set of products, and the value is the number of products in that group. Note: keys in this map may change over time. Possible keys: * "primary-in-stock", products have Product.Type.PRIMARY type and Product.Availability.IN_STOCK availability. * "primary-out-of-stock", products have Product.Type.PRIMARY type and Product.Availability.OUT_OF_STOCK availability. * "primary-preorder", products have Product.Type.PRIMARY type and Product.Availability.PREORDER availability. * "primary-backorder", products have Product.Type.PRIMARY type and Product.Availability.BACKORDER availability. * "variant-in-stock", products have Product.Type.VARIANT type and Product.Availability.IN_STOCK availability. * "variant-out-of-stock", products have Product.Type.VARIANT type and Product.Availability.OUT_OF_STOCK availability. * "variant-preorder", products have Product.Type.VARIANT type and Product.Availability.PREORDER availability. * "variant-backorder", products have Product.Type.VARIANT type and Product.Availability.BACKORDER availability. * "price-discounted", products have [Product.price_info.price] < [Product.price_info.original_price].
+     */
+    counts?: {[key: string]: string} | null;
+    /**
+     * [ProductCountScope] of the [counts].
+     */
+    scope?: string | null;
+  }
+  /**
+   * Metric measured on a group of Products against a certain quality requirement. Contains the number of products that pass the check and the number of products that don't.
+   */
+  export interface Schema$GoogleCloudRetailV2alphaBranchQualityMetric {
+    /**
+     * Number of products passing the quality requirement check. We only check searchable products.
+     */
+    qualifiedProductCount?: number | null;
+    /**
+     * The key that represents a quality requirement rule. Supported keys: * "has-valid-uri": product has a valid and accessible uri. * "available-expire-time-conformance": Product.available_time is early than "now", and Product.expire_time is greater than "now". * "has-searchable-attributes": product has at least one attribute set to searchable. * "has-description": product has non-empty description. * "has-at-least-bigram-title": Product title has at least two words. A comprehensive title helps to improve search quality. * "variant-has-image": the variant products has at least one image. You may ignore this metric if all your products are at primary level. * "variant-has-price-info": the variant products has price_info set. You may ignore this metric if all your products are at primary level. * "has-publish-time": product has non-empty publish_time.
+     */
+    requirementKey?: string | null;
+    /**
+     * Value from 0 to 100 representing the suggested percentage of products that meet the quality requirements to get good search and recommendation performance. 100 * (qualified_product_count) / (qualified_product_count + unqualified_product_count) should be greater or equal to this suggestion.
+     */
+    suggestedQualityPercentThreshold?: number | null;
+    /**
+     * Number of products failing the quality requirement check. We only check searchable products.
+     */
+    unqualifiedProductCount?: number | null;
+    /**
+     * A list of a maximum of 100 sample products that do not qualify for this requirement. This field is only populated in the response to BranchService.GetBranch API, and is always empty for BranchService.ListBranches. Only the following fields are set in the Product. * Product.name * Product.id * Product.title
+     */
+    unqualifiedSampleProducts?: Schema$GoogleCloudRetailV2alphaProduct[];
+  }
+  /**
    * The catalog configuration.
    */
   export interface Schema$GoogleCloudRetailV2alphaCatalog {
@@ -1259,6 +1330,15 @@ export namespace retail_v2alpha {
     minimum?: number | null;
   }
   /**
+   * Response for BranchService.ListBranches method.
+   */
+  export interface Schema$GoogleCloudRetailV2alphaListBranchesResponse {
+    /**
+     * The Branches.
+     */
+    branches?: Schema$GoogleCloudRetailV2alphaBranch[];
+  }
+  /**
    * Response for CatalogService.ListCatalogs method.
    */
   export interface Schema$GoogleCloudRetailV2alphaListCatalogsResponse {
@@ -1859,7 +1939,7 @@ export namespace retail_v2alpha {
      */
     brands?: string[] | null;
     /**
-     * Product categories. This field is repeated for supporting one product belonging to several parallel categories. Strongly recommended using the full path for better search / recommendation quality. To represent full path of category, use '\>' sign to separate different hierarchies. If '\>' is part of the category name, replace it with other character(s). For example, if a shoes product belongs to both ["Shoes & Accessories" -\> "Shoes"] and ["Sports & Fitness" -\> "Athletic Clothing" -\> "Shoes"], it could be represented as: "categories": [ "Shoes & Accessories \> Shoes", "Sports & Fitness \> Athletic Clothing \> Shoes" ] Must be set for Type.PRIMARY Product otherwise an INVALID_ARGUMENT error is returned. At most 250 values are allowed per Product unless overridden via pantheon UI. Empty values are not allowed. Each value must be a UTF-8 encoded string with a length limit of 5,000 characters. Otherwise, an INVALID_ARGUMENT error is returned. Corresponding properties: Google Merchant Center property google_product_category. Schema.org property [Product.category] (https://schema.org/category). [mc_google_product_category]: https://support.google.com/merchants/answer/6324436
+     * Product categories. This field is repeated for supporting one product belonging to several parallel categories. Strongly recommended using the full path for better search / recommendation quality. To represent full path of category, use '\>' sign to separate different hierarchies. If '\>' is part of the category name, replace it with other character(s). For example, if a shoes product belongs to both ["Shoes & Accessories" -\> "Shoes"] and ["Sports & Fitness" -\> "Athletic Clothing" -\> "Shoes"], it could be represented as: "categories": [ "Shoes & Accessories \> Shoes", "Sports & Fitness \> Athletic Clothing \> Shoes" ] Must be set for Type.PRIMARY Product otherwise an INVALID_ARGUMENT error is returned. At most 250 values are allowed per Product unless overridden through the Google Cloud console. Empty values are not allowed. Each value must be a UTF-8 encoded string with a length limit of 5,000 characters. Otherwise, an INVALID_ARGUMENT error is returned. Corresponding properties: Google Merchant Center property google_product_category. Schema.org property [Product.category] (https://schema.org/category). [mc_google_product_category]: https://support.google.com/merchants/answer/6324436
      */
     categories?: string[] | null;
     /**
@@ -2849,6 +2929,10 @@ export namespace retail_v2alpha {
      * Condition ignore specifications. If multiple ignore conditions match, all matching ignore controls in the list will execute. - Order does not matter. - Maximum number of specifications is 100. Can only be set if solution_types is SOLUTION_TYPE_SEARCH.
      */
     ignoreControlIds?: string[] | null;
+    /**
+     * When the flag is enabled, the products in the denylist will not be filtered out in the recommendation filtering results.
+     */
+    ignoreRecsDenylist?: boolean | null;
     /**
      * The id of the model in the same Catalog to use at serving time. Currently only RecommendationModels are supported: https://cloud.google.com/retail/recommendations-ai/docs/create-models Can be changed but only to a compatible model (e.g. others-you-may-like CTR to others-you-may-like CVR). Required when solution_types is SOLUTION_TYPE_RECOMMENDATION.
      */
@@ -4123,6 +4207,7 @@ export namespace retail_v2alpha {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4214,6 +4299,7 @@ export namespace retail_v2alpha {
           {
             url: (rootUrl + '/v2alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4307,6 +4393,7 @@ export namespace retail_v2alpha {
           {
             url: (rootUrl + '/v2alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4400,6 +4487,7 @@ export namespace retail_v2alpha {
           {
             url: (rootUrl + '/v2alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4496,6 +4584,7 @@ export namespace retail_v2alpha {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4589,6 +4678,7 @@ export namespace retail_v2alpha {
           {
             url: (rootUrl + '/v2alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -4682,6 +4772,7 @@ export namespace retail_v2alpha {
           {
             url: (rootUrl + '/v2alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -4910,6 +5001,7 @@ export namespace retail_v2alpha {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5006,6 +5098,7 @@ export namespace retail_v2alpha {
               rootUrl + '/v2alpha/{+catalog}:exportAnalyticsMetrics'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5098,6 +5191,7 @@ export namespace retail_v2alpha {
           {
             url: (rootUrl + '/v2alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5192,6 +5286,7 @@ export namespace retail_v2alpha {
           {
             url: (rootUrl + '/v2alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5289,6 +5384,7 @@ export namespace retail_v2alpha {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5385,6 +5481,7 @@ export namespace retail_v2alpha {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5478,6 +5575,7 @@ export namespace retail_v2alpha {
           {
             url: (rootUrl + '/v2alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -5573,6 +5671,7 @@ export namespace retail_v2alpha {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5665,6 +5764,7 @@ export namespace retail_v2alpha {
           {
             url: (rootUrl + '/v2alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -5759,6 +5859,7 @@ export namespace retail_v2alpha {
           {
             url: (rootUrl + '/v2alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -6010,6 +6111,7 @@ export namespace retail_v2alpha {
               rootUrl + '/v2alpha/{+attributesConfig}:addCatalogAttribute'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -6107,6 +6209,7 @@ export namespace retail_v2alpha {
               '/v2alpha/{+attributesConfig}:batchRemoveCatalogAttributes'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -6203,6 +6306,7 @@ export namespace retail_v2alpha {
               rootUrl + '/v2alpha/{+attributesConfig}:removeCatalogAttribute'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -6299,6 +6403,7 @@ export namespace retail_v2alpha {
               rootUrl + '/v2alpha/{+attributesConfig}:replaceCatalogAttribute'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -6388,6 +6493,221 @@ export namespace retail_v2alpha {
           this.context
         );
     }
+
+    /**
+     * Retrieves a Branch.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Catalogs$Branches$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Catalogs$Branches$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudRetailV2alphaBranch>;
+    get(
+      params: Params$Resource$Projects$Locations$Catalogs$Branches$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Catalogs$Branches$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudRetailV2alphaBranch>,
+      callback: BodyResponseCallback<Schema$GoogleCloudRetailV2alphaBranch>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Catalogs$Branches$Get,
+      callback: BodyResponseCallback<Schema$GoogleCloudRetailV2alphaBranch>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$GoogleCloudRetailV2alphaBranch>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Catalogs$Branches$Get
+        | BodyResponseCallback<Schema$GoogleCloudRetailV2alphaBranch>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudRetailV2alphaBranch>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudRetailV2alphaBranch>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudRetailV2alphaBranch>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Catalogs$Branches$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Catalogs$Branches$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://retail.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudRetailV2alphaBranch>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudRetailV2alphaBranch>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Lists all Branchs under the specified parent Catalog.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Catalogs$Branches$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Catalogs$Branches$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudRetailV2alphaListBranchesResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Catalogs$Branches$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Catalogs$Branches$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudRetailV2alphaListBranchesResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudRetailV2alphaListBranchesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Catalogs$Branches$List,
+      callback: BodyResponseCallback<Schema$GoogleCloudRetailV2alphaListBranchesResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$GoogleCloudRetailV2alphaListBranchesResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Catalogs$Branches$List
+        | BodyResponseCallback<Schema$GoogleCloudRetailV2alphaListBranchesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudRetailV2alphaListBranchesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudRetailV2alphaListBranchesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudRetailV2alphaListBranchesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Catalogs$Branches$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Catalogs$Branches$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://retail.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2alpha/{+parent}/branches').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudRetailV2alphaListBranchesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudRetailV2alphaListBranchesResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Catalogs$Branches$Get
+    extends StandardParameters {
+    /**
+     * Required. The name of the branch to retrieve. Format: `projects/x/locations/global/catalogs/default_catalog/branches/some_branch_id`. "default_branch" can be used as a special branch_id, it returns the default branch that has been set for the catalog.
+     */
+    name?: string;
+    /**
+     * The view to apply to the returned Branch. Defaults to [Branch.BranchView.BASIC] if unspecified. See documentation of fields of Branch to find what fields are excluded from BASIC view.
+     */
+    view?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Catalogs$Branches$List
+    extends StandardParameters {
+    /**
+     * Required. The parent catalog resource name.
+     */
+    parent?: string;
+    /**
+     * The view to apply to the returned Branch. Defaults to [Branch.BranchView.BASIC] if unspecified. See documentation of fields of Branch to find what fields are excluded from BASIC view.
+     */
+    view?: string;
   }
 
   export class Resource$Projects$Locations$Catalogs$Branches$Operations {
@@ -6470,6 +6790,7 @@ export namespace retail_v2alpha {
           {
             url: (rootUrl + '/v2alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6589,6 +6910,7 @@ export namespace retail_v2alpha {
           {
             url: (rootUrl + '/v2alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6699,6 +7021,7 @@ export namespace retail_v2alpha {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -6794,6 +7117,7 @@ export namespace retail_v2alpha {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -6889,6 +7213,7 @@ export namespace retail_v2alpha {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -6979,6 +7304,7 @@ export namespace retail_v2alpha {
           {
             url: (rootUrl + '/v2alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -7071,6 +7397,7 @@ export namespace retail_v2alpha {
           {
             url: (rootUrl + '/v2alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -7168,6 +7495,7 @@ export namespace retail_v2alpha {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -7263,6 +7591,7 @@ export namespace retail_v2alpha {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -7357,6 +7686,7 @@ export namespace retail_v2alpha {
           {
             url: (rootUrl + '/v2alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -7454,6 +7784,7 @@ export namespace retail_v2alpha {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -7548,6 +7879,7 @@ export namespace retail_v2alpha {
               rootUrl + '/v2alpha/{+product}:removeFulfillmentPlaces'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -7642,6 +7974,7 @@ export namespace retail_v2alpha {
               rootUrl + '/v2alpha/{+product}:removeLocalInventories'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -7737,6 +8070,7 @@ export namespace retail_v2alpha {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -8005,6 +8339,7 @@ export namespace retail_v2alpha {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -8120,6 +8455,7 @@ export namespace retail_v2alpha {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -8210,6 +8546,7 @@ export namespace retail_v2alpha {
           {
             url: (rootUrl + '/v2alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -8301,6 +8638,7 @@ export namespace retail_v2alpha {
           {
             url: (rootUrl + '/v2alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -8398,6 +8736,7 @@ export namespace retail_v2alpha {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -8492,6 +8831,7 @@ export namespace retail_v2alpha {
           {
             url: (rootUrl + '/v2alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -8661,6 +9001,7 @@ export namespace retail_v2alpha {
               rootUrl + '/v2alpha/{+parent}/merchantCenterAccountLinks'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -8749,6 +9090,7 @@ export namespace retail_v2alpha {
           {
             url: (rootUrl + '/v2alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -8843,6 +9185,7 @@ export namespace retail_v2alpha {
               rootUrl + '/v2alpha/{+parent}/merchantCenterAccountLinks'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -8974,6 +9317,7 @@ export namespace retail_v2alpha {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -9062,6 +9406,7 @@ export namespace retail_v2alpha {
           {
             url: (rootUrl + '/v2alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -9153,6 +9498,7 @@ export namespace retail_v2alpha {
           {
             url: (rootUrl + '/v2alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -9249,6 +9595,7 @@ export namespace retail_v2alpha {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -9342,6 +9689,7 @@ export namespace retail_v2alpha {
           {
             url: (rootUrl + '/v2alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -9438,6 +9786,7 @@ export namespace retail_v2alpha {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -9535,6 +9884,7 @@ export namespace retail_v2alpha {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -9631,6 +9981,7 @@ export namespace retail_v2alpha {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -9828,6 +10179,7 @@ export namespace retail_v2alpha {
           {
             url: (rootUrl + '/v2alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -9923,6 +10275,7 @@ export namespace retail_v2alpha {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -10054,6 +10407,7 @@ export namespace retail_v2alpha {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -10151,6 +10505,7 @@ export namespace retail_v2alpha {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -10280,6 +10635,7 @@ export namespace retail_v2alpha {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -10377,6 +10733,7 @@ export namespace retail_v2alpha {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -10467,6 +10824,7 @@ export namespace retail_v2alpha {
           {
             url: (rootUrl + '/v2alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -10559,6 +10917,7 @@ export namespace retail_v2alpha {
           {
             url: (rootUrl + '/v2alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -10656,6 +11015,7 @@ export namespace retail_v2alpha {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -10750,6 +11110,7 @@ export namespace retail_v2alpha {
           {
             url: (rootUrl + '/v2alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -10847,6 +11208,7 @@ export namespace retail_v2alpha {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -10944,6 +11306,7 @@ export namespace retail_v2alpha {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -11041,6 +11404,7 @@ export namespace retail_v2alpha {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -11251,6 +11615,7 @@ export namespace retail_v2alpha {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -11346,6 +11711,7 @@ export namespace retail_v2alpha {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -11441,6 +11807,7 @@ export namespace retail_v2alpha {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -11536,6 +11903,7 @@ export namespace retail_v2alpha {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -11631,6 +11999,7 @@ export namespace retail_v2alpha {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -11811,6 +12180,7 @@ export namespace retail_v2alpha {
           {
             url: (rootUrl + '/v2alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -11905,6 +12275,7 @@ export namespace retail_v2alpha {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -12032,6 +12403,7 @@ export namespace retail_v2alpha {
           {
             url: (rootUrl + '/v2alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -12126,6 +12498,7 @@ export namespace retail_v2alpha {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -12256,6 +12629,7 @@ export namespace retail_v2alpha {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),

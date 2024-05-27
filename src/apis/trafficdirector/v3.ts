@@ -780,13 +780,17 @@ export namespace trafficdirector_v3 {
     routeConfig?: {[key: string]: any} | null;
   }
   /**
-   * Specifies the way to match a string. [#next-free-field: 8]
+   * Specifies the way to match a string. [#next-free-field: 9]
    */
   export interface Schema$StringMatcher {
     /**
      * The input string must have the substring specified here. Note: empty contains match is not allowed, please use regex instead. Examples: * ``abc`` matches the value ``xyz.abc.def``
      */
     contains?: string | null;
+    /**
+     * Use an extension as the matcher type. [#extension-category: envoy.string_matcher]
+     */
+    custom?: Schema$TypedExtensionConfig;
     /**
      * The input string must match exactly the string specified here. Examples: * ``abc`` only matches the value ``abc``.
      */
@@ -820,6 +824,19 @@ export namespace trafficdirector_v3 {
      * The StructMatcher is matched if the value retrieved by path is matched to this value.
      */
     value?: Schema$ValueMatcher;
+  }
+  /**
+   * Message type for extension configuration.
+   */
+  export interface Schema$TypedExtensionConfig {
+    /**
+     * The name of an extension. This is not used to select the extension, instead it serves the role of an opaque identifier.
+     */
+    name?: string | null;
+    /**
+     * The typed config for the extension. The type URL will be used to identify the extension. In the case that the type URL is *xds.type.v3.TypedStruct* (or, for historical reasons, *udpa.type.v1.TypedStruct*), the inner type URL of *TypedStruct* will be utilized. See the :ref:`extension configuration overview ` for further details.
+     */
+    typedConfig?: {[key: string]: any} | null;
   }
   export interface Schema$UpdateFailureState {
     /**
@@ -955,6 +972,7 @@ export namespace trafficdirector_v3 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),

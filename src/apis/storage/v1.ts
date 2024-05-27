@@ -1317,6 +1317,7 @@ export namespace storage_v1 {
               '/storage/v1/b/{bucket}/anywhereCaches/{anywhereCacheId}/disable'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1404,6 +1405,7 @@ export namespace storage_v1 {
               '/storage/v1/b/{bucket}/anywhereCaches/{anywhereCacheId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1498,6 +1500,7 @@ export namespace storage_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1585,6 +1588,7 @@ export namespace storage_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1672,6 +1676,7 @@ export namespace storage_v1 {
               '/storage/v1/b/{bucket}/anywhereCaches/{anywhereCacheId}/pause'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1759,6 +1764,7 @@ export namespace storage_v1 {
               '/storage/v1/b/{bucket}/anywhereCaches/{anywhereCacheId}/resume'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1853,6 +1859,7 @@ export namespace storage_v1 {
               '/storage/v1/b/{bucket}/anywhereCaches/{anywhereCacheId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -2033,6 +2040,7 @@ export namespace storage_v1 {
               '$1'
             ),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -2123,6 +2131,7 @@ export namespace storage_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2213,6 +2222,7 @@ export namespace storage_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2305,6 +2315,7 @@ export namespace storage_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2395,6 +2406,7 @@ export namespace storage_v1 {
               '$1'
             ),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -2485,6 +2497,7 @@ export namespace storage_v1 {
               '$1'
             ),
             method: 'PUT',
+            apiVersion: '',
           },
           options
         ),
@@ -2674,6 +2687,7 @@ export namespace storage_v1 {
               '$1'
             ),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -2760,6 +2774,7 @@ export namespace storage_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2847,6 +2862,7 @@ export namespace storage_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2930,6 +2946,7 @@ export namespace storage_v1 {
           {
             url: (rootUrl + '/storage/v1/b').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3013,6 +3030,7 @@ export namespace storage_v1 {
           {
             url: (rootUrl + '/storage/v1/b').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3099,6 +3117,7 @@ export namespace storage_v1 {
               rootUrl + '/storage/v1/b/{bucket}/lockRetentionPolicy'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3185,6 +3204,7 @@ export namespace storage_v1 {
               '$1'
             ),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -3272,6 +3292,7 @@ export namespace storage_v1 {
               '$1'
             ),
             method: 'PUT',
+            apiVersion: '',
           },
           options
         ),
@@ -3365,6 +3386,7 @@ export namespace storage_v1 {
               rootUrl + '/storage/v1/b/{bucket}/iam/testPermissions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3451,6 +3473,7 @@ export namespace storage_v1 {
               '$1'
             ),
             method: 'PUT',
+            apiVersion: '',
           },
           options
         ),
@@ -3771,6 +3794,7 @@ export namespace storage_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3869,6 +3893,7 @@ export namespace storage_v1 {
               rootUrl + '/storage/v1/b/{bucket}/defaultObjectAcl/{entity}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -3958,6 +3983,7 @@ export namespace storage_v1 {
               rootUrl + '/storage/v1/b/{bucket}/defaultObjectAcl/{entity}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4048,6 +4074,7 @@ export namespace storage_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4140,6 +4167,7 @@ export namespace storage_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4229,6 +4257,7 @@ export namespace storage_v1 {
               rootUrl + '/storage/v1/b/{bucket}/defaultObjectAcl/{entity}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -4318,6 +4347,7 @@ export namespace storage_v1 {
               rootUrl + '/storage/v1/b/{bucket}/defaultObjectAcl/{entity}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
+            apiVersion: '',
           },
           options
         ),
@@ -4515,6 +4545,7 @@ export namespace storage_v1 {
               '$1'
             ),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -4601,6 +4632,7 @@ export namespace storage_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4687,6 +4719,7 @@ export namespace storage_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4773,6 +4806,7 @@ export namespace storage_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4866,6 +4900,7 @@ export namespace storage_v1 {
               '/storage/v1/b/{bucket}/folders/{sourceFolder}/renameTo/folders/{destinationFolder}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5061,6 +5096,7 @@ export namespace storage_v1 {
               rootUrl + '/storage/v1/b/{bucket}/managedFolders/{managedFolder}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -5147,6 +5183,7 @@ export namespace storage_v1 {
               rootUrl + '/storage/v1/b/{bucket}/managedFolders/{managedFolder}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5234,6 +5271,7 @@ export namespace storage_v1 {
               '/storage/v1/b/{bucket}/managedFolders/{managedFolder}/iam'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5321,6 +5359,7 @@ export namespace storage_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5408,6 +5447,7 @@ export namespace storage_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5495,6 +5535,7 @@ export namespace storage_v1 {
               '/storage/v1/b/{bucket}/managedFolders/{managedFolder}/iam'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
+            apiVersion: '',
           },
           options
         ),
@@ -5589,6 +5630,7 @@ export namespace storage_v1 {
               '/storage/v1/b/{bucket}/managedFolders/{managedFolder}/iam/testPermissions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5813,6 +5855,7 @@ export namespace storage_v1 {
               '/storage/v1/b/{bucket}/notificationConfigs/{notification}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -5900,6 +5943,7 @@ export namespace storage_v1 {
               '/storage/v1/b/{bucket}/notificationConfigs/{notification}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5986,6 +6030,7 @@ export namespace storage_v1 {
               rootUrl + '/storage/v1/b/{bucket}/notificationConfigs'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -6072,6 +6117,7 @@ export namespace storage_v1 {
               rootUrl + '/storage/v1/b/{bucket}/notificationConfigs'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6221,6 +6267,7 @@ export namespace storage_v1 {
               rootUrl + '/storage/v1/b/{bucket}/o/{object}/acl/{entity}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -6310,6 +6357,7 @@ export namespace storage_v1 {
               rootUrl + '/storage/v1/b/{bucket}/o/{object}/acl/{entity}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6400,6 +6448,7 @@ export namespace storage_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -6492,6 +6541,7 @@ export namespace storage_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6581,6 +6631,7 @@ export namespace storage_v1 {
               rootUrl + '/storage/v1/b/{bucket}/o/{object}/acl/{entity}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -6670,6 +6721,7 @@ export namespace storage_v1 {
               rootUrl + '/storage/v1/b/{bucket}/o/{object}/acl/{entity}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
+            apiVersion: '',
           },
           options
         ),
@@ -6917,6 +6969,7 @@ export namespace storage_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -7003,6 +7056,7 @@ export namespace storage_v1 {
               '/storage/v1/b/{destinationBucket}/o/{destinationObject}/compose'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -7089,6 +7143,7 @@ export namespace storage_v1 {
               '/storage/v1/b/{sourceBucket}/o/{sourceObject}/copyTo/b/{destinationBucket}/o/{destinationObject}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -7183,6 +7238,7 @@ export namespace storage_v1 {
               '$1'
             ),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -7269,6 +7325,7 @@ export namespace storage_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -7356,6 +7413,7 @@ export namespace storage_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -7442,6 +7500,7 @@ export namespace storage_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -7532,6 +7591,7 @@ export namespace storage_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -7618,6 +7678,7 @@ export namespace storage_v1 {
               '$1'
             ),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -7703,6 +7764,7 @@ export namespace storage_v1 {
               rootUrl + '/storage/v1/b/{bucket}/o/{object}/restore'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -7789,6 +7851,7 @@ export namespace storage_v1 {
               '/storage/v1/b/{sourceBucket}/o/{sourceObject}/rewriteTo/b/{destinationBucket}/o/{destinationObject}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -7886,6 +7949,7 @@ export namespace storage_v1 {
               '$1'
             ),
             method: 'PUT',
+            apiVersion: '',
           },
           options
         ),
@@ -7979,6 +8043,7 @@ export namespace storage_v1 {
               rootUrl + '/storage/v1/b/{bucket}/o/{object}/iam/testPermissions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -8065,6 +8130,7 @@ export namespace storage_v1 {
               '$1'
             ),
             method: 'PUT',
+            apiVersion: '',
           },
           options
         ),
@@ -8151,6 +8217,7 @@ export namespace storage_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -8909,6 +8976,7 @@ export namespace storage_v1 {
               rootUrl + '/storage/v1/b/{bucket}/operations/{operationId}/cancel'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -9001,6 +9069,7 @@ export namespace storage_v1 {
               rootUrl + '/storage/v1/b/{bucket}/operations/{operationId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -9094,6 +9163,7 @@ export namespace storage_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -9240,6 +9310,7 @@ export namespace storage_v1 {
               rootUrl + '/storage/v1/projects/{projectId}/hmacKeys'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -9324,6 +9395,7 @@ export namespace storage_v1 {
               rootUrl + '/storage/v1/projects/{projectId}/hmacKeys/{accessId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -9410,6 +9482,7 @@ export namespace storage_v1 {
               rootUrl + '/storage/v1/projects/{projectId}/hmacKeys/{accessId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -9496,6 +9569,7 @@ export namespace storage_v1 {
               rootUrl + '/storage/v1/projects/{projectId}/hmacKeys'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -9582,6 +9656,7 @@ export namespace storage_v1 {
               rootUrl + '/storage/v1/projects/{projectId}/hmacKeys/{accessId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
+            apiVersion: '',
           },
           options
         ),
@@ -9768,6 +9843,7 @@ export namespace storage_v1 {
               rootUrl + '/storage/v1/projects/{projectId}/serviceAccount'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),

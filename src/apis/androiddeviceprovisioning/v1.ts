@@ -985,6 +985,7 @@ export namespace androiddeviceprovisioning_v1 {
           {
             url: (rootUrl + '/v1/customers').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1093,6 +1094,7 @@ export namespace androiddeviceprovisioning_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1178,6 +1180,7 @@ export namespace androiddeviceprovisioning_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -1263,6 +1266,7 @@ export namespace androiddeviceprovisioning_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1358,6 +1362,7 @@ export namespace androiddeviceprovisioning_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1445,6 +1450,7 @@ export namespace androiddeviceprovisioning_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -1590,6 +1596,7 @@ export namespace androiddeviceprovisioning_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1675,6 +1682,7 @@ export namespace androiddeviceprovisioning_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1770,6 +1778,7 @@ export namespace androiddeviceprovisioning_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1857,6 +1866,7 @@ export namespace androiddeviceprovisioning_v1 {
               rootUrl + '/v1/{+parent}/devices:removeConfiguration'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1945,6 +1955,7 @@ export namespace androiddeviceprovisioning_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2101,6 +2112,7 @@ export namespace androiddeviceprovisioning_v1 {
           {
             url: (rootUrl + '/v1/{+parent}/dpcs').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2200,6 +2212,7 @@ export namespace androiddeviceprovisioning_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2315,6 +2328,7 @@ export namespace androiddeviceprovisioning_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2408,6 +2422,7 @@ export namespace androiddeviceprovisioning_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2534,6 +2549,7 @@ export namespace androiddeviceprovisioning_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2621,6 +2637,7 @@ export namespace androiddeviceprovisioning_v1 {
               rootUrl + '/v1/partners/{+partnerId}/devices:claimAsync'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2715,6 +2732,7 @@ export namespace androiddeviceprovisioning_v1 {
               rootUrl + '/v1/partners/{+partnerId}/devices:findByIdentifier'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2811,6 +2829,7 @@ export namespace androiddeviceprovisioning_v1 {
               rootUrl + '/v1/partners/{+partnerId}/devices:findByOwner'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2896,6 +2915,7 @@ export namespace androiddeviceprovisioning_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2990,6 +3010,7 @@ export namespace androiddeviceprovisioning_v1 {
               rootUrl + '/v1/partners/{+partnerId}/devices:getSimLockState'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3080,6 +3101,7 @@ export namespace androiddeviceprovisioning_v1 {
               '/v1/partners/{+metadataOwnerId}/devices/{+deviceId}/metadata'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3167,6 +3189,7 @@ export namespace androiddeviceprovisioning_v1 {
               rootUrl + '/v1/partners/{+partnerId}/devices:unclaim'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3254,6 +3277,7 @@ export namespace androiddeviceprovisioning_v1 {
               rootUrl + '/v1/partners/{+partnerId}/devices:unclaimAsync'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3341,6 +3365,7 @@ export namespace androiddeviceprovisioning_v1 {
               rootUrl + '/v1/partners/{+partnerId}/devices:updateMetadataAsync'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3561,6 +3586,7 @@ export namespace androiddeviceprovisioning_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3679,6 +3705,7 @@ export namespace androiddeviceprovisioning_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),

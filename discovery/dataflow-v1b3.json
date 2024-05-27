@@ -2187,7 +2187,7 @@
       }
     }
   },
-  "revision": "20240317",
+  "revision": "20240430",
   "rootUrl": "https://dataflow.googleapis.com/",
   "schemas": {
     "ApproximateProgress": {
@@ -3184,7 +3184,7 @@
           "type": "string"
         },
         "serviceOptions": {
-          "description": "The list of service options to enable. This field should be used for service related experiments only. These experiments, when graduating to GA, should be replaced by dedicated fields or become default (i.e. always on).",
+          "description": "Optional. The list of service options to enable. This field should be used for service related experiments only. These experiments, when graduating to GA, should be replaced by dedicated fields or become default (i.e. always on).",
           "items": {
             "type": "string"
           },
@@ -3903,7 +3903,7 @@
         },
         "environment": {
           "$ref": "Environment",
-          "description": "The environment for the job."
+          "description": "Optional. The environment for the job."
         },
         "executionInfo": {
           "$ref": "JobExecutionInfo",
@@ -3929,7 +3929,7 @@
           "type": "string"
         },
         "name": {
-          "description": "The user-specified Dataflow job name. Only one active job with a given name can exist in a project within one region at any given time. Jobs in different regions can have the same name. If a caller attempts to create a job with the same name as an active job that already exists, the attempt returns the existing job. The name must match the regular expression `[a-z]([-a-z0-9]{0,1022}[a-z0-9])?`",
+          "description": "Optional. The user-specified Dataflow job name. Only one active job with a given name can exist in a project within one region at any given time. Jobs in different regions can have the same name. If a caller attempts to create a job with the same name as an active job that already exists, the attempt returns the existing job. The name must match the regular expression `[a-z]([-a-z0-9]{0,1022}[a-z0-9])?`",
           "type": "string"
         },
         "pipelineDescription": {
@@ -4033,7 +4033,7 @@
           "type": "object"
         },
         "type": {
-          "description": "The type of Dataflow job.",
+          "description": "Optional. The type of Dataflow job.",
           "enum": [
             "JOB_TYPE_UNKNOWN",
             "JOB_TYPE_BATCH",
@@ -4980,7 +4980,8 @@
             "WORKER_ZONE",
             "BOOLEAN",
             "ENUM",
-            "NUMBER"
+            "NUMBER",
+            "KAFKA_TOPIC"
           ],
           "enumDescriptions": [
             "Default input type.",
@@ -5002,7 +5003,8 @@
             "The parameter specifies a Worker Zone.",
             "The parameter specifies a boolean input.",
             "The parameter specifies an enum input.",
-            "The parameter specifies a number input."
+            "The parameter specifies a number input.",
+            "The parameter specifies the fully-qualified name of an Apache Kafka topic. This can be either a Google Managed Kafka topic or a non-managed Kafka topic."
           ],
           "type": "string"
         },
@@ -6661,6 +6663,10 @@
           "format": "int64",
           "type": "string"
         },
+        "operationalLimits": {
+          "$ref": "StreamingOperationalLimits",
+          "description": "Operational limits for the streaming job. Can be used by the worker to validate outputs sent to the backend."
+        },
         "streamingComputationConfigs": {
           "description": "Set of computation configuration information.",
           "items": {
@@ -6681,6 +6687,53 @@
         },
         "windmillServicePort": {
           "description": "If present, the worker must use this port to communicate with Windmill Service dispatchers. Only applicable when windmill_service_endpoint is specified.",
+          "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "StreamingOperationalLimits": {
+      "description": "Operational limits imposed on streaming jobs by the backend.",
+      "id": "StreamingOperationalLimits",
+      "properties": {
+        "maxBagElementBytes": {
+          "description": "The maximum size for an element in bag state.",
+          "format": "int64",
+          "type": "string"
+        },
+        "maxGlobalDataBytes": {
+          "description": "The maximum size for an element in global data.",
+          "format": "int64",
+          "type": "string"
+        },
+        "maxKeyBytes": {
+          "description": "The maximum size allowed for a key.",
+          "format": "int64",
+          "type": "string"
+        },
+        "maxProductionOutputBytes": {
+          "description": "The maximum size for a single output element.",
+          "format": "int64",
+          "type": "string"
+        },
+        "maxSortedListElementBytes": {
+          "description": "The maximum size for an element in sorted list state.",
+          "format": "int64",
+          "type": "string"
+        },
+        "maxSourceStateBytes": {
+          "description": "The maximum size for a source state update.",
+          "format": "int64",
+          "type": "string"
+        },
+        "maxTagBytes": {
+          "description": "The maximum size for a state tag.",
+          "format": "int64",
+          "type": "string"
+        },
+        "maxValueBytes": {
+          "description": "The maximum size for a value state field.",
           "format": "int64",
           "type": "string"
         }
@@ -6963,6 +7016,10 @@
       "description": "Metadata describing a template.",
       "id": "TemplateMetadata",
       "properties": {
+        "defaultStreamingMode": {
+          "description": "Optional. Indicates the default streaming mode for a streaming template. Only valid if both supports_at_least_once and supports_exactly_once are true. Possible values: UNSPECIFIED, EXACTLY_ONCE and AT_LEAST_ONCE",
+          "type": "string"
+        },
         "description": {
           "description": "Optional. A description of the template.",
           "type": "string"
