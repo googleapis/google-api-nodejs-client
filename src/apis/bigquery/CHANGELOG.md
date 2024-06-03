@@ -1,5 +1,12 @@
 # Changelog
 
+## [10.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/bigquery-v10.0.0...bigquery-v10.0.1) (2024-06-03)
+
+
+### Bug Fixes
+
+* **bigquery:** update the API ([bb98a47](https://github.com/googleapis/google-api-nodejs-client/commit/bb98a472120eeed02fc4c510ec416325d7c9003e))
+
 ## [10.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/bigquery-v9.1.0...bigquery-v10.0.0) (2024-05-02)
 
 
