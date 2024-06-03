@@ -3016,6 +3016,35 @@
                 }
               }
             },
+            "eventEditRules": {
+              "methods": {
+                "reorder": {
+                  "description": "Changes the processing order of event edit rules on the specified stream.",
+                  "flatPath": "v1alpha/properties/{propertiesId}/dataStreams/{dataStreamsId}/eventEditRules:reorder",
+                  "httpMethod": "POST",
+                  "id": "analyticsadmin.properties.dataStreams.eventEditRules.reorder",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. Example format: properties/123/dataStreams/456",
+                      "location": "path",
+                      "pattern": "^properties/[^/]+/dataStreams/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha/{+parent}/eventEditRules:reorder",
+                  "request": {
+                    "$ref": "GoogleAnalyticsAdminV1alphaReorderEventEditRulesRequest"
+                  },
+                  "response": {
+                    "$ref": "GoogleProtobufEmpty"
+                  }
+                }
+              }
+            },
             "measurementProtocolSecrets": {
               "methods": {
                 "create": {
@@ -4617,7 +4646,7 @@
       }
     }
   },
-  "revision": "20240430",
+  "revision": "20240529",
   "rootUrl": "https://analyticsadmin.googleapis.com/",
   "schemas": {
     "GoogleAnalyticsAdminV1alphaAccessBetweenFilter": {
@@ -5229,6 +5258,12 @@
           "description": "Output only. It is automatically set by GA to false if this is an NPA Audience and is excluded from ads personalization.",
           "readOnly": true,
           "type": "boolean"
+        },
+        "createTime": {
+          "description": "Output only. Time when the Audience was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
         },
         "description": {
           "description": "Required. The description of the Audience.",
@@ -6384,10 +6419,6 @@
       "description": "Request message for CreateSubproperty RPC.",
       "id": "GoogleAnalyticsAdminV1alphaCreateSubpropertyRequest",
       "properties": {
-        "parent": {
-          "description": "Required. The ordinary property for which to create a subproperty. Format: properties/property_id Example: properties/123",
-          "type": "string"
-        },
         "subproperty": {
           "$ref": "GoogleAnalyticsAdminV1alphaProperty",
           "description": "Required. The subproperty to create."
@@ -8200,6 +8231,20 @@
         "accountTicketId": {
           "description": "The param to be passed in the ToS link.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAnalyticsAdminV1alphaReorderEventEditRulesRequest": {
+      "description": "Request message for ReorderEventEditRules RPC.",
+      "id": "GoogleAnalyticsAdminV1alphaReorderEventEditRulesRequest",
+      "properties": {
+        "eventEditRules": {
+          "description": "Required. EventEditRule resource names for the specified data stream, in the needed processing order. All EventEditRules for the stream must be present in the list.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
