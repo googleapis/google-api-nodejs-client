@@ -898,7 +898,7 @@ export namespace run_v1 {
      */
     serviceAccount?: string | null;
     /**
-     * The location of the source files to build.
+     * Optional. The location of the source files to build.
      */
     source?: Schema$GoogleDevtoolsCloudbuildV1Source;
     /**
@@ -981,7 +981,7 @@ export namespace run_v1 {
      */
     defaultLogsBucketBehavior?: string | null;
     /**
-     * Requested disk size for the VM that runs the build. Note that this is *NOT* "disk free"; some of the space will be used by the operating system and build utilities. Also note that this is the minimum disk size that will be allocated for the build -- the build may run with a larger disk than requested. At present, the maximum disk size is 2000GB; builds that request more than the maximum are rejected with an error.
+     * Requested disk size for the VM that runs the build. Note that this is *NOT* "disk free"; some of the space will be used by the operating system and build utilities. Also note that this is the minimum disk size that will be allocated for the build -- the build may run with a larger disk than requested. At present, the maximum disk size is 4000GB; builds that request more than the maximum are rejected with an error.
      */
     diskSizeGb?: string | null;
     /**
@@ -1132,7 +1132,7 @@ export namespace run_v1 {
    */
   export interface Schema$GoogleDevtoolsCloudbuildV1ConnectedRepository {
     /**
-     * Directory, relative to the source root, in which to run the build.
+     * Optional. Directory, relative to the source root, in which to run the build.
      */
     dir?: string | null;
     /**
@@ -1140,7 +1140,7 @@ export namespace run_v1 {
      */
     repository?: string | null;
     /**
-     * The revision to fetch from the Git repository such as a branch, a tag, a commit SHA, or any Git ref.
+     * Required. The revision to fetch from the Git repository such as a branch, a tag, a commit SHA, or any Git ref.
      */
     revision?: string | null;
   }
@@ -1184,6 +1184,23 @@ export namespace run_v1 {
     fileHash?: Schema$GoogleDevtoolsCloudbuildV1Hash[];
   }
   /**
+   * Represents a storage location in Cloud Storage
+   */
+  export interface Schema$GoogleDevtoolsCloudbuildV1GCSLocation {
+    /**
+     * Cloud Storage bucket. See https://cloud.google.com/storage/docs/naming#requirements
+     */
+    bucket?: string | null;
+    /**
+     * Cloud Storage generation for the object. If the generation is omitted, the latest generation will be used.
+     */
+    generation?: string | null;
+    /**
+     * Cloud Storage object. See https://cloud.google.com/storage/docs/naming#objectnames
+     */
+    object?: string | null;
+  }
+  /**
    * GitConfig is a configuration for git operations.
    */
   export interface Schema$GoogleDevtoolsCloudbuildV1GitConfig {
@@ -1197,15 +1214,15 @@ export namespace run_v1 {
    */
   export interface Schema$GoogleDevtoolsCloudbuildV1GitSource {
     /**
-     * Directory, relative to the source root, in which to run the build. This must be a relative path. If a step's `dir` is specified and is an absolute path, this value is ignored for that step's execution.
+     * Optional. Directory, relative to the source root, in which to run the build. This must be a relative path. If a step's `dir` is specified and is an absolute path, this value is ignored for that step's execution.
      */
     dir?: string | null;
     /**
-     * The revision to fetch from the Git repository such as a branch, a tag, a commit SHA, or any Git ref. Cloud Build uses `git fetch` to fetch the revision from the Git repository; therefore make sure that the string you provide for `revision` is parsable by the command. For information on string values accepted by `git fetch`, see https://git-scm.com/docs/gitrevisions#_specifying_revisions. For information on `git fetch`, see https://git-scm.com/docs/git-fetch.
+     * Optional. The revision to fetch from the Git repository such as a branch, a tag, a commit SHA, or any Git ref. Cloud Build uses `git fetch` to fetch the revision from the Git repository; therefore make sure that the string you provide for `revision` is parsable by the command. For information on string values accepted by `git fetch`, see https://git-scm.com/docs/gitrevisions#_specifying_revisions. For information on `git fetch`, see https://git-scm.com/docs/git-fetch.
      */
     revision?: string | null;
     /**
-     * Location of the Git repo to build. This will be used as a `git remote`, see https://git-scm.com/docs/git-remote.
+     * Required. Location of the Git repo to build. This will be used as a `git remote`, see https://git-scm.com/docs/git-remote.
      */
     url?: string | null;
   }
@@ -1230,6 +1247,10 @@ export namespace run_v1 {
      * SecretVersion resource of the HTTP proxy URL. The proxy URL should be in format protocol://@]proxyhost[:port].
      */
     proxySecretVersionName?: string | null;
+    /**
+     * Optional. Cloud Storage object storing the certificate to use with the HTTP proxy.
+     */
+    proxySslCaInfo?: Schema$GoogleDevtoolsCloudbuildV1GCSLocation;
   }
   /**
    * Pairs a set of secret environment variables mapped to encrypted values with the Cloud KMS key to use to decrypt the value.
@@ -1317,23 +1338,23 @@ export namespace run_v1 {
      */
     commitSha?: string | null;
     /**
-     * Directory, relative to the source root, in which to run the build. This must be a relative path. If a step's `dir` is specified and is an absolute path, this value is ignored for that step's execution.
+     * Optional. Directory, relative to the source root, in which to run the build. This must be a relative path. If a step's `dir` is specified and is an absolute path, this value is ignored for that step's execution.
      */
     dir?: string | null;
     /**
-     * Only trigger a build if the revision regex does NOT match the revision regex.
+     * Optional. Only trigger a build if the revision regex does NOT match the revision regex.
      */
     invertRegex?: boolean | null;
     /**
-     * ID of the project that owns the Cloud Source Repository. If omitted, the project ID requesting the build is assumed.
+     * Optional. ID of the project that owns the Cloud Source Repository. If omitted, the project ID requesting the build is assumed.
      */
     projectId?: string | null;
     /**
-     * Name of the Cloud Source Repository.
+     * Required. Name of the Cloud Source Repository.
      */
     repoName?: string | null;
     /**
-     * Substitutions to use in a triggered build. Should only be used with RunBuildTrigger
+     * Optional. Substitutions to use in a triggered build. Should only be used with RunBuildTrigger
      */
     substitutions?: {[key: string]: string} | null;
     /**
@@ -1490,11 +1511,11 @@ export namespace run_v1 {
      */
     bucket?: string | null;
     /**
-     * Cloud Storage generation for the object. If the generation is omitted, the latest generation will be used.
+     * Optional. Cloud Storage generation for the object. If the generation is omitted, the latest generation will be used.
      */
     generation?: string | null;
     /**
-     * Cloud Storage object containing the source. This object must be a zipped (`.zip`) or gzipped archive file (`.tar.gz`) containing source to build.
+     * Required. Cloud Storage object containing the source. This object must be a zipped (`.zip`) or gzipped archive file (`.tar.gz`) containing source to build.
      */
     object?: string | null;
     /**
@@ -1507,7 +1528,7 @@ export namespace run_v1 {
    */
   export interface Schema$GoogleDevtoolsCloudbuildV1StorageSourceManifest {
     /**
-     * Cloud Storage bucket containing the source manifest (see [Bucket Name Requirements](https://cloud.google.com/storage/docs/bucket-naming#requirements)).
+     * Required. Cloud Storage bucket containing the source manifest (see [Bucket Name Requirements](https://cloud.google.com/storage/docs/bucket-naming#requirements)).
      */
     bucket?: string | null;
     /**
@@ -1515,7 +1536,7 @@ export namespace run_v1 {
      */
     generation?: string | null;
     /**
-     * Cloud Storage object containing the source manifest. This object must be a JSON file.
+     * Required. Cloud Storage object containing the source manifest. This object must be a JSON file.
      */
     object?: string | null;
   }
@@ -3164,7 +3185,7 @@ export namespace run_v1 {
     }
 
     /**
-     * List configurations.
+     * List configurations. Results are sorted by creation time, descending.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4017,7 +4038,7 @@ export namespace run_v1 {
     }
 
     /**
-     * List executions.
+     * List executions. Results are sorted by creation time, descending.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4453,7 +4474,7 @@ export namespace run_v1 {
     }
 
     /**
-     * List jobs.
+     * List jobs. Results are sorted by creation time, descending.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4997,7 +5018,7 @@ export namespace run_v1 {
     }
 
     /**
-     * List revisions.
+     * List revisions. Results are sorted by creation time, descending.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5250,7 +5271,7 @@ export namespace run_v1 {
     }
 
     /**
-     * List routes.
+     * List routes. Results are sorted by creation time, descending.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5653,7 +5674,7 @@ export namespace run_v1 {
     }
 
     /**
-     * Lists services for the given project and region.
+     * Lists services for the given project and region. Results are sorted by creation time, descending.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6648,7 +6669,7 @@ export namespace run_v1 {
     }
 
     /**
-     * List configurations.
+     * List configurations. Results are sorted by creation time, descending.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8139,7 +8160,7 @@ export namespace run_v1 {
     }
 
     /**
-     * List revisions.
+     * List revisions. Results are sorted by creation time, descending.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8390,7 +8411,7 @@ export namespace run_v1 {
     }
 
     /**
-     * List routes.
+     * List routes. Results are sorted by creation time, descending.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8877,7 +8898,7 @@ export namespace run_v1 {
     }
 
     /**
-     * Lists services for the given project and region.
+     * Lists services for the given project and region. Results are sorted by creation time, descending.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
