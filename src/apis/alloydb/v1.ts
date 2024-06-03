@@ -1281,6 +1281,7 @@ export namespace alloydb_v1 {
     /**
      * More feed data would be added in subsequent CLs
      */
+    observabilityMetricData?: Schema$StorageDatabasecenterPartnerapiV1mainObservabilityMetricData;
     recommendationSignalData?: Schema$StorageDatabasecenterPartnerapiV1mainDatabaseResourceRecommendationSignalData;
     resourceHealthSignalData?: Schema$StorageDatabasecenterPartnerapiV1mainDatabaseResourceHealthSignalData;
     /**
@@ -1413,6 +1414,10 @@ export namespace alloydb_v1 {
      */
     location?: string | null;
     /**
+     * Machine configuration for this resource.
+     */
+    machineConfiguration?: Schema$StorageDatabasecenterPartnerapiV1mainMachineConfiguration;
+    /**
      * Identifier for this resource's immediate parent/primary resource if the current resource is a replica or derived form of another Database resource. Else it would be NULL. REQUIRED if the immediate parent exists when first time resource is getting ingested, otherwise optional.
      */
     primaryResourceId?: Schema$StorageDatabasecenterPartnerapiV1mainDatabaseResourceId;
@@ -1490,6 +1495,37 @@ export namespace alloydb_v1 {
      * An enum that represents the type of this entitlement.
      */
     type?: string | null;
+  }
+  /**
+   * MachineConfiguration describes the configuration of a machine specific to Database Resource.
+   */
+  export interface Schema$StorageDatabasecenterPartnerapiV1mainMachineConfiguration {
+    /**
+     * The number of CPUs.
+     */
+    cpuCount?: number | null;
+    /**
+     * Memory size in bytes.
+     */
+    memorySizeInBytes?: string | null;
+  }
+  export interface Schema$StorageDatabasecenterPartnerapiV1mainObservabilityMetricData {
+    /**
+     * Required. The timestamp of the metric value.
+     */
+    metricTimestamp?: string | null;
+    /**
+     * Required. Type of metric like CPU, Memory, etc.
+     */
+    metricType?: string | null;
+    /**
+     * Required. Database resource name associated with the signal. Resource name to follow CAIS resource_name format as noted here go/condor-common-datamodel
+     */
+    resourceName?: string | null;
+    /**
+     * Required. Value of the metric type.
+     */
+    value?: number | null;
   }
   /**
    * An error that occurred during a backup creation operation.
