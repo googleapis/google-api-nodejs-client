@@ -154,11 +154,6 @@
             "userId"
           ],
           "parameters": {
-            "temporaryEeccBypass": {
-              "default": "false",
-              "location": "query",
-              "type": "boolean"
-            },
             "userId": {
               "default": "me",
               "description": "The user's email address. The special value `me` can be used to indicate the authenticated user.",
@@ -927,11 +922,6 @@
                   "repeated": true,
                   "type": "string"
                 },
-                "temporaryEeccBypass": {
-                  "default": "false",
-                  "location": "query",
-                  "type": "boolean"
-                },
                 "userId": {
                   "default": "me",
                   "description": "The user's email address. The special value `me` can be used to indicate the authenticated user.",
@@ -1138,11 +1128,6 @@
                   "location": "query",
                   "type": "string"
                 },
-                "temporaryEeccBypass": {
-                  "default": "false",
-                  "location": "query",
-                  "type": "boolean"
-                },
                 "userId": {
                   "default": "me",
                   "description": "The user's email address. The special value `me` can be used to indicate the authenticated user.",
@@ -1339,11 +1324,6 @@
                       "location": "path",
                       "required": true,
                       "type": "string"
-                    },
-                    "temporaryEeccBypass": {
-                      "default": "false",
-                      "location": "query",
-                      "type": "boolean"
                     },
                     "userId": {
                       "default": "me",
@@ -2911,11 +2891,6 @@
                   "repeated": true,
                   "type": "string"
                 },
-                "temporaryEeccBypass": {
-                  "default": "false",
-                  "location": "query",
-                  "type": "boolean"
-                },
                 "userId": {
                   "default": "me",
                   "description": "The user's email address. The special value `me` can be used to indicate the authenticated user.",
@@ -2975,11 +2950,6 @@
                   "description": "Only return threads matching the specified query. Supports the same query format as the Gmail search box. For example, `\"from:someuser@example.com rfc822msgid: is:unread\"`. Parameter cannot be used when accessing the api using the gmail.metadata scope.",
                   "location": "query",
                   "type": "string"
-                },
-                "temporaryEeccBypass": {
-                  "default": "false",
-                  "location": "query",
-                  "type": "boolean"
                 },
                 "userId": {
                   "default": "me",
@@ -3107,7 +3077,7 @@
       }
     }
   },
-  "revision": "20240429",
+  "revision": "20240527",
   "rootUrl": "https://gmail.googleapis.com/",
   "schemas": {
     "AutoForwarding": {
