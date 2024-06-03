@@ -193,7 +193,7 @@ export namespace drive_v3 {
      */
     maxUploadSize?: string | null;
     /**
-     * The user's storage quota limits and usage. All fields are measured in bytes.
+     * The user's storage quota limits and usage. For users that are part of an organization with pooled storage, information about the limit and usage across all services is for the organization, rather than the individual user. All fields are measured in bytes.
      */
     storageQuota?: {
       limit?: string;
