@@ -152,11 +152,11 @@ export namespace tasks_v1 {
      */
     id?: string | null;
     /**
-     * Type of the resource. This is always "tasks#task".
+     * Output only. Type of the resource. This is always "tasks#task".
      */
     kind?: string | null;
     /**
-     * Collection of links. This collection is read-only.
+     * Output only. Collection of links. This collection is read-only.
      */
     links?: Array<{description?: string; link?: string; type?: string}> | null;
     /**
@@ -164,15 +164,15 @@ export namespace tasks_v1 {
      */
     notes?: string | null;
     /**
-     * Parent task identifier. This field is omitted if it is a top-level task. This field is read-only. Use the "move" method to move the task under a different parent or to the top level.
+     * Output only. Parent task identifier. This field is omitted if it is a top-level task. This field is read-only. Use the "move" method to move the task under a different parent or to the top level.
      */
     parent?: string | null;
     /**
-     * String indicating the position of the task among its sibling tasks under the same parent task or at the top level. If this string is greater than another task's corresponding position string according to lexicographical ordering, the task is positioned after the other task under the same parent task (or at the top level). This field is read-only. Use the "move" method to move the task to another position.
+     * Output only. String indicating the position of the task among its sibling tasks under the same parent task or at the top level. If this string is greater than another task's corresponding position string according to lexicographical ordering, the task is positioned after the other task under the same parent task (or at the top level). Use the "move" method to move the task to another position.
      */
     position?: string | null;
     /**
-     * URL pointing to this task. Used to retrieve, update, or delete this task.
+     * Output only. URL pointing to this task. Used to retrieve, update, or delete this task.
      */
     selfLink?: string | null;
     /**
@@ -184,11 +184,11 @@ export namespace tasks_v1 {
      */
     title?: string | null;
     /**
-     * Last modification time of the task (as a RFC 3339 timestamp).
+     * Output only. Last modification time of the task (as a RFC 3339 timestamp).
      */
     updated?: string | null;
     /**
-     * An absolute link to the task in the Google Tasks Web UI. This field is read-only.
+     * Output only. An absolute link to the task in the Google Tasks Web UI.
      */
     webViewLink?: string | null;
   }
@@ -202,11 +202,11 @@ export namespace tasks_v1 {
      */
     id?: string | null;
     /**
-     * Type of the resource. This is always "tasks#taskList".
+     * Output only. Type of the resource. This is always "tasks#taskList".
      */
     kind?: string | null;
     /**
-     * URL pointing to this task list. Used to retrieve, update, or delete this task list.
+     * Output only. URL pointing to this task list. Used to retrieve, update, or delete this task list.
      */
     selfLink?: string | null;
     /**
@@ -214,7 +214,7 @@ export namespace tasks_v1 {
      */
     title?: string | null;
     /**
-     * Last modification time of the task list (as a RFC 3339 timestamp).
+     * Output only. Last modification time of the task list (as a RFC 3339 timestamp).
      */
     updated?: string | null;
   }
