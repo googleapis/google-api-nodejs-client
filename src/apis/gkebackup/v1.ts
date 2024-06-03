@@ -215,6 +215,10 @@ export namespace gkebackup_v1 {
      */
     name?: string | null;
     /**
+     * Output only. If false, Backup will fail when Backup for GKE detects Kubernetes configuration that is non-standard or requires additional setup to restore. Inherited from the parent BackupPlan's permissive_mode value.
+     */
+    permissiveMode?: boolean | null;
+    /**
      * Output only. The total number of Kubernetes Pods contained in the Backup.
      */
     podCount?: number | null;
@@ -283,6 +287,10 @@ export namespace gkebackup_v1 {
      * Optional. This flag specifies whether volume data should be backed up when PVCs are included in the scope of a Backup. Default: False
      */
     includeVolumeData?: boolean | null;
+    /**
+     * Optional. If false, Backups will fail when Backup for GKE detects Kubernetes configuration that is non-standard or requires additional setup to restore. Default: False
+     */
+    permissiveMode?: boolean | null;
     /**
      * If set, include just the resources referenced by the listed ProtectedApplications.
      */
@@ -514,6 +522,19 @@ export namespace gkebackup_v1 {
     title?: string | null;
   }
   /**
+   * Defines the filter for `Restore`. This filter can be used to further refine the resource selection of the `Restore` beyond the coarse-grained scope defined in the `RestorePlan`. `exclusion_filters` take precedence over `inclusion_filters`. If a resource matches both `inclusion_filters` and `exclusion_filters`, it will not be restored.
+   */
+  export interface Schema$Filter {
+    /**
+     * Optional. Excludes resources from restoration. If specified, a resource will not be restored if it matches any `ResourceSelector` of the `exclusion_filters`.
+     */
+    exclusionFilters?: Schema$ResourceSelector[];
+    /**
+     * Optional. Selects resources for restoration. If specified, only resources which match `inclusion_filters` will be selected for restoration. A resource will be selected if it matches any `ResourceSelector` of the `inclusion_filters`.
+     */
+    inclusionFilters?: Schema$ResourceSelector[];
+  }
+  /**
    * Response message for GetBackupIndexDownloadUrl.
    */
   export interface Schema$GetBackupIndexDownloadUrlResponse {
@@ -590,6 +611,19 @@ export namespace gkebackup_v1 {
      * Optional. Kind of a Kubernetes resource, must be in UpperCamelCase (PascalCase) and singular form. E.g. "CustomResourceDefinition", "StorageClass", etc.
      */
     resourceKind?: string | null;
+  }
+  /**
+   * Defines a dependency between two group kinds.
+   */
+  export interface Schema$GroupKindDependency {
+    /**
+     * Required. The requiring group kind requires that the other group kind be restored first.
+     */
+    requiring?: Schema$GroupKind;
+    /**
+     * Required. The satisfying group kind must be restored first in order to satisfy the dependency.
+     */
+    satisfying?: Schema$GroupKind;
   }
   /**
    * Response message for ListBackupPlans.
@@ -822,6 +856,27 @@ export namespace gkebackup_v1 {
     namespaces?: string[] | null;
   }
   /**
+   * Defines a selector to identify a single or a group of resources. Conditions in the selector are optional, but at least one field should be set to a non-empty value. If a condition is not specified, no restrictions will be applied on that dimension. If more than one condition is specified, a resource will be selected if and only if all conditions are met.
+   */
+  export interface Schema$ResourceSelector {
+    /**
+     * Optional. Selects resources using their Kubernetes GroupKinds. If specified, only resources of provided GroupKind will be selected.
+     */
+    groupKind?: Schema$GroupKind;
+    /**
+     * Optional. Selects resources using Kubernetes [labels](https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/). If specified, a resource will be selected if and only if the resource has all of the provided labels and all the label values match.
+     */
+    labels?: {[key: string]: string} | null;
+    /**
+     * Optional. Selects resources using their resource names. If specified, only resources with the provided name will be selected.
+     */
+    name?: string | null;
+    /**
+     * Optional. Selects resources using their namespaces. This only applies to namespace scoped resources and cannot be used for selecting cluster scoped resources. If specified, only resources in the provided namespace will be selected. If not specified, the filter will apply to both cluster scoped and namespace scoped resources (e.g. name or label). The [Namespace](https://pkg.go.dev/k8s.io/api/core/v1#Namespace) resource itself will be restored if and only if any resources within the namespace are restored.
+     */
+    namespace?: string | null;
+  }
+  /**
    * Represents both a request to Restore some portion of a Backup into a target GKE cluster and a record of the restore operation itself.
    */
   export interface Schema$Restore {
@@ -849,6 +904,10 @@ export namespace gkebackup_v1 {
      * Output only. `etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a restore from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform restore updates in order to avoid race conditions: An `etag` is returned in the response to `GetRestore`, and systems are expected to put that etag in the request to `UpdateRestore` or `DeleteRestore` to ensure that their change will be applied to the same version of the resource.
      */
     etag?: string | null;
+    /**
+     * Optional. Immutable. Filters resources for `Restore`. If not specified, the scope of the restore will remain the same as defined in the `RestorePlan`. If this is specified, and no resources are matched by the `inclusion_filters` or everyting is excluded by the `exclusion_filters`, nothing will be restored. This filter can only be specified if the value of namespaced_resource_restore_mode is set to `MERGE_SKIP_ON_CONFLICT`, `MERGE_REPLACE_VOLUME_ON_CONFLICT` or `MERGE_REPLACE_ON_CONFLICT`.
+     */
+    filter?: Schema$Filter;
     /**
      * A set of custom labels supplied by user.
      */
@@ -890,6 +949,10 @@ export namespace gkebackup_v1 {
      */
     updateTime?: string | null;
     /**
+     * Optional. Immutable. Overrides the volume data restore policies selected in the Restore Config for override-scoped resources.
+     */
+    volumeDataRestorePolicyOverrides?: Schema$VolumeDataRestorePolicyOverride[];
+    /**
      * Output only. Number of volumes restored during the restore execution.
      */
     volumesRestoredCount?: number | null;
@@ -923,6 +986,10 @@ export namespace gkebackup_v1 {
      */
     noNamespaces?: boolean | null;
     /**
+     * Optional. RestoreOrder contains custom ordering to use on a Restore.
+     */
+    restoreOrder?: Schema$RestoreOrder;
+    /**
      * A list of selected ProtectedApplications to restore. The listed ProtectedApplications and all the resources to which they refer will be restored.
      */
     selectedApplications?: Schema$NamespacedNames;
@@ -942,6 +1009,19 @@ export namespace gkebackup_v1 {
      * Optional. Specifies the mechanism to be used to restore volume data. Default: VOLUME_DATA_RESTORE_POLICY_UNSPECIFIED (will be treated as NO_VOLUME_DATA_RESTORATION).
      */
     volumeDataRestorePolicy?: string | null;
+    /**
+     * Optional. A table that binds volumes by their scope to a restore policy. Bindings must have a unique scope. Any volumes not scoped in the bindings are subject to the policy defined in volume_data_restore_policy.
+     */
+    volumeDataRestorePolicyBindings?: Schema$VolumeDataRestorePolicyBinding[];
+  }
+  /**
+   * Allows customers to specify dependencies between resources that Backup for GKE can use to compute a resasonable restore order.
+   */
+  export interface Schema$RestoreOrder {
+    /**
+     * Optional. Contains a list of group kind dependency pairs provided by the customer, that is used by Backup for GKE to generate a group kind restore order.
+     */
+    groupKindDependencies?: Schema$GroupKindDependency[];
   }
   /**
    * The configuration of a potential series of Restore operations to be performed against Backups belong to a particular BackupPlan.
@@ -1218,6 +1298,32 @@ export namespace gkebackup_v1 {
      * Output only. A storage system-specific opaque handle to the underlying volume backup.
      */
     volumeBackupHandle?: string | null;
+  }
+  /**
+   * Binds resources in the scope to the given VolumeDataRestorePolicy.
+   */
+  export interface Schema$VolumeDataRestorePolicyBinding {
+    /**
+     * Required. The VolumeDataRestorePolicy to apply when restoring volumes in scope.
+     */
+    policy?: string | null;
+    /**
+     * The volume type, as determined by the PVC's bound PV, to apply the policy to.
+     */
+    volumeType?: string | null;
+  }
+  /**
+   * Defines an override to apply a VolumeDataRestorePolicy for scoped resources.
+   */
+  export interface Schema$VolumeDataRestorePolicyOverride {
+    /**
+     * Required. The VolumeDataRestorePolicy to apply when restoring volumes in scope.
+     */
+    policy?: string | null;
+    /**
+     * A list of PVCs to apply the policy override to.
+     */
+    selectedPvcs?: Schema$NamespacedNames;
   }
   /**
    * Represents the operation of restoring a volume from a VolumeBackup.
