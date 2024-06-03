@@ -5434,7 +5434,7 @@ export namespace displayvideo_v3 {
      */
     exchangeReviewStatuses?: Schema$ExchangeReviewStatus[];
     /**
-     * Publisher review statuses for the creative.
+     * Publisher review statuses for the creative. **Warning:** This field will be deprecated on June 26th, 2024. After this date, this field will be empty. Read our [feature deprecation announcement](/display-video/api/deprecations#features.creative_publisher_review_statuses) for more information.
      */
     publisherReviewStatuses?: Schema$PublisherReviewStatus[];
   }
