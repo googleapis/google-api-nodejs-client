@@ -148,15 +148,15 @@ export namespace iap_v1 {
    */
   export interface Schema$AccessSettings {
     /**
-     * Settings to configure and enable allowed domains.
+     * Optional. Settings to configure and enable allowed domains.
      */
     allowedDomainsSettings?: Schema$AllowedDomainsSettings;
     /**
-     * Configuration to allow cross-origin requests via IAP.
+     * Optional. Configuration to allow cross-origin requests via IAP.
      */
     corsSettings?: Schema$CorsSettings;
     /**
-     * GCIP claims and endpoint configurations for 3p identity providers.
+     * Optional. GCIP claims and endpoint configurations for 3p identity providers.
      */
     gcipSettings?: Schema$GcipSettings;
     /**
@@ -164,15 +164,15 @@ export namespace iap_v1 {
      */
     identitySources?: string[] | null;
     /**
-     * Settings to configure IAP's OAuth behavior.
+     * Optional. Settings to configure IAP's OAuth behavior.
      */
     oauthSettings?: Schema$OAuthSettings;
     /**
-     * Settings to configure Policy delegation for apps hosted in tenant projects. INTERNAL_ONLY.
+     * Optional. Settings to configure Policy delegation for apps hosted in tenant projects. INTERNAL_ONLY.
      */
     policyDelegationSettings?: Schema$PolicyDelegationSettings;
     /**
-     * Settings to configure reauthentication policies in IAP.
+     * Optional. Settings to configure reauthentication policies in IAP.
      */
     reauthSettings?: Schema$ReauthSettings;
     /**
@@ -185,11 +185,11 @@ export namespace iap_v1 {
    */
   export interface Schema$AllowedDomainsSettings {
     /**
-     * List of trusted domains.
+     * Optional. List of trusted domains.
      */
     domains?: string[] | null;
     /**
-     * Configuration for customers to opt in for the feature.
+     * Optional. Configuration for customers to opt in for the feature.
      */
     enable?: boolean | null;
   }
@@ -198,11 +198,11 @@ export namespace iap_v1 {
    */
   export interface Schema$ApplicationSettings {
     /**
-     * Customization for Access Denied page.
+     * Optional. Customization for Access Denied page.
      */
     accessDeniedPageSettings?: Schema$AccessDeniedPageSettings;
     /**
-     * Settings to configure attribute propagation.
+     * Optional. Settings to configure attribute propagation.
      */
     attributePropagationSettings?: Schema$AttributePropagationSettings;
     /**
@@ -210,7 +210,7 @@ export namespace iap_v1 {
      */
     cookieDomain?: string | null;
     /**
-     * Settings to configure IAP's behavior for a service mesh.
+     * Optional. Settings to configure IAP's behavior for a service mesh.
      */
     csmSettings?: Schema$CsmSettings;
   }
@@ -219,15 +219,15 @@ export namespace iap_v1 {
    */
   export interface Schema$AttributePropagationSettings {
     /**
-     * Whether the provided attribute propagation settings should be evaluated on user requests. If set to true, attributes returned from the expression will be propagated in the set output credentials.
+     * Optional. Whether the provided attribute propagation settings should be evaluated on user requests. If set to true, attributes returned from the expression will be propagated in the set output credentials.
      */
     enable?: boolean | null;
     /**
-     * Raw string CEL expression. Must return a list of attributes. A maximum of 45 attributes can be selected. Expressions can select different attribute types from `attributes`: `attributes.saml_attributes`, `attributes.iap_attributes`. The following functions are supported: - filter `.filter(, )`: Returns a subset of `` where `` is true for every item. - in ` in `: Returns true if `` contains ``. - selectByName `.selectByName()`: Returns the attribute in `` with the given `` name, otherwise returns empty. - emitAs `.emitAs()`: Sets the `` name field to the given `` for propagation in selected output credentials. - strict `.strict()`: Ignores the `x-goog-iap-attr-` prefix for the provided `` when propagating with the `HEADER` output credential, such as request headers. - append `.append()` OR `.append()`: Appends the provided `` or `` to the end of ``. Example expression: `attributes.saml_attributes.filter(x, x.name in ['test']).append(attributes.iap_attributes.selectByName('exact').emitAs('custom').strict())`
+     * Optional. Raw string CEL expression. Must return a list of attributes. A maximum of 45 attributes can be selected. Expressions can select different attribute types from `attributes`: `attributes.saml_attributes`, `attributes.iap_attributes`. The following functions are supported: - filter `.filter(, )`: Returns a subset of `` where `` is true for every item. - in ` in `: Returns true if `` contains ``. - selectByName `.selectByName()`: Returns the attribute in `` with the given `` name, otherwise returns empty. - emitAs `.emitAs()`: Sets the `` name field to the given `` for propagation in selected output credentials. - strict `.strict()`: Ignores the `x-goog-iap-attr-` prefix for the provided `` when propagating with the `HEADER` output credential, such as request headers. - append `.append()` OR `.append()`: Appends the provided `` or `` to the end of ``. Example expression: `attributes.saml_attributes.filter(x, x.name in ['test']).append(attributes.iap_attributes.selectByName('exact').emitAs('custom').strict())`
      */
     expression?: string | null;
     /**
-     * Which output credentials attributes selected by the CEL expression should be propagated in. All attributes will be fully duplicated in each selected output credential.
+     * Optional. Which output credentials attributes selected by the CEL expression should be propagated in. All attributes will be fully duplicated in each selected output credential.
      */
     outputCredentials?: string[] | null;
   }
@@ -321,7 +321,7 @@ export namespace iap_v1 {
      */
     loginPageUri?: string | null;
     /**
-     * GCIP tenant ids that are linked to the IAP resource. tenant_ids could be a string beginning with a number character to indicate authenticating with GCIP tenant flow, or in the format of _ to indicate authenticating with GCIP agent flow. If agent flow is used, tenant_ids should only contain one single element, while for tenant flow, tenant_ids can contain multiple elements.
+     * Optional. GCIP tenant ids that are linked to the IAP resource. tenant_ids could be a string beginning with a number character to indicate authenticating with GCIP tenant flow, or in the format of _ to indicate authenticating with GCIP agent flow. If agent flow is used, tenant_ids should only contain one single element, while for tenant flow, tenant_ids can contain multiple elements.
      */
     tenantIds?: string[] | null;
   }
@@ -348,11 +348,11 @@ export namespace iap_v1 {
    */
   export interface Schema$IapSettings {
     /**
-     * Top level wrapper for all access related setting in IAP
+     * Optional. Top level wrapper for all access related setting in IAP
      */
     accessSettings?: Schema$AccessSettings;
     /**
-     * Top level wrapper for all application related settings in IAP
+     * Optional. Top level wrapper for all application related settings in IAP
      */
     applicationSettings?: Schema$ApplicationSettings;
     /**
@@ -438,7 +438,7 @@ export namespace iap_v1 {
      */
     loginHint?: string | null;
     /**
-     * List of client ids allowed to use IAP programmatically.
+     * Optional. List of client ids allowed to use IAP programmatically.
      */
     programmaticClients?: string[] | null;
   }
@@ -493,7 +493,7 @@ export namespace iap_v1 {
      */
     region?: string | null;
     /**
-     * Resource type. Types are defined in IAM's .service files. Valid values for type might be 'gce', 'gcs', 'project', 'account' etc.
+     * Resource type. Types are defined in IAM's .service files. Valid values for type might be 'storage_buckets', 'compute_instances', 'resourcemanager_customers', 'billing_accounts', etc.
      */
     type?: string | null;
   }
@@ -502,7 +502,7 @@ export namespace iap_v1 {
    */
   export interface Schema$ReauthSettings {
     /**
-     * Reauth session lifetime, how long before a user has to reauthenticate again.
+     * Optional. Reauth session lifetime, how long before a user has to reauthenticate again.
      */
     maxAge?: string | null;
     /**
@@ -510,7 +510,7 @@ export namespace iap_v1 {
      */
     method?: string | null;
     /**
-     * How IAP determines the effective policy in cases of hierarchical policies. Policies are merged from higher in the hierarchy to lower in the hierarchy.
+     * Optional. How IAP determines the effective policy in cases of hierarchical policies. Policies are merged from higher in the hierarchy to lower in the hierarchy.
      */
     policyType?: string | null;
   }
@@ -572,20 +572,20 @@ export namespace iap_v1 {
    */
   export interface Schema$TunnelDestGroup {
     /**
-     * Unordered list. List of CIDRs that this group applies to.
+     * Optional. Unordered list. List of CIDRs that this group applies to.
      */
     cidrs?: string[] | null;
     /**
-     * Unordered list. List of FQDNs that this group applies to.
+     * Optional. Unordered list. List of FQDNs that this group applies to.
      */
     fqdns?: string[] | null;
     /**
-     * Required. Immutable. Identifier for the TunnelDestGroup. Must be unique within the project and contain only lower case letters (a-z) and dashes (-).
+     * Identifier. Identifier for the TunnelDestGroup. Must be unique within the project and contain only lower case letters (a-z) and dashes (-).
      */
     name?: string | null;
   }
   /**
-   * API requires a return message, but currently all response strings will fit in the status and public message. In the future, this response can hold AST validation info.
+   * IAP Expression Linter endpoint returns empty response body.
    */
   export interface Schema$ValidateIapAttributeExpressionResponse {}
   /**
@@ -1962,7 +1962,7 @@ export namespace iap_v1 {
   export interface Params$Resource$Projects$Iap_tunnel$Locations$Destgroups$Patch
     extends StandardParameters {
     /**
-     * Required. Immutable. Identifier for the TunnelDestGroup. Must be unique within the project and contain only lower case letters (a-z) and dashes (-).
+     * Identifier. Identifier for the TunnelDestGroup. Must be unique within the project and contain only lower case letters (a-z) and dashes (-).
      */
     name?: string;
     /**
