@@ -161,7 +161,7 @@
       }
     }
   },
-  "revision": "20230419",
+  "revision": "20240528",
   "rootUrl": "https://webfonts.googleapis.com/",
   "schemas": {
     "Axis": {
@@ -199,6 +199,13 @@
         "category": {
           "description": "The category of the font.",
           "type": "string"
+        },
+        "colorCapabilities": {
+          "description": "The color format(s) available for this family.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         },
         "family": {
           "description": "The name of the font.",
