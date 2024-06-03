@@ -440,7 +440,7 @@
       }
     }
   },
-  "revision": "20240131",
+  "revision": "20240529",
   "rootUrl": "https://analyticsdata.googleapis.com/",
   "schemas": {
     "ActiveMetricRestriction": {
@@ -790,6 +790,44 @@
       },
       "type": "object"
     },
+    "Comparison": {
+      "description": "Defines an individual comparison. Most requests will include multiple comparisons so that the report compares between the comparisons.",
+      "id": "Comparison",
+      "properties": {
+        "comparison": {
+          "description": "A saved comparison identified by the comparison's resource name. For example, 'comparisons/1234'.",
+          "type": "string"
+        },
+        "dimensionFilter": {
+          "$ref": "FilterExpression",
+          "description": "A basic comparison."
+        },
+        "name": {
+          "description": "Each comparison produces separate rows in the response. In the response, this comparison is identified by this name. If name is unspecified, we will use the saved comparisons display name.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ComparisonMetadata": {
+      "description": "The metadata for a single comparison.",
+      "id": "ComparisonMetadata",
+      "properties": {
+        "apiName": {
+          "description": "This comparison's resource name. Useable in [Comparison](#Comparison)'s `comparison` field. For example, 'comparisons/1234'.",
+          "type": "string"
+        },
+        "description": {
+          "description": "This comparison's description.",
+          "type": "string"
+        },
+        "uiName": {
+          "description": "This comparison's name within the Google Analytics user interface.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ConcatenateExpression": {
       "description": "Used to combine dimension values to a single dimension.",
       "id": "ConcatenateExpression",
@@ -1073,6 +1111,13 @@
       "description": "The dimensions, metrics and comparisons currently accepted in reporting methods.",
       "id": "Metadata",
       "properties": {
+        "comparisons": {
+          "description": "The comparison descriptions.",
+          "items": {
+            "$ref": "ComparisonMetadata"
+          },
+          "type": "array"
+        },
         "dimensions": {
           "description": "The dimension descriptions.",
           "items": {
@@ -1694,6 +1739,13 @@
           "$ref": "CohortSpec",
           "description": "Cohort group associated with this request. If there is a cohort group in the request the 'cohort' dimension must be present."
         },
+        "comparisons": {
+          "description": "Optional. The configuration of comparisons requested and displayed. The request requires both a comparisons field and a comparisons dimension to receive a comparison column in the response.",
+          "items": {
+            "$ref": "Comparison"
+          },
+          "type": "array"
+        },
         "currencyCode": {
           "description": "A currency code in ISO4217 format, such as \"AED\", \"USD\", \"JPY\". If the field is empty, the report uses the property's default currency.",
           "type": "string"
@@ -1945,6 +1997,13 @@
         "cohortSpec": {
           "$ref": "CohortSpec",
           "description": "Cohort group associated with this request. If there is a cohort group in the request the 'cohort' dimension must be present."
+        },
+        "comparisons": {
+          "description": "Optional. The configuration of comparisons requested and displayed. The request only requires a comparisons field in order to receive a comparison column in the response.",
+          "items": {
+            "$ref": "Comparison"
+          },
+          "type": "array"
         },
         "currencyCode": {
           "description": "A currency code in ISO4217 format, such as \"AED\", \"USD\", \"JPY\". If the field is empty, the report uses the property's default currency.",
