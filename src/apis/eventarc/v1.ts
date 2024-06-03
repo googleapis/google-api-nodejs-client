@@ -588,11 +588,11 @@ export namespace eventarc_v1 {
     name?: string | null;
   }
   /**
-   * Represents a network config to be used for destination resolution and connectivity.
+   * Network Configuration that can be inherited by other protos.
    */
   export interface Schema$NetworkConfig {
     /**
-     * Required. Name of the NetworkAttachment that allows access to the destination VPC. Format: `projects/{PROJECT_ID\}/regions/{REGION\}/networkAttachments/{NETWORK_ATTACHMENT_NAME\}`
+     * Required. Name of the NetworkAttachment that allows access to the customer's VPC. Format: `projects/{PROJECT_ID\}/regions/{REGION\}/networkAttachments/{NETWORK_ATTACHMENT_NAME\}`
      */
     networkAttachment?: string | null;
   }
