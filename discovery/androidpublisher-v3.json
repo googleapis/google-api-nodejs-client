@@ -4731,7 +4731,7 @@
       }
     }
   },
-  "revision": "20240509",
+  "revision": "20240530",
   "rootUrl": "https://androidpublisher.googleapis.com/",
   "schemas": {
     "Abi": {
@@ -5306,6 +5306,10 @@
           "description": "If the subscription is currently set to auto-renew, e.g. the user has not canceled the subscription",
           "type": "boolean"
         },
+        "installmentDetails": {
+          "$ref": "InstallmentPlan",
+          "description": "The installment plan commitment and state related info for the auto renewing plan."
+        },
         "priceChangeDetails": {
           "$ref": "SubscriptionItemPriceChangeDetails",
           "description": "The information of the last price change for the item since subscription signup."
@@ -5324,6 +5328,10 @@
         "basePlanId": {
           "description": "Required. Immutable. The unique identifier of this base plan. Must be unique within the subscription, and conform with RFC-1034. That is, this ID can only contain lower-case letters (a-z), numbers (0-9), and hyphens (-), and be at most 63 characters.",
           "type": "string"
+        },
+        "installmentsBasePlanType": {
+          "$ref": "InstallmentsBasePlanType",
+          "description": "Set for installments base plans where a user is committed to a specified number of payments."
         },
         "offerTags": {
           "description": "List of up to 20 custom tags specified for this base plan, and returned to the app through the billing library. Subscription offers for this base plan will also receive these offer tags in the billing library.",
@@ -7021,6 +7029,98 @@
       },
       "type": "object"
     },
+    "InstallmentPlan": {
+      "description": "Information to a installment plan.",
+      "id": "InstallmentPlan",
+      "properties": {
+        "initialCommittedPaymentsCount": {
+          "description": "Total number of payments the user is initially committed for.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "pendingCancellation": {
+          "$ref": "PendingCancellation",
+          "description": "If present, this installment plan is pending to be canceled. The cancellation will happen only after the user finished all committed payments."
+        },
+        "remainingCommittedPaymentsCount": {
+          "description": "Total number of committed payments remaining to be paid for in this renewal cycle.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "subsequentCommittedPaymentsCount": {
+          "description": "Total number of payments the user will be committed for after each commitment period. Empty means the installment plan will fall back to a normal auto-renew subscription after initial commitment.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "InstallmentsBasePlanType": {
+      "description": "Represents an installments base plan where a user commits to a specified number of payments.",
+      "id": "InstallmentsBasePlanType",
+      "properties": {
+        "accountHoldDuration": {
+          "description": "Optional. Account hold period of the subscription, specified exclusively in days and in ISO 8601 format. Acceptable values are P0D (zero days) to P30D (30days). If not specified, the default value is P30D (30 days).",
+          "type": "string"
+        },
+        "billingPeriodDuration": {
+          "description": "Required. Subscription period, specified in ISO 8601 format. For a list of acceptable billing periods, refer to the help center.",
+          "type": "string"
+        },
+        "committedPaymentsCount": {
+          "description": "Required. The number of payments the user is committed to.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "gracePeriodDuration": {
+          "description": "Grace period of the subscription, specified in ISO 8601 format. Acceptable values are P0D (zero days), P3D (3 days), P7D (7 days), P14D (14 days), and P30D (30 days). If not specified, a default value will be used based on the recurring period duration.",
+          "type": "string"
+        },
+        "prorationMode": {
+          "description": "The proration mode for the base plan determines what happens when a user switches to this plan from another base plan. If unspecified, defaults to CHARGE_ON_NEXT_BILLING_DATE.",
+          "enum": [
+            "SUBSCRIPTION_PRORATION_MODE_UNSPECIFIED",
+            "SUBSCRIPTION_PRORATION_MODE_CHARGE_ON_NEXT_BILLING_DATE",
+            "SUBSCRIPTION_PRORATION_MODE_CHARGE_FULL_PRICE_IMMEDIATELY"
+          ],
+          "enumDescriptions": [
+            "Unspecified mode.",
+            "Users will be charged for their new base plan at the end of their current billing period.",
+            "Users will be charged for their new base plan immediately and in full. Any remaining period of their existing subscription will be used to extend the duration of the new billing plan."
+          ],
+          "type": "string"
+        },
+        "renewalType": {
+          "description": "Required. Installments base plan renewal type. Determines the behavior at the end of the initial commitment.",
+          "enum": [
+            "RENEWAL_TYPE_UNSPECIFIED",
+            "RENEWAL_TYPE_RENEWS_WITHOUT_COMMITMENT",
+            "RENEWAL_TYPE_RENEWS_WITH_COMMITMENT"
+          ],
+          "enumDescriptions": [
+            "Unspecified state.",
+            "Renews periodically for the billing period duration without commitment.",
+            "Renews with the commitment of the same duration as the initial one."
+          ],
+          "type": "string"
+        },
+        "resubscribeState": {
+          "description": "Whether users should be able to resubscribe to this base plan in Google Play surfaces. Defaults to RESUBSCRIBE_STATE_ACTIVE if not specified.",
+          "enum": [
+            "RESUBSCRIBE_STATE_UNSPECIFIED",
+            "RESUBSCRIBE_STATE_ACTIVE",
+            "RESUBSCRIBE_STATE_INACTIVE"
+          ],
+          "enumDescriptions": [
+            "Unspecified state.",
+            "Resubscribe is active.",
+            "Resubscribe is inactive."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "InternalAppSharingArtifact": {
       "description": "An artifact resource which gets created when uploading an APK or Android App Bundle through internal app sharing.",
       "id": "InternalAppSharingArtifact",
@@ -7616,6 +7716,12 @@
       },
       "type": "object"
     },
+    "PendingCancellation": {
+      "description": "This is an indicator of whether there is a pending cancellation on the virtual installment plan. The cancellation will happen only after the user finished all committed payments.",
+      "id": "PendingCancellation",
+      "properties": {},
+      "type": "object"
+    },
     "PrepaidBasePlanType": {
       "description": "Represents a base plan that does not automatically renew at the end of the base plan, and must be manually renewed by the user.",
       "id": "PrepaidBasePlanType",
@@ -8039,6 +8145,20 @@
       "properties": {},
       "type": "object"
     },
+    "RestrictedPaymentCountries": {
+      "description": "Countries where the purchase of this product is restricted to payment methods registered in the same country. If empty, no payment location restrictions are imposed.",
+      "id": "RestrictedPaymentCountries",
+      "properties": {
+        "regionCodes": {
+          "description": "Required. Region codes to impose payment restrictions on, as defined by ISO 3166-2, e.g. \"US\".",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "Review": {
       "description": "An Android app review.",
       "id": "Review",
@@ -8373,6 +8493,10 @@
         "productId": {
           "description": "Immutable. Unique product ID of the product. Unique within the parent app. Product IDs must be composed of lower-case letters (a-z), numbers (0-9), underscores (_) and dots (.). It must start with a lower-case letter or number, and be between 1 and 40 (inclusive) characters in length.",
           "type": "string"
+        },
+        "restrictedPaymentCountries": {
+          "$ref": "RestrictedPaymentCountries",
+          "description": "Optional. Countries where the purchase of this subscription is restricted to payment methods registered in the same country. If empty, no payment location restrictions are imposed."
         },
         "taxAndComplianceSettings": {
           "$ref": "SubscriptionTaxAndComplianceSettings",
@@ -8852,7 +8976,8 @@
             "SUBSCRIPTION_STATE_IN_GRACE_PERIOD",
             "SUBSCRIPTION_STATE_ON_HOLD",
             "SUBSCRIPTION_STATE_CANCELED",
-            "SUBSCRIPTION_STATE_EXPIRED"
+            "SUBSCRIPTION_STATE_EXPIRED",
+            "SUBSCRIPTION_STATE_PENDING_PURCHASE_CANCELED"
           ],
           "enumDescriptions": [
             "Unspecified subscription state.",
@@ -8862,7 +8987,8 @@
             "Subscription is in grace period. The state is only available when the subscription is an auto renewing plan. In this state, all items are in grace period.",
             "Subscription is on hold (suspended). The state is only available when the subscription is an auto renewing plan. In this state, all items are on hold.",
             "Subscription is canceled but not expired yet. The state is only available when the subscription is an auto renewing plan. All items have auto_renew_enabled set to false.",
-            "Subscription is expired. All items have expiry_time in the past."
+            "Subscription is expired. All items have expiry_time in the past.",
+            "Pending transaction for subscription is canceled. If this pending purchase was for an existing subscription, use linked_purchase_token to get the current state of that subscription."
           ],
           "type": "string"
         },
