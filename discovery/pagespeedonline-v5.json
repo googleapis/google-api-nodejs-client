@@ -131,12 +131,20 @@
                 "PWA",
                 "SEO"
               ],
+              "enumDeprecated": [
+                false,
+                false,
+                false,
+                false,
+                true,
+                false
+              ],
               "enumDescriptions": [
                 "Default UNDEFINED category.",
                 "Accessibility (a11y), category pertaining to a website's capacity to be accessible to all users.",
                 "Best Practices, category pertaining to a website's conformance to web best practice.",
                 "Performance, category pertaining to a website's performance.",
-                "Progressive Web App (PWA), category pertaining to a website's ability to be run as a PWA.",
+                "Progressive Web App (PWA), category pertaining to a website's ability to be run as a PWA. This is deprecated in Lighthouse's 12.0 release.",
                 "Search Engine Optimization (SEO), category pertaining to a website's ability to be indexed by search engines."
               ],
               "location": "query",
@@ -193,7 +201,7 @@
       }
     }
   },
-  "revision": "20230705",
+  "revision": "20240530",
   "rootUrl": "https://pagespeedonline.googleapis.com/",
   "schemas": {
     "AuditRefs": {
@@ -267,7 +275,8 @@
         },
         "pwa": {
           "$ref": "LighthouseCategoryV5",
-          "description": "The Progressive-Web-App (PWA) category, containing all pwa related audits."
+          "deprecated": true,
+          "description": "The Progressive-Web-App (PWA) category, containing all pwa related audits. This is deprecated in Lighthouse's 12.0 release."
         },
         "seo": {
           "$ref": "LighthouseCategoryV5",
