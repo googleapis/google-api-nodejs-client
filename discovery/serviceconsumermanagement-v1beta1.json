@@ -315,12 +315,17 @@
                       ],
                       "parameters": {
                         "force": {
-                          "description": "Whether to force the creation of the quota override. Setting the force parameter to 'true' ignores all quota safety checks that would fail the request. QuotaSafetyCheck lists all such validations. If force is set to true, it is recommended to include a case id in \"X-Goog-Request-Reason\" header when sending the request.",
+                          "description": "Whether to force the creation of the quota override. Setting the force parameter to 'true' ignores all quota safety checks that would fail the request. QuotaSafetyCheck lists all such validations.",
                           "location": "query",
                           "type": "boolean"
                         },
+                        "forceJustification": {
+                          "description": "If force option is set to true, force_justification is suggested to be set to log the reason in audit logs.",
+                          "location": "query",
+                          "type": "string"
+                        },
                         "forceOnly": {
-                          "description": "The list of quota safety checks to ignore before the override mutation. Unlike 'force' field that ignores all the quota safety checks, the 'force_only' field ignores only the specified checks; other checks are still enforced. The 'force' and 'force_only' fields cannot both be set. If force_only is specified, it is recommended to include a case id in \"X-Goog-Request-Reason\" header when sending the request.",
+                          "description": "The list of quota safety checks to ignore before the override mutation. Unlike 'force' field that ignores all the quota safety checks, the 'force_only' field ignores only the specified checks; other checks are still enforced. The 'force' and 'force_only' fields cannot both be set.",
                           "enum": [
                             "QUOTA_SAFETY_CHECK_UNSPECIFIED",
                             "LIMIT_DECREASE_BELOW_USAGE",
@@ -364,12 +369,17 @@
                       ],
                       "parameters": {
                         "force": {
-                          "description": "Whether to force the deletion of the quota override. Setting the force parameter to 'true' ignores all quota safety checks that would fail the request. QuotaSafetyCheck lists all such validations. If force is set to true, it is recommended to include a case id in \"X-Goog-Request-Reason\" header when sending the request.",
+                          "description": "Whether to force the deletion of the quota override. Setting the force parameter to 'true' ignores all quota safety checks that would fail the request. QuotaSafetyCheck lists all such validations.",
                           "location": "query",
                           "type": "boolean"
                         },
+                        "forceJustification": {
+                          "description": "If force option is set to true, force_justification is suggested to be set to log the reason in audit logs.",
+                          "location": "query",
+                          "type": "string"
+                        },
                         "forceOnly": {
-                          "description": "The list of quota safety checks to ignore before the override mutation. Unlike 'force' field that ignores all the quota safety checks, the 'force_only' field ignores only the specified checks; other checks are still enforced. The 'force' and 'force_only' fields cannot both be set. If force_only is specified, it is recommended to include a case id in \"X-Goog-Request-Reason\" header when sending the request.",
+                          "description": "The list of quota safety checks to ignore before the override mutation. Unlike 'force' field that ignores all the quota safety checks, the 'force_only' field ignores only the specified checks; other checks are still enforced. The 'force' and 'force_only' fields cannot both be set.",
                           "enum": [
                             "QUOTA_SAFETY_CHECK_UNSPECIFIED",
                             "LIMIT_DECREASE_BELOW_USAGE",
@@ -446,12 +456,17 @@
                       ],
                       "parameters": {
                         "force": {
-                          "description": "Whether to force the update of the quota override. Setting the force parameter to 'true' ignores all quota safety checks that would fail the request. QuotaSafetyCheck lists all such validations. If force is set to true, it is recommended to include a case id in \"X-Goog-Request-Reason\" header when sending the request.",
+                          "description": "Whether to force the update of the quota override. Setting the force parameter to 'true' ignores all quota safety checks that would fail the request. QuotaSafetyCheck lists all such validations.",
                           "location": "query",
                           "type": "boolean"
                         },
+                        "forceJustification": {
+                          "description": "If force option is set to true, force_justification is suggested to be set to log the reason in audit logs.",
+                          "location": "query",
+                          "type": "string"
+                        },
                         "forceOnly": {
-                          "description": "The list of quota safety checks to ignore before the override mutation. Unlike 'force' field that ignores all the quota safety checks, the 'force_only' field ignores only the specified checks; other checks are still enforced. The 'force' and 'force_only' fields cannot both be set. If force_only is specified, it is recommended to include a case id in \"X-Goog-Request-Reason\" header when sending the request.",
+                          "description": "The list of quota safety checks to ignore before the override mutation. Unlike 'force' field that ignores all the quota safety checks, the 'force_only' field ignores only the specified checks; other checks are still enforced. The 'force' and 'force_only' fields cannot both be set.",
                           "enum": [
                             "QUOTA_SAFETY_CHECK_UNSPECIFIED",
                             "LIMIT_DECREASE_BELOW_USAGE",
@@ -500,7 +515,7 @@
       }
     }
   },
-  "revision": "20240429",
+  "revision": "20240520",
   "rootUrl": "https://serviceconsumermanagement.googleapis.com/",
   "schemas": {
     "Api": {
@@ -2695,11 +2710,15 @@
       "id": "V1Beta1ImportProducerOverridesRequest",
       "properties": {
         "force": {
-          "description": "Whether to force the creation of the quota overrides. Setting the force parameter to 'true' ignores all quota safety checks that would fail the request. QuotaSafetyCheck lists all such validations. If force is set to true, it is recommended to include a case id in \"X-Goog-Request-Reason\" header when sending the request.",
+          "description": "Whether to force the creation of the quota overrides. Setting the force parameter to 'true' ignores all quota safety checks that would fail the request. QuotaSafetyCheck lists all such validations.",
           "type": "boolean"
         },
+        "forceJustification": {
+          "description": "If force option is set to true, force_justification is suggested to be set to log the reason in audit logs.",
+          "type": "string"
+        },
         "forceOnly": {
-          "description": "The list of quota safety checks to ignore before the override mutation. Unlike 'force' field that ignores all the quota safety checks, the 'force_only' field ignores only the specified checks; other checks are still enforced. The 'force' and 'force_only' fields cannot both be set. If force_only is specified, it is recommended to include a case id in \"X-Goog-Request-Reason\" header when sending the request.",
+          "description": "The list of quota safety checks to ignore before the override mutation. Unlike 'force' field that ignores all the quota safety checks, the 'force_only' field ignores only the specified checks; other checks are still enforced. The 'force' and 'force_only' fields cannot both be set.",
           "items": {
             "enum": [
               "QUOTA_SAFETY_CHECK_UNSPECIFIED",
