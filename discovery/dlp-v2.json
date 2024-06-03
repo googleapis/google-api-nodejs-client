@@ -596,7 +596,7 @@
                   ],
                   "parameters": {
                     "filter": {
-                      "description": "Optional. * Supported fields/values - `state` - MISSING|AVAILABLE|ERROR",
+                      "description": "Optional. Supported field/value: - `state` - MISSING|AVAILABLE|ERROR",
                       "location": "query",
                       "type": "string"
                     },
@@ -2810,7 +2810,7 @@
                   ],
                   "parameters": {
                     "filter": {
-                      "description": "Optional. * Supported fields/values - `state` - MISSING|AVAILABLE|ERROR",
+                      "description": "Optional. Supported field/value: `state` - MISSING|AVAILABLE|ERROR",
                       "location": "query",
                       "type": "string"
                     },
@@ -2879,7 +2879,7 @@
                   ],
                   "parameters": {
                     "filter": {
-                      "description": "Optional. * Supported fields/values - `state` - MISSING|AVAILABLE|ERROR",
+                      "description": "Optional. Supported field/value: - `state` - MISSING|AVAILABLE|ERROR",
                       "location": "query",
                       "type": "string"
                     },
@@ -4451,7 +4451,7 @@
       }
     }
   },
-  "revision": "20240505",
+  "revision": "20240526",
   "rootUrl": "https://dlp.googleapis.com/",
   "schemas": {
     "GooglePrivacyDlpV2Action": {
@@ -5047,7 +5047,7 @@
       "type": "object"
     },
     "GooglePrivacyDlpV2CloudSqlIamCredential": {
-      "description": "Use IAM auth to connect. This requires the Cloud SQL IAM feature to be enabled on the instance, which is not the default for Cloud SQL. See https://cloud.google.com/sql/docs/postgres/authentication and https://cloud.google.com/sql/docs/mysql/authentication.",
+      "description": "Use IAM authentication to connect. This requires the Cloud SQL IAM feature to be enabled on the instance, which is not the default for Cloud SQL. See https://cloud.google.com/sql/docs/postgres/authentication and https://cloud.google.com/sql/docs/mysql/authentication.",
       "id": "GooglePrivacyDlpV2CloudSqlIamCredential",
       "properties": {},
       "type": "object"
@@ -5072,9 +5072,9 @@
             "DATABASE_ENGINE_POSTGRES"
           ],
           "enumDescriptions": [
-            "An engine that is not currently supported by SDP.",
+            "An engine that is not currently supported by Sensitive Data Protection.",
             "Cloud SQL for MySQL instance.",
-            "Cloud SQL for Postgres instance."
+            "Cloud SQL for PostgreSQL instance."
           ],
           "type": "string"
         },
@@ -5496,7 +5496,7 @@
             "Unused",
             "DLP automatically created this connection during an initial scan, and it is awaiting full configuration by a user.",
             "A configured connection that has not encountered any errors.",
-            "A configured connection that encountered errors during its last use. It will not be used again until it is set to AVAILABLE. If the resolution requires external action, then a request to set the status to AVAILABLE will mark this connection for use. Otherwise, any changes to the connection properties will automatically mark it as AVAILABLE."
+            "A configured connection that encountered errors during its last use. It will not be used again until it is set to AVAILABLE. If the resolution requires external action, then the client must send a request to set the status to AVAILABLE when the connection is ready for use. If the resolution doesn't require external action, then any changes to the connection properties will automatically mark it as AVAILABLE."
           ],
           "type": "string"
         }
@@ -6016,7 +6016,7 @@
           "enumDescriptions": [
             "Unused.",
             "New profile (not a re-profile).",
-            "Changed one of the following profile metrics: * Data risk score * Sensitivity score * Resource visibility * Encryption type * Predicted infoTypes * Other infoTypes",
+            "One of the following profile metrics changed: Data risk score, Sensitivity score, Resource visibility, Encryption type, Predicted infoTypes, Other infoTypes",
             "Table data risk score or sensitivity score increased.",
             "A user (non-internal) error occurred."
           ],
@@ -6079,12 +6079,20 @@
       "description": "Identifies a single database resource, like a table within a database.",
       "id": "GooglePrivacyDlpV2DatabaseResourceReference",
       "properties": {
+        "database": {
+          "description": "Required. Name of a database within the instance.",
+          "type": "string"
+        },
+        "databaseResource": {
+          "description": "Required. Name of a database resource, for example, a table within the database.",
+          "type": "string"
+        },
         "instance": {
-          "description": "Required. The instance where this resource is located. For example: Cloud SQL's instance id.",
+          "description": "Required. The instance where this resource is located. For example: Cloud SQL instance ID.",
           "type": "string"
         },
         "projectId": {
-          "description": "Required. If within a project-level config, then this must match the config's project id.",
+          "description": "Required. If within a project-level config, then this must match the config's project ID.",
           "type": "string"
         }
       },
@@ -6107,7 +6115,7 @@
           "type": "string"
         },
         "projectIdRegex": {
-          "description": "For organizations, if unset, will match all projects. Has no effect for Data Profile configurations created within a project.",
+          "description": "For organizations, if unset, will match all projects. Has no effect for configurations created within a project.",
           "type": "string"
         }
       },
@@ -6581,6 +6589,10 @@
           "$ref": "GooglePrivacyDlpV2AllOtherBigQueryTables",
           "description": "Catch-all. This should always be the last filter in the list because anything above it will apply first. Should only appear once in a configuration. If none is specified, a default one will be added automatically."
         },
+        "tableReference": {
+          "$ref": "GooglePrivacyDlpV2TableReference",
+          "description": "The table to scan. Discovery configurations including this can only include one DiscoveryTarget (the DiscoveryTarget with this TableReference)."
+        },
         "tables": {
           "$ref": "GooglePrivacyDlpV2BigQueryTableCollection",
           "description": "A specific set of tables for this filter to apply to. A table collection must be specified in only one filter per config. If a table id or dataset is empty, Cloud DLP assumes all tables in that collection must be profiled. Must specify a project ID."
@@ -6604,8 +6616,8 @@
             "enumDescriptions": [
               "Unused.",
               "Include all supported database engines.",
-              "MySql database.",
-              "PostGres database."
+              "MySQL database.",
+              "PostgreSQL database."
             ],
             "type": "string"
           },
@@ -6655,7 +6667,7 @@
       "id": "GooglePrivacyDlpV2DiscoveryCloudSqlGenerationCadence",
       "properties": {
         "refreshFrequency": {
-          "description": "Data changes (non-schema changes) in Cloud SQL tables can't trigger reprofiling. If you set this field, profiles are refreshed at this frequency regardless of whether the underlying tables have changes. Defaults to never.",
+          "description": "Data changes (non-schema changes) in Cloud SQL tables can't trigger reprofiling. If you set this field, profiles are refreshed at this frequency regardless of whether the underlying tables have changed. Defaults to never.",
           "enum": [
             "UPDATE_FREQUENCY_UNSPECIFIED",
             "UPDATE_FREQUENCY_NEVER",
@@ -6878,6 +6890,10 @@
         "cloudSqlTarget": {
           "$ref": "GooglePrivacyDlpV2CloudSqlDiscoveryTarget",
           "description": "Cloud SQL target for Discovery. The first target to match a table will be the one applied."
+        },
+        "secretsTarget": {
+          "$ref": "GooglePrivacyDlpV2SecretsDiscoveryTarget",
+          "description": "Discovery target that looks for credentials and secrets stored in cloud resource metadata and reports them as vulnerabilities to Security Command Center. Only one target of this type is allowed."
         }
       },
       "type": "object"
@@ -7562,6 +7578,7 @@
             "GLOBAL",
             "ARGENTINA",
             "AUSTRALIA",
+            "AZERBAIJAN",
             "BELGIUM",
             "BRAZIL",
             "CANADA",
@@ -7612,6 +7629,7 @@
             "The infoType is not issued by or tied to a specific region, but is used almost everywhere.",
             "The infoType is typically used in Argentina.",
             "The infoType is typically used in Australia.",
+            "The infoType is typically used in Azerbaijan.",
             "The infoType is typically used in Belgium.",
             "The infoType is typically used in Brazil.",
             "The infoType is typically used in Canada.",
@@ -8108,7 +8126,7 @@
       "type": "object"
     },
     "GooglePrivacyDlpV2JobTrigger": {
-      "description": "Contains a configuration to make api calls on a repeating basis. See https://cloud.google.com/sensitive-data-protection/docs/concepts-job-triggers to learn more.",
+      "description": "Contains a configuration to make API calls on a repeating basis. See https://cloud.google.com/sensitive-data-protection/docs/concepts-job-triggers to learn more.",
       "id": "GooglePrivacyDlpV2JobTrigger",
       "properties": {
         "createTime": {
@@ -9211,7 +9229,7 @@
           "enumDescriptions": [
             "Unused.",
             "New profile (not a re-profile).",
-            "Changed one of the following profile metrics: * Data risk score * Sensitivity score * Resource visibility * Encryption type * Predicted infoTypes * Other infoTypes",
+            "One of the following profile metrics changed: Data risk score, Sensitivity score, Resource visibility, Encryption type, Predicted infoTypes, Other infoTypes",
             "Table data risk score or sensitivity score increased.",
             "A user (non-internal) error occurred."
           ],
@@ -9652,7 +9670,7 @@
           "type": "array"
         },
         "numRowsProcessed": {
-          "description": "Number of rows scanned post sampling and time filtering (Applicable for row based stores such as BigQuery).",
+          "description": "Number of rows scanned after sampling and time filtering (applicable for row based stores such as BigQuery).",
           "format": "int64",
           "type": "string"
         },
@@ -9729,7 +9747,7 @@
       "type": "object"
     },
     "GooglePrivacyDlpV2SchemaModifiedCadence": {
-      "description": "How frequency to modify the profile when the table's schema is modified.",
+      "description": "How frequently to modify the profile when the table's schema is modified.",
       "id": "GooglePrivacyDlpV2SchemaModifiedCadence",
       "properties": {
         "frequency": {
@@ -9758,7 +9776,7 @@
             ],
             "enumDescriptions": [
               "Unused.",
-              "New columns has appeared.",
+              "New columns have appeared.",
               "Columns have been removed from the table."
             ],
             "type": "string"
@@ -9799,6 +9817,12 @@
           "type": "string"
         }
       },
+      "type": "object"
+    },
+    "GooglePrivacyDlpV2SecretsDiscoveryTarget": {
+      "description": "Discovery target for credentials and secrets in cloud resource metadata. This target does not include any filtering or frequency controls. Cloud DLP will scan cloud resource metadata for secrets daily. No inspect template should be included in the discovery config for a security benchmarks scan. Instead, the built-in list of secrets and credentials infoTypes will be used (see https://cloud.google.com/sensitive-data-protection/docs/infotypes-reference#credentials_and_secrets). Credentials and secrets discovered will be reported as vulnerabilities to Security Command Center.",
+      "id": "GooglePrivacyDlpV2SecretsDiscoveryTarget",
+      "properties": {},
       "type": "object"
     },
     "GooglePrivacyDlpV2SelectedInfoTypes": {
@@ -10191,7 +10215,7 @@
           "enumDescriptions": [
             "Unused.",
             "Visible to any user.",
-            "May contain public items. For example, if a GCS bucket has uniform bucket level access disabled, some objects inside it may be public.",
+            "May contain public items. For example, if a Cloud Storage bucket has uniform bucket level access disabled, some objects inside it may be public.",
             "Visible only to specific users."
           ],
           "type": "string"
@@ -10258,6 +10282,21 @@
             "$ref": "GooglePrivacyDlpV2FieldId"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GooglePrivacyDlpV2TableReference": {
+      "description": "Message defining the location of a BigQuery table with the projectId inferred from the parent project.",
+      "id": "GooglePrivacyDlpV2TableReference",
+      "properties": {
+        "datasetId": {
+          "description": "Dataset ID of the table.",
+          "type": "string"
+        },
+        "tableId": {
+          "description": "Name of the table.",
+          "type": "string"
         }
       },
       "type": "object"
