@@ -20,6 +20,216 @@
   "documentationLink": "https://cloud.google.com/artifacts/docs/",
   "endpoints": [
     {
+      "endpointUrl": "https://artifactregistry.africa-south1.rep.googleapis.com/",
+      "location": "africa-south1",
+      "description": "Regional Endpoint"
+    },
+    {
+      "endpointUrl": "https://artifactregistry.asia-east1.rep.googleapis.com/",
+      "location": "asia-east1",
+      "description": "Regional Endpoint"
+    },
+    {
+      "endpointUrl": "https://artifactregistry.asia-east2.rep.googleapis.com/",
+      "location": "asia-east2",
+      "description": "Regional Endpoint"
+    },
+    {
+      "endpointUrl": "https://artifactregistry.asia-northeast1.rep.googleapis.com/",
+      "location": "asia-northeast1",
+      "description": "Regional Endpoint"
+    },
+    {
+      "endpointUrl": "https://artifactregistry.asia-northeast2.rep.googleapis.com/",
+      "location": "asia-northeast2",
+      "description": "Regional Endpoint"
+    },
+    {
+      "endpointUrl": "https://artifactregistry.asia-northeast3.rep.googleapis.com/",
+      "location": "asia-northeast3",
+      "description": "Regional Endpoint"
+    },
+    {
+      "endpointUrl": "https://artifactregistry.asia-south1.rep.googleapis.com/",
+      "location": "asia-south1",
+      "description": "Regional Endpoint"
+    },
+    {
+      "endpointUrl": "https://artifactregistry.asia-south2.rep.googleapis.com/",
+      "location": "asia-south2",
+      "description": "Regional Endpoint"
+    },
+    {
+      "endpointUrl": "https://artifactregistry.asia-southeast1.rep.googleapis.com/",
+      "location": "asia-southeast1",
+      "description": "Regional Endpoint"
+    },
+    {
+      "endpointUrl": "https://artifactregistry.asia-southeast2.rep.googleapis.com/",
+      "location": "asia-southeast2",
+      "description": "Regional Endpoint"
+    },
+    {
+      "endpointUrl": "https://artifactregistry.australia-southeast1.rep.googleapis.com/",
+      "location": "australia-southeast1",
+      "description": "Regional Endpoint"
+    },
+    {
+      "endpointUrl": "https://artifactregistry.australia-southeast2.rep.googleapis.com/",
+      "location": "australia-southeast2",
+      "description": "Regional Endpoint"
+    },
+    {
+      "endpointUrl": "https://artifactregistry.europe-central2.rep.googleapis.com/",
+      "location": "europe-central2",
+      "description": "Regional Endpoint"
+    },
+    {
+      "endpointUrl": "https://artifactregistry.europe-north1.rep.googleapis.com/",
+      "location": "europe-north1",
+      "description": "Regional Endpoint"
+    },
+    {
+      "endpointUrl": "https://artifactregistry.europe-southwest1.rep.googleapis.com/",
+      "location": "europe-southwest1",
+      "description": "Regional Endpoint"
+    },
+    {
+      "endpointUrl": "https://artifactregistry.europe-west1.rep.googleapis.com/",
+      "location": "europe-west1",
+      "description": "Regional Endpoint"
+    },
+    {
+      "endpointUrl": "https://artifactregistry.europe-west10.rep.googleapis.com/",
+      "location": "europe-west10",
+      "description": "Regional Endpoint"
+    },
+    {
+      "endpointUrl": "https://artifactregistry.europe-west12.rep.googleapis.com/",
+      "location": "europe-west12",
+      "description": "Regional Endpoint"
+    },
+    {
+      "endpointUrl": "https://artifactregistry.europe-west2.rep.googleapis.com/",
+      "location": "europe-west2",
+      "description": "Regional Endpoint"
+    },
+    {
+      "endpointUrl": "https://artifactregistry.europe-west3.rep.googleapis.com/",
+      "location": "europe-west3",
+      "description": "Regional Endpoint"
+    },
+    {
+      "endpointUrl": "https://artifactregistry.europe-west4.rep.googleapis.com/",
+      "location": "europe-west4",
+      "description": "Regional Endpoint"
+    },
+    {
+      "endpointUrl": "https://artifactregistry.europe-west6.rep.googleapis.com/",
+      "location": "europe-west6",
+      "description": "Regional Endpoint"
+    },
+    {
+      "endpointUrl": "https://artifactregistry.europe-west8.rep.googleapis.com/",
+      "location": "europe-west8",
+      "description": "Regional Endpoint"
+    },
+    {
+      "endpointUrl": "https://artifactregistry.europe-west9.rep.googleapis.com/",
+      "location": "europe-west9",
+      "description": "Regional Endpoint"
+    },
+    {
+      "endpointUrl": "https://artifactregistry.me-central1.rep.googleapis.com/",
+      "location": "me-central1",
+      "description": "Regional Endpoint"
+    },
+    {
+      "endpointUrl": "https://artifactregistry.me-west1.rep.googleapis.com/",
+      "location": "me-west1",
+      "description": "Regional Endpoint"
+    },
+    {
+      "endpointUrl": "https://artifactregistry.northamerica-northeast1.rep.googleapis.com/",
+      "location": "northamerica-northeast1",
+      "description": "Regional Endpoint"
+    },
+    {
+      "endpointUrl": "https://artifactregistry.northamerica-northeast2.rep.googleapis.com/",
+      "location": "northamerica-northeast2",
+      "description": "Regional Endpoint"
+    },
+    {
+      "endpointUrl": "https://artifactregistry.southamerica-east1.rep.googleapis.com/",
+      "location": "southamerica-east1",
+      "description": "Regional Endpoint"
+    },
+    {
+      "endpointUrl": "https://artifactregistry.southamerica-west1.rep.googleapis.com/",
+      "location": "southamerica-west1",
+      "description": "Regional Endpoint"
+    },
+    {
+      "endpointUrl": "https://artifactregistry.us-central1.rep.googleapis.com/",
+      "location": "us-central1",
+      "description": "Regional Endpoint"
+    },
+    {
+      "endpointUrl": "https://artifactregistry.us-central2.rep.googleapis.com/",
+      "location": "us-central2",
+      "description": "Regional Endpoint"
+    },
+    {
+      "endpointUrl": "https://artifactregistry.us-east1.rep.googleapis.com/",
+      "location": "us-east1",
+      "description": "Regional Endpoint"
+    },
+    {
+      "endpointUrl": "https://artifactregistry.us-east4.rep.googleapis.com/",
+      "location": "us-east4",
+      "description": "Regional Endpoint"
+    },
+    {
+      "endpointUrl": "https://artifactregistry.us-east5.rep.googleapis.com/",
+      "location": "us-east5",
+      "description": "Regional Endpoint"
+    },
+    {
+      "endpointUrl": "https://artifactregistry.us-east7.rep.googleapis.com/",
+      "location": "us-east7",
+      "description": "Regional Endpoint"
+    },
+    {
+      "endpointUrl": "https://artifactregistry.us-south1.rep.googleapis.com/",
+      "location": "us-south1",
+      "description": "Regional Endpoint"
+    },
+    {
+      "endpointUrl": "https://artifactregistry.us-west1.rep.googleapis.com/",
+      "location": "us-west1",
+      "description": "Regional Endpoint"
+    },
+    {
+      "endpointUrl": "https://artifactregistry.us-west2.rep.googleapis.com/",
+      "location": "us-west2",
+      "description": "Regional Endpoint"
+    },
+    {
+      "endpointUrl": "https://artifactregistry.us-west3.rep.googleapis.com/",
+      "location": "us-west3",
+      "description": "Regional Endpoint"
+    },
+    {
+      "endpointUrl": "https://artifactregistry.us-west4.rep.googleapis.com/",
+      "location": "us-west4",
+      "description": "Regional Endpoint"
+    },
+    {
+      "endpointUrl": "https://artifactregistry.us-west8.rep.googleapis.com/",
+      "location": "us-west8",
+      "description": "Regional Endpoint"
+    },
+    {
       "endpointUrl": "https://artifactregistry.me-central2.rep.googleapis.com/",
       "location": "me-central2",
       "description": "Regional Endpoint"
@@ -704,7 +914,7 @@
                           "type": "string"
                         },
                         "pageSize": {
-                          "description": "The maximum number of artifacts to return.",
+                          "description": "The maximum number of artifacts to return. Maximum page size is 1,000.",
                           "format": "int32",
                           "location": "query",
                           "type": "integer"
@@ -735,6 +945,31 @@
                 },
                 "files": {
                   "methods": {
+                    "delete": {
+                      "description": "Deletes a file and all of its content. It is only allowed on generic repositories. The returned operation will complete once the file has been deleted.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/repositories/{repositoriesId}/files/{filesId}",
+                      "httpMethod": "DELETE",
+                      "id": "artifactregistry.projects.locations.repositories.files.delete",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The name of the file to delete.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/repositories/[^/]+/files/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}",
+                      "response": {
+                        "$ref": "Operation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
                     "download": {
                       "description": "Download a file.",
                       "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/repositories/{repositoriesId}/files/{filesId}:download",
@@ -809,7 +1044,7 @@
                           "type": "string"
                         },
                         "pageSize": {
-                          "description": "The maximum number of files to return.",
+                          "description": "The maximum number of files to return. Maximum page size is 1,000.",
                           "format": "int32",
                           "location": "query",
                           "type": "integer"
@@ -841,7 +1076,7 @@
                 "genericArtifacts": {
                   "methods": {
                     "upload": {
-                      "description": "Directly uploads a Generic artifact. The returned Operation will complete once the resources are uploaded. Package, Version, and File resources are created based on the uploaded artifact. Uploaded artifacts that conflict with existing resources will raise an ALREADY_EXISTS error.",
+                      "description": "Directly uploads a Generic artifact. The returned operation will complete once the resources are uploaded. Package, version, and file resources are created based on the uploaded artifact. Uploaded artifacts that conflict with existing resources will raise an `ALREADY_EXISTS` error.",
                       "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/repositories/{repositoriesId}/genericArtifacts:create",
                       "httpMethod": "POST",
                       "id": "artifactregistry.projects.locations.repositories.genericArtifacts.upload",
@@ -1084,7 +1319,7 @@
                       ],
                       "parameters": {
                         "pageSize": {
-                          "description": "The maximum number of artifacts to return.",
+                          "description": "The maximum number of artifacts to return. Maximum page size is 1,000.",
                           "format": "int32",
                           "location": "query",
                           "type": "integer"
@@ -1151,7 +1386,7 @@
                       ],
                       "parameters": {
                         "pageSize": {
-                          "description": "The maximum number of artifacts to return.",
+                          "description": "The maximum number of artifacts to return. Maximum page size is 1,000.",
                           "format": "int32",
                           "location": "query",
                           "type": "integer"
@@ -1407,7 +1642,7 @@
                               "type": "string"
                             },
                             "pageSize": {
-                              "description": "The maximum number of tags to return. Maximum page size is 10,000.",
+                              "description": "The maximum number of tags to return. Maximum page size is 1,000.",
                               "format": "int32",
                               "location": "query",
                               "type": "integer"
@@ -1670,7 +1905,7 @@
                       ],
                       "parameters": {
                         "pageSize": {
-                          "description": "The maximum number of artifacts to return.",
+                          "description": "The maximum number of artifacts to return. Maximum page size is 1,000.",
                           "format": "int32",
                           "location": "query",
                           "type": "integer"
@@ -1778,7 +2013,7 @@
       }
     }
   },
-  "revision": "20240501",
+  "revision": "20240520",
   "rootUrl": "https://artifactregistry.googleapis.com/",
   "schemas": {
     "AptArtifact": {
@@ -3244,7 +3479,7 @@
           "type": "string"
         },
         "disallowUnspecifiedMode": {
-          "description": "Optional. If this is true, aunspecified repo type will be treated as error. Is used for new repo types that don't have any specific fields. Right now is used by AOSS team when creating repos for customers.",
+          "description": "Optional. If this is true, an unspecified repo type will be treated as error rather than defaulting to standard.",
           "type": "boolean"
         },
         "dockerConfig": {
@@ -3303,14 +3538,16 @@
             "STANDARD_REPOSITORY",
             "VIRTUAL_REPOSITORY",
             "REMOTE_REPOSITORY",
-            "AOSS_REPOSITORY"
+            "AOSS_REPOSITORY",
+            "ASSURED_OSS_REPOSITORY"
           ],
           "enumDescriptions": [
             "Unspecified mode.",
             "A standard repository storing artifacts.",
             "A virtual repository to serve artifacts from one or more sources.",
             "A remote repository to serve artifacts from a remote source.",
-            "An AOSS repository provides artifacts from AOSS upstreams."
+            "An AOSS repository provides artifacts from AOSS upstreams.",
+            "Replacement of AOSS_REPOSITORY."
           ],
           "type": "string"
         },
@@ -3491,20 +3728,15 @@
       "id": "UploadGenericArtifactRequest",
       "properties": {
         "filename": {
-          "description": "The name of the file of the generic artifact to be uploaded. E.g. \"example-file.zip\" The filename should only include letters, numbers, and url safe characters, i.e. [a-zA-Z0-9-_.~@].",
-          "type": "string"
-        },
-        "name": {
-          "deprecated": true,
-          "description": "Deprecated. Use package_id, version_id and filename instead. The resource name of the generic artifact. E.g. \"projects/math/locations/us/repositories/operations/genericArtifacts/addition/1.0.0/add.py\"",
+          "description": "The name of the file of the generic artifact to be uploaded. E.g. `example-file.zip` The filename is limited to letters, numbers, and url safe characters, i.e. [a-zA-Z0-9-_.~@].",
           "type": "string"
         },
         "packageId": {
-          "description": "The ID of the package of the generic artifact. If the package does not exist, a new package will be created. E.g. \"pkg-1\" The package_id must start with a letter, end with a letter or number, only contain letters, numbers, hyphens and periods i.e. [a-z0-9-.], and cannot exceed 256 characters.",
+          "description": "The ID of the package of the generic artifact. If the package does not exist, a new package will be created. The `package_id` must start with a letter, end with a letter or number, only contain letters, numbers, hyphens and periods i.e. [a-z0-9-.], and cannot exceed 256 characters.",
           "type": "string"
         },
         "versionId": {
-          "description": "The ID of the version of the generic artifact. If the version does not exist, a new version will be created. E.g.\"1.0.0\" The version_id must start and end with a letter or number, can only contain lowercase letters, numbers, hyphens and periods, i.e. [a-z0-9-.] and cannot exceed a total of 128 characters. While \"latest\" is a well-known name for the latest version of a package, it is not yet supported and is reserved for future use. Creating a version called \"latest\" is not allowed.",
+          "description": "The ID of the version of the generic artifact. If the version does not exist, a new version will be created. The version_id must start and end with a letter or number, can only contain lowercase letters, numbers, hyphens and periods, i.e. [a-z0-9-.] and cannot exceed a total of 128 characters. Creating a version called `latest` is not allowed.",
           "type": "string"
         }
       },
@@ -3755,7 +3987,7 @@
       "type": "object"
     },
     "VirtualRepositoryConfig": {
-      "description": "LINT.IfChange Virtual repository configuration.",
+      "description": "Virtual repository configuration.",
       "id": "VirtualRepositoryConfig",
       "properties": {
         "upstreamPolicies": {
