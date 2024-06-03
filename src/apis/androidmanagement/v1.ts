@@ -539,7 +539,7 @@ export namespace androidmanagement_v1 {
    */
   export interface Schema$BatchUsageLogEvents {
     /**
-     * The name of the device in the form ‘enterprises/{enterpriseId\}/devices/{deviceId\}’
+     * If present, the name of the device in the form ‘enterprises/{enterpriseId\}/devices/{deviceId\}’
      */
     device?: string | null;
     /**
@@ -551,7 +551,7 @@ export namespace androidmanagement_v1 {
      */
     usageLogEvents?: Schema$UsageLogEvent[];
     /**
-     * The resource name of the user that owns this device in the form ‘enterprises/{enterpriseId\}/users/{userId\}’.
+     * If present, the resource name of the user that owns this device in the form ‘enterprises/{enterpriseId\}/users/{userId\}’.
      */
     user?: string | null;
   }
@@ -2609,7 +2609,7 @@ export namespace androidmanagement_v1 {
      */
     enterprise?: string | null;
     /**
-     * IMEI number of the GSM device. For example, A1000031212.
+     * For corporate-owned devices, IMEI number of the GSM device. For example, A1000031212.
      */
     imei?: string | null;
     /**
@@ -2617,7 +2617,7 @@ export namespace androidmanagement_v1 {
      */
     managementMode?: string | null;
     /**
-     * MEID number of the CDMA device. For example, A00000292788E1.
+     * For corporate-owned devices, MEID number of the CDMA device. For example, A00000292788E1.
      */
     meid?: string | null;
     /**
@@ -2633,7 +2633,7 @@ export namespace androidmanagement_v1 {
      */
     ownership?: string | null;
     /**
-     * The device serial number.
+     * For corporate-owned devices, The device serial number.
      */
     serialNumber?: string | null;
   }
@@ -6656,6 +6656,10 @@ export namespace androidmanagement_v1 {
 
   export interface Params$Resource$Signupurls$Create
     extends StandardParameters {
+    /**
+     * Optional. Email address used to prefill the admin field of the enterprise signup form. This value is a hint only and can be altered by the user.
+     */
+    adminEmail?: string;
     /**
      * The callback URL that the admin will be redirected to after successfully creating an enterprise. Before redirecting there the system will add a query parameter to this URL named enterpriseToken which will contain an opaque token to be used for the create enterprise request. The URL will be parsed then reformatted in order to add the enterpriseToken parameter, so there may be some minor formatting changes.
      */
