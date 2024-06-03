@@ -3019,6 +3019,10 @@ export namespace osconfig_v1alpha {
      * Required. The parent resource name in the form: projects/{project\}/locations/{location\}
      */
     parent?: string;
+    /**
+     * Optional. A unique identifier for this request. Restricted to 36 ASCII characters. A random UUID is recommended. This request is only idempotent if a `request_id` is provided.
+     */
+    requestId?: string;
 
     /**
      * Request body metadata
@@ -3031,6 +3035,10 @@ export namespace osconfig_v1alpha {
      * Required. The name of the OS policy assignment to be deleted
      */
     name?: string;
+    /**
+     * Optional. A unique identifier for this request. Restricted to 36 ASCII characters. A random UUID is recommended. This request is only idempotent if a `request_id` is provided.
+     */
+    requestId?: string;
   }
   export interface Params$Resource$Projects$Locations$Ospolicyassignments$Get
     extends StandardParameters {
@@ -3072,9 +3080,17 @@ export namespace osconfig_v1alpha {
   export interface Params$Resource$Projects$Locations$Ospolicyassignments$Patch
     extends StandardParameters {
     /**
+     * Optional. If set to true, and the OS policy assignment is not found, a new OS policy assignment will be created. In this situation, `update_mask` is ignored.
+     */
+    allowMissing?: boolean;
+    /**
      * Resource name. Format: `projects/{project_number\}/locations/{location\}/osPolicyAssignments/{os_policy_assignment_id\}` This field is ignored when you create an OS policy assignment.
      */
     name?: string;
+    /**
+     * Optional. A unique identifier for this request. Restricted to 36 ASCII characters. A random UUID is recommended. This request is only idempotent if a `request_id` is provided.
+     */
+    requestId?: string;
     /**
      * Optional. Field mask that controls which fields of the assignment should be updated.
      */
