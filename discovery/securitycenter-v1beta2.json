@@ -1906,7 +1906,7 @@
       }
     }
   },
-  "revision": "20240422",
+  "revision": "20240527",
   "rootUrl": "https://securitycenter.googleapis.com/",
   "schemas": {
     "Access": {
@@ -3800,7 +3800,7 @@
       "type": "object"
     },
     "GoogleCloudSecuritycenterV1ResourceValueConfig": {
-      "description": "A resource value config (RVC) is a mapping configuration of user's resources to resource values. Used in Attack path simulations.",
+      "description": "A resource value configuration (RVC) is a mapping configuration of user's resources to resource values. Used in Attack path simulations.",
       "id": "GoogleCloudSecuritycenterV1ResourceValueConfig",
       "properties": {
         "cloudProvider": {
@@ -3820,28 +3820,28 @@
           "type": "string"
         },
         "createTime": {
-          "description": "Output only. Timestamp this resource value config was created.",
+          "description": "Output only. Timestamp this resource value configuration was created.",
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
         },
         "description": {
-          "description": "Description of the resource value config.",
+          "description": "Description of the resource value configuration.",
           "type": "string"
         },
         "name": {
-          "description": "Name for the resource value config",
+          "description": "Name for the resource value configuration",
           "type": "string"
         },
         "resourceLabelsSelector": {
           "additionalProperties": {
             "type": "string"
           },
-          "description": "List of resource labels to search for, evaluated with AND. E.g. \"resource_labels_selector\": {\"key\": \"value\", \"env\": \"prod\"} will match resources with labels \"key\": \"value\" AND \"env\": \"prod\" https://cloud.google.com/resource-manager/docs/creating-managing-labels",
+          "description": "List of resource labels to search for, evaluated with AND. For example, \"resource_labels_selector\": {\"key\": \"value\", \"env\": \"prod\"} will match resources with labels \"key\": \"value\" AND \"env\": \"prod\" https://cloud.google.com/resource-manager/docs/creating-managing-labels",
           "type": "object"
         },
         "resourceType": {
-          "description": "Apply resource_value only to resources that match resource_type. resource_type will be checked with \"AND\" of other resources. E.g. \"storage.googleapis.com/Bucket\" with resource_value \"HIGH\" will apply \"HIGH\" value only to \"storage.googleapis.com/Bucket\" resources.",
+          "description": "Apply resource_value only to resources that match resource_type. resource_type will be checked with AND of other resources. For example, \"storage.googleapis.com/Bucket\" with resource_value \"HIGH\" will apply \"HIGH\" value only to \"storage.googleapis.com/Bucket\" resources.",
           "type": "string"
         },
         "resourceValue": {
@@ -3863,7 +3863,7 @@
           "type": "string"
         },
         "scope": {
-          "description": "Project or folder to scope this config to. For example, \"project/456\" would apply this config only to resources in \"project/456\" scope will be checked with \"AND\" of other resources.",
+          "description": "Project or folder to scope this configuration to. For example, \"project/456\" would apply this configuration only to resources in \"project/456\" scope will be checked with AND of other resources.",
           "type": "string"
         },
         "sensitiveDataProtectionMapping": {
@@ -3871,14 +3871,14 @@
           "description": "A mapping of the sensitivity on Sensitive Data Protection finding to resource values. This mapping can only be used in combination with a resource_type that is related to BigQuery, e.g. \"bigquery.googleapis.com/Dataset\"."
         },
         "tagValues": {
-          "description": "Required. Tag values combined with AND to check against. Values in the form \"tagValues/123\" E.g. [ \"tagValues/123\", \"tagValues/456\", \"tagValues/789\" ] https://cloud.google.com/resource-manager/docs/tags/tags-creating-and-managing",
+          "description": "Required. Tag values combined with AND to check against. Values in the form \"tagValues/123\" Example: [ \"tagValues/123\", \"tagValues/456\", \"tagValues/789\" ] https://cloud.google.com/resource-manager/docs/tags/tags-creating-and-managing",
           "items": {
             "type": "string"
           },
           "type": "array"
         },
         "updateTime": {
-          "description": "Output only. Timestamp this resource value config was last updated.",
+          "description": "Output only. Timestamp this resource value configuration was last updated.",
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
@@ -6650,7 +6650,7 @@
       "type": "object"
     },
     "GoogleCloudSecuritycenterV2ResourceValueConfig": {
-      "description": "A resource value config (RVC) is a mapping configuration of user's resources to resource values. Used in Attack path simulations.",
+      "description": "A resource value configuration (RVC) is a mapping configuration of user's resources to resource values. Used in Attack path simulations.",
       "id": "GoogleCloudSecuritycenterV2ResourceValueConfig",
       "properties": {
         "cloudProvider": {
@@ -6670,28 +6670,28 @@
           "type": "string"
         },
         "createTime": {
-          "description": "Output only. Timestamp this resource value config was created.",
+          "description": "Output only. Timestamp this resource value configuration was created.",
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
         },
         "description": {
-          "description": "Description of the resource value config.",
+          "description": "Description of the resource value configuration.",
           "type": "string"
         },
         "name": {
-          "description": "Name for the resource value config",
+          "description": "Name for the resource value configuration",
           "type": "string"
         },
         "resourceLabelsSelector": {
           "additionalProperties": {
             "type": "string"
           },
-          "description": "List of resource labels to search for, evaluated with AND. E.g. \"resource_labels_selector\": {\"key\": \"value\", \"env\": \"prod\"} will match resources with labels \"key\": \"value\" AND \"env\": \"prod\" https://cloud.google.com/resource-manager/docs/creating-managing-labels",
+          "description": "List of resource labels to search for, evaluated with AND. For example, \"resource_labels_selector\": {\"key\": \"value\", \"env\": \"prod\"} will match resources with labels \"key\": \"value\" AND \"env\": \"prod\" https://cloud.google.com/resource-manager/docs/creating-managing-labels",
           "type": "object"
         },
         "resourceType": {
-          "description": "Apply resource_value only to resources that match resource_type. resource_type will be checked with \"AND\" of other resources. E.g. \"storage.googleapis.com/Bucket\" with resource_value \"HIGH\" will apply \"HIGH\" value only to \"storage.googleapis.com/Bucket\" resources.",
+          "description": "Apply resource_value only to resources that match resource_type. resource_type will be checked with AND of other resources. For example, \"storage.googleapis.com/Bucket\" with resource_value \"HIGH\" will apply \"HIGH\" value only to \"storage.googleapis.com/Bucket\" resources.",
           "type": "string"
         },
         "resourceValue": {
@@ -6713,7 +6713,7 @@
           "type": "string"
         },
         "scope": {
-          "description": "Project or folder to scope this config to. For example, \"project/456\" would apply this config only to resources in \"project/456\" scope will be checked with \"AND\" of other resources.",
+          "description": "Project or folder to scope this configuration to. For example, \"project/456\" would apply this configuration only to resources in \"project/456\" scope will be checked with AND of other resources.",
           "type": "string"
         },
         "sensitiveDataProtectionMapping": {
@@ -6721,14 +6721,14 @@
           "description": "A mapping of the sensitivity on Sensitive Data Protection finding to resource values. This mapping can only be used in combination with a resource_type that is related to BigQuery, e.g. \"bigquery.googleapis.com/Dataset\"."
         },
         "tagValues": {
-          "description": "Required. Tag values combined with AND to check against. Values in the form \"tagValues/123\" E.g. [ \"tagValues/123\", \"tagValues/456\", \"tagValues/789\" ] https://cloud.google.com/resource-manager/docs/tags/tags-creating-and-managing",
+          "description": "Required. Tag values combined with AND to check against. Values in the form \"tagValues/123\" Example: [ \"tagValues/123\", \"tagValues/456\", \"tagValues/789\" ] https://cloud.google.com/resource-manager/docs/tags/tags-creating-and-managing",
           "items": {
             "type": "string"
           },
           "type": "array"
         },
         "updateTime": {
-          "description": "Output only. Timestamp this resource value config was last updated.",
+          "description": "Output only. Timestamp this resource value configuration was last updated.",
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
