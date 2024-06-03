@@ -2683,7 +2683,7 @@
     "uptimeCheckIps": {
       "methods": {
         "list": {
-          "description": "Returns the list of IP addresses that checkers run from",
+          "description": "Returns the list of IP addresses that checkers run from.",
           "flatPath": "v3/uptimeCheckIps",
           "httpMethod": "GET",
           "id": "monitoring.uptimeCheckIps.list",
@@ -2714,7 +2714,7 @@
       }
     }
   },
-  "revision": "20240427",
+  "revision": "20240526",
   "rootUrl": "https://monitoring.googleapis.com/",
   "schemas": {
     "Aggregation": {
