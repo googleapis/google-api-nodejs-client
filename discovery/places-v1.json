@@ -276,7 +276,7 @@
       }
     }
   },
-  "revision": "20240430",
+  "revision": "20240529",
   "rootUrl": "https://places.googleapis.com/",
   "schemas": {
     "GoogleGeoTypeViewport": {
@@ -322,7 +322,7 @@
           "type": "boolean"
         },
         "includedPrimaryTypes": {
-          "description": "Optional. Included primary Place type (for example, \"restaurant\" or \"gas_station\") from https://developers.google.com/maps/documentation/places/web-service/place-types. A Place is only returned if its primary type is included in this list. Up to 5 values can be specified. If no types are specified, all Place types are returned.",
+          "description": "Optional. Included primary Place type (for example, \"restaurant\" or \"gas_station\") in Place Types (https://developers.google.com/maps/documentation/places/web-service/place-types), or only `(regions)`, or only `(cities)`. A Place is only returned if its primary type is included in this list. Up to 5 values can be specified. If no types are specified, all Place types are returned.",
           "items": {
             "type": "string"
           },
@@ -542,6 +542,133 @@
           "description": "Required. Radius measured in meters. The radius must be within [0.0, 50000.0].",
           "format": "double",
           "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleMapsPlacesV1ContentBlock": {
+      "description": "A block of content that can be served individually.",
+      "id": "GoogleMapsPlacesV1ContentBlock",
+      "properties": {
+        "content": {
+          "$ref": "GoogleTypeLocalizedText",
+          "description": "Content related to the topic."
+        },
+        "references": {
+          "$ref": "GoogleMapsPlacesV1References",
+          "description": "Experimental: See https://developers.google.com/maps/documentation/places/web-service/experimental/places-generative for more details. References that are related to this block of content."
+        },
+        "topic": {
+          "description": "The topic of the content, for example \"overview\" or \"restaurant\".",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleMapsPlacesV1ContextualContent": {
+      "description": "Experimental: See https://developers.google.com/maps/documentation/places/web-service/experimental/places-generative for more details. Content that is contextual to the place query.",
+      "id": "GoogleMapsPlacesV1ContextualContent",
+      "properties": {
+        "justifications": {
+          "description": "Experimental: See https://developers.google.com/maps/documentation/places/web-service/experimental/places-generative for more details. Justifications for the place.",
+          "items": {
+            "$ref": "GoogleMapsPlacesV1ContextualContentJustification"
+          },
+          "type": "array"
+        },
+        "photos": {
+          "description": "Information (including references) about photos of this place, contexual to the place query.",
+          "items": {
+            "$ref": "GoogleMapsPlacesV1Photo"
+          },
+          "type": "array"
+        },
+        "reviews": {
+          "description": "List of reviews about this place, contexual to the place query.",
+          "items": {
+            "$ref": "GoogleMapsPlacesV1Review"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleMapsPlacesV1ContextualContentJustification": {
+      "description": "Experimental: See https://developers.google.com/maps/documentation/places/web-service/experimental/places-generative for more details. Justifications for the place. Justifications answers the question of why a place could interest an end user.",
+      "id": "GoogleMapsPlacesV1ContextualContentJustification",
+      "properties": {
+        "businessAvailabilityAttributesJustification": {
+          "$ref": "GoogleMapsPlacesV1ContextualContentJustificationBusinessAvailabilityAttributesJustification",
+          "description": "Experimental: See https://developers.google.com/maps/documentation/places/web-service/experimental/places-generative for more details."
+        },
+        "reviewJustification": {
+          "$ref": "GoogleMapsPlacesV1ContextualContentJustificationReviewJustification",
+          "description": "Experimental: See https://developers.google.com/maps/documentation/places/web-service/experimental/places-generative for more details."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleMapsPlacesV1ContextualContentJustificationBusinessAvailabilityAttributesJustification": {
+      "description": "Experimental: See https://developers.google.com/maps/documentation/places/web-service/experimental/places-generative for more details. BusinessAvailabilityAttributes justifications. This shows some attributes a business has that could interest an end user.",
+      "id": "GoogleMapsPlacesV1ContextualContentJustificationBusinessAvailabilityAttributesJustification",
+      "properties": {
+        "delivery": {
+          "description": "If a place provides delivery.",
+          "type": "boolean"
+        },
+        "dineIn": {
+          "description": "If a place provides dine-in.",
+          "type": "boolean"
+        },
+        "takeout": {
+          "description": "If a place provides takeout.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleMapsPlacesV1ContextualContentJustificationReviewJustification": {
+      "description": "Experimental: See https://developers.google.com/maps/documentation/places/web-service/experimental/places-generative for more details. User review justifications. This highlights a section of the user review that would interest an end user. For instance, if the search query is \"firewood pizza\", the review justification highlights the text relevant to the search query.",
+      "id": "GoogleMapsPlacesV1ContextualContentJustificationReviewJustification",
+      "properties": {
+        "highlightedText": {
+          "$ref": "GoogleMapsPlacesV1ContextualContentJustificationReviewJustificationHighlightedText"
+        },
+        "review": {
+          "$ref": "GoogleMapsPlacesV1Review",
+          "description": "The review that the highlighted text is generated from."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleMapsPlacesV1ContextualContentJustificationReviewJustificationHighlightedText": {
+      "description": "The text highlighted by the justification. This is a subset of the review itself. The exact word to highlight is marked by the HighlightedTextRange. There could be several words in the text being highlighted.",
+      "id": "GoogleMapsPlacesV1ContextualContentJustificationReviewJustificationHighlightedText",
+      "properties": {
+        "highlightedTextRanges": {
+          "description": "The list of the ranges of the highlighted text.",
+          "items": {
+            "$ref": "GoogleMapsPlacesV1ContextualContentJustificationReviewJustificationHighlightedTextHighlightedTextRange"
+          },
+          "type": "array"
+        },
+        "text": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleMapsPlacesV1ContextualContentJustificationReviewJustificationHighlightedTextHighlightedTextRange": {
+      "description": "The range of highlighted text.",
+      "id": "GoogleMapsPlacesV1ContextualContentJustificationReviewJustificationHighlightedTextHighlightedTextRange",
+      "properties": {
+        "endIndex": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "startIndex": {
+          "format": "int32",
+          "type": "integer"
         }
       },
       "type": "object"
@@ -767,6 +894,10 @@
           "description": "Place allows dogs.",
           "type": "boolean"
         },
+        "areaSummary": {
+          "$ref": "GoogleMapsPlacesV1PlaceAreaSummary",
+          "description": "Experimental: See https://developers.google.com/maps/documentation/places/web-service/experimental/places-generative for more details. AI-generated summary of the area that the place is in."
+        },
         "attributions": {
           "description": "A set of data provider that must be shown with this result.",
           "items": {
@@ -832,6 +963,10 @@
         "fuelOptions": {
           "$ref": "GoogleMapsPlacesV1FuelOptions",
           "description": "The most recent information about fuel options in a gas station. This information is updated regularly."
+        },
+        "generativeSummary": {
+          "$ref": "GoogleMapsPlacesV1PlaceGenerativeSummary",
+          "description": "Experimental: See https://developers.google.com/maps/documentation/places/web-service/experimental/places-generative for more details. AI-generated summary of the place."
         },
         "goodForChildren": {
           "description": "Place is good for children.",
@@ -1099,6 +1234,20 @@
       },
       "type": "object"
     },
+    "GoogleMapsPlacesV1PlaceAreaSummary": {
+      "description": "Experimental: See https://developers.google.com/maps/documentation/places/web-service/experimental/places-generative for more details. AI-generated summary of the area that the place is in.",
+      "id": "GoogleMapsPlacesV1PlaceAreaSummary",
+      "properties": {
+        "contentBlocks": {
+          "description": "Content blocks that compose the area summary. Each block has a separate topic about the area.",
+          "items": {
+            "$ref": "GoogleMapsPlacesV1ContentBlock"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "GoogleMapsPlacesV1PlaceAttribution": {
       "description": "Information about data providers of this place.",
       "id": "GoogleMapsPlacesV1PlaceAttribution",
@@ -1110,6 +1259,25 @@
         "providerUri": {
           "description": "URI to the Place's data provider.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleMapsPlacesV1PlaceGenerativeSummary": {
+      "description": "Experimental: See https://developers.google.com/maps/documentation/places/web-service/experimental/places-generative for more details. AI-generated summary of the place.",
+      "id": "GoogleMapsPlacesV1PlaceGenerativeSummary",
+      "properties": {
+        "description": {
+          "$ref": "GoogleTypeLocalizedText",
+          "description": "The detailed description of the place."
+        },
+        "overview": {
+          "$ref": "GoogleTypeLocalizedText",
+          "description": "The overview of the place."
+        },
+        "references": {
+          "$ref": "GoogleMapsPlacesV1References",
+          "description": "References that are used to generate the summary description."
         }
       },
       "type": "object"
@@ -1326,6 +1494,27 @@
       },
       "type": "object"
     },
+    "GoogleMapsPlacesV1References": {
+      "description": "Experimental: See https://developers.google.com/maps/documentation/places/web-service/experimental/places-generative for more details. Reference that the generative content is related to.",
+      "id": "GoogleMapsPlacesV1References",
+      "properties": {
+        "places": {
+          "description": "The list of resource names of the referenced places. This name can be used in other APIs that accept Place resource names.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "reviews": {
+          "description": "Reviews that serve as references.",
+          "items": {
+            "$ref": "GoogleMapsPlacesV1Review"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "GoogleMapsPlacesV1Review": {
       "description": "Information about a review of a place.",
       "id": "GoogleMapsPlacesV1Review",
@@ -1479,7 +1668,8 @@
           "description": "The region to search. This location serves as a restriction which means results outside given location will not be returned. Cannot be set along with location_bias."
         },
         "maxResultCount": {
-          "description": "Maximum number of results to return. It must be between 1 and 20, inclusively. The default is 20. If the number is unset, it falls back to the upper limit. If the number is set to negative or exceeds the upper limit, an INVALID_ARGUMENT error is returned.",
+          "deprecated": true,
+          "description": "Deprecated: Use `page_size` instead. The maximum number of results per page that can be returned. If the number of available results is larger than `max_result_count`, a `next_page_token` is returned which can be passed to `page_token` to get the next page of results in subsequent requests. If 0 or no value is provided, a default of 20 is used. The maximum value is 20; values above 20 will be coerced to 20. Negative values will return an INVALID_ARGUMENT error. If both `max_result_count` and `page_size` are specified, `max_result_count` will be ignored.",
           "format": "int32",
           "type": "integer"
         },
@@ -1491,6 +1681,15 @@
         "openNow": {
           "description": "Used to restrict the search to places that are currently open. The default is false.",
           "type": "boolean"
+        },
+        "pageSize": {
+          "description": "Optional. The maximum number of results per page that can be returned. If the number of available results is larger than `page_size`, a `next_page_token` is returned which can be passed to `page_token` to get the next page of results in subsequent requests. If 0 or no value is provided, a default of 20 is used. The maximum value is 20; values above 20 will be set to 20. Negative values will return an INVALID_ARGUMENT error. If both `max_result_count` and `page_size` are specified, `max_result_count` will be ignored.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "pageToken": {
+          "description": "Optional. A page token, received from a previous TextSearch call. Provide this to retrieve the subsequent page. When paginating, all parameters other than `page_token`, `page_size`, and `max_result_count` provided to TextSearch must match the initial call that provided the page token. Otherwise an INVALID_ARGUMENT error is returned.",
+          "type": "string"
         },
         "priceLevels": {
           "description": "Used to restrict the search to places that are marked as certain price levels. Users can choose any combinations of price levels. Default to select all price levels.",
@@ -1617,6 +1816,17 @@
       "description": "Response proto for SearchText. ",
       "id": "GoogleMapsPlacesV1SearchTextResponse",
       "properties": {
+        "contextualContents": {
+          "description": "Experimental: See https://developers.google.com/maps/documentation/places/web-service/experimental/places-generative for more details. A list of contextual contents where each entry associates to the corresponding place in the same index in the places field. The contents that are relevant to the `text_query` in the request are preferred. If the contextual content is not available for one of the places, it will return non-contextual content. It will be empty only when the content is unavailable for this place. This list should have as many entries as the list of places if requested.",
+          "items": {
+            "$ref": "GoogleMapsPlacesV1ContextualContent"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token that can be sent as `page_token` to retrieve the next page. If this field is omitted or empty, there are no subsequent pages.",
+          "type": "string"
+        },
         "places": {
           "description": "A list of places that meet the user's text search criteria.",
           "items": {
