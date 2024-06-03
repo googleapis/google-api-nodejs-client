@@ -1458,7 +1458,7 @@
       }
     }
   },
-  "revision": "20240424",
+  "revision": "20240517",
   "rootUrl": "https://alloydb.googleapis.com/",
   "schemas": {
     "AuthorizedNetwork": {
@@ -2386,6 +2386,14 @@
           "$ref": "ObservabilityInstanceConfig",
           "description": "Configuration for observability."
         },
+        "outboundPublicIpAddresses": {
+          "description": "Output only. All outbound public IP addresses configured for the instance.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
         "pscInstanceConfig": {
           "$ref": "PscInstanceConfig",
           "description": "Optional. The configuration for Private Service Connect (PSC) for the instance."
@@ -2473,6 +2481,10 @@
             "$ref": "AuthorizedNetwork"
           },
           "type": "array"
+        },
+        "enableOutboundPublicIp": {
+          "description": "Optional. Enabling an outbound public IP address to support a database server sending requests out into the internet.",
+          "type": "boolean"
         },
         "enablePublicIp": {
           "description": "Optional. Enabling public ip for the instance.",
@@ -3333,9 +3345,12 @@
           ],
           "type": "string"
         },
-        "recommendationSignalData": {
-          "$ref": "StorageDatabasecenterPartnerapiV1mainDatabaseResourceRecommendationSignalData",
+        "observabilityMetricData": {
+          "$ref": "StorageDatabasecenterPartnerapiV1mainObservabilityMetricData",
           "description": "More feed data would be added in subsequent CLs"
+        },
+        "recommendationSignalData": {
+          "$ref": "StorageDatabasecenterPartnerapiV1mainDatabaseResourceRecommendationSignalData"
         },
         "resourceHealthSignalData": {
           "$ref": "StorageDatabasecenterPartnerapiV1mainDatabaseResourceHealthSignalData"
@@ -3510,7 +3525,11 @@
             "SIGNAL_TYPE_CONNECTIONS_PERFORMANCE_IMPACT",
             "SIGNAL_TYPE_TMP_TABLES_PERFORMANCE_IMPACT",
             "SIGNAL_TYPE_TRANS_LOGS_PERFORMANCE_IMPACT",
-            "SIGNAL_TYPE_HIGH_JOINS_WITHOUT_INDEXES"
+            "SIGNAL_TYPE_HIGH_JOINS_WITHOUT_INDEXES",
+            "SIGNAL_TYPE_SUPERUSER_WRITING_TO_USER_TABLES",
+            "SIGNAL_TYPE_USER_GRANTED_ALL_PERMISSIONS",
+            "SIGNAL_TYPE_DATA_EXPORT_TO_EXTERNAL_CLOUD_STORAGE_BUCKET",
+            "SIGNAL_TYPE_DATA_EXPORT_TO_PUBLIC_CLOUD_STORAGE_BUCKET"
           ],
           "enumDeprecated": [
             false,
@@ -3518,6 +3537,10 @@
             false,
             true,
             true,
+            false,
+            false,
+            false,
+            false,
             false,
             false,
             false,
@@ -3648,7 +3671,11 @@
             "Performance impact of connections settings",
             "Performance impact of temporary tables settings",
             "Performance impact of transaction logs settings",
-            "Performance impact of high joins without indexes"
+            "Performance impact of high joins without indexes",
+            "Detects events where a Cloud SQL superuser (postgres for PostgreSQL servers or root for MySQL users) writes to non-system tables.",
+            "Detects events where a database user or role has been granted all privileges to a database, or to all tables, procedures, or functions in a schema.",
+            "Detects if database instance data exported to a Cloud Storage bucket outside of the organization.",
+            "Detects if database instance data exported to a Cloud Storage bucket that is owned by the organization and is publicly accessible."
           ],
           "type": "string"
         },
@@ -3831,6 +3858,10 @@
           "description": "The resource location. REQUIRED",
           "type": "string"
         },
+        "machineConfiguration": {
+          "$ref": "StorageDatabasecenterPartnerapiV1mainMachineConfiguration",
+          "description": "Machine configuration for this resource."
+        },
         "primaryResourceId": {
           "$ref": "StorageDatabasecenterPartnerapiV1mainDatabaseResourceId",
           "description": "Identifier for this resource's immediate parent/primary resource if the current resource is a replica or derived form of another Database resource. Else it would be NULL. REQUIRED if the immediate parent exists when first time resource is getting ingested, otherwise optional."
@@ -3989,7 +4020,11 @@
             "SIGNAL_TYPE_CONNECTIONS_PERFORMANCE_IMPACT",
             "SIGNAL_TYPE_TMP_TABLES_PERFORMANCE_IMPACT",
             "SIGNAL_TYPE_TRANS_LOGS_PERFORMANCE_IMPACT",
-            "SIGNAL_TYPE_HIGH_JOINS_WITHOUT_INDEXES"
+            "SIGNAL_TYPE_HIGH_JOINS_WITHOUT_INDEXES",
+            "SIGNAL_TYPE_SUPERUSER_WRITING_TO_USER_TABLES",
+            "SIGNAL_TYPE_USER_GRANTED_ALL_PERMISSIONS",
+            "SIGNAL_TYPE_DATA_EXPORT_TO_EXTERNAL_CLOUD_STORAGE_BUCKET",
+            "SIGNAL_TYPE_DATA_EXPORT_TO_PUBLIC_CLOUD_STORAGE_BUCKET"
           ],
           "enumDeprecated": [
             false,
@@ -3997,6 +4032,10 @@
             false,
             true,
             true,
+            false,
+            false,
+            false,
+            false,
             false,
             false,
             false,
@@ -4127,7 +4166,11 @@
             "Performance impact of connections settings",
             "Performance impact of temporary tables settings",
             "Performance impact of transaction logs settings",
-            "Performance impact of high joins without indexes"
+            "Performance impact of high joins without indexes",
+            "Detects events where a Cloud SQL superuser (postgres for PostgreSQL servers or root for MySQL users) writes to non-system tables.",
+            "Detects events where a database user or role has been granted all privileges to a database, or to all tables, procedures, or functions in a schema.",
+            "Detects if database instance data exported to a Cloud Storage bucket outside of the organization.",
+            "Detects if database instance data exported to a Cloud Storage bucket that is owned by the organization and is publicly accessible."
           ],
           "type": "string"
         }
@@ -4163,6 +4206,55 @@
             "The root entitlement representing Gemini package ownership."
           ],
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "StorageDatabasecenterPartnerapiV1mainMachineConfiguration": {
+      "description": "MachineConfiguration describes the configuration of a machine specific to Database Resource.",
+      "id": "StorageDatabasecenterPartnerapiV1mainMachineConfiguration",
+      "properties": {
+        "cpuCount": {
+          "description": "The number of CPUs.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "memorySizeInBytes": {
+          "description": "Memory size in bytes.",
+          "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "StorageDatabasecenterPartnerapiV1mainObservabilityMetricData": {
+      "id": "StorageDatabasecenterPartnerapiV1mainObservabilityMetricData",
+      "properties": {
+        "metricTimestamp": {
+          "description": "Required. The timestamp of the metric value.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "metricType": {
+          "description": "Required. Type of metric like CPU, Memory, etc.",
+          "enum": [
+            "METRIC_TYPE_UNSPECIFIED",
+            "INSTANCE_PEAK_CPU_UTILISATION"
+          ],
+          "enumDescriptions": [
+            "",
+            "Peak CPU utilization for a DB instance as a fraction between 0.0 and 1.0 (may momentarily exceed 1.0 in some cases) List will keep increasing, e.g. PEAK_MEMORY_UTILISATION, NUMBER_OF_CONNECTIONS, SUCCESS_RATIO_FOR_QUERIES, etc."
+          ],
+          "type": "string"
+        },
+        "resourceName": {
+          "description": "Required. Database resource name associated with the signal. Resource name to follow CAIS resource_name format as noted here go/condor-common-datamodel",
+          "type": "string"
+        },
+        "value": {
+          "description": "Required. Value of the metric type.",
+          "format": "double",
+          "type": "number"
         }
       },
       "type": "object"

@@ -718,6 +718,10 @@ export namespace alloydb_v1beta {
      */
     observabilityConfig?: Schema$ObservabilityInstanceConfig;
     /**
+     * Output only. All outbound public IP addresses configured for the instance.
+     */
+    outboundPublicIpAddresses?: string[] | null;
+    /**
      * Optional. The configuration for Private Service Connect (PSC) for the instance.
      */
     pscInstanceConfig?: Schema$PscInstanceConfig;
@@ -770,6 +774,10 @@ export namespace alloydb_v1beta {
      * Optional. A list of external network authorized to access this instance.
      */
     authorizedExternalNetworks?: Schema$AuthorizedNetwork[];
+    /**
+     * Optional. Enabling an outbound public IP address to support a database server sending requests out into the internet.
+     */
+    enableOutboundPublicIp?: boolean | null;
     /**
      * Optional. Enabling public ip for the instance.
      */
@@ -1356,6 +1364,7 @@ export namespace alloydb_v1beta {
     /**
      * More feed data would be added in subsequent CLs
      */
+    observabilityMetricData?: Schema$StorageDatabasecenterPartnerapiV1mainObservabilityMetricData;
     recommendationSignalData?: Schema$StorageDatabasecenterPartnerapiV1mainDatabaseResourceRecommendationSignalData;
     resourceHealthSignalData?: Schema$StorageDatabasecenterPartnerapiV1mainDatabaseResourceHealthSignalData;
     /**
@@ -1488,6 +1497,10 @@ export namespace alloydb_v1beta {
      */
     location?: string | null;
     /**
+     * Machine configuration for this resource.
+     */
+    machineConfiguration?: Schema$StorageDatabasecenterPartnerapiV1mainMachineConfiguration;
+    /**
      * Identifier for this resource's immediate parent/primary resource if the current resource is a replica or derived form of another Database resource. Else it would be NULL. REQUIRED if the immediate parent exists when first time resource is getting ingested, otherwise optional.
      */
     primaryResourceId?: Schema$StorageDatabasecenterPartnerapiV1mainDatabaseResourceId;
@@ -1565,6 +1578,37 @@ export namespace alloydb_v1beta {
      * An enum that represents the type of this entitlement.
      */
     type?: string | null;
+  }
+  /**
+   * MachineConfiguration describes the configuration of a machine specific to Database Resource.
+   */
+  export interface Schema$StorageDatabasecenterPartnerapiV1mainMachineConfiguration {
+    /**
+     * The number of CPUs.
+     */
+    cpuCount?: number | null;
+    /**
+     * Memory size in bytes.
+     */
+    memorySizeInBytes?: string | null;
+  }
+  export interface Schema$StorageDatabasecenterPartnerapiV1mainObservabilityMetricData {
+    /**
+     * Required. The timestamp of the metric value.
+     */
+    metricTimestamp?: string | null;
+    /**
+     * Required. Type of metric like CPU, Memory, etc.
+     */
+    metricType?: string | null;
+    /**
+     * Required. Database resource name associated with the signal. Resource name to follow CAIS resource_name format as noted here go/condor-common-datamodel
+     */
+    resourceName?: string | null;
+    /**
+     * Required. Value of the metric type.
+     */
+    value?: number | null;
   }
   /**
    * An error that occurred during a backup creation operation.
