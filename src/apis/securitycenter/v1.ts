@@ -1868,7 +1868,7 @@ export namespace securitycenter_v1 {
     resourceTypes?: string[] | null;
   }
   /**
-   * A resource value config (RVC) is a mapping configuration of user's resources to resource values. Used in Attack path simulations.
+   * A resource value configuration (RVC) is a mapping configuration of user's resources to resource values. Used in Attack path simulations.
    */
   export interface Schema$GoogleCloudSecuritycenterV1ResourceValueConfig {
     /**
@@ -1876,23 +1876,23 @@ export namespace securitycenter_v1 {
      */
     cloudProvider?: string | null;
     /**
-     * Output only. Timestamp this resource value config was created.
+     * Output only. Timestamp this resource value configuration was created.
      */
     createTime?: string | null;
     /**
-     * Description of the resource value config.
+     * Description of the resource value configuration.
      */
     description?: string | null;
     /**
-     * Name for the resource value config
+     * Name for the resource value configuration
      */
     name?: string | null;
     /**
-     * List of resource labels to search for, evaluated with AND. E.g. "resource_labels_selector": {"key": "value", "env": "prod"\} will match resources with labels "key": "value" AND "env": "prod" https://cloud.google.com/resource-manager/docs/creating-managing-labels
+     * List of resource labels to search for, evaluated with AND. For example, "resource_labels_selector": {"key": "value", "env": "prod"\} will match resources with labels "key": "value" AND "env": "prod" https://cloud.google.com/resource-manager/docs/creating-managing-labels
      */
     resourceLabelsSelector?: {[key: string]: string} | null;
     /**
-     * Apply resource_value only to resources that match resource_type. resource_type will be checked with "AND" of other resources. E.g. "storage.googleapis.com/Bucket" with resource_value "HIGH" will apply "HIGH" value only to "storage.googleapis.com/Bucket" resources.
+     * Apply resource_value only to resources that match resource_type. resource_type will be checked with AND of other resources. For example, "storage.googleapis.com/Bucket" with resource_value "HIGH" will apply "HIGH" value only to "storage.googleapis.com/Bucket" resources.
      */
     resourceType?: string | null;
     /**
@@ -1900,7 +1900,7 @@ export namespace securitycenter_v1 {
      */
     resourceValue?: string | null;
     /**
-     * Project or folder to scope this config to. For example, "project/456" would apply this config only to resources in "project/456" scope will be checked with "AND" of other resources.
+     * Project or folder to scope this configuration to. For example, "project/456" would apply this configuration only to resources in "project/456" scope will be checked with AND of other resources.
      */
     scope?: string | null;
     /**
@@ -1908,11 +1908,11 @@ export namespace securitycenter_v1 {
      */
     sensitiveDataProtectionMapping?: Schema$GoogleCloudSecuritycenterV1SensitiveDataProtectionMapping;
     /**
-     * Required. Tag values combined with AND to check against. Values in the form "tagValues/123" E.g. [ "tagValues/123", "tagValues/456", "tagValues/789" ] https://cloud.google.com/resource-manager/docs/tags/tags-creating-and-managing
+     * Required. Tag values combined with AND to check against. Values in the form "tagValues/123" Example: [ "tagValues/123", "tagValues/456", "tagValues/789" ] https://cloud.google.com/resource-manager/docs/tags/tags-creating-and-managing
      */
     tagValues?: string[] | null;
     /**
-     * Output only. Timestamp this resource value config was last updated.
+     * Output only. Timestamp this resource value configuration was last updated.
      */
     updateTime?: string | null;
   }
@@ -3469,7 +3469,7 @@ export namespace securitycenter_v1 {
     nodeType?: string | null;
   }
   /**
-   * A resource value config (RVC) is a mapping configuration of user's resources to resource values. Used in Attack path simulations.
+   * A resource value configuration (RVC) is a mapping configuration of user's resources to resource values. Used in Attack path simulations.
    */
   export interface Schema$GoogleCloudSecuritycenterV2ResourceValueConfig {
     /**
@@ -3477,23 +3477,23 @@ export namespace securitycenter_v1 {
      */
     cloudProvider?: string | null;
     /**
-     * Output only. Timestamp this resource value config was created.
+     * Output only. Timestamp this resource value configuration was created.
      */
     createTime?: string | null;
     /**
-     * Description of the resource value config.
+     * Description of the resource value configuration.
      */
     description?: string | null;
     /**
-     * Name for the resource value config
+     * Name for the resource value configuration
      */
     name?: string | null;
     /**
-     * List of resource labels to search for, evaluated with AND. E.g. "resource_labels_selector": {"key": "value", "env": "prod"\} will match resources with labels "key": "value" AND "env": "prod" https://cloud.google.com/resource-manager/docs/creating-managing-labels
+     * List of resource labels to search for, evaluated with AND. For example, "resource_labels_selector": {"key": "value", "env": "prod"\} will match resources with labels "key": "value" AND "env": "prod" https://cloud.google.com/resource-manager/docs/creating-managing-labels
      */
     resourceLabelsSelector?: {[key: string]: string} | null;
     /**
-     * Apply resource_value only to resources that match resource_type. resource_type will be checked with "AND" of other resources. E.g. "storage.googleapis.com/Bucket" with resource_value "HIGH" will apply "HIGH" value only to "storage.googleapis.com/Bucket" resources.
+     * Apply resource_value only to resources that match resource_type. resource_type will be checked with AND of other resources. For example, "storage.googleapis.com/Bucket" with resource_value "HIGH" will apply "HIGH" value only to "storage.googleapis.com/Bucket" resources.
      */
     resourceType?: string | null;
     /**
@@ -3501,7 +3501,7 @@ export namespace securitycenter_v1 {
      */
     resourceValue?: string | null;
     /**
-     * Project or folder to scope this config to. For example, "project/456" would apply this config only to resources in "project/456" scope will be checked with "AND" of other resources.
+     * Project or folder to scope this configuration to. For example, "project/456" would apply this configuration only to resources in "project/456" scope will be checked with AND of other resources.
      */
     scope?: string | null;
     /**
@@ -3509,11 +3509,11 @@ export namespace securitycenter_v1 {
      */
     sensitiveDataProtectionMapping?: Schema$GoogleCloudSecuritycenterV2SensitiveDataProtectionMapping;
     /**
-     * Required. Tag values combined with AND to check against. Values in the form "tagValues/123" E.g. [ "tagValues/123", "tagValues/456", "tagValues/789" ] https://cloud.google.com/resource-manager/docs/tags/tags-creating-and-managing
+     * Required. Tag values combined with AND to check against. Values in the form "tagValues/123" Example: [ "tagValues/123", "tagValues/456", "tagValues/789" ] https://cloud.google.com/resource-manager/docs/tags/tags-creating-and-managing
      */
     tagValues?: string[] | null;
     /**
-     * Output only. Timestamp this resource value config was last updated.
+     * Output only. Timestamp this resource value configuration was last updated.
      */
     updateTime?: string | null;
   }
@@ -7282,6 +7282,104 @@ export namespace securitycenter_v1 {
     }
 
     /**
+     * Creates a mute config.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Folders$Locations$Muteconfigs$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Folders$Locations$Muteconfigs$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudSecuritycenterV1MuteConfig>;
+    create(
+      params: Params$Resource$Folders$Locations$Muteconfigs$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Folders$Locations$Muteconfigs$Create,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1MuteConfig>,
+      callback: BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1MuteConfig>
+    ): void;
+    create(
+      params: Params$Resource$Folders$Locations$Muteconfigs$Create,
+      callback: BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1MuteConfig>
+    ): void;
+    create(
+      callback: BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1MuteConfig>
+    ): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Folders$Locations$Muteconfigs$Create
+        | BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1MuteConfig>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1MuteConfig>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1MuteConfig>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudSecuritycenterV1MuteConfig>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Folders$Locations$Muteconfigs$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Folders$Locations$Muteconfigs$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://securitycenter.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/muteConfigs').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudSecuritycenterV1MuteConfig>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudSecuritycenterV1MuteConfig>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Deletes an existing mute config.
      *
      * @param params - Parameters for request
@@ -7463,6 +7561,97 @@ export namespace securitycenter_v1 {
     }
 
     /**
+     * Lists mute configs.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Folders$Locations$Muteconfigs$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Folders$Locations$Muteconfigs$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListMuteConfigsResponse>;
+    list(
+      params: Params$Resource$Folders$Locations$Muteconfigs$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Folders$Locations$Muteconfigs$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListMuteConfigsResponse>,
+      callback: BodyResponseCallback<Schema$ListMuteConfigsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Folders$Locations$Muteconfigs$List,
+      callback: BodyResponseCallback<Schema$ListMuteConfigsResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListMuteConfigsResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Folders$Locations$Muteconfigs$List
+        | BodyResponseCallback<Schema$ListMuteConfigsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListMuteConfigsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListMuteConfigsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListMuteConfigsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Folders$Locations$Muteconfigs$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Folders$Locations$Muteconfigs$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://securitycenter.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListMuteConfigsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListMuteConfigsResponse>(parameters);
+      }
+    }
+
+    /**
      * Updates a mute config.
      *
      * @param params - Parameters for request
@@ -7558,6 +7747,22 @@ export namespace securitycenter_v1 {
     }
   }
 
+  export interface Params$Resource$Folders$Locations$Muteconfigs$Create
+    extends StandardParameters {
+    /**
+     * Required. Unique identifier provided by the client within the parent scope. It must consist of only lowercase letters, numbers, and hyphens, must start with a letter, must end with either a letter or a number, and must be 63 characters or less.
+     */
+    muteConfigId?: string;
+    /**
+     * Required. Resource name of the new mute configs's parent. Its format is "organizations/[organization_id]", "folders/[folder_id]", or "projects/[project_id]".
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudSecuritycenterV1MuteConfig;
+  }
   export interface Params$Resource$Folders$Locations$Muteconfigs$Delete
     extends StandardParameters {
     /**
@@ -7571,6 +7776,21 @@ export namespace securitycenter_v1 {
      * Required. Name of the mute config to retrieve. Its format is organizations/{organization\}/muteConfigs/{config_id\}, folders/{folder\}/muteConfigs/{config_id\}, projects/{project\}/muteConfigs/{config_id\}, organizations/{organization\}/locations/global/muteConfigs/{config_id\}, folders/{folder\}/locations/global/muteConfigs/{config_id\}, or projects/{project\}/locations/global/muteConfigs/{config_id\}.
      */
     name?: string;
+  }
+  export interface Params$Resource$Folders$Locations$Muteconfigs$List
+    extends StandardParameters {
+    /**
+     * The maximum number of configs to return. The service may return fewer than this value. If unspecified, at most 10 configs will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     */
+    pageSize?: number;
+    /**
+     * A page token, received from a previous `ListMuteConfigs` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListMuteConfigs` must match the call that provided the page token.
+     */
+    pageToken?: string;
+    /**
+     * Required. The parent, which owns the collection of mute configs. Its format is "organizations/[organization_id]", "folders/[folder_id]", "projects/[project_id]".
+     */
+    parent?: string;
   }
   export interface Params$Resource$Folders$Locations$Muteconfigs$Patch
     extends StandardParameters {
@@ -12926,6 +13146,105 @@ export namespace securitycenter_v1 {
     }
 
     /**
+     * Creates a mute config.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Organizations$Locations$Muteconfigs$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Organizations$Locations$Muteconfigs$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudSecuritycenterV1MuteConfig>;
+    create(
+      params: Params$Resource$Organizations$Locations$Muteconfigs$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Organizations$Locations$Muteconfigs$Create,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1MuteConfig>,
+      callback: BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1MuteConfig>
+    ): void;
+    create(
+      params: Params$Resource$Organizations$Locations$Muteconfigs$Create,
+      callback: BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1MuteConfig>
+    ): void;
+    create(
+      callback: BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1MuteConfig>
+    ): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Locations$Muteconfigs$Create
+        | BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1MuteConfig>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1MuteConfig>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1MuteConfig>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudSecuritycenterV1MuteConfig>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Locations$Muteconfigs$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Organizations$Locations$Muteconfigs$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://securitycenter.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/muteConfigs').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudSecuritycenterV1MuteConfig>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudSecuritycenterV1MuteConfig>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Deletes an existing mute config.
      *
      * @param params - Parameters for request
@@ -13108,6 +13427,97 @@ export namespace securitycenter_v1 {
     }
 
     /**
+     * Lists mute configs.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Organizations$Locations$Muteconfigs$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Organizations$Locations$Muteconfigs$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListMuteConfigsResponse>;
+    list(
+      params: Params$Resource$Organizations$Locations$Muteconfigs$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Organizations$Locations$Muteconfigs$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListMuteConfigsResponse>,
+      callback: BodyResponseCallback<Schema$ListMuteConfigsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Organizations$Locations$Muteconfigs$List,
+      callback: BodyResponseCallback<Schema$ListMuteConfigsResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListMuteConfigsResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Locations$Muteconfigs$List
+        | BodyResponseCallback<Schema$ListMuteConfigsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListMuteConfigsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListMuteConfigsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListMuteConfigsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Locations$Muteconfigs$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Organizations$Locations$Muteconfigs$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://securitycenter.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListMuteConfigsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListMuteConfigsResponse>(parameters);
+      }
+    }
+
+    /**
      * Updates a mute config.
      *
      * @param params - Parameters for request
@@ -13204,6 +13614,22 @@ export namespace securitycenter_v1 {
     }
   }
 
+  export interface Params$Resource$Organizations$Locations$Muteconfigs$Create
+    extends StandardParameters {
+    /**
+     * Required. Unique identifier provided by the client within the parent scope. It must consist of only lowercase letters, numbers, and hyphens, must start with a letter, must end with either a letter or a number, and must be 63 characters or less.
+     */
+    muteConfigId?: string;
+    /**
+     * Required. Resource name of the new mute configs's parent. Its format is "organizations/[organization_id]", "folders/[folder_id]", or "projects/[project_id]".
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudSecuritycenterV1MuteConfig;
+  }
   export interface Params$Resource$Organizations$Locations$Muteconfigs$Delete
     extends StandardParameters {
     /**
@@ -13217,6 +13643,21 @@ export namespace securitycenter_v1 {
      * Required. Name of the mute config to retrieve. Its format is organizations/{organization\}/muteConfigs/{config_id\}, folders/{folder\}/muteConfigs/{config_id\}, projects/{project\}/muteConfigs/{config_id\}, organizations/{organization\}/locations/global/muteConfigs/{config_id\}, folders/{folder\}/locations/global/muteConfigs/{config_id\}, or projects/{project\}/locations/global/muteConfigs/{config_id\}.
      */
     name?: string;
+  }
+  export interface Params$Resource$Organizations$Locations$Muteconfigs$List
+    extends StandardParameters {
+    /**
+     * The maximum number of configs to return. The service may return fewer than this value. If unspecified, at most 10 configs will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     */
+    pageSize?: number;
+    /**
+     * A page token, received from a previous `ListMuteConfigs` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListMuteConfigs` must match the call that provided the page token.
+     */
+    pageToken?: string;
+    /**
+     * Required. The parent, which owns the collection of mute configs. Its format is "organizations/[organization_id]", "folders/[folder_id]", "projects/[project_id]".
+     */
+    parent?: string;
   }
   export interface Params$Resource$Organizations$Locations$Muteconfigs$Patch
     extends StandardParameters {
@@ -15216,7 +15657,7 @@ export namespace securitycenter_v1 {
   export interface Params$Resource$Organizations$Resourcevalueconfigs$Patch
     extends StandardParameters {
     /**
-     * Name for the resource value config
+     * Name for the resource value configuration
      */
     name?: string;
     /**
@@ -20751,6 +21192,104 @@ export namespace securitycenter_v1 {
     }
 
     /**
+     * Creates a mute config.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Locations$Muteconfigs$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Projects$Locations$Muteconfigs$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudSecuritycenterV1MuteConfig>;
+    create(
+      params: Params$Resource$Projects$Locations$Muteconfigs$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Muteconfigs$Create,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1MuteConfig>,
+      callback: BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1MuteConfig>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Muteconfigs$Create,
+      callback: BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1MuteConfig>
+    ): void;
+    create(
+      callback: BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1MuteConfig>
+    ): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Muteconfigs$Create
+        | BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1MuteConfig>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1MuteConfig>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1MuteConfig>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudSecuritycenterV1MuteConfig>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Muteconfigs$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Muteconfigs$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://securitycenter.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/muteConfigs').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudSecuritycenterV1MuteConfig>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudSecuritycenterV1MuteConfig>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Deletes an existing mute config.
      *
      * @param params - Parameters for request
@@ -20932,6 +21471,97 @@ export namespace securitycenter_v1 {
     }
 
     /**
+     * Lists mute configs.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Muteconfigs$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Muteconfigs$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListMuteConfigsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Muteconfigs$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Muteconfigs$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListMuteConfigsResponse>,
+      callback: BodyResponseCallback<Schema$ListMuteConfigsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Muteconfigs$List,
+      callback: BodyResponseCallback<Schema$ListMuteConfigsResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListMuteConfigsResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Muteconfigs$List
+        | BodyResponseCallback<Schema$ListMuteConfigsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListMuteConfigsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListMuteConfigsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListMuteConfigsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Muteconfigs$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Muteconfigs$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://securitycenter.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListMuteConfigsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListMuteConfigsResponse>(parameters);
+      }
+    }
+
+    /**
      * Updates a mute config.
      *
      * @param params - Parameters for request
@@ -21027,6 +21657,22 @@ export namespace securitycenter_v1 {
     }
   }
 
+  export interface Params$Resource$Projects$Locations$Muteconfigs$Create
+    extends StandardParameters {
+    /**
+     * Required. Unique identifier provided by the client within the parent scope. It must consist of only lowercase letters, numbers, and hyphens, must start with a letter, must end with either a letter or a number, and must be 63 characters or less.
+     */
+    muteConfigId?: string;
+    /**
+     * Required. Resource name of the new mute configs's parent. Its format is "organizations/[organization_id]", "folders/[folder_id]", or "projects/[project_id]".
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudSecuritycenterV1MuteConfig;
+  }
   export interface Params$Resource$Projects$Locations$Muteconfigs$Delete
     extends StandardParameters {
     /**
@@ -21040,6 +21686,21 @@ export namespace securitycenter_v1 {
      * Required. Name of the mute config to retrieve. Its format is organizations/{organization\}/muteConfigs/{config_id\}, folders/{folder\}/muteConfigs/{config_id\}, projects/{project\}/muteConfigs/{config_id\}, organizations/{organization\}/locations/global/muteConfigs/{config_id\}, folders/{folder\}/locations/global/muteConfigs/{config_id\}, or projects/{project\}/locations/global/muteConfigs/{config_id\}.
      */
     name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Muteconfigs$List
+    extends StandardParameters {
+    /**
+     * The maximum number of configs to return. The service may return fewer than this value. If unspecified, at most 10 configs will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     */
+    pageSize?: number;
+    /**
+     * A page token, received from a previous `ListMuteConfigs` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListMuteConfigs` must match the call that provided the page token.
+     */
+    pageToken?: string;
+    /**
+     * Required. The parent, which owns the collection of mute configs. Its format is "organizations/[organization_id]", "folders/[folder_id]", "projects/[project_id]".
+     */
+    parent?: string;
   }
   export interface Params$Resource$Projects$Locations$Muteconfigs$Patch
     extends StandardParameters {
