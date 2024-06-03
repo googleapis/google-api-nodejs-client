@@ -154,7 +154,7 @@
       }
     }
   },
-  "revision": "20220407",
+  "revision": "20240530",
   "rootUrl": "https://fcmdata.googleapis.com/",
   "schemas": {
     "GoogleFirebaseFcmDataV1beta1AndroidDeliveryData": {
@@ -185,7 +185,12 @@
       "id": "GoogleFirebaseFcmDataV1beta1Data",
       "properties": {
         "countMessagesAccepted": {
-          "description": "Count of messages accepted by FCM intended to Android devices. The targeted device must have opted in to the collection of usage and diagnostic information.",
+          "description": "Count of messages accepted by FCM intended for Android devices. The targeted device must have opted in to the collection of usage and diagnostic information.",
+          "format": "int64",
+          "type": "string"
+        },
+        "countNotificationsAccepted": {
+          "description": "Count of notifications accepted by FCM intended for Android devices. The targeted device must have opted in to the collection of usage and diagnostic information.",
           "format": "int64",
           "type": "string"
         },
@@ -200,6 +205,10 @@
         "messageOutcomePercents": {
           "$ref": "GoogleFirebaseFcmDataV1beta1MessageOutcomePercents",
           "description": "Mutually exclusive breakdown of message delivery outcomes."
+        },
+        "proxyNotificationInsightPercents": {
+          "$ref": "GoogleFirebaseFcmDataV1beta1ProxyNotificationInsightPercents",
+          "description": "Additional insights about proxy notification delivery."
         }
       },
       "type": "object"
@@ -292,6 +301,43 @@
         },
         "pending": {
           "description": "The percentage of messages accepted on this day that were not dropped and not delivered, due to the device being disconnected (as of the end of the America/Los_Angeles day when the message was sent to FCM). A portion of these messages will be delivered the next day when the device connects but others may be destined to devices that ultimately never reconnect.",
+          "format": "float",
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleFirebaseFcmDataV1beta1ProxyNotificationInsightPercents": {
+      "description": "Additional information about proxy notification delivery. All percentages are calculated with countNotificationsAccepted as the denominator.",
+      "id": "GoogleFirebaseFcmDataV1beta1ProxyNotificationInsightPercents",
+      "properties": {
+        "failed": {
+          "description": "The percentage of accepted notifications that failed to be proxied. This is usually caused by exceptions that occurred while calling [notifyAsPackage](https://developer.android.com/reference/android/app/NotificationManager#notifyAsPackage%28java.lang.String,%20java.lang.String,%20int,%20android.app.Notification%29).",
+          "format": "float",
+          "type": "number"
+        },
+        "proxied": {
+          "description": "The percentage of accepted notifications that were successfully proxied by [Google Play services](https://developers.google.com/android/guides/overview).",
+          "format": "float",
+          "type": "number"
+        },
+        "skippedNotThrottled": {
+          "description": "The percentage of accepted notifications that were skipped because the messages were not throttled.",
+          "format": "float",
+          "type": "number"
+        },
+        "skippedOptedOut": {
+          "description": "The percentage of accepted notifications that were skipped because the app disallowed these messages to be proxied.",
+          "format": "float",
+          "type": "number"
+        },
+        "skippedUnconfigured": {
+          "description": "The percentage of accepted notifications that were skipped because configurations required for notifications to be proxied were missing.",
+          "format": "float",
+          "type": "number"
+        },
+        "skippedUnsupported": {
+          "description": "The percentage of accepted notifications that were skipped because proxy notification is unsupported for the recipient.",
           "format": "float",
           "type": "number"
         }
