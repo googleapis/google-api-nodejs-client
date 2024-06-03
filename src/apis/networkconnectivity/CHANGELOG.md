@@ -1,5 +1,12 @@
 # Changelog
 
+## [8.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/networkconnectivity-v8.0.0...networkconnectivity-v8.1.0) (2024-06-03)
+
+
+### Features
+
+* **networkconnectivity:** update the API ([2346e1a](https://github.com/googleapis/google-api-nodejs-client/commit/2346e1a1f2fb6608991fae6dd70c73a9ff1ca2e6))
+
 ## [8.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/networkconnectivity-v7.1.0...networkconnectivity-v8.0.0) (2024-05-02)
 
 

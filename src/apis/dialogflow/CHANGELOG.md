@@ -1,5 +1,12 @@
 # Changelog
 
+## [8.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/dialogflow-v8.0.0...dialogflow-v8.1.0) (2024-06-03)
+
+
+### Features
+
+* **dialogflow:** update the API ([86ecf3c](https://github.com/googleapis/google-api-nodejs-client/commit/86ecf3c3d3f0a830b913c2ad3b054cd369986ff3))
+
 ## [8.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/dialogflow-v7.1.0...dialogflow-v8.0.0) (2024-05-02)
 
 

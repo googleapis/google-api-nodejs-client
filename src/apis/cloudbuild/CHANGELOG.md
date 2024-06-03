@@ -1,5 +1,12 @@
 # Changelog
 
+## [9.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/cloudbuild-v9.0.0...cloudbuild-v9.1.0) (2024-06-03)
+
+
+### Features
+
+* **cloudbuild:** update the API ([d353940](https://github.com/googleapis/google-api-nodejs-client/commit/d353940bfa7966b1372a671f5eb46ba786f07f5b))
+
 ## [9.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/cloudbuild-v8.1.0...cloudbuild-v9.0.0) (2024-05-02)
 
 
