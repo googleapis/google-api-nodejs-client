@@ -204,6 +204,7 @@ export {datastream_v1alpha1} from './apis/datastream/v1alpha1';
 export {deploymentmanager_alpha} from './apis/deploymentmanager/alpha';
 export {deploymentmanager_v2} from './apis/deploymentmanager/v2';
 export {deploymentmanager_v2beta} from './apis/deploymentmanager/v2beta';
+export {developerconnect_v1} from './apis/developerconnect/v1';
 export {dfareporting_v3_3} from './apis/dfareporting/v3.3';
 export {dfareporting_v3_4} from './apis/dfareporting/v3.4';
 export {dfareporting_v3_5} from './apis/dfareporting/v3.5';
