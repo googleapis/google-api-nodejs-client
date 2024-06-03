@@ -821,7 +821,7 @@
       }
     }
   },
-  "revision": "20240425",
+  "revision": "20240524",
   "rootUrl": "https://redis.googleapis.com/",
   "schemas": {
     "AOFConfig": {
@@ -1226,9 +1226,12 @@
           ],
           "type": "string"
         },
-        "recommendationSignalData": {
-          "$ref": "DatabaseResourceRecommendationSignalData",
+        "observabilityMetricData": {
+          "$ref": "ObservabilityMetricData",
           "description": "More feed data would be added in subsequent CLs"
+        },
+        "recommendationSignalData": {
+          "$ref": "DatabaseResourceRecommendationSignalData"
         },
         "resourceHealthSignalData": {
           "$ref": "DatabaseResourceHealthSignalData"
@@ -1352,9 +1355,17 @@
             "SIGNAL_TYPE_VIOLATES_CIS_GCP_FOUNDATION_1_2",
             "SIGNAL_TYPE_VIOLATES_CIS_GCP_FOUNDATION_1_1",
             "SIGNAL_TYPE_VIOLATES_CIS_GCP_FOUNDATION_1_0",
+            "SIGNAL_TYPE_VIOLATES_CIS_CONTROLS_V8_0",
             "SIGNAL_TYPE_VIOLATES_NIST_800_53",
+            "SIGNAL_TYPE_VIOLATES_NIST_800_53_R5",
+            "SIGNAL_TYPE_VIOLATES_NIST_CYBERSECURITY_FRAMEWORK_V1_0",
             "SIGNAL_TYPE_VIOLATES_ISO_27001",
+            "SIGNAL_TYPE_VIOLATES_ISO_27001_V2022",
             "SIGNAL_TYPE_VIOLATES_PCI_DSS_V3_2_1",
+            "SIGNAL_TYPE_VIOLATES_PCI_DSS_V4_0",
+            "SIGNAL_TYPE_VIOLATES_CLOUD_CONTROLS_MATRIX_V4",
+            "SIGNAL_TYPE_VIOLATES_HIPAA",
+            "SIGNAL_TYPE_VIOLATES_SOC2_V2017",
             "SIGNAL_TYPE_LOGS_NOT_OPTIMIZED_FOR_TROUBLESHOOTING",
             "SIGNAL_TYPE_QUERY_DURATIONS_NOT_LOGGED",
             "SIGNAL_TYPE_VERBOSE_ERROR_LOGGING",
@@ -1403,7 +1414,11 @@
             "SIGNAL_TYPE_CONNECTIONS_PERFORMANCE_IMPACT",
             "SIGNAL_TYPE_TMP_TABLES_PERFORMANCE_IMPACT",
             "SIGNAL_TYPE_TRANS_LOGS_PERFORMANCE_IMPACT",
-            "SIGNAL_TYPE_HIGH_JOINS_WITHOUT_INDEXES"
+            "SIGNAL_TYPE_HIGH_JOINS_WITHOUT_INDEXES",
+            "SIGNAL_TYPE_SUPERUSER_WRITING_TO_USER_TABLES",
+            "SIGNAL_TYPE_USER_GRANTED_ALL_PERMISSIONS",
+            "SIGNAL_TYPE_DATA_EXPORT_TO_EXTERNAL_CLOUD_STORAGE_BUCKET",
+            "SIGNAL_TYPE_DATA_EXPORT_TO_PUBLIC_CLOUD_STORAGE_BUCKET"
           ],
           "enumDeprecated": [
             false,
@@ -1411,6 +1426,18 @@
             false,
             true,
             true,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
             false,
             false,
             false,
@@ -1490,9 +1517,17 @@
             "Represents if a resource violates CIS GCP Foundation 1.2.",
             "Represents if a resource violates CIS GCP Foundation 1.1.",
             "Represents if a resource violates CIS GCP Foundation 1.0.",
+            "Represents if a resource violates CIS Controls 8.0.",
             "Represents if a resource violates NIST 800-53.",
+            "Represents if a resource violates NIST 800-53 R5.",
+            "Represents if a resource violates NIST Cybersecurity Framework 1.0.",
             "Represents if a resource violates ISO-27001.",
+            "Represents if a resource violates ISO 27001 2022.",
             "Represents if a resource violates PCI-DSS v3.2.1.",
+            "Represents if a resource violates PCI-DSS v4.0.",
+            "Represents if a resource violates Cloud Controls Matrix v4.0.",
+            "Represents if a resource violates HIPAA.",
+            "Represents if a resource violates SOC2 v2017.",
             "Represents if log_checkpoints database flag for a Cloud SQL for PostgreSQL instance is not set to on.",
             "Represents if the log_duration database flag for a Cloud SQL for PostgreSQL instance is not set to on.",
             "Represents if the log_error_verbosity database flag for a Cloud SQL for PostgreSQL instance is not set to default or stricter (default or terse).",
@@ -1541,7 +1576,11 @@
             "Performance impact of connections settings",
             "Performance impact of temporary tables settings",
             "Performance impact of transaction logs settings",
-            "Performance impact of high joins without indexes"
+            "Performance impact of high joins without indexes",
+            "Detects events where a Cloud SQL superuser (postgres for PostgreSQL servers or root for MySQL users) writes to non-system tables.",
+            "Detects events where a database user or role has been granted all privileges to a database, or to all tables, procedures, or functions in a schema.",
+            "Detects if database instance data exported to a Cloud Storage bucket outside of the organization.",
+            "Detects if database instance data exported to a Cloud Storage bucket that is owned by the organization and is publicly accessible."
           ],
           "type": "string"
         },
@@ -1724,6 +1763,10 @@
           "description": "The resource location. REQUIRED",
           "type": "string"
         },
+        "machineConfiguration": {
+          "$ref": "MachineConfiguration",
+          "description": "Machine configuration for this resource."
+        },
         "primaryResourceId": {
           "$ref": "DatabaseResourceId",
           "description": "Identifier for this resource's immediate parent/primary resource if the current resource is a replica or derived form of another Database resource. Else it would be NULL. REQUIRED if the immediate parent exists when first time resource is getting ingested, otherwise optional."
@@ -1748,14 +1791,6 @@
         "userLabelSet": {
           "$ref": "UserLabels",
           "description": "User-provided labels associated with the resource"
-        },
-        "userLabels": {
-          "additionalProperties": {
-            "type": "string"
-          },
-          "deprecated": true,
-          "description": "User-provided labels, represented as a dictionary where each label is a single key value pair.",
-          "type": "object"
         }
       },
       "type": "object"
@@ -1831,9 +1866,17 @@
             "SIGNAL_TYPE_VIOLATES_CIS_GCP_FOUNDATION_1_2",
             "SIGNAL_TYPE_VIOLATES_CIS_GCP_FOUNDATION_1_1",
             "SIGNAL_TYPE_VIOLATES_CIS_GCP_FOUNDATION_1_0",
+            "SIGNAL_TYPE_VIOLATES_CIS_CONTROLS_V8_0",
             "SIGNAL_TYPE_VIOLATES_NIST_800_53",
+            "SIGNAL_TYPE_VIOLATES_NIST_800_53_R5",
+            "SIGNAL_TYPE_VIOLATES_NIST_CYBERSECURITY_FRAMEWORK_V1_0",
             "SIGNAL_TYPE_VIOLATES_ISO_27001",
+            "SIGNAL_TYPE_VIOLATES_ISO_27001_V2022",
             "SIGNAL_TYPE_VIOLATES_PCI_DSS_V3_2_1",
+            "SIGNAL_TYPE_VIOLATES_PCI_DSS_V4_0",
+            "SIGNAL_TYPE_VIOLATES_CLOUD_CONTROLS_MATRIX_V4",
+            "SIGNAL_TYPE_VIOLATES_HIPAA",
+            "SIGNAL_TYPE_VIOLATES_SOC2_V2017",
             "SIGNAL_TYPE_LOGS_NOT_OPTIMIZED_FOR_TROUBLESHOOTING",
             "SIGNAL_TYPE_QUERY_DURATIONS_NOT_LOGGED",
             "SIGNAL_TYPE_VERBOSE_ERROR_LOGGING",
@@ -1882,7 +1925,11 @@
             "SIGNAL_TYPE_CONNECTIONS_PERFORMANCE_IMPACT",
             "SIGNAL_TYPE_TMP_TABLES_PERFORMANCE_IMPACT",
             "SIGNAL_TYPE_TRANS_LOGS_PERFORMANCE_IMPACT",
-            "SIGNAL_TYPE_HIGH_JOINS_WITHOUT_INDEXES"
+            "SIGNAL_TYPE_HIGH_JOINS_WITHOUT_INDEXES",
+            "SIGNAL_TYPE_SUPERUSER_WRITING_TO_USER_TABLES",
+            "SIGNAL_TYPE_USER_GRANTED_ALL_PERMISSIONS",
+            "SIGNAL_TYPE_DATA_EXPORT_TO_EXTERNAL_CLOUD_STORAGE_BUCKET",
+            "SIGNAL_TYPE_DATA_EXPORT_TO_PUBLIC_CLOUD_STORAGE_BUCKET"
           ],
           "enumDeprecated": [
             false,
@@ -1890,6 +1937,18 @@
             false,
             true,
             true,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
             false,
             false,
             false,
@@ -1969,9 +2028,17 @@
             "Represents if a resource violates CIS GCP Foundation 1.2.",
             "Represents if a resource violates CIS GCP Foundation 1.1.",
             "Represents if a resource violates CIS GCP Foundation 1.0.",
+            "Represents if a resource violates CIS Controls 8.0.",
             "Represents if a resource violates NIST 800-53.",
+            "Represents if a resource violates NIST 800-53 R5.",
+            "Represents if a resource violates NIST Cybersecurity Framework 1.0.",
             "Represents if a resource violates ISO-27001.",
+            "Represents if a resource violates ISO 27001 2022.",
             "Represents if a resource violates PCI-DSS v3.2.1.",
+            "Represents if a resource violates PCI-DSS v4.0.",
+            "Represents if a resource violates Cloud Controls Matrix v4.0.",
+            "Represents if a resource violates HIPAA.",
+            "Represents if a resource violates SOC2 v2017.",
             "Represents if log_checkpoints database flag for a Cloud SQL for PostgreSQL instance is not set to on.",
             "Represents if the log_duration database flag for a Cloud SQL for PostgreSQL instance is not set to on.",
             "Represents if the log_error_verbosity database flag for a Cloud SQL for PostgreSQL instance is not set to default or stricter (default or terse).",
@@ -2020,7 +2087,11 @@
             "Performance impact of connections settings",
             "Performance impact of temporary tables settings",
             "Performance impact of transaction logs settings",
-            "Performance impact of high joins without indexes"
+            "Performance impact of high joins without indexes",
+            "Detects events where a Cloud SQL superuser (postgres for PostgreSQL servers or root for MySQL users) writes to non-system tables.",
+            "Detects events where a database user or role has been granted all privileges to a database, or to all tables, procedures, or functions in a schema.",
+            "Detects if database instance data exported to a Cloud Storage bucket outside of the organization.",
+            "Detects if database instance data exported to a Cloud Storage bucket that is owned by the organization and is publicly accessible."
           ],
           "type": "string"
         }
@@ -2623,6 +2694,23 @@
       },
       "type": "object"
     },
+    "MachineConfiguration": {
+      "description": "MachineConfiguration describes the configuration of a machine specific to Database Resource.",
+      "id": "MachineConfiguration",
+      "properties": {
+        "cpuCount": {
+          "description": "The number of CPUs. TODO(b/342344482, b/342346271) add proto validations again after bug fix.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "memorySizeInBytes": {
+          "description": "Memory size in bytes. TODO(b/342344482, b/342346271) add proto validations again after bug fix.",
+          "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "MaintenancePolicy": {
       "description": "Maintenance policy for an instance.",
       "id": "MaintenancePolicy",
@@ -2709,6 +2797,53 @@
           "description": "Output only. Location of the node.",
           "readOnly": true,
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ObservabilityMetricData": {
+      "id": "ObservabilityMetricData",
+      "properties": {
+        "aggregationType": {
+          "description": "Required. Type of aggregation performed on the metric.",
+          "enum": [
+            "AGGREGATION_TYPE_UNSPECIFIED",
+            "MAXIMUM"
+          ],
+          "enumDescriptions": [
+            "Unspecified aggregation type.",
+            "Maximum aggregation type."
+          ],
+          "type": "string"
+        },
+        "metricType": {
+          "description": "Required. Type of metric like CPU, Memory, etc.",
+          "enum": [
+            "METRIC_TYPE_UNSPECIFIED",
+            "CPU_UTILIZATION",
+            "MEMORY_UTILIZATION",
+            "NETWORK_CONNECTIONS"
+          ],
+          "enumDescriptions": [
+            "",
+            "CPU utilization for a resource. The value is a fraction between 0.0 and 1.0 (may momentarily exceed 1.0 in some cases).",
+            "Memory utilization for a resource. The value is a fraction between 0.0 and 1.0 (may momentarily exceed 1.0 in some cases).",
+            "Number of network connections for a resource."
+          ],
+          "type": "string"
+        },
+        "observationTime": {
+          "description": "Required. The time the metric value was observed.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "resourceName": {
+          "description": "Required. Database resource name associated with the signal. Resource name to follow CAIS resource_name format as noted here go/condor-common-datamodel",
+          "type": "string"
+        },
+        "value": {
+          "$ref": "TypedValue",
+          "description": "Required. Value of the metric type."
         }
       },
       "type": "object"
@@ -3246,6 +3381,27 @@
         },
         "sha1Fingerprint": {
           "description": "Sha1 Fingerprint of the certificate.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "TypedValue": {
+      "description": "TypedValue represents the value of a metric type. It can either be a double, an int64, a string or a bool.",
+      "id": "TypedValue",
+      "properties": {
+        "boolValue": {
+          "type": "boolean"
+        },
+        "doubleValue": {
+          "format": "double",
+          "type": "number"
+        },
+        "int64Value": {
+          "format": "int64",
+          "type": "string"
+        },
+        "stringValue": {
           "type": "string"
         }
       },
