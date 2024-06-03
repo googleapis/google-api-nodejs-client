@@ -716,7 +716,7 @@
       }
     }
   },
-  "revision": "20240307",
+  "revision": "20240523",
   "rootUrl": "https://cloudfunctions.googleapis.com/",
   "schemas": {
     "AbortFunctionUpgradeRequest": {
@@ -2201,6 +2201,10 @@
           "description": "The amount of memory available for a function. Defaults to 256M. Supported units are k, M, G, Mi, Gi. If no unit is supplied the value is interpreted as bytes. See https://github.com/kubernetes/kubernetes/blob/master/staging/src/k8s.io/apimachinery/pkg/api/resource/quantity.go a full description.",
           "type": "string"
         },
+        "binaryAuthorizationPolicy": {
+          "description": "Optional. The binary authorization policy to be checked when deploying the Cloud Run service.",
+          "type": "string"
+        },
         "environmentVariables": {
           "additionalProperties": {
             "type": "string"
@@ -2414,6 +2418,10 @@
         },
         "object": {
           "description": "Google Cloud Storage object containing the source. This object must be a gzipped archive file (`.tar.gz`) containing source to build.",
+          "type": "string"
+        },
+        "sourceUploadUrl": {
+          "description": "When the specified storage bucket is a 1st gen function uploard url bucket, this field should be set as the generated upload url for 1st gen deployment.",
           "type": "string"
         }
       },

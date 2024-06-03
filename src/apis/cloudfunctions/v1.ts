@@ -827,7 +827,7 @@ export namespace cloudfunctions_v1 {
    */
   export interface Schema$OnDeployUpdatePolicy {
     /**
-     * Output only. contains the runtime version which was used during latest function deployment.
+     * Output only. Contains the runtime version which was used during latest function deployment.
      */
     runtimeVersion?: string | null;
   }
