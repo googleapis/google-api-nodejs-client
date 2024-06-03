@@ -250,6 +250,10 @@ export namespace recaptchaenterprise_v1 {
      */
     name?: string | null;
     /**
+     * Output only. Assessment returned when a site key, a token, and a phone number as `user_id` are provided. Account defender and SMS toll fraud protection need to be enabled.
+     */
+    phoneFraudAssessment?: Schema$GoogleCloudRecaptchaenterpriseV1PhoneFraudAssessment;
+    /**
      * Optional. The private password leak verification field contains the parameters that are used to to check for leaks privately without sharing user credentials.
      */
     privatePasswordLeakVerification?: Schema$GoogleCloudRecaptchaenterpriseV1PrivatePasswordLeakVerification;
@@ -698,6 +702,15 @@ export namespace recaptchaenterprise_v1 {
     skipBillingCheck?: boolean | null;
   }
   /**
+   * Assessment for Phone Fraud
+   */
+  export interface Schema$GoogleCloudRecaptchaenterpriseV1PhoneFraudAssessment {
+    /**
+     * Output only. Assessment of this phone event for risk of SMS toll fraud.
+     */
+    smsTollFraudVerdict?: Schema$GoogleCloudRecaptchaenterpriseV1SmsTollFraudVerdict;
+  }
+  /**
    * Private password leak verification info.
    */
   export interface Schema$GoogleCloudRecaptchaenterpriseV1PrivatePasswordLeakVerification {
@@ -840,6 +853,19 @@ export namespace recaptchaenterprise_v1 {
      * The queried memberships.
      */
     relatedAccountGroupMemberships?: Schema$GoogleCloudRecaptchaenterpriseV1RelatedAccountGroupMembership[];
+  }
+  /**
+   * Information about SMS toll fraud.
+   */
+  export interface Schema$GoogleCloudRecaptchaenterpriseV1SmsTollFraudVerdict {
+    /**
+     * Output only. Reasons contributing to the SMS toll fraud verdict.
+     */
+    reasons?: string[] | null;
+    /**
+     * Output only. Probability of an SMS event being fraudulent. Values are from 0.0 (lowest) to 1.0 (highest).
+     */
+    risk?: number | null;
   }
   /**
    * Options for user acceptance testing.

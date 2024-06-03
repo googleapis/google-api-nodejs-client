@@ -694,7 +694,7 @@
       }
     }
   },
-  "revision": "20240414",
+  "revision": "20240526",
   "rootUrl": "https://recaptchaenterprise.googleapis.com/",
   "schemas": {
     "GoogleCloudRecaptchaenterpriseV1AccountDefenderAssessment": {
@@ -947,6 +947,11 @@
           "description": "Output only. Identifier. The resource name for the Assessment in the format `projects/{project}/assessments/{assessment}`.",
           "readOnly": true,
           "type": "string"
+        },
+        "phoneFraudAssessment": {
+          "$ref": "GoogleCloudRecaptchaenterpriseV1PhoneFraudAssessment",
+          "description": "Output only. Assessment returned when a site key, a token, and a phone number as `user_id` are provided. Account defender and SMS toll fraud protection need to be enabled.",
+          "readOnly": true
         },
         "privatePasswordLeakVerification": {
           "$ref": "GoogleCloudRecaptchaenterpriseV1PrivatePasswordLeakVerification",
@@ -1542,6 +1547,18 @@
       },
       "type": "object"
     },
+    "GoogleCloudRecaptchaenterpriseV1PhoneFraudAssessment": {
+      "description": "Assessment for Phone Fraud",
+      "id": "GoogleCloudRecaptchaenterpriseV1PhoneFraudAssessment",
+      "properties": {
+        "smsTollFraudVerdict": {
+          "$ref": "GoogleCloudRecaptchaenterpriseV1SmsTollFraudVerdict",
+          "description": "Output only. Assessment of this phone event for risk of SMS toll fraud.",
+          "readOnly": true
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudRecaptchaenterpriseV1PrivatePasswordLeakVerification": {
       "description": "Private password leak verification info.",
       "id": "GoogleCloudRecaptchaenterpriseV1PrivatePasswordLeakVerification",
@@ -1759,6 +1776,35 @@
             "$ref": "GoogleCloudRecaptchaenterpriseV1RelatedAccountGroupMembership"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRecaptchaenterpriseV1SmsTollFraudVerdict": {
+      "description": "Information about SMS toll fraud.",
+      "id": "GoogleCloudRecaptchaenterpriseV1SmsTollFraudVerdict",
+      "properties": {
+        "reasons": {
+          "description": "Output only. Reasons contributing to the SMS toll fraud verdict.",
+          "items": {
+            "enum": [
+              "SMS_TOLL_FRAUD_REASON_UNSPECIFIED",
+              "INVALID_PHONE_NUMBER"
+            ],
+            "enumDescriptions": [
+              "Default unspecified reason",
+              "The provided phone number was invalid"
+            ],
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "risk": {
+          "description": "Output only. Probability of an SMS event being fraudulent. Values are from 0.0 (lowest) to 1.0 (highest).",
+          "format": "float",
+          "readOnly": true,
+          "type": "number"
         }
       },
       "type": "object"
