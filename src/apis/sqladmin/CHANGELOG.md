@@ -1,5 +1,12 @@
 # Changelog
 
+## [17.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/sqladmin-v17.0.1...sqladmin-v17.1.0) (2024-06-03)
+
+
+### Features
+
+* **sqladmin:** update the API ([7ba611c](https://github.com/googleapis/google-api-nodejs-client/commit/7ba611c2b1290052fab7f153024511a2d9781b63))
+
 ## [17.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/sqladmin-v17.0.0...sqladmin-v17.0.1) (2024-05-07)
 
 

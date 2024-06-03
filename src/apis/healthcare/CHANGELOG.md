@@ -1,5 +1,12 @@
 # Changelog
 
+## [16.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/healthcare-v16.0.0...healthcare-v16.1.0) (2024-06-03)
+
+
+### Features
+
+* **healthcare:** update the API ([aac166a](https://github.com/googleapis/google-api-nodejs-client/commit/aac166ae5a28dfc4a2522bfd4a81fd0294e32048))
+
 ## [16.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/healthcare-v15.0.1...healthcare-v16.0.0) (2024-05-02)
 
 

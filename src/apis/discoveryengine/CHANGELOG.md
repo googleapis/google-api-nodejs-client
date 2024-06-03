@@ -1,5 +1,12 @@
 # Changelog
 
+## [10.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/discoveryengine-v10.0.0...discoveryengine-v10.1.0) (2024-06-03)
+
+
+### Features
+
+* **discoveryengine:** update the API ([02437ec](https://github.com/googleapis/google-api-nodejs-client/commit/02437ec235f513321be4a12c3a028c33caf6775a))
+
 ## [10.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/discoveryengine-v9.0.0...discoveryengine-v10.0.0) (2024-05-07)
 
 

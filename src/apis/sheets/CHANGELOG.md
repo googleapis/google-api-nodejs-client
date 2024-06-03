@@ -1,5 +1,12 @@
 # Changelog
 
+## [7.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/sheets-v7.0.0...sheets-v7.0.1) (2024-06-03)
+
+
+### Bug Fixes
+
+* **sheets:** update the API ([f4ea2dc](https://github.com/googleapis/google-api-nodejs-client/commit/f4ea2dc8ead11706f9c1731b061a70c1c45cb8db))
+
 ## [7.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/sheets-v6.1.0...sheets-v7.0.0) (2024-05-02)
 
 

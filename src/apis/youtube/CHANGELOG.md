@@ -1,5 +1,16 @@
 # Changelog
 
+## [17.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/youtube-v16.1.0...youtube-v17.0.0) (2024-06-03)
+
+
+### ⚠ BREAKING CHANGES
+
+* **youtube:** This release has breaking changes.
+
+### Features
+
+* **youtube:** update the API ([2860943](https://github.com/googleapis/google-api-nodejs-client/commit/28609437b604103f78b8a8ad873304543940cede))
+
 ## [16.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/youtube-v16.0.0...youtube-v16.1.0) (2024-05-07)
 
 

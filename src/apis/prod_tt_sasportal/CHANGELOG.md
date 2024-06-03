@@ -1,5 +1,12 @@
 # Changelog
 
+## [17.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/prod_tt_sasportal-v17.0.0...prod_tt_sasportal-v17.0.1) (2024-06-03)
+
+
+### Bug Fixes
+
+* **prod_tt_sasportal:** update the API ([b75ecf2](https://github.com/googleapis/google-api-nodejs-client/commit/b75ecf2f34d78a20e15683d2f030be2722176de8))
+
 ## [17.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/prod_tt_sasportal-v16.0.1...prod_tt_sasportal-v17.0.0) (2024-05-02)
 
 

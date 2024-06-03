@@ -1,5 +1,12 @@
 # Changelog
 
+## [14.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/networkservices-v14.0.0...networkservices-v14.1.0) (2024-06-03)
+
+
+### Features
+
+* **networkservices:** update the API ([865f8da](https://github.com/googleapis/google-api-nodejs-client/commit/865f8da6b8ec0cd0b71d38380bfc319d3ac82ffc))
+
 ## [14.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/networkservices-v13.0.0...networkservices-v14.0.0) (2024-05-10)
 
 
