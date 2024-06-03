@@ -355,7 +355,7 @@ export namespace migrationcenter_v1 {
    */
   export interface Schema$AssetPerformanceData {
     /**
-     * Daily resource usage aggregations. Contains all of the data available for an asset, up to the last 40 days. Aggregations are sorted from oldest to most recent.
+     * Daily resource usage aggregations. Contains all of the data available for an asset, up to the last 420 days. Aggregations are sorted from oldest to most recent.
      */
     dailyResourceUsageAggregations?: Schema$DailyResourceUsageAggregation[];
   }
