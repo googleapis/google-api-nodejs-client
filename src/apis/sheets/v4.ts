@@ -3381,7 +3381,7 @@ export namespace sheets_v4 {
     range?: Schema$GridRange;
   }
   /**
-   * The status of a refresh cancellation. You can send cancel request to explicitly cancel one or multiple data source object refreshes.
+   * The status of a refresh cancellation. You can send a cancel request to explicitly cancel one or multiple data source object refreshes.
    */
   export interface Schema$RefreshCancellationStatus {
     /**

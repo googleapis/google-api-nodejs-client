@@ -870,7 +870,7 @@
       }
     }
   },
-  "revision": "20240430",
+  "revision": "20240521",
   "rootUrl": "https://sheets.googleapis.com/",
   "schemas": {
     "AddBandingRequest": {
@@ -5904,7 +5904,7 @@
       "type": "object"
     },
     "RefreshCancellationStatus": {
-      "description": "The status of a refresh cancellation. You can send cancel request to explicitly cancel one or multiple data source object refreshes.",
+      "description": "The status of a refresh cancellation. You can send a cancel request to explicitly cancel one or multiple data source object refreshes.",
       "id": "RefreshCancellationStatus",
       "properties": {
         "errorCode": {
