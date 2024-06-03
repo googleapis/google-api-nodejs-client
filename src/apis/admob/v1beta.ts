@@ -414,7 +414,7 @@ export namespace admob_v1beta {
     rows?: Schema$ReportRow[];
   }
   /**
-   * Request to generate an AdMob mediation report.
+   * Request to generate an AdMob Mediation report.
    */
   export interface Schema$GenerateMediationReportRequest {
     /**
@@ -423,7 +423,7 @@ export namespace admob_v1beta {
     reportSpec?: Schema$MediationReportSpec;
   }
   /**
-   * The streaming response for the AdMob mediation report where the first response contains the report header, then a stream of row responses, and finally a footer as the last response message. For example: [{ "header": { "date_range": { "start_date": {"year": 2018, "month": 9, "day": 1\}, "end_date": {"year": 2018, "month": 9, "day": 1\} \}, "localization_settings": { "currency_code": "USD", "language_code": "en-US" \} \} \}, { "row": { "dimension_values": { "DATE": {"value": "20180918"\}, "APP": { "value": "ca-app-pub-8123415297019784~1001342552", "display_label": "My app name!" \} \}, "metric_values": { "ESTIMATED_EARNINGS": {"decimal_value": "1324746"\} \} \} \}, { "footer": {"matching_row_count": 1\} \}]
+   * The streaming response for the AdMob Mediation report where the first response contains the report header, then a stream of row responses, and finally a footer as the last response message. For example: [{ "header": { "date_range": { "start_date": {"year": 2018, "month": 9, "day": 1\}, "end_date": {"year": 2018, "month": 9, "day": 1\} \}, "localization_settings": { "currency_code": "USD", "language_code": "en-US" \} \} \}, { "row": { "dimension_values": { "DATE": {"value": "20180918"\}, "APP": { "value": "ca-app-pub-8123415297019784~1001342552", "display_label": "My app name!" \} \}, "metric_values": { "ESTIMATED_EARNINGS": {"decimal_value": "1324746"\} \} \} \}, { "footer": {"matching_row_count": 1\} \}]
    */
   export interface Schema$GenerateMediationReportResponse {
     /**
@@ -628,7 +628,7 @@ export namespace admob_v1beta {
     mediationGroupLine?: Schema$MediationGroupMediationGroupLine;
   }
   /**
-   * Describes an AdMob mediation group.
+   * Describes an AdMob Mediation group.
    */
   export interface Schema$MediationGroup {
     /**
@@ -2881,7 +2881,7 @@ export namespace admob_v1beta {
     }
 
     /**
-     * Generates an AdMob mediation report based on the provided report specification. Returns result of a server-side streaming RPC. The result is returned in a sequence of responses.
+     * Generates an AdMob Mediation report based on the provided report specification. Returns result of a server-side streaming RPC. The result is returned in a sequence of responses.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
