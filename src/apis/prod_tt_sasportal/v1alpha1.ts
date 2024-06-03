@@ -499,7 +499,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
      */
     antennaDowntilt?: number | null;
     /**
-     * Peak antenna gain in dBi. This parameter is an integer with a value between -127 and +128 (dBi) inclusive.
+     * Peak antenna gain in dBi. This parameter is a double with a value between -127 and +128 (dBi) inclusive. Part of Release 2 to support floating-point value
      */
     antennaGain?: number | null;
     /**
