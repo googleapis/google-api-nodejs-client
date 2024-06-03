@@ -2455,6 +2455,10 @@ export namespace datamigration_v1 {
      * Required. Backup details per database in Cloud Storage.
      */
     databaseBackups?: Schema$SqlServerDatabaseBackup[];
+    /**
+     * Optional. Enable differential backups.
+     */
+    useDiffBackup?: boolean | null;
   }
   /**
    * Response message for 'GenerateSshScript' request.

@@ -2125,7 +2125,7 @@
       }
     }
   },
-  "revision": "20240430",
+  "revision": "20240522",
   "rootUrl": "https://datamigration.googleapis.com/",
   "schemas": {
     "AlloyDbConnectionProfile": {
@@ -2537,7 +2537,8 @@
             "POSTGRES_12",
             "POSTGRES_13",
             "POSTGRES_14",
-            "POSTGRES_15"
+            "POSTGRES_15",
+            "POSTGRES_16"
           ],
           "enumDescriptions": [
             "Unspecified version.",
@@ -2561,7 +2562,8 @@
             "PostgreSQL 12.",
             "PostgreSQL 13.",
             "PostgreSQL 14.",
-            "PostgreSQL 15."
+            "PostgreSQL 15.",
+            "PostgreSQL 16."
           ],
           "type": "string"
         },
@@ -5729,6 +5731,10 @@
             "$ref": "SqlServerDatabaseBackup"
           },
           "type": "array"
+        },
+        "useDiffBackup": {
+          "description": "Optional. Enable differential backups.",
+          "type": "boolean"
         }
       },
       "type": "object"
