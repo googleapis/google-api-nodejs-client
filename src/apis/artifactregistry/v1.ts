@@ -1154,7 +1154,7 @@ export namespace artifactregistry_v1 {
      */
     description?: string | null;
     /**
-     * Optional. If this is true, aunspecified repo type will be treated as error. Is used for new repo types that don't have any specific fields. Right now is used by AOSS team when creating repos for customers.
+     * Optional. If this is true, an unspecified repo type will be treated as error rather than defaulting to standard.
      */
     disallowUnspecifiedMode?: boolean | null;
     /**
@@ -1311,19 +1311,15 @@ export namespace artifactregistry_v1 {
    */
   export interface Schema$UploadGenericArtifactRequest {
     /**
-     * The name of the file of the generic artifact to be uploaded. E.g. "example-file.zip" The filename should only include letters, numbers, and url safe characters, i.e. [a-zA-Z0-9-_.~@].
+     * The name of the file of the generic artifact to be uploaded. E.g. `example-file.zip` The filename is limited to letters, numbers, and url safe characters, i.e. [a-zA-Z0-9-_.~@].
      */
     filename?: string | null;
     /**
-     * Deprecated. Use package_id, version_id and filename instead. The resource name of the generic artifact. E.g. "projects/math/locations/us/repositories/operations/genericArtifacts/addition/1.0.0/add.py"
-     */
-    name?: string | null;
-    /**
-     * The ID of the package of the generic artifact. If the package does not exist, a new package will be created. E.g. "pkg-1" The package_id must start with a letter, end with a letter or number, only contain letters, numbers, hyphens and periods i.e. [a-z0-9-.], and cannot exceed 256 characters.
+     * The ID of the package of the generic artifact. If the package does not exist, a new package will be created. The `package_id` must start with a letter, end with a letter or number, only contain letters, numbers, hyphens and periods i.e. [a-z0-9-.], and cannot exceed 256 characters.
      */
     packageId?: string | null;
     /**
-     * The ID of the version of the generic artifact. If the version does not exist, a new version will be created. E.g."1.0.0" The version_id must start and end with a letter or number, can only contain lowercase letters, numbers, hyphens and periods, i.e. [a-z0-9-.] and cannot exceed a total of 128 characters. While "latest" is a well-known name for the latest version of a package, it is not yet supported and is reserved for future use. Creating a version called "latest" is not allowed.
+     * The ID of the version of the generic artifact. If the version does not exist, a new version will be created. The version_id must start and end with a letter or number, can only contain lowercase letters, numbers, hyphens and periods, i.e. [a-z0-9-.] and cannot exceed a total of 128 characters. Creating a version called `latest` is not allowed.
      */
     versionId?: string | null;
   }
@@ -1491,7 +1487,7 @@ export namespace artifactregistry_v1 {
     updateTime?: string | null;
   }
   /**
-   * LINT.IfChange Virtual repository configuration.
+   * Virtual repository configuration.
    */
   export interface Schema$VirtualRepositoryConfig {
     /**
@@ -3585,7 +3581,7 @@ export namespace artifactregistry_v1 {
      */
     orderBy?: string;
     /**
-     * The maximum number of artifacts to return.
+     * The maximum number of artifacts to return. Maximum page size is 1,000.
      */
     pageSize?: number;
     /**
@@ -3602,6 +3598,93 @@ export namespace artifactregistry_v1 {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
+    }
+
+    /**
+     * Deletes a file and all of its content. It is only allowed on generic repositories. The returned operation will complete once the file has been deleted.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Repositories$Files$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Repositories$Files$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    delete(
+      params: Params$Resource$Projects$Locations$Repositories$Files$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Repositories$Files$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Repositories$Files$Delete,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Repositories$Files$Delete
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Repositories$Files$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Repositories$Files$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://artifactregistry.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
     }
 
     /**
@@ -3889,6 +3972,13 @@ export namespace artifactregistry_v1 {
     }
   }
 
+  export interface Params$Resource$Projects$Locations$Repositories$Files$Delete
+    extends StandardParameters {
+    /**
+     * Required. The name of the file to delete.
+     */
+    name?: string;
+  }
   export interface Params$Resource$Projects$Locations$Repositories$Files$Download
     extends StandardParameters {
     /**
@@ -3914,7 +4004,7 @@ export namespace artifactregistry_v1 {
      */
     orderBy?: string;
     /**
-     * The maximum number of files to return.
+     * The maximum number of files to return. Maximum page size is 1,000.
      */
     pageSize?: number;
     /**
@@ -3934,7 +4024,7 @@ export namespace artifactregistry_v1 {
     }
 
     /**
-     * Directly uploads a Generic artifact. The returned Operation will complete once the resources are uploaded. Package, Version, and File resources are created based on the uploaded artifact. Uploaded artifacts that conflict with existing resources will raise an ALREADY_EXISTS error.
+     * Directly uploads a Generic artifact. The returned operation will complete once the resources are uploaded. Package, version, and file resources are created based on the uploaded artifact. Uploaded artifacts that conflict with existing resources will raise an `ALREADY_EXISTS` error.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4777,7 +4867,7 @@ export namespace artifactregistry_v1 {
   export interface Params$Resource$Projects$Locations$Repositories$Mavenartifacts$List
     extends StandardParameters {
     /**
-     * The maximum number of artifacts to return.
+     * The maximum number of artifacts to return. Maximum page size is 1,000.
      */
     pageSize?: number;
     /**
@@ -4989,7 +5079,7 @@ export namespace artifactregistry_v1 {
   export interface Params$Resource$Projects$Locations$Repositories$Npmpackages$List
     extends StandardParameters {
     /**
-     * The maximum number of artifacts to return.
+     * The maximum number of artifacts to return. Maximum page size is 1,000.
      */
     pageSize?: number;
     /**
@@ -5899,7 +5989,7 @@ export namespace artifactregistry_v1 {
      */
     filter?: string;
     /**
-     * The maximum number of tags to return. Maximum page size is 10,000.
+     * The maximum number of tags to return. Maximum page size is 1,000.
      */
     pageSize?: number;
     /**
@@ -6553,7 +6643,7 @@ export namespace artifactregistry_v1 {
   export interface Params$Resource$Projects$Locations$Repositories$Pythonpackages$List
     extends StandardParameters {
     /**
-     * The maximum number of artifacts to return.
+     * The maximum number of artifacts to return. Maximum page size is 1,000.
      */
     pageSize?: number;
     /**
