@@ -591,7 +591,7 @@
       }
     }
   },
-  "revision": "20240424",
+  "revision": "20240515",
   "rootUrl": "https://networkmanagement.googleapis.com/",
   "schemas": {
     "AbortInfo": {
@@ -1015,8 +1015,16 @@
           "description": "IP address of the target (if applicable).",
           "type": "string"
         },
+        "pscGoogleApiTarget": {
+          "description": "PSC Google API target the packet is delivered to (if applicable).",
+          "type": "string"
+        },
         "resourceUri": {
           "description": "URI of the resource that the packet is delivered to.",
+          "type": "string"
+        },
+        "storageBucket": {
+          "description": "Name of the Cloud Storage Bucket the packet is delivered to (if applicable).",
           "type": "string"
         },
         "target": {
@@ -1036,7 +1044,8 @@
             "PRIVATE_NETWORK",
             "CLOUD_FUNCTION",
             "APP_ENGINE_VERSION",
-            "CLOUD_RUN_REVISION"
+            "CLOUD_RUN_REVISION",
+            "GOOGLE_MANAGED_SERVICE"
           ],
           "enumDescriptions": [
             "Target not specified.",
@@ -1046,14 +1055,15 @@
             "Target is a Google Kubernetes Engine cluster master.",
             "Target is a Cloud SQL instance.",
             "Target is a published service that uses [Private Service Connect](https://cloud.google.com/vpc/docs/configure-private-service-connect-services).",
-            "Target is all Google APIs that use [Private Service Connect](https://cloud.google.com/vpc/docs/configure-private-service-connect-apis).",
+            "Target is Google APIs that use [Private Service Connect](https://cloud.google.com/vpc/docs/configure-private-service-connect-apis).",
             "Target is a VPC-SC that uses [Private Service Connect](https://cloud.google.com/vpc/docs/configure-private-service-connect-apis).",
             "Target is a serverless network endpoint group.",
             "Target is a Cloud Storage bucket.",
             "Target is a private network. Used only for return traces.",
             "Target is a Cloud Function. Used only for return traces.",
             "Target is a App Engine service version. Used only for return traces.",
-            "Target is a Cloud Run revision. Used only for return traces."
+            "Target is a Cloud Run revision. Used only for return traces.",
+            "Target is a Google-managed service. Used only for return traces."
           ],
           "type": "string"
         }
@@ -1128,7 +1138,8 @@
             "DROPPED_INSIDE_PSC_SERVICE_PRODUCER",
             "LOAD_BALANCER_HAS_NO_PROXY_SUBNET",
             "CLOUD_NAT_NO_ADDRESSES",
-            "ROUTING_LOOP"
+            "ROUTING_LOOP",
+            "DROPPED_INSIDE_GOOGLE_MANAGED_SERVICE"
           ],
           "enumDescriptions": [
             "Cause is unspecified.",
@@ -1192,7 +1203,8 @@
             "Packet was dropped inside Private Service Connect service producer.",
             "Packet sent to a load balancer, which requires a proxy-only subnet and the subnet is not found.",
             "Packet sent to Cloud Nat without active NAT IPs.",
-            "Packet is stuck in a routing loop."
+            "Packet is stuck in a routing loop.",
+            "Packet is dropped due to an unspecified reason inside a Google-managed service. Used only for return traces."
           ],
           "type": "string"
         },
@@ -1553,19 +1565,35 @@
       "id": "ForwardingRuleInfo",
       "properties": {
         "displayName": {
-          "description": "Name of a Compute Engine forwarding rule.",
+          "description": "Name of the forwarding rule.",
+          "type": "string"
+        },
+        "loadBalancerName": {
+          "description": "Name of the load balancer the forwarding rule belongs to. Empty for forwarding rules not related to load balancers (like PSC forwarding rules).",
           "type": "string"
         },
         "matchedPortRange": {
-          "description": "Port range defined in the forwarding rule that matches the test.",
+          "description": "Port range defined in the forwarding rule that matches the packet.",
           "type": "string"
         },
         "matchedProtocol": {
-          "description": "Protocol defined in the forwarding rule that matches the test.",
+          "description": "Protocol defined in the forwarding rule that matches the packet.",
           "type": "string"
         },
         "networkUri": {
-          "description": "Network URI. Only valid for Internal Load Balancer.",
+          "description": "Network URI.",
+          "type": "string"
+        },
+        "pscGoogleApiTarget": {
+          "description": "PSC Google API target this forwarding rule targets (if applicable).",
+          "type": "string"
+        },
+        "pscServiceAttachmentUri": {
+          "description": "URI of the PSC service attachment this forwarding rule targets (if applicable).",
+          "type": "string"
+        },
+        "region": {
+          "description": "Region of the forwarding rule. Set only for regional forwarding rules.",
           "type": "string"
         },
         "target": {
@@ -1573,7 +1601,7 @@
           "type": "string"
         },
         "uri": {
-          "description": "URI of a Compute Engine forwarding rule.",
+          "description": "URI of the forwarding rule.",
           "type": "string"
         },
         "vip": {
@@ -2487,6 +2515,17 @@
       },
       "type": "object"
     },
+    "ServerlessNegInfo": {
+      "description": "For display only. Metadata associated with the serverless network endpoint group backend.",
+      "id": "ServerlessNegInfo",
+      "properties": {
+        "negUri": {
+          "description": "URI of the serverless network endpoint group.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "SetIamPolicyRequest": {
       "description": "Request message for `SetIamPolicy` method.",
       "id": "SetIamPolicyRequest",
@@ -2627,6 +2666,10 @@
           "$ref": "RouteInfo",
           "description": "Display information of a Compute Engine route."
         },
+        "serverlessNeg": {
+          "$ref": "ServerlessNegInfo",
+          "description": "Display information of a Serverless network endpoint group backend. Used only for return traces."
+        },
         "state": {
           "description": "Each step is in one of the pre-defined states.",
           "enum": [
@@ -2642,6 +2685,7 @@
             "START_FROM_CLOUD_RUN_REVISION",
             "START_FROM_STORAGE_BUCKET",
             "START_FROM_PSC_PUBLISHED_SERVICE",
+            "START_FROM_SERVERLESS_NEG",
             "APPLY_INGRESS_FIREWALL_RULE",
             "APPLY_EGRESS_FIREWALL_RULE",
             "APPLY_ROUTE",
@@ -2663,6 +2707,7 @@
             "VIEWER_PERMISSION_MISSING"
           ],
           "enumDeprecated": [
+            false,
             false,
             false,
             false,
@@ -2708,6 +2753,7 @@
             "Initial state: packet originating from a Cloud Run revision. A CloudRunRevisionInfo is populated with starting revision information.",
             "Initial state: packet originating from a Storage Bucket. Used only for return traces. The storage_bucket information is populated.",
             "Initial state: packet originating from a published service that uses Private Service Connect. Used only for return traces.",
+            "Initial state: packet originating from a serverless network endpoint group backend. Used only for return traces. The serverless_neg information is populated.",
             "Config checking state: verify ingress firewall rule.",
             "Config checking state: verify egress firewall rule.",
             "Config checking state: verify route.",
