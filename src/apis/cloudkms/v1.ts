@@ -241,7 +241,7 @@ export namespace cloudkms_v1 {
    */
   export interface Schema$AutokeyConfig {
     /**
-     * Optional. Name of the key project, e.g. `projects/{PROJECT_ID\}` or `projects/{PROJECT_NUMBER\}`, where Cloud KMS Autokey will provision new CryptoKeys. On UpdateAutokeyConfig, the caller will require `cloudkms.cryptoKeys.setIamPolicy` permission on this key project. Once configured, for Cloud KMS Autokey to function properly, this key project must have the Cloud KMS API activated and the Cloud KMS Service Agent for this key project must be granted the `cloudkms.admin` role (or pertinent permissions).
+     * Optional. Name of the key project, e.g. `projects/{PROJECT_ID\}` or `projects/{PROJECT_NUMBER\}`, where Cloud KMS Autokey will provision a new CryptoKey when a KeyHandle is created. On UpdateAutokeyConfig, the caller will require `cloudkms.cryptoKeys.setIamPolicy` permission on this key project. Once configured, for Cloud KMS Autokey to function properly, this key project must have the Cloud KMS API activated and the Cloud KMS Service Agent for this key project must be granted the `cloudkms.admin` role (or pertinent permissions). A request with an empty key project field will clear the configuration.
      */
     keyProject?: string | null;
     /**
@@ -745,11 +745,11 @@ export namespace cloudkms_v1 {
    */
   export interface Schema$KeyHandle {
     /**
-     * Output only. Name of a CryptoKey that has been provisioned for Customer Managed Encryption Key (CMEK) use in the KeyHandle's project and location for the requested resource type.
+     * Output only. Name of a CryptoKey that has been provisioned for Customer Managed Encryption Key (CMEK) use in the KeyHandle project and location for the requested resource type. The CryptoKey project will reflect the value configured in the AutokeyConfig on the resource project's ancestor folder at the time of the KeyHandle creation. If more than one ancestor folder has a configured AutokeyConfig, the nearest of these configurations is used.
      */
     kmsKey?: string | null;
     /**
-     * Output only. Identifier. Name of the [KeyHandle] resource, e.g. `projects/{PROJECT_ID\}/locations/{LOCATION\}/keyHandles/{KEY_HANDLE_ID\}`.
+     * Identifier. Name of the KeyHandle resource, e.g. `projects/{PROJECT_ID\}/locations/{LOCATION\}/keyHandles/{KEY_HANDLE_ID\}`.
      */
     name?: string | null;
     /**
@@ -1426,7 +1426,7 @@ export namespace cloudkms_v1 {
     }
 
     /**
-     * Updates the AutokeyConfig for a folder. The caller must have both `cloudkms.autokeyConfigs.update` permission on the parent folder and `cloudkms.cryptoKeys.setIamPolicy` permission on the provided key project. An empty key project may be provided to clear the configuration.
+     * Updates the AutokeyConfig for a folder. The caller must have both `cloudkms.autokeyConfigs.update` permission on the parent folder and `cloudkms.cryptoKeys.setIamPolicy` permission on the provided key project. A KeyHandle creation in the folder's descendant projects will use this configuration to determine where to create the resulting CryptoKey.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
