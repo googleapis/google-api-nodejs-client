@@ -391,9 +391,102 @@ export namespace migrationcenter_v1alpha1 {
    */
   export interface Schema$AssetPerformanceData {
     /**
-     * Daily resource usage aggregations. Contains all of the data available for an asset, up to the last 40 days. Aggregations are sorted from oldest to most recent.
+     * Daily resource usage aggregations. Contains all of the data available for an asset, up to the last 420 days. Aggregations are sorted from oldest to most recent.
      */
     dailyResourceUsageAggregations?: Schema$DailyResourceUsageAggregation[];
+  }
+  /**
+   * Assets export job message.
+   */
+  export interface Schema$AssetsExportJob {
+    /**
+     * Optional. Conditions for selecting assets to export.
+     */
+    condition?: Schema$AssetsExportJobExportCondition;
+    /**
+     * Output only. Resource creation time.
+     */
+    createTime?: string | null;
+    /**
+     * Optional. Labels as key value pairs. Labels must meet the following constraints: * Keys and values can contain only lowercase letters, numeric characters, underscores, and dashes. * All characters must use UTF-8 encoding, and international characters are allowed. * Keys must start with a lowercase letter or international character. * Each resource is limited to a maximum of 64 labels. Both keys and values are additionally constrained to be <= 128 bytes.
+     */
+    labels?: {[key: string]: string} | null;
+    /**
+     * Output only. Identifier. Resource name.
+     */
+    name?: string | null;
+    /**
+     * Export data regarding asset network dependencies.
+     */
+    networkDependencies?: Schema$AssetsExportJobNetworkDependencies;
+    /**
+     * Output only. Recent non expired executions of the job.
+     */
+    recentExecutions?: Schema$AssetsExportJobExecution[];
+    /**
+     * Export to Cloud Storage files downloadable using signed URIs.
+     */
+    signedUriDestination?: Schema$SignedUriDestination;
+    /**
+     * Output only. Resource update time.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * Execution status of assets export job.
+   */
+  export interface Schema$AssetsExportJobExecution {
+    /**
+     * Output only. Completion time of the export.
+     */
+    endTime?: string | null;
+    /**
+     * Output only. Globally unique identifier of the execution.
+     */
+    executionId?: string | null;
+    /**
+     * Output only. Expiration time for the export and artifacts.
+     */
+    expireTime?: string | null;
+    /**
+     * Output only. Result of the export execution.
+     */
+    result?: Schema$AssetsExportJobExecutionResult;
+    /**
+     * Output only. Execution timestamp.
+     */
+    startTime?: string | null;
+  }
+  /**
+   * Contains the result of the assets export.
+   */
+  export interface Schema$AssetsExportJobExecutionResult {
+    /**
+     * Output only. Error encountered during export.
+     */
+    error?: Schema$Status;
+    /**
+     * Output only. Signed URLs for downloading export artifacts.
+     */
+    signedUris?: Schema$SignedUris;
+  }
+  /**
+   * Conditions for selecting assets to export.
+   */
+  export interface Schema$AssetsExportJobExportCondition {
+    /**
+     * Optional. Assets filter, supports the same syntax as asset listing.
+     */
+    filter?: string | null;
+  }
+  /**
+   * Configuration for network dependencies exports.
+   */
+  export interface Schema$AssetsExportJobNetworkDependencies {
+    /**
+     * Optional. When this value is set to a positive integer, network connections data will be returned for the most recent days for which data is available. When this value is unset (or set to zero), all available data is returned.
+     */
+    maxDays?: number | null;
   }
   /**
    * AWS EC2 specific details.
@@ -627,7 +720,7 @@ export namespace migrationcenter_v1alpha1 {
    */
   export interface Schema$ComputeEnginePreferences {
     /**
-     * Overridden by os_pricing_preferences if specified. License type to consider when calculating costs for virtual machine insights and recommendations. If unspecified, costs are calculated based on the default licensing plan.
+     * If os_pricing_preferences is specified, it overrides this field. License type to consider when calculating costs for virtual machine insights and recommendations. If unspecified, costs are calculated based on the default licensing plan.
      */
     licenseType?: string | null;
     /**
@@ -843,11 +936,11 @@ export namespace migrationcenter_v1alpha1 {
    */
   export interface Schema$DatabaseDeploymentTopology {
     /**
-     * Optional. Number of total cores.
+     * Optional. Number of total logical cores.
      */
     coreCount?: number | null;
     /**
-     * Optional. Number of total cores limited by db deployment.
+     * Optional. Number of total logical cores limited by db deployment.
      */
     coreLimit?: number | null;
     /**
@@ -910,10 +1003,6 @@ export namespace migrationcenter_v1alpha1 {
    */
   export interface Schema$DatabaseInstance {
     /**
-     * Optional. The instance's hosts.
-     */
-    hosts?: Schema$DatabaseInstanceHost[];
-    /**
      * The instance's name.
      */
     instanceName?: string | null;
@@ -921,15 +1010,6 @@ export namespace migrationcenter_v1alpha1 {
      * The instance role in the database engine.
      */
     role?: string | null;
-  }
-  /**
-   * Details of a host of a database instance.
-   */
-  export interface Schema$DatabaseInstanceHost {
-    /**
-     * Optional. The host name of the host.
-     */
-    hostName?: string | null;
   }
   /**
    * Details of a group of database objects.
@@ -1906,6 +1986,19 @@ export namespace migrationcenter_v1alpha1 {
      * Output only. Category of this compatibility issue.
      */
     category?: string | null;
+  }
+  /**
+   * Response message for listing assets export jobs.
+   */
+  export interface Schema$ListAssetsExportJobsResponse {
+    /**
+     * Output only. The list of assets export jobs.
+     */
+    assetsExportJobs?: Schema$AssetsExportJob[];
+    /**
+     * Output only. A token identifying a page of results the server should return.
+     */
+    nextPageToken?: string | null;
   }
   /**
    * Response message for listing assets.
@@ -3222,6 +3315,24 @@ export namespace migrationcenter_v1alpha1 {
     vmwareNode?: Schema$ReportSummaryVMWareNode;
   }
   /**
+   * A request to run an assets export job.
+   */
+  export interface Schema$RunAssetsExportJobRequest {
+    /**
+     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string | null;
+  }
+  /**
+   * Response message for running an assets export job.
+   */
+  export interface Schema$RunAssetsExportJobResponse {
+    /**
+     * Output only. Execution status of the assets export operation.
+     */
+    assetsExportJobExecution?: Schema$AssetsExportJobExecution;
+  }
+  /**
    * A request to run an import job.
    */
   export interface Schema$RunImportJobRequest {
@@ -3365,6 +3476,32 @@ export namespace migrationcenter_v1alpha1 {
      * The preference set used by default for a project.
      */
     preferenceSet?: string | null;
+  }
+  /**
+   * Contains a signed URI.
+   */
+  export interface Schema$SignedUri {
+    /**
+     * Output only. Name of the file the Signed URI references.
+     */
+    file?: string | null;
+    /**
+     * Output only. Download URI for the file.
+     */
+    uri?: string | null;
+  }
+  /**
+   * Signed URI destination configuration.
+   */
+  export interface Schema$SignedUriDestination {}
+  /**
+   * Contains a list of Signed URIs.
+   */
+  export interface Schema$SignedUris {
+    /**
+     * Output only. List of signed URIs.
+     */
+    signedUris?: Schema$SignedUri[];
   }
   /**
    * An insight regarding software detected on an asset.
@@ -3911,6 +4048,7 @@ export namespace migrationcenter_v1alpha1 {
   export class Resource$Projects$Locations {
     context: APIRequestContext;
     assets: Resource$Projects$Locations$Assets;
+    assetsExportJobs: Resource$Projects$Locations$Assetsexportjobs;
     discoveryClients: Resource$Projects$Locations$Discoveryclients;
     groups: Resource$Projects$Locations$Groups;
     importJobs: Resource$Projects$Locations$Importjobs;
@@ -3921,6 +4059,9 @@ export namespace migrationcenter_v1alpha1 {
     constructor(context: APIRequestContext) {
       this.context = context;
       this.assets = new Resource$Projects$Locations$Assets(this.context);
+      this.assetsExportJobs = new Resource$Projects$Locations$Assetsexportjobs(
+        this.context
+      );
       this.discoveryClients = new Resource$Projects$Locations$Discoveryclients(
         this.context
       );
@@ -5207,6 +5348,525 @@ export namespace migrationcenter_v1alpha1 {
      * Request body metadata
      */
     requestBody?: Schema$Frames;
+  }
+
+  export class Resource$Projects$Locations$Assetsexportjobs {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Creates a new assets export job.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Locations$Assetsexportjobs$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Projects$Locations$Assetsexportjobs$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    create(
+      params: Params$Resource$Projects$Locations$Assetsexportjobs$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Assetsexportjobs$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Assetsexportjobs$Create,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$Operation>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Assetsexportjobs$Create
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Assetsexportjobs$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Assetsexportjobs$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://migrationcenter.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha1/{+parent}/assetsExportJobs').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Deletes an assets export job.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Assetsexportjobs$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Assetsexportjobs$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    delete(
+      params: Params$Resource$Projects$Locations$Assetsexportjobs$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Assetsexportjobs$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Assetsexportjobs$Delete,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Assetsexportjobs$Delete
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Assetsexportjobs$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Assetsexportjobs$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://migrationcenter.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Gets the details of an assets export job.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Assetsexportjobs$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Assetsexportjobs$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AssetsExportJob>;
+    get(
+      params: Params$Resource$Projects$Locations$Assetsexportjobs$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Assetsexportjobs$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$AssetsExportJob>,
+      callback: BodyResponseCallback<Schema$AssetsExportJob>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Assetsexportjobs$Get,
+      callback: BodyResponseCallback<Schema$AssetsExportJob>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$AssetsExportJob>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Assetsexportjobs$Get
+        | BodyResponseCallback<Schema$AssetsExportJob>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AssetsExportJob>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AssetsExportJob>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$AssetsExportJob> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Assetsexportjobs$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Assetsexportjobs$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://migrationcenter.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$AssetsExportJob>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$AssetsExportJob>(parameters);
+      }
+    }
+
+    /**
+     * Lists all the assets export jobs in a given project and location.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Assetsexportjobs$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Assetsexportjobs$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListAssetsExportJobsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Assetsexportjobs$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Assetsexportjobs$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListAssetsExportJobsResponse>,
+      callback: BodyResponseCallback<Schema$ListAssetsExportJobsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Assetsexportjobs$List,
+      callback: BodyResponseCallback<Schema$ListAssetsExportJobsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListAssetsExportJobsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Assetsexportjobs$List
+        | BodyResponseCallback<Schema$ListAssetsExportJobsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListAssetsExportJobsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListAssetsExportJobsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListAssetsExportJobsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Assetsexportjobs$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Assetsexportjobs$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://migrationcenter.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha1/{+parent}/assetsExportJobs').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListAssetsExportJobsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListAssetsExportJobsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Runs an assets export job, returning an AssetsExportJobExecution.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    run(
+      params: Params$Resource$Projects$Locations$Assetsexportjobs$Run,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    run(
+      params?: Params$Resource$Projects$Locations$Assetsexportjobs$Run,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    run(
+      params: Params$Resource$Projects$Locations$Assetsexportjobs$Run,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    run(
+      params: Params$Resource$Projects$Locations$Assetsexportjobs$Run,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    run(
+      params: Params$Resource$Projects$Locations$Assetsexportjobs$Run,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    run(callback: BodyResponseCallback<Schema$Operation>): void;
+    run(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Assetsexportjobs$Run
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Assetsexportjobs$Run;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Assetsexportjobs$Run;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://migrationcenter.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha1/{+name}:run').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Assetsexportjobs$Create
+    extends StandardParameters {
+    /**
+     * Required. The ID to use for the asset export job.
+     */
+    assetsExportJobId?: string;
+    /**
+     * Required. The parent resource where the assts export job will be created.
+     */
+    parent?: string;
+    /**
+     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$AssetsExportJob;
+  }
+  export interface Params$Resource$Projects$Locations$Assetsexportjobs$Delete
+    extends StandardParameters {
+    /**
+     * Required. The name of the assets export job to delete.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Assetsexportjobs$Get
+    extends StandardParameters {
+    /**
+     * Required. Name of the resource.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Assetsexportjobs$List
+    extends StandardParameters {
+    /**
+     * Optional. Requested page size. The server may return fewer items than requested. If unspecified, the server will pick an appropriate default value.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A token identifying a page of results that the server should return.
+     */
+    pageToken?: string;
+    /**
+     * Required. Parent resource.
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Assetsexportjobs$Run
+    extends StandardParameters {
+    /**
+     * Required. Name of the resource.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$RunAssetsExportJobRequest;
   }
 
   export class Resource$Projects$Locations$Discoveryclients {
