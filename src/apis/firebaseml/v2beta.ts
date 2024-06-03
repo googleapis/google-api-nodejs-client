@@ -346,6 +346,10 @@ export namespace firebaseml_v2beta {
    */
   export interface Schema$GenerateContentRequest {
     /**
+     * Optional. The name of the cached content used as context to serve the prediction. Note: only used in explicit caching, where users can have control over caching (e.g. what content to cache) and enjoy guaranteed cost savings. Format: `projects/{project\}/locations/{location\}/cachedContents/{cachedContent\}`
+     */
+    cachedContent?: string | null;
+    /**
      * Required. The content of the current conversation with the model. For single-turn queries, this is a single instance. For multi-turn queries, this is a repeated field that contains conversation history + latest request.
      */
     contents?: Schema$Content[];
@@ -412,9 +416,9 @@ export namespace firebaseml_v2beta {
      */
     responseMimeType?: string | null;
     /**
-     * Optional. Control Three levels of creativity in the model output. Default: RESPONSE_STYLE_BALANCED
+     * Optional. The `Schema` object allows the definition of input and output data types. These types can be objects, but also primitives and arrays. Represents a select subset of an [OpenAPI 3.0 schema object](https://spec.openapis.org/oas/v3.0.3#schema). If set, a compatible response_mime_type must also be set. Compatible mimetypes: `application/json`: Schema for JSON response.
      */
-    responseStyle?: string | null;
+    responseSchema?: Schema$Schema;
     /**
      * Optional. Stop sequences.
      */
