@@ -1935,7 +1935,7 @@
       }
     }
   },
-  "revision": "20240423",
+  "revision": "20240418",
   "rootUrl": "https://bigquery.googleapis.com/",
   "schemas": {
     "AggregateClassificationMetrics": {
@@ -9006,7 +9006,7 @@
           "readOnly": true
         },
         "replicationIntervalMs": {
-          "description": "Optional. Specifies the interval at which the source table is polled for updates. It's Optional. If not specified, default replication interval would be applied.",
+          "description": "Required. Specifies the interval at which the source table is polled for updates.",
           "format": "int64",
           "type": "string"
         },
