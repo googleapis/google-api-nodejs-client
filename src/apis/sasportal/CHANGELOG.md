@@ -1,5 +1,12 @@
 # Changelog
 
+## [18.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/sasportal-v18.0.0...sasportal-v18.0.1) (2024-06-03)
+
+
+### Bug Fixes
+
+* **sasportal:** update the API ([ec31b98](https://github.com/googleapis/google-api-nodejs-client/commit/ec31b98c39ec643c8d16afe8e8c5317f78456826))
+
 ## [18.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/sasportal-v17.0.1...sasportal-v18.0.0) (2024-05-02)
 
 

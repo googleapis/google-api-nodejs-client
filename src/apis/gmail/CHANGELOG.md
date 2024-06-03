@@ -1,5 +1,16 @@
 # Changelog
 
+## [10.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/gmail-v9.2.0...gmail-v10.0.0) (2024-06-03)
+
+
+### ⚠ BREAKING CHANGES
+
+* **gmail:** This release has breaking changes.
+
+### Features
+
+* **gmail:** update the API ([68cef12](https://github.com/googleapis/google-api-nodejs-client/commit/68cef1291d7bb0e6a088f6b95a8998144e79d406))
+
 ## [9.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/gmail-v9.1.0...gmail-v9.2.0) (2024-05-02)
 
 

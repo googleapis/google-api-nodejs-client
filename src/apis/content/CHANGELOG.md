@@ -1,5 +1,12 @@
 # Changelog
 
+## [25.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/content-v25.0.0...content-v25.1.0) (2024-06-03)
+
+
+### Features
+
+* **content:** update the API ([f36f6e2](https://github.com/googleapis/google-api-nodejs-client/commit/f36f6e2e9c952fcac4adb6893b5861455129a03f))
+
 ## [25.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/content-v24.0.0...content-v25.0.0) (2024-05-10)
 
 

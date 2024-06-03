@@ -1,5 +1,12 @@
 # Changelog
 
+## [25.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/chat-v25.0.0...chat-v25.0.1) (2024-06-03)
+
+
+### Bug Fixes
+
+* **chat:** update the API ([ed0f102](https://github.com/googleapis/google-api-nodejs-client/commit/ed0f102750218497604d78a91f0983202472bfc4))
+
 ## [25.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/chat-v24.0.0...chat-v25.0.0) (2024-05-10)
 
 

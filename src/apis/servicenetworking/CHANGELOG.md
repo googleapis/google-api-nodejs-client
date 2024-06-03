@@ -1,5 +1,12 @@
 # Changelog
 
+## [14.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/servicenetworking-v14.0.0...servicenetworking-v14.0.1) (2024-06-03)
+
+
+### Bug Fixes
+
+* **servicenetworking:** update the API ([d4fb56f](https://github.com/googleapis/google-api-nodejs-client/commit/d4fb56f717daa95b8faf4a5a98bc358ca0be800a))
+
 ## [14.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/servicenetworking-v13.0.0...servicenetworking-v14.0.0) (2024-05-02)
 
 

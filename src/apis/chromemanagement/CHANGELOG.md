@@ -1,5 +1,12 @@
 # Changelog
 
+## [13.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/chromemanagement-v13.0.0...chromemanagement-v13.1.0) (2024-06-03)
+
+
+### Features
+
+* **chromemanagement:** update the API ([764b8b4](https://github.com/googleapis/google-api-nodejs-client/commit/764b8b43271f1b8b9ff37760bd688294ff1df7ba))
+
 ## [13.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/chromemanagement-v12.0.1...chromemanagement-v13.0.0) (2024-05-02)
 
 
