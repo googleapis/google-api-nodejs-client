@@ -723,7 +723,7 @@
                   "type": "string"
                 },
                 "parent": {
-                  "description": "Required. The name of the service. Example: \"services/DA34-426B-A397\"",
+                  "description": "Required. The name of the service. Example: \"services/6F81-5844-456A\"",
                   "location": "path",
                   "pattern": "^services/[^/]+$",
                   "required": true,
@@ -751,7 +751,7 @@
       }
     }
   },
-  "revision": "20240126",
+  "revision": "20240517",
   "rootUrl": "https://cloudbilling.googleapis.com/",
   "schemas": {
     "AggregationInfo": {
@@ -1211,11 +1211,11 @@
           "type": "string"
         },
         "name": {
-          "description": "The resource name for the service. Example: \"services/DA34-426B-A397\"",
+          "description": "The resource name for the service. Example: \"services/6F81-5844-456A\"",
           "type": "string"
         },
         "serviceId": {
-          "description": "The identifier for the service. Example: \"DA34-426B-A397\"",
+          "description": "The identifier for the service. Example: \"6F81-5844-456A\"",
           "type": "string"
         }
       },
@@ -1238,7 +1238,7 @@
       "type": "object"
     },
     "Sku": {
-      "description": "Encapsulates a single SKU in Google Cloud Platform",
+      "description": "Encapsulates a single SKU in Google Cloud",
       "id": "Sku",
       "properties": {
         "category": {
@@ -1254,7 +1254,7 @@
           "description": "The geographic taxonomy for this sku."
         },
         "name": {
-          "description": "The resource name for the SKU. Example: \"services/DA34-426B-A397/skus/AA95-CD31-42FE\"",
+          "description": "The resource name for the SKU. Example: \"services/6F81-5844-456A/skus/D041-B8A1-6E0B\"",
           "type": "string"
         },
         "pricingInfo": {
@@ -1276,7 +1276,7 @@
           "type": "array"
         },
         "skuId": {
-          "description": "The identifier for the SKU. Example: \"AA95-CD31-42FE\"",
+          "description": "The identifier for the SKU. Example: \"D041-B8A1-6E0B\"",
           "type": "string"
         }
       },
