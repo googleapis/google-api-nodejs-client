@@ -3739,6 +3739,35 @@
                         "https://www.googleapis.com/auth/cloud-platform"
                       ]
                     },
+                    "exportHistory": {
+                      "description": "Export resources including historical versions from the FHIR store to the specified destination. The exported resource, along with previous versions, will be exported in one or more FHIR history bundles. This method returns an Operation that can be used to track the status of the export by calling GetOperation. Immediate fatal errors appear in the error field, errors are also logged to Cloud Logging (see [Viewing error logs in Cloud Logging](https://cloud.google.com/healthcare/docs/how-tos/logging)). Otherwise, when the operation finishes, a detailed response of type ExportResourcesResponse is returned in the response field. The metadata field type for this operation is OperationMetadata.",
+                      "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/datasets/{datasetsId}/fhirStores/{fhirStoresId}:exportHistory",
+                      "httpMethod": "POST",
+                      "id": "healthcare.projects.locations.datasets.fhirStores.exportHistory",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The name of the FHIR store to export resource from, in the format `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/fhirStores/{fhir_store_id}`.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/datasets/[^/]+/fhirStores/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta1/{+name}:exportHistory",
+                      "request": {
+                        "$ref": "ExportResourcesHistoryRequest"
+                      },
+                      "response": {
+                        "$ref": "Operation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-healthcare",
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
                     "get": {
                       "description": "Gets the configuration of the specified FHIR store.",
                       "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/datasets/{datasetsId}/fhirStores/{fhirStoresId}",
@@ -3843,6 +3872,35 @@
                       "path": "v1beta1/{+name}:import",
                       "request": {
                         "$ref": "ImportResourcesRequest"
+                      },
+                      "response": {
+                        "$ref": "Operation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-healthcare",
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "importHistory": {
+                      "description": "Import resource historical versions from Cloud Storage source to destination fhir store. The exported resource, along with previous versions, will be exported in one or more FHIR history bundles. This method returns an Operation that can be used to track the status of the export by calling GetOperation. Immediate fatal errors appear in the error field, errors are also logged to Cloud Logging (see [Viewing error logs in Cloud Logging](https://cloud.google.com/healthcare/docs/how-tos/logging)). Otherwise, when the operation finishes, a detailed response of type ImportResourcesResponse is returned in the response field. The metadata field type for this operation is OperationMetadata.",
+                      "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/datasets/{datasetsId}/fhirStores/{fhirStoresId}:importHistory",
+                      "httpMethod": "POST",
+                      "id": "healthcare.projects.locations.datasets.fhirStores.importHistory",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The name of the FHIR store to import FHIR resources to, in the format of `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/fhirStores/{fhir_store_id}`.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/datasets/[^/]+/fhirStores/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta1/{+name}:importHistory",
+                      "request": {
+                        "$ref": "ImportResourcesHistoryRequest"
                       },
                       "response": {
                         "$ref": "Operation"
@@ -5614,7 +5672,7 @@
       }
     }
   },
-  "revision": "20240429",
+  "revision": "20240521",
   "rootUrl": "https://healthcare.googleapis.com/",
   "schemas": {
     "AccessDeterminationLogConfig": {
@@ -7379,6 +7437,30 @@
       "properties": {},
       "type": "object"
     },
+    "ExportResourcesHistoryRequest": {
+      "description": "Request to export the history of resources.",
+      "id": "ExportResourcesHistoryRequest",
+      "properties": {
+        "_since": {
+          "description": "If provided, only resources versions updated after this time are exported. The time uses the format YYYY-MM-DDThh:mm:ss.sss+zz:zz. For example, `2015-02-07T13:28:17.239+02:00` or `2017-01-01T00:00:00Z`. The time must be specified to the second and include a time zone.",
+          "type": "string"
+        },
+        "_type": {
+          "description": "String of comma-delimited FHIR resource types. If provided, only resources of the specified resource type(s) are exported.",
+          "type": "string"
+        },
+        "gcsDestination": {
+          "$ref": "GoogleCloudHealthcareV1beta1FhirGcsDestination",
+          "description": "The Cloud Storage output destination. The Healthcare Service Agent account requires the `roles/storage.objectAdmin` role on the Cloud Storage location. The exported outputs are organized by FHIR resource types. The server creates one or more objects per resource type depending on the volume of the resources exported. When there is only one object per resource type, the object name is in the form of `{operation_id})_history_{resource_type}`. When there are multiple objects for a given resource type, the object names are in the form of `{operation_id}_history_{resource_type}-{index}-of-{total}`. Each object contains newline delimited JSON, and each line is a FHIR history bundle containing the history for a single resource."
+        },
+        "maxResourceVersions": {
+          "description": "If provided and non-zero, places a limit on the number of resource versions that are returned for a given resource. For example, if the limit is `100` and a resource has over 100 versions, only the 100 most recent versions will be returned. Must be positive.",
+          "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ExportResourcesRequest": {
       "description": "Request to export resources.",
       "id": "ExportResourcesRequest",
@@ -8431,6 +8513,40 @@
       "description": "Final response of importing messages. This structure is included in the response to describe the detailed outcome. It is only included when the operation finishes successfully.",
       "id": "ImportMessagesResponse",
       "properties": {},
+      "type": "object"
+    },
+    "ImportResourcesHistoryRequest": {
+      "description": "Request to import the history of resources.",
+      "id": "ImportResourcesHistoryRequest",
+      "properties": {
+        "contentStructure": {
+          "description": "The content structure in the source location. If not specified, the server treats the input source files as BUNDLE.",
+          "enum": [
+            "CONTENT_STRUCTURE_UNSPECIFIED",
+            "BUNDLE",
+            "RESOURCE",
+            "BUNDLE_PRETTY",
+            "RESOURCE_PRETTY"
+          ],
+          "enumDescriptions": [
+            "If the content structure is not specified, the default value `BUNDLE` is used.",
+            "The source file contains one or more lines of newline-delimited JSON (ndjson). Each line is a bundle that contains one or more resources.",
+            "The source file contains one or more lines of newline-delimited JSON (ndjson). Each line is a single resource.",
+            "The entire file is one JSON bundle. The JSON can span multiple lines.",
+            "The entire file is one JSON resource. The JSON can span multiple lines."
+          ],
+          "type": "string"
+        },
+        "gcsSource": {
+          "$ref": "GoogleCloudHealthcareV1beta1FhirGcsSource",
+          "description": "Cloud Storage source data location and import configuration. The Cloud Healthcare Service Agent requires the `roles/storage.objectAdmin` Cloud IAM roles on the Cloud Storage location. The Healthcare Service Agent Each Cloud Storage object should be a text file that contains the format specified in ContentStructure."
+        },
+        "maxErrorCount": {
+          "description": "The maximum number of errors before the server cancels the operation. If not specified or set to 0, defaults to 100. -1 means no maximum, the server tries to process all input. Since the server executes the operation in parallel, it might not stop the operation after exactly this number of errors occur.",
+          "format": "int64",
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "ImportResourcesRequest": {

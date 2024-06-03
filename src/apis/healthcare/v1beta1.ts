@@ -1348,6 +1348,27 @@ export namespace healthcare_v1beta1 {
    */
   export interface Schema$ExportMessagesResponse {}
   /**
+   * Request to export the history of resources.
+   */
+  export interface Schema$ExportResourcesHistoryRequest {
+    /**
+     * The Cloud Storage output destination. The Healthcare Service Agent account requires the `roles/storage.objectAdmin` role on the Cloud Storage location. The exported outputs are organized by FHIR resource types. The server creates one or more objects per resource type depending on the volume of the resources exported. When there is only one object per resource type, the object name is in the form of `{operation_id\})_history_{resource_type\}`. When there are multiple objects for a given resource type, the object names are in the form of `{operation_id\}_history_{resource_type\}-{index\}-of-{total\}`. Each object contains newline delimited JSON, and each line is a FHIR history bundle containing the history for a single resource.
+     */
+    gcsDestination?: Schema$GoogleCloudHealthcareV1beta1FhirGcsDestination;
+    /**
+     * If provided and non-zero, places a limit on the number of resource versions that are returned for a given resource. For example, if the limit is `100` and a resource has over 100 versions, only the 100 most recent versions will be returned. Must be positive.
+     */
+    maxResourceVersions?: string | null;
+    /**
+     * If provided, only resources versions updated after this time are exported. The time uses the format YYYY-MM-DDThh:mm:ss.sss+zz:zz. For example, `2015-02-07T13:28:17.239+02:00` or `2017-01-01T00:00:00Z`. The time must be specified to the second and include a time zone.
+     */
+    _since?: string | null;
+    /**
+     * String of comma-delimited FHIR resource types. If provided, only resources of the specified resource type(s) are exported.
+     */
+    _type?: string | null;
+  }
+  /**
    * Request to export resources.
    */
   export interface Schema$ExportResourcesRequest {
@@ -2080,6 +2101,23 @@ export namespace healthcare_v1beta1 {
    * Final response of importing messages. This structure is included in the response to describe the detailed outcome. It is only included when the operation finishes successfully.
    */
   export interface Schema$ImportMessagesResponse {}
+  /**
+   * Request to import the history of resources.
+   */
+  export interface Schema$ImportResourcesHistoryRequest {
+    /**
+     * The content structure in the source location. If not specified, the server treats the input source files as BUNDLE.
+     */
+    contentStructure?: string | null;
+    /**
+     * Cloud Storage source data location and import configuration. The Cloud Healthcare Service Agent requires the `roles/storage.objectAdmin` Cloud IAM roles on the Cloud Storage location. The Healthcare Service Agent Each Cloud Storage object should be a text file that contains the format specified in ContentStructure.
+     */
+    gcsSource?: Schema$GoogleCloudHealthcareV1beta1FhirGcsSource;
+    /**
+     * The maximum number of errors before the server cancels the operation. If not specified or set to 0, defaults to 100. -1 means no maximum, the server tries to process all input. Since the server executes the operation in parallel, it might not stop the operation after exactly this number of errors occur.
+     */
+    maxErrorCount?: string | null;
+  }
   /**
    * Request to import resources.
    */
@@ -14817,6 +14855,95 @@ export namespace healthcare_v1beta1 {
     }
 
     /**
+     * Export resources including historical versions from the FHIR store to the specified destination. The exported resource, along with previous versions, will be exported in one or more FHIR history bundles. This method returns an Operation that can be used to track the status of the export by calling GetOperation. Immediate fatal errors appear in the error field, errors are also logged to Cloud Logging (see [Viewing error logs in Cloud Logging](https://cloud.google.com/healthcare/docs/how-tos/logging)). Otherwise, when the operation finishes, a detailed response of type ExportResourcesResponse is returned in the response field. The metadata field type for this operation is OperationMetadata.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    exportHistory(
+      params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Exporthistory,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    exportHistory(
+      params?: Params$Resource$Projects$Locations$Datasets$Fhirstores$Exporthistory,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    exportHistory(
+      params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Exporthistory,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    exportHistory(
+      params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Exporthistory,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    exportHistory(
+      params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Exporthistory,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    exportHistory(callback: BodyResponseCallback<Schema$Operation>): void;
+    exportHistory(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Fhirstores$Exporthistory
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Fhirstores$Exporthistory;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Datasets$Fhirstores$Exporthistory;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}:exportHistory').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
      * Gets the configuration of the specified FHIR store.
      *
      * @param params - Parameters for request
@@ -15148,6 +15275,95 @@ export namespace healthcare_v1beta1 {
         options: Object.assign(
           {
             url: (rootUrl + '/v1beta1/{+name}:import').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Import resource historical versions from Cloud Storage source to destination fhir store. The exported resource, along with previous versions, will be exported in one or more FHIR history bundles. This method returns an Operation that can be used to track the status of the export by calling GetOperation. Immediate fatal errors appear in the error field, errors are also logged to Cloud Logging (see [Viewing error logs in Cloud Logging](https://cloud.google.com/healthcare/docs/how-tos/logging)). Otherwise, when the operation finishes, a detailed response of type ImportResourcesResponse is returned in the response field. The metadata field type for this operation is OperationMetadata.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    importHistory(
+      params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Importhistory,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    importHistory(
+      params?: Params$Resource$Projects$Locations$Datasets$Fhirstores$Importhistory,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    importHistory(
+      params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Importhistory,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    importHistory(
+      params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Importhistory,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    importHistory(
+      params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Importhistory,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    importHistory(callback: BodyResponseCallback<Schema$Operation>): void;
+    importHistory(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Fhirstores$Importhistory
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Fhirstores$Importhistory;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Datasets$Fhirstores$Importhistory;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}:importHistory').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -15720,6 +15936,18 @@ export namespace healthcare_v1beta1 {
      */
     requestBody?: Schema$ExportResourcesRequest;
   }
+  export interface Params$Resource$Projects$Locations$Datasets$Fhirstores$Exporthistory
+    extends StandardParameters {
+    /**
+     * Required. The name of the FHIR store to export resource from, in the format `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/fhirStores/{fhir_store_id\}`.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ExportResourcesHistoryRequest;
+  }
   export interface Params$Resource$Projects$Locations$Datasets$Fhirstores$Get
     extends StandardParameters {
     /**
@@ -15756,6 +15984,18 @@ export namespace healthcare_v1beta1 {
      * Request body metadata
      */
     requestBody?: Schema$ImportResourcesRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Datasets$Fhirstores$Importhistory
+    extends StandardParameters {
+    /**
+     * Required. The name of the FHIR store to import FHIR resources to, in the format of `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/fhirStores/{fhir_store_id\}`.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ImportResourcesHistoryRequest;
   }
   export interface Params$Resource$Projects$Locations$Datasets$Fhirstores$List
     extends StandardParameters {
