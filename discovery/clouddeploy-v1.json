@@ -2065,7 +2065,7 @@
       }
     }
   },
-  "revision": "20240505",
+  "revision": "20240515",
   "rootUrl": "https://clouddeploy.googleapis.com/",
   "schemas": {
     "AbandonReleaseRequest": {
@@ -2397,7 +2397,7 @@
       "id": "AutomationRolloutMetadata",
       "properties": {
         "advanceAutomationRuns": {
-          "description": "Output only. The IDs of the AutomationRuns initiated by an advance rollout rule.",
+          "description": "Output only. The names of the AutomationRuns initiated by an advance rollout rule.",
           "items": {
             "type": "string"
           },
@@ -2410,12 +2410,12 @@
           "type": "string"
         },
         "promoteAutomationRun": {
-          "description": "Output only. The ID of the AutomationRun initiated by a promote release rule.",
+          "description": "Output only. The name of the AutomationRun initiated by a promote release rule.",
           "readOnly": true,
           "type": "string"
         },
         "repairAutomationRuns": {
-          "description": "Output only. The IDs of the AutomationRuns initiated by a repair rollout rule.",
+          "description": "Output only. The names of the AutomationRuns initiated by a repair rollout rule.",
           "items": {
             "type": "string"
           },
@@ -3386,6 +3386,10 @@
             "type": "string"
           },
           "type": "array"
+        },
+        "verbose": {
+          "description": "Optional. If true, additional logging will be enabled when running builds in this execution environment.",
+          "type": "boolean"
         },
         "workerPool": {
           "description": "Optional. The resource name of the `WorkerPool`, with the format `projects/{project}/locations/{location}/workerPools/{worker_pool}`. If this optional field is unspecified, the default Cloud Build pool will be used.",
