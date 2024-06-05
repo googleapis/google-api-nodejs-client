@@ -1911,7 +1911,7 @@
       }
     }
   },
-  "revision": "20240428",
+  "revision": "20240519",
   "rootUrl": "https://gkehub.googleapis.com/",
   "schemas": {
     "AppDevExperienceFeatureSpec": {
@@ -4325,6 +4325,13 @@
         "nextPageToken": {
           "description": "A token to request the next page of resources from the `ListMembershipBindings` method. The value of an empty string means that there are no more resources to return.",
           "type": "string"
+        },
+        "unreachable": {
+          "description": "List of locations that could not be reached while fetching this list.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -5698,12 +5705,14 @@
           "enum": [
             "MODE_UNSPECIFIED",
             "DISABLED",
-            "BASIC"
+            "BASIC",
+            "ENTERPRISE"
           ],
           "enumDescriptions": [
             "Default value not specified.",
             "Disables Security Posture features on the cluster.",
-            "Applies Security Posture features on the cluster."
+            "Applies Security Posture features on the cluster.",
+            "Applies the Security Posture off cluster Enterprise level features."
           ],
           "type": "string"
         },

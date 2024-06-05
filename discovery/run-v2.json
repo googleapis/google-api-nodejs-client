@@ -523,7 +523,7 @@
                   ]
                 },
                 "list": {
-                  "description": "Lists Jobs.",
+                  "description": "Lists Jobs. Results are sorted by creation time, descending.",
                   "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/jobs",
                   "httpMethod": "GET",
                   "id": "run.projects.locations.jobs.list",
@@ -811,7 +811,7 @@
                       ]
                     },
                     "list": {
-                      "description": "Lists Executions from a Job.",
+                      "description": "Lists Executions from a Job. Results are sorted by creation time, descending.",
                       "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/jobs/{jobsId}/executions",
                       "httpMethod": "GET",
                       "id": "run.projects.locations.jobs.executions.list",
@@ -1182,7 +1182,7 @@
                   ]
                 },
                 "list": {
-                  "description": "Lists Services.",
+                  "description": "Lists Services. Results are sorted by creation time, descending.",
                   "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/services",
                   "httpMethod": "GET",
                   "id": "run.projects.locations.services.list",
@@ -1420,7 +1420,7 @@
                       ]
                     },
                     "list": {
-                      "description": "Lists Revisions from a given Service, or from a given location.",
+                      "description": "Lists Revisions from a given Service, or from a given location. Results are sorted by creation time, descending.",
                       "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/services/{servicesId}/revisions",
                       "httpMethod": "GET",
                       "id": "run.projects.locations.services.revisions.list",
@@ -1469,7 +1469,7 @@
       }
     }
   },
-  "revision": "20240503",
+  "revision": "20240524",
   "rootUrl": "https://run.googleapis.com/",
   "schemas": {
     "GoogleCloudRunV2BinaryAuthorization": {
@@ -2365,6 +2365,10 @@
           "description": "Output only. Returns true if the Job is currently being acted upon by the system to bring it into the desired state. When a new Job is created, or an existing one is updated, Cloud Run will asynchronously perform all necessary steps to bring the Job to the desired state. This process is called reconciliation. While reconciliation is in process, `observed_generation` and `latest_succeeded_execution`, will have transient values that might mismatch the intended state: Once reconciliation is over (and this field is false), there are two possible outcomes: reconciliation succeeded and the state matches the Job, or there was an error, and reconciliation failed. This state can be found in `terminal_condition.state`. If reconciliation succeeded, the following fields will match: `observed_generation` and `generation`, `latest_succeeded_execution` and `latest_created_execution`. If reconciliation failed, `observed_generation` and `latest_succeeded_execution` will have the state of the last succeeded execution or empty for newly created Job. Additional information on the failure can be found in `terminal_condition` and `conditions`.",
           "readOnly": true,
           "type": "boolean"
+        },
+        "runExecutionToken": {
+          "description": "A unique string used as a suffix for creating a new execution. The Job will become ready when the execution is successfully completed. The sum of job name and token length must be fewer than 63 characters.",
+          "type": "string"
         },
         "satisfiesPzs": {
           "description": "Output only. Reserved for future use.",
@@ -3913,7 +3917,7 @@
         },
         "source": {
           "$ref": "GoogleDevtoolsCloudbuildV1Source",
-          "description": "The location of the source files to build."
+          "description": "Optional. The location of the source files to build."
         },
         "sourceProvenance": {
           "$ref": "GoogleDevtoolsCloudbuildV1SourceProvenance",
@@ -4073,7 +4077,7 @@
           "type": "string"
         },
         "diskSizeGb": {
-          "description": "Requested disk size for the VM that runs the build. Note that this is *NOT* \"disk free\"; some of the space will be used by the operating system and build utilities. Also note that this is the minimum disk size that will be allocated for the build -- the build may run with a larger disk than requested. At present, the maximum disk size is 2000GB; builds that request more than the maximum are rejected with an error.",
+          "description": "Requested disk size for the VM that runs the build. Note that this is *NOT* \"disk free\"; some of the space will be used by the operating system and build utilities. Also note that this is the minimum disk size that will be allocated for the build -- the build may run with a larger disk than requested. At present, the maximum disk size is 4000GB; builds that request more than the maximum are rejected with an error.",
           "format": "int64",
           "type": "string"
         },
@@ -4380,7 +4384,7 @@
       "id": "GoogleDevtoolsCloudbuildV1ConnectedRepository",
       "properties": {
         "dir": {
-          "description": "Directory, relative to the source root, in which to run the build.",
+          "description": "Optional. Directory, relative to the source root, in which to run the build.",
           "type": "string"
         },
         "repository": {
@@ -4388,7 +4392,7 @@
           "type": "string"
         },
         "revision": {
-          "description": "The revision to fetch from the Git repository such as a branch, a tag, a commit SHA, or any Git ref.",
+          "description": "Required. The revision to fetch from the Git repository such as a branch, a tag, a commit SHA, or any Git ref.",
           "type": "string"
         }
       },
@@ -4460,6 +4464,26 @@
       },
       "type": "object"
     },
+    "GoogleDevtoolsCloudbuildV1GCSLocation": {
+      "description": "Represents a storage location in Cloud Storage",
+      "id": "GoogleDevtoolsCloudbuildV1GCSLocation",
+      "properties": {
+        "bucket": {
+          "description": "Cloud Storage bucket. See https://cloud.google.com/storage/docs/naming#requirements",
+          "type": "string"
+        },
+        "generation": {
+          "description": "Cloud Storage generation for the object. If the generation is omitted, the latest generation will be used.",
+          "format": "int64",
+          "type": "string"
+        },
+        "object": {
+          "description": "Cloud Storage object. See https://cloud.google.com/storage/docs/naming#objectnames",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleDevtoolsCloudbuildV1GitConfig": {
       "description": "GitConfig is a configuration for git operations.",
       "id": "GoogleDevtoolsCloudbuildV1GitConfig",
@@ -4476,15 +4500,15 @@
       "id": "GoogleDevtoolsCloudbuildV1GitSource",
       "properties": {
         "dir": {
-          "description": "Directory, relative to the source root, in which to run the build. This must be a relative path. If a step's `dir` is specified and is an absolute path, this value is ignored for that step's execution.",
+          "description": "Optional. Directory, relative to the source root, in which to run the build. This must be a relative path. If a step's `dir` is specified and is an absolute path, this value is ignored for that step's execution.",
           "type": "string"
         },
         "revision": {
-          "description": "The revision to fetch from the Git repository such as a branch, a tag, a commit SHA, or any Git ref. Cloud Build uses `git fetch` to fetch the revision from the Git repository; therefore make sure that the string you provide for `revision` is parsable by the command. For information on string values accepted by `git fetch`, see https://git-scm.com/docs/gitrevisions#_specifying_revisions. For information on `git fetch`, see https://git-scm.com/docs/git-fetch.",
+          "description": "Optional. The revision to fetch from the Git repository such as a branch, a tag, a commit SHA, or any Git ref. Cloud Build uses `git fetch` to fetch the revision from the Git repository; therefore make sure that the string you provide for `revision` is parsable by the command. For information on string values accepted by `git fetch`, see https://git-scm.com/docs/gitrevisions#_specifying_revisions. For information on `git fetch`, see https://git-scm.com/docs/git-fetch.",
           "type": "string"
         },
         "url": {
-          "description": "Location of the Git repo to build. This will be used as a `git remote`, see https://git-scm.com/docs/git-remote.",
+          "description": "Required. Location of the Git repo to build. This will be used as a `git remote`, see https://git-scm.com/docs/git-remote.",
           "type": "string"
         }
       },
@@ -4525,6 +4549,10 @@
         "proxySecretVersionName": {
           "description": "SecretVersion resource of the HTTP proxy URL. The proxy URL should be in format protocol://@]proxyhost[:port].",
           "type": "string"
+        },
+        "proxySslCaInfo": {
+          "$ref": "GoogleDevtoolsCloudbuildV1GCSLocation",
+          "description": "Optional. Cloud Storage object storing the certificate to use with the HTTP proxy."
         }
       },
       "type": "object"
@@ -4632,26 +4660,26 @@
           "type": "string"
         },
         "dir": {
-          "description": "Directory, relative to the source root, in which to run the build. This must be a relative path. If a step's `dir` is specified and is an absolute path, this value is ignored for that step's execution.",
+          "description": "Optional. Directory, relative to the source root, in which to run the build. This must be a relative path. If a step's `dir` is specified and is an absolute path, this value is ignored for that step's execution.",
           "type": "string"
         },
         "invertRegex": {
-          "description": "Only trigger a build if the revision regex does NOT match the revision regex.",
+          "description": "Optional. Only trigger a build if the revision regex does NOT match the revision regex.",
           "type": "boolean"
         },
         "projectId": {
-          "description": "ID of the project that owns the Cloud Source Repository. If omitted, the project ID requesting the build is assumed.",
+          "description": "Optional. ID of the project that owns the Cloud Source Repository. If omitted, the project ID requesting the build is assumed.",
           "type": "string"
         },
         "repoName": {
-          "description": "Name of the Cloud Source Repository.",
+          "description": "Required. Name of the Cloud Source Repository.",
           "type": "string"
         },
         "substitutions": {
           "additionalProperties": {
             "type": "string"
           },
-          "description": "Substitutions to use in a triggered build. Should only be used with RunBuildTrigger",
+          "description": "Optional. Substitutions to use in a triggered build. Should only be used with RunBuildTrigger",
           "type": "object"
         },
         "tagName": {
@@ -4856,12 +4884,12 @@
           "type": "string"
         },
         "generation": {
-          "description": "Cloud Storage generation for the object. If the generation is omitted, the latest generation will be used.",
+          "description": "Optional. Cloud Storage generation for the object. If the generation is omitted, the latest generation will be used.",
           "format": "int64",
           "type": "string"
         },
         "object": {
-          "description": "Cloud Storage object containing the source. This object must be a zipped (`.zip`) or gzipped archive file (`.tar.gz`) containing source to build.",
+          "description": "Required. Cloud Storage object containing the source. This object must be a zipped (`.zip`) or gzipped archive file (`.tar.gz`) containing source to build.",
           "type": "string"
         },
         "sourceFetcher": {
@@ -4886,7 +4914,7 @@
       "id": "GoogleDevtoolsCloudbuildV1StorageSourceManifest",
       "properties": {
         "bucket": {
-          "description": "Cloud Storage bucket containing the source manifest (see [Bucket Name Requirements](https://cloud.google.com/storage/docs/bucket-naming#requirements)).",
+          "description": "Required. Cloud Storage bucket containing the source manifest (see [Bucket Name Requirements](https://cloud.google.com/storage/docs/bucket-naming#requirements)).",
           "type": "string"
         },
         "generation": {
@@ -4895,7 +4923,7 @@
           "type": "string"
         },
         "object": {
-          "description": "Cloud Storage object containing the source manifest. This object must be a JSON file.",
+          "description": "Required. Cloud Storage object containing the source manifest. This object must be a JSON file.",
           "type": "string"
         }
       },

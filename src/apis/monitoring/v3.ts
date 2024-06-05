@@ -8153,7 +8153,7 @@ export namespace monitoring_v3 {
     }
 
     /**
-     * Returns the list of IP addresses that checkers run from
+     * Returns the list of IP addresses that checkers run from.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.

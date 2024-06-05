@@ -614,6 +614,10 @@ export namespace connectors_v1 {
      * Enabled represents whether logging is enabled or not for a connection.
      */
     enabled?: boolean | null;
+    /**
+     * Optional. Log configuration level.
+     */
+    level?: string | null;
   }
   /**
    * ConnectorVersion indicates a specific version of a connector.
@@ -895,6 +899,10 @@ export namespace connectors_v1 {
      */
     time?: Schema$TimeOfDay;
   }
+  /**
+   * Request message for ConnectorsService.DeprecateCustomConnectorVersion
+   */
+  export interface Schema$DeprecateCustomConnectorVersionRequest {}
   export interface Schema$Destination {
     /**
      * For publicly routable host.
@@ -1035,6 +1043,10 @@ export namespace connectors_v1 {
      * Optional. Description of the resource.
      */
     description?: string | null;
+    /**
+     * Optional. The Private Service Connect Connection Endpoint Global Access. https://cloud.google.com/vpc/docs/about-accessing-vpc-hosted-services-endpoints#global-access
+     */
+    endpointGlobalAccess?: boolean | null;
     /**
      * Output only. The Private Service Connect connection endpoint ip
      */
@@ -6404,6 +6416,95 @@ export namespace connectors_v1 {
         return createAPIRequest<Schema$Operation>(parameters);
       }
     }
+
+    /**
+     * Deprecates a single CustomConnectorVersion.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    deprecate(
+      params: Params$Resource$Projects$Locations$Customconnectors$Customconnectorversions$Deprecate,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    deprecate(
+      params?: Params$Resource$Projects$Locations$Customconnectors$Customconnectorversions$Deprecate,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    deprecate(
+      params: Params$Resource$Projects$Locations$Customconnectors$Customconnectorversions$Deprecate,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    deprecate(
+      params: Params$Resource$Projects$Locations$Customconnectors$Customconnectorversions$Deprecate,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    deprecate(
+      params: Params$Resource$Projects$Locations$Customconnectors$Customconnectorversions$Deprecate,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    deprecate(callback: BodyResponseCallback<Schema$Operation>): void;
+    deprecate(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Customconnectors$Customconnectorversions$Deprecate
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Customconnectors$Customconnectorversions$Deprecate;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Customconnectors$Customconnectorversions$Deprecate;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://connectors.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:deprecate').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
   }
 
   export interface Params$Resource$Projects$Locations$Customconnectors$Customconnectorversions$Delete
@@ -6412,6 +6513,18 @@ export namespace connectors_v1 {
      * Required. Resource name of the form: `projects/{project\}/locations/{location\}/customConnectors/{custom_connector\}/customConnectorVersions/{custom_connector_version\}`
      */
     name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Customconnectors$Customconnectorversions$Deprecate
+    extends StandardParameters {
+    /**
+     * Required. Resource name of the form: `projects/{project\}/locations/{location\}/customConnectors/{custom_connector\}/customConnectorVersions/{custom_connector_version\}`
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$DeprecateCustomConnectorVersionRequest;
   }
 
   export class Resource$Projects$Locations$Endpointattachments {

@@ -183,7 +183,7 @@ export namespace pagespeedonline_v5 {
      */
     performance?: Schema$LighthouseCategoryV5;
     /**
-     * The Progressive-Web-App (PWA) category, containing all pwa related audits.
+     * The Progressive-Web-App (PWA) category, containing all pwa related audits. This is deprecated in Lighthouse's 12.0 release.
      */
     pwa?: Schema$LighthouseCategoryV5;
     /**

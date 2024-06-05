@@ -1,5 +1,12 @@
 # Changelog
 
+## [8.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/composer-v8.0.0...composer-v8.1.0) (2024-06-03)
+
+
+### Features
+
+* **composer:** update the API ([b973cb8](https://github.com/googleapis/google-api-nodejs-client/commit/b973cb8f0a94db1d6e66ae9cd59dfd182ca4e10f))
+
 ## [8.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/composer-v7.0.1...composer-v8.0.0) (2024-05-02)
 
 

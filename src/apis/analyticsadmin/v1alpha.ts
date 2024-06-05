@@ -552,6 +552,10 @@ export namespace analyticsadmin_v1alpha {
      */
     adsPersonalizationEnabled?: boolean | null;
     /**
+     * Output only. Time when the Audience was created.
+     */
+    createTime?: string | null;
+    /**
      * Required. The description of the Audience.
      */
     description?: string | null;
@@ -1343,10 +1347,6 @@ export namespace analyticsadmin_v1alpha {
    * Request message for CreateSubproperty RPC.
    */
   export interface Schema$GoogleAnalyticsAdminV1alphaCreateSubpropertyRequest {
-    /**
-     * Required. The ordinary property for which to create a subproperty. Format: properties/property_id Example: properties/123
-     */
-    parent?: string | null;
     /**
      * Required. The subproperty to create.
      */
@@ -2573,6 +2573,15 @@ export namespace analyticsadmin_v1alpha {
      * The param to be passed in the ToS link.
      */
     accountTicketId?: string | null;
+  }
+  /**
+   * Request message for ReorderEventEditRules RPC.
+   */
+  export interface Schema$GoogleAnalyticsAdminV1alphaReorderEventEditRulesRequest {
+    /**
+     * Required. EventEditRule resource names for the specified data stream, in the needed processing order. All EventEditRules for the stream must be present in the list.
+     */
+    eventEditRules?: string[] | null;
   }
   /**
    * A link that references a source property under the parent rollup property.
@@ -12003,12 +12012,16 @@ export namespace analyticsadmin_v1alpha {
   export class Resource$Properties$Datastreams {
     context: APIRequestContext;
     eventCreateRules: Resource$Properties$Datastreams$Eventcreaterules;
+    eventEditRules: Resource$Properties$Datastreams$Eventeditrules;
     measurementProtocolSecrets: Resource$Properties$Datastreams$Measurementprotocolsecrets;
     sKAdNetworkConversionValueSchema: Resource$Properties$Datastreams$Skadnetworkconversionvalueschema;
     constructor(context: APIRequestContext) {
       this.context = context;
       this.eventCreateRules =
         new Resource$Properties$Datastreams$Eventcreaterules(this.context);
+      this.eventEditRules = new Resource$Properties$Datastreams$Eventeditrules(
+        this.context
+      );
       this.measurementProtocolSecrets =
         new Resource$Properties$Datastreams$Measurementprotocolsecrets(
           this.context
@@ -13628,6 +13641,118 @@ export namespace analyticsadmin_v1alpha {
      * Request body metadata
      */
     requestBody?: Schema$GoogleAnalyticsAdminV1alphaEventCreateRule;
+  }
+
+  export class Resource$Properties$Datastreams$Eventeditrules {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Changes the processing order of event edit rules on the specified stream.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    reorder(
+      params: Params$Resource$Properties$Datastreams$Eventeditrules$Reorder,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    reorder(
+      params?: Params$Resource$Properties$Datastreams$Eventeditrules$Reorder,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    reorder(
+      params: Params$Resource$Properties$Datastreams$Eventeditrules$Reorder,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    reorder(
+      params: Params$Resource$Properties$Datastreams$Eventeditrules$Reorder,
+      options: MethodOptions | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+    ): void;
+    reorder(
+      params: Params$Resource$Properties$Datastreams$Eventeditrules$Reorder,
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+    ): void;
+    reorder(callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>): void;
+    reorder(
+      paramsOrCallback?:
+        | Params$Resource$Properties$Datastreams$Eventeditrules$Reorder
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleProtobufEmpty>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Properties$Datastreams$Eventeditrules$Reorder;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Properties$Datastreams$Eventeditrules$Reorder;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://analyticsadmin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1alpha/{+parent}/eventEditRules:reorder'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleProtobufEmpty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Properties$Datastreams$Eventeditrules$Reorder
+    extends StandardParameters {
+    /**
+     * Required. Example format: properties/123/dataStreams/456
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleAnalyticsAdminV1alphaReorderEventEditRulesRequest;
   }
 
   export class Resource$Properties$Datastreams$Measurementprotocolsecrets {

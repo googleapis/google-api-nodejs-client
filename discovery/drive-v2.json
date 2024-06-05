@@ -14,6 +14,9 @@
         "https://www.googleapis.com/auth/drive.file": {
           "description": "See, edit, create, and delete only the specific Google Drive files you use with this app"
         },
+        "https://www.googleapis.com/auth/drive.meet.readonly": {
+          "description": "See and download your Google Drive files that were created or edited by Google Meet."
+        },
         "https://www.googleapis.com/auth/drive.metadata": {
           "description": "View and manage metadata of files in your Google Drive"
         },
@@ -290,6 +293,7 @@
             "https://www.googleapis.com/auth/drive.appdata",
             "https://www.googleapis.com/auth/drive.apps.readonly",
             "https://www.googleapis.com/auth/drive.file",
+            "https://www.googleapis.com/auth/drive.meet.readonly",
             "https://www.googleapis.com/auth/drive.metadata",
             "https://www.googleapis.com/auth/drive.metadata.readonly",
             "https://www.googleapis.com/auth/drive.photos.readonly",
@@ -337,6 +341,7 @@
             "https://www.googleapis.com/auth/drive.appdata",
             "https://www.googleapis.com/auth/drive.apps.readonly",
             "https://www.googleapis.com/auth/drive.file",
+            "https://www.googleapis.com/auth/drive.meet.readonly",
             "https://www.googleapis.com/auth/drive.metadata",
             "https://www.googleapis.com/auth/drive.metadata.readonly",
             "https://www.googleapis.com/auth/drive.photos.readonly",
@@ -450,6 +455,7 @@
             "https://www.googleapis.com/auth/drive.appdata",
             "https://www.googleapis.com/auth/drive.apps.readonly",
             "https://www.googleapis.com/auth/drive.file",
+            "https://www.googleapis.com/auth/drive.meet.readonly",
             "https://www.googleapis.com/auth/drive.metadata",
             "https://www.googleapis.com/auth/drive.metadata.readonly",
             "https://www.googleapis.com/auth/drive.photos.readonly",
@@ -568,6 +574,7 @@
             "https://www.googleapis.com/auth/drive.appdata",
             "https://www.googleapis.com/auth/drive.apps.readonly",
             "https://www.googleapis.com/auth/drive.file",
+            "https://www.googleapis.com/auth/drive.meet.readonly",
             "https://www.googleapis.com/auth/drive.metadata",
             "https://www.googleapis.com/auth/drive.metadata.readonly",
             "https://www.googleapis.com/auth/drive.photos.readonly",
@@ -596,6 +603,7 @@
             "https://www.googleapis.com/auth/drive.appdata",
             "https://www.googleapis.com/auth/drive.apps.readonly",
             "https://www.googleapis.com/auth/drive.file",
+            "https://www.googleapis.com/auth/drive.meet.readonly",
             "https://www.googleapis.com/auth/drive.metadata",
             "https://www.googleapis.com/auth/drive.metadata.readonly",
             "https://www.googleapis.com/auth/drive.photos.readonly",
@@ -673,6 +681,7 @@
             "https://www.googleapis.com/auth/drive",
             "https://www.googleapis.com/auth/drive.appdata",
             "https://www.googleapis.com/auth/drive.file",
+            "https://www.googleapis.com/auth/drive.meet.readonly",
             "https://www.googleapis.com/auth/drive.metadata",
             "https://www.googleapis.com/auth/drive.metadata.readonly",
             "https://www.googleapis.com/auth/drive.photos.readonly",
@@ -775,6 +784,7 @@
             "https://www.googleapis.com/auth/drive",
             "https://www.googleapis.com/auth/drive.appdata",
             "https://www.googleapis.com/auth/drive.file",
+            "https://www.googleapis.com/auth/drive.meet.readonly",
             "https://www.googleapis.com/auth/drive.metadata",
             "https://www.googleapis.com/auth/drive.metadata.readonly",
             "https://www.googleapis.com/auth/drive.photos.readonly",
@@ -850,6 +860,7 @@
           "scopes": [
             "https://www.googleapis.com/auth/drive",
             "https://www.googleapis.com/auth/drive.file",
+            "https://www.googleapis.com/auth/drive.meet.readonly",
             "https://www.googleapis.com/auth/drive.readonly"
           ]
         },
@@ -929,6 +940,7 @@
           "scopes": [
             "https://www.googleapis.com/auth/drive",
             "https://www.googleapis.com/auth/drive.file",
+            "https://www.googleapis.com/auth/drive.meet.readonly",
             "https://www.googleapis.com/auth/drive.readonly"
           ]
         },
@@ -1427,6 +1439,7 @@
           "scopes": [
             "https://www.googleapis.com/auth/drive",
             "https://www.googleapis.com/auth/drive.file",
+            "https://www.googleapis.com/auth/drive.meet.readonly",
             "https://www.googleapis.com/auth/drive.readonly"
           ],
           "supportsMediaDownload": true,
@@ -1550,6 +1563,7 @@
             "https://www.googleapis.com/auth/drive",
             "https://www.googleapis.com/auth/drive.appdata",
             "https://www.googleapis.com/auth/drive.file",
+            "https://www.googleapis.com/auth/drive.meet.readonly",
             "https://www.googleapis.com/auth/drive.metadata",
             "https://www.googleapis.com/auth/drive.metadata.readonly",
             "https://www.googleapis.com/auth/drive.photos.readonly",
@@ -1806,6 +1820,7 @@
             "https://www.googleapis.com/auth/drive.appdata",
             "https://www.googleapis.com/auth/drive.apps.readonly",
             "https://www.googleapis.com/auth/drive.file",
+            "https://www.googleapis.com/auth/drive.meet.readonly",
             "https://www.googleapis.com/auth/drive.metadata",
             "https://www.googleapis.com/auth/drive.metadata.readonly",
             "https://www.googleapis.com/auth/drive.photos.readonly",
@@ -1849,6 +1864,7 @@
           "scopes": [
             "https://www.googleapis.com/auth/drive",
             "https://www.googleapis.com/auth/drive.file",
+            "https://www.googleapis.com/auth/drive.meet.readonly",
             "https://www.googleapis.com/auth/drive.metadata",
             "https://www.googleapis.com/auth/drive.metadata.readonly",
             "https://www.googleapis.com/auth/drive.readonly"
@@ -2436,6 +2452,7 @@
             "https://www.googleapis.com/auth/drive",
             "https://www.googleapis.com/auth/drive.appdata",
             "https://www.googleapis.com/auth/drive.file",
+            "https://www.googleapis.com/auth/drive.meet.readonly",
             "https://www.googleapis.com/auth/drive.metadata",
             "https://www.googleapis.com/auth/drive.metadata.readonly",
             "https://www.googleapis.com/auth/drive.photos.readonly",
@@ -2514,6 +2531,7 @@
             "https://www.googleapis.com/auth/drive",
             "https://www.googleapis.com/auth/drive.appdata",
             "https://www.googleapis.com/auth/drive.file",
+            "https://www.googleapis.com/auth/drive.meet.readonly",
             "https://www.googleapis.com/auth/drive.metadata",
             "https://www.googleapis.com/auth/drive.metadata.readonly",
             "https://www.googleapis.com/auth/drive.photos.readonly",
@@ -2593,6 +2611,7 @@
             "https://www.googleapis.com/auth/drive",
             "https://www.googleapis.com/auth/drive.appdata",
             "https://www.googleapis.com/auth/drive.file",
+            "https://www.googleapis.com/auth/drive.meet.readonly",
             "https://www.googleapis.com/auth/drive.metadata",
             "https://www.googleapis.com/auth/drive.metadata.readonly",
             "https://www.googleapis.com/auth/drive.photos.readonly",
@@ -2700,6 +2719,7 @@
           "scopes": [
             "https://www.googleapis.com/auth/drive",
             "https://www.googleapis.com/auth/drive.file",
+            "https://www.googleapis.com/auth/drive.meet.readonly",
             "https://www.googleapis.com/auth/drive.metadata",
             "https://www.googleapis.com/auth/drive.metadata.readonly",
             "https://www.googleapis.com/auth/drive.photos.readonly",
@@ -2868,6 +2888,7 @@
           "scopes": [
             "https://www.googleapis.com/auth/drive",
             "https://www.googleapis.com/auth/drive.file",
+            "https://www.googleapis.com/auth/drive.meet.readonly",
             "https://www.googleapis.com/auth/drive.metadata",
             "https://www.googleapis.com/auth/drive.metadata.readonly",
             "https://www.googleapis.com/auth/drive.photos.readonly",
@@ -3084,6 +3105,7 @@
             "https://www.googleapis.com/auth/drive",
             "https://www.googleapis.com/auth/drive.appdata",
             "https://www.googleapis.com/auth/drive.file",
+            "https://www.googleapis.com/auth/drive.meet.readonly",
             "https://www.googleapis.com/auth/drive.metadata",
             "https://www.googleapis.com/auth/drive.metadata.readonly",
             "https://www.googleapis.com/auth/drive.photos.readonly",
@@ -3144,6 +3166,7 @@
             "https://www.googleapis.com/auth/drive",
             "https://www.googleapis.com/auth/drive.appdata",
             "https://www.googleapis.com/auth/drive.file",
+            "https://www.googleapis.com/auth/drive.meet.readonly",
             "https://www.googleapis.com/auth/drive.metadata",
             "https://www.googleapis.com/auth/drive.metadata.readonly",
             "https://www.googleapis.com/auth/drive.photos.readonly",
@@ -3319,6 +3342,7 @@
           "scopes": [
             "https://www.googleapis.com/auth/drive",
             "https://www.googleapis.com/auth/drive.file",
+            "https://www.googleapis.com/auth/drive.meet.readonly",
             "https://www.googleapis.com/auth/drive.readonly"
           ]
         },
@@ -3407,6 +3431,7 @@
           "scopes": [
             "https://www.googleapis.com/auth/drive",
             "https://www.googleapis.com/auth/drive.file",
+            "https://www.googleapis.com/auth/drive.meet.readonly",
             "https://www.googleapis.com/auth/drive.readonly"
           ]
         },
@@ -3559,6 +3584,7 @@
             "https://www.googleapis.com/auth/drive",
             "https://www.googleapis.com/auth/drive.appdata",
             "https://www.googleapis.com/auth/drive.file",
+            "https://www.googleapis.com/auth/drive.meet.readonly",
             "https://www.googleapis.com/auth/drive.metadata",
             "https://www.googleapis.com/auth/drive.metadata.readonly",
             "https://www.googleapis.com/auth/drive.photos.readonly",
@@ -3603,6 +3629,7 @@
             "https://www.googleapis.com/auth/drive",
             "https://www.googleapis.com/auth/drive.appdata",
             "https://www.googleapis.com/auth/drive.file",
+            "https://www.googleapis.com/auth/drive.meet.readonly",
             "https://www.googleapis.com/auth/drive.metadata",
             "https://www.googleapis.com/auth/drive.metadata.readonly",
             "https://www.googleapis.com/auth/drive.photos.readonly",
@@ -3842,7 +3869,7 @@
       }
     }
   },
-  "revision": "20240126",
+  "revision": "20240522",
   "rootUrl": "https://www.googleapis.com/",
   "schemas": {
     "About": {

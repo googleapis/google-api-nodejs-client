@@ -9222,7 +9222,7 @@
       }
     }
   },
-  "revision": "20240425",
+  "revision": "20240530",
   "rootUrl": "https://displayvideo.googleapis.com/",
   "schemas": {
     "ActiveViewVideoViewabilityMetricConfig": {
@@ -12904,7 +12904,8 @@
             "SDF_VERSION_5_4",
             "SDF_VERSION_5_5",
             "SDF_VERSION_6",
-            "SDF_VERSION_7"
+            "SDF_VERSION_7",
+            "SDF_VERSION_7_1"
           ],
           "enumDeprecated": [
             false,
@@ -12917,6 +12918,7 @@
             true,
             true,
             true,
+            false,
             false,
             false,
             false
@@ -12934,7 +12936,8 @@
             "SDF version 5.4",
             "SDF version 5.5",
             "SDF version 6",
-            "SDF version 7. Read the [v7 migration guide](/display-video/api/structured-data-file/v7-migration-guide) before migrating to this version."
+            "SDF version 7. Read the [v7 migration guide](/display-video/api/structured-data-file/v7-migration-guide) before migrating to this version.",
+            "SDF version 7.1. Read the [v7 migration guide](/display-video/api/structured-data-file/v7-migration-guide) before migrating to this version."
           ],
           "type": "string"
         }
@@ -20486,7 +20489,7 @@
           "type": "array"
         },
         "publisherReviewStatuses": {
-          "description": "Publisher review statuses for the creative.",
+          "description": "Publisher review statuses for the creative. **Warning:** This field will be deprecated on June 26th, 2024. After this date, this field will be empty. Read our [feature deprecation announcement](/display-video/api/deprecations#features.creative_publisher_review_statuses) for more information.",
           "items": {
             "$ref": "PublisherReviewStatus"
           },
@@ -20555,7 +20558,8 @@
             "SDF_VERSION_5_4",
             "SDF_VERSION_5_5",
             "SDF_VERSION_6",
-            "SDF_VERSION_7"
+            "SDF_VERSION_7",
+            "SDF_VERSION_7_1"
           ],
           "enumDeprecated": [
             false,
@@ -20568,6 +20572,7 @@
             true,
             true,
             true,
+            false,
             false,
             false,
             false
@@ -20585,7 +20590,8 @@
             "SDF version 5.4",
             "SDF version 5.5",
             "SDF version 6",
-            "SDF version 7. Read the [v7 migration guide](/display-video/api/structured-data-file/v7-migration-guide) before migrating to this version."
+            "SDF version 7. Read the [v7 migration guide](/display-video/api/structured-data-file/v7-migration-guide) before migrating to this version.",
+            "SDF version 7.1. Read the [v7 migration guide](/display-video/api/structured-data-file/v7-migration-guide) before migrating to this version."
           ],
           "type": "string"
         }
@@ -20632,7 +20638,8 @@
             "SDF_VERSION_5_4",
             "SDF_VERSION_5_5",
             "SDF_VERSION_6",
-            "SDF_VERSION_7"
+            "SDF_VERSION_7",
+            "SDF_VERSION_7_1"
           ],
           "enumDeprecated": [
             false,
@@ -20645,6 +20652,7 @@
             true,
             true,
             true,
+            false,
             false,
             false,
             false
@@ -20662,7 +20670,8 @@
             "SDF version 5.4",
             "SDF version 5.5",
             "SDF version 6",
-            "SDF version 7. Read the [v7 migration guide](/display-video/api/structured-data-file/v7-migration-guide) before migrating to this version."
+            "SDF version 7. Read the [v7 migration guide](/display-video/api/structured-data-file/v7-migration-guide) before migrating to this version.",
+            "SDF version 7.1. Read the [v7 migration guide](/display-video/api/structured-data-file/v7-migration-guide) before migrating to this version."
           ],
           "type": "string"
         }

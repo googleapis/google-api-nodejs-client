@@ -4453,7 +4453,7 @@
       }
     }
   },
-  "revision": "20240430",
+  "revision": "20240523",
   "rootUrl": "https://dialogflow.googleapis.com/",
   "schemas": {
     "GoogleCloudDialogflowCxV3AdvancedSettings": {
@@ -4487,8 +4487,18 @@
           "description": "If true, incoming audio is processed for DTMF (dual tone multi frequency) events. For example, if the caller presses a button on their telephone keypad and DTMF processing is enabled, Dialogflow will detect the event (e.g. a \"3\" was pressed) in the incoming audio and pass the event to the bot to drive business logic (e.g. when 3 is pressed, return the account balance).",
           "type": "boolean"
         },
+        "endpointingTimeoutDuration": {
+          "description": "Endpoint timeout setting for matching dtmf input to regex.",
+          "format": "google-duration",
+          "type": "string"
+        },
         "finishDigit": {
           "description": "The digit that terminates a DTMF digit sequence.",
+          "type": "string"
+        },
+        "interdigitTimeoutDuration": {
+          "description": "Interdigit timeout setting for matching dtmf input to regex.",
+          "format": "google-duration",
           "type": "string"
         },
         "maxDigits": {
@@ -7854,7 +7864,7 @@
             "NO_MATCH",
             "NO_INPUT",
             "EVENT",
-            "LLM"
+            "PLAYBOOK"
           ],
           "enumDescriptions": [
             "Not specified. Should never be used.",
@@ -7864,7 +7874,7 @@
             "No match was found for the query.",
             "Indicates an empty query.",
             "The query directly triggered an event.",
-            "The query was handled by an LLM."
+            "The query was handled by a `Playbook`."
           ],
           "type": "string"
         },
@@ -8956,6 +8966,10 @@
         "gcsBucket": {
           "description": "Cloud Storage bucket to export audio record to. Setting this field would grant the Storage Object Creator role to the Dialogflow Service Agent. API caller that tries to modify this field should have the permission of storage.buckets.setIamPolicy.",
           "type": "string"
+        },
+        "storeTtsAudio": {
+          "description": "Whether to store TTS audio. By default, TTS audio from the virtual agent is not exported.",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -10220,8 +10234,18 @@
           "description": "If true, incoming audio is processed for DTMF (dual tone multi frequency) events. For example, if the caller presses a button on their telephone keypad and DTMF processing is enabled, Dialogflow will detect the event (e.g. a \"3\" was pressed) in the incoming audio and pass the event to the bot to drive business logic (e.g. when 3 is pressed, return the account balance).",
           "type": "boolean"
         },
+        "endpointingTimeoutDuration": {
+          "description": "Endpoint timeout setting for matching dtmf input to regex.",
+          "format": "google-duration",
+          "type": "string"
+        },
         "finishDigit": {
           "description": "The digit that terminates a DTMF digit sequence.",
+          "type": "string"
+        },
+        "interdigitTimeoutDuration": {
+          "description": "Interdigit timeout setting for matching dtmf input to regex.",
+          "format": "google-duration",
           "type": "string"
         },
         "maxDigits": {

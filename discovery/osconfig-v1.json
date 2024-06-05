@@ -442,6 +442,11 @@
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
                       "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Optional. A unique identifier for this request. Restricted to 36 ASCII characters. A random UUID is recommended. This request is only idempotent if a `request_id` is provided.",
+                      "location": "query",
+                      "type": "string"
                     }
                   },
                   "path": "v1/{+parent}/osPolicyAssignments",
@@ -469,6 +474,11 @@
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/osPolicyAssignments/[^/]+$",
                       "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Optional. A unique identifier for this request. Restricted to 36 ASCII characters. A random UUID is recommended. This request is only idempotent if a `request_id` is provided.",
+                      "location": "query",
                       "type": "string"
                     }
                   },
@@ -586,11 +596,21 @@
                     "name"
                   ],
                   "parameters": {
+                    "allowMissing": {
+                      "description": "Optional. If set to true, and the OS policy assignment is not found, a new OS policy assignment will be created. In this situation, `update_mask` is ignored.",
+                      "location": "query",
+                      "type": "boolean"
+                    },
                     "name": {
                       "description": "Resource name. Format: `projects/{project_number}/locations/{location}/osPolicyAssignments/{os_policy_assignment_id}` This field is ignored when you create an OS policy assignment.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/osPolicyAssignments/[^/]+$",
                       "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Optional. A unique identifier for this request. Restricted to 36 ASCII characters. A random UUID is recommended. This request is only idempotent if a `request_id` is provided.",
+                      "location": "query",
                       "type": "string"
                     },
                     "updateMask": {
@@ -1063,7 +1083,7 @@
       }
     }
   },
-  "revision": "20240429",
+  "revision": "20240526",
   "rootUrl": "https://osconfig.googleapis.com/",
   "schemas": {
     "AptSettings": {

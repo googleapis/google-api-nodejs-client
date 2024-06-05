@@ -263,6 +263,10 @@ export namespace batch_v1 {
      */
     instancePreemptionNoticeReceived?: boolean | null;
     /**
+     * Optional. machine type of the VM
+     */
+    machineType?: string | null;
+    /**
      * parsed contents of /etc/os-release
      */
     osRelease?: {[key: string]: string} | null;
@@ -380,7 +384,7 @@ export namespace batch_v1 {
      */
     environment?: Schema$AgentEnvironment;
     /**
-     * Maximum duration the task should run. The task will be killed and marked as FAILED if over this limit. The valid value range for max_run_duration in seconds is [0, 315576000000.999999999],
+     * Maximum duration the task should run before being automatically retried (if enabled) or automatically failed. Format the value of this field as a time limit in seconds followed by `s`—for example, `3600s` for 1 hour. The field accepts any value between 0 and the maximum listed for the `Duration` field type at https://protobuf.dev/reference/protobuf/google.protobuf/#duration; however, the actual maximum run time for a job will be limited to the maximum run time for a job listed at https://cloud.google.com/batch/quotas#max-job-duration.
      */
     maxRunDuration?: string | null;
     /**
@@ -642,7 +646,7 @@ export namespace batch_v1 {
    */
   export interface Schema$InstancePolicyOrTemplate {
     /**
-     * Set this field true if users want Batch to help fetch drivers from a third party location and install them for GPUs specified in policy.accelerators or instance_template on their behalf. Default is false. For Container-Optimized Image cases, Batch will install the accelerator driver following milestones of https://cloud.google.com/container-optimized-os/docs/release-notes. For non Container-Optimized Image cases, following https://github.com/GoogleCloudPlatform/compute-gpu-installation/blob/main/linux/install_gpu_driver.py.
+     * Set this field true if you want Batch to help fetch drivers from a third party location and install them for GPUs specified in `policy.accelerators` or `instance_template` on your behalf. Default is false. For Container-Optimized Image cases, Batch will install the accelerator driver following milestones of https://cloud.google.com/container-optimized-os/docs/release-notes. For non Container-Optimized Image cases, following https://github.com/GoogleCloudPlatform/compute-gpu-installation/blob/main/linux/install_gpu_driver.py.
      */
     installGpuDrivers?: boolean | null;
     /**
@@ -1185,7 +1189,7 @@ export namespace batch_v1 {
    */
   export interface Schema$TaskExecution {
     /**
-     * The exit code of a finished task. If the task succeeded, the exit code will be 0. If the task failed but not due to the following reasons, the exit code will be 50000. Otherwise, it can be from different sources: - Batch known failures as https://cloud.google.com/batch/docs/troubleshooting#reserved-exit-codes. - Batch runnable execution failures: You can rely on Batch logs for further diagnose: https://cloud.google.com/batch/docs/analyze-job-using-logs. If there are multiple runnables failures, Batch only exposes the first error caught for now.
+     * The exit code of a finished task. If the task succeeded, the exit code will be 0. If the task failed but not due to the following reasons, the exit code will be 50000. Otherwise, it can be from different sources: * Batch known failures: https://cloud.google.com/batch/docs/troubleshooting#reserved-exit-codes. * Batch runnable execution failures; you can rely on Batch logs to further diagnose: https://cloud.google.com/batch/docs/analyze-job-using-logs. If there are multiple runnables failures, Batch only exposes the first error.
      */
     exitCode?: number | null;
   }
@@ -1272,7 +1276,7 @@ export namespace batch_v1 {
      */
     maxRetryCount?: number | null;
     /**
-     * Maximum duration the task should run. The task will be killed and marked as FAILED if over this limit. The valid value range for max_run_duration in seconds is [0, 315576000000.999999999],
+     * Maximum duration the task should run before being automatically retried (if enabled) or automatically failed. Format the value of this field as a time limit in seconds followed by `s`—for example, `3600s` for 1 hour. The field accepts any value between 0 and the maximum listed for the `Duration` field type at https://protobuf.dev/reference/protobuf/google.protobuf/#duration; however, the actual maximum run time for a job will be limited to the maximum run time for a job listed at https://cloud.google.com/batch/quotas#max-job-duration.
      */
     maxRunDuration?: string | null;
     /**

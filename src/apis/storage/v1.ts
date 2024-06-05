@@ -476,6 +476,35 @@ export namespace storage_v1 {
     nextPageToken?: string | null;
   }
   /**
+   * The storage layout configuration of a bucket.
+   */
+  export interface Schema$BucketStorageLayout {
+    /**
+     * The name of the bucket.
+     */
+    bucket?: string | null;
+    /**
+     * The bucket's custom placement configuration for Custom Dual Regions.
+     */
+    customPlacementConfig?: {dataLocations?: string[]} | null;
+    /**
+     * The bucket's hierarchical namespace configuration.
+     */
+    hierarchicalNamespace?: {enabled?: boolean} | null;
+    /**
+     * The kind of item this is. For storage layout, this is always storage#storageLayout.
+     */
+    kind?: string | null;
+    /**
+     * The location of the bucket.
+     */
+    location?: string | null;
+    /**
+     * The type of the bucket location.
+     */
+    locationType?: string | null;
+  }
+  /**
    * A bulk restore objects request.
    */
   export interface Schema$BulkRestoreObjectsRequest {
@@ -2882,6 +2911,99 @@ export namespace storage_v1 {
     }
 
     /**
+     * Returns the storage layout configuration for the specified bucket. Note that this operation requires storage.objects.list permission.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getStorageLayout(
+      params: Params$Resource$Buckets$Getstoragelayout,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getStorageLayout(
+      params?: Params$Resource$Buckets$Getstoragelayout,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$BucketStorageLayout>;
+    getStorageLayout(
+      params: Params$Resource$Buckets$Getstoragelayout,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getStorageLayout(
+      params: Params$Resource$Buckets$Getstoragelayout,
+      options: MethodOptions | BodyResponseCallback<Schema$BucketStorageLayout>,
+      callback: BodyResponseCallback<Schema$BucketStorageLayout>
+    ): void;
+    getStorageLayout(
+      params: Params$Resource$Buckets$Getstoragelayout,
+      callback: BodyResponseCallback<Schema$BucketStorageLayout>
+    ): void;
+    getStorageLayout(
+      callback: BodyResponseCallback<Schema$BucketStorageLayout>
+    ): void;
+    getStorageLayout(
+      paramsOrCallback?:
+        | Params$Resource$Buckets$Getstoragelayout
+        | BodyResponseCallback<Schema$BucketStorageLayout>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$BucketStorageLayout>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$BucketStorageLayout>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$BucketStorageLayout>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Buckets$Getstoragelayout;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Buckets$Getstoragelayout;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://storage.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/storage/v1/b/{bucket}/storageLayout').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['bucket'],
+        pathParams: ['bucket'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$BucketStorageLayout>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$BucketStorageLayout>(parameters);
+      }
+    }
+
+    /**
      * Creates a new bucket.
      *
      * @param params - Parameters for request
@@ -3547,6 +3669,17 @@ export namespace storage_v1 {
      * The project to be billed for this request. Required for Requester Pays buckets.
      */
     userProject?: string;
+  }
+  export interface Params$Resource$Buckets$Getstoragelayout
+    extends StandardParameters {
+    /**
+     * Name of a bucket.
+     */
+    bucket?: string;
+    /**
+     * An optional prefix used for permission check. It is useful when the caller only has storage.objects.list permission under a specific prefix.
+     */
+    prefix?: string;
   }
   export interface Params$Resource$Buckets$Insert extends StandardParameters {
     /**

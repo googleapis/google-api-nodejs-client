@@ -340,7 +340,7 @@ export namespace clouddeploy_v1 {
    */
   export interface Schema$AutomationRolloutMetadata {
     /**
-     * Output only. The IDs of the AutomationRuns initiated by an advance rollout rule.
+     * Output only. The names of the AutomationRuns initiated by an advance rollout rule.
      */
     advanceAutomationRuns?: string[] | null;
     /**
@@ -348,11 +348,11 @@ export namespace clouddeploy_v1 {
      */
     currentRepairAutomationRun?: string | null;
     /**
-     * Output only. The ID of the AutomationRun initiated by a promote release rule.
+     * Output only. The name of the AutomationRun initiated by a promote release rule.
      */
     promoteAutomationRun?: string | null;
     /**
-     * Output only. The IDs of the AutomationRuns initiated by a repair rollout rule.
+     * Output only. The names of the AutomationRuns initiated by a repair rollout rule.
      */
     repairAutomationRuns?: string[] | null;
   }
@@ -1002,6 +1002,10 @@ export namespace clouddeploy_v1 {
      * Required. Usages when this configuration should be applied.
      */
     usages?: string[] | null;
+    /**
+     * Optional. If true, additional logging will be enabled when running builds in this execution environment.
+     */
+    verbose?: boolean | null;
     /**
      * Optional. The resource name of the `WorkerPool`, with the format `projects/{project\}/locations/{location\}/workerPools/{worker_pool\}`. If this optional field is unspecified, the default Cloud Build pool will be used.
      */

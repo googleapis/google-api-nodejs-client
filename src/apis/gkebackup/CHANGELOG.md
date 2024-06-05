@@ -1,5 +1,12 @@
 # Changelog
 
+## [6.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/gkebackup-v6.0.0...gkebackup-v6.1.0) (2024-06-03)
+
+
+### Features
+
+* **gkebackup:** update the API ([5421e28](https://github.com/googleapis/google-api-nodejs-client/commit/5421e28b26abdd5380ac7f475ca356f2fcaf527c))
+
 ## [6.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/gkebackup-v5.1.0...gkebackup-v6.0.0) (2024-05-02)
 
 

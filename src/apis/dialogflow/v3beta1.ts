@@ -154,9 +154,17 @@ export namespace dialogflow_v3beta1 {
      */
     enabled?: boolean | null;
     /**
+     * Endpoint timeout setting for matching dtmf input to regex.
+     */
+    endpointingTimeoutDuration?: string | null;
+    /**
      * The digit that terminates a DTMF digit sequence.
      */
     finishDigit?: string | null;
+    /**
+     * Interdigit timeout setting for matching dtmf input to regex.
+     */
+    interdigitTimeoutDuration?: string | null;
     /**
      * Max length of DTMF digits.
      */
@@ -270,9 +278,17 @@ export namespace dialogflow_v3beta1 {
      */
     enabled?: boolean | null;
     /**
+     * Endpoint timeout setting for matching dtmf input to regex.
+     */
+    endpointingTimeoutDuration?: string | null;
+    /**
      * The digit that terminates a DTMF digit sequence.
      */
     finishDigit?: string | null;
+    /**
+     * Interdigit timeout setting for matching dtmf input to regex.
+     */
+    interdigitTimeoutDuration?: string | null;
     /**
      * Max length of DTMF digits.
      */
@@ -3705,6 +3721,10 @@ export namespace dialogflow_v3beta1 {
      * Cloud Storage bucket to export audio record to. Setting this field would grant the Storage Object Creator role to the Dialogflow Service Agent. API caller that tries to modify this field should have the permission of storage.buckets.setIamPolicy.
      */
     gcsBucket?: string | null;
+    /**
+     * Whether to store TTS audio. By default, TTS audio from the virtual agent is not exported.
+     */
+    storeTtsAudio?: boolean | null;
   }
   /**
    * Settings for exporting conversations to [Insights](https://cloud.google.com/contact-center/insights/docs).

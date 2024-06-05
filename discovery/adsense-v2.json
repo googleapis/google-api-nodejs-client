@@ -867,7 +867,7 @@
               ]
             },
             "list": {
-              "description": "Lists all the policy issues for the specified account.",
+              "description": "Lists all the policy issues where the specified account is involved, both directly and through any AFP child accounts.",
               "flatPath": "v2/accounts/{accountsId}/policyIssues",
               "httpMethod": "GET",
               "id": "adsense.accounts.policyIssues.list",
@@ -1912,7 +1912,7 @@
       }
     }
   },
-  "revision": "20240501",
+  "revision": "20240530",
   "rootUrl": "https://adsense.googleapis.com/",
   "schemas": {
     "Account": {

@@ -657,6 +657,7 @@ export namespace calendar_v3 {
      * - "outOfOffice" - An out-of-office event.
      * - "focusTime" - A focus-time event.
      * - "workingLocation" - A working location event.
+     * - "fromGmail" - An event from Gmail. This type of event cannot be created.
      */
     eventType?: string | null;
     /**
@@ -3925,7 +3926,7 @@ export namespace calendar_v3 {
     }
 
     /**
-     * Moves an event to another calendar, i.e. changes an event's organizer. Note that only default events can be moved; outOfOffice, focusTime and workingLocation events cannot be moved.
+     * Moves an event to another calendar, i.e. changes an event's organizer. Note that only default events can be moved; outOfOffice, focusTime, workingLocation and fromGmail events cannot be moved.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.

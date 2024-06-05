@@ -1,5 +1,12 @@
 # Changelog
 
+## [11.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/gkehub-v11.1.0...gkehub-v11.2.0) (2024-06-03)
+
+
+### Features
+
+* **gkehub:** update the API ([ca13d15](https://github.com/googleapis/google-api-nodejs-client/commit/ca13d15f5f0f5dee61a020b70ecf8fb0ace18973))
+
 ## [11.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/gkehub-v11.0.0...gkehub-v11.1.0) (2024-05-07)
 
 

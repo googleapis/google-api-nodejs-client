@@ -566,7 +566,7 @@
       }
     }
   },
-  "revision": "20240430",
+  "revision": "20240528",
   "rootUrl": "https://tasks.googleapis.com/",
   "schemas": {
     "Task": {
@@ -597,11 +597,12 @@
           "type": "string"
         },
         "kind": {
-          "description": "Type of the resource. This is always \"tasks#task\".",
+          "description": "Output only. Type of the resource. This is always \"tasks#task\".",
+          "readOnly": true,
           "type": "string"
         },
         "links": {
-          "description": "Collection of links. This collection is read-only.",
+          "description": "Output only. Collection of links. This collection is read-only.",
           "items": {
             "properties": {
               "description": {
@@ -619,6 +620,7 @@
             },
             "type": "object"
           },
+          "readOnly": true,
           "type": "array"
         },
         "notes": {
@@ -626,15 +628,18 @@
           "type": "string"
         },
         "parent": {
-          "description": "Parent task identifier. This field is omitted if it is a top-level task. This field is read-only. Use the \"move\" method to move the task under a different parent or to the top level.",
+          "description": "Output only. Parent task identifier. This field is omitted if it is a top-level task. This field is read-only. Use the \"move\" method to move the task under a different parent or to the top level.",
+          "readOnly": true,
           "type": "string"
         },
         "position": {
-          "description": "String indicating the position of the task among its sibling tasks under the same parent task or at the top level. If this string is greater than another task's corresponding position string according to lexicographical ordering, the task is positioned after the other task under the same parent task (or at the top level). This field is read-only. Use the \"move\" method to move the task to another position.",
+          "description": "Output only. String indicating the position of the task among its sibling tasks under the same parent task or at the top level. If this string is greater than another task's corresponding position string according to lexicographical ordering, the task is positioned after the other task under the same parent task (or at the top level). Use the \"move\" method to move the task to another position.",
+          "readOnly": true,
           "type": "string"
         },
         "selfLink": {
-          "description": "URL pointing to this task. Used to retrieve, update, or delete this task.",
+          "description": "Output only. URL pointing to this task. Used to retrieve, update, or delete this task.",
+          "readOnly": true,
           "type": "string"
         },
         "status": {
@@ -646,11 +651,13 @@
           "type": "string"
         },
         "updated": {
-          "description": "Last modification time of the task (as a RFC 3339 timestamp).",
+          "description": "Output only. Last modification time of the task (as a RFC 3339 timestamp).",
+          "readOnly": true,
           "type": "string"
         },
         "webViewLink": {
-          "description": "An absolute link to the task in the Google Tasks Web UI. This field is read-only.",
+          "description": "Output only. An absolute link to the task in the Google Tasks Web UI.",
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -668,11 +675,13 @@
           "type": "string"
         },
         "kind": {
-          "description": "Type of the resource. This is always \"tasks#taskList\".",
+          "description": "Output only. Type of the resource. This is always \"tasks#taskList\".",
+          "readOnly": true,
           "type": "string"
         },
         "selfLink": {
-          "description": "URL pointing to this task list. Used to retrieve, update, or delete this task list.",
+          "description": "Output only. URL pointing to this task list. Used to retrieve, update, or delete this task list.",
+          "readOnly": true,
           "type": "string"
         },
         "title": {
@@ -680,7 +689,8 @@
           "type": "string"
         },
         "updated": {
-          "description": "Last modification time of the task list (as a RFC 3339 timestamp).",
+          "description": "Output only. Last modification time of the task list (as a RFC 3339 timestamp).",
+          "readOnly": true,
           "type": "string"
         }
       },

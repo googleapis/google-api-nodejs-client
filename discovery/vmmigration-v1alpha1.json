@@ -2220,7 +2220,7 @@
       }
     }
   },
-  "revision": "20240411",
+  "revision": "20240523",
   "rootUrl": "https://vmmigration.googleapis.com/",
   "schemas": {
     "AccessKeyCredentials": {
@@ -5453,13 +5453,15 @@
             "DISK_TYPE_UNSPECIFIED",
             "STANDARD",
             "BALANCED",
-            "SSD"
+            "SSD",
+            "HYPERDISK_BALANCED"
           ],
           "enumDescriptions": [
             "An unspecified disk type. Will be used as STANDARD.",
             "A Standard disk type.",
             "An alternative to SSD persistent disks that balance performance and cost.",
-            "SSD hard disk type."
+            "SSD hard disk type.",
+            "Hyperdisk balanced disk type."
           ],
           "type": "string"
         },

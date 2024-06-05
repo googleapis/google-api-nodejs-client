@@ -1365,6 +1365,10 @@ export namespace datastream_v1 {
     oracleScnPosition?: Schema$OracleScnPosition;
   }
   /**
+   * Configuration to use Change Tables CDC read method.
+   */
+  export interface Schema$SqlServerChangeTables {}
+  /**
    * SQLServer Column.
    */
   export interface Schema$SqlServerColumn {
@@ -1466,6 +1470,10 @@ export namespace datastream_v1 {
    */
   export interface Schema$SqlServerSourceConfig {
     /**
+     * CDC reader reads from change tables.
+     */
+    changeTables?: Schema$SqlServerChangeTables;
+    /**
      * SQLServer objects to exclude from the stream.
      */
     excludeObjects?: Schema$SqlServerRdbms;
@@ -1481,6 +1489,10 @@ export namespace datastream_v1 {
      * Max concurrent CDC tasks.
      */
     maxConcurrentCdcTasks?: number | null;
+    /**
+     * CDC reader reads from transaction logs.
+     */
+    transactionLogs?: Schema$SqlServerTransactionLogs;
   }
   /**
    * SQLServer table.
@@ -1495,6 +1507,10 @@ export namespace datastream_v1 {
      */
     table?: string | null;
   }
+  /**
+   * Configuration to use Transaction Logs CDC read method.
+   */
+  export interface Schema$SqlServerTransactionLogs {}
   /**
    * Request for manually initiating a backfill job for a specific stream object.
    */

@@ -552,7 +552,7 @@
       }
     }
   },
-  "revision": "20240425",
+  "revision": "20240523",
   "rootUrl": "https://cloudfunctions.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -1716,7 +1716,7 @@
       "id": "OnDeployUpdatePolicy",
       "properties": {
         "runtimeVersion": {
-          "description": "Output only. contains the runtime version which was used during latest function deployment.",
+          "description": "Output only. Contains the runtime version which was used during latest function deployment.",
           "readOnly": true,
           "type": "string"
         }

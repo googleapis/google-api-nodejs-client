@@ -138,6 +138,126 @@
         }
       }
     },
+    "oauthClients": {
+      "methods": {
+        "exchangeAppAttestAssertion": {
+          "description": "Accepts an App Attest assertion and an artifact previously obtained from ExchangeAppAttestAttestation and verifies those with Apple. If valid, returns an AppCheckToken.",
+          "flatPath": "v1/oauthClients/{oauthClientsId}:exchangeAppAttestAssertion",
+          "httpMethod": "POST",
+          "id": "firebaseappcheck.oauthClients.exchangeAppAttestAssertion",
+          "parameterOrder": [
+            "app"
+          ],
+          "parameters": {
+            "app": {
+              "description": "Required. The relative resource name of the iOS app, in the format: ``` projects/{project_number}/apps/{app_id} ``` If necessary, the `project_number` element can be replaced with the project ID of the Firebase project. Learn more about using project identifiers in Google's [AIP 2510](https://google.aip.dev/cloud/2510) standard.",
+              "location": "path",
+              "pattern": "^oauthClients/[^/]+$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "v1/{+app}:exchangeAppAttestAssertion",
+          "request": {
+            "$ref": "GoogleFirebaseAppcheckV1ExchangeAppAttestAssertionRequest"
+          },
+          "response": {
+            "$ref": "GoogleFirebaseAppcheckV1AppCheckToken"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/firebase"
+          ]
+        },
+        "exchangeAppAttestAttestation": {
+          "description": "Accepts an App Attest CBOR attestation and verifies it with Apple using your preconfigured team and bundle IDs. If valid, returns an attestation artifact that can later be exchanged for an AppCheckToken using ExchangeAppAttestAssertion. For convenience and performance, this method's response object will also contain an AppCheckToken (if the verification is successful).",
+          "flatPath": "v1/oauthClients/{oauthClientsId}:exchangeAppAttestAttestation",
+          "httpMethod": "POST",
+          "id": "firebaseappcheck.oauthClients.exchangeAppAttestAttestation",
+          "parameterOrder": [
+            "app"
+          ],
+          "parameters": {
+            "app": {
+              "description": "Required. The relative resource name of the iOS app, in the format: ``` projects/{project_number}/apps/{app_id} ``` If necessary, the `project_number` element can be replaced with the project ID of the Firebase project. Learn more about using project identifiers in Google's [AIP 2510](https://google.aip.dev/cloud/2510) standard.",
+              "location": "path",
+              "pattern": "^oauthClients/[^/]+$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "v1/{+app}:exchangeAppAttestAttestation",
+          "request": {
+            "$ref": "GoogleFirebaseAppcheckV1ExchangeAppAttestAttestationRequest"
+          },
+          "response": {
+            "$ref": "GoogleFirebaseAppcheckV1ExchangeAppAttestAttestationResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/firebase"
+          ]
+        },
+        "exchangeDebugToken": {
+          "description": "Validates a debug token secret that you have previously created using CreateDebugToken. If valid, returns an AppCheckToken. Note that a restrictive quota is enforced on this method to prevent accidental exposure of the app to abuse.",
+          "flatPath": "v1/oauthClients/{oauthClientsId}:exchangeDebugToken",
+          "httpMethod": "POST",
+          "id": "firebaseappcheck.oauthClients.exchangeDebugToken",
+          "parameterOrder": [
+            "app"
+          ],
+          "parameters": {
+            "app": {
+              "description": "Required. The relative resource name of the app, in the format: ``` projects/{project_number}/apps/{app_id} ``` If necessary, the `project_number` element can be replaced with the project ID of the Firebase project. Learn more about using project identifiers in Google's [AIP 2510](https://google.aip.dev/cloud/2510) standard.",
+              "location": "path",
+              "pattern": "^oauthClients/[^/]+$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "v1/{+app}:exchangeDebugToken",
+          "request": {
+            "$ref": "GoogleFirebaseAppcheckV1ExchangeDebugTokenRequest"
+          },
+          "response": {
+            "$ref": "GoogleFirebaseAppcheckV1AppCheckToken"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/firebase"
+          ]
+        },
+        "generateAppAttestChallenge": {
+          "description": "Generates a challenge that protects the integrity of an immediately following call to ExchangeAppAttestAttestation or ExchangeAppAttestAssertion. A challenge should not be reused for multiple calls.",
+          "flatPath": "v1/oauthClients/{oauthClientsId}:generateAppAttestChallenge",
+          "httpMethod": "POST",
+          "id": "firebaseappcheck.oauthClients.generateAppAttestChallenge",
+          "parameterOrder": [
+            "app"
+          ],
+          "parameters": {
+            "app": {
+              "description": "Required. The relative resource name of the iOS app, in the format: ``` projects/{project_number}/apps/{app_id} ``` If necessary, the `project_number` element can be replaced with the project ID of the Firebase project. Learn more about using project identifiers in Google's [AIP 2510](https://google.aip.dev/cloud/2510) standard.",
+              "location": "path",
+              "pattern": "^oauthClients/[^/]+$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "v1/{+app}:generateAppAttestChallenge",
+          "request": {
+            "$ref": "GoogleFirebaseAppcheckV1GenerateAppAttestChallengeRequest"
+          },
+          "response": {
+            "$ref": "GoogleFirebaseAppcheckV1GenerateAppAttestChallengeResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/firebase"
+          ]
+        }
+      }
+    },
     "projects": {
       "resources": {
         "apps": {
@@ -1070,7 +1190,7 @@
                   ]
                 },
                 "patch": {
-                  "description": "Updates the RecaptchaV3Config for the specified app. While this configuration is incomplete or invalid, the app will be unable to exchange reCAPTCHA tokens for App Check tokens. For security reasons, the `site_secret` field is never populated in the response.",
+                  "description": "Updates the RecaptchaV3Config for the specified app. While this configuration is incomplete or invalid, the app will be unable to exchange reCAPTCHA V3 tokens for App Check tokens. For security reasons, the `site_secret` field is never populated in the response.",
                   "flatPath": "v1/projects/{projectsId}/apps/{appsId}/recaptchaV3Config",
                   "httpMethod": "PATCH",
                   "id": "firebaseappcheck.projects.apps.recaptchaV3Config.patch",
@@ -1343,7 +1463,7 @@
       }
     }
   },
-  "revision": "20240429",
+  "revision": "20240528",
   "rootUrl": "https://firebaseappcheck.googleapis.com/",
   "schemas": {
     "GoogleFirebaseAppcheckV1AppAttestConfig": {
@@ -1938,7 +2058,7 @@
           "enumDescriptions": [
             "Firebase App Check is not enforced for the service, nor are App Check metrics collected. Though the service is not protected by App Check in this mode, other applicable protections, such as user authorization, are still enforced. An unconfigured service is in this mode by default.",
             "Firebase App Check is not enforced for the service. App Check metrics are collected to help you decide when to turn on enforcement for the service. Though the service is not protected by App Check in this mode, other applicable protections, such as user authorization, are still enforced. Some services require certain conditions to be met before they will work with App Check, such as requiring you to upgrade to a specific service tier. Until those requirements are met for a service, this `UNENFORCED` setting will have no effect and App Check will not work with that service.",
-            "Firebase App Check is enforced for the service. The service will reject any request that attempts to access your project's resources if it does not have valid App Check token attached, with some exceptions depending on the service; for example, some services will still allow requests bearing the developer's privileged service account credentials without an App Check token. App Check metrics continue to be collected to help you detect issues with your App Check integration and monitor the composition of your callers. While the service is protected by App Check, other applicable protections, such as user authorization, continue to be enforced at the same time. Use caution when choosing to enforce App Check on a Firebase service. If your users have not updated to an App Check capable version of your app, their apps will no longer be able to use your Firebase services that are enforcing App Check. App Check metrics can help you decide whether to enforce App Check on your Firebase services. If your app has not launched yet, you should enable enforcement immediately, since there are no outdated clients in use. Some services require certain conditions to be met before they will work with App Check, such as requiring you to upgrade to a specific service tier or requiring you to enable the service first. Until those requirements are met for a service, this `ENFORCED` setting will have no effect and App Check will not work with that service."
+            "Firebase App Check is enforced for the service. The service will reject any request that attempts to access your project's resources if it does not have valid App Check token attached, with some exceptions depending on the service; for example, some services will still allow requests bearing the developer's privileged service account credentials without an App Check token. App Check metrics continue to be collected to help you detect issues with your App Check integration and monitor the composition of your callers. While the service is protected by App Check, other applicable protections, such as user authorization, continue to be enforced at the same time. Use caution when choosing to enforce App Check on a Firebase service. If your users have not updated to an App Check capable version of your app, their apps will no longer be able to use your Firebase services that are enforcing App Check. App Check metrics can help you decide whether to enforce App Check on your Firebase services. If your app has not launched yet, you should enable enforcement immediately, since there are no outdated clients in use. Some services require certain conditions to be met before they will work with App Check, such as requiring you to upgrade to a specific service tier. Until those requirements are met for a service, this `ENFORCED` setting will have no effect and App Check will not work with that service."
           ],
           "type": "string"
         },

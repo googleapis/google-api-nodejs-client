@@ -1141,6 +1141,11 @@
           "id": "androidmanagement.signupUrls.create",
           "parameterOrder": [],
           "parameters": {
+            "adminEmail": {
+              "description": "Optional. Email address used to prefill the admin field of the enterprise signup form. This value is a hint only and can be altered by the user.",
+              "location": "query",
+              "type": "string"
+            },
             "callbackUrl": {
               "description": "The callback URL that the admin will be redirected to after successfully creating an enterprise. Before redirecting there the system will add a query parameter to this URL named enterpriseToken which will contain an opaque token to be used for the create enterprise request. The URL will be parsed then reformatted in order to add the enterpriseToken parameter, so there may be some minor formatting changes.",
               "location": "query",
@@ -1163,7 +1168,7 @@
       }
     }
   },
-  "revision": "20240425",
+  "revision": "20240516",
   "rootUrl": "https://androidmanagement.googleapis.com/",
   "schemas": {
     "AdbShellCommandEvent": {
@@ -1936,7 +1941,7 @@
       "id": "BatchUsageLogEvents",
       "properties": {
         "device": {
-          "description": "The name of the device in the form ‘enterprises/{enterpriseId}/devices/{deviceId}’",
+          "description": "If present, the name of the device in the form ‘enterprises/{enterpriseId}/devices/{deviceId}’",
           "type": "string"
         },
         "retrievalTime": {
@@ -1952,7 +1957,7 @@
           "type": "array"
         },
         "user": {
-          "description": "The resource name of the user that owns this device in the form ‘enterprises/{enterpriseId}/users/{userId}’.",
+          "description": "If present, the resource name of the user that owns this device in the form ‘enterprises/{enterpriseId}/users/{userId}’.",
           "type": "string"
         }
       },
@@ -2470,7 +2475,8 @@
             "DELETED",
             "PROVISIONING",
             "LOST",
-            "PREPARING_FOR_MIGRATION"
+            "PREPARING_FOR_MIGRATION",
+            "DEACTIVATED_BY_DEVICE_FINANCE"
           ],
           "enumDescriptions": [
             "This value is disallowed.",
@@ -2479,7 +2485,8 @@
             "The device was deleted. This state is never returned by an API call, but is used in the final status report when the device acknowledges the deletion. If the device is deleted via the API call, this state is published to Pub/Sub. If the user deletes the work profile or resets the device, the device state will remain unknown to the server.",
             "The device is being provisioned. Newly enrolled devices are in this state until they have a policy applied.",
             "The device is lost. This state is only possible on organization-owned devices.",
-            "The device is preparing for migrating to Android Management API. No further action is needed for the migration to continue."
+            "The device is preparing for migrating to Android Management API. No further action is needed for the migration to continue.",
+            "This is a financed device that has been \"locked\" by the financing agent. This means certain policy settings have been applied which limit device functionality until the device has been \"unlocked\" by the financing agent. The device will continue to apply policy settings excluding those overridden by the financing agent. When the device is \"locked\", the state is reported in appliedState as DEACTIVATED_BY_DEVICE_FINANCE."
           ],
           "type": "string"
         },
@@ -2640,7 +2647,8 @@
             "DELETED",
             "PROVISIONING",
             "LOST",
-            "PREPARING_FOR_MIGRATION"
+            "PREPARING_FOR_MIGRATION",
+            "DEACTIVATED_BY_DEVICE_FINANCE"
           ],
           "enumDescriptions": [
             "This value is disallowed.",
@@ -2649,7 +2657,8 @@
             "The device was deleted. This state is never returned by an API call, but is used in the final status report when the device acknowledges the deletion. If the device is deleted via the API call, this state is published to Pub/Sub. If the user deletes the work profile or resets the device, the device state will remain unknown to the server.",
             "The device is being provisioned. Newly enrolled devices are in this state until they have a policy applied.",
             "The device is lost. This state is only possible on organization-owned devices.",
-            "The device is preparing for migrating to Android Management API. No further action is needed for the migration to continue."
+            "The device is preparing for migrating to Android Management API. No further action is needed for the migration to continue.",
+            "This is a financed device that has been \"locked\" by the financing agent. This means certain policy settings have been applied which limit device functionality until the device has been \"unlocked\" by the financing agent. The device will continue to apply policy settings excluding those overridden by the financing agent. When the device is \"locked\", the state is reported in appliedState as DEACTIVATED_BY_DEVICE_FINANCE."
           ],
           "type": "string"
         },
@@ -5456,7 +5465,7 @@
           "type": "string"
         },
         "imei": {
-          "description": "IMEI number of the GSM device. For example, A1000031212.",
+          "description": "For corporate-owned devices, IMEI number of the GSM device. For example, A1000031212.",
           "type": "string"
         },
         "managementMode": {
@@ -5474,7 +5483,7 @@
           "type": "string"
         },
         "meid": {
-          "description": "MEID number of the CDMA device. For example, A00000292788E1.",
+          "description": "For corporate-owned devices, MEID number of the CDMA device. For example, A00000292788E1.",
           "type": "string"
         },
         "model": {
@@ -5500,7 +5509,7 @@
           "type": "string"
         },
         "serialNumber": {
-          "description": "The device serial number.",
+          "description": "For corporate-owned devices, The device serial number.",
           "type": "string"
         }
       },

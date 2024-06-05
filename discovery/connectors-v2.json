@@ -650,6 +650,62 @@
                           ]
                         }
                       }
+                    },
+                    "entitieswithacls": {
+                      "methods": {
+                        "list": {
+                          "description": "Lists entity rows with ACLs of a particular entity type contained in the request. Note: 1. Currently, only max of one 'sort_by' column is supported. 2. If no 'sort_by' column is provided, the primary key of the table is used. If zero or more than one primary key is available, we default to the unpaginated list entities logic which only returns the first page. 3. The values of the 'sort_by' columns must uniquely identify an entity row, otherwise undefined behaviors may be observed during pagination. 4. Since transactions are not supported, any updates, inserts or deletes during pagination can lead to stale data being returned or other unexpected behaviors.",
+                          "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/connections/{connectionsId}/entityTypes/{entityTypesId}/entitieswithacls",
+                          "httpMethod": "GET",
+                          "id": "connectors.projects.locations.connections.entityTypes.entitieswithacls.list",
+                          "parameterOrder": [
+                            "parent"
+                          ],
+                          "parameters": {
+                            "conditions": {
+                              "description": "Conditions to be used when listing entities. From a proto standpoint, There are no restrictions on what can be passed using this field. The connector documentation should have information about what format of filters/conditions are supported.",
+                              "location": "query",
+                              "type": "string"
+                            },
+                            "gsutilUri": {
+                              "description": "Format: gs://object_path",
+                              "location": "query",
+                              "type": "string"
+                            },
+                            "pageSize": {
+                              "description": "Number of entity rows to return. Defaults page size = 25. Max page size = 200.",
+                              "format": "int32",
+                              "location": "query",
+                              "type": "integer"
+                            },
+                            "pageToken": {
+                              "description": "Page token value if available from a previous request.",
+                              "location": "query",
+                              "type": "string"
+                            },
+                            "parent": {
+                              "description": "Required. Resource name of the Entity Type. Format: projects/{project}/locations/{location}/connections/{connection}/entityTypes/{type}",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/connections/[^/]+/entityTypes/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            },
+                            "sortBy": {
+                              "description": "List of 'sort_by' columns to use when returning the results.",
+                              "location": "query",
+                              "repeated": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v2/{+parent}/entitieswithacls",
+                          "response": {
+                            "$ref": "ListEntitiesWithACLsResponse"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        }
+                      }
                     }
                   }
                 }
@@ -660,7 +716,7 @@
       }
     }
   },
-  "revision": "20240415",
+  "revision": "20240529",
   "rootUrl": "https://connectors.googleapis.com/",
   "schemas": {
     "AccessCredentials": {
@@ -679,6 +735,20 @@
         "refreshToken": {
           "description": "OAuth refresh token.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AclInfo": {
+      "description": "AclInfo has a list of readers for a resource. This is defined as per the below docs https://cloud.google.com/generative-ai-app-builder/docs/reference/rest/v1alpha/projects.locations.collections.dataStores.branches.documents#aclinfo",
+      "id": "AclInfo",
+      "properties": {
+        "readers": {
+          "description": "A list of readers for a resource.",
+          "items": {
+            "$ref": "Readers"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -883,6 +953,25 @@
             "type": "string"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "EntityWithACL": {
+      "description": "EntityWithACL refers to a single row of an entity type with ACL information.",
+      "id": "EntityWithACL",
+      "properties": {
+        "acl_info": {
+          "$ref": "AclInfo",
+          "description": "ACL information of the entity."
+        },
+        "id": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "jsonData": {
+          "description": "Entity data in JSON format.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -1703,6 +1792,24 @@
       },
       "type": "object"
     },
+    "ListEntitiesWithACLsResponse": {
+      "description": "Response message for EntityService.ListEntitiesWithACLs",
+      "id": "ListEntitiesWithACLsResponse",
+      "properties": {
+        "entitiesWithAcl": {
+          "description": "List containing entity rows.",
+          "items": {
+            "$ref": "EntityWithACL"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "Next page token if more records are available.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ListEntityTypesResponse": {
       "description": "Response message for EntityService.ListEntityTypes",
       "id": "ListEntityTypesResponse",
@@ -1889,6 +1996,21 @@
           },
           "description": "An entry in the eligibilities map specifies an eligibility for a particular SLI for the given instance. The SLI key in the name must be a valid SLI name specified in the Eligibility Exporter binary flags otherwise an error will be emitted by Eligibility Exporter and the oncaller will be alerted. If an SLI has been defined in the binary flags but the eligibilities map does not contain it, the corresponding SLI time series will not be emitted by the Eligibility Exporter. This ensures a smooth rollout and compatibility between the data produced by different versions of the Eligibility Exporters. If eligibilities map contains a key for an SLI which has not been declared in the binary flags, there will be an error message emitted in the Eligibility Exporter log and the metric for the SLI in question will not be emitted.",
           "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "Principal": {
+      "description": "Principal is a user or group that has access to a resource.",
+      "id": "Principal",
+      "properties": {
+        "group_id": {
+          "description": "The group that has access to a resource.",
+          "type": "string"
+        },
+        "user_id": {
+          "description": "The user that has access to a resource.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -2086,6 +2208,20 @@
         },
         "value": {
           "type": "any"
+        }
+      },
+      "type": "object"
+    },
+    "Readers": {
+      "description": "Readers is a list of principals that have read access to a resource.",
+      "id": "Readers",
+      "properties": {
+        "principals": {
+          "description": "A list of principals that have read access to a resource.",
+          "items": {
+            "$ref": "Principal"
+          },
+          "type": "array"
         }
       },
       "type": "object"

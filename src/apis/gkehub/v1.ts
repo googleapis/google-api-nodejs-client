@@ -1786,6 +1786,10 @@ export namespace gkehub_v1 {
      * A token to request the next page of resources from the `ListMembershipBindings` method. The value of an empty string means that there are no more resources to return.
      */
     nextPageToken?: string | null;
+    /**
+     * List of locations that could not be reached while fetching this list.
+     */
+    unreachable?: string[] | null;
   }
   /**
    * Response message for the `GkeHub.ListMemberships` method.

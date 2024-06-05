@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/tasks-v4.0.0...tasks-v4.1.0) (2024-06-03)
+
+
+### Features
+
+* **tasks:** update the API ([a493ffb](https://github.com/googleapis/google-api-nodejs-client/commit/a493ffbefaa6b7cd934ddc801e36dc9db4188dc5))
+
 ## [4.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/tasks-v3.0.1...tasks-v4.0.0) (2024-05-02)
 
 

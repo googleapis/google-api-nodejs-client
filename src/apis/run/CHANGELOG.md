@@ -1,5 +1,12 @@
 # Changelog
 
+## [17.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/run-v17.0.0...run-v17.1.0) (2024-06-03)
+
+
+### Features
+
+* **run:** update the API ([ee8a219](https://github.com/googleapis/google-api-nodejs-client/commit/ee8a21916b7a613a65fae5a86bddc2b29516e450))
+
 ## [17.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/run-v16.2.0...run-v17.0.0) (2024-05-10)
 
 

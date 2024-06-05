@@ -271,7 +271,7 @@
       }
     }
   },
-  "revision": "20240430",
+  "revision": "20240529",
   "rootUrl": "https://versionhistory.googleapis.com/",
   "schemas": {
     "Channel": {
@@ -470,6 +470,10 @@
         "name": {
           "description": "Release name. Format is \"{product}/platforms/{platform}/channels/{channel}/versions/{version}/releases/{release}\"",
           "type": "string"
+        },
+        "pinnable": {
+          "description": "Whether or not the release was available for version pinning.",
+          "type": "boolean"
         },
         "serving": {
           "$ref": "Interval",

@@ -554,7 +554,7 @@ export namespace dlp_v2 {
     generationCadence?: Schema$GooglePrivacyDlpV2DiscoveryCloudSqlGenerationCadence;
   }
   /**
-   * Use IAM auth to connect. This requires the Cloud SQL IAM feature to be enabled on the instance, which is not the default for Cloud SQL. See https://cloud.google.com/sql/docs/postgres/authentication and https://cloud.google.com/sql/docs/mysql/authentication.
+   * Use IAM authentication to connect. This requires the Cloud SQL IAM feature to be enabled on the instance, which is not the default for Cloud SQL. See https://cloud.google.com/sql/docs/postgres/authentication and https://cloud.google.com/sql/docs/mysql/authentication.
    */
   export interface Schema$GooglePrivacyDlpV2CloudSqlIamCredential {}
   /**
@@ -1116,11 +1116,19 @@ export namespace dlp_v2 {
    */
   export interface Schema$GooglePrivacyDlpV2DatabaseResourceReference {
     /**
-     * Required. The instance where this resource is located. For example: Cloud SQL's instance id.
+     * Required. Name of a database within the instance.
+     */
+    database?: string | null;
+    /**
+     * Required. Name of a database resource, for example, a table within the database.
+     */
+    databaseResource?: string | null;
+    /**
+     * Required. The instance where this resource is located. For example: Cloud SQL instance ID.
      */
     instance?: string | null;
     /**
-     * Required. If within a project-level config, then this must match the config's project id.
+     * Required. If within a project-level config, then this must match the config's project ID.
      */
     projectId?: string | null;
   }
@@ -1141,7 +1149,7 @@ export namespace dlp_v2 {
      */
     instanceRegex?: string | null;
     /**
-     * For organizations, if unset, will match all projects. Has no effect for Data Profile configurations created within a project.
+     * For organizations, if unset, will match all projects. Has no effect for configurations created within a project.
      */
     projectIdRegex?: string | null;
   }
@@ -1606,6 +1614,10 @@ export namespace dlp_v2 {
      */
     otherTables?: Schema$GooglePrivacyDlpV2AllOtherBigQueryTables;
     /**
+     * The table to scan. Discovery configurations including this can only include one DiscoveryTarget (the DiscoveryTarget with this TableReference).
+     */
+    tableReference?: Schema$GooglePrivacyDlpV2TableReference;
+    /**
      * A specific set of tables for this filter to apply to. A table collection must be specified in only one filter per config. If a table id or dataset is empty, Cloud DLP assumes all tables in that collection must be profiled. Must specify a project ID.
      */
     tables?: Schema$GooglePrivacyDlpV2BigQueryTableCollection;
@@ -1645,7 +1657,7 @@ export namespace dlp_v2 {
    */
   export interface Schema$GooglePrivacyDlpV2DiscoveryCloudSqlGenerationCadence {
     /**
-     * Data changes (non-schema changes) in Cloud SQL tables can't trigger reprofiling. If you set this field, profiles are refreshed at this frequency regardless of whether the underlying tables have changes. Defaults to never.
+     * Data changes (non-schema changes) in Cloud SQL tables can't trigger reprofiling. If you set this field, profiles are refreshed at this frequency regardless of whether the underlying tables have changed. Defaults to never.
      */
     refreshFrequency?: string | null;
     /**
@@ -1766,6 +1778,10 @@ export namespace dlp_v2 {
      * Cloud SQL target for Discovery. The first target to match a table will be the one applied.
      */
     cloudSqlTarget?: Schema$GooglePrivacyDlpV2CloudSqlDiscoveryTarget;
+    /**
+     * Discovery target that looks for credentials and secrets stored in cloud resource metadata and reports them as vulnerabilities to Security Command Center. Only one target of this type is allowed.
+     */
+    secretsTarget?: Schema$GooglePrivacyDlpV2SecretsDiscoveryTarget;
   }
   /**
    * Combines all of the information about a DLP job.
@@ -2548,7 +2564,7 @@ export namespace dlp_v2 {
    */
   export interface Schema$GooglePrivacyDlpV2JobNotificationEmails {}
   /**
-   * Contains a configuration to make api calls on a repeating basis. See https://cloud.google.com/sensitive-data-protection/docs/concepts-job-triggers to learn more.
+   * Contains a configuration to make API calls on a repeating basis. See https://cloud.google.com/sensitive-data-protection/docs/concepts-job-triggers to learn more.
    */
   export interface Schema$GooglePrivacyDlpV2JobTrigger {
     /**
@@ -3682,7 +3698,7 @@ export namespace dlp_v2 {
      */
     infoTypeStats?: Schema$GooglePrivacyDlpV2InfoTypeStats[];
     /**
-     * Number of rows scanned post sampling and time filtering (Applicable for row based stores such as BigQuery).
+     * Number of rows scanned after sampling and time filtering (applicable for row based stores such as BigQuery).
      */
     numRowsProcessed?: string | null;
     /**
@@ -3739,7 +3755,7 @@ export namespace dlp_v2 {
     recurrencePeriodDuration?: string | null;
   }
   /**
-   * How frequency to modify the profile when the table's schema is modified.
+   * How frequently to modify the profile when the table's schema is modified.
    */
   export interface Schema$GooglePrivacyDlpV2SchemaModifiedCadence {
     /**
@@ -3777,6 +3793,10 @@ export namespace dlp_v2 {
      */
     username?: string | null;
   }
+  /**
+   * Discovery target for credentials and secrets in cloud resource metadata. This target does not include any filtering or frequency controls. Cloud DLP will scan cloud resource metadata for secrets daily. No inspect template should be included in the discovery config for a security benchmarks scan. Instead, the built-in list of secrets and credentials infoTypes will be used (see https://cloud.google.com/sensitive-data-protection/docs/infotypes-reference#credentials_and_secrets). Credentials and secrets discovered will be reported as vulnerabilities to Security Command Center.
+   */
+  export interface Schema$GooglePrivacyDlpV2SecretsDiscoveryTarget {}
   /**
    * Apply transformation to the selected info_types.
    */
@@ -4095,6 +4115,19 @@ export namespace dlp_v2 {
      * The columns that are the primary keys for table objects included in ContentItem. A copy of this cell's value will stored alongside alongside each finding so that the finding can be traced to the specific row it came from. No more than 3 may be provided.
      */
     identifyingFields?: Schema$GooglePrivacyDlpV2FieldId[];
+  }
+  /**
+   * Message defining the location of a BigQuery table with the projectId inferred from the parent project.
+   */
+  export interface Schema$GooglePrivacyDlpV2TableReference {
+    /**
+     * Dataset ID of the table.
+     */
+    datasetId?: string | null;
+    /**
+     * Name of the table.
+     */
+    tableId?: string | null;
   }
   /**
    * A column with a semantic tag attached.
@@ -6294,7 +6327,7 @@ export namespace dlp_v2 {
   export interface Params$Resource$Organizations$Locations$Connections$Search
     extends StandardParameters {
     /**
-     * Optional. * Supported fields/values - `state` - MISSING|AVAILABLE|ERROR
+     * Optional. Supported field/value: - `state` - MISSING|AVAILABLE|ERROR
      */
     filter?: string;
     /**
@@ -13893,7 +13926,7 @@ export namespace dlp_v2 {
   export interface Params$Resource$Projects$Locations$Connections$List
     extends StandardParameters {
     /**
-     * Optional. * Supported fields/values - `state` - MISSING|AVAILABLE|ERROR
+     * Optional. Supported field/value: `state` - MISSING|AVAILABLE|ERROR
      */
     filter?: string;
     /**
@@ -13924,7 +13957,7 @@ export namespace dlp_v2 {
   export interface Params$Resource$Projects$Locations$Connections$Search
     extends StandardParameters {
     /**
-     * Optional. * Supported fields/values - `state` - MISSING|AVAILABLE|ERROR
+     * Optional. Supported field/value: - `state` - MISSING|AVAILABLE|ERROR
      */
     filter?: string;
     /**

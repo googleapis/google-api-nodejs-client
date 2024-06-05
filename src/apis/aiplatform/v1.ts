@@ -127,27 +127,6 @@ export namespace aiplatform_v1 {
   }
 
   /**
-   * Details for filtered input text.
-   */
-  export interface Schema$CloudAiLargeModelsVisionFilteredText {
-    /**
-     * Confidence level
-     */
-    category?: string | null;
-    /**
-     * Filtered category
-     */
-    confidence?: string | null;
-    /**
-     * Input prompt
-     */
-    prompt?: string | null;
-    /**
-     * Score for category
-     */
-    score?: number | null;
-  }
-  /**
    * Generate video response.
    */
   export interface Schema$CloudAiLargeModelsVisionGenerateVideoResponse {
@@ -156,10 +135,6 @@ export namespace aiplatform_v1 {
      */
     generatedSamples?: Schema$CloudAiLargeModelsVisionMedia[];
     /**
-     * Returns rai error message for filtered videos.
-     */
-    raiErrorMessage?: string | null;
-    /**
      * Returns if any videos were filtered due to RAI policies.
      */
     raiMediaFilteredCount?: number | null;
@@ -167,10 +142,6 @@ export namespace aiplatform_v1 {
      * Returns rai failure reasons if any.
      */
     raiMediaFilteredReasons?: string[] | null;
-    /**
-     * Returns filtered text rai info.
-     */
-    raiTextFilteredReason?: Schema$CloudAiLargeModelsVisionFilteredText;
   }
   /**
    * Image.
@@ -238,6 +209,10 @@ export namespace aiplatform_v1 {
   }
   export interface Schema$CloudAiLargeModelsVisionRaiInfo {
     /**
+     * The list of detected labels for different rai categories.
+     */
+    detectedLabels?: Schema$CloudAiLargeModelsVisionRaiInfoDetectedLabels[];
+    /**
      * List of rai categories' information to return
      */
     raiCategories?: string[] | null;
@@ -245,6 +220,65 @@ export namespace aiplatform_v1 {
      * List of rai scores mapping to the rai categories. Rounded to 1 decimal place.
      */
     scores?: number[] | null;
+  }
+  /**
+   * Filters returning list of deteceted labels, scores, and bounding boxes.
+   */
+  export interface Schema$CloudAiLargeModelsVisionRaiInfoDetectedLabels {
+    /**
+     * The list of detected entities for the rai signal.
+     */
+    entities?: Schema$CloudAiLargeModelsVisionRaiInfoDetectedLabelsEntity[];
+    /**
+     * The RAI category for the deteceted labels.
+     */
+    raiCategory?: string | null;
+  }
+  /**
+   * An integer bounding box of original pixels of the image for the detected labels.
+   */
+  export interface Schema$CloudAiLargeModelsVisionRaiInfoDetectedLabelsBoundingBox {
+    /**
+     * The X coordinate of the top-left corner, in pixels.
+     */
+    x1?: number | null;
+    /**
+     * The X coordinate of the bottom-right corner, in pixels.
+     */
+    x2?: number | null;
+    /**
+     * The Y coordinate of the top-left corner, in pixels.
+     */
+    y1?: number | null;
+    /**
+     * The Y coordinate of the bottom-right corner, in pixels.
+     */
+    y2?: number | null;
+  }
+  /**
+   * The properties for a detected entity from the rai signal.
+   */
+  export interface Schema$CloudAiLargeModelsVisionRaiInfoDetectedLabelsEntity {
+    /**
+     * Bounding box of the label
+     */
+    boundingBox?: Schema$CloudAiLargeModelsVisionRaiInfoDetectedLabelsBoundingBox;
+    /**
+     * Description of the label
+     */
+    description?: string | null;
+    /**
+     * The intersection ratio between the detection bounding box and the mask.
+     */
+    iouScore?: number | null;
+    /**
+     * MID of the label
+     */
+    mid?: string | null;
+    /**
+     * Confidence score of the label
+     */
+    score?: number | null;
   }
   export interface Schema$CloudAiLargeModelsVisionSemanticFilterResponse {
     /**
@@ -268,6 +302,19 @@ export namespace aiplatform_v1 {
      * Raw bytes.
      */
     video?: string | null;
+  }
+  /**
+   * Create API error message for Vertex Pipeline. Next Id: 3.
+   */
+  export interface Schema$CloudAiPlatformCommonCreatePipelineJobApiErrorDetail {
+    /**
+     * The error root cause returned by CreatePipelineJob API.
+     */
+    errorCause?: string | null;
+    /**
+     * Public messages contains actionable items for the error cause.
+     */
+    publicMessage?: string | null;
   }
   /**
    * Message that represents an arbitrary HTTP body. It should only be used for payload formats that can't be represented as JSON, such as raw binary or an HTML page. This message can be used both in streaming and non-streaming API methods in the request as well as the response. It can be used as a top-level request field, which is convenient if one wants to extract parameters from either the URL or HTTP template into the request fields and also want access to the raw HTTP body. Example: message GetResourceRequest { // A unique request id. string request_id = 1; // The raw HTTP body is bound to this field. google.api.HttpBody http_body = 2; \} service ResourceService { rpc GetResource(GetResourceRequest) returns (google.api.HttpBody); rpc UpdateResource(google.api.HttpBody) returns (google.protobuf.Empty); \} Example with streaming methods: service CaldavService { rpc GetCalendar(stream google.api.HttpBody) returns (stream google.api.HttpBody); rpc UpdateCalendar(stream google.api.HttpBody) returns (stream google.api.HttpBody); \} Use of this type only changes how the request and response bodies are handled, all other features will continue to work unchanged.
@@ -1991,6 +2038,97 @@ export namespace aiplatform_v1 {
     updateTime?: string | null;
   }
   /**
+   * Distribution computed over a tuning dataset.
+   */
+  export interface Schema$GoogleCloudAiplatformV1DatasetDistribution {
+    /**
+     * Output only. Defines the histogram bucket.
+     */
+    buckets?: Schema$GoogleCloudAiplatformV1DatasetDistributionDistributionBucket[];
+    /**
+     * Output only. The maximum of the population values.
+     */
+    max?: number | null;
+    /**
+     * Output only. The arithmetic mean of the values in the population.
+     */
+    mean?: number | null;
+    /**
+     * Output only. The median of the values in the population.
+     */
+    median?: number | null;
+    /**
+     * Output only. The minimum of the population values.
+     */
+    min?: number | null;
+    /**
+     * Output only. The 5th percentile of the values in the population.
+     */
+    p5?: number | null;
+    /**
+     * Output only. The 95th percentile of the values in the population.
+     */
+    p95?: number | null;
+    /**
+     * Output only. Sum of a given population of values.
+     */
+    sum?: number | null;
+  }
+  /**
+   * Dataset bucket used to create a histogram for the distribution given a population of values.
+   */
+  export interface Schema$GoogleCloudAiplatformV1DatasetDistributionDistributionBucket {
+    /**
+     * Output only. Number of values in the bucket.
+     */
+    count?: string | null;
+    /**
+     * Output only. Left bound of the bucket.
+     */
+    left?: number | null;
+    /**
+     * Output only. Right bound of the bucket.
+     */
+    right?: number | null;
+  }
+  /**
+   * Statistics computed over a tuning dataset.
+   */
+  export interface Schema$GoogleCloudAiplatformV1DatasetStats {
+    /**
+     * Output only. Number of billable characters in the tuning dataset.
+     */
+    totalBillableCharacterCount?: string | null;
+    /**
+     * Output only. Number of tuning characters in the tuning dataset.
+     */
+    totalTuningCharacterCount?: string | null;
+    /**
+     * Output only. Number of examples in the tuning dataset.
+     */
+    tuningDatasetExampleCount?: string | null;
+    /**
+     * Output only. Number of tuning steps for this Tuning Job.
+     */
+    tuningStepCount?: string | null;
+    /**
+     * Output only. Sample user messages in the training dataset uri.
+     */
+    userDatasetExamples?: Schema$GoogleCloudAiplatformV1Content[];
+    /**
+     * Output only. Dataset distributions for the user input tokens.
+     */
+    userInputTokenDistribution?: Schema$GoogleCloudAiplatformV1DatasetDistribution;
+    /**
+     * Output only. Dataset distributions for the messages per example.
+     */
+    userMessagePerExampleDistribution?: Schema$GoogleCloudAiplatformV1DatasetDistribution;
+    /**
+     * Output only. Dataset distributions for the user output tokens.
+     */
+    userOutputTokenDistribution?: Schema$GoogleCloudAiplatformV1DatasetDistribution;
+  }
+  /**
    * Describes the dataset version.
    */
   export interface Schema$GoogleCloudAiplatformV1DatasetVersion {
@@ -2367,9 +2505,21 @@ export namespace aiplatform_v1 {
      */
     dedicatedResources?: Schema$GoogleCloudAiplatformV1DedicatedResources;
     /**
+     * If the DeploymentResourcePool is deployed with custom-trained Models or AutoML Tabular Models, the container(s) of the DeploymentResourcePool will send `stderr` and `stdout` streams to Cloud Logging by default. Please note that the logs incur cost, which are subject to [Cloud Logging pricing](https://cloud.google.com/logging/pricing). User can disable container logging by setting this flag to true.
+     */
+    disableContainerLogging?: boolean | null;
+    /**
+     * Customer-managed encryption key spec for a DeploymentResourcePool. If set, this DeploymentResourcePool will be secured by this key. Endpoints and the DeploymentResourcePool they deploy in need to have the same EncryptionSpec.
+     */
+    encryptionSpec?: Schema$GoogleCloudAiplatformV1EncryptionSpec;
+    /**
      * Immutable. The resource name of the DeploymentResourcePool. Format: `projects/{project\}/locations/{location\}/deploymentResourcePools/{deployment_resource_pool\}`
      */
     name?: string | null;
+    /**
+     * The service account that the DeploymentResourcePool's container(s) run as. Specify the email address of the service account. If this service account is not specified, the container(s) run as a service account that doesn't have access to the resource project. Users deploying the Models to this DeploymentResourcePool must have the `iam.serviceAccounts.actAs` permission on this service account.
+     */
+    serviceAccount?: string | null;
   }
   /**
    * Runtime operation information for EndpointService.DeployModel.
@@ -2472,6 +2622,15 @@ export namespace aiplatform_v1 {
      * Type of the boot disk (default is "pd-ssd"). Valid values: "pd-ssd" (Persistent Disk Solid State Drive) or "pd-standard" (Persistent Disk Hard Disk Drive).
      */
     bootDiskType?: string | null;
+  }
+  /**
+   * Statistics computed for datasets used for distillation.
+   */
+  export interface Schema$GoogleCloudAiplatformV1DistillationDataStats {
+    /**
+     * Output only. Statistics computed for the training dataset.
+     */
+    trainingDatasetStats?: Schema$GoogleCloudAiplatformV1DatasetStats;
   }
   /**
    * A list of double values.
@@ -3533,6 +3692,10 @@ export namespace aiplatform_v1 {
      */
     dedicatedServingEndpoint?: Schema$GoogleCloudAiplatformV1FeatureOnlineStoreDedicatedServingEndpoint;
     /**
+     * Optional. Customer-managed encryption key spec for data storage. If set, online store will be secured by this key.
+     */
+    encryptionSpec?: Schema$GoogleCloudAiplatformV1EncryptionSpec;
+    /**
      * Optional. Used to perform consistent read-modify-write updates. If not set, a blind "overwrite" update happens.
      */
     etag?: string | null;
@@ -3807,6 +3970,10 @@ export namespace aiplatform_v1 {
      * String feature value.
      */
     stringValue?: string | null;
+    /**
+     * A struct type feature value.
+     */
+    structValue?: Schema$GoogleCloudAiplatformV1StructValue;
   }
   /**
    * A destination location for Feature values and format.
@@ -4242,6 +4409,19 @@ export namespace aiplatform_v1 {
     name?: string | null;
   }
   /**
+   * Function calling config.
+   */
+  export interface Schema$GoogleCloudAiplatformV1FunctionCallingConfig {
+    /**
+     * Optional. Function names to call. Only set when the Mode is ANY. Function names should match [FunctionDeclaration.name]. With mode set to ANY, model will predict a function call from the set of function names provided.
+     */
+    allowedFunctionNames?: string[] | null;
+    /**
+     * Optional. Function calling mode.
+     */
+    mode?: string | null;
+  }
+  /**
    * Structured representation of a function declaration as defined by the [OpenAPI 3.0 specification](https://spec.openapis.org/oas/v3.0.3). Included in this declaration are the function name and parameters. This FunctionDeclaration is a representation of a block of code that can be used as a `Tool` by the model and executed by the client.
    */
   export interface Schema$GoogleCloudAiplatformV1FunctionDeclaration {
@@ -4309,6 +4489,10 @@ export namespace aiplatform_v1 {
      * Optional. The user provided system instructions for the model. Note: only text should be used in parts and content in each part will be in a separate paragraph.
      */
     systemInstruction?: Schema$GoogleCloudAiplatformV1Content;
+    /**
+     * Optional. Tool config. This config is shared for all tools provided in the request.
+     */
+    toolConfig?: Schema$GoogleCloudAiplatformV1ToolConfig;
     /**
      * Optional. A list of `Tools` the model may use to generate the next response. A `Tool` is a piece of code that enables the system to interact with external systems to perform an action, or set of actions, outside of knowledge and scope of the model.
      */
@@ -4387,9 +4571,9 @@ export namespace aiplatform_v1 {
      */
     responseMimeType?: string | null;
     /**
-     * Optional. Control Three levels of creativity in the model output. Default: RESPONSE_STYLE_BALANCED
+     * Optional. The `Schema` object allows the definition of input and output data types. These types can be objects, but also primitives and arrays. Represents a select subset of an [OpenAPI 3.0 schema object](https://spec.openapis.org/oas/v3.0.3#schema). If set, a compatible response_mime_type must also be set. Compatible mimetypes: `application/json`: Schema for JSON response.
      */
-    responseStyle?: string | null;
+    responseSchema?: Schema$GoogleCloudAiplatformV1Schema;
     /**
      * Optional. Stop sequences.
      */
@@ -4433,6 +4617,10 @@ export namespace aiplatform_v1 {
      */
     baseModelUri?: string | null;
   }
+  /**
+   * Tool to retrieve public web data for grounding, powered by Google.
+   */
+  export interface Schema$GoogleCloudAiplatformV1GoogleSearchRetrieval {}
   /**
    * Metadata returned to client when grounding is enabled.
    */
@@ -5753,6 +5941,10 @@ export namespace aiplatform_v1 {
      */
     createTime?: string | null;
     /**
+     * Optional. Dataplex integration settings.
+     */
+    dataplexConfig?: Schema$GoogleCloudAiplatformV1MetadataStoreDataplexConfig;
+    /**
      * Description of the MetadataStore.
      */
     description?: string | null;
@@ -5772,6 +5964,15 @@ export namespace aiplatform_v1 {
      * Output only. Timestamp when this MetadataStore was last updated.
      */
     updateTime?: string | null;
+  }
+  /**
+   * Represents Dataplex integration settings.
+   */
+  export interface Schema$GoogleCloudAiplatformV1MetadataStoreDataplexConfig {
+    /**
+     * Optional. Whether or not Data Lineage synchronization is enabled for Vertex Pipelines.
+     */
+    enabledPipelinesLineage?: boolean | null;
   }
   /**
    * Represents state information for a MetadataStore.
@@ -7268,23 +7469,6 @@ export namespace aiplatform_v1 {
     idleTimeout?: string | null;
   }
   /**
-   * Notebook Reservation Affinity for consuming Zonal reservation.
-   */
-  export interface Schema$GoogleCloudAiplatformV1NotebookReservationAffinity {
-    /**
-     * Required. Specifies the type of reservation from which this instance can consume resources: RESERVATION_ANY (default), RESERVATION_SPECIFIC, or RESERVATION_NONE. See Consuming reserved instances for examples.
-     */
-    consumeReservationType?: string | null;
-    /**
-     * Optional. Corresponds to the label key of a reservation resource. To target a RESERVATION_SPECIFIC by name, use compute.googleapis.com/reservation-name as the key and specify the name of your reservation as its value.
-     */
-    key?: string | null;
-    /**
-     * Optional. Corresponds to the label values of a reservation resource. This must be the full path name of Reservation.
-     */
-    values?: string[] | null;
-  }
-  /**
    * A runtime is a virtual machine allocated to a particular user for a particular Notebook file on temporary basis with lifetime limited to 24 hours.
    */
   export interface Schema$GoogleCloudAiplatformV1NotebookRuntime {
@@ -7301,6 +7485,10 @@ export namespace aiplatform_v1 {
      */
     displayName?: string | null;
     /**
+     * Output only. Customer-managed encryption key spec for the notebook runtime.
+     */
+    encryptionSpec?: Schema$GoogleCloudAiplatformV1EncryptionSpec;
+    /**
      * Output only. Timestamp when this NotebookRuntime will be expired: 1. System Predefined NotebookRuntime: 24 hours after creation. After expiration, system predifined runtime will be deleted. 2. User created NotebookRuntime: 6 months after last upgrade. After expiration, user created runtime will be stopped and allowed for upgrade.
      */
     expirationTime?: string | null;
@@ -7308,6 +7496,10 @@ export namespace aiplatform_v1 {
      * Output only. The health state of the NotebookRuntime.
      */
     healthState?: string | null;
+    /**
+     * Output only. The idle shutdown configuration of the notebook runtime.
+     */
+    idleShutdownConfig?: Schema$GoogleCloudAiplatformV1NotebookIdleShutdownConfig;
     /**
      * Output only. Whether NotebookRuntime is upgradable.
      */
@@ -7336,10 +7528,6 @@ export namespace aiplatform_v1 {
      * Output only. The proxy endpoint used to access the NotebookRuntime.
      */
     proxyUri?: string | null;
-    /**
-     * Output only. Reservation Affinity of the notebook runtime.
-     */
-    reservationAffinity?: Schema$GoogleCloudAiplatformV1NotebookReservationAffinity;
     /**
      * Output only. The runtime (instance) state of the NotebookRuntime.
      */
@@ -7390,6 +7578,10 @@ export namespace aiplatform_v1 {
      */
     displayName?: string | null;
     /**
+     * Customer-managed encryption key spec for the notebook runtime.
+     */
+    encryptionSpec?: Schema$GoogleCloudAiplatformV1EncryptionSpec;
+    /**
      * Used to perform consistent read-modify-write updates. If not set, a blind "overwrite" update happens.
      */
     etag?: string | null;
@@ -7429,10 +7621,6 @@ export namespace aiplatform_v1 {
      * Optional. Immutable. The type of the notebook runtime template.
      */
     notebookRuntimeType?: string | null;
-    /**
-     * Optional. Reservation Affinity of the notebook runtime template.
-     */
-    reservationAffinity?: Schema$GoogleCloudAiplatformV1NotebookReservationAffinity;
     /**
      * The service account that the runtime workload runs as. You can use any service account within the same project, but you must have the service account user permission to use the instance. If not specified, the [Compute Engine default service account](https://cloud.google.com/compute/docs/access/service-accounts#default_service_account) is used.
      */
@@ -7995,7 +8183,7 @@ export namespace aiplatform_v1 {
    */
   export interface Schema$GoogleCloudAiplatformV1Probe {
     /**
-     * Exec specifies the action to take.
+     * ExecAction probes the health of a container by executing a command.
      */
     exec?: Schema$GoogleCloudAiplatformV1ProbeExecAction;
     /**
@@ -8448,9 +8636,35 @@ export namespace aiplatform_v1 {
     httpBody?: Schema$GoogleApiHttpBody;
   }
   /**
+   * Configuration for the Ray metrics.
+   */
+  export interface Schema$GoogleCloudAiplatformV1RayMetricSpec {
+    /**
+     * Optional. Flag to disable the Ray metrics collection.
+     */
+    disabled?: boolean | null;
+  }
+  /**
    * Configuration information for the Ray cluster. For experimental launch, Ray cluster creation and Persistent cluster creation are 1:1 mapping: We will provision all the nodes within the Persistent cluster as Ray nodes.
    */
-  export interface Schema$GoogleCloudAiplatformV1RaySpec {}
+  export interface Schema$GoogleCloudAiplatformV1RaySpec {
+    /**
+     * Optional. This will be used to indicate which resource pool will serve as the Ray head node(the first node within that pool). Will use the machine from the first workerpool as the head node by default if this field isn't set.
+     */
+    headNodeResourcePoolId?: string | null;
+    /**
+     * Optional. Default image for user to choose a preferred ML framework (for example, TensorFlow or Pytorch) by choosing from [Vertex prebuilt images](https://cloud.google.com/vertex-ai/docs/training/pre-built-containers). Either this or the resource_pool_images is required. Use this field if you need all the resource pools to have the same Ray image. Otherwise, use the {@code resource_pool_images\} field.
+     */
+    imageUri?: string | null;
+    /**
+     * Optional. Ray metrics configurations.
+     */
+    rayMetricSpec?: Schema$GoogleCloudAiplatformV1RayMetricSpec;
+    /**
+     * Optional. Required if image_uri isn't set. A map of resource_pool_id to prebuild Ray image if user need to use different images for different head/worker pools. This map needs to cover all the resource pool ids. Example: { "ray_head_node_pool": "head image" "ray_worker_node_pool1": "worker image" "ray_worker_node_pool2": "another worker image" \}
+     */
+    resourcePoolImages?: {[key: string]: string} | null;
+  }
   /**
    * Request message for FeaturestoreOnlineServingService.ReadFeatureValues.
    */
@@ -8627,6 +8841,19 @@ export namespace aiplatform_v1 {
    */
   export interface Schema$GoogleCloudAiplatformV1RebootPersistentResourceRequest {}
   /**
+   * Statistics computed for datasets used for reinforcement learning.
+   */
+  export interface Schema$GoogleCloudAiplatformV1ReinforcementLearningDataStats {
+    /**
+     * Output only. Statistics computed for the preference dataset. This can be either a human preference dataset or a preference dataset generated from AI feedback.
+     */
+    preferenceDatasetStats?: Schema$GoogleCloudAiplatformV1DatasetStats;
+    /**
+     * Output only. Statistics computed for the prompt dataset used during reinforcement learning.
+     */
+    promptDatasetStats?: Schema$GoogleCloudAiplatformV1DatasetStats;
+  }
+  /**
    * Request message for MetadataService.DeleteContextChildrenRequest.
    */
   export interface Schema$GoogleCloudAiplatformV1RemoveContextChildrenRequest {
@@ -8697,7 +8924,12 @@ export namespace aiplatform_v1 {
   /**
    * Persistent Cluster runtime information as output
    */
-  export interface Schema$GoogleCloudAiplatformV1ResourceRuntime {}
+  export interface Schema$GoogleCloudAiplatformV1ResourceRuntime {
+    /**
+     * Output only. URIs for user to connect to the Cluster. Example: { "RAY_HEAD_NODE_INTERNAL_IP": "head-node-IP:10001" "RAY_DASHBOARD_URI": "ray-dashboard-address:8888" \}
+     */
+    accessUris?: {[key: string]: string} | null;
+  }
   /**
    * Configuration for the runtime on a PersistentResource instance, including but not limited to: * Service accounts used to run the workloads. * Whether to make it a dedicated Ray Cluster.
    */
@@ -10470,6 +10702,10 @@ export namespace aiplatform_v1 {
      */
     groundingConfig?: Schema$GoogleCloudAiplatformV1SchemaPredictParamsGroundingConfig;
     /**
+     * Whether the prompt dataset has prompt variable.
+     */
+    hasPromptVariable?: boolean | null;
+    /**
      * Value of the maximum number of tokens generated set when the dataset was saved.
      */
     maxOutputTokens?: string | null;
@@ -10485,6 +10721,10 @@ export namespace aiplatform_v1 {
      * Customized stop sequences.
      */
     stopSequences?: string[] | null;
+    /**
+     * The content of the prompt dataset system instruction.
+     */
+    systemInstruction?: string | null;
     /**
      * The Google Cloud Storage URI that stores the system instruction, starting with gs://.
      */
@@ -12003,6 +12243,28 @@ export namespace aiplatform_v1 {
     values?: string[] | null;
   }
   /**
+   * One field of a Struct (or object) type feature value.
+   */
+  export interface Schema$GoogleCloudAiplatformV1StructFieldValue {
+    /**
+     * Name of the field in the struct feature.
+     */
+    name?: string | null;
+    /**
+     * The value for this field.
+     */
+    value?: Schema$GoogleCloudAiplatformV1FeatureValue;
+  }
+  /**
+   * Struct (or object) type feature value.
+   */
+  export interface Schema$GoogleCloudAiplatformV1StructValue {
+    /**
+     * A list of field values.
+     */
+    values?: Schema$GoogleCloudAiplatformV1StructFieldValue[];
+  }
+  /**
    * A message representing a Study.
    */
   export interface Schema$GoogleCloudAiplatformV1Study {
@@ -12905,9 +13167,22 @@ export namespace aiplatform_v1 {
      */
     functionDeclarations?: Schema$GoogleCloudAiplatformV1FunctionDeclaration[];
     /**
+     * Optional. GoogleSearchRetrieval tool type. Specialized retrieval tool that is powered by Google search.
+     */
+    googleSearchRetrieval?: Schema$GoogleCloudAiplatformV1GoogleSearchRetrieval;
+    /**
      * Optional. Retrieval tool type. System will always execute the provided retrieval tool(s) to get external knowledge to answer the prompt. Retrieval results are presented to the model for generation.
      */
     retrieval?: Schema$GoogleCloudAiplatformV1Retrieval;
+  }
+  /**
+   * Tool config. This config is shared for all tools provided in the request.
+   */
+  export interface Schema$GoogleCloudAiplatformV1ToolConfig {
+    /**
+     * Optional. Function calling config.
+     */
+    functionCallingConfig?: Schema$GoogleCloudAiplatformV1FunctionCallingConfig;
   }
   /**
    * CMLE training config. For every active learning labeling iteration, system will train a machine learning model on CMLE. The trained model will be used by data sampling algorithm to select DataItems.
@@ -13087,6 +13362,14 @@ export namespace aiplatform_v1 {
    * The tuning data statistic values for TuningJob.
    */
   export interface Schema$GoogleCloudAiplatformV1TuningDataStats {
+    /**
+     * Statistics for distillation.
+     */
+    distillationDataStats?: Schema$GoogleCloudAiplatformV1DistillationDataStats;
+    /**
+     * Statistics for reinforcement learning.
+     */
+    reinforcementLearningDataStats?: Schema$GoogleCloudAiplatformV1ReinforcementLearningDataStats;
     /**
      * The SFT Tuning data stats.
      */
@@ -51674,6 +51957,101 @@ export namespace aiplatform_v1 {
     }
 
     /**
+     * Updates a NotebookRuntimeTemplate.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Locations$Notebookruntimetemplates$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Projects$Locations$Notebookruntimetemplates$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1NotebookRuntimeTemplate>;
+    patch(
+      params: Params$Resource$Projects$Locations$Notebookruntimetemplates$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Notebookruntimetemplates$Patch,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1NotebookRuntimeTemplate>,
+      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1NotebookRuntimeTemplate>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Notebookruntimetemplates$Patch,
+      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1NotebookRuntimeTemplate>
+    ): void;
+    patch(
+      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1NotebookRuntimeTemplate>
+    ): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Notebookruntimetemplates$Patch
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1NotebookRuntimeTemplate>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1NotebookRuntimeTemplate>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1NotebookRuntimeTemplate>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudAiplatformV1NotebookRuntimeTemplate>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Notebookruntimetemplates$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Notebookruntimetemplates$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudAiplatformV1NotebookRuntimeTemplate>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudAiplatformV1NotebookRuntimeTemplate>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Sets the access control policy on the specified resource. Replaces any existing policy. Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.
      *
      * @param params - Parameters for request
@@ -51933,6 +52311,22 @@ export namespace aiplatform_v1 {
      * Optional. Mask specifying which fields to read.
      */
     readMask?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Notebookruntimetemplates$Patch
+    extends StandardParameters {
+    /**
+     * The resource name of the NotebookRuntimeTemplate.
+     */
+    name?: string;
+    /**
+     * Required. The update mask applies to the resource. For the `FieldMask` definition, see google.protobuf.FieldMask. Input format: `{paths: "${updated_filed\}"\}` Updatable fields: * `encryption_spec.kms_key_name`
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudAiplatformV1NotebookRuntimeTemplate;
   }
   export interface Params$Resource$Projects$Locations$Notebookruntimetemplates$Setiampolicy
     extends StandardParameters {

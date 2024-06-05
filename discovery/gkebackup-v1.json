@@ -1713,7 +1713,7 @@
       }
     }
   },
-  "revision": "20240424",
+  "revision": "20240518",
   "rootUrl": "https://gkebackup.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -1848,6 +1848,11 @@
           "readOnly": true,
           "type": "string"
         },
+        "permissiveMode": {
+          "description": "Output only. If false, Backup will fail when Backup for GKE detects Kubernetes configuration that is non-standard or requires additional setup to restore. Inherited from the parent BackupPlan's permissive_mode value.",
+          "readOnly": true,
+          "type": "boolean"
+        },
         "podCount": {
           "description": "Output only. The total number of Kubernetes Pods contained in the Backup.",
           "format": "int32",
@@ -1951,6 +1956,10 @@
         },
         "includeVolumeData": {
           "description": "Optional. This flag specifies whether volume data should be backed up when PVCs are included in the scope of a Backup. Default: False",
+          "type": "boolean"
+        },
+        "permissiveMode": {
+          "description": "Optional. If false, Backups will fail when Backup for GKE detects Kubernetes configuration that is non-standard or requires additional setup to restore. Default: False",
           "type": "boolean"
         },
         "selectedApplications": {
@@ -2284,6 +2293,27 @@
       },
       "type": "object"
     },
+    "Filter": {
+      "description": "Defines the filter for `Restore`. This filter can be used to further refine the resource selection of the `Restore` beyond the coarse-grained scope defined in the `RestorePlan`. `exclusion_filters` take precedence over `inclusion_filters`. If a resource matches both `inclusion_filters` and `exclusion_filters`, it will not be restored.",
+      "id": "Filter",
+      "properties": {
+        "exclusionFilters": {
+          "description": "Optional. Excludes resources from restoration. If specified, a resource will not be restored if it matches any `ResourceSelector` of the `exclusion_filters`.",
+          "items": {
+            "$ref": "ResourceSelector"
+          },
+          "type": "array"
+        },
+        "inclusionFilters": {
+          "description": "Optional. Selects resources for restoration. If specified, only resources which match `inclusion_filters` will be selected for restoration. A resource will be selected if it matches any `ResourceSelector` of the `inclusion_filters`.",
+          "items": {
+            "$ref": "ResourceSelector"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "GetBackupIndexDownloadUrlResponse": {
       "description": "Response message for GetBackupIndexDownloadUrl.",
       "id": "GetBackupIndexDownloadUrlResponse",
@@ -2391,6 +2421,21 @@
         "resourceKind": {
           "description": "Optional. Kind of a Kubernetes resource, must be in UpperCamelCase (PascalCase) and singular form. E.g. \"CustomResourceDefinition\", \"StorageClass\", etc.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GroupKindDependency": {
+      "description": "Defines a dependency between two group kinds.",
+      "id": "GroupKindDependency",
+      "properties": {
+        "requiring": {
+          "$ref": "GroupKind",
+          "description": "Required. The requiring group kind requires that the other group kind be restored first."
+        },
+        "satisfying": {
+          "$ref": "GroupKind",
+          "description": "Required. The satisfying group kind must be restored first in order to satisfy the dependency."
         }
       },
       "type": "object"
@@ -2719,6 +2764,32 @@
       },
       "type": "object"
     },
+    "ResourceSelector": {
+      "description": "Defines a selector to identify a single or a group of resources. Conditions in the selector are optional, but at least one field should be set to a non-empty value. If a condition is not specified, no restrictions will be applied on that dimension. If more than one condition is specified, a resource will be selected if and only if all conditions are met.",
+      "id": "ResourceSelector",
+      "properties": {
+        "groupKind": {
+          "$ref": "GroupKind",
+          "description": "Optional. Selects resources using their Kubernetes GroupKinds. If specified, only resources of provided GroupKind will be selected."
+        },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. Selects resources using Kubernetes [labels](https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/). If specified, a resource will be selected if and only if the resource has all of the provided labels and all the label values match.",
+          "type": "object"
+        },
+        "name": {
+          "description": "Optional. Selects resources using their resource names. If specified, only resources with the provided name will be selected.",
+          "type": "string"
+        },
+        "namespace": {
+          "description": "Optional. Selects resources using their namespaces. This only applies to namespace scoped resources and cannot be used for selecting cluster scoped resources. If specified, only resources in the provided namespace will be selected. If not specified, the filter will apply to both cluster scoped and namespace scoped resources (e.g. name or label). The [Namespace](https://pkg.go.dev/k8s.io/api/core/v1#Namespace) resource itself will be restored if and only if any resources within the namespace are restored.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "Restore": {
       "description": "Represents both a request to Restore some portion of a Backup into a target GKE cluster and a record of the restore operation itself.",
       "id": "Restore",
@@ -2752,6 +2823,10 @@
           "description": "Output only. `etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a restore from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform restore updates in order to avoid race conditions: An `etag` is returned in the response to `GetRestore`, and systems are expected to put that etag in the request to `UpdateRestore` or `DeleteRestore` to ensure that their change will be applied to the same version of the resource.",
           "readOnly": true,
           "type": "string"
+        },
+        "filter": {
+          "$ref": "Filter",
+          "description": "Optional. Immutable. Filters resources for `Restore`. If not specified, the scope of the restore will remain the same as defined in the `RestorePlan`. If this is specified, and no resources are matched by the `inclusion_filters` or everyting is excluded by the `exclusion_filters`, nothing will be restored. This filter can only be specified if the value of namespaced_resource_restore_mode is set to `MERGE_SKIP_ON_CONFLICT`, `MERGE_REPLACE_VOLUME_ON_CONFLICT` or `MERGE_REPLACE_ON_CONFLICT`."
         },
         "labels": {
           "additionalProperties": {
@@ -2825,6 +2900,13 @@
           "readOnly": true,
           "type": "string"
         },
+        "volumeDataRestorePolicyOverrides": {
+          "description": "Optional. Immutable. Overrides the volume data restore policies selected in the Restore Config for override-scoped resources.",
+          "items": {
+            "$ref": "VolumeDataRestorePolicyOverride"
+          },
+          "type": "array"
+        },
         "volumesRestoredCount": {
           "description": "Output only. Number of volumes restored during the restore execution.",
           "format": "int32",
@@ -2869,18 +2951,28 @@
           "enum": [
             "NAMESPACED_RESOURCE_RESTORE_MODE_UNSPECIFIED",
             "DELETE_AND_RESTORE",
-            "FAIL_ON_CONFLICT"
+            "FAIL_ON_CONFLICT",
+            "MERGE_SKIP_ON_CONFLICT",
+            "MERGE_REPLACE_VOLUME_ON_CONFLICT",
+            "MERGE_REPLACE_ON_CONFLICT"
           ],
           "enumDescriptions": [
             "Unspecified (invalid).",
             "When conflicting top-level resources (either Namespaces or ProtectedApplications, depending upon the scope) are encountered, this will first trigger a delete of the conflicting resource AND ALL OF ITS REFERENCED RESOURCES (e.g., all resources in the Namespace or all resources referenced by the ProtectedApplication) before restoring the resources from the Backup. This mode should only be used when you are intending to revert some portion of a cluster to an earlier state.",
-            "If conflicting top-level resources (either Namespaces or ProtectedApplications, depending upon the scope) are encountered at the beginning of a restore process, the Restore will fail. If a conflict occurs during the restore process itself (e.g., because an out of band process creates conflicting resources), a conflict will be reported."
+            "If conflicting top-level resources (either Namespaces or ProtectedApplications, depending upon the scope) are encountered at the beginning of a restore process, the Restore will fail. If a conflict occurs during the restore process itself (e.g., because an out of band process creates conflicting resources), a conflict will be reported.",
+            "This mode merges the backup and the target cluster and skips the conflicting resources. If a single resource to restore exists in the cluster before restoration, the resource will be skipped, otherwise it will be restored.",
+            "This mode merges the backup and the target cluster and skips the conflicting resources except volume data. If a PVC to restore already exists, this mode will restore/reconnect the volume without overwriting the PVC. It is similar to MERGE_SKIP_ON_CONFLICT except that it will apply the volume data policy for the conflicting PVCs: - RESTORE_VOLUME_DATA_FROM_BACKUP: restore data only and respect the reclaim policy of the original PV; - REUSE_VOLUME_HANDLE_FROM_BACKUP: reconnect and respect the reclaim policy of the original PV; - NO_VOLUME_DATA_RESTORATION: new provision and respect the reclaim policy of the original PV. Note that this mode could cause data loss as the original PV can be retained or deleted depending on its reclaim policy.",
+            "This mode merges the backup and the target cluster and replaces the conflicting resources with the ones in the backup. If a single resource to restore exists in the cluster before restoration, the resource will be replaced with the one from the backup. To replace an existing resource, the first attempt is to update the resource to match the one from the backup; if the update fails, the second attempt is to delete the resource and restore it from the backup. Note that this mode could cause data loss as it replaces the existing resources in the target cluster, and the original PV can be retained or deleted depending on its reclaim policy."
           ],
           "type": "string"
         },
         "noNamespaces": {
           "description": "Do not restore any namespaced resources if set to \"True\". Specifying this field to \"False\" is not allowed.",
           "type": "boolean"
+        },
+        "restoreOrder": {
+          "$ref": "RestoreOrder",
+          "description": "Optional. RestoreOrder contains custom ordering to use on a Restore."
         },
         "selectedApplications": {
           "$ref": "NamespacedNames",
@@ -2919,6 +3011,27 @@
             "For each PVC to be restored, create PVC without any particular action to restore data. In this case, the normal Kubernetes provisioning logic would kick in, and this would likely result in either dynamically provisioning blank PVs or binding to statically provisioned PVs."
           ],
           "type": "string"
+        },
+        "volumeDataRestorePolicyBindings": {
+          "description": "Optional. A table that binds volumes by their scope to a restore policy. Bindings must have a unique scope. Any volumes not scoped in the bindings are subject to the policy defined in volume_data_restore_policy.",
+          "items": {
+            "$ref": "VolumeDataRestorePolicyBinding"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "RestoreOrder": {
+      "description": "Allows customers to specify dependencies between resources that Backup for GKE can use to compute a resasonable restore order.",
+      "id": "RestoreOrder",
+      "properties": {
+        "groupKindDependencies": {
+          "description": "Optional. Contains a list of group kind dependency pairs provided by the customer, that is used by Backup for GKE to generate a group kind restore order.",
+          "items": {
+            "$ref": "GroupKindDependency"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -3335,6 +3448,68 @@
           "description": "Output only. A storage system-specific opaque handle to the underlying volume backup.",
           "readOnly": true,
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "VolumeDataRestorePolicyBinding": {
+      "description": "Binds resources in the scope to the given VolumeDataRestorePolicy.",
+      "id": "VolumeDataRestorePolicyBinding",
+      "properties": {
+        "policy": {
+          "description": "Required. The VolumeDataRestorePolicy to apply when restoring volumes in scope.",
+          "enum": [
+            "VOLUME_DATA_RESTORE_POLICY_UNSPECIFIED",
+            "RESTORE_VOLUME_DATA_FROM_BACKUP",
+            "REUSE_VOLUME_HANDLE_FROM_BACKUP",
+            "NO_VOLUME_DATA_RESTORATION"
+          ],
+          "enumDescriptions": [
+            "Unspecified (illegal).",
+            "For each PVC to be restored, create a new underlying volume and PV from the corresponding VolumeBackup contained within the Backup.",
+            "For each PVC to be restored, attempt to reuse the original PV contained in the Backup (with its original underlying volume). This option is likely only usable when restoring a workload to its original cluster.",
+            "For each PVC to be restored, create PVC without any particular action to restore data. In this case, the normal Kubernetes provisioning logic would kick in, and this would likely result in either dynamically provisioning blank PVs or binding to statically provisioned PVs."
+          ],
+          "type": "string"
+        },
+        "volumeType": {
+          "description": "The volume type, as determined by the PVC's bound PV, to apply the policy to.",
+          "enum": [
+            "VOLUME_TYPE_UNSPECIFIED",
+            "GCE_PERSISTENT_DISK"
+          ],
+          "enumDescriptions": [
+            "Default",
+            "Compute Engine Persistent Disk volume"
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "VolumeDataRestorePolicyOverride": {
+      "description": "Defines an override to apply a VolumeDataRestorePolicy for scoped resources.",
+      "id": "VolumeDataRestorePolicyOverride",
+      "properties": {
+        "policy": {
+          "description": "Required. The VolumeDataRestorePolicy to apply when restoring volumes in scope.",
+          "enum": [
+            "VOLUME_DATA_RESTORE_POLICY_UNSPECIFIED",
+            "RESTORE_VOLUME_DATA_FROM_BACKUP",
+            "REUSE_VOLUME_HANDLE_FROM_BACKUP",
+            "NO_VOLUME_DATA_RESTORATION"
+          ],
+          "enumDescriptions": [
+            "Unspecified (illegal).",
+            "For each PVC to be restored, create a new underlying volume and PV from the corresponding VolumeBackup contained within the Backup.",
+            "For each PVC to be restored, attempt to reuse the original PV contained in the Backup (with its original underlying volume). This option is likely only usable when restoring a workload to its original cluster.",
+            "For each PVC to be restored, create PVC without any particular action to restore data. In this case, the normal Kubernetes provisioning logic would kick in, and this would likely result in either dynamically provisioning blank PVs or binding to statically provisioned PVs."
+          ],
+          "type": "string"
+        },
+        "selectedPvcs": {
+          "$ref": "NamespacedNames",
+          "description": "A list of PVCs to apply the policy override to."
         }
       },
       "type": "object"

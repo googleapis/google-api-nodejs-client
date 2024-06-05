@@ -142,6 +142,15 @@ export namespace connectors_v2 {
     refreshToken?: string | null;
   }
   /**
+   * AclInfo has a list of readers for a resource. This is defined as per the below docs https://cloud.google.com/generative-ai-app-builder/docs/reference/rest/v1alpha/projects.locations.collections.dataStores.branches.documents#aclinfo
+   */
+  export interface Schema$AclInfo {
+    /**
+     * A list of readers for a resource.
+     */
+    readers?: Schema$Readers[];
+  }
+  /**
    * Action message contains metadata information about a single action present in the external system.
    */
   export interface Schema$Action {
@@ -274,6 +283,20 @@ export namespace connectors_v2 {
      */
     name?: string | null;
     operations?: string[] | null;
+  }
+  /**
+   * EntityWithACL refers to a single row of an entity type with ACL information.
+   */
+  export interface Schema$EntityWithACL {
+    /**
+     * ACL information of the entity.
+     */
+    acl_info?: Schema$AclInfo;
+    id?: string | null;
+    /**
+     * Entity data in JSON format.
+     */
+    jsonData?: string | null;
   }
   /**
    * ExchangeAuthCodeRequest currently includes no fields.
@@ -546,6 +569,19 @@ export namespace connectors_v2 {
     nextPageToken?: string | null;
   }
   /**
+   * Response message for EntityService.ListEntitiesWithACLs
+   */
+  export interface Schema$ListEntitiesWithACLsResponse {
+    /**
+     * List containing entity rows.
+     */
+    entitiesWithAcl?: Schema$EntityWithACL[];
+    /**
+     * Next page token if more records are available.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
    * Response message for EntityService.ListEntityTypes
    */
   export interface Schema$ListEntityTypesResponse {
@@ -686,6 +722,19 @@ export namespace connectors_v2 {
     eligibilities?: {[key: string]: Schema$SloEligibility} | null;
   }
   /**
+   * Principal is a user or group that has access to a resource.
+   */
+  export interface Schema$Principal {
+    /**
+     * The group that has access to a resource.
+     */
+    group_id?: string | null;
+    /**
+     * The user that has access to a resource.
+     */
+    user_id?: string | null;
+  }
+  /**
    * Describes provisioned dataplane resources.
    */
   export interface Schema$ProvisionedResource {
@@ -725,6 +774,15 @@ export namespace connectors_v2 {
   export interface Schema$QueryParameter {
     dataType?: string | null;
     value?: any | null;
+  }
+  /**
+   * Readers is a list of principals that have read access to a resource.
+   */
+  export interface Schema$Readers {
+    /**
+     * A list of principals that have read access to a resource.
+     */
+    principals?: Schema$Principal[];
   }
   export interface Schema$Reference {
     /**
@@ -1755,10 +1813,15 @@ export namespace connectors_v2 {
   export class Resource$Projects$Locations$Connections$Entitytypes {
     context: APIRequestContext;
     entities: Resource$Projects$Locations$Connections$Entitytypes$Entities;
+    entitieswithacls: Resource$Projects$Locations$Connections$Entitytypes$Entitieswithacls;
     constructor(context: APIRequestContext) {
       this.context = context;
       this.entities =
         new Resource$Projects$Locations$Connections$Entitytypes$Entities(
+          this.context
+        );
+      this.entitieswithacls =
+        new Resource$Projects$Locations$Connections$Entitytypes$Entitieswithacls(
           this.context
         );
     }
@@ -2695,5 +2758,138 @@ export namespace connectors_v2 {
      * Request body metadata
      */
     requestBody?: Schema$Entity;
+  }
+
+  export class Resource$Projects$Locations$Connections$Entitytypes$Entitieswithacls {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Lists entity rows with ACLs of a particular entity type contained in the request. Note: 1. Currently, only max of one 'sort_by' column is supported. 2. If no 'sort_by' column is provided, the primary key of the table is used. If zero or more than one primary key is available, we default to the unpaginated list entities logic which only returns the first page. 3. The values of the 'sort_by' columns must uniquely identify an entity row, otherwise undefined behaviors may be observed during pagination. 4. Since transactions are not supported, any updates, inserts or deletes during pagination can lead to stale data being returned or other unexpected behaviors.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Connections$Entitytypes$Entitieswithacls$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Connections$Entitytypes$Entitieswithacls$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListEntitiesWithACLsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Connections$Entitytypes$Entitieswithacls$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Connections$Entitytypes$Entitieswithacls$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListEntitiesWithACLsResponse>,
+      callback: BodyResponseCallback<Schema$ListEntitiesWithACLsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Connections$Entitytypes$Entitieswithacls$List,
+      callback: BodyResponseCallback<Schema$ListEntitiesWithACLsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListEntitiesWithACLsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Connections$Entitytypes$Entitieswithacls$List
+        | BodyResponseCallback<Schema$ListEntitiesWithACLsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListEntitiesWithACLsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListEntitiesWithACLsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListEntitiesWithACLsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Connections$Entitytypes$Entitieswithacls$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Connections$Entitytypes$Entitieswithacls$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://connectors.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+parent}/entitieswithacls').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListEntitiesWithACLsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListEntitiesWithACLsResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Connections$Entitytypes$Entitieswithacls$List
+    extends StandardParameters {
+    /**
+     * Conditions to be used when listing entities. From a proto standpoint, There are no restrictions on what can be passed using this field. The connector documentation should have information about what format of filters/conditions are supported.
+     */
+    conditions?: string;
+    /**
+     * Format: gs://object_path
+     */
+    gsutilUri?: string;
+    /**
+     * Number of entity rows to return. Defaults page size = 25. Max page size = 200.
+     */
+    pageSize?: number;
+    /**
+     * Page token value if available from a previous request.
+     */
+    pageToken?: string;
+    /**
+     * Required. Resource name of the Entity Type. Format: projects/{project\}/locations/{location\}/connections/{connection\}/entityTypes/{type\}
+     */
+    parent?: string;
+    /**
+     * List of 'sort_by' columns to use when returning the results.
+     */
+    sortBy?: string[];
   }
 }

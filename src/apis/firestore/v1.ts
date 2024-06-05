@@ -708,7 +708,12 @@ export namespace firestore_v1 {
   /**
    * Represents a recurring schedule that runs every day. The time zone is UTC.
    */
-  export interface Schema$GoogleFirestoreAdminV1DailyRecurrence {}
+  export interface Schema$GoogleFirestoreAdminV1DailyRecurrence {
+    /**
+     * Time of the day. The first run scheduled will be either on the same day if schedule creation time precedes time_of_day or the next day otherwise.
+     */
+    time?: Schema$TimeOfDay;
+  }
   /**
    * A Cloud Firestore Database.
    */
@@ -734,7 +739,7 @@ export namespace firestore_v1 {
      */
     deleteProtectionState?: string | null;
     /**
-     * Output only. The timestamp at which this database was soft deleted. Only set if the database has been soft deleted.
+     * Output only. The timestamp at which this database was deleted. Only set if the database has been deleted.
      */
     deleteTime?: string | null;
     /**
@@ -761,6 +766,10 @@ export namespace firestore_v1 {
      * Whether to enable the PITR feature on this database.
      */
     pointInTimeRecoveryEnablement?: string | null;
+    /**
+     * Output only. The database resource's prior database ID. This field is only populated for deleted databases.
+     */
+    previousId?: string | null;
     /**
      * The type of the database. See https://cloud.google.com/datastore/docs/firestore-or-datastore for information about how to choose.
      */
@@ -841,7 +850,7 @@ export namespace firestore_v1 {
    */
   export interface Schema$GoogleFirestoreAdminV1ExportDocumentsRequest {
     /**
-     * Which collection ids to export. Unspecified means all collections.
+     * Which collection ids to export. Unspecified means all collections. Each collection id in this list must be unique.
      */
     collectionIds?: string[] | null;
     /**
@@ -966,7 +975,7 @@ export namespace firestore_v1 {
    */
   export interface Schema$GoogleFirestoreAdminV1ImportDocumentsRequest {
     /**
-     * Which collection ids to import. Unspecified means all collections included in the import.
+     * Which collection ids to import. Unspecified means all collections included in the import. Each collection id in this list must be unique.
      */
     collectionIds?: string[] | null;
     /**
@@ -1271,6 +1280,10 @@ export namespace firestore_v1 {
      * The day of week to run. DAY_OF_WEEK_UNSPECIFIED is not allowed.
      */
     day?: string | null;
+    /**
+     * Time of the day. If day is today, the first run will happen today if schedule creation time precedes time_of_day, and the next week otherwise.
+     */
+    time?: Schema$TimeOfDay;
   }
   /**
    * The request message for Operations.CancelOperation.
@@ -1818,6 +1831,27 @@ export namespace firestore_v1 {
      * The target IDs of targets that have changed. If empty, the change applies to all targets. The order of the target IDs is not defined.
      */
     targetIds?: number[] | null;
+  }
+  /**
+   * Represents a time of day. The date and time zone are either not significant or are specified elsewhere. An API may choose to allow leap seconds. Related types are google.type.Date and `google.protobuf.Timestamp`.
+   */
+  export interface Schema$TimeOfDay {
+    /**
+     * Hours of day in 24 hour format. Should be from 0 to 23. An API may choose to allow the value "24:00:00" for scenarios like business closing time.
+     */
+    hours?: number | null;
+    /**
+     * Minutes of hour of day. Must be from 0 to 59.
+     */
+    minutes?: number | null;
+    /**
+     * Fractions of seconds in nanoseconds. Must be from 0 to 999,999,999.
+     */
+    nanos?: number | null;
+    /**
+     * Seconds of minutes of the time. Must normally be from 0 to 59. An API may allow the value 60 if it allows leap-seconds.
+     */
+    seconds?: number | null;
   }
   /**
    * Options for creating a new transaction.

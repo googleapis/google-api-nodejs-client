@@ -209,7 +209,7 @@ export namespace walletobjects_v1 {
   }
   export interface Schema$AppLinkData {
     /**
-     * Optional information about the partner app link. If included, the app link link module will be rendered on the valuable details on the android client.
+     * Optional information about the partner app link.
      */
     androidAppLinkInfo?: Schema$AppLinkDataAppLinkInfo;
     /**
@@ -217,25 +217,25 @@ export namespace walletobjects_v1 {
      */
     iosAppLinkInfo?: Schema$AppLinkDataAppLinkInfo;
     /**
-     * Optional information about the partner app link. If included, the app link link module will be rendered on the valuable details on the web client.
+     * Optional information about the partner web link.
      */
     webAppLinkInfo?: Schema$AppLinkDataAppLinkInfo;
   }
   export interface Schema$AppLinkDataAppLinkInfo {
     /**
-     * Optional image to be displayed in the App Link Module
+     * Deprecated. Image isn't supported in the app link module.
      */
     appLogoImage?: Schema$Image;
     /**
-     * Url to follow when opening the App Link Module on clients. It will be used by partners to open their webpage or deeplink into their app.
+     * Target to follow when opening the app link on clients. It will be used by partners to open their app or webpage.
      */
     appTarget?: Schema$AppLinkDataAppLinkInfoAppTarget;
     /**
-     * String to be displayed in the description of the App Link Module Required
+     * Deprecated. Description isn't supported in the app link module.
      */
     description?: Schema$LocalizedString;
     /**
-     * String to be displayed in the title of the App Link Module Required
+     * Deprecated. Title isn't supported in the app link module.
      */
     title?: Schema$LocalizedString;
   }
@@ -754,6 +754,10 @@ export namespace walletobjects_v1 {
      */
     allowMultipleUsersPerObject?: boolean | null;
     /**
+     * Optional app or website link that will be displayed as a button on the front of the pass. If AppLinkData is provided for the corresponding object that will be used instead.
+     */
+    appLinkData?: Schema$AppLinkData;
+    /**
      * Callback options to be used to call the issuer back for every save/delete of an object for this class by the end-user. All objects of this class are eligible for the callback.
      */
     callbackOptions?: Schema$CallbackOptions;
@@ -940,7 +944,7 @@ export namespace walletobjects_v1 {
   }
   export interface Schema$EventTicketObject {
     /**
-     * Optional information about the partner app link.
+     * Optional app or website link that will be displayed as a button on the front of the pass. If AppLinkData is provided for the corresponding class only object AppLinkData will be displayed.
      */
     appLinkData?: Schema$AppLinkData;
     /**
@@ -1168,6 +1172,10 @@ export namespace walletobjects_v1 {
      */
     allowMultipleUsersPerObject?: boolean | null;
     /**
+     * Optional app or website link that will be displayed as a button on the front of the pass. If AppLinkData is provided for the corresponding object that will be used instead.
+     */
+    appLinkData?: Schema$AppLinkData;
+    /**
      * Policies for boarding and seating. These will inform which labels will be shown to users.
      */
     boardingAndSeatingPolicy?: Schema$BoardingAndSeatingPolicy;
@@ -1360,7 +1368,7 @@ export namespace walletobjects_v1 {
   }
   export interface Schema$FlightObject {
     /**
-     * Optional information about the partner app link.
+     * Optional app or website link that will be displayed as a button on the front of the pass. If AppLinkData is provided for the corresponding class only object AppLinkData will be displayed.
      */
     appLinkData?: Schema$AppLinkData;
     /**
@@ -1507,6 +1515,10 @@ export namespace walletobjects_v1 {
    */
   export interface Schema$GenericClass {
     /**
+     * Optional app or website link that will be displayed as a button on the front of the pass. If AppLinkData is provided for the corresponding object that will be used instead.
+     */
+    appLinkData?: Schema$AppLinkData;
+    /**
      * Callback options to be used to call the issuer back for every save/delete of an object for this class by the end-user. All objects of this class are eligible for the callback.
      */
     callbackOptions?: Schema$CallbackOptions;
@@ -1582,7 +1594,7 @@ export namespace walletobjects_v1 {
    */
   export interface Schema$GenericObject {
     /**
-     * Information about the partner app link. The maximum number of these fields displayed is 10.
+     * Optional app or website link that will be displayed as a button on the front of the pass. If AppLinkData is provided for the corresponding class only object AppLinkData will be displayed.
      */
     appLinkData?: Schema$AppLinkData;
     /**
@@ -1705,6 +1717,10 @@ export namespace walletobjects_v1 {
      * Deprecated. Use `multipleDevicesAndHoldersAllowedStatus` instead.
      */
     allowMultipleUsersPerObject?: boolean | null;
+    /**
+     * Optional app or website link that will be displayed as a button on the front of the pass. If AppLinkData is provided for the corresponding object that will be used instead.
+     */
+    appLinkData?: Schema$AppLinkData;
     /**
      * Callback options to be used to call the issuer back for every save/delete of an object for this class by the end-user. All objects of this class are eligible for the callback.
      */
@@ -1864,7 +1880,7 @@ export namespace walletobjects_v1 {
   }
   export interface Schema$GiftCardObject {
     /**
-     * Optional information about the partner app link.
+     * Optional app or website link that will be displayed as a button on the front of the pass. If AppLinkData is provided for the corresponding class only object AppLinkData will be displayed.
      */
     appLinkData?: Schema$AppLinkData;
     /**
@@ -2217,6 +2233,10 @@ export namespace walletobjects_v1 {
      */
     allowMultipleUsersPerObject?: boolean | null;
     /**
+     * Optional app or website link that will be displayed as a button on the front of the pass. If AppLinkData is provided for the corresponding object that will be used instead.
+     */
+    appLinkData?: Schema$AppLinkData;
+    /**
      * Callback options to be used to call the issuer back for every save/delete of an object for this class by the end-user. All objects of this class are eligible for the callback.
      */
     callbackOptions?: Schema$CallbackOptions;
@@ -2403,7 +2423,7 @@ export namespace walletobjects_v1 {
      */
     accountName?: string | null;
     /**
-     * Optional information about the partner app link.
+     * Optional app or website link that will be displayed as a button on the front of the pass. If AppLinkData is provided for the corresponding class only object AppLinkData will be displayed.
      */
     appLinkData?: Schema$AppLinkData;
     /**
@@ -2824,6 +2844,10 @@ export namespace walletobjects_v1 {
      */
     allowMultipleUsersPerObject?: boolean | null;
     /**
+     * Optional app or website link that will be displayed as a button on the front of the pass. If AppLinkData is provided for the corresponding object that will be used instead.
+     */
+    appLinkData?: Schema$AppLinkData;
+    /**
      * Callback options to be used to call the issuer back for every save/delete of an object for this class by the end-user. All objects of this class are eligible for the callback.
      */
     callbackOptions?: Schema$CallbackOptions;
@@ -2998,7 +3022,7 @@ export namespace walletobjects_v1 {
   }
   export interface Schema$OfferObject {
     /**
-     * Optional information about the partner app link.
+     * Optional app or website link that will be displayed as a button on the front of the pass. If AppLinkData is provided for the corresponding class only object AppLinkData will be displayed.
      */
     appLinkData?: Schema$AppLinkData;
     /**
@@ -3502,6 +3526,10 @@ export namespace walletobjects_v1 {
      */
     allowMultipleUsersPerObject?: boolean | null;
     /**
+     * Optional app or website link that will be displayed as a button on the front of the pass. If AppLinkData is provided for the corresponding object that will be used instead.
+     */
+    appLinkData?: Schema$AppLinkData;
+    /**
      * Callback options to be used to call the issuer back for every save/delete of an object for this class by the end-user. All objects of this class are eligible for the callback.
      */
     callbackOptions?: Schema$CallbackOptions;
@@ -3724,7 +3752,7 @@ export namespace walletobjects_v1 {
      */
     activationStatus?: Schema$ActivationStatus;
     /**
-     * Optional information about the partner app link.
+     * Optional app or website link that will be displayed as a button on the front of the pass. If AppLinkData is provided for the corresponding class only object AppLinkData will be displayed.
      */
     appLinkData?: Schema$AppLinkData;
     /**

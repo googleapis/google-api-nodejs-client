@@ -293,6 +293,7 @@
     "src/apis/solar": {},
     "src/apis/config": {},
     "src/apis/cloudcontrolspartner": {},
-    "src/apis/addressvalidation": {}
+    "src/apis/addressvalidation": {},
+    "src/apis/developerconnect": {}
   }
 }

@@ -1,5 +1,12 @@
 # Changelog
 
+## [7.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/spanner-v7.1.0...spanner-v7.2.0) (2024-06-03)
+
+
+### Features
+
+* **spanner:** update the API ([b36ab02](https://github.com/googleapis/google-api-nodejs-client/commit/b36ab02e778428d4eb37593e46b19bb13799074e))
+
 ## [7.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/spanner-v7.0.0...spanner-v7.1.0) (2024-05-07)
 
 

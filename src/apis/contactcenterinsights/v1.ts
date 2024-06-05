@@ -5696,7 +5696,7 @@ export namespace contactcenterinsights_v1 {
      */
     name?: string;
     /**
-     * The list of fields to be updated.
+     * The list of fields to be updated. All possible fields can be updated by passing `*`, or a subset of the following updateable fields can be provided: * `agent_id` * `language_code` * `labels` * `metadata` * `quality_metadata` * `call_metadata` * `start_time` * `expire_time` or `ttl` * `data_source.gcs_source.audio_uri` or `data_source.dialogflow_source.audio_uri`
      */
     updateMask?: string;
 

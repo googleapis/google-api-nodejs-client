@@ -173,6 +173,15 @@ export namespace networkconnectivity_v1 {
     logType?: string | null;
   }
   /**
+   * The auto-accept setting for a group controls whether proposed spokes are automatically attached to the hub. If auto-accept is enabled, the spoke immediately is attached to the hub and becomes part of the group. In this case, the new spoke is in the ACTIVE state. If auto-accept is disabled, the spoke goes to the INACTIVE state, and it must be reviewed and accepted by a hub administrator.
+   */
+  export interface Schema$AutoAccept {
+    /**
+     * A list of project ids or project numbers for which you want to enable auto-accept. The auto-accept setting is applied to spokes being created or updated in these projects.
+     */
+    autoAcceptProjects?: string[] | null;
+  }
+  /**
    * Associates `members`, or principals, with a `role`.
    */
   export interface Schema$Binding {
@@ -209,6 +218,10 @@ export namespace networkconnectivity_v1 {
      * The consumer project where PSC connections are allowed to be created in.
      */
     project?: string | null;
+    /**
+     * Output only. A map to store mapping between customer vip and target service attachment. Only service attachment with producer specified ip addresses are stored here.
+     */
+    serviceAttachmentIpAddressMap?: {[key: string]: string} | null;
     /**
      * Output only. Overall state of PSC Connections management for this consumer psc config.
      */
@@ -309,7 +322,7 @@ export namespace networkconnectivity_v1 {
      */
     ipProtocol?: string | null;
     /**
-     * Required. Internet protocol versions this policy-based route applies to. For this version, only IPV4 is supported.
+     * Required. Internet protocol versions this policy-based route applies to. For this version, only IPV4 is supported. IPV6 is supported in preview.
      */
     protocolVersion?: string | null;
     /**
@@ -398,6 +411,10 @@ export namespace networkconnectivity_v1 {
    */
   export interface Schema$Group {
     /**
+     * Optional. The auto-accept setting for this group.
+     */
+    autoAccept?: Schema$AutoAccept;
+    /**
      * Output only. The time the group was created.
      */
     createTime?: string | null;
@@ -413,6 +430,10 @@ export namespace networkconnectivity_v1 {
      * Immutable. The name of the group. Group names must be unique. They use the following form: `projects/{project_number\}/locations/global/hubs/{hub\}/groups/{group_id\}`
      */
     name?: string | null;
+    /**
+     * Output only. The name of the route table that corresponds to this group. They use the following form: `projects/{project_number\}/locations/global/hubs/{hub_id\}/routeTables/{route_table_id\}`
+     */
+    routeTable?: string | null;
     /**
      * Output only. The current lifecycle state of this group.
      */
@@ -439,6 +460,10 @@ export namespace networkconnectivity_v1 {
      */
     description?: string | null;
     /**
+     * Optional. Whether Private Service Connect transitivity is enabled for the hub. If true, Private Service Connect endpoints in VPC spokes attached to the hub are made accessible to other VPC spokes attached to the hub. The default value is false.
+     */
+    exportPsc?: boolean | null;
+    /**
      * Optional labels in key-value pair format. For more information about labels, see [Requirements for labels](https://cloud.google.com/resource-manager/docs/creating-managing-labels#requirements).
      */
     labels?: {[key: string]: string} | null;
@@ -446,6 +471,14 @@ export namespace networkconnectivity_v1 {
      * Immutable. The name of the hub. Hub names must be unique. They use the following form: `projects/{project_number\}/locations/global/hubs/{hub_id\}`
      */
     name?: string | null;
+    /**
+     * Optional. The policy mode of this hub. This field can be either PRESET or CUSTOM. If unspecified, the policy_mode defaults to PRESET.
+     */
+    policyMode?: string | null;
+    /**
+     * Optional. The topology implemented in this hub. Currently, this field is only used when policy_mode = PRESET. The available preset topologies are MESH and STAR. If preset_topology is unspecified and policy_mode = PRESET, the preset_topology defaults to MESH. When policy_mode = CUSTOM, the preset_topology is set to PRESET_TOPOLOGY_UNSPECIFIED.
+     */
+    presetTopology?: string | null;
     /**
      * Output only. The route tables that belong to this hub. They use the following form: `projects/{project_number\}/locations/global/hubs/{hub_id\}/routeTables/{route_table_id\}` This field is read-only. Network Connectivity Center automatically populates it based on the route tables nested under the hub.
      */
@@ -869,11 +902,62 @@ export namespace networkconnectivity_v1 {
      */
     locationFeatures?: string[] | null;
   }
+  /**
+   * A route next hop that leads to an interconnect attachment resource.
+   */
+  export interface Schema$NextHopInterconnectAttachment {
+    /**
+     * Indicates whether site-to-site data transfer is allowed for this interconnect attachment resource. Data transfer is available only in [supported locations](https://cloud.google.com/network-connectivity/docs/network-connectivity-center/concepts/locations).
+     */
+    siteToSiteDataTransfer?: boolean | null;
+    /**
+     * The URI of the interconnect attachment resource.
+     */
+    uri?: string | null;
+    /**
+     * The VPC network where this interconnect attachment is located.
+     */
+    vpcNetwork?: string | null;
+  }
+  /**
+   * A route next hop that leads to a Router appliance instance.
+   */
+  export interface Schema$NextHopRouterApplianceInstance {
+    /**
+     * Indicates whether site-to-site data transfer is allowed for this Router appliance instance resource. Data transfer is available only in [supported locations](https://cloud.google.com/network-connectivity/docs/network-connectivity-center/concepts/locations).
+     */
+    siteToSiteDataTransfer?: boolean | null;
+    /**
+     * The URI of the Router appliance instance.
+     */
+    uri?: string | null;
+    /**
+     * The VPC network where this VM is located.
+     */
+    vpcNetwork?: string | null;
+  }
   export interface Schema$NextHopVpcNetwork {
     /**
      * The URI of the VPC network resource
      */
     uri?: string | null;
+  }
+  /**
+   * A route next hop that leads to a VPN tunnel resource.
+   */
+  export interface Schema$NextHopVPNTunnel {
+    /**
+     * Indicates whether site-to-site data transfer is allowed for this VPN tunnel resource. Data transfer is available only in [supported locations](https://cloud.google.com/network-connectivity/docs/network-connectivity-center/concepts/locations).
+     */
+    siteToSiteDataTransfer?: boolean | null;
+    /**
+     * The URI of the VPN tunnel resource.
+     */
+    uri?: string | null;
+    /**
+     * The VPC network where this VPN tunnel is located.
+     */
+    vpcNetwork?: string | null;
   }
   /**
    * Represents the metadata of the long-running operation.
@@ -930,7 +1014,7 @@ export namespace networkconnectivity_v1 {
     version?: number | null;
   }
   /**
-   * Policy-based routes route L4 network traffic based on not just destination IP address, but also source IP address, protocol, and more. If a policy-based route conflicts with other types of routes, the policy-based route always take precedence.
+   * Policy-based routes route L4 network traffic based on not just destination IP address, but also source IP address, protocol, and more. If a policy-based route conflicts with other types of routes, the policy-based route always takes precedence.
    */
   export interface Schema$PolicyBasedRoute {
     /**
@@ -986,7 +1070,7 @@ export namespace networkconnectivity_v1 {
      */
     updateTime?: string | null;
     /**
-     * Optional. VM instances to which this policy-based route applies to.
+     * Optional. VM instances that this policy-based route applies to.
      */
     virtualMachine?: Schema$VirtualMachine;
     /**
@@ -1173,9 +1257,25 @@ export namespace networkconnectivity_v1 {
      */
     name?: string | null;
     /**
+     * Immutable. The next-hop VLAN attachment for packets on this route.
+     */
+    nextHopInterconnectAttachment?: Schema$NextHopInterconnectAttachment;
+    /**
+     * Immutable. The next-hop Router appliance instance for packets on this route.
+     */
+    nextHopRouterApplianceInstance?: Schema$NextHopRouterApplianceInstance;
+    /**
      * Immutable. The destination VPC network for packets on this route.
      */
     nextHopVpcNetwork?: Schema$NextHopVpcNetwork;
+    /**
+     * Immutable. The next-hop VPN tunnel for packets on this route.
+     */
+    nextHopVpnTunnel?: Schema$NextHopVPNTunnel;
+    /**
+     * Output only. The priority of this route. Priority is used to break ties in cases where a destination matches more than one route. In these cases the route with the lowest-numbered priority value wins.
+     */
+    priority?: string | null;
     /**
      * Immutable. The spoke that this route leads to. Example: projects/12345/locations/global/spokes/SPOKE
      */
@@ -1603,11 +1703,11 @@ export namespace networkconnectivity_v1 {
     permissions?: string[] | null;
   }
   /**
-   * VM instances to which this policy-based route applies to.
+   * VM instances that this policy-based route applies to.
    */
   export interface Schema$VirtualMachine {
     /**
-     * Optional. A list of VM instance tags the this policy-based route applies to. VM instances that have ANY of tags specified here will install this PBR.
+     * Optional. A list of VM instance tags that this policy-based route applies to. VM instances that have ANY of tags specified here installs this PBR.
      */
     tags?: string[] | null;
   }
@@ -3374,6 +3474,100 @@ export namespace networkconnectivity_v1 {
     }
 
     /**
+     * Updates the parameters of a Network Connectivity Center group.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Locations$Global$Hubs$Groups$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Projects$Locations$Global$Hubs$Groups$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    patch(
+      params: Params$Resource$Projects$Locations$Global$Hubs$Groups$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Global$Hubs$Groups$Patch,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Global$Hubs$Groups$Patch,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    patch(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Global$Hubs$Groups$Patch
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Global$Hubs$Groups$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Global$Hubs$Groups$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networkconnectivity.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+
+    /**
      * Sets the access control policy on the specified resource. Replaces any existing policy. Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.
      *
      * @param params - Parameters for request
@@ -3601,6 +3795,26 @@ export namespace networkconnectivity_v1 {
      * Required. The parent resource's name.
      */
     parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Global$Hubs$Groups$Patch
+    extends StandardParameters {
+    /**
+     * Immutable. The name of the group. Group names must be unique. They use the following form: `projects/{project_number\}/locations/global/hubs/{hub\}/groups/{group_id\}`
+     */
+    name?: string;
+    /**
+     * Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server knows to ignore the request if it has already been completed. The server guarantees that a request doesn't result in creation of duplicate commitments for at least 60 minutes. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check to see whether the original operation was received. If it was, the server ignores the second request. This behavior prevents clients from mistakenly creating duplicate commitments. The request ID must be a valid UUID, with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+    /**
+     * Optional. In the case of an update to an existing group, field mask is used to specify the fields to be overwritten. The fields specified in the update_mask are relative to the resource, not the full request. A field is overwritten if it is in the mask. If the user does not provide a mask, then all fields are overwritten.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$Group;
   }
   export interface Params$Resource$Projects$Locations$Global$Hubs$Groups$Setiampolicy
     extends StandardParameters {
@@ -4742,7 +4956,7 @@ export namespace networkconnectivity_v1 {
      */
     policyBasedRouteId?: string;
     /**
-     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server knows to ignore the request if it has already been completed. The server guarantees that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      */
     requestId?: string;
 
@@ -4758,7 +4972,7 @@ export namespace networkconnectivity_v1 {
      */
     name?: string;
     /**
-     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server knows to ignore the request if it has already been completed. The server guarantees that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      */
     requestId?: string;
   }
