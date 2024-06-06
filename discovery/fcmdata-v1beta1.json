@@ -154,7 +154,7 @@
       }
     }
   },
-  "revision": "20240530",
+  "revision": "20240604",
   "rootUrl": "https://fcmdata.googleapis.com/",
   "schemas": {
     "GoogleFirebaseFcmDataV1beta1AndroidDeliveryData": {
@@ -279,6 +279,11 @@
       "description": "Percentage breakdown of message delivery outcomes. These categories are mutually exclusive. All percentages are calculated with countMessagesAccepted as the denominator. These categories may not account for all message outcomes.",
       "id": "GoogleFirebaseFcmDataV1beta1MessageOutcomePercents",
       "properties": {
+        "collapsed": {
+          "description": "The percentage of accepted messages that were [collapsed](https://firebase.google.com/docs/cloud-messaging/concept-options#collapsible_and_non-collapsible_messages) by another message.",
+          "format": "float",
+          "type": "number"
+        },
         "delivered": {
           "description": "The percentage of all accepted messages that were successfully delivered to the device.",
           "format": "float",
@@ -296,6 +301,11 @@
         },
         "droppedTooManyPendingMessages": {
           "description": "The percentage of accepted messages that were dropped due to [too many undelivered non-collapsible messages](https://firebase.google.com/docs/cloud-messaging/concept-options#collapsible_and_non-collapsible_messages). Specifically, each app instance can only have 100 pending messages stored on our servers for a device which is disconnected. When that device reconnects, those messages are delivered. When there are more than the maximum pending messages, we call [OnDeletedMessages()](https://firebase.google.com/docs/cloud-messaging/android/receive#override-ondeletedmessages) in our SDK instead of delivering the messages.",
+          "format": "float",
+          "type": "number"
+        },
+        "droppedTtlExpired": {
+          "description": "The percentage of accepted messages that expired because [Time To Live (TTL)](https://firebase.google.com/docs/cloud-messaging/concept-options#ttl) elapsed before the target device reconnected.",
           "format": "float",
           "type": "number"
         },
