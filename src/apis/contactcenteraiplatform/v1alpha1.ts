@@ -146,6 +146,10 @@ export namespace contactcenteraiplatform_v1alpha1 {
    */
   export interface Schema$Component {
     /**
+     * The list of project ids that are allowed to send traffic to the service attachment. This field should be filled only for the ingress components.
+     */
+    allowedProjectIds?: string[] | null;
+    /**
      * Name of the component.
      */
     name?: string | null;
@@ -508,10 +512,6 @@ export namespace contactcenteraiplatform_v1alpha1 {
    * Container for the VPC-SC networking configurations.
    */
   export interface Schema$ServiceAttachment {
-    /**
-     * The list of project ids that are allowed to send traffic to the service attachment. This field should be filled only for the ingress service attachments.
-     */
-    allowedProjectIds?: string[] | null;
     /**
      * The service attachment name that will be used for sending private traffic to the CCAIP tenant project. Example: "projects/${TENANT_PROJECT_ID\}/regions/${REGION\}/serviceAttachments/ingress-default".
      */
