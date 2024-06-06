@@ -789,7 +789,7 @@
                               "type": "string"
                             },
                             "parent": {
-                              "description": "Required. Full resource name of parent data store. Format: `projects/{project_number}/locations/{location_id}/collections/{collection_id}/dataStores/{data_store_id}`",
+                              "description": "Required. Full resource name of parent data store. Format: `projects/{project_number}/locations/{location_id}/collections/{collection_id}/dataStores/{data_store_id}` or `projects/{project_number}/locations/{location_id}/collections/{collection_id}/engines/{engine_id}`.",
                               "location": "path",
                               "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/dataStores/[^/]+$",
                               "required": true,
@@ -883,7 +883,7 @@
                               "type": "string"
                             },
                             "parent": {
-                              "description": "Required. The data store resource name. Format: `projects/{project_number}/locations/{location_id}/collections/{collection_id}/dataStores/{data_store_id}`",
+                              "description": "Required. The data store resource name. Format: `projects/{project_number}/locations/{location_id}/collections/{collection_id}/dataStores/{data_store_id}` or `projects/{project_number}/locations/{location_id}/collections/{collection_id}/engines/{engine_id}`.",
                               "location": "path",
                               "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/dataStores/[^/]+$",
                               "required": true,
@@ -2594,7 +2594,7 @@
                               "type": "string"
                             },
                             "parent": {
-                              "description": "Required. Full resource name of parent data store. Format: `projects/{project_number}/locations/{location_id}/collections/{collection_id}/dataStores/{data_store_id}`",
+                              "description": "Required. Full resource name of parent data store. Format: `projects/{project_number}/locations/{location_id}/collections/{collection_id}/dataStores/{data_store_id}` or `projects/{project_number}/locations/{location_id}/collections/{collection_id}/engines/{engine_id}`.",
                               "location": "path",
                               "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/engines/[^/]+$",
                               "required": true,
@@ -2688,7 +2688,7 @@
                               "type": "string"
                             },
                             "parent": {
-                              "description": "Required. The data store resource name. Format: `projects/{project_number}/locations/{location_id}/collections/{collection_id}/dataStores/{data_store_id}`",
+                              "description": "Required. The data store resource name. Format: `projects/{project_number}/locations/{location_id}/collections/{collection_id}/dataStores/{data_store_id}` or `projects/{project_number}/locations/{location_id}/collections/{collection_id}/engines/{engine_id}`.",
                               "location": "path",
                               "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/engines/[^/]+$",
                               "required": true,
@@ -3928,7 +3928,7 @@
                           "type": "string"
                         },
                         "parent": {
-                          "description": "Required. Full resource name of parent data store. Format: `projects/{project_number}/locations/{location_id}/collections/{collection_id}/dataStores/{data_store_id}`",
+                          "description": "Required. Full resource name of parent data store. Format: `projects/{project_number}/locations/{location_id}/collections/{collection_id}/dataStores/{data_store_id}` or `projects/{project_number}/locations/{location_id}/collections/{collection_id}/engines/{engine_id}`.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/dataStores/[^/]+$",
                           "required": true,
@@ -4022,7 +4022,7 @@
                           "type": "string"
                         },
                         "parent": {
-                          "description": "Required. The data store resource name. Format: `projects/{project_number}/locations/{location_id}/collections/{collection_id}/dataStores/{data_store_id}`",
+                          "description": "Required. The data store resource name. Format: `projects/{project_number}/locations/{location_id}/collections/{collection_id}/dataStores/{data_store_id}` or `projects/{project_number}/locations/{location_id}/collections/{collection_id}/engines/{engine_id}`.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/dataStores/[^/]+$",
                           "required": true,
@@ -5550,7 +5550,7 @@
       }
     }
   },
-  "revision": "20240526",
+  "revision": "20240530",
   "rootUrl": "https://discoveryengine.googleapis.com/",
   "schemas": {
     "GoogleApiHttpBody": {
@@ -5694,6 +5694,37 @@
       "properties": {
         "functionName": {
           "description": "Human-readable name of a function or method—for example, `google.cloud.discoveryengine.v1alpha.RecommendationService.Recommend`.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1AlloyDbSource": {
+      "description": "AlloyDB source import data from.",
+      "id": "GoogleCloudDiscoveryengineV1AlloyDbSource",
+      "properties": {
+        "clusterId": {
+          "description": "Required. The AlloyDB cluster to copy the data from with a length limit of 256 characters.",
+          "type": "string"
+        },
+        "databaseId": {
+          "description": "Required. The AlloyDB database to copy the data from with a length limit of 256 characters.",
+          "type": "string"
+        },
+        "gcsStagingDir": {
+          "description": "Intermediate Cloud Storage directory used for the import with a length limit of 2,000 characters. Can be specified if one wants to have the AlloyDB export to a specific Cloud Storage directory. Ensure that the AlloyDB service account has the necessary Cloud Storage Admin permissions to access the specified Cloud Storage directory.",
+          "type": "string"
+        },
+        "locationId": {
+          "description": "Required. The AlloyDB location to copy the data from with a length limit of 256 characters.",
+          "type": "string"
+        },
+        "projectId": {
+          "description": "The project ID that the AlloyDB source is in with a length limit of 128 characters. If not specified, inherits the project ID from the parent request.",
+          "type": "string"
+        },
+        "tableId": {
+          "description": "Required. The AlloyDB table to copy the data from with a length limit of 256 characters.",
           "type": "string"
         }
       },
@@ -5865,6 +5896,13 @@
         "session": {
           "description": "The session resource name. Not required. When session field is not set, the API is in sessionless mode. We support auto session mode: users can use the wildcard symbol `-` as session ID. A new ID will be automatically generated and assigned.",
           "type": "string"
+        },
+        "userLabels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "The user labels applied to a resource must meet the following requirements: * Each resource can have multiple labels, up to a maximum of 64. * Each label must be a key-value pair. * Keys have a minimum length of 1 character and a maximum length of 63 characters and cannot be empty. Values can be empty and have a maximum length of 63 characters. * Keys and values can contain only lowercase letters, numeric characters, underscores, and dashes. All characters must use UTF-8 encoding, and international characters are allowed. * The key portion of a label must be unique. However, you can use the same key with multiple resources. * Keys must start with a lowercase letter or international character. See [Google Cloud Document](https://cloud.google.com/resource-manager/docs/creating-managing-labels#requirements) for more details.",
+          "type": "object"
         },
         "userPseudoId": {
           "description": "A unique identifier for tracking visitors. For example, this could be implemented with an HTTP cookie, which should be able to uniquely identify a visitor on a single device. This unique identifier should not change if the visitor logs in or out of the website. This field should NOT have a fixed value such as `unknown_visitor`. The field must be a UTF-8 encoded string with a length limit of 128 characters. Otherwise, an `INVALID_ARGUMENT` error is returned.",
@@ -7658,6 +7696,10 @@
       "description": "A singleton resource of DataStore. It's empty when DataStore is created, which defaults to digital parser. The first call to DataStoreService.UpdateDocumentProcessingConfig method will initialize the config.",
       "id": "GoogleCloudDiscoveryengineV1DocumentProcessingConfig",
       "properties": {
+        "chunkingConfig": {
+          "$ref": "GoogleCloudDiscoveryengineV1DocumentProcessingConfigChunkingConfig",
+          "description": "Whether chunking mode is enabled."
+        },
         "defaultParsingConfig": {
           "$ref": "GoogleCloudDiscoveryengineV1DocumentProcessingConfigParsingConfig",
           "description": "Configurations for default Document parser. If not specified, we will configure it as default DigitalParsingConfig, and the default parsing config will be applied to all file types for Document parsing."
@@ -7676,6 +7718,33 @@
       },
       "type": "object"
     },
+    "GoogleCloudDiscoveryengineV1DocumentProcessingConfigChunkingConfig": {
+      "description": "Configuration for chunking config.",
+      "id": "GoogleCloudDiscoveryengineV1DocumentProcessingConfigChunkingConfig",
+      "properties": {
+        "layoutBasedChunkingConfig": {
+          "$ref": "GoogleCloudDiscoveryengineV1DocumentProcessingConfigChunkingConfigLayoutBasedChunkingConfig",
+          "description": "Configuration for the layout based chunking."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1DocumentProcessingConfigChunkingConfigLayoutBasedChunkingConfig": {
+      "description": "Configuration for the layout based chunking.",
+      "id": "GoogleCloudDiscoveryengineV1DocumentProcessingConfigChunkingConfigLayoutBasedChunkingConfig",
+      "properties": {
+        "chunkSize": {
+          "description": "The token size limit for each chunk. Supported values: 100-500 (inclusive). Default value: 500.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "includeAncestorHeadings": {
+          "description": "Whether to include appending different levels of headings to chunks from the middle of the document to prevent context loss. Default value: False.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDiscoveryengineV1DocumentProcessingConfigParsingConfig": {
       "description": "Related configurations applied to a specific type of document parser.",
       "id": "GoogleCloudDiscoveryengineV1DocumentProcessingConfigParsingConfig",
@@ -7683,6 +7752,10 @@
         "digitalParsingConfig": {
           "$ref": "GoogleCloudDiscoveryengineV1DocumentProcessingConfigParsingConfigDigitalParsingConfig",
           "description": "Configurations applied to digital parser."
+        },
+        "layoutParsingConfig": {
+          "$ref": "GoogleCloudDiscoveryengineV1DocumentProcessingConfigParsingConfigLayoutParsingConfig",
+          "description": "Configurations applied to layout parser."
         },
         "ocrParsingConfig": {
           "$ref": "GoogleCloudDiscoveryengineV1DocumentProcessingConfigParsingConfigOcrParsingConfig",
@@ -7694,6 +7767,12 @@
     "GoogleCloudDiscoveryengineV1DocumentProcessingConfigParsingConfigDigitalParsingConfig": {
       "description": "The digital parsing configurations for documents.",
       "id": "GoogleCloudDiscoveryengineV1DocumentProcessingConfigParsingConfigDigitalParsingConfig",
+      "properties": {},
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1DocumentProcessingConfigParsingConfigLayoutParsingConfig": {
+      "description": "The layout parsing configurations for documents.",
+      "id": "GoogleCloudDiscoveryengineV1DocumentProcessingConfigParsingConfigLayoutParsingConfig",
       "properties": {},
       "type": "object"
     },
@@ -8086,6 +8165,10 @@
       "description": "Request message for Import methods.",
       "id": "GoogleCloudDiscoveryengineV1ImportDocumentsRequest",
       "properties": {
+        "alloyDbSource": {
+          "$ref": "GoogleCloudDiscoveryengineV1AlloyDbSource",
+          "description": "AlloyDB input source."
+        },
         "autoGenerateIds": {
           "description": "Whether to automatically generate IDs for the documents if absent. If set to `true`, Document.ids are automatically generated based on the hash of the payload, where IDs may not be consistent during multiple imports. In which case ReconciliationMode.FULL is highly recommended to avoid duplicate contents. If unset or set to `false`, Document.ids have to be specified using id_field, otherwise, documents without IDs fail to be imported. Supported data sources: * GcsSource. GcsSource.data_schema must be `custom` or `csv`. Otherwise, an INVALID_ARGUMENT error is thrown. * BigQuerySource. BigQuerySource.data_schema must be `custom` or `csv`. Otherwise, an INVALID_ARGUMENT error is thrown. * SpannerSource. * CloudSqlSource. * FirestoreSource. * BigtableSource.",
           "type": "boolean"
@@ -13176,6 +13259,10 @@
       "description": "A singleton resource of DataStore. It's empty when DataStore is created, which defaults to digital parser. The first call to DataStoreService.UpdateDocumentProcessingConfig method will initialize the config.",
       "id": "GoogleCloudDiscoveryengineV1betaDocumentProcessingConfig",
       "properties": {
+        "chunkingConfig": {
+          "$ref": "GoogleCloudDiscoveryengineV1betaDocumentProcessingConfigChunkingConfig",
+          "description": "Whether chunking mode is enabled."
+        },
         "defaultParsingConfig": {
           "$ref": "GoogleCloudDiscoveryengineV1betaDocumentProcessingConfigParsingConfig",
           "description": "Configurations for default Document parser. If not specified, we will configure it as default DigitalParsingConfig, and the default parsing config will be applied to all file types for Document parsing."
@@ -13194,6 +13281,33 @@
       },
       "type": "object"
     },
+    "GoogleCloudDiscoveryengineV1betaDocumentProcessingConfigChunkingConfig": {
+      "description": "Configuration for chunking config.",
+      "id": "GoogleCloudDiscoveryengineV1betaDocumentProcessingConfigChunkingConfig",
+      "properties": {
+        "layoutBasedChunkingConfig": {
+          "$ref": "GoogleCloudDiscoveryengineV1betaDocumentProcessingConfigChunkingConfigLayoutBasedChunkingConfig",
+          "description": "Configuration for the layout based chunking."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaDocumentProcessingConfigChunkingConfigLayoutBasedChunkingConfig": {
+      "description": "Configuration for the layout based chunking.",
+      "id": "GoogleCloudDiscoveryengineV1betaDocumentProcessingConfigChunkingConfigLayoutBasedChunkingConfig",
+      "properties": {
+        "chunkSize": {
+          "description": "The token size limit for each chunk. Supported values: 100-500 (inclusive). Default value: 500.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "includeAncestorHeadings": {
+          "description": "Whether to include appending different levels of headings to chunks from the middle of the document to prevent context loss. Default value: False.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDiscoveryengineV1betaDocumentProcessingConfigParsingConfig": {
       "description": "Related configurations applied to a specific type of document parser.",
       "id": "GoogleCloudDiscoveryengineV1betaDocumentProcessingConfigParsingConfig",
@@ -13201,6 +13315,10 @@
         "digitalParsingConfig": {
           "$ref": "GoogleCloudDiscoveryengineV1betaDocumentProcessingConfigParsingConfigDigitalParsingConfig",
           "description": "Configurations applied to digital parser."
+        },
+        "layoutParsingConfig": {
+          "$ref": "GoogleCloudDiscoveryengineV1betaDocumentProcessingConfigParsingConfigLayoutParsingConfig",
+          "description": "Configurations applied to layout parser."
         },
         "ocrParsingConfig": {
           "$ref": "GoogleCloudDiscoveryengineV1betaDocumentProcessingConfigParsingConfigOcrParsingConfig",
@@ -13212,6 +13330,12 @@
     "GoogleCloudDiscoveryengineV1betaDocumentProcessingConfigParsingConfigDigitalParsingConfig": {
       "description": "The digital parsing configurations for documents.",
       "id": "GoogleCloudDiscoveryengineV1betaDocumentProcessingConfigParsingConfigDigitalParsingConfig",
+      "properties": {},
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaDocumentProcessingConfigParsingConfigLayoutParsingConfig": {
+      "description": "The layout parsing configurations for documents.",
+      "id": "GoogleCloudDiscoveryengineV1betaDocumentProcessingConfigParsingConfigLayoutParsingConfig",
       "properties": {},
       "type": "object"
     },
