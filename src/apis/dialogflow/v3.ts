@@ -175,11 +175,11 @@ export namespace dialogflow_v3 {
    */
   export interface Schema$GoogleCloudDialogflowCxV3AdvancedSettingsLoggingSettings {
     /**
-     * If true, DF Interaction logging is currently enabled.
+     * Enables DF Interaction logging.
      */
     enableInteractionLogging?: boolean | null;
     /**
-     * If true, StackDriver logging is currently enabled.
+     * Enables StackDriver logging.
      */
     enableStackdriverLogging?: boolean | null;
   }
@@ -510,11 +510,11 @@ export namespace dialogflow_v3 {
    */
   export interface Schema$GoogleCloudDialogflowCxV3beta1AdvancedSettingsLoggingSettings {
     /**
-     * If true, DF Interaction logging is currently enabled.
+     * Enables DF Interaction logging.
      */
     enableInteractionLogging?: boolean | null;
     /**
-     * If true, StackDriver logging is currently enabled.
+     * Enables StackDriver logging.
      */
     enableStackdriverLogging?: boolean | null;
   }
@@ -1518,6 +1518,10 @@ export namespace dialogflow_v3 {
      * The natural language text to be processed.
      */
     text?: Schema$GoogleCloudDialogflowCxV3beta1TextInput;
+    /**
+     * The results of a tool executed by the client.
+     */
+    toolCallResult?: Schema$GoogleCloudDialogflowCxV3beta1ToolCallResult;
   }
   /**
    * Metadata for ReloadDocument operation.
@@ -1576,6 +1580,10 @@ export namespace dialogflow_v3 {
      * Returns a text response.
      */
     text?: Schema$GoogleCloudDialogflowCxV3beta1ResponseMessageText;
+    /**
+     * Returns the definition of a tool call that should be executed by the client.
+     */
+    toolCall?: Schema$GoogleCloudDialogflowCxV3beta1ToolCall;
   }
   /**
    * Indicates that the conversation succeeded, i.e., the bot handled the issue that the customer talked to it about. Dialogflow only uses this to determine which conversations should be counted as successful and doesn't process the metadata in this message in any way. Note that Dialogflow also considers conversations that get to the conversation end page as successful even if they don't return ConversationSuccess. You may set this, for example: * In the entry_fulfillment of a Page if entering the page indicates that the conversation succeeded. * In a webhook response when you determine that you handled the customer issue.
@@ -1855,6 +1863,53 @@ export namespace dialogflow_v3 {
      * Required. The UTF-8 encoded natural language text to be processed.
      */
     text?: string | null;
+  }
+  /**
+   * Represents a call of a specific tool's action with the specified inputs.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1ToolCall {
+    /**
+     * Required. The name of the tool's action associated with this call.
+     */
+    action?: string | null;
+    /**
+     * Optional. The action's input parameters.
+     */
+    inputParameters?: {[key: string]: any} | null;
+    /**
+     * Required. The tool associated with this call. Format: `projects//locations//agents//tools/`.
+     */
+    tool?: string | null;
+  }
+  /**
+   * The result of calling a tool's action that has been executed by the client.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1ToolCallResult {
+    /**
+     * Required. The name of the tool's action associated with this call.
+     */
+    action?: string | null;
+    /**
+     * The tool call's error.
+     */
+    error?: Schema$GoogleCloudDialogflowCxV3beta1ToolCallResultError;
+    /**
+     * The tool call's output parameters.
+     */
+    outputParameters?: {[key: string]: any} | null;
+    /**
+     * Required. The tool associated with this call. Format: `projects//locations//agents//tools/`.
+     */
+    tool?: string | null;
+  }
+  /**
+   * An error produced by the tool call.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1ToolCallResultError {
+    /**
+     * Optional. The error message of the function.
+     */
+    message?: string | null;
   }
   /**
    * A transition route specifies a intent that can be matched and/or a data condition that can be evaluated during a session. When a specified transition is matched, the following actions are taken in order: * If there is a `trigger_fulfillment` associated with the transition, it will be called. * If there is a `target_page` associated with the transition, the session will transition into the specified page. * If there is a `target_flow` associated with the transition, the session will transition into the specified flow.
@@ -7268,6 +7323,84 @@ export namespace dialogflow_v3 {
     source?: string | null;
   }
   /**
+   * Represents a Knowledge Assist answer.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1KnowledgeAssistAnswer {
+    /**
+     * The name of the answer record. Format: `projects//locations//answer Records/`.
+     */
+    answerRecord?: string | null;
+    /**
+     * The query suggested based on the context. Suggestion is made only if it is different from the previous suggestion.
+     */
+    suggestedQuery?: Schema$GoogleCloudDialogflowV2beta1KnowledgeAssistAnswerSuggestedQuery;
+    /**
+     * The answer generated for the suggested query. Whether or not an answer is generated depends on how confident we are about the generated query.
+     */
+    suggestedQueryAnswer?: Schema$GoogleCloudDialogflowV2beta1KnowledgeAssistAnswerKnowledgeAnswer;
+  }
+  /**
+   * Represents an answer from Knowledge. Currently supports FAQ and Generative answers.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1KnowledgeAssistAnswerKnowledgeAnswer {
+    /**
+     * The piece of text from the `source` that answers this suggested query.
+     */
+    answerText?: string | null;
+    /**
+     * Populated if the prediction came from FAQ.
+     */
+    faqSource?: Schema$GoogleCloudDialogflowV2beta1KnowledgeAssistAnswerKnowledgeAnswerFaqSource;
+    /**
+     * Populated if the prediction was Generative.
+     */
+    generativeSource?: Schema$GoogleCloudDialogflowV2beta1KnowledgeAssistAnswerKnowledgeAnswerGenerativeSource;
+  }
+  /**
+   * Details about source of FAQ answer.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1KnowledgeAssistAnswerKnowledgeAnswerFaqSource {
+    /**
+     * The corresponding FAQ question.
+     */
+    question?: string | null;
+  }
+  /**
+   * Details about source of Generative answer.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1KnowledgeAssistAnswerKnowledgeAnswerGenerativeSource {
+    /**
+     * All snippets used for this Generative Prediction, with their source URI and data.
+     */
+    snippets?: Schema$GoogleCloudDialogflowV2beta1KnowledgeAssistAnswerKnowledgeAnswerGenerativeSourceSnippet[];
+  }
+  /**
+   * Snippet Source for a Generative Prediction.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1KnowledgeAssistAnswerKnowledgeAnswerGenerativeSourceSnippet {
+    /**
+     * Text taken from that URI.
+     */
+    text?: string | null;
+    /**
+     * Title of the document.
+     */
+    title?: string | null;
+    /**
+     * URI the data is sourced from.
+     */
+    uri?: string | null;
+  }
+  /**
+   * Represents a suggested query.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1KnowledgeAssistAnswerSuggestedQuery {
+    /**
+     * Suggested query text.
+     */
+    queryText?: string | null;
+  }
+  /**
    * Metadata in google::longrunning::Operation for Knowledge operations.
    */
   export interface Schema$GoogleCloudDialogflowV2beta1KnowledgeOperationMetadata {
@@ -7581,9 +7714,30 @@ export namespace dialogflow_v3 {
      */
     suggestFaqAnswersResponse?: Schema$GoogleCloudDialogflowV2beta1SuggestFaqAnswersResponse;
     /**
+     * SuggestKnowledgeAssistResponse if request is for KNOWLEDGE_ASSIST.
+     */
+    suggestKnowledgeAssistResponse?: Schema$GoogleCloudDialogflowV2beta1SuggestKnowledgeAssistResponse;
+    /**
      * SuggestSmartRepliesResponse if request is for SMART_REPLY.
      */
     suggestSmartRepliesResponse?: Schema$GoogleCloudDialogflowV2beta1SuggestSmartRepliesResponse;
+  }
+  /**
+   * The response message for Participants.SuggestKnowledgeAssist.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1SuggestKnowledgeAssistResponse {
+    /**
+     * Number of messages prior to and including latest_message to compile the suggestion. It may be smaller than the SuggestKnowledgeAssistRequest.context_size field in the request if there are fewer messages in the conversation.
+     */
+    contextSize?: number | null;
+    /**
+     * Output only. Knowledge Assist suggestion.
+     */
+    knowledgeAssistAnswer?: Schema$GoogleCloudDialogflowV2beta1KnowledgeAssistAnswer;
+    /**
+     * The name of the latest conversation message used to compile suggestion for. Format: `projects//locations//conversations//messages/`.
+     */
+    latestMessage?: string | null;
   }
   /**
    * The response message for Participants.SuggestSmartReplies.
@@ -8675,6 +8829,84 @@ export namespace dialogflow_v3 {
     userDefined?: boolean | null;
   }
   /**
+   * Represents a Knowledge Assist answer.
+   */
+  export interface Schema$GoogleCloudDialogflowV2KnowledgeAssistAnswer {
+    /**
+     * The name of the answer record. Format: `projects//locations//answer Records/`.
+     */
+    answerRecord?: string | null;
+    /**
+     * The query suggested based on the context. Suggestion is made only if it is different from the previous suggestion.
+     */
+    suggestedQuery?: Schema$GoogleCloudDialogflowV2KnowledgeAssistAnswerSuggestedQuery;
+    /**
+     * The answer generated for the suggested query. Whether or not an answer is generated depends on how confident we are about the generated query.
+     */
+    suggestedQueryAnswer?: Schema$GoogleCloudDialogflowV2KnowledgeAssistAnswerKnowledgeAnswer;
+  }
+  /**
+   * Represents an answer from Knowledge. Currently supports FAQ and Generative answers.
+   */
+  export interface Schema$GoogleCloudDialogflowV2KnowledgeAssistAnswerKnowledgeAnswer {
+    /**
+     * The piece of text from the `source` that answers this suggested query.
+     */
+    answerText?: string | null;
+    /**
+     * Populated if the prediction came from FAQ.
+     */
+    faqSource?: Schema$GoogleCloudDialogflowV2KnowledgeAssistAnswerKnowledgeAnswerFaqSource;
+    /**
+     * Populated if the prediction was Generative.
+     */
+    generativeSource?: Schema$GoogleCloudDialogflowV2KnowledgeAssistAnswerKnowledgeAnswerGenerativeSource;
+  }
+  /**
+   * Details about source of FAQ answer.
+   */
+  export interface Schema$GoogleCloudDialogflowV2KnowledgeAssistAnswerKnowledgeAnswerFaqSource {
+    /**
+     * The corresponding FAQ question.
+     */
+    question?: string | null;
+  }
+  /**
+   * Details about source of Generative answer.
+   */
+  export interface Schema$GoogleCloudDialogflowV2KnowledgeAssistAnswerKnowledgeAnswerGenerativeSource {
+    /**
+     * All snippets used for this Generative Prediction, with their source URI and data.
+     */
+    snippets?: Schema$GoogleCloudDialogflowV2KnowledgeAssistAnswerKnowledgeAnswerGenerativeSourceSnippet[];
+  }
+  /**
+   * Snippet Source for a Generative Prediction.
+   */
+  export interface Schema$GoogleCloudDialogflowV2KnowledgeAssistAnswerKnowledgeAnswerGenerativeSourceSnippet {
+    /**
+     * Text taken from that URI.
+     */
+    text?: string | null;
+    /**
+     * Title of the document.
+     */
+    title?: string | null;
+    /**
+     * URI the data is sourced from.
+     */
+    uri?: string | null;
+  }
+  /**
+   * Represents a suggested query.
+   */
+  export interface Schema$GoogleCloudDialogflowV2KnowledgeAssistAnswerSuggestedQuery {
+    /**
+     * Suggested query text.
+     */
+    queryText?: string | null;
+  }
+  /**
    * Metadata in google::longrunning::Operation for Knowledge operations.
    */
   export interface Schema$GoogleCloudDialogflowV2KnowledgeOperationMetadata {
@@ -8968,9 +9200,30 @@ export namespace dialogflow_v3 {
      */
     suggestFaqAnswersResponse?: Schema$GoogleCloudDialogflowV2SuggestFaqAnswersResponse;
     /**
+     * SuggestKnowledgeAssistResponse if request is for KNOWLEDGE_ASSIST.
+     */
+    suggestKnowledgeAssistResponse?: Schema$GoogleCloudDialogflowV2SuggestKnowledgeAssistResponse;
+    /**
      * SuggestSmartRepliesResponse if request is for SMART_REPLY.
      */
     suggestSmartRepliesResponse?: Schema$GoogleCloudDialogflowV2SuggestSmartRepliesResponse;
+  }
+  /**
+   * The response message for Participants.SuggestKnowledgeAssist.
+   */
+  export interface Schema$GoogleCloudDialogflowV2SuggestKnowledgeAssistResponse {
+    /**
+     * Number of messages prior to and including latest_message to compile the suggestion. It may be smaller than the SuggestKnowledgeAssistRequest.context_size field in the request if there are fewer messages in the conversation.
+     */
+    contextSize?: number | null;
+    /**
+     * Output only. Knowledge Assist suggestion.
+     */
+    knowledgeAssistAnswer?: Schema$GoogleCloudDialogflowV2KnowledgeAssistAnswer;
+    /**
+     * The name of the latest conversation message used to compile suggestion for. Format: `projects//locations//conversations//messages/`.
+     */
+    latestMessage?: string | null;
   }
   /**
    * The response message for Participants.SuggestSmartReplies.
