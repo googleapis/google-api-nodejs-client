@@ -4453,7 +4453,7 @@
       }
     }
   },
-  "revision": "20240523",
+  "revision": "20240603",
   "rootUrl": "https://dialogflow.googleapis.com/",
   "schemas": {
     "GoogleCloudDialogflowCxV3AdvancedSettings": {
@@ -4514,11 +4514,11 @@
       "id": "GoogleCloudDialogflowCxV3AdvancedSettingsLoggingSettings",
       "properties": {
         "enableInteractionLogging": {
-          "description": "If true, DF Interaction logging is currently enabled.",
+          "description": "Enables DF Interaction logging.",
           "type": "boolean"
         },
         "enableStackdriverLogging": {
-          "description": "If true, StackDriver logging is currently enabled.",
+          "description": "Enables StackDriver logging.",
           "type": "boolean"
         }
       },
@@ -10261,11 +10261,11 @@
       "id": "GoogleCloudDialogflowCxV3beta1AdvancedSettingsLoggingSettings",
       "properties": {
         "enableInteractionLogging": {
-          "description": "If true, DF Interaction logging is currently enabled.",
+          "description": "Enables DF Interaction logging.",
           "type": "boolean"
         },
         "enableStackdriverLogging": {
-          "description": "If true, StackDriver logging is currently enabled.",
+          "description": "Enables StackDriver logging.",
           "type": "boolean"
         }
       },
@@ -11618,6 +11618,10 @@
         "text": {
           "$ref": "GoogleCloudDialogflowCxV3beta1TextInput",
           "description": "The natural language text to be processed."
+        },
+        "toolCallResult": {
+          "$ref": "GoogleCloudDialogflowCxV3beta1ToolCallResult",
+          "description": "The results of a tool executed by the client."
         }
       },
       "type": "object"
@@ -11686,6 +11690,10 @@
         "text": {
           "$ref": "GoogleCloudDialogflowCxV3beta1ResponseMessageText",
           "description": "Returns a text response."
+        },
+        "toolCall": {
+          "$ref": "GoogleCloudDialogflowCxV3beta1ToolCall",
+          "description": "Returns the definition of a tool call that should be executed by the client."
         }
       },
       "type": "object"
@@ -12075,6 +12083,67 @@
       "properties": {
         "text": {
           "description": "Required. The UTF-8 encoded natural language text to be processed.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3beta1ToolCall": {
+      "description": "Represents a call of a specific tool's action with the specified inputs.",
+      "id": "GoogleCloudDialogflowCxV3beta1ToolCall",
+      "properties": {
+        "action": {
+          "description": "Required. The name of the tool's action associated with this call.",
+          "type": "string"
+        },
+        "inputParameters": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "Optional. The action's input parameters.",
+          "type": "object"
+        },
+        "tool": {
+          "description": "Required. The tool associated with this call. Format: `projects//locations//agents//tools/`.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3beta1ToolCallResult": {
+      "description": "The result of calling a tool's action that has been executed by the client.",
+      "id": "GoogleCloudDialogflowCxV3beta1ToolCallResult",
+      "properties": {
+        "action": {
+          "description": "Required. The name of the tool's action associated with this call.",
+          "type": "string"
+        },
+        "error": {
+          "$ref": "GoogleCloudDialogflowCxV3beta1ToolCallResultError",
+          "description": "The tool call's error."
+        },
+        "outputParameters": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "The tool call's output parameters.",
+          "type": "object"
+        },
+        "tool": {
+          "description": "Required. The tool associated with this call. Format: `projects//locations//agents//tools/`.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3beta1ToolCallResultError": {
+      "description": "An error produced by the tool call.",
+      "id": "GoogleCloudDialogflowCxV3beta1ToolCallResultError",
+      "properties": {
+        "message": {
+          "description": "Optional. The error message of the function.",
           "type": "string"
         }
       },
@@ -12719,14 +12788,16 @@
             "ARTICLE_SUGGESTION",
             "FAQ",
             "SMART_REPLY",
-            "KNOWLEDGE_SEARCH"
+            "KNOWLEDGE_SEARCH",
+            "KNOWLEDGE_ASSIST"
           ],
           "enumDescriptions": [
             "Unspecified feature type.",
             "Run article suggestion model for chat.",
             "Run FAQ model for chat.",
             "Run smart reply model for chat.",
-            "Run knowledge search with text input from agent or text generated query."
+            "Run knowledge search with text input from agent or text generated query.",
+            "Run knowledge assist with automatic query generation."
           ],
           "type": "string"
         }
@@ -14159,6 +14230,99 @@
       },
       "type": "object"
     },
+    "GoogleCloudDialogflowV2KnowledgeAssistAnswer": {
+      "description": "Represents a Knowledge Assist answer.",
+      "id": "GoogleCloudDialogflowV2KnowledgeAssistAnswer",
+      "properties": {
+        "answerRecord": {
+          "description": "The name of the answer record. Format: `projects//locations//answer Records/`.",
+          "type": "string"
+        },
+        "suggestedQuery": {
+          "$ref": "GoogleCloudDialogflowV2KnowledgeAssistAnswerSuggestedQuery",
+          "description": "The query suggested based on the context. Suggestion is made only if it is different from the previous suggestion."
+        },
+        "suggestedQueryAnswer": {
+          "$ref": "GoogleCloudDialogflowV2KnowledgeAssistAnswerKnowledgeAnswer",
+          "description": "The answer generated for the suggested query. Whether or not an answer is generated depends on how confident we are about the generated query."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV2KnowledgeAssistAnswerKnowledgeAnswer": {
+      "description": "Represents an answer from Knowledge. Currently supports FAQ and Generative answers.",
+      "id": "GoogleCloudDialogflowV2KnowledgeAssistAnswerKnowledgeAnswer",
+      "properties": {
+        "answerText": {
+          "description": "The piece of text from the `source` that answers this suggested query.",
+          "type": "string"
+        },
+        "faqSource": {
+          "$ref": "GoogleCloudDialogflowV2KnowledgeAssistAnswerKnowledgeAnswerFaqSource",
+          "description": "Populated if the prediction came from FAQ."
+        },
+        "generativeSource": {
+          "$ref": "GoogleCloudDialogflowV2KnowledgeAssistAnswerKnowledgeAnswerGenerativeSource",
+          "description": "Populated if the prediction was Generative."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV2KnowledgeAssistAnswerKnowledgeAnswerFaqSource": {
+      "description": "Details about source of FAQ answer.",
+      "id": "GoogleCloudDialogflowV2KnowledgeAssistAnswerKnowledgeAnswerFaqSource",
+      "properties": {
+        "question": {
+          "description": "The corresponding FAQ question.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV2KnowledgeAssistAnswerKnowledgeAnswerGenerativeSource": {
+      "description": "Details about source of Generative answer.",
+      "id": "GoogleCloudDialogflowV2KnowledgeAssistAnswerKnowledgeAnswerGenerativeSource",
+      "properties": {
+        "snippets": {
+          "description": "All snippets used for this Generative Prediction, with their source URI and data.",
+          "items": {
+            "$ref": "GoogleCloudDialogflowV2KnowledgeAssistAnswerKnowledgeAnswerGenerativeSourceSnippet"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV2KnowledgeAssistAnswerKnowledgeAnswerGenerativeSourceSnippet": {
+      "description": "Snippet Source for a Generative Prediction.",
+      "id": "GoogleCloudDialogflowV2KnowledgeAssistAnswerKnowledgeAnswerGenerativeSourceSnippet",
+      "properties": {
+        "text": {
+          "description": "Text taken from that URI.",
+          "type": "string"
+        },
+        "title": {
+          "description": "Title of the document.",
+          "type": "string"
+        },
+        "uri": {
+          "description": "URI the data is sourced from.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV2KnowledgeAssistAnswerSuggestedQuery": {
+      "description": "Represents a suggested query.",
+      "id": "GoogleCloudDialogflowV2KnowledgeAssistAnswerSuggestedQuery",
+      "properties": {
+        "queryText": {
+          "description": "Suggested query text.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDialogflowV2KnowledgeOperationMetadata": {
       "description": "Metadata in google::longrunning::Operation for Knowledge operations.",
       "id": "GoogleCloudDialogflowV2KnowledgeOperationMetadata",
@@ -14481,14 +14645,16 @@
             "ARTICLE_SUGGESTION",
             "FAQ",
             "SMART_REPLY",
-            "KNOWLEDGE_SEARCH"
+            "KNOWLEDGE_SEARCH",
+            "KNOWLEDGE_ASSIST"
           ],
           "enumDescriptions": [
             "Unspecified feature type.",
             "Run article suggestion model for chat.",
             "Run FAQ model for chat.",
             "Run smart reply model for chat.",
-            "Run knowledge search with text input from agent or text generated query."
+            "Run knowledge search with text input from agent or text generated query.",
+            "Run knowledge assist with automatic query generation."
           ],
           "type": "string"
         }
@@ -14582,6 +14748,27 @@
       },
       "type": "object"
     },
+    "GoogleCloudDialogflowV2SuggestKnowledgeAssistResponse": {
+      "description": "The response message for Participants.SuggestKnowledgeAssist.",
+      "id": "GoogleCloudDialogflowV2SuggestKnowledgeAssistResponse",
+      "properties": {
+        "contextSize": {
+          "description": "Number of messages prior to and including latest_message to compile the suggestion. It may be smaller than the SuggestKnowledgeAssistRequest.context_size field in the request if there are fewer messages in the conversation.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "knowledgeAssistAnswer": {
+          "$ref": "GoogleCloudDialogflowV2KnowledgeAssistAnswer",
+          "description": "Output only. Knowledge Assist suggestion.",
+          "readOnly": true
+        },
+        "latestMessage": {
+          "description": "The name of the latest conversation message used to compile suggestion for. Format: `projects//locations//conversations//messages/`.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDialogflowV2SuggestSmartRepliesResponse": {
       "description": "The response message for Participants.SuggestSmartReplies.",
       "id": "GoogleCloudDialogflowV2SuggestSmartRepliesResponse",
@@ -14621,6 +14808,10 @@
         "suggestFaqAnswersResponse": {
           "$ref": "GoogleCloudDialogflowV2SuggestFaqAnswersResponse",
           "description": "SuggestFaqAnswersResponse if request is for FAQ_ANSWER."
+        },
+        "suggestKnowledgeAssistResponse": {
+          "$ref": "GoogleCloudDialogflowV2SuggestKnowledgeAssistResponse",
+          "description": "SuggestKnowledgeAssistResponse if request is for KNOWLEDGE_ASSIST."
         },
         "suggestSmartRepliesResponse": {
           "$ref": "GoogleCloudDialogflowV2SuggestSmartRepliesResponse",
@@ -14834,7 +15025,8 @@
             "SMART_REPLY",
             "DIALOGFLOW_ASSIST",
             "CONVERSATION_SUMMARIZATION",
-            "KNOWLEDGE_SEARCH"
+            "KNOWLEDGE_SEARCH",
+            "KNOWLEDGE_ASSIST"
           ],
           "enumDescriptions": [
             "Unspecified feature type.",
@@ -14843,7 +15035,8 @@
             "Run smart reply model for chat.",
             "Run Dialogflow assist model for chat, which will return automated agent response as suggestion.",
             "Run conversation summarization model for chat.",
-            "Run knowledge search with text input from agent or text generated query."
+            "Run knowledge search with text input from agent or text generated query.",
+            "Run knowledge assist with automatic query generation."
           ],
           "type": "string"
         }
@@ -16421,6 +16614,99 @@
       },
       "type": "object"
     },
+    "GoogleCloudDialogflowV2beta1KnowledgeAssistAnswer": {
+      "description": "Represents a Knowledge Assist answer.",
+      "id": "GoogleCloudDialogflowV2beta1KnowledgeAssistAnswer",
+      "properties": {
+        "answerRecord": {
+          "description": "The name of the answer record. Format: `projects//locations//answer Records/`.",
+          "type": "string"
+        },
+        "suggestedQuery": {
+          "$ref": "GoogleCloudDialogflowV2beta1KnowledgeAssistAnswerSuggestedQuery",
+          "description": "The query suggested based on the context. Suggestion is made only if it is different from the previous suggestion."
+        },
+        "suggestedQueryAnswer": {
+          "$ref": "GoogleCloudDialogflowV2beta1KnowledgeAssistAnswerKnowledgeAnswer",
+          "description": "The answer generated for the suggested query. Whether or not an answer is generated depends on how confident we are about the generated query."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV2beta1KnowledgeAssistAnswerKnowledgeAnswer": {
+      "description": "Represents an answer from Knowledge. Currently supports FAQ and Generative answers.",
+      "id": "GoogleCloudDialogflowV2beta1KnowledgeAssistAnswerKnowledgeAnswer",
+      "properties": {
+        "answerText": {
+          "description": "The piece of text from the `source` that answers this suggested query.",
+          "type": "string"
+        },
+        "faqSource": {
+          "$ref": "GoogleCloudDialogflowV2beta1KnowledgeAssistAnswerKnowledgeAnswerFaqSource",
+          "description": "Populated if the prediction came from FAQ."
+        },
+        "generativeSource": {
+          "$ref": "GoogleCloudDialogflowV2beta1KnowledgeAssistAnswerKnowledgeAnswerGenerativeSource",
+          "description": "Populated if the prediction was Generative."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV2beta1KnowledgeAssistAnswerKnowledgeAnswerFaqSource": {
+      "description": "Details about source of FAQ answer.",
+      "id": "GoogleCloudDialogflowV2beta1KnowledgeAssistAnswerKnowledgeAnswerFaqSource",
+      "properties": {
+        "question": {
+          "description": "The corresponding FAQ question.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV2beta1KnowledgeAssistAnswerKnowledgeAnswerGenerativeSource": {
+      "description": "Details about source of Generative answer.",
+      "id": "GoogleCloudDialogflowV2beta1KnowledgeAssistAnswerKnowledgeAnswerGenerativeSource",
+      "properties": {
+        "snippets": {
+          "description": "All snippets used for this Generative Prediction, with their source URI and data.",
+          "items": {
+            "$ref": "GoogleCloudDialogflowV2beta1KnowledgeAssistAnswerKnowledgeAnswerGenerativeSourceSnippet"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV2beta1KnowledgeAssistAnswerKnowledgeAnswerGenerativeSourceSnippet": {
+      "description": "Snippet Source for a Generative Prediction.",
+      "id": "GoogleCloudDialogflowV2beta1KnowledgeAssistAnswerKnowledgeAnswerGenerativeSourceSnippet",
+      "properties": {
+        "text": {
+          "description": "Text taken from that URI.",
+          "type": "string"
+        },
+        "title": {
+          "description": "Title of the document.",
+          "type": "string"
+        },
+        "uri": {
+          "description": "URI the data is sourced from.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV2beta1KnowledgeAssistAnswerSuggestedQuery": {
+      "description": "Represents a suggested query.",
+      "id": "GoogleCloudDialogflowV2beta1KnowledgeAssistAnswerSuggestedQuery",
+      "properties": {
+        "queryText": {
+          "description": "Suggested query text.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDialogflowV2beta1KnowledgeOperationMetadata": {
       "description": "Metadata in google::longrunning::Operation for Knowledge operations.",
       "id": "GoogleCloudDialogflowV2beta1KnowledgeOperationMetadata",
@@ -16749,7 +17035,8 @@
             "SMART_REPLY",
             "DIALOGFLOW_ASSIST",
             "CONVERSATION_SUMMARIZATION",
-            "KNOWLEDGE_SEARCH"
+            "KNOWLEDGE_SEARCH",
+            "KNOWLEDGE_ASSIST"
           ],
           "enumDescriptions": [
             "Unspecified feature type.",
@@ -16758,7 +17045,8 @@
             "Run smart reply model for chat.",
             "Run Dialogflow assist model for chat, which will return automated agent response as suggestion.",
             "Run conversation summarization model for chat.",
-            "Run knowledge search with text input from agent or text generated query."
+            "Run knowledge search with text input from agent or text generated query.",
+            "Run knowledge assist with automatic query generation."
           ],
           "type": "string"
         }
@@ -16854,6 +17142,27 @@
       },
       "type": "object"
     },
+    "GoogleCloudDialogflowV2beta1SuggestKnowledgeAssistResponse": {
+      "description": "The response message for Participants.SuggestKnowledgeAssist.",
+      "id": "GoogleCloudDialogflowV2beta1SuggestKnowledgeAssistResponse",
+      "properties": {
+        "contextSize": {
+          "description": "Number of messages prior to and including latest_message to compile the suggestion. It may be smaller than the SuggestKnowledgeAssistRequest.context_size field in the request if there are fewer messages in the conversation.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "knowledgeAssistAnswer": {
+          "$ref": "GoogleCloudDialogflowV2beta1KnowledgeAssistAnswer",
+          "description": "Output only. Knowledge Assist suggestion.",
+          "readOnly": true
+        },
+        "latestMessage": {
+          "description": "The name of the latest conversation message used to compile suggestion for. Format: `projects//locations//conversations//messages/`.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDialogflowV2beta1SuggestSmartRepliesResponse": {
       "description": "The response message for Participants.SuggestSmartReplies.",
       "id": "GoogleCloudDialogflowV2beta1SuggestSmartRepliesResponse",
@@ -16900,6 +17209,10 @@
         "suggestFaqAnswersResponse": {
           "$ref": "GoogleCloudDialogflowV2beta1SuggestFaqAnswersResponse",
           "description": "SuggestFaqAnswersResponse if request is for FAQ_ANSWER."
+        },
+        "suggestKnowledgeAssistResponse": {
+          "$ref": "GoogleCloudDialogflowV2beta1SuggestKnowledgeAssistResponse",
+          "description": "SuggestKnowledgeAssistResponse if request is for KNOWLEDGE_ASSIST."
         },
         "suggestSmartRepliesResponse": {
           "$ref": "GoogleCloudDialogflowV2beta1SuggestSmartRepliesResponse",
