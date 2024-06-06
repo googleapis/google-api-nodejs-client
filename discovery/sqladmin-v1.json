@@ -2267,7 +2267,7 @@
       }
     }
   },
-  "revision": "20240529",
+  "revision": "20240521",
   "rootUrl": "https://sqladmin.googleapis.com/",
   "schemas": {
     "AclEntry": {
@@ -5543,10 +5543,7 @@
             "PG_SUBSCRIPTION_COUNT",
             "PG_SYNC_PARALLEL_LEVEL",
             "INSUFFICIENT_DISK_SIZE",
-            "INSUFFICIENT_MACHINE_TIER",
-            "UNSUPPORTED_EXTENSIONS_NOT_MIGRATED",
-            "EXTENSIONS_NOT_MIGRATED",
-            "PG_CRON_FLAG_ENABLED_IN_REPLICA"
+            "INSUFFICIENT_MACHINE_TIER"
           ],
           "enumDescriptions": [
             "",
@@ -5593,10 +5590,7 @@
             "Count of subscriptions needed to sync source data for PostgreSQL database.",
             "Final parallel level that is used to do migration.",
             "The disk size of the replica instance is smaller than the data size of the source instance.",
-            "The data size of the source instance is greater than 1 TB, the number of cores of the replica instance is less than 8, and the memory of the replica is less than 32 GB.",
-            "The warning message indicates the unsupported extensions will not be migrated to the destination.",
-            "The warning message indicates the pg_cron extension and settings will not be migrated to the destination.",
-            "The error message indicates that pg_cron flags are enabled on the destination which is not supported during the migration."
+            "The data size of the source instance is greater than 1 TB, the number of cores of the replica instance is less than 8, and the memory of the replica is less than 32 GB."
           ],
           "type": "string"
         }
