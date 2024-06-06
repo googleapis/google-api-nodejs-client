@@ -3856,7 +3856,7 @@ export namespace admin_directory_v1 {
      */
     includeChildOrgunits?: boolean;
     /**
-     * Maximum number of results to return, value should not exceed 300.
+     * Maximum number of results to return. Value should not exceed 300.
      */
     maxResults?: number;
     /**
