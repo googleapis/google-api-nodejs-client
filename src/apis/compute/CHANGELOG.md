@@ -1,5 +1,16 @@
 # Changelog
 
+## [15.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/compute-v14.0.0...compute-v15.0.0) (2024-06-06)
+
+
+### ⚠ BREAKING CHANGES
+
+* **compute:** This release has breaking changes.
+
+### Features
+
+* **compute:** update the API ([8071314](https://github.com/googleapis/google-api-nodejs-client/commit/8071314dc1aa0b19aaec3acfa66604cd268bad65))
+
 ## [14.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/compute-v13.0.0...compute-v14.0.0) (2024-06-03)
 
 
