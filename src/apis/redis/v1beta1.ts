@@ -278,6 +278,10 @@ export namespace redis_v1beta1 {
      * Output only. System assigned, unique identifier for the cluster.
      */
     uid?: string | null;
+    /**
+     * Optional. This config will be used to determine how the customer wants us to distribute cluster resources within the region.
+     */
+    zoneDistributionConfig?: Schema$ZoneDistributionConfig;
   }
   /**
    * Configuration of the persistence functionality.
@@ -1299,9 +1303,21 @@ export namespace redis_v1beta1 {
    * TypedValue represents the value of a metric type. It can either be a double, an int64, a string or a bool.
    */
   export interface Schema$TypedValue {
+    /**
+     * For boolean value
+     */
     boolValue?: boolean | null;
+    /**
+     * For double value
+     */
     doubleValue?: number | null;
+    /**
+     * For integer value
+     */
     int64Value?: string | null;
+    /**
+     * For string value
+     */
     stringValue?: string | null;
   }
   /**
@@ -1348,6 +1364,19 @@ export namespace redis_v1beta1 {
      * Required. Start time of the window in UTC time.
      */
     startTime?: Schema$TimeOfDay;
+  }
+  /**
+   * Zone distribution config for allocation of cluster resources.
+   */
+  export interface Schema$ZoneDistributionConfig {
+    /**
+     * Optional. The mode of zone distribution. Defaults to MULTI_ZONE, when not specified.
+     */
+    mode?: string | null;
+    /**
+     * Optional. When SINGLE ZONE distribution is selected, zone field would be used to allocate all resources in that zone. This is not applicable to MULTI_ZONE, and would be ignored for MULTI_ZONE clusters.
+     */
+    zone?: string | null;
   }
 
   export class Resource$Projects {
