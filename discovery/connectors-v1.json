@@ -2427,7 +2427,7 @@
       }
     }
   },
-  "revision": "20240515",
+  "revision": "20240529",
   "rootUrl": "https://connectors.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -3103,6 +3103,11 @@
       "description": "Connectors indicates a specific connector type, e.x. Salesforce, SAP etc.",
       "id": "Connector",
       "properties": {
+        "category": {
+          "description": "Output only. Category of the connector.",
+          "readOnly": true,
+          "type": "string"
+        },
         "createTime": {
           "description": "Output only. Created time.",
           "format": "google-datetime",
@@ -3165,6 +3170,14 @@
           "description": "Output only. Resource name of the Connector. Format: projects/{project}/locations/{location}/providers/{provider}/connectors/{connector} Only global location is supported for Connector resource.",
           "readOnly": true,
           "type": "string"
+        },
+        "tags": {
+          "description": "Output only. Tags of the connector.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
         },
         "updateTime": {
           "description": "Output only. Updated time.",

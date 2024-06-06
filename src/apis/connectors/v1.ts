@@ -525,6 +525,10 @@ export namespace connectors_v1 {
    */
   export interface Schema$Connector {
     /**
+     * Output only. Category of the connector.
+     */
+    category?: string | null;
+    /**
      * Output only. Created time.
      */
     createTime?: string | null;
@@ -560,6 +564,10 @@ export namespace connectors_v1 {
      * Output only. Resource name of the Connector. Format: projects/{project\}/locations/{location\}/providers/{provider\}/connectors/{connector\} Only global location is supported for Connector resource.
      */
     name?: string | null;
+    /**
+     * Output only. Tags of the connector.
+     */
+    tags?: string[] | null;
     /**
      * Output only. Updated time.
      */
