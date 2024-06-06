@@ -1,5 +1,24 @@
 # Changelog
 
+## [26.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/chat-v25.0.1...chat-v26.0.0) (2024-06-06)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+* This release has breaking changes.
+
+### Features
+
+* **chat:** update the API ([0810516](https://github.com/googleapis/google-api-nodejs-client/commit/081051658a22c7bf2cd8915838608f53fb620cd6))
+* run the generator ([#3456](https://github.com/googleapis/google-api-nodejs-client/issues/3456)) ([a865e81](https://github.com/googleapis/google-api-nodejs-client/commit/a865e81539b315d3b321650663ba0b2555b1e5a1))
+* run the generator ([#3484](https://github.com/googleapis/google-api-nodejs-client/issues/3484)) ([99b6c8d](https://github.com/googleapis/google-api-nodejs-client/commit/99b6c8de5beb8447d177048a64a977ee39ee5ee6))
+
+
+### Bug Fixes
+
+* **chat:** update the API ([ed0f102](https://github.com/googleapis/google-api-nodejs-client/commit/ed0f102750218497604d78a91f0983202472bfc4))
+
 ## [25.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/chat-v25.0.0...chat-v25.0.1) (2024-06-03)
 
 

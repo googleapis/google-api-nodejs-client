@@ -1,5 +1,12 @@
 # Changelog
 
+## [19.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/admin-v19.0.0...admin-v19.0.1) (2024-06-06)
+
+
+### Bug Fixes
+
+* **admin:** update the API ([fdc42e4](https://github.com/googleapis/google-api-nodejs-client/commit/fdc42e4cae427a2b77cc81d05ed8e410316b69e8))
+
 ## [19.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/admin-v18.0.0...admin-v19.0.0) (2024-05-10)
 
 

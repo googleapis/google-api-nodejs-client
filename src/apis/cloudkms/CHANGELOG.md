@@ -1,5 +1,22 @@
 # Changelog
 
+## [12.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/cloudkms-v11.0.0...cloudkms-v12.0.0) (2024-06-06)
+
+
+### ⚠ BREAKING CHANGES
+
+* **cloudkms:** This release has breaking changes.
+
+### Features
+
+* **cloudkms:** update the API ([ea4648c](https://github.com/googleapis/google-api-nodejs-client/commit/ea4648c16e9612bacb21ed4628103e0dedd2ee13))
+* **cloudkms:** update the API ([b6b24c6](https://github.com/googleapis/google-api-nodejs-client/commit/b6b24c645a6c0b1001d20298a72acfe0da38a754))
+
+
+### Bug Fixes
+
+* **cloudkms:** update the API ([93e0687](https://github.com/googleapis/google-api-nodejs-client/commit/93e06878abf84ad8b1df3f12ace0f067b1f25098))
+
 ## [11.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/cloudkms-v10.1.0...cloudkms-v11.0.0) (2024-06-03)
 
 
