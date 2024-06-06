@@ -1042,7 +1042,7 @@
       }
     }
   },
-  "revision": "20240422",
+  "revision": "20240531",
   "rootUrl": "https://documentai.googleapis.com/",
   "schemas": {
     "GoogleCloudDocumentaiUiv1beta3AutoLabelDocumentsMetadata": {
@@ -2217,10 +2217,18 @@
       "description": "Document represents the canonical document resource in Document AI. It is an interchange format that provides insights into documents and allows for collaboration between users and Document AI to iterate and optimize for quality.",
       "id": "GoogleCloudDocumentaiV1Document",
       "properties": {
+        "chunkedDocument": {
+          "$ref": "GoogleCloudDocumentaiV1DocumentChunkedDocument",
+          "description": "Document chunked based on chunking config."
+        },
         "content": {
           "description": "Optional. Inline document content, represented as a stream of bytes. Note: As with all `bytes` fields, protobuffers use a pure binary representation, whereas JSON representations use base64.",
           "format": "byte",
           "type": "string"
+        },
+        "documentLayout": {
+          "$ref": "GoogleCloudDocumentaiV1DocumentDocumentLayout",
+          "description": "Parsed layout of the document."
         },
         "entities": {
           "description": "A list of entities detected on Document.text. For document shards, entities in this list may cross shard boundaries.",
@@ -2283,6 +2291,282 @@
         },
         "uri": {
           "description": "Optional. Currently supports Google Cloud Storage URI of the form `gs://bucket_name/object_name`. Object versioning is not supported. For more information, refer to [Google Cloud Storage Request URIs](https://cloud.google.com/storage/docs/reference-uris).",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1DocumentChunkedDocument": {
+      "description": "Represents the chunks that the document is divided into.",
+      "id": "GoogleCloudDocumentaiV1DocumentChunkedDocument",
+      "properties": {
+        "chunks": {
+          "description": "List of chunks.",
+          "items": {
+            "$ref": "GoogleCloudDocumentaiV1DocumentChunkedDocumentChunk"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1DocumentChunkedDocumentChunk": {
+      "description": "Represents a chunk.",
+      "id": "GoogleCloudDocumentaiV1DocumentChunkedDocumentChunk",
+      "properties": {
+        "chunkId": {
+          "description": "ID of the chunk.",
+          "type": "string"
+        },
+        "content": {
+          "description": "Text content of the chunk.",
+          "type": "string"
+        },
+        "pageFooters": {
+          "description": "Page footers associated with the chunk.",
+          "items": {
+            "$ref": "GoogleCloudDocumentaiV1DocumentChunkedDocumentChunkChunkPageFooter"
+          },
+          "type": "array"
+        },
+        "pageHeaders": {
+          "description": "Page headers associated with the chunk.",
+          "items": {
+            "$ref": "GoogleCloudDocumentaiV1DocumentChunkedDocumentChunkChunkPageHeader"
+          },
+          "type": "array"
+        },
+        "pageSpan": {
+          "$ref": "GoogleCloudDocumentaiV1DocumentChunkedDocumentChunkChunkPageSpan",
+          "description": "Page span of the chunk."
+        },
+        "sourceBlockIds": {
+          "description": "Unused.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1DocumentChunkedDocumentChunkChunkPageFooter": {
+      "description": "Represents the page footer associated with the chunk.",
+      "id": "GoogleCloudDocumentaiV1DocumentChunkedDocumentChunkChunkPageFooter",
+      "properties": {
+        "pageSpan": {
+          "$ref": "GoogleCloudDocumentaiV1DocumentChunkedDocumentChunkChunkPageSpan",
+          "description": "Page span of the footer."
+        },
+        "text": {
+          "description": "Footer in text format.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1DocumentChunkedDocumentChunkChunkPageHeader": {
+      "description": "Represents the page header associated with the chunk.",
+      "id": "GoogleCloudDocumentaiV1DocumentChunkedDocumentChunkChunkPageHeader",
+      "properties": {
+        "pageSpan": {
+          "$ref": "GoogleCloudDocumentaiV1DocumentChunkedDocumentChunkChunkPageSpan",
+          "description": "Page span of the header."
+        },
+        "text": {
+          "description": "Header in text format.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1DocumentChunkedDocumentChunkChunkPageSpan": {
+      "description": "Represents where the chunk starts and ends in the document.",
+      "id": "GoogleCloudDocumentaiV1DocumentChunkedDocumentChunkChunkPageSpan",
+      "properties": {
+        "pageEnd": {
+          "description": "Page where chunk ends in the document.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "pageStart": {
+          "description": "Page where chunk starts in the document.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1DocumentDocumentLayout": {
+      "description": "Represents the parsed layout of a document as a collection of blocks that the document is divided into.",
+      "id": "GoogleCloudDocumentaiV1DocumentDocumentLayout",
+      "properties": {
+        "blocks": {
+          "description": "List of blocks in the document.",
+          "items": {
+            "$ref": "GoogleCloudDocumentaiV1DocumentDocumentLayoutDocumentLayoutBlock"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1DocumentDocumentLayoutDocumentLayoutBlock": {
+      "description": "Represents a block. A block could be one of the various types (text, table, list) supported.",
+      "id": "GoogleCloudDocumentaiV1DocumentDocumentLayoutDocumentLayoutBlock",
+      "properties": {
+        "blockId": {
+          "description": "ID of the block.",
+          "type": "string"
+        },
+        "listBlock": {
+          "$ref": "GoogleCloudDocumentaiV1DocumentDocumentLayoutDocumentLayoutBlockLayoutListBlock",
+          "description": "Block consisting of list content/structure."
+        },
+        "pageSpan": {
+          "$ref": "GoogleCloudDocumentaiV1DocumentDocumentLayoutDocumentLayoutBlockLayoutPageSpan",
+          "description": "Page span of the block."
+        },
+        "tableBlock": {
+          "$ref": "GoogleCloudDocumentaiV1DocumentDocumentLayoutDocumentLayoutBlockLayoutTableBlock",
+          "description": "Block consisting of table content/structure."
+        },
+        "textBlock": {
+          "$ref": "GoogleCloudDocumentaiV1DocumentDocumentLayoutDocumentLayoutBlockLayoutTextBlock",
+          "description": "Block consisting of text content."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1DocumentDocumentLayoutDocumentLayoutBlockLayoutListBlock": {
+      "description": "Represents a list type block.",
+      "id": "GoogleCloudDocumentaiV1DocumentDocumentLayoutDocumentLayoutBlockLayoutListBlock",
+      "properties": {
+        "listEntries": {
+          "description": "List entries that constitute a list block.",
+          "items": {
+            "$ref": "GoogleCloudDocumentaiV1DocumentDocumentLayoutDocumentLayoutBlockLayoutListEntry"
+          },
+          "type": "array"
+        },
+        "type": {
+          "description": "Type of the list_entries (if exist). Available options are `ordered` and `unordered`.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1DocumentDocumentLayoutDocumentLayoutBlockLayoutListEntry": {
+      "description": "Represents an entry in the list.",
+      "id": "GoogleCloudDocumentaiV1DocumentDocumentLayoutDocumentLayoutBlockLayoutListEntry",
+      "properties": {
+        "blocks": {
+          "description": "A list entry is a list of blocks. Repeated blocks support further hierarchies and nested blocks.",
+          "items": {
+            "$ref": "GoogleCloudDocumentaiV1DocumentDocumentLayoutDocumentLayoutBlock"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1DocumentDocumentLayoutDocumentLayoutBlockLayoutPageSpan": {
+      "description": "Represents where the block starts and ends in the document.",
+      "id": "GoogleCloudDocumentaiV1DocumentDocumentLayoutDocumentLayoutBlockLayoutPageSpan",
+      "properties": {
+        "pageEnd": {
+          "description": "Page where block ends in the document.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "pageStart": {
+          "description": "Page where block starts in the document.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1DocumentDocumentLayoutDocumentLayoutBlockLayoutTableBlock": {
+      "description": "Represents a table type block.",
+      "id": "GoogleCloudDocumentaiV1DocumentDocumentLayoutDocumentLayoutBlockLayoutTableBlock",
+      "properties": {
+        "bodyRows": {
+          "description": "Body rows containing main table content.",
+          "items": {
+            "$ref": "GoogleCloudDocumentaiV1DocumentDocumentLayoutDocumentLayoutBlockLayoutTableRow"
+          },
+          "type": "array"
+        },
+        "caption": {
+          "description": "Table caption/title.",
+          "type": "string"
+        },
+        "headerRows": {
+          "description": "Header rows at the top of the table.",
+          "items": {
+            "$ref": "GoogleCloudDocumentaiV1DocumentDocumentLayoutDocumentLayoutBlockLayoutTableRow"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1DocumentDocumentLayoutDocumentLayoutBlockLayoutTableCell": {
+      "description": "Represents a cell in a table row.",
+      "id": "GoogleCloudDocumentaiV1DocumentDocumentLayoutDocumentLayoutBlockLayoutTableCell",
+      "properties": {
+        "blocks": {
+          "description": "A table cell is a list of blocks. Repeated blocks support further hierarchies and nested blocks.",
+          "items": {
+            "$ref": "GoogleCloudDocumentaiV1DocumentDocumentLayoutDocumentLayoutBlock"
+          },
+          "type": "array"
+        },
+        "colSpan": {
+          "description": "How many columns this cell spans.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "rowSpan": {
+          "description": "How many rows this cell spans.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1DocumentDocumentLayoutDocumentLayoutBlockLayoutTableRow": {
+      "description": "Represents a row in a table.",
+      "id": "GoogleCloudDocumentaiV1DocumentDocumentLayoutDocumentLayoutBlockLayoutTableRow",
+      "properties": {
+        "cells": {
+          "description": "A table row is a list of table cells.",
+          "items": {
+            "$ref": "GoogleCloudDocumentaiV1DocumentDocumentLayoutDocumentLayoutBlockLayoutTableCell"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1DocumentDocumentLayoutDocumentLayoutBlockLayoutTextBlock": {
+      "description": "Represents a text type block.",
+      "id": "GoogleCloudDocumentaiV1DocumentDocumentLayoutDocumentLayoutBlockLayoutTextBlock",
+      "properties": {
+        "blocks": {
+          "description": "A text block could further have child blocks. Repeated blocks support further hierarchies and nested blocks.",
+          "items": {
+            "$ref": "GoogleCloudDocumentaiV1DocumentDocumentLayoutDocumentLayoutBlock"
+          },
+          "type": "array"
+        },
+        "text": {
+          "description": "Text content stored in the block.",
+          "type": "string"
+        },
+        "type": {
+          "description": "Type of the text in the block. Available options are: `paragraph`, `subtitle`, `heading-1`, `heading-2`, `heading-3`, `heading-4`, `heading-5`, `header`, `footer`.",
           "type": "string"
         }
       },
@@ -4117,6 +4401,10 @@
           "$ref": "GoogleCloudDocumentaiV1ProcessOptionsIndividualPageSelector",
           "description": "Which pages to process (1-indexed)."
         },
+        "layoutConfig": {
+          "$ref": "GoogleCloudDocumentaiV1ProcessOptionsLayoutConfig",
+          "description": "Optional. Only applicable to `LAYOUT_PARSER_PROCESSOR`. Returns error if set on other processor types."
+        },
         "ocrConfig": {
           "$ref": "GoogleCloudDocumentaiV1OcrConfig",
           "description": "Only applicable to `OCR_PROCESSOR` and `FORM_PARSER_PROCESSOR`. Returns error if set on other processor types."
@@ -4139,6 +4427,33 @@
             "type": "integer"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1ProcessOptionsLayoutConfig": {
+      "description": "Serving config for layout parser processor.",
+      "id": "GoogleCloudDocumentaiV1ProcessOptionsLayoutConfig",
+      "properties": {
+        "chunkingConfig": {
+          "$ref": "GoogleCloudDocumentaiV1ProcessOptionsLayoutConfigChunkingConfig",
+          "description": "Optional. Config for chunking in layout parser processor."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1ProcessOptionsLayoutConfigChunkingConfig": {
+      "description": "Serving config for chunking.",
+      "id": "GoogleCloudDocumentaiV1ProcessOptionsLayoutConfigChunkingConfig",
+      "properties": {
+        "chunkSize": {
+          "description": "Optional. The chunk sizes to use when splitting documents, in order of level.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "includeAncestorHeadings": {
+          "description": "Optional. Whether or not to include ancestor headings when splitting.",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -4235,6 +4550,16 @@
           },
           "readOnly": true,
           "type": "array"
+        },
+        "satisfiesPzi": {
+          "description": "Output only. Reserved for future use.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "satisfiesPzs": {
+          "description": "Output only. Reserved for future use.",
+          "readOnly": true,
+          "type": "boolean"
         },
         "state": {
           "description": "Output only. The state of the processor.",
@@ -4396,6 +4721,16 @@
         "name": {
           "description": "Identifier. The resource name of the processor version. Format: `projects/{project}/locations/{location}/processors/{processor}/processorVersions/{processor_version}`",
           "type": "string"
+        },
+        "satisfiesPzi": {
+          "description": "Output only. Reserved for future use.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "satisfiesPzs": {
+          "description": "Output only. Reserved for future use.",
+          "readOnly": true,
+          "type": "boolean"
         },
         "state": {
           "description": "Output only. The state of the processor version.",
@@ -4824,10 +5159,18 @@
       "description": "Document represents the canonical document resource in Document AI. It is an interchange format that provides insights into documents and allows for collaboration between users and Document AI to iterate and optimize for quality.",
       "id": "GoogleCloudDocumentaiV1beta1Document",
       "properties": {
+        "chunkedDocument": {
+          "$ref": "GoogleCloudDocumentaiV1beta1DocumentChunkedDocument",
+          "description": "Document chunked based on chunking config."
+        },
         "content": {
           "description": "Optional. Inline document content, represented as a stream of bytes. Note: As with all `bytes` fields, protobuffers use a pure binary representation, whereas JSON representations use base64.",
           "format": "byte",
           "type": "string"
+        },
+        "documentLayout": {
+          "$ref": "GoogleCloudDocumentaiV1beta1DocumentDocumentLayout",
+          "description": "Parsed layout of the document."
         },
         "entities": {
           "description": "A list of entities detected on Document.text. For document shards, entities in this list may cross shard boundaries.",
@@ -4890,6 +5233,282 @@
         },
         "uri": {
           "description": "Optional. Currently supports Google Cloud Storage URI of the form `gs://bucket_name/object_name`. Object versioning is not supported. For more information, refer to [Google Cloud Storage Request URIs](https://cloud.google.com/storage/docs/reference-uris).",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1beta1DocumentChunkedDocument": {
+      "description": "Represents the chunks that the document is divided into.",
+      "id": "GoogleCloudDocumentaiV1beta1DocumentChunkedDocument",
+      "properties": {
+        "chunks": {
+          "description": "List of chunks.",
+          "items": {
+            "$ref": "GoogleCloudDocumentaiV1beta1DocumentChunkedDocumentChunk"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1beta1DocumentChunkedDocumentChunk": {
+      "description": "Represents a chunk.",
+      "id": "GoogleCloudDocumentaiV1beta1DocumentChunkedDocumentChunk",
+      "properties": {
+        "chunkId": {
+          "description": "ID of the chunk.",
+          "type": "string"
+        },
+        "content": {
+          "description": "Text content of the chunk.",
+          "type": "string"
+        },
+        "pageFooters": {
+          "description": "Page footers associated with the chunk.",
+          "items": {
+            "$ref": "GoogleCloudDocumentaiV1beta1DocumentChunkedDocumentChunkChunkPageFooter"
+          },
+          "type": "array"
+        },
+        "pageHeaders": {
+          "description": "Page headers associated with the chunk.",
+          "items": {
+            "$ref": "GoogleCloudDocumentaiV1beta1DocumentChunkedDocumentChunkChunkPageHeader"
+          },
+          "type": "array"
+        },
+        "pageSpan": {
+          "$ref": "GoogleCloudDocumentaiV1beta1DocumentChunkedDocumentChunkChunkPageSpan",
+          "description": "Page span of the chunk."
+        },
+        "sourceBlockIds": {
+          "description": "Unused.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1beta1DocumentChunkedDocumentChunkChunkPageFooter": {
+      "description": "Represents the page footer associated with the chunk.",
+      "id": "GoogleCloudDocumentaiV1beta1DocumentChunkedDocumentChunkChunkPageFooter",
+      "properties": {
+        "pageSpan": {
+          "$ref": "GoogleCloudDocumentaiV1beta1DocumentChunkedDocumentChunkChunkPageSpan",
+          "description": "Page span of the footer."
+        },
+        "text": {
+          "description": "Footer in text format.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1beta1DocumentChunkedDocumentChunkChunkPageHeader": {
+      "description": "Represents the page header associated with the chunk.",
+      "id": "GoogleCloudDocumentaiV1beta1DocumentChunkedDocumentChunkChunkPageHeader",
+      "properties": {
+        "pageSpan": {
+          "$ref": "GoogleCloudDocumentaiV1beta1DocumentChunkedDocumentChunkChunkPageSpan",
+          "description": "Page span of the header."
+        },
+        "text": {
+          "description": "Header in text format.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1beta1DocumentChunkedDocumentChunkChunkPageSpan": {
+      "description": "Represents where the chunk starts and ends in the document.",
+      "id": "GoogleCloudDocumentaiV1beta1DocumentChunkedDocumentChunkChunkPageSpan",
+      "properties": {
+        "pageEnd": {
+          "description": "Page where chunk ends in the document.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "pageStart": {
+          "description": "Page where chunk starts in the document.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1beta1DocumentDocumentLayout": {
+      "description": "Represents the parsed layout of a document as a collection of blocks that the document is divided into.",
+      "id": "GoogleCloudDocumentaiV1beta1DocumentDocumentLayout",
+      "properties": {
+        "blocks": {
+          "description": "List of blocks in the document.",
+          "items": {
+            "$ref": "GoogleCloudDocumentaiV1beta1DocumentDocumentLayoutDocumentLayoutBlock"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1beta1DocumentDocumentLayoutDocumentLayoutBlock": {
+      "description": "Represents a block. A block could be one of the various types (text, table, list) supported.",
+      "id": "GoogleCloudDocumentaiV1beta1DocumentDocumentLayoutDocumentLayoutBlock",
+      "properties": {
+        "blockId": {
+          "description": "ID of the block.",
+          "type": "string"
+        },
+        "listBlock": {
+          "$ref": "GoogleCloudDocumentaiV1beta1DocumentDocumentLayoutDocumentLayoutBlockLayoutListBlock",
+          "description": "Block consisting of list content/structure."
+        },
+        "pageSpan": {
+          "$ref": "GoogleCloudDocumentaiV1beta1DocumentDocumentLayoutDocumentLayoutBlockLayoutPageSpan",
+          "description": "Page span of the block."
+        },
+        "tableBlock": {
+          "$ref": "GoogleCloudDocumentaiV1beta1DocumentDocumentLayoutDocumentLayoutBlockLayoutTableBlock",
+          "description": "Block consisting of table content/structure."
+        },
+        "textBlock": {
+          "$ref": "GoogleCloudDocumentaiV1beta1DocumentDocumentLayoutDocumentLayoutBlockLayoutTextBlock",
+          "description": "Block consisting of text content."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1beta1DocumentDocumentLayoutDocumentLayoutBlockLayoutListBlock": {
+      "description": "Represents a list type block.",
+      "id": "GoogleCloudDocumentaiV1beta1DocumentDocumentLayoutDocumentLayoutBlockLayoutListBlock",
+      "properties": {
+        "listEntries": {
+          "description": "List entries that constitute a list block.",
+          "items": {
+            "$ref": "GoogleCloudDocumentaiV1beta1DocumentDocumentLayoutDocumentLayoutBlockLayoutListEntry"
+          },
+          "type": "array"
+        },
+        "type": {
+          "description": "Type of the list_entries (if exist). Available options are `ordered` and `unordered`.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1beta1DocumentDocumentLayoutDocumentLayoutBlockLayoutListEntry": {
+      "description": "Represents an entry in the list.",
+      "id": "GoogleCloudDocumentaiV1beta1DocumentDocumentLayoutDocumentLayoutBlockLayoutListEntry",
+      "properties": {
+        "blocks": {
+          "description": "A list entry is a list of blocks. Repeated blocks support further hierarchies and nested blocks.",
+          "items": {
+            "$ref": "GoogleCloudDocumentaiV1beta1DocumentDocumentLayoutDocumentLayoutBlock"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1beta1DocumentDocumentLayoutDocumentLayoutBlockLayoutPageSpan": {
+      "description": "Represents where the block starts and ends in the document.",
+      "id": "GoogleCloudDocumentaiV1beta1DocumentDocumentLayoutDocumentLayoutBlockLayoutPageSpan",
+      "properties": {
+        "pageEnd": {
+          "description": "Page where block ends in the document.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "pageStart": {
+          "description": "Page where block starts in the document.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1beta1DocumentDocumentLayoutDocumentLayoutBlockLayoutTableBlock": {
+      "description": "Represents a table type block.",
+      "id": "GoogleCloudDocumentaiV1beta1DocumentDocumentLayoutDocumentLayoutBlockLayoutTableBlock",
+      "properties": {
+        "bodyRows": {
+          "description": "Body rows containing main table content.",
+          "items": {
+            "$ref": "GoogleCloudDocumentaiV1beta1DocumentDocumentLayoutDocumentLayoutBlockLayoutTableRow"
+          },
+          "type": "array"
+        },
+        "caption": {
+          "description": "Table caption/title.",
+          "type": "string"
+        },
+        "headerRows": {
+          "description": "Header rows at the top of the table.",
+          "items": {
+            "$ref": "GoogleCloudDocumentaiV1beta1DocumentDocumentLayoutDocumentLayoutBlockLayoutTableRow"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1beta1DocumentDocumentLayoutDocumentLayoutBlockLayoutTableCell": {
+      "description": "Represents a cell in a table row.",
+      "id": "GoogleCloudDocumentaiV1beta1DocumentDocumentLayoutDocumentLayoutBlockLayoutTableCell",
+      "properties": {
+        "blocks": {
+          "description": "A table cell is a list of blocks. Repeated blocks support further hierarchies and nested blocks.",
+          "items": {
+            "$ref": "GoogleCloudDocumentaiV1beta1DocumentDocumentLayoutDocumentLayoutBlock"
+          },
+          "type": "array"
+        },
+        "colSpan": {
+          "description": "How many columns this cell spans.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "rowSpan": {
+          "description": "How many rows this cell spans.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1beta1DocumentDocumentLayoutDocumentLayoutBlockLayoutTableRow": {
+      "description": "Represents a row in a table.",
+      "id": "GoogleCloudDocumentaiV1beta1DocumentDocumentLayoutDocumentLayoutBlockLayoutTableRow",
+      "properties": {
+        "cells": {
+          "description": "A table row is a list of table cells.",
+          "items": {
+            "$ref": "GoogleCloudDocumentaiV1beta1DocumentDocumentLayoutDocumentLayoutBlockLayoutTableCell"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1beta1DocumentDocumentLayoutDocumentLayoutBlockLayoutTextBlock": {
+      "description": "Represents a text type block.",
+      "id": "GoogleCloudDocumentaiV1beta1DocumentDocumentLayoutDocumentLayoutBlockLayoutTextBlock",
+      "properties": {
+        "blocks": {
+          "description": "A text block could further have child blocks. Repeated blocks support further hierarchies and nested blocks.",
+          "items": {
+            "$ref": "GoogleCloudDocumentaiV1beta1DocumentDocumentLayoutDocumentLayoutBlock"
+          },
+          "type": "array"
+        },
+        "text": {
+          "description": "Text content stored in the block.",
+          "type": "string"
+        },
+        "type": {
+          "description": "Type of the text in the block. Available options are: `paragraph`, `subtitle`, `heading-1`, `heading-2`, `heading-3`, `heading-4`, `heading-5`, `header`, `footer`.",
           "type": "string"
         }
       },
@@ -6198,10 +6817,18 @@
       "description": "Document represents the canonical document resource in Document AI. It is an interchange format that provides insights into documents and allows for collaboration between users and Document AI to iterate and optimize for quality.",
       "id": "GoogleCloudDocumentaiV1beta2Document",
       "properties": {
+        "chunkedDocument": {
+          "$ref": "GoogleCloudDocumentaiV1beta2DocumentChunkedDocument",
+          "description": "Document chunked based on chunking config."
+        },
         "content": {
           "description": "Optional. Inline document content, represented as a stream of bytes. Note: As with all `bytes` fields, protobuffers use a pure binary representation, whereas JSON representations use base64.",
           "format": "byte",
           "type": "string"
+        },
+        "documentLayout": {
+          "$ref": "GoogleCloudDocumentaiV1beta2DocumentDocumentLayout",
+          "description": "Parsed layout of the document."
         },
         "entities": {
           "description": "A list of entities detected on Document.text. For document shards, entities in this list may cross shard boundaries.",
@@ -6271,6 +6898,282 @@
         },
         "uri": {
           "description": "Optional. Currently supports Google Cloud Storage URI of the form `gs://bucket_name/object_name`. Object versioning is not supported. For more information, refer to [Google Cloud Storage Request URIs](https://cloud.google.com/storage/docs/reference-uris).",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1beta2DocumentChunkedDocument": {
+      "description": "Represents the chunks that the document is divided into.",
+      "id": "GoogleCloudDocumentaiV1beta2DocumentChunkedDocument",
+      "properties": {
+        "chunks": {
+          "description": "List of chunks.",
+          "items": {
+            "$ref": "GoogleCloudDocumentaiV1beta2DocumentChunkedDocumentChunk"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1beta2DocumentChunkedDocumentChunk": {
+      "description": "Represents a chunk.",
+      "id": "GoogleCloudDocumentaiV1beta2DocumentChunkedDocumentChunk",
+      "properties": {
+        "chunkId": {
+          "description": "ID of the chunk.",
+          "type": "string"
+        },
+        "content": {
+          "description": "Text content of the chunk.",
+          "type": "string"
+        },
+        "pageFooters": {
+          "description": "Page footers associated with the chunk.",
+          "items": {
+            "$ref": "GoogleCloudDocumentaiV1beta2DocumentChunkedDocumentChunkChunkPageFooter"
+          },
+          "type": "array"
+        },
+        "pageHeaders": {
+          "description": "Page headers associated with the chunk.",
+          "items": {
+            "$ref": "GoogleCloudDocumentaiV1beta2DocumentChunkedDocumentChunkChunkPageHeader"
+          },
+          "type": "array"
+        },
+        "pageSpan": {
+          "$ref": "GoogleCloudDocumentaiV1beta2DocumentChunkedDocumentChunkChunkPageSpan",
+          "description": "Page span of the chunk."
+        },
+        "sourceBlockIds": {
+          "description": "Unused.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1beta2DocumentChunkedDocumentChunkChunkPageFooter": {
+      "description": "Represents the page footer associated with the chunk.",
+      "id": "GoogleCloudDocumentaiV1beta2DocumentChunkedDocumentChunkChunkPageFooter",
+      "properties": {
+        "pageSpan": {
+          "$ref": "GoogleCloudDocumentaiV1beta2DocumentChunkedDocumentChunkChunkPageSpan",
+          "description": "Page span of the footer."
+        },
+        "text": {
+          "description": "Footer in text format.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1beta2DocumentChunkedDocumentChunkChunkPageHeader": {
+      "description": "Represents the page header associated with the chunk.",
+      "id": "GoogleCloudDocumentaiV1beta2DocumentChunkedDocumentChunkChunkPageHeader",
+      "properties": {
+        "pageSpan": {
+          "$ref": "GoogleCloudDocumentaiV1beta2DocumentChunkedDocumentChunkChunkPageSpan",
+          "description": "Page span of the header."
+        },
+        "text": {
+          "description": "Header in text format.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1beta2DocumentChunkedDocumentChunkChunkPageSpan": {
+      "description": "Represents where the chunk starts and ends in the document.",
+      "id": "GoogleCloudDocumentaiV1beta2DocumentChunkedDocumentChunkChunkPageSpan",
+      "properties": {
+        "pageEnd": {
+          "description": "Page where chunk ends in the document.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "pageStart": {
+          "description": "Page where chunk starts in the document.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1beta2DocumentDocumentLayout": {
+      "description": "Represents the parsed layout of a document as a collection of blocks that the document is divided into.",
+      "id": "GoogleCloudDocumentaiV1beta2DocumentDocumentLayout",
+      "properties": {
+        "blocks": {
+          "description": "List of blocks in the document.",
+          "items": {
+            "$ref": "GoogleCloudDocumentaiV1beta2DocumentDocumentLayoutDocumentLayoutBlock"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1beta2DocumentDocumentLayoutDocumentLayoutBlock": {
+      "description": "Represents a block. A block could be one of the various types (text, table, list) supported.",
+      "id": "GoogleCloudDocumentaiV1beta2DocumentDocumentLayoutDocumentLayoutBlock",
+      "properties": {
+        "blockId": {
+          "description": "ID of the block.",
+          "type": "string"
+        },
+        "listBlock": {
+          "$ref": "GoogleCloudDocumentaiV1beta2DocumentDocumentLayoutDocumentLayoutBlockLayoutListBlock",
+          "description": "Block consisting of list content/structure."
+        },
+        "pageSpan": {
+          "$ref": "GoogleCloudDocumentaiV1beta2DocumentDocumentLayoutDocumentLayoutBlockLayoutPageSpan",
+          "description": "Page span of the block."
+        },
+        "tableBlock": {
+          "$ref": "GoogleCloudDocumentaiV1beta2DocumentDocumentLayoutDocumentLayoutBlockLayoutTableBlock",
+          "description": "Block consisting of table content/structure."
+        },
+        "textBlock": {
+          "$ref": "GoogleCloudDocumentaiV1beta2DocumentDocumentLayoutDocumentLayoutBlockLayoutTextBlock",
+          "description": "Block consisting of text content."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1beta2DocumentDocumentLayoutDocumentLayoutBlockLayoutListBlock": {
+      "description": "Represents a list type block.",
+      "id": "GoogleCloudDocumentaiV1beta2DocumentDocumentLayoutDocumentLayoutBlockLayoutListBlock",
+      "properties": {
+        "listEntries": {
+          "description": "List entries that constitute a list block.",
+          "items": {
+            "$ref": "GoogleCloudDocumentaiV1beta2DocumentDocumentLayoutDocumentLayoutBlockLayoutListEntry"
+          },
+          "type": "array"
+        },
+        "type": {
+          "description": "Type of the list_entries (if exist). Available options are `ordered` and `unordered`.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1beta2DocumentDocumentLayoutDocumentLayoutBlockLayoutListEntry": {
+      "description": "Represents an entry in the list.",
+      "id": "GoogleCloudDocumentaiV1beta2DocumentDocumentLayoutDocumentLayoutBlockLayoutListEntry",
+      "properties": {
+        "blocks": {
+          "description": "A list entry is a list of blocks. Repeated blocks support further hierarchies and nested blocks.",
+          "items": {
+            "$ref": "GoogleCloudDocumentaiV1beta2DocumentDocumentLayoutDocumentLayoutBlock"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1beta2DocumentDocumentLayoutDocumentLayoutBlockLayoutPageSpan": {
+      "description": "Represents where the block starts and ends in the document.",
+      "id": "GoogleCloudDocumentaiV1beta2DocumentDocumentLayoutDocumentLayoutBlockLayoutPageSpan",
+      "properties": {
+        "pageEnd": {
+          "description": "Page where block ends in the document.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "pageStart": {
+          "description": "Page where block starts in the document.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1beta2DocumentDocumentLayoutDocumentLayoutBlockLayoutTableBlock": {
+      "description": "Represents a table type block.",
+      "id": "GoogleCloudDocumentaiV1beta2DocumentDocumentLayoutDocumentLayoutBlockLayoutTableBlock",
+      "properties": {
+        "bodyRows": {
+          "description": "Body rows containing main table content.",
+          "items": {
+            "$ref": "GoogleCloudDocumentaiV1beta2DocumentDocumentLayoutDocumentLayoutBlockLayoutTableRow"
+          },
+          "type": "array"
+        },
+        "caption": {
+          "description": "Table caption/title.",
+          "type": "string"
+        },
+        "headerRows": {
+          "description": "Header rows at the top of the table.",
+          "items": {
+            "$ref": "GoogleCloudDocumentaiV1beta2DocumentDocumentLayoutDocumentLayoutBlockLayoutTableRow"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1beta2DocumentDocumentLayoutDocumentLayoutBlockLayoutTableCell": {
+      "description": "Represents a cell in a table row.",
+      "id": "GoogleCloudDocumentaiV1beta2DocumentDocumentLayoutDocumentLayoutBlockLayoutTableCell",
+      "properties": {
+        "blocks": {
+          "description": "A table cell is a list of blocks. Repeated blocks support further hierarchies and nested blocks.",
+          "items": {
+            "$ref": "GoogleCloudDocumentaiV1beta2DocumentDocumentLayoutDocumentLayoutBlock"
+          },
+          "type": "array"
+        },
+        "colSpan": {
+          "description": "How many columns this cell spans.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "rowSpan": {
+          "description": "How many rows this cell spans.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1beta2DocumentDocumentLayoutDocumentLayoutBlockLayoutTableRow": {
+      "description": "Represents a row in a table.",
+      "id": "GoogleCloudDocumentaiV1beta2DocumentDocumentLayoutDocumentLayoutBlockLayoutTableRow",
+      "properties": {
+        "cells": {
+          "description": "A table row is a list of table cells.",
+          "items": {
+            "$ref": "GoogleCloudDocumentaiV1beta2DocumentDocumentLayoutDocumentLayoutBlockLayoutTableCell"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1beta2DocumentDocumentLayoutDocumentLayoutBlockLayoutTextBlock": {
+      "description": "Represents a text type block.",
+      "id": "GoogleCloudDocumentaiV1beta2DocumentDocumentLayoutDocumentLayoutBlockLayoutTextBlock",
+      "properties": {
+        "blocks": {
+          "description": "A text block could further have child blocks. Repeated blocks support further hierarchies and nested blocks.",
+          "items": {
+            "$ref": "GoogleCloudDocumentaiV1beta2DocumentDocumentLayoutDocumentLayoutBlock"
+          },
+          "type": "array"
+        },
+        "text": {
+          "description": "Text content stored in the block.",
+          "type": "string"
+        },
+        "type": {
+          "description": "Type of the text in the block. Available options are: `paragraph`, `subtitle`, `heading-1`, `heading-2`, `heading-3`, `heading-4`, `heading-5`, `header`, `footer`.",
           "type": "string"
         }
       },
@@ -7739,6 +8642,16 @@
         "name": {
           "description": "Dataset resource name. Format: `projects/{project}/locations/{location}/processors/{processor}/dataset`",
           "type": "string"
+        },
+        "satisfiesPzi": {
+          "description": "Output only. Reserved for future use.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "satisfiesPzs": {
+          "description": "Output only. Reserved for future use.",
+          "readOnly": true,
+          "type": "boolean"
         },
         "spannerIndexingConfig": {
           "$ref": "GoogleCloudDocumentaiV1beta3DatasetSpannerIndexingConfig",
