@@ -1,5 +1,24 @@
 # Changelog
 
+## [14.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/storage-v13.1.0...storage-v14.0.0) (2024-06-06)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+* **storage:** This release has breaking changes.
+
+### Features
+
+* run the generator ([#3456](https://github.com/googleapis/google-api-nodejs-client/issues/3456)) ([a865e81](https://github.com/googleapis/google-api-nodejs-client/commit/a865e81539b315d3b321650663ba0b2555b1e5a1))
+* **storage:** update the API ([fd1ec98](https://github.com/googleapis/google-api-nodejs-client/commit/fd1ec98730832ef545825ac940ac43b9f42b1214))
+* **storage:** update the API ([7c5e1b3](https://github.com/googleapis/google-api-nodejs-client/commit/7c5e1b3a32459c1cc9b72f7c6055115c7c451176))
+
+
+### Bug Fixes
+
+* **storage:** update the API ([cd03772](https://github.com/googleapis/google-api-nodejs-client/commit/cd037720cda614720bef7852812b1eb99d86d25f))
+
 ## [13.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/storage-v13.0.0...storage-v13.1.0) (2024-06-03)
 
 

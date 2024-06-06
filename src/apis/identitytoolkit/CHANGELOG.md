@@ -1,5 +1,12 @@
 # Changelog
 
+## [10.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/identitytoolkit-v10.0.0...identitytoolkit-v10.1.0) (2024-06-06)
+
+
+### Features
+
+* **identitytoolkit:** update the API ([16a4ff8](https://github.com/googleapis/google-api-nodejs-client/commit/16a4ff8e2db9bf781379e6beaeedb02b8661cc25))
+
 ## [10.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/identitytoolkit-v9.0.1...identitytoolkit-v10.0.0) (2024-05-02)
 
 
