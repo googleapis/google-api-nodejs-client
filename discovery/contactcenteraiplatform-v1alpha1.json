@@ -512,7 +512,7 @@
       }
     }
   },
-  "revision": "20240531",
+  "revision": "20240603",
   "rootUrl": "https://contactcenteraiplatform.googleapis.com/",
   "schemas": {
     "AdminUser": {
@@ -540,6 +540,13 @@
       "description": "Defines a logical CCAIP component that e.g. “EMAIL”, \"CRM\". For more information see go/ccaip-private-path-v2. Each logical component is associated with a list of service attachments.",
       "id": "Component",
       "properties": {
+        "allowedProjectIds": {
+          "description": "The list of project ids that are allowed to send traffic to the service attachment. This field should be filled only for the ingress components.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
         "name": {
           "description": "Name of the component.",
           "type": "string"
@@ -1166,13 +1173,6 @@
       "description": "Container for the VPC-SC networking configurations.",
       "id": "ServiceAttachment",
       "properties": {
-        "allowedProjectIds": {
-          "description": "The list of project ids that are allowed to send traffic to the service attachment. This field should be filled only for the ingress service attachments.",
-          "items": {
-            "type": "string"
-          },
-          "type": "array"
-        },
         "name": {
           "description": "The service attachment name that will be used for sending private traffic to the CCAIP tenant project. Example: \"projects/${TENANT_PROJECT_ID}/regions/${REGION}/serviceAttachments/ingress-default\".",
           "type": "string"
