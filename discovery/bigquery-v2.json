@@ -1935,7 +1935,7 @@
       }
     }
   },
-  "revision": "20240418",
+  "revision": "20240526",
   "rootUrl": "https://bigquery.googleapis.com/",
   "schemas": {
     "AggregateClassificationMetrics": {
@@ -3160,7 +3160,7 @@
         },
         "defaultEncryptionConfiguration": {
           "$ref": "EncryptionConfiguration",
-          "description": "The default encryption key for all tables in the dataset. Once this property is set, all newly-created partitioned tables in the dataset will have encryption key set to this value, unless table creation request (or query) overrides the key."
+          "description": "The default encryption key for all tables in the dataset. After this property is set, the encryption key of all newly-created tables in the dataset is set to this value unless the table creation request or query explicitly overrides the key."
         },
         "defaultPartitionExpirationMs": {
           "description": "This default partition expiration, expressed in milliseconds. When new time-partitioned tables are created in a dataset where this property is set, the table will inherit this value, propagated as the `TimePartitioning.expirationMs` property on the new table. If you set `TimePartitioning.expirationMs` explicitly when creating a table, the `defaultPartitionExpirationMs` of the containing dataset is ignored. When creating a partitioned table, if `defaultPartitionExpirationMs` is set, the `defaultTableExpirationMs` value is ignored and the table will not be inherit a table expiration deadline.",
@@ -3252,6 +3252,13 @@
           "description": "Optional. Defines the time travel window in hours. The value can be from 48 to 168 hours (2 to 7 days). The default value is 168 hours if this is not set.",
           "format": "int64",
           "type": "string"
+        },
+        "resourceTags": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. The [tags](/bigquery/docs/tags) attached to this dataset. Tag keys are globally unique. Tag key is expected to be in the namespaced format, for example \"123456789012/environment\" where 123456789012 is the ID of the parent organization or project resource for this tag key. Tag value is expected to be the short name, for example \"Production\". See [Tag definitions](/iam/docs/tags-access-control#definitions) for more details.",
+          "type": "object"
         },
         "restrictions": {
           "$ref": "RestrictionConfig",
@@ -4184,6 +4191,21 @@
       },
       "type": "object"
     },
+    "ForeignViewDefinition": {
+      "description": "A view can be represented in multiple ways. Each representation has its own dialect. This message stores the metadata required for these representations.",
+      "id": "ForeignViewDefinition",
+      "properties": {
+        "dialect": {
+          "description": "Optional. Represents the dialect of the query.",
+          "type": "string"
+        },
+        "query": {
+          "description": "Required. The query that defines the view.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GetIamPolicyRequest": {
       "description": "Request message for `GetIamPolicy` method.",
       "id": "GetIamPolicyRequest",
@@ -4846,7 +4868,7 @@
           "description": "[Pick one] Configures an extract job."
         },
         "jobTimeoutMs": {
-          "description": "Optional. Job timeout in milliseconds. If this time limit is exceeded, BigQuery might attempt to stop the job.",
+          "description": "Optional. Job timeout in milliseconds. If this time limit is exceeded, BigQuery will attempt to stop a longer job, but may not always succeed in canceling it before the job completes. For example, a job that takes more than 60 seconds to complete has a better chance of being stopped than a job that takes 10 seconds to complete.",
           "format": "int64",
           "type": "string"
         },
@@ -4942,6 +4964,22 @@
         "clustering": {
           "$ref": "Clustering",
           "description": "Clustering specification for the destination table."
+        },
+        "columnNameCharacterMap": {
+          "description": "Optional. Character map supported for column names in CSV/Parquet loads. Defaults to STRICT and can be overridden by Project Config Service. Using this option with unsupporting load formats will result in an error.",
+          "enum": [
+            "COLUMN_NAME_CHARACTER_MAP_UNSPECIFIED",
+            "STRICT",
+            "V1",
+            "V2"
+          ],
+          "enumDescriptions": [
+            "Unspecified column name character map.",
+            "Support flexible column name and reject invalid column names.",
+            "Support alphanumeric + underscore characters and names must start with a letter or underscore. Invalid column names will be normalized.",
+            "Support flexible column name. Invalid column names will be normalized."
+          ],
+          "type": "string"
         },
         "connectionProperties": {
           "description": "Optional. Connection properties which can modify the load job behavior. Currently, only the 'session_id' connection property is supported, and is used to resolve _SESSION appearing as the dataset id.",
@@ -6675,14 +6713,14 @@
           "type": "boolean"
         },
         "mapTargetType": {
-          "description": "Optional. Will indicate how to represent a parquet map if present.",
+          "description": "Optional. Indicates how to represent a Parquet map if present.",
           "enum": [
             "MAP_TARGET_TYPE_UNSPECIFIED",
             "ARRAY_OF_STRUCT"
           ],
           "enumDescriptions": [
-            "In this mode, we fall back to the default. Currently (3/24) we represent the map as: struct map_field_name { repeated struct key_value { key value } }",
-            "In this mode, we omit parquet's key_value struct and represent the map as: repeated struct map_field_name { key value }"
+            "In this mode, the map will have the following schema: struct map_field_name { repeated struct key_value { key value } }.",
+            "In this mode, the map will have the following schema: repeated struct map_field_name { key value }."
           ],
           "type": "string"
         }
@@ -8407,6 +8445,12 @@
           "readOnly": true,
           "type": "string"
         },
+        "numCurrentPhysicalBytes": {
+          "description": "Output only. Number of physical bytes used by current live data storage. This data is not kept in real time, and might be delayed by a few seconds to a few minutes.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
         "numLongTermBytes": {
           "description": "Output only. The number of logical bytes in the table that are considered \"long-term storage\".",
           "format": "int64",
@@ -9006,7 +9050,7 @@
           "readOnly": true
         },
         "replicationIntervalMs": {
-          "description": "Required. Specifies the interval at which the source table is polled for updates.",
+          "description": "Optional. Specifies the interval at which the source table is polled for updates. It's Optional. If not specified, default replication interval would be applied.",
           "format": "int64",
           "type": "string"
         },
@@ -10137,7 +10181,7 @@
       "id": "UndeleteDatasetRequest",
       "properties": {
         "deletionTime": {
-          "description": "Optional. The exact time when the dataset was deleted. If not specified, the most recently deleted version is undeleted.",
+          "description": "Optional. The exact time when the dataset was deleted. If not specified, the most recently deleted version is undeleted. Undeleting a dataset using deletion time is not supported.",
           "format": "google-datetime",
           "type": "string"
         }
@@ -10193,6 +10237,13 @@
       "description": "Describes the definition of a logical view.",
       "id": "ViewDefinition",
       "properties": {
+        "foreignDefinitions": {
+          "description": "Optional. Foreign view representations.",
+          "items": {
+            "$ref": "ForeignViewDefinition"
+          },
+          "type": "array"
+        },
         "privacyPolicy": {
           "$ref": "PrivacyPolicy",
           "description": "Optional. Specifices the privacy policy for the view."

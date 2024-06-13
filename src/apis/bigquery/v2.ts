@@ -892,7 +892,7 @@ export namespace bigquery_v2 {
      */
     defaultCollation?: string | null;
     /**
-     * The default encryption key for all tables in the dataset. Once this property is set, all newly-created partitioned tables in the dataset will have encryption key set to this value, unless table creation request (or query) overrides the key.
+     * The default encryption key for all tables in the dataset. After this property is set, the encryption key of all newly-created tables in the dataset is set to this value unless the table creation request or query explicitly overrides the key.
      */
     defaultEncryptionConfiguration?: Schema$EncryptionConfiguration;
     /**
@@ -963,6 +963,10 @@ export namespace bigquery_v2 {
      * Optional. Defines the time travel window in hours. The value can be from 48 to 168 hours (2 to 7 days). The default value is 168 hours if this is not set.
      */
     maxTimeTravelHours?: string | null;
+    /**
+     * Optional. The [tags](/bigquery/docs/tags) attached to this dataset. Tag keys are globally unique. Tag key is expected to be in the namespaced format, for example "123456789012/environment" where 123456789012 is the ID of the parent organization or project resource for this tag key. Tag value is expected to be the short name, for example "Production". See [Tag definitions](/iam/docs/tags-access-control#definitions) for more details.
+     */
+    resourceTags?: {[key: string]: string} | null;
     /**
      * Optional. Output only. Restriction config for all tables and dataset. If set, restrict certain accesses on the dataset and all its tables based on the config. See [Data egress](/bigquery/docs/analytics-hub-introduction#data_egress) for more details.
      */
@@ -1626,6 +1630,19 @@ export namespace bigquery_v2 {
     typeSystem?: string | null;
   }
   /**
+   * A view can be represented in multiple ways. Each representation has its own dialect. This message stores the metadata required for these representations.
+   */
+  export interface Schema$ForeignViewDefinition {
+    /**
+     * Optional. Represents the dialect of the query.
+     */
+    dialect?: string | null;
+    /**
+     * Required. The query that defines the view.
+     */
+    query?: string | null;
+  }
+  /**
    * Request message for `GetIamPolicy` method.
    */
   export interface Schema$GetIamPolicyRequest {
@@ -2108,7 +2125,7 @@ export namespace bigquery_v2 {
      */
     extract?: Schema$JobConfigurationExtract;
     /**
-     * Optional. Job timeout in milliseconds. If this time limit is exceeded, BigQuery might attempt to stop the job.
+     * Optional. Job timeout in milliseconds. If this time limit is exceeded, BigQuery will attempt to stop a longer job, but may not always succeed in canceling it before the job completes. For example, a job that takes more than 60 seconds to complete has a better chance of being stopped than a job that takes 10 seconds to complete.
      */
     jobTimeoutMs?: string | null;
     /**
@@ -2193,6 +2210,10 @@ export namespace bigquery_v2 {
      * Clustering specification for the destination table.
      */
     clustering?: Schema$Clustering;
+    /**
+     * Optional. Character map supported for column names in CSV/Parquet loads. Defaults to STRICT and can be overridden by Project Config Service. Using this option with unsupporting load formats will result in an error.
+     */
+    columnNameCharacterMap?: string | null;
     /**
      * Optional. Connection properties which can modify the load job behavior. Currently, only the 'session_id' connection property is supported, and is used to resolve _SESSION appearing as the dataset id.
      */
@@ -3257,7 +3278,7 @@ export namespace bigquery_v2 {
      */
     enumAsString?: boolean | null;
     /**
-     * Optional. Will indicate how to represent a parquet map if present.
+     * Optional. Indicates how to represent a Parquet map if present.
      */
     mapTargetType?: string | null;
   }
@@ -4412,6 +4433,10 @@ export namespace bigquery_v2 {
      */
     numBytes?: string | null;
     /**
+     * Output only. Number of physical bytes used by current live data storage. This data is not kept in real time, and might be delayed by a few seconds to a few minutes.
+     */
+    numCurrentPhysicalBytes?: string | null;
+    /**
      * Output only. The number of logical bytes in the table that are considered "long-term storage".
      */
     numLongTermBytes?: string | null;
@@ -4752,7 +4777,7 @@ export namespace bigquery_v2 {
      */
     replicationError?: Schema$ErrorProto;
     /**
-     * Required. Specifies the interval at which the source table is polled for updates.
+     * Optional. Specifies the interval at which the source table is polled for updates. It's Optional. If not specified, default replication interval would be applied.
      */
     replicationIntervalMs?: string | null;
     /**
@@ -5244,7 +5269,7 @@ export namespace bigquery_v2 {
    */
   export interface Schema$UndeleteDatasetRequest {
     /**
-     * Optional. The exact time when the dataset was deleted. If not specified, the most recently deleted version is undeleted.
+     * Optional. The exact time when the dataset was deleted. If not specified, the most recently deleted version is undeleted. Undeleting a dataset using deletion time is not supported.
      */
     deletionTime?: string | null;
   }
@@ -5278,6 +5303,10 @@ export namespace bigquery_v2 {
    * Describes the definition of a logical view.
    */
   export interface Schema$ViewDefinition {
+    /**
+     * Optional. Foreign view representations.
+     */
+    foreignDefinitions?: Schema$ForeignViewDefinition[];
     /**
      * Optional. Specifices the privacy policy for the view.
      */
