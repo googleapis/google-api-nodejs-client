@@ -125,9 +125,26 @@ export namespace firebaseml_v2beta {
   }
 
   /**
+   * Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: * A full date, with non-zero year, month, and day values. * A month and day, with a zero year (for example, an anniversary). * A year on its own, with a zero month and a zero day. * A year and month, with a zero day (for example, a credit card expiration date). Related types: * google.type.TimeOfDay * google.type.DateTime * google.protobuf.Timestamp
+   */
+  export interface Schema$Date {
+    /**
+     * Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant.
+     */
+    day?: number | null;
+    /**
+     * Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day.
+     */
+    month?: number | null;
+    /**
+     * Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year.
+     */
+    year?: number | null;
+  }
+  /**
    * Content blob. It's preferred to send as text directly rather than raw bytes.
    */
-  export interface Schema$Blob {
+  export interface Schema$GoogleCloudAiplatformV1beta1Blob {
     /**
      * Required. Raw bytes.
      */
@@ -140,15 +157,15 @@ export namespace firebaseml_v2beta {
   /**
    * A response candidate generated from the model.
    */
-  export interface Schema$Candidate {
+  export interface Schema$GoogleCloudAiplatformV1beta1Candidate {
     /**
      * Output only. Source attribution of the generated content.
      */
-    citationMetadata?: Schema$CitationMetadata;
+    citationMetadata?: Schema$GoogleCloudAiplatformV1beta1CitationMetadata;
     /**
      * Output only. Content parts of the candidate.
      */
-    content?: Schema$Content;
+    content?: Schema$GoogleCloudAiplatformV1beta1Content;
     /**
      * Output only. Describes the reason the mode stopped generating tokens in more detail. This is only filled when `finish_reason` is set.
      */
@@ -160,7 +177,7 @@ export namespace firebaseml_v2beta {
     /**
      * Output only. Metadata specifies sources used to ground generated content.
      */
-    groundingMetadata?: Schema$GroundingMetadata;
+    groundingMetadata?: Schema$GoogleCloudAiplatformV1beta1GroundingMetadata;
     /**
      * Output only. Index of the candidate.
      */
@@ -168,12 +185,12 @@ export namespace firebaseml_v2beta {
     /**
      * Output only. List of ratings for the safety of a response candidate. There is at most one rating per category.
      */
-    safetyRatings?: Schema$SafetyRating[];
+    safetyRatings?: Schema$GoogleCloudAiplatformV1beta1SafetyRating[];
   }
   /**
    * Source attributions for content.
    */
-  export interface Schema$Citation {
+  export interface Schema$GoogleCloudAiplatformV1beta1Citation {
     /**
      * Output only. End index into the content.
      */
@@ -202,20 +219,20 @@ export namespace firebaseml_v2beta {
   /**
    * A collection of source attributions for a piece of content.
    */
-  export interface Schema$CitationMetadata {
+  export interface Schema$GoogleCloudAiplatformV1beta1CitationMetadata {
     /**
      * Output only. List of citations.
      */
-    citations?: Schema$Citation[];
+    citations?: Schema$GoogleCloudAiplatformV1beta1Citation[];
   }
   /**
    * The base structured datatype containing multi-part content of a message. A `Content` includes a `role` field designating the producer of the `Content` and a `parts` field containing multi-part data that contains the content of the message turn.
    */
-  export interface Schema$Content {
+  export interface Schema$GoogleCloudAiplatformV1beta1Content {
     /**
      * Required. Ordered `Parts` that constitute a single message. Parts may have different IANA MIME types.
      */
-    parts?: Schema$Part[];
+    parts?: Schema$GoogleCloudAiplatformV1beta1Part[];
     /**
      * Optional. The producer of the content. Must be either 'user' or 'model'. Useful to set for multi-turn conversations, otherwise can be left blank or unset.
      */
@@ -224,11 +241,11 @@ export namespace firebaseml_v2beta {
   /**
    * Request message for PredictionService.CountTokens.
    */
-  export interface Schema$CountTokensRequest {
+  export interface Schema$GoogleCloudAiplatformV1beta1CountTokensRequest {
     /**
      * Required. Input content.
      */
-    contents?: Schema$Content[];
+    contents?: Schema$GoogleCloudAiplatformV1beta1Content[];
     /**
      * Required. The instances that are the input to token counting call. Schema is identical to the prediction schema of the underlying model.
      */
@@ -241,7 +258,7 @@ export namespace firebaseml_v2beta {
   /**
    * Response message for PredictionService.CountTokens.
    */
-  export interface Schema$CountTokensResponse {
+  export interface Schema$GoogleCloudAiplatformV1beta1CountTokensResponse {
     /**
      * The total number of billable characters counted across all instances from the request.
      */
@@ -252,26 +269,9 @@ export namespace firebaseml_v2beta {
     totalTokens?: number | null;
   }
   /**
-   * Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: * A full date, with non-zero year, month, and day values. * A month and day, with a zero year (for example, an anniversary). * A year on its own, with a zero month and a zero day. * A year and month, with a zero day (for example, a credit card expiration date). Related types: * google.type.TimeOfDay * google.type.DateTime * google.protobuf.Timestamp
-   */
-  export interface Schema$Date {
-    /**
-     * Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant.
-     */
-    day?: number | null;
-    /**
-     * Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day.
-     */
-    month?: number | null;
-    /**
-     * Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year.
-     */
-    year?: number | null;
-  }
-  /**
    * URI based data.
    */
-  export interface Schema$FileData {
+  export interface Schema$GoogleCloudAiplatformV1beta1FileData {
     /**
      * Required. URI.
      */
@@ -284,7 +284,7 @@ export namespace firebaseml_v2beta {
   /**
    * A predicted [FunctionCall] returned from the model that contains a string representing the [FunctionDeclaration.name] and a structured JSON object containing the parameters and their values.
    */
-  export interface Schema$FunctionCall {
+  export interface Schema$GoogleCloudAiplatformV1beta1FunctionCall {
     /**
      * Optional. Required. The function parameters and values in JSON object format. See [FunctionDeclaration.parameters] for parameter details.
      */
@@ -297,7 +297,7 @@ export namespace firebaseml_v2beta {
   /**
    * Function calling config.
    */
-  export interface Schema$FunctionCallingConfig {
+  export interface Schema$GoogleCloudAiplatformV1beta1FunctionCallingConfig {
     /**
      * Optional. Function names to call. Only set when the Mode is ANY. Function names should match [FunctionDeclaration.name]. With mode set to ANY, model will predict a function call from the set of function names provided.
      */
@@ -310,7 +310,7 @@ export namespace firebaseml_v2beta {
   /**
    * Structured representation of a function declaration as defined by the [OpenAPI 3.0 specification](https://spec.openapis.org/oas/v3.0.3). Included in this declaration are the function name and parameters. This FunctionDeclaration is a representation of a block of code that can be used as a `Tool` by the model and executed by the client.
    */
-  export interface Schema$FunctionDeclaration {
+  export interface Schema$GoogleCloudAiplatformV1beta1FunctionDeclaration {
     /**
      * Optional. Description and purpose of the function. Model uses it to decide how and whether to call the function.
      */
@@ -322,16 +322,16 @@ export namespace firebaseml_v2beta {
     /**
      * Optional. Describes the parameters to this function in JSON Schema Object format. Reflects the Open API 3.03 Parameter Object. string Key: the name of the parameter. Parameter names are case sensitive. Schema Value: the Schema defining the type used for the parameter. For function with no parameters, this can be left unset. Parameter names must start with a letter or an underscore and must only contain chars a-z, A-Z, 0-9, or underscores with a maximum length of 64. Example with 1 required and 1 optional parameter: type: OBJECT properties: param1: type: STRING param2: type: INTEGER required: - param1
      */
-    parameters?: Schema$Schema;
+    parameters?: Schema$GoogleCloudAiplatformV1beta1Schema;
     /**
      * Optional. Describes the output from this function in JSON Schema format. Reflects the Open API 3.03 Response Object. The Schema defines the type used for the response value of the function.
      */
-    response?: Schema$Schema;
+    response?: Schema$GoogleCloudAiplatformV1beta1Schema;
   }
   /**
    * The result output from a [FunctionCall] that contains a string representing the [FunctionDeclaration.name] and a structured JSON object containing any output from the function is used as context to the model. This should contain the result of a [FunctionCall] made based on model prediction.
    */
-  export interface Schema$FunctionResponse {
+  export interface Schema$GoogleCloudAiplatformV1beta1FunctionResponse {
     /**
      * Required. The name of the function to call. Matches [FunctionDeclaration.name] and [FunctionCall.name].
      */
@@ -344,7 +344,7 @@ export namespace firebaseml_v2beta {
   /**
    * Request message for [PredictionService.GenerateContent].
    */
-  export interface Schema$GenerateContentRequest {
+  export interface Schema$GoogleCloudAiplatformV1beta1GenerateContentRequest {
     /**
      * Optional. The name of the cached content used as context to serve the prediction. Note: only used in explicit caching, where users can have control over caching (e.g. what content to cache) and enjoy guaranteed cost savings. Format: `projects/{project\}/locations/{location\}/cachedContents/{cachedContent\}`
      */
@@ -352,49 +352,80 @@ export namespace firebaseml_v2beta {
     /**
      * Required. The content of the current conversation with the model. For single-turn queries, this is a single instance. For multi-turn queries, this is a repeated field that contains conversation history + latest request.
      */
-    contents?: Schema$Content[];
+    contents?: Schema$GoogleCloudAiplatformV1beta1Content[];
     /**
      * Optional. Generation config.
      */
-    generationConfig?: Schema$GenerationConfig;
+    generationConfig?: Schema$GoogleCloudAiplatformV1beta1GenerationConfig;
     /**
      * Optional. Per request settings for blocking unsafe content. Enforced on GenerateContentResponse.candidates.
      */
-    safetySettings?: Schema$SafetySetting[];
+    safetySettings?: Schema$GoogleCloudAiplatformV1beta1SafetySetting[];
     /**
      * Optional. The user provided system instructions for the model. Note: only text should be used in parts and content in each part will be in a separate paragraph.
      */
-    systemInstruction?: Schema$Content;
+    systemInstruction?: Schema$GoogleCloudAiplatformV1beta1Content;
     /**
      * Optional. Tool config. This config is shared for all tools provided in the request.
      */
-    toolConfig?: Schema$ToolConfig;
+    toolConfig?: Schema$GoogleCloudAiplatformV1beta1ToolConfig;
     /**
      * Optional. A list of `Tools` the model may use to generate the next response. A `Tool` is a piece of code that enables the system to interact with external systems to perform an action, or set of actions, outside of knowledge and scope of the model.
      */
-    tools?: Schema$Tool[];
+    tools?: Schema$GoogleCloudAiplatformV1beta1Tool[];
   }
   /**
    * Response message for [PredictionService.GenerateContent].
    */
-  export interface Schema$GenerateContentResponse {
+  export interface Schema$GoogleCloudAiplatformV1beta1GenerateContentResponse {
     /**
      * Output only. Generated candidates.
      */
-    candidates?: Schema$Candidate[];
+    candidates?: Schema$GoogleCloudAiplatformV1beta1Candidate[];
     /**
      * Output only. Content filter results for a prompt sent in the request. Note: Sent only in the first stream chunk. Only happens when no candidates were generated due to content violations.
      */
-    promptFeedback?: Schema$PromptFeedback;
+    promptFeedback?: Schema$GoogleCloudAiplatformV1beta1GenerateContentResponsePromptFeedback;
     /**
      * Usage metadata about the response(s).
      */
-    usageMetadata?: Schema$UsageMetadata;
+    usageMetadata?: Schema$GoogleCloudAiplatformV1beta1GenerateContentResponseUsageMetadata;
+  }
+  /**
+   * Content filter results for a prompt sent in the request.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1GenerateContentResponsePromptFeedback {
+    /**
+     * Output only. Blocked reason.
+     */
+    blockReason?: string | null;
+    /**
+     * Output only. A readable block reason message.
+     */
+    blockReasonMessage?: string | null;
+    /**
+     * Output only. Safety ratings.
+     */
+    safetyRatings?: Schema$GoogleCloudAiplatformV1beta1SafetyRating[];
+  }
+  /**
+   * Usage metadata about response(s).
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1GenerateContentResponseUsageMetadata {
+    /**
+     * Number of tokens in the response(s).
+     */
+    candidatesTokenCount?: number | null;
+    /**
+     * Number of tokens in the request.
+     */
+    promptTokenCount?: number | null;
+    totalTokenCount?: number | null;
   }
   /**
    * Generation config.
    */
-  export interface Schema$GenerationConfig {
+  export interface Schema$GoogleCloudAiplatformV1beta1GenerationConfig {
     /**
      * Optional. Number of candidates to generate.
      */
@@ -418,7 +449,7 @@ export namespace firebaseml_v2beta {
     /**
      * Optional. The `Schema` object allows the definition of input and output data types. These types can be objects, but also primitives and arrays. Represents a select subset of an [OpenAPI 3.0 schema object](https://spec.openapis.org/oas/v3.0.3#schema). If set, a compatible response_mime_type must also be set. Compatible mimetypes: `application/json`: Schema for JSON response.
      */
-    responseSchema?: Schema$Schema;
+    responseSchema?: Schema$GoogleCloudAiplatformV1beta1Schema;
     /**
      * Optional. Stop sequences.
      */
@@ -439,11 +470,11 @@ export namespace firebaseml_v2beta {
   /**
    * Tool to retrieve public web data for grounding, powered by Google.
    */
-  export interface Schema$GoogleSearchRetrieval {}
+  export interface Schema$GoogleCloudAiplatformV1beta1GoogleSearchRetrieval {}
   /**
    * Metadata returned to client when grounding is enabled.
    */
-  export interface Schema$GroundingMetadata {
+  export interface Schema$GoogleCloudAiplatformV1beta1GroundingMetadata {
     /**
      * Optional. Queries executed by the retrieval tools.
      */
@@ -451,42 +482,32 @@ export namespace firebaseml_v2beta {
     /**
      * Optional. Google search entry for the following-up web searches.
      */
-    searchEntryPoint?: Schema$SearchEntryPoint;
+    searchEntryPoint?: Schema$GoogleCloudAiplatformV1beta1SearchEntryPoint;
     /**
      * Optional. Web search queries for the following-up web search.
      */
     webSearchQueries?: string[] | null;
   }
   /**
-   * This is returned in the longrunning operations for create/update.
-   */
-  export interface Schema$ModelOperationMetadata {
-    basicOperationStatus?: string | null;
-    /**
-     * The name of the model we are creating/updating The name must have the form `projects/{project_id\}/models/{model_id\}`
-     */
-    name?: string | null;
-  }
-  /**
    * A datatype containing media that is part of a multi-part `Content` message. A `Part` consists of data which has an associated datatype. A `Part` can only contain one of the accepted types in `Part.data`. A `Part` must have a fixed IANA MIME type identifying the type and subtype of the media if `inline_data` or `file_data` field is filled with raw bytes.
    */
-  export interface Schema$Part {
+  export interface Schema$GoogleCloudAiplatformV1beta1Part {
     /**
      * Optional. URI based data.
      */
-    fileData?: Schema$FileData;
+    fileData?: Schema$GoogleCloudAiplatformV1beta1FileData;
     /**
      * Optional. A predicted [FunctionCall] returned from the model that contains a string representing the [FunctionDeclaration.name] with the parameters and their values.
      */
-    functionCall?: Schema$FunctionCall;
+    functionCall?: Schema$GoogleCloudAiplatformV1beta1FunctionCall;
     /**
      * Optional. The result output of a [FunctionCall] that contains a string representing the [FunctionDeclaration.name] and a structured JSON object containing any output from the function call. It is used as context to the model.
      */
-    functionResponse?: Schema$FunctionResponse;
+    functionResponse?: Schema$GoogleCloudAiplatformV1beta1FunctionResponse;
     /**
      * Optional. Inlined bytes data.
      */
-    inlineData?: Schema$Blob;
+    inlineData?: Schema$GoogleCloudAiplatformV1beta1Blob;
     /**
      * Optional. Text part (can be code).
      */
@@ -494,42 +515,12 @@ export namespace firebaseml_v2beta {
     /**
      * Optional. Video metadata. The metadata should only be specified while the video data is presented in inline_data or file_data.
      */
-    videoMetadata?: Schema$VideoMetadata;
-  }
-  /**
-   * Content filter results for a prompt sent in the request.
-   */
-  export interface Schema$PromptFeedback {
-    /**
-     * Output only. Blocked reason.
-     */
-    blockReason?: string | null;
-    /**
-     * Output only. A readable block reason message.
-     */
-    blockReasonMessage?: string | null;
-    /**
-     * Output only. Safety ratings.
-     */
-    safetyRatings?: Schema$SafetyRating[];
-  }
-  /**
-   * The definition of the Rag resource.
-   */
-  export interface Schema$RagResource {
-    /**
-     * Optional. RagCorpora resource name. Format: `projects/{project\}/locations/{location\}/ragCorpora/{rag_corpus\}`
-     */
-    ragCorpus?: string | null;
-    /**
-     * Optional. rag_file_id. The files should be in the same rag_corpus set in rag_corpus field.
-     */
-    ragFileIds?: string[] | null;
+    videoMetadata?: Schema$GoogleCloudAiplatformV1beta1VideoMetadata;
   }
   /**
    * Defines a retrieval tool that model can call to access external knowledge.
    */
-  export interface Schema$Retrieval {
+  export interface Schema$GoogleCloudAiplatformV1beta1Retrieval {
     /**
      * Optional. Disable using the result from this tool in detecting grounding attribution. This does not affect how the result is given to the model for generation.
      */
@@ -537,16 +528,16 @@ export namespace firebaseml_v2beta {
     /**
      * Set to use data source powered by Vertex AI Search.
      */
-    vertexAiSearch?: Schema$VertexAISearch;
+    vertexAiSearch?: Schema$GoogleCloudAiplatformV1beta1VertexAISearch;
     /**
      * Set to use data source powered by Vertex RAG store. User data is uploaded via the VertexRagDataService.
      */
-    vertexRagStore?: Schema$VertexRagStore;
+    vertexRagStore?: Schema$GoogleCloudAiplatformV1beta1VertexRagStore;
   }
   /**
    * Safety rating corresponding to the generated content.
    */
-  export interface Schema$SafetyRating {
+  export interface Schema$GoogleCloudAiplatformV1beta1SafetyRating {
     /**
      * Output only. Indicates whether the content was filtered out because of this rating.
      */
@@ -575,7 +566,7 @@ export namespace firebaseml_v2beta {
   /**
    * Safety settings.
    */
-  export interface Schema$SafetySetting {
+  export interface Schema$GoogleCloudAiplatformV1beta1SafetySetting {
     /**
      * Required. Harm category.
      */
@@ -592,7 +583,7 @@ export namespace firebaseml_v2beta {
   /**
    * Schema is used to define the format of input/output data. Represents a select subset of an [OpenAPI 3.0 schema object](https://spec.openapis.org/oas/v3.0.3#schema). More fields may be added in the future as needed.
    */
-  export interface Schema$Schema {
+  export interface Schema$GoogleCloudAiplatformV1beta1Schema {
     /**
      * Optional. Default value of the data.
      */
@@ -616,7 +607,7 @@ export namespace firebaseml_v2beta {
     /**
      * Optional. SCHEMA FIELDS FOR TYPE ARRAY Schema of the elements of Type.ARRAY.
      */
-    items?: Schema$Schema;
+    items?: Schema$GoogleCloudAiplatformV1beta1Schema;
     /**
      * Optional. Maximum value of the Type.INTEGER and Type.NUMBER
      */
@@ -660,7 +651,9 @@ export namespace firebaseml_v2beta {
     /**
      * Optional. SCHEMA FIELDS FOR TYPE OBJECT Properties of Type.OBJECT.
      */
-    properties?: {[key: string]: Schema$Schema} | null;
+    properties?: {
+      [key: string]: Schema$GoogleCloudAiplatformV1beta1Schema;
+    } | null;
     /**
      * Optional. Required properties of Type.OBJECT.
      */
@@ -677,7 +670,7 @@ export namespace firebaseml_v2beta {
   /**
    * Google search entry point.
    */
-  export interface Schema$SearchEntryPoint {
+  export interface Schema$GoogleCloudAiplatformV1beta1SearchEntryPoint {
     /**
      * Optional. Web content snippet that can be embedded in a web page or an app webview.
      */
@@ -690,47 +683,33 @@ export namespace firebaseml_v2beta {
   /**
    * Tool details that the model may use to generate response. A `Tool` is a piece of code that enables the system to interact with external systems to perform an action, or set of actions, outside of knowledge and scope of the model. A Tool object should contain exactly one type of Tool (e.g FunctionDeclaration, Retrieval or GoogleSearchRetrieval).
    */
-  export interface Schema$Tool {
+  export interface Schema$GoogleCloudAiplatformV1beta1Tool {
     /**
      * Optional. Function tool type. One or more function declarations to be passed to the model along with the current user query. Model may decide to call a subset of these functions by populating FunctionCall in the response. User should provide a FunctionResponse for each function call in the next turn. Based on the function responses, Model will generate the final response back to the user. Maximum 64 function declarations can be provided.
      */
-    functionDeclarations?: Schema$FunctionDeclaration[];
+    functionDeclarations?: Schema$GoogleCloudAiplatformV1beta1FunctionDeclaration[];
     /**
      * Optional. GoogleSearchRetrieval tool type. Specialized retrieval tool that is powered by Google search.
      */
-    googleSearchRetrieval?: Schema$GoogleSearchRetrieval;
+    googleSearchRetrieval?: Schema$GoogleCloudAiplatformV1beta1GoogleSearchRetrieval;
     /**
      * Optional. Retrieval tool type. System will always execute the provided retrieval tool(s) to get external knowledge to answer the prompt. Retrieval results are presented to the model for generation.
      */
-    retrieval?: Schema$Retrieval;
+    retrieval?: Schema$GoogleCloudAiplatformV1beta1Retrieval;
   }
   /**
    * Tool config. This config is shared for all tools provided in the request.
    */
-  export interface Schema$ToolConfig {
+  export interface Schema$GoogleCloudAiplatformV1beta1ToolConfig {
     /**
      * Optional. Function calling config.
      */
-    functionCallingConfig?: Schema$FunctionCallingConfig;
-  }
-  /**
-   * Usage metadata about response(s).
-   */
-  export interface Schema$UsageMetadata {
-    /**
-     * Number of tokens in the response(s).
-     */
-    candidatesTokenCount?: number | null;
-    /**
-     * Number of tokens in the request.
-     */
-    promptTokenCount?: number | null;
-    totalTokenCount?: number | null;
+    functionCallingConfig?: Schema$GoogleCloudAiplatformV1beta1FunctionCallingConfig;
   }
   /**
    * Retrieve from Vertex AI Search datastore for grounding. See https://cloud.google.com/vertex-ai-search-and-conversation
    */
-  export interface Schema$VertexAISearch {
+  export interface Schema$GoogleCloudAiplatformV1beta1VertexAISearch {
     /**
      * Required. Fully-qualified Vertex AI Search's datastore resource ID. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{dataStore\}`
      */
@@ -739,7 +718,7 @@ export namespace firebaseml_v2beta {
   /**
    * Retrieve from Vertex RAG Store for grounding.
    */
-  export interface Schema$VertexRagStore {
+  export interface Schema$GoogleCloudAiplatformV1beta1VertexRagStore {
     /**
      * Optional. Deprecated. Please use rag_resources instead.
      */
@@ -747,7 +726,7 @@ export namespace firebaseml_v2beta {
     /**
      * Optional. The representation of the rag source. It can be used to specify corpus only or ragfiles. Currently only support one corpus or multiple files from one corpus. In the future we may open up multiple corpora support.
      */
-    ragResources?: Schema$RagResource[];
+    ragResources?: Schema$GoogleCloudAiplatformV1beta1VertexRagStoreRagResource[];
     /**
      * Optional. Number of top k results to return from the selected corpora.
      */
@@ -758,9 +737,22 @@ export namespace firebaseml_v2beta {
     vectorDistanceThreshold?: number | null;
   }
   /**
+   * The definition of the Rag resource.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1VertexRagStoreRagResource {
+    /**
+     * Optional. RagCorpora resource name. Format: `projects/{project\}/locations/{location\}/ragCorpora/{rag_corpus\}`
+     */
+    ragCorpus?: string | null;
+    /**
+     * Optional. rag_file_id. The files should be in the same rag_corpus set in rag_corpus field.
+     */
+    ragFileIds?: string[] | null;
+  }
+  /**
    * Metadata describes the input video content.
    */
-  export interface Schema$VideoMetadata {
+  export interface Schema$GoogleCloudAiplatformV1beta1VideoMetadata {
     /**
      * Optional. The end offset of the video.
      */
@@ -769,6 +761,16 @@ export namespace firebaseml_v2beta {
      * Optional. The start offset of the video.
      */
     startOffset?: string | null;
+  }
+  /**
+   * This is returned in the longrunning operations for create/update.
+   */
+  export interface Schema$ModelOperationMetadata {
+    basicOperationStatus?: string | null;
+    /**
+     * The name of the model we are creating/updating The name must have the form `projects/{project_id\}/models/{model_id\}`
+     */
+    name?: string | null;
   }
 
   export class Resource$Projects {
@@ -823,7 +825,7 @@ export namespace firebaseml_v2beta {
     countTokens(
       params?: Params$Resource$Projects$Locations$Publishers$Models$Counttokens,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$CountTokensResponse>;
+    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1beta1CountTokensResponse>;
     countTokens(
       params: Params$Resource$Projects$Locations$Publishers$Models$Counttokens,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -831,32 +833,34 @@ export namespace firebaseml_v2beta {
     ): void;
     countTokens(
       params: Params$Resource$Projects$Locations$Publishers$Models$Counttokens,
-      options: MethodOptions | BodyResponseCallback<Schema$CountTokensResponse>,
-      callback: BodyResponseCallback<Schema$CountTokensResponse>
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1beta1CountTokensResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1beta1CountTokensResponse>
     ): void;
     countTokens(
       params: Params$Resource$Projects$Locations$Publishers$Models$Counttokens,
-      callback: BodyResponseCallback<Schema$CountTokensResponse>
+      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1beta1CountTokensResponse>
     ): void;
     countTokens(
-      callback: BodyResponseCallback<Schema$CountTokensResponse>
+      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1beta1CountTokensResponse>
     ): void;
     countTokens(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Publishers$Models$Counttokens
-        | BodyResponseCallback<Schema$CountTokensResponse>
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1beta1CountTokensResponse>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$CountTokensResponse>
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1beta1CountTokensResponse>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$CountTokensResponse>
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1beta1CountTokensResponse>
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$CountTokensResponse>
+      | GaxiosPromise<Schema$GoogleCloudAiplatformV1beta1CountTokensResponse>
       | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Publishers$Models$Counttokens;
@@ -893,12 +897,14 @@ export namespace firebaseml_v2beta {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$CountTokensResponse>(
+        createAPIRequest<Schema$GoogleCloudAiplatformV1beta1CountTokensResponse>(
           parameters,
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<Schema$CountTokensResponse>(parameters);
+        return createAPIRequest<Schema$GoogleCloudAiplatformV1beta1CountTokensResponse>(
+          parameters
+        );
       }
     }
 
@@ -917,7 +923,7 @@ export namespace firebaseml_v2beta {
     generateContent(
       params?: Params$Resource$Projects$Locations$Publishers$Models$Generatecontent,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GenerateContentResponse>;
+    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1beta1GenerateContentResponse>;
     generateContent(
       params: Params$Resource$Projects$Locations$Publishers$Models$Generatecontent,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -927,32 +933,32 @@ export namespace firebaseml_v2beta {
       params: Params$Resource$Projects$Locations$Publishers$Models$Generatecontent,
       options:
         | MethodOptions
-        | BodyResponseCallback<Schema$GenerateContentResponse>,
-      callback: BodyResponseCallback<Schema$GenerateContentResponse>
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1beta1GenerateContentResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1beta1GenerateContentResponse>
     ): void;
     generateContent(
       params: Params$Resource$Projects$Locations$Publishers$Models$Generatecontent,
-      callback: BodyResponseCallback<Schema$GenerateContentResponse>
+      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1beta1GenerateContentResponse>
     ): void;
     generateContent(
-      callback: BodyResponseCallback<Schema$GenerateContentResponse>
+      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1beta1GenerateContentResponse>
     ): void;
     generateContent(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Publishers$Models$Generatecontent
-        | BodyResponseCallback<Schema$GenerateContentResponse>
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1beta1GenerateContentResponse>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$GenerateContentResponse>
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1beta1GenerateContentResponse>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$GenerateContentResponse>
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1beta1GenerateContentResponse>
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GenerateContentResponse>
+      | GaxiosPromise<Schema$GoogleCloudAiplatformV1beta1GenerateContentResponse>
       | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Publishers$Models$Generatecontent;
@@ -989,12 +995,14 @@ export namespace firebaseml_v2beta {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GenerateContentResponse>(
+        createAPIRequest<Schema$GoogleCloudAiplatformV1beta1GenerateContentResponse>(
           parameters,
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<Schema$GenerateContentResponse>(parameters);
+        return createAPIRequest<Schema$GoogleCloudAiplatformV1beta1GenerateContentResponse>(
+          parameters
+        );
       }
     }
 
@@ -1013,7 +1021,7 @@ export namespace firebaseml_v2beta {
     streamGenerateContent(
       params?: Params$Resource$Projects$Locations$Publishers$Models$Streamgeneratecontent,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GenerateContentResponse>;
+    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1beta1GenerateContentResponse>;
     streamGenerateContent(
       params: Params$Resource$Projects$Locations$Publishers$Models$Streamgeneratecontent,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1023,32 +1031,32 @@ export namespace firebaseml_v2beta {
       params: Params$Resource$Projects$Locations$Publishers$Models$Streamgeneratecontent,
       options:
         | MethodOptions
-        | BodyResponseCallback<Schema$GenerateContentResponse>,
-      callback: BodyResponseCallback<Schema$GenerateContentResponse>
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1beta1GenerateContentResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1beta1GenerateContentResponse>
     ): void;
     streamGenerateContent(
       params: Params$Resource$Projects$Locations$Publishers$Models$Streamgeneratecontent,
-      callback: BodyResponseCallback<Schema$GenerateContentResponse>
+      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1beta1GenerateContentResponse>
     ): void;
     streamGenerateContent(
-      callback: BodyResponseCallback<Schema$GenerateContentResponse>
+      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1beta1GenerateContentResponse>
     ): void;
     streamGenerateContent(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Publishers$Models$Streamgeneratecontent
-        | BodyResponseCallback<Schema$GenerateContentResponse>
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1beta1GenerateContentResponse>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$GenerateContentResponse>
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1beta1GenerateContentResponse>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$GenerateContentResponse>
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1beta1GenerateContentResponse>
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GenerateContentResponse>
+      | GaxiosPromise<Schema$GoogleCloudAiplatformV1beta1GenerateContentResponse>
       | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Publishers$Models$Streamgeneratecontent;
@@ -1085,12 +1093,14 @@ export namespace firebaseml_v2beta {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GenerateContentResponse>(
+        createAPIRequest<Schema$GoogleCloudAiplatformV1beta1GenerateContentResponse>(
           parameters,
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<Schema$GenerateContentResponse>(parameters);
+        return createAPIRequest<Schema$GoogleCloudAiplatformV1beta1GenerateContentResponse>(
+          parameters
+        );
       }
     }
   }
@@ -1105,7 +1115,7 @@ export namespace firebaseml_v2beta {
     /**
      * Request body metadata
      */
-    requestBody?: Schema$CountTokensRequest;
+    requestBody?: Schema$GoogleCloudAiplatformV1beta1CountTokensRequest;
   }
   export interface Params$Resource$Projects$Locations$Publishers$Models$Generatecontent
     extends StandardParameters {
@@ -1117,7 +1127,7 @@ export namespace firebaseml_v2beta {
     /**
      * Request body metadata
      */
-    requestBody?: Schema$GenerateContentRequest;
+    requestBody?: Schema$GoogleCloudAiplatformV1beta1GenerateContentRequest;
   }
   export interface Params$Resource$Projects$Locations$Publishers$Models$Streamgeneratecontent
     extends StandardParameters {
@@ -1129,6 +1139,6 @@ export namespace firebaseml_v2beta {
     /**
      * Request body metadata
      */
-    requestBody?: Schema$GenerateContentRequest;
+    requestBody?: Schema$GoogleCloudAiplatformV1beta1GenerateContentRequest;
   }
 }
