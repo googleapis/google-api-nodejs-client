@@ -2220,7 +2220,7 @@
       }
     }
   },
-  "revision": "20240523",
+  "revision": "20240530",
   "rootUrl": "https://vmmigration.googleapis.com/",
   "schemas": {
     "AccessKeyCredentials": {
@@ -2329,17 +2329,20 @@
       "id": "AwsDiskDetails",
       "properties": {
         "diskNumber": {
-          "description": "The ordinal number of the disk.",
+          "description": "Output only. The ordinal number of the disk.",
           "format": "int32",
+          "readOnly": true,
           "type": "integer"
         },
         "sizeGb": {
-          "description": "Size in GB.",
+          "description": "Output only. Size in GB.",
           "format": "int64",
+          "readOnly": true,
           "type": "string"
         },
         "volumeId": {
-          "description": "AWS volume ID.",
+          "description": "Output only. AWS volume ID.",
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -2428,19 +2431,21 @@
       "id": "AwsSourceVmDetails",
       "properties": {
         "committedStorageBytes": {
-          "description": "The total size of the disks being migrated in bytes.",
+          "description": "Output only. The total size of the disks being migrated in bytes.",
           "format": "int64",
+          "readOnly": true,
           "type": "string"
         },
         "disks": {
-          "description": "The disks attached to the source VM.",
+          "description": "Output only. The disks attached to the source VM.",
           "items": {
             "$ref": "AwsDiskDetails"
           },
+          "readOnly": true,
           "type": "array"
         },
         "firmware": {
-          "description": "The firmware type of the source VM.",
+          "description": "Output only. The firmware type of the source VM.",
           "enum": [
             "FIRMWARE_UNSPECIFIED",
             "EFI",
@@ -2451,6 +2456,7 @@
             "The firmware is EFI.",
             "The firmware is BIOS."
           ],
+          "readOnly": true,
           "type": "string"
         },
         "vmCapabilitiesInfo": {
@@ -2618,17 +2624,20 @@
       "id": "AzureDiskDetails",
       "properties": {
         "diskId": {
-          "description": "Azure disk ID.",
+          "description": "Output only. Azure disk ID.",
+          "readOnly": true,
           "type": "string"
         },
         "diskNumber": {
-          "description": "The ordinal number of the disk.",
+          "description": "Output only. The ordinal number of the disk.",
           "format": "int32",
+          "readOnly": true,
           "type": "integer"
         },
         "sizeGb": {
-          "description": "Size in GB.",
+          "description": "Output only. Size in GB.",
           "format": "int64",
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -2692,19 +2701,21 @@
       "id": "AzureSourceVmDetails",
       "properties": {
         "committedStorageBytes": {
-          "description": "The total size of the disks being migrated in bytes.",
+          "description": "Output only. The total size of the disks being migrated in bytes.",
           "format": "int64",
+          "readOnly": true,
           "type": "string"
         },
         "disks": {
-          "description": "The disks attached to the source VM.",
+          "description": "Output only. The disks attached to the source VM.",
           "items": {
             "$ref": "AzureDiskDetails"
           },
+          "readOnly": true,
           "type": "array"
         },
         "firmware": {
-          "description": "The firmware type of the source VM.",
+          "description": "Output only. The firmware type of the source VM.",
           "enum": [
             "FIRMWARE_UNSPECIFIED",
             "EFI",
@@ -2715,6 +2726,7 @@
             "The firmware is EFI.",
             "The firmware is BIOS."
           ],
+          "readOnly": true,
           "type": "string"
         },
         "vmCapabilitiesInfo": {
@@ -4832,7 +4844,8 @@
       "properties": {
         "actionItem": {
           "$ref": "LocalizedMessage",
-          "description": "Suggested action for solving the warning."
+          "description": "Output only. Suggested action for solving the warning.",
+          "readOnly": true
         },
         "code": {
           "description": "The warning code.",
@@ -4847,15 +4860,17 @@
           "type": "string"
         },
         "helpLinks": {
-          "description": "URL(s) pointing to additional information on handling the current warning.",
+          "description": "Output only. URL(s) pointing to additional information on handling the current warning.",
           "items": {
             "$ref": "Link"
           },
+          "readOnly": true,
           "type": "array"
         },
         "warningMessage": {
           "$ref": "LocalizedMessage",
-          "description": "The localized warning message."
+          "description": "Output only. The localized warning message.",
+          "readOnly": true
         },
         "warningTime": {
           "description": "The time the warning occurred.",
@@ -4870,11 +4885,11 @@
       "id": "NetworkInterface",
       "properties": {
         "externalIp": {
-          "description": "The external IP to define in the NIC.",
+          "description": "Optional. The external IP to define in the NIC.",
           "type": "string"
         },
         "internalIp": {
-          "description": "The internal IP to define in the NIC. The formats accepted are: `ephemeral` \\ ipv4 address \\ a named address resource full path.",
+          "description": "Optional. The internal IP to define in the NIC. The formats accepted are: `ephemeral` \\ ipv4 address \\ a named address resource full path.",
           "type": "string"
         },
         "network": {
@@ -5145,7 +5160,8 @@
         },
         "error": {
           "$ref": "Status",
-          "description": "Provides details on the state of the cycle in case of an error."
+          "description": "Output only. Provides details on the state of the cycle in case of an error.",
+          "readOnly": true
         },
         "name": {
           "description": "The identifier of the ReplicationCycle.",
@@ -5376,11 +5392,11 @@
       "id": "Tag",
       "properties": {
         "key": {
-          "description": "Key of tag.",
+          "description": "Required. Key of tag.",
           "type": "string"
         },
         "value": {
-          "description": "Value of tag.",
+          "description": "Required. Value of tag.",
           "type": "string"
         }
       },
@@ -5577,7 +5593,8 @@
       "properties": {
         "error": {
           "$ref": "Status",
-          "description": "Provides details on the state of the upgrade operation in case of an error."
+          "description": "Output only. Provides details on the state of the upgrade operation in case of an error.",
+          "readOnly": true
         },
         "previousVersion": {
           "description": "The version from which we upgraded.",
@@ -5864,17 +5881,20 @@
       "id": "VmwareDiskDetails",
       "properties": {
         "diskNumber": {
-          "description": "The ordinal number of the disk.",
+          "description": "Output only. The ordinal number of the disk.",
           "format": "int32",
+          "readOnly": true,
           "type": "integer"
         },
         "label": {
-          "description": "The disk label.",
+          "description": "Output only. The disk label.",
+          "readOnly": true,
           "type": "string"
         },
         "sizeGb": {
-          "description": "Size in GB.",
+          "description": "Output only. Size in GB.",
           "format": "int64",
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -5912,19 +5932,21 @@
       "id": "VmwareSourceVmDetails",
       "properties": {
         "committedStorageBytes": {
-          "description": "The total size of the disks being migrated in bytes.",
+          "description": "Output only. The total size of the disks being migrated in bytes.",
           "format": "int64",
+          "readOnly": true,
           "type": "string"
         },
         "disks": {
-          "description": "The disks attached to the source VM.",
+          "description": "Output only. The disks attached to the source VM.",
           "items": {
             "$ref": "VmwareDiskDetails"
           },
+          "readOnly": true,
           "type": "array"
         },
         "firmware": {
-          "description": "The firmware type of the source VM.",
+          "description": "Output only. The firmware type of the source VM.",
           "enum": [
             "FIRMWARE_UNSPECIFIED",
             "EFI",
@@ -5935,6 +5957,7 @@
             "The firmware is EFI.",
             "The firmware is BIOS."
           ],
+          "readOnly": true,
           "type": "string"
         },
         "vmCapabilitiesInfo": {
