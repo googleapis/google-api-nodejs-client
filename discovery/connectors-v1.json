@@ -2427,7 +2427,7 @@
       }
     }
   },
-  "revision": "20240529",
+  "revision": "20240606",
   "rootUrl": "https://connectors.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -2755,6 +2755,10 @@
           ],
           "type": "string"
         },
+        "multipleSelectConfig": {
+          "$ref": "MultipleSelectConfig",
+          "description": "Optional. MultipleSelectConfig represents the multiple options for a config variable."
+        },
         "required": {
           "description": "Flag represents that this `ConfigVariable` must be provided for a connection.",
           "type": "boolean"
@@ -2795,7 +2799,8 @@
             "SECRET",
             "ENUM",
             "AUTHORIZATION_CODE",
-            "ENCRYPTION_KEY"
+            "ENCRYPTION_KEY",
+            "MULTIPLE_SELECT"
           ],
           "enumDescriptions": [
             "Value type is not specified.",
@@ -2805,7 +2810,8 @@
             "Value type is secret.",
             "Value type is enum.",
             "Value type is authorization code.",
-            "Encryption Key."
+            "Encryption Key.",
+            "Value type is multiple select."
           ],
           "type": "string"
         }
@@ -5845,6 +5851,51 @@
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "MultipleSelectConfig": {
+      "description": "MultipleSelectConfig represents the multiple options for a config variable.",
+      "id": "MultipleSelectConfig",
+      "properties": {
+        "allowCustomValues": {
+          "description": "Optional. Allow custom values.",
+          "type": "boolean"
+        },
+        "multipleSelectOptions": {
+          "description": "Required. Multiple select options.",
+          "items": {
+            "$ref": "MultipleSelectOption"
+          },
+          "type": "array"
+        },
+        "valueSeparator": {
+          "description": "Required. Value separator.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "MultipleSelectOption": {
+      "description": "MultiplSelecteOption represents the single option for a config variable.",
+      "id": "MultipleSelectOption",
+      "properties": {
+        "description": {
+          "description": "Optional. Value of the option.",
+          "type": "string"
+        },
+        "displayName": {
+          "description": "Required. Display name of the option.",
+          "type": "string"
+        },
+        "key": {
+          "description": "Required. Key of the option.",
+          "type": "string"
+        },
+        "preselected": {
+          "description": "Optional. Indicates if the option is preselected.",
+          "type": "boolean"
         }
       },
       "type": "object"

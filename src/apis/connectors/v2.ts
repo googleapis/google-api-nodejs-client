@@ -142,15 +142,6 @@ export namespace connectors_v2 {
     refreshToken?: string | null;
   }
   /**
-   * AclInfo has a list of readers for a resource. This is defined as per the below docs https://cloud.google.com/generative-ai-app-builder/docs/reference/rest/v1alpha/projects.locations.collections.dataStores.branches.documents#aclinfo
-   */
-  export interface Schema$AclInfo {
-    /**
-     * A list of readers for a resource.
-     */
-    readers?: Schema$Readers[];
-  }
-  /**
    * Action message contains metadata information about a single action present in the external system.
    */
   export interface Schema$Action {
@@ -283,20 +274,6 @@ export namespace connectors_v2 {
      */
     name?: string | null;
     operations?: string[] | null;
-  }
-  /**
-   * EntityWithACL refers to a single row of an entity type with ACL information.
-   */
-  export interface Schema$EntityWithACL {
-    /**
-     * ACL information of the entity.
-     */
-    acl_info?: Schema$AclInfo;
-    id?: string | null;
-    /**
-     * Entity data in JSON format.
-     */
-    jsonData?: string | null;
   }
   /**
    * ExchangeAuthCodeRequest currently includes no fields.
@@ -569,19 +546,6 @@ export namespace connectors_v2 {
     nextPageToken?: string | null;
   }
   /**
-   * Response message for EntityService.ListEntitiesWithACLs
-   */
-  export interface Schema$ListEntitiesWithACLsResponse {
-    /**
-     * List containing entity rows.
-     */
-    entitiesWithAcl?: Schema$EntityWithACL[];
-    /**
-     * Next page token if more records are available.
-     */
-    nextPageToken?: string | null;
-  }
-  /**
    * Response message for EntityService.ListEntityTypes
    */
   export interface Schema$ListEntityTypesResponse {
@@ -713,6 +677,31 @@ export namespace connectors_v2 {
     values?: string[] | null;
   }
   /**
+   * This resource represents a long-running operation that is the result of a network API call.
+   */
+  export interface Schema$Operation {
+    /**
+     * If the value is `false`, it means the operation is still in progress. If `true`, the operation is completed, and either `error` or `response` is available.
+     */
+    done?: boolean | null;
+    /**
+     * The error result of the operation in case of failure or cancellation.
+     */
+    error?: Schema$Status;
+    /**
+     * Service-specific metadata associated with the operation. It typically contains progress information and common metadata such as create time. Some services might not provide such metadata. Any method that returns a long-running operation should document the metadata type, if any.
+     */
+    metadata?: {[key: string]: any} | null;
+    /**
+     * The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id\}`.
+     */
+    name?: string | null;
+    /**
+     * The normal, successful response of the operation. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
+     */
+    response?: {[key: string]: any} | null;
+  }
+  /**
    * PerSliSloEligibility is a mapping from an SLI name to eligibility.
    */
   export interface Schema$PerSliSloEligibility {
@@ -720,19 +709,6 @@ export namespace connectors_v2 {
      * An entry in the eligibilities map specifies an eligibility for a particular SLI for the given instance. The SLI key in the name must be a valid SLI name specified in the Eligibility Exporter binary flags otherwise an error will be emitted by Eligibility Exporter and the oncaller will be alerted. If an SLI has been defined in the binary flags but the eligibilities map does not contain it, the corresponding SLI time series will not be emitted by the Eligibility Exporter. This ensures a smooth rollout and compatibility between the data produced by different versions of the Eligibility Exporters. If eligibilities map contains a key for an SLI which has not been declared in the binary flags, there will be an error message emitted in the Eligibility Exporter log and the metric for the SLI in question will not be emitted.
      */
     eligibilities?: {[key: string]: Schema$SloEligibility} | null;
-  }
-  /**
-   * Principal is a user or group that has access to a resource.
-   */
-  export interface Schema$Principal {
-    /**
-     * The group that has access to a resource.
-     */
-    group_id?: string | null;
-    /**
-     * The user that has access to a resource.
-     */
-    user_id?: string | null;
   }
   /**
    * Describes provisioned dataplane resources.
@@ -774,15 +750,6 @@ export namespace connectors_v2 {
   export interface Schema$QueryParameter {
     dataType?: string | null;
     value?: any | null;
-  }
-  /**
-   * Readers is a list of principals that have read access to a resource.
-   */
-  export interface Schema$Readers {
-    /**
-     * A list of principals that have read access to a resource.
-     */
-    principals?: Schema$Principal[];
   }
   export interface Schema$Reference {
     /**
@@ -871,6 +838,23 @@ export namespace connectors_v2 {
      * Name of the SLO tier the Instance belongs to. This name will be expected to match the tiers specified in the service SLO configuration. Field is mandatory and must not be empty.
      */
     tier?: string | null;
+  }
+  /**
+   * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
+   */
+  export interface Schema$Status {
+    /**
+     * The status code, which should be an enum value of google.rpc.Code.
+     */
+    code?: number | null;
+    /**
+     * A list of messages that carry the error details. There is a common set of message types for APIs to use.
+     */
+    details?: Array<{[key: string]: any}> | null;
+    /**
+     * A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.
+     */
+    message?: string | null;
   }
   /**
    * Represents a time of day. The date and time zone are either not significant or are specified elsewhere. An API may choose to allow leap seconds. Related types are google.type.Date and `google.protobuf.Timestamp`.
@@ -2781,7 +2765,7 @@ export namespace connectors_v2 {
     list(
       params?: Params$Resource$Projects$Locations$Connections$Entitytypes$Entitieswithacls$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListEntitiesWithACLsResponse>;
+    ): GaxiosPromise<Schema$Operation>;
     list(
       params: Params$Resource$Projects$Locations$Connections$Entitytypes$Entitieswithacls$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2789,35 +2773,28 @@ export namespace connectors_v2 {
     ): void;
     list(
       params: Params$Resource$Projects$Locations$Connections$Entitytypes$Entitieswithacls$List,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListEntitiesWithACLsResponse>,
-      callback: BodyResponseCallback<Schema$ListEntitiesWithACLsResponse>
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
     ): void;
     list(
       params: Params$Resource$Projects$Locations$Connections$Entitytypes$Entitieswithacls$List,
-      callback: BodyResponseCallback<Schema$ListEntitiesWithACLsResponse>
+      callback: BodyResponseCallback<Schema$Operation>
     ): void;
-    list(
-      callback: BodyResponseCallback<Schema$ListEntitiesWithACLsResponse>
-    ): void;
+    list(callback: BodyResponseCallback<Schema$Operation>): void;
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Connections$Entitytypes$Entitieswithacls$List
-        | BodyResponseCallback<Schema$ListEntitiesWithACLsResponse>
+        | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$ListEntitiesWithACLsResponse>
+        | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$ListEntitiesWithACLsResponse>
+        | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$ListEntitiesWithACLsResponse>
-      | GaxiosPromise<Readable> {
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Connections$Entitytypes$Entitieswithacls$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2853,14 +2830,12 @@ export namespace connectors_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListEntitiesWithACLsResponse>(
+        createAPIRequest<Schema$Operation>(
           parameters,
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<Schema$ListEntitiesWithACLsResponse>(
-          parameters
-        );
+        return createAPIRequest<Schema$Operation>(parameters);
       }
     }
   }
@@ -2876,20 +2851,8 @@ export namespace connectors_v2 {
      */
     gsutilUri?: string;
     /**
-     * Number of entity rows to return. Defaults page size = 25. Max page size = 200.
-     */
-    pageSize?: number;
-    /**
-     * Page token value if available from a previous request.
-     */
-    pageToken?: string;
-    /**
      * Required. Resource name of the Entity Type. Format: projects/{project\}/locations/{location\}/connections/{connection\}/entityTypes/{type\}
      */
     parent?: string;
-    /**
-     * List of 'sort_by' columns to use when returning the results.
-     */
-    sortBy?: string[];
   }
 }
