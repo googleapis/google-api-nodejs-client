@@ -5838,6 +5838,47 @@
             },
             "userEvents": {
               "methods": {
+                "collect": {
+                  "description": "Writes a single user event from the browser. This uses a GET request to due to browser restriction of POST-ing to a third-party domain. This method is used only by the Discovery Engine API JavaScript pixel and Google Tag Manager. Users should not call this method directly.",
+                  "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/userEvents:collect",
+                  "httpMethod": "GET",
+                  "id": "discoveryengine.projects.locations.userEvents.collect",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "ets": {
+                      "description": "The event timestamp in milliseconds. This prevents browser caching of otherwise identical get requests. The name is abbreviated to reduce the payload bytes.",
+                      "format": "int64",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The parent DataStore resource name, such as `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "uri": {
+                      "description": "The URL including cgi-parameters but excluding the hash fragment with a length limit of 5,000 characters. This is often more useful than the referer URL, because many browsers only send the domain for third-party requests.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "userEvent": {
+                      "description": "Required. URL encoded UserEvent proto with a length limit of 2,000,000 characters.",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta/{+parent}/userEvents:collect",
+                  "response": {
+                    "$ref": "GoogleApiHttpBody"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
                 "write": {
                   "description": "Writes a single user event.",
                   "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/userEvents:write",
@@ -5948,7 +5989,7 @@
       }
     }
   },
-  "revision": "20240530",
+  "revision": "20240612",
   "rootUrl": "https://discoveryengine.googleapis.com/",
   "schemas": {
     "GoogleApiHttpBody": {
@@ -8241,6 +8282,10 @@
           ],
           "type": "string"
         },
+        "languageInfo": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaLanguageInfo",
+          "description": "Language info for DataStore."
+        },
         "name": {
           "description": "Immutable. The full resource name of the data store. Format: `projects/{project}/locations/{location}/collections/{collection_id}/dataStores/{data_store_id}`. This field must be a UTF-8 encoded string with a length limit of 1024 characters.",
           "type": "string"
@@ -9157,6 +9202,32 @@
         "unjoinedEventsCount": {
           "description": "Count of user events imported, but with Document information not found in the existing Branch.",
           "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaLanguageInfo": {
+      "description": "Language info for DataStore.",
+      "id": "GoogleCloudDiscoveryengineV1alphaLanguageInfo",
+      "properties": {
+        "language": {
+          "description": "Output only. Language part of normalized_language_code. E.g.: `en-US` -> `en`, `zh-Hans-HK` -> `zh`, `en` -> `en`.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "languageCode": {
+          "description": "The language code for the DataStore.",
+          "type": "string"
+        },
+        "normalizedLanguageCode": {
+          "description": "Output only. This is the normalized form of language_code. E.g.: language_code of `en-GB`, `en_GB`, `en-UK` or `en-gb` will have normalized_language_code of `en-GB`.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "region": {
+          "description": "Output only. Region part of normalized_language_code, if present. E.g.: `en-US` -> `US`, `zh-Hans-HK` -> `HK`, `en` -> ``.",
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -10216,6 +10287,20 @@
         "orderBy": {
           "description": "The order in which documents are returned. Documents can be ordered by a field in an Document object. Leave it unset if ordered by relevance. `order_by` expression is case-sensitive. For more information on ordering, see [Ordering](https://cloud.google.com/retail/docs/filter-and-order#order) If this field is unrecognizable, an `INVALID_ARGUMENT` is returned.",
           "type": "string"
+        },
+        "searchResultMode": {
+          "description": "Specifies the search result mode. If unspecified, the search result mode is based on DataStore.DocumentProcessingConfig.chunking_config: * If DataStore.DocumentProcessingConfig.chunking_config is specified, it defaults to `CHUNKS`. * Otherwise, it defaults to `DOCUMENTS`. See [parse and chunk documents](https://cloud.google.com/generative-ai-app-builder/docs/parse-chunk-documents)",
+          "enum": [
+            "SEARCH_RESULT_MODE_UNSPECIFIED",
+            "DOCUMENTS",
+            "CHUNKS"
+          ],
+          "enumDescriptions": [
+            "Default value.",
+            "Returns documents in the search result.",
+            "Returns chunks in the search result. Only available if the DataStore.DocumentProcessingConfig.chunking_config is specified."
+          ],
+          "type": "string"
         }
       },
       "type": "object"
@@ -11004,6 +11089,114 @@
       },
       "type": "object"
     },
+    "GoogleCloudDiscoveryengineV1betaChunk": {
+      "description": "Chunk captures all raw metadata information of items to be recommended or searched in the chunk mode.",
+      "id": "GoogleCloudDiscoveryengineV1betaChunk",
+      "properties": {
+        "chunkMetadata": {
+          "$ref": "GoogleCloudDiscoveryengineV1betaChunkChunkMetadata",
+          "description": "Output only. Metadata of the current chunk.",
+          "readOnly": true
+        },
+        "content": {
+          "description": "Content is a string from a document (parsed content).",
+          "type": "string"
+        },
+        "derivedStructData": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "Output only. This field is OUTPUT_ONLY. It contains derived data that are not in the original input document.",
+          "readOnly": true,
+          "type": "object"
+        },
+        "documentMetadata": {
+          "$ref": "GoogleCloudDiscoveryengineV1betaChunkDocumentMetadata",
+          "description": "Metadata of the document from the current chunk."
+        },
+        "id": {
+          "description": "Unique chunk ID of the current chunk.",
+          "type": "string"
+        },
+        "name": {
+          "description": "The full resource name of the chunk. Format: `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}/branches/{branch}/documents/{document_id}/chunks/{chunk_id}`. This field must be a UTF-8 encoded string with a length limit of 1024 characters.",
+          "type": "string"
+        },
+        "pageSpan": {
+          "$ref": "GoogleCloudDiscoveryengineV1betaChunkPageSpan",
+          "description": "Page span of the chunk."
+        },
+        "relevanceScore": {
+          "description": "Output only. Represents the relevance score based on similarity. Higher score indicates higher chunk relevance. The score is in range [-1.0, 1.0]. Only populated on SearchService.SearchResponse.",
+          "format": "double",
+          "readOnly": true,
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaChunkChunkMetadata": {
+      "description": "Metadata of the current chunk. This field is only populated on SearchService.Search API.",
+      "id": "GoogleCloudDiscoveryengineV1betaChunkChunkMetadata",
+      "properties": {
+        "nextChunks": {
+          "description": "The next chunks of the current chunk. The number is controlled by SearchRequest.ContentSearchSpec.ChunkSpec.num_next_chunks. This field is only populated on SearchService.Search API.",
+          "items": {
+            "$ref": "GoogleCloudDiscoveryengineV1betaChunk"
+          },
+          "type": "array"
+        },
+        "previousChunks": {
+          "description": "The previous chunks of the current chunk. The number is controlled by SearchRequest.ContentSearchSpec.ChunkSpec.num_previous_chunks. This field is only populated on SearchService.Search API.",
+          "items": {
+            "$ref": "GoogleCloudDiscoveryengineV1betaChunk"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaChunkDocumentMetadata": {
+      "description": "Document metadata contains the information of the document of the current chunk.",
+      "id": "GoogleCloudDiscoveryengineV1betaChunkDocumentMetadata",
+      "properties": {
+        "structData": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "Data representation. The structured JSON data for the document. It should conform to the registered Schema or an `INVALID_ARGUMENT` error is thrown.",
+          "type": "object"
+        },
+        "title": {
+          "description": "Title of the document.",
+          "type": "string"
+        },
+        "uri": {
+          "description": "Uri of the document.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaChunkPageSpan": {
+      "description": "Page span of the chunk.",
+      "id": "GoogleCloudDiscoveryengineV1betaChunkPageSpan",
+      "properties": {
+        "pageEnd": {
+          "description": "The end page of the chunk.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "pageStart": {
+          "description": "The start page of the chunk.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDiscoveryengineV1betaCloudSqlSource": {
       "description": "Cloud SQL source import data from.",
       "id": "GoogleCloudDiscoveryengineV1betaCloudSqlSource",
@@ -11648,6 +11841,10 @@
             "The healthcare FHIR vertical."
           ],
           "type": "string"
+        },
+        "languageInfo": {
+          "$ref": "GoogleCloudDiscoveryengineV1betaLanguageInfo",
+          "description": "Language info for DataStore."
         },
         "name": {
           "description": "Immutable. The full resource name of the data store. Format: `projects/{project}/locations/{location}/collections/{collection_id}/dataStores/{data_store_id}`. This field must be a UTF-8 encoded string with a length limit of 1024 characters.",
@@ -12684,6 +12881,32 @@
       },
       "type": "object"
     },
+    "GoogleCloudDiscoveryengineV1betaLanguageInfo": {
+      "description": "Language info for DataStore.",
+      "id": "GoogleCloudDiscoveryengineV1betaLanguageInfo",
+      "properties": {
+        "language": {
+          "description": "Output only. Language part of normalized_language_code. E.g.: `en-US` -> `en`, `zh-Hans-HK` -> `zh`, `en` -> `en`.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "languageCode": {
+          "description": "The language code for the DataStore.",
+          "type": "string"
+        },
+        "normalizedLanguageCode": {
+          "description": "Output only. This is the normalized form of language_code. E.g.: language_code of `en-GB`, `en_GB`, `en-UK` or `en-gb` will have normalized_language_code of `en-GB`.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "region": {
+          "description": "Output only. Region part of normalized_language_code, if present. E.g.: `en-US` -> `US`, `zh-Hans-HK` -> `HK`, `en` -> ``.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDiscoveryengineV1betaListControlsResponse": {
       "description": "Response for ListControls method.",
       "id": "GoogleCloudDiscoveryengineV1betaListControlsResponse",
@@ -13477,6 +13700,10 @@
           "$ref": "GoogleCloudDiscoveryengineV1betaSearchRequestImageQuery",
           "description": "Raw image query."
         },
+        "languageCode": {
+          "description": "The BCP-47 language code, such as \"en-US\" or \"sr-Latn\". For more information, see [Standard fields](https://cloud.google.com/apis/design/standard_fields). This field helps to better interpret the query. If a value isn't specified, the query language code is automatically detected, which may not be accurate.",
+          "type": "string"
+        },
         "offset": {
           "description": "A 0-indexed integer that specifies the current offset (that is, starting result location, amongst the Documents deemed by the API as relevant) in search results. This field is only considered if page_token is unset. If this field is negative, an `INVALID_ARGUMENT` is returned.",
           "format": "int32",
@@ -13512,6 +13739,10 @@
         },
         "rankingExpression": {
           "description": "The ranking expression controls the customized ranking on retrieval documents. This overrides ServingConfig.ranking_expression. The ranking expression is a single function or multiple functions that are joint by \"+\". * ranking_expression = function, { \" + \", function }; Supported functions: * double * relevance_score * double * dotProduct(embedding_field_path) Function variables: `relevance_score`: pre-defined keywords, used for measure relevance between query and document. `embedding_field_path`: the document embedding field used with query embedding vector. `dotProduct`: embedding function between embedding_field_path and query embedding vector. Example ranking expression: If document has an embedding field doc_embedding, the ranking expression could be `0.5 * relevance_score + 0.3 * dotProduct(doc_embedding)`.",
+          "type": "string"
+        },
+        "regionCode": {
+          "description": "The Unicode country/region code (CLDR) of a location, such as \"US\" and \"419\". For more information, see [Standard fields](https://cloud.google.com/apis/design/standard_fields). If set, then results will be boosted based on the region_code provided.",
           "type": "string"
         },
         "safeSearch": {
@@ -13638,9 +13869,27 @@
       "description": "A specification for configuring the behavior of content search.",
       "id": "GoogleCloudDiscoveryengineV1betaSearchRequestContentSearchSpec",
       "properties": {
+        "chunkSpec": {
+          "$ref": "GoogleCloudDiscoveryengineV1betaSearchRequestContentSearchSpecChunkSpec",
+          "description": "Specifies the chunk spec to be returned from the search response. Only available if the SearchRequest.ContentSearchSpec.search_result_mode is set to CHUNKS"
+        },
         "extractiveContentSpec": {
           "$ref": "GoogleCloudDiscoveryengineV1betaSearchRequestContentSearchSpecExtractiveContentSpec",
           "description": "If there is no extractive_content_spec provided, there will be no extractive answer in the search response."
+        },
+        "searchResultMode": {
+          "description": "Specifies the search result mode. If unspecified, the search result mode is based on DataStore.DocumentProcessingConfig.chunking_config: * If DataStore.DocumentProcessingConfig.chunking_config is specified, it defaults to `CHUNKS`. * Otherwise, it defaults to `DOCUMENTS`.",
+          "enum": [
+            "SEARCH_RESULT_MODE_UNSPECIFIED",
+            "DOCUMENTS",
+            "CHUNKS"
+          ],
+          "enumDescriptions": [
+            "Default value.",
+            "Returns documents in the search result.",
+            "Returns chunks in the search result. Only available if the DataStore.DocumentProcessingConfig.chunking_config is specified."
+          ],
+          "type": "string"
         },
         "snippetSpec": {
           "$ref": "GoogleCloudDiscoveryengineV1betaSearchRequestContentSearchSpecSnippetSpec",
@@ -13649,6 +13898,23 @@
         "summarySpec": {
           "$ref": "GoogleCloudDiscoveryengineV1betaSearchRequestContentSearchSpecSummarySpec",
           "description": "If `summarySpec` is not specified, summaries are not included in the search response."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaSearchRequestContentSearchSpecChunkSpec": {
+      "description": "Specifies the chunk spec to be returned from the search response. Only available if the SearchRequest.ContentSearchSpec.search_result_mode is set to CHUNKS",
+      "id": "GoogleCloudDiscoveryengineV1betaSearchRequestContentSearchSpecChunkSpec",
+      "properties": {
+        "numNextChunks": {
+          "description": "The number of next chunks to be returned of the current chunk. The maximum allowed value is 3. If not specified, no next chunks will be returned.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "numPreviousChunks": {
+          "description": "The number of previous chunks to be returned of the current chunk. The maximum allowed value is 3. If not specified, no previous chunks will be returned.",
+          "format": "int32",
+          "type": "integer"
         }
       },
       "type": "object"
@@ -14123,6 +14389,10 @@
       "description": "Represents the search results.",
       "id": "GoogleCloudDiscoveryengineV1betaSearchResponseSearchResult",
       "properties": {
+        "chunk": {
+          "$ref": "GoogleCloudDiscoveryengineV1betaChunk",
+          "description": "The chunk data in the search response if the SearchRequest.ContentSearchSpec.search_result_mode is set to CHUNKS."
+        },
         "document": {
           "$ref": "GoogleCloudDiscoveryengineV1betaDocument",
           "description": "The document data snippet in the search response. Only fields that are marked as `retrievable` are populated."

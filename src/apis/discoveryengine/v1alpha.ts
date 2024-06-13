@@ -125,6 +125,129 @@ export namespace discoveryengine_v1alpha {
   }
 
   /**
+   * `Distribution` contains summary statistics for a population of values. It optionally contains a histogram representing the distribution of those values across a set of buckets. The summary statistics are the count, mean, sum of the squared deviation from the mean, the minimum, and the maximum of the set of population of values. The histogram is based on a sequence of buckets and gives a count of values that fall into each bucket. The boundaries of the buckets are given either explicitly or by formulas for buckets of fixed or exponentially increasing widths. Although it is not forbidden, it is generally a bad idea to include non-finite values (infinities or NaNs) in the population of values, as this will render the `mean` and `sum_of_squared_deviation` fields meaningless.
+   */
+  export interface Schema$GoogleApiDistribution {
+    /**
+     * The number of values in each bucket of the histogram, as described in `bucket_options`. If the distribution does not have a histogram, then omit this field. If there is a histogram, then the sum of the values in `bucket_counts` must equal the value in the `count` field of the distribution. If present, `bucket_counts` should contain N values, where N is the number of buckets specified in `bucket_options`. If you supply fewer than N values, the remaining values are assumed to be 0. The order of the values in `bucket_counts` follows the bucket numbering schemes described for the three bucket types. The first value must be the count for the underflow bucket (number 0). The next N-2 values are the counts for the finite buckets (number 1 through N-2). The N'th value in `bucket_counts` is the count for the overflow bucket (number N-1).
+     */
+    bucketCounts?: string[] | null;
+    /**
+     * Defines the histogram bucket boundaries. If the distribution does not contain a histogram, then omit this field.
+     */
+    bucketOptions?: Schema$GoogleApiDistributionBucketOptions;
+    /**
+     * The number of values in the population. Must be non-negative. This value must equal the sum of the values in `bucket_counts` if a histogram is provided.
+     */
+    count?: string | null;
+    /**
+     * Must be in increasing order of `value` field.
+     */
+    exemplars?: Schema$GoogleApiDistributionExemplar[];
+    /**
+     * The arithmetic mean of the values in the population. If `count` is zero then this field must be zero.
+     */
+    mean?: number | null;
+    /**
+     * If specified, contains the range of the population values. The field must not be present if the `count` is zero.
+     */
+    range?: Schema$GoogleApiDistributionRange;
+    /**
+     * The sum of squared deviations from the mean of the values in the population. For values x_i this is: Sum[i=1..n]((x_i - mean)^2) Knuth, "The Art of Computer Programming", Vol. 2, page 232, 3rd edition describes Welford's method for accumulating this sum in one pass. If `count` is zero then this field must be zero.
+     */
+    sumOfSquaredDeviation?: number | null;
+  }
+  /**
+   * `BucketOptions` describes the bucket boundaries used to create a histogram for the distribution. The buckets can be in a linear sequence, an exponential sequence, or each bucket can be specified explicitly. `BucketOptions` does not include the number of values in each bucket. A bucket has an inclusive lower bound and exclusive upper bound for the values that are counted for that bucket. The upper bound of a bucket must be strictly greater than the lower bound. The sequence of N buckets for a distribution consists of an underflow bucket (number 0), zero or more finite buckets (number 1 through N - 2) and an overflow bucket (number N - 1). The buckets are contiguous: the lower bound of bucket i (i \> 0) is the same as the upper bound of bucket i - 1. The buckets span the whole range of finite values: lower bound of the underflow bucket is -infinity and the upper bound of the overflow bucket is +infinity. The finite buckets are so-called because both bounds are finite.
+   */
+  export interface Schema$GoogleApiDistributionBucketOptions {
+    /**
+     * The explicit buckets.
+     */
+    explicitBuckets?: Schema$GoogleApiDistributionBucketOptionsExplicit;
+    /**
+     * The exponential buckets.
+     */
+    exponentialBuckets?: Schema$GoogleApiDistributionBucketOptionsExponential;
+    /**
+     * The linear bucket.
+     */
+    linearBuckets?: Schema$GoogleApiDistributionBucketOptionsLinear;
+  }
+  /**
+   * Specifies a set of buckets with arbitrary widths. There are `size(bounds) + 1` (= N) buckets. Bucket `i` has the following boundaries: Upper bound (0 <= i < N-1): bounds[i] Lower bound (1 <= i < N); bounds[i - 1] The `bounds` field must contain at least one element. If `bounds` has only one element, then there are no finite buckets, and that single element is the common boundary of the overflow and underflow buckets.
+   */
+  export interface Schema$GoogleApiDistributionBucketOptionsExplicit {
+    /**
+     * The values must be monotonically increasing.
+     */
+    bounds?: number[] | null;
+  }
+  /**
+   * Specifies an exponential sequence of buckets that have a width that is proportional to the value of the lower bound. Each bucket represents a constant relative uncertainty on a specific value in the bucket. There are `num_finite_buckets + 2` (= N) buckets. Bucket `i` has the following boundaries: Upper bound (0 <= i < N-1): scale * (growth_factor ^ i). Lower bound (1 <= i < N): scale * (growth_factor ^ (i - 1)).
+   */
+  export interface Schema$GoogleApiDistributionBucketOptionsExponential {
+    /**
+     * Must be greater than 1.
+     */
+    growthFactor?: number | null;
+    /**
+     * Must be greater than 0.
+     */
+    numFiniteBuckets?: number | null;
+    /**
+     * Must be greater than 0.
+     */
+    scale?: number | null;
+  }
+  /**
+   * Specifies a linear sequence of buckets that all have the same width (except overflow and underflow). Each bucket represents a constant absolute uncertainty on the specific value in the bucket. There are `num_finite_buckets + 2` (= N) buckets. Bucket `i` has the following boundaries: Upper bound (0 <= i < N-1): offset + (width * i). Lower bound (1 <= i < N): offset + (width * (i - 1)).
+   */
+  export interface Schema$GoogleApiDistributionBucketOptionsLinear {
+    /**
+     * Must be greater than 0.
+     */
+    numFiniteBuckets?: number | null;
+    /**
+     * Lower bound of the first bucket.
+     */
+    offset?: number | null;
+    /**
+     * Must be greater than 0.
+     */
+    width?: number | null;
+  }
+  /**
+   * Exemplars are example points that may be used to annotate aggregated distribution values. They are metadata that gives information about a particular value added to a Distribution bucket, such as a trace ID that was active when a value was added. They may contain further information, such as a example values and timestamps, origin, etc.
+   */
+  export interface Schema$GoogleApiDistributionExemplar {
+    /**
+     * Contextual information about the example value. Examples are: Trace: type.googleapis.com/google.monitoring.v3.SpanContext Literal string: type.googleapis.com/google.protobuf.StringValue Labels dropped during aggregation: type.googleapis.com/google.monitoring.v3.DroppedLabels There may be only a single attachment of any given message type in a single exemplar, and this is enforced by the system.
+     */
+    attachments?: Array<{[key: string]: any}> | null;
+    /**
+     * The observation (sampling) time of the above value.
+     */
+    timestamp?: string | null;
+    /**
+     * Value of the exemplar point. This value determines to which bucket the exemplar belongs.
+     */
+    value?: number | null;
+  }
+  /**
+   * The range of the population values.
+   */
+  export interface Schema$GoogleApiDistributionRange {
+    /**
+     * The maximum of the population values.
+     */
+    max?: number | null;
+    /**
+     * The minimum of the population values.
+     */
+    min?: number | null;
+  }
+  /**
    * Message that represents an arbitrary HTTP body. It should only be used for payload formats that can't be represented as JSON, such as raw binary or an HTML page. This message can be used both in streaming and non-streaming API methods in the request as well as the response. It can be used as a top-level request field, which is convenient if one wants to extract parameters from either the URL or HTTP template into the request fields and also want access to the raw HTTP body. Example: message GetResourceRequest { // A unique request id. string request_id = 1; // The raw HTTP body is bound to this field. google.api.HttpBody http_body = 2; \} service ResourceService { rpc GetResource(GetResourceRequest) returns (google.api.HttpBody); rpc UpdateResource(google.api.HttpBody) returns (google.protobuf.Empty); \} Example with streaming methods: service CaldavService { rpc GetCalendar(stream google.api.HttpBody) returns (stream google.api.HttpBody); rpc UpdateCalendar(stream google.api.HttpBody) returns (stream google.api.HttpBody); \} Use of this type only changes how the request and response bodies are handled, all other features will continue to work unchanged.
    */
   export interface Schema$GoogleApiHttpBody {
@@ -140,6 +263,19 @@ export namespace discoveryengine_v1alpha {
      * Application specific response metadata. Must be set in the first response for streaming APIs.
      */
     extensions?: Array<{[key: string]: any}> | null;
+  }
+  /**
+   * An object representing a resource that can be used for monitoring, logging, billing, or other purposes. Examples include virtual machine instances, databases, and storage devices such as disks. The `type` field identifies a MonitoredResourceDescriptor object that describes the resource's schema. Information in the `labels` field identifies the actual resource and its attributes according to the schema. For example, a particular Compute Engine VM instance could be represented by the following object, because the MonitoredResourceDescriptor for `"gce_instance"` has labels `"project_id"`, `"instance_id"` and `"zone"`: { "type": "gce_instance", "labels": { "project_id": "my-project", "instance_id": "12345678901234", "zone": "us-central1-a" \}\}
+   */
+  export interface Schema$GoogleApiMonitoredResource {
+    /**
+     * Required. Values for all of the labels listed in the associated monitored resource descriptor. For example, Compute Engine VM instances use the labels `"project_id"`, `"instance_id"`, and `"zone"`.
+     */
+    labels?: {[key: string]: string} | null;
+    /**
+     * Required. The monitored resource type. This field must match the `type` field of a MonitoredResourceDescriptor object. For example, the type of a Compute Engine VM instance is `gce_instance`. Some descriptors include the service name in the type; for example, the type of a Datastream stream is `datastream.googleapis.com/Stream`.
+     */
+    type?: string | null;
   }
   /**
    * A description of the context in which an error occurred.
@@ -1111,6 +1247,69 @@ export namespace discoveryengine_v1alpha {
     citationThreshold?: number | null;
   }
   /**
+   * Request for CheckRequirement method.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaCheckRequirementRequest {
+    /**
+     * A Requirement.type specifying the requirement to check.
+     */
+    requirementType?: string | null;
+    /**
+     * The resources to be checked for this requirement.
+     */
+    resources?: Schema$GoogleApiMonitoredResource[];
+  }
+  /**
+   * Response for CheckRequirement method.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaCheckRequirementResponse {
+    /**
+     * Metric results.
+     */
+    metricResults?: Schema$GoogleCloudDiscoveryengineV1alphaCheckRequirementResponseMetricQueryResult[];
+    /**
+     * Timestamp of the oldest calculated metric (i.e. the most stale metric). Indicates that the `requirement_result` may not accurately reflect any Event and Product Catalog updates performed after this time.
+     */
+    oldestMetricTimestamp?: string | null;
+    /**
+     * Requirement definition.
+     */
+    requirement?: Schema$GoogleCloudDiscoveryengineV1alphaRequirement;
+    /**
+     * The condition for evaluating the requirement result.
+     */
+    requirementCondition?: Schema$GoogleTypeExpr;
+    /**
+     * Requirement result, e.g. pass or fail.
+     */
+    requirementResult?: string | null;
+  }
+  /**
+   * Metric result. The metric are in the requirement_condition.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaCheckRequirementResponseMetricQueryResult {
+    /**
+     * Type identifier of the metric corresponding to this query result.
+     */
+    metricType?: string | null;
+    /**
+     * This metric query name is mapping to variables in the requirement_condition.
+     */
+    name?: string | null;
+    /**
+     * Time corresponding to when this metric value was calculated.
+     */
+    timestamp?: string | null;
+    /**
+     * The unit in which this metric is reported. Follows [The Unified Code for Units of Measure](https://unitsofmeasure.org/ucum.html) standard.
+     */
+    unit?: string | null;
+    /**
+     * Value of the metric query.
+     */
+    value?: Schema$GoogleMonitoringV3TypedValue;
+  }
+  /**
    * Chunk captures all raw metadata information of items to be recommended or searched in the chunk mode.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaChunk {
@@ -1659,6 +1858,10 @@ export namespace discoveryengine_v1alpha {
      * Immutable. The industry vertical that the data store registers.
      */
     industryVertical?: string | null;
+    /**
+     * Language info for DataStore.
+     */
+    languageInfo?: Schema$GoogleCloudDiscoveryengineV1alphaLanguageInfo;
     /**
      * Immutable. The full resource name of the data store. Format: `projects/{project\}/locations/{location\}/collections/{collection_id\}/dataStores/{data_store_id\}`. This field must be a UTF-8 encoded string with a length limit of 1024 characters.
      */
@@ -2682,6 +2885,27 @@ export namespace discoveryengine_v1alpha {
     minimum?: number | null;
   }
   /**
+   * Language info for DataStore.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaLanguageInfo {
+    /**
+     * Output only. Language part of normalized_language_code. E.g.: `en-US` -\> `en`, `zh-Hans-HK` -\> `zh`, `en` -\> `en`.
+     */
+    language?: string | null;
+    /**
+     * The language code for the DataStore.
+     */
+    languageCode?: string | null;
+    /**
+     * Output only. This is the normalized form of language_code. E.g.: language_code of `en-GB`, `en_GB`, `en-UK` or `en-gb` will have normalized_language_code of `en-GB`.
+     */
+    normalizedLanguageCode?: string | null;
+    /**
+     * Output only. Region part of normalized_language_code, if present. E.g.: `en-US` -\> `US`, `zh-Hans-HK` -\> `HK`, `en` -\> ``.
+     */
+    region?: string | null;
+  }
+  /**
    * Response message for ChunkService.ListChunks method.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaListChunksResponse {
@@ -3393,6 +3617,102 @@ export namespace discoveryengine_v1alpha {
     serviceTermVersion?: string | null;
   }
   /**
+   * A data requirement.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaRequirement {
+    /**
+     * The condition for evaluating the requirement result. Variables in the expression should be provided by `metrics_bindings` or `threshold_bindings`. Where `metrics_bindings` are used for computed metrics and `threshold_bindings` are used to define thresholds for corresponding `metric_bindings`.
+     */
+    condition?: Schema$GoogleTypeExpr;
+    /**
+     * The description of the requirement.
+     */
+    description?: string | null;
+    /**
+     * The name of the requirement.
+     */
+    displayName?: string | null;
+    /**
+     * A list of the metric bindings to be used in `condition`.
+     */
+    metricBindings?: Schema$GoogleCloudDiscoveryengineV1alphaRequirementMetricBinding[];
+    /**
+     * A list of threshold bindings to be used in `condition`.
+     */
+    thresholdBindings?: Schema$GoogleCloudDiscoveryengineV1alphaRequirementThresholdBinding[];
+    /**
+     * The requirement type, used as an identifier. Must be unique. The type should prefix with service name to avoid possible collision. It's encoraged to use natural hierarchical grouping for similar requirements. Examples: * `library.googleapis.com/books/min_available_books` * `discoveryengine.googleapis.com/media_rec/recommended_for_you/conversion_rate`
+     */
+    type?: string | null;
+    /**
+     * A list of the metric bindings to be used in `condition`.
+     */
+    violationSamplesBindings?: Schema$GoogleCloudDiscoveryengineV1alphaRequirementViolationSamplesBinding[];
+  }
+  /**
+   * Specifies a metrics query and bind its result to a variable which will be used in the `condition`.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaRequirementMetricBinding {
+    /**
+     * The category of the metric's target resource. Example: "Events"
+     */
+    category?: string | null;
+    /**
+     * Human readable description of the corresponding metric filter.
+     */
+    description?: string | null;
+    /**
+     * The filter string used for metrics query. Example: "metric.type = \"discoveryengine.googleapis.com/events/day_count\" AND " "metric.conditions.time_range = \"NINETY_DAYS\""
+     */
+    metricFilter?: string | null;
+    /**
+     * The resource being monitored for the metric.
+     */
+    resourceType?: string | null;
+    /**
+     * The variable id to be referenced in `condition`.
+     */
+    variableId?: string | null;
+  }
+  /**
+   * Specifies a multi-level threshold to apply to apply to a `metric_bindings` in the `condition` CEL expression.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaRequirementThresholdBinding {
+    /**
+     * Threshold to trigger a blocking failure. If not met, the requirement will evaluate as a `FAILURE`.
+     */
+    blockingThreshold?: number | null;
+    /**
+     * Human readable description of the corresponding threshold and sub-requirement.
+     */
+    description?: string | null;
+    /**
+     * The variable id to be referenced in `condition`. Must be unique across all `metric_bindings` and `threshold_bindings`.
+     */
+    variableId?: string | null;
+    /**
+     * Threshold to trigger a warning. If not met, the requirement will evaluate as a `WARNING`.
+     */
+    warningThreshold?: number | null;
+  }
+  /**
+   * Specifies a samples query and bind its result to a variable which will be used in the `condition`.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaRequirementViolationSamplesBinding {
+    /**
+     * Description of this sample binding. Used by the UI to render user friendly descriptions for each requirement condition. Should be less than 128 characters long.
+     */
+    description?: string | null;
+    /**
+     * The filter string used for samples query. Example: "sample.type = \"retail.googleapis.com/user_event\" AND " "sample.labels.event_type = \"PURCHASE\" "
+     */
+    sampleFilter?: string | null;
+    /**
+     * The variable id to be referenced in `condition`.
+     */
+    variableId?: string | null;
+  }
+  /**
    * Request for resuming training of an engine.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaResumeEngineRequest {}
@@ -3479,6 +3799,10 @@ export namespace discoveryengine_v1alpha {
      */
     imageQuery?: Schema$GoogleCloudDiscoveryengineV1alphaSearchRequestImageQuery;
     /**
+     * The BCP-47 language code, such as "en-US" or "sr-Latn". For more information, see [Standard fields](https://cloud.google.com/apis/design/standard_fields). This field helps to better interpret the query. If a value isn't specified, the query language code is automatically detected, which may not be accurate.
+     */
+    languageCode?: string | null;
+    /**
      * A 0-indexed integer that specifies the current offset (that is, starting result location, amongst the Documents deemed by the API as relevant) in search results. This field is only considered if page_token is unset. If this field is negative, an `INVALID_ARGUMENT` is returned.
      */
     offset?: number | null;
@@ -3510,6 +3834,10 @@ export namespace discoveryengine_v1alpha {
      * The ranking expression controls the customized ranking on retrieval documents. This overrides ServingConfig.ranking_expression. The ranking expression is a single function or multiple functions that are joint by "+". * ranking_expression = function, { " + ", function \}; Supported functions: * double * relevance_score * double * dotProduct(embedding_field_path) Function variables: `relevance_score`: pre-defined keywords, used for measure relevance between query and document. `embedding_field_path`: the document embedding field used with query embedding vector. `dotProduct`: embedding function between embedding_field_path and query embedding vector. Example ranking expression: If document has an embedding field doc_embedding, the ranking expression could be `0.5 * relevance_score + 0.3 * dotProduct(doc_embedding)`.
      */
     rankingExpression?: string | null;
+    /**
+     * The Unicode country/region code (CLDR) of a location, such as "US" and "419". For more information, see [Standard fields](https://cloud.google.com/apis/design/standard_fields). If set, then results will be boosted based on the region_code provided.
+     */
+    regionCode?: string | null;
     /**
      * Whether to turn on safe search. This is only supported for website search.
      */
@@ -4956,6 +5284,10 @@ export namespace discoveryengine_v1alpha {
      */
     industryVertical?: string | null;
     /**
+     * Language info for DataStore.
+     */
+    languageInfo?: Schema$GoogleCloudDiscoveryengineV1betaLanguageInfo;
+    /**
      * Immutable. The full resource name of the data store. Format: `projects/{project\}/locations/{location\}/collections/{collection_id\}/dataStores/{data_store_id\}`. This field must be a UTF-8 encoded string with a length limit of 1024 characters.
      */
     name?: string | null;
@@ -5371,6 +5703,27 @@ export namespace discoveryengine_v1alpha {
      * Count of user events imported, but with Document information not found in the existing Branch.
      */
     unjoinedEventsCount?: string | null;
+  }
+  /**
+   * Language info for DataStore.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaLanguageInfo {
+    /**
+     * Output only. Language part of normalized_language_code. E.g.: `en-US` -\> `en`, `zh-Hans-HK` -\> `zh`, `en` -\> `en`.
+     */
+    language?: string | null;
+    /**
+     * The language code for the DataStore.
+     */
+    languageCode?: string | null;
+    /**
+     * Output only. This is the normalized form of language_code. E.g.: language_code of `en-GB`, `en_GB`, `en-UK` or `en-gb` will have normalized_language_code of `en-GB`.
+     */
+    normalizedLanguageCode?: string | null;
+    /**
+     * Output only. Region part of normalized_language_code, if present. E.g.: `en-US` -\> `US`, `zh-Hans-HK` -\> `HK`, `en` -\> ``.
+     */
+    region?: string | null;
   }
   /**
    * Response message for SearchTuningService.ListCustomModels method.
@@ -6574,6 +6927,31 @@ export namespace discoveryengine_v1alpha {
     response?: {[key: string]: any} | null;
   }
   /**
+   * A single strongly-typed value.
+   */
+  export interface Schema$GoogleMonitoringV3TypedValue {
+    /**
+     * A Boolean value: `true` or `false`.
+     */
+    boolValue?: boolean | null;
+    /**
+     * A distribution value.
+     */
+    distributionValue?: Schema$GoogleApiDistribution;
+    /**
+     * A 64-bit double-precision floating-point number. Its magnitude is approximately ±10±300 and it has 16 significant digits of precision.
+     */
+    doubleValue?: number | null;
+    /**
+     * A 64-bit integer. Its range is approximately ±9.2x1018.
+     */
+    int64Value?: string | null;
+    /**
+     * A variable-length string value.
+     */
+    stringValue?: string | null;
+  }
+  /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
    */
   export interface Schema$GoogleProtobufEmpty {}
@@ -6610,6 +6988,27 @@ export namespace discoveryengine_v1alpha {
      * Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year.
      */
     year?: number | null;
+  }
+  /**
+   * Represents a textual expression in the Common Expression Language (CEL) syntax. CEL is a C-like expression language. The syntax and semantics of CEL are documented at https://github.com/google/cel-spec. Example (Comparison): title: "Summary size limit" description: "Determines if a summary is less than 100 chars" expression: "document.summary.size() < 100" Example (Equality): title: "Requestor is owner" description: "Determines if requestor is the document owner" expression: "document.owner == request.auth.claims.email" Example (Logic): title: "Public documents" description: "Determine whether the document should be publicly visible" expression: "document.type != 'private' && document.type != 'internal'" Example (Data Manipulation): title: "Notification string" description: "Create a notification string with a timestamp." expression: "'New message received at ' + string(document.create_time)" The exact variables and functions that may be referenced within an expression are determined by the service that evaluates it. See the service documentation for additional information.
+   */
+  export interface Schema$GoogleTypeExpr {
+    /**
+     * Optional. Description of the expression. This is a longer text which describes the expression, e.g. when hovered over it in a UI.
+     */
+    description?: string | null;
+    /**
+     * Textual representation of an expression in Common Expression Language syntax.
+     */
+    expression?: string | null;
+    /**
+     * Optional. String indicating the location of the expression for error reporting, e.g. a file name and a position in the file.
+     */
+    location?: string | null;
+    /**
+     * Optional. Title for the expression, i.e. a short string describing its purpose. This can be used e.g. in UIs which allow to enter the expression.
+     */
+    title?: string | null;
   }
 
   export class Resource$Projects {
@@ -6950,6 +7349,7 @@ export namespace discoveryengine_v1alpha {
     groundingConfigs: Resource$Projects$Locations$Groundingconfigs;
     operations: Resource$Projects$Locations$Operations;
     rankingConfigs: Resource$Projects$Locations$Rankingconfigs;
+    requirements: Resource$Projects$Locations$Requirements;
     sampleQuerySets: Resource$Projects$Locations$Samplequerysets;
     userEvents: Resource$Projects$Locations$Userevents;
     constructor(context: APIRequestContext) {
@@ -6970,6 +7370,9 @@ export namespace discoveryengine_v1alpha {
         this.context
       );
       this.rankingConfigs = new Resource$Projects$Locations$Rankingconfigs(
+        this.context
+      );
+      this.requirements = new Resource$Projects$Locations$Requirements(
         this.context
       );
       this.sampleQuerySets = new Resource$Projects$Locations$Samplequerysets(
@@ -28699,6 +29102,124 @@ export namespace discoveryengine_v1alpha {
     requestBody?: Schema$GoogleCloudDiscoveryengineV1alphaRankRequest;
   }
 
+  export class Resource$Projects$Locations$Requirements {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Check a particular requirement.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    checkRequirement(
+      params: Params$Resource$Projects$Locations$Requirements$Checkrequirement,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    checkRequirement(
+      params?: Params$Resource$Projects$Locations$Requirements$Checkrequirement,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDiscoveryengineV1alphaCheckRequirementResponse>;
+    checkRequirement(
+      params: Params$Resource$Projects$Locations$Requirements$Checkrequirement,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    checkRequirement(
+      params: Params$Resource$Projects$Locations$Requirements$Checkrequirement,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaCheckRequirementResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaCheckRequirementResponse>
+    ): void;
+    checkRequirement(
+      params: Params$Resource$Projects$Locations$Requirements$Checkrequirement,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaCheckRequirementResponse>
+    ): void;
+    checkRequirement(
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaCheckRequirementResponse>
+    ): void;
+    checkRequirement(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Requirements$Checkrequirement
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaCheckRequirementResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaCheckRequirementResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaCheckRequirementResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDiscoveryengineV1alphaCheckRequirementResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Requirements$Checkrequirement;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Requirements$Checkrequirement;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://discoveryengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1alpha/{+location}/requirements:checkRequirement'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['location'],
+        pathParams: ['location'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDiscoveryengineV1alphaCheckRequirementResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDiscoveryengineV1alphaCheckRequirementResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Requirements$Checkrequirement
+    extends StandardParameters {
+    /**
+     * Required. Full resource name of the location. Format `projects/{project_number_or_id\}/locations/{location\}`
+     */
+    location?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDiscoveryengineV1alphaCheckRequirementRequest;
+  }
+
   export class Resource$Projects$Locations$Samplequerysets {
     context: APIRequestContext;
     operations: Resource$Projects$Locations$Samplequerysets$Operations;
@@ -28827,6 +29348,98 @@ export namespace discoveryengine_v1alpha {
     }
 
     /**
+     * Writes a single user event from the browser. This uses a GET request to due to browser restriction of POST-ing to a third-party domain. This method is used only by the Discovery Engine API JavaScript pixel and Google Tag Manager. Users should not call this method directly.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    collect(
+      params: Params$Resource$Projects$Locations$Userevents$Collect,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    collect(
+      params?: Params$Resource$Projects$Locations$Userevents$Collect,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleApiHttpBody>;
+    collect(
+      params: Params$Resource$Projects$Locations$Userevents$Collect,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    collect(
+      params: Params$Resource$Projects$Locations$Userevents$Collect,
+      options: MethodOptions | BodyResponseCallback<Schema$GoogleApiHttpBody>,
+      callback: BodyResponseCallback<Schema$GoogleApiHttpBody>
+    ): void;
+    collect(
+      params: Params$Resource$Projects$Locations$Userevents$Collect,
+      callback: BodyResponseCallback<Schema$GoogleApiHttpBody>
+    ): void;
+    collect(callback: BodyResponseCallback<Schema$GoogleApiHttpBody>): void;
+    collect(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Userevents$Collect
+        | BodyResponseCallback<Schema$GoogleApiHttpBody>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleApiHttpBody>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleApiHttpBody>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleApiHttpBody>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Userevents$Collect;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Userevents$Collect;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://discoveryengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+parent}/userEvents:collect').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleApiHttpBody>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleApiHttpBody>(parameters);
+      }
+    }
+
+    /**
      * Writes a single user event.
      *
      * @param params - Parameters for request
@@ -28925,6 +29538,25 @@ export namespace discoveryengine_v1alpha {
     }
   }
 
+  export interface Params$Resource$Projects$Locations$Userevents$Collect
+    extends StandardParameters {
+    /**
+     * The event timestamp in milliseconds. This prevents browser caching of otherwise identical get requests. The name is abbreviated to reduce the payload bytes.
+     */
+    ets?: string;
+    /**
+     * Required. The parent DataStore resource name, such as `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store\}`.
+     */
+    parent?: string;
+    /**
+     * The URL including cgi-parameters but excluding the hash fragment with a length limit of 5,000 characters. This is often more useful than the referer URL, because many browsers only send the domain for third-party requests.
+     */
+    uri?: string;
+    /**
+     * Required. URL encoded UserEvent proto with a length limit of 2,000,000 characters.
+     */
+    userEvent?: string;
+  }
   export interface Params$Resource$Projects$Locations$Userevents$Write
     extends StandardParameters {
     /**

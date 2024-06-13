@@ -822,6 +822,10 @@ export namespace discoveryengine_v1beta {
      */
     industryVertical?: string | null;
     /**
+     * Language info for DataStore.
+     */
+    languageInfo?: Schema$GoogleCloudDiscoveryengineV1alphaLanguageInfo;
+    /**
      * Immutable. The full resource name of the data store. Format: `projects/{project\}/locations/{location\}/collections/{collection_id\}/dataStores/{data_store_id\}`. This field must be a UTF-8 encoded string with a length limit of 1024 characters.
      */
     name?: string | null;
@@ -1401,6 +1405,27 @@ export namespace discoveryengine_v1beta {
      * Count of user events imported, but with Document information not found in the existing Branch.
      */
     unjoinedEventsCount?: string | null;
+  }
+  /**
+   * Language info for DataStore.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaLanguageInfo {
+    /**
+     * Output only. Language part of normalized_language_code. E.g.: `en-US` -\> `en`, `zh-Hans-HK` -\> `zh`, `en` -\> `en`.
+     */
+    language?: string | null;
+    /**
+     * The language code for the DataStore.
+     */
+    languageCode?: string | null;
+    /**
+     * Output only. This is the normalized form of language_code. E.g.: language_code of `en-GB`, `en_GB`, `en-UK` or `en-gb` will have normalized_language_code of `en-GB`.
+     */
+    normalizedLanguageCode?: string | null;
+    /**
+     * Output only. Region part of normalized_language_code, if present. E.g.: `en-US` -\> `US`, `zh-Hans-HK` -\> `HK`, `en` -\> ``.
+     */
+    region?: string | null;
   }
   /**
    * Response message for SearchTuningService.ListCustomModels method.
@@ -2172,6 +2197,10 @@ export namespace discoveryengine_v1beta {
      * The order in which documents are returned. Documents can be ordered by a field in an Document object. Leave it unset if ordered by relevance. `order_by` expression is case-sensitive. For more information on ordering, see [Ordering](https://cloud.google.com/retail/docs/filter-and-order#order) If this field is unrecognizable, an `INVALID_ARGUMENT` is returned.
      */
     orderBy?: string | null;
+    /**
+     * Specifies the search result mode. If unspecified, the search result mode is based on DataStore.DocumentProcessingConfig.chunking_config: * If DataStore.DocumentProcessingConfig.chunking_config is specified, it defaults to `CHUNKS`. * Otherwise, it defaults to `DOCUMENTS`. See [parse and chunk documents](https://cloud.google.com/generative-ai-app-builder/docs/parse-chunk-documents)
+     */
+    searchResultMode?: string | null;
   }
   /**
    * Search result list.
@@ -2733,6 +2762,86 @@ export namespace discoveryengine_v1beta {
     citationThreshold?: number | null;
   }
   /**
+   * Chunk captures all raw metadata information of items to be recommended or searched in the chunk mode.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaChunk {
+    /**
+     * Output only. Metadata of the current chunk.
+     */
+    chunkMetadata?: Schema$GoogleCloudDiscoveryengineV1betaChunkChunkMetadata;
+    /**
+     * Content is a string from a document (parsed content).
+     */
+    content?: string | null;
+    /**
+     * Output only. This field is OUTPUT_ONLY. It contains derived data that are not in the original input document.
+     */
+    derivedStructData?: {[key: string]: any} | null;
+    /**
+     * Metadata of the document from the current chunk.
+     */
+    documentMetadata?: Schema$GoogleCloudDiscoveryengineV1betaChunkDocumentMetadata;
+    /**
+     * Unique chunk ID of the current chunk.
+     */
+    id?: string | null;
+    /**
+     * The full resource name of the chunk. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store\}/branches/{branch\}/documents/{document_id\}/chunks/{chunk_id\}`. This field must be a UTF-8 encoded string with a length limit of 1024 characters.
+     */
+    name?: string | null;
+    /**
+     * Page span of the chunk.
+     */
+    pageSpan?: Schema$GoogleCloudDiscoveryengineV1betaChunkPageSpan;
+    /**
+     * Output only. Represents the relevance score based on similarity. Higher score indicates higher chunk relevance. The score is in range [-1.0, 1.0]. Only populated on SearchService.SearchResponse.
+     */
+    relevanceScore?: number | null;
+  }
+  /**
+   * Metadata of the current chunk. This field is only populated on SearchService.Search API.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaChunkChunkMetadata {
+    /**
+     * The next chunks of the current chunk. The number is controlled by SearchRequest.ContentSearchSpec.ChunkSpec.num_next_chunks. This field is only populated on SearchService.Search API.
+     */
+    nextChunks?: Schema$GoogleCloudDiscoveryengineV1betaChunk[];
+    /**
+     * The previous chunks of the current chunk. The number is controlled by SearchRequest.ContentSearchSpec.ChunkSpec.num_previous_chunks. This field is only populated on SearchService.Search API.
+     */
+    previousChunks?: Schema$GoogleCloudDiscoveryengineV1betaChunk[];
+  }
+  /**
+   * Document metadata contains the information of the document of the current chunk.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaChunkDocumentMetadata {
+    /**
+     * Data representation. The structured JSON data for the document. It should conform to the registered Schema or an `INVALID_ARGUMENT` error is thrown.
+     */
+    structData?: {[key: string]: any} | null;
+    /**
+     * Title of the document.
+     */
+    title?: string | null;
+    /**
+     * Uri of the document.
+     */
+    uri?: string | null;
+  }
+  /**
+   * Page span of the chunk.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaChunkPageSpan {
+    /**
+     * The end page of the chunk.
+     */
+    pageEnd?: number | null;
+    /**
+     * The start page of the chunk.
+     */
+    pageStart?: number | null;
+  }
+  /**
    * Cloud SQL source import data from.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1betaCloudSqlSource {
@@ -3184,6 +3293,10 @@ export namespace discoveryengine_v1beta {
      * Immutable. The industry vertical that the data store registers.
      */
     industryVertical?: string | null;
+    /**
+     * Language info for DataStore.
+     */
+    languageInfo?: Schema$GoogleCloudDiscoveryengineV1betaLanguageInfo;
     /**
      * Immutable. The full resource name of the data store. Format: `projects/{project\}/locations/{location\}/collections/{collection_id\}/dataStores/{data_store_id\}`. This field must be a UTF-8 encoded string with a length limit of 1024 characters.
      */
@@ -3952,6 +4065,27 @@ export namespace discoveryengine_v1beta {
     minimum?: number | null;
   }
   /**
+   * Language info for DataStore.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaLanguageInfo {
+    /**
+     * Output only. Language part of normalized_language_code. E.g.: `en-US` -\> `en`, `zh-Hans-HK` -\> `zh`, `en` -\> `en`.
+     */
+    language?: string | null;
+    /**
+     * The language code for the DataStore.
+     */
+    languageCode?: string | null;
+    /**
+     * Output only. This is the normalized form of language_code. E.g.: language_code of `en-GB`, `en_GB`, `en-UK` or `en-gb` will have normalized_language_code of `en-GB`.
+     */
+    normalizedLanguageCode?: string | null;
+    /**
+     * Output only. Region part of normalized_language_code, if present. E.g.: `en-US` -\> `US`, `zh-Hans-HK` -\> `HK`, `en` -\> ``.
+     */
+    region?: string | null;
+  }
+  /**
    * Response for ListControls method.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1betaListControlsResponse {
@@ -4551,6 +4685,10 @@ export namespace discoveryengine_v1beta {
      */
     imageQuery?: Schema$GoogleCloudDiscoveryengineV1betaSearchRequestImageQuery;
     /**
+     * The BCP-47 language code, such as "en-US" or "sr-Latn". For more information, see [Standard fields](https://cloud.google.com/apis/design/standard_fields). This field helps to better interpret the query. If a value isn't specified, the query language code is automatically detected, which may not be accurate.
+     */
+    languageCode?: string | null;
+    /**
      * A 0-indexed integer that specifies the current offset (that is, starting result location, amongst the Documents deemed by the API as relevant) in search results. This field is only considered if page_token is unset. If this field is negative, an `INVALID_ARGUMENT` is returned.
      */
     offset?: number | null;
@@ -4582,6 +4720,10 @@ export namespace discoveryengine_v1beta {
      * The ranking expression controls the customized ranking on retrieval documents. This overrides ServingConfig.ranking_expression. The ranking expression is a single function or multiple functions that are joint by "+". * ranking_expression = function, { " + ", function \}; Supported functions: * double * relevance_score * double * dotProduct(embedding_field_path) Function variables: `relevance_score`: pre-defined keywords, used for measure relevance between query and document. `embedding_field_path`: the document embedding field used with query embedding vector. `dotProduct`: embedding function between embedding_field_path and query embedding vector. Example ranking expression: If document has an embedding field doc_embedding, the ranking expression could be `0.5 * relevance_score + 0.3 * dotProduct(doc_embedding)`.
      */
     rankingExpression?: string | null;
+    /**
+     * The Unicode country/region code (CLDR) of a location, such as "US" and "419". For more information, see [Standard fields](https://cloud.google.com/apis/design/standard_fields). If set, then results will be boosted based on the region_code provided.
+     */
+    regionCode?: string | null;
     /**
      * Whether to turn on safe search. This is only supported for website search.
      */
@@ -4668,9 +4810,17 @@ export namespace discoveryengine_v1beta {
    */
   export interface Schema$GoogleCloudDiscoveryengineV1betaSearchRequestContentSearchSpec {
     /**
+     * Specifies the chunk spec to be returned from the search response. Only available if the SearchRequest.ContentSearchSpec.search_result_mode is set to CHUNKS
+     */
+    chunkSpec?: Schema$GoogleCloudDiscoveryengineV1betaSearchRequestContentSearchSpecChunkSpec;
+    /**
      * If there is no extractive_content_spec provided, there will be no extractive answer in the search response.
      */
     extractiveContentSpec?: Schema$GoogleCloudDiscoveryengineV1betaSearchRequestContentSearchSpecExtractiveContentSpec;
+    /**
+     * Specifies the search result mode. If unspecified, the search result mode is based on DataStore.DocumentProcessingConfig.chunking_config: * If DataStore.DocumentProcessingConfig.chunking_config is specified, it defaults to `CHUNKS`. * Otherwise, it defaults to `DOCUMENTS`.
+     */
+    searchResultMode?: string | null;
     /**
      * If `snippetSpec` is not specified, snippets are not included in the search response.
      */
@@ -4679,6 +4829,19 @@ export namespace discoveryengine_v1beta {
      * If `summarySpec` is not specified, summaries are not included in the search response.
      */
     summarySpec?: Schema$GoogleCloudDiscoveryengineV1betaSearchRequestContentSearchSpecSummarySpec;
+  }
+  /**
+   * Specifies the chunk spec to be returned from the search response. Only available if the SearchRequest.ContentSearchSpec.search_result_mode is set to CHUNKS
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaSearchRequestContentSearchSpecChunkSpec {
+    /**
+     * The number of next chunks to be returned of the current chunk. The maximum allowed value is 3. If not specified, no next chunks will be returned.
+     */
+    numNextChunks?: number | null;
+    /**
+     * The number of previous chunks to be returned of the current chunk. The maximum allowed value is 3. If not specified, no previous chunks will be returned.
+     */
+    numPreviousChunks?: number | null;
   }
   /**
    * A specification for configuring the extractive content in a search response.
@@ -5033,6 +5196,10 @@ export namespace discoveryengine_v1beta {
    * Represents the search results.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1betaSearchResponseSearchResult {
+    /**
+     * The chunk data in the search response if the SearchRequest.ContentSearchSpec.search_result_mode is set to CHUNKS.
+     */
+    chunk?: Schema$GoogleCloudDiscoveryengineV1betaChunk;
     /**
      * The document data snippet in the search response. Only fields that are marked as `retrievable` are populated.
      */
@@ -26757,6 +26924,98 @@ export namespace discoveryengine_v1beta {
     }
 
     /**
+     * Writes a single user event from the browser. This uses a GET request to due to browser restriction of POST-ing to a third-party domain. This method is used only by the Discovery Engine API JavaScript pixel and Google Tag Manager. Users should not call this method directly.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    collect(
+      params: Params$Resource$Projects$Locations$Userevents$Collect,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    collect(
+      params?: Params$Resource$Projects$Locations$Userevents$Collect,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleApiHttpBody>;
+    collect(
+      params: Params$Resource$Projects$Locations$Userevents$Collect,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    collect(
+      params: Params$Resource$Projects$Locations$Userevents$Collect,
+      options: MethodOptions | BodyResponseCallback<Schema$GoogleApiHttpBody>,
+      callback: BodyResponseCallback<Schema$GoogleApiHttpBody>
+    ): void;
+    collect(
+      params: Params$Resource$Projects$Locations$Userevents$Collect,
+      callback: BodyResponseCallback<Schema$GoogleApiHttpBody>
+    ): void;
+    collect(callback: BodyResponseCallback<Schema$GoogleApiHttpBody>): void;
+    collect(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Userevents$Collect
+        | BodyResponseCallback<Schema$GoogleApiHttpBody>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleApiHttpBody>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleApiHttpBody>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleApiHttpBody>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Userevents$Collect;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Userevents$Collect;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://discoveryengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta/{+parent}/userEvents:collect').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleApiHttpBody>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleApiHttpBody>(parameters);
+      }
+    }
+
+    /**
      * Writes a single user event.
      *
      * @param params - Parameters for request
@@ -26855,6 +27114,25 @@ export namespace discoveryengine_v1beta {
     }
   }
 
+  export interface Params$Resource$Projects$Locations$Userevents$Collect
+    extends StandardParameters {
+    /**
+     * The event timestamp in milliseconds. This prevents browser caching of otherwise identical get requests. The name is abbreviated to reduce the payload bytes.
+     */
+    ets?: string;
+    /**
+     * Required. The parent DataStore resource name, such as `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store\}`.
+     */
+    parent?: string;
+    /**
+     * The URL including cgi-parameters but excluding the hash fragment with a length limit of 5,000 characters. This is often more useful than the referer URL, because many browsers only send the domain for third-party requests.
+     */
+    uri?: string;
+    /**
+     * Required. URL encoded UserEvent proto with a length limit of 2,000,000 characters.
+     */
+    userEvent?: string;
+  }
   export interface Params$Resource$Projects$Locations$Userevents$Write
     extends StandardParameters {
     /**
