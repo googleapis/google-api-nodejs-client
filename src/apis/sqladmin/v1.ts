@@ -1859,6 +1859,10 @@ export namespace sqladmin_v1 {
      */
     edition?: string | null;
     /**
+     * Optional. By default, Cloud SQL instances have schema extraction disabled for Dataplex. When this parameter is set to true, schema extraction for Dataplex on Cloud SQL instances is activated.
+     */
+    enableDataplexIntegration?: boolean | null;
+    /**
      * Optional. When this parameter is set to true, Cloud SQL instances can connect to Vertex AI to pass requests for real-time predictions and insights to the AI. The default value is false. This applies only to Cloud SQL for PostgreSQL instances.
      */
     enableGoogleMlIntegration?: boolean | null;
