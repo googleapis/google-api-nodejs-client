@@ -219,6 +219,15 @@ export namespace dataproc_v1 {
     workerConfig?: Schema$InstanceGroupAutoscalingPolicyConfig;
   }
   /**
+   * Autotuning configuration of the workload.
+   */
+  export interface Schema$AutotuningConfig {
+    /**
+     * Optional. Scenarios for which tunings are applied.
+     */
+    scenarios?: string[] | null;
+  }
+  /**
    * Node group identification and configuration information.
    */
   export interface Schema$AuxiliaryNodeGroup {
@@ -2315,6 +2324,14 @@ export namespace dataproc_v1 {
    * Runtime configuration for a workload.
    */
   export interface Schema$RuntimeConfig {
+    /**
+     * Optional. Autotuning configuration of the workload.
+     */
+    autotuningConfig?: Schema$AutotuningConfig;
+    /**
+     * Optional. Cohort identifier. Identifies families of the workloads having the same shape, e.g. daily ETL jobs.
+     */
+    cohort?: string | null;
     /**
      * Optional. Optional custom container image for the job runtime environment. If not specified, a default container image will be used.
      */

@@ -3072,7 +3072,7 @@
       }
     }
   },
-  "revision": "20240505",
+  "revision": "20240605",
   "rootUrl": "https://dataproc.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -3206,6 +3206,32 @@
         "workerConfig": {
           "$ref": "InstanceGroupAutoscalingPolicyConfig",
           "description": "Required. Describes how the autoscaler will operate for primary workers."
+        }
+      },
+      "type": "object"
+    },
+    "AutotuningConfig": {
+      "description": "Autotuning configuration of the workload.",
+      "id": "AutotuningConfig",
+      "properties": {
+        "scenarios": {
+          "description": "Optional. Scenarios for which tunings are applied.",
+          "items": {
+            "enum": [
+              "SCENARIO_UNSPECIFIED",
+              "SCALING",
+              "BROADCAST_HASH_JOIN",
+              "MEMORY"
+            ],
+            "enumDescriptions": [
+              "Default value.",
+              "Scaling recommendations such as initialExecutors.",
+              "Adding hints for potential relation broadcasts.",
+              "Memory management for workloads."
+            ],
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -5606,7 +5632,9 @@
             "DELETE",
             "RESIZE",
             "REPAIR",
-            "UPDATE_LABELS"
+            "UPDATE_LABELS",
+            "START",
+            "STOP"
           ],
           "enumDescriptions": [
             "Node group operation type is unknown.",
@@ -5615,7 +5643,9 @@
             "Delete node group operation type.",
             "Resize node group operation type.",
             "Repair node group operation type.",
-            "Update node group label operation type."
+            "Update node group label operation type.",
+            "Start node group operation type.",
+            "Stop node group operation type."
           ],
           "type": "string"
         },
@@ -6208,6 +6238,14 @@
       "description": "Runtime configuration for a workload.",
       "id": "RuntimeConfig",
       "properties": {
+        "autotuningConfig": {
+          "$ref": "AutotuningConfig",
+          "description": "Optional. Autotuning configuration of the workload."
+        },
+        "cohort": {
+          "description": "Optional. Cohort identifier. Identifies families of the workloads having the same shape, e.g. daily ETL jobs.",
+          "type": "string"
+        },
         "containerImage": {
           "description": "Optional. Optional custom container image for the job runtime environment. If not specified, a default container image will be used.",
           "type": "string"
