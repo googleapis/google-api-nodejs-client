@@ -10045,7 +10045,7 @@
       }
     }
   },
-  "revision": "20240507",
+  "revision": "20240607",
   "rootUrl": "https://apigee.googleapis.com/",
   "schemas": {
     "EdgeConfigstoreBundleBadBundle": {
@@ -10207,7 +10207,7 @@
         },
         "analyticsConfig": {
           "$ref": "GoogleCloudApigeeV1AnalyticsConfig",
-          "description": "Configuration for the Analytics add-on."
+          "description": "Configuration for the Analytics add-on. Only used in organizations.environments.addonsConfig."
         },
         "apiSecurityConfig": {
           "$ref": "GoogleCloudApigeeV1ApiSecurityConfig",

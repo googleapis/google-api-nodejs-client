@@ -887,7 +887,7 @@
       }
     }
   },
-  "revision": "20240411",
+  "revision": "20240530",
   "rootUrl": "https://tpu.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -905,6 +905,7 @@
             "V2",
             "V3",
             "V4",
+            "V5LITE_POD",
             "V5P"
           ],
           "enumDescriptions": [
@@ -912,6 +913,7 @@
             "TPU v2.",
             "TPU v3.",
             "TPU v4.",
+            "TPU v5lite pod.",
             "TPU v5p"
           ],
           "type": "string"

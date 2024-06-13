@@ -54,6 +54,7 @@ import {
   advisorynotifications,
 } from './advisorynotifications';
 import {VERSIONS as aiplatformVersions, aiplatform} from './aiplatform';
+import {VERSIONS as airqualityVersions, airquality} from './airquality';
 import {VERSIONS as alertcenterVersions, alertcenter} from './alertcenter';
 import {VERSIONS as alloydbVersions, alloydb} from './alloydb';
 import {VERSIONS as analyticsVersions, analytics} from './analytics';
@@ -92,6 +93,7 @@ import {
   apigeeregistry,
 } from './apigeeregistry';
 import {VERSIONS as apikeysVersions, apikeys} from './apikeys';
+import {VERSIONS as apimVersions, apim} from './apim';
 import {VERSIONS as appengineVersions, appengine} from './appengine';
 import {VERSIONS as apphubVersions, apphub} from './apphub';
 import {VERSIONS as appsactivityVersions, appsactivity} from './appsactivity';
@@ -180,6 +182,10 @@ import {VERSIONS as cloudassetVersions, cloudasset} from './cloudasset';
 import {VERSIONS as cloudbillingVersions, cloudbilling} from './cloudbilling';
 import {VERSIONS as cloudbuildVersions, cloudbuild} from './cloudbuild';
 import {VERSIONS as cloudchannelVersions, cloudchannel} from './cloudchannel';
+import {
+  VERSIONS as cloudcommerceprocurementVersions,
+  cloudcommerceprocurement,
+} from './cloudcommerceprocurement';
 import {
   VERSIONS as cloudcontrolspartnerVersions,
   cloudcontrolspartner,
@@ -419,6 +425,7 @@ import {
   marketingplatformadmin,
 } from './marketingplatformadmin';
 import {VERSIONS as memcacheVersions, memcache} from './memcache';
+import {VERSIONS as merchantapiVersions, merchantapi} from './merchantapi';
 import {VERSIONS as metastoreVersions, metastore} from './metastore';
 import {
   VERSIONS as migrationcenterVersions,
@@ -523,6 +530,7 @@ import {
   VERSIONS as policytroubleshooterVersions,
   policytroubleshooter,
 } from './policytroubleshooter';
+import {VERSIONS as pollenVersions, pollen} from './pollen';
 import {VERSIONS as polyVersions, poly} from './poly';
 import {VERSIONS as privatecaVersions, privateca} from './privateca';
 import {
@@ -722,6 +730,7 @@ export const APIS: APIList = {
   adsensehost: adsensehostVersions,
   advisorynotifications: advisorynotificationsVersions,
   aiplatform: aiplatformVersions,
+  airquality: airqualityVersions,
   alertcenter: alertcenterVersions,
   alloydb: alloydbVersions,
   analytics: analyticsVersions,
@@ -736,6 +745,7 @@ export const APIS: APIList = {
   apigateway: apigatewayVersions,
   apigeeregistry: apigeeregistryVersions,
   apikeys: apikeysVersions,
+  apim: apimVersions,
   appengine: appengineVersions,
   apphub: apphubVersions,
   appsactivity: appsactivityVersions,
@@ -773,6 +783,7 @@ export const APIS: APIList = {
   cloudbilling: cloudbillingVersions,
   cloudbuild: cloudbuildVersions,
   cloudchannel: cloudchannelVersions,
+  cloudcommerceprocurement: cloudcommerceprocurementVersions,
   cloudcontrolspartner: cloudcontrolspartnerVersions,
   clouddebugger: clouddebuggerVersions,
   clouddeploy: clouddeployVersions,
@@ -886,6 +897,7 @@ export const APIS: APIList = {
   manufacturers: manufacturersVersions,
   marketingplatformadmin: marketingplatformadminVersions,
   memcache: memcacheVersions,
+  merchantapi: merchantapiVersions,
   metastore: metastoreVersions,
   migrationcenter: migrationcenterVersions,
   ml: mlVersions,
@@ -921,6 +933,7 @@ export const APIS: APIList = {
   policyanalyzer: policyanalyzerVersions,
   policysimulator: policysimulatorVersions,
   policytroubleshooter: policytroubleshooterVersions,
+  pollen: pollenVersions,
   poly: polyVersions,
   privateca: privatecaVersions,
   prod_tt_sasportal: prod_tt_sasportalVersions,
@@ -1017,6 +1030,7 @@ export class GeneratedAPIs {
   adsensehost = adsensehost;
   advisorynotifications = advisorynotifications;
   aiplatform = aiplatform;
+  airquality = airquality;
   alertcenter = alertcenter;
   alloydb = alloydb;
   analytics = analytics;
@@ -1031,6 +1045,7 @@ export class GeneratedAPIs {
   apigateway = apigateway;
   apigeeregistry = apigeeregistry;
   apikeys = apikeys;
+  apim = apim;
   appengine = appengine;
   apphub = apphub;
   appsactivity = appsactivity;
@@ -1068,6 +1083,7 @@ export class GeneratedAPIs {
   cloudbilling = cloudbilling;
   cloudbuild = cloudbuild;
   cloudchannel = cloudchannel;
+  cloudcommerceprocurement = cloudcommerceprocurement;
   cloudcontrolspartner = cloudcontrolspartner;
   clouddebugger = clouddebugger;
   clouddeploy = clouddeploy;
@@ -1181,6 +1197,7 @@ export class GeneratedAPIs {
   manufacturers = manufacturers;
   marketingplatformadmin = marketingplatformadmin;
   memcache = memcache;
+  merchantapi = merchantapi;
   metastore = metastore;
   migrationcenter = migrationcenter;
   ml = ml;
@@ -1216,6 +1233,7 @@ export class GeneratedAPIs {
   policyanalyzer = policyanalyzer;
   policysimulator = policysimulator;
   policytroubleshooter = policytroubleshooter;
+  pollen = pollen;
   poly = poly;
   privateca = privateca;
   prod_tt_sasportal = prod_tt_sasportal;
