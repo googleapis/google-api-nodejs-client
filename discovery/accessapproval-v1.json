@@ -913,7 +913,7 @@
       }
     }
   },
-  "revision": "20240503",
+  "revision": "20240607",
   "rootUrl": "https://accessapproval.googleapis.com/",
   "schemas": {
     "AccessApprovalServiceAccount": {
@@ -984,6 +984,22 @@
           "description": "This preference is shared with Google personnel, but can be overridden if said personnel deems necessary. The approver ultimately can set the expiration at approval time.",
           "format": "int32",
           "type": "integer"
+        },
+        "requestScopeMaxWidthPreference": {
+          "description": "Optional. A setting to indicate the maximum width of an Access Approval request.",
+          "enum": [
+            "REQUEST_SCOPE_MAX_WIDTH_PREFERENCE_UNSPECIFIED",
+            "ORGANIZATION",
+            "FOLDER",
+            "PROJECT"
+          ],
+          "enumDescriptions": [
+            "Default value for proto, shouldn't be used.",
+            "This is the widest scope possible. It means the customer has no scope restriction when it comes to Access Approval requests.",
+            "Customer allows the scope of Access Approval requests as broad as the Folder level.",
+            "Customer allows the scope of Access Approval requests as broad as the Project level."
+          ],
+          "type": "string"
         },
         "requireCustomerVisibleJustification": {
           "description": "Optional. A setting to require approval request justifications to be customer visible.",

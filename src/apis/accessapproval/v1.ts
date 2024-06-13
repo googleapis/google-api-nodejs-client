@@ -186,6 +186,10 @@ export namespace accessapproval_v1 {
      */
     preferredRequestExpirationDays?: number | null;
     /**
+     * Optional. A setting to indicate the maximum width of an Access Approval request.
+     */
+    requestScopeMaxWidthPreference?: string | null;
+    /**
      * Optional. A setting to require approval request justifications to be customer visible.
      */
     requireCustomerVisibleJustification?: boolean | null;
