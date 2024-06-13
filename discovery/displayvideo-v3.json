@@ -9222,7 +9222,7 @@
       }
     }
   },
-  "revision": "20240530",
+  "revision": "20240613",
   "rootUrl": "https://displayvideo.googleapis.com/",
   "schemas": {
     "ActiveViewVideoViewabilityMetricConfig": {
@@ -16873,6 +16873,26 @@
         "name": {
           "description": "Output only. The resource name of the insertion order.",
           "readOnly": true,
+          "type": "string"
+        },
+        "optimizationObjective": {
+          "description": "Optional. The optimization objective of the insertion order.",
+          "enum": [
+            "OPTIMIZATION_OBJECTIVE_UNSPECIFIED",
+            "CONVERSION",
+            "CLICK",
+            "BRAND_AWARENESS",
+            "CUSTOM",
+            "NO_OBJECTIVE"
+          ],
+          "enumDescriptions": [
+            "Type value is not specified or is unknown in this version.",
+            "Prioritize impressions that increase sales and conversions.",
+            "Prioritize impressions that increase website traffic, apps, app stores.",
+            "Prioritize impressions of specific quality.",
+            "Objective is defined by the assigned custom bidding algorithm.",
+            "Objective is not defined. Any KPI or bidding strategy can be used."
+          ],
           "type": "string"
         },
         "pacing": {

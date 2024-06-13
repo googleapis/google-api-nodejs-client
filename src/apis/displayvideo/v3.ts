@@ -3544,6 +3544,10 @@ export namespace displayvideo_v3 {
      */
     name?: string | null;
     /**
+     * Optional. The optimization objective of the insertion order.
+     */
+    optimizationObjective?: string | null;
+    /**
      * Required. The budget spending speed setting of the insertion order.
      */
     pacing?: Schema$Pacing;
