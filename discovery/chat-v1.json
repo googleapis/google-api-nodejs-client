@@ -2,6 +2,21 @@
   "auth": {
     "oauth2": {
       "scopes": {
+        "https://www.googleapis.com/auth/chat.admin.delete": {
+          "description": "Delete conversations and spaces owned by your organization and remove access to associated files in Google Chat"
+        },
+        "https://www.googleapis.com/auth/chat.admin.memberships": {
+          "description": "View, add, update and remove members and managers in conversations owned by your organization"
+        },
+        "https://www.googleapis.com/auth/chat.admin.memberships.readonly": {
+          "description": "View members and managers in conversations owned by your organization"
+        },
+        "https://www.googleapis.com/auth/chat.admin.spaces": {
+          "description": "View or edit display name, description, and other metadata for all Google Chat conversations owned by your organization"
+        },
+        "https://www.googleapis.com/auth/chat.admin.spaces.readonly": {
+          "description": "View display name, description, and other metadata for all Google Chat conversations owned by your organization"
+        },
         "https://www.googleapis.com/auth/chat.bot": {
           "description": "Private Service: https://www.googleapis.com/auth/chat.bot"
         },
@@ -310,6 +325,7 @@
             "$ref": "Empty"
           },
           "scopes": [
+            "https://www.googleapis.com/auth/chat.admin.delete",
             "https://www.googleapis.com/auth/chat.delete",
             "https://www.googleapis.com/auth/chat.import"
           ]
@@ -359,13 +375,15 @@
             "$ref": "Space"
           },
           "scopes": [
+            "https://www.googleapis.com/auth/chat.admin.spaces",
+            "https://www.googleapis.com/auth/chat.admin.spaces.readonly",
             "https://www.googleapis.com/auth/chat.bot",
             "https://www.googleapis.com/auth/chat.spaces",
             "https://www.googleapis.com/auth/chat.spaces.readonly"
           ]
         },
         "list": {
-          "description": "Lists spaces the caller is a member of. Group chats and DMs aren't listed until the first message is sent. For an example, see [List spaces](https://developers.google.com/workspace/chat/list-spaces). Requires [authentication](https://developers.google.com/workspace/chat/authenticate-authorize). Supports [app authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-app) and [user authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user). Lists spaces visible to the caller or authenticated user. Group chats and DMs aren't listed until the first message is sent. To list all named spaces by Google Workspace organization, use the `spaces.search()` method using Workspace administrator privileges instead.",
+          "description": "Lists spaces the caller is a member of. Group chats and DMs aren't listed until the first message is sent. For an example, see [List spaces](https://developers.google.com/workspace/chat/list-spaces). Requires [authentication](https://developers.google.com/workspace/chat/authenticate-authorize). Supports [app authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-app) and [user authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user). Lists spaces visible to the caller or authenticated user. Group chats and DMs aren't listed until the first message is sent. To list all named spaces by Google Workspace organization, use the [`spaces.search()`](https://developers.google.com/workspace/chat/api/reference/rest/v1/spaces/search) method using Workspace administrator privileges instead.",
           "flatPath": "v1/spaces",
           "httpMethod": "GET",
           "id": "chat.spaces.list",
@@ -429,6 +447,7 @@
             "$ref": "Space"
           },
           "scopes": [
+            "https://www.googleapis.com/auth/chat.admin.spaces",
             "https://www.googleapis.com/auth/chat.import",
             "https://www.googleapis.com/auth/chat.spaces"
           ]
@@ -481,6 +500,7 @@
                 "$ref": "Membership"
               },
               "scopes": [
+                "https://www.googleapis.com/auth/chat.admin.memberships",
                 "https://www.googleapis.com/auth/chat.import",
                 "https://www.googleapis.com/auth/chat.memberships",
                 "https://www.googleapis.com/auth/chat.memberships.app"
@@ -508,6 +528,7 @@
                 "$ref": "Membership"
               },
               "scopes": [
+                "https://www.googleapis.com/auth/chat.admin.memberships",
                 "https://www.googleapis.com/auth/chat.import",
                 "https://www.googleapis.com/auth/chat.memberships",
                 "https://www.googleapis.com/auth/chat.memberships.app"
@@ -535,6 +556,8 @@
                 "$ref": "Membership"
               },
               "scopes": [
+                "https://www.googleapis.com/auth/chat.admin.memberships",
+                "https://www.googleapis.com/auth/chat.admin.memberships.readonly",
                 "https://www.googleapis.com/auth/chat.bot",
                 "https://www.googleapis.com/auth/chat.memberships",
                 "https://www.googleapis.com/auth/chat.memberships.readonly"
@@ -588,6 +611,8 @@
                 "$ref": "ListMembershipsResponse"
               },
               "scopes": [
+                "https://www.googleapis.com/auth/chat.admin.memberships",
+                "https://www.googleapis.com/auth/chat.admin.memberships.readonly",
                 "https://www.googleapis.com/auth/chat.bot",
                 "https://www.googleapis.com/auth/chat.import",
                 "https://www.googleapis.com/auth/chat.memberships",
@@ -625,6 +650,7 @@
                 "$ref": "Membership"
               },
               "scopes": [
+                "https://www.googleapis.com/auth/chat.admin.memberships",
                 "https://www.googleapis.com/auth/chat.import",
                 "https://www.googleapis.com/auth/chat.memberships"
               ]
@@ -1215,7 +1241,7 @@
       }
     }
   },
-  "revision": "20240521",
+  "revision": "20240604",
   "rootUrl": "https://chat.googleapis.com/",
   "schemas": {
     "AccessoryWidget": {
@@ -1665,7 +1691,7 @@
             "The add-on launches from Google Sheets.",
             "The add-on launches from Google Slides.",
             "The add-on launches from Google Drawings.",
-            "A Google Chat app. Not used for Google Workspace Add-ons."
+            "A Google Chat app."
           ],
           "type": "string"
         },
@@ -2692,11 +2718,13 @@
           "description": "A data source shared by all Google Workspace applications, such as users in a Google Workspace organization.",
           "enum": [
             "UNKNOWN",
-            "USER"
+            "USER",
+            "DRIVE"
           ],
           "enumDescriptions": [
             "Default value. Don't use.",
-            "Google Workspace users. The user can only view and select users from their Google Workspace organization."
+            "Google Workspace users. The user can only view and select users from their Google Workspace organization.",
+            "Represents a data source from Google Drive OnePick."
           ],
           "type": "string"
         },
