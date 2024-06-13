@@ -8279,10 +8279,6 @@ export namespace aiplatform_v1 {
      */
     deployGke?: Schema$GoogleCloudAiplatformV1PublisherModelCallToActionDeployGke;
     /**
-     * Optional. Fine tune the PublisherModel with the third-party model tuning UI.
-     */
-    fineTune?: Schema$GoogleCloudAiplatformV1PublisherModelCallToActionRegionalResourceReferences;
-    /**
      * Optional. Open evaluation pipeline of the PublisherModel.
      */
     openEvaluationPipeline?: Schema$GoogleCloudAiplatformV1PublisherModelCallToActionRegionalResourceReferences;

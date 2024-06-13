@@ -5967,6 +5967,10 @@ export namespace aiplatform_v1beta1 {
      */
     googleDriveSource?: Schema$GoogleCloudAiplatformV1beta1GoogleDriveSource;
     /**
+     * Optional. The max number of queries per minute that this job is allowed to make to the embedding model specified on the corpus. This value is specific to this job and not shared across other import jobs. Consult the Quotas page on the project to set an appropriate value here. If unspecified, a default value of 1,000 QPM would be used.
+     */
+    maxEmbeddingRequestsPerMin?: number | null;
+    /**
      * Specifies the size and overlap of chunks after importing RagFiles.
      */
     ragFileChunkingConfig?: Schema$GoogleCloudAiplatformV1beta1RagFileChunkingConfig;
@@ -8145,23 +8149,6 @@ export namespace aiplatform_v1beta1 {
     statsAnomaliesBaseDirectory?: Schema$GoogleCloudAiplatformV1beta1GcsDestination;
   }
   /**
-   * A collection of data points that describes the time-varying values of a gen ai metric.
-   */
-  export interface Schema$GoogleCloudAiplatformV1beta1ModelMonitoringGenAiStats {
-    /**
-     * The data points of this time series. When listing time series, points are returned in reverse time order.
-     */
-    dataPoints?: Schema$GoogleCloudAiplatformV1beta1ModelMonitoringStatsDataPoint[];
-    /**
-     * One of the supported monitoring objectives: `gen-ai-general` `gen-ai-evaluation` `gen-ai-safety`
-     */
-    objectiveType?: string | null;
-    /**
-     * The stats name.
-     */
-    statsName?: string | null;
-  }
-  /**
    * Model monitoring data input spec.
    */
   export interface Schema$GoogleCloudAiplatformV1beta1ModelMonitoringInput {
@@ -8656,10 +8643,6 @@ export namespace aiplatform_v1beta1 {
    * Represents the collection of statistics for a metric.
    */
   export interface Schema$GoogleCloudAiplatformV1beta1ModelMonitoringStats {
-    /**
-     * Generated gen ai statistics.
-     */
-    genAiStats?: Schema$GoogleCloudAiplatformV1beta1ModelMonitoringGenAiStats;
     /**
      * Generated tabular statistics.
      */
@@ -10387,10 +10370,6 @@ export namespace aiplatform_v1beta1 {
      */
     deployGke?: Schema$GoogleCloudAiplatformV1beta1PublisherModelCallToActionDeployGke;
     /**
-     * Optional. Fine tune the PublisherModel with the third-party model tuning UI.
-     */
-    fineTune?: Schema$GoogleCloudAiplatformV1beta1PublisherModelCallToActionRegionalResourceReferences;
-    /**
      * Optional. Open evaluation pipeline of the PublisherModel.
      */
     openEvaluationPipeline?: Schema$GoogleCloudAiplatformV1beta1PublisherModelCallToActionRegionalResourceReferences;
@@ -11090,9 +11069,39 @@ export namespace aiplatform_v1beta1 {
      */
     name?: string | null;
     /**
+     * Optional. Immutable. The embedding model config of the RagCorpus.
+     */
+    ragEmbeddingModelConfig?: Schema$GoogleCloudAiplatformV1beta1RagEmbeddingModelConfig;
+    /**
      * Output only. Timestamp when this RagCorpus was last updated.
      */
     updateTime?: string | null;
+  }
+  /**
+   * Config for the embedding model to use for RAG.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1RagEmbeddingModelConfig {
+    /**
+     * The Vertex AI Prediction Endpoint that either refers to a publisher model or an endpoint that is hosting a 1P fine-tuned text embedding model. Endpoints hosting non-1P fine-tuned text embedding models are currently not supported.
+     */
+    vertexPredictionEndpoint?: Schema$GoogleCloudAiplatformV1beta1RagEmbeddingModelConfigVertexPredictionEndpoint;
+  }
+  /**
+   * Config representing a model hosted on Vertex Prediction Endpoint.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1RagEmbeddingModelConfigVertexPredictionEndpoint {
+    /**
+     * Required. The endpoint resource name. Format: `projects/{project\}/locations/{location\}/publishers/{publisher\}/models/{model\}` or `projects/{project\}/locations/{location\}/endpoints/{endpoint\}`
+     */
+    endpoint?: string | null;
+    /**
+     * Output only. The resource name of the model that is deployed on the endpoint. Present only when the endpoint is not a publisher model. Pattern: `projects/{project\}/locations/{location\}/models/{model\}`
+     */
+    model?: string | null;
+    /**
+     * Output only. Version ID of the model that is deployed on the endpoint. Present only when the endpoint is not a publisher model.
+     */
+    modelVersionId?: string | null;
   }
   /**
    * A RagFile contains user data for chunking, embedding and indexing.
@@ -14941,38 +14950,9 @@ export namespace aiplatform_v1beta1 {
    */
   export interface Schema$GoogleCloudAiplatformV1beta1SearchModelMonitoringStatsFilter {
     /**
-     * GenAi statistics filter.
-     */
-    genAiStatsFilter?: Schema$GoogleCloudAiplatformV1beta1SearchModelMonitoringStatsFilterGenAiStatsFilter;
-    /**
      * Tabular statistics filter.
      */
     tabularStatsFilter?: Schema$GoogleCloudAiplatformV1beta1SearchModelMonitoringStatsFilterTabularStatsFilter;
-  }
-  /**
-   * GenAi statistics filter.
-   */
-  export interface Schema$GoogleCloudAiplatformV1beta1SearchModelMonitoringStatsFilterGenAiStatsFilter {
-    /**
-     * From a particular cluster of monitoring results.
-     */
-    clusterId?: string | null;
-    /**
-     * From a particular monitoring job.
-     */
-    modelMonitoringJob?: string | null;
-    /**
-     * From a particular monitoring schedule.
-     */
-    modelMonitoringSchedule?: string | null;
-    /**
-     * One of the supported monitoring objectives: `gen-ai-general` `gen-ai-evaluation` `gen-ai-safety`
-     */
-    objectiveType?: string | null;
-    /**
-     * If not specified, will return all the stats_names.
-     */
-    statsName?: string | null;
   }
   /**
    * Tabular statistics filter.
@@ -15224,6 +15204,15 @@ export namespace aiplatform_v1beta1 {
      * Required. Selector choosing Features of the target EntityType. Feature IDs will be deduplicated.
      */
     featureSelector?: Schema$GoogleCloudAiplatformV1beta1FeatureSelector;
+  }
+  /**
+   * Request message for PredictionService.StreamRawPredict.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1StreamRawPredictRequest {
+    /**
+     * The prediction input. Supports HTTP headers and arbitrary data payload.
+     */
+    httpBody?: Schema$GoogleApiHttpBody;
   }
   /**
    * A list of string values.
@@ -20382,7 +20371,7 @@ export namespace aiplatform_v1beta1 {
     delete(
       params?: Params$Resource$Projects$Locations$Cachedcontents$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
     delete(
       params: Params$Resource$Projects$Locations$Cachedcontents$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -20390,34 +20379,30 @@ export namespace aiplatform_v1beta1 {
     ): void;
     delete(
       params: Params$Resource$Projects$Locations$Cachedcontents$Delete,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+      options: MethodOptions | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
     ): void;
     delete(
       params: Params$Resource$Projects$Locations$Cachedcontents$Delete,
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
     ): void;
-    delete(
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
+    delete(callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>): void;
     delete(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Cachedcontents$Delete
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Schema$GoogleProtobufEmpty>
       | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Cachedcontents$Delete;
@@ -20450,12 +20435,12 @@ export namespace aiplatform_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GoogleLongrunningOperation>(
+        createAPIRequest<Schema$GoogleProtobufEmpty>(
           parameters,
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+        return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
       }
     }
 
@@ -31273,6 +31258,100 @@ export namespace aiplatform_v1beta1 {
     }
 
     /**
+     * Perform a streaming online prediction with an arbitrary HTTP payload.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    streamRawPredict(
+      params: Params$Resource$Projects$Locations$Endpoints$Streamrawpredict,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    streamRawPredict(
+      params?: Params$Resource$Projects$Locations$Endpoints$Streamrawpredict,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleApiHttpBody>;
+    streamRawPredict(
+      params: Params$Resource$Projects$Locations$Endpoints$Streamrawpredict,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    streamRawPredict(
+      params: Params$Resource$Projects$Locations$Endpoints$Streamrawpredict,
+      options: MethodOptions | BodyResponseCallback<Schema$GoogleApiHttpBody>,
+      callback: BodyResponseCallback<Schema$GoogleApiHttpBody>
+    ): void;
+    streamRawPredict(
+      params: Params$Resource$Projects$Locations$Endpoints$Streamrawpredict,
+      callback: BodyResponseCallback<Schema$GoogleApiHttpBody>
+    ): void;
+    streamRawPredict(
+      callback: BodyResponseCallback<Schema$GoogleApiHttpBody>
+    ): void;
+    streamRawPredict(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Endpoints$Streamrawpredict
+        | BodyResponseCallback<Schema$GoogleApiHttpBody>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleApiHttpBody>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleApiHttpBody>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleApiHttpBody>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Endpoints$Streamrawpredict;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Endpoints$Streamrawpredict;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+endpoint}:streamRawPredict').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['endpoint'],
+        pathParams: ['endpoint'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleApiHttpBody>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleApiHttpBody>(parameters);
+      }
+    }
+
+    /**
      * Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a `NOT_FOUND` error. Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
      *
      * @param params - Parameters for request
@@ -31702,6 +31781,18 @@ export namespace aiplatform_v1beta1 {
      * Request body metadata
      */
     requestBody?: Schema$GoogleCloudAiplatformV1beta1GenerateContentRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Endpoints$Streamrawpredict
+    extends StandardParameters {
+    /**
+     * Required. The name of the Endpoint requested to serve the prediction. Format: `projects/{project\}/locations/{location\}/endpoints/{endpoint\}`
+     */
+    endpoint?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudAiplatformV1beta1StreamRawPredictRequest;
   }
   export interface Params$Resource$Projects$Locations$Endpoints$Testiampermissions
     extends StandardParameters {
@@ -69186,6 +69277,100 @@ export namespace aiplatform_v1beta1 {
         );
       }
     }
+
+    /**
+     * Perform a streaming online prediction with an arbitrary HTTP payload.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    streamRawPredict(
+      params: Params$Resource$Projects$Locations$Publishers$Models$Streamrawpredict,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    streamRawPredict(
+      params?: Params$Resource$Projects$Locations$Publishers$Models$Streamrawpredict,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleApiHttpBody>;
+    streamRawPredict(
+      params: Params$Resource$Projects$Locations$Publishers$Models$Streamrawpredict,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    streamRawPredict(
+      params: Params$Resource$Projects$Locations$Publishers$Models$Streamrawpredict,
+      options: MethodOptions | BodyResponseCallback<Schema$GoogleApiHttpBody>,
+      callback: BodyResponseCallback<Schema$GoogleApiHttpBody>
+    ): void;
+    streamRawPredict(
+      params: Params$Resource$Projects$Locations$Publishers$Models$Streamrawpredict,
+      callback: BodyResponseCallback<Schema$GoogleApiHttpBody>
+    ): void;
+    streamRawPredict(
+      callback: BodyResponseCallback<Schema$GoogleApiHttpBody>
+    ): void;
+    streamRawPredict(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Publishers$Models$Streamrawpredict
+        | BodyResponseCallback<Schema$GoogleApiHttpBody>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleApiHttpBody>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleApiHttpBody>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleApiHttpBody>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Publishers$Models$Streamrawpredict;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Publishers$Models$Streamrawpredict;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+endpoint}:streamRawPredict').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['endpoint'],
+        pathParams: ['endpoint'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleApiHttpBody>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleApiHttpBody>(parameters);
+      }
+    }
   }
 
   export interface Params$Resource$Projects$Locations$Publishers$Models$Computetokens
@@ -69282,6 +69467,18 @@ export namespace aiplatform_v1beta1 {
      * Request body metadata
      */
     requestBody?: Schema$GoogleCloudAiplatformV1beta1GenerateContentRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Publishers$Models$Streamrawpredict
+    extends StandardParameters {
+    /**
+     * Required. The name of the Endpoint requested to serve the prediction. Format: `projects/{project\}/locations/{location\}/endpoints/{endpoint\}`
+     */
+    endpoint?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudAiplatformV1beta1StreamRawPredictRequest;
   }
 
   export class Resource$Projects$Locations$Ragcorpora {

@@ -20,9 +20,9 @@
   "documentationLink": "https://cloud.google.com/vertex-ai/",
   "endpoints": [
     {
+      "endpointUrl": "https://africa-south1-aiplatform.googleapis.com/",
       "location": "africa-south1",
-      "description": "Locational Endpoint",
-      "endpointUrl": "https://africa-south1-aiplatform.googleapis.com/"
+      "description": "Locational Endpoint"
     },
     {
       "description": "Locational Endpoint",
@@ -30,14 +30,14 @@
       "location": "asia-east1"
     },
     {
+      "description": "Locational Endpoint",
       "location": "asia-east2",
-      "endpointUrl": "https://asia-east2-aiplatform.googleapis.com/",
-      "description": "Locational Endpoint"
+      "endpointUrl": "https://asia-east2-aiplatform.googleapis.com/"
     },
     {
-      "description": "Locational Endpoint",
       "endpointUrl": "https://asia-northeast1-aiplatform.googleapis.com/",
-      "location": "asia-northeast1"
+      "location": "asia-northeast1",
+      "description": "Locational Endpoint"
     },
     {
       "endpointUrl": "https://asia-northeast2-aiplatform.googleapis.com/",
@@ -45,54 +45,54 @@
       "description": "Locational Endpoint"
     },
     {
+      "description": "Locational Endpoint",
       "endpointUrl": "https://asia-northeast3-aiplatform.googleapis.com/",
-      "location": "asia-northeast3",
+      "location": "asia-northeast3"
+    },
+    {
+      "location": "asia-south1",
+      "endpointUrl": "https://asia-south1-aiplatform.googleapis.com/",
       "description": "Locational Endpoint"
     },
     {
-      "description": "Locational Endpoint",
-      "endpointUrl": "https://asia-south1-aiplatform.googleapis.com/",
-      "location": "asia-south1"
-    },
-    {
-      "description": "Locational Endpoint",
       "location": "asia-southeast1",
+      "description": "Locational Endpoint",
       "endpointUrl": "https://asia-southeast1-aiplatform.googleapis.com/"
     },
     {
-      "endpointUrl": "https://asia-southeast2-aiplatform.googleapis.com/",
       "description": "Locational Endpoint",
+      "endpointUrl": "https://asia-southeast2-aiplatform.googleapis.com/",
       "location": "asia-southeast2"
     },
     {
-      "location": "australia-southeast1",
+      "description": "Locational Endpoint",
       "endpointUrl": "https://australia-southeast1-aiplatform.googleapis.com/",
-      "description": "Locational Endpoint"
+      "location": "australia-southeast1"
     },
     {
-      "description": "Locational Endpoint",
+      "endpointUrl": "https://australia-southeast2-aiplatform.googleapis.com/",
       "location": "australia-southeast2",
-      "endpointUrl": "https://australia-southeast2-aiplatform.googleapis.com/"
-    },
-    {
-      "location": "europe-central2",
-      "description": "Locational Endpoint",
-      "endpointUrl": "https://europe-central2-aiplatform.googleapis.com/"
-    },
-    {
-      "location": "europe-north1",
-      "endpointUrl": "https://europe-north1-aiplatform.googleapis.com/",
       "description": "Locational Endpoint"
     },
     {
       "description": "Locational Endpoint",
-      "endpointUrl": "https://europe-southwest1-aiplatform.googleapis.com/",
-      "location": "europe-southwest1"
+      "endpointUrl": "https://europe-central2-aiplatform.googleapis.com/",
+      "location": "europe-central2"
+    },
+    {
+      "endpointUrl": "https://europe-north1-aiplatform.googleapis.com/",
+      "description": "Locational Endpoint",
+      "location": "europe-north1"
+    },
+    {
+      "description": "Locational Endpoint",
+      "location": "europe-southwest1",
+      "endpointUrl": "https://europe-southwest1-aiplatform.googleapis.com/"
     },
     {
       "endpointUrl": "https://europe-west1-aiplatform.googleapis.com/",
-      "description": "Locational Endpoint",
-      "location": "europe-west1"
+      "location": "europe-west1",
+      "description": "Locational Endpoint"
     },
     {
       "endpointUrl": "https://europe-west2-aiplatform.googleapis.com/",
@@ -101,8 +101,8 @@
     },
     {
       "location": "europe-west3",
-      "endpointUrl": "https://europe-west3-aiplatform.googleapis.com/",
-      "description": "Locational Endpoint"
+      "description": "Locational Endpoint",
+      "endpointUrl": "https://europe-west3-aiplatform.googleapis.com/"
     },
     {
       "location": "europe-west4",
@@ -110,24 +110,24 @@
       "description": "Locational Endpoint"
     },
     {
-      "location": "europe-west6",
       "description": "Locational Endpoint",
+      "location": "europe-west6",
       "endpointUrl": "https://europe-west6-aiplatform.googleapis.com/"
     },
     {
       "description": "Locational Endpoint",
-      "endpointUrl": "https://europe-west8-aiplatform.googleapis.com/",
-      "location": "europe-west8"
+      "location": "europe-west8",
+      "endpointUrl": "https://europe-west8-aiplatform.googleapis.com/"
     },
     {
       "location": "europe-west9",
-      "description": "Locational Endpoint",
-      "endpointUrl": "https://europe-west9-aiplatform.googleapis.com/"
+      "endpointUrl": "https://europe-west9-aiplatform.googleapis.com/",
+      "description": "Locational Endpoint"
     },
     {
-      "location": "europe-west12",
       "description": "Locational Endpoint",
-      "endpointUrl": "https://europe-west12-aiplatform.googleapis.com/"
+      "endpointUrl": "https://europe-west12-aiplatform.googleapis.com/",
+      "location": "europe-west12"
     },
     {
       "description": "Locational Endpoint",
@@ -135,9 +135,9 @@
       "endpointUrl": "https://me-central1-aiplatform.googleapis.com/"
     },
     {
+      "location": "me-central2",
       "endpointUrl": "https://me-central2-aiplatform.googleapis.com/",
-      "description": "Locational Endpoint",
-      "location": "me-central2"
+      "description": "Locational Endpoint"
     },
     {
       "location": "me-west1",
@@ -145,54 +145,54 @@
       "description": "Locational Endpoint"
     },
     {
-      "endpointUrl": "https://northamerica-northeast1-aiplatform.googleapis.com/",
       "description": "Locational Endpoint",
+      "endpointUrl": "https://northamerica-northeast1-aiplatform.googleapis.com/",
       "location": "northamerica-northeast1"
     },
     {
-      "location": "northamerica-northeast2",
       "description": "Locational Endpoint",
+      "location": "northamerica-northeast2",
       "endpointUrl": "https://northamerica-northeast2-aiplatform.googleapis.com/"
     },
     {
-      "endpointUrl": "https://southamerica-east1-aiplatform.googleapis.com/",
       "location": "southamerica-east1",
+      "endpointUrl": "https://southamerica-east1-aiplatform.googleapis.com/",
       "description": "Locational Endpoint"
     },
     {
+      "description": "Locational Endpoint",
       "location": "southamerica-west1",
-      "endpointUrl": "https://southamerica-west1-aiplatform.googleapis.com/",
-      "description": "Locational Endpoint"
+      "endpointUrl": "https://southamerica-west1-aiplatform.googleapis.com/"
     },
     {
       "endpointUrl": "https://us-central1-aiplatform.googleapis.com/",
-      "description": "Locational Endpoint",
-      "location": "us-central1"
-    },
-    {
-      "location": "us-central2",
-      "description": "Locational Endpoint",
-      "endpointUrl": "https://us-central2-aiplatform.googleapis.com/"
-    },
-    {
-      "description": "Locational Endpoint",
-      "location": "us-east1",
-      "endpointUrl": "https://us-east1-aiplatform.googleapis.com/"
-    },
-    {
-      "endpointUrl": "https://us-east4-aiplatform.googleapis.com/",
-      "location": "us-east4",
+      "location": "us-central1",
       "description": "Locational Endpoint"
     },
     {
-      "endpointUrl": "https://us-south1-aiplatform.googleapis.com/",
+      "endpointUrl": "https://us-central2-aiplatform.googleapis.com/",
+      "location": "us-central2",
+      "description": "Locational Endpoint"
+    },
+    {
+      "location": "us-east1",
       "description": "Locational Endpoint",
+      "endpointUrl": "https://us-east1-aiplatform.googleapis.com/"
+    },
+    {
+      "location": "us-east4",
+      "description": "Locational Endpoint",
+      "endpointUrl": "https://us-east4-aiplatform.googleapis.com/"
+    },
+    {
+      "description": "Locational Endpoint",
+      "endpointUrl": "https://us-south1-aiplatform.googleapis.com/",
       "location": "us-south1"
     },
     {
       "endpointUrl": "https://us-west1-aiplatform.googleapis.com/",
-      "location": "us-west1",
-      "description": "Locational Endpoint"
+      "description": "Locational Endpoint",
+      "location": "us-west1"
     },
     {
       "endpointUrl": "https://us-west2-aiplatform.googleapis.com/",
@@ -201,18 +201,18 @@
     },
     {
       "endpointUrl": "https://us-west3-aiplatform.googleapis.com/",
-      "description": "Locational Endpoint",
-      "location": "us-west3"
+      "location": "us-west3",
+      "description": "Locational Endpoint"
     },
     {
       "endpointUrl": "https://us-west4-aiplatform.googleapis.com/",
-      "description": "Locational Endpoint",
-      "location": "us-west4"
+      "location": "us-west4",
+      "description": "Locational Endpoint"
     },
     {
-      "location": "us-east5",
       "description": "Locational Endpoint",
-      "endpointUrl": "https://us-east5-aiplatform.googleapis.com/"
+      "endpointUrl": "https://us-east5-aiplatform.googleapis.com/",
+      "location": "us-east5"
     }
   ],
   "fullyEncodeReservedExpansion": true,
@@ -1048,7 +1048,7 @@
                   },
                   "path": "v1beta1/{+name}",
                   "response": {
-                    "$ref": "GoogleLongrunningOperation"
+                    "$ref": "GoogleProtobufEmpty"
                   },
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform"
@@ -4321,6 +4321,35 @@
                   },
                   "response": {
                     "$ref": "GoogleCloudAiplatformV1beta1GenerateContentResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/cloud-platform.read-only"
+                  ]
+                },
+                "streamRawPredict": {
+                  "description": "Perform a streaming online prediction with an arbitrary HTTP payload.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/endpoints/{endpointsId}:streamRawPredict",
+                  "httpMethod": "POST",
+                  "id": "aiplatform.projects.locations.endpoints.streamRawPredict",
+                  "parameterOrder": [
+                    "endpoint"
+                  ],
+                  "parameters": {
+                    "endpoint": {
+                      "description": "Required. The name of the Endpoint requested to serve the prediction. Format: `projects/{project}/locations/{location}/endpoints/{endpoint}`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/endpoints/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+endpoint}:streamRawPredict",
+                  "request": {
+                    "$ref": "GoogleCloudAiplatformV1beta1StreamRawPredictRequest"
+                  },
+                  "response": {
+                    "$ref": "GoogleApiHttpBody"
                   },
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform",
@@ -15331,6 +15360,35 @@
                         "https://www.googleapis.com/auth/cloud-platform",
                         "https://www.googleapis.com/auth/cloud-platform.read-only"
                       ]
+                    },
+                    "streamRawPredict": {
+                      "description": "Perform a streaming online prediction with an arbitrary HTTP payload.",
+                      "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/publishers/{publishersId}/models/{modelsId}:streamRawPredict",
+                      "httpMethod": "POST",
+                      "id": "aiplatform.projects.locations.publishers.models.streamRawPredict",
+                      "parameterOrder": [
+                        "endpoint"
+                      ],
+                      "parameters": {
+                        "endpoint": {
+                          "description": "Required. The name of the Endpoint requested to serve the prediction. Format: `projects/{project}/locations/{location}/endpoints/{endpoint}`",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/publishers/[^/]+/models/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta1/{+endpoint}:streamRawPredict",
+                      "request": {
+                        "$ref": "GoogleCloudAiplatformV1beta1StreamRawPredictRequest"
+                      },
+                      "response": {
+                        "$ref": "GoogleApiHttpBody"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/cloud-platform.read-only"
+                      ]
                     }
                   }
                 }
@@ -19896,7 +19954,7 @@
       }
     }
   },
-  "revision": "20240529",
+  "revision": "20240609",
   "rootUrl": "https://aiplatform.googleapis.com/",
   "schemas": {
     "CloudAiLargeModelsVisionGenerateVideoResponse": {
@@ -27958,6 +28016,11 @@
           "$ref": "GoogleCloudAiplatformV1beta1GoogleDriveSource",
           "description": "Google Drive location. Supports importing individual files as well as Google Drive folders."
         },
+        "maxEmbeddingRequestsPerMin": {
+          "description": "Optional. The max number of queries per minute that this job is allowed to make to the embedding model specified on the corpus. This value is specific to this job and not shared across other import jobs. Consult the Quotas page on the project to set an appropriate value here. If unspecified, a default value of 1,000 QPM would be used.",
+          "format": "int32",
+          "type": "integer"
+        },
         "ragFileChunkingConfig": {
           "$ref": "GoogleCloudAiplatformV1beta1RagFileChunkingConfig",
           "description": "Specifies the size and overlap of chunks after importing RagFiles."
@@ -31025,28 +31088,6 @@
       },
       "type": "object"
     },
-    "GoogleCloudAiplatformV1beta1ModelMonitoringGenAiStats": {
-      "description": "A collection of data points that describes the time-varying values of a gen ai metric.",
-      "id": "GoogleCloudAiplatformV1beta1ModelMonitoringGenAiStats",
-      "properties": {
-        "dataPoints": {
-          "description": "The data points of this time series. When listing time series, points are returned in reverse time order.",
-          "items": {
-            "$ref": "GoogleCloudAiplatformV1beta1ModelMonitoringStatsDataPoint"
-          },
-          "type": "array"
-        },
-        "objectiveType": {
-          "description": "One of the supported monitoring objectives: `gen-ai-general` `gen-ai-evaluation` `gen-ai-safety`",
-          "type": "string"
-        },
-        "statsName": {
-          "description": "The stats name.",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
     "GoogleCloudAiplatformV1beta1ModelMonitoringInput": {
       "description": "Model monitoring data input spec.",
       "id": "GoogleCloudAiplatformV1beta1ModelMonitoringInput",
@@ -31691,10 +31732,6 @@
       "description": "Represents the collection of statistics for a metric.",
       "id": "GoogleCloudAiplatformV1beta1ModelMonitoringStats",
       "properties": {
-        "genAiStats": {
-          "$ref": "GoogleCloudAiplatformV1beta1ModelMonitoringGenAiStats",
-          "description": "Generated gen ai statistics."
-        },
         "tabularStats": {
           "$ref": "GoogleCloudAiplatformV1beta1ModelMonitoringTabularStats",
           "description": "Generated tabular statistics."
@@ -32511,7 +32548,7 @@
             "Error parsing sparse dimensions field.",
             "Token restrict value is invalid.",
             "Invalid sparse embedding.",
-            "Invalid embedding."
+            "Invalid dense embedding."
           ],
           "type": "string"
         },
@@ -34242,10 +34279,6 @@
           "$ref": "GoogleCloudAiplatformV1beta1PublisherModelCallToActionDeployGke",
           "description": "Optional. Deploy PublisherModel to Google Kubernetes Engine."
         },
-        "fineTune": {
-          "$ref": "GoogleCloudAiplatformV1beta1PublisherModelCallToActionRegionalResourceReferences",
-          "description": "Optional. Fine tune the PublisherModel with the third-party model tuning UI."
-        },
         "openEvaluationPipeline": {
           "$ref": "GoogleCloudAiplatformV1beta1PublisherModelCallToActionRegionalResourceReferences",
           "description": "Optional. Open evaluation pipeline of the PublisherModel."
@@ -35115,9 +35148,45 @@
           "readOnly": true,
           "type": "string"
         },
+        "ragEmbeddingModelConfig": {
+          "$ref": "GoogleCloudAiplatformV1beta1RagEmbeddingModelConfig",
+          "description": "Optional. Immutable. The embedding model config of the RagCorpus."
+        },
         "updateTime": {
           "description": "Output only. Timestamp when this RagCorpus was last updated.",
           "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1RagEmbeddingModelConfig": {
+      "description": "Config for the embedding model to use for RAG.",
+      "id": "GoogleCloudAiplatformV1beta1RagEmbeddingModelConfig",
+      "properties": {
+        "vertexPredictionEndpoint": {
+          "$ref": "GoogleCloudAiplatformV1beta1RagEmbeddingModelConfigVertexPredictionEndpoint",
+          "description": "The Vertex AI Prediction Endpoint that either refers to a publisher model or an endpoint that is hosting a 1P fine-tuned text embedding model. Endpoints hosting non-1P fine-tuned text embedding models are currently not supported."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1RagEmbeddingModelConfigVertexPredictionEndpoint": {
+      "description": "Config representing a model hosted on Vertex Prediction Endpoint.",
+      "id": "GoogleCloudAiplatformV1beta1RagEmbeddingModelConfigVertexPredictionEndpoint",
+      "properties": {
+        "endpoint": {
+          "description": "Required. The endpoint resource name. Format: `projects/{project}/locations/{location}/publishers/{publisher}/models/{model}` or `projects/{project}/locations/{location}/endpoints/{endpoint}`",
+          "type": "string"
+        },
+        "model": {
+          "description": "Output only. The resource name of the model that is deployed on the endpoint. Present only when the endpoint is not a publisher model. Pattern: `projects/{project}/locations/{location}/models/{model}`",
+          "readOnly": true,
+          "type": "string"
+        },
+        "modelVersionId": {
+          "description": "Output only. Version ID of the model that is deployed on the endpoint. Present only when the endpoint is not a publisher model.",
           "readOnly": true,
           "type": "string"
         }
@@ -40636,40 +40705,9 @@
       "description": "Filter for searching ModelMonitoringStats.",
       "id": "GoogleCloudAiplatformV1beta1SearchModelMonitoringStatsFilter",
       "properties": {
-        "genAiStatsFilter": {
-          "$ref": "GoogleCloudAiplatformV1beta1SearchModelMonitoringStatsFilterGenAiStatsFilter",
-          "description": "GenAi statistics filter."
-        },
         "tabularStatsFilter": {
           "$ref": "GoogleCloudAiplatformV1beta1SearchModelMonitoringStatsFilterTabularStatsFilter",
           "description": "Tabular statistics filter."
-        }
-      },
-      "type": "object"
-    },
-    "GoogleCloudAiplatformV1beta1SearchModelMonitoringStatsFilterGenAiStatsFilter": {
-      "description": "GenAi statistics filter.",
-      "id": "GoogleCloudAiplatformV1beta1SearchModelMonitoringStatsFilterGenAiStatsFilter",
-      "properties": {
-        "clusterId": {
-          "description": "From a particular cluster of monitoring results.",
-          "type": "string"
-        },
-        "modelMonitoringJob": {
-          "description": "From a particular monitoring job.",
-          "type": "string"
-        },
-        "modelMonitoringSchedule": {
-          "description": "From a particular monitoring schedule.",
-          "type": "string"
-        },
-        "objectiveType": {
-          "description": "One of the supported monitoring objectives: `gen-ai-general` `gen-ai-evaluation` `gen-ai-safety`",
-          "type": "string"
-        },
-        "statsName": {
-          "description": "If not specified, will return all the stats_names.",
-          "type": "string"
         }
       },
       "type": "object"
@@ -40908,6 +40946,17 @@
           "description": "The fraction of the input data that is to be used to validate the Model.",
           "format": "double",
           "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1StreamRawPredictRequest": {
+      "description": "Request message for PredictionService.StreamRawPredict.",
+      "id": "GoogleCloudAiplatformV1beta1StreamRawPredictRequest",
+      "properties": {
+        "httpBody": {
+          "$ref": "GoogleApiHttpBody",
+          "description": "The prediction input. Supports HTTP headers and arbitrary data payload."
         }
       },
       "type": "object"
