@@ -612,7 +612,7 @@
       }
     }
   },
-  "revision": "20240307",
+  "revision": "20240604",
   "rootUrl": "https://memcache.googleapis.com/",
   "schemas": {
     "ApplyParametersRequest": {
@@ -1206,6 +1206,16 @@
             "type": "string"
           },
           "type": "array"
+        },
+        "satisfiesPzi": {
+          "description": "Optional. Output only. Reserved for future use.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "satisfiesPzs": {
+          "description": "Optional. Output only. Reserved for future use.",
+          "readOnly": true,
+          "type": "boolean"
         },
         "state": {
           "description": "Output only. The state of this Memcached instance.",

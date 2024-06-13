@@ -541,6 +541,14 @@ export namespace memcache_v1 {
      */
     reservedIpRangeId?: string[] | null;
     /**
+     * Optional. Output only. Reserved for future use.
+     */
+    satisfiesPzi?: boolean | null;
+    /**
+     * Optional. Output only. Reserved for future use.
+     */
+    satisfiesPzs?: boolean | null;
+    /**
      * Output only. The state of this Memcached instance.
      */
     state?: string | null;
