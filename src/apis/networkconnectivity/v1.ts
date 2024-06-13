@@ -613,6 +613,10 @@ export namespace networkconnectivity_v1 {
      */
     excludeExportRanges?: string[] | null;
     /**
+     * Optional. IP ranges allowed to be included from peering.
+     */
+    includeExportRanges?: string[] | null;
+    /**
      * Required. The URI of the VPC network resource.
      */
     uri?: string | null;

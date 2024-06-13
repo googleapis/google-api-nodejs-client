@@ -2812,7 +2812,7 @@
       }
     }
   },
-  "revision": "20240523",
+  "revision": "20240529",
   "rootUrl": "https://networkconnectivity.googleapis.com/",
   "schemas": {
     "AcceptHubSpokeRequest": {
@@ -3590,6 +3590,13 @@
       "properties": {
         "excludeExportRanges": {
           "description": "Optional. IP ranges encompassing the subnets to be excluded from peering.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "includeExportRanges": {
+          "description": "Optional. IP ranges allowed to be included from peering.",
           "items": {
             "type": "string"
           },
