@@ -1168,7 +1168,7 @@
       }
     }
   },
-  "revision": "20240603",
+  "revision": "20240613",
   "rootUrl": "https://androidmanagement.googleapis.com/",
   "schemas": {
     "AdbShellCommandEvent": {
@@ -5497,6 +5497,10 @@
           "description": "The API level of the Android platform version running on the device.",
           "format": "int32",
           "type": "integer"
+        },
+        "authenticatedUserEmail": {
+          "description": "The email address of the authenticated user (only present for Google Account provisioning method).",
+          "type": "string"
         },
         "brand": {
           "description": "The brand of the device. For example, Google.",

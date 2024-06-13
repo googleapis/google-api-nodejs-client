@@ -2618,6 +2618,10 @@ export namespace androidmanagement_v1 {
      */
     apiLevel?: number | null;
     /**
+     * The email address of the authenticated user (only present for Google Account provisioning method).
+     */
+    authenticatedUserEmail?: string | null;
+    /**
      * The brand of the device. For example, Google.
      */
     brand?: string | null;
