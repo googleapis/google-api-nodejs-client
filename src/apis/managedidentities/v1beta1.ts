@@ -183,7 +183,7 @@ export namespace managedidentities_v1beta1 {
      */
     members?: string[] | null;
     /**
-     * Role that is assigned to the list of `members`, or principals. For example, `roles/viewer`, `roles/editor`, or `roles/owner`.
+     * Role that is assigned to the list of `members`, or principals. For example, `roles/viewer`, `roles/editor`, or `roles/owner`. For an overview of the IAM roles and permissions, see the [IAM documentation](https://cloud.google.com/iam/docs/roles-overview). For a list of the available pre-defined roles, see [here](https://cloud.google.com/iam/docs/understanding-roles).
      */
     role?: string | null;
   }
@@ -872,7 +872,7 @@ export namespace managedidentities_v1beta1 {
     name?: string | null;
   }
   /**
-   * LINT.IfChange Defines policies to service maintenance events.
+   * Defines policies to service maintenance events.
    */
   export interface Schema$MaintenancePolicy {
     /**
