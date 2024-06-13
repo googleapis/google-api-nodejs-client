@@ -4731,7 +4731,7 @@
       }
     }
   },
-  "revision": "20240530",
+  "revision": "20240613",
   "rootUrl": "https://androidpublisher.googleapis.com/",
   "schemas": {
     "Abi": {
@@ -9942,7 +9942,7 @@
           "type": "integer"
         },
         "voidedReason": {
-          "description": "The reason why the purchase was voided, possible values are: 0. Other 1. Remorse 2. Not_received 3. Defective 4. Accidental_purchase 5. Fraud 6. Friendly_fraud 7. Chargeback",
+          "description": "The reason why the purchase was voided, possible values are: 0. Other 1. Remorse 2. Not_received 3. Defective 4. Accidental_purchase 5. Fraud 6. Friendly_fraud 7. Chargeback 8. Unacknowledged_purchase",
           "format": "int32",
           "type": "integer"
         },
