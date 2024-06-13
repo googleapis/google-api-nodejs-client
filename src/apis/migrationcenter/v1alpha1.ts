@@ -728,6 +728,10 @@ export namespace migrationcenter_v1alpha1 {
      */
     machinePreferences?: Schema$MachinePreferences;
     /**
+     * Optional. Pricing options for OS images.
+     */
+    osPricingPreferences?: Schema$OperatingSystemPricingPreferences;
+    /**
      * Persistent disk type to use. If unspecified (default), all types are considered, based on available usage data.
      */
     persistentDiskType?: string | null;
@@ -2222,7 +2226,7 @@ export namespace migrationcenter_v1alpha1 {
     name?: string | null;
   }
   /**
-   * The type of machines to consider when calculating virtual machine migration insights and recommendations. Not all machine types are available in all zones and regions.
+   * The type of machines to consider when calculating virtual machine migration insights and recommendations for GCE. Not all machine types are available in all zones and regions.
    */
   export interface Schema$MachinePreferences {
     /**
@@ -2563,6 +2567,40 @@ export namespace migrationcenter_v1alpha1 {
      * Open file details entries.
      */
     entries?: Schema$OpenFileDetails[];
+  }
+  /**
+   * Pricing options for OS images.
+   */
+  export interface Schema$OperatingSystemPricingPreferences {
+    /**
+     * Optional. Pricing options for RHEL images.
+     */
+    rhel?: Schema$OperatingSystemPricingPreferencesOperatingSystemPricing;
+    /**
+     * Optional. Pricing options for SLES images.
+     */
+    sles?: Schema$OperatingSystemPricingPreferencesOperatingSystemPricing;
+    /**
+     * Optional. Pricing options for SLES for SAP images.
+     */
+    slesForSap?: Schema$OperatingSystemPricingPreferencesOperatingSystemPricing;
+    /**
+     * Optional. Pricing options for Windows images. No commitment plans are available, set it to unspecified.
+     */
+    windows?: Schema$OperatingSystemPricingPreferencesOperatingSystemPricing;
+  }
+  /**
+   * Pricing options of an OS image.
+   */
+  export interface Schema$OperatingSystemPricingPreferencesOperatingSystemPricing {
+    /**
+     * Optional. The plan of commitments for committed use discounts (CUD).
+     */
+    commitmentPlan?: string | null;
+    /**
+     * Optional. License type of the OS image.
+     */
+    licenseType?: string | null;
   }
   /**
    * This resource represents a long-running operation that is the result of a network API call.
@@ -3532,6 +3570,10 @@ export namespace migrationcenter_v1alpha1 {
      * A list of sole tenant node types. An empty list means that all possible node types will be considered.
      */
     nodeTypes?: Schema$SoleTenantNodeType[];
+    /**
+     * Optional. Pricing options for OS images.
+     */
+    osPricingPreferences?: Schema$OperatingSystemPricingPreferences;
   }
   /**
    * A Sole Tenant node type.
