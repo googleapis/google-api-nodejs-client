@@ -2255,6 +2255,10 @@ export namespace dataplex_v1 {
      */
     labels?: {[key: string]: string} | null;
     /**
+     * Output only. Location of the resource in the source system. Entry will be searchable by this location. By default, this should match the location of the EntryGroup containing this entry. A different value allows capturing source location for data external to GCP.
+     */
+    location?: string | null;
+    /**
      * The platform containing the source system. The maximum size of the field is 64 characters.
      */
     platform?: string | null;
@@ -2496,15 +2500,15 @@ export namespace dataplex_v1 {
     active?: boolean | null;
   }
   /**
-   * Generate recommended DataQualityRules request.
+   * Request details for generating data quality rule recommendations.
    */
   export interface Schema$GoogleCloudDataplexV1GenerateDataQualityRulesRequest {}
   /**
-   * Generate recommended DataQualityRules response.
+   * Response details for data quality rule recommendations.
    */
   export interface Schema$GoogleCloudDataplexV1GenerateDataQualityRulesResponse {
     /**
-     * Generated recommended {@link DataQualityRule\}s.
+     * The data quality rules that Dataplex generates based on the results of a data profiling scan.
      */
     rule?: Schema$GoogleCloudDataplexV1DataQualityRule[];
   }
@@ -6479,7 +6483,7 @@ export namespace dataplex_v1 {
     }
 
     /**
-     * Generates recommended DataQualityRule from a data profiling DataScan.
+     * Generates recommended data quality rules based on the results of a data profiling scan.Use the recommendations to build rules for a data quality scan.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7270,7 +7274,7 @@ export namespace dataplex_v1 {
   export interface Params$Resource$Projects$Locations$Datascans$Generatedataqualityrules
     extends StandardParameters {
     /**
-     * Required. The name should be either * the name of a datascan with at least one successful completed data profiling job, or * the name of a successful completed data profiling datascan job.
+     * Required. The name must be one of the following: The name of a data scan with at least one successful, completed data profiling job The name of a successful, completed data profiling job (a data scan job where the job type is data profiling)
      */
     name?: string;
 
@@ -7388,7 +7392,7 @@ export namespace dataplex_v1 {
     }
 
     /**
-     * Generates recommended DataQualityRule from a data profiling DataScan.
+     * Generates recommended data quality rules based on the results of a data profiling scan.Use the recommendations to build rules for a data quality scan.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7677,7 +7681,7 @@ export namespace dataplex_v1 {
   export interface Params$Resource$Projects$Locations$Datascans$Jobs$Generatedataqualityrules
     extends StandardParameters {
     /**
-     * Required. The name should be either * the name of a datascan with at least one successful completed data profiling job, or * the name of a successful completed data profiling datascan job.
+     * Required. The name must be one of the following: The name of a data scan with at least one successful, completed data profiling job The name of a successful, completed data profiling job (a data scan job where the job type is data profiling)
      */
     name?: string;
 

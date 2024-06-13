@@ -892,7 +892,7 @@
                   ]
                 },
                 "generateDataQualityRules": {
-                  "description": "Generates recommended DataQualityRule from a data profiling DataScan.",
+                  "description": "Generates recommended data quality rules based on the results of a data profiling scan.Use the recommendations to build rules for a data quality scan.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/dataScans/{dataScansId}:generateDataQualityRules",
                   "httpMethod": "POST",
                   "id": "dataplex.projects.locations.dataScans.generateDataQualityRules",
@@ -901,7 +901,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. The name should be either * the name of a datascan with at least one successful completed data profiling job, or * the name of a successful completed data profiling datascan job.",
+                      "description": "Required. The name must be one of the following: The name of a data scan with at least one successful, completed data profiling job The name of a successful, completed data profiling job (a data scan job where the job type is data profiling)",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/dataScans/[^/]+$",
                       "required": true,
@@ -1164,7 +1164,7 @@
                 "jobs": {
                   "methods": {
                     "generateDataQualityRules": {
-                      "description": "Generates recommended DataQualityRule from a data profiling DataScan.",
+                      "description": "Generates recommended data quality rules based on the results of a data profiling scan.Use the recommendations to build rules for a data quality scan.",
                       "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/dataScans/{dataScansId}/jobs/{jobsId}:generateDataQualityRules",
                       "httpMethod": "POST",
                       "id": "dataplex.projects.locations.dataScans.jobs.generateDataQualityRules",
@@ -1173,7 +1173,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "Required. The name should be either * the name of a datascan with at least one successful completed data profiling job, or * the name of a successful completed data profiling datascan job.",
+                          "description": "Required. The name must be one of the following: The name of a data scan with at least one successful, completed data profiling job The name of a successful, completed data profiling job (a data scan job where the job type is data profiling)",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/dataScans/[^/]+/jobs/[^/]+$",
                           "required": true,
@@ -5271,7 +5271,7 @@
       }
     }
   },
-  "revision": "20240523",
+  "revision": "20240529",
   "rootUrl": "https://dataplex.googleapis.com/",
   "schemas": {
     "Empty": {
@@ -8302,6 +8302,11 @@
           "description": "User-defined labels. The maximum size of keys and values is 128 characters each.",
           "type": "object"
         },
+        "location": {
+          "description": "Output only. Location of the resource in the source system. Entry will be searchable by this location. By default, this should match the location of the EntryGroup containing this entry. A different value allows capturing source location for data external to GCP.",
+          "readOnly": true,
+          "type": "string"
+        },
         "platform": {
           "description": "The platform containing the source system. The maximum size of the field is 64 characters.",
           "type": "string"
@@ -8628,17 +8633,17 @@
       "type": "object"
     },
     "GoogleCloudDataplexV1GenerateDataQualityRulesRequest": {
-      "description": "Generate recommended DataQualityRules request.",
+      "description": "Request details for generating data quality rule recommendations.",
       "id": "GoogleCloudDataplexV1GenerateDataQualityRulesRequest",
       "properties": {},
       "type": "object"
     },
     "GoogleCloudDataplexV1GenerateDataQualityRulesResponse": {
-      "description": "Generate recommended DataQualityRules response.",
+      "description": "Response details for data quality rule recommendations.",
       "id": "GoogleCloudDataplexV1GenerateDataQualityRulesResponse",
       "properties": {
         "rule": {
-          "description": "Generated recommended {@link DataQualityRule}s.",
+          "description": "The data quality rules that Dataplex generates based on the results of a data profiling scan.",
           "items": {
             "$ref": "GoogleCloudDataplexV1DataQualityRule"
           },
