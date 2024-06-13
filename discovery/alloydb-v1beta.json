@@ -1458,7 +1458,7 @@
       }
     }
   },
-  "revision": "20240517",
+  "revision": "20240529",
   "rootUrl": "https://alloydb.googleapis.com/",
   "schemas": {
     "AuthorizedNetwork": {
@@ -3474,9 +3474,17 @@
             "SIGNAL_TYPE_VIOLATES_CIS_GCP_FOUNDATION_1_2",
             "SIGNAL_TYPE_VIOLATES_CIS_GCP_FOUNDATION_1_1",
             "SIGNAL_TYPE_VIOLATES_CIS_GCP_FOUNDATION_1_0",
+            "SIGNAL_TYPE_VIOLATES_CIS_CONTROLS_V8_0",
             "SIGNAL_TYPE_VIOLATES_NIST_800_53",
+            "SIGNAL_TYPE_VIOLATES_NIST_800_53_R5",
+            "SIGNAL_TYPE_VIOLATES_NIST_CYBERSECURITY_FRAMEWORK_V1_0",
             "SIGNAL_TYPE_VIOLATES_ISO_27001",
+            "SIGNAL_TYPE_VIOLATES_ISO_27001_V2022",
             "SIGNAL_TYPE_VIOLATES_PCI_DSS_V3_2_1",
+            "SIGNAL_TYPE_VIOLATES_PCI_DSS_V4_0",
+            "SIGNAL_TYPE_VIOLATES_CLOUD_CONTROLS_MATRIX_V4",
+            "SIGNAL_TYPE_VIOLATES_HIPAA",
+            "SIGNAL_TYPE_VIOLATES_SOC2_V2017",
             "SIGNAL_TYPE_LOGS_NOT_OPTIMIZED_FOR_TROUBLESHOOTING",
             "SIGNAL_TYPE_QUERY_DURATIONS_NOT_LOGGED",
             "SIGNAL_TYPE_VERBOSE_ERROR_LOGGING",
@@ -3602,6 +3610,14 @@
             false,
             false,
             false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
             false
           ],
           "enumDescriptions": [
@@ -3620,9 +3636,17 @@
             "Represents if a resource violates CIS GCP Foundation 1.2.",
             "Represents if a resource violates CIS GCP Foundation 1.1.",
             "Represents if a resource violates CIS GCP Foundation 1.0.",
+            "Represents if a resource violates CIS Controls 8.0.",
             "Represents if a resource violates NIST 800-53.",
+            "Represents if a resource violates NIST 800-53 R5.",
+            "Represents if a resource violates NIST Cybersecurity Framework 1.0.",
             "Represents if a resource violates ISO-27001.",
+            "Represents if a resource violates ISO 27001 2022.",
             "Represents if a resource violates PCI-DSS v3.2.1.",
+            "Represents if a resource violates PCI-DSS v4.0.",
+            "Represents if a resource violates Cloud Controls Matrix v4.0.",
+            "Represents if a resource violates HIPAA.",
+            "Represents if a resource violates SOC2 v2017.",
             "Represents if log_checkpoints database flag for a Cloud SQL for PostgreSQL instance is not set to on.",
             "Represents if the log_duration database flag for a Cloud SQL for PostgreSQL instance is not set to on.",
             "Represents if the log_error_verbosity database flag for a Cloud SQL for PostgreSQL instance is not set to default or stricter (default or terse).",
@@ -3886,14 +3910,6 @@
         "userLabelSet": {
           "$ref": "StorageDatabasecenterPartnerapiV1mainUserLabels",
           "description": "User-provided labels associated with the resource"
-        },
-        "userLabels": {
-          "additionalProperties": {
-            "type": "string"
-          },
-          "deprecated": true,
-          "description": "User-provided labels, represented as a dictionary where each label is a single key value pair.",
-          "type": "object"
         }
       },
       "type": "object"
@@ -3969,9 +3985,17 @@
             "SIGNAL_TYPE_VIOLATES_CIS_GCP_FOUNDATION_1_2",
             "SIGNAL_TYPE_VIOLATES_CIS_GCP_FOUNDATION_1_1",
             "SIGNAL_TYPE_VIOLATES_CIS_GCP_FOUNDATION_1_0",
+            "SIGNAL_TYPE_VIOLATES_CIS_CONTROLS_V8_0",
             "SIGNAL_TYPE_VIOLATES_NIST_800_53",
+            "SIGNAL_TYPE_VIOLATES_NIST_800_53_R5",
+            "SIGNAL_TYPE_VIOLATES_NIST_CYBERSECURITY_FRAMEWORK_V1_0",
             "SIGNAL_TYPE_VIOLATES_ISO_27001",
+            "SIGNAL_TYPE_VIOLATES_ISO_27001_V2022",
             "SIGNAL_TYPE_VIOLATES_PCI_DSS_V3_2_1",
+            "SIGNAL_TYPE_VIOLATES_PCI_DSS_V4_0",
+            "SIGNAL_TYPE_VIOLATES_CLOUD_CONTROLS_MATRIX_V4",
+            "SIGNAL_TYPE_VIOLATES_HIPAA",
+            "SIGNAL_TYPE_VIOLATES_SOC2_V2017",
             "SIGNAL_TYPE_LOGS_NOT_OPTIMIZED_FOR_TROUBLESHOOTING",
             "SIGNAL_TYPE_QUERY_DURATIONS_NOT_LOGGED",
             "SIGNAL_TYPE_VERBOSE_ERROR_LOGGING",
@@ -4097,6 +4121,14 @@
             false,
             false,
             false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
             false
           ],
           "enumDescriptions": [
@@ -4115,9 +4147,17 @@
             "Represents if a resource violates CIS GCP Foundation 1.2.",
             "Represents if a resource violates CIS GCP Foundation 1.1.",
             "Represents if a resource violates CIS GCP Foundation 1.0.",
+            "Represents if a resource violates CIS Controls 8.0.",
             "Represents if a resource violates NIST 800-53.",
+            "Represents if a resource violates NIST 800-53 R5.",
+            "Represents if a resource violates NIST Cybersecurity Framework 1.0.",
             "Represents if a resource violates ISO-27001.",
+            "Represents if a resource violates ISO 27001 2022.",
             "Represents if a resource violates PCI-DSS v3.2.1.",
+            "Represents if a resource violates PCI-DSS v4.0.",
+            "Represents if a resource violates Cloud Controls Matrix v4.0.",
+            "Represents if a resource violates HIPAA.",
+            "Represents if a resource violates SOC2 v2017.",
             "Represents if log_checkpoints database flag for a Cloud SQL for PostgreSQL instance is not set to on.",
             "Represents if the log_duration database flag for a Cloud SQL for PostgreSQL instance is not set to on.",
             "Represents if the log_error_verbosity database flag for a Cloud SQL for PostgreSQL instance is not set to default or stricter (default or terse).",
@@ -4215,12 +4255,12 @@
       "id": "StorageDatabasecenterPartnerapiV1mainMachineConfiguration",
       "properties": {
         "cpuCount": {
-          "description": "The number of CPUs.",
+          "description": "The number of CPUs. TODO(b/342344482, b/342346271) add proto validations again after bug fix.",
           "format": "int32",
           "type": "integer"
         },
         "memorySizeInBytes": {
-          "description": "Memory size in bytes.",
+          "description": "Memory size in bytes. TODO(b/342344482, b/342346271) add proto validations again after bug fix.",
           "format": "int64",
           "type": "string"
         }
@@ -4230,21 +4270,37 @@
     "StorageDatabasecenterPartnerapiV1mainObservabilityMetricData": {
       "id": "StorageDatabasecenterPartnerapiV1mainObservabilityMetricData",
       "properties": {
-        "metricTimestamp": {
-          "description": "Required. The timestamp of the metric value.",
-          "format": "google-datetime",
+        "aggregationType": {
+          "description": "Required. Type of aggregation performed on the metric.",
+          "enum": [
+            "AGGREGATION_TYPE_UNSPECIFIED",
+            "MAXIMUM"
+          ],
+          "enumDescriptions": [
+            "Unspecified aggregation type.",
+            "Maximum aggregation type."
+          ],
           "type": "string"
         },
         "metricType": {
           "description": "Required. Type of metric like CPU, Memory, etc.",
           "enum": [
             "METRIC_TYPE_UNSPECIFIED",
-            "INSTANCE_PEAK_CPU_UTILISATION"
+            "CPU_UTILIZATION",
+            "MEMORY_UTILIZATION",
+            "NETWORK_CONNECTIONS"
           ],
           "enumDescriptions": [
-            "",
-            "Peak CPU utilization for a DB instance as a fraction between 0.0 and 1.0 (may momentarily exceed 1.0 in some cases) List will keep increasing, e.g. PEAK_MEMORY_UTILISATION, NUMBER_OF_CONNECTIONS, SUCCESS_RATIO_FOR_QUERIES, etc."
+            "Unspecified metric type.",
+            "CPU utilization for a resource. The value is a fraction between 0.0 and 1.0 (may momentarily exceed 1.0 in some cases).",
+            "Memory utilization for a resource. The value is a fraction between 0.0 and 1.0 (may momentarily exceed 1.0 in some cases).",
+            "Number of network connections for a resource."
           ],
+          "type": "string"
+        },
+        "observationTime": {
+          "description": "Required. The time the metric value was observed.",
+          "format": "google-datetime",
           "type": "string"
         },
         "resourceName": {
@@ -4252,9 +4308,8 @@
           "type": "string"
         },
         "value": {
-          "description": "Required. Value of the metric type.",
-          "format": "double",
-          "type": "number"
+          "$ref": "StorageDatabasecenterProtoCommonTypedValue",
+          "description": "Required. Value of the metric type."
         }
       },
       "type": "object"
@@ -4439,6 +4494,31 @@
         },
         "version": {
           "description": "Version of the underlying database engine. Example values: For MySQL, it could be \"8.0\", \"5.7\" etc.. For Postgres, it could be \"14\", \"15\" etc..",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "StorageDatabasecenterProtoCommonTypedValue": {
+      "description": "TypedValue represents the value of a metric type. It can either be a double, an int64, a string or a bool.",
+      "id": "StorageDatabasecenterProtoCommonTypedValue",
+      "properties": {
+        "boolValue": {
+          "description": "For boolean value",
+          "type": "boolean"
+        },
+        "doubleValue": {
+          "description": "For double value",
+          "format": "double",
+          "type": "number"
+        },
+        "int64Value": {
+          "description": "For integer value",
+          "format": "int64",
+          "type": "string"
+        },
+        "stringValue": {
+          "description": "For string value",
           "type": "string"
         }
       },

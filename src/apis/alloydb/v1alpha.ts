@@ -1537,10 +1537,6 @@ export namespace alloydb_v1alpha {
      */
     updationTime?: string | null;
     /**
-     * User-provided labels, represented as a dictionary where each label is a single key value pair.
-     */
-    userLabels?: {[key: string]: string} | null;
-    /**
      * User-provided labels associated with the resource
      */
     userLabelSet?: Schema$StorageDatabasecenterPartnerapiV1mainUserLabels;
@@ -1600,23 +1596,27 @@ export namespace alloydb_v1alpha {
    */
   export interface Schema$StorageDatabasecenterPartnerapiV1mainMachineConfiguration {
     /**
-     * The number of CPUs.
+     * The number of CPUs. TODO(b/342344482, b/342346271) add proto validations again after bug fix.
      */
     cpuCount?: number | null;
     /**
-     * Memory size in bytes.
+     * Memory size in bytes. TODO(b/342344482, b/342346271) add proto validations again after bug fix.
      */
     memorySizeInBytes?: string | null;
   }
   export interface Schema$StorageDatabasecenterPartnerapiV1mainObservabilityMetricData {
     /**
-     * Required. The timestamp of the metric value.
+     * Required. Type of aggregation performed on the metric.
      */
-    metricTimestamp?: string | null;
+    aggregationType?: string | null;
     /**
      * Required. Type of metric like CPU, Memory, etc.
      */
     metricType?: string | null;
+    /**
+     * Required. The time the metric value was observed.
+     */
+    observationTime?: string | null;
     /**
      * Required. Database resource name associated with the signal. Resource name to follow CAIS resource_name format as noted here go/condor-common-datamodel
      */
@@ -1624,7 +1624,7 @@ export namespace alloydb_v1alpha {
     /**
      * Required. Value of the metric type.
      */
-    value?: number | null;
+    value?: Schema$StorageDatabasecenterProtoCommonTypedValue;
   }
   /**
    * An error that occurred during a backup creation operation.
@@ -1670,6 +1670,27 @@ export namespace alloydb_v1alpha {
      * Version of the underlying database engine. Example values: For MySQL, it could be "8.0", "5.7" etc.. For Postgres, it could be "14", "15" etc..
      */
     version?: string | null;
+  }
+  /**
+   * TypedValue represents the value of a metric type. It can either be a double, an int64, a string or a bool.
+   */
+  export interface Schema$StorageDatabasecenterProtoCommonTypedValue {
+    /**
+     * For boolean value
+     */
+    boolValue?: boolean | null;
+    /**
+     * For double value
+     */
+    doubleValue?: number | null;
+    /**
+     * For integer value
+     */
+    int64Value?: string | null;
+    /**
+     * For string value
+     */
+    stringValue?: string | null;
   }
   /**
    * Restrictions on STRING type values
