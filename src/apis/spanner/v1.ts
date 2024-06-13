@@ -1186,7 +1186,7 @@ export namespace spanner_v1 {
      */
     leaderOptions?: string[] | null;
     /**
-     * A unique identifier for the instance configuration. Values are of the form `projects//instanceConfigs/a-z*`.
+     * A unique identifier for the instance configuration. Values are of the form `projects//instanceConfigs/a-z*`. User instance config must start with `custom-`.
      */
     name?: string | null;
     /**
@@ -1202,7 +1202,7 @@ export namespace spanner_v1 {
      */
     reconciling?: boolean | null;
     /**
-     * The geographic placement of nodes in this instance configuration and their replication properties.
+     * The geographic placement of nodes in this instance configuration and their replication properties. To create user managed configurations, input `replicas` must include all replicas in `replicas` of the `base_config` and include one or more replicas in the `optional_replicas` of the `base_config`.
      */
     replicas?: Schema$ReplicaInfo[];
     /**
@@ -2059,6 +2059,14 @@ export namespace spanner_v1 {
      */
     limit?: string | null;
     /**
+     * Optional. Lock Hint for the request, it can only be used with read-write transactions.
+     */
+    lockHint?: string | null;
+    /**
+     * Optional. Order for the returned rows. By default, Spanner will return result rows in primary key order except for PartitionRead requests. For applications that do not require rows to be returned in primary key (`ORDER_BY_PRIMARY_KEY`) order, setting `ORDER_BY_NO_ORDER` option allows Spanner to optimize row retrieval, resulting in lower latencies in certain cases (e.g. bulk point lookups).
+     */
+    orderBy?: string | null;
+    /**
      * If present, results will be restricted to the specified partition previously created using PartitionRead(). There must be an exact match for the values of fields common to this message and the PartitionReadRequest message used to create this partition_token.
      */
     partitionToken?: string | null;
@@ -2335,7 +2343,7 @@ export namespace spanner_v1 {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * Optional. If true, specifies a multiplexed session. A multiplexed session may be used for multiple, concurrent read-only operations but can not be used for read-write transactions, partitioned reads, or partitioned queries. Multiplexed sessions can be created via CreateSession but not via BatchCreateSessions. Multiplexed sessions may not be deleted nor listed.
+     * Optional. If true, specifies a multiplexed session. Use a multiplexed session for multiple, concurrent read-only operations. Don't use them for read-write transactions, partitioned reads, or partitioned queries. Use CreateSession to create multiplexed sessions. Don't use BatchCreateSessions to create a multiplexed session. You can't delete or list multiplexed sessions.
      */
     multiplexed?: boolean | null;
     /**
@@ -3166,7 +3174,7 @@ export namespace spanner_v1 {
     }
 
     /**
-     * Lists the supported instance configurations for a given project.
+     * Lists the supported instance configurations for a given project. Returns both Google managed configs and user managed configs.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3398,7 +3406,7 @@ export namespace spanner_v1 {
   export interface Params$Resource$Projects$Instanceconfigs$Patch
     extends StandardParameters {
     /**
-     * A unique identifier for the instance configuration. Values are of the form `projects//instanceConfigs/a-z*`.
+     * A unique identifier for the instance configuration. Values are of the form `projects//instanceConfigs/a-z*`. User instance config must start with `custom-`.
      */
     name?: string;
 
