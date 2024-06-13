@@ -268,7 +268,7 @@
                   ],
                   "parameters": {
                     "parent": {
-                      "description": "The parent project and zone for the signing request. This is needed to properly ensure per-organization ISS processing and potentially to provide for the possibility of zone-specific certificates used in the signing process.",
+                      "description": "The parent project and region for the signing request.",
                       "location": "path",
                       "pattern": "^users/[^/]+/projects/[^/]+/locations/[^/]+$",
                       "required": true,
@@ -301,7 +301,7 @@
                   ],
                   "parameters": {
                     "parent": {
-                      "description": "The parent project and zone for the signing request. This is needed to properly ensure per-organization ISS processing and potentially to provide for the possibility of zone-specific certificates used in the signing process.",
+                      "description": "The parent project and region for the signing request.",
                       "location": "path",
                       "pattern": "^users/[^/]+/projects/[^/]+/zones/[^/]+$",
                       "required": true,
@@ -447,7 +447,7 @@
       }
     }
   },
-  "revision": "20231217",
+  "revision": "20240609",
   "rootUrl": "https://oslogin.googleapis.com/",
   "schemas": {
     "Empty": {
