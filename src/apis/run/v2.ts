@@ -521,7 +521,7 @@ export namespace run_v2 {
    */
   export interface Schema$GoogleCloudRunV2GCSVolumeSource {
     /**
-     * Cloud Storage Bucket name.
+     * Cloud Storage Bucket name. TODO (b/344678062) Fix the error validation once dynamic mounting is public.
      */
     bucket?: string | null;
     /**

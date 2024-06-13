@@ -1469,7 +1469,7 @@
       }
     }
   },
-  "revision": "20240524",
+  "revision": "20240607",
   "rootUrl": "https://run.googleapis.com/",
   "schemas": {
     "GoogleCloudRunV2BinaryAuthorization": {
@@ -2141,7 +2141,7 @@
       "id": "GoogleCloudRunV2GCSVolumeSource",
       "properties": {
         "bucket": {
-          "description": "Cloud Storage Bucket name.",
+          "description": "Cloud Storage Bucket name. TODO (b/344678062) Fix the error validation once dynamic mounting is public.",
           "type": "string"
         },
         "readOnly": {
