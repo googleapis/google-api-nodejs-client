@@ -366,7 +366,7 @@
       }
     }
   },
-  "revision": "20240423",
+  "revision": "20240526",
   "rootUrl": "https://bigqueryconnection.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -681,7 +681,7 @@
       "properties": {
         "asset": {
           "$ref": "ConnectorConfigurationAsset",
-          "description": "Optional. Data asset."
+          "description": "Data asset."
         },
         "authentication": {
           "$ref": "ConnectorConfigurationAuthentication",
@@ -707,7 +707,7 @@
       "id": "ConnectorConfigurationAsset",
       "properties": {
         "database": {
-          "description": "Optional. Name of the database.",
+          "description": "Name of the database.",
           "type": "string"
         },
         "googleCloudResource": {
@@ -721,6 +721,11 @@
       "description": "Client authentication.",
       "id": "ConnectorConfigurationAuthentication",
       "properties": {
+        "serviceAccount": {
+          "description": "Output only. Google-managed service account associated with this connection, e.g., `service-{project_number}@gcp-sa-bigqueryconnection.iam.gserviceaccount.com`. BigQuery jobs using this connection will act as `service_account` identity while connecting to the datasource.",
+          "readOnly": true,
+          "type": "string"
+        },
         "usernamePassword": {
           "$ref": "ConnectorConfigurationUsernamePassword",
           "description": "Username/password authentication."
