@@ -344,10 +344,6 @@ export namespace clouddeploy_v1 {
      */
     advanceAutomationRuns?: string[] | null;
     /**
-     * Output only. The current AutomationRun repairing the rollout.
-     */
-    currentRepairAutomationRun?: string | null;
-    /**
      * Output only. The name of the AutomationRun initiated by a promote release rule.
      */
     promoteAutomationRun?: string | null;
@@ -1069,6 +1065,10 @@ export namespace clouddeploy_v1 {
      * Optional. If true, `cluster` is accessed using the private IP address of the control plane endpoint. Otherwise, the default IP address of the control plane endpoint is used. The default IP address is the private IP address for clusters with private control-plane endpoints and the public IP address otherwise. Only specify this option when `cluster` is a [private GKE cluster](https://cloud.google.com/kubernetes-engine/docs/concepts/private-cluster-concept).
      */
     internalIp?: boolean | null;
+    /**
+     * Optional. If set, used to configure a [proxy](https://kubernetes.io/docs/concepts/configuration/organize-cluster-access-kubeconfig/#proxy) to the Kubernetes server.
+     */
+    proxyUrl?: string | null;
   }
   /**
    * The request object used by `IgnoreJob`.
@@ -1956,20 +1956,7 @@ export namespace clouddeploy_v1 {
     custom?: Schema$CustomMetadata;
   }
   /**
-   * Configuration of the repair action.
-   */
-  export interface Schema$RepairMode {
-    /**
-     * Optional. Retries a failed job.
-     */
-    retry?: Schema$Retry;
-    /**
-     * Optional. Rolls back a `Rollout`.
-     */
-    rollback?: Schema$Rollback;
-  }
-  /**
-   * RepairPhase tracks the repair attempts that have been made for each `RepairMode` specified in the `Automation` resource.
+   * RepairPhase tracks the repair attempts that have been made for each `RepairPhaseConfig` specified in the `Automation` resource.
    */
   export interface Schema$RepairPhase {
     /**
@@ -1985,10 +1972,6 @@ export namespace clouddeploy_v1 {
    * Contains the information for an automated `repair rollout` operation.
    */
   export interface Schema$RepairRolloutOperation {
-    /**
-     * Output only. The index of the current repair action in the repair sequence.
-     */
-    currentRepairModeIndex?: string | null;
     /**
      * Output only. The job ID for the Job to repair.
      */
@@ -2022,31 +2005,6 @@ export namespace clouddeploy_v1 {
      * Optional. Jobs to repair. Proceeds only after job name matched any one in the list, or for all jobs if unspecified or empty. The phase that includes the job must match the phase ID specified in `source_phase`. This value must consist of lower-case letters, numbers, and hyphens, start with a letter and end with a letter or a number, and have a max length of 63 characters. In other words, it must match the following regex: `^[a-z]([a-z0-9-]{0,61\}[a-z0-9])?$`.
      */
     jobs?: string[] | null;
-    /**
-     * Required. Defines the types of automatic repair actions for failed jobs.
-     */
-    repairModes?: Schema$RepairMode[];
-    /**
-     * Optional. Phases within which jobs are subject to automatic repair actions on failure. Proceeds only after phase name matched any one in the list, or for all phases if unspecified. This value must consist of lower-case letters, numbers, and hyphens, start with a letter and end with a letter or a number, and have a max length of 63 characters. In other words, it must match the following regex: `^[a-z]([a-z0-9-]{0,61\}[a-z0-9])?$`.
-     */
-    sourcePhases?: string[] | null;
-  }
-  /**
-   * Retries the failed job.
-   */
-  export interface Schema$Retry {
-    /**
-     * Required. Total number of retries. Retry is skipped if set to 0; The minimum value is 1, and the maximum value is 10.
-     */
-    attempts?: string | null;
-    /**
-     * Optional. The pattern of how wait time will be increased. Default is linear. Backoff mode will be ignored if `wait` is 0.
-     */
-    backoffMode?: string | null;
-    /**
-     * Optional. How long to wait for the first retry. Default is 0, and the maximum value is 14d.
-     */
-    wait?: string | null;
   }
   /**
    * RetryAttempt represents an action of retrying the failed Cloud Deploy job.
@@ -2099,26 +2057,9 @@ export namespace clouddeploy_v1 {
      */
     backoffMode?: string | null;
     /**
-     * Output only. The job ID for the Job to retry.
-     */
-    jobId?: string | null;
-    /**
-     * Output only. The phase ID of the phase that includes the job being retried.
-     */
-    phaseId?: string | null;
-    /**
      * Output only. The number of attempts that have been made.
      */
     totalAttempts?: string | null;
-  }
-  /**
-   * Rolls back a `Rollout`.
-   */
-  export interface Schema$Rollback {
-    /**
-     * Optional. The starting phase ID for the `Rollout`. If unspecified, the `Rollout` will start in the stable phase.
-     */
-    destinationPhase?: string | null;
   }
   /**
    * RollbackAttempt represents an action of rolling back a Cloud Deploy 'Target'.
