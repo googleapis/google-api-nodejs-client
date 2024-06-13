@@ -472,6 +472,34 @@
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
+                "initiatePushTransfer": {
+                  "description": "Initiates the `Push Transfer` process to transfer the domain to another registrar. The process might complete instantly or might require confirmation or additional work. Check the emails sent to the email address of the registrant. The process is aborted after a timeout if it's not completed. This method is only supported for domains that have the `REQUIRE_PUSH_TRANSFER` property in the list of `domain_properties`. The domain must also be unlocked before it can be transferred to a different registrar. For more information, see [Transfer a registered domain to another registrar](https://cloud.google.com/domains/docs/transfer-domain-to-another-registrar).",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/registrations/{registrationsId}:initiatePushTransfer",
+                  "httpMethod": "POST",
+                  "id": "domains.projects.locations.registrations.initiatePushTransfer",
+                  "parameterOrder": [
+                    "registration"
+                  ],
+                  "parameters": {
+                    "registration": {
+                      "description": "Required. The name of the `Registration` for which the push transfer is initiated, in the format `projects/*/locations/*/registrations/*`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/registrations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+registration}:initiatePushTransfer",
+                  "request": {
+                    "$ref": "InitiatePushTransferRequest"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
                 "list": {
                   "description": "Lists the `Registration` resources in a project.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/registrations",
@@ -575,8 +603,36 @@
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
+                "renewDomain": {
+                  "description": "Renews a recently expired domain. This method can only be called on domains that expired in the previous 30 days. After the renewal, the new expiration time of the domain is one year after the old expiration time and you are charged a `yearly_price` for the renewal.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/registrations/{registrationsId}:renewDomain",
+                  "httpMethod": "POST",
+                  "id": "domains.projects.locations.registrations.renewDomain",
+                  "parameterOrder": [
+                    "registration"
+                  ],
+                  "parameters": {
+                    "registration": {
+                      "description": "Required. The name of the `Registration` whish is being renewed, in the format `projects/*/locations/*/registrations/*`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/registrations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+registration}:renewDomain",
+                  "request": {
+                    "$ref": "RenewDomainRequest"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
                 "resetAuthorizationCode": {
-                  "description": "Resets the authorization code of the `Registration` to a new random string. You can call this method only after 60 days have elapsed since the initial domain registration.",
+                  "description": "Resets the authorization code of the `Registration` to a new random string. You can call this method only after 60 days have elapsed since the initial domain registration. Domains that have the `REQUIRE_PUSH_TRANSFER` property in the list of `domain_properties` don't support authorization codes and must use the `InitiatePushTransfer` method to initiate the process to transfer the domain to a different registrar.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/registrations/{registrationsId}:resetAuthorizationCode",
                   "httpMethod": "POST",
                   "id": "domains.projects.locations.registrations.resetAuthorizationCode",
@@ -604,7 +660,7 @@
                   ]
                 },
                 "retrieveAuthorizationCode": {
-                  "description": "Gets the authorization code of the `Registration` for the purpose of transferring the domain to another registrar. You can call this method only after 60 days have elapsed since the initial domain registration.",
+                  "description": "Gets the authorization code of the `Registration` for the purpose of transferring the domain to another registrar. You can call this method only after 60 days have elapsed since the initial domain registration. Domains that have the `REQUIRE_PUSH_TRANSFER` property in the list of `domain_properties` don't support authorization codes and must use the `InitiatePushTransfer` method to initiate the process to transfer the domain to a different registrar.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/registrations/{registrationsId}:retrieveAuthorizationCode",
                   "httpMethod": "GET",
                   "id": "domains.projects.locations.registrations.retrieveAuthorizationCode",
@@ -623,6 +679,31 @@
                   "path": "v1/{+registration}:retrieveAuthorizationCode",
                   "response": {
                     "$ref": "AuthorizationCode"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "retrieveGoogleDomainsForwardingConfig": {
+                  "description": "Lists the deprecated domain and email forwarding configurations you set up in the deprecated Google Domains UI. The configuration is present only for domains with the `google_domains_redirects_data_available` set to `true` in the `Registration`'s `dns_settings`. A forwarding configuration might not work correctly if required DNS records are not present in the domain's authoritative DNS Zone.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/registrations/{registrationsId}:retrieveGoogleDomainsForwardingConfig",
+                  "httpMethod": "GET",
+                  "id": "domains.projects.locations.registrations.retrieveGoogleDomainsForwardingConfig",
+                  "parameterOrder": [
+                    "registration"
+                  ],
+                  "parameters": {
+                    "registration": {
+                      "description": "Required. The name of the `Registration` whose Google Domains forwarding configuration details are being retrieved, in the format `projects/*/locations/*/registrations/*`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/registrations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+registration}:retrieveGoogleDomainsForwardingConfig",
+                  "response": {
+                    "$ref": "RetrieveGoogleDomainsForwardingConfigResponse"
                   },
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform"
@@ -848,7 +929,7 @@
       }
     }
   },
-  "revision": "20240520",
+  "revision": "20240603",
   "rootUrl": "https://domains.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -1146,6 +1227,47 @@
       },
       "type": "object"
     },
+    "DomainForwarding": {
+      "description": "Domain forwarding configuration.",
+      "id": "DomainForwarding",
+      "properties": {
+        "pathForwarding": {
+          "description": "If true, forwards the path after the domain name to the same path at the new address.",
+          "type": "boolean"
+        },
+        "pemCertificate": {
+          "description": "The PEM-encoded certificate chain.",
+          "type": "string"
+        },
+        "redirectType": {
+          "description": "The redirect type.",
+          "enum": [
+            "REDIRECT_TYPE_UNSPECIFIED",
+            "TEMPORARY",
+            "PERMANENT"
+          ],
+          "enumDescriptions": [
+            "Redirect Type is unspecified.",
+            "301 redirect. Allows to propagate changes to the forwarding address quickly.",
+            "302 redirect. Allows browsers to cache the forwarding address. This may help the address resolve more quickly. Changes may take longer to propagate"
+          ],
+          "type": "string"
+        },
+        "sslEnabled": {
+          "description": "If true, the forwarding works also over HTTPS.",
+          "type": "boolean"
+        },
+        "subdomain": {
+          "description": "The subdomain of the registered domain that is being forwarded. E.g. `www.example.com`, `example.com` (i.e. the registered domain itself) or `*.example.com` (i.e. all subdomains).",
+          "type": "string"
+        },
+        "targetUri": {
+          "description": "The target of the domain forwarding, i.e. the path to redirect the `subdomain` to.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "DsRecord": {
       "description": "Defines a Delegation Signer (DS) record, which is needed to enable DNSSEC for a domain. It contains a digest (hash) of a DNSKEY record that must be present in the domain's DNS zone.",
       "id": "DsRecord",
@@ -1220,6 +1342,21 @@
           "description": "The key tag of the record. Must be set in range 0 -- 65535.",
           "format": "int32",
           "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "EmailForwarding": {
+      "description": "Email forwarding configuration.",
+      "id": "EmailForwarding",
+      "properties": {
+        "alias": {
+          "description": "An alias recipient email that forwards emails to the `target_email_address`. For example, `admin@example.com` or `*@example.com` (wildcard alias forwards all the emails under the registered domain).",
+          "type": "string"
+        },
+        "targetEmailAddress": {
+          "description": "Target email that receives emails sent to the `alias`.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -1336,6 +1473,17 @@
       },
       "type": "object"
     },
+    "InitiatePushTransferRequest": {
+      "description": "Request for the `InitiatePushTransfer` method.",
+      "id": "InitiatePushTransferRequest",
+      "properties": {
+        "tag": {
+          "description": "Required. The Tag of the new registrar. Can be found at [List of registrars](https://nominet.uk/registrar-list/).",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ListLocationsResponse": {
       "description": "The response message for Locations.ListLocations.",
       "id": "ListLocationsResponse",
@@ -1428,6 +1576,21 @@
       "description": "Defines renewal, billing, and transfer settings for a `Registration`.",
       "id": "ManagementSettings",
       "properties": {
+        "effectiveTransferLockState": {
+          "description": "Output only. The actual transfer lock state for this `Registration`.",
+          "enum": [
+            "TRANSFER_LOCK_STATE_UNSPECIFIED",
+            "UNLOCKED",
+            "LOCKED"
+          ],
+          "enumDescriptions": [
+            "The state is unspecified.",
+            "The domain is unlocked and can be transferred to another registrar.",
+            "The domain is locked and cannot be transferred to another registrar."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
         "preferredRenewalMethod": {
           "description": "Optional. The desired renewal method for this `Registration`. The actual `renewal_method` is automatically updated to reflect this choice. If unset or equal to `RENEWAL_METHOD_UNSPECIFIED`, the actual `renewalMethod` is treated as if it were set to `AUTOMATIC_RENEWAL`. You cannot use `RENEWAL_DISABLED` during resource creation, and you can update the renewal status only when the `Registration` resource has state `ACTIVE` or `SUSPENDED`. When `preferred_renewal_method` is set to `AUTOMATIC_RENEWAL`, the actual `renewal_method` can be set to `RENEWAL_DISABLED` in case of problems with the billing account or reported domain abuse. In such cases, check the `issues` field on the `Registration`. After the problem is resolved, the `renewal_method` is automatically updated to `preferred_renewal_method` in a few hours.",
           "enum": [
@@ -1474,7 +1637,7 @@
           "type": "string"
         },
         "transferLockState": {
-          "description": "This is the desired transfer lock state for this `Registration`. A transfer lock controls whether the domain can be transferred to another registrar.",
+          "description": "This is the desired transfer lock state for this `Registration`. A transfer lock controls whether the domain can be transferred to another registrar. The transfer lock state of the domain is returned in the `effective_transfer_lock_state` property. The transfer lock state values might be different for the following reasons: * `transfer_lock_state` was updated only a short time ago. * Domains with the `TRANSFER_LOCK_UNSUPPORTED_BY_REGISTRY` state are in the list of `domain_properties`. These domains are always in the `UNLOCKED` state.",
           "enum": [
             "TRANSFER_LOCK_STATE_UNSPECIFIED",
             "UNLOCKED",
@@ -1812,6 +1975,24 @@
           "description": "Required. Immutable. The domain name. Unicode domain names must be expressed in Punycode format.",
           "type": "string"
         },
+        "domainProperties": {
+          "description": "Output only. Special properties of the domain.",
+          "items": {
+            "enum": [
+              "DOMAIN_PROPERTY_UNSPECIFIED",
+              "TRANSFER_LOCK_UNSUPPORTED_BY_REGISTRY",
+              "REQUIRE_PUSH_TRANSFER"
+            ],
+            "enumDescriptions": [
+              "The property is undefined.",
+              "The domain does not support transfer locks due to restrictions of the registry. Such domains are effectively always unlocked and any change made to `management_settings.transfer_lock_state` is ignored.",
+              "The domain uses an alternative `Push Transfer` process to transfer the domain to another registrar. There are two important consequences: * Cloud Domains does not supply the authorization codes. * To initiate the process to transfer the domain to another registrar, you must provide a tag of the registrar you want to transfer to. You can do this by using the `InitiatePushTransfer` method. For more information, see [Transfer a registered domain to another registrar](https://cloud.google.com/domains/docs/transfer-domain-to-another-registrar)."
+            ],
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
         "expireTime": {
           "description": "Output only. The expiration timestamp of the `Registration`.",
           "format": "google-datetime",
@@ -1825,13 +2006,15 @@
               "ISSUE_UNSPECIFIED",
               "CONTACT_SUPPORT",
               "UNVERIFIED_EMAIL",
-              "PROBLEM_WITH_BILLING"
+              "PROBLEM_WITH_BILLING",
+              "DNS_NOT_ACTIVATED"
             ],
             "enumDescriptions": [
               "The issue is undefined.",
               "Contact the Cloud Support team to resolve a problem with this domain.",
               "[ICANN](https://icann.org/) requires verification of the email address in the `Registration`'s `contact_settings.registrant_contact` field. To verify the email address, follow the instructions in the email the `registrant_contact` receives following registration. If you do not complete email verification within 15 days of registration, the domain is suspended. To resend the verification email, call ConfigureContactSettings and provide the current `registrant_contact.email`.",
-              "The billing account is not in good standing. The domain is not automatically renewed at its expiration time unless you resolve problems with your billing account."
+              "The billing account is not in good standing. The domain is not automatically renewed at its expiration time unless you resolve problems with your billing account.",
+              "The registry failed to validate your DNS configuration and activate your domain. The failure might happen for the following reasons: * You recently registered the domain (wait up to 72 hours). * You provided invalid name servers or name servers that correspond to a newly created DNS zone. Verify your DNS configuration. If the configuration is incorrect, you must fix it. If the configuration is correct, either wait or call the ConfigureDnsSettings method to retry the registry validation."
             ],
             "type": "string"
           },
@@ -1978,10 +2161,46 @@
       },
       "type": "object"
     },
+    "RenewDomainRequest": {
+      "description": "Request for the `RenewDomain` method.",
+      "id": "RenewDomainRequest",
+      "properties": {
+        "validateOnly": {
+          "description": "Optional. When true, only validation is performed, without actually renewing the domain. For more information, see [Request validation](https://cloud.google.com/apis/design/design_patterns#request_validation)",
+          "type": "boolean"
+        },
+        "yearlyPrice": {
+          "$ref": "Money",
+          "description": "Required. Acknowledgement of the price to renew the domain for one year. To get the price, see [Cloud Domains pricing](https://cloud.google.com/domains/pricing). If not provided, the expected price is returned in the error message."
+        }
+      },
+      "type": "object"
+    },
     "ResetAuthorizationCodeRequest": {
       "description": "Request for the `ResetAuthorizationCode` method.",
       "id": "ResetAuthorizationCodeRequest",
       "properties": {},
+      "type": "object"
+    },
+    "RetrieveGoogleDomainsForwardingConfigResponse": {
+      "description": "Response for the `RetrieveGoogleDomainsForwardingConfig` method.",
+      "id": "RetrieveGoogleDomainsForwardingConfigResponse",
+      "properties": {
+        "domainForwardings": {
+          "description": "The list of domain forwarding configurations. A forwarding configuration might not work correctly if the required DNS records are not present in the domain's authoritative DNS zone.",
+          "items": {
+            "$ref": "DomainForwarding"
+          },
+          "type": "array"
+        },
+        "emailForwardings": {
+          "description": "The list of email forwarding configurations. A forwarding configuration might not work correctly if the required DNS records are not present in the domain's authoritative DNS zone.",
+          "items": {
+            "$ref": "EmailForwarding"
+          },
+          "type": "array"
+        }
+      },
       "type": "object"
     },
     "RetrieveImportableDomainsResponse": {

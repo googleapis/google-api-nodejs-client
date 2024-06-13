@@ -317,6 +317,35 @@ export namespace domains_v1 {
     yearlyPrice?: Schema$Money;
   }
   /**
+   * Domain forwarding configuration.
+   */
+  export interface Schema$DomainForwarding {
+    /**
+     * If true, forwards the path after the domain name to the same path at the new address.
+     */
+    pathForwarding?: boolean | null;
+    /**
+     * The PEM-encoded certificate chain.
+     */
+    pemCertificate?: string | null;
+    /**
+     * The redirect type.
+     */
+    redirectType?: string | null;
+    /**
+     * If true, the forwarding works also over HTTPS.
+     */
+    sslEnabled?: boolean | null;
+    /**
+     * The subdomain of the registered domain that is being forwarded. E.g. `www.example.com`, `example.com` (i.e. the registered domain itself) or `*.example.com` (i.e. all subdomains).
+     */
+    subdomain?: string | null;
+    /**
+     * The target of the domain forwarding, i.e. the path to redirect the `subdomain` to.
+     */
+    targetUri?: string | null;
+  }
+  /**
    * Defines a Delegation Signer (DS) record, which is needed to enable DNSSEC for a domain. It contains a digest (hash) of a DNSKEY record that must be present in the domain's DNS zone.
    */
   export interface Schema$DsRecord {
@@ -336,6 +365,19 @@ export namespace domains_v1 {
      * The key tag of the record. Must be set in range 0 -- 65535.
      */
     keyTag?: number | null;
+  }
+  /**
+   * Email forwarding configuration.
+   */
+  export interface Schema$EmailForwarding {
+    /**
+     * An alias recipient email that forwards emails to the `target_email_address`. For example, `admin@example.com` or `*@example.com` (wildcard alias forwards all the emails under the registered domain).
+     */
+    alias?: string | null;
+    /**
+     * Target email that receives emails sent to the `alias`.
+     */
+    targetEmailAddress?: string | null;
   }
   /**
    * Deprecated: For more information, see [Cloud Domains feature deprecation](https://cloud.google.com/domains/docs/deprecations/feature-deprecations). Request for the `ExportRegistration` method.
@@ -410,6 +452,15 @@ export namespace domains_v1 {
     labels?: {[key: string]: string} | null;
   }
   /**
+   * Request for the `InitiatePushTransfer` method.
+   */
+  export interface Schema$InitiatePushTransferRequest {
+    /**
+     * Required. The Tag of the new registrar. Can be found at [List of registrars](https://nominet.uk/registrar-list/).
+     */
+    tag?: string | null;
+  }
+  /**
    * The response message for Locations.ListLocations.
    */
   export interface Schema$ListLocationsResponse {
@@ -478,6 +529,10 @@ export namespace domains_v1 {
    */
   export interface Schema$ManagementSettings {
     /**
+     * Output only. The actual transfer lock state for this `Registration`.
+     */
+    effectiveTransferLockState?: string | null;
+    /**
      * Optional. The desired renewal method for this `Registration`. The actual `renewal_method` is automatically updated to reflect this choice. If unset or equal to `RENEWAL_METHOD_UNSPECIFIED`, the actual `renewalMethod` is treated as if it were set to `AUTOMATIC_RENEWAL`. You cannot use `RENEWAL_DISABLED` during resource creation, and you can update the renewal status only when the `Registration` resource has state `ACTIVE` or `SUSPENDED`. When `preferred_renewal_method` is set to `AUTOMATIC_RENEWAL`, the actual `renewal_method` can be set to `RENEWAL_DISABLED` in case of problems with the billing account or reported domain abuse. In such cases, check the `issues` field on the `Registration`. After the problem is resolved, the `renewal_method` is automatically updated to `preferred_renewal_method` in a few hours.
      */
     preferredRenewalMethod?: string | null;
@@ -486,7 +541,7 @@ export namespace domains_v1 {
      */
     renewalMethod?: string | null;
     /**
-     * This is the desired transfer lock state for this `Registration`. A transfer lock controls whether the domain can be transferred to another registrar.
+     * This is the desired transfer lock state for this `Registration`. A transfer lock controls whether the domain can be transferred to another registrar. The transfer lock state of the domain is returned in the `effective_transfer_lock_state` property. The transfer lock state values might be different for the following reasons: * `transfer_lock_state` was updated only a short time ago. * Domains with the `TRANSFER_LOCK_UNSUPPORTED_BY_REGISTRY` state are in the list of `domain_properties`. These domains are always in the `UNLOCKED` state.
      */
     transferLockState?: string | null;
   }
@@ -702,6 +757,10 @@ export namespace domains_v1 {
      */
     domainName?: string | null;
     /**
+     * Output only. Special properties of the domain.
+     */
+    domainProperties?: string[] | null;
+    /**
      * Output only. The expiration timestamp of the `Registration`.
      */
     expireTime?: string | null;
@@ -743,9 +802,35 @@ export namespace domains_v1 {
     transferFailureReason?: string | null;
   }
   /**
+   * Request for the `RenewDomain` method.
+   */
+  export interface Schema$RenewDomainRequest {
+    /**
+     * Optional. When true, only validation is performed, without actually renewing the domain. For more information, see [Request validation](https://cloud.google.com/apis/design/design_patterns#request_validation)
+     */
+    validateOnly?: boolean | null;
+    /**
+     * Required. Acknowledgement of the price to renew the domain for one year. To get the price, see [Cloud Domains pricing](https://cloud.google.com/domains/pricing). If not provided, the expected price is returned in the error message.
+     */
+    yearlyPrice?: Schema$Money;
+  }
+  /**
    * Request for the `ResetAuthorizationCode` method.
    */
   export interface Schema$ResetAuthorizationCodeRequest {}
+  /**
+   * Response for the `RetrieveGoogleDomainsForwardingConfig` method.
+   */
+  export interface Schema$RetrieveGoogleDomainsForwardingConfigResponse {
+    /**
+     * The list of domain forwarding configurations. A forwarding configuration might not work correctly if the required DNS records are not present in the domain's authoritative DNS zone.
+     */
+    domainForwardings?: Schema$DomainForwarding[];
+    /**
+     * The list of email forwarding configurations. A forwarding configuration might not work correctly if the required DNS records are not present in the domain's authoritative DNS zone.
+     */
+    emailForwardings?: Schema$EmailForwarding[];
+  }
   /**
    * Deprecated: For more information, see [Cloud Domains feature deprecation](https://cloud.google.com/domains/docs/deprecations/feature-deprecations). Response for the `RetrieveImportableDomains` method.
    */
@@ -2044,6 +2129,97 @@ export namespace domains_v1 {
     }
 
     /**
+     * Initiates the `Push Transfer` process to transfer the domain to another registrar. The process might complete instantly or might require confirmation or additional work. Check the emails sent to the email address of the registrant. The process is aborted after a timeout if it's not completed. This method is only supported for domains that have the `REQUIRE_PUSH_TRANSFER` property in the list of `domain_properties`. The domain must also be unlocked before it can be transferred to a different registrar. For more information, see [Transfer a registered domain to another registrar](https://cloud.google.com/domains/docs/transfer-domain-to-another-registrar).
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    initiatePushTransfer(
+      params: Params$Resource$Projects$Locations$Registrations$Initiatepushtransfer,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    initiatePushTransfer(
+      params?: Params$Resource$Projects$Locations$Registrations$Initiatepushtransfer,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    initiatePushTransfer(
+      params: Params$Resource$Projects$Locations$Registrations$Initiatepushtransfer,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    initiatePushTransfer(
+      params: Params$Resource$Projects$Locations$Registrations$Initiatepushtransfer,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    initiatePushTransfer(
+      params: Params$Resource$Projects$Locations$Registrations$Initiatepushtransfer,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    initiatePushTransfer(
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    initiatePushTransfer(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Registrations$Initiatepushtransfer
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Registrations$Initiatepushtransfer;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Registrations$Initiatepushtransfer;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://domains.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+registration}:initiatePushTransfer').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['registration'],
+        pathParams: ['registration'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
      * Lists the `Registration` resources in a project.
      *
      * @param params - Parameters for request
@@ -2313,7 +2489,96 @@ export namespace domains_v1 {
     }
 
     /**
-     * Resets the authorization code of the `Registration` to a new random string. You can call this method only after 60 days have elapsed since the initial domain registration.
+     * Renews a recently expired domain. This method can only be called on domains that expired in the previous 30 days. After the renewal, the new expiration time of the domain is one year after the old expiration time and you are charged a `yearly_price` for the renewal.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    renewDomain(
+      params: Params$Resource$Projects$Locations$Registrations$Renewdomain,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    renewDomain(
+      params?: Params$Resource$Projects$Locations$Registrations$Renewdomain,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    renewDomain(
+      params: Params$Resource$Projects$Locations$Registrations$Renewdomain,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    renewDomain(
+      params: Params$Resource$Projects$Locations$Registrations$Renewdomain,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    renewDomain(
+      params: Params$Resource$Projects$Locations$Registrations$Renewdomain,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    renewDomain(callback: BodyResponseCallback<Schema$Operation>): void;
+    renewDomain(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Registrations$Renewdomain
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Registrations$Renewdomain;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Registrations$Renewdomain;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://domains.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+registration}:renewDomain').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['registration'],
+        pathParams: ['registration'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Resets the authorization code of the `Registration` to a new random string. You can call this method only after 60 days have elapsed since the initial domain registration. Domains that have the `REQUIRE_PUSH_TRANSFER` property in the list of `domain_properties` don't support authorization codes and must use the `InitiatePushTransfer` method to initiate the process to transfer the domain to a different registrar.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2406,7 +2671,7 @@ export namespace domains_v1 {
     }
 
     /**
-     * Gets the authorization code of the `Registration` for the purpose of transferring the domain to another registrar. You can call this method only after 60 days have elapsed since the initial domain registration.
+     * Gets the authorization code of the `Registration` for the purpose of transferring the domain to another registrar. You can call this method only after 60 days have elapsed since the initial domain registration. Domains that have the `REQUIRE_PUSH_TRANSFER` property in the list of `domain_properties` don't support authorization codes and must use the `InitiatePushTransfer` method to initiate the process to transfer the domain to a different registrar.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2495,6 +2760,104 @@ export namespace domains_v1 {
         );
       } else {
         return createAPIRequest<Schema$AuthorizationCode>(parameters);
+      }
+    }
+
+    /**
+     * Lists the deprecated domain and email forwarding configurations you set up in the deprecated Google Domains UI. The configuration is present only for domains with the `google_domains_redirects_data_available` set to `true` in the `Registration`'s `dns_settings`. A forwarding configuration might not work correctly if required DNS records are not present in the domain's authoritative DNS Zone.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    retrieveGoogleDomainsForwardingConfig(
+      params: Params$Resource$Projects$Locations$Registrations$Retrievegoogledomainsforwardingconfig,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    retrieveGoogleDomainsForwardingConfig(
+      params?: Params$Resource$Projects$Locations$Registrations$Retrievegoogledomainsforwardingconfig,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$RetrieveGoogleDomainsForwardingConfigResponse>;
+    retrieveGoogleDomainsForwardingConfig(
+      params: Params$Resource$Projects$Locations$Registrations$Retrievegoogledomainsforwardingconfig,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    retrieveGoogleDomainsForwardingConfig(
+      params: Params$Resource$Projects$Locations$Registrations$Retrievegoogledomainsforwardingconfig,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$RetrieveGoogleDomainsForwardingConfigResponse>,
+      callback: BodyResponseCallback<Schema$RetrieveGoogleDomainsForwardingConfigResponse>
+    ): void;
+    retrieveGoogleDomainsForwardingConfig(
+      params: Params$Resource$Projects$Locations$Registrations$Retrievegoogledomainsforwardingconfig,
+      callback: BodyResponseCallback<Schema$RetrieveGoogleDomainsForwardingConfigResponse>
+    ): void;
+    retrieveGoogleDomainsForwardingConfig(
+      callback: BodyResponseCallback<Schema$RetrieveGoogleDomainsForwardingConfigResponse>
+    ): void;
+    retrieveGoogleDomainsForwardingConfig(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Registrations$Retrievegoogledomainsforwardingconfig
+        | BodyResponseCallback<Schema$RetrieveGoogleDomainsForwardingConfigResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$RetrieveGoogleDomainsForwardingConfigResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$RetrieveGoogleDomainsForwardingConfigResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$RetrieveGoogleDomainsForwardingConfigResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Registrations$Retrievegoogledomainsforwardingconfig;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Registrations$Retrievegoogledomainsforwardingconfig;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://domains.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v1/{+registration}:retrieveGoogleDomainsForwardingConfig'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['registration'],
+        pathParams: ['registration'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$RetrieveGoogleDomainsForwardingConfigResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$RetrieveGoogleDomainsForwardingConfigResponse>(
+          parameters
+        );
       }
     }
 
@@ -3247,6 +3610,18 @@ export namespace domains_v1 {
      */
     requestBody?: Schema$ImportDomainRequest;
   }
+  export interface Params$Resource$Projects$Locations$Registrations$Initiatepushtransfer
+    extends StandardParameters {
+    /**
+     * Required. The name of the `Registration` for which the push transfer is initiated, in the format `projects/x/locations/x/registrations/x`.
+     */
+    registration?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$InitiatePushTransferRequest;
+  }
   export interface Params$Resource$Projects$Locations$Registrations$List
     extends StandardParameters {
     /**
@@ -3294,6 +3669,18 @@ export namespace domains_v1 {
      */
     requestBody?: Schema$RegisterDomainRequest;
   }
+  export interface Params$Resource$Projects$Locations$Registrations$Renewdomain
+    extends StandardParameters {
+    /**
+     * Required. The name of the `Registration` whish is being renewed, in the format `projects/x/locations/x/registrations/x`.
+     */
+    registration?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$RenewDomainRequest;
+  }
   export interface Params$Resource$Projects$Locations$Registrations$Resetauthorizationcode
     extends StandardParameters {
     /**
@@ -3310,6 +3697,13 @@ export namespace domains_v1 {
     extends StandardParameters {
     /**
      * Required. The name of the `Registration` whose authorization code is being retrieved, in the format `projects/x/locations/x/registrations/x`.
+     */
+    registration?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Registrations$Retrievegoogledomainsforwardingconfig
+    extends StandardParameters {
+    /**
+     * Required. The name of the `Registration` whose Google Domains forwarding configuration details are being retrieved, in the format `projects/x/locations/x/registrations/x`.
      */
     registration?: string;
   }
