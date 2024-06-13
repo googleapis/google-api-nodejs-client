@@ -731,7 +731,7 @@
       }
     }
   },
-  "revision": "20240411",
+  "revision": "20240522",
   "rootUrl": "https://looker.googleapis.com/",
   "schemas": {
     "AdminSettings": {
@@ -1059,7 +1059,7 @@
       "type": "object"
     },
     "Instance": {
-      "description": "A Looker instance. LINT.IfChange",
+      "description": "A Looker instance.",
       "id": "Instance",
       "properties": {
         "adminSettings": {

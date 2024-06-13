@@ -347,7 +347,7 @@ export namespace looker_v1 {
     gcsUri?: string | null;
   }
   /**
-   * A Looker instance. LINT.IfChange
+   * A Looker instance.
    */
   export interface Schema$Instance {
     /**
