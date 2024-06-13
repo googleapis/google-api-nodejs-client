@@ -1205,7 +1205,7 @@ export namespace cloudbuild_v1 {
      */
     createTime?: string | null;
     /**
-     * Name to display for this config.
+     * Optional. Name to display for this config.
      */
     displayName?: string | null;
     /**
@@ -1213,7 +1213,7 @@ export namespace cloudbuild_v1 {
      */
     hostUrl?: string | null;
     /**
-     * Optional. The full resource name for the GitHubEnterpriseConfig For example: "projects/{$project_id\}/locations/{$location_id\}/githubEnterpriseConfigs/{$config_id\}"
+     * The full resource name for the GitHubEnterpriseConfig For example: "projects/{$project_id\}/locations/{$location_id\}/githubEnterpriseConfigs/{$config_id\}"
      */
     name?: string | null;
     /**
@@ -1221,7 +1221,7 @@ export namespace cloudbuild_v1 {
      */
     peeredNetwork?: string | null;
     /**
-     * Names of secrets in Secret Manager.
+     * Optional. Names of secrets in Secret Manager.
      */
     secrets?: Schema$GitHubEnterpriseSecrets;
     /**
@@ -1275,7 +1275,7 @@ export namespace cloudbuild_v1 {
    */
   export interface Schema$GitHubEventsConfig {
     /**
-     * Optional. The resource name of the github enterprise config that should be applied to this installation. For example: "projects/{$project_id\}/locations/{$location_id\}/githubEnterpriseConfigs/{$config_id\}"
+     * The resource name of the github enterprise config that should be applied to this installation. For example: "projects/{$project_id\}/locations/{$location_id\}/githubEnterpriseConfigs/{$config_id\}"
      */
     enterpriseConfigResourceName?: string | null;
     /**
@@ -1821,7 +1821,7 @@ export namespace cloudbuild_v1 {
      */
     subscription?: string | null;
     /**
-     * The name of the topic from which this subscription is receiving messages. Format is `projects/{project\}/topics/{topic\}`.
+     * Optional. The name of the topic from which this subscription is receiving messages. Format is `projects/{project\}/topics/{topic\}`.
      */
     topic?: string | null;
   }
@@ -2368,7 +2368,7 @@ export namespace cloudbuild_v1 {
      */
     diskSizeGb?: string | null;
     /**
-     * Machine type of a worker, such as `e2-medium`. See [Worker pool config file](https://cloud.google.com/build/docs/private-pools/worker-pool-config-file-schema). If left blank, Cloud Build will use a sensible default.
+     * Optional. Machine type of a worker, such as `e2-medium`. See [Worker pool config file](https://cloud.google.com/build/docs/private-pools/worker-pool-config-file-schema). If left blank, Cloud Build will use a sensible default.
      */
     machineType?: string | null;
   }
@@ -3943,7 +3943,7 @@ export namespace cloudbuild_v1 {
      */
     gheConfigId?: string;
     /**
-     * Name of the parent project. For example: projects/{$project_number\} or projects/{$project_id\}
+     * Required. Name of the parent project. For example: projects/{$project_number\} or projects/{$project_id\}
      */
     parent?: string;
     /**
@@ -4000,7 +4000,7 @@ export namespace cloudbuild_v1 {
   export interface Params$Resource$Projects$Githubenterpriseconfigs$Patch
     extends StandardParameters {
     /**
-     * Optional. The full resource name for the GitHubEnterpriseConfig For example: "projects/{$project_id\}/locations/{$location_id\}/githubEnterpriseConfigs/{$config_id\}"
+     * The full resource name for the GitHubEnterpriseConfig For example: "projects/{$project_id\}/locations/{$location_id\}/githubEnterpriseConfigs/{$config_id\}"
      */
     name?: string;
     /**
@@ -6087,7 +6087,7 @@ export namespace cloudbuild_v1 {
      */
     gheConfigId?: string;
     /**
-     * Name of the parent project. For example: projects/{$project_number\} or projects/{$project_id\}
+     * Required. Name of the parent project. For example: projects/{$project_number\} or projects/{$project_id\}
      */
     parent?: string;
     /**
@@ -6144,7 +6144,7 @@ export namespace cloudbuild_v1 {
   export interface Params$Resource$Projects$Locations$Githubenterpriseconfigs$Patch
     extends StandardParameters {
     /**
-     * Optional. The full resource name for the GitHubEnterpriseConfig For example: "projects/{$project_id\}/locations/{$location_id\}/githubEnterpriseConfigs/{$config_id\}"
+     * The full resource name for the GitHubEnterpriseConfig For example: "projects/{$project_id\}/locations/{$location_id\}/githubEnterpriseConfigs/{$config_id\}"
      */
     name?: string;
     /**
@@ -8469,7 +8469,7 @@ export namespace cloudbuild_v1 {
      */
     name?: string;
     /**
-     * A mask specifying which fields in `worker_pool` to update.
+     * Optional. A mask specifying which fields in `worker_pool` to update.
      */
     updateMask?: string;
     /**
