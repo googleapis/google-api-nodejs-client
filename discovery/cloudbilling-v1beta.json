@@ -114,6 +114,7 @@
     "billingAccounts": {
       "methods": {
         "estimateCostScenario": {
+          "deprecated": true,
           "description": "Use custom pricing in the estimate, using a `CostScenario` with a defined `billingAccount`.",
           "flatPath": "v1beta/billingAccounts/{billingAccountsId}:estimateCostScenario",
           "httpMethod": "POST",
@@ -734,8 +735,10 @@
       }
     },
     "v1beta": {
+      "deprecated": true,
       "methods": {
         "estimateCostScenario": {
+          "deprecated": true,
           "description": "Estimate list prices using a `CostScenario` without a defined `billingAccount`.",
           "flatPath": "v1beta:estimateCostScenario",
           "httpMethod": "POST",
@@ -758,7 +761,7 @@
       }
     }
   },
-  "revision": "20240419",
+  "revision": "20240531",
   "rootUrl": "https://cloudbilling.googleapis.com/",
   "schemas": {
     "CacheFillRegions": {

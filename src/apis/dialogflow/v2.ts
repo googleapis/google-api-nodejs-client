@@ -175,11 +175,11 @@ export namespace dialogflow_v2 {
    */
   export interface Schema$GoogleCloudDialogflowCxV3AdvancedSettingsLoggingSettings {
     /**
-     * If true, DF Interaction logging is currently enabled.
+     * Enables DF Interaction logging.
      */
     enableInteractionLogging?: boolean | null;
     /**
-     * If true, StackDriver logging is currently enabled.
+     * Enables StackDriver logging.
      */
     enableStackdriverLogging?: boolean | null;
   }
@@ -299,11 +299,11 @@ export namespace dialogflow_v2 {
    */
   export interface Schema$GoogleCloudDialogflowCxV3beta1AdvancedSettingsLoggingSettings {
     /**
-     * If true, DF Interaction logging is currently enabled.
+     * Enables DF Interaction logging.
      */
     enableInteractionLogging?: boolean | null;
     /**
-     * If true, StackDriver logging is currently enabled.
+     * Enables StackDriver logging.
      */
     enableStackdriverLogging?: boolean | null;
   }
@@ -1307,6 +1307,10 @@ export namespace dialogflow_v2 {
      * The natural language text to be processed.
      */
     text?: Schema$GoogleCloudDialogflowCxV3beta1TextInput;
+    /**
+     * The results of a tool executed by the client.
+     */
+    toolCallResult?: Schema$GoogleCloudDialogflowCxV3beta1ToolCallResult;
   }
   /**
    * Metadata for ReloadDocument operation.
@@ -1365,6 +1369,10 @@ export namespace dialogflow_v2 {
      * Returns a text response.
      */
     text?: Schema$GoogleCloudDialogflowCxV3beta1ResponseMessageText;
+    /**
+     * Returns the definition of a tool call that should be executed by the client.
+     */
+    toolCall?: Schema$GoogleCloudDialogflowCxV3beta1ToolCall;
   }
   /**
    * Indicates that the conversation succeeded, i.e., the bot handled the issue that the customer talked to it about. Dialogflow only uses this to determine which conversations should be counted as successful and doesn't process the metadata in this message in any way. Note that Dialogflow also considers conversations that get to the conversation end page as successful even if they don't return ConversationSuccess. You may set this, for example: * In the entry_fulfillment of a Page if entering the page indicates that the conversation succeeded. * In a webhook response when you determine that you handled the customer issue.
@@ -1644,6 +1652,53 @@ export namespace dialogflow_v2 {
      * Required. The UTF-8 encoded natural language text to be processed.
      */
     text?: string | null;
+  }
+  /**
+   * Represents a call of a specific tool's action with the specified inputs.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1ToolCall {
+    /**
+     * Required. The name of the tool's action associated with this call.
+     */
+    action?: string | null;
+    /**
+     * Optional. The action's input parameters.
+     */
+    inputParameters?: {[key: string]: any} | null;
+    /**
+     * Required. The tool associated with this call. Format: `projects//locations//agents//tools/`.
+     */
+    tool?: string | null;
+  }
+  /**
+   * The result of calling a tool's action that has been executed by the client.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1ToolCallResult {
+    /**
+     * Required. The name of the tool's action associated with this call.
+     */
+    action?: string | null;
+    /**
+     * The tool call's error.
+     */
+    error?: Schema$GoogleCloudDialogflowCxV3beta1ToolCallResultError;
+    /**
+     * The tool call's output parameters.
+     */
+    outputParameters?: {[key: string]: any} | null;
+    /**
+     * Required. The tool associated with this call. Format: `projects//locations//agents//tools/`.
+     */
+    tool?: string | null;
+  }
+  /**
+   * An error produced by the tool call.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1ToolCallResultError {
+    /**
+     * Optional. The error message of the function.
+     */
+    message?: string | null;
   }
   /**
    * A transition route specifies a intent that can be matched and/or a data condition that can be evaluated during a session. When a specified transition is matched, the following actions are taken in order: * If there is a `trigger_fulfillment` associated with the transition, it will be called. * If there is a `target_page` associated with the transition, the session will transition into the specified page. * If there is a `target_flow` associated with the transition, the session will transition into the specified flow.
@@ -3724,6 +3779,10 @@ export namespace dialogflow_v2 {
      */
     documentEfficiency?: string | null;
     /**
+     * Optional. Feedback for knowledge assist.
+     */
+    knowledgeAssistFeedback?: Schema$GoogleCloudDialogflowV2AgentAssistantFeedbackKnowledgeAssistFeedback;
+    /**
      * Optional. Feedback for knowledge search.
      */
     knowledgeSearchFeedback?: Schema$GoogleCloudDialogflowV2AgentAssistantFeedbackKnowledgeSearchFeedback;
@@ -3731,6 +3790,19 @@ export namespace dialogflow_v2 {
      * Optional. Feedback for conversation summarization.
      */
     summarizationFeedback?: Schema$GoogleCloudDialogflowV2AgentAssistantFeedbackSummarizationFeedback;
+  }
+  /**
+   * Feedback for knowledge assist.
+   */
+  export interface Schema$GoogleCloudDialogflowV2AgentAssistantFeedbackKnowledgeAssistFeedback {
+    /**
+     * Whether the suggested answer was copied by the human agent. If the value is set to be true, AnswerFeedback.clicked will be updated to be true.
+     */
+    answerCopied?: boolean | null;
+    /**
+     * The URIs clicked by the human agent. The value is appended for each UpdateAnswerRecordRequest. If the value is not empty, AnswerFeedback.clicked will be updated to be true.
+     */
+    clickedUris?: string[] | null;
   }
   /**
    * Feedback for knowledge search.
@@ -5314,6 +5386,84 @@ export namespace dialogflow_v2 {
     source?: string | null;
   }
   /**
+   * Represents a Knowledge Assist answer.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1KnowledgeAssistAnswer {
+    /**
+     * The name of the answer record. Format: `projects//locations//answer Records/`.
+     */
+    answerRecord?: string | null;
+    /**
+     * The query suggested based on the context. Suggestion is made only if it is different from the previous suggestion.
+     */
+    suggestedQuery?: Schema$GoogleCloudDialogflowV2beta1KnowledgeAssistAnswerSuggestedQuery;
+    /**
+     * The answer generated for the suggested query. Whether or not an answer is generated depends on how confident we are about the generated query.
+     */
+    suggestedQueryAnswer?: Schema$GoogleCloudDialogflowV2beta1KnowledgeAssistAnswerKnowledgeAnswer;
+  }
+  /**
+   * Represents an answer from Knowledge. Currently supports FAQ and Generative answers.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1KnowledgeAssistAnswerKnowledgeAnswer {
+    /**
+     * The piece of text from the `source` that answers this suggested query.
+     */
+    answerText?: string | null;
+    /**
+     * Populated if the prediction came from FAQ.
+     */
+    faqSource?: Schema$GoogleCloudDialogflowV2beta1KnowledgeAssistAnswerKnowledgeAnswerFaqSource;
+    /**
+     * Populated if the prediction was Generative.
+     */
+    generativeSource?: Schema$GoogleCloudDialogflowV2beta1KnowledgeAssistAnswerKnowledgeAnswerGenerativeSource;
+  }
+  /**
+   * Details about source of FAQ answer.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1KnowledgeAssistAnswerKnowledgeAnswerFaqSource {
+    /**
+     * The corresponding FAQ question.
+     */
+    question?: string | null;
+  }
+  /**
+   * Details about source of Generative answer.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1KnowledgeAssistAnswerKnowledgeAnswerGenerativeSource {
+    /**
+     * All snippets used for this Generative Prediction, with their source URI and data.
+     */
+    snippets?: Schema$GoogleCloudDialogflowV2beta1KnowledgeAssistAnswerKnowledgeAnswerGenerativeSourceSnippet[];
+  }
+  /**
+   * Snippet Source for a Generative Prediction.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1KnowledgeAssistAnswerKnowledgeAnswerGenerativeSourceSnippet {
+    /**
+     * Text taken from that URI.
+     */
+    text?: string | null;
+    /**
+     * Title of the document.
+     */
+    title?: string | null;
+    /**
+     * URI the data is sourced from.
+     */
+    uri?: string | null;
+  }
+  /**
+   * Represents a suggested query.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1KnowledgeAssistAnswerSuggestedQuery {
+    /**
+     * Suggested query text.
+     */
+    queryText?: string | null;
+  }
+  /**
    * Metadata in google::longrunning::Operation for Knowledge operations.
    */
   export interface Schema$GoogleCloudDialogflowV2beta1KnowledgeOperationMetadata {
@@ -5627,9 +5777,30 @@ export namespace dialogflow_v2 {
      */
     suggestFaqAnswersResponse?: Schema$GoogleCloudDialogflowV2beta1SuggestFaqAnswersResponse;
     /**
+     * SuggestKnowledgeAssistResponse if request is for KNOWLEDGE_ASSIST.
+     */
+    suggestKnowledgeAssistResponse?: Schema$GoogleCloudDialogflowV2beta1SuggestKnowledgeAssistResponse;
+    /**
      * SuggestSmartRepliesResponse if request is for SMART_REPLY.
      */
     suggestSmartRepliesResponse?: Schema$GoogleCloudDialogflowV2beta1SuggestSmartRepliesResponse;
+  }
+  /**
+   * The response message for Participants.SuggestKnowledgeAssist.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1SuggestKnowledgeAssistResponse {
+    /**
+     * Number of messages prior to and including latest_message to compile the suggestion. It may be smaller than the SuggestKnowledgeAssistRequest.context_size field in the request if there are fewer messages in the conversation.
+     */
+    contextSize?: number | null;
+    /**
+     * Output only. Knowledge Assist suggestion.
+     */
+    knowledgeAssistAnswer?: Schema$GoogleCloudDialogflowV2beta1KnowledgeAssistAnswer;
+    /**
+     * The name of the latest conversation message used to compile suggestion for. Format: `projects//locations//conversations//messages/`.
+     */
+    latestMessage?: string | null;
   }
   /**
    * The response message for Participants.SuggestSmartReplies.
@@ -6788,6 +6959,10 @@ export namespace dialogflow_v2 {
    */
   export interface Schema$GoogleCloudDialogflowV2HumanAgentAssistantConfigSuggestionConfig {
     /**
+     * Optional. When disable_high_latency_features_sync_delivery is true and using the AnalyzeContent API, we will not deliver the responses from high latency features in the API response. The human_agent_assistant_config.notification_config must be configured and enable_event_based_suggestion must be set to true to receive the responses from high latency features in Pub/Sub. High latency feature(s): KNOWLEDGE_ASSIST.
+     */
+    disableHighLatencyFeaturesSyncDelivery?: boolean | null;
+    /**
      * Configuration of different suggestion features. One feature can have only one config.
      */
     featureConfigs?: Schema$GoogleCloudDialogflowV2HumanAgentAssistantConfigSuggestionFeatureConfig[];
@@ -6824,6 +6999,14 @@ export namespace dialogflow_v2 {
      * Automatically iterates all participants and tries to compile suggestions. Supported features: ARTICLE_SUGGESTION, FAQ, DIALOGFLOW_ASSIST, KNOWLEDGE_ASSIST.
      */
     enableEventBasedSuggestion?: boolean | null;
+    /**
+     * Optional. Enable query suggestion only. Supported features: KNOWLEDGE_ASSIST
+     */
+    enableQuerySuggestionOnly?: boolean | null;
+    /**
+     * Optional. Enable query suggestion even if we can't find its answer. By default, queries are suggested only if we find its answer. Supported features: KNOWLEDGE_ASSIST
+     */
+    enableQuerySuggestionWhenNoAnswer?: boolean | null;
     /**
      * Configs of query.
      */
@@ -7872,6 +8055,84 @@ export namespace dialogflow_v2 {
     userDefined?: boolean | null;
   }
   /**
+   * Represents a Knowledge Assist answer.
+   */
+  export interface Schema$GoogleCloudDialogflowV2KnowledgeAssistAnswer {
+    /**
+     * The name of the answer record. Format: `projects//locations//answer Records/`.
+     */
+    answerRecord?: string | null;
+    /**
+     * The query suggested based on the context. Suggestion is made only if it is different from the previous suggestion.
+     */
+    suggestedQuery?: Schema$GoogleCloudDialogflowV2KnowledgeAssistAnswerSuggestedQuery;
+    /**
+     * The answer generated for the suggested query. Whether or not an answer is generated depends on how confident we are about the generated query.
+     */
+    suggestedQueryAnswer?: Schema$GoogleCloudDialogflowV2KnowledgeAssistAnswerKnowledgeAnswer;
+  }
+  /**
+   * Represents an answer from Knowledge. Currently supports FAQ and Generative answers.
+   */
+  export interface Schema$GoogleCloudDialogflowV2KnowledgeAssistAnswerKnowledgeAnswer {
+    /**
+     * The piece of text from the `source` that answers this suggested query.
+     */
+    answerText?: string | null;
+    /**
+     * Populated if the prediction came from FAQ.
+     */
+    faqSource?: Schema$GoogleCloudDialogflowV2KnowledgeAssistAnswerKnowledgeAnswerFaqSource;
+    /**
+     * Populated if the prediction was Generative.
+     */
+    generativeSource?: Schema$GoogleCloudDialogflowV2KnowledgeAssistAnswerKnowledgeAnswerGenerativeSource;
+  }
+  /**
+   * Details about source of FAQ answer.
+   */
+  export interface Schema$GoogleCloudDialogflowV2KnowledgeAssistAnswerKnowledgeAnswerFaqSource {
+    /**
+     * The corresponding FAQ question.
+     */
+    question?: string | null;
+  }
+  /**
+   * Details about source of Generative answer.
+   */
+  export interface Schema$GoogleCloudDialogflowV2KnowledgeAssistAnswerKnowledgeAnswerGenerativeSource {
+    /**
+     * All snippets used for this Generative Prediction, with their source URI and data.
+     */
+    snippets?: Schema$GoogleCloudDialogflowV2KnowledgeAssistAnswerKnowledgeAnswerGenerativeSourceSnippet[];
+  }
+  /**
+   * Snippet Source for a Generative Prediction.
+   */
+  export interface Schema$GoogleCloudDialogflowV2KnowledgeAssistAnswerKnowledgeAnswerGenerativeSourceSnippet {
+    /**
+     * Text taken from that URI.
+     */
+    text?: string | null;
+    /**
+     * Title of the document.
+     */
+    title?: string | null;
+    /**
+     * URI the data is sourced from.
+     */
+    uri?: string | null;
+  }
+  /**
+   * Represents a suggested query.
+   */
+  export interface Schema$GoogleCloudDialogflowV2KnowledgeAssistAnswerSuggestedQuery {
+    /**
+     * Suggested query text.
+     */
+    queryText?: string | null;
+  }
+  /**
    * A knowledge base represents a collection of knowledge documents that you provide to Dialogflow. Your knowledge documents contain information that may be useful during conversations with end-users. Some Dialogflow features use knowledge bases when looking for a response to an end-user input. For more information, see the [knowledge base guide](https://cloud.google.com/dialogflow/docs/how/knowledge-bases). Note: The `projects.agent.knowledgeBases` resource is deprecated; only use `projects.knowledgeBases`.
    */
   export interface Schema$GoogleCloudDialogflowV2KnowledgeBase {
@@ -8871,9 +9132,47 @@ export namespace dialogflow_v2 {
      */
     suggestFaqAnswersResponse?: Schema$GoogleCloudDialogflowV2SuggestFaqAnswersResponse;
     /**
+     * SuggestKnowledgeAssistResponse if request is for KNOWLEDGE_ASSIST.
+     */
+    suggestKnowledgeAssistResponse?: Schema$GoogleCloudDialogflowV2SuggestKnowledgeAssistResponse;
+    /**
      * SuggestSmartRepliesResponse if request is for SMART_REPLY.
      */
     suggestSmartRepliesResponse?: Schema$GoogleCloudDialogflowV2SuggestSmartRepliesResponse;
+  }
+  /**
+   * The request message for Participants.SuggestKnowledgeAssist.
+   */
+  export interface Schema$GoogleCloudDialogflowV2SuggestKnowledgeAssistRequest {
+    /**
+     * Optional. Max number of messages prior to and including latest_message to use as context when compiling the suggestion. The context size is by default 100 and at most 100.
+     */
+    contextSize?: number | null;
+    /**
+     * Optional. The name of the latest conversation message to compile suggestions for. If empty, it will be the latest message of the conversation. Format: `projects//locations//conversations//messages/`.
+     */
+    latestMessage?: string | null;
+    /**
+     * Optional. The previously suggested query for the given conversation. This helps identify whether the next suggestion we generate is resonably different from the previous one. This is useful to avoid similar suggestions within the conversation.
+     */
+    previousSuggestedQuery?: string | null;
+  }
+  /**
+   * The response message for Participants.SuggestKnowledgeAssist.
+   */
+  export interface Schema$GoogleCloudDialogflowV2SuggestKnowledgeAssistResponse {
+    /**
+     * Number of messages prior to and including latest_message to compile the suggestion. It may be smaller than the SuggestKnowledgeAssistRequest.context_size field in the request if there are fewer messages in the conversation.
+     */
+    contextSize?: number | null;
+    /**
+     * Output only. Knowledge Assist suggestion.
+     */
+    knowledgeAssistAnswer?: Schema$GoogleCloudDialogflowV2KnowledgeAssistAnswer;
+    /**
+     * The name of the latest conversation message used to compile suggestion for. Format: `projects//locations//conversations//messages/`.
+     */
+    latestMessage?: string | null;
   }
   /**
    * The request message for Participants.SuggestSmartReplies.
@@ -21185,6 +21484,103 @@ export namespace dialogflow_v2 {
     }
 
     /**
+     * Gets knowledge assist suggestions based on historical messages.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    suggestKnowledgeAssist(
+      params: Params$Resource$Projects$Conversations$Participants$Suggestions$Suggestknowledgeassist,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    suggestKnowledgeAssist(
+      params?: Params$Resource$Projects$Conversations$Participants$Suggestions$Suggestknowledgeassist,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDialogflowV2SuggestKnowledgeAssistResponse>;
+    suggestKnowledgeAssist(
+      params: Params$Resource$Projects$Conversations$Participants$Suggestions$Suggestknowledgeassist,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    suggestKnowledgeAssist(
+      params: Params$Resource$Projects$Conversations$Participants$Suggestions$Suggestknowledgeassist,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2SuggestKnowledgeAssistResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2SuggestKnowledgeAssistResponse>
+    ): void;
+    suggestKnowledgeAssist(
+      params: Params$Resource$Projects$Conversations$Participants$Suggestions$Suggestknowledgeassist,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2SuggestKnowledgeAssistResponse>
+    ): void;
+    suggestKnowledgeAssist(
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2SuggestKnowledgeAssistResponse>
+    ): void;
+    suggestKnowledgeAssist(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Conversations$Participants$Suggestions$Suggestknowledgeassist
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2SuggestKnowledgeAssistResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2SuggestKnowledgeAssistResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2SuggestKnowledgeAssistResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDialogflowV2SuggestKnowledgeAssistResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Conversations$Participants$Suggestions$Suggestknowledgeassist;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Conversations$Participants$Suggestions$Suggestknowledgeassist;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v2/{+parent}/suggestions:suggestKnowledgeAssist'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDialogflowV2SuggestKnowledgeAssistResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDialogflowV2SuggestKnowledgeAssistResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Gets smart replies for a participant based on specific historical messages.
      *
      * @param params - Parameters for request
@@ -21305,6 +21701,18 @@ export namespace dialogflow_v2 {
      * Request body metadata
      */
     requestBody?: Schema$GoogleCloudDialogflowV2SuggestFaqAnswersRequest;
+  }
+  export interface Params$Resource$Projects$Conversations$Participants$Suggestions$Suggestknowledgeassist
+    extends StandardParameters {
+    /**
+     * Required. The name of the participant to fetch suggestions for. Format: `projects//locations//conversations//participants/`.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDialogflowV2SuggestKnowledgeAssistRequest;
   }
   export interface Params$Resource$Projects$Conversations$Participants$Suggestions$Suggestsmartreplies
     extends StandardParameters {
@@ -34353,6 +34761,103 @@ export namespace dialogflow_v2 {
     }
 
     /**
+     * Gets knowledge assist suggestions based on historical messages.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    suggestKnowledgeAssist(
+      params: Params$Resource$Projects$Locations$Conversations$Participants$Suggestions$Suggestknowledgeassist,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    suggestKnowledgeAssist(
+      params?: Params$Resource$Projects$Locations$Conversations$Participants$Suggestions$Suggestknowledgeassist,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDialogflowV2SuggestKnowledgeAssistResponse>;
+    suggestKnowledgeAssist(
+      params: Params$Resource$Projects$Locations$Conversations$Participants$Suggestions$Suggestknowledgeassist,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    suggestKnowledgeAssist(
+      params: Params$Resource$Projects$Locations$Conversations$Participants$Suggestions$Suggestknowledgeassist,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2SuggestKnowledgeAssistResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2SuggestKnowledgeAssistResponse>
+    ): void;
+    suggestKnowledgeAssist(
+      params: Params$Resource$Projects$Locations$Conversations$Participants$Suggestions$Suggestknowledgeassist,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2SuggestKnowledgeAssistResponse>
+    ): void;
+    suggestKnowledgeAssist(
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2SuggestKnowledgeAssistResponse>
+    ): void;
+    suggestKnowledgeAssist(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Conversations$Participants$Suggestions$Suggestknowledgeassist
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2SuggestKnowledgeAssistResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2SuggestKnowledgeAssistResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2SuggestKnowledgeAssistResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDialogflowV2SuggestKnowledgeAssistResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Conversations$Participants$Suggestions$Suggestknowledgeassist;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Conversations$Participants$Suggestions$Suggestknowledgeassist;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v2/{+parent}/suggestions:suggestKnowledgeAssist'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDialogflowV2SuggestKnowledgeAssistResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDialogflowV2SuggestKnowledgeAssistResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Gets smart replies for a participant based on specific historical messages.
      *
      * @param params - Parameters for request
@@ -34473,6 +34978,18 @@ export namespace dialogflow_v2 {
      * Request body metadata
      */
     requestBody?: Schema$GoogleCloudDialogflowV2SuggestFaqAnswersRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Conversations$Participants$Suggestions$Suggestknowledgeassist
+    extends StandardParameters {
+    /**
+     * Required. The name of the participant to fetch suggestions for. Format: `projects//locations//conversations//participants/`.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDialogflowV2SuggestKnowledgeAssistRequest;
   }
   export interface Params$Resource$Projects$Locations$Conversations$Participants$Suggestions$Suggestsmartreplies
     extends StandardParameters {

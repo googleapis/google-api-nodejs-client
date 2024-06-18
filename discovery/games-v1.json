@@ -822,8 +822,38 @@
     },
     "recall": {
       "methods": {
+        "gamesPlayerTokens": {
+          "description": "Retrieve the Recall tokens from all requested games that is associated with the PGS Player encoded in the provided recall session id. The API is only available for users that have an active PGS Player profile.",
+          "flatPath": "games/v1/recall/gamesPlayerTokens/{sessionId}",
+          "httpMethod": "GET",
+          "id": "games.recall.gamesPlayerTokens",
+          "parameterOrder": [
+            "sessionId"
+          ],
+          "parameters": {
+            "applicationIds": {
+              "description": "Required. The application IDs from the Google Play developer console for the games to return scoped ids for.",
+              "location": "query",
+              "repeated": true,
+              "type": "string"
+            },
+            "sessionId": {
+              "description": "Required. Opaque server-generated string that encodes all the necessary information to identify the PGS player / Google user and application.",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "games/v1/recall/gamesPlayerTokens/{sessionId}",
+          "response": {
+            "$ref": "RetrieveGamesPlayerTokensResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/androidpublisher"
+          ]
+        },
         "lastTokenFromAllDeveloperGames": {
-          "description": "Retrieve the last Recall token from all developer games that is associated with the PGS Player principal encoded in the provided recall session id. The API is only available for users that have active PGS Player profile.",
+          "description": "Retrieve the last Recall token from all developer games that is associated with the PGS Player encoded in the provided recall session id. The API is only available for users that have active PGS Player profile.",
           "flatPath": "games/v1/recall/developerGamesLastPlayerToken/{sessionId}",
           "httpMethod": "GET",
           "id": "games.recall.lastTokenFromAllDeveloperGames",
@@ -883,7 +913,7 @@
           ]
         },
         "retrieveTokens": {
-          "description": "Retrieve all Recall tokens associated with the PGS Player principal encoded in the provided recall session id. The API is only available for users that have active PGS Player profile.",
+          "description": "Retrieve all Recall tokens associated with the PGS Player encoded in the provided recall session id. The API is only available for users that have active PGS Player profile.",
           "flatPath": "games/v1/recall/tokens/{sessionId}",
           "httpMethod": "GET",
           "id": "games.recall.retrieveTokens",
@@ -1378,7 +1408,7 @@
       }
     }
   },
-  "revision": "20240424",
+  "revision": "20240529",
   "rootUrl": "https://games.googleapis.com/",
   "schemas": {
     "AchievementDefinition": {
@@ -2126,6 +2156,24 @@
           "description": "The current status of any updated events",
           "items": {
             "$ref": "PlayerEvent"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GamePlayerToken": {
+      "description": "Recall tokens for a game.",
+      "id": "GamePlayerToken",
+      "properties": {
+        "applicationId": {
+          "description": "The application that this player identifier is for.",
+          "type": "string"
+        },
+        "token": {
+          "description": "Recall token data.",
+          "items": {
+            "$ref": "RecallToken"
           },
           "type": "array"
         }
@@ -3175,6 +3223,20 @@
         "token": {
           "$ref": "RecallToken",
           "description": "The recall token associated with the requested PGS Player principal. It can be unset if there is no recall token associated with the requested principal."
+        }
+      },
+      "type": "object"
+    },
+    "RetrieveGamesPlayerTokensResponse": {
+      "description": "A list of recall token data returned from the RetrieveGamesPlayerTokens RPC",
+      "id": "RetrieveGamesPlayerTokensResponse",
+      "properties": {
+        "applicationRecallTokens": {
+          "description": "The requested applications along with the recall tokens for the player. If the player does not have recall tokens for an application, that application is not included in the response.",
+          "items": {
+            "$ref": "GamePlayerToken"
+          },
+          "type": "array"
         }
       },
       "type": "object"

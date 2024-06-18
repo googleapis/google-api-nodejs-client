@@ -224,6 +224,40 @@ export namespace chromemanagement_v1 {
     type?: string | null;
   }
   /**
+   * App report.
+   */
+  export interface Schema$GoogleChromeManagementV1AppReport {
+    /**
+     * Timestamp when the report was collected.
+     */
+    reportTime?: string | null;
+    /**
+     * App usage data.
+     */
+    usageData?: Schema$GoogleChromeManagementV1AppUsageData[];
+  }
+  /**
+   * App usage data.
+   */
+  export interface Schema$GoogleChromeManagementV1AppUsageData {
+    /**
+     * App id.
+     */
+    appId?: string | null;
+    /**
+     * Application instance id. This will be unique per window/instance.
+     */
+    appInstanceId?: string | null;
+    /**
+     * Type of app.
+     */
+    appType?: string | null;
+    /**
+     * App foreground running time.
+     */
+    runningDuration?: string | null;
+  }
+  /**
    * Status data for storage. * This field is telemetry information and this will change over time as the device is utilized. * Data for this field is controlled via policy: [ReportDeviceAudioStatus](https://chromeenterprise.google/policies/#ReportDeviceAudioStatus) * Data Collection Frequency: 10 minutes * Default Data Reporting Frequency: 3 hours - Policy Controlled: Yes * Cache: If the device is offline, the collected data is stored locally, and will be reported when the device is next online: No * Reported for affiliated users only: N/A * Granular permission needed: TELEMETRY_API_AUDIO_REPORT
    */
   export interface Schema$GoogleChromeManagementV1AudioStatusReport {
@@ -1642,6 +1676,10 @@ export namespace chromemanagement_v1 {
    */
   export interface Schema$GoogleChromeManagementV1TelemetryDevice {
     /**
+     * Output only. App reports collected periodically sorted in a decreasing order of report_time.
+     */
+    appReport?: Schema$GoogleChromeManagementV1AppReport[];
+    /**
      * Output only. Audio reports collected periodically sorted in a decreasing order of report_time.
      */
     audioStatusReport?: Schema$GoogleChromeManagementV1AudioStatusReport[];
@@ -1960,6 +1998,10 @@ export namespace chromemanagement_v1 {
    * Telemetry data collected for a managed user and device. * Granular permission needed: TELEMETRY_API_DEVICE
    */
   export interface Schema$GoogleChromeManagementV1TelemetryUserDevice {
+    /**
+     * Output only. App reports collected periodically sorted in a decreasing order of report_time.
+     */
+    appReport?: Schema$GoogleChromeManagementV1AppReport[];
     /**
      * Output only. Audio reports collected periodically sorted in a decreasing order of report_time.
      */

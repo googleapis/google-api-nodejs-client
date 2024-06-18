@@ -849,9 +849,17 @@ export namespace documentai_v1beta2 {
    */
   export interface Schema$GoogleCloudDocumentaiV1beta1Document {
     /**
+     * Document chunked based on chunking config.
+     */
+    chunkedDocument?: Schema$GoogleCloudDocumentaiV1beta1DocumentChunkedDocument;
+    /**
      * Optional. Inline document content, represented as a stream of bytes. Note: As with all `bytes` fields, protobuffers use a pure binary representation, whereas JSON representations use base64.
      */
     content?: string | null;
+    /**
+     * Parsed layout of the document.
+     */
+    documentLayout?: Schema$GoogleCloudDocumentaiV1beta1DocumentDocumentLayout;
     /**
      * A list of entities detected on Document.text. For document shards, entities in this list may cross shard boundaries.
      */
@@ -896,6 +904,212 @@ export namespace documentai_v1beta2 {
      * Optional. Currently supports Google Cloud Storage URI of the form `gs://bucket_name/object_name`. Object versioning is not supported. For more information, refer to [Google Cloud Storage Request URIs](https://cloud.google.com/storage/docs/reference-uris).
      */
     uri?: string | null;
+  }
+  /**
+   * Represents the chunks that the document is divided into.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta1DocumentChunkedDocument {
+    /**
+     * List of chunks.
+     */
+    chunks?: Schema$GoogleCloudDocumentaiV1beta1DocumentChunkedDocumentChunk[];
+  }
+  /**
+   * Represents a chunk.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta1DocumentChunkedDocumentChunk {
+    /**
+     * ID of the chunk.
+     */
+    chunkId?: string | null;
+    /**
+     * Text content of the chunk.
+     */
+    content?: string | null;
+    /**
+     * Page footers associated with the chunk.
+     */
+    pageFooters?: Schema$GoogleCloudDocumentaiV1beta1DocumentChunkedDocumentChunkChunkPageFooter[];
+    /**
+     * Page headers associated with the chunk.
+     */
+    pageHeaders?: Schema$GoogleCloudDocumentaiV1beta1DocumentChunkedDocumentChunkChunkPageHeader[];
+    /**
+     * Page span of the chunk.
+     */
+    pageSpan?: Schema$GoogleCloudDocumentaiV1beta1DocumentChunkedDocumentChunkChunkPageSpan;
+    /**
+     * Unused.
+     */
+    sourceBlockIds?: string[] | null;
+  }
+  /**
+   * Represents the page footer associated with the chunk.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta1DocumentChunkedDocumentChunkChunkPageFooter {
+    /**
+     * Page span of the footer.
+     */
+    pageSpan?: Schema$GoogleCloudDocumentaiV1beta1DocumentChunkedDocumentChunkChunkPageSpan;
+    /**
+     * Footer in text format.
+     */
+    text?: string | null;
+  }
+  /**
+   * Represents the page header associated with the chunk.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta1DocumentChunkedDocumentChunkChunkPageHeader {
+    /**
+     * Page span of the header.
+     */
+    pageSpan?: Schema$GoogleCloudDocumentaiV1beta1DocumentChunkedDocumentChunkChunkPageSpan;
+    /**
+     * Header in text format.
+     */
+    text?: string | null;
+  }
+  /**
+   * Represents where the chunk starts and ends in the document.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta1DocumentChunkedDocumentChunkChunkPageSpan {
+    /**
+     * Page where chunk ends in the document.
+     */
+    pageEnd?: number | null;
+    /**
+     * Page where chunk starts in the document.
+     */
+    pageStart?: number | null;
+  }
+  /**
+   * Represents the parsed layout of a document as a collection of blocks that the document is divided into.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta1DocumentDocumentLayout {
+    /**
+     * List of blocks in the document.
+     */
+    blocks?: Schema$GoogleCloudDocumentaiV1beta1DocumentDocumentLayoutDocumentLayoutBlock[];
+  }
+  /**
+   * Represents a block. A block could be one of the various types (text, table, list) supported.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta1DocumentDocumentLayoutDocumentLayoutBlock {
+    /**
+     * ID of the block.
+     */
+    blockId?: string | null;
+    /**
+     * Block consisting of list content/structure.
+     */
+    listBlock?: Schema$GoogleCloudDocumentaiV1beta1DocumentDocumentLayoutDocumentLayoutBlockLayoutListBlock;
+    /**
+     * Page span of the block.
+     */
+    pageSpan?: Schema$GoogleCloudDocumentaiV1beta1DocumentDocumentLayoutDocumentLayoutBlockLayoutPageSpan;
+    /**
+     * Block consisting of table content/structure.
+     */
+    tableBlock?: Schema$GoogleCloudDocumentaiV1beta1DocumentDocumentLayoutDocumentLayoutBlockLayoutTableBlock;
+    /**
+     * Block consisting of text content.
+     */
+    textBlock?: Schema$GoogleCloudDocumentaiV1beta1DocumentDocumentLayoutDocumentLayoutBlockLayoutTextBlock;
+  }
+  /**
+   * Represents a list type block.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta1DocumentDocumentLayoutDocumentLayoutBlockLayoutListBlock {
+    /**
+     * List entries that constitute a list block.
+     */
+    listEntries?: Schema$GoogleCloudDocumentaiV1beta1DocumentDocumentLayoutDocumentLayoutBlockLayoutListEntry[];
+    /**
+     * Type of the list_entries (if exist). Available options are `ordered` and `unordered`.
+     */
+    type?: string | null;
+  }
+  /**
+   * Represents an entry in the list.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta1DocumentDocumentLayoutDocumentLayoutBlockLayoutListEntry {
+    /**
+     * A list entry is a list of blocks. Repeated blocks support further hierarchies and nested blocks.
+     */
+    blocks?: Schema$GoogleCloudDocumentaiV1beta1DocumentDocumentLayoutDocumentLayoutBlock[];
+  }
+  /**
+   * Represents where the block starts and ends in the document.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta1DocumentDocumentLayoutDocumentLayoutBlockLayoutPageSpan {
+    /**
+     * Page where block ends in the document.
+     */
+    pageEnd?: number | null;
+    /**
+     * Page where block starts in the document.
+     */
+    pageStart?: number | null;
+  }
+  /**
+   * Represents a table type block.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta1DocumentDocumentLayoutDocumentLayoutBlockLayoutTableBlock {
+    /**
+     * Body rows containing main table content.
+     */
+    bodyRows?: Schema$GoogleCloudDocumentaiV1beta1DocumentDocumentLayoutDocumentLayoutBlockLayoutTableRow[];
+    /**
+     * Table caption/title.
+     */
+    caption?: string | null;
+    /**
+     * Header rows at the top of the table.
+     */
+    headerRows?: Schema$GoogleCloudDocumentaiV1beta1DocumentDocumentLayoutDocumentLayoutBlockLayoutTableRow[];
+  }
+  /**
+   * Represents a cell in a table row.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta1DocumentDocumentLayoutDocumentLayoutBlockLayoutTableCell {
+    /**
+     * A table cell is a list of blocks. Repeated blocks support further hierarchies and nested blocks.
+     */
+    blocks?: Schema$GoogleCloudDocumentaiV1beta1DocumentDocumentLayoutDocumentLayoutBlock[];
+    /**
+     * How many columns this cell spans.
+     */
+    colSpan?: number | null;
+    /**
+     * How many rows this cell spans.
+     */
+    rowSpan?: number | null;
+  }
+  /**
+   * Represents a row in a table.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta1DocumentDocumentLayoutDocumentLayoutBlockLayoutTableRow {
+    /**
+     * A table row is a list of table cells.
+     */
+    cells?: Schema$GoogleCloudDocumentaiV1beta1DocumentDocumentLayoutDocumentLayoutBlockLayoutTableCell[];
+  }
+  /**
+   * Represents a text type block.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta1DocumentDocumentLayoutDocumentLayoutBlockLayoutTextBlock {
+    /**
+     * A text block could further have child blocks. Repeated blocks support further hierarchies and nested blocks.
+     */
+    blocks?: Schema$GoogleCloudDocumentaiV1beta1DocumentDocumentLayoutDocumentLayoutBlock[];
+    /**
+     * Text content stored in the block.
+     */
+    text?: string | null;
+    /**
+     * Type of the text in the block. Available options are: `paragraph`, `subtitle`, `heading-1`, `heading-2`, `heading-3`, `heading-4`, `heading-5`, `header`, `footer`.
+     */
+    type?: string | null;
   }
   /**
    * An entity that could be a phrase in the text or a property that belongs to the document. It is a known entity type, such as a person, an organization, or location.
@@ -1865,9 +2079,17 @@ export namespace documentai_v1beta2 {
    */
   export interface Schema$GoogleCloudDocumentaiV1beta2Document {
     /**
+     * Document chunked based on chunking config.
+     */
+    chunkedDocument?: Schema$GoogleCloudDocumentaiV1beta2DocumentChunkedDocument;
+    /**
      * Optional. Inline document content, represented as a stream of bytes. Note: As with all `bytes` fields, protobuffers use a pure binary representation, whereas JSON representations use base64.
      */
     content?: string | null;
+    /**
+     * Parsed layout of the document.
+     */
+    documentLayout?: Schema$GoogleCloudDocumentaiV1beta2DocumentDocumentLayout;
     /**
      * A list of entities detected on Document.text. For document shards, entities in this list may cross shard boundaries.
      */
@@ -1916,6 +2138,212 @@ export namespace documentai_v1beta2 {
      * Optional. Currently supports Google Cloud Storage URI of the form `gs://bucket_name/object_name`. Object versioning is not supported. For more information, refer to [Google Cloud Storage Request URIs](https://cloud.google.com/storage/docs/reference-uris).
      */
     uri?: string | null;
+  }
+  /**
+   * Represents the chunks that the document is divided into.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta2DocumentChunkedDocument {
+    /**
+     * List of chunks.
+     */
+    chunks?: Schema$GoogleCloudDocumentaiV1beta2DocumentChunkedDocumentChunk[];
+  }
+  /**
+   * Represents a chunk.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta2DocumentChunkedDocumentChunk {
+    /**
+     * ID of the chunk.
+     */
+    chunkId?: string | null;
+    /**
+     * Text content of the chunk.
+     */
+    content?: string | null;
+    /**
+     * Page footers associated with the chunk.
+     */
+    pageFooters?: Schema$GoogleCloudDocumentaiV1beta2DocumentChunkedDocumentChunkChunkPageFooter[];
+    /**
+     * Page headers associated with the chunk.
+     */
+    pageHeaders?: Schema$GoogleCloudDocumentaiV1beta2DocumentChunkedDocumentChunkChunkPageHeader[];
+    /**
+     * Page span of the chunk.
+     */
+    pageSpan?: Schema$GoogleCloudDocumentaiV1beta2DocumentChunkedDocumentChunkChunkPageSpan;
+    /**
+     * Unused.
+     */
+    sourceBlockIds?: string[] | null;
+  }
+  /**
+   * Represents the page footer associated with the chunk.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta2DocumentChunkedDocumentChunkChunkPageFooter {
+    /**
+     * Page span of the footer.
+     */
+    pageSpan?: Schema$GoogleCloudDocumentaiV1beta2DocumentChunkedDocumentChunkChunkPageSpan;
+    /**
+     * Footer in text format.
+     */
+    text?: string | null;
+  }
+  /**
+   * Represents the page header associated with the chunk.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta2DocumentChunkedDocumentChunkChunkPageHeader {
+    /**
+     * Page span of the header.
+     */
+    pageSpan?: Schema$GoogleCloudDocumentaiV1beta2DocumentChunkedDocumentChunkChunkPageSpan;
+    /**
+     * Header in text format.
+     */
+    text?: string | null;
+  }
+  /**
+   * Represents where the chunk starts and ends in the document.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta2DocumentChunkedDocumentChunkChunkPageSpan {
+    /**
+     * Page where chunk ends in the document.
+     */
+    pageEnd?: number | null;
+    /**
+     * Page where chunk starts in the document.
+     */
+    pageStart?: number | null;
+  }
+  /**
+   * Represents the parsed layout of a document as a collection of blocks that the document is divided into.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta2DocumentDocumentLayout {
+    /**
+     * List of blocks in the document.
+     */
+    blocks?: Schema$GoogleCloudDocumentaiV1beta2DocumentDocumentLayoutDocumentLayoutBlock[];
+  }
+  /**
+   * Represents a block. A block could be one of the various types (text, table, list) supported.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta2DocumentDocumentLayoutDocumentLayoutBlock {
+    /**
+     * ID of the block.
+     */
+    blockId?: string | null;
+    /**
+     * Block consisting of list content/structure.
+     */
+    listBlock?: Schema$GoogleCloudDocumentaiV1beta2DocumentDocumentLayoutDocumentLayoutBlockLayoutListBlock;
+    /**
+     * Page span of the block.
+     */
+    pageSpan?: Schema$GoogleCloudDocumentaiV1beta2DocumentDocumentLayoutDocumentLayoutBlockLayoutPageSpan;
+    /**
+     * Block consisting of table content/structure.
+     */
+    tableBlock?: Schema$GoogleCloudDocumentaiV1beta2DocumentDocumentLayoutDocumentLayoutBlockLayoutTableBlock;
+    /**
+     * Block consisting of text content.
+     */
+    textBlock?: Schema$GoogleCloudDocumentaiV1beta2DocumentDocumentLayoutDocumentLayoutBlockLayoutTextBlock;
+  }
+  /**
+   * Represents a list type block.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta2DocumentDocumentLayoutDocumentLayoutBlockLayoutListBlock {
+    /**
+     * List entries that constitute a list block.
+     */
+    listEntries?: Schema$GoogleCloudDocumentaiV1beta2DocumentDocumentLayoutDocumentLayoutBlockLayoutListEntry[];
+    /**
+     * Type of the list_entries (if exist). Available options are `ordered` and `unordered`.
+     */
+    type?: string | null;
+  }
+  /**
+   * Represents an entry in the list.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta2DocumentDocumentLayoutDocumentLayoutBlockLayoutListEntry {
+    /**
+     * A list entry is a list of blocks. Repeated blocks support further hierarchies and nested blocks.
+     */
+    blocks?: Schema$GoogleCloudDocumentaiV1beta2DocumentDocumentLayoutDocumentLayoutBlock[];
+  }
+  /**
+   * Represents where the block starts and ends in the document.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta2DocumentDocumentLayoutDocumentLayoutBlockLayoutPageSpan {
+    /**
+     * Page where block ends in the document.
+     */
+    pageEnd?: number | null;
+    /**
+     * Page where block starts in the document.
+     */
+    pageStart?: number | null;
+  }
+  /**
+   * Represents a table type block.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta2DocumentDocumentLayoutDocumentLayoutBlockLayoutTableBlock {
+    /**
+     * Body rows containing main table content.
+     */
+    bodyRows?: Schema$GoogleCloudDocumentaiV1beta2DocumentDocumentLayoutDocumentLayoutBlockLayoutTableRow[];
+    /**
+     * Table caption/title.
+     */
+    caption?: string | null;
+    /**
+     * Header rows at the top of the table.
+     */
+    headerRows?: Schema$GoogleCloudDocumentaiV1beta2DocumentDocumentLayoutDocumentLayoutBlockLayoutTableRow[];
+  }
+  /**
+   * Represents a cell in a table row.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta2DocumentDocumentLayoutDocumentLayoutBlockLayoutTableCell {
+    /**
+     * A table cell is a list of blocks. Repeated blocks support further hierarchies and nested blocks.
+     */
+    blocks?: Schema$GoogleCloudDocumentaiV1beta2DocumentDocumentLayoutDocumentLayoutBlock[];
+    /**
+     * How many columns this cell spans.
+     */
+    colSpan?: number | null;
+    /**
+     * How many rows this cell spans.
+     */
+    rowSpan?: number | null;
+  }
+  /**
+   * Represents a row in a table.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta2DocumentDocumentLayoutDocumentLayoutBlockLayoutTableRow {
+    /**
+     * A table row is a list of table cells.
+     */
+    cells?: Schema$GoogleCloudDocumentaiV1beta2DocumentDocumentLayoutDocumentLayoutBlockLayoutTableCell[];
+  }
+  /**
+   * Represents a text type block.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta2DocumentDocumentLayoutDocumentLayoutBlockLayoutTextBlock {
+    /**
+     * A text block could further have child blocks. Repeated blocks support further hierarchies and nested blocks.
+     */
+    blocks?: Schema$GoogleCloudDocumentaiV1beta2DocumentDocumentLayoutDocumentLayoutBlock[];
+    /**
+     * Text content stored in the block.
+     */
+    text?: string | null;
+    /**
+     * Type of the text in the block. Available options are: `paragraph`, `subtitle`, `heading-1`, `heading-2`, `heading-3`, `heading-4`, `heading-5`, `header`, `footer`.
+     */
+    type?: string | null;
   }
   /**
    * An entity that could be a phrase in the text or a property that belongs to the document. It is a known entity type, such as a person, an organization, or location.
@@ -3101,6 +3529,14 @@ export namespace documentai_v1beta2 {
      * Dataset resource name. Format: `projects/{project\}/locations/{location\}/processors/{processor\}/dataset`
      */
     name?: string | null;
+    /**
+     * Output only. Reserved for future use.
+     */
+    satisfiesPzi?: boolean | null;
+    /**
+     * Output only. Reserved for future use.
+     */
+    satisfiesPzs?: boolean | null;
     /**
      * Optional. A lightweight indexing source with low latency and high reliability, but lacking advanced features like CMEK and content-based search.
      */

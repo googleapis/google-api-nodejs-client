@@ -563,7 +563,7 @@
       }
     }
   },
-  "revision": "20240523",
+  "revision": "20240530",
   "rootUrl": "https://assuredworkloads.googleapis.com/",
   "schemas": {
     "GoogleCloudAssuredworkloadsV1beta1AcknowledgeViolationRequest": {
@@ -1033,7 +1033,8 @@
             "REMEDIATION_LIST_ALLOWED_VALUES_ORG_POLICY_VIOLATION",
             "REMEDIATION_LIST_DENIED_VALUES_ORG_POLICY_VIOLATION",
             "REMEDIATION_RESTRICT_CMEK_CRYPTO_KEY_PROJECTS_ORG_POLICY_VIOLATION",
-            "REMEDIATION_RESOURCE_VIOLATION"
+            "REMEDIATION_RESOURCE_VIOLATION",
+            "REMEDIATION_RESOURCE_VIOLATION_NON_CMEK_SERVICES"
           ],
           "enumDescriptions": [
             "Unspecified remediation type",
@@ -1041,7 +1042,8 @@
             "Remediation type for list org policy which have allowed values in the monitoring rule",
             "Remediation type for list org policy which have denied values in the monitoring rule",
             "Remediation type for gcp.restrictCmekCryptoKeyProjects",
-            "Remediation type for resource violation."
+            "Remediation type for resource violation.",
+            "Remediation type for resource violation due to gcp.restrictNonCmekServices"
           ],
           "readOnly": true,
           "type": "string"

@@ -638,7 +638,7 @@
               ]
             },
             "get": {
-              "description": "Gets an active, unexpired enrollment token. Only a partial view of EnrollmentToken is returned: all the fields but name and expiration_timestamp are empty. This method is meant to help manage active enrollment tokens lifecycle. For security reasons, it's recommended to delete active enrollment tokens as soon as they're not intended to be used anymore.",
+              "description": "Gets an active, unexpired enrollment token. A partial view of the enrollment token is returned. Only the following fields are populated: name, expirationTimestamp, allowPersonalUsage, value, qrCode. This method is meant to help manage active enrollment tokens lifecycle. For security reasons, it's recommended to delete active enrollment tokens as soon as they're not intended to be used anymore.",
               "flatPath": "v1/enterprises/{enterprisesId}/enrollmentTokens/{enrollmentTokensId}",
               "httpMethod": "GET",
               "id": "androidmanagement.enterprises.enrollmentTokens.get",
@@ -663,7 +663,7 @@
               ]
             },
             "list": {
-              "description": "Lists active, unexpired enrollment tokens for a given enterprise. The list items contain only a partial view of EnrollmentToken: all the fields but name and expiration_timestamp are empty. This method is meant to help manage active enrollment tokens lifecycle. For security reasons, it's recommended to delete active enrollment tokens as soon as they're not intended to be used anymore.",
+              "description": "Lists active, unexpired enrollment tokens for a given enterprise. The list items contain only a partial view of EnrollmentToken object. Only the following fields are populated: name, expirationTimestamp, allowPersonalUsage, value, qrCode. This method is meant to help manage active enrollment tokens lifecycle. For security reasons, it's recommended to delete active enrollment tokens as soon as they're not intended to be used anymore.",
               "flatPath": "v1/enterprises/{enterprisesId}/enrollmentTokens",
               "httpMethod": "GET",
               "id": "androidmanagement.enterprises.enrollmentTokens.list",
@@ -1168,7 +1168,7 @@
       }
     }
   },
-  "revision": "20240516",
+  "revision": "20240603",
   "rootUrl": "https://androidmanagement.googleapis.com/",
   "schemas": {
     "AdbShellCommandEvent": {
@@ -1659,7 +1659,7 @@
             "Unspecified. Defaults to AUTO_UPDATE_DEFAULT.",
             "The default update mode.The app is automatically updated with low priority to minimize the impact on the user.The app is updated when all of the following constraints are met: The device is not actively used. The device is connected to an unmetered network. The device is charging. The app to be updated is not running in the foreground.The device is notified about a new update within 24 hours after it is published by the developer, after which the app is updated the next time the constraints above are met.",
             "The app is not automatically updated for a maximum of 90 days after the app becomes out of date.90 days after the app becomes out of date, the latest available version is installed automatically with low priority (see AUTO_UPDATE_DEFAULT). After the app is updated it is not automatically updated again until 90 days after it becomes out of date again.The user can still manually update the app from the Play Store at any time.",
-            "The app is updated as soon as possible. No constraints are applied.The device is notified as soon as possible about a new update after it becomes available."
+            "The app is updated as soon as possible. No constraints are applied.The device is notified as soon as possible about a new update after it becomes available.*NOTE:* Updates to apps with larger deployments across Android's ecosystem can take up to 24h."
           ],
           "type": "string"
         },
@@ -1810,6 +1810,20 @@
             "$ref": "PermissionGrant"
           },
           "type": "array"
+        },
+        "userControlSettings": {
+          "description": "Optional. Specifies whether user control is permitted for the app. User control includes user actions like force-stopping and clearing app data. Supported on Android 11 and above.",
+          "enum": [
+            "USER_CONTROL_SETTINGS_UNSPECIFIED",
+            "USER_CONTROL_ALLOWED",
+            "USER_CONTROL_DISALLOWED"
+          ],
+          "enumDescriptions": [
+            "Uses the default behaviour of the app to determine if user control is allowed or disallowed. For most apps, user control is allowed by default, but for some critical apps such as companion apps (extensionConfig set to true), kiosk apps and other critical system apps, user control is disallowed.",
+            "User control is allowed for the app. Kiosk apps can use this to allow user control.",
+            "User control is disallowed for the app. API_LEVEL is reported if the Android version is less than 11."
+          ],
+          "type": "string"
         },
         "workProfileWidgets": {
           "description": "Specifies whether the app installed in the work profile is allowed to add widgets to the home screen.",
@@ -3012,12 +3026,14 @@
           "enum": [
             "ALLOW_PERSONAL_USAGE_UNSPECIFIED",
             "PERSONAL_USAGE_ALLOWED",
-            "PERSONAL_USAGE_DISALLOWED"
+            "PERSONAL_USAGE_DISALLOWED",
+            "PERSONAL_USAGE_DISALLOWED_USERLESS"
           ],
           "enumDescriptions": [
             "Personal usage restriction is not specified",
             "Personal usage is allowed",
-            "Personal usage is disallowed"
+            "Personal usage is disallowed",
+            "Device is not associated with a single user, and thus both personal usage and corporate identity authentication are not expected."
           ],
           "type": "string"
         },
@@ -3106,6 +3122,10 @@
         "enterpriseDisplayName": {
           "description": "The name of the enterprise displayed to users. This field has a maximum length of 100 characters.",
           "type": "string"
+        },
+        "googleAuthenticationSettings": {
+          "$ref": "GoogleAuthenticationSettings",
+          "description": "Settings for Google-provided user authentication."
         },
         "logo": {
           "$ref": "ExternalData",
@@ -3207,6 +3227,28 @@
         "startDate": {
           "$ref": "Date",
           "description": "The start date (inclusive) of the freeze period. Note: year must not be set. For example, {\"month\": 1,\"date\": 30}."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAuthenticationSettings": {
+      "description": "Contains settings for Google-provided user authentication.",
+      "id": "GoogleAuthenticationSettings",
+      "properties": {
+        "googleAuthenticationRequired": {
+          "description": "Output only. Whether users need to be authenticated by Google during the enrollment process. IT admin can specify if Google authentication is enabled for the enterprise for knowledge worker devices. This value can be set only via the Google Admin Console. Google authentication can be used with signin_url In the case where Google authentication is required and a signin_url is specified, Google authentication will be launched before signin_url.",
+          "enum": [
+            "GOOGLE_AUTHENTICATION_REQUIRED_UNSPECIFIED",
+            "NOT_REQUIRED",
+            "REQUIRED"
+          ],
+          "enumDescriptions": [
+            "This value is not used.",
+            "Google authentication is not required.",
+            "User is required to be successfully authenticated by Google."
+          ],
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"
@@ -5621,12 +5663,14 @@
           "enum": [
             "ALLOW_PERSONAL_USAGE_UNSPECIFIED",
             "PERSONAL_USAGE_ALLOWED",
-            "PERSONAL_USAGE_DISALLOWED"
+            "PERSONAL_USAGE_DISALLOWED",
+            "PERSONAL_USAGE_DISALLOWED_USERLESS"
           ],
           "enumDescriptions": [
             "Personal usage restriction is not specified",
             "Personal usage is allowed",
-            "Personal usage is disallowed"
+            "Personal usage is disallowed",
+            "Device is not associated with a single user, and thus both personal usage and corporate identity authentication are not expected."
           ],
           "type": "string"
         },

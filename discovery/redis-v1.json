@@ -821,7 +821,7 @@
       }
     }
   },
-  "revision": "20240524",
+  "revision": "20240531",
   "rootUrl": "https://redis.googleapis.com/",
   "schemas": {
     "AOFConfig": {
@@ -1111,6 +1111,10 @@
           "description": "Output only. System assigned, unique identifier for the cluster.",
           "readOnly": true,
           "type": "string"
+        },
+        "zoneDistributionConfig": {
+          "$ref": "ZoneDistributionConfig",
+          "description": "Optional. This config will be used to determine how the customer wants us to distribute cluster resources within the region."
         }
       },
       "type": "object"
@@ -2801,11 +2805,17 @@
           "description": "Required. Type of aggregation performed on the metric.",
           "enum": [
             "AGGREGATION_TYPE_UNSPECIFIED",
-            "MAXIMUM"
+            "PEAK",
+            "P99",
+            "P95",
+            "CURRENT"
           ],
           "enumDescriptions": [
             "Unspecified aggregation type.",
-            "Maximum aggregation type."
+            "PEAK aggregation type.",
+            "P99 aggregation type.",
+            "P95 aggregation type.",
+            "current aggregation type."
           ],
           "type": "string"
         },
@@ -2815,13 +2825,17 @@
             "METRIC_TYPE_UNSPECIFIED",
             "CPU_UTILIZATION",
             "MEMORY_UTILIZATION",
-            "NETWORK_CONNECTIONS"
+            "NETWORK_CONNECTIONS",
+            "STORAGE_UTILIZATION",
+            "STORAGE_USED_BYTES"
           ],
           "enumDescriptions": [
-            "",
+            "Unspecified metric type.",
             "CPU utilization for a resource. The value is a fraction between 0.0 and 1.0 (may momentarily exceed 1.0 in some cases).",
             "Memory utilization for a resource. The value is a fraction between 0.0 and 1.0 (may momentarily exceed 1.0 in some cases).",
-            "Number of network connections for a resource."
+            "Number of network connections for a resource.",
+            "Storage utilization for a resource. The value is a fraction between 0.0 and 1.0 (may momentarily exceed 1.0 in some cases).",
+            "Sotrage used by a resource."
           ],
           "type": "string"
         },
@@ -3384,17 +3398,21 @@
       "id": "TypedValue",
       "properties": {
         "boolValue": {
+          "description": "For boolean value",
           "type": "boolean"
         },
         "doubleValue": {
+          "description": "For double value",
           "format": "double",
           "type": "number"
         },
         "int64Value": {
+          "description": "For integer value",
           "format": "int64",
           "type": "string"
         },
         "stringValue": {
+          "description": "For string value",
           "type": "string"
         }
       },
@@ -3478,6 +3496,31 @@
         "startTime": {
           "$ref": "TimeOfDay",
           "description": "Required. Start time of the window in UTC time."
+        }
+      },
+      "type": "object"
+    },
+    "ZoneDistributionConfig": {
+      "description": "Zone distribution config for allocation of cluster resources.",
+      "id": "ZoneDistributionConfig",
+      "properties": {
+        "mode": {
+          "description": "Optional. The mode of zone distribution. Defaults to MULTI_ZONE, when not specified.",
+          "enum": [
+            "ZONE_DISTRIBUTION_MODE_UNSPECIFIED",
+            "MULTI_ZONE",
+            "SINGLE_ZONE"
+          ],
+          "enumDescriptions": [
+            "Not Set. Default: MULTI_ZONE",
+            "Distribute all resources across 3 zones picked at random, within the region.",
+            "Distribute all resources in a single zone. The zone field must be specified, when this mode is selected."
+          ],
+          "type": "string"
+        },
+        "zone": {
+          "description": "Optional. When SINGLE ZONE distribution is selected, zone field would be used to allocate all resources in that zone. This is not applicable to MULTI_ZONE, and would be ignored for MULTI_ZONE clusters.",
+          "type": "string"
         }
       },
       "type": "object"

@@ -1172,7 +1172,7 @@
       }
     }
   },
-  "revision": "20240530",
+  "revision": "20240604",
   "rootUrl": "https://chromemanagement.googleapis.com/",
   "schemas": {
     "GoogleChromeManagementV1AndroidAppInfo": {
@@ -1315,6 +1315,85 @@
             "Web app."
           ],
           "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleChromeManagementV1AppReport": {
+      "description": "App report.",
+      "id": "GoogleChromeManagementV1AppReport",
+      "properties": {
+        "reportTime": {
+          "description": "Timestamp when the report was collected.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "usageData": {
+          "description": "App usage data.",
+          "items": {
+            "$ref": "GoogleChromeManagementV1AppUsageData"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleChromeManagementV1AppUsageData": {
+      "description": "App usage data.",
+      "id": "GoogleChromeManagementV1AppUsageData",
+      "properties": {
+        "appId": {
+          "description": "App id.",
+          "type": "string"
+        },
+        "appInstanceId": {
+          "description": "Application instance id. This will be unique per window/instance.",
+          "type": "string"
+        },
+        "appType": {
+          "description": "Type of app.",
+          "enum": [
+            "TELEMETRY_APPLICATION_TYPE_UNSPECIFIED",
+            "APPLICATION_TYPE_ARC",
+            "APPLICATION_TYPE_BUILT_IN",
+            "APPLICATION_TYPE_CROSTINI",
+            "APPLICATION_TYPE_CHROME_APP",
+            "APPLICATION_TYPE_WEB",
+            "APPLICATION_TYPE_MAC_OS",
+            "APPLICATION_TYPE_PLUGIN_VM",
+            "APPLICATION_TYPE_STANDALONE_BROWSER",
+            "APPLICATION_TYPE_REMOTE",
+            "APPLICATION_TYPE_BOREALIS",
+            "APPLICATION_TYPE_SYSTEM_WEB",
+            "APPLICATION_TYPE_STANDALONE_BROWSER_CHROME_APP",
+            "APPLICATION_TYPE_EXTENSION",
+            "APPLICATION_TYPE_STANDALONE_BROWSER_EXTENSION",
+            "APPLICATION_TYPE_BRUSCHETTA"
+          ],
+          "enumDescriptions": [
+            "Application type unknown.",
+            "Application type arc (Android app).",
+            "Application type built-in.",
+            "Application type Linux (via Crostini).",
+            "Application type Chrome app.",
+            "Application type web.",
+            "Application type Mac OS.",
+            "Application type Plugin VM.",
+            "Application type standalone browser (Lacros browser app).",
+            "Application type remote.",
+            "Application type borealis.",
+            "Application type system web.",
+            "Application type standalone browser chrome app (hosted in Lacros).",
+            "Application type extension.",
+            "Application type standalone browser extension.",
+            "Application type bruschetta."
+          ],
+          "type": "string"
+        },
+        "runningDuration": {
+          "description": "App foreground running time.",
+          "format": "google-duration",
           "type": "string"
         }
       },
@@ -3771,6 +3850,14 @@
       "description": "Telemetry data collected from a managed device. * Granular permission needed: TELEMETRY_API_DEVICE",
       "id": "GoogleChromeManagementV1TelemetryDevice",
       "properties": {
+        "appReport": {
+          "description": "Output only. App reports collected periodically sorted in a decreasing order of report_time.",
+          "items": {
+            "$ref": "GoogleChromeManagementV1AppReport"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
         "audioStatusReport": {
           "description": "Output only. Audio reports collected periodically sorted in a decreasing order of report_time.",
           "items": {
@@ -4302,6 +4389,14 @@
       "description": "Telemetry data collected for a managed user and device. * Granular permission needed: TELEMETRY_API_DEVICE",
       "id": "GoogleChromeManagementV1TelemetryUserDevice",
       "properties": {
+        "appReport": {
+          "description": "Output only. App reports collected periodically sorted in a decreasing order of report_time.",
+          "items": {
+            "$ref": "GoogleChromeManagementV1AppReport"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
         "audioStatusReport": {
           "description": "Output only. Audio reports collected periodically sorted in a decreasing order of report_time.",
           "items": {

@@ -4,6 +4,7 @@
     "docker:disable",
     ":disableDependencyDashboard"
   ],
+  "constraintsFiltering": "strict",
   "pinVersions": false,
   "rebaseStalePrs": true,
   "schedule": [

@@ -686,7 +686,7 @@ export namespace iam_v1 {
     workloadIdentityPools?: Schema$WorkloadIdentityPool[];
   }
   /**
-   * Represents an OauthClient. Used to access Google Cloud resources on behave of a user by using OAuth 2.0 Protocol to obtain an access token from Google Cloud Platform.
+   * Represents an OauthClient. Used to access Google Cloud resources on behalf of a Workforce Identity Federation user by using OAuth 2.0 Protocol to obtain an access token from Google Cloud.
    */
   export interface Schema$OauthClient {
     /**
@@ -698,7 +698,7 @@ export namespace iam_v1 {
      */
     allowedRedirectUris?: string[] | null;
     /**
-     * Required. The list of scopes that the OauthClient is allowed to request during OAuth flows. The following scopes are supported: * `https://www.googleapis.com/auth/cloud-platform`: See, edit, configure, and delete your Google Cloud data and see the email address for your Google Account. * `openid`: Associate you with your personal info on Google Cloud. * `email`: See your Google Cloud Account email address.
+     * Required. The list of scopes that the OauthClient is allowed to request during OAuth flows. The following scopes are supported: * `https://www.googleapis.com/auth/cloud-platform`: See, edit, configure, and delete your Google Cloud data and see the email address for your Google Account.
      */
     allowedScopes?: string[] | null;
     /**

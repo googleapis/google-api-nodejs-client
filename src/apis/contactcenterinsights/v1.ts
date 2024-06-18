@@ -125,202 +125,6 @@ export namespace contactcenterinsights_v1 {
   }
 
   /**
-   * Agent Coaching instructions that customer can configure.
-   */
-  export interface Schema$GoogleCloudContactcenterinsightsV1AgentCoachingInstruction {
-    /**
-     * Optional. The action that human agent should take. For example, "apologize for the slow shipping". If the users only want to use agent coaching for intent detection, agent_action can be empty
-     */
-    agentAction?: string | null;
-    /**
-     * Optional. The condition of the instruction. For example, "the customer wants to cancel an order". If the users want the instruction to be triggered unconditionally, the condition can be empty.
-     */
-    condition?: string | null;
-    /**
-     * Optional. The detailed description of this instruction.
-     */
-    description?: string | null;
-    /**
-     * Optional. Display name for the instruction.
-     */
-    displayName?: string | null;
-    /**
-     * Optional. Additional information attached to this instruction.
-     */
-    metadata?: {[key: string]: string} | null;
-    /**
-     * Optional. The action that system should take. For example, "call GetOrderTime with order_number={order number provided by the customer\}". If the users don't have plugins or don't want to trigger plugins, the system_action can be empty
-     */
-    systemAction?: string | null;
-  }
-  /**
-   * Suggestion for coaching agents.
-   */
-  export interface Schema$GoogleCloudContactcenterinsightsV1AgentCoachingSuggestion {
-    /**
-     * Optional. Suggested actions for the agent to take.
-     */
-    agentActionSuggestions?: Schema$GoogleCloudContactcenterinsightsV1AgentCoachingSuggestionAgentActionSuggestion[];
-    /**
-     * Optional. Instructions applicable based on the current context.
-     */
-    applicableInstructions?: Schema$GoogleCloudContactcenterinsightsV1AgentCoachingInstruction[];
-    /**
-     * Optional. Sample response for the Agent.
-     */
-    sampleResponses?: Schema$GoogleCloudContactcenterinsightsV1AgentCoachingSuggestionSampleResponse[];
-    /**
-     * Self evaluation of the suggestion.
-     */
-    suggestionEval?: Schema$GoogleCloudContactcenterinsightsV1AgentCoachingSuggestionAgentCoachingSuggestionEval;
-    /**
-     * Reasoning for the suggestion.
-     */
-    suggestionReasoning?: Schema$GoogleCloudContactcenterinsightsV1AgentCoachingSuggestionAgentCoachingSuggestionReasoning;
-  }
-  /**
-   * Actions suggested for the agent. This is based on applicable instructions.
-   */
-  export interface Schema$GoogleCloudContactcenterinsightsV1AgentCoachingSuggestionAgentActionSuggestion {
-    /**
-     * Optional. The suggested action for the agent.
-     */
-    agentAction?: string | null;
-  }
-  /**
-   * Self evaluations of the suggestion.
-   */
-  export interface Schema$GoogleCloudContactcenterinsightsV1AgentCoachingSuggestionAgentCoachingSuggestionEval {
-    /**
-     * Optional. Eval for Agent action suggestion.
-     */
-    actionActionSuggestionEval?: string | null;
-    /**
-     * Optional. Eval for sample response.
-     */
-    sampleResponseEval?: string | null;
-  }
-  /**
-   * Reasoning for the suggestion.
-   */
-  export interface Schema$GoogleCloudContactcenterinsightsV1AgentCoachingSuggestionAgentCoachingSuggestionReasoning {
-    /**
-     * Optional. The actions that the agent has taken already.
-     */
-    agentActionTaken?: string | null;
-    /**
-     * Optional. Summary of the issue.
-     */
-    issueSummary?: string | null;
-  }
-  /**
-   * Sample response that the agent can use. This could be based on applicable instructions and ingested data from other systems.
-   */
-  export interface Schema$GoogleCloudContactcenterinsightsV1AgentCoachingSuggestionSampleResponse {
-    /**
-     * Optional. Sample response for Agent in text.
-     */
-    responseText?: string | null;
-  }
-  /**
-   * Agent Coaching instructions that customer can configure.
-   */
-  export interface Schema$GoogleCloudContactcenterinsightsV1alpha1AgentCoachingInstruction {
-    /**
-     * Optional. The action that human agent should take. For example, "apologize for the slow shipping". If the users only want to use agent coaching for intent detection, agent_action can be empty
-     */
-    agentAction?: string | null;
-    /**
-     * Optional. The condition of the instruction. For example, "the customer wants to cancel an order". If the users want the instruction to be triggered unconditionally, the condition can be empty.
-     */
-    condition?: string | null;
-    /**
-     * Optional. The detailed description of this instruction.
-     */
-    description?: string | null;
-    /**
-     * Optional. Display name for the instruction.
-     */
-    displayName?: string | null;
-    /**
-     * Optional. Additional information attached to this instruction.
-     */
-    metadata?: {[key: string]: string} | null;
-    /**
-     * Optional. The action that system should take. For example, "call GetOrderTime with order_number={order number provided by the customer\}". If the users don't have plugins or don't want to trigger plugins, the system_action can be empty
-     */
-    systemAction?: string | null;
-  }
-  /**
-   * Suggestion for coaching agents.
-   */
-  export interface Schema$GoogleCloudContactcenterinsightsV1alpha1AgentCoachingSuggestion {
-    /**
-     * Optional. Suggested actions for the agent to take.
-     */
-    agentActionSuggestions?: Schema$GoogleCloudContactcenterinsightsV1alpha1AgentCoachingSuggestionAgentActionSuggestion[];
-    /**
-     * Optional. Instructions applicable based on the current context.
-     */
-    applicableInstructions?: Schema$GoogleCloudContactcenterinsightsV1alpha1AgentCoachingInstruction[];
-    /**
-     * Optional. Sample response for the Agent.
-     */
-    sampleResponses?: Schema$GoogleCloudContactcenterinsightsV1alpha1AgentCoachingSuggestionSampleResponse[];
-    /**
-     * Self evaluation of the suggestion.
-     */
-    suggestionEval?: Schema$GoogleCloudContactcenterinsightsV1alpha1AgentCoachingSuggestionAgentCoachingSuggestionEval;
-    /**
-     * Reasoning for the suggestion.
-     */
-    suggestionReasoning?: Schema$GoogleCloudContactcenterinsightsV1alpha1AgentCoachingSuggestionAgentCoachingSuggestionReasoning;
-  }
-  /**
-   * Actions suggested for the agent. This is based on applicable instructions.
-   */
-  export interface Schema$GoogleCloudContactcenterinsightsV1alpha1AgentCoachingSuggestionAgentActionSuggestion {
-    /**
-     * Optional. The suggested action for the agent.
-     */
-    agentAction?: string | null;
-  }
-  /**
-   * Self evaluations of the suggestion.
-   */
-  export interface Schema$GoogleCloudContactcenterinsightsV1alpha1AgentCoachingSuggestionAgentCoachingSuggestionEval {
-    /**
-     * Optional. Eval for Agent action suggestion.
-     */
-    actionActionSuggestionEval?: string | null;
-    /**
-     * Optional. Eval for sample response.
-     */
-    sampleResponseEval?: string | null;
-  }
-  /**
-   * Reasoning for the suggestion.
-   */
-  export interface Schema$GoogleCloudContactcenterinsightsV1alpha1AgentCoachingSuggestionAgentCoachingSuggestionReasoning {
-    /**
-     * Optional. The actions that the agent has taken already.
-     */
-    agentActionTaken?: string | null;
-    /**
-     * Optional. Summary of the issue.
-     */
-    issueSummary?: string | null;
-  }
-  /**
-   * Sample response that the agent can use. This could be based on applicable instructions and ingested data from other systems.
-   */
-  export interface Schema$GoogleCloudContactcenterinsightsV1alpha1AgentCoachingSuggestionSampleResponse {
-    /**
-     * Optional. Sample response for Agent in text.
-     */
-    responseText?: string | null;
-  }
-  /**
    * The analysis resource.
    */
   export interface Schema$GoogleCloudContactcenterinsightsV1alpha1Analysis {
@@ -1327,19 +1131,6 @@ export namespace contactcenterinsights_v1 {
     source?: string | null;
   }
   /**
-   * Suggestion generated using free form generator.
-   */
-  export interface Schema$GoogleCloudContactcenterinsightsV1alpha1FreeFormSuggestion {
-    /**
-     * Optional. Labels for the generator.
-     */
-    labels?: string[] | null;
-    /**
-     * Required. Free form suggestion.
-     */
-    response?: string | null;
-  }
-  /**
    * A Cloud Storage source of conversation data.
    */
   export interface Schema$GoogleCloudContactcenterinsightsV1alpha1GcsSource {
@@ -1351,139 +1142,6 @@ export namespace contactcenterinsights_v1 {
      * Immutable. Cloud Storage URI that points to a file that contains the conversation transcript.
      */
     transcriptUri?: string | null;
-  }
-  /**
-   * Suggestion generated using a Generator.
-   */
-  export interface Schema$GoogleCloudContactcenterinsightsV1alpha1GeneratorSuggestion {
-    /**
-     * Optional. Suggestion to coach the agent.
-     */
-    agentCoachingSuggestion?: Schema$GoogleCloudContactcenterinsightsV1alpha1AgentCoachingSuggestion;
-    /**
-     * Optional. Free form suggestion.
-     */
-    freeFormSuggestion?: Schema$GoogleCloudContactcenterinsightsV1alpha1FreeFormSuggestion;
-    /**
-     * Optional. Suggested summary.
-     */
-    summarySuggestion?: Schema$GoogleCloudContactcenterinsightsV1alpha1SummarySuggestion;
-  }
-  /**
-   * Represents response from generators.
-   */
-  export interface Schema$GoogleCloudContactcenterinsightsV1alpha1GetGeneratorSuggestionResponse {
-    /**
-     * The suggestion generated from the Generator.
-     */
-    generatorSuggestion?: Schema$GoogleCloudContactcenterinsightsV1alpha1GeneratorSuggestion;
-  }
-  /**
-   * Response for Knowledge Assist. Contains suggested query and optionally includes an answer for the query.
-   */
-  export interface Schema$GoogleCloudContactcenterinsightsV1alpha1GetKnowledgeAssistResponse {
-    /**
-     * The query suggested based on the context. Suggestion is made only if it is different from the previous suggestion.
-     */
-    suggestedQuery?: Schema$GoogleCloudContactcenterinsightsV1alpha1GetKnowledgeAssistResponseSuggestedQuery;
-    /**
-     * The answer generated for the suggested query. Whether or not an answer is generated depends on how confident we are about the generated query.
-     */
-    suggestedQueryAnswer?: Schema$GoogleCloudContactcenterinsightsV1alpha1GetKnowledgeAssistResponseKnowledgeAnswer;
-  }
-  /**
-   * Represents an answer from Knowledge. Cuurently supports FAQ and Generative answers.
-   */
-  export interface Schema$GoogleCloudContactcenterinsightsV1alpha1GetKnowledgeAssistResponseKnowledgeAnswer {
-    /**
-     * The piece of text from the `source` that answers this suggested query.
-     */
-    answerText?: string | null;
-    /**
-     * Populated if the prediction came from FAQ.
-     */
-    faqSource?: Schema$GoogleCloudContactcenterinsightsV1alpha1GetKnowledgeAssistResponseKnowledgeAnswerFaqSource;
-    /**
-     * Populated if the prediction was Generative.
-     */
-    generativeSource?: Schema$GoogleCloudContactcenterinsightsV1alpha1GetKnowledgeAssistResponseKnowledgeAnswerGenerativeSource;
-    /**
-     * Populated if the prediction was from intent matching.
-     */
-    intentMatchingSource?: Schema$GoogleCloudContactcenterinsightsV1alpha1GetKnowledgeAssistResponseKnowledgeAnswerIntentMatchingSource;
-    /**
-     * The system's confidence score that this answer is a good match for this conversational query. The range is from 0.0 (completely uncertain) to 1.0 (completely certain).
-     */
-    matchConfidence?: number | null;
-  }
-  /**
-   * Details about source of FAQ answer.
-   */
-  export interface Schema$GoogleCloudContactcenterinsightsV1alpha1GetKnowledgeAssistResponseKnowledgeAnswerFaqSource {
-    /**
-     * Indicates which Knowledge Document this answer was extracted from. Format: `projects//knowledgeBases//documents/`.
-     */
-    document?: string | null;
-    /**
-     * The corresponding FAQ question.
-     */
-    question?: string | null;
-  }
-  /**
-   * Details about source of Generative answer.
-   */
-  export interface Schema$GoogleCloudContactcenterinsightsV1alpha1GetKnowledgeAssistResponseKnowledgeAnswerGenerativeSource {
-    /**
-     * All snippets used for this Generative Prediction, with their source URI and data.
-     */
-    snippets?: Schema$GoogleCloudContactcenterinsightsV1alpha1GetKnowledgeAssistResponseKnowledgeAnswerGenerativeSourceSnippet[];
-  }
-  /**
-   * Snippet Source for a Generative Prediction.
-   */
-  export interface Schema$GoogleCloudContactcenterinsightsV1alpha1GetKnowledgeAssistResponseKnowledgeAnswerGenerativeSourceSnippet {
-    /**
-     * Indicates which Knowledge Document this snippet was extracted from. Format: `projects//knowledgeBases//documents/`.
-     */
-    document?: string | null;
-    /**
-     * text taken from that URI.
-     */
-    text?: string | null;
-    /**
-     * Title of the document.
-     */
-    title?: string | null;
-    /**
-     * URI the data is sourced from.
-     */
-    uri?: string | null;
-  }
-  /**
-   * Details about source of Intent Matching answer.
-   */
-  export interface Schema$GoogleCloudContactcenterinsightsV1alpha1GetKnowledgeAssistResponseKnowledgeAnswerIntentMatchingSource {
-    /**
-     * Title of the document.
-     */
-    title?: string | null;
-    /**
-     * URI the data is sourced from.
-     */
-    uri?: string | null;
-  }
-  /**
-   * Represents a suggested query.
-   */
-  export interface Schema$GoogleCloudContactcenterinsightsV1alpha1GetKnowledgeAssistResponseSuggestedQuery {
-    /**
-     * Suggested query text.
-     */
-    queryText?: string | null;
-    /**
-     * Suggested query score.
-     */
-    score?: number | null;
   }
   /**
    * The data for a hold annotation.
@@ -1894,18 +1552,6 @@ export namespace contactcenterinsights_v1 {
      */
     faqAnswer?: Schema$GoogleCloudContactcenterinsightsV1alpha1FaqAnswerData;
     /**
-     * The generator suggestion result.
-     */
-    generatorSuggestionResult?: Schema$GoogleCloudContactcenterinsightsV1alpha1GetGeneratorSuggestionResponse;
-    /**
-     * The Knowledge Assist result.
-     */
-    knowledgeAssistResult?: Schema$GoogleCloudContactcenterinsightsV1alpha1GetKnowledgeAssistResponse;
-    /**
-     * The Knowledge Search result.
-     */
-    knowledgeSearchResult?: Schema$GoogleCloudContactcenterinsightsV1alpha1SearchKnowledgeAnswer;
-    /**
      * Agent Assist Smart Compose suggestion data.
      */
     smartComposeSuggestion?: Schema$GoogleCloudContactcenterinsightsV1alpha1SmartComposeSuggestionData;
@@ -1917,52 +1563,23 @@ export namespace contactcenterinsights_v1 {
      * The boundary in the conversation where the annotation starts, inclusive.
      */
     startBoundary?: Schema$GoogleCloudContactcenterinsightsV1alpha1AnnotationBoundary;
+    /**
+     * Explicit input used for generating the answer
+     */
+    userInput?: Schema$GoogleCloudContactcenterinsightsV1alpha1RuntimeAnnotationUserInput;
   }
   /**
-   * Represents a SearchKnowledge answer.
+   * Explicit input used for generating the answer
    */
-  export interface Schema$GoogleCloudContactcenterinsightsV1alpha1SearchKnowledgeAnswer {
+  export interface Schema$GoogleCloudContactcenterinsightsV1alpha1RuntimeAnnotationUserInput {
     /**
-     * The piece of text from the knowledge base documents that answers the search query
+     * The resource name of associated generator. Format: `projects//locations//generators/`
      */
-    answer?: string | null;
+    generatorName?: string | null;
     /**
-     * The name of the answer record. Format: `projects//locations//answer Records/`
+     * Query text. Article Search uses this to store the input query used to generate the search results.
      */
-    answerRecord?: string | null;
-    /**
-     * All sources used to generate the answer.
-     */
-    answerSources?: Schema$GoogleCloudContactcenterinsightsV1alpha1SearchKnowledgeAnswerAnswerSource[];
-    /**
-     * The type of the answer.
-     */
-    answerType?: string | null;
-    /**
-     * The confidence score in [0.0, 1.0] range.
-     */
-    confidenceScore?: number | null;
-  }
-  /**
-   * The sources of the answers.
-   */
-  export interface Schema$GoogleCloudContactcenterinsightsV1alpha1SearchKnowledgeAnswerAnswerSource {
-    /**
-     * The document from which the snippet was extracted. Format: `projects//knowledgeBases//documents/`
-     */
-    document?: string | null;
-    /**
-     * The relevant snippet of the article.
-     */
-    snippet?: string | null;
-    /**
-     * The title of the article.
-     */
-    title?: string | null;
-    /**
-     * The URI of the article.
-     */
-    uri?: string | null;
+    query?: string | null;
   }
   /**
    * The data for a sentiment annotation.
@@ -2031,28 +1648,6 @@ export namespace contactcenterinsights_v1 {
      * The fully-qualified Speech Recognizer resource name. Format: `projects/{project_id\}/locations/{location\}/recognizer/{recognizer\}`
      */
     speechRecognizer?: string | null;
-  }
-  /**
-   * Suggested summary of the conversation.
-   */
-  export interface Schema$GoogleCloudContactcenterinsightsV1alpha1SummarySuggestion {
-    /**
-     * Required. All the parts of generated summary.
-     */
-    summarySections?: Schema$GoogleCloudContactcenterinsightsV1alpha1SummarySuggestionSummarySection[];
-  }
-  /**
-   * A component of the generated summary.
-   */
-  export interface Schema$GoogleCloudContactcenterinsightsV1alpha1SummarySuggestionSummarySection {
-    /**
-     * Required. Name of the section.
-     */
-    section?: string | null;
-    /**
-     * Required. Summary text for the section.
-     */
-    summary?: string | null;
   }
   /**
    * Metadata for undeploying an issue model.
@@ -3222,19 +2817,6 @@ export namespace contactcenterinsights_v1 {
     source?: string | null;
   }
   /**
-   * Suggestion generated using free form generator.
-   */
-  export interface Schema$GoogleCloudContactcenterinsightsV1FreeFormSuggestion {
-    /**
-     * Optional. Labels for the generator.
-     */
-    labels?: string[] | null;
-    /**
-     * Required. Free form suggestion.
-     */
-    response?: string | null;
-  }
-  /**
    * A Cloud Storage source of conversation data.
    */
   export interface Schema$GoogleCloudContactcenterinsightsV1GcsSource {
@@ -3246,139 +2828,6 @@ export namespace contactcenterinsights_v1 {
      * Immutable. Cloud Storage URI that points to a file that contains the conversation transcript.
      */
     transcriptUri?: string | null;
-  }
-  /**
-   * Suggestion generated using a Generator.
-   */
-  export interface Schema$GoogleCloudContactcenterinsightsV1GeneratorSuggestion {
-    /**
-     * Optional. Suggestion to coach the agent.
-     */
-    agentCoachingSuggestion?: Schema$GoogleCloudContactcenterinsightsV1AgentCoachingSuggestion;
-    /**
-     * Optional. Free form suggestion.
-     */
-    freeFormSuggestion?: Schema$GoogleCloudContactcenterinsightsV1FreeFormSuggestion;
-    /**
-     * Optional. Suggested summary.
-     */
-    summarySuggestion?: Schema$GoogleCloudContactcenterinsightsV1SummarySuggestion;
-  }
-  /**
-   * Represents response from generators.
-   */
-  export interface Schema$GoogleCloudContactcenterinsightsV1GetGeneratorSuggestionResponse {
-    /**
-     * The suggestion generated from the Generator.
-     */
-    generatorSuggestion?: Schema$GoogleCloudContactcenterinsightsV1GeneratorSuggestion;
-  }
-  /**
-   * Response for Knowledge Assist. Contains suggested query and optionally includes an answer for the query.
-   */
-  export interface Schema$GoogleCloudContactcenterinsightsV1GetKnowledgeAssistResponse {
-    /**
-     * The query suggested based on the context. Suggestion is made only if it is different from the previous suggestion.
-     */
-    suggestedQuery?: Schema$GoogleCloudContactcenterinsightsV1GetKnowledgeAssistResponseSuggestedQuery;
-    /**
-     * The answer generated for the suggested query. Whether or not an answer is generated depends on how confident we are about the generated query.
-     */
-    suggestedQueryAnswer?: Schema$GoogleCloudContactcenterinsightsV1GetKnowledgeAssistResponseKnowledgeAnswer;
-  }
-  /**
-   * Represents an answer from Knowledge. Cuurently supports FAQ and Generative answers.
-   */
-  export interface Schema$GoogleCloudContactcenterinsightsV1GetKnowledgeAssistResponseKnowledgeAnswer {
-    /**
-     * The piece of text from the `source` that answers this suggested query.
-     */
-    answerText?: string | null;
-    /**
-     * Populated if the prediction came from FAQ.
-     */
-    faqSource?: Schema$GoogleCloudContactcenterinsightsV1GetKnowledgeAssistResponseKnowledgeAnswerFaqSource;
-    /**
-     * Populated if the prediction was Generative.
-     */
-    generativeSource?: Schema$GoogleCloudContactcenterinsightsV1GetKnowledgeAssistResponseKnowledgeAnswerGenerativeSource;
-    /**
-     * Populated if the prediction was from intent matching.
-     */
-    intentMatchingSource?: Schema$GoogleCloudContactcenterinsightsV1GetKnowledgeAssistResponseKnowledgeAnswerIntentMatchingSource;
-    /**
-     * The system's confidence score that this answer is a good match for this conversational query. The range is from 0.0 (completely uncertain) to 1.0 (completely certain).
-     */
-    matchConfidence?: number | null;
-  }
-  /**
-   * Details about source of FAQ answer.
-   */
-  export interface Schema$GoogleCloudContactcenterinsightsV1GetKnowledgeAssistResponseKnowledgeAnswerFaqSource {
-    /**
-     * Indicates which Knowledge Document this answer was extracted from. Format: `projects//knowledgeBases//documents/`.
-     */
-    document?: string | null;
-    /**
-     * The corresponding FAQ question.
-     */
-    question?: string | null;
-  }
-  /**
-   * Details about source of Generative answer.
-   */
-  export interface Schema$GoogleCloudContactcenterinsightsV1GetKnowledgeAssistResponseKnowledgeAnswerGenerativeSource {
-    /**
-     * All snippets used for this Generative Prediction, with their source URI and data.
-     */
-    snippets?: Schema$GoogleCloudContactcenterinsightsV1GetKnowledgeAssistResponseKnowledgeAnswerGenerativeSourceSnippet[];
-  }
-  /**
-   * Snippet Source for a Generative Prediction.
-   */
-  export interface Schema$GoogleCloudContactcenterinsightsV1GetKnowledgeAssistResponseKnowledgeAnswerGenerativeSourceSnippet {
-    /**
-     * Indicates which Knowledge Document this snippet was extracted from. Format: `projects//knowledgeBases//documents/`.
-     */
-    document?: string | null;
-    /**
-     * text taken from that URI.
-     */
-    text?: string | null;
-    /**
-     * Title of the document.
-     */
-    title?: string | null;
-    /**
-     * URI the data is sourced from.
-     */
-    uri?: string | null;
-  }
-  /**
-   * Details about source of Intent Matching answer.
-   */
-  export interface Schema$GoogleCloudContactcenterinsightsV1GetKnowledgeAssistResponseKnowledgeAnswerIntentMatchingSource {
-    /**
-     * Title of the document.
-     */
-    title?: string | null;
-    /**
-     * URI the data is sourced from.
-     */
-    uri?: string | null;
-  }
-  /**
-   * Represents a suggested query.
-   */
-  export interface Schema$GoogleCloudContactcenterinsightsV1GetKnowledgeAssistResponseSuggestedQuery {
-    /**
-     * Suggested query text.
-     */
-    queryText?: string | null;
-    /**
-     * Suggested query score.
-     */
-    score?: number | null;
   }
   /**
    * The data for a hold annotation.
@@ -3972,18 +3421,6 @@ export namespace contactcenterinsights_v1 {
      */
     faqAnswer?: Schema$GoogleCloudContactcenterinsightsV1FaqAnswerData;
     /**
-     * The generator suggestion result.
-     */
-    generatorSuggestionResult?: Schema$GoogleCloudContactcenterinsightsV1GetGeneratorSuggestionResponse;
-    /**
-     * The Knowledge Assist result.
-     */
-    knowledgeAssistResult?: Schema$GoogleCloudContactcenterinsightsV1GetKnowledgeAssistResponse;
-    /**
-     * The Knowledge Search result.
-     */
-    knowledgeSearchResult?: Schema$GoogleCloudContactcenterinsightsV1SearchKnowledgeAnswer;
-    /**
      * Agent Assist Smart Compose suggestion data.
      */
     smartComposeSuggestion?: Schema$GoogleCloudContactcenterinsightsV1SmartComposeSuggestionData;
@@ -3995,52 +3432,23 @@ export namespace contactcenterinsights_v1 {
      * The boundary in the conversation where the annotation starts, inclusive.
      */
     startBoundary?: Schema$GoogleCloudContactcenterinsightsV1AnnotationBoundary;
+    /**
+     * Explicit input used for generating the answer
+     */
+    userInput?: Schema$GoogleCloudContactcenterinsightsV1RuntimeAnnotationUserInput;
   }
   /**
-   * Represents a SearchKnowledge answer.
+   * Explicit input used for generating the answer
    */
-  export interface Schema$GoogleCloudContactcenterinsightsV1SearchKnowledgeAnswer {
+  export interface Schema$GoogleCloudContactcenterinsightsV1RuntimeAnnotationUserInput {
     /**
-     * The piece of text from the knowledge base documents that answers the search query
+     * The resource name of associated generator. Format: `projects//locations//generators/`
      */
-    answer?: string | null;
+    generatorName?: string | null;
     /**
-     * The name of the answer record. Format: `projects//locations//answer Records/`
+     * Query text. Article Search uses this to store the input query used to generate the search results.
      */
-    answerRecord?: string | null;
-    /**
-     * All sources used to generate the answer.
-     */
-    answerSources?: Schema$GoogleCloudContactcenterinsightsV1SearchKnowledgeAnswerAnswerSource[];
-    /**
-     * The type of the answer.
-     */
-    answerType?: string | null;
-    /**
-     * The confidence score in [0.0, 1.0] range.
-     */
-    confidenceScore?: number | null;
-  }
-  /**
-   * The sources of the answers.
-   */
-  export interface Schema$GoogleCloudContactcenterinsightsV1SearchKnowledgeAnswerAnswerSource {
-    /**
-     * The document from which the snippet was extracted. Format: `projects//knowledgeBases//documents/`
-     */
-    document?: string | null;
-    /**
-     * The relevant snippet of the article.
-     */
-    snippet?: string | null;
-    /**
-     * The title of the article.
-     */
-    title?: string | null;
-    /**
-     * The URI of the article.
-     */
-    uri?: string | null;
+    query?: string | null;
   }
   /**
    * The data for a sentiment annotation.
@@ -4167,28 +3575,6 @@ export namespace contactcenterinsights_v1 {
      * The fully-qualified Speech Recognizer resource name. Format: `projects/{project_id\}/locations/{location\}/recognizer/{recognizer\}`
      */
     speechRecognizer?: string | null;
-  }
-  /**
-   * Suggested summary of the conversation.
-   */
-  export interface Schema$GoogleCloudContactcenterinsightsV1SummarySuggestion {
-    /**
-     * Required. All the parts of generated summary.
-     */
-    summarySections?: Schema$GoogleCloudContactcenterinsightsV1SummarySuggestionSummarySection[];
-  }
-  /**
-   * A component of the generated summary.
-   */
-  export interface Schema$GoogleCloudContactcenterinsightsV1SummarySuggestionSummarySection {
-    /**
-     * Required. Name of the section.
-     */
-    section?: string | null;
-    /**
-     * Required. Summary text for the section.
-     */
-    summary?: string | null;
   }
   /**
    * Metadata for undeploying an issue model.

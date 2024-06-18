@@ -403,7 +403,7 @@
             },
             "maxResults": {
               "default": "100",
-              "description": "Maximum number of results to return, value should not exceed 300.",
+              "description": "Maximum number of results to return. Value should not exceed 300.",
               "format": "int32",
               "location": "query",
               "minimum": "1",
@@ -4671,7 +4671,7 @@
       }
     }
   },
-  "revision": "20240509",
+  "revision": "20240603",
   "rootUrl": "https://admin.googleapis.com/",
   "schemas": {
     "Alias": {

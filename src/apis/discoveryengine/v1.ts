@@ -240,6 +240,35 @@ export namespace discoveryengine_v1 {
     functionName?: string | null;
   }
   /**
+   * AlloyDB source import data from.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1AlloyDbSource {
+    /**
+     * Required. The AlloyDB cluster to copy the data from with a length limit of 256 characters.
+     */
+    clusterId?: string | null;
+    /**
+     * Required. The AlloyDB database to copy the data from with a length limit of 256 characters.
+     */
+    databaseId?: string | null;
+    /**
+     * Intermediate Cloud Storage directory used for the import with a length limit of 2,000 characters. Can be specified if one wants to have the AlloyDB export to a specific Cloud Storage directory. Ensure that the AlloyDB service account has the necessary Cloud Storage Admin permissions to access the specified Cloud Storage directory.
+     */
+    gcsStagingDir?: string | null;
+    /**
+     * Required. The AlloyDB location to copy the data from with a length limit of 256 characters.
+     */
+    locationId?: string | null;
+    /**
+     * The project ID that the AlloyDB source is in with a length limit of 128 characters. If not specified, inherits the project ID from the parent request.
+     */
+    projectId?: string | null;
+    /**
+     * Required. The AlloyDB table to copy the data from with a length limit of 256 characters.
+     */
+    tableId?: string | null;
+  }
+  /**
    * Access Control Configuration.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaAclConfig {
@@ -1972,6 +2001,10 @@ export namespace discoveryengine_v1 {
      */
     session?: string | null;
     /**
+     * The user labels applied to a resource must meet the following requirements: * Each resource can have multiple labels, up to a maximum of 64. * Each label must be a key-value pair. * Keys have a minimum length of 1 character and a maximum length of 63 characters and cannot be empty. Values can be empty and have a maximum length of 63 characters. * Keys and values can contain only lowercase letters, numeric characters, underscores, and dashes. All characters must use UTF-8 encoding, and international characters are allowed. * The key portion of a label must be unique. However, you can use the same key with multiple resources. * Keys must start with a lowercase letter or international character. See [Google Cloud Document](https://cloud.google.com/resource-manager/docs/creating-managing-labels#requirements) for more details.
+     */
+    userLabels?: {[key: string]: string} | null;
+    /**
      * A unique identifier for tracking visitors. For example, this could be implemented with an HTTP cookie, which should be able to uniquely identify a visitor on a single device. This unique identifier should not change if the visitor logs in or out of the website. This field should NOT have a fixed value such as `unknown_visitor`. The field must be a UTF-8 encoded string with a length limit of 128 characters. Otherwise, an `INVALID_ARGUMENT` error is returned.
      */
     userPseudoId?: string | null;
@@ -2842,6 +2875,10 @@ export namespace discoveryengine_v1 {
    */
   export interface Schema$GoogleCloudDiscoveryengineV1betaDocumentProcessingConfig {
     /**
+     * Whether chunking mode is enabled.
+     */
+    chunkingConfig?: Schema$GoogleCloudDiscoveryengineV1betaDocumentProcessingConfigChunkingConfig;
+    /**
      * Configurations for default Document parser. If not specified, we will configure it as default DigitalParsingConfig, and the default parsing config will be applied to all file types for Document parsing.
      */
     defaultParsingConfig?: Schema$GoogleCloudDiscoveryengineV1betaDocumentProcessingConfigParsingConfig;
@@ -2859,6 +2896,28 @@ export namespace discoveryengine_v1 {
     } | null;
   }
   /**
+   * Configuration for chunking config.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaDocumentProcessingConfigChunkingConfig {
+    /**
+     * Configuration for the layout based chunking.
+     */
+    layoutBasedChunkingConfig?: Schema$GoogleCloudDiscoveryengineV1betaDocumentProcessingConfigChunkingConfigLayoutBasedChunkingConfig;
+  }
+  /**
+   * Configuration for the layout based chunking.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaDocumentProcessingConfigChunkingConfigLayoutBasedChunkingConfig {
+    /**
+     * The token size limit for each chunk. Supported values: 100-500 (inclusive). Default value: 500.
+     */
+    chunkSize?: number | null;
+    /**
+     * Whether to include appending different levels of headings to chunks from the middle of the document to prevent context loss. Default value: False.
+     */
+    includeAncestorHeadings?: boolean | null;
+  }
+  /**
    * Related configurations applied to a specific type of document parser.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1betaDocumentProcessingConfigParsingConfig {
@@ -2866,6 +2925,10 @@ export namespace discoveryengine_v1 {
      * Configurations applied to digital parser.
      */
     digitalParsingConfig?: Schema$GoogleCloudDiscoveryengineV1betaDocumentProcessingConfigParsingConfigDigitalParsingConfig;
+    /**
+     * Configurations applied to layout parser.
+     */
+    layoutParsingConfig?: Schema$GoogleCloudDiscoveryengineV1betaDocumentProcessingConfigParsingConfigLayoutParsingConfig;
     /**
      * Configurations applied to OCR parser. Currently it only applies to PDFs.
      */
@@ -2875,6 +2938,10 @@ export namespace discoveryengine_v1 {
    * The digital parsing configurations for documents.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1betaDocumentProcessingConfigParsingConfigDigitalParsingConfig {}
+  /**
+   * The layout parsing configurations for documents.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaDocumentProcessingConfigParsingConfigLayoutParsingConfig {}
   /**
    * The OCR parsing configurations for documents.
    */
@@ -4207,6 +4274,10 @@ export namespace discoveryengine_v1 {
    */
   export interface Schema$GoogleCloudDiscoveryengineV1DocumentProcessingConfig {
     /**
+     * Whether chunking mode is enabled.
+     */
+    chunkingConfig?: Schema$GoogleCloudDiscoveryengineV1DocumentProcessingConfigChunkingConfig;
+    /**
      * Configurations for default Document parser. If not specified, we will configure it as default DigitalParsingConfig, and the default parsing config will be applied to all file types for Document parsing.
      */
     defaultParsingConfig?: Schema$GoogleCloudDiscoveryengineV1DocumentProcessingConfigParsingConfig;
@@ -4224,6 +4295,28 @@ export namespace discoveryengine_v1 {
     } | null;
   }
   /**
+   * Configuration for chunking config.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1DocumentProcessingConfigChunkingConfig {
+    /**
+     * Configuration for the layout based chunking.
+     */
+    layoutBasedChunkingConfig?: Schema$GoogleCloudDiscoveryengineV1DocumentProcessingConfigChunkingConfigLayoutBasedChunkingConfig;
+  }
+  /**
+   * Configuration for the layout based chunking.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1DocumentProcessingConfigChunkingConfigLayoutBasedChunkingConfig {
+    /**
+     * The token size limit for each chunk. Supported values: 100-500 (inclusive). Default value: 500.
+     */
+    chunkSize?: number | null;
+    /**
+     * Whether to include appending different levels of headings to chunks from the middle of the document to prevent context loss. Default value: False.
+     */
+    includeAncestorHeadings?: boolean | null;
+  }
+  /**
    * Related configurations applied to a specific type of document parser.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1DocumentProcessingConfigParsingConfig {
@@ -4231,6 +4324,10 @@ export namespace discoveryengine_v1 {
      * Configurations applied to digital parser.
      */
     digitalParsingConfig?: Schema$GoogleCloudDiscoveryengineV1DocumentProcessingConfigParsingConfigDigitalParsingConfig;
+    /**
+     * Configurations applied to layout parser.
+     */
+    layoutParsingConfig?: Schema$GoogleCloudDiscoveryengineV1DocumentProcessingConfigParsingConfigLayoutParsingConfig;
     /**
      * Configurations applied to OCR parser. Currently it only applies to PDFs.
      */
@@ -4240,6 +4337,10 @@ export namespace discoveryengine_v1 {
    * The digital parsing configurations for documents.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1DocumentProcessingConfigParsingConfigDigitalParsingConfig {}
+  /**
+   * The layout parsing configurations for documents.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1DocumentProcessingConfigParsingConfigLayoutParsingConfig {}
   /**
    * The OCR parsing configurations for documents.
    */
@@ -4515,6 +4616,10 @@ export namespace discoveryengine_v1 {
    * Request message for Import methods.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1ImportDocumentsRequest {
+    /**
+     * AlloyDB input source.
+     */
+    alloyDbSource?: Schema$GoogleCloudDiscoveryengineV1AlloyDbSource;
     /**
      * Whether to automatically generate IDs for the documents if absent. If set to `true`, Document.ids are automatically generated based on the hash of the payload, where IDs may not be consistent during multiple imports. In which case ReconciliationMode.FULL is highly recommended to avoid duplicate contents. If unset or set to `false`, Document.ids have to be specified using id_field, otherwise, documents without IDs fail to be imported. Supported data sources: * GcsSource. GcsSource.data_schema must be `custom` or `csv`. Otherwise, an INVALID_ARGUMENT error is thrown. * BigQuerySource. BigQuerySource.data_schema must be `custom` or `csv`. Otherwise, an INVALID_ARGUMENT error is thrown. * SpannerSource. * CloudSqlSource. * FirestoreSource. * BigtableSource.
      */
@@ -9056,7 +9161,7 @@ export namespace discoveryengine_v1 {
      */
     controlId?: string;
     /**
-     * Required. Full resource name of parent data store. Format: `projects/{project_number\}/locations/{location_id\}/collections/{collection_id\}/dataStores/{data_store_id\}`
+     * Required. Full resource name of parent data store. Format: `projects/{project_number\}/locations/{location_id\}/collections/{collection_id\}/dataStores/{data_store_id\}` or `projects/{project_number\}/locations/{location_id\}/collections/{collection_id\}/engines/{engine_id\}`.
      */
     parent?: string;
 
@@ -9094,7 +9199,7 @@ export namespace discoveryengine_v1 {
      */
     pageToken?: string;
     /**
-     * Required. The data store resource name. Format: `projects/{project_number\}/locations/{location_id\}/collections/{collection_id\}/dataStores/{data_store_id\}`
+     * Required. The data store resource name. Format: `projects/{project_number\}/locations/{location_id\}/collections/{collection_id\}/dataStores/{data_store_id\}` or `projects/{project_number\}/locations/{location_id\}/collections/{collection_id\}/engines/{engine_id\}`.
      */
     parent?: string;
   }
@@ -15352,7 +15457,7 @@ export namespace discoveryengine_v1 {
      */
     controlId?: string;
     /**
-     * Required. Full resource name of parent data store. Format: `projects/{project_number\}/locations/{location_id\}/collections/{collection_id\}/dataStores/{data_store_id\}`
+     * Required. Full resource name of parent data store. Format: `projects/{project_number\}/locations/{location_id\}/collections/{collection_id\}/dataStores/{data_store_id\}` or `projects/{project_number\}/locations/{location_id\}/collections/{collection_id\}/engines/{engine_id\}`.
      */
     parent?: string;
 
@@ -15390,7 +15495,7 @@ export namespace discoveryengine_v1 {
      */
     pageToken?: string;
     /**
-     * Required. The data store resource name. Format: `projects/{project_number\}/locations/{location_id\}/collections/{collection_id\}/dataStores/{data_store_id\}`
+     * Required. The data store resource name. Format: `projects/{project_number\}/locations/{location_id\}/collections/{collection_id\}/dataStores/{data_store_id\}` or `projects/{project_number\}/locations/{location_id\}/collections/{collection_id\}/engines/{engine_id\}`.
      */
     parent?: string;
   }
@@ -19973,7 +20078,7 @@ export namespace discoveryengine_v1 {
      */
     controlId?: string;
     /**
-     * Required. Full resource name of parent data store. Format: `projects/{project_number\}/locations/{location_id\}/collections/{collection_id\}/dataStores/{data_store_id\}`
+     * Required. Full resource name of parent data store. Format: `projects/{project_number\}/locations/{location_id\}/collections/{collection_id\}/dataStores/{data_store_id\}` or `projects/{project_number\}/locations/{location_id\}/collections/{collection_id\}/engines/{engine_id\}`.
      */
     parent?: string;
 
@@ -20011,7 +20116,7 @@ export namespace discoveryengine_v1 {
      */
     pageToken?: string;
     /**
-     * Required. The data store resource name. Format: `projects/{project_number\}/locations/{location_id\}/collections/{collection_id\}/dataStores/{data_store_id\}`
+     * Required. The data store resource name. Format: `projects/{project_number\}/locations/{location_id\}/collections/{collection_id\}/dataStores/{data_store_id\}` or `projects/{project_number\}/locations/{location_id\}/collections/{collection_id\}/engines/{engine_id\}`.
      */
     parent?: string;
   }
