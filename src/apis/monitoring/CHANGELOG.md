@@ -1,5 +1,19 @@
 # Changelog
 
+## [6.5.0](https://github.com/googleapis/google-api-nodejs-client/compare/monitoring-v6.4.0...monitoring-v6.5.0) (2024-06-21)
+
+
+### Features
+
+* **monitoring:** update the API ([e3d8b22](https://github.com/googleapis/google-api-nodejs-client/commit/e3d8b2267e94ace44b4bae9d00867faa8e39dc62))
+* **monitoring:** update the API ([b601933](https://github.com/googleapis/google-api-nodejs-client/commit/b6019332629f7f487a720bbedf58284f32bc84f2))
+
+
+### Bug Fixes
+
+* **monitoring:** update the API ([e515965](https://github.com/googleapis/google-api-nodejs-client/commit/e51596528220fee7111e9167f0f22cc9a9cffc41))
+* **monitoring:** update the API ([98f0bb0](https://github.com/googleapis/google-api-nodejs-client/commit/98f0bb02dde248158d63e8d26a7b467ed04ce9f6))
+
 ## [6.4.0](https://github.com/googleapis/google-api-nodejs-client/compare/monitoring-v6.3.1...monitoring-v6.4.0) (2024-06-06)
 
 

@@ -1,5 +1,17 @@
 # Changelog
 
+## [12.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/gmail-v11.0.0...gmail-v12.0.0) (2024-06-21)
+
+
+### ⚠ BREAKING CHANGES
+
+* **gmail:** This release has breaking changes.
+
+### Features
+
+* **gmail:** update the API ([68cef12](https://github.com/googleapis/google-api-nodejs-client/commit/68cef1291d7bb0e6a088f6b95a8998144e79d406))
+* **gmail:** update the API ([a4d9319](https://github.com/googleapis/google-api-nodejs-client/commit/a4d9319ad50bbfd9e27ed7b4ff865951b7dd1032))
+
 ## [11.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/gmail-v10.0.0...gmail-v11.0.0) (2024-06-06)
 
 
