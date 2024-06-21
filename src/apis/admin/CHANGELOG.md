@@ -1,5 +1,22 @@
 # Changelog
 
+## [20.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/admin-v19.0.1...admin-v20.0.0) (2024-06-21)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* **admin:** update the API ([b6fff85](https://github.com/googleapis/google-api-nodejs-client/commit/b6fff8553fc561f5c16d8bd46ded439bb793ea8a))
+* run the generator ([#3484](https://github.com/googleapis/google-api-nodejs-client/issues/3484)) ([99b6c8d](https://github.com/googleapis/google-api-nodejs-client/commit/99b6c8de5beb8447d177048a64a977ee39ee5ee6))
+
+
+### Bug Fixes
+
+* **admin:** update the API ([fdc42e4](https://github.com/googleapis/google-api-nodejs-client/commit/fdc42e4cae427a2b77cc81d05ed8e410316b69e8))
+
 ## [19.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/admin-v19.0.0...admin-v19.0.1) (2024-06-06)
 
 

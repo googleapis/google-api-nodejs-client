@@ -1,5 +1,17 @@
 # Changelog
 
+## [8.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/analyticsadmin-v7.0.0...analyticsadmin-v8.0.0) (2024-06-21)
+
+
+### ⚠ BREAKING CHANGES
+
+* **analyticsadmin:** This release has breaking changes.
+
+### Features
+
+* **analyticsadmin:** update the API ([c58f445](https://github.com/googleapis/google-api-nodejs-client/commit/c58f445d3259b765b1017a2bcd63da4166eb5590))
+* **analyticsadmin:** update the API ([8b4c314](https://github.com/googleapis/google-api-nodejs-client/commit/8b4c31451d3ace85c48b8a1170eac09024c518e0))
+
 ## [7.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/analyticsadmin-v6.0.0...analyticsadmin-v7.0.0) (2024-06-06)
 
 
