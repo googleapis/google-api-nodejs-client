@@ -486,7 +486,7 @@ export namespace domains_v1alpha2 {
      */
     renewalMethod?: string | null;
     /**
-     * Controls whether the domain can be transferred to another registrar.
+     * This is the desired transfer lock state for this `Registration`. A transfer lock controls whether the domain can be transferred to another registrar.
      */
     transferLockState?: string | null;
   }

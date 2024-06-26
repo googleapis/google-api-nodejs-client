@@ -1,5 +1,28 @@
 # Changelog
 
+## [26.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/content-v25.1.0...content-v26.0.0) (2024-06-06)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+* **content:** This release has breaking changes.
+* This release has breaking changes.
+
+### Features
+
+* **content:** update the API ([f36f6e2](https://github.com/googleapis/google-api-nodejs-client/commit/f36f6e2e9c952fcac4adb6893b5861455129a03f))
+* **content:** update the API ([76546b8](https://github.com/googleapis/google-api-nodejs-client/commit/76546b866ac0e675f27b2b9ab1727f4c821c17ac))
+* run the generator ([#3456](https://github.com/googleapis/google-api-nodejs-client/issues/3456)) ([a865e81](https://github.com/googleapis/google-api-nodejs-client/commit/a865e81539b315d3b321650663ba0b2555b1e5a1))
+* run the generator ([#3484](https://github.com/googleapis/google-api-nodejs-client/issues/3484)) ([99b6c8d](https://github.com/googleapis/google-api-nodejs-client/commit/99b6c8de5beb8447d177048a64a977ee39ee5ee6))
+
+## [25.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/content-v25.0.0...content-v25.1.0) (2024-06-03)
+
+
+### Features
+
+* **content:** update the API ([f36f6e2](https://github.com/googleapis/google-api-nodejs-client/commit/f36f6e2e9c952fcac4adb6893b5861455129a03f))
+
 ## [25.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/content-v24.0.0...content-v25.0.0) (2024-05-10)
 
 

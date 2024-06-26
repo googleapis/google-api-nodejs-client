@@ -412,6 +412,23 @@ export namespace metastore_v1alpha {
     subnetwork?: string | null;
   }
   /**
+   * Metadata about a custom region. This is only populated if the region is a custom region. For single/multi regions, it will be empty.
+   */
+  export interface Schema$CustomRegionMetadata {
+    /**
+     * The read-only regions for this custom region.
+     */
+    optionalReadOnlyRegions?: string[] | null;
+    /**
+     * The read-write regions for this custom region.
+     */
+    requiredReadWriteRegions?: string[] | null;
+    /**
+     * The Spanner witness region for this custom region.
+     */
+    witnessRegion?: string | null;
+  }
+  /**
    * A specification of the location of and metadata about a database dump from a relational database management system.
    */
   export interface Schema$DatabaseDump {
@@ -794,6 +811,10 @@ export namespace metastore_v1alpha {
    */
   export interface Schema$LocationMetadata {
     /**
+     * Possible configurations supported if the current region is a custom region.
+     */
+    customRegionMetadata?: Schema$CustomRegionMetadata[];
+    /**
      * The multi-region metadata if the current region is a multi-region.
      */
     multiRegionMetadata?: Schema$MultiRegionMetadata;
@@ -954,7 +975,7 @@ export namespace metastore_v1alpha {
    */
   export interface Schema$MoveTableToDatabaseResponse {}
   /**
-   * The metadata for the multi-region that includes the constituent regions. The metadata is only populated if the region is multi-region. For single region, it will be empty.
+   * The metadata for the multi-region that includes the constituent regions. The metadata is only populated if the region is multi-region. For single region or custom dual region, it will be empty.
    */
   export interface Schema$MultiRegionMetadata {
     /**
@@ -1215,6 +1236,10 @@ export namespace metastore_v1alpha {
      * Immutable. The database type that the Metastore service stores its data.
      */
     databaseType?: string | null;
+    /**
+     * Optional. Indicates if the dataproc metastore should be protected against accidental deletions.
+     */
+    deletionProtection?: boolean | null;
     /**
      * Immutable. Information used to configure the Dataproc Metastore service to encrypt customer data at rest. Cannot be updated.
      */

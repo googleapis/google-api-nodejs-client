@@ -546,7 +546,7 @@
                       ],
                       "parameters": {
                         "filter": {
-                          "description": "Filter by solution type . For example: filter = 'solution_type:SOLUTION_TYPE_SEARCH'",
+                          "description": "Filter by solution type . For example: `filter = 'solution_type:SOLUTION_TYPE_SEARCH'`",
                           "location": "query",
                           "type": "string"
                         },
@@ -689,7 +689,7 @@
                               ],
                               "parameters": {
                                 "documentId": {
-                                  "description": "Required. The ID to use for the Document, which will become the final component of the Document.name. If the caller does not have permission to create the Document, regardless of whether or not it exists, a `PERMISSION_DENIED` error is returned. This field must be unique among all Documents with the same parent. Otherwise, an `ALREADY_EXISTS` error is returned. This field must conform to [RFC-1034](https://tools.ietf.org/html/rfc1034) standard with a length limit of 63 characters. Otherwise, an `INVALID_ARGUMENT` error is returned.",
+                                  "description": "Required. The ID to use for the Document, which becomes the final component of the Document.name. If the caller does not have permission to create the Document, regardless of whether or not it exists, a `PERMISSION_DENIED` error is returned. This field must be unique among all Documents with the same parent. Otherwise, an `ALREADY_EXISTS` error is returned. This field must conform to [RFC-1034](https://tools.ietf.org/html/rfc1034) standard with a length limit of 63 characters. Otherwise, an `INVALID_ARGUMENT` error is returned.",
                                   "location": "query",
                                   "type": "string"
                                 },
@@ -786,7 +786,7 @@
                                   ],
                                   "enumDescriptions": [
                                     "Default value.",
-                                    "output format will be a JSON string representation of processed document."
+                                    "Output format is a JSON string representation of processed document."
                                   ],
                                   "location": "query",
                                   "type": "string"
@@ -818,7 +818,7 @@
                               ]
                             },
                             "import": {
-                              "description": "Bulk import of multiple Documents. Request processing may be synchronous. Non-existing items will be created. Note: It is possible for a subset of the Documents to be successfully updated.",
+                              "description": "Bulk import of multiple Documents. Request processing may be synchronous. Non-existing items are created. Note: It is possible for a subset of the Documents to be successfully updated.",
                               "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/dataStores/{dataStoresId}/branches/{branchesId}/documents:import",
                               "httpMethod": "POST",
                               "id": "discoveryengine.projects.locations.collections.dataStores.branches.documents.import",
@@ -855,7 +855,7 @@
                               ],
                               "parameters": {
                                 "pageSize": {
-                                  "description": "Maximum number of Documents to return. If unspecified, defaults to 100. The maximum allowed value is 1000. Values above 1000 will be coerced to 1000. If this field is negative, an `INVALID_ARGUMENT` error is returned.",
+                                  "description": "Maximum number of Documents to return. If unspecified, defaults to 100. The maximum allowed value is 1000. Values above 1000 are set to 1000. If this field is negative, an `INVALID_ARGUMENT` error is returned.",
                                   "format": "int32",
                                   "location": "query",
                                   "type": "integer"
@@ -891,7 +891,7 @@
                               ],
                               "parameters": {
                                 "allowMissing": {
-                                  "description": "If set to true, and the Document is not found, a new Document will be created.",
+                                  "description": "If set to `true` and the Document is not found, a new Document is be created.",
                                   "location": "query",
                                   "type": "boolean"
                                 },
@@ -903,7 +903,7 @@
                                   "type": "string"
                                 },
                                 "updateMask": {
-                                  "description": "Indicates which fields in the provided imported 'document' to update. If not set, will by default update all fields.",
+                                  "description": "Indicates which fields in the provided imported 'document' to update. If not set, by default updates all fields.",
                                   "format": "google-fieldmask",
                                   "location": "query",
                                   "type": "string"
@@ -1019,6 +1019,34 @@
                         },
                         "operations": {
                           "methods": {
+                            "cancel": {
+                              "description": "Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.",
+                              "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/dataStores/{dataStoresId}/branches/{branchesId}/operations/{operationsId}:cancel",
+                              "httpMethod": "POST",
+                              "id": "discoveryengine.projects.locations.collections.dataStores.branches.operations.cancel",
+                              "parameterOrder": [
+                                "name"
+                              ],
+                              "parameters": {
+                                "name": {
+                                  "description": "The name of the operation resource to be cancelled.",
+                                  "location": "path",
+                                  "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/dataStores/[^/]+/branches/[^/]+/operations/[^/]+$",
+                                  "required": true,
+                                  "type": "string"
+                                }
+                              },
+                              "path": "v1alpha/{+name}:cancel",
+                              "request": {
+                                "$ref": "GoogleLongrunningCancelOperationRequest"
+                              },
+                              "response": {
+                                "$ref": "GoogleProtobufEmpty"
+                              },
+                              "scopes": [
+                                "https://www.googleapis.com/auth/cloud-platform"
+                              ]
+                            },
                             "get": {
                               "description": "Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.",
                               "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/dataStores/{dataStoresId}/branches/{branchesId}/operations/{operationsId}",
@@ -1086,6 +1114,168 @@
                               ]
                             }
                           }
+                        }
+                      }
+                    },
+                    "controls": {
+                      "methods": {
+                        "create": {
+                          "description": "Creates a Control. By default 1000 controls are allowed for a data store. A request can be submitted to adjust this limit. If the Control to create already exists, an ALREADY_EXISTS error is returned.",
+                          "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/dataStores/{dataStoresId}/controls",
+                          "httpMethod": "POST",
+                          "id": "discoveryengine.projects.locations.collections.dataStores.controls.create",
+                          "parameterOrder": [
+                            "parent"
+                          ],
+                          "parameters": {
+                            "controlId": {
+                              "description": "Required. The ID to use for the Control, which will become the final component of the Control's resource name. This value must be within 1-63 characters. Valid characters are /a-z-_/.",
+                              "location": "query",
+                              "type": "string"
+                            },
+                            "parent": {
+                              "description": "Required. Full resource name of parent data store. Format: `projects/{project_number}/locations/{location_id}/collections/{collection_id}/dataStores/{data_store_id}` or `projects/{project_number}/locations/{location_id}/collections/{collection_id}/engines/{engine_id}`.",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/dataStores/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1alpha/{+parent}/controls",
+                          "request": {
+                            "$ref": "GoogleCloudDiscoveryengineV1alphaControl"
+                          },
+                          "response": {
+                            "$ref": "GoogleCloudDiscoveryengineV1alphaControl"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        },
+                        "delete": {
+                          "description": "Deletes a Control. If the Control to delete does not exist, a NOT_FOUND error is returned.",
+                          "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/dataStores/{dataStoresId}/controls/{controlsId}",
+                          "httpMethod": "DELETE",
+                          "id": "discoveryengine.projects.locations.collections.dataStores.controls.delete",
+                          "parameterOrder": [
+                            "name"
+                          ],
+                          "parameters": {
+                            "name": {
+                              "description": "Required. The resource name of the Control to delete. Format: `projects/{project_number}/locations/{location_id}/collections/{collection_id}/dataStores/{data_store_id}/controls/{control_id}`",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/dataStores/[^/]+/controls/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1alpha/{+name}",
+                          "response": {
+                            "$ref": "GoogleProtobufEmpty"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        },
+                        "get": {
+                          "description": "Gets a Control.",
+                          "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/dataStores/{dataStoresId}/controls/{controlsId}",
+                          "httpMethod": "GET",
+                          "id": "discoveryengine.projects.locations.collections.dataStores.controls.get",
+                          "parameterOrder": [
+                            "name"
+                          ],
+                          "parameters": {
+                            "name": {
+                              "description": "Required. The resource name of the Control to get. Format: `projects/{project_number}/locations/{location_id}/collections/{collection_id}/dataStores/{data_store_id}/controls/{control_id}`",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/dataStores/[^/]+/controls/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1alpha/{+name}",
+                          "response": {
+                            "$ref": "GoogleCloudDiscoveryengineV1alphaControl"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        },
+                        "list": {
+                          "description": "Lists all Controls by their parent DataStore.",
+                          "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/dataStores/{dataStoresId}/controls",
+                          "httpMethod": "GET",
+                          "id": "discoveryengine.projects.locations.collections.dataStores.controls.list",
+                          "parameterOrder": [
+                            "parent"
+                          ],
+                          "parameters": {
+                            "filter": {
+                              "description": "Optional. A filter to apply on the list results. Supported features: * List all the products under the parent branch if filter is unset. Currently this field is unsupported.",
+                              "location": "query",
+                              "type": "string"
+                            },
+                            "pageSize": {
+                              "description": "Optional. Maximum number of results to return. If unspecified, defaults to 50. Max allowed value is 1000.",
+                              "format": "int32",
+                              "location": "query",
+                              "type": "integer"
+                            },
+                            "pageToken": {
+                              "description": "Optional. A page token, received from a previous `ListControls` call. Provide this to retrieve the subsequent page.",
+                              "location": "query",
+                              "type": "string"
+                            },
+                            "parent": {
+                              "description": "Required. The data store resource name. Format: `projects/{project_number}/locations/{location_id}/collections/{collection_id}/dataStores/{data_store_id}` or `projects/{project_number}/locations/{location_id}/collections/{collection_id}/engines/{engine_id}`.",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/dataStores/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1alpha/{+parent}/controls",
+                          "response": {
+                            "$ref": "GoogleCloudDiscoveryengineV1alphaListControlsResponse"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        },
+                        "patch": {
+                          "description": "Updates a Control. Control action type cannot be changed. If the Control to update does not exist, a NOT_FOUND error is returned.",
+                          "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/dataStores/{dataStoresId}/controls/{controlsId}",
+                          "httpMethod": "PATCH",
+                          "id": "discoveryengine.projects.locations.collections.dataStores.controls.patch",
+                          "parameterOrder": [
+                            "name"
+                          ],
+                          "parameters": {
+                            "name": {
+                              "description": "Immutable. Fully qualified name `projects/*/locations/global/dataStore/*/controls/*`",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/dataStores/[^/]+/controls/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            },
+                            "updateMask": {
+                              "description": "Optional. Indicates which fields in the provided Control to update. The following are NOT supported: * Control.name * Control.solution_type If not set or empty, all supported fields are updated.",
+                              "format": "google-fieldmask",
+                              "location": "query",
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1alpha/{+name}",
+                          "request": {
+                            "$ref": "GoogleCloudDiscoveryengineV1alphaControl"
+                          },
+                          "response": {
+                            "$ref": "GoogleCloudDiscoveryengineV1alphaControl"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
                         }
                       }
                     },
@@ -1471,7 +1661,7 @@
                               "type": "string"
                             },
                             "schemaId": {
-                              "description": "Required. The ID to use for the Schema, which will become the final component of the Schema.name. This field should conform to [RFC-1034](https://tools.ietf.org/html/rfc1034) standard with a length limit of 63 characters.",
+                              "description": "Required. The ID to use for the Schema, which becomes the final component of the Schema.name. This field should conform to [RFC-1034](https://tools.ietf.org/html/rfc1034) standard with a length limit of 63 characters.",
                               "location": "query",
                               "type": "string"
                             }
@@ -1547,7 +1737,7 @@
                           ],
                           "parameters": {
                             "pageSize": {
-                              "description": "The maximum number of Schemas to return. The service may return fewer than this value. If unspecified, at most 100 Schemas will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.",
+                              "description": "The maximum number of Schemas to return. The service may return fewer than this value. If unspecified, at most 100 Schemas are returned. The maximum value is 1000; values above 1000 are set to 1000.",
                               "format": "int32",
                               "location": "query",
                               "type": "integer"
@@ -1583,7 +1773,7 @@
                           ],
                           "parameters": {
                             "allowMissing": {
-                              "description": "If set to true, and the Schema is not found, a new Schema will be created. In this situation, `update_mask` is ignored.",
+                              "description": "If set to true, and the Schema is not found, a new Schema is created. In this situation, `update_mask` is ignored.",
                               "location": "query",
                               "type": "boolean"
                             },
@@ -1815,7 +2005,7 @@
                           ],
                           "parameters": {
                             "servingConfig": {
-                              "description": "Required. Full resource name of a ServingConfig: `projects/*/locations/global/collections/*/engines/*/servingConfigs/*`, or `projects/*/locations/global/collections/*/dataStores/*/servingConfigs/*` One default serving config is created along with your recommendation engine creation. The engine ID will be used as the ID of the default serving config. For example, for Engine `projects/*/locations/global/collections/*/engines/my-engine`, you can use `projects/*/locations/global/collections/*/engines/my-engine/servingConfigs/my-engine` for your RecommendationService.Recommend requests.",
+                              "description": "Required. Full resource name of a ServingConfig: `projects/*/locations/global/collections/*/engines/*/servingConfigs/*`, or `projects/*/locations/global/collections/*/dataStores/*/servingConfigs/*` One default serving config is created along with your recommendation engine creation. The engine ID is used as the ID of the default serving config. For example, for Engine `projects/*/locations/global/collections/*/engines/my-engine`, you can use `projects/*/locations/global/collections/*/engines/my-engine/servingConfigs/my-engine` for your RecommendationService.Recommend requests.",
                               "location": "path",
                               "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/dataStores/[^/]+/servingConfigs/[^/]+$",
                               "required": true,
@@ -2630,7 +2820,7 @@
                           ]
                         },
                         "import": {
-                          "description": "Bulk import of User events. Request processing might be synchronous. Events that already exist are skipped. Use this method for backfilling historical user events. Operation.response is of type ImportResponse. Note that it is possible for a subset of the items to be successfully inserted. Operation.metadata is of type ImportMetadata.",
+                          "description": "Bulk import of user events. Request processing might be synchronous. Events that already exist are skipped. Use this method for backfilling historical user events. Operation.response is of type ImportResponse. Note that it is possible for a subset of the items to be successfully inserted. Operation.metadata is of type ImportMetadata.",
                           "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/dataStores/{dataStoresId}/userEvents:import",
                           "httpMethod": "POST",
                           "id": "discoveryengine.projects.locations.collections.dataStores.userEvents.import",
@@ -2700,6 +2890,11 @@
                               "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/dataStores/[^/]+$",
                               "required": true,
                               "type": "string"
+                            },
+                            "writeAsync": {
+                              "description": "If set to true, the user event is written asynchronously after validation, and the API responds without waiting for the write.",
+                              "location": "query",
+                              "type": "boolean"
                             }
                           },
                           "path": "v1alpha/{+parent}/userEvents:write",
@@ -2963,6 +3158,168 @@
                     }
                   },
                   "resources": {
+                    "controls": {
+                      "methods": {
+                        "create": {
+                          "description": "Creates a Control. By default 1000 controls are allowed for a data store. A request can be submitted to adjust this limit. If the Control to create already exists, an ALREADY_EXISTS error is returned.",
+                          "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/engines/{enginesId}/controls",
+                          "httpMethod": "POST",
+                          "id": "discoveryengine.projects.locations.collections.engines.controls.create",
+                          "parameterOrder": [
+                            "parent"
+                          ],
+                          "parameters": {
+                            "controlId": {
+                              "description": "Required. The ID to use for the Control, which will become the final component of the Control's resource name. This value must be within 1-63 characters. Valid characters are /a-z-_/.",
+                              "location": "query",
+                              "type": "string"
+                            },
+                            "parent": {
+                              "description": "Required. Full resource name of parent data store. Format: `projects/{project_number}/locations/{location_id}/collections/{collection_id}/dataStores/{data_store_id}` or `projects/{project_number}/locations/{location_id}/collections/{collection_id}/engines/{engine_id}`.",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/engines/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1alpha/{+parent}/controls",
+                          "request": {
+                            "$ref": "GoogleCloudDiscoveryengineV1alphaControl"
+                          },
+                          "response": {
+                            "$ref": "GoogleCloudDiscoveryengineV1alphaControl"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        },
+                        "delete": {
+                          "description": "Deletes a Control. If the Control to delete does not exist, a NOT_FOUND error is returned.",
+                          "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/engines/{enginesId}/controls/{controlsId}",
+                          "httpMethod": "DELETE",
+                          "id": "discoveryengine.projects.locations.collections.engines.controls.delete",
+                          "parameterOrder": [
+                            "name"
+                          ],
+                          "parameters": {
+                            "name": {
+                              "description": "Required. The resource name of the Control to delete. Format: `projects/{project_number}/locations/{location_id}/collections/{collection_id}/dataStores/{data_store_id}/controls/{control_id}`",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/engines/[^/]+/controls/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1alpha/{+name}",
+                          "response": {
+                            "$ref": "GoogleProtobufEmpty"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        },
+                        "get": {
+                          "description": "Gets a Control.",
+                          "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/engines/{enginesId}/controls/{controlsId}",
+                          "httpMethod": "GET",
+                          "id": "discoveryengine.projects.locations.collections.engines.controls.get",
+                          "parameterOrder": [
+                            "name"
+                          ],
+                          "parameters": {
+                            "name": {
+                              "description": "Required. The resource name of the Control to get. Format: `projects/{project_number}/locations/{location_id}/collections/{collection_id}/dataStores/{data_store_id}/controls/{control_id}`",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/engines/[^/]+/controls/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1alpha/{+name}",
+                          "response": {
+                            "$ref": "GoogleCloudDiscoveryengineV1alphaControl"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        },
+                        "list": {
+                          "description": "Lists all Controls by their parent DataStore.",
+                          "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/engines/{enginesId}/controls",
+                          "httpMethod": "GET",
+                          "id": "discoveryengine.projects.locations.collections.engines.controls.list",
+                          "parameterOrder": [
+                            "parent"
+                          ],
+                          "parameters": {
+                            "filter": {
+                              "description": "Optional. A filter to apply on the list results. Supported features: * List all the products under the parent branch if filter is unset. Currently this field is unsupported.",
+                              "location": "query",
+                              "type": "string"
+                            },
+                            "pageSize": {
+                              "description": "Optional. Maximum number of results to return. If unspecified, defaults to 50. Max allowed value is 1000.",
+                              "format": "int32",
+                              "location": "query",
+                              "type": "integer"
+                            },
+                            "pageToken": {
+                              "description": "Optional. A page token, received from a previous `ListControls` call. Provide this to retrieve the subsequent page.",
+                              "location": "query",
+                              "type": "string"
+                            },
+                            "parent": {
+                              "description": "Required. The data store resource name. Format: `projects/{project_number}/locations/{location_id}/collections/{collection_id}/dataStores/{data_store_id}` or `projects/{project_number}/locations/{location_id}/collections/{collection_id}/engines/{engine_id}`.",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/engines/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1alpha/{+parent}/controls",
+                          "response": {
+                            "$ref": "GoogleCloudDiscoveryengineV1alphaListControlsResponse"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        },
+                        "patch": {
+                          "description": "Updates a Control. Control action type cannot be changed. If the Control to update does not exist, a NOT_FOUND error is returned.",
+                          "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/engines/{enginesId}/controls/{controlsId}",
+                          "httpMethod": "PATCH",
+                          "id": "discoveryengine.projects.locations.collections.engines.controls.patch",
+                          "parameterOrder": [
+                            "name"
+                          ],
+                          "parameters": {
+                            "name": {
+                              "description": "Immutable. Fully qualified name `projects/*/locations/global/dataStore/*/controls/*`",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/engines/[^/]+/controls/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            },
+                            "updateMask": {
+                              "description": "Optional. Indicates which fields in the provided Control to update. The following are NOT supported: * Control.name * Control.solution_type If not set or empty, all supported fields are updated.",
+                              "format": "google-fieldmask",
+                              "location": "query",
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1alpha/{+name}",
+                          "request": {
+                            "$ref": "GoogleCloudDiscoveryengineV1alphaControl"
+                          },
+                          "response": {
+                            "$ref": "GoogleCloudDiscoveryengineV1alphaControl"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        }
+                      }
+                    },
                     "conversations": {
                       "methods": {
                         "converse": {
@@ -3358,7 +3715,7 @@
                           ],
                           "parameters": {
                             "servingConfig": {
-                              "description": "Required. Full resource name of a ServingConfig: `projects/*/locations/global/collections/*/engines/*/servingConfigs/*`, or `projects/*/locations/global/collections/*/dataStores/*/servingConfigs/*` One default serving config is created along with your recommendation engine creation. The engine ID will be used as the ID of the default serving config. For example, for Engine `projects/*/locations/global/collections/*/engines/my-engine`, you can use `projects/*/locations/global/collections/*/engines/my-engine/servingConfigs/my-engine` for your RecommendationService.Recommend requests.",
+                              "description": "Required. Full resource name of a ServingConfig: `projects/*/locations/global/collections/*/engines/*/servingConfigs/*`, or `projects/*/locations/global/collections/*/dataStores/*/servingConfigs/*` One default serving config is created along with your recommendation engine creation. The engine ID is used as the ID of the default serving config. For example, for Engine `projects/*/locations/global/collections/*/engines/my-engine`, you can use `projects/*/locations/global/collections/*/engines/my-engine/servingConfigs/my-engine` for your RecommendationService.Recommend requests.",
                               "location": "path",
                               "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/engines/[^/]+/servingConfigs/[^/]+$",
                               "required": true,
@@ -3868,7 +4225,7 @@
                   ],
                   "parameters": {
                     "filter": {
-                      "description": "Filter by solution type . For example: filter = 'solution_type:SOLUTION_TYPE_SEARCH'",
+                      "description": "Filter by solution type . For example: `filter = 'solution_type:SOLUTION_TYPE_SEARCH'`",
                       "location": "query",
                       "type": "string"
                     },
@@ -3983,7 +4340,7 @@
                           ],
                           "parameters": {
                             "documentId": {
-                              "description": "Required. The ID to use for the Document, which will become the final component of the Document.name. If the caller does not have permission to create the Document, regardless of whether or not it exists, a `PERMISSION_DENIED` error is returned. This field must be unique among all Documents with the same parent. Otherwise, an `ALREADY_EXISTS` error is returned. This field must conform to [RFC-1034](https://tools.ietf.org/html/rfc1034) standard with a length limit of 63 characters. Otherwise, an `INVALID_ARGUMENT` error is returned.",
+                              "description": "Required. The ID to use for the Document, which becomes the final component of the Document.name. If the caller does not have permission to create the Document, regardless of whether or not it exists, a `PERMISSION_DENIED` error is returned. This field must be unique among all Documents with the same parent. Otherwise, an `ALREADY_EXISTS` error is returned. This field must conform to [RFC-1034](https://tools.ietf.org/html/rfc1034) standard with a length limit of 63 characters. Otherwise, an `INVALID_ARGUMENT` error is returned.",
                               "location": "query",
                               "type": "string"
                             },
@@ -4080,7 +4437,7 @@
                               ],
                               "enumDescriptions": [
                                 "Default value.",
-                                "output format will be a JSON string representation of processed document."
+                                "Output format is a JSON string representation of processed document."
                               ],
                               "location": "query",
                               "type": "string"
@@ -4112,7 +4469,7 @@
                           ]
                         },
                         "import": {
-                          "description": "Bulk import of multiple Documents. Request processing may be synchronous. Non-existing items will be created. Note: It is possible for a subset of the Documents to be successfully updated.",
+                          "description": "Bulk import of multiple Documents. Request processing may be synchronous. Non-existing items are created. Note: It is possible for a subset of the Documents to be successfully updated.",
                           "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/dataStores/{dataStoresId}/branches/{branchesId}/documents:import",
                           "httpMethod": "POST",
                           "id": "discoveryengine.projects.locations.dataStores.branches.documents.import",
@@ -4149,7 +4506,7 @@
                           ],
                           "parameters": {
                             "pageSize": {
-                              "description": "Maximum number of Documents to return. If unspecified, defaults to 100. The maximum allowed value is 1000. Values above 1000 will be coerced to 1000. If this field is negative, an `INVALID_ARGUMENT` error is returned.",
+                              "description": "Maximum number of Documents to return. If unspecified, defaults to 100. The maximum allowed value is 1000. Values above 1000 are set to 1000. If this field is negative, an `INVALID_ARGUMENT` error is returned.",
                               "format": "int32",
                               "location": "query",
                               "type": "integer"
@@ -4185,7 +4542,7 @@
                           ],
                           "parameters": {
                             "allowMissing": {
-                              "description": "If set to true, and the Document is not found, a new Document will be created.",
+                              "description": "If set to `true` and the Document is not found, a new Document is be created.",
                               "location": "query",
                               "type": "boolean"
                             },
@@ -4197,7 +4554,7 @@
                               "type": "string"
                             },
                             "updateMask": {
-                              "description": "Indicates which fields in the provided imported 'document' to update. If not set, will by default update all fields.",
+                              "description": "Indicates which fields in the provided imported 'document' to update. If not set, by default updates all fields.",
                               "format": "google-fieldmask",
                               "location": "query",
                               "type": "string"
@@ -4313,6 +4670,34 @@
                     },
                     "operations": {
                       "methods": {
+                        "cancel": {
+                          "description": "Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.",
+                          "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/dataStores/{dataStoresId}/branches/{branchesId}/operations/{operationsId}:cancel",
+                          "httpMethod": "POST",
+                          "id": "discoveryengine.projects.locations.dataStores.branches.operations.cancel",
+                          "parameterOrder": [
+                            "name"
+                          ],
+                          "parameters": {
+                            "name": {
+                              "description": "The name of the operation resource to be cancelled.",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/dataStores/[^/]+/branches/[^/]+/operations/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1alpha/{+name}:cancel",
+                          "request": {
+                            "$ref": "GoogleLongrunningCancelOperationRequest"
+                          },
+                          "response": {
+                            "$ref": "GoogleProtobufEmpty"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        },
                         "get": {
                           "description": "Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.",
                           "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/dataStores/{dataStoresId}/branches/{branchesId}/operations/{operationsId}",
@@ -4380,6 +4765,168 @@
                           ]
                         }
                       }
+                    }
+                  }
+                },
+                "controls": {
+                  "methods": {
+                    "create": {
+                      "description": "Creates a Control. By default 1000 controls are allowed for a data store. A request can be submitted to adjust this limit. If the Control to create already exists, an ALREADY_EXISTS error is returned.",
+                      "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/dataStores/{dataStoresId}/controls",
+                      "httpMethod": "POST",
+                      "id": "discoveryengine.projects.locations.dataStores.controls.create",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "controlId": {
+                          "description": "Required. The ID to use for the Control, which will become the final component of the Control's resource name. This value must be within 1-63 characters. Valid characters are /a-z-_/.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "parent": {
+                          "description": "Required. Full resource name of parent data store. Format: `projects/{project_number}/locations/{location_id}/collections/{collection_id}/dataStores/{data_store_id}` or `projects/{project_number}/locations/{location_id}/collections/{collection_id}/engines/{engine_id}`.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/dataStores/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1alpha/{+parent}/controls",
+                      "request": {
+                        "$ref": "GoogleCloudDiscoveryengineV1alphaControl"
+                      },
+                      "response": {
+                        "$ref": "GoogleCloudDiscoveryengineV1alphaControl"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "delete": {
+                      "description": "Deletes a Control. If the Control to delete does not exist, a NOT_FOUND error is returned.",
+                      "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/dataStores/{dataStoresId}/controls/{controlsId}",
+                      "httpMethod": "DELETE",
+                      "id": "discoveryengine.projects.locations.dataStores.controls.delete",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The resource name of the Control to delete. Format: `projects/{project_number}/locations/{location_id}/collections/{collection_id}/dataStores/{data_store_id}/controls/{control_id}`",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/dataStores/[^/]+/controls/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1alpha/{+name}",
+                      "response": {
+                        "$ref": "GoogleProtobufEmpty"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "get": {
+                      "description": "Gets a Control.",
+                      "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/dataStores/{dataStoresId}/controls/{controlsId}",
+                      "httpMethod": "GET",
+                      "id": "discoveryengine.projects.locations.dataStores.controls.get",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The resource name of the Control to get. Format: `projects/{project_number}/locations/{location_id}/collections/{collection_id}/dataStores/{data_store_id}/controls/{control_id}`",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/dataStores/[^/]+/controls/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1alpha/{+name}",
+                      "response": {
+                        "$ref": "GoogleCloudDiscoveryengineV1alphaControl"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "list": {
+                      "description": "Lists all Controls by their parent DataStore.",
+                      "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/dataStores/{dataStoresId}/controls",
+                      "httpMethod": "GET",
+                      "id": "discoveryengine.projects.locations.dataStores.controls.list",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "filter": {
+                          "description": "Optional. A filter to apply on the list results. Supported features: * List all the products under the parent branch if filter is unset. Currently this field is unsupported.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "pageSize": {
+                          "description": "Optional. Maximum number of results to return. If unspecified, defaults to 50. Max allowed value is 1000.",
+                          "format": "int32",
+                          "location": "query",
+                          "type": "integer"
+                        },
+                        "pageToken": {
+                          "description": "Optional. A page token, received from a previous `ListControls` call. Provide this to retrieve the subsequent page.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "parent": {
+                          "description": "Required. The data store resource name. Format: `projects/{project_number}/locations/{location_id}/collections/{collection_id}/dataStores/{data_store_id}` or `projects/{project_number}/locations/{location_id}/collections/{collection_id}/engines/{engine_id}`.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/dataStores/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1alpha/{+parent}/controls",
+                      "response": {
+                        "$ref": "GoogleCloudDiscoveryengineV1alphaListControlsResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "patch": {
+                      "description": "Updates a Control. Control action type cannot be changed. If the Control to update does not exist, a NOT_FOUND error is returned.",
+                      "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/dataStores/{dataStoresId}/controls/{controlsId}",
+                      "httpMethod": "PATCH",
+                      "id": "discoveryengine.projects.locations.dataStores.controls.patch",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Immutable. Fully qualified name `projects/*/locations/global/dataStore/*/controls/*`",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/dataStores/[^/]+/controls/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "updateMask": {
+                          "description": "Optional. Indicates which fields in the provided Control to update. The following are NOT supported: * Control.name * Control.solution_type If not set or empty, all supported fields are updated.",
+                          "format": "google-fieldmask",
+                          "location": "query",
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1alpha/{+name}",
+                      "request": {
+                        "$ref": "GoogleCloudDiscoveryengineV1alphaControl"
+                      },
+                      "response": {
+                        "$ref": "GoogleCloudDiscoveryengineV1alphaControl"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
                     }
                   }
                 },
@@ -4736,7 +5283,7 @@
                           "type": "string"
                         },
                         "schemaId": {
-                          "description": "Required. The ID to use for the Schema, which will become the final component of the Schema.name. This field should conform to [RFC-1034](https://tools.ietf.org/html/rfc1034) standard with a length limit of 63 characters.",
+                          "description": "Required. The ID to use for the Schema, which becomes the final component of the Schema.name. This field should conform to [RFC-1034](https://tools.ietf.org/html/rfc1034) standard with a length limit of 63 characters.",
                           "location": "query",
                           "type": "string"
                         }
@@ -4812,7 +5359,7 @@
                       ],
                       "parameters": {
                         "pageSize": {
-                          "description": "The maximum number of Schemas to return. The service may return fewer than this value. If unspecified, at most 100 Schemas will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.",
+                          "description": "The maximum number of Schemas to return. The service may return fewer than this value. If unspecified, at most 100 Schemas are returned. The maximum value is 1000; values above 1000 are set to 1000.",
                           "format": "int32",
                           "location": "query",
                           "type": "integer"
@@ -4848,7 +5395,7 @@
                       ],
                       "parameters": {
                         "allowMissing": {
-                          "description": "If set to true, and the Schema is not found, a new Schema will be created. In this situation, `update_mask` is ignored.",
+                          "description": "If set to true, and the Schema is not found, a new Schema is created. In this situation, `update_mask` is ignored.",
                           "location": "query",
                           "type": "boolean"
                         },
@@ -5008,7 +5555,7 @@
                       ],
                       "parameters": {
                         "servingConfig": {
-                          "description": "Required. Full resource name of a ServingConfig: `projects/*/locations/global/collections/*/engines/*/servingConfigs/*`, or `projects/*/locations/global/collections/*/dataStores/*/servingConfigs/*` One default serving config is created along with your recommendation engine creation. The engine ID will be used as the ID of the default serving config. For example, for Engine `projects/*/locations/global/collections/*/engines/my-engine`, you can use `projects/*/locations/global/collections/*/engines/my-engine/servingConfigs/my-engine` for your RecommendationService.Recommend requests.",
+                          "description": "Required. Full resource name of a ServingConfig: `projects/*/locations/global/collections/*/engines/*/servingConfigs/*`, or `projects/*/locations/global/collections/*/dataStores/*/servingConfigs/*` One default serving config is created along with your recommendation engine creation. The engine ID is used as the ID of the default serving config. For example, for Engine `projects/*/locations/global/collections/*/engines/my-engine`, you can use `projects/*/locations/global/collections/*/engines/my-engine/servingConfigs/my-engine` for your RecommendationService.Recommend requests.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/dataStores/[^/]+/servingConfigs/[^/]+$",
                           "required": true,
@@ -5617,7 +6164,7 @@
                       ]
                     },
                     "import": {
-                      "description": "Bulk import of User events. Request processing might be synchronous. Events that already exist are skipped. Use this method for backfilling historical user events. Operation.response is of type ImportResponse. Note that it is possible for a subset of the items to be successfully inserted. Operation.metadata is of type ImportMetadata.",
+                      "description": "Bulk import of user events. Request processing might be synchronous. Events that already exist are skipped. Use this method for backfilling historical user events. Operation.response is of type ImportResponse. Note that it is possible for a subset of the items to be successfully inserted. Operation.metadata is of type ImportMetadata.",
                       "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/dataStores/{dataStoresId}/userEvents:import",
                       "httpMethod": "POST",
                       "id": "discoveryengine.projects.locations.dataStores.userEvents.import",
@@ -5687,6 +6234,11 @@
                           "pattern": "^projects/[^/]+/locations/[^/]+/dataStores/[^/]+$",
                           "required": true,
                           "type": "string"
+                        },
+                        "writeAsync": {
+                          "description": "If set to true, the user event is written asynchronously after validation, and the API responds without waiting for the write.",
+                          "location": "query",
+                          "type": "boolean"
                         }
                       },
                       "path": "v1alpha/{+parent}/userEvents:write",
@@ -5921,6 +6473,11 @@
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
                       "type": "string"
+                    },
+                    "writeAsync": {
+                      "description": "If set to true, the user event is written asynchronously after validation, and the API responds without waiting for the write.",
+                      "location": "query",
+                      "type": "boolean"
                     }
                   },
                   "path": "v1alpha/{+parent}/userEvents:write",
@@ -6011,7 +6568,7 @@
       }
     }
   },
-  "revision": "20240503",
+  "revision": "20240530",
   "rootUrl": "https://discoveryengine.googleapis.com/",
   "schemas": {
     "GoogleApiHttpBody": {
@@ -6185,6 +6742,200 @@
           "description": "TargetSites created.",
           "items": {
             "$ref": "GoogleCloudDiscoveryengineV1TargetSite"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1Condition": {
+      "description": "Defines circumstances to be checked before allowing a behavior",
+      "id": "GoogleCloudDiscoveryengineV1Condition",
+      "properties": {
+        "activeTimeRange": {
+          "description": "Range of time(s) specifying when condition is active. Maximum of 10 time ranges.",
+          "items": {
+            "$ref": "GoogleCloudDiscoveryengineV1ConditionTimeRange"
+          },
+          "type": "array"
+        },
+        "queryTerms": {
+          "description": "Search only A list of terms to match the query on. Maximum of 10 query terms.",
+          "items": {
+            "$ref": "GoogleCloudDiscoveryengineV1ConditionQueryTerm"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1ConditionQueryTerm": {
+      "description": "Matcher for search request query",
+      "id": "GoogleCloudDiscoveryengineV1ConditionQueryTerm",
+      "properties": {
+        "fullMatch": {
+          "description": "Whether the search query needs to exactly match the query term.",
+          "type": "boolean"
+        },
+        "value": {
+          "description": "The specific query value to match against Must be lowercase, must be UTF-8. Can have at most 3 space separated terms if full_match is true. Cannot be an empty string. Maximum length of 5000 characters.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1ConditionTimeRange": {
+      "description": "Used for time-dependent conditions.",
+      "id": "GoogleCloudDiscoveryengineV1ConditionTimeRange",
+      "properties": {
+        "endTime": {
+          "description": "End of time range. Range is inclusive. Must be in the future.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "startTime": {
+          "description": "Start of time range. Range is inclusive.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1Control": {
+      "description": "Defines a conditioned behavior to employ during serving. Must be attached to a ServingConfig to be considered at serving time. Permitted actions dependent on `SolutionType`.",
+      "id": "GoogleCloudDiscoveryengineV1Control",
+      "properties": {
+        "associatedServingConfigIds": {
+          "description": "Output only. List of all ServingConfig ids this control is attached to. May take up to 10 minutes to update after changes.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "boostAction": {
+          "$ref": "GoogleCloudDiscoveryengineV1ControlBoostAction",
+          "description": "Defines a boost-type control"
+        },
+        "conditions": {
+          "description": "Determines when the associated action will trigger. Omit to always apply the action. Currently only a single condition may be specified. Otherwise an INVALID ARGUMENT error is thrown.",
+          "items": {
+            "$ref": "GoogleCloudDiscoveryengineV1Condition"
+          },
+          "type": "array"
+        },
+        "displayName": {
+          "description": "Required. Human readable name. The identifier used in UI views. Must be UTF-8 encoded string. Length limit is 128 characters. Otherwise an INVALID ARGUMENT error is thrown.",
+          "type": "string"
+        },
+        "filterAction": {
+          "$ref": "GoogleCloudDiscoveryengineV1ControlFilterAction",
+          "description": "Defines a filter-type control Currently not supported by Recommendation"
+        },
+        "name": {
+          "description": "Immutable. Fully qualified name `projects/*/locations/global/dataStore/*/controls/*`",
+          "type": "string"
+        },
+        "redirectAction": {
+          "$ref": "GoogleCloudDiscoveryengineV1ControlRedirectAction",
+          "description": "Defines a redirect-type control."
+        },
+        "solutionType": {
+          "description": "Required. Immutable. What solution the control belongs to. Must be compatible with vertical of resource. Otherwise an INVALID ARGUMENT error is thrown.",
+          "enum": [
+            "SOLUTION_TYPE_UNSPECIFIED",
+            "SOLUTION_TYPE_RECOMMENDATION",
+            "SOLUTION_TYPE_SEARCH",
+            "SOLUTION_TYPE_CHAT",
+            "SOLUTION_TYPE_GENERATIVE_CHAT"
+          ],
+          "enumDescriptions": [
+            "Default value.",
+            "Used for Recommendations AI.",
+            "Used for Discovery Search.",
+            "Used for use cases related to the Generative AI agent.",
+            "Used for use cases related to the Generative Chat agent. It's used for Generative chat engine only, the associated data stores must enrolled with `SOLUTION_TYPE_CHAT` solution."
+          ],
+          "type": "string"
+        },
+        "synonymsAction": {
+          "$ref": "GoogleCloudDiscoveryengineV1ControlSynonymsAction",
+          "description": "Treats a group of terms as synonyms of one another."
+        },
+        "useCases": {
+          "description": "Specifies the use case for the control. Affects what condition fields can be set. Only applies to SOLUTION_TYPE_SEARCH. Currently only allow one use case per control. Must be set when solution_type is SolutionType.SOLUTION_TYPE_SEARCH.",
+          "items": {
+            "enum": [
+              "SEARCH_USE_CASE_UNSPECIFIED",
+              "SEARCH_USE_CASE_SEARCH",
+              "SEARCH_USE_CASE_BROWSE"
+            ],
+            "enumDescriptions": [
+              "Value used when unset. Will not occur in CSS.",
+              "Search use case. Expects the traffic has a non-empty query.",
+              "Browse use case. Expects the traffic has an empty query."
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1ControlBoostAction": {
+      "description": "Adjusts order of products in returned list.",
+      "id": "GoogleCloudDiscoveryengineV1ControlBoostAction",
+      "properties": {
+        "boost": {
+          "description": "Required. Strength of the boost, which should be in [-1, 1]. Negative boost means demotion. Default is 0.0 (No-op).",
+          "format": "float",
+          "type": "number"
+        },
+        "dataStore": {
+          "description": "Required. Specifies which data store's documents can be boosted by this control. Full data store name e.g. projects/123/locations/global/collections/default_collection/dataStores/default_data_store",
+          "type": "string"
+        },
+        "filter": {
+          "description": "Required. Specifies which products to apply the boost to. If no filter is provided all products will be boosted (No-op). Syntax documentation: https://cloud.google.com/retail/docs/filter-and-order Maximum length is 5000 characters. Otherwise an INVALID ARGUMENT error is thrown.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1ControlFilterAction": {
+      "description": "Specified which products may be included in results. Uses same filter as boost.",
+      "id": "GoogleCloudDiscoveryengineV1ControlFilterAction",
+      "properties": {
+        "dataStore": {
+          "description": "Required. Specifies which data store's documents can be filtered by this control. Full data store name e.g. projects/123/locations/global/collections/default_collection/dataStores/default_data_store",
+          "type": "string"
+        },
+        "filter": {
+          "description": "Required. A filter to apply on the matching condition results. Required Syntax documentation: https://cloud.google.com/retail/docs/filter-and-order Maximum length is 5000 characters. Otherwise an INVALID ARGUMENT error is thrown.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1ControlRedirectAction": {
+      "description": "Redirects a shopper to the provided URI.",
+      "id": "GoogleCloudDiscoveryengineV1ControlRedirectAction",
+      "properties": {
+        "redirectUri": {
+          "description": "Required. The URI to which the shopper will be redirected. Required. URI must have length equal or less than 2000 characters. Otherwise an INVALID ARGUMENT error is thrown.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1ControlSynonymsAction": {
+      "description": "Creates a set of terms that will act as synonyms of one another. Example: \"happy\" will also be considered as \"glad\", \"glad\" will also be considered as \"happy\".",
+      "id": "GoogleCloudDiscoveryengineV1ControlSynonymsAction",
+      "properties": {
+        "synonyms": {
+          "description": "Defines a set of synonyms. Can specify up to 100 synonyms. Must specify at least 2 synonyms. Otherwise an INVALID ARGUMENT error is thrown.",
+          "items": {
+            "type": "string"
           },
           "type": "array"
         }
@@ -6441,6 +7192,10 @@
       "description": "A singleton resource of DataStore. It's empty when DataStore is created, which defaults to digital parser. The first call to DataStoreService.UpdateDocumentProcessingConfig method will initialize the config.",
       "id": "GoogleCloudDiscoveryengineV1DocumentProcessingConfig",
       "properties": {
+        "chunkingConfig": {
+          "$ref": "GoogleCloudDiscoveryengineV1DocumentProcessingConfigChunkingConfig",
+          "description": "Whether chunking mode is enabled."
+        },
         "defaultParsingConfig": {
           "$ref": "GoogleCloudDiscoveryengineV1DocumentProcessingConfigParsingConfig",
           "description": "Configurations for default Document parser. If not specified, we will configure it as default DigitalParsingConfig, and the default parsing config will be applied to all file types for Document parsing."
@@ -6459,6 +7214,33 @@
       },
       "type": "object"
     },
+    "GoogleCloudDiscoveryengineV1DocumentProcessingConfigChunkingConfig": {
+      "description": "Configuration for chunking config.",
+      "id": "GoogleCloudDiscoveryengineV1DocumentProcessingConfigChunkingConfig",
+      "properties": {
+        "layoutBasedChunkingConfig": {
+          "$ref": "GoogleCloudDiscoveryengineV1DocumentProcessingConfigChunkingConfigLayoutBasedChunkingConfig",
+          "description": "Configuration for the layout based chunking."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1DocumentProcessingConfigChunkingConfigLayoutBasedChunkingConfig": {
+      "description": "Configuration for the layout based chunking.",
+      "id": "GoogleCloudDiscoveryengineV1DocumentProcessingConfigChunkingConfigLayoutBasedChunkingConfig",
+      "properties": {
+        "chunkSize": {
+          "description": "The token size limit for each chunk. Supported values: 100-500 (inclusive). Default value: 500.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "includeAncestorHeadings": {
+          "description": "Whether to include appending different levels of headings to chunks from the middle of the document to prevent context loss. Default value: False.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDiscoveryengineV1DocumentProcessingConfigParsingConfig": {
       "description": "Related configurations applied to a specific type of document parser.",
       "id": "GoogleCloudDiscoveryengineV1DocumentProcessingConfigParsingConfig",
@@ -6466,6 +7248,10 @@
         "digitalParsingConfig": {
           "$ref": "GoogleCloudDiscoveryengineV1DocumentProcessingConfigParsingConfigDigitalParsingConfig",
           "description": "Configurations applied to digital parser."
+        },
+        "layoutParsingConfig": {
+          "$ref": "GoogleCloudDiscoveryengineV1DocumentProcessingConfigParsingConfigLayoutParsingConfig",
+          "description": "Configurations applied to layout parser."
         },
         "ocrParsingConfig": {
           "$ref": "GoogleCloudDiscoveryengineV1DocumentProcessingConfigParsingConfigOcrParsingConfig",
@@ -6477,6 +7263,12 @@
     "GoogleCloudDiscoveryengineV1DocumentProcessingConfigParsingConfigDigitalParsingConfig": {
       "description": "The digital parsing configurations for documents.",
       "id": "GoogleCloudDiscoveryengineV1DocumentProcessingConfigParsingConfigDigitalParsingConfig",
+      "properties": {},
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1DocumentProcessingConfigParsingConfigLayoutParsingConfig": {
+      "description": "The layout parsing configurations for documents.",
+      "id": "GoogleCloudDiscoveryengineV1DocumentProcessingConfigParsingConfigLayoutParsingConfig",
       "properties": {},
       "type": "object"
     },
@@ -6557,7 +7349,7 @@
           "type": "string"
         },
         "industryVertical": {
-          "description": "The industry vertical that the engine registers. The restriction of the Engine industry vertical is based on DataStore: If unspecified, default to `GENERIC`. Vertical on Engine has to match vertical of the DataStore liniked to the engine.",
+          "description": "The industry vertical that the engine registers. The restriction of the Engine industry vertical is based on DataStore: If unspecified, default to `GENERIC`. Vertical on Engine has to match vertical of the DataStore linked to the engine.",
           "enum": [
             "INDUSTRY_VERTICAL_UNSPECIFIED",
             "GENERIC",
@@ -6661,7 +7453,7 @@
       "id": "GoogleCloudDiscoveryengineV1EngineCommonConfig",
       "properties": {
         "companyName": {
-          "description": "Immutable. The name of the company, business or entity that is associated with the engine. Setting this may help improve LLM related features.",
+          "description": "The name of the company, business or entity that is associated with the engine. Setting this may help improve LLM related features.",
           "type": "string"
         }
       },
@@ -6858,6 +7650,85 @@
           "type": "string"
         }
       },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1Project": {
+      "description": "Metadata and configurations for a Google Cloud project in the service.",
+      "id": "GoogleCloudDiscoveryengineV1Project",
+      "properties": {
+        "createTime": {
+          "description": "Output only. The timestamp when this project is created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "Output only. Full resource name of the project, for example `projects/{project_number}`. Note that when making requests, project number and project id are both acceptable, but the server will always respond in project number.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "provisionCompletionTime": {
+          "description": "Output only. The timestamp when this project is successfully provisioned. Empty value means this project is still provisioning and is not ready for use.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "serviceTermsMap": {
+          "additionalProperties": {
+            "$ref": "GoogleCloudDiscoveryengineV1ProjectServiceTerms"
+          },
+          "description": "Output only. A map of terms of services. The key is the `id` of ServiceTerms.",
+          "readOnly": true,
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1ProjectServiceTerms": {
+      "description": "Metadata about the terms of service.",
+      "id": "GoogleCloudDiscoveryengineV1ProjectServiceTerms",
+      "properties": {
+        "acceptTime": {
+          "description": "The last time when the project agreed to the terms of service.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "declineTime": {
+          "description": "The last time when the project declined or revoked the agreement to terms of service.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "id": {
+          "description": "The unique identifier of this terms of service. Available terms: * `GA_DATA_USE_TERMS`: [Terms for data use](https://cloud.google.com/retail/data-use-terms). When using this as `id`, the acceptable version to provide is `2022-11-23`.",
+          "type": "string"
+        },
+        "state": {
+          "description": "Whether the project has accepted/rejected the service terms or it is still pending.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "TERMS_ACCEPTED",
+            "TERMS_PENDING",
+            "TERMS_DECLINED"
+          ],
+          "enumDescriptions": [
+            "The default value of the enum. This value is not actually used.",
+            "The project has given consent to the terms of service.",
+            "The project is pending to review and accept the terms of service.",
+            "The project has declined or revoked the agreement to terms of service."
+          ],
+          "type": "string"
+        },
+        "version": {
+          "description": "The version string of the terms of service. For acceptable values, see the comments for id above.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1ProvisionProjectMetadata": {
+      "description": "Metadata associated with a project provision operation.",
+      "id": "GoogleCloudDiscoveryengineV1ProvisionProjectMetadata",
+      "properties": {},
       "type": "object"
     },
     "GoogleCloudDiscoveryengineV1PurgeDocumentsMetadata": {
@@ -7149,6 +8020,37 @@
       },
       "type": "object"
     },
+    "GoogleCloudDiscoveryengineV1alphaAlloyDbSource": {
+      "description": "AlloyDB source import data from.",
+      "id": "GoogleCloudDiscoveryengineV1alphaAlloyDbSource",
+      "properties": {
+        "clusterId": {
+          "description": "Required. The AlloyDB cluster to copy the data from with a length limit of 256 characters.",
+          "type": "string"
+        },
+        "databaseId": {
+          "description": "Required. The AlloyDB database to copy the data from with a length limit of 256 characters.",
+          "type": "string"
+        },
+        "gcsStagingDir": {
+          "description": "Intermediate Cloud Storage directory used for the import with a length limit of 2,000 characters. Can be specified if one wants to have the AlloyDB export to a specific Cloud Storage directory. Ensure that the AlloyDB service account has the necessary Cloud Storage Admin permissions to access the specified Cloud Storage directory.",
+          "type": "string"
+        },
+        "locationId": {
+          "description": "Required. The AlloyDB location to copy the data from with a length limit of 256 characters.",
+          "type": "string"
+        },
+        "projectId": {
+          "description": "The project ID that the AlloyDB source is in with a length limit of 128 characters. If not specified, inherits the project ID from the parent request.",
+          "type": "string"
+        },
+        "tableId": {
+          "description": "Required. The AlloyDB table to copy the data from with a length limit of 256 characters.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDiscoveryengineV1alphaAnswer": {
       "description": "Defines an answer.",
       "id": "GoogleCloudDiscoveryengineV1alphaAnswer",
@@ -7313,8 +8215,15 @@
           "description": "Search specification."
         },
         "session": {
-          "description": "The session resource name. Not required. When session field is not set, the API is in sessionless mode. We support auto session mode: users can use the wildcard symbol “-” as session id. A new id will be automatically generated and assigned.",
+          "description": "The session resource name. Not required. When session field is not set, the API is in sessionless mode. We support auto session mode: users can use the wildcard symbol `-` as session ID. A new ID will be automatically generated and assigned.",
           "type": "string"
+        },
+        "userLabels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "The user labels applied to a resource must meet the following requirements: * Each resource can have multiple labels, up to a maximum of 64. * Each label must be a key-value pair. * Keys have a minimum length of 1 character and a maximum length of 63 characters and cannot be empty. Values can be empty and have a maximum length of 63 characters. * Keys and values can contain only lowercase letters, numeric characters, underscores, and dashes. All characters must use UTF-8 encoding, and international characters are allowed. * The key portion of a label must be unique. However, you can use the same key with multiple resources. * Keys must start with a lowercase letter or international character. See [Google Cloud Document](https://cloud.google.com/resource-manager/docs/creating-managing-labels#requirements) for more details.",
+          "type": "object"
         },
         "userPseudoId": {
           "description": "A unique identifier for tracking visitors. For example, this could be implemented with an HTTP cookie, which should be able to uniquely identify a visitor on a single device. This unique identifier should not change if the visitor logs in or out of the website. This field should NOT have a fixed value such as `unknown_visitor`. The field must be a UTF-8 encoded string with a length limit of 128 characters. Otherwise, an `INVALID_ARGUMENT` error is returned.",
@@ -7333,6 +8242,10 @@
         },
         "ignoreAdversarialQuery": {
           "description": "Specifies whether to filter out adversarial queries. The default value is `false`. Google employs search-query classification to detect adversarial queries. No answer is returned if the search query is classified as an adversarial query. For example, a user might ask a question regarding negative comments about the company or submit a query designed to generate unsafe, policy-violating output. If this field is set to `true`, we skip generating answers for adversarial queries and return fallback messages instead.",
+          "type": "boolean"
+        },
+        "ignoreLowRelevantContent": {
+          "description": "Specifies whether to filter out queries that have low relevance. If this field is set to `false`, all search results are used regardless of relevance to generate answers. If set to `true` or unset, the behavior will be determined automatically by the service.",
           "type": "boolean"
         },
         "ignoreNonAnswerSeekingQuery": {
@@ -7479,6 +8392,13 @@
         "customFineTuningSpec": {
           "$ref": "GoogleCloudDiscoveryengineV1alphaCustomFineTuningSpec",
           "description": "Custom fine tuning configs."
+        },
+        "dataStoreSpecs": {
+          "description": "Specs defining dataStores to filter on in a search call and configurations for those dataStores. This is only considered for engines with multiple dataStores use case. For single dataStore within an engine, they should use the specs at the top level.",
+          "items": {
+            "$ref": "GoogleCloudDiscoveryengineV1alphaSearchRequestDataStoreSpec"
+          },
+          "type": "array"
         },
         "filter": {
           "description": "The filter syntax consists of an expression language for constructing a predicate from one or more fields of the documents being filtered. Filter expression is case-sensitive. This will be used to filter search results which may affect the Answer response. If this field is unrecognizable, an `INVALID_ARGUMENT` is returned. Filtering in Vertex AI Search is done by mapping the LHS filter key to a key property defined in the Vertex AI Search backend -- this mapping is defined by the customer in their schema. For example a media customers might have a field 'name' in their schema. In this case the filter would look like this: filter --> name:'ANY(\"king kong\")' For more information about filtering including syntax and filter operators, see [Filter](https://cloud.google.com/generative-ai-app-builder/docs/filter-search-metadata)",
@@ -7748,6 +8668,14 @@
           "description": "Page identifier.",
           "type": "string"
         },
+        "structData": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "The structured JSON metadata for the document. It is populated from the struct data from the Chunk in search result.",
+          "type": "object"
+        },
         "title": {
           "description": "Title.",
           "type": "string"
@@ -7773,6 +8701,14 @@
         "document": {
           "description": "Document resource name.",
           "type": "string"
+        },
+        "structData": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "The structured JSON metadata for the document. It is populated from the struct data from the Chunk in search result.",
+          "type": "object"
         },
         "title": {
           "description": "Title.",
@@ -8315,6 +9251,12 @@
         "pageSpan": {
           "$ref": "GoogleCloudDiscoveryengineV1alphaChunkPageSpan",
           "description": "Page span of the chunk."
+        },
+        "relevanceScore": {
+          "description": "Output only. Represents the relevance score based on similarity. Higher score indicates higher chunk relevance. The score is in range [-1.0, 1.0]. Only populated on SearchService.SearchResponse.",
+          "format": "double",
+          "readOnly": true,
+          "type": "number"
         }
       },
       "type": "object"
@@ -8459,6 +9401,200 @@
         "selectedSuggestion": {
           "description": "End user selected CompleteQueryResponse.QuerySuggestion.suggestion.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaCondition": {
+      "description": "Defines circumstances to be checked before allowing a behavior",
+      "id": "GoogleCloudDiscoveryengineV1alphaCondition",
+      "properties": {
+        "activeTimeRange": {
+          "description": "Range of time(s) specifying when condition is active. Maximum of 10 time ranges.",
+          "items": {
+            "$ref": "GoogleCloudDiscoveryengineV1alphaConditionTimeRange"
+          },
+          "type": "array"
+        },
+        "queryTerms": {
+          "description": "Search only A list of terms to match the query on. Maximum of 10 query terms.",
+          "items": {
+            "$ref": "GoogleCloudDiscoveryengineV1alphaConditionQueryTerm"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaConditionQueryTerm": {
+      "description": "Matcher for search request query",
+      "id": "GoogleCloudDiscoveryengineV1alphaConditionQueryTerm",
+      "properties": {
+        "fullMatch": {
+          "description": "Whether the search query needs to exactly match the query term.",
+          "type": "boolean"
+        },
+        "value": {
+          "description": "The specific query value to match against Must be lowercase, must be UTF-8. Can have at most 3 space separated terms if full_match is true. Cannot be an empty string. Maximum length of 5000 characters.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaConditionTimeRange": {
+      "description": "Used for time-dependent conditions.",
+      "id": "GoogleCloudDiscoveryengineV1alphaConditionTimeRange",
+      "properties": {
+        "endTime": {
+          "description": "End of time range. Range is inclusive. Must be in the future.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "startTime": {
+          "description": "Start of time range. Range is inclusive.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaControl": {
+      "description": "Defines a conditioned behavior to employ during serving. Must be attached to a ServingConfig to be considered at serving time. Permitted actions dependent on `SolutionType`.",
+      "id": "GoogleCloudDiscoveryengineV1alphaControl",
+      "properties": {
+        "associatedServingConfigIds": {
+          "description": "Output only. List of all ServingConfig ids this control is attached to. May take up to 10 minutes to update after changes.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "boostAction": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaControlBoostAction",
+          "description": "Defines a boost-type control"
+        },
+        "conditions": {
+          "description": "Determines when the associated action will trigger. Omit to always apply the action. Currently only a single condition may be specified. Otherwise an INVALID ARGUMENT error is thrown.",
+          "items": {
+            "$ref": "GoogleCloudDiscoveryengineV1alphaCondition"
+          },
+          "type": "array"
+        },
+        "displayName": {
+          "description": "Required. Human readable name. The identifier used in UI views. Must be UTF-8 encoded string. Length limit is 128 characters. Otherwise an INVALID ARGUMENT error is thrown.",
+          "type": "string"
+        },
+        "filterAction": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaControlFilterAction",
+          "description": "Defines a filter-type control Currently not supported by Recommendation"
+        },
+        "name": {
+          "description": "Immutable. Fully qualified name `projects/*/locations/global/dataStore/*/controls/*`",
+          "type": "string"
+        },
+        "redirectAction": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaControlRedirectAction",
+          "description": "Defines a redirect-type control."
+        },
+        "solutionType": {
+          "description": "Required. Immutable. What solution the control belongs to. Must be compatible with vertical of resource. Otherwise an INVALID ARGUMENT error is thrown.",
+          "enum": [
+            "SOLUTION_TYPE_UNSPECIFIED",
+            "SOLUTION_TYPE_RECOMMENDATION",
+            "SOLUTION_TYPE_SEARCH",
+            "SOLUTION_TYPE_CHAT",
+            "SOLUTION_TYPE_GENERATIVE_CHAT"
+          ],
+          "enumDescriptions": [
+            "Default value.",
+            "Used for Recommendations AI.",
+            "Used for Discovery Search.",
+            "Used for use cases related to the Generative AI agent.",
+            "Used for use cases related to the Generative Chat agent. It's used for Generative chat engine only, the associated data stores must enrolled with `SOLUTION_TYPE_CHAT` solution."
+          ],
+          "type": "string"
+        },
+        "synonymsAction": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaControlSynonymsAction",
+          "description": "Treats a group of terms as synonyms of one another."
+        },
+        "useCases": {
+          "description": "Specifies the use case for the control. Affects what condition fields can be set. Only applies to SOLUTION_TYPE_SEARCH. Currently only allow one use case per control. Must be set when solution_type is SolutionType.SOLUTION_TYPE_SEARCH.",
+          "items": {
+            "enum": [
+              "SEARCH_USE_CASE_UNSPECIFIED",
+              "SEARCH_USE_CASE_SEARCH",
+              "SEARCH_USE_CASE_BROWSE"
+            ],
+            "enumDescriptions": [
+              "Value used when unset. Will not occur in CSS.",
+              "Search use case. Expects the traffic has a non-empty query.",
+              "Browse use case. Expects the traffic has an empty query."
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaControlBoostAction": {
+      "description": "Adjusts order of products in returned list.",
+      "id": "GoogleCloudDiscoveryengineV1alphaControlBoostAction",
+      "properties": {
+        "boost": {
+          "description": "Required. Strength of the boost, which should be in [-1, 1]. Negative boost means demotion. Default is 0.0 (No-op).",
+          "format": "float",
+          "type": "number"
+        },
+        "dataStore": {
+          "description": "Required. Specifies which data store's documents can be boosted by this control. Full data store name e.g. projects/123/locations/global/collections/default_collection/dataStores/default_data_store",
+          "type": "string"
+        },
+        "filter": {
+          "description": "Required. Specifies which products to apply the boost to. If no filter is provided all products will be boosted (No-op). Syntax documentation: https://cloud.google.com/retail/docs/filter-and-order Maximum length is 5000 characters. Otherwise an INVALID ARGUMENT error is thrown.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaControlFilterAction": {
+      "description": "Specified which products may be included in results. Uses same filter as boost.",
+      "id": "GoogleCloudDiscoveryengineV1alphaControlFilterAction",
+      "properties": {
+        "dataStore": {
+          "description": "Required. Specifies which data store's documents can be filtered by this control. Full data store name e.g. projects/123/locations/global/collections/default_collection/dataStores/default_data_store",
+          "type": "string"
+        },
+        "filter": {
+          "description": "Required. A filter to apply on the matching condition results. Required Syntax documentation: https://cloud.google.com/retail/docs/filter-and-order Maximum length is 5000 characters. Otherwise an INVALID ARGUMENT error is thrown.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaControlRedirectAction": {
+      "description": "Redirects a shopper to the provided URI.",
+      "id": "GoogleCloudDiscoveryengineV1alphaControlRedirectAction",
+      "properties": {
+        "redirectUri": {
+          "description": "Required. The URI to which the shopper will be redirected. Required. URI must have length equal or less than 2000 characters. Otherwise an INVALID ARGUMENT error is thrown.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaControlSynonymsAction": {
+      "description": "Creates a set of terms that will act as synonyms of one another. Example: \"happy\" will also be considered as \"glad\", \"glad\" will also be considered as \"happy\".",
+      "id": "GoogleCloudDiscoveryengineV1alphaControlSynonymsAction",
+      "properties": {
+        "synonyms": {
+          "description": "Defines a set of synonyms. Can specify up to 100 synonyms. Must specify at least 2 synonyms. Otherwise an INVALID ARGUMENT error is thrown.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -8761,7 +9897,7 @@
             "TRAINING_FAILED"
           ],
           "enumDescriptions": [
-            "",
+            "Default value.",
             "The model is in a paused training state.",
             "The model is currently training.",
             "The model has successfully completed training.",
@@ -8771,6 +9907,7 @@
           "type": "string"
         },
         "modelVersion": {
+          "description": "The version of the model.",
           "format": "int64",
           "type": "string"
         },
@@ -9105,7 +10242,7 @@
           "type": "array"
         },
         "quantity": {
-          "description": "Quantity of the Document associated with the user event. Defaults to 1. For example, this field will be 2 if two quantities of the same Document are involved in a `add-to-cart` event. Required for events of the following event types: * `add-to-cart` * `purchase`",
+          "description": "Quantity of the Document associated with the user event. Defaults to 1. For example, this field is 2 if two quantities of the same Document are involved in a `add-to-cart` event. Required for events of the following event types: * `add-to-cart` * `purchase`",
           "format": "int32",
           "type": "integer"
         },
@@ -9309,7 +10446,7 @@
           "type": "string"
         },
         "industryVertical": {
-          "description": "The industry vertical that the engine registers. The restriction of the Engine industry vertical is based on DataStore: If unspecified, default to `GENERIC`. Vertical on Engine has to match vertical of the DataStore liniked to the engine.",
+          "description": "The industry vertical that the engine registers. The restriction of the Engine industry vertical is based on DataStore: If unspecified, default to `GENERIC`. Vertical on Engine has to match vertical of the DataStore linked to the engine.",
           "enum": [
             "INDUSTRY_VERTICAL_UNSPECIFIED",
             "GENERIC",
@@ -9426,7 +10563,7 @@
       "id": "GoogleCloudDiscoveryengineV1alphaEngineCommonConfig",
       "properties": {
         "companyName": {
-          "description": "Immutable. The name of the company, business or entity that is associated with the engine. Setting this may help improve LLM related features.",
+          "description": "The name of the company, business or entity that is associated with the engine. Setting this may help improve LLM related features.",
           "type": "string"
         }
       },
@@ -9740,12 +10877,14 @@
             "enum": [
               "ADVANCED_SITE_SEARCH_DATA_SOURCE_UNSPECIFIED",
               "METATAGS",
-              "PAGEMAP"
+              "PAGEMAP",
+              "SCHEMA_ORG"
             ],
             "enumDescriptions": [
               "Value used when unset.",
               "Retrieve value from meta tag.",
-              "Retrieve value from page map."
+              "Retrieve value from page map.",
+              "Retrieve value from schema.org data."
             ],
             "type": "string"
           },
@@ -9855,6 +10994,13 @@
           ],
           "type": "string"
         },
+        "schemaOrgPaths": {
+          "description": "Field paths for indexing custom attribute from schema.org data. More details of schema.org and its defined types can be found at [schema.org](https://schema.org). It is only used on advanced site search schema. Currently only support full path from root. The full path to a field is constructed by concatenating field names, starting from `_root`, with a period `.` as the delimiter. Examples: * Publish date of the root: _root.datePublished * Publish date of the reviews: _root.review.datePublished",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
         "searchableOption": {
           "description": "If searchable_option is SEARCHABLE_ENABLED, field values are searchable by text queries in SearchService.Search. If SEARCHABLE_ENABLED but field type is numerical, field values will not be searchable by text queries in SearchService.Search, as there are no text values associated to numerical fields. If searchable_option is unset, the server behavior defaults to SEARCHABLE_DISABLED for fields that support setting searchable options. Only `string` fields that have no key property mapping support setting searchable_option. For those fields that do not support setting searchable options, the server will skip searchable option setting, and setting searchable_option for those fields will throw `INVALID_ARGUMENT` error.",
           "enum": [
@@ -9877,7 +11023,7 @@
       "id": "GoogleCloudDiscoveryengineV1alphaFirestoreSource",
       "properties": {
         "collectionId": {
-          "description": "Required. The Firestore collection to copy the data from with a length limit of 1,500 characters.",
+          "description": "Required. The Firestore collection (or entity) to copy the data from with a length limit of 1,500 characters.",
           "type": "string"
         },
         "databaseId": {
@@ -9900,11 +11046,11 @@
       "id": "GoogleCloudDiscoveryengineV1alphaGcsSource",
       "properties": {
         "dataSchema": {
-          "description": "The schema to use when parsing the data from the source. Supported values for document imports: * `document` (default): One JSON Document per line. Each document must have a valid Document.id. * `content`: Unstructured data (e.g. PDF, HTML). Each file matched by `input_uris` becomes a document, with the ID set to the first 128 bits of SHA256(URI) encoded as a hex string. * `custom`: One custom data JSON per row in arbitrary format that conforms to the defined Schema of the data store. This can only be used by the GENERIC Data Store vertical. * `csv`: A CSV file with header conforming to the defined Schema of the data store. Each entry after the header is imported as a Document. This can only be used by the GENERIC Data Store vertical. Supported values for user even imports: * `user_event` (default): One JSON UserEvent per line.",
+          "description": "The schema to use when parsing the data from the source. Supported values for document imports: * `document` (default): One JSON Document per line. Each document must have a valid Document.id. * `content`: Unstructured data (e.g. PDF, HTML). Each file matched by `input_uris` becomes a document, with the ID set to the first 128 bits of SHA256(URI) encoded as a hex string. * `custom`: One custom data JSON per row in arbitrary format that conforms to the defined Schema of the data store. This can only be used by the GENERIC Data Store vertical. * `csv`: A CSV file with header conforming to the defined Schema of the data store. Each entry after the header is imported as a Document. This can only be used by the GENERIC Data Store vertical. Supported values for user event imports: * `user_event` (default): One JSON UserEvent per line.",
           "type": "string"
         },
         "inputUris": {
-          "description": "Required. Cloud Storage URIs to input files. URI can be up to 2000 characters long. URIs can match the full object path (for example, `gs://bucket/directory/object.json`) or a pattern matching one or more files, such as `gs://bucket/directory/*.json`. A request can contain at most 100 files (or 100,000 files if `data_schema` is `content`). Each file can be up to 2 GB (or 100 MB if `data_schema` is `content`).",
+          "description": "Required. Cloud Storage URIs to input files. Each URI can be up to 2000 characters long. URIs can match the full object path (for example, `gs://bucket/directory/object.json`) or a pattern matching one or more files, such as `gs://bucket/directory/*.json`. A request can contain at most 100 files (or 100,000 files if `data_schema` is `content`). Each file can be up to 2 GB (or 100 MB if `data_schema` is `content`).",
           "items": {
             "type": "string"
           },
@@ -10023,6 +11169,10 @@
       "description": "Request message for Import methods.",
       "id": "GoogleCloudDiscoveryengineV1alphaImportDocumentsRequest",
       "properties": {
+        "alloyDbSource": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaAlloyDbSource",
+          "description": "AlloyDB input source."
+        },
         "autoGenerateIds": {
           "description": "Whether to automatically generate IDs for the documents if absent. If set to `true`, Document.ids are automatically generated based on the hash of the payload, where IDs may not be consistent during multiple imports. In which case ReconciliationMode.FULL is highly recommended to avoid duplicate contents. If unset or set to `false`, Document.ids have to be specified using id_field, otherwise, documents without IDs fail to be imported. Supported data sources: * GcsSource. GcsSource.data_schema must be `custom` or `csv`. Otherwise, an INVALID_ARGUMENT error is thrown. * BigQuerySource. BigQuerySource.data_schema must be `custom` or `csv`. Otherwise, an INVALID_ARGUMENT error is thrown. * SpannerSource. * CloudSqlSource. * FirestoreSource. * BigtableSource.",
           "type": "boolean"
@@ -10334,6 +11484,24 @@
         },
         "nextPageToken": {
           "description": "A token that can be sent as ListChunksRequest.page_token to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaListControlsResponse": {
+      "description": "Response for ListControls method.",
+      "id": "GoogleCloudDiscoveryengineV1alphaListControlsResponse",
+      "properties": {
+        "controls": {
+          "description": "All the Controls for a given data store.",
+          "items": {
+            "$ref": "GoogleCloudDiscoveryengineV1alphaControl"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "Pagination token, if not returned indicates the last page.",
           "type": "string"
         }
       },
@@ -10920,6 +12088,13 @@
           "description": "The number of results to return. If this is unset or no bigger than zero, returns all results.",
           "format": "int32",
           "type": "integer"
+        },
+        "userLabels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "The user labels applied to a resource must meet the following requirements: * Each resource can have multiple labels, up to a maximum of 64. * Each label must be a key-value pair. * Keys have a minimum length of 1 character and a maximum length of 63 characters and cannot be empty. Values can be empty and have a maximum length of 63 characters. * Keys and values can contain only lowercase letters, numeric characters, underscores, and dashes. All characters must use UTF-8 encoding, and international characters are allowed. * The key portion of a label must be unique. However, you can use the same key with multiple resources. * Keys must start with a lowercase letter or international character. See [Google Cloud Document](https://cloud.google.com/resource-manager/docs/creating-managing-labels#requirements) for more details.",
+          "type": "object"
         }
       },
       "type": "object"
@@ -10967,11 +12142,11 @@
       "id": "GoogleCloudDiscoveryengineV1alphaRecommendRequest",
       "properties": {
         "filter": {
-          "description": "Filter for restricting recommendation results with a length limit of 5,000 characters. Currently, only filter expressions on the `filter_tags` attribute is supported. Examples: * `(filter_tags: ANY(\"Red\", \"Blue\") OR filter_tags: ANY(\"Hot\", \"Cold\"))` * `(filter_tags: ANY(\"Red\", \"Blue\")) AND NOT (filter_tags: ANY(\"Green\"))` If `attributeFilteringSyntax` is set to true under the `params` field, then attribute-based expressions are expected instead of the above described tag-based syntax. Examples: * (launguage: ANY(\"en\", \"es\")) AND NOT (categories: ANY(\"Movie\")) * (available: true) AND (launguage: ANY(\"en\", \"es\")) OR (categories: ANY(\"Movie\")) If your filter blocks all results, the API will return generic (unfiltered) popular Documents. If you only want results strictly matching the filters, set `strictFiltering` to True in RecommendRequest.params to receive empty results instead. Note that the API will never return Documents with `storageStatus` of `EXPIRED` or `DELETED` regardless of filter choices.",
+          "description": "Filter for restricting recommendation results with a length limit of 5,000 characters. Currently, only filter expressions on the `filter_tags` attribute is supported. Examples: * `(filter_tags: ANY(\"Red\", \"Blue\") OR filter_tags: ANY(\"Hot\", \"Cold\"))` * `(filter_tags: ANY(\"Red\", \"Blue\")) AND NOT (filter_tags: ANY(\"Green\"))` If `attributeFilteringSyntax` is set to true under the `params` field, then attribute-based expressions are expected instead of the above described tag-based syntax. Examples: * (launguage: ANY(\"en\", \"es\")) AND NOT (categories: ANY(\"Movie\")) * (available: true) AND (launguage: ANY(\"en\", \"es\")) OR (categories: ANY(\"Movie\")) If your filter blocks all results, the API returns generic (unfiltered) popular Documents. If you only want results strictly matching the filters, set `strictFiltering` to `true` in RecommendRequest.params to receive empty results instead. Note that the API never returns Documents with `storageStatus` as `EXPIRED` or `DELETED` regardless of filter choices.",
           "type": "string"
         },
         "pageSize": {
-          "description": "Maximum number of results to return. Set this property to the number of recommendation results needed. If zero, the service will choose a reasonable default. The maximum allowed value is 100. Values above 100 will be coerced to 100.",
+          "description": "Maximum number of results to return. Set this property to the number of recommendation results needed. If zero, the service chooses a reasonable default. The maximum allowed value is 100. Values above 100 are set to 100.",
           "format": "int32",
           "type": "integer"
         },
@@ -10979,7 +12154,7 @@
           "additionalProperties": {
             "type": "any"
           },
-          "description": "Additional domain specific parameters for the recommendations. Allowed values: * `returnDocument`: Boolean. If set to true, the associated Document object will be returned in RecommendResponse.RecommendationResult.document. * `returnScore`: Boolean. If set to true, the recommendation 'score' corresponding to each returned Document will be set in RecommendResponse.RecommendationResult.metadata. The given 'score' indicates the probability of a Document conversion given the user's context and history. * `strictFiltering`: Boolean. True by default. If set to false, the service will return generic (unfiltered) popular Documents instead of empty if your filter blocks all recommendation results. * `diversityLevel`: String. Default empty. If set to be non-empty, then it needs to be one of: * `no-diversity` * `low-diversity` * `medium-diversity` * `high-diversity` * `auto-diversity` This gives request-level control and adjusts recommendation results based on Document category. * `attributeFilteringSyntax`: Boolean. False by default. If set to true, the `filter` field is interpreted according to the new, attribute-based syntax.",
+          "description": "Additional domain specific parameters for the recommendations. Allowed values: * `returnDocument`: Boolean. If set to `true`, the associated Document object is returned in RecommendResponse.RecommendationResult.document. * `returnScore`: Boolean. If set to true, the recommendation score corresponding to each returned Document is set in RecommendResponse.RecommendationResult.metadata. The given score indicates the probability of a Document conversion given the user's context and history. * `strictFiltering`: Boolean. True by default. If set to `false`, the service returns generic (unfiltered) popular Documents instead of empty if your filter blocks all recommendation results. * `diversityLevel`: String. Default empty. If set to be non-empty, then it needs to be one of: * `no-diversity` * `low-diversity` * `medium-diversity` * `high-diversity` * `auto-diversity` This gives request-level control and adjusts recommendation results based on Document category. * `attributeFilteringSyntax`: Boolean. False by default. If set to true, the `filter` field is interpreted according to the new, attribute-based syntax.",
           "type": "object"
         },
         "userEvent": {
@@ -10994,7 +12169,7 @@
           "type": "object"
         },
         "validateOnly": {
-          "description": "Use validate only mode for this recommendation query. If set to true, a fake model will be used that returns arbitrary Document IDs. Note that the validate only mode should only be used for testing the API, or if the model is not ready.",
+          "description": "Use validate only mode for this recommendation query. If set to `true`, a fake model is used that returns arbitrary Document IDs. Note that the validate only mode should only be used for testing the API, or if the model is not ready.",
           "type": "boolean"
         }
       },
@@ -11045,7 +12220,7 @@
           "additionalProperties": {
             "type": "any"
           },
-          "description": "Additional Document metadata / annotations. Possible values: * `score`: Recommendation score in double value. Is set if `returnScore` is set to true in RecommendRequest.params.",
+          "description": "Additional Document metadata or annotations. Possible values: * `score`: Recommendation score in double value. Is set if `returnScore` is set to true in RecommendRequest.params.",
           "type": "object"
         }
       },
@@ -11313,7 +12488,7 @@
       "properties": {
         "boostSpec": {
           "$ref": "GoogleCloudDiscoveryengineV1alphaSearchRequestBoostSpec",
-          "description": "Boost specification to boost certain documents. For more information on boosting, see [Boosting](https://cloud.google.com/retail/docs/boosting#boost)"
+          "description": "Boost specification to boost certain documents. For more information on boosting, see [Boosting](https://cloud.google.com/generative-ai-app-builder/docs/boost-search-results)"
         },
         "branch": {
           "description": "The branch resource name, such as `projects/*/locations/global/collections/default_collection/dataStores/default_data_store/branches/0`. Use `default_branch` as the branch ID or leave this field empty, to search documents under the default branch.",
@@ -11332,7 +12507,7 @@
           "description": "Custom fine tuning configs."
         },
         "dataStoreSpecs": {
-          "description": "A list of data store specs to apply on a search call.",
+          "description": "Specs defining dataStores to filter on in a search call and configurations for those dataStores. This is only considered for engines with multiple dataStores use case. For single dataStore within an engine, they should use the specs at the top level.",
           "items": {
             "$ref": "GoogleCloudDiscoveryengineV1alphaSearchRequestDataStoreSpec"
           },
@@ -11379,7 +12554,7 @@
           "additionalProperties": {
             "type": "any"
           },
-          "description": "Additional search parameters. For public website search only, supported values are: * `user_country_code`: string. Default empty. If set to non-empty, results are restricted or boosted based on the location provided. Example: user_country_code: \"au\" For available codes see [Country Codes](https://developers.google.com/custom-search/docs/json_api_reference#countryCodes) * `search_type`: double. Default empty. Enables non-webpage searching depending on the value. The only valid non-default value is 1, which enables image searching. Example: search_type: 1",
+          "description": "Additional search parameters. For public website search only, supported values are: * `user_country_code`: string. Default empty. If set to non-empty, results are restricted or boosted based on the location provided. For example, `user_country_code: \"au\"` For available codes see [Country Codes](https://developers.google.com/custom-search/docs/json_api_reference#countryCodes) * `search_type`: double. Default empty. Enables non-webpage searching depending on the value. The only valid non-default value is 1, which enables image searching. For example, `search_type: 1`",
           "type": "object"
         },
         "query": {
@@ -11468,7 +12643,7 @@
           "enumDescriptions": [
             "Unspecified AttributeType.",
             "The value of the numerical field will be used to dynamically update the boost amount. In this case, the attribute_value (the x value) of the control point will be the actual value of the numerical field for which the boost_amount is specified.",
-            "For the freshness use case the attribute value will be the duration between the current time and the date in the datetime field specified. The value must be formatted as an XSD `dayTimeDuration` value (a restricted subset of an ISO 8601 duration value). The pattern for this is: `nDnM]`. E.g. `5D`, `3DT12H30M`, `T24H`."
+            "For the freshness use case the attribute value will be the duration between the current time and the date in the datetime field specified. The value must be formatted as an XSD `dayTimeDuration` value (a restricted subset of an ISO 8601 duration value). The pattern for this is: `nDnM]`. For example, `5D`, `3DT12H30M`, `T24H`."
           ],
           "type": "string"
         },
@@ -11684,7 +12859,7 @@
       "type": "object"
     },
     "GoogleCloudDiscoveryengineV1alphaSearchRequestDataStoreSpec": {
-      "description": "A struct to define data stores to filter on in a search call.",
+      "description": "A struct to define data stores to filter on in a search call and configurations for those data stores. A maximum of 1 DataStoreSpec per data_store is allowed. Otherwise, an `INVALID_ARGUMENT` error is returned.",
       "id": "GoogleCloudDiscoveryengineV1alphaSearchRequestDataStoreSpec",
       "properties": {
         "dataStore": {
@@ -11747,7 +12922,7 @@
           "description": "Required. The facet key specification."
         },
         "limit": {
-          "description": "Maximum of facet values that should be returned for this facet. If unspecified, defaults to 20. The maximum allowed value is 300. Values above 300 are coerced to 300. If this field is negative, an `INVALID_ARGUMENT` is returned.",
+          "description": "Maximum facet values that are returned for this facet. If unspecified, defaults to 20. The maximum allowed value is 300. Values above 300 are coerced to 300. If this field is negative, an `INVALID_ARGUMENT` is returned.",
           "format": "int32",
           "type": "integer"
         }
@@ -11763,7 +12938,7 @@
           "type": "boolean"
         },
         "contains": {
-          "description": "Only get facet values that contains the given strings. For example, suppose \"category\" has three values \"Action > 2022\", \"Action > 2021\" and \"Sci-Fi > 2022\". If set \"contains\" to \"2022\", the \"category\" facet only contains \"Action > 2022\" and \"Sci-Fi > 2022\". Only supported on textual fields. Maximum is 10.",
+          "description": "Only get facet values that contain the given strings. For example, suppose \"category\" has three values \"Action > 2022\", \"Action > 2021\" and \"Sci-Fi > 2022\". If set \"contains\" to \"2022\", the \"category\" facet only contains \"Action > 2022\" and \"Sci-Fi > 2022\". Only supported on textual fields. Maximum is 10.",
           "items": {
             "type": "string"
           },
@@ -11842,7 +13017,7 @@
       "id": "GoogleCloudDiscoveryengineV1alphaSearchRequestSpellCorrectionSpec",
       "properties": {
         "mode": {
-          "description": "The mode under which spell correction should take effect to replace the original search query. Default to Mode.AUTO.",
+          "description": "The mode under which spell correction replaces the original search query. Defaults to Mode.AUTO.",
           "enum": [
             "MODE_UNSPECIFIED",
             "SUGGESTION_ONLY",
@@ -11850,7 +13025,7 @@
           ],
           "enumDescriptions": [
             "Unspecified spell correction mode. In this case, server behavior defaults to Mode.AUTO.",
-            "Search API will try to find a spell suggestion if there is any and put in the SearchResponse.corrected_query. The spell suggestion will not be used as the search query.",
+            "Search API tries to find a spelling suggestion. If a suggestion is found, it is put in the SearchResponse.corrected_query. The spelling suggestion won't be used as the search query.",
             "Automatic spell correction built by the Search API. Search will be based on the corrected query if found."
           ],
           "type": "string"
@@ -11934,7 +13109,7 @@
           "type": "boolean"
         },
         "key": {
-          "description": "The key for this facet. E.g., \"colors\" or \"price\". It matches SearchRequest.FacetSpec.FacetKey.key.",
+          "description": "The key for this facet. For example, `\"colors\"` or `\"price\"`. It matches SearchRequest.FacetSpec.FacetKey.key.",
           "type": "string"
         },
         "values": {
@@ -12008,11 +13183,11 @@
       "id": "GoogleCloudDiscoveryengineV1alphaSearchResponseGuidedSearchResultRefinementAttribute",
       "properties": {
         "attributeKey": {
-          "description": "Attribute key used to refine the results e.g. 'movie_type'.",
+          "description": "Attribute key used to refine the results. For example, `\"movie_type\"`.",
           "type": "string"
         },
         "attributeValue": {
-          "description": "Attribute value used to refine the results e.g. 'drama'.",
+          "description": "Attribute value used to refine the results. For example, `\"drama\"`.",
           "type": "string"
         }
       },
@@ -12044,7 +13219,7 @@
         },
         "document": {
           "$ref": "GoogleCloudDiscoveryengineV1alphaDocument",
-          "description": "The document data snippet in the search response. Only fields that are marked as retrievable are populated."
+          "description": "The document data snippet in the search response. Only fields that are marked as `retrievable` are populated."
         },
         "id": {
           "description": "Document.id of the searched Document.",
@@ -12061,7 +13236,7 @@
       "type": "object"
     },
     "GoogleCloudDiscoveryengineV1alphaSearchResponseSummary": {
-      "description": "Summary of the top N search result specified by the summary spec.",
+      "description": "Summary of the top N search results specified by the summary spec.",
       "id": "GoogleCloudDiscoveryengineV1alphaSearchResponseSummary",
       "properties": {
         "safetyAttributes": {
@@ -12458,7 +13633,7 @@
       "id": "GoogleCloudDiscoveryengineV1alphaSessionTurn",
       "properties": {
         "answer": {
-          "description": "The resource name of the answer to the user query.",
+          "description": "The resource name of the answer to the user query. Only set if the answer generation (/answer API call) happened in this turn.",
           "type": "string"
         },
         "query": {
@@ -12866,7 +14041,7 @@
       "type": "object"
     },
     "GoogleCloudDiscoveryengineV1alphaUserEvent": {
-      "description": "UserEvent captures all metadata information Discovery Engine API needs to know about how end users interact with customers' website.",
+      "description": "UserEvent captures all metadata information Discovery Engine API needs to know about how end users interact with your website.",
       "id": "GoogleCloudDiscoveryengineV1alphaUserEvent",
       "properties": {
         "attributes": {
@@ -12884,6 +14059,10 @@
           "$ref": "GoogleCloudDiscoveryengineV1alphaCompletionInfo",
           "description": "CompletionService.CompleteQuery details related to the event. This field should be set for `search` event when autocomplete function is enabled and the user clicks a suggestion for search."
         },
+        "dataStore": {
+          "description": "The DataStore resource full name, of the form `projects/{project}/locations/{location}/collections/{collection_id}/dataStores/{data_store_id}`. Optional. Only required for user events whose data store can't by determined by UserEvent.engine or UserEvent.documents. If data store is set in the parent of write/import/collect user event requests, this field can be omitted.",
+          "type": "string"
+        },
         "directUserRequest": {
           "description": "Should set to true if the request is made directly from the end user, in which case the UserEvent.user_info.user_agent can be populated from the HTTP request. This flag should be set only if the API request is made directly from the end user such as a mobile app (and not if a gateway or a server is processing and pushing the user events). This should not be set when using the JavaScript tag in UserEventService.CollectUserEvent.",
           "type": "boolean"
@@ -12894,6 +14073,10 @@
             "$ref": "GoogleCloudDiscoveryengineV1alphaDocumentInfo"
           },
           "type": "array"
+        },
+        "engine": {
+          "description": "The Engine resource name, in the form of `projects/{project}/locations/{location}/collections/{collection_id}/engines/{engine_id}`. Optional. Only required for Engine produced user events. For example, user events from blended search.",
+          "type": "string"
         },
         "eventTime": {
           "description": "Only required for UserEventService.ImportUserEvents method. Timestamp of when the user event happened.",
@@ -12936,7 +14119,7 @@
           "type": "string"
         },
         "tagIds": {
-          "description": "A list of identifiers for the independent experiment groups this user event belongs to. This is used to distinguish between user events associated with different experiment setups on the customer end.",
+          "description": "A list of identifiers for the independent experiment groups this user event belongs to. This is used to distinguish between user events associated with different experiment setups.",
           "items": {
             "type": "string"
           },
@@ -12997,6 +14180,200 @@
           "description": "TargetSites created.",
           "items": {
             "$ref": "GoogleCloudDiscoveryengineV1betaTargetSite"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaCondition": {
+      "description": "Defines circumstances to be checked before allowing a behavior",
+      "id": "GoogleCloudDiscoveryengineV1betaCondition",
+      "properties": {
+        "activeTimeRange": {
+          "description": "Range of time(s) specifying when condition is active. Maximum of 10 time ranges.",
+          "items": {
+            "$ref": "GoogleCloudDiscoveryengineV1betaConditionTimeRange"
+          },
+          "type": "array"
+        },
+        "queryTerms": {
+          "description": "Search only A list of terms to match the query on. Maximum of 10 query terms.",
+          "items": {
+            "$ref": "GoogleCloudDiscoveryengineV1betaConditionQueryTerm"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaConditionQueryTerm": {
+      "description": "Matcher for search request query",
+      "id": "GoogleCloudDiscoveryengineV1betaConditionQueryTerm",
+      "properties": {
+        "fullMatch": {
+          "description": "Whether the search query needs to exactly match the query term.",
+          "type": "boolean"
+        },
+        "value": {
+          "description": "The specific query value to match against Must be lowercase, must be UTF-8. Can have at most 3 space separated terms if full_match is true. Cannot be an empty string. Maximum length of 5000 characters.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaConditionTimeRange": {
+      "description": "Used for time-dependent conditions.",
+      "id": "GoogleCloudDiscoveryengineV1betaConditionTimeRange",
+      "properties": {
+        "endTime": {
+          "description": "End of time range. Range is inclusive. Must be in the future.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "startTime": {
+          "description": "Start of time range. Range is inclusive.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaControl": {
+      "description": "Defines a conditioned behavior to employ during serving. Must be attached to a ServingConfig to be considered at serving time. Permitted actions dependent on `SolutionType`.",
+      "id": "GoogleCloudDiscoveryengineV1betaControl",
+      "properties": {
+        "associatedServingConfigIds": {
+          "description": "Output only. List of all ServingConfig ids this control is attached to. May take up to 10 minutes to update after changes.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "boostAction": {
+          "$ref": "GoogleCloudDiscoveryengineV1betaControlBoostAction",
+          "description": "Defines a boost-type control"
+        },
+        "conditions": {
+          "description": "Determines when the associated action will trigger. Omit to always apply the action. Currently only a single condition may be specified. Otherwise an INVALID ARGUMENT error is thrown.",
+          "items": {
+            "$ref": "GoogleCloudDiscoveryengineV1betaCondition"
+          },
+          "type": "array"
+        },
+        "displayName": {
+          "description": "Required. Human readable name. The identifier used in UI views. Must be UTF-8 encoded string. Length limit is 128 characters. Otherwise an INVALID ARGUMENT error is thrown.",
+          "type": "string"
+        },
+        "filterAction": {
+          "$ref": "GoogleCloudDiscoveryengineV1betaControlFilterAction",
+          "description": "Defines a filter-type control Currently not supported by Recommendation"
+        },
+        "name": {
+          "description": "Immutable. Fully qualified name `projects/*/locations/global/dataStore/*/controls/*`",
+          "type": "string"
+        },
+        "redirectAction": {
+          "$ref": "GoogleCloudDiscoveryengineV1betaControlRedirectAction",
+          "description": "Defines a redirect-type control."
+        },
+        "solutionType": {
+          "description": "Required. Immutable. What solution the control belongs to. Must be compatible with vertical of resource. Otherwise an INVALID ARGUMENT error is thrown.",
+          "enum": [
+            "SOLUTION_TYPE_UNSPECIFIED",
+            "SOLUTION_TYPE_RECOMMENDATION",
+            "SOLUTION_TYPE_SEARCH",
+            "SOLUTION_TYPE_CHAT",
+            "SOLUTION_TYPE_GENERATIVE_CHAT"
+          ],
+          "enumDescriptions": [
+            "Default value.",
+            "Used for Recommendations AI.",
+            "Used for Discovery Search.",
+            "Used for use cases related to the Generative AI agent.",
+            "Used for use cases related to the Generative Chat agent. It's used for Generative chat engine only, the associated data stores must enrolled with `SOLUTION_TYPE_CHAT` solution."
+          ],
+          "type": "string"
+        },
+        "synonymsAction": {
+          "$ref": "GoogleCloudDiscoveryengineV1betaControlSynonymsAction",
+          "description": "Treats a group of terms as synonyms of one another."
+        },
+        "useCases": {
+          "description": "Specifies the use case for the control. Affects what condition fields can be set. Only applies to SOLUTION_TYPE_SEARCH. Currently only allow one use case per control. Must be set when solution_type is SolutionType.SOLUTION_TYPE_SEARCH.",
+          "items": {
+            "enum": [
+              "SEARCH_USE_CASE_UNSPECIFIED",
+              "SEARCH_USE_CASE_SEARCH",
+              "SEARCH_USE_CASE_BROWSE"
+            ],
+            "enumDescriptions": [
+              "Value used when unset. Will not occur in CSS.",
+              "Search use case. Expects the traffic has a non-empty query.",
+              "Browse use case. Expects the traffic has an empty query."
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaControlBoostAction": {
+      "description": "Adjusts order of products in returned list.",
+      "id": "GoogleCloudDiscoveryengineV1betaControlBoostAction",
+      "properties": {
+        "boost": {
+          "description": "Required. Strength of the boost, which should be in [-1, 1]. Negative boost means demotion. Default is 0.0 (No-op).",
+          "format": "float",
+          "type": "number"
+        },
+        "dataStore": {
+          "description": "Required. Specifies which data store's documents can be boosted by this control. Full data store name e.g. projects/123/locations/global/collections/default_collection/dataStores/default_data_store",
+          "type": "string"
+        },
+        "filter": {
+          "description": "Required. Specifies which products to apply the boost to. If no filter is provided all products will be boosted (No-op). Syntax documentation: https://cloud.google.com/retail/docs/filter-and-order Maximum length is 5000 characters. Otherwise an INVALID ARGUMENT error is thrown.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaControlFilterAction": {
+      "description": "Specified which products may be included in results. Uses same filter as boost.",
+      "id": "GoogleCloudDiscoveryengineV1betaControlFilterAction",
+      "properties": {
+        "dataStore": {
+          "description": "Required. Specifies which data store's documents can be filtered by this control. Full data store name e.g. projects/123/locations/global/collections/default_collection/dataStores/default_data_store",
+          "type": "string"
+        },
+        "filter": {
+          "description": "Required. A filter to apply on the matching condition results. Required Syntax documentation: https://cloud.google.com/retail/docs/filter-and-order Maximum length is 5000 characters. Otherwise an INVALID ARGUMENT error is thrown.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaControlRedirectAction": {
+      "description": "Redirects a shopper to the provided URI.",
+      "id": "GoogleCloudDiscoveryengineV1betaControlRedirectAction",
+      "properties": {
+        "redirectUri": {
+          "description": "Required. The URI to which the shopper will be redirected. Required. URI must have length equal or less than 2000 characters. Otherwise an INVALID ARGUMENT error is thrown.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaControlSynonymsAction": {
+      "description": "Creates a set of terms that will act as synonyms of one another. Example: \"happy\" will also be considered as \"glad\", \"glad\" will also be considered as \"happy\".",
+      "id": "GoogleCloudDiscoveryengineV1betaControlSynonymsAction",
+      "properties": {
+        "synonyms": {
+          "description": "Defines a set of synonyms. Can specify up to 100 synonyms. Must specify at least 2 synonyms. Otherwise an INVALID ARGUMENT error is thrown.",
+          "items": {
+            "type": "string"
           },
           "type": "array"
         }
@@ -13095,7 +14472,7 @@
             "TRAINING_FAILED"
           ],
           "enumDescriptions": [
-            "",
+            "Default value.",
             "The model is in a paused training state.",
             "The model is currently training.",
             "The model has successfully completed training.",
@@ -13105,6 +14482,7 @@
           "type": "string"
         },
         "modelVersion": {
+          "description": "The version of the model.",
           "format": "int64",
           "type": "string"
         },
@@ -13302,6 +14680,10 @@
       "description": "A singleton resource of DataStore. It's empty when DataStore is created, which defaults to digital parser. The first call to DataStoreService.UpdateDocumentProcessingConfig method will initialize the config.",
       "id": "GoogleCloudDiscoveryengineV1betaDocumentProcessingConfig",
       "properties": {
+        "chunkingConfig": {
+          "$ref": "GoogleCloudDiscoveryengineV1betaDocumentProcessingConfigChunkingConfig",
+          "description": "Whether chunking mode is enabled."
+        },
         "defaultParsingConfig": {
           "$ref": "GoogleCloudDiscoveryengineV1betaDocumentProcessingConfigParsingConfig",
           "description": "Configurations for default Document parser. If not specified, we will configure it as default DigitalParsingConfig, and the default parsing config will be applied to all file types for Document parsing."
@@ -13320,6 +14702,33 @@
       },
       "type": "object"
     },
+    "GoogleCloudDiscoveryengineV1betaDocumentProcessingConfigChunkingConfig": {
+      "description": "Configuration for chunking config.",
+      "id": "GoogleCloudDiscoveryengineV1betaDocumentProcessingConfigChunkingConfig",
+      "properties": {
+        "layoutBasedChunkingConfig": {
+          "$ref": "GoogleCloudDiscoveryengineV1betaDocumentProcessingConfigChunkingConfigLayoutBasedChunkingConfig",
+          "description": "Configuration for the layout based chunking."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaDocumentProcessingConfigChunkingConfigLayoutBasedChunkingConfig": {
+      "description": "Configuration for the layout based chunking.",
+      "id": "GoogleCloudDiscoveryengineV1betaDocumentProcessingConfigChunkingConfigLayoutBasedChunkingConfig",
+      "properties": {
+        "chunkSize": {
+          "description": "The token size limit for each chunk. Supported values: 100-500 (inclusive). Default value: 500.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "includeAncestorHeadings": {
+          "description": "Whether to include appending different levels of headings to chunks from the middle of the document to prevent context loss. Default value: False.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDiscoveryengineV1betaDocumentProcessingConfigParsingConfig": {
       "description": "Related configurations applied to a specific type of document parser.",
       "id": "GoogleCloudDiscoveryengineV1betaDocumentProcessingConfigParsingConfig",
@@ -13327,6 +14736,10 @@
         "digitalParsingConfig": {
           "$ref": "GoogleCloudDiscoveryengineV1betaDocumentProcessingConfigParsingConfigDigitalParsingConfig",
           "description": "Configurations applied to digital parser."
+        },
+        "layoutParsingConfig": {
+          "$ref": "GoogleCloudDiscoveryengineV1betaDocumentProcessingConfigParsingConfigLayoutParsingConfig",
+          "description": "Configurations applied to layout parser."
         },
         "ocrParsingConfig": {
           "$ref": "GoogleCloudDiscoveryengineV1betaDocumentProcessingConfigParsingConfigOcrParsingConfig",
@@ -13338,6 +14751,12 @@
     "GoogleCloudDiscoveryengineV1betaDocumentProcessingConfigParsingConfigDigitalParsingConfig": {
       "description": "The digital parsing configurations for documents.",
       "id": "GoogleCloudDiscoveryengineV1betaDocumentProcessingConfigParsingConfigDigitalParsingConfig",
+      "properties": {},
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaDocumentProcessingConfigParsingConfigLayoutParsingConfig": {
+      "description": "The layout parsing configurations for documents.",
+      "id": "GoogleCloudDiscoveryengineV1betaDocumentProcessingConfigParsingConfigLayoutParsingConfig",
       "properties": {},
       "type": "object"
     },
@@ -13418,7 +14837,7 @@
           "type": "string"
         },
         "industryVertical": {
-          "description": "The industry vertical that the engine registers. The restriction of the Engine industry vertical is based on DataStore: If unspecified, default to `GENERIC`. Vertical on Engine has to match vertical of the DataStore liniked to the engine.",
+          "description": "The industry vertical that the engine registers. The restriction of the Engine industry vertical is based on DataStore: If unspecified, default to `GENERIC`. Vertical on Engine has to match vertical of the DataStore linked to the engine.",
           "enum": [
             "INDUSTRY_VERTICAL_UNSPECIFIED",
             "GENERIC",
@@ -13522,7 +14941,7 @@
       "id": "GoogleCloudDiscoveryengineV1betaEngineCommonConfig",
       "properties": {
         "companyName": {
-          "description": "Immutable. The name of the company, business or entity that is associated with the engine. Setting this may help improve LLM related features.",
+          "description": "The name of the company, business or entity that is associated with the engine. Setting this may help improve LLM related features.",
           "type": "string"
         }
       },
@@ -13733,6 +15152,85 @@
           "type": "array"
         }
       },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaProject": {
+      "description": "Metadata and configurations for a Google Cloud project in the service.",
+      "id": "GoogleCloudDiscoveryengineV1betaProject",
+      "properties": {
+        "createTime": {
+          "description": "Output only. The timestamp when this project is created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "Output only. Full resource name of the project, for example `projects/{project_number}`. Note that when making requests, project number and project id are both acceptable, but the server will always respond in project number.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "provisionCompletionTime": {
+          "description": "Output only. The timestamp when this project is successfully provisioned. Empty value means this project is still provisioning and is not ready for use.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "serviceTermsMap": {
+          "additionalProperties": {
+            "$ref": "GoogleCloudDiscoveryengineV1betaProjectServiceTerms"
+          },
+          "description": "Output only. A map of terms of services. The key is the `id` of ServiceTerms.",
+          "readOnly": true,
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaProjectServiceTerms": {
+      "description": "Metadata about the terms of service.",
+      "id": "GoogleCloudDiscoveryengineV1betaProjectServiceTerms",
+      "properties": {
+        "acceptTime": {
+          "description": "The last time when the project agreed to the terms of service.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "declineTime": {
+          "description": "The last time when the project declined or revoked the agreement to terms of service.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "id": {
+          "description": "The unique identifier of this terms of service. Available terms: * `GA_DATA_USE_TERMS`: [Terms for data use](https://cloud.google.com/retail/data-use-terms). When using this as `id`, the acceptable version to provide is `2022-11-23`.",
+          "type": "string"
+        },
+        "state": {
+          "description": "Whether the project has accepted/rejected the service terms or it is still pending.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "TERMS_ACCEPTED",
+            "TERMS_PENDING",
+            "TERMS_DECLINED"
+          ],
+          "enumDescriptions": [
+            "The default value of the enum. This value is not actually used.",
+            "The project has given consent to the terms of service.",
+            "The project is pending to review and accept the terms of service.",
+            "The project has declined or revoked the agreement to terms of service."
+          ],
+          "type": "string"
+        },
+        "version": {
+          "description": "The version string of the terms of service. For acceptable values, see the comments for id above.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaProvisionProjectMetadata": {
+      "description": "Metadata associated with a project provision operation.",
+      "id": "GoogleCloudDiscoveryengineV1betaProvisionProjectMetadata",
+      "properties": {},
       "type": "object"
     },
     "GoogleCloudDiscoveryengineV1betaPurgeDocumentsMetadata": {
@@ -14075,6 +15573,12 @@
           "type": "string"
         }
       },
+      "type": "object"
+    },
+    "GoogleLongrunningCancelOperationRequest": {
+      "description": "The request message for Operations.CancelOperation.",
+      "id": "GoogleLongrunningCancelOperationRequest",
+      "properties": {},
       "type": "object"
     },
     "GoogleLongrunningListOperationsResponse": {

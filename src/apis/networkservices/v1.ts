@@ -322,7 +322,7 @@ export namespace networkservices_v1 {
      */
     service?: string | null;
     /**
-     * Optional. A set of events during request or response processing for which this extension is called. This field is required for the `LbTrafficExtension` resource. It's not relevant for the `LbRouteExtension` resource.
+     * Optional. A set of events during request or response processing for which this extension is called. This field is required for the `LbTrafficExtension` resource. It must not be set for the `LbRouteExtension` resource.
      */
     supportedEvents?: string[] | null;
     /**
@@ -340,7 +340,7 @@ export namespace networkservices_v1 {
     celExpression?: string | null;
   }
   /**
-   * Gateway represents the configuration for a proxy, typically a load balancer. It captures the ip:port over which the services are exposed by the proxy, along with any policy configurations. Routes have reference to to Gateways to dictate how requests should be routed by this Gateway. Next id: 32
+   * Gateway represents the configuration for a proxy, typically a load balancer. It captures the ip:port over which the services are exposed by the proxy, along with any policy configurations. Routes have reference to to Gateways to dictate how requests should be routed by this Gateway. Next id: 33
    */
   export interface Schema$Gateway {
     /**
@@ -1084,6 +1084,10 @@ export namespace networkservices_v1 {
      */
     loadBalancingScheme?: string | null;
     /**
+     * Optional. The metadata provided here will be included as part of the `metadata_context` (of type `google.protobuf.Struct`) in the `ProcessingRequest` message sent to the extension server. The metadata will be available under the namespace `com.google.lb_route_extension.`. The following variables are supported in the metadata Struct: `{forwarding_rule_id\}` - substituted with the forwarding rule's fully qualified resource name.
+     */
+    metadata?: {[key: string]: any} | null;
+    /**
      * Required. Identifier. Name of the `LbRouteExtension` resource in the following format: `projects/{project\}/locations/{location\}/lbRouteExtensions/{lb_route_extension\}`.
      */
     name?: string | null;
@@ -1120,6 +1124,10 @@ export namespace networkservices_v1 {
      * Required. All backend services and forwarding rules referenced by this extension must share the same load balancing scheme. Supported values: `INTERNAL_MANAGED`, `EXTERNAL_MANAGED`. For more information, refer to [Choosing a load balancer](https://cloud.google.com/load-balancing/docs/backend-service).
      */
     loadBalancingScheme?: string | null;
+    /**
+     * Optional. The metadata provided here will be included in the `ProcessingRequest.metadata_context.filter_metadata` map field. The metadata will be available under the key `com.google.lb_traffic_extension.`. The following variables are supported in the metadata: `{forwarding_rule_id\}` - substituted with the forwarding rule's fully qualified resource name.
+     */
+    metadata?: {[key: string]: any} | null;
     /**
      * Required. Identifier. Name of the `LbTrafficExtension` resource in the following format: `projects/{project\}/locations/{location\}/lbTrafficExtensions/{lb_traffic_extension\}`.
      */

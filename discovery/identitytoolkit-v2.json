@@ -1655,7 +1655,7 @@
       }
     }
   },
-  "revision": "20240424",
+  "revision": "20240522",
   "rootUrl": "https://identitytoolkit.googleapis.com/",
   "schemas": {
     "GoogleCloudIdentitytoolkitAdminV2AllowByDefault": {
@@ -1709,7 +1709,8 @@
           "type": "array"
         },
         "codeFlowConfig": {
-          "$ref": "GoogleCloudIdentitytoolkitAdminV2CodeFlowConfig"
+          "$ref": "GoogleCloudIdentitytoolkitAdminV2CodeFlowConfig",
+          "description": "Additional config for Apple for code flow."
         }
       },
       "type": "object"

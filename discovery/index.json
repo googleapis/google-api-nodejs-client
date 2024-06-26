@@ -2421,6 +2421,21 @@
     },
     {
       "kind": "discovery#directoryItem",
+      "id": "developerconnect:v1",
+      "name": "developerconnect",
+      "version": "v1",
+      "title": "Developer Connect API",
+      "description": "Connect third-party source code management to Google",
+      "discoveryRestUrl": "https://developerconnect.googleapis.com/$discovery/rest?version=v1",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "http://cloud.google.com/developer-connect/docs/overview",
+      "preferred": true
+    },
+    {
+      "kind": "discovery#directoryItem",
       "id": "dfareporting:v3.5",
       "name": "dfareporting",
       "version": "v3.5",
@@ -4017,7 +4032,7 @@
       "name": "marketingplatformadmin",
       "version": "v1alpha",
       "title": "Google Marketing Platform Admin API",
-      "description": "The Google Marketing Platform Admin API allows for programmatic access to the Google Marketing Platform configuration data. You can use the Google Marketing Platform Admin API to manage links between your Google Marketing Platform organization and Google Analytics accounts, set the service level of your GA4 properties.",
+      "description": "The Google Marketing Platform Admin API allows for programmatic access to the Google Marketing Platform configuration data. You can use the Google Marketing Platform Admin API to manage links between your Google Marketing Platform organization and Google Analytics accounts, and to set the service level of your GA4 properties.",
       "discoveryRestUrl": "https://marketingplatformadmin.googleapis.com/$discovery/rest?version=v1alpha",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
@@ -5698,7 +5713,7 @@
       "name": "sourcerepo",
       "version": "v1",
       "title": "Cloud Source Repositories API",
-      "description": "Accesses source code repositories hosted by Google.",
+      "description": "Accesses source code repositories hosted by Google. Important: Cloud Source Repositories is scheduled for end of sales starting June 17, 2024. Customers who have enabled the API prior to this date will not be affected and can continue to use Cloud Source Repositories. Organizations or projects who have not previously enabled the API cannot use Cloud Source Repositories after this date. View Cloud Source Repositories documentation for more info.",
       "discoveryRestUrl": "https://sourcerepo.googleapis.com/$discovery/rest?version=v1",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",

@@ -1127,7 +1127,7 @@
       }
     }
   },
-  "revision": "20240424",
+  "revision": "20240520",
   "rootUrl": "https://workstations.googleapis.com/",
   "schemas": {
     "Accelerator": {
@@ -1226,6 +1226,15 @@
             "$ref": "Accelerator"
           },
           "type": "array"
+        },
+        "bootDiskSizeGb": {
+          "description": "Optional. The size of the boot disk for the VM in gigabytes (GB). The minimum boot disk size is `30` GB. Defaults to `50` GB.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "enableNestedVirtualization": {
+          "description": "Optional. Whether to enable nested virtualization on boosted Cloud Workstations VMs running using this boost configuration. Nested virtualization lets you run virtual machine (VM) instances inside your workstation. Before enabling nested virtualization, consider the following important considerations. Cloud Workstations instances are subject to the [same restrictions as Compute Engine instances](https://cloud.google.com/compute/docs/instances/nested-virtualization/overview#restrictions): * **Organization policy**: projects, folders, or organizations may be restricted from creating nested VMs if the **Disable VM nested virtualization** constraint is enforced in the organization policy. For more information, see the Compute Engine section, [Checking whether nested virtualization is allowed](https://cloud.google.com/compute/docs/instances/nested-virtualization/managing-constraint#checking_whether_nested_virtualization_is_allowed). * **Performance**: nested VMs might experience a 10% or greater decrease in performance for workloads that are CPU-bound and possibly greater than a 10% decrease for workloads that are input/output bound. * **Machine Type**: nested virtualization can only be enabled on boost configurations that specify a machine_type in the N1 or N2 machine series. * **GPUs**: nested virtualization may not be enabled on boost configurations with accelerators. * **Operating System**: Because [Container-Optimized OS](https://cloud.google.com/compute/docs/images/os-details#container-optimized_os_cos) does not support nested virtualization, when nested virtualization is enabled, the underlying Compute Engine VM instances boot from an [Ubuntu LTS](https://cloud.google.com/compute/docs/images/os-details#ubuntu_lts) image. Defaults to false.",
+          "type": "boolean"
         },
         "id": {
           "description": "Optional. Required. The id to be used for the boost config.",
@@ -1540,6 +1549,11 @@
           "format": "google-datetime",
           "type": "string"
         },
+        "port": {
+          "description": "Optional. Port for which the access token should be generated. If specified, the generated access token will grant access only to the specified port of the workstation. If specified, values must be within the range [1 - 65535]. If not specified, the generated access token will grant access to all ports of the workstation.",
+          "format": "int32",
+          "type": "integer"
+        },
         "ttl": {
           "description": "Desired lifetime duration of the access token. This value must be at most 24 hours. If a value is not specified, the token's lifetime will be set to a default value of 1 hour.",
           "format": "google-duration",
@@ -1843,6 +1857,23 @@
         },
         "version": {
           "description": "Specifies the format of the policy. Valid values are `0`, `1`, and `3`. Requests that specify an invalid value are rejected. Any operation that affects conditional role bindings must specify version `3`. This requirement applies to the following operations: * Getting a policy that includes a conditional role binding * Adding a conditional role binding to a policy * Changing a conditional role binding in a policy * Removing any role binding, with or without a condition, from a policy that includes conditions **Important:** If you use IAM Conditions, you must include the `etag` field whenever you call `setIamPolicy`. If you omit this field, then IAM allows you to overwrite a version `3` policy with a version `1` policy, and all of the conditions in the version `3` policy are lost. If a policy does not include any conditions, operations on that policy may specify any valid version or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "PortRange": {
+      "description": "A PortsConfig defines a range of ports. Both first and last are inclusive. To specify a single port, both first and last should be same.",
+      "id": "PortRange",
+      "properties": {
+        "first": {
+          "description": "Required. Starting port number for the current range of ports.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "last": {
+          "description": "Required. Ending port number for the current range of ports.",
           "format": "int32",
           "type": "integer"
         }
@@ -2200,6 +2231,13 @@
       "description": "A workstation configuration resource in the Cloud Workstations API. Workstation configurations act as templates for workstations. The workstation configuration defines details such as the workstation virtual machine (VM) instance type, persistent storage, container image defining environment, which IDE or Code Editor to use, and more. Administrators and platform teams can also use [Identity and Access Management (IAM)](https://cloud.google.com/iam/docs/overview) rules to grant access to teams or to individual developers.",
       "id": "WorkstationConfig",
       "properties": {
+        "allowedPorts": {
+          "description": "Optional. Single or Range of ports externally accessible in the workstation. If not specified defaults to ports 22, 80 and ports 1024-65535.",
+          "items": {
+            "$ref": "PortRange"
+          },
+          "type": "array"
+        },
         "annotations": {
           "additionalProperties": {
             "type": "string"

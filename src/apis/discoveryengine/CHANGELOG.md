@@ -1,5 +1,30 @@
 # Changelog
 
+## [11.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/discoveryengine-v10.1.0...discoveryengine-v11.0.0) (2024-06-06)
+
+
+### ⚠ BREAKING CHANGES
+
+* **discoveryengine:** This release has breaking changes.
+* This release has breaking changes.
+* **discoveryengine:** This release has breaking changes.
+
+### Features
+
+* **discoveryengine:** update the API ([e03a113](https://github.com/googleapis/google-api-nodejs-client/commit/e03a1130dbf65c6bde2dc3050849a469e08f224c))
+* **discoveryengine:** update the API ([02437ec](https://github.com/googleapis/google-api-nodejs-client/commit/02437ec235f513321be4a12c3a028c33caf6775a))
+* **discoveryengine:** update the API ([32bea90](https://github.com/googleapis/google-api-nodejs-client/commit/32bea90c65cc4d01e2c5f15d759d776d9f428881))
+* **discoveryengine:** update the API ([ec40fe5](https://github.com/googleapis/google-api-nodejs-client/commit/ec40fe54ac9bc032c370f8eaf436489a10b04159))
+* **discoveryengine:** update the API ([e5ab8e6](https://github.com/googleapis/google-api-nodejs-client/commit/e5ab8e651d1b7ff419c33ffff6f1b74e0e950e75))
+* run the generator ([#3456](https://github.com/googleapis/google-api-nodejs-client/issues/3456)) ([a865e81](https://github.com/googleapis/google-api-nodejs-client/commit/a865e81539b315d3b321650663ba0b2555b1e5a1))
+
+## [10.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/discoveryengine-v10.0.0...discoveryengine-v10.1.0) (2024-06-03)
+
+
+### Features
+
+* **discoveryengine:** update the API ([02437ec](https://github.com/googleapis/google-api-nodejs-client/commit/02437ec235f513321be4a12c3a028c33caf6775a))
+
 ## [10.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/discoveryengine-v9.0.0...discoveryengine-v10.0.0) (2024-05-07)
 
 

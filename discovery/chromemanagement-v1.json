@@ -1172,7 +1172,7 @@
       }
     }
   },
-  "revision": "20240321",
+  "revision": "20240604",
   "rootUrl": "https://chromemanagement.googleapis.com/",
   "schemas": {
     "GoogleChromeManagementV1AndroidAppInfo": {
@@ -1315,6 +1315,85 @@
             "Web app."
           ],
           "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleChromeManagementV1AppReport": {
+      "description": "App report.",
+      "id": "GoogleChromeManagementV1AppReport",
+      "properties": {
+        "reportTime": {
+          "description": "Timestamp when the report was collected.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "usageData": {
+          "description": "App usage data.",
+          "items": {
+            "$ref": "GoogleChromeManagementV1AppUsageData"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleChromeManagementV1AppUsageData": {
+      "description": "App usage data.",
+      "id": "GoogleChromeManagementV1AppUsageData",
+      "properties": {
+        "appId": {
+          "description": "App id.",
+          "type": "string"
+        },
+        "appInstanceId": {
+          "description": "Application instance id. This will be unique per window/instance.",
+          "type": "string"
+        },
+        "appType": {
+          "description": "Type of app.",
+          "enum": [
+            "TELEMETRY_APPLICATION_TYPE_UNSPECIFIED",
+            "APPLICATION_TYPE_ARC",
+            "APPLICATION_TYPE_BUILT_IN",
+            "APPLICATION_TYPE_CROSTINI",
+            "APPLICATION_TYPE_CHROME_APP",
+            "APPLICATION_TYPE_WEB",
+            "APPLICATION_TYPE_MAC_OS",
+            "APPLICATION_TYPE_PLUGIN_VM",
+            "APPLICATION_TYPE_STANDALONE_BROWSER",
+            "APPLICATION_TYPE_REMOTE",
+            "APPLICATION_TYPE_BOREALIS",
+            "APPLICATION_TYPE_SYSTEM_WEB",
+            "APPLICATION_TYPE_STANDALONE_BROWSER_CHROME_APP",
+            "APPLICATION_TYPE_EXTENSION",
+            "APPLICATION_TYPE_STANDALONE_BROWSER_EXTENSION",
+            "APPLICATION_TYPE_BRUSCHETTA"
+          ],
+          "enumDescriptions": [
+            "Application type unknown.",
+            "Application type arc (Android app).",
+            "Application type built-in.",
+            "Application type Linux (via Crostini).",
+            "Application type Chrome app.",
+            "Application type web.",
+            "Application type Mac OS.",
+            "Application type Plugin VM.",
+            "Application type standalone browser (Lacros browser app).",
+            "Application type remote.",
+            "Application type borealis.",
+            "Application type system web.",
+            "Application type standalone browser chrome app (hosted in Lacros).",
+            "Application type extension.",
+            "Application type standalone browser extension.",
+            "Application type bruschetta."
+          ],
+          "type": "string"
+        },
+        "runningDuration": {
+          "description": "App foreground running time.",
+          "format": "google-duration",
           "type": "string"
         }
       },
@@ -3438,6 +3517,329 @@
       },
       "type": "object"
     },
+    "GoogleChromeManagementV1TelemetryAppInstallEvent": {
+      "description": "App installation data.",
+      "id": "GoogleChromeManagementV1TelemetryAppInstallEvent",
+      "properties": {
+        "appId": {
+          "description": "App id. For PWAs this is the start URL, and for extensions this is the extension id.",
+          "type": "string"
+        },
+        "appInstallReason": {
+          "description": "App installation reason.",
+          "enum": [
+            "APPLICATION_INSTALL_REASON_UNSPECIFIED",
+            "APPLICATION_INSTALL_REASON_SYSTEM",
+            "APPLICATION_INSTALL_REASON_POLICY",
+            "APPLICATION_INSTALL_REASON_OEM",
+            "APPLICATION_INSTALL_REASON_DEFAULT",
+            "APPLICATION_INSTALL_REASON_SYNC",
+            "APPLICATION_INSTALL_REASON_USER",
+            "APPLICATION_INSTALL_REASON_SUB_APP",
+            "APPLICATION_INSTALL_REASON_KIOSK",
+            "APPLICATION_INSTALL_REASON_COMMAND_LINE"
+          ],
+          "enumDescriptions": [
+            "Application install reason is unknown.",
+            "Application installed with the system and is considered part of the OS.",
+            "Application installed by policy.",
+            "Application installed by an original equipment manufacturer (OEM).",
+            "Application installed by default, but is not considered a system app.",
+            "Application installed by sync.",
+            "Application installed by user action.",
+            "Application installed bt SubApp API call.",
+            "Application installed by Kiosk on Chrome OS.",
+            "Application installed by command line argument."
+          ],
+          "type": "string"
+        },
+        "appInstallSource": {
+          "description": "App installation source.",
+          "enum": [
+            "APPLICATION_INSTALL_SOURCE_UNSPECIFIED",
+            "APPLICATION_INSTALL_SOURCE_SYSTEM",
+            "APPLICATION_INSTALL_SOURCE_SYNC",
+            "APPLICATION_INSTALL_SOURCE_PLAY_STORE",
+            "APPLICATION_INSTALL_SOURCE_CHROME_WEB_STORE",
+            "APPLICATION_INSTALL_SOURCE_BROWSER"
+          ],
+          "enumDescriptions": [
+            "Application install source is unknown.",
+            "Application installed as part of Chrome OS.",
+            "Application install source is a sync.",
+            "Application install source is the Play store.",
+            "Application install source is the Chrome web store.",
+            "Application install source is a browser."
+          ],
+          "type": "string"
+        },
+        "appInstallTime": {
+          "description": "App installation time depending on the app lifecycle.",
+          "enum": [
+            "APPLICATION_INSTALL_TIME_UNSPECIFIED",
+            "APPLICATION_INSTALL_TIME_INIT",
+            "APPLICATION_INSTALL_TIME_RUNNING"
+          ],
+          "enumDescriptions": [
+            "Application install time unknown.",
+            "Application install is initialized.",
+            "Application install is currently running."
+          ],
+          "type": "string"
+        },
+        "appType": {
+          "description": "Type of app.",
+          "enum": [
+            "TELEMETRY_APPLICATION_TYPE_UNSPECIFIED",
+            "APPLICATION_TYPE_ARC",
+            "APPLICATION_TYPE_BUILT_IN",
+            "APPLICATION_TYPE_CROSTINI",
+            "APPLICATION_TYPE_CHROME_APP",
+            "APPLICATION_TYPE_WEB",
+            "APPLICATION_TYPE_MAC_OS",
+            "APPLICATION_TYPE_PLUGIN_VM",
+            "APPLICATION_TYPE_STANDALONE_BROWSER",
+            "APPLICATION_TYPE_REMOTE",
+            "APPLICATION_TYPE_BOREALIS",
+            "APPLICATION_TYPE_SYSTEM_WEB",
+            "APPLICATION_TYPE_STANDALONE_BROWSER_CHROME_APP",
+            "APPLICATION_TYPE_EXTENSION",
+            "APPLICATION_TYPE_STANDALONE_BROWSER_EXTENSION",
+            "APPLICATION_TYPE_BRUSCHETTA"
+          ],
+          "enumDescriptions": [
+            "Application type unknown.",
+            "Application type arc (Android app).",
+            "Application type built-in.",
+            "Application type Linux (via Crostini).",
+            "Application type Chrome app.",
+            "Application type web.",
+            "Application type Mac OS.",
+            "Application type Plugin VM.",
+            "Application type standalone browser (Lacros browser app).",
+            "Application type remote.",
+            "Application type borealis.",
+            "Application type system web.",
+            "Application type standalone browser chrome app (hosted in Lacros).",
+            "Application type extension.",
+            "Application type standalone browser extension.",
+            "Application type bruschetta."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleChromeManagementV1TelemetryAppLaunchEvent": {
+      "description": "App launch data.",
+      "id": "GoogleChromeManagementV1TelemetryAppLaunchEvent",
+      "properties": {
+        "appId": {
+          "description": "App id. For PWAs this is the start URL, and for extensions this is the extension id.",
+          "type": "string"
+        },
+        "appLaunchSource": {
+          "description": "App launch source.",
+          "enum": [
+            "APPLICATION_LAUNCH_SOURCE_UNSPECIFIED",
+            "APPLICATION_LAUNCH_SOURCE_APP_LIST_GRID",
+            "APPLICATION_LAUNCH_SOURCE_APP_LIST_GRID_CONTEXT_MENU",
+            "APPLICATION_LAUNCH_SOURCE_APP_LIST_QUERY",
+            "APPLICATION_LAUNCH_SOURCE_APP_LIST_QUERY_CONTEXT_MENU",
+            "APPLICATION_LAUNCH_SOURCE_APP_LIST_RECOMMENDATION",
+            "APPLICATION_LAUNCH_SOURCE_PARENTAL_CONTROLS",
+            "APPLICATION_LAUNCH_SOURCE_SHELF",
+            "APPLICATION_LAUNCH_SOURCE_FILE_MANAGER",
+            "APPLICATION_LAUNCH_SOURCE_LINK",
+            "APPLICATION_LAUNCH_SOURCE_OMNIBOX",
+            "APPLICATION_LAUNCH_SOURCE_CHROME_INTERNAL",
+            "APPLICATION_LAUNCH_SOURCE_KEYBOARD",
+            "APPLICATION_LAUNCH_SOURCE_OTHER_APP",
+            "APPLICATION_LAUNCH_SOURCE_MENU",
+            "APPLICATION_LAUNCH_SOURCE_INSTALLED_NOTIFICATION",
+            "APPLICATION_LAUNCH_SOURCE_TEST",
+            "APPLICATION_LAUNCH_SOURCE_ARC",
+            "APPLICATION_LAUNCH_SOURCE_SHARESHEET",
+            "APPLICATION_LAUNCH_SOURCE_RELEASE_NOTES_NOTIFICATION",
+            "APPLICATION_LAUNCH_SOURCE_FULL_RESTORE",
+            "APPLICATION_LAUNCH_SOURCE_SMART_TEXT_CONTEXT_MENU",
+            "APPLICATION_LAUNCH_SOURCE_DISCOVER_TAB_NOTIFICATION",
+            "APPLICATION_LAUNCH_SOURCE_MANAGEMENT_API",
+            "APPLICATION_LAUNCH_SOURCE_KIOSK",
+            "APPLICATION_LAUNCH_SOURCE_COMMAND_LINE",
+            "APPLICATION_LAUNCH_SOURCE_BACKGROUND_MODE",
+            "APPLICATION_LAUNCH_SOURCE_NEW_TAB_PAGE",
+            "APPLICATION_LAUNCH_SOURCE_INTENT_URL",
+            "APPLICATION_LAUNCH_SOURCE_OS_LOGIN",
+            "APPLICATION_LAUNCH_SOURCE_PROTOCOL_HANDLER",
+            "APPLICATION_LAUNCH_SOURCE_URL_HANDLER",
+            "APPLICATION_LAUNCH_SOURCE_LOCK_SCREEN",
+            "APPLICATION_LAUNCH_SOURCE_APP_HOME_PAGE",
+            "APPLICATION_LAUNCH_SOURCE_REPARENTING",
+            "APPLICATION_LAUNCH_SOURCE_PROFILE_MENU",
+            "APPLICATION_LAUNCH_SOURCE_SYSTEM_TRAY_CALENDAR",
+            "APPLICATION_LAUNCH_SOURCE_INSTALLER",
+            "APPLICATION_LAUNCH_SOURCE_FIRST_RUN",
+            "APPLICATION_LAUNCH_SOURCE_WELCOME_TOUR",
+            "APPLICATION_LAUNCH_SOURCE_FOCUS_MODE"
+          ],
+          "enumDescriptions": [
+            "Application launch source unknown.",
+            "Application launched from the grid of apps, not the search box.",
+            "Application launched from the grid of apps, off of the context menu.",
+            "Application launched from query-dependent results (larger icons).",
+            "Application launched from query-dependent results, off of the context menu.",
+            "Application launched from query-less recommendations (smaller icons).",
+            "Application launched from the Parental Controls Settings section and Per App time notification.",
+            "Application launched from shelf.",
+            "Application launched from the file manager",
+            "Application launched from left click on a link in the browser.",
+            "Application launched from entering a URL in the Omnibox on the browser.",
+            "Application launched from a Chrome internal call.",
+            "Application launched from keyboard shortcut for opening app.",
+            "Application launched from clicking a link in another app or WebUI.",
+            "Application launched from menu.",
+            "Application launched from the installed notification.",
+            "Application launched from a test.",
+            "Application launched from Arc.",
+            "Application launched from Sharesheet.",
+            "Application launched from the release notes notification.",
+            "Application launched from a full restore.",
+            "Application launched from a smart text selection context menu.",
+            "Application launched from a discover tab notification.",
+            "Application launched from the Management API.",
+            "Application launched from kiosk.",
+            "Application launched from the command line.",
+            "Application launched from background mode.",
+            "Application launched from the new tab page.",
+            "Application launched from an intent URL.",
+            "Application launched from OS login.",
+            "Application launched from protocol handler.",
+            "Application launched from URL handler.",
+            "Application launched from lock screen app launcher.",
+            "Application launched from app home (chrome://apps) page.",
+            "Application launched from moving content into an app.",
+            "Application launched from profile menu of installable chrome://password-manager WebUI.",
+            "Application launched from system tray calendar.",
+            "Application launched from source installer.",
+            "Count first-run Help app launches separately so that we can understand the number of user-triggered launches.",
+            "Application launched from welcome tour.",
+            "Applicationed launched from focus panel."
+          ],
+          "type": "string"
+        },
+        "appType": {
+          "description": "Type of app.",
+          "enum": [
+            "TELEMETRY_APPLICATION_TYPE_UNSPECIFIED",
+            "APPLICATION_TYPE_ARC",
+            "APPLICATION_TYPE_BUILT_IN",
+            "APPLICATION_TYPE_CROSTINI",
+            "APPLICATION_TYPE_CHROME_APP",
+            "APPLICATION_TYPE_WEB",
+            "APPLICATION_TYPE_MAC_OS",
+            "APPLICATION_TYPE_PLUGIN_VM",
+            "APPLICATION_TYPE_STANDALONE_BROWSER",
+            "APPLICATION_TYPE_REMOTE",
+            "APPLICATION_TYPE_BOREALIS",
+            "APPLICATION_TYPE_SYSTEM_WEB",
+            "APPLICATION_TYPE_STANDALONE_BROWSER_CHROME_APP",
+            "APPLICATION_TYPE_EXTENSION",
+            "APPLICATION_TYPE_STANDALONE_BROWSER_EXTENSION",
+            "APPLICATION_TYPE_BRUSCHETTA"
+          ],
+          "enumDescriptions": [
+            "Application type unknown.",
+            "Application type arc (Android app).",
+            "Application type built-in.",
+            "Application type Linux (via Crostini).",
+            "Application type Chrome app.",
+            "Application type web.",
+            "Application type Mac OS.",
+            "Application type Plugin VM.",
+            "Application type standalone browser (Lacros browser app).",
+            "Application type remote.",
+            "Application type borealis.",
+            "Application type system web.",
+            "Application type standalone browser chrome app (hosted in Lacros).",
+            "Application type extension.",
+            "Application type standalone browser extension.",
+            "Application type bruschetta."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleChromeManagementV1TelemetryAppUninstallEvent": {
+      "description": "App uninstall data.",
+      "id": "GoogleChromeManagementV1TelemetryAppUninstallEvent",
+      "properties": {
+        "appId": {
+          "description": "App id. For PWAs this is the start URL, and for extensions this is the extension id.",
+          "type": "string"
+        },
+        "appType": {
+          "description": "Type of app.",
+          "enum": [
+            "TELEMETRY_APPLICATION_TYPE_UNSPECIFIED",
+            "APPLICATION_TYPE_ARC",
+            "APPLICATION_TYPE_BUILT_IN",
+            "APPLICATION_TYPE_CROSTINI",
+            "APPLICATION_TYPE_CHROME_APP",
+            "APPLICATION_TYPE_WEB",
+            "APPLICATION_TYPE_MAC_OS",
+            "APPLICATION_TYPE_PLUGIN_VM",
+            "APPLICATION_TYPE_STANDALONE_BROWSER",
+            "APPLICATION_TYPE_REMOTE",
+            "APPLICATION_TYPE_BOREALIS",
+            "APPLICATION_TYPE_SYSTEM_WEB",
+            "APPLICATION_TYPE_STANDALONE_BROWSER_CHROME_APP",
+            "APPLICATION_TYPE_EXTENSION",
+            "APPLICATION_TYPE_STANDALONE_BROWSER_EXTENSION",
+            "APPLICATION_TYPE_BRUSCHETTA"
+          ],
+          "enumDescriptions": [
+            "Application type unknown.",
+            "Application type arc (Android app).",
+            "Application type built-in.",
+            "Application type Linux (via Crostini).",
+            "Application type Chrome app.",
+            "Application type web.",
+            "Application type Mac OS.",
+            "Application type Plugin VM.",
+            "Application type standalone browser (Lacros browser app).",
+            "Application type remote.",
+            "Application type borealis.",
+            "Application type system web.",
+            "Application type standalone browser chrome app (hosted in Lacros).",
+            "Application type extension.",
+            "Application type standalone browser extension.",
+            "Application type bruschetta."
+          ],
+          "type": "string"
+        },
+        "appUninstallSource": {
+          "description": "App uninstall source.",
+          "enum": [
+            "APPLICATION_UNINSTALL_SOURCE_UNSPECIFIED",
+            "APPLICATION_UNINSTALL_SOURCE_APP_LIST",
+            "APPLICATION_UNINSTALL_SOURCE_APP_MANAGEMENT",
+            "APPLICATION_UNINSTALL_SOURCE_SHELF",
+            "APPLICATION_UNINSTALL_SOURCE_MIGRATION"
+          ],
+          "enumDescriptions": [
+            "Application uninstall source unknown.",
+            "Application uninstalled from the App List (Launcher).",
+            "Application uninstalled from the App Managedment page.",
+            "Application uninstalled from the Shelf.",
+            "Application uninstalled by app migration."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleChromeManagementV1TelemetryAudioSevereUnderrunEvent": {
       "description": "`TelemetryAudioSevereUnderrunEvent` is triggered when a audio devices run out of buffer data for more than 5 seconds. * Granular permission needed: TELEMETRY_API_AUDIO_REPORT",
       "id": "GoogleChromeManagementV1TelemetryAudioSevereUnderrunEvent",
@@ -3448,6 +3850,14 @@
       "description": "Telemetry data collected from a managed device. * Granular permission needed: TELEMETRY_API_DEVICE",
       "id": "GoogleChromeManagementV1TelemetryDevice",
       "properties": {
+        "appReport": {
+          "description": "Output only. App reports collected periodically sorted in a decreasing order of report_time.",
+          "items": {
+            "$ref": "GoogleChromeManagementV1AppReport"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
         "audioStatusReport": {
           "description": "Output only. Audio reports collected periodically sorted in a decreasing order of report_time.",
           "items": {
@@ -3661,6 +4071,21 @@
       "description": "Telemetry data reported by a managed device.",
       "id": "GoogleChromeManagementV1TelemetryEvent",
       "properties": {
+        "appInstallEvent": {
+          "$ref": "GoogleChromeManagementV1TelemetryAppInstallEvent",
+          "description": "Output only. Payload for app install event. Present only when `event_type` is `APP_INSTALLED`.",
+          "readOnly": true
+        },
+        "appLaunchEvent": {
+          "$ref": "GoogleChromeManagementV1TelemetryAppLaunchEvent",
+          "description": "Output only. Payload for app launch event.Present only when `event_type` is `APP_LAUNCHED`.",
+          "readOnly": true
+        },
+        "appUninstallEvent": {
+          "$ref": "GoogleChromeManagementV1TelemetryAppUninstallEvent",
+          "description": "Output only. Payload for app uninstall event. Present only when `event_type` is `APP_UNINSTALLED`.",
+          "readOnly": true
+        },
         "audioSevereUnderrunEvent": {
           "$ref": "GoogleChromeManagementV1TelemetryAudioSevereUnderrunEvent",
           "description": "Output only. Payload for audio severe underrun event. Present only when the `event_type` field is `AUDIO_SEVERE_UNDERRUN`.",
@@ -3682,7 +4107,10 @@
             "NETWORK_HTTPS_LATENCY_CHANGE",
             "WIFI_SIGNAL_STRENGTH_LOW",
             "WIFI_SIGNAL_STRENGTH_RECOVERED",
-            "VPN_CONNECTION_STATE_CHANGE"
+            "VPN_CONNECTION_STATE_CHANGE",
+            "APP_INSTALLED",
+            "APP_UNINSTALLED",
+            "APP_LAUNCHED"
           ],
           "enumDescriptions": [
             "Event type unknown.",
@@ -3693,7 +4121,10 @@
             "Triggered when a new HTTPS latency problem was detected or the device has recovered form an existing HTTPS latency problem.",
             "Triggered when connected WiFi network signal strength drops below -70dBm.",
             "Triggered when connected WiFi network signal strength is recovered from a signal drop.",
-            "Triggered on changes to VPN connections."
+            "Triggered on changes to VPN connections.",
+            "Triggered when an app is installed.",
+            "Triggered when an app is uninstalled.",
+            "Triggered when an app is launched."
           ],
           "type": "string"
         },
@@ -3756,7 +4187,10 @@
               "NETWORK_HTTPS_LATENCY_CHANGE",
               "WIFI_SIGNAL_STRENGTH_LOW",
               "WIFI_SIGNAL_STRENGTH_RECOVERED",
-              "VPN_CONNECTION_STATE_CHANGE"
+              "VPN_CONNECTION_STATE_CHANGE",
+              "APP_INSTALLED",
+              "APP_UNINSTALLED",
+              "APP_LAUNCHED"
             ],
             "enumDescriptions": [
               "Event type unknown.",
@@ -3767,7 +4201,10 @@
               "Triggered when a new HTTPS latency problem was detected or the device has recovered form an existing HTTPS latency problem.",
               "Triggered when connected WiFi network signal strength drops below -70dBm.",
               "Triggered when connected WiFi network signal strength is recovered from a signal drop.",
-              "Triggered on changes to VPN connections."
+              "Triggered on changes to VPN connections.",
+              "Triggered when an app is installed.",
+              "Triggered when an app is uninstalled.",
+              "Triggered when an app is launched."
             ],
             "type": "string"
           },
@@ -3952,6 +4389,14 @@
       "description": "Telemetry data collected for a managed user and device. * Granular permission needed: TELEMETRY_API_DEVICE",
       "id": "GoogleChromeManagementV1TelemetryUserDevice",
       "properties": {
+        "appReport": {
+          "description": "Output only. App reports collected periodically sorted in a decreasing order of report_time.",
+          "items": {
+            "$ref": "GoogleChromeManagementV1AppReport"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
         "audioStatusReport": {
           "description": "Output only. Audio reports collected periodically sorted in a decreasing order of report_time.",
           "items": {

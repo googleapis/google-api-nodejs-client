@@ -675,6 +675,45 @@
                             "https://www.googleapis.com/auth/cloud-platform"
                           ]
                         },
+                        "patch": {
+                          "description": "Updates the parameters of a Network Connectivity Center group.",
+                          "flatPath": "v1/projects/{projectsId}/locations/global/hubs/{hubsId}/groups/{groupsId}",
+                          "httpMethod": "PATCH",
+                          "id": "networkconnectivity.projects.locations.global.hubs.groups.patch",
+                          "parameterOrder": [
+                            "name"
+                          ],
+                          "parameters": {
+                            "name": {
+                              "description": "Immutable. The name of the group. Group names must be unique. They use the following form: `projects/{project_number}/locations/global/hubs/{hub}/groups/{group_id}`",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/global/hubs/[^/]+/groups/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            },
+                            "requestId": {
+                              "description": "Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server knows to ignore the request if it has already been completed. The server guarantees that a request doesn't result in creation of duplicate commitments for at least 60 minutes. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check to see whether the original operation was received. If it was, the server ignores the second request. This behavior prevents clients from mistakenly creating duplicate commitments. The request ID must be a valid UUID, with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                              "location": "query",
+                              "type": "string"
+                            },
+                            "updateMask": {
+                              "description": "Optional. In the case of an update to an existing group, field mask is used to specify the fields to be overwritten. The fields specified in the update_mask are relative to the resource, not the full request. A field is overwritten if it is in the mask. If the user does not provide a mask, then all fields are overwritten.",
+                              "format": "google-fieldmask",
+                              "location": "query",
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1/{+name}",
+                          "request": {
+                            "$ref": "Group"
+                          },
+                          "response": {
+                            "$ref": "GoogleLongrunningOperation"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        },
                         "setIamPolicy": {
                           "description": "Sets the access control policy on the specified resource. Replaces any existing policy. Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.",
                           "flatPath": "v1/projects/{projectsId}/locations/global/hubs/{hubsId}/groups/{groupsId}:setIamPolicy",
@@ -911,7 +950,7 @@
                           "type": "string"
                         },
                         "requestId": {
-                          "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                          "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server knows to ignore the request if it has already been completed. The server guarantees that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
                           "location": "query",
                           "type": "string"
                         }
@@ -944,7 +983,7 @@
                           "type": "string"
                         },
                         "requestId": {
-                          "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                          "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server knows to ignore the request if it has already been completed. The server guarantees that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
                           "location": "query",
                           "type": "string"
                         }
@@ -2773,7 +2812,7 @@
       }
     }
   },
-  "revision": "20240424",
+  "revision": "20240523",
   "rootUrl": "https://networkconnectivity.googleapis.com/",
   "schemas": {
     "AcceptHubSpokeRequest": {
@@ -2850,6 +2889,20 @@
       },
       "type": "object"
     },
+    "AutoAccept": {
+      "description": "The auto-accept setting for a group controls whether proposed spokes are automatically attached to the hub. If auto-accept is enabled, the spoke immediately is attached to the hub and becomes part of the group. In this case, the new spoke is in the ACTIVE state. If auto-accept is disabled, the spoke goes to the INACTIVE state, and it must be reviewed and accepted by a hub administrator.",
+      "id": "AutoAccept",
+      "properties": {
+        "autoAcceptProjects": {
+          "description": "A list of project ids or project numbers for which you want to enable auto-accept. The auto-accept setting is applied to spokes being created or updated in these projects.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "Binding": {
       "description": "Associates `members`, or principals, with a `role`.",
       "id": "Binding",
@@ -2891,6 +2944,14 @@
         "project": {
           "description": "The consumer project where PSC connections are allowed to be created in.",
           "type": "string"
+        },
+        "serviceAttachmentIpAddressMap": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Output only. A map to store mapping between customer vip and target service attachment. Only service attachment with producer specified ip addresses are stored here.",
+          "readOnly": true,
+          "type": "object"
         },
         "state": {
           "description": "Output only. Overall state of PSC Connections management for this consumer psc config.",
@@ -3042,7 +3103,7 @@
           "type": "string"
         },
         "protocolVersion": {
-          "description": "Required. Internet protocol versions this policy-based route applies to. For this version, only IPV4 is supported.",
+          "description": "Required. Internet protocol versions this policy-based route applies to. For this version, only IPV4 is supported. IPV6 is supported in preview.",
           "enum": [
             "PROTOCOL_VERSION_UNSPECIFIED",
             "IPV4"
@@ -3172,6 +3233,10 @@
       "description": "A group represents a subset of spokes attached to a hub.",
       "id": "Group",
       "properties": {
+        "autoAccept": {
+          "$ref": "AutoAccept",
+          "description": "Optional. The auto-accept setting for this group."
+        },
         "createTime": {
           "description": "Output only. The time the group was created.",
           "format": "google-datetime",
@@ -3191,6 +3256,11 @@
         },
         "name": {
           "description": "Immutable. The name of the group. Group names must be unique. They use the following form: `projects/{project_number}/locations/global/hubs/{hub}/groups/{group_id}`",
+          "type": "string"
+        },
+        "routeTable": {
+          "description": "Output only. The name of the route table that corresponds to this group. They use the following form: `projects/{project_number}/locations/global/hubs/{hub_id}/routeTables/{route_table_id}`",
+          "readOnly": true,
           "type": "string"
         },
         "state": {
@@ -3248,6 +3318,10 @@
           "description": "An optional description of the hub.",
           "type": "string"
         },
+        "exportPsc": {
+          "description": "Optional. Whether Private Service Connect transitivity is enabled for the hub. If true, Private Service Connect endpoints in VPC spokes attached to the hub are made accessible to other VPC spokes attached to the hub. The default value is false.",
+          "type": "boolean"
+        },
         "labels": {
           "additionalProperties": {
             "type": "string"
@@ -3257,6 +3331,32 @@
         },
         "name": {
           "description": "Immutable. The name of the hub. Hub names must be unique. They use the following form: `projects/{project_number}/locations/global/hubs/{hub_id}`",
+          "type": "string"
+        },
+        "policyMode": {
+          "description": "Optional. The policy mode of this hub. This field can be either PRESET or CUSTOM. If unspecified, the policy_mode defaults to PRESET.",
+          "enum": [
+            "POLICY_MODE_UNSPECIFIED",
+            "PRESET"
+          ],
+          "enumDescriptions": [
+            "Policy mode is unspecified. It defaults to PRESET with preset_topology = MESH.",
+            "Hub uses one of the preset topologies."
+          ],
+          "type": "string"
+        },
+        "presetTopology": {
+          "description": "Optional. The topology implemented in this hub. Currently, this field is only used when policy_mode = PRESET. The available preset topologies are MESH and STAR. If preset_topology is unspecified and policy_mode = PRESET, the preset_topology defaults to MESH. When policy_mode = CUSTOM, the preset_topology is set to PRESET_TOPOLOGY_UNSPECIFIED.",
+          "enum": [
+            "PRESET_TOPOLOGY_UNSPECIFIED",
+            "MESH",
+            "STAR"
+          ],
+          "enumDescriptions": [
+            "Preset topology is unspecified. When policy_mode = PRESET, it defaults to MESH.",
+            "Mesh topology is implemented. Group `default` is automatically created. All spokes in the hub are added to group `default`.",
+            "Star topology is implemented. Two groups, `center` and `edge`, are automatically created along with hub creation. Spokes have to join one of the groups during creation."
+          ],
           "type": "string"
         },
         "routeTables": {
@@ -3926,6 +4026,63 @@
       },
       "type": "object"
     },
+    "NextHopInterconnectAttachment": {
+      "description": "A route next hop that leads to an interconnect attachment resource.",
+      "id": "NextHopInterconnectAttachment",
+      "properties": {
+        "siteToSiteDataTransfer": {
+          "description": "Indicates whether site-to-site data transfer is allowed for this interconnect attachment resource. Data transfer is available only in [supported locations](https://cloud.google.com/network-connectivity/docs/network-connectivity-center/concepts/locations).",
+          "type": "boolean"
+        },
+        "uri": {
+          "description": "The URI of the interconnect attachment resource.",
+          "type": "string"
+        },
+        "vpcNetwork": {
+          "description": "The VPC network where this interconnect attachment is located.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "NextHopRouterApplianceInstance": {
+      "description": "A route next hop that leads to a Router appliance instance.",
+      "id": "NextHopRouterApplianceInstance",
+      "properties": {
+        "siteToSiteDataTransfer": {
+          "description": "Indicates whether site-to-site data transfer is allowed for this Router appliance instance resource. Data transfer is available only in [supported locations](https://cloud.google.com/network-connectivity/docs/network-connectivity-center/concepts/locations).",
+          "type": "boolean"
+        },
+        "uri": {
+          "description": "The URI of the Router appliance instance.",
+          "type": "string"
+        },
+        "vpcNetwork": {
+          "description": "The VPC network where this VM is located.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "NextHopVPNTunnel": {
+      "description": "A route next hop that leads to a VPN tunnel resource.",
+      "id": "NextHopVPNTunnel",
+      "properties": {
+        "siteToSiteDataTransfer": {
+          "description": "Indicates whether site-to-site data transfer is allowed for this VPN tunnel resource. Data transfer is available only in [supported locations](https://cloud.google.com/network-connectivity/docs/network-connectivity-center/concepts/locations).",
+          "type": "boolean"
+        },
+        "uri": {
+          "description": "The URI of the VPN tunnel resource.",
+          "type": "string"
+        },
+        "vpcNetwork": {
+          "description": "The VPC network where this VPN tunnel is located.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "NextHopVpcNetwork": {
       "id": "NextHopVpcNetwork",
       "properties": {
@@ -4012,7 +4169,7 @@
       "type": "object"
     },
     "PolicyBasedRoute": {
-      "description": "Policy-based routes route L4 network traffic based on not just destination IP address, but also source IP address, protocol, and more. If a policy-based route conflicts with other types of routes, the policy-based route always take precedence.",
+      "description": "Policy-based routes route L4 network traffic based on not just destination IP address, but also source IP address, protocol, and more. If a policy-based route conflicts with other types of routes, the policy-based route always takes precedence.",
       "id": "PolicyBasedRoute",
       "properties": {
         "createTime": {
@@ -4065,7 +4222,7 @@
           ],
           "enumDescriptions": [
             "Default value.",
-            "Use the routes from the default routing tables (system-generated routes, custom routes, peering route) to determine the next hop. This will effectively exclude matching packets being applied on other PBRs with a lower priority."
+            "Use the routes from the default routing tables (system-generated routes, custom routes, peering route) to determine the next hop. This effectively excludes matching packets being applied on other PBRs with a lower priority."
           ],
           "type": "string"
         },
@@ -4087,7 +4244,7 @@
         },
         "virtualMachine": {
           "$ref": "VirtualMachine",
-          "description": "Optional. VM instances to which this policy-based route applies to."
+          "description": "Optional. VM instances that this policy-based route applies to."
         },
         "warnings": {
           "description": "Output only. If potential misconfigurations are detected for this route, this field will be populated with warning messages.",
@@ -4350,9 +4507,27 @@
           "description": "Immutable. The name of the route. Route names must be unique. Route names use the following form: `projects/{project_number}/locations/global/hubs/{hub}/routeTables/{route_table_id}/routes/{route_id}`",
           "type": "string"
         },
+        "nextHopInterconnectAttachment": {
+          "$ref": "NextHopInterconnectAttachment",
+          "description": "Immutable. The next-hop VLAN attachment for packets on this route."
+        },
+        "nextHopRouterApplianceInstance": {
+          "$ref": "NextHopRouterApplianceInstance",
+          "description": "Immutable. The next-hop Router appliance instance for packets on this route."
+        },
         "nextHopVpcNetwork": {
           "$ref": "NextHopVpcNetwork",
           "description": "Immutable. The destination VPC network for packets on this route."
+        },
+        "nextHopVpnTunnel": {
+          "$ref": "NextHopVPNTunnel",
+          "description": "Immutable. The next-hop VPN tunnel for packets on this route."
+        },
+        "priority": {
+          "description": "Output only. The priority of this route. Priority is used to break ties in cases where a destination matches more than one route. In these cases the route with the lowest-numbered priority value wins.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
         },
         "spoke": {
           "description": "Immutable. The spoke that this route leads to. Example: projects/12345/locations/global/spokes/SPOKE",
@@ -4390,12 +4565,14 @@
           "enum": [
             "ROUTE_TYPE_UNSPECIFIED",
             "VPC_PRIMARY_SUBNET",
-            "VPC_SECONDARY_SUBNET"
+            "VPC_SECONDARY_SUBNET",
+            "DYNAMIC_ROUTE"
           ],
           "enumDescriptions": [
             "No route type information specified",
             "The route leads to a destination within the primary address range of the VPC network's subnet.",
-            "The route leads to a destination within the secondary address range of the VPC network's subnet."
+            "The route leads to a destination within the secondary address range of the VPC network's subnet.",
+            "The route leads to a destination in a dynamic route. Dynamic routes are derived from Border Gateway Protocol (BGP) advertisements received from an NCC hybrid spoke."
           ],
           "readOnly": true,
           "type": "string"
@@ -5093,11 +5270,11 @@
       "type": "object"
     },
     "VirtualMachine": {
-      "description": "VM instances to which this policy-based route applies to.",
+      "description": "VM instances that this policy-based route applies to.",
       "id": "VirtualMachine",
       "properties": {
         "tags": {
-          "description": "Optional. A list of VM instance tags the this policy-based route applies to. VM instances that have ANY of tags specified here will install this PBR.",
+          "description": "Optional. A list of VM instance tags that this policy-based route applies to. VM instances that have ANY of tags specified here installs this PBR.",
           "items": {
             "type": "string"
           },
@@ -5119,7 +5296,7 @@
           ],
           "enumDescriptions": [
             "Default value.",
-            "The policy-based route is not active and functioning. Common causes are the dependent network was deleted or the resource project was turned off.",
+            "The policy-based route is not active and functioning. Common causes are that the dependent network was deleted or the resource project was turned off.",
             "The policy-based route is being modified (e.g. created/deleted) at this time."
           ],
           "readOnly": true,

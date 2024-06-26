@@ -2565,7 +2565,7 @@
       }
     }
   },
-  "revision": "20240422",
+  "revision": "20240514",
   "rootUrl": "https://container.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -5447,12 +5447,16 @@
               "POD",
               "DAEMONSET",
               "DEPLOYMENT",
-              "STATEFULSET"
+              "STATEFULSET",
+              "CADVISOR",
+              "KUBELET"
             ],
             "enumDeprecated": [
               false,
               false,
               true,
+              false,
+              false,
               false,
               false,
               false,
@@ -5475,7 +5479,9 @@
               "Pod",
               "DaemonSet",
               "Deployment",
-              "Statefulset"
+              "Statefulset",
+              "CADVISOR",
+              "KUBELET"
             ],
             "type": "string"
           },

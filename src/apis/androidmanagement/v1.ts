@@ -392,6 +392,10 @@ export namespace androidmanagement_v1 {
      */
     permissionGrants?: Schema$PermissionGrant[];
     /**
+     * Optional. Specifies whether user control is permitted for the app. User control includes user actions like force-stopping and clearing app data. Supported on Android 11 and above.
+     */
+    userControlSettings?: string | null;
+    /**
      * Specifies whether the app installed in the work profile is allowed to add widgets to the home screen.
      */
     workProfileWidgets?: string | null;
@@ -539,7 +543,7 @@ export namespace androidmanagement_v1 {
    */
   export interface Schema$BatchUsageLogEvents {
     /**
-     * The name of the device in the form ‘enterprises/{enterpriseId\}/devices/{deviceId\}’
+     * If present, the name of the device in the form ‘enterprises/{enterpriseId\}/devices/{deviceId\}’
      */
     device?: string | null;
     /**
@@ -551,7 +555,7 @@ export namespace androidmanagement_v1 {
      */
     usageLogEvents?: Schema$UsageLogEvent[];
     /**
-     * The resource name of the user that owns this device in the form ‘enterprises/{enterpriseId\}/users/{userId\}’.
+     * If present, the resource name of the user that owns this device in the form ‘enterprises/{enterpriseId\}/users/{userId\}’.
      */
     user?: string | null;
   }
@@ -1224,6 +1228,10 @@ export namespace androidmanagement_v1 {
      */
     enterpriseDisplayName?: string | null;
     /**
+     * Settings for Google-provided user authentication.
+     */
+    googleAuthenticationSettings?: Schema$GoogleAuthenticationSettings;
+    /**
      * An image displayed as a logo during device provisioning. Supported types are: image/bmp, image/gif, image/x-ico, image/jpeg, image/png, image/webp, image/vnd.wap.wbmp, image/x-adobe-dng.
      */
     logo?: Schema$ExternalData;
@@ -1304,6 +1312,15 @@ export namespace androidmanagement_v1 {
      * The start date (inclusive) of the freeze period. Note: year must not be set. For example, {"month": 1,"date": 30\}.
      */
     startDate?: Schema$Date;
+  }
+  /**
+   * Contains settings for Google-provided user authentication.
+   */
+  export interface Schema$GoogleAuthenticationSettings {
+    /**
+     * Output only. Whether users need to be authenticated by Google during the enrollment process. IT admin can specify if Google authentication is enabled for the enterprise for knowledge worker devices. This value can be set only via the Google Admin Console. Google authentication can be used with signin_url In the case where Google authentication is required and a signin_url is specified, Google authentication will be launched before signin_url.
+     */
+    googleAuthenticationRequired?: string | null;
   }
   /**
    * Information about device hardware. The fields related to temperature thresholds are only available if hardwareStatusEnabled is true in the device's policy.
@@ -2609,7 +2626,7 @@ export namespace androidmanagement_v1 {
      */
     enterprise?: string | null;
     /**
-     * IMEI number of the GSM device. For example, A1000031212.
+     * For corporate-owned devices, IMEI number of the GSM device. For example, A1000031212.
      */
     imei?: string | null;
     /**
@@ -2617,7 +2634,7 @@ export namespace androidmanagement_v1 {
      */
     managementMode?: string | null;
     /**
-     * MEID number of the CDMA device. For example, A00000292788E1.
+     * For corporate-owned devices, MEID number of the CDMA device. For example, A00000292788E1.
      */
     meid?: string | null;
     /**
@@ -2633,7 +2650,7 @@ export namespace androidmanagement_v1 {
      */
     ownership?: string | null;
     /**
-     * The device serial number.
+     * For corporate-owned devices, The device serial number.
      */
     serialNumber?: string | null;
   }
@@ -4903,7 +4920,7 @@ export namespace androidmanagement_v1 {
     }
 
     /**
-     * Gets an active, unexpired enrollment token. Only a partial view of EnrollmentToken is returned: all the fields but name and expiration_timestamp are empty. This method is meant to help manage active enrollment tokens lifecycle. For security reasons, it's recommended to delete active enrollment tokens as soon as they're not intended to be used anymore.
+     * Gets an active, unexpired enrollment token. A partial view of the enrollment token is returned. Only the following fields are populated: name, expirationTimestamp, allowPersonalUsage, value, qrCode. This method is meant to help manage active enrollment tokens lifecycle. For security reasons, it's recommended to delete active enrollment tokens as soon as they're not intended to be used anymore.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4989,7 +5006,7 @@ export namespace androidmanagement_v1 {
     }
 
     /**
-     * Lists active, unexpired enrollment tokens for a given enterprise. The list items contain only a partial view of EnrollmentToken: all the fields but name and expiration_timestamp are empty. This method is meant to help manage active enrollment tokens lifecycle. For security reasons, it's recommended to delete active enrollment tokens as soon as they're not intended to be used anymore.
+     * Lists active, unexpired enrollment tokens for a given enterprise. The list items contain only a partial view of EnrollmentToken object. Only the following fields are populated: name, expirationTimestamp, allowPersonalUsage, value, qrCode. This method is meant to help manage active enrollment tokens lifecycle. For security reasons, it's recommended to delete active enrollment tokens as soon as they're not intended to be used anymore.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6656,6 +6673,10 @@ export namespace androidmanagement_v1 {
 
   export interface Params$Resource$Signupurls$Create
     extends StandardParameters {
+    /**
+     * Optional. Email address used to prefill the admin field of the enterprise signup form. This value is a hint only and can be altered by the user.
+     */
+    adminEmail?: string;
     /**
      * The callback URL that the admin will be redirected to after successfully creating an enterprise. Before redirecting there the system will add a query parameter to this URL named enterpriseToken which will contain an opaque token to be used for the create enterprise request. The URL will be parsed then reformatted in order to add the enterpriseToken parameter, so there may be some minor formatting changes.
      */

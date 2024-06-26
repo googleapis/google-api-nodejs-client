@@ -1,5 +1,29 @@
 # Changelog
 
+## [17.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/healthcare-v16.1.0...healthcare-v17.0.0) (2024-06-06)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* **healthcare:** update the API ([aac166a](https://github.com/googleapis/google-api-nodejs-client/commit/aac166ae5a28dfc4a2522bfd4a81fd0294e32048))
+* run the generator ([#3456](https://github.com/googleapis/google-api-nodejs-client/issues/3456)) ([a865e81](https://github.com/googleapis/google-api-nodejs-client/commit/a865e81539b315d3b321650663ba0b2555b1e5a1))
+
+
+### Bug Fixes
+
+* **healthcare:** update the API ([4dcb153](https://github.com/googleapis/google-api-nodejs-client/commit/4dcb1532b818deed3e14b43d2e42de87d68a71ab))
+
+## [16.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/healthcare-v16.0.0...healthcare-v16.1.0) (2024-06-03)
+
+
+### Features
+
+* **healthcare:** update the API ([aac166a](https://github.com/googleapis/google-api-nodejs-client/commit/aac166ae5a28dfc4a2522bfd4a81fd0294e32048))
+
 ## [16.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/healthcare-v15.0.1...healthcare-v16.0.0) (2024-05-02)
 
 

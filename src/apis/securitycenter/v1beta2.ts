@@ -1600,7 +1600,7 @@ export namespace securitycenter_v1beta2 {
     resourceTypes?: string[] | null;
   }
   /**
-   * A resource value config (RVC) is a mapping configuration of user's resources to resource values. Used in Attack path simulations.
+   * A resource value configuration (RVC) is a mapping configuration of user's resources to resource values. Used in Attack path simulations.
    */
   export interface Schema$GoogleCloudSecuritycenterV1ResourceValueConfig {
     /**
@@ -1608,23 +1608,23 @@ export namespace securitycenter_v1beta2 {
      */
     cloudProvider?: string | null;
     /**
-     * Output only. Timestamp this resource value config was created.
+     * Output only. Timestamp this resource value configuration was created.
      */
     createTime?: string | null;
     /**
-     * Description of the resource value config.
+     * Description of the resource value configuration.
      */
     description?: string | null;
     /**
-     * Name for the resource value config
+     * Name for the resource value configuration
      */
     name?: string | null;
     /**
-     * List of resource labels to search for, evaluated with AND. E.g. "resource_labels_selector": {"key": "value", "env": "prod"\} will match resources with labels "key": "value" AND "env": "prod" https://cloud.google.com/resource-manager/docs/creating-managing-labels
+     * List of resource labels to search for, evaluated with AND. For example, "resource_labels_selector": {"key": "value", "env": "prod"\} will match resources with labels "key": "value" AND "env": "prod" https://cloud.google.com/resource-manager/docs/creating-managing-labels
      */
     resourceLabelsSelector?: {[key: string]: string} | null;
     /**
-     * Apply resource_value only to resources that match resource_type. resource_type will be checked with "AND" of other resources. E.g. "storage.googleapis.com/Bucket" with resource_value "HIGH" will apply "HIGH" value only to "storage.googleapis.com/Bucket" resources.
+     * Apply resource_value only to resources that match resource_type. resource_type will be checked with AND of other resources. For example, "storage.googleapis.com/Bucket" with resource_value "HIGH" will apply "HIGH" value only to "storage.googleapis.com/Bucket" resources.
      */
     resourceType?: string | null;
     /**
@@ -1632,7 +1632,7 @@ export namespace securitycenter_v1beta2 {
      */
     resourceValue?: string | null;
     /**
-     * Project or folder to scope this config to. For example, "project/456" would apply this config only to resources in "project/456" scope will be checked with "AND" of other resources.
+     * Project or folder to scope this configuration to. For example, "project/456" would apply this configuration only to resources in "project/456" scope will be checked with AND of other resources.
      */
     scope?: string | null;
     /**
@@ -1640,11 +1640,11 @@ export namespace securitycenter_v1beta2 {
      */
     sensitiveDataProtectionMapping?: Schema$GoogleCloudSecuritycenterV1SensitiveDataProtectionMapping;
     /**
-     * Required. Tag values combined with AND to check against. Values in the form "tagValues/123" E.g. [ "tagValues/123", "tagValues/456", "tagValues/789" ] https://cloud.google.com/resource-manager/docs/tags/tags-creating-and-managing
+     * Required. Tag values combined with AND to check against. Values in the form "tagValues/123" Example: [ "tagValues/123", "tagValues/456", "tagValues/789" ] https://cloud.google.com/resource-manager/docs/tags/tags-creating-and-managing
      */
     tagValues?: string[] | null;
     /**
-     * Output only. Timestamp this resource value config was last updated.
+     * Output only. Timestamp this resource value configuration was last updated.
      */
     updateTime?: string | null;
   }
@@ -3201,7 +3201,7 @@ export namespace securitycenter_v1beta2 {
     nodeType?: string | null;
   }
   /**
-   * A resource value config (RVC) is a mapping configuration of user's resources to resource values. Used in Attack path simulations.
+   * A resource value configuration (RVC) is a mapping configuration of user's resources to resource values. Used in Attack path simulations.
    */
   export interface Schema$GoogleCloudSecuritycenterV2ResourceValueConfig {
     /**
@@ -3209,23 +3209,23 @@ export namespace securitycenter_v1beta2 {
      */
     cloudProvider?: string | null;
     /**
-     * Output only. Timestamp this resource value config was created.
+     * Output only. Timestamp this resource value configuration was created.
      */
     createTime?: string | null;
     /**
-     * Description of the resource value config.
+     * Description of the resource value configuration.
      */
     description?: string | null;
     /**
-     * Name for the resource value config
+     * Name for the resource value configuration
      */
     name?: string | null;
     /**
-     * List of resource labels to search for, evaluated with AND. E.g. "resource_labels_selector": {"key": "value", "env": "prod"\} will match resources with labels "key": "value" AND "env": "prod" https://cloud.google.com/resource-manager/docs/creating-managing-labels
+     * List of resource labels to search for, evaluated with AND. For example, "resource_labels_selector": {"key": "value", "env": "prod"\} will match resources with labels "key": "value" AND "env": "prod" https://cloud.google.com/resource-manager/docs/creating-managing-labels
      */
     resourceLabelsSelector?: {[key: string]: string} | null;
     /**
-     * Apply resource_value only to resources that match resource_type. resource_type will be checked with "AND" of other resources. E.g. "storage.googleapis.com/Bucket" with resource_value "HIGH" will apply "HIGH" value only to "storage.googleapis.com/Bucket" resources.
+     * Apply resource_value only to resources that match resource_type. resource_type will be checked with AND of other resources. For example, "storage.googleapis.com/Bucket" with resource_value "HIGH" will apply "HIGH" value only to "storage.googleapis.com/Bucket" resources.
      */
     resourceType?: string | null;
     /**
@@ -3233,7 +3233,7 @@ export namespace securitycenter_v1beta2 {
      */
     resourceValue?: string | null;
     /**
-     * Project or folder to scope this config to. For example, "project/456" would apply this config only to resources in "project/456" scope will be checked with "AND" of other resources.
+     * Project or folder to scope this configuration to. For example, "project/456" would apply this configuration only to resources in "project/456" scope will be checked with AND of other resources.
      */
     scope?: string | null;
     /**
@@ -3241,11 +3241,11 @@ export namespace securitycenter_v1beta2 {
      */
     sensitiveDataProtectionMapping?: Schema$GoogleCloudSecuritycenterV2SensitiveDataProtectionMapping;
     /**
-     * Required. Tag values combined with AND to check against. Values in the form "tagValues/123" E.g. [ "tagValues/123", "tagValues/456", "tagValues/789" ] https://cloud.google.com/resource-manager/docs/tags/tags-creating-and-managing
+     * Required. Tag values combined with AND to check against. Values in the form "tagValues/123" Example: [ "tagValues/123", "tagValues/456", "tagValues/789" ] https://cloud.google.com/resource-manager/docs/tags/tags-creating-and-managing
      */
     tagValues?: string[] | null;
     /**
-     * Output only. Timestamp this resource value config was last updated.
+     * Output only. Timestamp this resource value configuration was last updated.
      */
     updateTime?: string | null;
   }

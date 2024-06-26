@@ -294,6 +294,14 @@ export namespace workflows_v1 {
    */
   export interface Schema$Workflow {
     /**
+     * Output only. A list of all KMS crypto keys used to encrypt or decrpt the data associated with the workflow.
+     */
+    allKmsKeys?: string[] | null;
+    /**
+     * Output only. A list of all KMS crypto keys versions used to encrypt or decrpt the data associated with the workflow.
+     */
+    allKmsKeysVersions?: string[] | null;
+    /**
      * Optional. Describes the level of platform logging to apply to calls and call responses during executions of this workflow. If both the workflow and the execution specify a logging level, the execution level takes precedence.
      */
     callLogLevel?: string | null;
@@ -305,6 +313,10 @@ export namespace workflows_v1 {
      * Optional. The resource name of a KMS crypto key used to encrypt or decrypt the data associated with the workflow. Format: projects/{project\}/locations/{location\}/keyRings/{keyRing\}/cryptoKeys/{cryptoKey\} Using `-` as a wildcard for the `{project\}` or not providing one at all will infer the project from the account. If not provided, data associated with the workflow will not be CMEK-encrypted.
      */
     cryptoKeyName?: string | null;
+    /**
+     * Output only. The resource name of a KMS crypto key version used to encrypt or decrypt the data associated with the workflow. Format: projects/{project\}/locations/{location\}/keyRings/{keyRing\}/cryptoKeys/{cryptoKey\}/cryptoKeyVersions/{cryptoKeyVersion\}
+     */
+    cryptoKeyVersion?: string | null;
     /**
      * Description of the workflow provided by the user. Must be at most 1000 Unicode characters long. This is a workflow-wide field and is not tied to a specific revision.
      */

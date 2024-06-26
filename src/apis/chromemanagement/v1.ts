@@ -224,6 +224,40 @@ export namespace chromemanagement_v1 {
     type?: string | null;
   }
   /**
+   * App report.
+   */
+  export interface Schema$GoogleChromeManagementV1AppReport {
+    /**
+     * Timestamp when the report was collected.
+     */
+    reportTime?: string | null;
+    /**
+     * App usage data.
+     */
+    usageData?: Schema$GoogleChromeManagementV1AppUsageData[];
+  }
+  /**
+   * App usage data.
+   */
+  export interface Schema$GoogleChromeManagementV1AppUsageData {
+    /**
+     * App id.
+     */
+    appId?: string | null;
+    /**
+     * Application instance id. This will be unique per window/instance.
+     */
+    appInstanceId?: string | null;
+    /**
+     * Type of app.
+     */
+    appType?: string | null;
+    /**
+     * App foreground running time.
+     */
+    runningDuration?: string | null;
+  }
+  /**
    * Status data for storage. * This field is telemetry information and this will change over time as the device is utilized. * Data for this field is controlled via policy: [ReportDeviceAudioStatus](https://chromeenterprise.google/policies/#ReportDeviceAudioStatus) * Data Collection Frequency: 10 minutes * Default Data Reporting Frequency: 3 hours - Policy Controlled: Yes * Cache: If the device is offline, the collected data is stored locally, and will be reported when the device is next online: No * Reported for affiliated users only: N/A * Granular permission needed: TELEMETRY_API_AUDIO_REPORT
    */
   export interface Schema$GoogleChromeManagementV1AudioStatusReport {
@@ -1575,6 +1609,65 @@ export namespace chromemanagement_v1 {
     reportTime?: string | null;
   }
   /**
+   * App installation data.
+   */
+  export interface Schema$GoogleChromeManagementV1TelemetryAppInstallEvent {
+    /**
+     * App id. For PWAs this is the start URL, and for extensions this is the extension id.
+     */
+    appId?: string | null;
+    /**
+     * App installation reason.
+     */
+    appInstallReason?: string | null;
+    /**
+     * App installation source.
+     */
+    appInstallSource?: string | null;
+    /**
+     * App installation time depending on the app lifecycle.
+     */
+    appInstallTime?: string | null;
+    /**
+     * Type of app.
+     */
+    appType?: string | null;
+  }
+  /**
+   * App launch data.
+   */
+  export interface Schema$GoogleChromeManagementV1TelemetryAppLaunchEvent {
+    /**
+     * App id. For PWAs this is the start URL, and for extensions this is the extension id.
+     */
+    appId?: string | null;
+    /**
+     * App launch source.
+     */
+    appLaunchSource?: string | null;
+    /**
+     * Type of app.
+     */
+    appType?: string | null;
+  }
+  /**
+   * App uninstall data.
+   */
+  export interface Schema$GoogleChromeManagementV1TelemetryAppUninstallEvent {
+    /**
+     * App id. For PWAs this is the start URL, and for extensions this is the extension id.
+     */
+    appId?: string | null;
+    /**
+     * Type of app.
+     */
+    appType?: string | null;
+    /**
+     * App uninstall source.
+     */
+    appUninstallSource?: string | null;
+  }
+  /**
    * `TelemetryAudioSevereUnderrunEvent` is triggered when a audio devices run out of buffer data for more than 5 seconds. * Granular permission needed: TELEMETRY_API_AUDIO_REPORT
    */
   export interface Schema$GoogleChromeManagementV1TelemetryAudioSevereUnderrunEvent {}
@@ -1582,6 +1675,10 @@ export namespace chromemanagement_v1 {
    * Telemetry data collected from a managed device. * Granular permission needed: TELEMETRY_API_DEVICE
    */
   export interface Schema$GoogleChromeManagementV1TelemetryDevice {
+    /**
+     * Output only. App reports collected periodically sorted in a decreasing order of report_time.
+     */
+    appReport?: Schema$GoogleChromeManagementV1AppReport[];
     /**
      * Output only. Audio reports collected periodically sorted in a decreasing order of report_time.
      */
@@ -1708,6 +1805,18 @@ export namespace chromemanagement_v1 {
    * Telemetry data reported by a managed device.
    */
   export interface Schema$GoogleChromeManagementV1TelemetryEvent {
+    /**
+     * Output only. Payload for app install event. Present only when `event_type` is `APP_INSTALLED`.
+     */
+    appInstallEvent?: Schema$GoogleChromeManagementV1TelemetryAppInstallEvent;
+    /**
+     * Output only. Payload for app launch event.Present only when `event_type` is `APP_LAUNCHED`.
+     */
+    appLaunchEvent?: Schema$GoogleChromeManagementV1TelemetryAppLaunchEvent;
+    /**
+     * Output only. Payload for app uninstall event. Present only when `event_type` is `APP_UNINSTALLED`.
+     */
+    appUninstallEvent?: Schema$GoogleChromeManagementV1TelemetryAppUninstallEvent;
     /**
      * Output only. Payload for audio severe underrun event. Present only when the `event_type` field is `AUDIO_SEVERE_UNDERRUN`.
      */
@@ -1889,6 +1998,10 @@ export namespace chromemanagement_v1 {
    * Telemetry data collected for a managed user and device. * Granular permission needed: TELEMETRY_API_DEVICE
    */
   export interface Schema$GoogleChromeManagementV1TelemetryUserDevice {
+    /**
+     * Output only. App reports collected periodically sorted in a decreasing order of report_time.
+     */
+    appReport?: Schema$GoogleChromeManagementV1AppReport[];
     /**
      * Output only. Audio reports collected periodically sorted in a decreasing order of report_time.
      */

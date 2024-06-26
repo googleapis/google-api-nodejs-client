@@ -1250,7 +1250,7 @@
       }
     }
   },
-  "revision": "20240410",
+  "revision": "20240515",
   "rootUrl": "https://datastream.googleapis.com/",
   "schemas": {
     "AppendOnly": {
@@ -2861,6 +2861,12 @@
       },
       "type": "object"
     },
+    "SqlServerChangeTables": {
+      "description": "Configuration to use Change Tables CDC read method.",
+      "id": "SqlServerChangeTables",
+      "properties": {},
+      "type": "object"
+    },
     "SqlServerColumn": {
       "description": "SQLServer Column.",
       "id": "SqlServerColumn",
@@ -2983,6 +2989,10 @@
       "description": "SQLServer data source configuration",
       "id": "SqlServerSourceConfig",
       "properties": {
+        "changeTables": {
+          "$ref": "SqlServerChangeTables",
+          "description": "CDC reader reads from change tables."
+        },
         "excludeObjects": {
           "$ref": "SqlServerRdbms",
           "description": "SQLServer objects to exclude from the stream."
@@ -3000,6 +3010,10 @@
           "description": "Max concurrent CDC tasks.",
           "format": "int32",
           "type": "integer"
+        },
+        "transactionLogs": {
+          "$ref": "SqlServerTransactionLogs",
+          "description": "CDC reader reads from transaction logs."
         }
       },
       "type": "object"
@@ -3020,6 +3034,12 @@
           "type": "string"
         }
       },
+      "type": "object"
+    },
+    "SqlServerTransactionLogs": {
+      "description": "Configuration to use Transaction Logs CDC read method.",
+      "id": "SqlServerTransactionLogs",
+      "properties": {},
       "type": "object"
     },
     "StartBackfillJobRequest": {

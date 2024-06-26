@@ -3433,6 +3433,35 @@
                         "https://www.googleapis.com/auth/dialogflow"
                       ]
                     },
+                    "suggestKnowledgeAssist": {
+                      "description": "Gets knowledge assist suggestions based on historical messages.",
+                      "flatPath": "v2beta1/projects/{projectsId}/conversations/{conversationsId}/participants/{participantsId}/suggestions:suggestKnowledgeAssist",
+                      "httpMethod": "POST",
+                      "id": "dialogflow.projects.conversations.participants.suggestions.suggestKnowledgeAssist",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "parent": {
+                          "description": "Required. The name of the participant to fetch suggestions for. Format: `projects//locations//conversations//participants/`.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/conversations/[^/]+/participants/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v2beta1/{+parent}/suggestions:suggestKnowledgeAssist",
+                      "request": {
+                        "$ref": "GoogleCloudDialogflowV2beta1SuggestKnowledgeAssistRequest"
+                      },
+                      "response": {
+                        "$ref": "GoogleCloudDialogflowV2beta1SuggestKnowledgeAssistResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/dialogflow"
+                      ]
+                    },
                     "suggestSmartReplies": {
                       "description": "Gets smart replies for a participant based on specific historical messages.",
                       "flatPath": "v2beta1/projects/{projectsId}/conversations/{conversationsId}/participants/{participantsId}/suggestions:suggestSmartReplies",
@@ -3527,6 +3556,81 @@
                   ]
                 }
               }
+            }
+          }
+        },
+        "generators": {
+          "methods": {
+            "create": {
+              "description": "Creates a generator.",
+              "flatPath": "v2beta1/projects/{projectsId}/generators",
+              "httpMethod": "POST",
+              "id": "dialogflow.projects.generators.create",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "generatorId": {
+                  "description": "Optional. The ID to use for the generator, which will become the final component of the generator's resource name. The generator ID must be compliant with the regression fomula `a-zA-Z*` with the characters length in range of [3,64]. If the field is not provided, an Id will be auto-generated. If the field is provided, the caller is resposible for 1. the uniqueness of the ID, otherwise the request will be rejected. 2. the consistency for whether to use custom ID or not under a project to better ensure uniqueness.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "parent": {
+                  "description": "Required. The project/location to create generator for. Format: `projects//locations/`",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v2beta1/{+parent}/generators",
+              "request": {
+                "$ref": "GoogleCloudDialogflowV2beta1Generator"
+              },
+              "response": {
+                "$ref": "GoogleCloudDialogflowV2beta1Generator"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/dialogflow"
+              ]
+            },
+            "list": {
+              "description": "Lists generators.",
+              "flatPath": "v2beta1/projects/{projectsId}/generators",
+              "httpMethod": "GET",
+              "id": "dialogflow.projects.generators.list",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "pageSize": {
+                  "description": "Optional. Maximum number of conversation models to return in a single page. Default to 10.",
+                  "format": "int32",
+                  "location": "query",
+                  "type": "integer"
+                },
+                "pageToken": {
+                  "description": "Optional. The next_page_token value returned from a previous list request.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "parent": {
+                  "description": "Required. The project/location to list generators for. Format: `projects//locations/`",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v2beta1/{+parent}/generators",
+              "response": {
+                "$ref": "GoogleCloudDialogflowV2beta1ListGeneratorsResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/dialogflow"
+              ]
             }
           }
         },
@@ -6879,6 +6983,35 @@
                             "https://www.googleapis.com/auth/dialogflow"
                           ]
                         },
+                        "suggestKnowledgeAssist": {
+                          "description": "Gets knowledge assist suggestions based on historical messages.",
+                          "flatPath": "v2beta1/projects/{projectsId}/locations/{locationsId}/conversations/{conversationsId}/participants/{participantsId}/suggestions:suggestKnowledgeAssist",
+                          "httpMethod": "POST",
+                          "id": "dialogflow.projects.locations.conversations.participants.suggestions.suggestKnowledgeAssist",
+                          "parameterOrder": [
+                            "parent"
+                          ],
+                          "parameters": {
+                            "parent": {
+                              "description": "Required. The name of the participant to fetch suggestions for. Format: `projects//locations//conversations//participants/`.",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/conversations/[^/]+/participants/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v2beta1/{+parent}/suggestions:suggestKnowledgeAssist",
+                          "request": {
+                            "$ref": "GoogleCloudDialogflowV2beta1SuggestKnowledgeAssistRequest"
+                          },
+                          "response": {
+                            "$ref": "GoogleCloudDialogflowV2beta1SuggestKnowledgeAssistResponse"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform",
+                            "https://www.googleapis.com/auth/dialogflow"
+                          ]
+                        },
                         "suggestSmartReplies": {
                           "description": "Gets smart replies for a participant based on specific historical messages.",
                           "flatPath": "v2beta1/projects/{projectsId}/locations/{locationsId}/conversations/{conversationsId}/participants/{participantsId}/suggestions:suggestSmartReplies",
@@ -6973,6 +7106,168 @@
                       ]
                     }
                   }
+                }
+              }
+            },
+            "generators": {
+              "methods": {
+                "create": {
+                  "description": "Creates a generator.",
+                  "flatPath": "v2beta1/projects/{projectsId}/locations/{locationsId}/generators",
+                  "httpMethod": "POST",
+                  "id": "dialogflow.projects.locations.generators.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "generatorId": {
+                      "description": "Optional. The ID to use for the generator, which will become the final component of the generator's resource name. The generator ID must be compliant with the regression fomula `a-zA-Z*` with the characters length in range of [3,64]. If the field is not provided, an Id will be auto-generated. If the field is provided, the caller is resposible for 1. the uniqueness of the ID, otherwise the request will be rejected. 2. the consistency for whether to use custom ID or not under a project to better ensure uniqueness.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The project/location to create generator for. Format: `projects//locations/`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2beta1/{+parent}/generators",
+                  "request": {
+                    "$ref": "GoogleCloudDialogflowV2beta1Generator"
+                  },
+                  "response": {
+                    "$ref": "GoogleCloudDialogflowV2beta1Generator"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/dialogflow"
+                  ]
+                },
+                "delete": {
+                  "description": "Deletes a generator.",
+                  "flatPath": "v2beta1/projects/{projectsId}/locations/{locationsId}/generators/{generatorsId}",
+                  "httpMethod": "DELETE",
+                  "id": "dialogflow.projects.locations.generators.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The generator resource name to delete. Format: `projects//locations//generators/`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/generators/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2beta1/{+name}",
+                  "response": {
+                    "$ref": "GoogleProtobufEmpty"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/dialogflow"
+                  ]
+                },
+                "get": {
+                  "description": "Retrieves a generator.",
+                  "flatPath": "v2beta1/projects/{projectsId}/locations/{locationsId}/generators/{generatorsId}",
+                  "httpMethod": "GET",
+                  "id": "dialogflow.projects.locations.generators.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The generator resource name to retrieve. Format: `projects//locations/`/generators/`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/generators/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2beta1/{+name}",
+                  "response": {
+                    "$ref": "GoogleCloudDialogflowV2beta1Generator"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/dialogflow"
+                  ]
+                },
+                "list": {
+                  "description": "Lists generators.",
+                  "flatPath": "v2beta1/projects/{projectsId}/locations/{locationsId}/generators",
+                  "httpMethod": "GET",
+                  "id": "dialogflow.projects.locations.generators.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "pageSize": {
+                      "description": "Optional. Maximum number of conversation models to return in a single page. Default to 10.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. The next_page_token value returned from a previous list request.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The project/location to list generators for. Format: `projects//locations/`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2beta1/{+parent}/generators",
+                  "response": {
+                    "$ref": "GoogleCloudDialogflowV2beta1ListGeneratorsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/dialogflow"
+                  ]
+                },
+                "patch": {
+                  "description": "Updates a generator.",
+                  "flatPath": "v2beta1/projects/{projectsId}/locations/{locationsId}/generators/{generatorsId}",
+                  "httpMethod": "PATCH",
+                  "id": "dialogflow.projects.locations.generators.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Output only. Identifier. The resource name of the generator. Format: `projects//locations//generators/`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/generators/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "Optional. The list of fields to update.",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2beta1/{+name}",
+                  "request": {
+                    "$ref": "GoogleCloudDialogflowV2beta1Generator"
+                  },
+                  "response": {
+                    "$ref": "GoogleCloudDialogflowV2beta1Generator"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/dialogflow"
+                  ]
                 }
               }
             },
@@ -7468,6 +7763,39 @@
                 }
               }
             },
+            "statelessSuggestion": {
+              "methods": {
+                "generate": {
+                  "description": "Generates and returns a suggestion for a conversation that does not have a resource created for it.",
+                  "flatPath": "v2beta1/projects/{projectsId}/locations/{locationsId}/statelessSuggestion:generate",
+                  "httpMethod": "POST",
+                  "id": "dialogflow.projects.locations.statelessSuggestion.generate",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. The parent resource to charge for the Suggestion's generation. Format: `projects//locations/`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2beta1/{+parent}/statelessSuggestion:generate",
+                  "request": {
+                    "$ref": "GoogleCloudDialogflowV2beta1GenerateStatelessSuggestionRequest"
+                  },
+                  "response": {
+                    "$ref": "GoogleCloudDialogflowV2beta1GenerateStatelessSuggestionResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/dialogflow"
+                  ]
+                }
+              }
+            },
             "suggestions": {
               "methods": {
                 "generateStatelessSummary": {
@@ -7695,7 +8023,7 @@
       }
     }
   },
-  "revision": "20240422",
+  "revision": "20240603",
   "rootUrl": "https://dialogflow.googleapis.com/",
   "schemas": {
     "GoogleCloudDialogflowCxV3AdvancedSettings": {
@@ -7729,8 +8057,18 @@
           "description": "If true, incoming audio is processed for DTMF (dual tone multi frequency) events. For example, if the caller presses a button on their telephone keypad and DTMF processing is enabled, Dialogflow will detect the event (e.g. a \"3\" was pressed) in the incoming audio and pass the event to the bot to drive business logic (e.g. when 3 is pressed, return the account balance).",
           "type": "boolean"
         },
+        "endpointingTimeoutDuration": {
+          "description": "Endpoint timeout setting for matching dtmf input to regex.",
+          "format": "google-duration",
+          "type": "string"
+        },
         "finishDigit": {
           "description": "The digit that terminates a DTMF digit sequence.",
+          "type": "string"
+        },
+        "interdigitTimeoutDuration": {
+          "description": "Interdigit timeout setting for matching dtmf input to regex.",
+          "format": "google-duration",
           "type": "string"
         },
         "maxDigits": {
@@ -7746,11 +8084,11 @@
       "id": "GoogleCloudDialogflowCxV3AdvancedSettingsLoggingSettings",
       "properties": {
         "enableInteractionLogging": {
-          "description": "If true, DF Interaction logging is currently enabled.",
+          "description": "Enables DF Interaction logging.",
           "type": "boolean"
         },
         "enableStackdriverLogging": {
-          "description": "If true, StackDriver logging is currently enabled.",
+          "description": "Enables StackDriver logging.",
           "type": "boolean"
         }
       },
@@ -10109,8 +10447,18 @@
           "description": "If true, incoming audio is processed for DTMF (dual tone multi frequency) events. For example, if the caller presses a button on their telephone keypad and DTMF processing is enabled, Dialogflow will detect the event (e.g. a \"3\" was pressed) in the incoming audio and pass the event to the bot to drive business logic (e.g. when 3 is pressed, return the account balance).",
           "type": "boolean"
         },
+        "endpointingTimeoutDuration": {
+          "description": "Endpoint timeout setting for matching dtmf input to regex.",
+          "format": "google-duration",
+          "type": "string"
+        },
         "finishDigit": {
           "description": "The digit that terminates a DTMF digit sequence.",
+          "type": "string"
+        },
+        "interdigitTimeoutDuration": {
+          "description": "Interdigit timeout setting for matching dtmf input to regex.",
+          "format": "google-duration",
           "type": "string"
         },
         "maxDigits": {
@@ -10126,11 +10474,11 @@
       "id": "GoogleCloudDialogflowCxV3beta1AdvancedSettingsLoggingSettings",
       "properties": {
         "enableInteractionLogging": {
-          "description": "If true, DF Interaction logging is currently enabled.",
+          "description": "Enables DF Interaction logging.",
           "type": "boolean"
         },
         "enableStackdriverLogging": {
-          "description": "If true, StackDriver logging is currently enabled.",
+          "description": "Enables StackDriver logging.",
           "type": "boolean"
         }
       },
@@ -11483,6 +11831,10 @@
         "text": {
           "$ref": "GoogleCloudDialogflowCxV3beta1TextInput",
           "description": "The natural language text to be processed."
+        },
+        "toolCallResult": {
+          "$ref": "GoogleCloudDialogflowCxV3beta1ToolCallResult",
+          "description": "The results of a tool executed by the client."
         }
       },
       "type": "object"
@@ -11551,6 +11903,10 @@
         "text": {
           "$ref": "GoogleCloudDialogflowCxV3beta1ResponseMessageText",
           "description": "Returns a text response."
+        },
+        "toolCall": {
+          "$ref": "GoogleCloudDialogflowCxV3beta1ToolCall",
+          "description": "Returns the definition of a tool call that should be executed by the client."
         }
       },
       "type": "object"
@@ -11940,6 +12296,67 @@
       "properties": {
         "text": {
           "description": "Required. The UTF-8 encoded natural language text to be processed.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3beta1ToolCall": {
+      "description": "Represents a call of a specific tool's action with the specified inputs.",
+      "id": "GoogleCloudDialogflowCxV3beta1ToolCall",
+      "properties": {
+        "action": {
+          "description": "Required. The name of the tool's action associated with this call.",
+          "type": "string"
+        },
+        "inputParameters": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "Optional. The action's input parameters.",
+          "type": "object"
+        },
+        "tool": {
+          "description": "Required. The tool associated with this call. Format: `projects//locations//agents//tools/`.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3beta1ToolCallResult": {
+      "description": "The result of calling a tool's action that has been executed by the client.",
+      "id": "GoogleCloudDialogflowCxV3beta1ToolCallResult",
+      "properties": {
+        "action": {
+          "description": "Required. The name of the tool's action associated with this call.",
+          "type": "string"
+        },
+        "error": {
+          "$ref": "GoogleCloudDialogflowCxV3beta1ToolCallResultError",
+          "description": "The tool call's error."
+        },
+        "outputParameters": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "The tool call's output parameters.",
+          "type": "object"
+        },
+        "tool": {
+          "description": "Required. The tool associated with this call. Format: `projects//locations//agents//tools/`.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3beta1ToolCallResultError": {
+      "description": "An error produced by the tool call.",
+      "id": "GoogleCloudDialogflowCxV3beta1ToolCallResultError",
+      "properties": {
+        "message": {
+          "description": "Optional. The error message of the function.",
           "type": "string"
         }
       },
@@ -12584,14 +13001,16 @@
             "ARTICLE_SUGGESTION",
             "FAQ",
             "SMART_REPLY",
-            "KNOWLEDGE_SEARCH"
+            "KNOWLEDGE_SEARCH",
+            "KNOWLEDGE_ASSIST"
           ],
           "enumDescriptions": [
             "Unspecified feature type.",
             "Run article suggestion model for chat.",
             "Run FAQ model for chat.",
             "Run smart reply model for chat.",
-            "Run knowledge search with text input from agent or text generated query."
+            "Run knowledge search with text input from agent or text generated query.",
+            "Run knowledge assist with automatic query generation."
           ],
           "type": "string"
         }
@@ -14024,6 +14443,99 @@
       },
       "type": "object"
     },
+    "GoogleCloudDialogflowV2KnowledgeAssistAnswer": {
+      "description": "Represents a Knowledge Assist answer.",
+      "id": "GoogleCloudDialogflowV2KnowledgeAssistAnswer",
+      "properties": {
+        "answerRecord": {
+          "description": "The name of the answer record. Format: `projects//locations//answer Records/`.",
+          "type": "string"
+        },
+        "suggestedQuery": {
+          "$ref": "GoogleCloudDialogflowV2KnowledgeAssistAnswerSuggestedQuery",
+          "description": "The query suggested based on the context. Suggestion is made only if it is different from the previous suggestion."
+        },
+        "suggestedQueryAnswer": {
+          "$ref": "GoogleCloudDialogflowV2KnowledgeAssistAnswerKnowledgeAnswer",
+          "description": "The answer generated for the suggested query. Whether or not an answer is generated depends on how confident we are about the generated query."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV2KnowledgeAssistAnswerKnowledgeAnswer": {
+      "description": "Represents an answer from Knowledge. Currently supports FAQ and Generative answers.",
+      "id": "GoogleCloudDialogflowV2KnowledgeAssistAnswerKnowledgeAnswer",
+      "properties": {
+        "answerText": {
+          "description": "The piece of text from the `source` that answers this suggested query.",
+          "type": "string"
+        },
+        "faqSource": {
+          "$ref": "GoogleCloudDialogflowV2KnowledgeAssistAnswerKnowledgeAnswerFaqSource",
+          "description": "Populated if the prediction came from FAQ."
+        },
+        "generativeSource": {
+          "$ref": "GoogleCloudDialogflowV2KnowledgeAssistAnswerKnowledgeAnswerGenerativeSource",
+          "description": "Populated if the prediction was Generative."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV2KnowledgeAssistAnswerKnowledgeAnswerFaqSource": {
+      "description": "Details about source of FAQ answer.",
+      "id": "GoogleCloudDialogflowV2KnowledgeAssistAnswerKnowledgeAnswerFaqSource",
+      "properties": {
+        "question": {
+          "description": "The corresponding FAQ question.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV2KnowledgeAssistAnswerKnowledgeAnswerGenerativeSource": {
+      "description": "Details about source of Generative answer.",
+      "id": "GoogleCloudDialogflowV2KnowledgeAssistAnswerKnowledgeAnswerGenerativeSource",
+      "properties": {
+        "snippets": {
+          "description": "All snippets used for this Generative Prediction, with their source URI and data.",
+          "items": {
+            "$ref": "GoogleCloudDialogflowV2KnowledgeAssistAnswerKnowledgeAnswerGenerativeSourceSnippet"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV2KnowledgeAssistAnswerKnowledgeAnswerGenerativeSourceSnippet": {
+      "description": "Snippet Source for a Generative Prediction.",
+      "id": "GoogleCloudDialogflowV2KnowledgeAssistAnswerKnowledgeAnswerGenerativeSourceSnippet",
+      "properties": {
+        "text": {
+          "description": "Text taken from that URI.",
+          "type": "string"
+        },
+        "title": {
+          "description": "Title of the document.",
+          "type": "string"
+        },
+        "uri": {
+          "description": "URI the data is sourced from.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV2KnowledgeAssistAnswerSuggestedQuery": {
+      "description": "Represents a suggested query.",
+      "id": "GoogleCloudDialogflowV2KnowledgeAssistAnswerSuggestedQuery",
+      "properties": {
+        "queryText": {
+          "description": "Suggested query text.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDialogflowV2KnowledgeOperationMetadata": {
       "description": "Metadata in google::longrunning::Operation for Knowledge operations.",
       "id": "GoogleCloudDialogflowV2KnowledgeOperationMetadata",
@@ -14346,14 +14858,16 @@
             "ARTICLE_SUGGESTION",
             "FAQ",
             "SMART_REPLY",
-            "KNOWLEDGE_SEARCH"
+            "KNOWLEDGE_SEARCH",
+            "KNOWLEDGE_ASSIST"
           ],
           "enumDescriptions": [
             "Unspecified feature type.",
             "Run article suggestion model for chat.",
             "Run FAQ model for chat.",
             "Run smart reply model for chat.",
-            "Run knowledge search with text input from agent or text generated query."
+            "Run knowledge search with text input from agent or text generated query.",
+            "Run knowledge assist with automatic query generation."
           ],
           "type": "string"
         }
@@ -14447,6 +14961,27 @@
       },
       "type": "object"
     },
+    "GoogleCloudDialogflowV2SuggestKnowledgeAssistResponse": {
+      "description": "The response message for Participants.SuggestKnowledgeAssist.",
+      "id": "GoogleCloudDialogflowV2SuggestKnowledgeAssistResponse",
+      "properties": {
+        "contextSize": {
+          "description": "Number of messages prior to and including latest_message to compile the suggestion. It may be smaller than the SuggestKnowledgeAssistRequest.context_size field in the request if there are fewer messages in the conversation.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "knowledgeAssistAnswer": {
+          "$ref": "GoogleCloudDialogflowV2KnowledgeAssistAnswer",
+          "description": "Output only. Knowledge Assist suggestion.",
+          "readOnly": true
+        },
+        "latestMessage": {
+          "description": "The name of the latest conversation message used to compile suggestion for. Format: `projects//locations//conversations//messages/`.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDialogflowV2SuggestSmartRepliesResponse": {
       "description": "The response message for Participants.SuggestSmartReplies.",
       "id": "GoogleCloudDialogflowV2SuggestSmartRepliesResponse",
@@ -14486,6 +15021,10 @@
         "suggestFaqAnswersResponse": {
           "$ref": "GoogleCloudDialogflowV2SuggestFaqAnswersResponse",
           "description": "SuggestFaqAnswersResponse if request is for FAQ_ANSWER."
+        },
+        "suggestKnowledgeAssistResponse": {
+          "$ref": "GoogleCloudDialogflowV2SuggestKnowledgeAssistResponse",
+          "description": "SuggestKnowledgeAssistResponse if request is for KNOWLEDGE_ASSIST."
         },
         "suggestSmartRepliesResponse": {
           "$ref": "GoogleCloudDialogflowV2SuggestSmartRepliesResponse",
@@ -14727,6 +15266,10 @@
           ],
           "type": "string"
         },
+        "knowledgeAssistFeedback": {
+          "$ref": "GoogleCloudDialogflowV2beta1AgentAssistantFeedbackKnowledgeAssistFeedback",
+          "description": "Optional. Feedback for knowledge assist."
+        },
         "knowledgeSearchFeedback": {
           "$ref": "GoogleCloudDialogflowV2beta1AgentAssistantFeedbackKnowledgeSearchFeedback",
           "description": "Optional. Feedback for knowledge search."
@@ -14734,6 +15277,24 @@
         "summarizationFeedback": {
           "$ref": "GoogleCloudDialogflowV2beta1AgentAssistantFeedbackSummarizationFeedback",
           "description": "Feedback for conversation summarization."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV2beta1AgentAssistantFeedbackKnowledgeAssistFeedback": {
+      "description": "Feedback for knowledge assist.",
+      "id": "GoogleCloudDialogflowV2beta1AgentAssistantFeedbackKnowledgeAssistFeedback",
+      "properties": {
+        "answerCopied": {
+          "description": "Whether the suggested answer was copied by the human agent. If the value is set to be true, AnswerFeedback.clicked will be updated to be true.",
+          "type": "boolean"
+        },
+        "clickedUris": {
+          "description": "The URIs clicked by the human agent. The value is appended for each UpdateAnswerRecordRequest. If the value is not empty, AnswerFeedback.clicked will be updated to be true.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -15091,6 +15652,11 @@
           ],
           "type": "string"
         },
+        "callCompanionAuthCode": {
+          "description": "The auth code for accessing Call Companion UI.",
+          "format": "byte",
+          "type": "string"
+        },
         "cxCurrentPage": {
           "description": "The unique identifier of the current Dialogflow CX conversation page. Format: `projects//locations//agents//flows//pages/`.",
           "type": "string"
@@ -15397,7 +15963,8 @@
             "SMART_REPLY",
             "DIALOGFLOW_ASSIST",
             "CONVERSATION_SUMMARIZATION",
-            "KNOWLEDGE_SEARCH"
+            "KNOWLEDGE_SEARCH",
+            "KNOWLEDGE_ASSIST"
           ],
           "enumDescriptions": [
             "Unspecified feature type.",
@@ -15406,7 +15973,8 @@
             "Run smart reply model for chat.",
             "Run Dialogflow assist model for chat, which will return automated agent response as suggestion.",
             "Run conversation summarization model for chat.",
-            "Run knowledge search with text input from agent or text generated query."
+            "Run knowledge search with text input from agent or text generated query.",
+            "Run knowledge assist with automatic query generation."
           ],
           "type": "string"
         }
@@ -15442,7 +16010,8 @@
             "SMART_REPLY",
             "DIALOGFLOW_ASSIST",
             "CONVERSATION_SUMMARIZATION",
-            "KNOWLEDGE_SEARCH"
+            "KNOWLEDGE_SEARCH",
+            "KNOWLEDGE_ASSIST"
           ],
           "enumDescriptions": [
             "Unspecified feature type.",
@@ -15451,7 +16020,8 @@
             "Run smart reply model for chat.",
             "Run Dialogflow assist model for chat, which will return automated agent response as suggestion.",
             "Run conversation summarization model for chat.",
-            "Run knowledge search with text input from agent or text generated query."
+            "Run knowledge search with text input from agent or text generated query.",
+            "Run knowledge assist with automatic query generation."
           ],
           "type": "string"
         }
@@ -15584,6 +16154,20 @@
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV2beta1ConversationContext": {
+      "description": "Context of the conversation, including transcripts.",
+      "id": "GoogleCloudDialogflowV2beta1ConversationContext",
+      "properties": {
+        "messageEntries": {
+          "description": "Optional. List of message transcripts in the conversation.",
+          "items": {
+            "$ref": "GoogleCloudDialogflowV2beta1MessageEntry"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -16206,6 +16790,32 @@
       },
       "type": "object"
     },
+    "GoogleCloudDialogflowV2beta1FewShotExample": {
+      "description": "Providing examples in the generator (i.e. building a few-shot generator) helps convey the desired format of the LLM response. NEXT_ID: 10",
+      "id": "GoogleCloudDialogflowV2beta1FewShotExample",
+      "properties": {
+        "conversationContext": {
+          "$ref": "GoogleCloudDialogflowV2beta1ConversationContext",
+          "description": "Optional. Conversation transcripts."
+        },
+        "extraInfo": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. Key is the placeholder field name in input, value is the value of the placeholder. E.g. instruction contains \"@price\", and ingested data has <\"price\", \"10\">",
+          "type": "object"
+        },
+        "output": {
+          "$ref": "GoogleCloudDialogflowV2beta1GeneratorSuggestion",
+          "description": "Required. Example output of the model."
+        },
+        "summarizationSectionList": {
+          "$ref": "GoogleCloudDialogflowV2beta1SummarizationSectionList",
+          "description": "Summarization sections."
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDialogflowV2beta1Fulfillment": {
       "description": "By default, your agent responds to a matched intent with a static response. As an alternative, you can provide a more dynamic response by using fulfillment. When you enable fulfillment for an intent, Dialogflow responds to that intent by calling a service that you define. For example, if an end-user wants to schedule a haircut on Friday, your service can check your database and respond to the end-user with availability information for Friday. For more information, see the [fulfillment guide](https://cloud.google.com/dialogflow/docs/fulfillment-overview).",
       "id": "GoogleCloudDialogflowV2beta1Fulfillment",
@@ -16322,6 +16932,53 @@
       },
       "type": "object"
     },
+    "GoogleCloudDialogflowV2beta1GenerateStatelessSuggestionRequest": {
+      "description": "The request message for Conversations.GenerateStatelessSuggestion.",
+      "id": "GoogleCloudDialogflowV2beta1GenerateStatelessSuggestionRequest",
+      "properties": {
+        "conversationContext": {
+          "$ref": "GoogleCloudDialogflowV2beta1ConversationContext",
+          "description": "Optional. Context of the conversation, including transcripts."
+        },
+        "generator": {
+          "$ref": "GoogleCloudDialogflowV2beta1Generator",
+          "description": "Uncreated generator. It should be a complete generator that includes all information about the generator."
+        },
+        "generatorName": {
+          "description": "The resource name of the existing created generator. Format: `projects//locations//generators/`",
+          "type": "string"
+        },
+        "triggerEvents": {
+          "description": "Optional. A list of trigger events. Generator will be triggered only if it's trigger event is included here.",
+          "items": {
+            "enum": [
+              "TRIGGER_EVENT_UNSPECIFIED",
+              "END_OF_UTTERANCE",
+              "MANUAL_CALL"
+            ],
+            "enumDescriptions": [
+              "Default value for TriggerEvent.",
+              "Triggers when each chat message or voice utterance ends.",
+              "Triggers on the conversation manually by API calls, such as Conversations.GenerateStatelessSuggestion and Conversations.GenerateSuggestions."
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV2beta1GenerateStatelessSuggestionResponse": {
+      "description": "The response message for Conversations.GenerateStatelessSuggestion.",
+      "id": "GoogleCloudDialogflowV2beta1GenerateStatelessSuggestionResponse",
+      "properties": {
+        "generatorSuggestion": {
+          "$ref": "GoogleCloudDialogflowV2beta1GeneratorSuggestion",
+          "description": "Required. Generated suggestion for a conversation."
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDialogflowV2beta1GenerateStatelessSummaryRequest": {
       "description": "The request message for Conversations.GenerateStatelessSummary.",
       "id": "GoogleCloudDialogflowV2beta1GenerateStatelessSummaryRequest",
@@ -16402,6 +17059,67 @@
       },
       "type": "object"
     },
+    "GoogleCloudDialogflowV2beta1Generator": {
+      "description": "LLM generator.",
+      "id": "GoogleCloudDialogflowV2beta1Generator",
+      "properties": {
+        "createTime": {
+          "description": "Output only. Creation time of this generator.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "description": {
+          "description": "Optional. Human readable description of the generator.",
+          "type": "string"
+        },
+        "inferenceParameter": {
+          "$ref": "GoogleCloudDialogflowV2beta1InferenceParameter",
+          "description": "Optional. Inference parameters for this generator."
+        },
+        "name": {
+          "description": "Output only. Identifier. The resource name of the generator. Format: `projects//locations//generators/`",
+          "readOnly": true,
+          "type": "string"
+        },
+        "summarizationContext": {
+          "$ref": "GoogleCloudDialogflowV2beta1SummarizationContext",
+          "description": "Input of prebuilt Summarization feature."
+        },
+        "triggerEvent": {
+          "description": "Optional. The trigger event of the generator. It defines when the generator is triggered in a conversation.",
+          "enum": [
+            "TRIGGER_EVENT_UNSPECIFIED",
+            "END_OF_UTTERANCE",
+            "MANUAL_CALL"
+          ],
+          "enumDescriptions": [
+            "Default value for TriggerEvent.",
+            "Triggers when each chat message or voice utterance ends.",
+            "Triggers on the conversation manually by API calls, such as Conversations.GenerateStatelessSuggestion and Conversations.GenerateSuggestions."
+          ],
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. Update time of this generator.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV2beta1GeneratorSuggestion": {
+      "description": "Suggestion generated using a Generator.",
+      "id": "GoogleCloudDialogflowV2beta1GeneratorSuggestion",
+      "properties": {
+        "summarySuggestion": {
+          "$ref": "GoogleCloudDialogflowV2beta1SummarySuggestion",
+          "description": "Optional. Suggested summary."
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDialogflowV2beta1HumanAgentAssistantConfig": {
       "description": "Defines the Human Agent Assistant to connect to a conversation.",
       "id": "GoogleCloudDialogflowV2beta1HumanAgentAssistantConfig",
@@ -16471,10 +17189,21 @@
       "description": "Detail human agent assistant config.",
       "id": "GoogleCloudDialogflowV2beta1HumanAgentAssistantConfigSuggestionConfig",
       "properties": {
+        "disableHighLatencyFeaturesSyncDelivery": {
+          "description": "Optional. When disable_high_latency_features_sync_delivery is true and using the AnalyzeContent API, we will not deliver the responses from high latency features in the API response. The human_agent_assistant_config.notification_config must be configured and enable_event_based_suggestion must be set to true to receive the responses from high latency features in Pub/Sub. High latency feature(s): KNOWLEDGE_ASSIST.",
+          "type": "boolean"
+        },
         "featureConfigs": {
           "description": "Configuration of different suggestion features. One feature can have only one config.",
           "items": {
             "$ref": "GoogleCloudDialogflowV2beta1HumanAgentAssistantConfigSuggestionFeatureConfig"
+          },
+          "type": "array"
+        },
+        "generators": {
+          "description": "Optional. List of various generator resource names used in the conversation profile.",
+          "items": {
+            "type": "string"
           },
           "type": "array"
         },
@@ -16507,6 +17236,14 @@
         },
         "enableEventBasedSuggestion": {
           "description": "Automatically iterates all participants and tries to compile suggestions. Supported features: ARTICLE_SUGGESTION, FAQ, DIALOGFLOW_ASSIST, ENTITY_EXTRACTION, KNOWLEDGE_ASSIST.",
+          "type": "boolean"
+        },
+        "enableQuerySuggestionOnly": {
+          "description": "Optional. Enable query suggestion only. Supported features: KNOWLEDGE_ASSIST",
+          "type": "boolean"
+        },
+        "enableQuerySuggestionWhenNoAnswer": {
+          "description": "Optional. Enable query suggestion even if we can't find its answer. By default, queries are suggested only if we find its answer. Supported features: KNOWLEDGE_ASSIST",
           "type": "boolean"
         },
         "queryConfig": {
@@ -16709,7 +17446,7 @@
       "properties": {
         "livePersonConfig": {
           "$ref": "GoogleCloudDialogflowV2beta1HumanAgentHandoffConfigLivePersonConfig",
-          "description": "Uses LivePerson (https://www.liveperson.com)."
+          "description": "Uses [LivePerson](https://www.liveperson.com)."
         },
         "salesforceLiveAgentConfig": {
           "$ref": "GoogleCloudDialogflowV2beta1HumanAgentHandoffConfigSalesforceLiveAgentConfig",
@@ -16719,7 +17456,7 @@
       "type": "object"
     },
     "GoogleCloudDialogflowV2beta1HumanAgentHandoffConfigLivePersonConfig": {
-      "description": "Configuration specific to LivePerson (https://www.liveperson.com).",
+      "description": "Configuration specific to [LivePerson](https://www.liveperson.com).",
       "id": "GoogleCloudDialogflowV2beta1HumanAgentHandoffConfigLivePersonConfig",
       "properties": {
         "accountNumber": {
@@ -16842,6 +17579,33 @@
       },
       "type": "object"
     },
+    "GoogleCloudDialogflowV2beta1InferenceParameter": {
+      "description": "The parameters of inference.",
+      "id": "GoogleCloudDialogflowV2beta1InferenceParameter",
+      "properties": {
+        "maxOutputTokens": {
+          "description": "Optional. Maximum number of the output tokens for the generator.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "temperature": {
+          "description": "Optional. Controls the randomness of LLM predictions. Low temperature = less random. High temperature = more random. If unset (or 0), uses a default value of 0.",
+          "format": "double",
+          "type": "number"
+        },
+        "topK": {
+          "description": "Optional. Top-k changes how the model selects tokens for output. A top-k of 1 means the selected token is the most probable among all tokens in the model's vocabulary (also called greedy decoding), while a top-k of 3 means that the next token is selected from among the 3 most probable tokens (using temperature). For each token selection step, the top K tokens with the highest probabilities are sampled. Then tokens are further filtered based on topP with the final token selected using temperature sampling. Specify a lower value for less random responses and a higher value for more random responses. Acceptable value is [1, 40], default to 40.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "topP": {
+          "description": "Optional. Top-p changes how the model selects tokens for output. Tokens are selected from most K (see topK parameter) probable to least until the sum of their probabilities equals the top-p value. For example, if tokens A, B, and C have a probability of 0.3, 0.2, and 0.1 and the top-p value is 0.5, then the model will select either A or B as the next token (using temperature) and doesn't consider C. The default top-p value is 0.95. Specify a lower value for less random responses and a higher value for more random responses. Acceptable value is [0.0, 1.0], default to 0.95.",
+          "format": "double",
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDialogflowV2beta1InputAudioConfig": {
       "description": "Instructs the speech recognizer on how to process the audio content.",
       "id": "GoogleCloudDialogflowV2beta1InputAudioConfig",
@@ -16873,6 +17637,11 @@
         "bargeInConfig": {
           "$ref": "GoogleCloudDialogflowV2beta1BargeInConfig",
           "description": "Configuration of barge-in behavior during the streaming of input audio."
+        },
+        "defaultNoSpeechTimeout": {
+          "description": "If set, use this no-speech timeout when the agent does not provide a no-speech timeout itself.",
+          "format": "google-duration",
+          "type": "string"
         },
         "disableNoSpeechRecognizedEvent": {
           "description": "Only used in Participants.AnalyzeContent and Participants.StreamingAnalyzeContent. If `false` and recognition doesn't return any result, trigger `NO_SPEECH_RECOGNIZED` event to Dialogflow agent.",
@@ -18255,6 +19024,99 @@
       },
       "type": "object"
     },
+    "GoogleCloudDialogflowV2beta1KnowledgeAssistAnswer": {
+      "description": "Represents a Knowledge Assist answer.",
+      "id": "GoogleCloudDialogflowV2beta1KnowledgeAssistAnswer",
+      "properties": {
+        "answerRecord": {
+          "description": "The name of the answer record. Format: `projects//locations//answer Records/`.",
+          "type": "string"
+        },
+        "suggestedQuery": {
+          "$ref": "GoogleCloudDialogflowV2beta1KnowledgeAssistAnswerSuggestedQuery",
+          "description": "The query suggested based on the context. Suggestion is made only if it is different from the previous suggestion."
+        },
+        "suggestedQueryAnswer": {
+          "$ref": "GoogleCloudDialogflowV2beta1KnowledgeAssistAnswerKnowledgeAnswer",
+          "description": "The answer generated for the suggested query. Whether or not an answer is generated depends on how confident we are about the generated query."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV2beta1KnowledgeAssistAnswerKnowledgeAnswer": {
+      "description": "Represents an answer from Knowledge. Currently supports FAQ and Generative answers.",
+      "id": "GoogleCloudDialogflowV2beta1KnowledgeAssistAnswerKnowledgeAnswer",
+      "properties": {
+        "answerText": {
+          "description": "The piece of text from the `source` that answers this suggested query.",
+          "type": "string"
+        },
+        "faqSource": {
+          "$ref": "GoogleCloudDialogflowV2beta1KnowledgeAssistAnswerKnowledgeAnswerFaqSource",
+          "description": "Populated if the prediction came from FAQ."
+        },
+        "generativeSource": {
+          "$ref": "GoogleCloudDialogflowV2beta1KnowledgeAssistAnswerKnowledgeAnswerGenerativeSource",
+          "description": "Populated if the prediction was Generative."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV2beta1KnowledgeAssistAnswerKnowledgeAnswerFaqSource": {
+      "description": "Details about source of FAQ answer.",
+      "id": "GoogleCloudDialogflowV2beta1KnowledgeAssistAnswerKnowledgeAnswerFaqSource",
+      "properties": {
+        "question": {
+          "description": "The corresponding FAQ question.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV2beta1KnowledgeAssistAnswerKnowledgeAnswerGenerativeSource": {
+      "description": "Details about source of Generative answer.",
+      "id": "GoogleCloudDialogflowV2beta1KnowledgeAssistAnswerKnowledgeAnswerGenerativeSource",
+      "properties": {
+        "snippets": {
+          "description": "All snippets used for this Generative Prediction, with their source URI and data.",
+          "items": {
+            "$ref": "GoogleCloudDialogflowV2beta1KnowledgeAssistAnswerKnowledgeAnswerGenerativeSourceSnippet"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV2beta1KnowledgeAssistAnswerKnowledgeAnswerGenerativeSourceSnippet": {
+      "description": "Snippet Source for a Generative Prediction.",
+      "id": "GoogleCloudDialogflowV2beta1KnowledgeAssistAnswerKnowledgeAnswerGenerativeSourceSnippet",
+      "properties": {
+        "text": {
+          "description": "Text taken from that URI.",
+          "type": "string"
+        },
+        "title": {
+          "description": "Title of the document.",
+          "type": "string"
+        },
+        "uri": {
+          "description": "URI the data is sourced from.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV2beta1KnowledgeAssistAnswerSuggestedQuery": {
+      "description": "Represents a suggested query.",
+      "id": "GoogleCloudDialogflowV2beta1KnowledgeAssistAnswerSuggestedQuery",
+      "properties": {
+        "queryText": {
+          "description": "Suggested query text.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDialogflowV2beta1KnowledgeBase": {
       "description": "A knowledge base represents a collection of knowledge documents that you provide to Dialogflow. Your knowledge documents contain information that may be useful during conversations with end-users. Some Dialogflow features use knowledge bases when looking for a response to an end-user input. For more information, see the [knowledge base guide](https://cloud.google.com/dialogflow/docs/how/knowledge-bases). Note: The `projects.agent.knowledgeBases` resource is deprecated; only use `projects.knowledgeBases`.",
       "id": "GoogleCloudDialogflowV2beta1KnowledgeBase",
@@ -18422,6 +19284,24 @@
           "description": "The list of agent environments. There will be a maximum number of items returned based on the page_size field in the request.",
           "items": {
             "$ref": "GoogleCloudDialogflowV2beta1Environment"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "Token to retrieve the next page of results, or empty if there are no more results in the list.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV2beta1ListGeneratorsResponse": {
+      "description": "Response of ListGenerators.",
+      "id": "GoogleCloudDialogflowV2beta1ListGeneratorsResponse",
+      "properties": {
+        "generators": {
+          "description": "List of generators retrieved.",
+          "items": {
+            "$ref": "GoogleCloudDialogflowV2beta1Generator"
           },
           "type": "array"
         },
@@ -18646,6 +19526,42 @@
             "$ref": "GoogleCloudDialogflowV2beta1AnnotatedMessagePart"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV2beta1MessageEntry": {
+      "description": "Represents a message entry of a conversation.",
+      "id": "GoogleCloudDialogflowV2beta1MessageEntry",
+      "properties": {
+        "createTime": {
+          "description": "Optional. Create time of the message entry.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "languageCode": {
+          "description": "Optional. The language of the text. See [Language Support](https://cloud.google.com/dialogflow/docs/reference/language) for a list of the currently supported language codes.",
+          "type": "string"
+        },
+        "role": {
+          "description": "Optional. Participant role of the message.",
+          "enum": [
+            "ROLE_UNSPECIFIED",
+            "HUMAN_AGENT",
+            "AUTOMATED_AGENT",
+            "END_USER"
+          ],
+          "enumDescriptions": [
+            "Participant role not set.",
+            "Participant is a human agent.",
+            "Participant is an automated agent, such as a Dialogflow agent.",
+            "Participant is an end user that has called or chatted with Dialogflow services."
+          ],
+          "type": "string"
+        },
+        "text": {
+          "description": "Optional. Transcript content of the message.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -19359,7 +20275,8 @@
             "SMART_REPLY",
             "DIALOGFLOW_ASSIST",
             "CONVERSATION_SUMMARIZATION",
-            "KNOWLEDGE_SEARCH"
+            "KNOWLEDGE_SEARCH",
+            "KNOWLEDGE_ASSIST"
           ],
           "enumDescriptions": [
             "Unspecified feature type.",
@@ -19368,7 +20285,8 @@
             "Run smart reply model for chat.",
             "Run Dialogflow assist model for chat, which will return automated agent response as suggestion.",
             "Run conversation summarization model for chat.",
-            "Run knowledge search with text input from agent or text generated query."
+            "Run knowledge search with text input from agent or text generated query.",
+            "Run knowledge assist with automatic query generation."
           ],
           "type": "string"
         }
@@ -19662,6 +20580,47 @@
       },
       "type": "object"
     },
+    "GoogleCloudDialogflowV2beta1SuggestKnowledgeAssistRequest": {
+      "description": "The request message for Participants.SuggestKnowledgeAssist.",
+      "id": "GoogleCloudDialogflowV2beta1SuggestKnowledgeAssistRequest",
+      "properties": {
+        "contextSize": {
+          "description": "Optional. Max number of messages prior to and including latest_message to use as context when compiling the suggestion. The context size is by default 100 and at most 100.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "latestMessage": {
+          "description": "Optional. The name of the latest conversation message to compile suggestions for. If empty, it will be the latest message of the conversation. Format: `projects//locations//conversations//messages/`.",
+          "type": "string"
+        },
+        "previousSuggestedQuery": {
+          "description": "Optional. The previously suggested query for the given conversation. This helps identify whether the next suggestion we generate is resonably different from the previous one. This is useful to avoid similar suggestions within the conversation.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV2beta1SuggestKnowledgeAssistResponse": {
+      "description": "The response message for Participants.SuggestKnowledgeAssist.",
+      "id": "GoogleCloudDialogflowV2beta1SuggestKnowledgeAssistResponse",
+      "properties": {
+        "contextSize": {
+          "description": "Number of messages prior to and including latest_message to compile the suggestion. It may be smaller than the SuggestKnowledgeAssistRequest.context_size field in the request if there are fewer messages in the conversation.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "knowledgeAssistAnswer": {
+          "$ref": "GoogleCloudDialogflowV2beta1KnowledgeAssistAnswer",
+          "description": "Output only. Knowledge Assist suggestion.",
+          "readOnly": true
+        },
+        "latestMessage": {
+          "description": "The name of the latest conversation message used to compile suggestion for. Format: `projects//locations//conversations//messages/`.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDialogflowV2beta1SuggestSmartRepliesRequest": {
       "description": "The request message for Participants.SuggestSmartReplies.",
       "id": "GoogleCloudDialogflowV2beta1SuggestSmartRepliesRequest",
@@ -19821,7 +20780,8 @@
             "SMART_REPLY",
             "DIALOGFLOW_ASSIST",
             "CONVERSATION_SUMMARIZATION",
-            "KNOWLEDGE_SEARCH"
+            "KNOWLEDGE_SEARCH",
+            "KNOWLEDGE_ASSIST"
           ],
           "enumDescriptions": [
             "Unspecified feature type.",
@@ -19830,7 +20790,8 @@
             "Run smart reply model for chat.",
             "Run Dialogflow assist model for chat, which will return automated agent response as suggestion.",
             "Run conversation summarization model for chat.",
-            "Run knowledge search with text input from agent or text generated query."
+            "Run knowledge search with text input from agent or text generated query.",
+            "Run knowledge assist with automatic query generation."
           ],
           "type": "string"
         }
@@ -19888,9 +20849,124 @@
           "$ref": "GoogleCloudDialogflowV2beta1SuggestFaqAnswersResponse",
           "description": "SuggestFaqAnswersResponse if request is for FAQ_ANSWER."
         },
+        "suggestKnowledgeAssistResponse": {
+          "$ref": "GoogleCloudDialogflowV2beta1SuggestKnowledgeAssistResponse",
+          "description": "SuggestKnowledgeAssistResponse if request is for KNOWLEDGE_ASSIST."
+        },
         "suggestSmartRepliesResponse": {
           "$ref": "GoogleCloudDialogflowV2beta1SuggestSmartRepliesResponse",
           "description": "SuggestSmartRepliesResponse if request is for SMART_REPLY."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV2beta1SummarizationContext": {
+      "description": "Summarization context that customer can configure.",
+      "id": "GoogleCloudDialogflowV2beta1SummarizationContext",
+      "properties": {
+        "fewShotExamples": {
+          "description": "Optional. List of few shot examples.",
+          "items": {
+            "$ref": "GoogleCloudDialogflowV2beta1FewShotExample"
+          },
+          "type": "array"
+        },
+        "outputLanguageCode": {
+          "description": "Optional. The target language of the generated summary. The language code for conversation will be used if this field is empty. Supported 2.0 and later versions.",
+          "type": "string"
+        },
+        "summarizationSections": {
+          "description": "Optional. List of sections. Note it contains both predefined section sand customer defined sections.",
+          "items": {
+            "$ref": "GoogleCloudDialogflowV2beta1SummarizationSection"
+          },
+          "type": "array"
+        },
+        "version": {
+          "description": "Optional. Version of the feature. If not set, default to latest version. Current candidates are [\"1.0\"].",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV2beta1SummarizationSection": {
+      "description": "Represents the section of summarization.",
+      "id": "GoogleCloudDialogflowV2beta1SummarizationSection",
+      "properties": {
+        "definition": {
+          "description": "Optional. Definition of the section, for example, \"what the customer needs help with or has question about.\"",
+          "type": "string"
+        },
+        "key": {
+          "description": "Optional. Name of the section, for example, \"situation\".",
+          "type": "string"
+        },
+        "type": {
+          "description": "Optional. Type of the summarization section.",
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "SITUATION",
+            "ACTION",
+            "RESOLUTION",
+            "REASON_FOR_CANCELLATION",
+            "CUSTOMER_SATISFACTION",
+            "ENTITIES",
+            "CUSTOMER_DEFINED"
+          ],
+          "enumDescriptions": [
+            "Undefined section type, does not return anything.",
+            "What the customer needs help with or has question about. Section name: \"situation\".",
+            "What the agent does to help the customer. Section name: \"action\".",
+            "Result of the customer service. A single word describing the result of the conversation. Section name: \"resolution\".",
+            "Reason for cancellation if the customer requests for a cancellation. \"N/A\" otherwise. Section name: \"reason_for_cancellation\".",
+            "\"Unsatisfied\" or \"Satisfied\" depending on the customer's feelings at the end of the conversation. Section name: \"customer_satisfaction\".",
+            "Key entities extracted from the conversation, such as ticket number, order number, dollar amount, etc. Section names are prefixed by \"entities/\".",
+            "Customer defined sections."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV2beta1SummarizationSectionList": {
+      "description": "List of summarization sections.",
+      "id": "GoogleCloudDialogflowV2beta1SummarizationSectionList",
+      "properties": {
+        "summarizationSections": {
+          "description": "Optional. Summarization sections.",
+          "items": {
+            "$ref": "GoogleCloudDialogflowV2beta1SummarizationSection"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV2beta1SummarySuggestion": {
+      "description": "Suggested summary of the conversation.",
+      "id": "GoogleCloudDialogflowV2beta1SummarySuggestion",
+      "properties": {
+        "summarySections": {
+          "description": "Required. All the parts of generated summary.",
+          "items": {
+            "$ref": "GoogleCloudDialogflowV2beta1SummarySuggestionSummarySection"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV2beta1SummarySuggestionSummarySection": {
+      "description": "A component of the generated summary.",
+      "id": "GoogleCloudDialogflowV2beta1SummarySuggestionSummarySection",
+      "properties": {
+        "section": {
+          "description": "Required. Name of the section.",
+          "type": "string"
+        },
+        "summary": {
+          "description": "Required. Summary text for the section.",
+          "type": "string"
         }
       },
       "type": "object"

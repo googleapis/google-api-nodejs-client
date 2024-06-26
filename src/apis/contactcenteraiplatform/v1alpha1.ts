@@ -142,7 +142,24 @@ export namespace contactcenteraiplatform_v1alpha1 {
    */
   export interface Schema$CancelOperationRequest {}
   /**
-   * Message describing ContactCenter object Next ID: 22
+   * Defines a logical CCAIP component that e.g. “EMAIL”, "CRM". For more information see go/ccaip-private-path-v2. Each logical component is associated with a list of service attachments.
+   */
+  export interface Schema$Component {
+    /**
+     * The list of project ids that are allowed to send traffic to the service attachment. This field should be filled only for the ingress components.
+     */
+    allowedProjectIds?: string[] | null;
+    /**
+     * Name of the component.
+     */
+    name?: string | null;
+    /**
+     * Associated service attachments.
+     */
+    serviceAttachments?: Schema$ServiceAttachment[];
+  }
+  /**
+   * Message describing ContactCenter object Next ID: 23
    */
   export interface Schema$ContactCenter {
     /**
@@ -157,6 +174,10 @@ export namespace contactcenteraiplatform_v1alpha1 {
      * Output only. [Output only] Create time stamp
      */
     createTime?: string | null;
+    /**
+     * Optional. Critical release channel.
+     */
+    critical?: Schema$Critical;
     /**
      * Required. Immutable. At least 2 and max 16 char long, must conform to [RFC 1035](https://www.ietf.org/rfc/rfc1035.txt).
      */
@@ -189,6 +210,10 @@ export namespace contactcenteraiplatform_v1alpha1 {
      * Optional. Normal release channel.
      */
     normal?: Schema$Normal;
+    /**
+     * Optional. VPC-SC related networking configuration.
+     */
+    privateAccess?: Schema$PrivateAccess;
     /**
      * Output only. A list of UJET components that should be privately accessed. This field is set by reading settings from the data plane. For more information about the format of the component please refer to go/ccaip-vpc-sc-org-policy. This field is must be fully populated only for Create/Update resource operations. The main use case for this field is OrgPolicy checks via CPE.
      */
@@ -232,7 +257,16 @@ export namespace contactcenteraiplatform_v1alpha1 {
     quotas?: Schema$Quota[];
   }
   /**
-   * First Channel to receive the updates. Meant to dev/test instances
+   * Instances in this Channel will receive updates after all instances in `Critical` were updated + 2 days. They also will only be updated outside of their peak hours.
+   */
+  export interface Schema$Critical {
+    /**
+     * Required. Hours during which the instance should not be updated.
+     */
+    peakHours?: Schema$WeeklySchedule[];
+  }
+  /**
+   * LINT.IfChange First Channel to receive the updates. Meant to dev/test instances
    */
   export interface Schema$Early {}
   /**
@@ -416,6 +450,19 @@ export namespace contactcenteraiplatform_v1alpha1 {
     verb?: string | null;
   }
   /**
+   * Defines ingress and egress private traffic settings for CCAIP instances.
+   */
+  export interface Schema$PrivateAccess {
+    /**
+     * List of egress components that should not be accessed via the Internet. For more information see go/ccaip-private-path-v2.
+     */
+    egressSettings?: Schema$Component[];
+    /**
+     * List of ingress components that should not be accessed via the Internet. For more information see go/ccaip-private-path-v2.
+     */
+    ingressSettings?: Schema$Component[];
+  }
+  /**
    * Quota details.
    */
   export interface Schema$Quota {
@@ -436,6 +483,10 @@ export namespace contactcenteraiplatform_v1alpha1 {
    * Message storing SAML params to enable Google as IDP.
    */
   export interface Schema$SAMLParams {
+    /**
+     * Additional contexts used for authentication.
+     */
+    authenticationContexts?: string[] | null;
     /**
      * SAML certificate
      */
@@ -458,6 +509,15 @@ export namespace contactcenteraiplatform_v1alpha1 {
     userEmail?: string | null;
   }
   /**
+   * Container for the VPC-SC networking configurations.
+   */
+  export interface Schema$ServiceAttachment {
+    /**
+     * The service attachment name that will be used for sending private traffic to the CCAIP tenant project. Example: "projects/${TENANT_PROJECT_ID\}/regions/${REGION\}/serviceAttachments/ingress-default".
+     */
+    name?: string | null;
+  }
+  /**
    * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
    */
   export interface Schema$Status {
@@ -473,6 +533,27 @@ export namespace contactcenteraiplatform_v1alpha1 {
      * A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.
      */
     message?: string | null;
+  }
+  /**
+   * Represents a time of day. The date and time zone are either not significant or are specified elsewhere. An API may choose to allow leap seconds. Related types are google.type.Date and `google.protobuf.Timestamp`.
+   */
+  export interface Schema$TimeOfDay {
+    /**
+     * Hours of day in 24 hour format. Should be from 0 to 23. An API may choose to allow the value "24:00:00" for scenarios like business closing time.
+     */
+    hours?: number | null;
+    /**
+     * Minutes of hour of day. Must be from 0 to 59.
+     */
+    minutes?: number | null;
+    /**
+     * Fractions of seconds in nanoseconds. Must be from 0 to 999,999,999.
+     */
+    nanos?: number | null;
+    /**
+     * Seconds of minutes of the time. Must normally be from 0 to 59. An API may allow the value 60 if it allows leap-seconds.
+     */
+    seconds?: number | null;
   }
   /**
    * Message storing the URIs of the ContactCenter.
@@ -494,6 +575,27 @@ export namespace contactcenteraiplatform_v1alpha1 {
      * Virtual Agent Streaming Service Uri of the ContactCenter.
      */
     virtualAgentStreamingServiceUri?: string | null;
+  }
+  /**
+   * Message representing a weekly schedule.
+   */
+  export interface Schema$WeeklySchedule {
+    /**
+     * Required. Days of the week this schedule applies to.
+     */
+    days?: string[] | null;
+    /**
+     * Optional. Duration of the schedule.
+     */
+    duration?: string | null;
+    /**
+     * Optional. Daily end time of the schedule. If `end_time` is before `start_time`, the schedule will be considered as ending on the next day.
+     */
+    endTime?: Schema$TimeOfDay;
+    /**
+     * Required. Daily start time of the schedule.
+     */
+    startTime?: Schema$TimeOfDay;
   }
 
   export class Resource$Projects {

@@ -269,6 +269,10 @@ import {
   VERSIONS as deploymentmanagerVersions,
   deploymentmanager,
 } from './deploymentmanager';
+import {
+  VERSIONS as developerconnectVersions,
+  developerconnect,
+} from './developerconnect';
 import {VERSIONS as dfareportingVersions, dfareporting} from './dfareporting';
 import {VERSIONS as dialogflowVersions, dialogflow} from './dialogflow';
 import {
@@ -810,6 +814,7 @@ export const APIS: APIList = {
   datastore: datastoreVersions,
   datastream: datastreamVersions,
   deploymentmanager: deploymentmanagerVersions,
+  developerconnect: developerconnectVersions,
   dfareporting: dfareportingVersions,
   dialogflow: dialogflowVersions,
   digitalassetlinks: digitalassetlinksVersions,
@@ -1104,6 +1109,7 @@ export class GeneratedAPIs {
   datastore = datastore;
   datastream = datastream;
   deploymentmanager = deploymentmanager;
+  developerconnect = developerconnect;
   dfareporting = dfareporting;
   dialogflow = dialogflow;
   digitalassetlinks = digitalassetlinks;

@@ -1677,7 +1677,7 @@
       }
     }
   },
-  "revision": "20240430",
+  "revision": "20240521",
   "rootUrl": "https://firestore.googleapis.com/",
   "schemas": {
     "Aggregation": {
@@ -2515,7 +2515,12 @@
     "GoogleFirestoreAdminV1DailyRecurrence": {
       "description": "Represents a recurring schedule that runs every day. The time zone is UTC.",
       "id": "GoogleFirestoreAdminV1DailyRecurrence",
-      "properties": {},
+      "properties": {
+        "time": {
+          "$ref": "TimeOfDay",
+          "description": "Time of the day. The first run scheduled will be either on the same day if schedule creation time precedes time_of_day or the next day otherwise."
+        }
+      },
       "type": "object"
     },
     "GoogleFirestoreAdminV1Database": {
@@ -2577,7 +2582,7 @@
           "type": "string"
         },
         "deleteTime": {
-          "description": "Output only. The timestamp at which this database was soft deleted. Only set if the database has been soft deleted.",
+          "description": "Output only. The timestamp at which this database was deleted. Only set if the database has been deleted.",
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
@@ -2617,6 +2622,11 @@
             "Reads are supported on selected versions of the data from within the past 7 days: * Reads against any timestamp within the past hour * Reads against 1-minute snapshots beyond 1 hour and within 7 days `version_retention_period` and `earliest_version_time` can be used to determine the supported versions.",
             "Reads are supported on any version of the data from within the past 1 hour."
           ],
+          "type": "string"
+        },
+        "previousId": {
+          "description": "Output only. The database resource's prior database ID. This field is only populated for deleted databases.",
+          "readOnly": true,
           "type": "string"
         },
         "type": {
@@ -2752,7 +2762,7 @@
       "id": "GoogleFirestoreAdminV1ExportDocumentsRequest",
       "properties": {
         "collectionIds": {
-          "description": "Which collection ids to export. Unspecified means all collections.",
+          "description": "Which collection ids to export. Unspecified means all collections. Each collection id in this list must be unique.",
           "items": {
             "type": "string"
           },
@@ -2949,7 +2959,7 @@
       "id": "GoogleFirestoreAdminV1ImportDocumentsRequest",
       "properties": {
         "collectionIds": {
-          "description": "Which collection ids to import. Unspecified means all collections included in the import.",
+          "description": "Which collection ids to import. Unspecified means all collections included in the import. Each collection id in this list must be unique.",
           "items": {
             "type": "string"
           },
@@ -3482,6 +3492,10 @@
             "Sunday"
           ],
           "type": "string"
+        },
+        "time": {
+          "$ref": "TimeOfDay",
+          "description": "Time of the day. If day is today, the first run will happen today if schedule creation time precedes time_of_day, and the next week otherwise."
         }
       },
       "type": "object"
@@ -4213,6 +4227,33 @@
             "type": "integer"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "TimeOfDay": {
+      "description": "Represents a time of day. The date and time zone are either not significant or are specified elsewhere. An API may choose to allow leap seconds. Related types are google.type.Date and `google.protobuf.Timestamp`.",
+      "id": "TimeOfDay",
+      "properties": {
+        "hours": {
+          "description": "Hours of day in 24 hour format. Should be from 0 to 23. An API may choose to allow the value \"24:00:00\" for scenarios like business closing time.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "minutes": {
+          "description": "Minutes of hour of day. Must be from 0 to 59.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "nanos": {
+          "description": "Fractions of seconds in nanoseconds. Must be from 0 to 999,999,999.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "seconds": {
+          "description": "Seconds of minutes of the time. Must normally be from 0 to 59. An API may allow the value 60 if it allows leap-seconds.",
+          "format": "int32",
+          "type": "integer"
         }
       },
       "type": "object"

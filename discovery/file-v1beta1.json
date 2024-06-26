@@ -1069,7 +1069,7 @@
       }
     }
   },
-  "revision": "20240307",
+  "revision": "20240511",
   "rootUrl": "https://file.googleapis.com/",
   "schemas": {
     "Backup": {
@@ -1663,6 +1663,10 @@
           ],
           "type": "string"
         },
+        "replication": {
+          "$ref": "Replication",
+          "description": "Optional. Replicaition configuration."
+        },
         "satisfiesPzi": {
           "description": "Output only. Reserved for future use.",
           "readOnly": true,
@@ -2207,6 +2211,83 @@
       "description": "PromoteReplicaRequest promotes a Filestore standby instance (replica).",
       "id": "PromoteReplicaRequest",
       "properties": {},
+      "type": "object"
+    },
+    "ReplicaConfig": {
+      "description": "Replica configuration for the instance.",
+      "id": "ReplicaConfig",
+      "properties": {
+        "lastActiveSyncTime": {
+          "description": "Output only. The timestamp of the latest replication snapshot taken on the active instance and is already replicated safely.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "peerInstance": {
+          "description": "The peer instance.",
+          "type": "string"
+        },
+        "state": {
+          "description": "Output only. The replica state.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "CREATING",
+            "READY",
+            "REMOVING",
+            "FAILED"
+          ],
+          "enumDescriptions": [
+            "State not set.",
+            "The replica is being created.",
+            "The replica is ready.",
+            "The replica is being removed.",
+            "The replica is experiencing an issue and might be unusable. You can get further details from the `stateReasons` field of the `ReplicaConfig` object."
+          ],
+          "type": "string"
+        },
+        "stateReasons": {
+          "description": "Output only. Additional information about the replication state, if available.",
+          "items": {
+            "enum": [
+              "STATE_REASON_UNSPECIFIED",
+              "PEER_INSTANCE_UNREACHABLE"
+            ],
+            "enumDescriptions": [
+              "Reason not specified.",
+              "The peer instance is unreachable."
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "Replication": {
+      "description": "Replication specifications.",
+      "id": "Replication",
+      "properties": {
+        "replicas": {
+          "description": "Replicas configuration on the instance. For now, only a single replica config is supported.",
+          "items": {
+            "$ref": "ReplicaConfig"
+          },
+          "type": "array"
+        },
+        "role": {
+          "description": "Output only. The replication role.",
+          "enum": [
+            "ROLE_UNSPECIFIED",
+            "ACTIVE",
+            "STANDBY"
+          ],
+          "enumDescriptions": [
+            "Role not set.",
+            "The instance is a Active replication member, functions as the replication source instance.",
+            "The instance is a Standby replication member, functions as the replication destination instance."
+          ],
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "RestoreInstanceRequest": {

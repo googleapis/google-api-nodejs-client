@@ -278,6 +278,10 @@ export namespace redis_v1beta1 {
      * Output only. System assigned, unique identifier for the cluster.
      */
     uid?: string | null;
+    /**
+     * Optional. This config will be used to determine how the customer wants us to distribute cluster resources within the region.
+     */
+    zoneDistributionConfig?: Schema$ZoneDistributionConfig;
   }
   /**
    * Configuration of the persistence functionality.
@@ -349,6 +353,7 @@ export namespace redis_v1beta1 {
     /**
      * More feed data would be added in subsequent CLs
      */
+    observabilityMetricData?: Schema$ObservabilityMetricData;
     recommendationSignalData?: Schema$DatabaseResourceRecommendationSignalData;
     resourceHealthSignalData?: Schema$DatabaseResourceHealthSignalData;
     /**
@@ -481,6 +486,10 @@ export namespace redis_v1beta1 {
      */
     location?: string | null;
     /**
+     * Machine configuration for this resource.
+     */
+    machineConfiguration?: Schema$MachineConfiguration;
+    /**
      * Identifier for this resource's immediate parent/primary resource if the current resource is a replica or derived form of another Database resource. Else it would be NULL. REQUIRED if the immediate parent exists when first time resource is getting ingested, otherwise optional.
      */
     primaryResourceId?: Schema$DatabaseResourceId;
@@ -500,10 +509,6 @@ export namespace redis_v1beta1 {
      * The time at which the resource was updated and recorded at partner service.
      */
     updationTime?: string | null;
-    /**
-     * User-provided labels, represented as a dictionary where each label is a single key value pair.
-     */
-    userLabels?: {[key: string]: string} | null;
     /**
      * User-provided labels associated with the resource
      */
@@ -930,6 +935,19 @@ export namespace redis_v1beta1 {
     name?: string | null;
   }
   /**
+   * MachineConfiguration describes the configuration of a machine specific to Database Resource.
+   */
+  export interface Schema$MachineConfiguration {
+    /**
+     * The number of CPUs. TODO(b/342344482, b/342346271) add proto validations again after bug fix.
+     */
+    cpuCount?: number | null;
+    /**
+     * Memory size in bytes. TODO(b/342344482, b/342346271) add proto validations again after bug fix.
+     */
+    memorySizeInBytes?: string | null;
+  }
+  /**
    * Maintenance policy for an instance.
    */
   export interface Schema$MaintenancePolicy {
@@ -989,6 +1007,28 @@ export namespace redis_v1beta1 {
      * Output only. Location of the node.
      */
     zone?: string | null;
+  }
+  export interface Schema$ObservabilityMetricData {
+    /**
+     * Required. Type of aggregation performed on the metric.
+     */
+    aggregationType?: string | null;
+    /**
+     * Required. Type of metric like CPU, Memory, etc.
+     */
+    metricType?: string | null;
+    /**
+     * Required. The time the metric value was observed.
+     */
+    observationTime?: string | null;
+    /**
+     * Required. Database resource name associated with the signal. Resource name to follow CAIS resource_name format as noted here go/condor-common-datamodel
+     */
+    resourceName?: string | null;
+    /**
+     * Required. Value of the metric type.
+     */
+    value?: Schema$TypedValue;
   }
   /**
    * This resource represents a long-running operation that is the result of a network API call.
@@ -1260,6 +1300,27 @@ export namespace redis_v1beta1 {
     sha1Fingerprint?: string | null;
   }
   /**
+   * TypedValue represents the value of a metric type. It can either be a double, an int64, a string or a bool.
+   */
+  export interface Schema$TypedValue {
+    /**
+     * For boolean value
+     */
+    boolValue?: boolean | null;
+    /**
+     * For double value
+     */
+    doubleValue?: number | null;
+    /**
+     * For integer value
+     */
+    int64Value?: string | null;
+    /**
+     * For string value
+     */
+    stringValue?: string | null;
+  }
+  /**
    * Represents information about an updating cluster.
    */
   export interface Schema$UpdateInfo {
@@ -1303,6 +1364,19 @@ export namespace redis_v1beta1 {
      * Required. Start time of the window in UTC time.
      */
     startTime?: Schema$TimeOfDay;
+  }
+  /**
+   * Zone distribution config for allocation of cluster resources.
+   */
+  export interface Schema$ZoneDistributionConfig {
+    /**
+     * Optional. The mode of zone distribution. Defaults to MULTI_ZONE, when not specified.
+     */
+    mode?: string | null;
+    /**
+     * Optional. When SINGLE ZONE distribution is selected, zone field would be used to allocate all resources in that zone. This is not applicable to MULTI_ZONE, and would be ignored for MULTI_ZONE clusters.
+     */
+    zone?: string | null;
   }
 
   export class Resource$Projects {

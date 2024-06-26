@@ -1,5 +1,12 @@
 # Changelog
 
+## [9.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/firestore-v9.0.0...firestore-v9.1.0) (2024-06-03)
+
+
+### Features
+
+* **firestore:** update the API ([4cf0ea6](https://github.com/googleapis/google-api-nodejs-client/commit/4cf0ea693332045b9936a3cac0bac844f579fc0f))
+
 ## [9.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/firestore-v8.0.0...firestore-v9.0.0) (2024-05-10)
 
 

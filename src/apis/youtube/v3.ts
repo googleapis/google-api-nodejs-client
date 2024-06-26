@@ -8658,6 +8658,94 @@ export namespace youtube_v3 {
         return createAPIRequest<Schema$LiveChatMessageListResponse>(parameters);
       }
     }
+
+    /**
+     * Transition a durable chat event.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    transition(
+      params: Params$Resource$Livechatmessages$Transition,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    transition(
+      params?: Params$Resource$Livechatmessages$Transition,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$LiveChatMessage>;
+    transition(
+      params: Params$Resource$Livechatmessages$Transition,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    transition(
+      params: Params$Resource$Livechatmessages$Transition,
+      options: MethodOptions | BodyResponseCallback<Schema$LiveChatMessage>,
+      callback: BodyResponseCallback<Schema$LiveChatMessage>
+    ): void;
+    transition(
+      params: Params$Resource$Livechatmessages$Transition,
+      callback: BodyResponseCallback<Schema$LiveChatMessage>
+    ): void;
+    transition(callback: BodyResponseCallback<Schema$LiveChatMessage>): void;
+    transition(
+      paramsOrCallback?:
+        | Params$Resource$Livechatmessages$Transition
+        | BodyResponseCallback<Schema$LiveChatMessage>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$LiveChatMessage>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$LiveChatMessage>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$LiveChatMessage> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Livechatmessages$Transition;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Livechatmessages$Transition;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://youtube.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/youtube/v3/liveChat/messages/transition').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: [],
+        pathParams: [],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$LiveChatMessage>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$LiveChatMessage>(parameters);
+      }
+    }
   }
 
   export interface Params$Resource$Livechatmessages$Delete
@@ -8705,6 +8793,17 @@ export namespace youtube_v3 {
      * Specifies the size of the profile image that should be returned for each user.
      */
     profileImageSize?: number;
+  }
+  export interface Params$Resource$Livechatmessages$Transition
+    extends StandardParameters {
+    /**
+     * The ID that uniquely identify the chat message event to transition.
+     */
+    id?: string;
+    /**
+     * The status to which the chat event is going to transition.
+     */
+    status?: string;
   }
 
   export class Resource$Livechatmoderators {
@@ -13671,10 +13770,8 @@ export namespace youtube_v3 {
 
   export class Resource$Youtube$V3 {
     context: APIRequestContext;
-    liveChat: Resource$Youtube$V3$Livechat;
     constructor(context: APIRequestContext) {
       this.context = context;
-      this.liveChat = new Resource$Youtube$V3$Livechat(this.context);
     }
 
     /**
@@ -13779,121 +13876,5 @@ export namespace youtube_v3 {
      * Request body metadata
      */
     requestBody?: Schema$CommentThread;
-  }
-
-  export class Resource$Youtube$V3$Livechat {
-    context: APIRequestContext;
-    messages: Resource$Youtube$V3$Livechat$Messages;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-      this.messages = new Resource$Youtube$V3$Livechat$Messages(this.context);
-    }
-  }
-
-  export class Resource$Youtube$V3$Livechat$Messages {
-    context: APIRequestContext;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-    }
-
-    /**
-     * Transition a durable chat event.
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    transition(
-      params: Params$Resource$Youtube$V3$Livechat$Messages$Transition,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    transition(
-      params?: Params$Resource$Youtube$V3$Livechat$Messages$Transition,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$LiveChatMessage>;
-    transition(
-      params: Params$Resource$Youtube$V3$Livechat$Messages$Transition,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    transition(
-      params: Params$Resource$Youtube$V3$Livechat$Messages$Transition,
-      options: MethodOptions | BodyResponseCallback<Schema$LiveChatMessage>,
-      callback: BodyResponseCallback<Schema$LiveChatMessage>
-    ): void;
-    transition(
-      params: Params$Resource$Youtube$V3$Livechat$Messages$Transition,
-      callback: BodyResponseCallback<Schema$LiveChatMessage>
-    ): void;
-    transition(callback: BodyResponseCallback<Schema$LiveChatMessage>): void;
-    transition(
-      paramsOrCallback?:
-        | Params$Resource$Youtube$V3$Livechat$Messages$Transition
-        | BodyResponseCallback<Schema$LiveChatMessage>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$LiveChatMessage>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$LiveChatMessage>
-        | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$LiveChatMessage> | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Youtube$V3$Livechat$Messages$Transition;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Youtube$V3$Livechat$Messages$Transition;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://youtube.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/youtube/v3/liveChat/messages/transition').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'POST',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: [],
-        pathParams: [],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$LiveChatMessage>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$LiveChatMessage>(parameters);
-      }
-    }
-  }
-
-  export interface Params$Resource$Youtube$V3$Livechat$Messages$Transition
-    extends StandardParameters {
-    /**
-     * The ID that uniquely identify the chat message event to transition.
-     */
-    id?: string;
-    /**
-     * The status to which the chat event is going to transition.
-     */
-    status?: string;
   }
 }

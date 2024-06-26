@@ -1053,6 +1053,10 @@ export namespace cloudfunctions_v2alpha {
      */
     availableMemory?: string | null;
     /**
+     * Optional. The binary authorization policy to be checked when deploying the Cloud Run service.
+     */
+    binaryAuthorizationPolicy?: string | null;
+    /**
      * Environment variables that shall be available during function execution.
      */
     environmentVariables?: {[key: string]: string} | null;
@@ -1197,6 +1201,10 @@ export namespace cloudfunctions_v2alpha {
      * Google Cloud Storage object containing the source. This object must be a gzipped archive file (`.tar.gz`) containing source to build.
      */
     object?: string | null;
+    /**
+     * When the specified storage bucket is a 1st gen function uploard url bucket, this field should be set as the generated upload url for 1st gen deployment.
+     */
+    sourceUploadUrl?: string | null;
   }
   /**
    * Request message for `TestIamPermissions` method.

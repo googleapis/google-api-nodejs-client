@@ -377,9 +377,17 @@ export namespace networkmanagement_v1beta1 {
      */
     ipAddress?: string | null;
     /**
+     * PSC Google API target the packet is delivered to (if applicable).
+     */
+    pscGoogleApiTarget?: string | null;
+    /**
      * URI of the resource that the packet is delivered to.
      */
     resourceUri?: string | null;
+    /**
+     * Name of the Cloud Storage Bucket the packet is delivered to (if applicable).
+     */
+    storageBucket?: string | null;
     /**
      * Target type where the packet is delivered to.
      */
@@ -613,27 +621,43 @@ export namespace networkmanagement_v1beta1 {
    */
   export interface Schema$ForwardingRuleInfo {
     /**
-     * Name of a Compute Engine forwarding rule.
+     * Name of the forwarding rule.
      */
     displayName?: string | null;
     /**
-     * Port range defined in the forwarding rule that matches the test.
+     * Name of the load balancer the forwarding rule belongs to. Empty for forwarding rules not related to load balancers (like PSC forwarding rules).
+     */
+    loadBalancerName?: string | null;
+    /**
+     * Port range defined in the forwarding rule that matches the packet.
      */
     matchedPortRange?: string | null;
     /**
-     * Protocol defined in the forwarding rule that matches the test.
+     * Protocol defined in the forwarding rule that matches the packet.
      */
     matchedProtocol?: string | null;
     /**
-     * Network URI. Only valid for Internal Load Balancer.
+     * Network URI.
      */
     networkUri?: string | null;
+    /**
+     * PSC Google API target this forwarding rule targets (if applicable).
+     */
+    pscGoogleApiTarget?: string | null;
+    /**
+     * URI of the PSC service attachment this forwarding rule targets (if applicable).
+     */
+    pscServiceAttachmentUri?: string | null;
+    /**
+     * Region of the forwarding rule. Set only for regional forwarding rules.
+     */
+    region?: string | null;
     /**
      * Target type of the forwarding rule.
      */
     target?: string | null;
     /**
-     * URI of a Compute Engine forwarding rule.
+     * URI of the forwarding rule.
      */
     uri?: string | null;
     /**
@@ -1235,6 +1259,15 @@ export namespace networkmanagement_v1beta1 {
     uri?: string | null;
   }
   /**
+   * For display only. Metadata associated with the serverless network endpoint group backend.
+   */
+  export interface Schema$ServerlessNegInfo {
+    /**
+     * URI of the serverless network endpoint group.
+     */
+    negUri?: string | null;
+  }
+  /**
    * Request message for `SetIamPolicy` method.
    */
   export interface Schema$SetIamPolicyRequest {
@@ -1360,6 +1393,10 @@ export namespace networkmanagement_v1beta1 {
      * Display information of a Compute Engine route.
      */
     route?: Schema$RouteInfo;
+    /**
+     * Display information of a Serverless network endpoint group backend. Used only for return traces.
+     */
+    serverlessNeg?: Schema$ServerlessNegInfo;
     /**
      * Each step is in one of the pre-defined states.
      */

@@ -2681,7 +2681,7 @@
       }
     }
   },
-  "revision": "20240509",
+  "revision": "20240531",
   "rootUrl": "https://walletobjects.googleapis.com/",
   "schemas": {
     "ActivationOptions": {
@@ -2772,7 +2772,7 @@
       "properties": {
         "androidAppLinkInfo": {
           "$ref": "AppLinkDataAppLinkInfo",
-          "description": "Optional information about the partner app link. If included, the app link link module will be rendered on the valuable details on the android client."
+          "description": "Optional information about the partner app link."
         },
         "iosAppLinkInfo": {
           "$ref": "AppLinkDataAppLinkInfo",
@@ -2781,7 +2781,7 @@
         },
         "webAppLinkInfo": {
           "$ref": "AppLinkDataAppLinkInfo",
-          "description": "Optional information about the partner app link. If included, the app link link module will be rendered on the valuable details on the web client."
+          "description": "Optional information about the partner web link."
         }
       },
       "type": "object"
@@ -2791,19 +2791,22 @@
       "properties": {
         "appLogoImage": {
           "$ref": "Image",
-          "description": "Optional image to be displayed in the App Link Module"
+          "deprecated": true,
+          "description": "Deprecated. Image isn't supported in the app link module."
         },
         "appTarget": {
           "$ref": "AppLinkDataAppLinkInfoAppTarget",
-          "description": "Url to follow when opening the App Link Module on clients. It will be used by partners to open their webpage or deeplink into their app."
+          "description": "Target to follow when opening the app link on clients. It will be used by partners to open their app or webpage."
         },
         "description": {
           "$ref": "LocalizedString",
-          "description": "String to be displayed in the description of the App Link Module Required"
+          "deprecated": true,
+          "description": "Deprecated. Description isn't supported in the app link module."
         },
         "title": {
           "$ref": "LocalizedString",
-          "description": "String to be displayed in the title of the App Link Module Required"
+          "deprecated": true,
+          "description": "Deprecated. Title isn't supported in the app link module."
         }
       },
       "type": "object"
@@ -3733,6 +3736,10 @@
           "description": "Deprecated. Use `multipleDevicesAndHoldersAllowedStatus` instead.",
           "type": "boolean"
         },
+        "appLinkData": {
+          "$ref": "AppLinkData",
+          "description": "Optional app or website link that will be displayed as a button on the front of the pass. If AppLinkData is provided for the corresponding object that will be used instead."
+        },
         "callbackOptions": {
           "$ref": "CallbackOptions",
           "description": "Callback options to be used to call the issuer back for every save/delete of an object for this class by the end-user. All objects of this class are eligible for the callback."
@@ -4138,7 +4145,7 @@
       "properties": {
         "appLinkData": {
           "$ref": "AppLinkData",
-          "description": "Optional information about the partner app link."
+          "description": "Optional app or website link that will be displayed as a button on the front of the pass. If AppLinkData is provided for the corresponding class only object AppLinkData will be displayed."
         },
         "barcode": {
           "$ref": "Barcode",
@@ -4528,6 +4535,10 @@
           "description": "Deprecated. Use `multipleDevicesAndHoldersAllowedStatus` instead.",
           "type": "boolean"
         },
+        "appLinkData": {
+          "$ref": "AppLinkData",
+          "description": "Optional app or website link that will be displayed as a button on the front of the pass. If AppLinkData is provided for the corresponding object that will be used instead."
+        },
         "boardingAndSeatingPolicy": {
           "$ref": "BoardingAndSeatingPolicy",
           "description": "Policies for boarding and seating. These will inform which labels will be shown to users."
@@ -4878,7 +4889,7 @@
       "properties": {
         "appLinkData": {
           "$ref": "AppLinkData",
-          "description": "Optional information about the partner app link."
+          "description": "Optional app or website link that will be displayed as a button on the front of the pass. If AppLinkData is provided for the corresponding class only object AppLinkData will be displayed."
         },
         "barcode": {
           "$ref": "Barcode",
@@ -5089,6 +5100,10 @@
       "description": "Generic Class",
       "id": "GenericClass",
       "properties": {
+        "appLinkData": {
+          "$ref": "AppLinkData",
+          "description": "Optional app or website link that will be displayed as a button on the front of the pass. If AppLinkData is provided for the corresponding object that will be used instead."
+        },
         "callbackOptions": {
           "$ref": "CallbackOptions",
           "description": "Callback options to be used to call the issuer back for every save/delete of an object for this class by the end-user. All objects of this class are eligible for the callback."
@@ -5225,7 +5240,7 @@
       "properties": {
         "appLinkData": {
           "$ref": "AppLinkData",
-          "description": "Information about the partner app link. The maximum number of these fields displayed is 10."
+          "description": "Optional app or website link that will be displayed as a button on the front of the pass. If AppLinkData is provided for the corresponding class only object AppLinkData will be displayed."
         },
         "barcode": {
           "$ref": "Barcode",
@@ -5427,6 +5442,10 @@
           "deprecated": true,
           "description": "Deprecated. Use `multipleDevicesAndHoldersAllowedStatus` instead.",
           "type": "boolean"
+        },
+        "appLinkData": {
+          "$ref": "AppLinkData",
+          "description": "Optional app or website link that will be displayed as a button on the front of the pass. If AppLinkData is provided for the corresponding object that will be used instead."
         },
         "callbackOptions": {
           "$ref": "CallbackOptions",
@@ -5694,7 +5713,7 @@
       "properties": {
         "appLinkData": {
           "$ref": "AppLinkData",
-          "description": "Optional information about the partner app link."
+          "description": "Optional app or website link that will be displayed as a button on the front of the pass. If AppLinkData is provided for the corresponding class only object AppLinkData will be displayed."
         },
         "balance": {
           "$ref": "Money",
@@ -6229,6 +6248,10 @@
           "description": "Deprecated. Use `multipleDevicesAndHoldersAllowedStatus` instead.",
           "type": "boolean"
         },
+        "appLinkData": {
+          "$ref": "AppLinkData",
+          "description": "Optional app or website link that will be displayed as a button on the front of the pass. If AppLinkData is provided for the corresponding object that will be used instead."
+        },
         "callbackOptions": {
           "$ref": "CallbackOptions",
           "description": "Callback options to be used to call the issuer back for every save/delete of an object for this class by the end-user. All objects of this class are eligible for the callback."
@@ -6523,7 +6546,7 @@
         },
         "appLinkData": {
           "$ref": "AppLinkData",
-          "description": "Optional information about the partner app link."
+          "description": "Optional app or website link that will be displayed as a button on the front of the pass. If AppLinkData is provided for the corresponding class only object AppLinkData will be displayed."
         },
         "barcode": {
           "$ref": "Barcode",
@@ -7024,21 +7047,24 @@
             "TEXT",
             "text",
             "EXPIRATION_NOTIFICATION",
-            "expirationNotification"
+            "expirationNotification",
+            "TEXT_AND_NOTIFY"
           ],
           "enumDeprecated": [
             false,
             false,
             true,
             false,
-            true
+            true,
+            false
           ],
           "enumDescriptions": [
             "",
             "Renders the message as text on the card details screen. This is the default message type.",
             "Legacy alias for `TEXT`. Deprecated.",
             "Note: This enum is currently not supported.",
-            "Legacy alias for `EXPIRATION_NOTIFICATION`. Deprecated."
+            "Legacy alias for `EXPIRATION_NOTIFICATION`. Deprecated.",
+            "Renders the message as text on the card details screen and as an Android notification."
           ],
           "type": "string"
         }
@@ -7137,6 +7163,10 @@
           "deprecated": true,
           "description": "Deprecated. Use `multipleDevicesAndHoldersAllowedStatus` instead.",
           "type": "boolean"
+        },
+        "appLinkData": {
+          "$ref": "AppLinkData",
+          "description": "Optional app or website link that will be displayed as a button on the front of the pass. If AppLinkData is provided for the corresponding object that will be used instead."
         },
         "callbackOptions": {
           "$ref": "CallbackOptions",
@@ -7453,7 +7483,7 @@
       "properties": {
         "appLinkData": {
           "$ref": "AppLinkData",
-          "description": "Optional information about the partner app link."
+          "description": "Optional app or website link that will be displayed as a button on the front of the pass. If AppLinkData is provided for the corresponding class only object AppLinkData will be displayed."
         },
         "barcode": {
           "$ref": "Barcode",
@@ -8411,6 +8441,10 @@
           "description": "Deprecated. Use `multipleDevicesAndHoldersAllowedStatus` instead.",
           "type": "boolean"
         },
+        "appLinkData": {
+          "$ref": "AppLinkData",
+          "description": "Optional app or website link that will be displayed as a button on the front of the pass. If AppLinkData is provided for the corresponding object that will be used instead."
+        },
         "callbackOptions": {
           "$ref": "CallbackOptions",
           "description": "Callback options to be used to call the issuer back for every save/delete of an object for this class by the end-user. All objects of this class are eligible for the callback."
@@ -8779,7 +8813,7 @@
         },
         "appLinkData": {
           "$ref": "AppLinkData",
-          "description": "Optional information about the partner app link."
+          "description": "Optional app or website link that will be displayed as a button on the front of the pass. If AppLinkData is provided for the corresponding class only object AppLinkData will be displayed."
         },
         "barcode": {
           "$ref": "Barcode",

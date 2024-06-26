@@ -1,5 +1,24 @@
 # Changelog
 
+## [1.3.0](https://github.com/googleapis/google-api-nodejs-client/compare/pagespeedonline-v1.2.0...pagespeedonline-v1.3.0) (2024-06-06)
+
+
+### Features
+
+* **pagespeedonline:** update the API ([4cfbdc1](https://github.com/googleapis/google-api-nodejs-client/commit/4cfbdc10df2d10ba21a38b56fe84bf7ed06023b0))
+
+
+### Bug Fixes
+
+* **pagespeedonline:** update the API ([ea4b6e3](https://github.com/googleapis/google-api-nodejs-client/commit/ea4b6e327902369d129eab3b4433509d3e488c36))
+
+## [1.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/pagespeedonline-v1.1.7...pagespeedonline-v1.2.0) (2024-06-03)
+
+
+### Features
+
+* **pagespeedonline:** update the API ([4cfbdc1](https://github.com/googleapis/google-api-nodejs-client/commit/4cfbdc10df2d10ba21a38b56fe84bf7ed06023b0))
+
 ## [1.1.7](https://github.com/googleapis/google-api-nodejs-client/compare/pagespeedonline-v1.1.6...pagespeedonline-v1.1.7) (2024-05-02)
 
 

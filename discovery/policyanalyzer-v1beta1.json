@@ -105,6 +105,120 @@
   },
   "protocol": "rest",
   "resources": {
+    "folders": {
+      "resources": {
+        "locations": {
+          "resources": {
+            "activityTypes": {
+              "resources": {
+                "activities": {
+                  "methods": {
+                    "query": {
+                      "description": "Queries policy activities on GCP resources.",
+                      "flatPath": "v1beta1/folders/{foldersId}/locations/{locationsId}/activityTypes/{activityTypesId}/activities:query",
+                      "httpMethod": "GET",
+                      "id": "policyanalyzer.folders.locations.activityTypes.activities.query",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "filter": {
+                          "description": "Optional. Optional filter expression to restrict the activities returned. Supported filters are: - service_account_last_authn.full_resource_name {=} - service_account_key_last_authn.full_resource_name {=} ",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "pageSize": {
+                          "description": "Optional. The maximum number of results to return from this request. Max limit is 1000. Non-positive values are ignored. The presence of `nextPageToken` in the response indicates that more results might be available.",
+                          "format": "int32",
+                          "location": "query",
+                          "type": "integer"
+                        },
+                        "pageToken": {
+                          "description": "Optional. If present, then retrieve the next batch of results from the preceding call to this method. `pageToken` must be the value of `nextPageToken` from the previous response. The values of other method parameters should be identical to those in the previous call.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "parent": {
+                          "description": "Required. The container resource on which to execute the request. Acceptable formats: `projects/[PROJECT_ID|PROJECT_NUMBER]/locations/[LOCATION]/activityTypes/[ACTIVITY_TYPE]` LOCATION here refers to GCP Locations: https://cloud.google.com/about/locations/",
+                          "location": "path",
+                          "pattern": "^folders/[^/]+/locations/[^/]+/activityTypes/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta1/{+parent}/activities:query",
+                      "response": {
+                        "$ref": "GoogleCloudPolicyanalyzerV1beta1QueryActivityResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "organizations": {
+      "resources": {
+        "locations": {
+          "resources": {
+            "activityTypes": {
+              "resources": {
+                "activities": {
+                  "methods": {
+                    "query": {
+                      "description": "Queries policy activities on GCP resources.",
+                      "flatPath": "v1beta1/organizations/{organizationsId}/locations/{locationsId}/activityTypes/{activityTypesId}/activities:query",
+                      "httpMethod": "GET",
+                      "id": "policyanalyzer.organizations.locations.activityTypes.activities.query",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "filter": {
+                          "description": "Optional. Optional filter expression to restrict the activities returned. Supported filters are: - service_account_last_authn.full_resource_name {=} - service_account_key_last_authn.full_resource_name {=} ",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "pageSize": {
+                          "description": "Optional. The maximum number of results to return from this request. Max limit is 1000. Non-positive values are ignored. The presence of `nextPageToken` in the response indicates that more results might be available.",
+                          "format": "int32",
+                          "location": "query",
+                          "type": "integer"
+                        },
+                        "pageToken": {
+                          "description": "Optional. If present, then retrieve the next batch of results from the preceding call to this method. `pageToken` must be the value of `nextPageToken` from the previous response. The values of other method parameters should be identical to those in the previous call.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "parent": {
+                          "description": "Required. The container resource on which to execute the request. Acceptable formats: `projects/[PROJECT_ID|PROJECT_NUMBER]/locations/[LOCATION]/activityTypes/[ACTIVITY_TYPE]` LOCATION here refers to GCP Locations: https://cloud.google.com/about/locations/",
+                          "location": "path",
+                          "pattern": "^organizations/[^/]+/locations/[^/]+/activityTypes/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta1/{+parent}/activities:query",
+                      "response": {
+                        "$ref": "GoogleCloudPolicyanalyzerV1beta1QueryActivityResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "projects": {
       "resources": {
         "locations": {
@@ -163,10 +277,11 @@
       }
     }
   },
-  "revision": "20210822",
+  "revision": "20240602",
   "rootUrl": "https://policyanalyzer.googleapis.com/",
   "schemas": {
     "GoogleCloudPolicyanalyzerV1beta1Activity": {
+      "description": "Represents Activity on a GCP resource over specific observation period.",
       "id": "GoogleCloudPolicyanalyzerV1beta1Activity",
       "properties": {
         "activity": {

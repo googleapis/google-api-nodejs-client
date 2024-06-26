@@ -167,6 +167,9 @@ export namespace identitytoolkit_v2 {
      * A list of Bundle ID's usable by this project
      */
     bundleIds?: string[] | null;
+    /**
+     * Additional config for Apple for code flow.
+     */
     codeFlowConfig?: Schema$GoogleCloudIdentitytoolkitAdminV2CodeFlowConfig;
   }
   /**

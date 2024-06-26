@@ -1288,7 +1288,7 @@ export namespace dataplex_v1 {
      */
     setExpectation?: Schema$GoogleCloudDataplexV1DataQualityRuleSetExpectation;
     /**
-     * Aggregate rule which evaluates the number of rows returned for the provided statement.
+     * Aggregate rule which evaluates the number of rows returned for the provided statement. If any rows are returned, this rule fails.
      */
     sqlAssertion?: Schema$GoogleCloudDataplexV1DataQualityRuleSqlAssertion;
     /**
@@ -1347,7 +1347,7 @@ export namespace dataplex_v1 {
    */
   export interface Schema$GoogleCloudDataplexV1DataQualityRuleResult {
     /**
-     * Output only. The number of rows returned by the sql statement in the SqlAssertion rule.This field is only valid for SqlAssertion rules.
+     * Output only. The number of rows returned by the SQL statement in a SQL assertion rule.This field is only valid for SQL assertion rules.
      */
     assertionRowCount?: string | null;
     /**
@@ -1398,7 +1398,7 @@ export namespace dataplex_v1 {
     values?: string[] | null;
   }
   /**
-   * Queries for rows returned by the provided SQL statement. If any rows are are returned, this rule fails.The SQL statement needs to use BigQuery standard SQL syntax, and must not contain any semicolons.${data()\} can be used to reference the rows being evaluated, i.e. the table after all additional filters (row filters, incremental data filters, sampling) are applied.Example: SELECT * FROM ${data()\} WHERE price < 0
+   * A SQL statement that is evaluated to return rows that match an invalid state. If any rows are are returned, this rule fails.The SQL statement must use BigQuery standard SQL syntax, and must not contain any semicolons.You can use the data reference parameter ${data()\} to reference the source table with all of its precondition filters applied. Examples of precondition filters include row filters, incremental data filters, and sampling. For more information, see Data reference parameter (https://cloud.google.com/dataplex/docs/auto-data-quality-overview#data-reference-parameter).Example: SELECT * FROM ${data()\} WHERE price < 0
    */
   export interface Schema$GoogleCloudDataplexV1DataQualityRuleSqlAssertion {
     /**
@@ -1449,7 +1449,7 @@ export namespace dataplex_v1 {
    */
   export interface Schema$GoogleCloudDataplexV1DataQualityScanRuleResult {
     /**
-     * The number of rows returned by the sql statement in the SqlAssertion rule. This field is only valid for SqlAssertion rules.
+     * The number of rows returned by the SQL statement in a SQL assertion rule. This field is only valid for SQL assertion rules.
      */
     assertionRowCount?: string | null;
     /**
@@ -3219,9 +3219,6 @@ export namespace dataplex_v1 {
    * A single result of a SearchEntries request.
    */
   export interface Schema$GoogleCloudDataplexV1SearchEntriesResult {
-    /**
-     * Entry format of the result.
-     */
     dataplexEntry?: Schema$GoogleCloudDataplexV1Entry;
     /**
      * Linked resource name.

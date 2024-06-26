@@ -211,6 +211,23 @@ export namespace sqladmin_v1beta4 {
     region?: string | null;
   }
   /**
+   * An available database version. It can be a major or a minor version.
+   */
+  export interface Schema$AvailableDatabaseVersion {
+    /**
+     * The database version's display name.
+     */
+    displayName?: string | null;
+    /**
+     * The version's major version name.
+     */
+    majorVersion?: string | null;
+    /**
+     * The database version name. For MySQL 8.0, this string provides the database major and minor version.
+     */
+    name?: string | null;
+  }
+  /**
    * Database instance backup configuration.
    */
   export interface Schema$BackupConfiguration {
@@ -434,7 +451,11 @@ export namespace sqladmin_v1beta4 {
      */
     pointInTime?: string | null;
     /**
-     * Optional. (Point-in-time recovery for PostgreSQL only) Clone to an instance in the specified zone. If no zone is specified, clone to the same zone as the source instance.
+     * Optional. Copy clone and point-in-time recovery clone of a regional instance in the specified zones. If not specified, clone to the same secondary zone as the source instance. This value cannot be the same as the preferred_zone field.
+     */
+    preferredSecondaryZone?: string | null;
+    /**
+     * Optional. Copy clone and point-in-time recovery clone of an instance to the specified zone. If no zone is specified, clone to the same primary zone as the source instance.
      */
     preferredZone?: string | null;
   }
@@ -659,7 +680,7 @@ export namespace sqladmin_v1beta4 {
      */
     rootPassword?: string | null;
     /**
-     * The status indicating if instance satisfiesPzs. Reserved for future use.
+     * This status indicates whether the instance satisfies PZS. The status is reserved for future use.
      */
     satisfiesPzs?: boolean | null;
     /**
@@ -698,6 +719,10 @@ export namespace sqladmin_v1beta4 {
      * If the instance state is SUSPENDED, the reason for the suspension.
      */
     suspensionReason?: string[] | null;
+    /**
+     * Output only. All database versions that are available for upgrade.
+     */
+    upgradableDatabaseVersions?: Schema$AvailableDatabaseVersion[];
     /**
      * Output only. The dns name of the primary instance in a replication group.
      */
@@ -1719,6 +1744,10 @@ export namespace sqladmin_v1beta4 {
      * Optional. If the instance is a primary instance, then this field identifies the disaster recovery (DR) replica. A DR replica is an optional configuration for Enterprise Plus edition instances. If the instance is a read replica, then the field is not set. Set this field to a replica name to designate a DR replica for a primary instance. Remove the replica name to remove the DR replica designation.
      */
     failoverDrReplicaName?: string | null;
+    /**
+     * Output only. If set, it indicates this instance has a private service access (PSA) dns endpoint that is pointing to the primary instance of the cluster. If this instance is the primary, the dns should be pointing to this instance. After Switchover or Replica failover, this DNS endpoint points to the promoted instance. This is a read-only field, returned to the user as information. This field can exist even if a standalone instance does not yet have a replica, or had a DR replica that was deleted.
+     */
+    psaWriteEndpoint?: string | null;
   }
   export interface Schema$Reschedule {
     /**
@@ -1777,7 +1806,7 @@ export namespace sqladmin_v1beta4 {
      */
     activeDirectoryConfig?: Schema$SqlActiveDirectoryConfig;
     /**
-     * Specifies advance machine configuration for the instance relevant only for SQL Server.
+     * Specifies advanced machine configuration for the instances relevant only for SQL Server.
      */
     advancedMachineFeatures?: Schema$AdvancedMachineFeatures;
     /**

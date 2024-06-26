@@ -1,5 +1,30 @@
 # Changelog
 
+## [14.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/chromemanagement-v13.1.0...chromemanagement-v14.0.0) (2024-06-06)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* **chromemanagement:** update the API ([c395939](https://github.com/googleapis/google-api-nodejs-client/commit/c3959391c493f4c22a6c358a6f682e4fca519982))
+* **chromemanagement:** update the API ([764b8b4](https://github.com/googleapis/google-api-nodejs-client/commit/764b8b43271f1b8b9ff37760bd688294ff1df7ba))
+* run the generator ([#3456](https://github.com/googleapis/google-api-nodejs-client/issues/3456)) ([a865e81](https://github.com/googleapis/google-api-nodejs-client/commit/a865e81539b315d3b321650663ba0b2555b1e5a1))
+
+
+### Bug Fixes
+
+* **chromemanagement:** update the API ([2a9f611](https://github.com/googleapis/google-api-nodejs-client/commit/2a9f611d836a86cb36e0288ee13818238fac9a02))
+
+## [13.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/chromemanagement-v13.0.0...chromemanagement-v13.1.0) (2024-06-03)
+
+
+### Features
+
+* **chromemanagement:** update the API ([764b8b4](https://github.com/googleapis/google-api-nodejs-client/commit/764b8b43271f1b8b9ff37760bd688294ff1df7ba))
+
 ## [13.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/chromemanagement-v12.0.1...chromemanagement-v13.0.0) (2024-05-02)
 
 

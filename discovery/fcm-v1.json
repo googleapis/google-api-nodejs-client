@@ -146,7 +146,7 @@
       }
     }
   },
-  "revision": "20230626",
+  "revision": "20240528",
   "rootUrl": "https://fcm.googleapis.com/",
   "schemas": {
     "AndroidConfig": {
@@ -499,7 +499,7 @@
           "additionalProperties": {
             "type": "string"
           },
-          "description": "Input only. Arbitrary key/value payload, which must be UTF-8 encoded. The key should not be a reserved word (\"from\", \"message_type\", or any word starting with \"google\" or \"gcm\"). When sending payloads containing only data fields to iOS devices, only normal priority (`\"apns-priority\": \"5\"`) is allowed in [`ApnsConfig`](/docs/reference/fcm/rest/v1/projects.messages#apnsconfig).",
+          "description": "Input only. Arbitrary key/value payload, which must be UTF-8 encoded. The key should not be a reserved word (\"from\", \"message_type\", or any word starting with \"google.\" or \"gcm.notification.\"). When sending payloads containing only data fields to iOS devices, only normal priority (`\"apns-priority\": \"5\"`) is allowed in [`ApnsConfig`](/docs/reference/fcm/rest/v1/projects.messages#apnsconfig).",
           "type": "object"
         },
         "fcmOptions": {

@@ -5271,7 +5271,7 @@
       }
     }
   },
-  "revision": "20240425",
+  "revision": "20240523",
   "rootUrl": "https://dataplex.googleapis.com/",
   "schemas": {
     "Empty": {
@@ -6888,7 +6888,7 @@
         },
         "sqlAssertion": {
           "$ref": "GoogleCloudDataplexV1DataQualityRuleSqlAssertion",
-          "description": "Aggregate rule which evaluates the number of rows returned for the provided statement."
+          "description": "Aggregate rule which evaluates the number of rows returned for the provided statement. If any rows are returned, this rule fails."
         },
         "statisticRangeExpectation": {
           "$ref": "GoogleCloudDataplexV1DataQualityRuleStatisticRangeExpectation",
@@ -6955,7 +6955,7 @@
       "id": "GoogleCloudDataplexV1DataQualityRuleResult",
       "properties": {
         "assertionRowCount": {
-          "description": "Output only. The number of rows returned by the sql statement in the SqlAssertion rule.This field is only valid for SqlAssertion rules.",
+          "description": "Output only. The number of rows returned by the SQL statement in a SQL assertion rule.This field is only valid for SQL assertion rules.",
           "format": "int64",
           "readOnly": true,
           "type": "string"
@@ -7021,7 +7021,7 @@
       "type": "object"
     },
     "GoogleCloudDataplexV1DataQualityRuleSqlAssertion": {
-      "description": "Queries for rows returned by the provided SQL statement. If any rows are are returned, this rule fails.The SQL statement needs to use BigQuery standard SQL syntax, and must not contain any semicolons.${data()} can be used to reference the rows being evaluated, i.e. the table after all additional filters (row filters, incremental data filters, sampling) are applied.Example: SELECT * FROM ${data()} WHERE price < 0",
+      "description": "A SQL statement that is evaluated to return rows that match an invalid state. If any rows are are returned, this rule fails.The SQL statement must use BigQuery standard SQL syntax, and must not contain any semicolons.You can use the data reference parameter ${data()} to reference the source table with all of its precondition filters applied. Examples of precondition filters include row filters, incremental data filters, and sampling. For more information, see Data reference parameter (https://cloud.google.com/dataplex/docs/auto-data-quality-overview#data-reference-parameter).Example: SELECT * FROM ${data()} WHERE price < 0",
       "id": "GoogleCloudDataplexV1DataQualityRuleSqlAssertion",
       "properties": {
         "sqlStatement": {
@@ -7092,7 +7092,7 @@
       "id": "GoogleCloudDataplexV1DataQualityScanRuleResult",
       "properties": {
         "assertionRowCount": {
-          "description": "The number of rows returned by the sql statement in the SqlAssertion rule. This field is only valid for SqlAssertion rules.",
+          "description": "The number of rows returned by the SQL statement in a SQL assertion rule. This field is only valid for SQL assertion rules.",
           "format": "int64",
           "type": "string"
         },
@@ -7175,15 +7175,15 @@
           ],
           "enumDescriptions": [
             "An unspecified rule type.",
-            "Please see https://cloud.google.com/dataplex/docs/reference/rest/v1/DataQualityRule#nonnullexpectation.",
-            "Please see https://cloud.google.com/dataplex/docs/reference/rest/v1/DataQualityRule#rangeexpectation.",
-            "Please see https://cloud.google.com/dataplex/docs/reference/rest/v1/DataQualityRule#regexexpectation.",
-            "Please see https://cloud.google.com/dataplex/docs/reference/rest/v1/DataQualityRule#rowconditionexpectation.",
-            "Please see https://cloud.google.com/dataplex/docs/reference/rest/v1/DataQualityRule#setexpectation.",
-            "Please see https://cloud.google.com/dataplex/docs/reference/rest/v1/DataQualityRule#statisticrangeexpectation.",
-            "Please see https://cloud.google.com/dataplex/docs/reference/rest/v1/DataQualityRule#tableconditionexpectation.",
-            "Please see https://cloud.google.com/dataplex/docs/reference/rest/v1/DataQualityRule#uniquenessexpectation.",
-            "Please see https://cloud.google.com/dataplex/docs/reference/rest/v1/DataQualityRule#sqlAssertion."
+            "See DataQualityRule.NonNullExpectation.",
+            "See DataQualityRule.RangeExpectation.",
+            "See DataQualityRule.RegexExpectation.",
+            "See DataQualityRule.RowConditionExpectation.",
+            "See DataQualityRule.SetExpectation.",
+            "See DataQualityRule.StatisticRangeExpectation.",
+            "See DataQualityRule.TableConditionExpectation.",
+            "See DataQualityRule.UniquenessExpectation.",
+            "See DataQualityRule.SqlAssertion."
           ],
           "type": "string"
         },
@@ -9860,26 +9860,29 @@
       "id": "GoogleCloudDataplexV1SearchEntriesResult",
       "properties": {
         "dataplexEntry": {
-          "$ref": "GoogleCloudDataplexV1Entry",
-          "description": "Entry format of the result."
+          "$ref": "GoogleCloudDataplexV1Entry"
         },
         "linkedResource": {
+          "deprecated": true,
           "description": "Linked resource name.",
           "type": "string"
         },
         "snippets": {
           "$ref": "GoogleCloudDataplexV1SearchEntriesResultSnippets",
+          "deprecated": true,
           "description": "Snippets."
         }
       },
       "type": "object"
     },
     "GoogleCloudDataplexV1SearchEntriesResultSnippets": {
+      "deprecated": true,
       "description": "Snippets for the entry, contains HTML-style highlighting for matched tokens, will be used in UI.",
       "id": "GoogleCloudDataplexV1SearchEntriesResultSnippets",
       "properties": {
         "dataplexEntry": {
           "$ref": "GoogleCloudDataplexV1Entry",
+          "deprecated": true,
           "description": "Entry"
         }
       },

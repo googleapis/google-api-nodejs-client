@@ -7,7 +7,7 @@ jobs:
   update-apis:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29 # v4
+      - uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4
       - uses: actions/setup-node@v4
         with:
           node-version: 14
@@ -16,4 +16,4 @@ jobs:
       - run: npm run submit-prs
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          CODE_BOT_TOKEN: ${{ secrets.APIARY_GEN_SECRET }}
+          CODE_BOT_TOKEN: ${{ secrets.YOSHI_CODE_BOT_TOKEN }}

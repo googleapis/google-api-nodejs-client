@@ -1865,7 +1865,7 @@ export namespace artifactregistry_v1beta1 {
      */
     filter?: string;
     /**
-     * The maximum number of files to return.
+     * The maximum number of files to return. Maximum page size is 1,000.
      */
     pageSize?: number;
     /**
@@ -2678,7 +2678,7 @@ export namespace artifactregistry_v1beta1 {
      */
     filter?: string;
     /**
-     * The maximum number of tags to return. Maximum page size is 10,000.
+     * The maximum number of tags to return. Maximum page size is 1,000.
      */
     pageSize?: number;
     /**

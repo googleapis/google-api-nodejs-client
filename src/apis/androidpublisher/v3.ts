@@ -554,6 +554,10 @@ export namespace androidpublisher_v3 {
      */
     autoRenewEnabled?: boolean | null;
     /**
+     * The installment plan commitment and state related info for the auto renewing plan.
+     */
+    installmentDetails?: Schema$InstallmentPlan;
+    /**
      * The information of the last price change for the item since subscription signup.
      */
     priceChangeDetails?: Schema$SubscriptionItemPriceChangeDetails;
@@ -570,6 +574,10 @@ export namespace androidpublisher_v3 {
      * Required. Immutable. The unique identifier of this base plan. Must be unique within the subscription, and conform with RFC-1034. That is, this ID can only contain lower-case letters (a-z), numbers (0-9), and hyphens (-), and be at most 63 characters.
      */
     basePlanId?: string | null;
+    /**
+     * Set for installments base plans where a user is committed to a specified number of payments.
+     */
+    installmentsBasePlanType?: Schema$InstallmentsBasePlanType;
     /**
      * List of up to 20 custom tags specified for this base plan, and returned to the app through the billing library. Subscription offers for this base plan will also receive these offer tags in the billing library.
      */
@@ -1743,6 +1751,60 @@ export namespace androidpublisher_v3 {
     sku?: string | null;
   }
   /**
+   * Information to a installment plan.
+   */
+  export interface Schema$InstallmentPlan {
+    /**
+     * Total number of payments the user is initially committed for.
+     */
+    initialCommittedPaymentsCount?: number | null;
+    /**
+     * If present, this installment plan is pending to be canceled. The cancellation will happen only after the user finished all committed payments.
+     */
+    pendingCancellation?: Schema$PendingCancellation;
+    /**
+     * Total number of committed payments remaining to be paid for in this renewal cycle.
+     */
+    remainingCommittedPaymentsCount?: number | null;
+    /**
+     * Total number of payments the user will be committed for after each commitment period. Empty means the installment plan will fall back to a normal auto-renew subscription after initial commitment.
+     */
+    subsequentCommittedPaymentsCount?: number | null;
+  }
+  /**
+   * Represents an installments base plan where a user commits to a specified number of payments.
+   */
+  export interface Schema$InstallmentsBasePlanType {
+    /**
+     * Optional. Account hold period of the subscription, specified exclusively in days and in ISO 8601 format. Acceptable values are P0D (zero days) to P30D (30days). If not specified, the default value is P30D (30 days).
+     */
+    accountHoldDuration?: string | null;
+    /**
+     * Required. Subscription period, specified in ISO 8601 format. For a list of acceptable billing periods, refer to the help center.
+     */
+    billingPeriodDuration?: string | null;
+    /**
+     * Required. The number of payments the user is committed to.
+     */
+    committedPaymentsCount?: number | null;
+    /**
+     * Grace period of the subscription, specified in ISO 8601 format. Acceptable values are P0D (zero days), P3D (3 days), P7D (7 days), P14D (14 days), and P30D (30 days). If not specified, a default value will be used based on the recurring period duration.
+     */
+    gracePeriodDuration?: string | null;
+    /**
+     * The proration mode for the base plan determines what happens when a user switches to this plan from another base plan. If unspecified, defaults to CHARGE_ON_NEXT_BILLING_DATE.
+     */
+    prorationMode?: string | null;
+    /**
+     * Required. Installments base plan renewal type. Determines the behavior at the end of the initial commitment.
+     */
+    renewalType?: string | null;
+    /**
+     * Whether users should be able to resubscribe to this base plan in Google Play surfaces. Defaults to RESUBSCRIBE_STATE_ACTIVE if not specified.
+     */
+    resubscribeState?: string | null;
+  }
+  /**
    * An artifact resource which gets created when uploading an APK or Android App Bundle through internal app sharing.
    */
   export interface Schema$InternalAppSharingArtifact {
@@ -2181,6 +2243,10 @@ export namespace androidpublisher_v3 {
     autoResumeTime?: string | null;
   }
   /**
+   * This is an indicator of whether there is a pending cancellation on the virtual installment plan. The cancellation will happen only after the user finished all committed payments.
+   */
+  export interface Schema$PendingCancellation {}
+  /**
    * Represents a base plan that does not automatically renew at the end of the base plan, and must be manually renewed by the user.
    */
   export interface Schema$PrepaidBasePlanType {
@@ -2482,6 +2548,15 @@ export namespace androidpublisher_v3 {
    */
   export interface Schema$ReplacementCancellation {}
   /**
+   * Countries where the purchase of this product is restricted to payment methods registered in the same country. If empty, no payment location restrictions are imposed.
+   */
+  export interface Schema$RestrictedPaymentCountries {
+    /**
+     * Required. Region codes to impose payment restrictions on, as defined by ISO 3166-2, e.g. "US".
+     */
+    regionCodes?: string[] | null;
+  }
+  /**
    * An Android app review.
    */
   export interface Schema$Review {
@@ -2721,6 +2796,10 @@ export namespace androidpublisher_v3 {
      * Immutable. Unique product ID of the product. Unique within the parent app. Product IDs must be composed of lower-case letters (a-z), numbers (0-9), underscores (_) and dots (.). It must start with a lower-case letter or number, and be between 1 and 40 (inclusive) characters in length.
      */
     productId?: string | null;
+    /**
+     * Optional. Countries where the purchase of this subscription is restricted to payment methods registered in the same country. If empty, no payment location restrictions are imposed.
+     */
+    restrictedPaymentCountries?: Schema$RestrictedPaymentCountries;
     /**
      * Details about taxes and legal compliance.
      */

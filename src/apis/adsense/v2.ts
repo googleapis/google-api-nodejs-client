@@ -3195,7 +3195,7 @@ export namespace adsense_v2 {
     }
 
     /**
-     * Lists all the policy issues for the specified account.
+     * Lists all the policy issues where the specified account is involved, both directly and through any AFP child accounts.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.

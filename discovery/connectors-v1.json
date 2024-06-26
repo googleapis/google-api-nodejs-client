@@ -1212,6 +1212,34 @@
                       "scopes": [
                         "https://www.googleapis.com/auth/cloud-platform"
                       ]
+                    },
+                    "deprecate": {
+                      "description": "Deprecates a single CustomConnectorVersion.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/customConnectors/{customConnectorsId}/customConnectorVersions/{customConnectorVersionsId}:deprecate",
+                      "httpMethod": "POST",
+                      "id": "connectors.projects.locations.customConnectors.customConnectorVersions.deprecate",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. Resource name of the form: `projects/{project}/locations/{location}/customConnectors/{custom_connector}/customConnectorVersions/{custom_connector_version}`",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/customConnectors/[^/]+/customConnectorVersions/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}:deprecate",
+                      "request": {
+                        "$ref": "DeprecateCustomConnectorVersionRequest"
+                      },
+                      "response": {
+                        "$ref": "Operation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
                     }
                   }
                 }
@@ -2399,7 +2427,7 @@
       }
     }
   },
-  "revision": "20240415",
+  "revision": "20240529",
   "rootUrl": "https://connectors.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -3075,6 +3103,11 @@
       "description": "Connectors indicates a specific connector type, e.x. Salesforce, SAP etc.",
       "id": "Connector",
       "properties": {
+        "category": {
+          "description": "Output only. Category of the connector.",
+          "readOnly": true,
+          "type": "string"
+        },
         "createTime": {
           "description": "Output only. Created time.",
           "format": "google-datetime",
@@ -3137,6 +3170,14 @@
           "description": "Output only. Resource name of the Connector. Format: projects/{project}/locations/{location}/providers/{provider}/connectors/{connector} Only global location is supported for Connector resource.",
           "readOnly": true,
           "type": "string"
+        },
+        "tags": {
+          "description": "Output only. Tags of the connector.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
         },
         "updateTime": {
           "description": "Output only. Updated time.",
@@ -3422,6 +3463,22 @@
         "enabled": {
           "description": "Enabled represents whether logging is enabled or not for a connection.",
           "type": "boolean"
+        },
+        "level": {
+          "description": "Optional. Log configuration level.",
+          "enum": [
+            "LOG_LEVEL_UNSPECIFIED",
+            "ERROR",
+            "INFO",
+            "DEBUG"
+          ],
+          "enumDescriptions": [
+            "Log level unspecified.",
+            "Only error logs are enabled.",
+            "Info and error logs are enabled.",
+            "Debug and high verbosity logs are enabled."
+          ],
+          "type": "string"
         }
       },
       "type": "object"
@@ -3654,6 +3711,12 @@
       },
       "type": "object"
     },
+    "DeprecateCustomConnectorVersionRequest": {
+      "description": "Request message for ConnectorsService.DeprecateCustomConnectorVersion",
+      "id": "DeprecateCustomConnectorVersionRequest",
+      "properties": {},
+      "type": "object"
+    },
     "Destination": {
       "id": "Destination",
       "properties": {
@@ -3859,6 +3922,10 @@
         "description": {
           "description": "Optional. Description of the resource.",
           "type": "string"
+        },
+        "endpointGlobalAccess": {
+          "description": "Optional. The Private Service Connect Connection Endpoint Global Access. https://cloud.google.com/vpc/docs/about-accessing-vpc-hosted-services-endpoints#global-access",
+          "type": "boolean"
         },
         "endpointIp": {
           "description": "Output only. The Private Service Connect connection endpoint ip",

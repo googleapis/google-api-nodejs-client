@@ -503,6 +503,10 @@ export namespace file_v1 {
      */
     networks?: Schema$NetworkConfig[];
     /**
+     * Optional. Replicaition configuration.
+     */
+    replication?: Schema$Replication;
+    /**
      * Output only. Reserved for future use.
      */
     satisfiesPzi?: boolean | null;
@@ -778,6 +782,40 @@ export namespace file_v1 {
      * Output only. Name of the verb executed by the operation.
      */
     verb?: string | null;
+  }
+  /**
+   * Replica configuration for the instance.
+   */
+  export interface Schema$ReplicaConfig {
+    /**
+     * Output only. The timestamp of the latest replication snapshot taken on the active instance and is already replicated safely.
+     */
+    lastActiveSyncTime?: string | null;
+    /**
+     * Optional. The peer instance.
+     */
+    peerInstance?: string | null;
+    /**
+     * Output only. The replica state.
+     */
+    state?: string | null;
+    /**
+     * Output only. Additional information about the replication state, if available.
+     */
+    stateReasons?: string[] | null;
+  }
+  /**
+   * Replication specifications.
+   */
+  export interface Schema$Replication {
+    /**
+     * Optional. Replicas configuration on the instance. For now, only a single replica config is supported.
+     */
+    replicas?: Schema$ReplicaConfig[];
+    /**
+     * Optional. The replication role.
+     */
+    role?: string | null;
   }
   /**
    * RestoreInstanceRequest restores an existing instance's file share from a backup.

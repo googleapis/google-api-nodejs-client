@@ -1380,6 +1380,34 @@
                       "scopes": [
                         "https://www.googleapis.com/auth/cloud-platform"
                       ]
+                    },
+                    "replay": {
+                      "description": "Re-execute an existing execution, with same request parameters and execution strategy",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/integrations/{integrationsId}/executions/{executionsId}:replay",
+                      "httpMethod": "POST",
+                      "id": "integrations.projects.locations.integrations.executions.replay",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The execution resource name. Format: projects/{gcp_project_id}/locations/{location}/integrations/{integration}/executions/{execution_id}",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/integrations/[^/]+/executions/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}:replay",
+                      "request": {
+                        "$ref": "GoogleCloudIntegrationsV1alphaReplayExecutionRequest"
+                      },
+                      "response": {
+                        "$ref": "GoogleCloudIntegrationsV1alphaReplayExecutionResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
                     }
                   },
                   "resources": {
@@ -3712,7 +3740,7 @@
       }
     }
   },
-  "revision": "20240505",
+  "revision": "20240526",
   "rootUrl": "https://integrations.googleapis.com/",
   "schemas": {
     "CrmlogErrorCode": {
@@ -4418,6 +4446,23 @@
       },
       "type": "object"
     },
+    "EnterpriseCrmEventbusProtoConditionalFailurePolicies": {
+      "id": "EnterpriseCrmEventbusProtoConditionalFailurePolicies",
+      "properties": {
+        "defaultFailurePolicy": {
+          "$ref": "EnterpriseCrmEventbusProtoFailurePolicy",
+          "description": "The default failure policy to be applied if no conditional failure policy matches"
+        },
+        "failurePolicies": {
+          "description": "The list of failure policies that will be applied to the task in order.",
+          "items": {
+            "$ref": "EnterpriseCrmEventbusProtoFailurePolicy"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "EnterpriseCrmEventbusProtoConnectorsConnection": {
       "id": "EnterpriseCrmEventbusProtoConnectorsConnection",
       "properties": {
@@ -4756,11 +4801,15 @@
       "type": "object"
     },
     "EnterpriseCrmEventbusProtoEventExecutionSnapshot": {
-      "description": "Contains the snapshot of the event execution for a given checkpoint. Next available id: 13",
+      "description": "Contains the snapshot of the event execution for a given checkpoint. Next available id: 15",
       "id": "EnterpriseCrmEventbusProtoEventExecutionSnapshot",
       "properties": {
         "checkpointTaskNumber": {
           "description": "Indicates \"right after which checkpoint task's execution\" this snapshot is taken.",
+          "type": "string"
+        },
+        "clientId": {
+          "description": "Client that the execution snapshot is associated to.",
           "type": "string"
         },
         "conditionResults": {
@@ -4808,6 +4857,10 @@
         "taskName": {
           "deprecated": true,
           "description": "The task name associated with this snapshot. Could be empty.",
+          "type": "string"
+        },
+        "workflowName": {
+          "description": "Name of the workflow this event execution snapshot belongs to.",
           "type": "string"
         }
       },
@@ -4938,6 +4991,10 @@
           "description": "Required if retry_strategy is FIXED_INTERVAL or LINEAR/EXPONENTIAL_BACKOFF/RESTART_WORKFLOW_WITH_BACKOFF. Defines the number of times the task will be retried if failed.",
           "format": "int32",
           "type": "integer"
+        },
+        "retryCondition": {
+          "description": "Optional. The retry condition that will be evaluated for this failure policy with the corresponding retry strategy.",
+          "type": "string"
         },
         "retryStrategy": {
           "description": "Defines what happens to the task upon failure.",
@@ -7796,6 +7853,10 @@
           },
           "type": "array"
         },
+        "conditionalFailurePolicies": {
+          "$ref": "EnterpriseCrmEventbusProtoConditionalFailurePolicies",
+          "description": "Optional. Determines the number of times the task will be retried on failure and with what retry strategy. This is applicable for synchronous calls to Eventbus alone (Post)."
+        },
         "createTime": {
           "description": "Auto-generated.",
           "format": "google-datetime",
@@ -9829,6 +9890,24 @@
       },
       "type": "object"
     },
+    "GoogleCloudIntegrationsV1alphaConditionalFailurePolicies": {
+      "description": "Conditional task failur retry strategies",
+      "id": "GoogleCloudIntegrationsV1alphaConditionalFailurePolicies",
+      "properties": {
+        "defaultFailurePolicy": {
+          "$ref": "GoogleCloudIntegrationsV1alphaFailurePolicy",
+          "description": "The default failure policy to be applied if no conditional failure policy matches."
+        },
+        "failurePolicies": {
+          "description": "The list of failure policies that will be applied to the task in order.",
+          "items": {
+            "$ref": "GoogleCloudIntegrationsV1alphaFailurePolicy"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudIntegrationsV1alphaConnectionSchemaMetadata": {
       "description": "Metadata of runtime connection schema.",
       "id": "GoogleCloudIntegrationsV1alphaConnectionSchemaMetadata",
@@ -10145,7 +10224,6 @@
           "type": "boolean"
         },
         "executionId": {
-          "deprecated": true,
           "description": "Optional. The id of the ON_HOLD execution to be resumed.",
           "type": "string"
         },
@@ -10492,6 +10570,10 @@
       "description": "Policy that defines the task retry logic and failure type. If no FailurePolicy is defined for a task, all its dependent tasks will not be executed (i.e, a `retry_strategy` of NONE will be applied).",
       "id": "GoogleCloudIntegrationsV1alphaFailurePolicy",
       "properties": {
+        "condition": {
+          "description": "Optional. The string condition that will be evaluated to determine if the task should be retried with this failure policy.",
+          "type": "string"
+        },
         "intervalTime": {
           "description": "Required if retry_strategy is FIXED_INTERVAL or LINEAR/EXPONENTIAL_BACKOFF/RESTART_INTEGRATION_WITH_BACKOFF. Defines the initial interval in seconds for backoff.",
           "format": "google-datetime",
@@ -11773,6 +11855,40 @@
       },
       "type": "object"
     },
+    "GoogleCloudIntegrationsV1alphaReplayExecutionRequest": {
+      "description": "Request for replaying an execution Next ID: 3",
+      "id": "GoogleCloudIntegrationsV1alphaReplayExecutionRequest",
+      "properties": {
+        "replayReason": {
+          "description": "Optional. The user provided reason for replaying the execution.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudIntegrationsV1alphaReplayExecutionResponse": {
+      "description": "Response for replaying an execution Next ID: 4",
+      "id": "GoogleCloudIntegrationsV1alphaReplayExecutionResponse",
+      "properties": {
+        "executionId": {
+          "description": "The id of the execution corresponding to this run of integration.",
+          "type": "string"
+        },
+        "outputParameters": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "OUTPUT parameters in format of Map. Where Key is the name of the parameter. The parameters would only be present in case of synchrounous execution Note: Name of the system generated parameters are wrapped by backtick(`) to distinguish them from the user defined parameters.",
+          "type": "object"
+        },
+        "replayedExecutionId": {
+          "description": "The execution id which is replayed",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudIntegrationsV1alphaResolveSuspensionRequest": {
       "description": "Request for [Suspensions.ResolveSuspensions].",
       "id": "GoogleCloudIntegrationsV1alphaResolveSuspensionRequest",
@@ -12229,6 +12345,10 @@
       "description": "The task configuration details. This is not the implementation of Task. There might be multiple TaskConfigs for the same Task.",
       "id": "GoogleCloudIntegrationsV1alphaTaskConfig",
       "properties": {
+        "conditionalFailurePolicies": {
+          "$ref": "GoogleCloudIntegrationsV1alphaConditionalFailurePolicies",
+          "description": "Optional. The list of conditional failure policies that will be applied to the task in order."
+        },
         "description": {
           "description": "Optional. User-provided description intended to give additional business context about the task.",
           "type": "string"
