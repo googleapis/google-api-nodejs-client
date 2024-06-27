@@ -329,6 +329,10 @@ export namespace connectors_v1 {
      */
     locationType?: string | null;
     /**
+     * Optional. MultipleSelectConfig represents the multiple options for a config variable.
+     */
+    multipleSelectConfig?: Schema$MultipleSelectConfig;
+    /**
      * Flag represents that this `ConfigVariable` must be provided for a connection.
      */
     required?: boolean | null;
@@ -528,6 +532,10 @@ export namespace connectors_v1 {
      * Output only. Category of the connector.
      */
     category?: string | null;
+    /**
+     * Output only. The type of the connector.
+     */
+    connectorType?: string | null;
     /**
      * Output only. Created time.
      */
@@ -2108,6 +2116,44 @@ export namespace connectors_v1 {
      * Output only. Updated time.
      */
     updateTime?: string | null;
+  }
+  /**
+   * MultipleSelectConfig represents the multiple options for a config variable.
+   */
+  export interface Schema$MultipleSelectConfig {
+    /**
+     * Optional. Allow custom values.
+     */
+    allowCustomValues?: boolean | null;
+    /**
+     * Required. Multiple select options.
+     */
+    multipleSelectOptions?: Schema$MultipleSelectOption[];
+    /**
+     * Required. Value separator.
+     */
+    valueSeparator?: string | null;
+  }
+  /**
+   * MultiplSelecteOption represents the single option for a config variable.
+   */
+  export interface Schema$MultipleSelectOption {
+    /**
+     * Optional. Value of the option.
+     */
+    description?: string | null;
+    /**
+     * Required. Display name of the option.
+     */
+    displayName?: string | null;
+    /**
+     * Required. Key of the option.
+     */
+    key?: string | null;
+    /**
+     * Optional. Indicates if the option is preselected.
+     */
+    preselected?: boolean | null;
   }
   /**
    * Regional Network Config.
