@@ -255,7 +255,7 @@ export namespace fcmdata_v1beta1 {
     pending?: number | null;
   }
   /**
-   * Additional information about proxy notification delivery. All percentages are calculated with countNotificationsAccepted as the denominator.
+   * Additional information about [proxy notification](https://firebase.google.com/docs/cloud-messaging/android/message-priority#proxy) delivery. All percentages are calculated with countNotificationsAccepted as the denominator.
    */
   export interface Schema$GoogleFirebaseFcmDataV1beta1ProxyNotificationInsightPercents {
     /**
