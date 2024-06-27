@@ -413,6 +413,14 @@ export namespace iap_v1 {
     tunnelDestGroups?: Schema$TunnelDestGroup[];
   }
   /**
+   * Used for calculating the next state of tags on the resource being passed for the CheckCustomConstraints RPC call. The detail evaluation of each field is described in go/op-create-update-time-tags and go/tags-in-orgpolicy-requests.
+   */
+  export interface Schema$NextStateOfTags {
+    tagsFullState?: Schema$TagsFullState;
+    tagsFullStateForChildResource?: Schema$TagsFullStateForChildResource;
+    tagsPartialState?: Schema$TagsPartialState;
+  }
+  /**
    * The OAuth 2.0 Settings
    */
   export interface Schema$OAuth2 {
@@ -532,6 +540,10 @@ export namespace iap_v1 {
      */
     name?: string | null;
     /**
+     * Used for calculating the next state of tags on the resource being passed for Custom Org Policy enforcement. NOTE: Only one of the tags representations (i.e. numeric or namespaced) should be populated. The input tags will be converted to the same representation before the calculation. This behavior intentionally may differ from other tags related fields in CheckPolicy request, which may require both formats to be passed in. IMPORTANT: If tags are unchanged, this field should not be set.
+     */
+    nextStateOfTags?: Schema$NextStateOfTags;
+    /**
      * The name of the service this resource belongs to. It is configured using the official_service_name of the Service as defined in service configurations under //configs/cloud/resourcetypes. For example, the official_service_name of cloud resource manager service is set as 'cloudresourcemanager.googleapis.com' according to //configs/cloud/resourcetypes/google/cloud/resourcemanager/prod.yaml This field is **required** for services integrated with resource-attribute-based IAM conditions and/or CustomOrgPolicy. This field requires special handling for parents-only permissions such as `create` and `list`. See the document linked below for further details. See go/iam-conditions-sig-g3#populate-resource-attributes for specific details on populating this field.
      */
     service?: string | null;
@@ -548,6 +560,28 @@ export namespace iap_v1 {
      * REQUIRED: The complete policy to be applied to the `resource`. The size of the policy is limited to a few 10s of KB. An empty policy is a valid policy but certain Google Cloud services (such as Projects) might reject them.
      */
     policy?: Schema$Policy;
+  }
+  export interface Schema$TagsFullState {
+    /**
+     * If TagsFullState is initialized, the values in this field fully represent all the tags in the next state (the current tag values are not used). If tags.size() == 0, the next state of tags would be no tags for evaluation purposes. Only one type of tags reference (numeric or namespace) is required to be passed.
+     */
+    tags?: {[key: string]: string} | null;
+  }
+  export interface Schema$TagsFullStateForChildResource {
+    /**
+     * If TagsFullStateForChildResource is initialized, the values in this field represent all the tags in the next state for the child resource. Only one type of tags reference (numeric or namespace) is required to be passed. IMPORTANT: This field should only be used when the target resource IAM policy name is UNKNOWN and the resource's parent IAM policy name is being passed in the request.
+     */
+    tags?: {[key: string]: string} | null;
+  }
+  export interface Schema$TagsPartialState {
+    /**
+     * Keys of the tags that should be removed for evaluation purposes. IMPORTANT: Currently only numeric references are supported. Once support for namespace references is added, both the tag references (numeric and namespace) will be removed.
+     */
+    tagKeysToRemove?: string[] | null;
+    /**
+     * Tags that’ll be updated or added to the current state of tags for evaluation purposes. If a key exists in both "tags_to_upsert" and "tag_keys_to_remove", the one in "tag_keys_to_remove" is ignored. Only one type of tags reference (numeric or namespace) is required to be passed.
+     */
+    tagsToUpsert?: {[key: string]: string} | null;
   }
   /**
    * Request message for `TestIamPermissions` method.
