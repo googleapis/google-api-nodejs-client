@@ -1250,7 +1250,7 @@
       }
     }
   },
-  "revision": "20240515",
+  "revision": "20240612",
   "rootUrl": "https://datastream.googleapis.com/",
   "schemas": {
     "AppendOnly": {
@@ -1560,6 +1560,10 @@
         "postgresqlRdbms": {
           "$ref": "PostgresqlRdbms",
           "description": "PostgreSQL RDBMS to enrich with child data objects and metadata."
+        },
+        "sqlServerRdbms": {
+          "$ref": "SqlServerRdbms",
+          "description": "SQLServer RDBMS to enrich with child data objects and metadata."
         }
       },
       "type": "object"
@@ -1579,6 +1583,10 @@
         "postgresqlRdbms": {
           "$ref": "PostgresqlRdbms",
           "description": "Enriched PostgreSQL RDBMS object."
+        },
+        "sqlServerRdbms": {
+          "$ref": "SqlServerRdbms",
+          "description": "Enriched SQLServer RDBMS object."
         }
       },
       "type": "object"
