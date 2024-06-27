@@ -148,11 +148,6 @@
                   "location": "query",
                   "type": "string"
                 },
-                "includeUnrevealedLocations": {
-                  "description": "If true, the returned list will include locations which are not yet revealed.",
-                  "location": "query",
-                  "type": "boolean"
-                },
                 "name": {
                   "description": "The resource that owns the locations collection, if applicable.",
                   "location": "path",
@@ -737,7 +732,7 @@
       }
     }
   },
-  "revision": "20240111",
+  "revision": "20240618",
   "rootUrl": "https://datafusion.googleapis.com/",
   "schemas": {
     "Accelerator": {
@@ -745,7 +740,7 @@
       "id": "Accelerator",
       "properties": {
         "acceleratorType": {
-          "description": "The type of an accelator for a CDF instance.",
+          "description": "Optional. The type of an accelator for a Cloud Data Fusion instance.",
           "enum": [
             "ACCELERATOR_TYPE_UNSPECIFIED",
             "CDC",
@@ -755,15 +750,15 @@
           ],
           "enumDescriptions": [
             "Default value, if unspecified.",
-            "Change Data Capture accelerator for CDF.",
-            "Cloud Healthcare accelerator for CDF. This accelerator is to enable Cloud Healthcare specific CDF plugins developed by Healthcare team.",
+            "Change Data Capture accelerator for Cloud Data Fusion.",
+            "Reserved for internal use.",
             "Contact Center AI Insights This accelerator is used to enable import and export pipelines custom built to streamline CCAI Insights processing.",
-            "Cloud search accelerator for CDF. This accelerator is to enable Cloud search specific CDF plugins developed by Cloudsearch team."
+            "Reserved for internal use."
           ],
           "type": "string"
         },
         "state": {
-          "description": "The state of the accelerator.",
+          "description": "Output only. The state of the accelerator.",
           "enum": [
             "STATE_UNSPECIFIED",
             "ENABLED",
@@ -776,6 +771,7 @@
             "Indicates that the accelerator is disabled and not available to use.",
             "Indicates that accelerator state is currently unknown. Requests for enable, disable could be retried while in this state."
           ],
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -845,7 +841,7 @@
           "type": "array"
         },
         "role": {
-          "description": "Role that is assigned to the list of `members`, or principals. For example, `roles/viewer`, `roles/editor`, or `roles/owner`.",
+          "description": "Role that is assigned to the list of `members`, or principals. For example, `roles/viewer`, `roles/editor`, or `roles/owner`. For an overview of the IAM roles and permissions, see the [IAM documentation](https://cloud.google.com/iam/docs/roles-overview). For a list of the available pre-defined roles, see [here](https://cloud.google.com/iam/docs/understanding-roles).",
           "type": "string"
         }
       },
@@ -864,38 +860,6 @@
         "keyReference": {
           "description": "The name of the key which is used to encrypt/decrypt customer data. For key in Cloud KMS, the key should be in the format of `projects/*/locations/*/keyRings/*/cryptoKeys/*`.",
           "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "DataResidencyAugmentedView": {
-      "description": "Next tag: 7",
-      "id": "DataResidencyAugmentedView",
-      "properties": {
-        "crGopoGuris": {
-          "description": "Cloud resource to Google owned production object mapping in the form of GURIs. The GURIs should be available in DG KB storage/cns tables. This is the preferred way of providing cloud resource mappings. For further details please read go/cloud-resource-monitoring_sig",
-          "items": {
-            "type": "string"
-          },
-          "type": "array"
-        },
-        "crGopoPrefixes": {
-          "description": "Cloud resource to Google owned production object mapping in the form of prefixes. These should be available in DG KB storage/cns tables. The entity type, which is the part of the string before the first colon in the GURI, must be completely specified in prefix. For details about GURI please read go/guri. For further details about the field please read go/cloud-resource-monitoring_sig.",
-          "items": {
-            "type": "string"
-          },
-          "type": "array"
-        },
-        "serviceData": {
-          "$ref": "ServiceData",
-          "description": "Service-specific data. Only required for pre-determined services. Generally used to bind a Cloud Resource to some a TI container that uniquely specifies a customer. See milestone 2 of DRZ KR8 SIG for more information."
-        },
-        "tpIds": {
-          "description": "The list of project_id's of the tenant projects in the 'google.com' org which serve the Cloud Resource. See go/drz-mst-sig for more details.",
-          "items": {
-            "type": "string"
-          },
-          "type": "array"
         }
       },
       "type": "object"
@@ -1070,6 +1034,10 @@
           "description": "The resource labels for instance to use to annotate any related underlying resources such as Compute Engine VMs. The character '=' is not allowed to be used within the labels.",
           "type": "object"
         },
+        "maintenancePolicy": {
+          "$ref": "MaintenancePolicy",
+          "description": "Optional. Configure the maintenance policy for this instance."
+        },
         "name": {
           "description": "Output only. The name of this instance is in the form of projects/{project}/locations/{location}/instances/{instance}.",
           "readOnly": true,
@@ -1087,7 +1055,7 @@
           "type": "object"
         },
         "p4ServiceAccount": {
-          "description": "Output only. P4 service account for the customer project.",
+          "description": "Output only. Service agent for the customer project.",
           "readOnly": true,
           "type": "string"
         },
@@ -1325,6 +1293,32 @@
       },
       "type": "object"
     },
+    "MaintenancePolicy": {
+      "description": "Maintenance policy of the instance.",
+      "id": "MaintenancePolicy",
+      "properties": {
+        "maintenanceExclusionWindow": {
+          "$ref": "TimeWindow",
+          "description": "Optional. The maintenance exclusion window of the instance."
+        },
+        "maintenanceWindow": {
+          "$ref": "MaintenanceWindow",
+          "description": "Optional. The maintenance window of the instance."
+        }
+      },
+      "type": "object"
+    },
+    "MaintenanceWindow": {
+      "description": "Maintenance window of the instance.",
+      "id": "MaintenanceWindow",
+      "properties": {
+        "recurringTimeWindow": {
+          "$ref": "RecurringTimeWindow",
+          "description": "Required. The recurring time window of the maintenance window."
+        }
+      },
+      "type": "object"
+    },
     "NetworkConfig": {
       "description": "Network configuration for a Data Fusion instance. These configurations are used for peering with the customer network. Configurations are optional when a public Data Fusion instance is to be created. However, providing these configurations allows several benefits, such as reduced network latency while accessing the customer resources from managed Data Fusion instance nodes, as well as access to the customer on-prem resources.",
       "id": "NetworkConfig",
@@ -1348,7 +1342,7 @@
           "type": "string"
         },
         "network": {
-          "description": "Optional. Name of the network in the customer project with which the Tenant Project will be peered for executing pipelines. This is required only when using connection type VPC peering. In case of shared VPC where the network resides in another host project the network should specified in the form of projects/{host-project-id}/global/networks/{network}. This is only required for connectivity type VPC_PEERING.",
+          "description": "Optional. Name of the network in the customer project with which the Tenant Project will be peered for executing pipelines. In case of shared VPC where the network resides in another host project the network should specified in the form of projects/{host-project-id}/global/networks/{network}. This is only required for connectivity type VPC_PEERING.",
           "type": "string"
         },
         "privateServiceConnectConfig": {
@@ -1437,27 +1431,6 @@
       },
       "type": "object"
     },
-    "PersistentDiskData": {
-      "description": "Persistent Disk service-specific Data. Contains information that may not be appropriate for the generic DRZ Augmented View. This currently includes LSV Colossus Roots and GCS Buckets.",
-      "id": "PersistentDiskData",
-      "properties": {
-        "cfsRoots": {
-          "description": "Path to Colossus root for an LSV. NOTE: Unlike `cr_ti_guris` and `cr_ti_prefixes`, the field `cfs_roots` below does not need to be a GUri or GUri prefix. It can simply be any valid CFS or CFS2 Path. The DRZ KR8 SIG has more details overall, but generally the `cfs_roots` provided here should be scoped to an individual Persistent Disk. An example for a PD Disk with a disk ID 3277719120423414466, follows: * `cr_ti_guris` could be ‘/cfs2/pj/pd-cloud-prod’ as this is a valid GUri present in the DG KB and contains enough information to perform location monitoring and scope ownership of the Production Object. * `cfs_roots` would be: ‘/cfs2/pj/pd-cloud-staging/lsv000001234@/ lsv/projects~773365403387~zones~2700~disks~3277719120423414466 ~bank-blue-careful-3526-lsv00054DB1B7254BA3/’ as this allows us to enumerate the files on CFS2 that belong to an individual Disk.",
-          "items": {
-            "type": "string"
-          },
-          "type": "array"
-        },
-        "gcsBucketNames": {
-          "description": "The GCS Buckets that back this snapshot or image. This is required as `cr_ti_prefixes` and `cr_ti_guris` only accept TI resources. This should be the globally unique bucket name.",
-          "items": {
-            "type": "string"
-          },
-          "type": "array"
-        }
-      },
-      "type": "object"
-    },
     "Policy": {
       "description": "An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members`, or principals, to a single `role`. Principals can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** ``` { \"bindings\": [ { \"role\": \"roles/resourcemanager.organizationAdmin\", \"members\": [ \"user:mike@example.com\", \"group:admins@example.com\", \"domain:google.com\", \"serviceAccount:my-project-id@appspot.gserviceaccount.com\" ] }, { \"role\": \"roles/resourcemanager.organizationViewer\", \"members\": [ \"user:eve@example.com\" ], \"condition\": { \"title\": \"expirable access\", \"description\": \"Does not grant access after Sep 2020\", \"expression\": \"request.time < timestamp('2020-10-01T00:00:00.000Z')\", } } ], \"etag\": \"BwWWja0YfJA=\", \"version\": 3 } ``` **YAML example:** ``` bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time < timestamp('2020-10-01T00:00:00.000Z') etag: BwWWja0YfJA= version: 3 ``` For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).",
       "id": "Policy",
@@ -1509,21 +1482,25 @@
       },
       "type": "object"
     },
+    "RecurringTimeWindow": {
+      "description": "Represents an arbitrary window of time that recurs.",
+      "id": "RecurringTimeWindow",
+      "properties": {
+        "recurrence": {
+          "description": "Required. An RRULE with format [RFC-5545](https://tools.ietf.org/html/rfc5545#section-3.8.5.3) for how this window reccurs. They go on for the span of time between the start and end time. The only supported FREQ value is \"WEEKLY\". To have something repeat every weekday, use: \"FREQ=WEEKLY;BYDAY=MO,TU,WE,TH,FR\". This specifies how frequently the window starts. To have a 9 am - 5 pm UTC-4 window every weekday, use something like: ``` start time = 2019-01-01T09:00:00-0400 end time = 2019-01-01T17:00:00-0400 recurrence = FREQ=WEEKLY;BYDAY=MO,TU,WE,TH,FR ```",
+          "type": "string"
+        },
+        "window": {
+          "$ref": "TimeWindow",
+          "description": "Required. The window representing the start and end time of recurrences. This field ignores the date components of the provided timestamps. Only the time of day and duration between start and end time are relevant."
+        }
+      },
+      "type": "object"
+    },
     "RestartInstanceRequest": {
       "description": "Request message for restarting a Data Fusion instance.",
       "id": "RestartInstanceRequest",
       "properties": {},
-      "type": "object"
-    },
-    "ServiceData": {
-      "description": "This message defines service-specific data that certain service teams must provide as part of the Data Residency Augmented View for a resource. Next ID: 2",
-      "id": "ServiceData",
-      "properties": {
-        "pd": {
-          "$ref": "PersistentDiskData",
-          "description": "Auxiliary data for the persistent disk pipeline provided to provide the LSV Colossus Roots and GCS Buckets."
-        }
-      },
       "type": "object"
     },
     "SetIamPolicyRequest": {
@@ -1593,6 +1570,23 @@
             "type": "string"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "TimeWindow": {
+      "description": "Represents an arbitrary window of time.",
+      "id": "TimeWindow",
+      "properties": {
+        "endTime": {
+          "description": "Required. The end time of the time window provided in [RFC 3339](https://www.ietf.org/rfc/rfc3339.txt) format. The end time should take place after the start time. Example: \"2024-01-02T12:04:06-06:00\"",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "startTime": {
+          "description": "Required. The start time of the time window provided in [RFC 3339](https://www.ietf.org/rfc/rfc3339.txt) format. Example: \"2024-01-01T12:04:06-04:00\"",
+          "format": "google-datetime",
+          "type": "string"
         }
       },
       "type": "object"
