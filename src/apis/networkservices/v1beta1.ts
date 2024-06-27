@@ -1058,7 +1058,7 @@ export namespace networkservices_v1beta1 {
      */
     loadBalancingScheme?: string | null;
     /**
-     * Optional. The metadata provided here will be included as part of the `metadata_context` (of type `google.protobuf.Struct`) in the `ProcessingRequest` message sent to the extension server. The metadata will be available under the namespace `com.google.lb_route_extension.`. The following variables are supported in the metadata Struct: `{forwarding_rule_id\}` - substituted with the forwarding rule's fully qualified resource name.
+     * Optional. The metadata provided here is included as part of the `metadata_context` (of type `google.protobuf.Struct`) in the `ProcessingRequest` message sent to the extension server. The metadata is available under the namespace `com.google.lb_route_extension.`. The following variables are supported in the metadata Struct: `{forwarding_rule_id\}` - substituted with the forwarding rule's fully qualified resource name.
      */
     metadata?: {[key: string]: any} | null;
     /**
@@ -1099,7 +1099,7 @@ export namespace networkservices_v1beta1 {
      */
     loadBalancingScheme?: string | null;
     /**
-     * Optional. The metadata provided here will be included in the `ProcessingRequest.metadata_context.filter_metadata` map field. The metadata will be available under the key `com.google.lb_traffic_extension.`. The following variables are supported in the metadata: `{forwarding_rule_id\}` - substituted with the forwarding rule's fully qualified resource name.
+     * Optional. The metadata provided here is included in the `ProcessingRequest.metadata_context.filter_metadata` map field. The metadata is available under the key `com.google.lb_traffic_extension.`. The following variables are supported in the metadata: `{forwarding_rule_id\}` - substituted with the forwarding rule's fully qualified resource name.
      */
     metadata?: {[key: string]: any} | null;
     /**
