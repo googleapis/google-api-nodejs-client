@@ -4436,7 +4436,7 @@ export namespace dialogflow_v2beta1 {
      */
     conversationProfile?: string | null;
     /**
-     * The stage of a conversation. It indicates whether the virtual agent or a human agent is handling the conversation. If the conversation is created with the conversation profile that has Dialogflow config set, defaults to ConversationStage.VIRTUAL_AGENT_STAGE; Otherwise, defaults to ConversationStage.HUMAN_ASSIST_STAGE. If the conversation is created with the conversation profile that has Dialogflow config set but explicitly sets conversation_stage to ConversationStage.HUMAN_ASSIST_STAGE, it skips ConversationStage.VIRTUAL_AGENT_STAGE stage and directly goes to ConversationStage.HUMAN_ASSIST_STAGE.
+     * Optional. The stage of a conversation. It indicates whether the virtual agent or a human agent is handling the conversation. If the conversation is created with the conversation profile that has Dialogflow config set, defaults to ConversationStage.VIRTUAL_AGENT_STAGE; Otherwise, defaults to ConversationStage.HUMAN_ASSIST_STAGE. If the conversation is created with the conversation profile that has Dialogflow config set but explicitly sets conversation_stage to ConversationStage.HUMAN_ASSIST_STAGE, it skips ConversationStage.VIRTUAL_AGENT_STAGE stage and directly goes to ConversationStage.HUMAN_ASSIST_STAGE.
      */
     conversationStage?: string | null;
     /**
@@ -4448,7 +4448,7 @@ export namespace dialogflow_v2beta1 {
      */
     lifecycleState?: string | null;
     /**
-     * Output only. The unique identifier of this conversation. Format: `projects//locations//conversations/`.
+     * Output only. Identifier. The unique identifier of this conversation. Format: `projects//locations//conversations/`.
      */
     name?: string | null;
     /**
@@ -5060,11 +5060,11 @@ export namespace dialogflow_v2beta1 {
      */
     conversationProfile?: Schema$GoogleCloudDialogflowV2beta1ConversationProfile;
     /**
-     * The name of the latest conversation message used as context for generating a Summary. If empty, the latest message of the conversation will be used. The format is specific to the user and the names of the messages provided.
+     * Optional. The name of the latest conversation message used as context for generating a Summary. If empty, the latest message of the conversation will be used. The format is specific to the user and the names of the messages provided.
      */
     latestMessage?: string | null;
     /**
-     * Max number of messages prior to and including [latest_message] to use as context when compiling the suggestion. By default 500 and at most 1000.
+     * Optional. Max number of messages prior to and including [latest_message] to use as context when compiling the suggestion. By default 500 and at most 1000.
      */
     maxContextSize?: number | null;
     /**
@@ -5218,7 +5218,7 @@ export namespace dialogflow_v2beta1 {
    */
   export interface Schema$GoogleCloudDialogflowV2beta1HumanAgentAssistantConfigSuggestionConfig {
     /**
-     * Optional. When disable_high_latency_features_sync_delivery is true and using the AnalyzeContent API, we will not deliver the responses from high latency features in the API response. The human_agent_assistant_config.notification_config must be configured and enable_event_based_suggestion must be set to true to receive the responses from high latency features in Pub/Sub. High latency feature(s): KNOWLEDGE_ASSIST.
+     * Optional. When disable_high_latency_features_sync_delivery is true and using the AnalyzeContent API, we will not deliver the responses from high latency features in the API response. The human_agent_assistant_config.notification_config must be configured and enable_event_based_suggestion must be set to true to receive the responses from high latency features in Pub/Sub. High latency feature(s): KNOWLEDGE_ASSIST
      */
     disableHighLatencyFeaturesSyncDelivery?: boolean | null;
     /**
@@ -7311,7 +7311,7 @@ export namespace dialogflow_v2beta1 {
    */
   export interface Schema$GoogleCloudDialogflowV2beta1SearchKnowledgeRequest {
     /**
-     * The conversation (between human agent and end user) where the search request is triggered. Format: `projects//locations//conversations/`.
+     * Optional. The conversation (between human agent and end user) where the search request is triggered. Format: `projects//locations//conversations/`.
      */
     conversation?: string | null;
     /**
@@ -7319,11 +7319,11 @@ export namespace dialogflow_v2beta1 {
      */
     conversationProfile?: string | null;
     /**
-     * The name of the latest conversation message when the request is triggered. Format: `projects//locations//conversations//messages/`.
+     * Optional. The name of the latest conversation message when the request is triggered. Format: `projects//locations//conversations//messages/`.
      */
     latestMessage?: string | null;
     /**
-     * The parent resource contains the conversation profile Format: 'projects/' or `projects//locations/`.
+     * Required. The parent resource contains the conversation profile Format: 'projects/' or `projects//locations/`.
      */
     parent?: string | null;
     /**
@@ -7331,7 +7331,7 @@ export namespace dialogflow_v2beta1 {
      */
     query?: Schema$GoogleCloudDialogflowV2beta1TextInput;
     /**
-     * The ID of the search session. The session_id can be combined with Dialogflow V3 Agent ID retrieved from conversation profile or on its own to identify a search session. The search history of the same session will impact the search result. It's up to the API caller to choose an appropriate `Session ID`. It can be a random number or some type of session identifiers (preferably hashed). The length must not exceed 36 characters.
+     * Optional. The ID of the search session. The session_id can be combined with Dialogflow V3 Agent ID retrieved from conversation profile or on its own to identify a search session. The search history of the same session will impact the search result. It's up to the API caller to choose an appropriate `Session ID`. It can be a random number or some type of session identifiers (preferably hashed). The length must not exceed 36 characters.
      */
     sessionId?: string | null;
   }
@@ -7529,15 +7529,15 @@ export namespace dialogflow_v2beta1 {
    */
   export interface Schema$GoogleCloudDialogflowV2beta1SuggestConversationSummaryRequest {
     /**
-     * Parameters for a human assist query. Only used for POC/demo purpose.
+     * Optional. Parameters for a human assist query. Only used for POC/demo purpose.
      */
     assistQueryParams?: Schema$GoogleCloudDialogflowV2beta1AssistQueryParameters;
     /**
-     * Max number of messages prior to and including [latest_message] to use as context when compiling the suggestion. By default 500 and at most 1000.
+     * Optional. Max number of messages prior to and including [latest_message] to use as context when compiling the suggestion. By default 500 and at most 1000.
      */
     contextSize?: number | null;
     /**
-     * The name of the latest conversation message used as context for compiling suggestion. If empty, the latest message of the conversation will be used. Format: `projects//locations//conversations//messages/`.
+     * Optional. The name of the latest conversation message used as context for compiling suggestion. If empty, the latest message of the conversation will be used. Format: `projects//locations//conversations//messages/`.
      */
     latestMessage?: string | null;
   }
@@ -19612,7 +19612,7 @@ export namespace dialogflow_v2beta1 {
   export interface Params$Resource$Projects$Conversations$List
     extends StandardParameters {
     /**
-     * A filter expression that filters conversations listed in the response. In general, the expression must specify the field name, a comparison operator, and the value to use for filtering: - The value must be a string, a number, or a boolean. - The comparison operator must be either `=`,`!=`, `\>`, or `<`. - To filter on multiple expressions, separate the expressions with `AND` or `OR` (omitting both implies `AND`). - For clarity, expressions can be enclosed in parentheses. Only `lifecycle_state` can be filtered on in this way. For example, the following expression only returns `COMPLETED` conversations: `lifecycle_state = "COMPLETED"` For more information about filtering, see [API Filtering](https://aip.dev/160).
+     * Optional. A filter expression that filters conversations listed in the response. Only `lifecycle_state` can be filtered on in this way. For example, the following expression only returns `COMPLETED` conversations: `lifecycle_state = "COMPLETED"` For more information about filtering, see [API Filtering](https://aip.dev/160).
      */
     filter?: string;
     /**
@@ -21296,7 +21296,7 @@ export namespace dialogflow_v2beta1 {
   export interface Params$Resource$Projects$Conversations$Suggestions$Searchknowledge
     extends StandardParameters {
     /**
-     * The conversation (between human agent and end user) where the search request is triggered. Format: `projects//locations//conversations/`.
+     * Optional. The conversation (between human agent and end user) where the search request is triggered. Format: `projects//locations//conversations/`.
      */
     conversation?: string;
 
@@ -31700,7 +31700,7 @@ export namespace dialogflow_v2beta1 {
   export interface Params$Resource$Projects$Locations$Conversations$List
     extends StandardParameters {
     /**
-     * A filter expression that filters conversations listed in the response. In general, the expression must specify the field name, a comparison operator, and the value to use for filtering: - The value must be a string, a number, or a boolean. - The comparison operator must be either `=`,`!=`, `\>`, or `<`. - To filter on multiple expressions, separate the expressions with `AND` or `OR` (omitting both implies `AND`). - For clarity, expressions can be enclosed in parentheses. Only `lifecycle_state` can be filtered on in this way. For example, the following expression only returns `COMPLETED` conversations: `lifecycle_state = "COMPLETED"` For more information about filtering, see [API Filtering](https://aip.dev/160).
+     * Optional. A filter expression that filters conversations listed in the response. Only `lifecycle_state` can be filtered on in this way. For example, the following expression only returns `COMPLETED` conversations: `lifecycle_state = "COMPLETED"` For more information about filtering, see [API Filtering](https://aip.dev/160).
      */
     filter?: string;
     /**
@@ -33160,7 +33160,7 @@ export namespace dialogflow_v2beta1 {
   export interface Params$Resource$Projects$Locations$Conversations$Suggestions$Searchknowledge
     extends StandardParameters {
     /**
-     * The conversation (between human agent and end user) where the search request is triggered. Format: `projects//locations//conversations/`.
+     * Optional. The conversation (between human agent and end user) where the search request is triggered. Format: `projects//locations//conversations/`.
      */
     conversation?: string;
 
@@ -35687,7 +35687,7 @@ export namespace dialogflow_v2beta1 {
   export interface Params$Resource$Projects$Locations$Suggestions$Searchknowledge
     extends StandardParameters {
     /**
-     * The parent resource contains the conversation profile Format: 'projects/' or `projects//locations/`.
+     * Required. The parent resource contains the conversation profile Format: 'projects/' or `projects//locations/`.
      */
     parent?: string;
 
@@ -36234,7 +36234,7 @@ export namespace dialogflow_v2beta1 {
   export interface Params$Resource$Projects$Suggestions$Searchknowledge
     extends StandardParameters {
     /**
-     * The parent resource contains the conversation profile Format: 'projects/' or `projects//locations/`.
+     * Required. The parent resource contains the conversation profile Format: 'projects/' or `projects//locations/`.
      */
     parent?: string;
 
