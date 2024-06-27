@@ -485,7 +485,7 @@
       }
     }
   },
-  "revision": "20240522",
+  "revision": "20240612",
   "rootUrl": "https://workflows.googleapis.com/",
   "schemas": {
     "Empty": {
@@ -726,7 +726,7 @@
       "id": "Workflow",
       "properties": {
         "allKmsKeys": {
-          "description": "Output only. A list of all KMS crypto keys used to encrypt or decrpt the data associated with the workflow.",
+          "description": "Output only. A list of all KMS crypto keys used to encrypt or decrypt the data associated with the workflow.",
           "items": {
             "type": "string"
           },
@@ -734,7 +734,7 @@
           "type": "array"
         },
         "allKmsKeysVersions": {
-          "description": "Output only. A list of all KMS crypto keys versions used to encrypt or decrpt the data associated with the workflow.",
+          "description": "Output only. A list of all KMS crypto key versions used to encrypt or decrypt the data associated with the workflow.",
           "items": {
             "type": "string"
           },
