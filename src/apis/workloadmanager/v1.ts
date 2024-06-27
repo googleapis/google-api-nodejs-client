@@ -125,6 +125,19 @@ export namespace workloadmanager_v1 {
   }
 
   /**
+   * * An AgentCommand specifies a one-time executable program for the agent to run.
+   */
+  export interface Schema$AgentCommand {
+    /**
+     * command is the name of the agent one-time executable that will be invoked.
+     */
+    command?: string | null;
+    /**
+     * parameters is a map of key/value pairs that can be used to specify additional one-time executable settings.
+     */
+    parameters?: {[key: string]: string} | null;
+  }
+  /**
    * Provides the mapping of a cloud asset to a direct physical location or to a proxy that defines the location on its behalf.
    */
   export interface Schema$AssetLocation {
@@ -174,6 +187,19 @@ export namespace workloadmanager_v1 {
   }
   export interface Schema$CloudAssetComposition {
     childAsset?: Schema$CloudAsset[];
+  }
+  /**
+   * * Command specifies the type of command to execute.
+   */
+  export interface Schema$Command {
+    /**
+     * AgentCommand specifies a one-time executable program for the agent to run.
+     */
+    agentCommand?: Schema$AgentCommand;
+    /**
+     * ShellCommand is invoked via the agent's command line executor.
+     */
+    shellCommand?: Schema$ShellCommand;
   }
   export interface Schema$DirectLocationAssignment {
     location?: Schema$LocationAssignment[];
@@ -281,27 +307,31 @@ export namespace workloadmanager_v1 {
    */
   export interface Schema$ExecutionResult {
     /**
-     * the document url of the rule
+     * The commands to remediate the violation.
+     */
+    commands?: Schema$Command[];
+    /**
+     * The URL for the documentation of the rule.
      */
     documentationUrl?: string | null;
     /**
-     * the violate resource
+     * The resource that violates the rule.
      */
     resource?: Schema$Resource;
     /**
-     * the rule which violate in execution
+     * The rule that is violated in an evaluation.
      */
     rule?: string | null;
     /**
-     * severity of violation
+     * The severity of violation.
      */
     severity?: string | null;
     /**
-     * the details of violation in result
+     * The details of violation in an evaluation result.
      */
     violationDetails?: Schema$ViolationDetails;
     /**
-     * the violation message of an execution
+     * The violation message of an execution.
      */
     violationMessage?: string | null;
   }
@@ -310,7 +340,11 @@ export namespace workloadmanager_v1 {
    */
   export interface Schema$ExternalDataSources {
     /**
-     * Required. Name of external data source. The name will be used inside the rego/sql to refer the external data
+     * Required. The asset type of the external data source must be one of go/cai-asset-types
+     */
+    assetType?: string | null;
+    /**
+     * Optional. Name of external data source. The name will be used inside the rego/sql to refer the external data
      */
     name?: string | null;
     /**
@@ -513,6 +547,7 @@ export namespace workloadmanager_v1 {
     childAssetLocation?: Schema$CloudAssetComposition;
     directLocation?: Schema$DirectLocationAssignment;
     gcpProjectProxy?: Schema$TenantProjectProxy;
+    placerLocation?: Schema$PlacerLocation;
     spannerLocation?: Schema$SpannerLocation;
   }
   /**
@@ -574,6 +609,15 @@ export namespace workloadmanager_v1 {
     verb?: string | null;
   }
   /**
+   * Message describing that the location of the customer resource is tied to placer allocations
+   */
+  export interface Schema$PlacerLocation {
+    /**
+     * Directory with a config related to it in placer (e.g. "/placer/prod/home/my-root/my-dir")
+     */
+    placerConfig?: string | null;
+  }
+  /**
    * To be used for specifying the intended distribution of regional compute.googleapis.com/InstanceGroupManager instances
    */
   export interface Schema$RegionalMigDistributionPolicy {
@@ -591,15 +635,15 @@ export namespace workloadmanager_v1 {
    */
   export interface Schema$Resource {
     /**
-     * the name of the resource
+     * The name of the resource.
      */
     name?: string | null;
     /**
-     * the service account accosiate with resource
+     * The service account associated with the resource.
      */
     serviceAccount?: string | null;
     /**
-     * the type of reresource
+     * The type of resource.
      */
     type?: string | null;
   }
@@ -757,6 +801,10 @@ export namespace workloadmanager_v1 {
      */
     hostProject?: string | null;
     /**
+     * Optional. A list of replication sites used in Disaster Recovery (DR) configurations.
+     */
+    replicationSites?: Schema$SapDiscoveryComponent[];
+    /**
      * Optional. The resources in a component.
      */
     resources?: Schema$SapDiscoveryResource[];
@@ -774,7 +822,7 @@ export namespace workloadmanager_v1 {
    */
   export interface Schema$SapDiscoveryComponentApplicationProperties {
     /**
-     * Optional. Indicates whether this is a Java or ABAP Netweaver instance. true means it is ABAP, false means it is Java.
+     * Optional. Deprecated: ApplicationType now tells you whether this is ABAP or Java.
      */
     abap?: boolean | null;
     /**
@@ -1017,6 +1065,23 @@ export namespace workloadmanager_v1 {
      */
     type?: string | null;
   }
+  /**
+   * * A ShellCommand is invoked via the agent's command line executor
+   */
+  export interface Schema$ShellCommand {
+    /**
+     * args is a string of arguments to be passed to the command.
+     */
+    args?: string | null;
+    /**
+     * command is the name of the command to be executed.
+     */
+    command?: string | null;
+    /**
+     * Optional. If not specified, the default timeout is 60 seconds.
+     */
+    timeoutSeconds?: number | null;
+  }
   export interface Schema$SpannerLocation {
     dbName?: string[] | null;
   }
@@ -1084,19 +1149,19 @@ export namespace workloadmanager_v1 {
     projectNumbers?: string[] | null;
   }
   /**
-   * Message describing the violdation in execution result
+   * Message describing the violation in an evaluation result.
    */
   export interface Schema$ViolationDetails {
     /**
-     * the name of asset
+     * The name of the asset.
      */
     asset?: string | null;
     /**
-     * observed
+     * Details of the violation.
      */
     observed?: {[key: string]: string} | null;
     /**
-     * the service account associate with resource
+     * The service account associated with the resource.
      */
     serviceAccount?: string | null;
   }
@@ -1771,7 +1836,7 @@ export namespace workloadmanager_v1 {
   export interface Params$Resource$Projects$Locations$Evaluations$List
     extends StandardParameters {
     /**
-     * Filtering results
+     * Filter to be applied when listing the evaluation results.
      */
     filter?: string;
     /**
@@ -2229,7 +2294,7 @@ export namespace workloadmanager_v1 {
     }
 
     /**
-     * List the running result of a single Execution.
+     * Lists the result of a single evaluation.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
