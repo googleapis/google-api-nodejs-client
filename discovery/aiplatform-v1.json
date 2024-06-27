@@ -20,19 +20,19 @@
   "documentationLink": "https://cloud.google.com/vertex-ai/",
   "endpoints": [
     {
+      "endpointUrl": "https://africa-south1-aiplatform.googleapis.com/",
       "location": "africa-south1",
-      "description": "Locational Endpoint",
-      "endpointUrl": "https://africa-south1-aiplatform.googleapis.com/"
-    },
-    {
-      "endpointUrl": "https://asia-east1-aiplatform.googleapis.com/",
-      "description": "Locational Endpoint",
-      "location": "asia-east1"
-    },
-    {
-      "endpointUrl": "https://asia-east2-aiplatform.googleapis.com/",
-      "location": "asia-east2",
       "description": "Locational Endpoint"
+    },
+    {
+      "location": "asia-east1",
+      "description": "Locational Endpoint",
+      "endpointUrl": "https://asia-east1-aiplatform.googleapis.com/"
+    },
+    {
+      "description": "Locational Endpoint",
+      "location": "asia-east2",
+      "endpointUrl": "https://asia-east2-aiplatform.googleapis.com/"
     },
     {
       "description": "Locational Endpoint",
@@ -40,49 +40,49 @@
       "endpointUrl": "https://asia-northeast1-aiplatform.googleapis.com/"
     },
     {
-      "endpointUrl": "https://asia-northeast2-aiplatform.googleapis.com/",
       "description": "Locational Endpoint",
-      "location": "asia-northeast2"
+      "location": "asia-northeast2",
+      "endpointUrl": "https://asia-northeast2-aiplatform.googleapis.com/"
     },
     {
-      "location": "asia-northeast3",
       "endpointUrl": "https://asia-northeast3-aiplatform.googleapis.com/",
-      "description": "Locational Endpoint"
+      "description": "Locational Endpoint",
+      "location": "asia-northeast3"
     },
     {
       "endpointUrl": "https://asia-south1-aiplatform.googleapis.com/",
-      "location": "asia-south1",
-      "description": "Locational Endpoint"
+      "description": "Locational Endpoint",
+      "location": "asia-south1"
     },
     {
       "description": "Locational Endpoint",
-      "location": "asia-southeast1",
-      "endpointUrl": "https://asia-southeast1-aiplatform.googleapis.com/"
+      "endpointUrl": "https://asia-southeast1-aiplatform.googleapis.com/",
+      "location": "asia-southeast1"
     },
     {
       "description": "Locational Endpoint",
-      "location": "asia-southeast2",
-      "endpointUrl": "https://asia-southeast2-aiplatform.googleapis.com/"
+      "endpointUrl": "https://asia-southeast2-aiplatform.googleapis.com/",
+      "location": "asia-southeast2"
     },
     {
+      "description": "Locational Endpoint",
       "location": "australia-southeast1",
-      "description": "Locational Endpoint",
       "endpointUrl": "https://australia-southeast1-aiplatform.googleapis.com/"
     },
     {
+      "endpointUrl": "https://australia-southeast2-aiplatform.googleapis.com/",
       "location": "australia-southeast2",
-      "description": "Locational Endpoint",
-      "endpointUrl": "https://australia-southeast2-aiplatform.googleapis.com/"
+      "description": "Locational Endpoint"
     },
     {
+      "location": "europe-central2",
       "endpointUrl": "https://europe-central2-aiplatform.googleapis.com/",
-      "description": "Locational Endpoint",
-      "location": "europe-central2"
+      "description": "Locational Endpoint"
     },
     {
-      "location": "europe-north1",
+      "endpointUrl": "https://europe-north1-aiplatform.googleapis.com/",
       "description": "Locational Endpoint",
-      "endpointUrl": "https://europe-north1-aiplatform.googleapis.com/"
+      "location": "europe-north1"
     },
     {
       "location": "europe-southwest1",
@@ -90,14 +90,14 @@
       "description": "Locational Endpoint"
     },
     {
-      "location": "europe-west1",
       "description": "Locational Endpoint",
-      "endpointUrl": "https://europe-west1-aiplatform.googleapis.com/"
+      "endpointUrl": "https://europe-west1-aiplatform.googleapis.com/",
+      "location": "europe-west1"
     },
     {
-      "description": "Locational Endpoint",
       "endpointUrl": "https://europe-west2-aiplatform.googleapis.com/",
-      "location": "europe-west2"
+      "location": "europe-west2",
+      "description": "Locational Endpoint"
     },
     {
       "endpointUrl": "https://europe-west3-aiplatform.googleapis.com/",
@@ -105,9 +105,9 @@
       "description": "Locational Endpoint"
     },
     {
+      "endpointUrl": "https://europe-west4-aiplatform.googleapis.com/",
       "location": "europe-west4",
-      "description": "Locational Endpoint",
-      "endpointUrl": "https://europe-west4-aiplatform.googleapis.com/"
+      "description": "Locational Endpoint"
     },
     {
       "endpointUrl": "https://europe-west6-aiplatform.googleapis.com/",
@@ -116,68 +116,68 @@
     },
     {
       "endpointUrl": "https://europe-west8-aiplatform.googleapis.com/",
-      "location": "europe-west8",
-      "description": "Locational Endpoint"
+      "description": "Locational Endpoint",
+      "location": "europe-west8"
     },
     {
-      "endpointUrl": "https://europe-west9-aiplatform.googleapis.com/",
       "description": "Locational Endpoint",
+      "endpointUrl": "https://europe-west9-aiplatform.googleapis.com/",
       "location": "europe-west9"
     },
     {
-      "location": "europe-west12",
       "endpointUrl": "https://europe-west12-aiplatform.googleapis.com/",
-      "description": "Locational Endpoint"
-    },
-    {
-      "endpointUrl": "https://me-central1-aiplatform.googleapis.com/",
       "description": "Locational Endpoint",
-      "location": "me-central1"
+      "location": "europe-west12"
     },
     {
+      "description": "Locational Endpoint",
+      "location": "me-central1",
+      "endpointUrl": "https://me-central1-aiplatform.googleapis.com/"
+    },
+    {
+      "location": "me-central2",
       "endpointUrl": "https://me-central2-aiplatform.googleapis.com/",
-      "description": "Locational Endpoint",
-      "location": "me-central2"
+      "description": "Locational Endpoint"
     },
     {
       "endpointUrl": "https://me-west1-aiplatform.googleapis.com/",
-      "description": "Locational Endpoint",
-      "location": "me-west1"
+      "location": "me-west1",
+      "description": "Locational Endpoint"
     },
     {
-      "description": "Locational Endpoint",
+      "location": "northamerica-northeast1",
       "endpointUrl": "https://northamerica-northeast1-aiplatform.googleapis.com/",
-      "location": "northamerica-northeast1"
+      "description": "Locational Endpoint"
     },
     {
-      "endpointUrl": "https://northamerica-northeast2-aiplatform.googleapis.com/",
+      "location": "northamerica-northeast2",
       "description": "Locational Endpoint",
-      "location": "northamerica-northeast2"
+      "endpointUrl": "https://northamerica-northeast2-aiplatform.googleapis.com/"
     },
     {
-      "description": "Locational Endpoint",
       "endpointUrl": "https://southamerica-east1-aiplatform.googleapis.com/",
-      "location": "southamerica-east1"
+      "location": "southamerica-east1",
+      "description": "Locational Endpoint"
     },
     {
       "endpointUrl": "https://southamerica-west1-aiplatform.googleapis.com/",
-      "location": "southamerica-west1",
-      "description": "Locational Endpoint"
-    },
-    {
-      "location": "us-central1",
-      "endpointUrl": "https://us-central1-aiplatform.googleapis.com/",
-      "description": "Locational Endpoint"
-    },
-    {
-      "endpointUrl": "https://us-central2-aiplatform.googleapis.com/",
       "description": "Locational Endpoint",
-      "location": "us-central2"
+      "location": "southamerica-west1"
     },
     {
+      "description": "Locational Endpoint",
+      "endpointUrl": "https://us-central1-aiplatform.googleapis.com/",
+      "location": "us-central1"
+    },
+    {
+      "location": "us-central2",
+      "description": "Locational Endpoint",
+      "endpointUrl": "https://us-central2-aiplatform.googleapis.com/"
+    },
+    {
+      "description": "Locational Endpoint",
       "location": "us-east1",
-      "endpointUrl": "https://us-east1-aiplatform.googleapis.com/",
-      "description": "Locational Endpoint"
+      "endpointUrl": "https://us-east1-aiplatform.googleapis.com/"
     },
     {
       "description": "Locational Endpoint",
@@ -185,23 +185,23 @@
       "endpointUrl": "https://us-east4-aiplatform.googleapis.com/"
     },
     {
-      "location": "us-south1",
-      "endpointUrl": "https://us-south1-aiplatform.googleapis.com/",
-      "description": "Locational Endpoint"
-    },
-    {
-      "location": "us-west1",
-      "endpointUrl": "https://us-west1-aiplatform.googleapis.com/",
-      "description": "Locational Endpoint"
-    },
-    {
       "description": "Locational Endpoint",
-      "location": "us-west2",
-      "endpointUrl": "https://us-west2-aiplatform.googleapis.com/"
+      "endpointUrl": "https://us-south1-aiplatform.googleapis.com/",
+      "location": "us-south1"
     },
     {
-      "endpointUrl": "https://us-west3-aiplatform.googleapis.com/",
+      "endpointUrl": "https://us-west1-aiplatform.googleapis.com/",
+      "location": "us-west1",
+      "description": "Locational Endpoint"
+    },
+    {
+      "endpointUrl": "https://us-west2-aiplatform.googleapis.com/",
+      "description": "Locational Endpoint",
+      "location": "us-west2"
+    },
+    {
       "location": "us-west3",
+      "endpointUrl": "https://us-west3-aiplatform.googleapis.com/",
       "description": "Locational Endpoint"
     },
     {
@@ -210,9 +210,9 @@
       "location": "us-west4"
     },
     {
+      "location": "us-east5",
       "endpointUrl": "https://us-east5-aiplatform.googleapis.com/",
-      "description": "Locational Endpoint",
-      "location": "us-east5"
+      "description": "Locational Endpoint"
     }
   ],
   "fullyEncodeReservedExpansion": true,
@@ -309,6 +309,34 @@
       "resources": {
         "locations": {
           "methods": {
+            "evaluateInstances": {
+              "description": "Evaluates instances based on a given metric.",
+              "flatPath": "v1/projects/{projectsId}/locations/{locationsId}:evaluateInstances",
+              "httpMethod": "POST",
+              "id": "aiplatform.projects.locations.evaluateInstances",
+              "parameterOrder": [
+                "location"
+              ],
+              "parameters": {
+                "location": {
+                  "description": "Required. The resource name of the Location to evaluate the instances. Format: `projects/{project}/locations/{location}`",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+/locations/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+location}:evaluateInstances",
+              "request": {
+                "$ref": "GoogleCloudAiplatformV1EvaluateInstancesRequest"
+              },
+              "response": {
+                "$ref": "GoogleCloudAiplatformV1EvaluateInstancesResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
             "get": {
               "description": "Gets information about a location.",
               "flatPath": "v1/projects/{projectsId}/locations/{locationsId}",
@@ -11116,6 +11144,161 @@
                 }
               }
             },
+            "notebookExecutionJobs": {
+              "resources": {
+                "operations": {
+                  "methods": {
+                    "cancel": {
+                      "description": "Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/notebookExecutionJobs/{notebookExecutionJobsId}/operations/{operationsId}:cancel",
+                      "httpMethod": "POST",
+                      "id": "aiplatform.projects.locations.notebookExecutionJobs.operations.cancel",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "The name of the operation resource to be cancelled.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/notebookExecutionJobs/[^/]+/operations/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}:cancel",
+                      "response": {
+                        "$ref": "GoogleProtobufEmpty"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "delete": {
+                      "description": "Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/notebookExecutionJobs/{notebookExecutionJobsId}/operations/{operationsId}",
+                      "httpMethod": "DELETE",
+                      "id": "aiplatform.projects.locations.notebookExecutionJobs.operations.delete",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "The name of the operation resource to be deleted.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/notebookExecutionJobs/[^/]+/operations/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}",
+                      "response": {
+                        "$ref": "GoogleProtobufEmpty"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "get": {
+                      "description": "Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/notebookExecutionJobs/{notebookExecutionJobsId}/operations/{operationsId}",
+                      "httpMethod": "GET",
+                      "id": "aiplatform.projects.locations.notebookExecutionJobs.operations.get",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "The name of the operation resource.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/notebookExecutionJobs/[^/]+/operations/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}",
+                      "response": {
+                        "$ref": "GoogleLongrunningOperation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "list": {
+                      "description": "Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/notebookExecutionJobs/{notebookExecutionJobsId}/operations",
+                      "httpMethod": "GET",
+                      "id": "aiplatform.projects.locations.notebookExecutionJobs.operations.list",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "filter": {
+                          "description": "The standard list filter.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "name": {
+                          "description": "The name of the operation's parent resource.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/notebookExecutionJobs/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "pageSize": {
+                          "description": "The standard list page size.",
+                          "format": "int32",
+                          "location": "query",
+                          "type": "integer"
+                        },
+                        "pageToken": {
+                          "description": "The standard list page token.",
+                          "location": "query",
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}/operations",
+                      "response": {
+                        "$ref": "GoogleLongrunningListOperationsResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "wait": {
+                      "description": "Waits until the specified long-running operation is done or reaches at most a specified timeout, returning the latest state. If the operation is already done, the latest state is immediately returned. If the timeout specified is greater than the default HTTP/RPC timeout, the HTTP/RPC timeout is used. If the server does not support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Note that this method is on a best-effort basis. It may return the latest state before the specified timeout (including immediately), meaning even an immediate response is no guarantee that the operation is done.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/notebookExecutionJobs/{notebookExecutionJobsId}/operations/{operationsId}:wait",
+                      "httpMethod": "POST",
+                      "id": "aiplatform.projects.locations.notebookExecutionJobs.operations.wait",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "The name of the operation resource to wait on.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/notebookExecutionJobs/[^/]+/operations/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "timeout": {
+                          "description": "The maximum duration to wait before timing out. If left blank, the wait will be at most the time permitted by the underlying HTTP/RPC protocol. If RPC context deadline is also specified, the shorter one will be used.",
+                          "format": "google-duration",
+                          "location": "query",
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}:wait",
+                      "response": {
+                        "$ref": "GoogleLongrunningOperation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    }
+                  }
+                }
+              }
+            },
             "notebookRuntimeTemplates": {
               "methods": {
                 "create": {
@@ -11377,6 +11560,159 @@
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 }
+              },
+              "resources": {
+                "operations": {
+                  "methods": {
+                    "cancel": {
+                      "description": "Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/notebookRuntimeTemplates/{notebookRuntimeTemplatesId}/operations/{operationsId}:cancel",
+                      "httpMethod": "POST",
+                      "id": "aiplatform.projects.locations.notebookRuntimeTemplates.operations.cancel",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "The name of the operation resource to be cancelled.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/notebookRuntimeTemplates/[^/]+/operations/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}:cancel",
+                      "response": {
+                        "$ref": "GoogleProtobufEmpty"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "delete": {
+                      "description": "Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/notebookRuntimeTemplates/{notebookRuntimeTemplatesId}/operations/{operationsId}",
+                      "httpMethod": "DELETE",
+                      "id": "aiplatform.projects.locations.notebookRuntimeTemplates.operations.delete",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "The name of the operation resource to be deleted.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/notebookRuntimeTemplates/[^/]+/operations/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}",
+                      "response": {
+                        "$ref": "GoogleProtobufEmpty"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "get": {
+                      "description": "Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/notebookRuntimeTemplates/{notebookRuntimeTemplatesId}/operations/{operationsId}",
+                      "httpMethod": "GET",
+                      "id": "aiplatform.projects.locations.notebookRuntimeTemplates.operations.get",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "The name of the operation resource.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/notebookRuntimeTemplates/[^/]+/operations/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}",
+                      "response": {
+                        "$ref": "GoogleLongrunningOperation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "list": {
+                      "description": "Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/notebookRuntimeTemplates/{notebookRuntimeTemplatesId}/operations",
+                      "httpMethod": "GET",
+                      "id": "aiplatform.projects.locations.notebookRuntimeTemplates.operations.list",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "filter": {
+                          "description": "The standard list filter.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "name": {
+                          "description": "The name of the operation's parent resource.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/notebookRuntimeTemplates/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "pageSize": {
+                          "description": "The standard list page size.",
+                          "format": "int32",
+                          "location": "query",
+                          "type": "integer"
+                        },
+                        "pageToken": {
+                          "description": "The standard list page token.",
+                          "location": "query",
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}/operations",
+                      "response": {
+                        "$ref": "GoogleLongrunningListOperationsResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "wait": {
+                      "description": "Waits until the specified long-running operation is done or reaches at most a specified timeout, returning the latest state. If the operation is already done, the latest state is immediately returned. If the timeout specified is greater than the default HTTP/RPC timeout, the HTTP/RPC timeout is used. If the server does not support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Note that this method is on a best-effort basis. It may return the latest state before the specified timeout (including immediately), meaning even an immediate response is no guarantee that the operation is done.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/notebookRuntimeTemplates/{notebookRuntimeTemplatesId}/operations/{operationsId}:wait",
+                      "httpMethod": "POST",
+                      "id": "aiplatform.projects.locations.notebookRuntimeTemplates.operations.wait",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "The name of the operation resource to wait on.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/notebookRuntimeTemplates/[^/]+/operations/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "timeout": {
+                          "description": "The maximum duration to wait before timing out. If left blank, the wait will be at most the time permitted by the underlying HTTP/RPC protocol. If RPC context deadline is also specified, the shorter one will be used.",
+                          "format": "google-duration",
+                          "location": "query",
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}:wait",
+                      "response": {
+                        "$ref": "GoogleLongrunningOperation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    }
+                  }
+                }
               }
             },
             "notebookRuntimes": {
@@ -11566,6 +11902,159 @@
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
+                }
+              },
+              "resources": {
+                "operations": {
+                  "methods": {
+                    "cancel": {
+                      "description": "Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/notebookRuntimes/{notebookRuntimesId}/operations/{operationsId}:cancel",
+                      "httpMethod": "POST",
+                      "id": "aiplatform.projects.locations.notebookRuntimes.operations.cancel",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "The name of the operation resource to be cancelled.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/notebookRuntimes/[^/]+/operations/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}:cancel",
+                      "response": {
+                        "$ref": "GoogleProtobufEmpty"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "delete": {
+                      "description": "Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/notebookRuntimes/{notebookRuntimesId}/operations/{operationsId}",
+                      "httpMethod": "DELETE",
+                      "id": "aiplatform.projects.locations.notebookRuntimes.operations.delete",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "The name of the operation resource to be deleted.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/notebookRuntimes/[^/]+/operations/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}",
+                      "response": {
+                        "$ref": "GoogleProtobufEmpty"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "get": {
+                      "description": "Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/notebookRuntimes/{notebookRuntimesId}/operations/{operationsId}",
+                      "httpMethod": "GET",
+                      "id": "aiplatform.projects.locations.notebookRuntimes.operations.get",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "The name of the operation resource.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/notebookRuntimes/[^/]+/operations/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}",
+                      "response": {
+                        "$ref": "GoogleLongrunningOperation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "list": {
+                      "description": "Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/notebookRuntimes/{notebookRuntimesId}/operations",
+                      "httpMethod": "GET",
+                      "id": "aiplatform.projects.locations.notebookRuntimes.operations.list",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "filter": {
+                          "description": "The standard list filter.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "name": {
+                          "description": "The name of the operation's parent resource.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/notebookRuntimes/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "pageSize": {
+                          "description": "The standard list page size.",
+                          "format": "int32",
+                          "location": "query",
+                          "type": "integer"
+                        },
+                        "pageToken": {
+                          "description": "The standard list page token.",
+                          "location": "query",
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}/operations",
+                      "response": {
+                        "$ref": "GoogleLongrunningListOperationsResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "wait": {
+                      "description": "Waits until the specified long-running operation is done or reaches at most a specified timeout, returning the latest state. If the operation is already done, the latest state is immediately returned. If the timeout specified is greater than the default HTTP/RPC timeout, the HTTP/RPC timeout is used. If the server does not support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Note that this method is on a best-effort basis. It may return the latest state before the specified timeout (including immediately), meaning even an immediate response is no guarantee that the operation is done.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/notebookRuntimes/{notebookRuntimesId}/operations/{operationsId}:wait",
+                      "httpMethod": "POST",
+                      "id": "aiplatform.projects.locations.notebookRuntimes.operations.wait",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "The name of the operation resource to wait on.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/notebookRuntimes/[^/]+/operations/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "timeout": {
+                          "description": "The maximum duration to wait before timing out. If left blank, the wait will be at most the time permitted by the underlying HTTP/RPC protocol. If RPC context deadline is also specified, the shorter one will be used.",
+                          "format": "google-duration",
+                          "location": "query",
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}:wait",
+                      "response": {
+                        "$ref": "GoogleLongrunningOperation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    }
+                  }
                 }
               }
             },
@@ -16287,7 +16776,7 @@
       }
     }
   },
-  "revision": "20240529",
+  "revision": "20240617",
   "rootUrl": "https://aiplatform.googleapis.com/",
   "schemas": {
     "CloudAiLargeModelsVisionGenerateVideoResponse": {
@@ -16312,6 +16801,10 @@
             "type": "string"
           },
           "type": "array"
+        },
+        "reportingMetrics": {
+          "$ref": "IntelligenceCloudAutomlXpsReportingMetrics",
+          "description": "Billable prediction metrics."
         }
       },
       "type": "object"
@@ -16429,6 +16922,10 @@
             "$ref": "CloudAiLargeModelsVisionRaiInfoDetectedLabels"
           },
           "type": "array"
+        },
+        "modelName": {
+          "description": "The model name used to indexing into the RaiFilterConfig map. Would either be one of imagegeneration@002-006, imagen-3.0-... api endpoint names, or internal names used for mapping to different filter configs (genselfie, ai_watermark) than its api endpoint.",
+          "type": "string"
         },
         "raiCategories": {
           "description": "List of rai categories' information to return",
@@ -17685,6 +18182,73 @@
       },
       "type": "object"
     },
+    "GoogleCloudAiplatformV1BleuInput": {
+      "description": "Input for bleu metric.",
+      "id": "GoogleCloudAiplatformV1BleuInput",
+      "properties": {
+        "instances": {
+          "description": "Required. Repeated bleu instances.",
+          "items": {
+            "$ref": "GoogleCloudAiplatformV1BleuInstance"
+          },
+          "type": "array"
+        },
+        "metricSpec": {
+          "$ref": "GoogleCloudAiplatformV1BleuSpec",
+          "description": "Required. Spec for bleu score metric."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1BleuInstance": {
+      "description": "Spec for bleu instance.",
+      "id": "GoogleCloudAiplatformV1BleuInstance",
+      "properties": {
+        "prediction": {
+          "description": "Required. Output of the evaluated model.",
+          "type": "string"
+        },
+        "reference": {
+          "description": "Required. Ground truth used to compare against the prediction.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1BleuMetricValue": {
+      "description": "Bleu metric value for an instance.",
+      "id": "GoogleCloudAiplatformV1BleuMetricValue",
+      "properties": {
+        "score": {
+          "description": "Output only. Bleu score.",
+          "format": "float",
+          "readOnly": true,
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1BleuResults": {
+      "description": "Results for bleu metric.",
+      "id": "GoogleCloudAiplatformV1BleuResults",
+      "properties": {
+        "bleuMetricValues": {
+          "description": "Output only. Bleu metric values.",
+          "items": {
+            "$ref": "GoogleCloudAiplatformV1BleuMetricValue"
+          },
+          "readOnly": true,
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1BleuSpec": {
+      "description": "Spec for bleu score metric - calculates the precision of n-grams in the prediction as compared to reference - returns a score ranging between 0 to 1.",
+      "id": "GoogleCloudAiplatformV1BleuSpec",
+      "properties": {},
+      "type": "object"
+    },
     "GoogleCloudAiplatformV1Blob": {
       "description": "Content blob. It's preferred to send as text directly rather than raw bytes.",
       "id": "GoogleCloudAiplatformV1Blob",
@@ -17805,7 +18369,8 @@
             "OTHER",
             "BLOCKLIST",
             "PROHIBITED_CONTENT",
-            "SPII"
+            "SPII",
+            "MALFORMED_FUNCTION_CALL"
           ],
           "enumDescriptions": [
             "The finish reason is unspecified.",
@@ -17816,7 +18381,8 @@
             "All other reasons that stopped the token generation",
             "The token generation was stopped as the response was flagged for the terms which are included from the terminology blocklist.",
             "The token generation was stopped as the response was flagged for the prohibited contents.",
-            "The token generation was stopped as the response was flagged for Sensitive Personally Identifiable Information (SPII) contents."
+            "The token generation was stopped as the response was flagged for Sensitive Personally Identifiable Information (SPII) contents.",
+            "The function call generated by the model is invalid."
           ],
           "readOnly": true,
           "type": "string"
@@ -17929,6 +18495,68 @@
           },
           "readOnly": true,
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1CoherenceInput": {
+      "description": "Input for coherence metric.",
+      "id": "GoogleCloudAiplatformV1CoherenceInput",
+      "properties": {
+        "instance": {
+          "$ref": "GoogleCloudAiplatformV1CoherenceInstance",
+          "description": "Required. Coherence instance."
+        },
+        "metricSpec": {
+          "$ref": "GoogleCloudAiplatformV1CoherenceSpec",
+          "description": "Required. Spec for coherence score metric."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1CoherenceInstance": {
+      "description": "Spec for coherence instance.",
+      "id": "GoogleCloudAiplatformV1CoherenceInstance",
+      "properties": {
+        "prediction": {
+          "description": "Required. Output of the evaluated model.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1CoherenceResult": {
+      "description": "Spec for coherence result.",
+      "id": "GoogleCloudAiplatformV1CoherenceResult",
+      "properties": {
+        "confidence": {
+          "description": "Output only. Confidence for coherence score.",
+          "format": "float",
+          "readOnly": true,
+          "type": "number"
+        },
+        "explanation": {
+          "description": "Output only. Explanation for coherence score.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "score": {
+          "description": "Output only. Coherence score.",
+          "format": "float",
+          "readOnly": true,
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1CoherenceSpec": {
+      "description": "Spec for coherence score metric.",
+      "id": "GoogleCloudAiplatformV1CoherenceSpec",
+      "properties": {
+        "version": {
+          "description": "Optional. Which version to use for evaluation.",
+          "format": "int32",
+          "type": "integer"
         }
       },
       "type": "object"
@@ -18990,142 +19618,6 @@
       },
       "type": "object"
     },
-    "GoogleCloudAiplatformV1DatasetDistribution": {
-      "description": "Distribution computed over a tuning dataset.",
-      "id": "GoogleCloudAiplatformV1DatasetDistribution",
-      "properties": {
-        "buckets": {
-          "description": "Output only. Defines the histogram bucket.",
-          "items": {
-            "$ref": "GoogleCloudAiplatformV1DatasetDistributionDistributionBucket"
-          },
-          "readOnly": true,
-          "type": "array"
-        },
-        "max": {
-          "description": "Output only. The maximum of the population values.",
-          "format": "double",
-          "readOnly": true,
-          "type": "number"
-        },
-        "mean": {
-          "description": "Output only. The arithmetic mean of the values in the population.",
-          "format": "double",
-          "readOnly": true,
-          "type": "number"
-        },
-        "median": {
-          "description": "Output only. The median of the values in the population.",
-          "format": "double",
-          "readOnly": true,
-          "type": "number"
-        },
-        "min": {
-          "description": "Output only. The minimum of the population values.",
-          "format": "double",
-          "readOnly": true,
-          "type": "number"
-        },
-        "p5": {
-          "description": "Output only. The 5th percentile of the values in the population.",
-          "format": "double",
-          "readOnly": true,
-          "type": "number"
-        },
-        "p95": {
-          "description": "Output only. The 95th percentile of the values in the population.",
-          "format": "double",
-          "readOnly": true,
-          "type": "number"
-        },
-        "sum": {
-          "description": "Output only. Sum of a given population of values.",
-          "format": "double",
-          "readOnly": true,
-          "type": "number"
-        }
-      },
-      "type": "object"
-    },
-    "GoogleCloudAiplatformV1DatasetDistributionDistributionBucket": {
-      "description": "Dataset bucket used to create a histogram for the distribution given a population of values.",
-      "id": "GoogleCloudAiplatformV1DatasetDistributionDistributionBucket",
-      "properties": {
-        "count": {
-          "description": "Output only. Number of values in the bucket.",
-          "format": "int64",
-          "readOnly": true,
-          "type": "string"
-        },
-        "left": {
-          "description": "Output only. Left bound of the bucket.",
-          "format": "double",
-          "readOnly": true,
-          "type": "number"
-        },
-        "right": {
-          "description": "Output only. Right bound of the bucket.",
-          "format": "double",
-          "readOnly": true,
-          "type": "number"
-        }
-      },
-      "type": "object"
-    },
-    "GoogleCloudAiplatformV1DatasetStats": {
-      "description": "Statistics computed over a tuning dataset.",
-      "id": "GoogleCloudAiplatformV1DatasetStats",
-      "properties": {
-        "totalBillableCharacterCount": {
-          "description": "Output only. Number of billable characters in the tuning dataset.",
-          "format": "int64",
-          "readOnly": true,
-          "type": "string"
-        },
-        "totalTuningCharacterCount": {
-          "description": "Output only. Number of tuning characters in the tuning dataset.",
-          "format": "int64",
-          "readOnly": true,
-          "type": "string"
-        },
-        "tuningDatasetExampleCount": {
-          "description": "Output only. Number of examples in the tuning dataset.",
-          "format": "int64",
-          "readOnly": true,
-          "type": "string"
-        },
-        "tuningStepCount": {
-          "description": "Output only. Number of tuning steps for this Tuning Job.",
-          "format": "int64",
-          "readOnly": true,
-          "type": "string"
-        },
-        "userDatasetExamples": {
-          "description": "Output only. Sample user messages in the training dataset uri.",
-          "items": {
-            "$ref": "GoogleCloudAiplatformV1Content"
-          },
-          "readOnly": true,
-          "type": "array"
-        },
-        "userInputTokenDistribution": {
-          "$ref": "GoogleCloudAiplatformV1DatasetDistribution",
-          "description": "Output only. Dataset distributions for the user input tokens.",
-          "readOnly": true
-        },
-        "userMessagePerExampleDistribution": {
-          "$ref": "GoogleCloudAiplatformV1DatasetDistribution",
-          "description": "Output only. Dataset distributions for the messages per example.",
-          "readOnly": true
-        },
-        "userOutputTokenDistribution": {
-          "$ref": "GoogleCloudAiplatformV1DatasetDistribution",
-          "description": "Output only. Dataset distributions for the user output tokens.",
-          "readOnly": true
-        }
-      },
-      "type": "object"
-    },
     "GoogleCloudAiplatformV1DatasetVersion": {
       "description": "Describes the dataset version.",
       "id": "GoogleCloudAiplatformV1DatasetVersion",
@@ -19735,18 +20227,6 @@
       },
       "type": "object"
     },
-    "GoogleCloudAiplatformV1DistillationDataStats": {
-      "description": "Statistics computed for datasets used for distillation.",
-      "id": "GoogleCloudAiplatformV1DistillationDataStats",
-      "properties": {
-        "trainingDatasetStats": {
-          "$ref": "GoogleCloudAiplatformV1DatasetStats",
-          "description": "Output only. Statistics computed for the training dataset.",
-          "readOnly": true
-        }
-      },
-      "type": "object"
-    },
     "GoogleCloudAiplatformV1DoubleArray": {
       "description": "A list of double values.",
       "id": "GoogleCloudAiplatformV1DoubleArray",
@@ -19991,6 +20471,188 @@
       },
       "type": "object"
     },
+    "GoogleCloudAiplatformV1EvaluateInstancesRequest": {
+      "description": "Request message for EvaluationService.EvaluateInstances.",
+      "id": "GoogleCloudAiplatformV1EvaluateInstancesRequest",
+      "properties": {
+        "bleuInput": {
+          "$ref": "GoogleCloudAiplatformV1BleuInput",
+          "description": "Instances and metric spec for bleu metric."
+        },
+        "coherenceInput": {
+          "$ref": "GoogleCloudAiplatformV1CoherenceInput",
+          "description": "Input for coherence metric."
+        },
+        "exactMatchInput": {
+          "$ref": "GoogleCloudAiplatformV1ExactMatchInput",
+          "description": "Auto metric instances. Instances and metric spec for exact match metric."
+        },
+        "fluencyInput": {
+          "$ref": "GoogleCloudAiplatformV1FluencyInput",
+          "description": "LLM-based metric instance. General text generation metrics, applicable to other categories. Input for fluency metric."
+        },
+        "fulfillmentInput": {
+          "$ref": "GoogleCloudAiplatformV1FulfillmentInput",
+          "description": "Input for fulfillment metric."
+        },
+        "groundednessInput": {
+          "$ref": "GoogleCloudAiplatformV1GroundednessInput",
+          "description": "Input for groundedness metric."
+        },
+        "pairwiseQuestionAnsweringQualityInput": {
+          "$ref": "GoogleCloudAiplatformV1PairwiseQuestionAnsweringQualityInput",
+          "description": "Input for pairwise question answering quality metric."
+        },
+        "pairwiseSummarizationQualityInput": {
+          "$ref": "GoogleCloudAiplatformV1PairwiseSummarizationQualityInput",
+          "description": "Input for pairwise summarization quality metric."
+        },
+        "questionAnsweringCorrectnessInput": {
+          "$ref": "GoogleCloudAiplatformV1QuestionAnsweringCorrectnessInput",
+          "description": "Input for question answering correctness metric."
+        },
+        "questionAnsweringHelpfulnessInput": {
+          "$ref": "GoogleCloudAiplatformV1QuestionAnsweringHelpfulnessInput",
+          "description": "Input for question answering helpfulness metric."
+        },
+        "questionAnsweringQualityInput": {
+          "$ref": "GoogleCloudAiplatformV1QuestionAnsweringQualityInput",
+          "description": "Input for question answering quality metric."
+        },
+        "questionAnsweringRelevanceInput": {
+          "$ref": "GoogleCloudAiplatformV1QuestionAnsweringRelevanceInput",
+          "description": "Input for question answering relevance metric."
+        },
+        "rougeInput": {
+          "$ref": "GoogleCloudAiplatformV1RougeInput",
+          "description": "Instances and metric spec for rouge metric."
+        },
+        "safetyInput": {
+          "$ref": "GoogleCloudAiplatformV1SafetyInput",
+          "description": "Input for safety metric."
+        },
+        "summarizationHelpfulnessInput": {
+          "$ref": "GoogleCloudAiplatformV1SummarizationHelpfulnessInput",
+          "description": "Input for summarization helpfulness metric."
+        },
+        "summarizationQualityInput": {
+          "$ref": "GoogleCloudAiplatformV1SummarizationQualityInput",
+          "description": "Input for summarization quality metric."
+        },
+        "summarizationVerbosityInput": {
+          "$ref": "GoogleCloudAiplatformV1SummarizationVerbosityInput",
+          "description": "Input for summarization verbosity metric."
+        },
+        "toolCallValidInput": {
+          "$ref": "GoogleCloudAiplatformV1ToolCallValidInput",
+          "description": "Tool call metric instances. Input for tool call valid metric."
+        },
+        "toolNameMatchInput": {
+          "$ref": "GoogleCloudAiplatformV1ToolNameMatchInput",
+          "description": "Input for tool name match metric."
+        },
+        "toolParameterKeyMatchInput": {
+          "$ref": "GoogleCloudAiplatformV1ToolParameterKeyMatchInput",
+          "description": "Input for tool parameter key match metric."
+        },
+        "toolParameterKvMatchInput": {
+          "$ref": "GoogleCloudAiplatformV1ToolParameterKVMatchInput",
+          "description": "Input for tool parameter key value match metric."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1EvaluateInstancesResponse": {
+      "description": "Response message for EvaluationService.EvaluateInstances.",
+      "id": "GoogleCloudAiplatformV1EvaluateInstancesResponse",
+      "properties": {
+        "bleuResults": {
+          "$ref": "GoogleCloudAiplatformV1BleuResults",
+          "description": "Results for bleu metric."
+        },
+        "coherenceResult": {
+          "$ref": "GoogleCloudAiplatformV1CoherenceResult",
+          "description": "Result for coherence metric."
+        },
+        "exactMatchResults": {
+          "$ref": "GoogleCloudAiplatformV1ExactMatchResults",
+          "description": "Auto metric evaluation results. Results for exact match metric."
+        },
+        "fluencyResult": {
+          "$ref": "GoogleCloudAiplatformV1FluencyResult",
+          "description": "LLM-based metric evaluation result. General text generation metrics, applicable to other categories. Result for fluency metric."
+        },
+        "fulfillmentResult": {
+          "$ref": "GoogleCloudAiplatformV1FulfillmentResult",
+          "description": "Result for fulfillment metric."
+        },
+        "groundednessResult": {
+          "$ref": "GoogleCloudAiplatformV1GroundednessResult",
+          "description": "Result for groundedness metric."
+        },
+        "pairwiseQuestionAnsweringQualityResult": {
+          "$ref": "GoogleCloudAiplatformV1PairwiseQuestionAnsweringQualityResult",
+          "description": "Result for pairwise question answering quality metric."
+        },
+        "pairwiseSummarizationQualityResult": {
+          "$ref": "GoogleCloudAiplatformV1PairwiseSummarizationQualityResult",
+          "description": "Result for pairwise summarization quality metric."
+        },
+        "questionAnsweringCorrectnessResult": {
+          "$ref": "GoogleCloudAiplatformV1QuestionAnsweringCorrectnessResult",
+          "description": "Result for question answering correctness metric."
+        },
+        "questionAnsweringHelpfulnessResult": {
+          "$ref": "GoogleCloudAiplatformV1QuestionAnsweringHelpfulnessResult",
+          "description": "Result for question answering helpfulness metric."
+        },
+        "questionAnsweringQualityResult": {
+          "$ref": "GoogleCloudAiplatformV1QuestionAnsweringQualityResult",
+          "description": "Question answering only metrics. Result for question answering quality metric."
+        },
+        "questionAnsweringRelevanceResult": {
+          "$ref": "GoogleCloudAiplatformV1QuestionAnsweringRelevanceResult",
+          "description": "Result for question answering relevance metric."
+        },
+        "rougeResults": {
+          "$ref": "GoogleCloudAiplatformV1RougeResults",
+          "description": "Results for rouge metric."
+        },
+        "safetyResult": {
+          "$ref": "GoogleCloudAiplatformV1SafetyResult",
+          "description": "Result for safety metric."
+        },
+        "summarizationHelpfulnessResult": {
+          "$ref": "GoogleCloudAiplatformV1SummarizationHelpfulnessResult",
+          "description": "Result for summarization helpfulness metric."
+        },
+        "summarizationQualityResult": {
+          "$ref": "GoogleCloudAiplatformV1SummarizationQualityResult",
+          "description": "Summarization only metrics. Result for summarization quality metric."
+        },
+        "summarizationVerbosityResult": {
+          "$ref": "GoogleCloudAiplatformV1SummarizationVerbosityResult",
+          "description": "Result for summarization verbosity metric."
+        },
+        "toolCallValidResults": {
+          "$ref": "GoogleCloudAiplatformV1ToolCallValidResults",
+          "description": "Tool call metrics. Results for tool call valid metric."
+        },
+        "toolNameMatchResults": {
+          "$ref": "GoogleCloudAiplatformV1ToolNameMatchResults",
+          "description": "Results for tool name match metric."
+        },
+        "toolParameterKeyMatchResults": {
+          "$ref": "GoogleCloudAiplatformV1ToolParameterKeyMatchResults",
+          "description": "Results for tool parameter key match metric."
+        },
+        "toolParameterKvMatchResults": {
+          "$ref": "GoogleCloudAiplatformV1ToolParameterKVMatchResults",
+          "description": "Results for tool parameter key value match metric."
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudAiplatformV1EvaluatedAnnotation": {
       "description": "True positive, false positive, or false negative. EvaluatedAnnotation is only available under ModelEvaluationSlice with slice of `annotationSpec` dimension.",
       "id": "GoogleCloudAiplatformV1EvaluatedAnnotation",
@@ -20111,6 +20773,73 @@
           "type": "string"
         }
       },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1ExactMatchInput": {
+      "description": "Input for exact match metric.",
+      "id": "GoogleCloudAiplatformV1ExactMatchInput",
+      "properties": {
+        "instances": {
+          "description": "Required. Repeated exact match instances.",
+          "items": {
+            "$ref": "GoogleCloudAiplatformV1ExactMatchInstance"
+          },
+          "type": "array"
+        },
+        "metricSpec": {
+          "$ref": "GoogleCloudAiplatformV1ExactMatchSpec",
+          "description": "Required. Spec for exact match metric."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1ExactMatchInstance": {
+      "description": "Spec for exact match instance.",
+      "id": "GoogleCloudAiplatformV1ExactMatchInstance",
+      "properties": {
+        "prediction": {
+          "description": "Required. Output of the evaluated model.",
+          "type": "string"
+        },
+        "reference": {
+          "description": "Required. Ground truth used to compare against the prediction.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1ExactMatchMetricValue": {
+      "description": "Exact match metric value for an instance.",
+      "id": "GoogleCloudAiplatformV1ExactMatchMetricValue",
+      "properties": {
+        "score": {
+          "description": "Output only. Exact match score.",
+          "format": "float",
+          "readOnly": true,
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1ExactMatchResults": {
+      "description": "Results for exact match metric.",
+      "id": "GoogleCloudAiplatformV1ExactMatchResults",
+      "properties": {
+        "exactMatchMetricValues": {
+          "description": "Output only. Exact match metric values.",
+          "items": {
+            "$ref": "GoogleCloudAiplatformV1ExactMatchMetricValue"
+          },
+          "readOnly": true,
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1ExactMatchSpec": {
+      "description": "Spec for exact match metric - returns 1 if prediction and reference exactly matches, otherwise 0.",
+      "id": "GoogleCloudAiplatformV1ExactMatchSpec",
+      "properties": {},
       "type": "object"
     },
     "GoogleCloudAiplatformV1Examples": {
@@ -22205,6 +22934,68 @@
       },
       "type": "object"
     },
+    "GoogleCloudAiplatformV1FluencyInput": {
+      "description": "Input for fluency metric.",
+      "id": "GoogleCloudAiplatformV1FluencyInput",
+      "properties": {
+        "instance": {
+          "$ref": "GoogleCloudAiplatformV1FluencyInstance",
+          "description": "Required. Fluency instance."
+        },
+        "metricSpec": {
+          "$ref": "GoogleCloudAiplatformV1FluencySpec",
+          "description": "Required. Spec for fluency score metric."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1FluencyInstance": {
+      "description": "Spec for fluency instance.",
+      "id": "GoogleCloudAiplatformV1FluencyInstance",
+      "properties": {
+        "prediction": {
+          "description": "Required. Output of the evaluated model.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1FluencyResult": {
+      "description": "Spec for fluency result.",
+      "id": "GoogleCloudAiplatformV1FluencyResult",
+      "properties": {
+        "confidence": {
+          "description": "Output only. Confidence for fluency score.",
+          "format": "float",
+          "readOnly": true,
+          "type": "number"
+        },
+        "explanation": {
+          "description": "Output only. Explanation for fluency score.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "score": {
+          "description": "Output only. Fluency score.",
+          "format": "float",
+          "readOnly": true,
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1FluencySpec": {
+      "description": "Spec for fluency score metric.",
+      "id": "GoogleCloudAiplatformV1FluencySpec",
+      "properties": {
+        "version": {
+          "description": "Optional. Which version to use for evaluation.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudAiplatformV1FractionSplit": {
       "description": "Assigns the input data to training, validation, and test sets as per the given fractions. Any of `training_fraction`, `validation_fraction` and `test_fraction` may optionally be provided, they must sum to up to 1. If the provided ones sum to less than 1, the remainder is assigned to sets as decided by Vertex AI. If none of the fractions are set, by default roughly 80% of data is used for training, 10% for validation, and 10% for test.",
       "id": "GoogleCloudAiplatformV1FractionSplit",
@@ -22223,6 +23014,72 @@
           "description": "The fraction of the input data that is to be used to validate the Model.",
           "format": "double",
           "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1FulfillmentInput": {
+      "description": "Input for fulfillment metric.",
+      "id": "GoogleCloudAiplatformV1FulfillmentInput",
+      "properties": {
+        "instance": {
+          "$ref": "GoogleCloudAiplatformV1FulfillmentInstance",
+          "description": "Required. Fulfillment instance."
+        },
+        "metricSpec": {
+          "$ref": "GoogleCloudAiplatformV1FulfillmentSpec",
+          "description": "Required. Spec for fulfillment score metric."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1FulfillmentInstance": {
+      "description": "Spec for fulfillment instance.",
+      "id": "GoogleCloudAiplatformV1FulfillmentInstance",
+      "properties": {
+        "instruction": {
+          "description": "Required. Inference instruction prompt to compare prediction with.",
+          "type": "string"
+        },
+        "prediction": {
+          "description": "Required. Output of the evaluated model.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1FulfillmentResult": {
+      "description": "Spec for fulfillment result.",
+      "id": "GoogleCloudAiplatformV1FulfillmentResult",
+      "properties": {
+        "confidence": {
+          "description": "Output only. Confidence for fulfillment score.",
+          "format": "float",
+          "readOnly": true,
+          "type": "number"
+        },
+        "explanation": {
+          "description": "Output only. Explanation for fulfillment score.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "score": {
+          "description": "Output only. Fulfillment score.",
+          "format": "float",
+          "readOnly": true,
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1FulfillmentSpec": {
+      "description": "Spec for fulfillment metric.",
+      "id": "GoogleCloudAiplatformV1FulfillmentSpec",
+      "properties": {
+        "version": {
+          "description": "Optional. Which version to use for evaluation.",
+          "format": "int32",
+          "type": "integer"
         }
       },
       "type": "object"
@@ -22562,6 +23419,72 @@
       "description": "Tool to retrieve public web data for grounding, powered by Google.",
       "id": "GoogleCloudAiplatformV1GoogleSearchRetrieval",
       "properties": {},
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1GroundednessInput": {
+      "description": "Input for groundedness metric.",
+      "id": "GoogleCloudAiplatformV1GroundednessInput",
+      "properties": {
+        "instance": {
+          "$ref": "GoogleCloudAiplatformV1GroundednessInstance",
+          "description": "Required. Groundedness instance."
+        },
+        "metricSpec": {
+          "$ref": "GoogleCloudAiplatformV1GroundednessSpec",
+          "description": "Required. Spec for groundedness metric."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1GroundednessInstance": {
+      "description": "Spec for groundedness instance.",
+      "id": "GoogleCloudAiplatformV1GroundednessInstance",
+      "properties": {
+        "context": {
+          "description": "Required. Background information provided in context used to compare against the prediction.",
+          "type": "string"
+        },
+        "prediction": {
+          "description": "Required. Output of the evaluated model.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1GroundednessResult": {
+      "description": "Spec for groundedness result.",
+      "id": "GoogleCloudAiplatformV1GroundednessResult",
+      "properties": {
+        "confidence": {
+          "description": "Output only. Confidence for groundedness score.",
+          "format": "float",
+          "readOnly": true,
+          "type": "number"
+        },
+        "explanation": {
+          "description": "Output only. Explanation for groundedness score.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "score": {
+          "description": "Output only. Groundedness score.",
+          "format": "float",
+          "readOnly": true,
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1GroundednessSpec": {
+      "description": "Spec for groundedness metric.",
+      "id": "GoogleCloudAiplatformV1GroundednessSpec",
+      "properties": {
+        "version": {
+          "description": "Optional. Which version to use for evaluation.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
       "type": "object"
     },
     "GoogleCloudAiplatformV1GroundingMetadata": {
@@ -26463,7 +27386,7 @@
             "Error parsing sparse dimensions field.",
             "Token restrict value is invalid.",
             "Invalid sparse embedding.",
-            "Invalid embedding."
+            "Invalid dense embedding."
           ],
           "type": "string"
         },
@@ -26867,6 +27790,192 @@
       },
       "type": "object"
     },
+    "GoogleCloudAiplatformV1PairwiseQuestionAnsweringQualityInput": {
+      "description": "Input for pairwise question answering quality metric.",
+      "id": "GoogleCloudAiplatformV1PairwiseQuestionAnsweringQualityInput",
+      "properties": {
+        "instance": {
+          "$ref": "GoogleCloudAiplatformV1PairwiseQuestionAnsweringQualityInstance",
+          "description": "Required. Pairwise question answering quality instance."
+        },
+        "metricSpec": {
+          "$ref": "GoogleCloudAiplatformV1PairwiseQuestionAnsweringQualitySpec",
+          "description": "Required. Spec for pairwise question answering quality score metric."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1PairwiseQuestionAnsweringQualityInstance": {
+      "description": "Spec for pairwise question answering quality instance.",
+      "id": "GoogleCloudAiplatformV1PairwiseQuestionAnsweringQualityInstance",
+      "properties": {
+        "baselinePrediction": {
+          "description": "Required. Output of the baseline model.",
+          "type": "string"
+        },
+        "context": {
+          "description": "Required. Text to answer the question.",
+          "type": "string"
+        },
+        "instruction": {
+          "description": "Required. Question Answering prompt for LLM.",
+          "type": "string"
+        },
+        "prediction": {
+          "description": "Required. Output of the candidate model.",
+          "type": "string"
+        },
+        "reference": {
+          "description": "Optional. Ground truth used to compare against the prediction.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1PairwiseQuestionAnsweringQualityResult": {
+      "description": "Spec for pairwise question answering quality result.",
+      "id": "GoogleCloudAiplatformV1PairwiseQuestionAnsweringQualityResult",
+      "properties": {
+        "confidence": {
+          "description": "Output only. Confidence for question answering quality score.",
+          "format": "float",
+          "readOnly": true,
+          "type": "number"
+        },
+        "explanation": {
+          "description": "Output only. Explanation for question answering quality score.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "pairwiseChoice": {
+          "description": "Output only. Pairwise question answering prediction choice.",
+          "enum": [
+            "PAIRWISE_CHOICE_UNSPECIFIED",
+            "BASELINE",
+            "CANDIDATE",
+            "TIE"
+          ],
+          "enumDescriptions": [
+            "Unspecified prediction choice.",
+            "Baseline prediction wins",
+            "Candidate prediction wins",
+            "Winner cannot be determined"
+          ],
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1PairwiseQuestionAnsweringQualitySpec": {
+      "description": "Spec for pairwise question answering quality score metric.",
+      "id": "GoogleCloudAiplatformV1PairwiseQuestionAnsweringQualitySpec",
+      "properties": {
+        "useReference": {
+          "description": "Optional. Whether to use instance.reference to compute question answering quality.",
+          "type": "boolean"
+        },
+        "version": {
+          "description": "Optional. Which version to use for evaluation.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1PairwiseSummarizationQualityInput": {
+      "description": "Input for pairwise summarization quality metric.",
+      "id": "GoogleCloudAiplatformV1PairwiseSummarizationQualityInput",
+      "properties": {
+        "instance": {
+          "$ref": "GoogleCloudAiplatformV1PairwiseSummarizationQualityInstance",
+          "description": "Required. Pairwise summarization quality instance."
+        },
+        "metricSpec": {
+          "$ref": "GoogleCloudAiplatformV1PairwiseSummarizationQualitySpec",
+          "description": "Required. Spec for pairwise summarization quality score metric."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1PairwiseSummarizationQualityInstance": {
+      "description": "Spec for pairwise summarization quality instance.",
+      "id": "GoogleCloudAiplatformV1PairwiseSummarizationQualityInstance",
+      "properties": {
+        "baselinePrediction": {
+          "description": "Required. Output of the baseline model.",
+          "type": "string"
+        },
+        "context": {
+          "description": "Required. Text to be summarized.",
+          "type": "string"
+        },
+        "instruction": {
+          "description": "Required. Summarization prompt for LLM.",
+          "type": "string"
+        },
+        "prediction": {
+          "description": "Required. Output of the candidate model.",
+          "type": "string"
+        },
+        "reference": {
+          "description": "Optional. Ground truth used to compare against the prediction.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1PairwiseSummarizationQualityResult": {
+      "description": "Spec for pairwise summarization quality result.",
+      "id": "GoogleCloudAiplatformV1PairwiseSummarizationQualityResult",
+      "properties": {
+        "confidence": {
+          "description": "Output only. Confidence for summarization quality score.",
+          "format": "float",
+          "readOnly": true,
+          "type": "number"
+        },
+        "explanation": {
+          "description": "Output only. Explanation for summarization quality score.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "pairwiseChoice": {
+          "description": "Output only. Pairwise summarization prediction choice.",
+          "enum": [
+            "PAIRWISE_CHOICE_UNSPECIFIED",
+            "BASELINE",
+            "CANDIDATE",
+            "TIE"
+          ],
+          "enumDescriptions": [
+            "Unspecified prediction choice.",
+            "Baseline prediction wins",
+            "Candidate prediction wins",
+            "Winner cannot be determined"
+          ],
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1PairwiseSummarizationQualitySpec": {
+      "description": "Spec for pairwise summarization quality score metric.",
+      "id": "GoogleCloudAiplatformV1PairwiseSummarizationQualitySpec",
+      "properties": {
+        "useReference": {
+          "description": "Optional. Whether to use instance.reference to compute pairwise summarization quality.",
+          "type": "boolean"
+        },
+        "version": {
+          "description": "Optional. Which version to use for evaluation.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudAiplatformV1Part": {
       "description": "A datatype containing media that is part of a multi-part `Content` message. A `Part` consists of data which has an associated datatype. A `Part` can only contain one of the accepted types in `Part.data`. A `Part` must have a fixed IANA MIME type identifying the type and subtype of the media if `inline_data` or `file_data` field is filled with raw bytes.",
       "id": "GoogleCloudAiplatformV1Part",
@@ -27082,6 +28191,10 @@
           },
           "description": "The spec of the pipeline.",
           "type": "object"
+        },
+        "preflightValidations": {
+          "description": "Optional. Whether to do component level validations before job creation.",
+          "type": "boolean"
         },
         "reservedIpRanges": {
           "description": "A list of names for the reserved ip ranges under the VPC network that can be used for this Pipeline Job's workload. If set, we will deploy the Pipeline Job's workload within the provided ip ranges. Otherwise, the job will be deployed to any ip ranges under the provided VPC network. Example: ['vertex-ai-ip-range'].",
@@ -27847,10 +28960,6 @@
           "$ref": "GoogleCloudAiplatformV1PublisherModelCallToActionDeployGke",
           "description": "Optional. Deploy PublisherModel to Google Kubernetes Engine."
         },
-        "fineTune": {
-          "$ref": "GoogleCloudAiplatformV1PublisherModelCallToActionRegionalResourceReferences",
-          "description": "Optional. Fine tune the PublisherModel with the third-party model tuning UI."
-        },
         "openEvaluationPipeline": {
           "$ref": "GoogleCloudAiplatformV1PublisherModelCallToActionRegionalResourceReferences",
           "description": "Optional. Open evaluation pipeline of the PublisherModel."
@@ -28278,6 +29387,318 @@
       },
       "type": "object"
     },
+    "GoogleCloudAiplatformV1QuestionAnsweringCorrectnessInput": {
+      "description": "Input for question answering correctness metric.",
+      "id": "GoogleCloudAiplatformV1QuestionAnsweringCorrectnessInput",
+      "properties": {
+        "instance": {
+          "$ref": "GoogleCloudAiplatformV1QuestionAnsweringCorrectnessInstance",
+          "description": "Required. Question answering correctness instance."
+        },
+        "metricSpec": {
+          "$ref": "GoogleCloudAiplatformV1QuestionAnsweringCorrectnessSpec",
+          "description": "Required. Spec for question answering correctness score metric."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1QuestionAnsweringCorrectnessInstance": {
+      "description": "Spec for question answering correctness instance.",
+      "id": "GoogleCloudAiplatformV1QuestionAnsweringCorrectnessInstance",
+      "properties": {
+        "context": {
+          "description": "Optional. Text provided as context to answer the question.",
+          "type": "string"
+        },
+        "instruction": {
+          "description": "Required. The question asked and other instruction in the inference prompt.",
+          "type": "string"
+        },
+        "prediction": {
+          "description": "Required. Output of the evaluated model.",
+          "type": "string"
+        },
+        "reference": {
+          "description": "Optional. Ground truth used to compare against the prediction.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1QuestionAnsweringCorrectnessResult": {
+      "description": "Spec for question answering correctness result.",
+      "id": "GoogleCloudAiplatformV1QuestionAnsweringCorrectnessResult",
+      "properties": {
+        "confidence": {
+          "description": "Output only. Confidence for question answering correctness score.",
+          "format": "float",
+          "readOnly": true,
+          "type": "number"
+        },
+        "explanation": {
+          "description": "Output only. Explanation for question answering correctness score.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "score": {
+          "description": "Output only. Question Answering Correctness score.",
+          "format": "float",
+          "readOnly": true,
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1QuestionAnsweringCorrectnessSpec": {
+      "description": "Spec for question answering correctness metric.",
+      "id": "GoogleCloudAiplatformV1QuestionAnsweringCorrectnessSpec",
+      "properties": {
+        "useReference": {
+          "description": "Optional. Whether to use instance.reference to compute question answering correctness.",
+          "type": "boolean"
+        },
+        "version": {
+          "description": "Optional. Which version to use for evaluation.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1QuestionAnsweringHelpfulnessInput": {
+      "description": "Input for question answering helpfulness metric.",
+      "id": "GoogleCloudAiplatformV1QuestionAnsweringHelpfulnessInput",
+      "properties": {
+        "instance": {
+          "$ref": "GoogleCloudAiplatformV1QuestionAnsweringHelpfulnessInstance",
+          "description": "Required. Question answering helpfulness instance."
+        },
+        "metricSpec": {
+          "$ref": "GoogleCloudAiplatformV1QuestionAnsweringHelpfulnessSpec",
+          "description": "Required. Spec for question answering helpfulness score metric."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1QuestionAnsweringHelpfulnessInstance": {
+      "description": "Spec for question answering helpfulness instance.",
+      "id": "GoogleCloudAiplatformV1QuestionAnsweringHelpfulnessInstance",
+      "properties": {
+        "context": {
+          "description": "Optional. Text provided as context to answer the question.",
+          "type": "string"
+        },
+        "instruction": {
+          "description": "Required. The question asked and other instruction in the inference prompt.",
+          "type": "string"
+        },
+        "prediction": {
+          "description": "Required. Output of the evaluated model.",
+          "type": "string"
+        },
+        "reference": {
+          "description": "Optional. Ground truth used to compare against the prediction.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1QuestionAnsweringHelpfulnessResult": {
+      "description": "Spec for question answering helpfulness result.",
+      "id": "GoogleCloudAiplatformV1QuestionAnsweringHelpfulnessResult",
+      "properties": {
+        "confidence": {
+          "description": "Output only. Confidence for question answering helpfulness score.",
+          "format": "float",
+          "readOnly": true,
+          "type": "number"
+        },
+        "explanation": {
+          "description": "Output only. Explanation for question answering helpfulness score.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "score": {
+          "description": "Output only. Question Answering Helpfulness score.",
+          "format": "float",
+          "readOnly": true,
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1QuestionAnsweringHelpfulnessSpec": {
+      "description": "Spec for question answering helpfulness metric.",
+      "id": "GoogleCloudAiplatformV1QuestionAnsweringHelpfulnessSpec",
+      "properties": {
+        "useReference": {
+          "description": "Optional. Whether to use instance.reference to compute question answering helpfulness.",
+          "type": "boolean"
+        },
+        "version": {
+          "description": "Optional. Which version to use for evaluation.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1QuestionAnsweringQualityInput": {
+      "description": "Input for question answering quality metric.",
+      "id": "GoogleCloudAiplatformV1QuestionAnsweringQualityInput",
+      "properties": {
+        "instance": {
+          "$ref": "GoogleCloudAiplatformV1QuestionAnsweringQualityInstance",
+          "description": "Required. Question answering quality instance."
+        },
+        "metricSpec": {
+          "$ref": "GoogleCloudAiplatformV1QuestionAnsweringQualitySpec",
+          "description": "Required. Spec for question answering quality score metric."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1QuestionAnsweringQualityInstance": {
+      "description": "Spec for question answering quality instance.",
+      "id": "GoogleCloudAiplatformV1QuestionAnsweringQualityInstance",
+      "properties": {
+        "context": {
+          "description": "Required. Text to answer the question.",
+          "type": "string"
+        },
+        "instruction": {
+          "description": "Required. Question Answering prompt for LLM.",
+          "type": "string"
+        },
+        "prediction": {
+          "description": "Required. Output of the evaluated model.",
+          "type": "string"
+        },
+        "reference": {
+          "description": "Optional. Ground truth used to compare against the prediction.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1QuestionAnsweringQualityResult": {
+      "description": "Spec for question answering quality result.",
+      "id": "GoogleCloudAiplatformV1QuestionAnsweringQualityResult",
+      "properties": {
+        "confidence": {
+          "description": "Output only. Confidence for question answering quality score.",
+          "format": "float",
+          "readOnly": true,
+          "type": "number"
+        },
+        "explanation": {
+          "description": "Output only. Explanation for question answering quality score.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "score": {
+          "description": "Output only. Question Answering Quality score.",
+          "format": "float",
+          "readOnly": true,
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1QuestionAnsweringQualitySpec": {
+      "description": "Spec for question answering quality score metric.",
+      "id": "GoogleCloudAiplatformV1QuestionAnsweringQualitySpec",
+      "properties": {
+        "useReference": {
+          "description": "Optional. Whether to use instance.reference to compute question answering quality.",
+          "type": "boolean"
+        },
+        "version": {
+          "description": "Optional. Which version to use for evaluation.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1QuestionAnsweringRelevanceInput": {
+      "description": "Input for question answering relevance metric.",
+      "id": "GoogleCloudAiplatformV1QuestionAnsweringRelevanceInput",
+      "properties": {
+        "instance": {
+          "$ref": "GoogleCloudAiplatformV1QuestionAnsweringRelevanceInstance",
+          "description": "Required. Question answering relevance instance."
+        },
+        "metricSpec": {
+          "$ref": "GoogleCloudAiplatformV1QuestionAnsweringRelevanceSpec",
+          "description": "Required. Spec for question answering relevance score metric."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1QuestionAnsweringRelevanceInstance": {
+      "description": "Spec for question answering relevance instance.",
+      "id": "GoogleCloudAiplatformV1QuestionAnsweringRelevanceInstance",
+      "properties": {
+        "context": {
+          "description": "Optional. Text provided as context to answer the question.",
+          "type": "string"
+        },
+        "instruction": {
+          "description": "Required. The question asked and other instruction in the inference prompt.",
+          "type": "string"
+        },
+        "prediction": {
+          "description": "Required. Output of the evaluated model.",
+          "type": "string"
+        },
+        "reference": {
+          "description": "Optional. Ground truth used to compare against the prediction.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1QuestionAnsweringRelevanceResult": {
+      "description": "Spec for question answering relevance result.",
+      "id": "GoogleCloudAiplatformV1QuestionAnsweringRelevanceResult",
+      "properties": {
+        "confidence": {
+          "description": "Output only. Confidence for question answering relevance score.",
+          "format": "float",
+          "readOnly": true,
+          "type": "number"
+        },
+        "explanation": {
+          "description": "Output only. Explanation for question answering relevance score.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "score": {
+          "description": "Output only. Question Answering Relevance score.",
+          "format": "float",
+          "readOnly": true,
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1QuestionAnsweringRelevanceSpec": {
+      "description": "Spec for question answering relevance metric.",
+      "id": "GoogleCloudAiplatformV1QuestionAnsweringRelevanceSpec",
+      "properties": {
+        "useReference": {
+          "description": "Optional. Whether to use instance.reference to compute question answering relevance.",
+          "type": "boolean"
+        },
+        "version": {
+          "description": "Optional. Which version to use for evaluation.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudAiplatformV1RawPredictRequest": {
       "description": "Request message for PredictionService.RawPredict.",
       "id": "GoogleCloudAiplatformV1RawPredictRequest",
@@ -28552,23 +29973,6 @@
       "properties": {},
       "type": "object"
     },
-    "GoogleCloudAiplatformV1ReinforcementLearningDataStats": {
-      "description": "Statistics computed for datasets used for reinforcement learning.",
-      "id": "GoogleCloudAiplatformV1ReinforcementLearningDataStats",
-      "properties": {
-        "preferenceDatasetStats": {
-          "$ref": "GoogleCloudAiplatformV1DatasetStats",
-          "description": "Output only. Statistics computed for the preference dataset. This can be either a human preference dataset or a preference dataset generated from AI feedback.",
-          "readOnly": true
-        },
-        "promptDatasetStats": {
-          "$ref": "GoogleCloudAiplatformV1DatasetStats",
-          "description": "Output only. Statistics computed for the prompt dataset used during reinforcement learning.",
-          "readOnly": true
-        }
-      },
-      "type": "object"
-    },
     "GoogleCloudAiplatformV1RemoveContextChildrenRequest": {
       "description": "Request message for MetadataService.DeleteContextChildrenRequest.",
       "id": "GoogleCloudAiplatformV1RemoveContextChildrenRequest",
@@ -28746,6 +30150,112 @@
       },
       "type": "object"
     },
+    "GoogleCloudAiplatformV1RougeInput": {
+      "description": "Input for rouge metric.",
+      "id": "GoogleCloudAiplatformV1RougeInput",
+      "properties": {
+        "instances": {
+          "description": "Required. Repeated rouge instances.",
+          "items": {
+            "$ref": "GoogleCloudAiplatformV1RougeInstance"
+          },
+          "type": "array"
+        },
+        "metricSpec": {
+          "$ref": "GoogleCloudAiplatformV1RougeSpec",
+          "description": "Required. Spec for rouge score metric."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1RougeInstance": {
+      "description": "Spec for rouge instance.",
+      "id": "GoogleCloudAiplatformV1RougeInstance",
+      "properties": {
+        "prediction": {
+          "description": "Required. Output of the evaluated model.",
+          "type": "string"
+        },
+        "reference": {
+          "description": "Required. Ground truth used to compare against the prediction.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1RougeMetricValue": {
+      "description": "Rouge metric value for an instance.",
+      "id": "GoogleCloudAiplatformV1RougeMetricValue",
+      "properties": {
+        "score": {
+          "description": "Output only. Rouge score.",
+          "format": "float",
+          "readOnly": true,
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1RougeResults": {
+      "description": "Results for rouge metric.",
+      "id": "GoogleCloudAiplatformV1RougeResults",
+      "properties": {
+        "rougeMetricValues": {
+          "description": "Output only. Rouge metric values.",
+          "items": {
+            "$ref": "GoogleCloudAiplatformV1RougeMetricValue"
+          },
+          "readOnly": true,
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1RougeSpec": {
+      "description": "Spec for rouge score metric - calculates the recall of n-grams in prediction as compared to reference - returns a score ranging between 0 and 1.",
+      "id": "GoogleCloudAiplatformV1RougeSpec",
+      "properties": {
+        "rougeType": {
+          "description": "Optional. Supported rouge types are rougen[1-9], rougeL, and rougeLsum.",
+          "type": "string"
+        },
+        "splitSummaries": {
+          "description": "Optional. Whether to split summaries while using rougeLsum.",
+          "type": "boolean"
+        },
+        "useStemmer": {
+          "description": "Optional. Whether to use stemmer to compute rouge score.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1SafetyInput": {
+      "description": "Input for safety metric.",
+      "id": "GoogleCloudAiplatformV1SafetyInput",
+      "properties": {
+        "instance": {
+          "$ref": "GoogleCloudAiplatformV1SafetyInstance",
+          "description": "Required. Safety instance."
+        },
+        "metricSpec": {
+          "$ref": "GoogleCloudAiplatformV1SafetySpec",
+          "description": "Required. Spec for safety metric."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1SafetyInstance": {
+      "description": "Spec for safety instance.",
+      "id": "GoogleCloudAiplatformV1SafetyInstance",
+      "properties": {
+        "prediction": {
+          "description": "Required. Output of the evaluated model.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudAiplatformV1SafetyRating": {
       "description": "Safety rating corresponding to the generated content.",
       "id": "GoogleCloudAiplatformV1SafetyRating",
@@ -28827,6 +30337,30 @@
       },
       "type": "object"
     },
+    "GoogleCloudAiplatformV1SafetyResult": {
+      "description": "Spec for safety result.",
+      "id": "GoogleCloudAiplatformV1SafetyResult",
+      "properties": {
+        "confidence": {
+          "description": "Output only. Confidence for safety score.",
+          "format": "float",
+          "readOnly": true,
+          "type": "number"
+        },
+        "explanation": {
+          "description": "Output only. Explanation for safety score.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "score": {
+          "description": "Output only. Safety score.",
+          "format": "float",
+          "readOnly": true,
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudAiplatformV1SafetySetting": {
       "description": "Safety settings.",
       "id": "GoogleCloudAiplatformV1SafetySetting",
@@ -28880,6 +30414,18 @@
             "Block none."
           ],
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1SafetySpec": {
+      "description": "Spec for safety metric.",
+      "id": "GoogleCloudAiplatformV1SafetySpec",
+      "properties": {
+        "version": {
+          "description": "Optional. Which version to use for evaluation.",
+          "format": "int32",
+          "type": "integer"
         }
       },
       "type": "object"
@@ -34076,6 +35622,240 @@
       },
       "type": "object"
     },
+    "GoogleCloudAiplatformV1SummarizationHelpfulnessInput": {
+      "description": "Input for summarization helpfulness metric.",
+      "id": "GoogleCloudAiplatformV1SummarizationHelpfulnessInput",
+      "properties": {
+        "instance": {
+          "$ref": "GoogleCloudAiplatformV1SummarizationHelpfulnessInstance",
+          "description": "Required. Summarization helpfulness instance."
+        },
+        "metricSpec": {
+          "$ref": "GoogleCloudAiplatformV1SummarizationHelpfulnessSpec",
+          "description": "Required. Spec for summarization helpfulness score metric."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1SummarizationHelpfulnessInstance": {
+      "description": "Spec for summarization helpfulness instance.",
+      "id": "GoogleCloudAiplatformV1SummarizationHelpfulnessInstance",
+      "properties": {
+        "context": {
+          "description": "Required. Text to be summarized.",
+          "type": "string"
+        },
+        "instruction": {
+          "description": "Optional. Summarization prompt for LLM.",
+          "type": "string"
+        },
+        "prediction": {
+          "description": "Required. Output of the evaluated model.",
+          "type": "string"
+        },
+        "reference": {
+          "description": "Optional. Ground truth used to compare against the prediction.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1SummarizationHelpfulnessResult": {
+      "description": "Spec for summarization helpfulness result.",
+      "id": "GoogleCloudAiplatformV1SummarizationHelpfulnessResult",
+      "properties": {
+        "confidence": {
+          "description": "Output only. Confidence for summarization helpfulness score.",
+          "format": "float",
+          "readOnly": true,
+          "type": "number"
+        },
+        "explanation": {
+          "description": "Output only. Explanation for summarization helpfulness score.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "score": {
+          "description": "Output only. Summarization Helpfulness score.",
+          "format": "float",
+          "readOnly": true,
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1SummarizationHelpfulnessSpec": {
+      "description": "Spec for summarization helpfulness score metric.",
+      "id": "GoogleCloudAiplatformV1SummarizationHelpfulnessSpec",
+      "properties": {
+        "useReference": {
+          "description": "Optional. Whether to use instance.reference to compute summarization helpfulness.",
+          "type": "boolean"
+        },
+        "version": {
+          "description": "Optional. Which version to use for evaluation.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1SummarizationQualityInput": {
+      "description": "Input for summarization quality metric.",
+      "id": "GoogleCloudAiplatformV1SummarizationQualityInput",
+      "properties": {
+        "instance": {
+          "$ref": "GoogleCloudAiplatformV1SummarizationQualityInstance",
+          "description": "Required. Summarization quality instance."
+        },
+        "metricSpec": {
+          "$ref": "GoogleCloudAiplatformV1SummarizationQualitySpec",
+          "description": "Required. Spec for summarization quality score metric."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1SummarizationQualityInstance": {
+      "description": "Spec for summarization quality instance.",
+      "id": "GoogleCloudAiplatformV1SummarizationQualityInstance",
+      "properties": {
+        "context": {
+          "description": "Required. Text to be summarized.",
+          "type": "string"
+        },
+        "instruction": {
+          "description": "Required. Summarization prompt for LLM.",
+          "type": "string"
+        },
+        "prediction": {
+          "description": "Required. Output of the evaluated model.",
+          "type": "string"
+        },
+        "reference": {
+          "description": "Optional. Ground truth used to compare against the prediction.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1SummarizationQualityResult": {
+      "description": "Spec for summarization quality result.",
+      "id": "GoogleCloudAiplatformV1SummarizationQualityResult",
+      "properties": {
+        "confidence": {
+          "description": "Output only. Confidence for summarization quality score.",
+          "format": "float",
+          "readOnly": true,
+          "type": "number"
+        },
+        "explanation": {
+          "description": "Output only. Explanation for summarization quality score.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "score": {
+          "description": "Output only. Summarization Quality score.",
+          "format": "float",
+          "readOnly": true,
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1SummarizationQualitySpec": {
+      "description": "Spec for summarization quality score metric.",
+      "id": "GoogleCloudAiplatformV1SummarizationQualitySpec",
+      "properties": {
+        "useReference": {
+          "description": "Optional. Whether to use instance.reference to compute summarization quality.",
+          "type": "boolean"
+        },
+        "version": {
+          "description": "Optional. Which version to use for evaluation.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1SummarizationVerbosityInput": {
+      "description": "Input for summarization verbosity metric.",
+      "id": "GoogleCloudAiplatformV1SummarizationVerbosityInput",
+      "properties": {
+        "instance": {
+          "$ref": "GoogleCloudAiplatformV1SummarizationVerbosityInstance",
+          "description": "Required. Summarization verbosity instance."
+        },
+        "metricSpec": {
+          "$ref": "GoogleCloudAiplatformV1SummarizationVerbositySpec",
+          "description": "Required. Spec for summarization verbosity score metric."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1SummarizationVerbosityInstance": {
+      "description": "Spec for summarization verbosity instance.",
+      "id": "GoogleCloudAiplatformV1SummarizationVerbosityInstance",
+      "properties": {
+        "context": {
+          "description": "Required. Text to be summarized.",
+          "type": "string"
+        },
+        "instruction": {
+          "description": "Optional. Summarization prompt for LLM.",
+          "type": "string"
+        },
+        "prediction": {
+          "description": "Required. Output of the evaluated model.",
+          "type": "string"
+        },
+        "reference": {
+          "description": "Optional. Ground truth used to compare against the prediction.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1SummarizationVerbosityResult": {
+      "description": "Spec for summarization verbosity result.",
+      "id": "GoogleCloudAiplatformV1SummarizationVerbosityResult",
+      "properties": {
+        "confidence": {
+          "description": "Output only. Confidence for summarization verbosity score.",
+          "format": "float",
+          "readOnly": true,
+          "type": "number"
+        },
+        "explanation": {
+          "description": "Output only. Explanation for summarization verbosity score.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "score": {
+          "description": "Output only. Summarization Verbosity score.",
+          "format": "float",
+          "readOnly": true,
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1SummarizationVerbositySpec": {
+      "description": "Spec for summarization verbosity score metric.",
+      "id": "GoogleCloudAiplatformV1SummarizationVerbositySpec",
+      "properties": {
+        "useReference": {
+          "description": "Optional. Whether to use instance.reference to compute summarization verbosity.",
+          "type": "boolean"
+        },
+        "version": {
+          "description": "Optional. Which version to use for evaluation.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudAiplatformV1SupervisedHyperParameters": {
       "description": "Hyperparameters for SFT.",
       "id": "GoogleCloudAiplatformV1SupervisedHyperParameters",
@@ -34869,6 +36649,73 @@
       },
       "type": "object"
     },
+    "GoogleCloudAiplatformV1ToolCallValidInput": {
+      "description": "Input for tool call valid metric.",
+      "id": "GoogleCloudAiplatformV1ToolCallValidInput",
+      "properties": {
+        "instances": {
+          "description": "Required. Repeated tool call valid instances.",
+          "items": {
+            "$ref": "GoogleCloudAiplatformV1ToolCallValidInstance"
+          },
+          "type": "array"
+        },
+        "metricSpec": {
+          "$ref": "GoogleCloudAiplatformV1ToolCallValidSpec",
+          "description": "Required. Spec for tool call valid metric."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1ToolCallValidInstance": {
+      "description": "Spec for tool call valid instance.",
+      "id": "GoogleCloudAiplatformV1ToolCallValidInstance",
+      "properties": {
+        "prediction": {
+          "description": "Required. Output of the evaluated model.",
+          "type": "string"
+        },
+        "reference": {
+          "description": "Required. Ground truth used to compare against the prediction.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1ToolCallValidMetricValue": {
+      "description": "Tool call valid metric value for an instance.",
+      "id": "GoogleCloudAiplatformV1ToolCallValidMetricValue",
+      "properties": {
+        "score": {
+          "description": "Output only. Tool call valid score.",
+          "format": "float",
+          "readOnly": true,
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1ToolCallValidResults": {
+      "description": "Results for tool call valid metric.",
+      "id": "GoogleCloudAiplatformV1ToolCallValidResults",
+      "properties": {
+        "toolCallValidMetricValues": {
+          "description": "Output only. Tool call valid metric values.",
+          "items": {
+            "$ref": "GoogleCloudAiplatformV1ToolCallValidMetricValue"
+          },
+          "readOnly": true,
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1ToolCallValidSpec": {
+      "description": "Spec for tool call valid metric.",
+      "id": "GoogleCloudAiplatformV1ToolCallValidSpec",
+      "properties": {},
+      "type": "object"
+    },
     "GoogleCloudAiplatformV1ToolConfig": {
       "description": "Tool config. This config is shared for all tools provided in the request.",
       "id": "GoogleCloudAiplatformV1ToolConfig",
@@ -34878,6 +36725,212 @@
           "description": "Optional. Function calling config."
         }
       },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1ToolNameMatchInput": {
+      "description": "Input for tool name match metric.",
+      "id": "GoogleCloudAiplatformV1ToolNameMatchInput",
+      "properties": {
+        "instances": {
+          "description": "Required. Repeated tool name match instances.",
+          "items": {
+            "$ref": "GoogleCloudAiplatformV1ToolNameMatchInstance"
+          },
+          "type": "array"
+        },
+        "metricSpec": {
+          "$ref": "GoogleCloudAiplatformV1ToolNameMatchSpec",
+          "description": "Required. Spec for tool name match metric."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1ToolNameMatchInstance": {
+      "description": "Spec for tool name match instance.",
+      "id": "GoogleCloudAiplatformV1ToolNameMatchInstance",
+      "properties": {
+        "prediction": {
+          "description": "Required. Output of the evaluated model.",
+          "type": "string"
+        },
+        "reference": {
+          "description": "Required. Ground truth used to compare against the prediction.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1ToolNameMatchMetricValue": {
+      "description": "Tool name match metric value for an instance.",
+      "id": "GoogleCloudAiplatformV1ToolNameMatchMetricValue",
+      "properties": {
+        "score": {
+          "description": "Output only. Tool name match score.",
+          "format": "float",
+          "readOnly": true,
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1ToolNameMatchResults": {
+      "description": "Results for tool name match metric.",
+      "id": "GoogleCloudAiplatformV1ToolNameMatchResults",
+      "properties": {
+        "toolNameMatchMetricValues": {
+          "description": "Output only. Tool name match metric values.",
+          "items": {
+            "$ref": "GoogleCloudAiplatformV1ToolNameMatchMetricValue"
+          },
+          "readOnly": true,
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1ToolNameMatchSpec": {
+      "description": "Spec for tool name match metric.",
+      "id": "GoogleCloudAiplatformV1ToolNameMatchSpec",
+      "properties": {},
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1ToolParameterKVMatchInput": {
+      "description": "Input for tool parameter key value match metric.",
+      "id": "GoogleCloudAiplatformV1ToolParameterKVMatchInput",
+      "properties": {
+        "instances": {
+          "description": "Required. Repeated tool parameter key value match instances.",
+          "items": {
+            "$ref": "GoogleCloudAiplatformV1ToolParameterKVMatchInstance"
+          },
+          "type": "array"
+        },
+        "metricSpec": {
+          "$ref": "GoogleCloudAiplatformV1ToolParameterKVMatchSpec",
+          "description": "Required. Spec for tool parameter key value match metric."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1ToolParameterKVMatchInstance": {
+      "description": "Spec for tool parameter key value match instance.",
+      "id": "GoogleCloudAiplatformV1ToolParameterKVMatchInstance",
+      "properties": {
+        "prediction": {
+          "description": "Required. Output of the evaluated model.",
+          "type": "string"
+        },
+        "reference": {
+          "description": "Required. Ground truth used to compare against the prediction.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1ToolParameterKVMatchMetricValue": {
+      "description": "Tool parameter key value match metric value for an instance.",
+      "id": "GoogleCloudAiplatformV1ToolParameterKVMatchMetricValue",
+      "properties": {
+        "score": {
+          "description": "Output only. Tool parameter key value match score.",
+          "format": "float",
+          "readOnly": true,
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1ToolParameterKVMatchResults": {
+      "description": "Results for tool parameter key value match metric.",
+      "id": "GoogleCloudAiplatformV1ToolParameterKVMatchResults",
+      "properties": {
+        "toolParameterKvMatchMetricValues": {
+          "description": "Output only. Tool parameter key value match metric values.",
+          "items": {
+            "$ref": "GoogleCloudAiplatformV1ToolParameterKVMatchMetricValue"
+          },
+          "readOnly": true,
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1ToolParameterKVMatchSpec": {
+      "description": "Spec for tool parameter key value match metric.",
+      "id": "GoogleCloudAiplatformV1ToolParameterKVMatchSpec",
+      "properties": {
+        "useStrictStringMatch": {
+          "description": "Optional. Whether to use STRCIT string match on parameter values.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1ToolParameterKeyMatchInput": {
+      "description": "Input for tool parameter key match metric.",
+      "id": "GoogleCloudAiplatformV1ToolParameterKeyMatchInput",
+      "properties": {
+        "instances": {
+          "description": "Required. Repeated tool parameter key match instances.",
+          "items": {
+            "$ref": "GoogleCloudAiplatformV1ToolParameterKeyMatchInstance"
+          },
+          "type": "array"
+        },
+        "metricSpec": {
+          "$ref": "GoogleCloudAiplatformV1ToolParameterKeyMatchSpec",
+          "description": "Required. Spec for tool parameter key match metric."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1ToolParameterKeyMatchInstance": {
+      "description": "Spec for tool parameter key match instance.",
+      "id": "GoogleCloudAiplatformV1ToolParameterKeyMatchInstance",
+      "properties": {
+        "prediction": {
+          "description": "Required. Output of the evaluated model.",
+          "type": "string"
+        },
+        "reference": {
+          "description": "Required. Ground truth used to compare against the prediction.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1ToolParameterKeyMatchMetricValue": {
+      "description": "Tool parameter key match metric value for an instance.",
+      "id": "GoogleCloudAiplatformV1ToolParameterKeyMatchMetricValue",
+      "properties": {
+        "score": {
+          "description": "Output only. Tool parameter key match score.",
+          "format": "float",
+          "readOnly": true,
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1ToolParameterKeyMatchResults": {
+      "description": "Results for tool parameter key match metric.",
+      "id": "GoogleCloudAiplatformV1ToolParameterKeyMatchResults",
+      "properties": {
+        "toolParameterKeyMatchMetricValues": {
+          "description": "Output only. Tool parameter key match metric values.",
+          "items": {
+            "$ref": "GoogleCloudAiplatformV1ToolParameterKeyMatchMetricValue"
+          },
+          "readOnly": true,
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1ToolParameterKeyMatchSpec": {
+      "description": "Spec for tool parameter key match metric.",
+      "id": "GoogleCloudAiplatformV1ToolParameterKeyMatchSpec",
+      "properties": {},
       "type": "object"
     },
     "GoogleCloudAiplatformV1TrainingConfig": {
@@ -35154,14 +37207,6 @@
       "description": "The tuning data statistic values for TuningJob.",
       "id": "GoogleCloudAiplatformV1TuningDataStats",
       "properties": {
-        "distillationDataStats": {
-          "$ref": "GoogleCloudAiplatformV1DistillationDataStats",
-          "description": "Statistics for distillation."
-        },
-        "reinforcementLearningDataStats": {
-          "$ref": "GoogleCloudAiplatformV1ReinforcementLearningDataStats",
-          "description": "Statistics for reinforcement learning."
-        },
         "supervisedTuningDataStats": {
           "$ref": "GoogleCloudAiplatformV1SupervisedTuningDataStats",
           "description": "The SFT Tuning data stats."
@@ -36146,6 +38191,70 @@
           "description": "The whole units of the amount. For example if `currencyCode` is `\"USD\"`, then 1 unit is one US dollar.",
           "format": "int64",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "IntelligenceCloudAutomlXpsMetricEntry": {
+      "id": "IntelligenceCloudAutomlXpsMetricEntry",
+      "properties": {
+        "argentumMetricId": {
+          "description": "For billing metrics that are using legacy sku's, set the legacy billing metric id here. This will be sent to Chemist as the \"cloudbilling.googleapis.com/argentum_metric_id\" label. Otherwise leave empty.",
+          "type": "string"
+        },
+        "doubleValue": {
+          "description": "A double value.",
+          "format": "double",
+          "type": "number"
+        },
+        "int64Value": {
+          "description": "A signed 64-bit integer value.",
+          "format": "int64",
+          "type": "string"
+        },
+        "metricName": {
+          "description": "The metric name defined in the service configuration.",
+          "type": "string"
+        },
+        "systemLabels": {
+          "description": "Billing system labels for this (metric, value) pair.",
+          "items": {
+            "$ref": "IntelligenceCloudAutomlXpsMetricEntryLabel"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "IntelligenceCloudAutomlXpsMetricEntryLabel": {
+      "id": "IntelligenceCloudAutomlXpsMetricEntryLabel",
+      "properties": {
+        "labelName": {
+          "description": "The name of the label.",
+          "type": "string"
+        },
+        "labelValue": {
+          "description": "The value of the label.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "IntelligenceCloudAutomlXpsReportingMetrics": {
+      "id": "IntelligenceCloudAutomlXpsReportingMetrics",
+      "properties": {
+        "effectiveTrainingDuration": {
+          "deprecated": true,
+          "description": "The effective time training used. If set, this is used for quota management and billing. Deprecated. AutoML BE doesn't use this. Don't set.",
+          "format": "google-duration",
+          "type": "string"
+        },
+        "metricEntries": {
+          "description": "One entry per metric name. The values must be aggregated per metric name.",
+          "items": {
+            "$ref": "IntelligenceCloudAutomlXpsMetricEntry"
+          },
+          "type": "array"
         }
       },
       "type": "object"
