@@ -20,11 +20,6 @@
   "documentationLink": "https://cloud.google.com/bigquery/",
   "endpoints": [
     {
-      "endpointUrl": "https://bigqueryreservation.me-central2.rep.googleapis.com/",
-      "location": "me-central2",
-      "description": "Regional Endpoint"
-    },
-    {
       "endpointUrl": "https://bigqueryreservation.europe-west3.rep.googleapis.com/",
       "location": "europe-west3",
       "description": "Regional Endpoint"
@@ -35,8 +30,18 @@
       "description": "Regional Endpoint"
     },
     {
+      "endpointUrl": "https://bigqueryreservation.me-central2.rep.googleapis.com/",
+      "location": "me-central2",
+      "description": "Regional Endpoint"
+    },
+    {
       "endpointUrl": "https://bigqueryreservation.us-east4.rep.googleapis.com/",
       "location": "us-east4",
+      "description": "Regional Endpoint"
+    },
+    {
+      "endpointUrl": "https://bigqueryreservation.us-east7.rep.googleapis.com/",
+      "location": "us-east7",
       "description": "Regional Endpoint"
     },
     {
@@ -880,7 +885,7 @@
       }
     }
   },
-  "revision": "20240321",
+  "revision": "20240611",
   "rootUrl": "https://bigqueryreservation.googleapis.com/",
   "schemas": {
     "Assignment": {
