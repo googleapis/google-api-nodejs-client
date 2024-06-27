@@ -2473,7 +2473,7 @@
       }
     }
   },
-  "revision": "20240523",
+  "revision": "20240620",
   "rootUrl": "https://migrationcenter.googleapis.com/",
   "schemas": {
     "AddAssetsToGroupRequest": {
@@ -3355,6 +3355,11 @@
           "readOnly": true,
           "type": "integer"
         },
+        "smtEnabled": {
+          "description": "Output only. Whether simultaneous multithreading is enabled (see https://cloud.google.com/sql/docs/sqlserver/create-instance#smt-create-instance).",
+          "readOnly": true,
+          "type": "boolean"
+        },
         "storage": {
           "$ref": "ComputeStorageDescriptor",
           "description": "Output only. Predicted storage shape.",
@@ -3429,7 +3434,7 @@
       "id": "ComputeEnginePreferences",
       "properties": {
         "licenseType": {
-          "description": "If os_pricing_preferences is specified, it overrides this field. License type to consider when calculating costs for virtual machine insights and recommendations. If unspecified, costs are calculated based on the default licensing plan.",
+          "description": "License type to consider when calculating costs for operating systems. If unspecified, costs are calculated based on the default licensing plan. If os_pricing_preferences is specified, it overrides this field.",
           "enum": [
             "LICENSE_TYPE_UNSPECIFIED",
             "LICENSE_TYPE_DEFAULT",
@@ -3445,6 +3450,26 @@
         "machinePreferences": {
           "$ref": "MachinePreferences",
           "description": "Preferences concerning the machine types to consider on Compute Engine."
+        },
+        "multithreading": {
+          "description": "Optional. Preferences for multithreading support.",
+          "enum": [
+            "MULTITHREADING_UNSPECIFIED",
+            "MULTITHREADING_DISABLED",
+            "MULTITHREADING_ENABLED",
+            "MULTITHREADING_DISABLED_WITH_COMPENSATION"
+          ],
+          "enumDescriptions": [
+            "Same as MULTITHREADING_DISABLED_WITH_COMPENSATION.",
+            "Disable simultaneous multithreading if doing so is advantageous.",
+            "Always enable simultaneous multithreading.",
+            "Disable simultaneous multithreading and increase number of VCPUs to compensate, if doing so is advantageous."
+          ],
+          "type": "string"
+        },
+        "osPricingPreferences": {
+          "$ref": "OperatingSystemPricingPreferences",
+          "description": "Optional. Pricing options for OS images."
         },
         "persistentDiskType": {
           "description": "Persistent disk type to use. If unspecified (default), all types are considered, based on available usage data.",
@@ -3496,6 +3521,11 @@
           "description": "Output only. Compute Engine machine series.",
           "readOnly": true,
           "type": "string"
+        },
+        "smtEnabled": {
+          "description": "Output only. Whether simultaneous multithreading is enabled (see https://cloud.google.com/compute/docs/instances/set-threads-per-core).",
+          "readOnly": true,
+          "type": "boolean"
         },
         "storage": {
           "description": "Output only. Compute Engine storage. Never empty.",
@@ -3901,13 +3931,17 @@
             "COMMITMENT_PLAN_UNSPECIFIED",
             "COMMITMENT_PLAN_NONE",
             "COMMITMENT_PLAN_ONE_YEAR",
-            "COMMITMENT_PLAN_THREE_YEARS"
+            "COMMITMENT_PLAN_THREE_YEARS",
+            "COMMITMENT_PLAN_FLEXIBLE_ONE_YEAR",
+            "COMMITMENT_PLAN_FLEXIBLE_THREE_YEARS"
           ],
           "enumDescriptions": [
             "Unspecified commitment plan.",
             "No commitment plan.",
             "1-year regular committed use discount.",
-            "3-year regular committed use discount."
+            "3-year regular committed use discount.",
+            "1-year flexible committed use discount. While not supported in the v1 API, this value is converted to UNSPECIFIED in conversions to the v1 API.",
+            "3-year flexible committed use discount. While not supported in the v1 API, this value is converted to UNSPECIFIED in conversions to the v1 API."
           ],
           "type": "string"
         },
@@ -4033,13 +4067,13 @@
             "MULTITHREADING_UNSPECIFIED",
             "MULTITHREADING_DISABLED",
             "MULTITHREADING_ENABLED",
-            "MULTITHREADING_AUTO_SELECT"
+            "MULTITHREADING_DISABLED_WITH_COMPENSATION"
           ],
           "enumDescriptions": [
-            "Same as MULTITHREADING_AUTO_SELECT.",
-            "No multithreading support.",
-            "Allow multithreading support.",
-            "Choose to enable/disable multithreading according to which is lowest cost for your workload."
+            "Same as MULTITHREADING_DISABLED_WITH_COMPENSATION.",
+            "Disable simultaneous multithreading if doing so is lower cost.",
+            "Always enable simultaneous multithreading.",
+            "Disable simultaneous multithreading and increase number of VCPUs to compensate, if doing so is lower cost."
           ],
           "type": "string"
         },
@@ -5696,7 +5730,7 @@
       "type": "object"
     },
     "MachinePreferences": {
-      "description": "The type of machines to consider when calculating virtual machine migration insights and recommendations. Not all machine types are available in all zones and regions.",
+      "description": "The type of machines to consider when calculating virtual machine migration insights and recommendations for GCE. Not all machine types are available in all zones and regions.",
       "id": "MachinePreferences",
       "properties": {
         "allowedMachineSeries": {
@@ -6173,6 +6207,66 @@
             "$ref": "OpenFileDetails"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "OperatingSystemPricingPreferences": {
+      "description": "Pricing options for OS images.",
+      "id": "OperatingSystemPricingPreferences",
+      "properties": {
+        "rhel": {
+          "$ref": "OperatingSystemPricingPreferencesOperatingSystemPricing",
+          "description": "Optional. Pricing options for RHEL images."
+        },
+        "sles": {
+          "$ref": "OperatingSystemPricingPreferencesOperatingSystemPricing",
+          "description": "Optional. Pricing options for SLES images."
+        },
+        "slesForSap": {
+          "$ref": "OperatingSystemPricingPreferencesOperatingSystemPricing",
+          "description": "Optional. Pricing options for SLES for SAP images."
+        },
+        "windows": {
+          "$ref": "OperatingSystemPricingPreferencesOperatingSystemPricing",
+          "description": "Optional. Pricing options for Windows images. No commitment plans are available, set it to unspecified."
+        }
+      },
+      "type": "object"
+    },
+    "OperatingSystemPricingPreferencesOperatingSystemPricing": {
+      "description": "Pricing options of an OS image.",
+      "id": "OperatingSystemPricingPreferencesOperatingSystemPricing",
+      "properties": {
+        "commitmentPlan": {
+          "description": "Optional. The plan of commitments for committed use discounts (CUD).",
+          "enum": [
+            "COMMITMENT_PLAN_UNSPECIFIED",
+            "COMMITMENT_PLAN_ON_DEMAND",
+            "COMMITMENT_PLAN_1_YEAR",
+            "COMMITMENT_PLAN_3_YEAR"
+          ],
+          "enumDescriptions": [
+            "Unspecified commitment plan.",
+            "No commitment plan (on-demand usage).",
+            "1-year committed use discount.",
+            "3-year committed use discount."
+          ],
+          "type": "string"
+        },
+        "licenseType": {
+          "description": "Optional. License type of the OS image.",
+          "enum": [
+            "LICENSE_TYPE_UNSPECIFIED",
+            "LICENSE_TYPE_DEFAULT",
+            "LICENSE_TYPE_BRING_YOUR_OWN_LICENSE"
+          ],
+          "enumDescriptions": [
+            "Unspecified (default value).",
+            "Default Google Cloud licensing plan. Licensing is charged per usage. This a good value to start with.",
+            "Bring-your-own-license (BYOL) plan. User provides the OS license."
+          ],
+          "type": "string"
         }
       },
       "type": "object"
@@ -6906,7 +7000,7 @@
         },
         "monthlyCostDatabaseLicensing": {
           "$ref": "Money",
-          "description": "Output only. Database licensing monthly cost for this preference set. For virtual machines denotes the cost of licenses for hosted databases.",
+          "description": "Output only. Database licensing monthly cost for this preference set. Only present for databases.",
           "readOnly": true
         },
         "monthlyCostNetworkEgress": {
@@ -7440,13 +7534,17 @@
             "COMMITMENT_PLAN_UNSPECIFIED",
             "ON_DEMAND",
             "COMMITMENT_1_YEAR",
-            "COMMITMENT_3_YEAR"
+            "COMMITMENT_3_YEAR",
+            "COMMITMENT_FLEXIBLE_1_YEAR",
+            "COMMITMENT_FLEXIBLE_3_YEAR"
           ],
           "enumDescriptions": [
             "Unspecified commitment plan.",
             "No commitment plan (on-demand usage).",
             "1-year regular committed use discount.",
-            "3-year regular committed use discount."
+            "3-year regular committed use discount.",
+            "1-year flexible committed use discount. While not supported in the v1 API, this value is converted to UNSPECIFIED in conversions to the v1 API.",
+            "3-year flexible committed use discount. While not supported in the v1 API, this value is converted to UNSPECIFIED in conversions to the v1 API."
           ],
           "type": "string"
         },
@@ -7477,6 +7575,10 @@
             "$ref": "SoleTenantNodeType"
           },
           "type": "array"
+        },
+        "osPricingPreferences": {
+          "$ref": "OperatingSystemPricingPreferences",
+          "description": "Optional. Pricing options for OS images."
         }
       },
       "type": "object"
@@ -7857,7 +7959,7 @@
       "id": "VirtualMachineDetails",
       "properties": {
         "coreCount": {
-          "description": "Number of CPU cores in the VirtualMachine. Must be non-negative.",
+          "description": "Number of logical CPU cores in the VirtualMachine. Must be non-negative.",
           "format": "int32",
           "type": "integer"
         },
@@ -8004,13 +8106,17 @@
             "COMMITMENT_PLAN_UNSPECIFIED",
             "COMMITMENT_PLAN_NONE",
             "COMMITMENT_PLAN_ONE_YEAR",
-            "COMMITMENT_PLAN_THREE_YEARS"
+            "COMMITMENT_PLAN_THREE_YEARS",
+            "COMMITMENT_PLAN_FLEXIBLE_ONE_YEAR",
+            "COMMITMENT_PLAN_FLEXIBLE_THREE_YEARS"
           ],
           "enumDescriptions": [
             "Unspecified commitment plan.",
             "No commitment plan.",
             "1-year regular committed use discount.",
-            "3-year regular committed use discount."
+            "3-year regular committed use discount.",
+            "1-year flexible committed use discount. While not supported in the v1 API, this value is converted to UNSPECIFIED in conversions to the v1 API.",
+            "3-year flexible committed use discount. While not supported in the v1 API, this value is converted to UNSPECIFIED in conversions to the v1 API."
           ],
           "type": "string"
         },

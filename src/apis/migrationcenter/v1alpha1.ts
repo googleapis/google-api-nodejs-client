@@ -694,6 +694,10 @@ export namespace migrationcenter_v1alpha1 {
      */
     memoryMb?: number | null;
     /**
+     * Output only. Whether simultaneous multithreading is enabled (see https://cloud.google.com/sql/docs/sqlserver/create-instance#smt-create-instance).
+     */
+    smtEnabled?: boolean | null;
+    /**
      * Output only. Predicted storage shape.
      */
     storage?: Schema$ComputeStorageDescriptor;
@@ -720,13 +724,21 @@ export namespace migrationcenter_v1alpha1 {
    */
   export interface Schema$ComputeEnginePreferences {
     /**
-     * If os_pricing_preferences is specified, it overrides this field. License type to consider when calculating costs for virtual machine insights and recommendations. If unspecified, costs are calculated based on the default licensing plan.
+     * License type to consider when calculating costs for operating systems. If unspecified, costs are calculated based on the default licensing plan. If os_pricing_preferences is specified, it overrides this field.
      */
     licenseType?: string | null;
     /**
      * Preferences concerning the machine types to consider on Compute Engine.
      */
     machinePreferences?: Schema$MachinePreferences;
+    /**
+     * Optional. Preferences for multithreading support.
+     */
+    multithreading?: string | null;
+    /**
+     * Optional. Pricing options for OS images.
+     */
+    osPricingPreferences?: Schema$OperatingSystemPricingPreferences;
     /**
      * Persistent disk type to use. If unspecified (default), all types are considered, based on available usage data.
      */
@@ -756,6 +768,10 @@ export namespace migrationcenter_v1alpha1 {
      * Output only. Compute Engine machine series.
      */
     series?: string | null;
+    /**
+     * Output only. Whether simultaneous multithreading is enabled (see https://cloud.google.com/compute/docs/instances/set-threads-per-core).
+     */
+    smtEnabled?: boolean | null;
     /**
      * Output only. Compute Engine storage. Never empty.
      */
@@ -2222,7 +2238,7 @@ export namespace migrationcenter_v1alpha1 {
     name?: string | null;
   }
   /**
-   * The type of machines to consider when calculating virtual machine migration insights and recommendations. Not all machine types are available in all zones and regions.
+   * The type of machines to consider when calculating virtual machine migration insights and recommendations for GCE. Not all machine types are available in all zones and regions.
    */
   export interface Schema$MachinePreferences {
     /**
@@ -2563,6 +2579,40 @@ export namespace migrationcenter_v1alpha1 {
      * Open file details entries.
      */
     entries?: Schema$OpenFileDetails[];
+  }
+  /**
+   * Pricing options for OS images.
+   */
+  export interface Schema$OperatingSystemPricingPreferences {
+    /**
+     * Optional. Pricing options for RHEL images.
+     */
+    rhel?: Schema$OperatingSystemPricingPreferencesOperatingSystemPricing;
+    /**
+     * Optional. Pricing options for SLES images.
+     */
+    sles?: Schema$OperatingSystemPricingPreferencesOperatingSystemPricing;
+    /**
+     * Optional. Pricing options for SLES for SAP images.
+     */
+    slesForSap?: Schema$OperatingSystemPricingPreferencesOperatingSystemPricing;
+    /**
+     * Optional. Pricing options for Windows images. No commitment plans are available, set it to unspecified.
+     */
+    windows?: Schema$OperatingSystemPricingPreferencesOperatingSystemPricing;
+  }
+  /**
+   * Pricing options of an OS image.
+   */
+  export interface Schema$OperatingSystemPricingPreferencesOperatingSystemPricing {
+    /**
+     * Optional. The plan of commitments for committed use discounts (CUD).
+     */
+    commitmentPlan?: string | null;
+    /**
+     * Optional. License type of the OS image.
+     */
+    licenseType?: string | null;
   }
   /**
    * This resource represents a long-running operation that is the result of a network API call.
@@ -3116,7 +3166,7 @@ export namespace migrationcenter_v1alpha1 {
      */
     monthlyCostDatabaseBackup?: Schema$Money;
     /**
-     * Output only. Database licensing monthly cost for this preference set. For virtual machines denotes the cost of licenses for hosted databases.
+     * Output only. Database licensing monthly cost for this preference set. Only present for databases.
      */
     monthlyCostDatabaseLicensing?: Schema$Money;
     /**
@@ -3532,6 +3582,10 @@ export namespace migrationcenter_v1alpha1 {
      * A list of sole tenant node types. An empty list means that all possible node types will be considered.
      */
     nodeTypes?: Schema$SoleTenantNodeType[];
+    /**
+     * Optional. Pricing options for OS images.
+     */
+    osPricingPreferences?: Schema$OperatingSystemPricingPreferences;
   }
   /**
    * A Sole Tenant node type.
@@ -3787,7 +3841,7 @@ export namespace migrationcenter_v1alpha1 {
    */
   export interface Schema$VirtualMachineDetails {
     /**
-     * Number of CPU cores in the VirtualMachine. Must be non-negative.
+     * Number of logical CPU cores in the VirtualMachine. Must be non-negative.
      */
     coreCount?: number | null;
     /**
