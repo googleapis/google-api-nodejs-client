@@ -299,6 +299,10 @@ export namespace vault_v1 {
    */
   export interface Schema$CorpusQuery {
     /**
+     * Service-specific options for Calendar holds. If set, **CorpusType** must be **CALENDAR**.
+     */
+    calendarQuery?: Schema$HeldCalendarQuery;
+    /**
      * Service-specific options for Drive holds. If set, **CorpusType** must be **DRIVE**.
      */
     driveQuery?: Schema$HeldDriveQuery;
@@ -589,6 +593,10 @@ export namespace vault_v1 {
      */
     lastName?: string | null;
   }
+  /**
+   * Options for Calendar holds.
+   */
+  export interface Schema$HeldCalendarQuery {}
   /**
    * Options for Drive holds.
    */
