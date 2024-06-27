@@ -161,7 +161,7 @@
       }
     }
   },
-  "revision": "20230523",
+  "revision": "20240625",
   "rootUrl": "https://dfareporting.googleapis.com/",
   "schemas": {
     "ClickTag": {
@@ -752,7 +752,8 @@
             "BE0",
             "LLQ",
             "LLQ1",
-            "LLQ2"
+            "LLQ2",
+            "LLQ3"
           ],
           "enumDescriptions": [
             "Application-selectable traffic classes Best effort",
@@ -764,8 +765,9 @@
             "Network control",
             "Best effort at high packet loss",
             "Low-latency queue (LLQ) best effort (go/llq)",
-            "LLQ best effort (go/llq2)",
-            "LLQ assured forwarding priority 2 (go/llq2)"
+            "LLQ assured forwarding priority 1 (go/llq2)",
+            "LLQ assured forwarding priority 2 (go/llq2)",
+            "LLQ assured forwarding priority 3 (go/llq3)"
           ],
           "type": "string"
         },
