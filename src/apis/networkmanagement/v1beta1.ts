@@ -274,6 +274,10 @@ export namespace networkmanagement_v1beta1 {
      */
     location?: string | null;
     /**
+     * ID of Cloud Run Service this revision belongs to. Was never set, is not exported to v1 proto and public protos. Do not export to v1beta1 public proto.
+     */
+    serviceName?: string | null;
+    /**
      * URI of Cloud Run service this revision belongs to.
      */
     serviceUri?: string | null;
