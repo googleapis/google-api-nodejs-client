@@ -219,6 +219,15 @@ export namespace dataproc_v1 {
     workerConfig?: Schema$InstanceGroupAutoscalingPolicyConfig;
   }
   /**
+   * Autotuning configuration of the workload.
+   */
+  export interface Schema$AutotuningConfig {
+    /**
+     * Optional. Scenarios for which tunings are applied.
+     */
+    scenarios?: string[] | null;
+  }
+  /**
    * Node group identification and configuration information.
    */
   export interface Schema$AuxiliaryNodeGroup {
@@ -722,6 +731,14 @@ export namespace dataproc_v1 {
    */
   export interface Schema$DiskConfig {
     /**
+     * Optional. Indicates how many IOPS to provision for the disk. This sets the number of I/O operations per second that the disk can handle. Note: This field is only supported if boot_disk_type is hyperdisk-balanced.
+     */
+    bootDiskProvisionedIops?: string | null;
+    /**
+     * Optional. Indicates how much throughput to provision for the disk. This sets the number of throughput mb per second that the disk can handle. Values must be greater than or equal to 1. Note: This field is only supported if boot_disk_type is hyperdisk-balanced.
+     */
+    bootDiskProvisionedThroughput?: string | null;
+    /**
      * Optional. Size in GB of the boot disk (default is 500GB).
      */
     bootDiskSizeGb?: number | null;
@@ -934,7 +951,7 @@ export namespace dataproc_v1 {
      */
     subnetworkUri?: string | null;
     /**
-     * The Compute Engine tags to add to all instances (see Tagging instances (https://cloud.google.com/compute/docs/label-or-tag-resources#tags)).
+     * The Compute Engine network tags to add to all instances (see Tagging instances (https://cloud.google.com/vpc/docs/add-remove-network-tags)).
      */
     tags?: string[] | null;
     /**
@@ -2315,6 +2332,14 @@ export namespace dataproc_v1 {
    * Runtime configuration for a workload.
    */
   export interface Schema$RuntimeConfig {
+    /**
+     * Optional. Autotuning configuration of the workload.
+     */
+    autotuningConfig?: Schema$AutotuningConfig;
+    /**
+     * Optional. Cohort identifier. Identifies families of the workloads having the same shape, e.g. daily ETL jobs.
+     */
+    cohort?: string | null;
     /**
      * Optional. Optional custom container image for the job runtime environment. If not specified, a default container image will be used.
      */
