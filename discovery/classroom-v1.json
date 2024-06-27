@@ -548,6 +548,50 @@
                 "https://www.googleapis.com/auth/classroom.announcements.readonly"
               ]
             },
+            "getAddOnContext": {
+              "description": "Gets metadata for Classroom add-ons in the context of a specific post. To maintain the integrity of its own data and permissions model, an add-on should call this to validate query parameters and the requesting user's role whenever the add-on is opened in an [iframe](https://developers.google.com/classroom/add-ons/get-started/iframes/iframes-overview). This method returns the following error codes: * `PERMISSION_DENIED` for access errors. * `INVALID_ARGUMENT` if the request is malformed. * `NOT_FOUND` if one of the identified resources does not exist.",
+              "flatPath": "v1/courses/{courseId}/announcements/{itemId}/addOnContext",
+              "httpMethod": "GET",
+              "id": "classroom.courses.announcements.getAddOnContext",
+              "parameterOrder": [
+                "courseId",
+                "itemId"
+              ],
+              "parameters": {
+                "addOnToken": {
+                  "description": "Optional. Token that authorizes the request. The token is passed as a query parameter when the user is redirected from Classroom to the add-on's URL. The authorization token is required when neither of the following is true: * The add-on has attachments on the post. * The developer project issuing the request is the same project that created the post.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "attachmentId": {
+                  "description": "Optional. The identifier of the attachment. This field is required for student users and optional for teacher users. If not provided in the student case, an error is returned.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "courseId": {
+                  "description": "Required. Identifier of the course.",
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                },
+                "itemId": {
+                  "description": "Identifier of the announcement, courseWork, or courseWorkMaterial under which the attachment is attached. This field is required, but is not marked as such while we are migrating from post_id.",
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                },
+                "postId": {
+                  "deprecated": true,
+                  "description": "Optional. Deprecated, use item_id instead.",
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "v1/courses/{courseId}/announcements/{itemId}/addOnContext",
+              "response": {
+                "$ref": "AddOnContext"
+              }
+            },
             "list": {
               "description": "Returns a list of announcements that the requester is permitted to view. Course students may only view `PUBLISHED` announcements. Course teachers and domain administrators may view all announcements. This method returns the following error codes: * `PERMISSION_DENIED` if the requesting user is not permitted to access the requested course or for access errors. * `INVALID_ARGUMENT` if the request is malformed. * `NOT_FOUND` if the requested course does not exist.",
               "flatPath": "v1/courses/{courseId}/announcements",
@@ -681,6 +725,230 @@
                 "https://www.googleapis.com/auth/classroom.announcements"
               ]
             }
+          },
+          "resources": {
+            "addOnAttachments": {
+              "methods": {
+                "create": {
+                  "description": "Creates an add-on attachment under a post. Requires the add-on to have permission to create new attachments on the post. This method returns the following error codes: * `PERMISSION_DENIED` for access errors. * `INVALID_ARGUMENT` if the request is malformed. * `NOT_FOUND` if one of the identified resources does not exist.",
+                  "flatPath": "v1/courses/{courseId}/announcements/{itemId}/addOnAttachments",
+                  "httpMethod": "POST",
+                  "id": "classroom.courses.announcements.addOnAttachments.create",
+                  "parameterOrder": [
+                    "courseId",
+                    "itemId"
+                  ],
+                  "parameters": {
+                    "addOnToken": {
+                      "description": "Optional. Token that authorizes the request. The token is passed as a query parameter when the user is redirected from Classroom to the add-on's URL. This authorization token is required for in-Classroom attachment creation but optional for partner-first attachment creation. Returns an error if not provided for partner-first attachment creation and the developer projects that created the attachment and its parent stream item do not match.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "courseId": {
+                      "description": "Required. Identifier of the course.",
+                      "location": "path",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "itemId": {
+                      "description": "Identifier of the announcement, courseWork, or courseWorkMaterial under which to create the attachment. This field is required, but is not marked as such while we are migrating from post_id.",
+                      "location": "path",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "postId": {
+                      "deprecated": true,
+                      "description": "Optional. Deprecated, use item_id instead.",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/courses/{courseId}/announcements/{itemId}/addOnAttachments",
+                  "request": {
+                    "$ref": "AddOnAttachment"
+                  },
+                  "response": {
+                    "$ref": "AddOnAttachment"
+                  }
+                },
+                "delete": {
+                  "description": "Deletes an add-on attachment. Requires the add-on to have been the original creator of the attachment. This method returns the following error codes: * `PERMISSION_DENIED` for access errors. * `INVALID_ARGUMENT` if the request is malformed. * `NOT_FOUND` if one of the identified resources does not exist.",
+                  "flatPath": "v1/courses/{courseId}/announcements/{itemId}/addOnAttachments/{attachmentId}",
+                  "httpMethod": "DELETE",
+                  "id": "classroom.courses.announcements.addOnAttachments.delete",
+                  "parameterOrder": [
+                    "courseId",
+                    "itemId",
+                    "attachmentId"
+                  ],
+                  "parameters": {
+                    "attachmentId": {
+                      "description": "Required. Identifier of the attachment.",
+                      "location": "path",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "courseId": {
+                      "description": "Required. Identifier of the course.",
+                      "location": "path",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "itemId": {
+                      "description": "Identifier of the announcement, courseWork, or courseWorkMaterial under which the attachment is attached. This field is required, but is not marked as such while we are migrating from post_id.",
+                      "location": "path",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "postId": {
+                      "deprecated": true,
+                      "description": "Optional. Deprecated, use item_id instead.",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/courses/{courseId}/announcements/{itemId}/addOnAttachments/{attachmentId}",
+                  "response": {
+                    "$ref": "Empty"
+                  }
+                },
+                "get": {
+                  "description": "Returns an add-on attachment. Requires the add-on requesting the attachment to be the original creator of the attachment. This method returns the following error codes: * `PERMISSION_DENIED` for access errors. * `INVALID_ARGUMENT` if the request is malformed. * `NOT_FOUND` if one of the identified resources does not exist.",
+                  "flatPath": "v1/courses/{courseId}/announcements/{itemId}/addOnAttachments/{attachmentId}",
+                  "httpMethod": "GET",
+                  "id": "classroom.courses.announcements.addOnAttachments.get",
+                  "parameterOrder": [
+                    "courseId",
+                    "itemId",
+                    "attachmentId"
+                  ],
+                  "parameters": {
+                    "attachmentId": {
+                      "description": "Required. Identifier of the attachment.",
+                      "location": "path",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "courseId": {
+                      "description": "Required. Identifier of the course.",
+                      "location": "path",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "itemId": {
+                      "description": "Identifier of the announcement, courseWork, or courseWorkMaterial under which the attachment is attached. This field is required, but is not marked as such while we are migrating from post_id.",
+                      "location": "path",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "postId": {
+                      "deprecated": true,
+                      "description": "Optional. Deprecated, use item_id instead.",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/courses/{courseId}/announcements/{itemId}/addOnAttachments/{attachmentId}",
+                  "response": {
+                    "$ref": "AddOnAttachment"
+                  }
+                },
+                "list": {
+                  "description": "Returns all attachments created by an add-on under the post. Requires the add-on to have active attachments on the post or have permission to create new attachments on the post. This method returns the following error codes: * `PERMISSION_DENIED` for access errors. * `INVALID_ARGUMENT` if the request is malformed. * `NOT_FOUND` if one of the identified resources does not exist.",
+                  "flatPath": "v1/courses/{courseId}/announcements/{itemId}/addOnAttachments",
+                  "httpMethod": "GET",
+                  "id": "classroom.courses.announcements.addOnAttachments.list",
+                  "parameterOrder": [
+                    "courseId",
+                    "itemId"
+                  ],
+                  "parameters": {
+                    "courseId": {
+                      "description": "Required. Identifier of the course.",
+                      "location": "path",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "itemId": {
+                      "description": "Identifier of the announcement, courseWork, or courseWorkMaterial whose attachments should be enumerated. This field is required, but is not marked as such while we are migrating from post_id.",
+                      "location": "path",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "The maximum number of attachments to return. The service may return fewer than this value. If unspecified, at most 20 attachments will be returned. The maximum value is 20; values above 20 will be coerced to 20.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "A page token, received from a previous `ListAddOnAttachments` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListAddOnAttachments` must match the call that provided the page token.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "postId": {
+                      "deprecated": true,
+                      "description": "Optional. Identifier of the post under the course whose attachments to enumerate. Deprecated, use item_id instead.",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/courses/{courseId}/announcements/{itemId}/addOnAttachments",
+                  "response": {
+                    "$ref": "ListAddOnAttachmentsResponse"
+                  }
+                },
+                "patch": {
+                  "description": "Updates an add-on attachment. Requires the add-on to have been the original creator of the attachment. This method returns the following error codes: * `PERMISSION_DENIED` for access errors. * `INVALID_ARGUMENT` if the request is malformed. * `NOT_FOUND` if one of the identified resources does not exist.",
+                  "flatPath": "v1/courses/{courseId}/announcements/{itemId}/addOnAttachments/{attachmentId}",
+                  "httpMethod": "PATCH",
+                  "id": "classroom.courses.announcements.addOnAttachments.patch",
+                  "parameterOrder": [
+                    "courseId",
+                    "itemId",
+                    "attachmentId"
+                  ],
+                  "parameters": {
+                    "attachmentId": {
+                      "description": "Required. Identifier of the attachment.",
+                      "location": "path",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "courseId": {
+                      "description": "Required. Identifier of the course.",
+                      "location": "path",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "itemId": {
+                      "description": "Identifier of the post under which the attachment is attached.",
+                      "location": "path",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "postId": {
+                      "description": "Required. Identifier of the post under which the attachment is attached.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "Required. Mask that identifies which fields on the attachment to update. The update fails if invalid fields are specified. If a field supports empty values, it can be cleared by specifying it in the update mask and not in the `AddOnAttachment` object. If a field that does not support empty values is included in the update mask and not set in the `AddOnAttachment` object, an `INVALID_ARGUMENT` error is returned. The following fields may be specified by teachers: * `title` * `teacher_view_uri` * `student_view_uri` * `student_work_review_uri` * `due_date` * `due_time` * `max_points`",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/courses/{courseId}/announcements/{itemId}/addOnAttachments/{attachmentId}",
+                  "request": {
+                    "$ref": "AddOnAttachment"
+                  },
+                  "response": {
+                    "$ref": "AddOnAttachment"
+                  }
+                }
+              }
+            }
           }
         },
         "courseWork": {
@@ -776,6 +1044,50 @@
                 "https://www.googleapis.com/auth/classroom.coursework.students",
                 "https://www.googleapis.com/auth/classroom.coursework.students.readonly"
               ]
+            },
+            "getAddOnContext": {
+              "description": "Gets metadata for Classroom add-ons in the context of a specific post. To maintain the integrity of its own data and permissions model, an add-on should call this to validate query parameters and the requesting user's role whenever the add-on is opened in an [iframe](https://developers.google.com/classroom/add-ons/get-started/iframes/iframes-overview). This method returns the following error codes: * `PERMISSION_DENIED` for access errors. * `INVALID_ARGUMENT` if the request is malformed. * `NOT_FOUND` if one of the identified resources does not exist.",
+              "flatPath": "v1/courses/{courseId}/courseWork/{itemId}/addOnContext",
+              "httpMethod": "GET",
+              "id": "classroom.courses.courseWork.getAddOnContext",
+              "parameterOrder": [
+                "courseId",
+                "itemId"
+              ],
+              "parameters": {
+                "addOnToken": {
+                  "description": "Optional. Token that authorizes the request. The token is passed as a query parameter when the user is redirected from Classroom to the add-on's URL. The authorization token is required when neither of the following is true: * The add-on has attachments on the post. * The developer project issuing the request is the same project that created the post.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "attachmentId": {
+                  "description": "Optional. The identifier of the attachment. This field is required for student users and optional for teacher users. If not provided in the student case, an error is returned.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "courseId": {
+                  "description": "Required. Identifier of the course.",
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                },
+                "itemId": {
+                  "description": "Identifier of the announcement, courseWork, or courseWorkMaterial under which the attachment is attached. This field is required, but is not marked as such while we are migrating from post_id.",
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                },
+                "postId": {
+                  "deprecated": true,
+                  "description": "Optional. Deprecated, use item_id instead.",
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "v1/courses/{courseId}/courseWork/{itemId}/addOnContext",
+              "response": {
+                "$ref": "AddOnContext"
+              }
             },
             "list": {
               "description": "Returns a list of course work that the requester is permitted to view. Course students may only view `PUBLISHED` course work. Course teachers and domain administrators may view all course work. This method returns the following error codes: * `PERMISSION_DENIED` if the requesting user is not permitted to access the requested course or for access errors. * `INVALID_ARGUMENT` if the request is malformed. * `NOT_FOUND` if the requested course does not exist.",
@@ -914,6 +1226,342 @@
             }
           },
           "resources": {
+            "addOnAttachments": {
+              "methods": {
+                "create": {
+                  "description": "Creates an add-on attachment under a post. Requires the add-on to have permission to create new attachments on the post. This method returns the following error codes: * `PERMISSION_DENIED` for access errors. * `INVALID_ARGUMENT` if the request is malformed. * `NOT_FOUND` if one of the identified resources does not exist.",
+                  "flatPath": "v1/courses/{courseId}/courseWork/{itemId}/addOnAttachments",
+                  "httpMethod": "POST",
+                  "id": "classroom.courses.courseWork.addOnAttachments.create",
+                  "parameterOrder": [
+                    "courseId",
+                    "itemId"
+                  ],
+                  "parameters": {
+                    "addOnToken": {
+                      "description": "Optional. Token that authorizes the request. The token is passed as a query parameter when the user is redirected from Classroom to the add-on's URL. This authorization token is required for in-Classroom attachment creation but optional for partner-first attachment creation. Returns an error if not provided for partner-first attachment creation and the developer projects that created the attachment and its parent stream item do not match.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "courseId": {
+                      "description": "Required. Identifier of the course.",
+                      "location": "path",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "itemId": {
+                      "description": "Identifier of the announcement, courseWork, or courseWorkMaterial under which to create the attachment. This field is required, but is not marked as such while we are migrating from post_id.",
+                      "location": "path",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "postId": {
+                      "deprecated": true,
+                      "description": "Optional. Deprecated, use item_id instead.",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/courses/{courseId}/courseWork/{itemId}/addOnAttachments",
+                  "request": {
+                    "$ref": "AddOnAttachment"
+                  },
+                  "response": {
+                    "$ref": "AddOnAttachment"
+                  }
+                },
+                "delete": {
+                  "description": "Deletes an add-on attachment. Requires the add-on to have been the original creator of the attachment. This method returns the following error codes: * `PERMISSION_DENIED` for access errors. * `INVALID_ARGUMENT` if the request is malformed. * `NOT_FOUND` if one of the identified resources does not exist.",
+                  "flatPath": "v1/courses/{courseId}/courseWork/{itemId}/addOnAttachments/{attachmentId}",
+                  "httpMethod": "DELETE",
+                  "id": "classroom.courses.courseWork.addOnAttachments.delete",
+                  "parameterOrder": [
+                    "courseId",
+                    "itemId",
+                    "attachmentId"
+                  ],
+                  "parameters": {
+                    "attachmentId": {
+                      "description": "Required. Identifier of the attachment.",
+                      "location": "path",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "courseId": {
+                      "description": "Required. Identifier of the course.",
+                      "location": "path",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "itemId": {
+                      "description": "Identifier of the announcement, courseWork, or courseWorkMaterial under which the attachment is attached. This field is required, but is not marked as such while we are migrating from post_id.",
+                      "location": "path",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "postId": {
+                      "deprecated": true,
+                      "description": "Optional. Deprecated, use item_id instead.",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/courses/{courseId}/courseWork/{itemId}/addOnAttachments/{attachmentId}",
+                  "response": {
+                    "$ref": "Empty"
+                  }
+                },
+                "get": {
+                  "description": "Returns an add-on attachment. Requires the add-on requesting the attachment to be the original creator of the attachment. This method returns the following error codes: * `PERMISSION_DENIED` for access errors. * `INVALID_ARGUMENT` if the request is malformed. * `NOT_FOUND` if one of the identified resources does not exist.",
+                  "flatPath": "v1/courses/{courseId}/courseWork/{itemId}/addOnAttachments/{attachmentId}",
+                  "httpMethod": "GET",
+                  "id": "classroom.courses.courseWork.addOnAttachments.get",
+                  "parameterOrder": [
+                    "courseId",
+                    "itemId",
+                    "attachmentId"
+                  ],
+                  "parameters": {
+                    "attachmentId": {
+                      "description": "Required. Identifier of the attachment.",
+                      "location": "path",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "courseId": {
+                      "description": "Required. Identifier of the course.",
+                      "location": "path",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "itemId": {
+                      "description": "Identifier of the announcement, courseWork, or courseWorkMaterial under which the attachment is attached. This field is required, but is not marked as such while we are migrating from post_id.",
+                      "location": "path",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "postId": {
+                      "deprecated": true,
+                      "description": "Optional. Deprecated, use item_id instead.",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/courses/{courseId}/courseWork/{itemId}/addOnAttachments/{attachmentId}",
+                  "response": {
+                    "$ref": "AddOnAttachment"
+                  }
+                },
+                "list": {
+                  "description": "Returns all attachments created by an add-on under the post. Requires the add-on to have active attachments on the post or have permission to create new attachments on the post. This method returns the following error codes: * `PERMISSION_DENIED` for access errors. * `INVALID_ARGUMENT` if the request is malformed. * `NOT_FOUND` if one of the identified resources does not exist.",
+                  "flatPath": "v1/courses/{courseId}/courseWork/{itemId}/addOnAttachments",
+                  "httpMethod": "GET",
+                  "id": "classroom.courses.courseWork.addOnAttachments.list",
+                  "parameterOrder": [
+                    "courseId",
+                    "itemId"
+                  ],
+                  "parameters": {
+                    "courseId": {
+                      "description": "Required. Identifier of the course.",
+                      "location": "path",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "itemId": {
+                      "description": "Identifier of the announcement, courseWork, or courseWorkMaterial whose attachments should be enumerated. This field is required, but is not marked as such while we are migrating from post_id.",
+                      "location": "path",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "The maximum number of attachments to return. The service may return fewer than this value. If unspecified, at most 20 attachments will be returned. The maximum value is 20; values above 20 will be coerced to 20.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "A page token, received from a previous `ListAddOnAttachments` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListAddOnAttachments` must match the call that provided the page token.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "postId": {
+                      "deprecated": true,
+                      "description": "Optional. Identifier of the post under the course whose attachments to enumerate. Deprecated, use item_id instead.",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/courses/{courseId}/courseWork/{itemId}/addOnAttachments",
+                  "response": {
+                    "$ref": "ListAddOnAttachmentsResponse"
+                  }
+                },
+                "patch": {
+                  "description": "Updates an add-on attachment. Requires the add-on to have been the original creator of the attachment. This method returns the following error codes: * `PERMISSION_DENIED` for access errors. * `INVALID_ARGUMENT` if the request is malformed. * `NOT_FOUND` if one of the identified resources does not exist.",
+                  "flatPath": "v1/courses/{courseId}/courseWork/{itemId}/addOnAttachments/{attachmentId}",
+                  "httpMethod": "PATCH",
+                  "id": "classroom.courses.courseWork.addOnAttachments.patch",
+                  "parameterOrder": [
+                    "courseId",
+                    "itemId",
+                    "attachmentId"
+                  ],
+                  "parameters": {
+                    "attachmentId": {
+                      "description": "Required. Identifier of the attachment.",
+                      "location": "path",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "courseId": {
+                      "description": "Required. Identifier of the course.",
+                      "location": "path",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "itemId": {
+                      "description": "Identifier of the post under which the attachment is attached.",
+                      "location": "path",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "postId": {
+                      "description": "Required. Identifier of the post under which the attachment is attached.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "Required. Mask that identifies which fields on the attachment to update. The update fails if invalid fields are specified. If a field supports empty values, it can be cleared by specifying it in the update mask and not in the `AddOnAttachment` object. If a field that does not support empty values is included in the update mask and not set in the `AddOnAttachment` object, an `INVALID_ARGUMENT` error is returned. The following fields may be specified by teachers: * `title` * `teacher_view_uri` * `student_view_uri` * `student_work_review_uri` * `due_date` * `due_time` * `max_points`",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/courses/{courseId}/courseWork/{itemId}/addOnAttachments/{attachmentId}",
+                  "request": {
+                    "$ref": "AddOnAttachment"
+                  },
+                  "response": {
+                    "$ref": "AddOnAttachment"
+                  }
+                }
+              },
+              "resources": {
+                "studentSubmissions": {
+                  "methods": {
+                    "get": {
+                      "description": "Returns a student submission for an add-on attachment. This method returns the following error codes: * `PERMISSION_DENIED` for access errors. * `INVALID_ARGUMENT` if the request is malformed. * `NOT_FOUND` if one of the identified resources does not exist.",
+                      "flatPath": "v1/courses/{courseId}/courseWork/{itemId}/addOnAttachments/{attachmentId}/studentSubmissions/{submissionId}",
+                      "httpMethod": "GET",
+                      "id": "classroom.courses.courseWork.addOnAttachments.studentSubmissions.get",
+                      "parameterOrder": [
+                        "courseId",
+                        "itemId",
+                        "attachmentId",
+                        "submissionId"
+                      ],
+                      "parameters": {
+                        "attachmentId": {
+                          "description": "Required. Identifier of the attachment.",
+                          "location": "path",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "courseId": {
+                          "description": "Required. Identifier of the course.",
+                          "location": "path",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "itemId": {
+                          "description": "Identifier of the announcement, courseWork, or courseWorkMaterial under which the attachment is attached. This field is required, but is not marked as such while we are migrating from post_id.",
+                          "location": "path",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "postId": {
+                          "deprecated": true,
+                          "description": "Optional. Deprecated, use item_id instead.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "submissionId": {
+                          "description": "Required. Identifier of the student’s submission.",
+                          "location": "path",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/courses/{courseId}/courseWork/{itemId}/addOnAttachments/{attachmentId}/studentSubmissions/{submissionId}",
+                      "response": {
+                        "$ref": "AddOnAttachmentStudentSubmission"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/classroom.student-submissions.students.readonly"
+                      ]
+                    },
+                    "patch": {
+                      "description": "Updates data associated with an add-on attachment submission. Requires the add-on to have been the original creator of the attachment and the attachment to have a positive `max_points` value set. This method returns the following error codes: * `PERMISSION_DENIED` for access errors. * `INVALID_ARGUMENT` if the request is malformed. * `NOT_FOUND` if one of the identified resources does not exist.",
+                      "flatPath": "v1/courses/{courseId}/courseWork/{itemId}/addOnAttachments/{attachmentId}/studentSubmissions/{submissionId}",
+                      "httpMethod": "PATCH",
+                      "id": "classroom.courses.courseWork.addOnAttachments.studentSubmissions.patch",
+                      "parameterOrder": [
+                        "courseId",
+                        "itemId",
+                        "attachmentId",
+                        "submissionId"
+                      ],
+                      "parameters": {
+                        "attachmentId": {
+                          "description": "Required. Identifier of the attachment.",
+                          "location": "path",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "courseId": {
+                          "description": "Required. Identifier of the course.",
+                          "location": "path",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "itemId": {
+                          "description": "Identifier of the announcement, courseWork, or courseWorkMaterial under which the attachment is attached. This field is required, but is not marked as such while we are migrating from post_id.",
+                          "location": "path",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "postId": {
+                          "deprecated": true,
+                          "description": "Optional. Deprecated, use item_id instead.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "submissionId": {
+                          "description": "Required. Identifier of the student's submission.",
+                          "location": "path",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "updateMask": {
+                          "description": "Required. Mask that identifies which fields on the attachment to update. The update fails if invalid fields are specified. If a field supports empty values, it can be cleared by specifying it in the update mask and not in the `AddOnAttachmentStudentSubmission` object. The following fields may be specified by teachers: * `points_earned`",
+                          "format": "google-fieldmask",
+                          "location": "query",
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/courses/{courseId}/courseWork/{itemId}/addOnAttachments/{attachmentId}/studentSubmissions/{submissionId}",
+                      "request": {
+                        "$ref": "AddOnAttachmentStudentSubmission"
+                      },
+                      "response": {
+                        "$ref": "AddOnAttachmentStudentSubmission"
+                      }
+                    }
+                  }
+                }
+              }
+            },
             "studentSubmissions": {
               "methods": {
                 "get": {
@@ -1357,6 +2005,50 @@
                 "https://www.googleapis.com/auth/classroom.courseworkmaterials.readonly"
               ]
             },
+            "getAddOnContext": {
+              "description": "Gets metadata for Classroom add-ons in the context of a specific post. To maintain the integrity of its own data and permissions model, an add-on should call this to validate query parameters and the requesting user's role whenever the add-on is opened in an [iframe](https://developers.google.com/classroom/add-ons/get-started/iframes/iframes-overview). This method returns the following error codes: * `PERMISSION_DENIED` for access errors. * `INVALID_ARGUMENT` if the request is malformed. * `NOT_FOUND` if one of the identified resources does not exist.",
+              "flatPath": "v1/courses/{courseId}/courseWorkMaterials/{itemId}/addOnContext",
+              "httpMethod": "GET",
+              "id": "classroom.courses.courseWorkMaterials.getAddOnContext",
+              "parameterOrder": [
+                "courseId",
+                "itemId"
+              ],
+              "parameters": {
+                "addOnToken": {
+                  "description": "Optional. Token that authorizes the request. The token is passed as a query parameter when the user is redirected from Classroom to the add-on's URL. The authorization token is required when neither of the following is true: * The add-on has attachments on the post. * The developer project issuing the request is the same project that created the post.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "attachmentId": {
+                  "description": "Optional. The identifier of the attachment. This field is required for student users and optional for teacher users. If not provided in the student case, an error is returned.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "courseId": {
+                  "description": "Required. Identifier of the course.",
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                },
+                "itemId": {
+                  "description": "Identifier of the announcement, courseWork, or courseWorkMaterial under which the attachment is attached. This field is required, but is not marked as such while we are migrating from post_id.",
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                },
+                "postId": {
+                  "deprecated": true,
+                  "description": "Optional. Deprecated, use item_id instead.",
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "v1/courses/{courseId}/courseWorkMaterials/{itemId}/addOnContext",
+              "response": {
+                "$ref": "AddOnContext"
+              }
+            },
             "list": {
               "description": "Returns a list of course work material that the requester is permitted to view. Course students may only view `PUBLISHED` course work material. Course teachers and domain administrators may view all course work material. This method returns the following error codes: * `PERMISSION_DENIED` if the requesting user is not permitted to access the requested course or for access errors. * `INVALID_ARGUMENT` if the request is malformed. * `NOT_FOUND` if the requested course does not exist.",
               "flatPath": "v1/courses/{courseId}/courseWorkMaterials",
@@ -1465,6 +2157,609 @@
               "scopes": [
                 "https://www.googleapis.com/auth/classroom.courseworkmaterials"
               ]
+            }
+          },
+          "resources": {
+            "addOnAttachments": {
+              "methods": {
+                "create": {
+                  "description": "Creates an add-on attachment under a post. Requires the add-on to have permission to create new attachments on the post. This method returns the following error codes: * `PERMISSION_DENIED` for access errors. * `INVALID_ARGUMENT` if the request is malformed. * `NOT_FOUND` if one of the identified resources does not exist.",
+                  "flatPath": "v1/courses/{courseId}/courseWorkMaterials/{itemId}/addOnAttachments",
+                  "httpMethod": "POST",
+                  "id": "classroom.courses.courseWorkMaterials.addOnAttachments.create",
+                  "parameterOrder": [
+                    "courseId",
+                    "itemId"
+                  ],
+                  "parameters": {
+                    "addOnToken": {
+                      "description": "Optional. Token that authorizes the request. The token is passed as a query parameter when the user is redirected from Classroom to the add-on's URL. This authorization token is required for in-Classroom attachment creation but optional for partner-first attachment creation. Returns an error if not provided for partner-first attachment creation and the developer projects that created the attachment and its parent stream item do not match.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "courseId": {
+                      "description": "Required. Identifier of the course.",
+                      "location": "path",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "itemId": {
+                      "description": "Identifier of the announcement, courseWork, or courseWorkMaterial under which to create the attachment. This field is required, but is not marked as such while we are migrating from post_id.",
+                      "location": "path",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "postId": {
+                      "deprecated": true,
+                      "description": "Optional. Deprecated, use item_id instead.",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/courses/{courseId}/courseWorkMaterials/{itemId}/addOnAttachments",
+                  "request": {
+                    "$ref": "AddOnAttachment"
+                  },
+                  "response": {
+                    "$ref": "AddOnAttachment"
+                  }
+                },
+                "delete": {
+                  "description": "Deletes an add-on attachment. Requires the add-on to have been the original creator of the attachment. This method returns the following error codes: * `PERMISSION_DENIED` for access errors. * `INVALID_ARGUMENT` if the request is malformed. * `NOT_FOUND` if one of the identified resources does not exist.",
+                  "flatPath": "v1/courses/{courseId}/courseWorkMaterials/{itemId}/addOnAttachments/{attachmentId}",
+                  "httpMethod": "DELETE",
+                  "id": "classroom.courses.courseWorkMaterials.addOnAttachments.delete",
+                  "parameterOrder": [
+                    "courseId",
+                    "itemId",
+                    "attachmentId"
+                  ],
+                  "parameters": {
+                    "attachmentId": {
+                      "description": "Required. Identifier of the attachment.",
+                      "location": "path",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "courseId": {
+                      "description": "Required. Identifier of the course.",
+                      "location": "path",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "itemId": {
+                      "description": "Identifier of the announcement, courseWork, or courseWorkMaterial under which the attachment is attached. This field is required, but is not marked as such while we are migrating from post_id.",
+                      "location": "path",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "postId": {
+                      "deprecated": true,
+                      "description": "Optional. Deprecated, use item_id instead.",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/courses/{courseId}/courseWorkMaterials/{itemId}/addOnAttachments/{attachmentId}",
+                  "response": {
+                    "$ref": "Empty"
+                  }
+                },
+                "get": {
+                  "description": "Returns an add-on attachment. Requires the add-on requesting the attachment to be the original creator of the attachment. This method returns the following error codes: * `PERMISSION_DENIED` for access errors. * `INVALID_ARGUMENT` if the request is malformed. * `NOT_FOUND` if one of the identified resources does not exist.",
+                  "flatPath": "v1/courses/{courseId}/courseWorkMaterials/{itemId}/addOnAttachments/{attachmentId}",
+                  "httpMethod": "GET",
+                  "id": "classroom.courses.courseWorkMaterials.addOnAttachments.get",
+                  "parameterOrder": [
+                    "courseId",
+                    "itemId",
+                    "attachmentId"
+                  ],
+                  "parameters": {
+                    "attachmentId": {
+                      "description": "Required. Identifier of the attachment.",
+                      "location": "path",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "courseId": {
+                      "description": "Required. Identifier of the course.",
+                      "location": "path",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "itemId": {
+                      "description": "Identifier of the announcement, courseWork, or courseWorkMaterial under which the attachment is attached. This field is required, but is not marked as such while we are migrating from post_id.",
+                      "location": "path",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "postId": {
+                      "deprecated": true,
+                      "description": "Optional. Deprecated, use item_id instead.",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/courses/{courseId}/courseWorkMaterials/{itemId}/addOnAttachments/{attachmentId}",
+                  "response": {
+                    "$ref": "AddOnAttachment"
+                  }
+                },
+                "list": {
+                  "description": "Returns all attachments created by an add-on under the post. Requires the add-on to have active attachments on the post or have permission to create new attachments on the post. This method returns the following error codes: * `PERMISSION_DENIED` for access errors. * `INVALID_ARGUMENT` if the request is malformed. * `NOT_FOUND` if one of the identified resources does not exist.",
+                  "flatPath": "v1/courses/{courseId}/courseWorkMaterials/{itemId}/addOnAttachments",
+                  "httpMethod": "GET",
+                  "id": "classroom.courses.courseWorkMaterials.addOnAttachments.list",
+                  "parameterOrder": [
+                    "courseId",
+                    "itemId"
+                  ],
+                  "parameters": {
+                    "courseId": {
+                      "description": "Required. Identifier of the course.",
+                      "location": "path",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "itemId": {
+                      "description": "Identifier of the announcement, courseWork, or courseWorkMaterial whose attachments should be enumerated. This field is required, but is not marked as such while we are migrating from post_id.",
+                      "location": "path",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "The maximum number of attachments to return. The service may return fewer than this value. If unspecified, at most 20 attachments will be returned. The maximum value is 20; values above 20 will be coerced to 20.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "A page token, received from a previous `ListAddOnAttachments` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListAddOnAttachments` must match the call that provided the page token.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "postId": {
+                      "deprecated": true,
+                      "description": "Optional. Identifier of the post under the course whose attachments to enumerate. Deprecated, use item_id instead.",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/courses/{courseId}/courseWorkMaterials/{itemId}/addOnAttachments",
+                  "response": {
+                    "$ref": "ListAddOnAttachmentsResponse"
+                  }
+                },
+                "patch": {
+                  "description": "Updates an add-on attachment. Requires the add-on to have been the original creator of the attachment. This method returns the following error codes: * `PERMISSION_DENIED` for access errors. * `INVALID_ARGUMENT` if the request is malformed. * `NOT_FOUND` if one of the identified resources does not exist.",
+                  "flatPath": "v1/courses/{courseId}/courseWorkMaterials/{itemId}/addOnAttachments/{attachmentId}",
+                  "httpMethod": "PATCH",
+                  "id": "classroom.courses.courseWorkMaterials.addOnAttachments.patch",
+                  "parameterOrder": [
+                    "courseId",
+                    "itemId",
+                    "attachmentId"
+                  ],
+                  "parameters": {
+                    "attachmentId": {
+                      "description": "Required. Identifier of the attachment.",
+                      "location": "path",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "courseId": {
+                      "description": "Required. Identifier of the course.",
+                      "location": "path",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "itemId": {
+                      "description": "Identifier of the post under which the attachment is attached.",
+                      "location": "path",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "postId": {
+                      "description": "Required. Identifier of the post under which the attachment is attached.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "Required. Mask that identifies which fields on the attachment to update. The update fails if invalid fields are specified. If a field supports empty values, it can be cleared by specifying it in the update mask and not in the `AddOnAttachment` object. If a field that does not support empty values is included in the update mask and not set in the `AddOnAttachment` object, an `INVALID_ARGUMENT` error is returned. The following fields may be specified by teachers: * `title` * `teacher_view_uri` * `student_view_uri` * `student_work_review_uri` * `due_date` * `due_time` * `max_points`",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/courses/{courseId}/courseWorkMaterials/{itemId}/addOnAttachments/{attachmentId}",
+                  "request": {
+                    "$ref": "AddOnAttachment"
+                  },
+                  "response": {
+                    "$ref": "AddOnAttachment"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "posts": {
+          "methods": {
+            "getAddOnContext": {
+              "description": "Gets metadata for Classroom add-ons in the context of a specific post. To maintain the integrity of its own data and permissions model, an add-on should call this to validate query parameters and the requesting user's role whenever the add-on is opened in an [iframe](https://developers.google.com/classroom/add-ons/get-started/iframes/iframes-overview). This method returns the following error codes: * `PERMISSION_DENIED` for access errors. * `INVALID_ARGUMENT` if the request is malformed. * `NOT_FOUND` if one of the identified resources does not exist.",
+              "flatPath": "v1/courses/{courseId}/posts/{postId}/addOnContext",
+              "httpMethod": "GET",
+              "id": "classroom.courses.posts.getAddOnContext",
+              "parameterOrder": [
+                "courseId",
+                "postId"
+              ],
+              "parameters": {
+                "addOnToken": {
+                  "description": "Optional. Token that authorizes the request. The token is passed as a query parameter when the user is redirected from Classroom to the add-on's URL. The authorization token is required when neither of the following is true: * The add-on has attachments on the post. * The developer project issuing the request is the same project that created the post.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "attachmentId": {
+                  "description": "Optional. The identifier of the attachment. This field is required for student users and optional for teacher users. If not provided in the student case, an error is returned.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "courseId": {
+                  "description": "Required. Identifier of the course.",
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                },
+                "itemId": {
+                  "description": "Identifier of the announcement, courseWork, or courseWorkMaterial under which the attachment is attached. This field is required, but is not marked as such while we are migrating from post_id.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "postId": {
+                  "description": "Optional. Deprecated, use item_id instead.",
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/courses/{courseId}/posts/{postId}/addOnContext",
+              "response": {
+                "$ref": "AddOnContext"
+              }
+            }
+          },
+          "resources": {
+            "addOnAttachments": {
+              "methods": {
+                "create": {
+                  "description": "Creates an add-on attachment under a post. Requires the add-on to have permission to create new attachments on the post. This method returns the following error codes: * `PERMISSION_DENIED` for access errors. * `INVALID_ARGUMENT` if the request is malformed. * `NOT_FOUND` if one of the identified resources does not exist.",
+                  "flatPath": "v1/courses/{courseId}/posts/{postId}/addOnAttachments",
+                  "httpMethod": "POST",
+                  "id": "classroom.courses.posts.addOnAttachments.create",
+                  "parameterOrder": [
+                    "courseId",
+                    "postId"
+                  ],
+                  "parameters": {
+                    "addOnToken": {
+                      "description": "Optional. Token that authorizes the request. The token is passed as a query parameter when the user is redirected from Classroom to the add-on's URL. This authorization token is required for in-Classroom attachment creation but optional for partner-first attachment creation. Returns an error if not provided for partner-first attachment creation and the developer projects that created the attachment and its parent stream item do not match.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "courseId": {
+                      "description": "Required. Identifier of the course.",
+                      "location": "path",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "itemId": {
+                      "description": "Identifier of the announcement, courseWork, or courseWorkMaterial under which to create the attachment. This field is required, but is not marked as such while we are migrating from post_id.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "postId": {
+                      "description": "Optional. Deprecated, use item_id instead.",
+                      "location": "path",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/courses/{courseId}/posts/{postId}/addOnAttachments",
+                  "request": {
+                    "$ref": "AddOnAttachment"
+                  },
+                  "response": {
+                    "$ref": "AddOnAttachment"
+                  }
+                },
+                "delete": {
+                  "description": "Deletes an add-on attachment. Requires the add-on to have been the original creator of the attachment. This method returns the following error codes: * `PERMISSION_DENIED` for access errors. * `INVALID_ARGUMENT` if the request is malformed. * `NOT_FOUND` if one of the identified resources does not exist.",
+                  "flatPath": "v1/courses/{courseId}/posts/{postId}/addOnAttachments/{attachmentId}",
+                  "httpMethod": "DELETE",
+                  "id": "classroom.courses.posts.addOnAttachments.delete",
+                  "parameterOrder": [
+                    "courseId",
+                    "postId",
+                    "attachmentId"
+                  ],
+                  "parameters": {
+                    "attachmentId": {
+                      "description": "Required. Identifier of the attachment.",
+                      "location": "path",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "courseId": {
+                      "description": "Required. Identifier of the course.",
+                      "location": "path",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "itemId": {
+                      "description": "Identifier of the announcement, courseWork, or courseWorkMaterial under which the attachment is attached. This field is required, but is not marked as such while we are migrating from post_id.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "postId": {
+                      "description": "Optional. Deprecated, use item_id instead.",
+                      "location": "path",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/courses/{courseId}/posts/{postId}/addOnAttachments/{attachmentId}",
+                  "response": {
+                    "$ref": "Empty"
+                  }
+                },
+                "get": {
+                  "description": "Returns an add-on attachment. Requires the add-on requesting the attachment to be the original creator of the attachment. This method returns the following error codes: * `PERMISSION_DENIED` for access errors. * `INVALID_ARGUMENT` if the request is malformed. * `NOT_FOUND` if one of the identified resources does not exist.",
+                  "flatPath": "v1/courses/{courseId}/posts/{postId}/addOnAttachments/{attachmentId}",
+                  "httpMethod": "GET",
+                  "id": "classroom.courses.posts.addOnAttachments.get",
+                  "parameterOrder": [
+                    "courseId",
+                    "postId",
+                    "attachmentId"
+                  ],
+                  "parameters": {
+                    "attachmentId": {
+                      "description": "Required. Identifier of the attachment.",
+                      "location": "path",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "courseId": {
+                      "description": "Required. Identifier of the course.",
+                      "location": "path",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "itemId": {
+                      "description": "Identifier of the announcement, courseWork, or courseWorkMaterial under which the attachment is attached. This field is required, but is not marked as such while we are migrating from post_id.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "postId": {
+                      "description": "Optional. Deprecated, use item_id instead.",
+                      "location": "path",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/courses/{courseId}/posts/{postId}/addOnAttachments/{attachmentId}",
+                  "response": {
+                    "$ref": "AddOnAttachment"
+                  }
+                },
+                "list": {
+                  "description": "Returns all attachments created by an add-on under the post. Requires the add-on to have active attachments on the post or have permission to create new attachments on the post. This method returns the following error codes: * `PERMISSION_DENIED` for access errors. * `INVALID_ARGUMENT` if the request is malformed. * `NOT_FOUND` if one of the identified resources does not exist.",
+                  "flatPath": "v1/courses/{courseId}/posts/{postId}/addOnAttachments",
+                  "httpMethod": "GET",
+                  "id": "classroom.courses.posts.addOnAttachments.list",
+                  "parameterOrder": [
+                    "courseId",
+                    "postId"
+                  ],
+                  "parameters": {
+                    "courseId": {
+                      "description": "Required. Identifier of the course.",
+                      "location": "path",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "itemId": {
+                      "description": "Identifier of the announcement, courseWork, or courseWorkMaterial whose attachments should be enumerated. This field is required, but is not marked as such while we are migrating from post_id.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "The maximum number of attachments to return. The service may return fewer than this value. If unspecified, at most 20 attachments will be returned. The maximum value is 20; values above 20 will be coerced to 20.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "A page token, received from a previous `ListAddOnAttachments` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListAddOnAttachments` must match the call that provided the page token.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "postId": {
+                      "description": "Optional. Identifier of the post under the course whose attachments to enumerate. Deprecated, use item_id instead.",
+                      "location": "path",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/courses/{courseId}/posts/{postId}/addOnAttachments",
+                  "response": {
+                    "$ref": "ListAddOnAttachmentsResponse"
+                  }
+                },
+                "patch": {
+                  "description": "Updates an add-on attachment. Requires the add-on to have been the original creator of the attachment. This method returns the following error codes: * `PERMISSION_DENIED` for access errors. * `INVALID_ARGUMENT` if the request is malformed. * `NOT_FOUND` if one of the identified resources does not exist.",
+                  "flatPath": "v1/courses/{courseId}/posts/{postId}/addOnAttachments/{attachmentId}",
+                  "httpMethod": "PATCH",
+                  "id": "classroom.courses.posts.addOnAttachments.patch",
+                  "parameterOrder": [
+                    "courseId",
+                    "postId",
+                    "attachmentId"
+                  ],
+                  "parameters": {
+                    "attachmentId": {
+                      "description": "Required. Identifier of the attachment.",
+                      "location": "path",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "courseId": {
+                      "description": "Required. Identifier of the course.",
+                      "location": "path",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "itemId": {
+                      "description": "Identifier of the post under which the attachment is attached.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "postId": {
+                      "description": "Required. Identifier of the post under which the attachment is attached.",
+                      "location": "path",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "Required. Mask that identifies which fields on the attachment to update. The update fails if invalid fields are specified. If a field supports empty values, it can be cleared by specifying it in the update mask and not in the `AddOnAttachment` object. If a field that does not support empty values is included in the update mask and not set in the `AddOnAttachment` object, an `INVALID_ARGUMENT` error is returned. The following fields may be specified by teachers: * `title` * `teacher_view_uri` * `student_view_uri` * `student_work_review_uri` * `due_date` * `due_time` * `max_points`",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/courses/{courseId}/posts/{postId}/addOnAttachments/{attachmentId}",
+                  "request": {
+                    "$ref": "AddOnAttachment"
+                  },
+                  "response": {
+                    "$ref": "AddOnAttachment"
+                  }
+                }
+              },
+              "resources": {
+                "studentSubmissions": {
+                  "methods": {
+                    "get": {
+                      "description": "Returns a student submission for an add-on attachment. This method returns the following error codes: * `PERMISSION_DENIED` for access errors. * `INVALID_ARGUMENT` if the request is malformed. * `NOT_FOUND` if one of the identified resources does not exist.",
+                      "flatPath": "v1/courses/{courseId}/posts/{postId}/addOnAttachments/{attachmentId}/studentSubmissions/{submissionId}",
+                      "httpMethod": "GET",
+                      "id": "classroom.courses.posts.addOnAttachments.studentSubmissions.get",
+                      "parameterOrder": [
+                        "courseId",
+                        "postId",
+                        "attachmentId",
+                        "submissionId"
+                      ],
+                      "parameters": {
+                        "attachmentId": {
+                          "description": "Required. Identifier of the attachment.",
+                          "location": "path",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "courseId": {
+                          "description": "Required. Identifier of the course.",
+                          "location": "path",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "itemId": {
+                          "description": "Identifier of the announcement, courseWork, or courseWorkMaterial under which the attachment is attached. This field is required, but is not marked as such while we are migrating from post_id.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "postId": {
+                          "description": "Optional. Deprecated, use item_id instead.",
+                          "location": "path",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "submissionId": {
+                          "description": "Required. Identifier of the student’s submission.",
+                          "location": "path",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/courses/{courseId}/posts/{postId}/addOnAttachments/{attachmentId}/studentSubmissions/{submissionId}",
+                      "response": {
+                        "$ref": "AddOnAttachmentStudentSubmission"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/classroom.student-submissions.students.readonly"
+                      ]
+                    },
+                    "patch": {
+                      "description": "Updates data associated with an add-on attachment submission. Requires the add-on to have been the original creator of the attachment and the attachment to have a positive `max_points` value set. This method returns the following error codes: * `PERMISSION_DENIED` for access errors. * `INVALID_ARGUMENT` if the request is malformed. * `NOT_FOUND` if one of the identified resources does not exist.",
+                      "flatPath": "v1/courses/{courseId}/posts/{postId}/addOnAttachments/{attachmentId}/studentSubmissions/{submissionId}",
+                      "httpMethod": "PATCH",
+                      "id": "classroom.courses.posts.addOnAttachments.studentSubmissions.patch",
+                      "parameterOrder": [
+                        "courseId",
+                        "postId",
+                        "attachmentId",
+                        "submissionId"
+                      ],
+                      "parameters": {
+                        "attachmentId": {
+                          "description": "Required. Identifier of the attachment.",
+                          "location": "path",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "courseId": {
+                          "description": "Required. Identifier of the course.",
+                          "location": "path",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "itemId": {
+                          "description": "Identifier of the announcement, courseWork, or courseWorkMaterial under which the attachment is attached. This field is required, but is not marked as such while we are migrating from post_id.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "postId": {
+                          "description": "Optional. Deprecated, use item_id instead.",
+                          "location": "path",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "submissionId": {
+                          "description": "Required. Identifier of the student's submission.",
+                          "location": "path",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "updateMask": {
+                          "description": "Required. Mask that identifies which fields on the attachment to update. The update fails if invalid fields are specified. If a field supports empty values, it can be cleared by specifying it in the update mask and not in the `AddOnAttachmentStudentSubmission` object. The following fields may be specified by teachers: * `points_earned`",
+                          "format": "google-fieldmask",
+                          "location": "query",
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/courses/{courseId}/posts/{postId}/addOnAttachments/{attachmentId}/studentSubmissions/{submissionId}",
+                      "request": {
+                        "$ref": "AddOnAttachmentStudentSubmission"
+                      },
+                      "response": {
+                        "$ref": "AddOnAttachmentStudentSubmission"
+                      }
+                    }
+                  }
+                }
+              }
             }
           }
         },
@@ -2400,9 +3695,134 @@
       }
     }
   },
-  "revision": "20231217",
+  "revision": "20240617",
   "rootUrl": "https://classroom.googleapis.com/",
   "schemas": {
+    "AddOnAttachment": {
+      "description": "An add-on attachment on a post.",
+      "id": "AddOnAttachment",
+      "properties": {
+        "copyHistory": {
+          "description": "Output only. Identifiers of attachments that were previous copies of this attachment. If the attachment was previously copied by virtue of its parent post being copied, this enumerates the identifiers of attachments that were its previous copies in ascending chronological order of copy.",
+          "items": {
+            "$ref": "CopyHistory"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "courseId": {
+          "description": "Immutable. Identifier of the course.",
+          "type": "string"
+        },
+        "dueDate": {
+          "$ref": "Date",
+          "description": "Date, in UTC, that work on this attachment is due. This must be specified if `due_time` is specified."
+        },
+        "dueTime": {
+          "$ref": "TimeOfDay",
+          "description": "Time of day, in UTC, that work on this attachment is due. This must be specified if `due_date` is specified."
+        },
+        "id": {
+          "description": "Immutable. Classroom-assigned identifier for this attachment, unique per post.",
+          "type": "string"
+        },
+        "itemId": {
+          "description": "Immutable. Identifier of the announcement, courseWork, or courseWorkMaterial under which the attachment is attached. Unique per course.",
+          "type": "string"
+        },
+        "maxPoints": {
+          "description": "Maximum grade for this attachment. Can only be set if `studentWorkReviewUri` is set. Set to a non-zero value to indicate that the attachment supports grade passback. If set, this must be a non-negative integer value. When set to zero, the attachment will not support grade passback.",
+          "format": "double",
+          "type": "number"
+        },
+        "postId": {
+          "deprecated": true,
+          "description": "Immutable. Deprecated, use item_id instead.",
+          "type": "string"
+        },
+        "studentViewUri": {
+          "$ref": "EmbedUri",
+          "description": "Required. URI to show the student view of the attachment. The URI will be opened in an iframe with the `courseId`, `postId`, and `attachmentId` query parameters set."
+        },
+        "studentWorkReviewUri": {
+          "$ref": "EmbedUri",
+          "description": "URI for the teacher to see student work on the attachment, if applicable. The URI will be opened in an iframe with the `courseId`, `postId`, `attachmentId`, and `submissionId` query parameters set. This is the same `submissionId` returned by google.classroom.AddOns.GetAddOnContext when a student views the attachment. If the URI is omitted or removed, `max_points` will also be discarded."
+        },
+        "teacherViewUri": {
+          "$ref": "EmbedUri",
+          "description": "Required. URI to show the teacher view of the attachment. The URI will be opened in an iframe with the `courseId`, `postId`, and `attachmentId` query parameters set."
+        },
+        "title": {
+          "description": "Required. Title of this attachment. The title must be between 1 and 1000 characters.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AddOnAttachmentStudentSubmission": {
+      "description": "Payload for grade update requests.",
+      "id": "AddOnAttachmentStudentSubmission",
+      "properties": {
+        "pointsEarned": {
+          "description": "Student grade on this attachment. If unset, no grade was set.",
+          "format": "double",
+          "type": "number"
+        },
+        "postSubmissionState": {
+          "description": "Submission state of add-on attachment's parent post (i.e. assignment).",
+          "enum": [
+            "SUBMISSION_STATE_UNSPECIFIED",
+            "NEW",
+            "CREATED",
+            "TURNED_IN",
+            "RETURNED",
+            "RECLAIMED_BY_STUDENT"
+          ],
+          "enumDescriptions": [
+            "No state specified. This should never be returned.",
+            "The student has never accessed this submission. Attachments are not returned and timestamps is not set.",
+            "Has been created.",
+            "Has been turned in to the teacher.",
+            "Has been returned to the student.",
+            "Student chose to \"unsubmit\" the assignment."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AddOnContext": {
+      "description": "Attachment-relevant metadata for Classroom add-ons in the context of a specific post.",
+      "id": "AddOnContext",
+      "properties": {
+        "courseId": {
+          "description": "Immutable. Identifier of the course.",
+          "type": "string"
+        },
+        "itemId": {
+          "description": "Immutable. Identifier of the announcement, courseWork, or courseWorkMaterial under which the attachment is attached.",
+          "type": "string"
+        },
+        "postId": {
+          "deprecated": true,
+          "description": "Immutable. Deprecated, use item_id instead.",
+          "type": "string"
+        },
+        "studentContext": {
+          "$ref": "StudentContext",
+          "description": "Add-on context corresponding to the requesting user's role as a student. Its presence implies that the requesting user is a student in the course."
+        },
+        "supportsStudentWork": {
+          "description": "Optional. Whether the post allows the teacher to see student work and passback grades.",
+          "type": "boolean"
+        },
+        "teacherContext": {
+          "$ref": "TeacherContext",
+          "description": "Add-on context corresponding to the requesting user's role as a teacher. Its presence implies that the requesting user is a teacher in the course."
+        }
+      },
+      "type": "object"
+    },
     "Announcement": {
       "description": "Announcement created by a teacher for students of the course",
       "id": "Announcement",
@@ -2540,6 +3960,30 @@
       "properties": {
         "topicName": {
           "description": "The `name` field of a Cloud Pub/Sub [Topic](https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.topics#Topic).",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "CopyHistory": {
+      "description": "Identifier of a previous copy of a given attachment.",
+      "id": "CopyHistory",
+      "properties": {
+        "attachmentId": {
+          "description": "Immutable. Identifier of the attachment.",
+          "type": "string"
+        },
+        "courseId": {
+          "description": "Immutable. Identifier of the course.",
+          "type": "string"
+        },
+        "itemId": {
+          "description": "Immutable. Identifier of the announcement, courseWork, or courseWorkMaterial under which the attachment is attached.",
+          "type": "string"
+        },
+        "postId": {
+          "deprecated": true,
+          "description": "Immutable. Deprecated, use item_id instead.",
           "type": "string"
         }
       },
@@ -3029,6 +4473,17 @@
       },
       "type": "object"
     },
+    "EmbedUri": {
+      "description": "URI to be iframed after being populated with query parameters.",
+      "id": "EmbedUri",
+      "properties": {
+        "uri": {
+          "description": "Required. URI to be iframed after being populated with query parameters. This must be a valid UTF-8 string containing between 1 and 1800 characters.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "Empty": {
       "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }",
       "id": "Empty",
@@ -3343,6 +4798,24 @@
         },
         "url": {
           "description": "URL to link to. This must be a valid UTF-8 string containing between 1 and 2024 characters.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ListAddOnAttachmentsResponse": {
+      "description": "Response when listing add-on attachments.",
+      "id": "ListAddOnAttachmentsResponse",
+      "properties": {
+        "addOnAttachments": {
+          "description": "Attachments under the given post.",
+          "items": {
+            "$ref": "AddOnAttachment"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token, which can be sent as `pageToken` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
           "type": "string"
         }
       },
@@ -3849,6 +5322,17 @@
       },
       "type": "object"
     },
+    "StudentContext": {
+      "description": "Role-specific context if the requesting user is a student.",
+      "id": "StudentContext",
+      "properties": {
+        "submissionId": {
+          "description": "Requesting user's submission id to be used for grade passback and to identify the student when showing student work to the teacher. This is set exactly when `supportsStudentWork` is `true`.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "StudentSubmission": {
       "description": "Student submission for course work. `StudentSubmission` items are generated when a `CourseWork` item is created. Student submissions that have never been accessed (i.e. with `state` = NEW) may not have a creation time or update time.",
       "id": "StudentSubmission",
@@ -3991,6 +5475,12 @@
           "type": "string"
         }
       },
+      "type": "object"
+    },
+    "TeacherContext": {
+      "description": "Role-specific context if the requesting user is a teacher.",
+      "id": "TeacherContext",
+      "properties": {},
       "type": "object"
     },
     "TimeOfDay": {
