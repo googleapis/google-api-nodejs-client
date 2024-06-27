@@ -2267,7 +2267,7 @@
       }
     }
   },
-  "revision": "20240521",
+  "revision": "20240618",
   "rootUrl": "https://sqladmin.googleapis.com/",
   "schemas": {
     "AclEntry": {
@@ -2712,10 +2712,6 @@
         "pointInTime": {
           "description": "Timestamp, if specified, identifies the time to which the source instance is cloned.",
           "format": "google-datetime",
-          "type": "string"
-        },
-        "preferredSecondaryZone": {
-          "description": "Optional. Copy clone and point-in-time recovery clone of a regional instance in the specified zones. If not specified, clone to the same secondary zone as the source instance. This value cannot be the same as the preferred_zone field.",
           "type": "string"
         },
         "preferredZone": {
@@ -4549,12 +4545,12 @@
       "id": "MaintenanceWindow",
       "properties": {
         "day": {
-          "description": "day of week (1-7), starting on Monday.",
+          "description": "Day of week - `MONDAY`, `TUESDAY`, `WEDNESDAY`, `THURSDAY`, `FRIDAY`, `SATURDAY`, or `SUNDAY`. Specify in the UTC time zone. Returned in output as an integer, 1 to 7, where `1` equals Monday.",
           "format": "int32",
           "type": "integer"
         },
         "hour": {
-          "description": "hour of day - 0 to 23.",
+          "description": "Hour of day - 0 to 23. Specify in the UTC time zone.",
           "format": "int32",
           "type": "integer"
         },
@@ -4563,7 +4559,7 @@
           "type": "string"
         },
         "updateTrack": {
-          "description": "Maintenance timing setting: `canary` (Earlier) or `stable` (Later). [Learn more](https://cloud.google.com/sql/docs/mysql/instance-settings#maintenance-timing-2ndgen).",
+          "description": "Maintenance timing settings: `canary`, `stable`, or `week5`. For more information, see [About maintenance on Cloud SQL instances](https://cloud.google.com/sql/docs/mysql/maintenance).",
           "enum": [
             "SQL_UPDATE_TRACK_UNSPECIFIED",
             "canary",
@@ -4572,9 +4568,9 @@
           ],
           "enumDescriptions": [
             "This is an unknown maintenance timing preference.",
-            "For instance update that requires a restart, this update track indicates your instance prefer to restart for new version early in maintenance window.",
-            "For instance update that requires a restart, this update track indicates your instance prefer to let Cloud SQL choose the timing of restart (within its Maintenance window, if applicable).",
-            "For instance update that requires a restart, this update track indicates your instance prefer to let Cloud SQL choose the timing of restart (within its Maintenance window, if applicable) to be at least 5 weeks after the notification."
+            "For an instance with a scheduled maintenance window, this maintenance timing indicates that the maintenance update is scheduled 7 to 14 days after the notification is sent out. Also referred to as `Week 1` (Console) and `preview` (gcloud CLI).",
+            "For an instance with a scheduled maintenance window, this maintenance timing indicates that the maintenance update is scheduled 15 to 21 days after the notification is sent out. Also referred to as `Week 2` (Console) and `production` (gcloud CLI).",
+            "For instance with a scheduled maintenance window, this maintenance timing indicates that the maintenance update is scheduled 35 to 42 days after the notification is sent out."
           ],
           "type": "string"
         }
@@ -5381,6 +5377,10 @@
           ],
           "type": "string"
         },
+        "enableDataplexIntegration": {
+          "description": "Optional. By default, Cloud SQL instances have schema extraction disabled for Dataplex. When this parameter is set to true, schema extraction for Dataplex on Cloud SQL instances is activated.",
+          "type": "boolean"
+        },
         "enableGoogleMlIntegration": {
           "description": "Optional. When this parameter is set to true, Cloud SQL instances can connect to Vertex AI to pass requests for real-time predictions and insights to the AI. The default value is false. This applies only to Cloud SQL for PostgreSQL instances.",
           "type": "boolean"
@@ -5548,7 +5548,11 @@
             "PG_SUBSCRIPTION_COUNT",
             "PG_SYNC_PARALLEL_LEVEL",
             "INSUFFICIENT_DISK_SIZE",
-            "INSUFFICIENT_MACHINE_TIER"
+            "INSUFFICIENT_MACHINE_TIER",
+            "UNSUPPORTED_EXTENSIONS_NOT_MIGRATED",
+            "EXTENSIONS_NOT_MIGRATED",
+            "PG_CRON_FLAG_ENABLED_IN_REPLICA",
+            "EXTENSIONS_NOT_ENABLED_IN_REPLICA"
           ],
           "enumDescriptions": [
             "",
@@ -5595,7 +5599,11 @@
             "Count of subscriptions needed to sync source data for PostgreSQL database.",
             "Final parallel level that is used to do migration.",
             "The disk size of the replica instance is smaller than the data size of the source instance.",
-            "The data size of the source instance is greater than 1 TB, the number of cores of the replica instance is less than 8, and the memory of the replica is less than 32 GB."
+            "The data size of the source instance is greater than 1 TB, the number of cores of the replica instance is less than 8, and the memory of the replica is less than 32 GB.",
+            "The warning message indicates the unsupported extensions will not be migrated to the destination.",
+            "The warning message indicates the pg_cron extension and settings will not be migrated to the destination.",
+            "The error message indicates that pg_cron flags are enabled on the destination which is not supported during the migration.",
+            "This error message indicates that the specified extensions are not enabled on destination instance. For example, before you can migrate data to the destination instance, you must enable the PGAudit extension on the instance."
           ],
           "type": "string"
         }
