@@ -453,7 +453,7 @@
                   "type": "string"
                 },
                 "parent": {
-                  "description": "Name of the parent project. For example: projects/{$project_number} or projects/{$project_id}",
+                  "description": "Required. Name of the parent project. For example: projects/{$project_number} or projects/{$project_id}",
                   "location": "path",
                   "pattern": "^projects/[^/]+$",
                   "required": true,
@@ -592,7 +592,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "Optional. The full resource name for the GitHubEnterpriseConfig For example: \"projects/{$project_id}/locations/{$location_id}/githubEnterpriseConfigs/{$config_id}\"",
+                  "description": "The full resource name for the GitHubEnterpriseConfig For example: \"projects/{$project_id}/locations/{$location_id}/githubEnterpriseConfigs/{$config_id}\"",
                   "location": "path",
                   "pattern": "^projects/[^/]+/githubEnterpriseConfigs/[^/]+$",
                   "required": true,
@@ -1384,7 +1384,7 @@
                       "type": "string"
                     },
                     "parent": {
-                      "description": "Name of the parent project. For example: projects/{$project_number} or projects/{$project_id}",
+                      "description": "Required. Name of the parent project. For example: projects/{$project_number} or projects/{$project_id}",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
@@ -1523,7 +1523,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Optional. The full resource name for the GitHubEnterpriseConfig For example: \"projects/{$project_id}/locations/{$location_id}/githubEnterpriseConfigs/{$config_id}\"",
+                      "description": "The full resource name for the GitHubEnterpriseConfig For example: \"projects/{$project_id}/locations/{$location_id}/githubEnterpriseConfigs/{$config_id}\"",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/githubEnterpriseConfigs/[^/]+$",
                       "required": true,
@@ -2024,7 +2024,7 @@
                       "type": "string"
                     },
                     "updateMask": {
-                      "description": "A mask specifying which fields in `worker_pool` to update.",
+                      "description": "Optional. A mask specifying which fields in `worker_pool` to update.",
                       "format": "google-fieldmask",
                       "location": "query",
                       "type": "string"
@@ -2346,7 +2346,7 @@
       }
     }
   },
-  "revision": "20240528",
+  "revision": "20240618",
   "rootUrl": "https://cloudbuild.googleapis.com/",
   "schemas": {
     "ApprovalConfig": {
@@ -3908,7 +3908,7 @@
           "type": "string"
         },
         "displayName": {
-          "description": "Name to display for this config.",
+          "description": "Optional. Name to display for this config.",
           "type": "string"
         },
         "hostUrl": {
@@ -3916,7 +3916,7 @@
           "type": "string"
         },
         "name": {
-          "description": "Optional. The full resource name for the GitHubEnterpriseConfig For example: \"projects/{$project_id}/locations/{$location_id}/githubEnterpriseConfigs/{$config_id}\"",
+          "description": "The full resource name for the GitHubEnterpriseConfig For example: \"projects/{$project_id}/locations/{$location_id}/githubEnterpriseConfigs/{$config_id}\"",
           "type": "string"
         },
         "peeredNetwork": {
@@ -3925,7 +3925,7 @@
         },
         "secrets": {
           "$ref": "GitHubEnterpriseSecrets",
-          "description": "Names of secrets in Secret Manager."
+          "description": "Optional. Names of secrets in Secret Manager."
         },
         "sslCa": {
           "description": "Optional. SSL certificate to use for requests to GitHub Enterprise.",
@@ -3986,7 +3986,7 @@
       "id": "GitHubEventsConfig",
       "properties": {
         "enterpriseConfigResourceName": {
-          "description": "Optional. The resource name of the github enterprise config that should be applied to this installation. For example: \"projects/{$project_id}/locations/{$location_id}/githubEnterpriseConfigs/{$config_id}\"",
+          "description": "The resource name of the github enterprise config that should be applied to this installation. For example: \"projects/{$project_id}/locations/{$location_id}/githubEnterpriseConfigs/{$config_id}\"",
           "type": "string"
         },
         "installationId": {
@@ -4713,7 +4713,7 @@
           "type": "string"
         },
         "topic": {
-          "description": "The name of the topic from which this subscription is receiving messages. Format is `projects/{project}/topics/{topic}`.",
+          "description": "Optional. The name of the topic from which this subscription is receiving messages. Format is `projects/{project}/topics/{topic}`.",
           "type": "string"
         }
       },
@@ -5449,7 +5449,7 @@
           "type": "string"
         },
         "machineType": {
-          "description": "Machine type of a worker, such as `e2-medium`. See [Worker pool config file](https://cloud.google.com/build/docs/private-pools/worker-pool-config-file-schema). If left blank, Cloud Build will use a sensible default.",
+          "description": "Optional. Machine type of a worker, such as `e2-medium`. See [Worker pool config file](https://cloud.google.com/build/docs/private-pools/worker-pool-config-file-schema). If left blank, Cloud Build will use a sensible default.",
           "type": "string"
         }
       },
