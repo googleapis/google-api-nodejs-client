@@ -797,7 +797,7 @@ export namespace bigquery_v2 {
     rows?: Schema$Row[];
   }
   /**
-   * A connection-level property to customize query behavior. Under JDBC, these correspond directly to connection properties passed to the DriverManager. Under ODBC, these correspond to properties in the connection string. Currently supported connection properties: * **dataset_project_id**: represents the default project for datasets that are used in the query. Setting the system variable `@@dataset_project_id` achieves the same behavior. For more information about system variables, see: https://cloud.google.com/bigquery/docs/reference/system-variables * **time_zone**: represents the default timezone used to run the query. * **session_id**: associates the query with a given session. * **query_label**: associates the query with a given job label. If set, all subsequent queries in a script or session will have this label. For the format in which a you can specify a query label, see labels in the JobConfiguration resource type: https://cloud.google.com/bigquery/docs/reference/rest/v2/Job#jobconfiguration Additional properties are allowed, but ignored. Specifying multiple connection properties with the same key returns an error.
+   * A connection-level property to customize query behavior. Under JDBC, these correspond directly to connection properties passed to the DriverManager. Under ODBC, these correspond to properties in the connection string. Currently supported connection properties: * **dataset_project_id**: represents the default project for datasets that are used in the query. Setting the system variable `@@dataset_project_id` achieves the same behavior. For more information about system variables, see: https://cloud.google.com/bigquery/docs/reference/system-variables * **time_zone**: represents the default timezone used to run the query. * **session_id**: associates the query with a given session. * **query_label**: associates the query with a given job label. If set, all subsequent queries in a script or session will have this label. For the format in which a you can specify a query label, see labels in the JobConfiguration resource type: https://cloud.google.com/bigquery/docs/reference/rest/v2/Job#jobconfiguration * **service_account**: indicates the service account to use to run a continuous query. If set, the query job uses the service account to access Google Cloud resources. Service account access is bounded by the IAM permissions that you have granted to the service account. Additional properties are allowed, but ignored. Specifying multiple connection properties with the same key returns an error.
    */
   export interface Schema$ConnectionProperty {
     /**
@@ -892,7 +892,7 @@ export namespace bigquery_v2 {
      */
     defaultCollation?: string | null;
     /**
-     * The default encryption key for all tables in the dataset. Once this property is set, all newly-created partitioned tables in the dataset will have encryption key set to this value, unless table creation request (or query) overrides the key.
+     * The default encryption key for all tables in the dataset. After this property is set, the encryption key of all newly-created tables in the dataset is set to this value unless the table creation request or query explicitly overrides the key.
      */
     defaultEncryptionConfiguration?: Schema$EncryptionConfiguration;
     /**
@@ -963,6 +963,10 @@ export namespace bigquery_v2 {
      * Optional. Defines the time travel window in hours. The value can be from 48 to 168 hours (2 to 7 days). The default value is 168 hours if this is not set.
      */
     maxTimeTravelHours?: string | null;
+    /**
+     * Optional. The [tags](/bigquery/docs/tags) attached to this dataset. Tag keys are globally unique. Tag key is expected to be in the namespaced format, for example "123456789012/environment" where 123456789012 is the ID of the parent organization or project resource for this tag key. Tag value is expected to be the short name, for example "Production". See [Tag definitions](/iam/docs/tags-access-control#definitions) for more details.
+     */
+    resourceTags?: {[key: string]: string} | null;
     /**
      * Optional. Output only. Restriction config for all tables and dataset. If set, restrict certain accesses on the dataset and all its tables based on the config. See [Data egress](/bigquery/docs/analytics-hub-introduction#data_egress) for more details.
      */
@@ -1626,6 +1630,19 @@ export namespace bigquery_v2 {
     typeSystem?: string | null;
   }
   /**
+   * A view can be represented in multiple ways. Each representation has its own dialect. This message stores the metadata required for these representations.
+   */
+  export interface Schema$ForeignViewDefinition {
+    /**
+     * Optional. Represents the dialect of the query.
+     */
+    dialect?: string | null;
+    /**
+     * Required. The query that defines the view.
+     */
+    query?: string | null;
+  }
+  /**
    * Request message for `GetIamPolicy` method.
    */
   export interface Schema$GetIamPolicyRequest {
@@ -2108,7 +2125,7 @@ export namespace bigquery_v2 {
      */
     extract?: Schema$JobConfigurationExtract;
     /**
-     * Optional. Job timeout in milliseconds. If this time limit is exceeded, BigQuery might attempt to stop the job.
+     * Optional. Job timeout in milliseconds. If this time limit is exceeded, BigQuery will attempt to stop a longer job, but may not always succeed in canceling it before the job completes. For example, a job that takes more than 60 seconds to complete has a better chance of being stopped than a job that takes 10 seconds to complete.
      */
     jobTimeoutMs?: string | null;
     /**
@@ -2193,6 +2210,10 @@ export namespace bigquery_v2 {
      * Clustering specification for the destination table.
      */
     clustering?: Schema$Clustering;
+    /**
+     * Optional. Character map supported for column names in CSV/Parquet loads. Defaults to STRICT and can be overridden by Project Config Service. Using this option with unsupporting load formats will result in an error.
+     */
+    columnNameCharacterMap?: string | null;
     /**
      * Optional. Connection properties which can modify the load job behavior. Currently, only the 'session_id' connection property is supported, and is used to resolve _SESSION appearing as the dataset id.
      */
@@ -3257,7 +3278,7 @@ export namespace bigquery_v2 {
      */
     enumAsString?: boolean | null;
     /**
-     * Optional. Will indicate how to represent a parquet map if present.
+     * Optional. Indicates how to represent a Parquet map if present.
      */
     mapTargetType?: string | null;
   }
@@ -3266,16 +3287,16 @@ export namespace bigquery_v2 {
    */
   export interface Schema$PartitionedColumn {
     /**
-     * Output only. The name of the partition column.
+     * Required. The name of the partition column.
      */
     field?: string | null;
   }
   /**
-   * The partitioning information, which includes managed table and external table partition information.
+   * The partitioning information, which includes managed table, external table and metastore partitioned table partition information.
    */
   export interface Schema$PartitioningDefinition {
     /**
-     * Output only. Details about each partitioning column. BigQuery native tables only support 1 partitioning column. Other table types may support 0, 1 or more partitioning columns.
+     * Optional. Details about each partitioning column. This field is output only for all partitioning types other than metastore partitioned tables. BigQuery native tables only support 1 partitioning column. Other table types may support 0, 1 or more partitioning columns. For metastore partitioned tables, the order must match the definition order in the Hive Metastore, where it must match the physical layout of the table. For example, CREATE TABLE a_table(id BIGINT, name STRING) PARTITIONED BY (city STRING, state STRING). In this case the values must be ['city', 'state'] in that order.
      */
     partitionedColumn?: Schema$PartitionedColumn[];
   }
@@ -3654,7 +3675,7 @@ export namespace bigquery_v2 {
   }
   export interface Schema$RangePartitioning {
     /**
-     * Required. [Experimental] The table is partitioned by this field. The field must be a top-level NULLABLE/REQUIRED field. The only supported type is INTEGER/INT64.
+     * Required. The name of the column to partition the table on. It must be a top-level, INT64 column whose mode is NULLABLE or REQUIRED.
      */
     field?: string | null;
     /**
@@ -4412,6 +4433,10 @@ export namespace bigquery_v2 {
      */
     numBytes?: string | null;
     /**
+     * Output only. Number of physical bytes used by current live data storage. This data is not kept in real time, and might be delayed by a few seconds to a few minutes.
+     */
+    numCurrentPhysicalBytes?: string | null;
+    /**
      * Output only. The number of logical bytes in the table that are considered "long-term storage".
      */
     numLongTermBytes?: string | null;
@@ -4448,7 +4473,7 @@ export namespace bigquery_v2 {
      */
     numTotalPhysicalBytes?: string | null;
     /**
-     * Output only. The partition information for all table formats, including managed partitioned tables, hive partitioned tables, and iceberg partitioned tables.
+     * Optional. The partition information for all table formats, including managed partitioned tables, hive partitioned tables, iceberg partitioned, and metastore partitioned tables. This field is only populated for metastore partitioned tables. For other table formats, this is an output only field.
      */
     partitionDefinition?: Schema$PartitioningDefinition;
     /**
@@ -4752,7 +4777,7 @@ export namespace bigquery_v2 {
      */
     replicationError?: Schema$ErrorProto;
     /**
-     * Required. Specifies the interval at which the source table is polled for updates.
+     * Optional. Specifies the interval at which the source table is polled for updates. It's Optional. If not specified, default replication interval would be applied.
      */
     replicationIntervalMs?: string | null;
     /**
@@ -5244,7 +5269,7 @@ export namespace bigquery_v2 {
    */
   export interface Schema$UndeleteDatasetRequest {
     /**
-     * Optional. The exact time when the dataset was deleted. If not specified, the most recently deleted version is undeleted.
+     * Optional. The exact time when the dataset was deleted. If not specified, the most recently deleted version is undeleted. Undeleting a dataset using deletion time is not supported.
      */
     deletionTime?: string | null;
   }
@@ -5278,6 +5303,10 @@ export namespace bigquery_v2 {
    * Describes the definition of a logical view.
    */
   export interface Schema$ViewDefinition {
+    /**
+     * Optional. Foreign view representations.
+     */
+    foreignDefinitions?: Schema$ForeignViewDefinition[];
     /**
      * Optional. Specifices the privacy policy for the view.
      */
