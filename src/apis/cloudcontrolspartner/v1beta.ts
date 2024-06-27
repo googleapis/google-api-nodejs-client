@@ -1374,7 +1374,7 @@ export namespace cloudcontrolspartner_v1beta {
     }
 
     /**
-     * Lists access requests associated with a workload
+     * Deprecated: Only returns access approval requests directly associated with an assured workload folder.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
