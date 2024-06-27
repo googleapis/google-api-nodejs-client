@@ -521,7 +521,7 @@ export namespace run_v2 {
    */
   export interface Schema$GoogleCloudRunV2GCSVolumeSource {
     /**
-     * Cloud Storage Bucket name.
+     * Cloud Storage Bucket name. TODO (b/344678062) Fix the error validation once dynamic mounting is public.
      */
     bucket?: string | null;
     /**
@@ -626,7 +626,7 @@ export namespace run_v2 {
      */
     creator?: string | null;
     /**
-     * Output only. The deletion time.
+     * Output only. The deletion time. It is only populated as a response to a Delete request.
      */
     deleteTime?: string | null;
     /**
@@ -1190,7 +1190,7 @@ export namespace run_v2 {
      */
     defaultUriDisabled?: boolean | null;
     /**
-     * Output only. The deletion time.
+     * Output only. The deletion time. It is only populated as a response to a Delete request.
      */
     deleteTime?: string | null;
     /**

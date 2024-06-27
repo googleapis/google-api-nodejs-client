@@ -1469,7 +1469,7 @@
       }
     }
   },
-  "revision": "20240524",
+  "revision": "20240621",
   "rootUrl": "https://run.googleapis.com/",
   "schemas": {
     "GoogleCloudRunV2BinaryAuthorization": {
@@ -2141,7 +2141,7 @@
       "id": "GoogleCloudRunV2GCSVolumeSource",
       "properties": {
         "bucket": {
-          "description": "Cloud Storage Bucket name.",
+          "description": "Cloud Storage Bucket name. TODO (b/344678062) Fix the error validation once dynamic mounting is public.",
           "type": "string"
         },
         "readOnly": {
@@ -2282,7 +2282,7 @@
           "type": "string"
         },
         "deleteTime": {
-          "description": "Output only. The deletion time.",
+          "description": "Output only. The deletion time. It is only populated as a response to a Delete request.",
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
@@ -3083,7 +3083,7 @@
           "type": "boolean"
         },
         "deleteTime": {
-          "description": "Output only. The deletion time.",
+          "description": "Output only. The deletion time. It is only populated as a response to a Delete request.",
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
