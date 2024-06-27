@@ -223,7 +223,7 @@ export namespace redis_v1beta1 {
      */
     discoveryEndpoints?: Schema$DiscoveryEndpoint[];
     /**
-     * Required. Unique name of the resource in this scope including project and location using the form: `projects/{project_id\}/locations/{location_id\}/clusters/{cluster_id\}`
+     * Required. Identifier. Unique name of the resource in this scope including project and location using the form: `projects/{project_id\}/locations/{location_id\}/clusters/{cluster_id\}`
      */
     name?: string | null;
     /**
@@ -2207,7 +2207,7 @@ export namespace redis_v1beta1 {
   export interface Params$Resource$Projects$Locations$Clusters$Patch
     extends StandardParameters {
     /**
-     * Required. Unique name of the resource in this scope including project and location using the form: `projects/{project_id\}/locations/{location_id\}/clusters/{cluster_id\}`
+     * Required. Identifier. Unique name of the resource in this scope including project and location using the form: `projects/{project_id\}/locations/{location_id\}/clusters/{cluster_id\}`
      */
     name?: string;
     /**
