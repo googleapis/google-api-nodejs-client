@@ -903,7 +903,7 @@
       }
     }
   },
-  "revision": "20230919",
+  "revision": "20240620",
   "rootUrl": "https://jobs.googleapis.com/",
   "schemas": {
     "ApplicationInfo": {
@@ -2443,20 +2443,6 @@
       },
       "type": "object"
     },
-    "MendelDebugInput": {
-      "description": "Message representing input to a Mendel server for debug forcing. See go/mendel-debug-forcing for more details. Next ID: 2",
-      "id": "MendelDebugInput",
-      "properties": {
-        "namespacedDebugInput": {
-          "additionalProperties": {
-            "$ref": "NamespacedDebugInput"
-          },
-          "description": "When a request spans multiple servers, a MendelDebugInput may travel with the request and take effect in all the servers. This field is a map of namespaces to NamespacedMendelDebugInput protos. In a single server, up to two NamespacedMendelDebugInput protos are applied: 1. NamespacedMendelDebugInput with the global namespace (key == \"\"). 2. NamespacedMendelDebugInput with the server's namespace. When both NamespacedMendelDebugInput protos are present, they are merged. See go/mendel-debug-forcing for more details.",
-          "type": "object"
-        }
-      },
-      "type": "object"
-    },
     "Money": {
       "description": "Represents an amount of money with its currency type.",
       "id": "Money",
@@ -2473,119 +2459,6 @@
         "units": {
           "description": "The whole units of the amount. For example if `currencyCode` is `\"USD\"`, then 1 unit is one US dollar.",
           "format": "int64",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "NamespacedDebugInput": {
-      "description": "Next ID: 16",
-      "id": "NamespacedDebugInput",
-      "properties": {
-        "absolutelyForcedExpNames": {
-          "description": "Set of experiment names to be absolutely forced. These experiments will be forced without evaluating the conditions.",
-          "items": {
-            "type": "string"
-          },
-          "type": "array"
-        },
-        "absolutelyForcedExpTags": {
-          "description": "Set of experiment tags to be absolutely forced. The experiments with these tags will be forced without evaluating the conditions.",
-          "items": {
-            "type": "string"
-          },
-          "type": "array"
-        },
-        "absolutelyForcedExps": {
-          "description": "Set of experiment ids to be absolutely forced. These ids will be forced without evaluating the conditions.",
-          "items": {
-            "format": "int32",
-            "type": "integer"
-          },
-          "type": "array"
-        },
-        "conditionallyForcedExpNames": {
-          "description": "Set of experiment names to be conditionally forced. These experiments will be forced only if their conditions and their parent domain's conditions are true.",
-          "items": {
-            "type": "string"
-          },
-          "type": "array"
-        },
-        "conditionallyForcedExpTags": {
-          "description": "Set of experiment tags to be conditionally forced. The experiments with these tags will be forced only if their conditions and their parent domain's conditions are true.",
-          "items": {
-            "type": "string"
-          },
-          "type": "array"
-        },
-        "conditionallyForcedExps": {
-          "description": "Set of experiment ids to be conditionally forced. These ids will be forced only if their conditions and their parent domain's conditions are true.",
-          "items": {
-            "format": "int32",
-            "type": "integer"
-          },
-          "type": "array"
-        },
-        "disableAutomaticEnrollmentSelection": {
-          "description": "If true, disable automatic enrollment selection (at all diversion points). Automatic enrollment selection means experiment selection process based on the experiment's automatic enrollment condition. This does not disable selection of forced experiments. Setting this field to false does not change anything in the experiment selection process.",
-          "type": "boolean"
-        },
-        "disableExpNames": {
-          "description": "Set of experiment names to be disabled. If an experiment is disabled, it is never selected nor forced. If an aggregate experiment is disabled, its partitions are disabled together. If an experiment with an enrollment is disabled, the enrollment is disabled together. If a name corresponds to a domain, the domain itself and all descendant experiments and domains are disabled together.",
-          "items": {
-            "type": "string"
-          },
-          "type": "array"
-        },
-        "disableExpTags": {
-          "description": "Set of experiment tags to be disabled. All experiments that are tagged with one or more of these tags are disabled. If an experiment is disabled, it is never selected nor forced. If an aggregate experiment is disabled, its partitions are disabled together. If an experiment with an enrollment is disabled, the enrollment is disabled together.",
-          "items": {
-            "type": "string"
-          },
-          "type": "array"
-        },
-        "disableExps": {
-          "description": "Set of experiment ids to be disabled. If an experiment is disabled, it is never selected nor forced. If an aggregate experiment is disabled, its partitions are disabled together. If an experiment with an enrollment is disabled, the enrollment is disabled together. If an ID corresponds to a domain, the domain itself and all descendant experiments and domains are disabled together.",
-          "items": {
-            "format": "int32",
-            "type": "integer"
-          },
-          "type": "array"
-        },
-        "disableManualEnrollmentSelection": {
-          "description": "If true, disable manual enrollment selection (at all diversion points). Manual enrollment selection means experiment selection process based on the request's manual enrollment states (a.k.a. opt-in experiments). This does not disable selection of forced experiments. Setting this field to false does not change anything in the experiment selection process.",
-          "type": "boolean"
-        },
-        "disableOrganicSelection": {
-          "description": "If true, disable organic experiment selection (at all diversion points). Organic selection means experiment selection process based on traffic allocation and diversion condition evaluation. This does not disable selection of forced experiments. This is useful in cases when it is not known whether experiment selection behavior is responsible for a error or breakage. Disabling organic selection may help to isolate the cause of a given problem. Setting this field to false does not change anything in the experiment selection process.",
-          "type": "boolean"
-        },
-        "forcedFlags": {
-          "additionalProperties": {
-            "type": "string"
-          },
-          "description": "Flags to force in a particular experiment state. Map from flag name to flag value.",
-          "type": "object"
-        },
-        "forcedRollouts": {
-          "additionalProperties": {
-            "type": "boolean"
-          },
-          "description": "Rollouts to force in a particular experiment state. Map from rollout name to rollout value.",
-          "type": "object"
-        },
-        "testingMode": {
-          "description": "Sets different testing modes. See the documentation in the TestingMode message for more information.",
-          "enum": [
-            "TESTING_MODE_UNSPECIFIED",
-            "TESTING_MODE_ALL_OFF",
-            "TESTING_MODE_ALL_ON"
-          ],
-          "enumDescriptions": [
-            "",
-            "",
-            ""
-          ],
           "type": "string"
         }
       },
