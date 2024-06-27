@@ -1156,7 +1156,7 @@ export namespace workflowexecutions_v1 {
   export interface Params$Resource$Projects$Locations$Workflows$Executions$List
     extends StandardParameters {
     /**
-     * Optional. Filters applied to the `[Executions.ListExecutions]` results. The following fields are supported for filtering: `executionId`, `state`, `createTime`, `startTime`, `endTime`, `duration`, `workflowRevisionId`, `stepName`, and `label`. For details, see AIP-160. For example, if you are using the Google APIs Explorer: `state="SUCCEEDED"` or `startTime\>"2023-08-01" AND state="FAILED"`
+     * Optional. Filters applied to the `[Executions.ListExecutions]` results. The following fields are supported for filtering: `executionId`, `state`, `createTime`, `startTime`, `endTime`, `duration`, `workflowRevisionId`, `stepName`, and `label`. For details, see AIP-160. For more information, see Filter executions. For example, if you are using the Google APIs Explorer: `state="SUCCEEDED"` or `startTime\>"2023-08-01" AND state="FAILED"`
      */
     filter?: string;
     /**
