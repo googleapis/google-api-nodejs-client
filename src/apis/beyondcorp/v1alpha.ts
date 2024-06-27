@@ -1599,6 +1599,10 @@ export namespace beyondcorp_v1alpha {
      */
     state?: string | null;
     /**
+     * Output only. Type of subscriber.
+     */
+    subscriberType?: string | null;
+    /**
      * Required. Type of subscription.
      */
     type?: string | null;
