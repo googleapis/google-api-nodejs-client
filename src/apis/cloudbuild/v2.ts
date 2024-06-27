@@ -1435,6 +1435,10 @@ export namespace cloudbuild_v2 {
      */
     name?: string | null;
     /**
+     * Optional. OnError defines the exiting behavior on error can be set to [ continue | stopAndFail ]
+     */
+    onError?: string | null;
+    /**
      * Optional. Optional parameters passed to the StepAction.
      */
     params?: Schema$Param[];
