@@ -384,8 +384,8 @@ export namespace groupssettings_v1 {
     whoCanInvite?: string | null;
     /**
      * Permission to join group. Possible values are:
-     * - ANYONE_CAN_JOIN: Anyone in the account domain can join. This includes accounts with multiple domains.
-     * - ALL_IN_DOMAIN_CAN_JOIN: Any Internet user who is outside your domain can access your Google Groups service and view the list of groups in your Groups directory. Warning: Group owners can add external addresses, outside of the domain to their groups. They can also allow people outside your domain to join their groups. If you later disable this option, any external addresses already added to users' groups remain in those groups.
+     * - ANYONE_CAN_JOIN: Any Internet user who is outside your domain can access your Google Groups service and view the list of groups in your Groups directory. Warning: Group owners can add external addresses, outside of the domain to their groups. They can also allow people outside your domain to join their groups. If you later disable this option, any external addresses already added to users' groups remain in those groups.
+     * - ALL_IN_DOMAIN_CAN_JOIN: Anyone in the account domain can join. This includes accounts with multiple domains.
      * - INVITED_CAN_JOIN: Candidates for membership can be invited to join.
      * - CAN_REQUEST_TO_JOIN: Non members can request an invitation to join.
      */
