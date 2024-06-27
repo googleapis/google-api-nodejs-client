@@ -1168,7 +1168,7 @@
       }
     }
   },
-  "revision": "20240603",
+  "revision": "20240626",
   "rootUrl": "https://androidmanagement.googleapis.com/",
   "schemas": {
     "AdbShellCommandEvent": {
@@ -2953,6 +2953,21 @@
           "description": "Display width in pixels.",
           "format": "int32",
           "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "DisplaySettings": {
+      "description": "Controls for the display settings.",
+      "id": "DisplaySettings",
+      "properties": {
+        "screenBrightnessSettings": {
+          "$ref": "ScreenBrightnessSettings",
+          "description": "Optional. Controls the screen brightness settings."
+        },
+        "screenTimeoutSettings": {
+          "$ref": "ScreenTimeoutSettings",
+          "description": "Optional. Controls the screen timeout settings."
         }
       },
       "type": "object"
@@ -4977,6 +4992,10 @@
           "$ref": "DeviceRadioState",
           "description": "Covers controls for radio state such as Wi-Fi, bluetooth, and more."
         },
+        "displaySettings": {
+          "$ref": "DisplaySettings",
+          "description": "Optional. Controls for the display settings."
+        },
         "encryptionPolicy": {
           "description": "Whether encryption is enabled",
           "enum": [
@@ -5498,6 +5517,10 @@
           "format": "int32",
           "type": "integer"
         },
+        "authenticatedUserEmail": {
+          "description": "The email address of the authenticated user (only present for Google Account provisioning method).",
+          "type": "string"
+        },
         "brand": {
           "description": "The brand of the device. For example, Google.",
           "type": "string"
@@ -5601,6 +5624,60 @@
           "description": "User ID in which the change was requested in.",
           "format": "int32",
           "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "ScreenBrightnessSettings": {
+      "description": "Controls for the screen brightness settings.",
+      "id": "ScreenBrightnessSettings",
+      "properties": {
+        "screenBrightness": {
+          "description": "Optional. The screen brightness between 1 and 255 where 1 is the lowest and 255 is the highest brightness. A value of 0 (default) means no screen brightness set. Any other value is rejected. screenBrightnessMode must be either BRIGHTNESS_AUTOMATIC or BRIGHTNESS_FIXED to set this. Supported on Android 9 and above on fully managed devices. A NonComplianceDetail with API_LEVEL is reported if the Android version is less than 9.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "screenBrightnessMode": {
+          "description": "Optional. Controls the screen brightness mode.",
+          "enum": [
+            "SCREEN_BRIGHTNESS_MODE_UNSPECIFIED",
+            "BRIGHTNESS_USER_CHOICE",
+            "BRIGHTNESS_AUTOMATIC",
+            "BRIGHTNESS_FIXED"
+          ],
+          "enumDescriptions": [
+            "Unspecified. Defaults to BRIGHTNESS_USER_CHOICE.",
+            "The user is allowed to configure the screen brightness. screenBrightness must not be set.",
+            "The screen brightness mode is automatic in which the brightness is automatically adjusted and the user is not allowed to configure the screen brightness. screenBrightness can still be set and it is taken into account while the brightness is automatically adjusted. Supported on Android 9 and above on fully managed devices. A NonComplianceDetail with API_LEVEL is reported if the Android version is less than 9.",
+            "The screen brightness mode is fixed in which the brightness is set to screenBrightness and the user is not allowed to configure the screen brightness. screenBrightness must be set. Supported on Android 9 and above on fully managed devices. A NonComplianceDetail with API_LEVEL is reported if the Android version is less than 9."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ScreenTimeoutSettings": {
+      "description": "Controls the screen timeout settings.",
+      "id": "ScreenTimeoutSettings",
+      "properties": {
+        "screenTimeout": {
+          "description": "Optional. Controls the screen timeout duration. The screen timeout duration must be greater than 0, otherwise it is rejected. Additionally, it should not be greater than maximumTimeToLock, otherwise the screen timeout is set to maximumTimeToLock and a NonComplianceDetail with INVALID_VALUE reason and SCREEN_TIMEOUT_GREATER_THAN_MAXIMUM_TIME_TO_LOCK specific reason is reported. If the screen timeout is less than a certain lower bound, it is set to the lower bound. The lower bound may vary across devices. If this is set, screenTimeoutMode must be SCREEN_TIMEOUT_ENFORCED. Supported on Android 9 and above on fully managed devices. A NonComplianceDetail with API_LEVEL is reported if the Android version is less than 9.",
+          "format": "google-duration",
+          "type": "string"
+        },
+        "screenTimeoutMode": {
+          "description": "Optional. Controls whether the user is allowed to configure the screen timeout.",
+          "enum": [
+            "SCREEN_TIMEOUT_MODE_UNSPECIFIED",
+            "SCREEN_TIMEOUT_USER_CHOICE",
+            "SCREEN_TIMEOUT_ENFORCED"
+          ],
+          "enumDescriptions": [
+            "Unspecified. Defaults to SCREEN_TIMEOUT_USER_CHOICE.",
+            "The user is allowed to configure the screen timeout. screenTimeout must not be set.",
+            "The screen timeout is set to screenTimeout and the user is not allowed to configure the timeout. screenTimeout must be set. Supported on Android 9 and above on fully managed devices. A NonComplianceDetail with API_LEVEL is reported if the Android version is less than 9."
+          ],
+          "type": "string"
         }
       },
       "type": "object"
