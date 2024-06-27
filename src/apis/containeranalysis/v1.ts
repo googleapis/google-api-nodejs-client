@@ -1696,6 +1696,10 @@ export namespace containeranalysis_v1 {
      * The status of an SBOM generation.
      */
     sbomStatus?: Schema$SBOMStatus;
+    /**
+     * The status of an vulnerability attestation generation.
+     */
+    vulnerabilityAttestation?: Schema$VulnerabilityAttestation;
   }
   /**
    * This represents a particular channel of distribution for a given package. E.g., Debian's jessie-backports dpkg mirror.
@@ -3170,6 +3174,23 @@ export namespace containeranalysis_v1 {
      * The title of the note. E.g. `Vex-Debian-11.4`
      */
     title?: string | null;
+  }
+  /**
+   * The status of an vulnerability attestation generation.
+   */
+  export interface Schema$VulnerabilityAttestation {
+    /**
+     * If failure, the error reason for why the attestation generation failed.
+     */
+    error?: string | null;
+    /**
+     * The last time we attempted to generate an attestation.
+     */
+    lastAttemptTime?: string | null;
+    /**
+     * The success/failure state of the latest attestation attempt.
+     */
+    state?: string | null;
   }
   /**
    * A security vulnerability that can be found in resources.
