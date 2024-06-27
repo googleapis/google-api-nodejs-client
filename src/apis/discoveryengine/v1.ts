@@ -851,6 +851,10 @@ export namespace discoveryengine_v1 {
      */
     industryVertical?: string | null;
     /**
+     * Language info for DataStore.
+     */
+    languageInfo?: Schema$GoogleCloudDiscoveryengineV1alphaLanguageInfo;
+    /**
      * Immutable. The full resource name of the data store. Format: `projects/{project\}/locations/{location\}/collections/{collection_id\}/dataStores/{data_store_id\}`. This field must be a UTF-8 encoded string with a length limit of 1024 characters.
      */
     name?: string | null;
@@ -1313,6 +1317,40 @@ export namespace discoveryengine_v1 {
     workforcePoolName?: string | null;
   }
   /**
+   * Metadata related to the progress of the ImportCompletionSuggestions operation. This will be returned by the google.longrunning.Operation.metadata field.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaImportCompletionSuggestionsMetadata {
+    /**
+     * Operation create time.
+     */
+    createTime?: string | null;
+    /**
+     * Count of CompletionSuggestions that failed to be imported.
+     */
+    failureCount?: string | null;
+    /**
+     * Count of CompletionSuggestions successfully imported.
+     */
+    successCount?: string | null;
+    /**
+     * Operation last update time. If the operation is done, this is also the finish time.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * Response of the CompletionService.ImportCompletionSuggestions method. If the long running operation is done, this message is returned by the google.longrunning.Operations.response field if the operation is successful.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaImportCompletionSuggestionsResponse {
+    /**
+     * The desired location of errors incurred during the Import.
+     */
+    errorConfig?: Schema$GoogleCloudDiscoveryengineV1alphaImportErrorConfig;
+    /**
+     * A sample of errors encountered while processing the request.
+     */
+    errorSamples?: Schema$GoogleRpcStatus[];
+  }
+  /**
    * Metadata related to the progress of the ImportDocuments operation. This is returned by the google.longrunning.Operation.metadata field.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaImportDocumentsMetadata {
@@ -1432,6 +1470,27 @@ export namespace discoveryengine_v1 {
     unjoinedEventsCount?: string | null;
   }
   /**
+   * Language info for DataStore.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaLanguageInfo {
+    /**
+     * Output only. Language part of normalized_language_code. E.g.: `en-US` -\> `en`, `zh-Hans-HK` -\> `zh`, `en` -\> `en`.
+     */
+    language?: string | null;
+    /**
+     * The language code for the DataStore.
+     */
+    languageCode?: string | null;
+    /**
+     * Output only. This is the normalized form of language_code. E.g.: language_code of `en-GB`, `en_GB`, `en-UK` or `en-gb` will have normalized_language_code of `en-GB`.
+     */
+    normalizedLanguageCode?: string | null;
+    /**
+     * Output only. Region part of normalized_language_code, if present. E.g.: `en-US` -\> `US`, `zh-Hans-HK` -\> `HK`, `en` -\> ``.
+     */
+    region?: string | null;
+  }
+  /**
    * Response message for SearchTuningService.ListCustomModels method.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaListCustomModelsResponse {
@@ -1494,6 +1553,32 @@ export namespace discoveryengine_v1 {
    * Metadata associated with a project provision operation.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaProvisionProjectMetadata {}
+  /**
+   * Metadata related to the progress of the PurgeCompletionSuggestions operation. This is returned by the google.longrunning.Operation.metadata field.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaPurgeCompletionSuggestionsMetadata {
+    /**
+     * Operation create time.
+     */
+    createTime?: string | null;
+    /**
+     * Operation last update time. If the operation is done, this is also the finish time.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * Response message for CompletionService.PurgeCompletionSuggestions method.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaPurgeCompletionSuggestionsResponse {
+    /**
+     * A sample of errors encountered while processing the request.
+     */
+    errorSamples?: Schema$GoogleRpcStatus[];
+    /**
+     * Whether the completion suggestions were successfully purged.
+     */
+    purgeSucceeded?: boolean | null;
+  }
   /**
    * Metadata related to the progress of the PurgeDocuments operation. This will be returned by the google.longrunning.Operation.metadata field.
    */
@@ -2146,6 +2231,10 @@ export namespace discoveryengine_v1 {
      * The order in which documents are returned. Documents can be ordered by a field in an Document object. Leave it unset if ordered by relevance. `order_by` expression is case-sensitive. For more information on ordering, see [Ordering](https://cloud.google.com/retail/docs/filter-and-order#order) If this field is unrecognizable, an `INVALID_ARGUMENT` is returned.
      */
     orderBy?: string | null;
+    /**
+     * Specifies the search result mode. If unspecified, the search result mode is based on DataStore.DocumentProcessingConfig.chunking_config: * If DataStore.DocumentProcessingConfig.chunking_config is specified, it defaults to `CHUNKS`. * Otherwise, it defaults to `DOCUMENTS`. See [parse and chunk documents](https://cloud.google.com/generative-ai-app-builder/docs/parse-chunk-documents)
+     */
+    searchResultMode?: string | null;
   }
   /**
    * Search result list.
@@ -2789,6 +2878,10 @@ export namespace discoveryengine_v1 {
      */
     industryVertical?: string | null;
     /**
+     * Language info for DataStore.
+     */
+    languageInfo?: Schema$GoogleCloudDiscoveryengineV1betaLanguageInfo;
+    /**
      * Immutable. The full resource name of the data store. Format: `projects/{project\}/locations/{location\}/collections/{collection_id\}/dataStores/{data_store_id\}`. This field must be a UTF-8 encoded string with a length limit of 1024 characters.
      */
     name?: string | null;
@@ -3087,6 +3180,40 @@ export namespace discoveryengine_v1 {
     searchTier?: string | null;
   }
   /**
+   * Metadata related to the progress of the ImportCompletionSuggestions operation. This will be returned by the google.longrunning.Operation.metadata field.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaImportCompletionSuggestionsMetadata {
+    /**
+     * Operation create time.
+     */
+    createTime?: string | null;
+    /**
+     * Count of CompletionSuggestions that failed to be imported.
+     */
+    failureCount?: string | null;
+    /**
+     * Count of CompletionSuggestions successfully imported.
+     */
+    successCount?: string | null;
+    /**
+     * Operation last update time. If the operation is done, this is also the finish time.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * Response of the CompletionService.ImportCompletionSuggestions method. If the long running operation is done, this message is returned by the google.longrunning.Operations.response field if the operation is successful.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaImportCompletionSuggestionsResponse {
+    /**
+     * The desired location of errors incurred during the Import.
+     */
+    errorConfig?: Schema$GoogleCloudDiscoveryengineV1betaImportErrorConfig;
+    /**
+     * A sample of errors encountered while processing the request.
+     */
+    errorSamples?: Schema$GoogleRpcStatus[];
+  }
+  /**
    * Metadata related to the progress of the ImportDocuments operation. This is returned by the google.longrunning.Operation.metadata field.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1betaImportDocumentsMetadata {
@@ -3204,6 +3331,27 @@ export namespace discoveryengine_v1 {
      * Count of user events imported, but with Document information not found in the existing Branch.
      */
     unjoinedEventsCount?: string | null;
+  }
+  /**
+   * Language info for DataStore.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaLanguageInfo {
+    /**
+     * Output only. Language part of normalized_language_code. E.g.: `en-US` -\> `en`, `zh-Hans-HK` -\> `zh`, `en` -\> `en`.
+     */
+    language?: string | null;
+    /**
+     * The language code for the DataStore.
+     */
+    languageCode?: string | null;
+    /**
+     * Output only. This is the normalized form of language_code. E.g.: language_code of `en-GB`, `en_GB`, `en-UK` or `en-gb` will have normalized_language_code of `en-GB`.
+     */
+    normalizedLanguageCode?: string | null;
+    /**
+     * Output only. Region part of normalized_language_code, if present. E.g.: `en-US` -\> `US`, `zh-Hans-HK` -\> `HK`, `en` -\> ``.
+     */
+    region?: string | null;
   }
   /**
    * Response message for SearchTuningService.ListCustomModels method.
@@ -3682,6 +3830,86 @@ export namespace discoveryengine_v1 {
     citationThreshold?: number | null;
   }
   /**
+   * Chunk captures all raw metadata information of items to be recommended or searched in the chunk mode.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1Chunk {
+    /**
+     * Output only. Metadata of the current chunk.
+     */
+    chunkMetadata?: Schema$GoogleCloudDiscoveryengineV1ChunkChunkMetadata;
+    /**
+     * Content is a string from a document (parsed content).
+     */
+    content?: string | null;
+    /**
+     * Output only. This field is OUTPUT_ONLY. It contains derived data that are not in the original input document.
+     */
+    derivedStructData?: {[key: string]: any} | null;
+    /**
+     * Metadata of the document from the current chunk.
+     */
+    documentMetadata?: Schema$GoogleCloudDiscoveryengineV1ChunkDocumentMetadata;
+    /**
+     * Unique chunk ID of the current chunk.
+     */
+    id?: string | null;
+    /**
+     * The full resource name of the chunk. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store\}/branches/{branch\}/documents/{document_id\}/chunks/{chunk_id\}`. This field must be a UTF-8 encoded string with a length limit of 1024 characters.
+     */
+    name?: string | null;
+    /**
+     * Page span of the chunk.
+     */
+    pageSpan?: Schema$GoogleCloudDiscoveryengineV1ChunkPageSpan;
+    /**
+     * Output only. Represents the relevance score based on similarity. Higher score indicates higher chunk relevance. The score is in range [-1.0, 1.0]. Only populated on SearchService.SearchResponse.
+     */
+    relevanceScore?: number | null;
+  }
+  /**
+   * Metadata of the current chunk. This field is only populated on SearchService.Search API.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1ChunkChunkMetadata {
+    /**
+     * The next chunks of the current chunk. The number is controlled by SearchRequest.ContentSearchSpec.ChunkSpec.num_next_chunks. This field is only populated on SearchService.Search API.
+     */
+    nextChunks?: Schema$GoogleCloudDiscoveryengineV1Chunk[];
+    /**
+     * The previous chunks of the current chunk. The number is controlled by SearchRequest.ContentSearchSpec.ChunkSpec.num_previous_chunks. This field is only populated on SearchService.Search API.
+     */
+    previousChunks?: Schema$GoogleCloudDiscoveryengineV1Chunk[];
+  }
+  /**
+   * Document metadata contains the information of the document of the current chunk.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1ChunkDocumentMetadata {
+    /**
+     * Data representation. The structured JSON data for the document. It should conform to the registered Schema or an `INVALID_ARGUMENT` error is thrown.
+     */
+    structData?: {[key: string]: any} | null;
+    /**
+     * Title of the document.
+     */
+    title?: string | null;
+    /**
+     * Uri of the document.
+     */
+    uri?: string | null;
+  }
+  /**
+   * Page span of the chunk.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1ChunkPageSpan {
+    /**
+     * The end page of the chunk.
+     */
+    pageEnd?: number | null;
+    /**
+     * The start page of the chunk.
+     */
+    pageStart?: number | null;
+  }
+  /**
    * Cloud SQL source import data from.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1CloudSqlSource {
@@ -3748,6 +3976,39 @@ export namespace discoveryengine_v1 {
      * End user selected CompleteQueryResponse.QuerySuggestion.suggestion.
      */
     selectedSuggestion?: string | null;
+  }
+  /**
+   * Autocomplete suggestions that are imported from Customer.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1CompletionSuggestion {
+    /**
+     * Alternative matching phrases for this suggestion.
+     */
+    alternativePhrases?: string[] | null;
+    /**
+     * Frequency of this suggestion. Will be used to rank suggestions when score is not available.
+     */
+    frequency?: string | null;
+    /**
+     * Global score of this suggestion. Control how this suggestion would be scored / ranked.
+     */
+    globalScore?: number | null;
+    /**
+     * If two suggestions have the same groupId, they will not be returned together. Instead the one ranked higher will be returned. This can be used to deduplicate semantically identical suggestions.
+     */
+    groupId?: string | null;
+    /**
+     * The score of this suggestion within its group.
+     */
+    groupScore?: number | null;
+    /**
+     * BCP-47 language code of this suggestion.
+     */
+    languageCode?: string | null;
+    /**
+     * Required. The suggestion text.
+     */
+    suggestion?: string | null;
   }
   /**
    * Defines circumstances to be checked before allowing a behavior
@@ -4240,7 +4501,7 @@ export namespace discoveryengine_v1 {
      */
     rawBytes?: string | null;
     /**
-     * The URI of the content. Only Cloud Storage URIs (e.g. `gs://bucket-name/path/to/file`) are supported. The maximum file size is 2.5 MB for text-based formats, 100 MB for other formats.
+     * The URI of the content. Only Cloud Storage URIs (e.g. `gs://bucket-name/path/to/file`) are supported. The maximum file size is 2.5 MB for text-based formats, 200 MB for other formats.
      */
     uri?: string | null;
   }
@@ -4586,6 +4847,70 @@ export namespace discoveryengine_v1 {
      * Text content of the fact. Can be at most 10K characters long.
      */
     factText?: string | null;
+  }
+  /**
+   * Metadata related to the progress of the ImportCompletionSuggestions operation. This will be returned by the google.longrunning.Operation.metadata field.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1ImportCompletionSuggestionsMetadata {
+    /**
+     * Operation create time.
+     */
+    createTime?: string | null;
+    /**
+     * Count of CompletionSuggestions that failed to be imported.
+     */
+    failureCount?: string | null;
+    /**
+     * Count of CompletionSuggestions successfully imported.
+     */
+    successCount?: string | null;
+    /**
+     * Operation last update time. If the operation is done, this is also the finish time.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * Request message for CompletionService.ImportCompletionSuggestions method.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1ImportCompletionSuggestionsRequest {
+    /**
+     * BigQuery input source.
+     */
+    bigquerySource?: Schema$GoogleCloudDiscoveryengineV1BigQuerySource;
+    /**
+     * The desired location of errors incurred during the Import.
+     */
+    errorConfig?: Schema$GoogleCloudDiscoveryengineV1ImportErrorConfig;
+    /**
+     * Cloud Storage location for the input content.
+     */
+    gcsSource?: Schema$GoogleCloudDiscoveryengineV1GcsSource;
+    /**
+     * The Inline source for suggestion entries.
+     */
+    inlineSource?: Schema$GoogleCloudDiscoveryengineV1ImportCompletionSuggestionsRequestInlineSource;
+  }
+  /**
+   * The inline source for CompletionSuggestions.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1ImportCompletionSuggestionsRequestInlineSource {
+    /**
+     * Required. A list of all denylist entries to import. Max of 1000 items.
+     */
+    suggestions?: Schema$GoogleCloudDiscoveryengineV1CompletionSuggestion[];
+  }
+  /**
+   * Response of the CompletionService.ImportCompletionSuggestions method. If the long running operation is done, this message is returned by the google.longrunning.Operations.response field if the operation is successful.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1ImportCompletionSuggestionsResponse {
+    /**
+     * The desired location of errors incurred during the Import.
+     */
+    errorConfig?: Schema$GoogleCloudDiscoveryengineV1ImportErrorConfig;
+    /**
+     * A sample of errors encountered while processing the request.
+     */
+    errorSamples?: Schema$GoogleRpcStatus[];
   }
   /**
    * Metadata related to the progress of the ImportDocuments operation. This is returned by the google.longrunning.Operation.metadata field.
@@ -5078,6 +5403,36 @@ export namespace discoveryengine_v1 {
     dataUseTermsVersion?: string | null;
   }
   /**
+   * Metadata related to the progress of the PurgeCompletionSuggestions operation. This is returned by the google.longrunning.Operation.metadata field.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1PurgeCompletionSuggestionsMetadata {
+    /**
+     * Operation create time.
+     */
+    createTime?: string | null;
+    /**
+     * Operation last update time. If the operation is done, this is also the finish time.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * Request message for CompletionService.PurgeCompletionSuggestions method.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1PurgeCompletionSuggestionsRequest {}
+  /**
+   * Response message for CompletionService.PurgeCompletionSuggestions method.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1PurgeCompletionSuggestionsResponse {
+    /**
+     * A sample of errors encountered while processing the request.
+     */
+    errorSamples?: Schema$GoogleRpcStatus[];
+    /**
+     * Whether the completion suggestions were successfully purged.
+     */
+    purgeSucceeded?: boolean | null;
+  }
+  /**
    * Metadata related to the progress of the PurgeDocuments operation. This will be returned by the google.longrunning.Operation.metadata field.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1PurgeDocumentsMetadata {
@@ -5386,6 +5741,10 @@ export namespace discoveryengine_v1 {
      */
     imageQuery?: Schema$GoogleCloudDiscoveryengineV1SearchRequestImageQuery;
     /**
+     * The BCP-47 language code, such as "en-US" or "sr-Latn". For more information, see [Standard fields](https://cloud.google.com/apis/design/standard_fields). This field helps to better interpret the query. If a value isn't specified, the query language code is automatically detected, which may not be accurate.
+     */
+    languageCode?: string | null;
+    /**
      * A 0-indexed integer that specifies the current offset (that is, starting result location, amongst the Documents deemed by the API as relevant) in search results. This field is only considered if page_token is unset. If this field is negative, an `INVALID_ARGUMENT` is returned.
      */
     offset?: number | null;
@@ -5461,9 +5820,17 @@ export namespace discoveryengine_v1 {
    */
   export interface Schema$GoogleCloudDiscoveryengineV1SearchRequestContentSearchSpec {
     /**
+     * Specifies the chunk spec to be returned from the search response. Only available if the SearchRequest.ContentSearchSpec.search_result_mode is set to CHUNKS
+     */
+    chunkSpec?: Schema$GoogleCloudDiscoveryengineV1SearchRequestContentSearchSpecChunkSpec;
+    /**
      * If there is no extractive_content_spec provided, there will be no extractive answer in the search response.
      */
     extractiveContentSpec?: Schema$GoogleCloudDiscoveryengineV1SearchRequestContentSearchSpecExtractiveContentSpec;
+    /**
+     * Specifies the search result mode. If unspecified, the search result mode is based on DataStore.DocumentProcessingConfig.chunking_config: * If DataStore.DocumentProcessingConfig.chunking_config is specified, it defaults to `CHUNKS`. * Otherwise, it defaults to `DOCUMENTS`.
+     */
+    searchResultMode?: string | null;
     /**
      * If `snippetSpec` is not specified, snippets are not included in the search response.
      */
@@ -5472,6 +5839,19 @@ export namespace discoveryengine_v1 {
      * If `summarySpec` is not specified, summaries are not included in the search response.
      */
     summarySpec?: Schema$GoogleCloudDiscoveryengineV1SearchRequestContentSearchSpecSummarySpec;
+  }
+  /**
+   * Specifies the chunk spec to be returned from the search response. Only available if the SearchRequest.ContentSearchSpec.search_result_mode is set to CHUNKS
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1SearchRequestContentSearchSpecChunkSpec {
+    /**
+     * The number of next chunks to be returned of the current chunk. The maximum allowed value is 3. If not specified, no next chunks will be returned.
+     */
+    numNextChunks?: number | null;
+    /**
+     * The number of previous chunks to be returned of the current chunk. The maximum allowed value is 3. If not specified, no previous chunks will be returned.
+     */
+    numPreviousChunks?: number | null;
   }
   /**
    * A specification for configuring the extractive content in a search response.
@@ -5596,7 +5976,7 @@ export namespace discoveryengine_v1 {
      */
     facetKey?: Schema$GoogleCloudDiscoveryengineV1SearchRequestFacetSpecFacetKey;
     /**
-     * Maximum facet values that are returned for this facet. If unspecified, defaults to 20. The maximum allowed value is 300. Values above 300 are coerced to 300. If this field is negative, an `INVALID_ARGUMENT` is returned.
+     * Maximum facet values that are returned for this facet. If unspecified, defaults to 20. The maximum allowed value is 300. Values above 300 are coerced to 300. For aggregation in healthcare search, when the [FacetKey.key] is "healthcare_aggregation_key", the limit will be overridden to 10,000 internally, regardless of the value set here. If this field is negative, an `INVALID_ARGUMENT` is returned.
      */
     limit?: number | null;
   }
@@ -5756,6 +6136,10 @@ export namespace discoveryengine_v1 {
    * Represents the search results.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1SearchResponseSearchResult {
+    /**
+     * The chunk data in the search response if the SearchRequest.ContentSearchSpec.search_result_mode is set to CHUNKS.
+     */
+    chunk?: Schema$GoogleCloudDiscoveryengineV1Chunk;
     /**
      * The document data snippet in the search response. Only fields that are marked as `retrievable` are populated.
      */
@@ -6714,6 +7098,7 @@ export namespace discoveryengine_v1 {
   export class Resource$Projects$Locations$Collections$Datastores {
     context: APIRequestContext;
     branches: Resource$Projects$Locations$Collections$Datastores$Branches;
+    completionSuggestions: Resource$Projects$Locations$Collections$Datastores$Completionsuggestions;
     controls: Resource$Projects$Locations$Collections$Datastores$Controls;
     conversations: Resource$Projects$Locations$Collections$Datastores$Conversations;
     models: Resource$Projects$Locations$Collections$Datastores$Models;
@@ -6728,6 +7113,10 @@ export namespace discoveryengine_v1 {
       this.context = context;
       this.branches =
         new Resource$Projects$Locations$Collections$Datastores$Branches(
+          this.context
+        );
+      this.completionSuggestions =
+        new Resource$Projects$Locations$Collections$Datastores$Completionsuggestions(
           this.context
         );
       this.controls =
@@ -8665,6 +9054,230 @@ export namespace discoveryengine_v1 {
      * The standard list page token.
      */
     pageToken?: string;
+  }
+
+  export class Resource$Projects$Locations$Collections$Datastores$Completionsuggestions {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Imports CompletionSuggestions for a DataStore.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    import(
+      params: Params$Resource$Projects$Locations$Collections$Datastores$Completionsuggestions$Import,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    import(
+      params?: Params$Resource$Projects$Locations$Collections$Datastores$Completionsuggestions$Import,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    import(
+      params: Params$Resource$Projects$Locations$Collections$Datastores$Completionsuggestions$Import,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    import(
+      params: Params$Resource$Projects$Locations$Collections$Datastores$Completionsuggestions$Import,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    import(
+      params: Params$Resource$Projects$Locations$Collections$Datastores$Completionsuggestions$Import,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    import(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    import(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Collections$Datastores$Completionsuggestions$Import
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Collections$Datastores$Completionsuggestions$Import;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Collections$Datastores$Completionsuggestions$Import;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://discoveryengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1/{+parent}/completionSuggestions:import'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+
+    /**
+     * Permanently deletes all CompletionSuggestions for a DataStore.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    purge(
+      params: Params$Resource$Projects$Locations$Collections$Datastores$Completionsuggestions$Purge,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    purge(
+      params?: Params$Resource$Projects$Locations$Collections$Datastores$Completionsuggestions$Purge,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    purge(
+      params: Params$Resource$Projects$Locations$Collections$Datastores$Completionsuggestions$Purge,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    purge(
+      params: Params$Resource$Projects$Locations$Collections$Datastores$Completionsuggestions$Purge,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    purge(
+      params: Params$Resource$Projects$Locations$Collections$Datastores$Completionsuggestions$Purge,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    purge(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    purge(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Collections$Datastores$Completionsuggestions$Purge
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Collections$Datastores$Completionsuggestions$Purge;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Collections$Datastores$Completionsuggestions$Purge;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://discoveryengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1/{+parent}/completionSuggestions:purge'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Collections$Datastores$Completionsuggestions$Import
+    extends StandardParameters {
+    /**
+     * Required. The parent data store resource name for which to import customer autocomplete suggestions. Follows pattern `projects/x/locations/x/collections/x/dataStores/x`
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDiscoveryengineV1ImportCompletionSuggestionsRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Collections$Datastores$Completionsuggestions$Purge
+    extends StandardParameters {
+    /**
+     * Required. The parent data store resource name for which to purge completion suggestions. Follows pattern projects/x/locations/x/collections/x/dataStores/x.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDiscoveryengineV1PurgeCompletionSuggestionsRequest;
   }
 
   export class Resource$Projects$Locations$Collections$Datastores$Controls {
@@ -17647,6 +18260,7 @@ export namespace discoveryengine_v1 {
   export class Resource$Projects$Locations$Datastores {
     context: APIRequestContext;
     branches: Resource$Projects$Locations$Datastores$Branches;
+    completionSuggestions: Resource$Projects$Locations$Datastores$Completionsuggestions;
     controls: Resource$Projects$Locations$Datastores$Controls;
     conversations: Resource$Projects$Locations$Datastores$Conversations;
     models: Resource$Projects$Locations$Datastores$Models;
@@ -17662,6 +18276,10 @@ export namespace discoveryengine_v1 {
       this.branches = new Resource$Projects$Locations$Datastores$Branches(
         this.context
       );
+      this.completionSuggestions =
+        new Resource$Projects$Locations$Datastores$Completionsuggestions(
+          this.context
+        );
       this.controls = new Resource$Projects$Locations$Datastores$Controls(
         this.context
       );
@@ -19582,6 +20200,230 @@ export namespace discoveryengine_v1 {
      * The standard list page token.
      */
     pageToken?: string;
+  }
+
+  export class Resource$Projects$Locations$Datastores$Completionsuggestions {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Imports CompletionSuggestions for a DataStore.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    import(
+      params: Params$Resource$Projects$Locations$Datastores$Completionsuggestions$Import,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    import(
+      params?: Params$Resource$Projects$Locations$Datastores$Completionsuggestions$Import,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    import(
+      params: Params$Resource$Projects$Locations$Datastores$Completionsuggestions$Import,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    import(
+      params: Params$Resource$Projects$Locations$Datastores$Completionsuggestions$Import,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    import(
+      params: Params$Resource$Projects$Locations$Datastores$Completionsuggestions$Import,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    import(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    import(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datastores$Completionsuggestions$Import
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datastores$Completionsuggestions$Import;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Datastores$Completionsuggestions$Import;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://discoveryengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1/{+parent}/completionSuggestions:import'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+
+    /**
+     * Permanently deletes all CompletionSuggestions for a DataStore.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    purge(
+      params: Params$Resource$Projects$Locations$Datastores$Completionsuggestions$Purge,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    purge(
+      params?: Params$Resource$Projects$Locations$Datastores$Completionsuggestions$Purge,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    purge(
+      params: Params$Resource$Projects$Locations$Datastores$Completionsuggestions$Purge,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    purge(
+      params: Params$Resource$Projects$Locations$Datastores$Completionsuggestions$Purge,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    purge(
+      params: Params$Resource$Projects$Locations$Datastores$Completionsuggestions$Purge,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    purge(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    purge(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datastores$Completionsuggestions$Purge
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datastores$Completionsuggestions$Purge;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Datastores$Completionsuggestions$Purge;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://discoveryengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1/{+parent}/completionSuggestions:purge'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Datastores$Completionsuggestions$Import
+    extends StandardParameters {
+    /**
+     * Required. The parent data store resource name for which to import customer autocomplete suggestions. Follows pattern `projects/x/locations/x/collections/x/dataStores/x`
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDiscoveryengineV1ImportCompletionSuggestionsRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Datastores$Completionsuggestions$Purge
+    extends StandardParameters {
+    /**
+     * Required. The parent data store resource name for which to purge completion suggestions. Follows pattern projects/x/locations/x/collections/x/dataStores/x.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDiscoveryengineV1PurgeCompletionSuggestionsRequest;
   }
 
   export class Resource$Projects$Locations$Datastores$Controls {
@@ -24851,6 +25693,98 @@ export namespace discoveryengine_v1 {
     }
 
     /**
+     * Writes a single user event from the browser. This uses a GET request to due to browser restriction of POST-ing to a third-party domain. This method is used only by the Discovery Engine API JavaScript pixel and Google Tag Manager. Users should not call this method directly.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    collect(
+      params: Params$Resource$Projects$Locations$Userevents$Collect,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    collect(
+      params?: Params$Resource$Projects$Locations$Userevents$Collect,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleApiHttpBody>;
+    collect(
+      params: Params$Resource$Projects$Locations$Userevents$Collect,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    collect(
+      params: Params$Resource$Projects$Locations$Userevents$Collect,
+      options: MethodOptions | BodyResponseCallback<Schema$GoogleApiHttpBody>,
+      callback: BodyResponseCallback<Schema$GoogleApiHttpBody>
+    ): void;
+    collect(
+      params: Params$Resource$Projects$Locations$Userevents$Collect,
+      callback: BodyResponseCallback<Schema$GoogleApiHttpBody>
+    ): void;
+    collect(callback: BodyResponseCallback<Schema$GoogleApiHttpBody>): void;
+    collect(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Userevents$Collect
+        | BodyResponseCallback<Schema$GoogleApiHttpBody>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleApiHttpBody>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleApiHttpBody>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleApiHttpBody>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Userevents$Collect;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Userevents$Collect;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://discoveryengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/userEvents:collect').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleApiHttpBody>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleApiHttpBody>(parameters);
+      }
+    }
+
+    /**
      * Writes a single user event.
      *
      * @param params - Parameters for request
@@ -24949,6 +25883,25 @@ export namespace discoveryengine_v1 {
     }
   }
 
+  export interface Params$Resource$Projects$Locations$Userevents$Collect
+    extends StandardParameters {
+    /**
+     * The event timestamp in milliseconds. This prevents browser caching of otherwise identical get requests. The name is abbreviated to reduce the payload bytes.
+     */
+    ets?: string;
+    /**
+     * Required. The parent DataStore resource name, such as `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store\}`.
+     */
+    parent?: string;
+    /**
+     * The URL including cgi-parameters but excluding the hash fragment with a length limit of 5,000 characters. This is often more useful than the referer URL, because many browsers only send the domain for third-party requests.
+     */
+    uri?: string;
+    /**
+     * Required. URL encoded UserEvent proto with a length limit of 2,000,000 characters.
+     */
+    userEvent?: string;
+  }
   export interface Params$Resource$Projects$Locations$Userevents$Write
     extends StandardParameters {
     /**
