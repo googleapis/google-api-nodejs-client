@@ -1545,7 +1545,7 @@
     "inboundSamlSsoProfiles": {
       "methods": {
         "create": {
-          "description": "Creates an InboundSamlSsoProfile for a customer.",
+          "description": "Creates an InboundSamlSsoProfile for a customer. When the target customer has enabled [Multi-party approval for sensitive actions](https://support.google.com/a/answer/13790448), the `Operation` in the response will have `\"done\": false`, it will not have a response, and the metadata will have `\"state\": \"awaiting-multi-party-approval\"`.",
           "flatPath": "v1beta1/inboundSamlSsoProfiles",
           "httpMethod": "POST",
           "id": "cloudidentity.inboundSamlSsoProfiles.create",
@@ -1645,7 +1645,7 @@
           ]
         },
         "patch": {
-          "description": "Updates an InboundSamlSsoProfile.",
+          "description": "Updates an InboundSamlSsoProfile. When the target customer has enabled [Multi-party approval for sensitive actions](https://support.google.com/a/answer/13790448), the `Operation` in the response will have `\"done\": false`, it will not have a response, and the metadata will have `\"state\": \"awaiting-multi-party-approval\"`.",
           "flatPath": "v1beta1/inboundSamlSsoProfiles/{inboundSamlSsoProfilesId}",
           "httpMethod": "PATCH",
           "id": "cloudidentity.inboundSamlSsoProfiles.patch",
@@ -1683,7 +1683,7 @@
         "idpCredentials": {
           "methods": {
             "add": {
-              "description": "Adds an IdpCredential. Up to 2 credentials are allowed.",
+              "description": "Adds an IdpCredential. Up to 2 credentials are allowed. When the target customer has enabled [Multi-party approval for sensitive actions](https://support.google.com/a/answer/13790448), the `Operation` in the response will have `\"done\": false`, it will not have a response, and the metadata will have `\"state\": \"awaiting-multi-party-approval\"`.",
               "flatPath": "v1beta1/inboundSamlSsoProfiles/{inboundSamlSsoProfilesId}/idpCredentials:add",
               "httpMethod": "POST",
               "id": "cloudidentity.inboundSamlSsoProfiles.idpCredentials.add",
@@ -2015,13 +2015,18 @@
       }
     }
   },
-  "revision": "20240507",
+  "revision": "20240625",
   "rootUrl": "https://cloudidentity.googleapis.com/",
   "schemas": {
     "AddIdpCredentialOperationMetadata": {
       "description": "LRO response metadata for InboundSamlSsoProfilesService.AddIdpCredential.",
       "id": "AddIdpCredentialOperationMetadata",
-      "properties": {},
+      "properties": {
+        "state": {
+          "description": "State of this Operation Will be \"awaiting-multi-party-approval\" when the operation is deferred due to the target customer having enabled [Multi-party approval for sensitive actions](https://support.google.com/a/answer/13790448).",
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "AddIdpCredentialRequest": {
@@ -2520,7 +2525,12 @@
     "CreateInboundSamlSsoProfileOperationMetadata": {
       "description": "LRO response metadata for InboundSamlSsoProfilesService.CreateInboundSamlSsoProfile.",
       "id": "CreateInboundSamlSsoProfileOperationMetadata",
-      "properties": {},
+      "properties": {
+        "state": {
+          "description": "State of this Operation Will be \"awaiting-multi-party-approval\" when the operation is deferred due to the target customer having enabled [Multi-party approval for sensitive actions](https://support.google.com/a/answer/13790448).",
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "CreateInboundSsoAssignmentOperationMetadata": {
@@ -5067,7 +5077,12 @@
     "UpdateInboundSamlSsoProfileOperationMetadata": {
       "description": "LRO response metadata for InboundSamlSsoProfilesService.UpdateInboundSamlSsoProfile.",
       "id": "UpdateInboundSamlSsoProfileOperationMetadata",
-      "properties": {},
+      "properties": {
+        "state": {
+          "description": "State of this Operation Will be \"awaiting-multi-party-approval\" when the operation is deferred due to the target customer having enabled [Multi-party approval for sensitive actions](https://support.google.com/a/answer/13790448).",
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "UpdateInboundSsoAssignmentOperationMetadata": {
