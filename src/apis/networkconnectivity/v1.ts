@@ -203,6 +203,10 @@ export namespace networkconnectivity_v1 {
    */
   export interface Schema$ConsumerPscConfig {
     /**
+     * Required. The project ID or project number of the consumer project. This project is the one that the consumer uses to interact with the producer instance. From the perspective of a consumer who's created a producer instance, this is the project of the producer instance. Format: 'projects/' Eg. 'projects/consumer-project' or 'projects/1234'
+     */
+    consumerInstanceProject?: string | null;
+    /**
      * This is used in PSC consumer ForwardingRule to control whether the PSC endpoint can be accessed from another region.
      */
     disableGlobalAccess?: boolean | null;
@@ -575,6 +579,10 @@ export namespace networkconnectivity_v1 {
    */
   export interface Schema$LinkedInterconnectAttachments {
     /**
+     * Optional. IP ranges allowed to be included during import from hub.(does not control transit connectivity) The only allowed value for now is "ALL_IPV4_RANGES".
+     */
+    includeImportRanges?: string[] | null;
+    /**
      * A value that controls whether site-to-site data transfer is enabled for these resources. Data transfer is available only in [supported locations](https://cloud.google.com/network-connectivity/docs/network-connectivity-center/concepts/locations).
      */
     siteToSiteDataTransfer?: boolean | null;
@@ -591,6 +599,10 @@ export namespace networkconnectivity_v1 {
    * A collection of router appliance instances. If you configure multiple router appliance instances to receive data from the same set of sites outside of Google Cloud, we recommend that you associate those instances with the same spoke.
    */
   export interface Schema$LinkedRouterApplianceInstances {
+    /**
+     * Optional. IP ranges allowed to be included during import from hub.(does not control transit connectivity) The only allowed value for now is "ALL_IPV4_RANGES".
+     */
+    includeImportRanges?: string[] | null;
     /**
      * The list of router appliance instances.
      */
@@ -613,6 +625,10 @@ export namespace networkconnectivity_v1 {
      */
     excludeExportRanges?: string[] | null;
     /**
+     * Optional. IP ranges allowed to be included from peering.
+     */
+    includeExportRanges?: string[] | null;
+    /**
      * Required. The URI of the VPC network resource.
      */
     uri?: string | null;
@@ -621,6 +637,10 @@ export namespace networkconnectivity_v1 {
    * A collection of Cloud VPN tunnel resources. These resources should be redundant HA VPN tunnels that all advertise the same prefixes to Google Cloud. Alternatively, in a passive/active configuration, all tunnels should be capable of advertising the same prefixes.
    */
   export interface Schema$LinkedVpnTunnels {
+    /**
+     * Optional. IP ranges allowed to be included during import from hub.(does not control transit connectivity) The only allowed value for now is "ALL_IPV4_RANGES".
+     */
+    includeImportRanges?: string[] | null;
     /**
      * A value that controls whether site-to-site data transfer is enabled for these resources. Data transfer is available only in [supported locations](https://cloud.google.com/network-connectivity/docs/network-connectivity-center/concepts/locations).
      */
@@ -1092,9 +1112,17 @@ export namespace networkconnectivity_v1 {
    */
   export interface Schema$PscConfig {
     /**
+     * Optional. List of Projects, Folders, or Organizations from where the Producer instance can be within. For example, a network administrator can provide both 'organizations/foo' and 'projects/bar' as allowed_google_producers_resource_hierarchy_levels. This allowlists this network to connect with any Producer instance within the 'foo' organization or the 'bar' project. By default, allowed_google_producers_resource_hierarchy_level is empty. The format for each allowed_google_producers_resource_hierarchy_level is / where is one of 'projects', 'folders', or 'organizations' and is either the ID or the number of the resource type. Format for each allowed_google_producers_resource_hierarchy_level value: 'projects/' or 'folders/' or 'organizations/' Eg. [projects/my-project-id, projects/567, folders/891, organizations/123]
+     */
+    allowedGoogleProducersResourceHierarchyLevel?: string[] | null;
+    /**
      * Optional. Max number of PSC connections for this policy.
      */
     limit?: string | null;
+    /**
+     * Required. ProducerInstanceLocation is used to specify which authorization mechanism to use to determine which projects the Producer instance can be within.
+     */
+    producerInstanceLocation?: string | null;
     /**
      * The resource paths of subnetworks to use for IP address management. Example: projects/{projectNumOrId\}/regions/{region\}/subnetworks/{resourceId\}.
      */
