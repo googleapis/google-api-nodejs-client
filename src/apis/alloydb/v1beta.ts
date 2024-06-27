@@ -420,6 +420,14 @@ export namespace alloydb_v1beta {
      */
     state?: string | null;
     /**
+     * Optional. Subscription type of the cluster.
+     */
+    subscriptionType?: string | null;
+    /**
+     * Output only. Metadata for free trial clusters
+     */
+    trialMetadata?: Schema$TrialMetadata;
+    /**
      * Output only. The system-generated UID of the resource. The UID is assigned when the resource is created, and it is retained until it is deleted.
      */
     uid?: string | null;
@@ -1521,10 +1529,6 @@ export namespace alloydb_v1beta {
      */
     updationTime?: string | null;
     /**
-     * User-provided labels, represented as a dictionary where each label is a single key value pair.
-     */
-    userLabels?: {[key: string]: string} | null;
-    /**
      * User-provided labels associated with the resource
      */
     userLabelSet?: Schema$StorageDatabasecenterPartnerapiV1mainUserLabels;
@@ -1584,23 +1588,27 @@ export namespace alloydb_v1beta {
    */
   export interface Schema$StorageDatabasecenterPartnerapiV1mainMachineConfiguration {
     /**
-     * The number of CPUs.
+     * The number of CPUs. TODO(b/342344482, b/342346271) add proto validations again after bug fix.
      */
     cpuCount?: number | null;
     /**
-     * Memory size in bytes.
+     * Memory size in bytes. TODO(b/342344482, b/342346271) add proto validations again after bug fix.
      */
     memorySizeInBytes?: string | null;
   }
   export interface Schema$StorageDatabasecenterPartnerapiV1mainObservabilityMetricData {
     /**
-     * Required. The timestamp of the metric value.
+     * Required. Type of aggregation performed on the metric.
      */
-    metricTimestamp?: string | null;
+    aggregationType?: string | null;
     /**
      * Required. Type of metric like CPU, Memory, etc.
      */
     metricType?: string | null;
+    /**
+     * Required. The time the metric value was observed.
+     */
+    observationTime?: string | null;
     /**
      * Required. Database resource name associated with the signal. Resource name to follow CAIS resource_name format as noted here go/condor-common-datamodel
      */
@@ -1608,7 +1616,7 @@ export namespace alloydb_v1beta {
     /**
      * Required. Value of the metric type.
      */
-    value?: number | null;
+    value?: Schema$StorageDatabasecenterProtoCommonTypedValue;
   }
   /**
    * An error that occurred during a backup creation operation.
@@ -1656,6 +1664,27 @@ export namespace alloydb_v1beta {
     version?: string | null;
   }
   /**
+   * TypedValue represents the value of a metric type. It can either be a double, an int64, a string or a bool.
+   */
+  export interface Schema$StorageDatabasecenterProtoCommonTypedValue {
+    /**
+     * For boolean value
+     */
+    boolValue?: boolean | null;
+    /**
+     * For double value
+     */
+    doubleValue?: number | null;
+    /**
+     * For integer value
+     */
+    int64Value?: string | null;
+    /**
+     * For string value
+     */
+    stringValue?: string | null;
+  }
+  /**
    * Restrictions on STRING type values
    */
   export interface Schema$StringRestrictions {
@@ -1699,6 +1728,19 @@ export namespace alloydb_v1beta {
     valueType?: string | null;
   }
   /**
+   * Message for switching over to a cluster
+   */
+  export interface Schema$SwitchoverClusterRequest {
+    /**
+     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string | null;
+    /**
+     * Optional. If set, performs request validation (e.g. permission checks and any other type of validation), but do not actually execute the delete.
+     */
+    validateOnly?: boolean | null;
+  }
+  /**
    * A time based retention policy specifies that all backups within a certain time period should be retained.
    */
   export interface Schema$TimeBasedRetention {
@@ -1706,6 +1748,23 @@ export namespace alloydb_v1beta {
      * The retention period.
      */
     retentionPeriod?: string | null;
+  }
+  /**
+   * Contains information and all metadata related to TRIAL clusters.
+   */
+  export interface Schema$TrialMetadata {
+    /**
+     * End time of the trial cluster.
+     */
+    endTime?: string | null;
+    /**
+     * start time of the trial cluster.
+     */
+    startTime?: string | null;
+    /**
+     * Upgrade time of trial cluster to Standard cluster.
+     */
+    upgradeTime?: string | null;
   }
   /**
    * Policy to be used while updating the instance.
@@ -3261,6 +3320,94 @@ export namespace alloydb_v1beta {
         return createAPIRequest<Schema$Operation>(parameters);
       }
     }
+
+    /**
+     * Switches the role of PRIMARY and SECONDARY cluster without any data loss. This promotes the SECONDARY cluster to PRIMARY and sets up original PRIMARY cluster to replicate from this newly promoted cluster.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    switchover(
+      params: Params$Resource$Projects$Locations$Clusters$Switchover,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    switchover(
+      params?: Params$Resource$Projects$Locations$Clusters$Switchover,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    switchover(
+      params: Params$Resource$Projects$Locations$Clusters$Switchover,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    switchover(
+      params: Params$Resource$Projects$Locations$Clusters$Switchover,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    switchover(
+      params: Params$Resource$Projects$Locations$Clusters$Switchover,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    switchover(callback: BodyResponseCallback<Schema$Operation>): void;
+    switchover(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Clusters$Switchover
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Clusters$Switchover;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Clusters$Switchover;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://alloydb.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta/{+name}:switchover').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
   }
 
   export interface Params$Resource$Projects$Locations$Clusters$Create
@@ -3419,6 +3566,18 @@ export namespace alloydb_v1beta {
      * Request body metadata
      */
     requestBody?: Schema$RestoreClusterRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Clusters$Switchover
+    extends StandardParameters {
+    /**
+     * Required. The name of the resource. For the required format, see the comment on the Cluster.name field
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$SwitchoverClusterRequest;
   }
 
   export class Resource$Projects$Locations$Clusters$Instances {
