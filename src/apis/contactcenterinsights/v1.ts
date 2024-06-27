@@ -1080,11 +1080,11 @@ export namespace contactcenterinsights_v1 {
    */
   export interface Schema$GoogleCloudContactcenterinsightsV1alpha1ExportIssueModelRequest {
     /**
-     * Google Cloud Storage URI to export the Issue Model to.
+     * Google Cloud Storage URI to export the issue model to.
      */
     gcsDestination?: Schema$GoogleCloudContactcenterinsightsV1alpha1ExportIssueModelRequestGcsDestination;
     /**
-     * Required. The issue model to export
+     * Required. The issue model to export.
      */
     name?: string | null;
   }
@@ -1169,7 +1169,7 @@ export namespace contactcenterinsights_v1 {
    */
   export interface Schema$GoogleCloudContactcenterinsightsV1alpha1ImportIssueModelRequest {
     /**
-     * Optional. If set to true, will create a new issue model from the imported file with randomly generated IDs for the issue model and corresponding issues. Otherwise, replaces an existing model with the same ID as the file.
+     * Optional. If set to true, will create an issue model from the imported file with randomly generated IDs for the issue model and corresponding issues. Otherwise, replaces an existing model with the same ID as the file.
      */
     createNewModel?: boolean | null;
     /**
@@ -1261,7 +1261,7 @@ export namespace contactcenterinsights_v1 {
      */
     redactionConfig?: Schema$GoogleCloudContactcenterinsightsV1alpha1RedactionConfig;
     /**
-     * Optional. If set, this fields indicates the number of objects to ingest from the Cloud Storage bucket. If empty, the entire bucket will be ingested. Note that conversations produced via sampling will not be ingested by subsequent ingest requests unless they are first deleted.
+     * Optional. If set, this fields indicates the number of objects to ingest from the Cloud Storage bucket. If empty, the entire bucket will be ingested. Unless they are first deleted, conversations produced through sampling won't be ingested by subsequent ingest requests.
      */
     sampleSize?: number | null;
     /**
@@ -1282,7 +1282,7 @@ export namespace contactcenterinsights_v1 {
      */
     agentChannel?: number | null;
     /**
-     * Optional. An opaque, user-specified string representing a human agent who handled all conversations in the import. Note that this will be overridden if per-conversation metadata is provided via the `metadata_bucket_uri`.
+     * Optional. An opaque, user-specified string representing a human agent who handled all conversations in the import. Note that this will be overridden if per-conversation metadata is provided through the `metadata_bucket_uri`.
      */
     agentId?: string | null;
     /**
@@ -1307,7 +1307,7 @@ export namespace contactcenterinsights_v1 {
      */
     customMetadataKeys?: string[] | null;
     /**
-     * Optional. The Cloud Storage path to the source object metadata. Note that: [1] metadata files are expected to be in JSON format [2] metadata and source objects must be in separate buckets [3] a source object's metadata object must share the same name to be properly ingested
+     * Optional. The Cloud Storage path to the conversation metadata. Note that: [1] Metadata files are expected to be in JSON format. [2] Metadata and source files (transcripts or audio) must be in separate buckets. [3] A source file and its corresponding metadata file must share the same name to be properly ingested, E.g. `gs://bucket/audio/conversation1.mp3` and `gs://bucket/metadata/conversation1.json`.
      */
     metadataBucketUri?: string | null;
   }
@@ -1503,7 +1503,7 @@ export namespace contactcenterinsights_v1 {
     phraseMatcher?: string | null;
   }
   /**
-   * DLP resources used for redaction while ingesting conversations. DLP settings are applied to conversations ingested from the UploadConversation and IngestConversations endpoints, including conversation coming from CCAI Platform. They are not applied to conversations ingested from the CreateConversation endpoint or the Dialogflow / Agent Assist runtime integrations. When using Dialogflow / Agent Assist runtime integrations redaction should be performed in Dialogflow / Agent Assist.
+   * DLP resources used for redaction while ingesting conversations. DLP settings are applied to conversations ingested from the `UploadConversation` and `IngestConversations` endpoints, including conversation coming from CCAI Platform. They are not applied to conversations ingested from the `CreateConversation` endpoint or the Dialogflow / Agent Assist runtime integrations. When using Dialogflow / Agent Assist runtime integrations, redaction should be performed in Dialogflow / Agent Assist.
    */
   export interface Schema$GoogleCloudContactcenterinsightsV1alpha1RedactionConfig {
     /**
@@ -1641,7 +1641,7 @@ export namespace contactcenterinsights_v1 {
     reply?: string | null;
   }
   /**
-   * Speech-to-Text configuration. Speech-to-Text settings are applied to conversations ingested from the UploadConversation and IngestConversations endpoints, including conversation coming from CCAI Platform. They are not applied to conversations ingested from the CreateConversation endpoint.
+   * Speech-to-Text configuration. Speech-to-Text settings are applied to conversations ingested from the `UploadConversation` and `IngestConversations` endpoints, including conversation coming from CCAI Platform. They are not applied to conversations ingested from the `CreateConversation` endpoint.
    */
   export interface Schema$GoogleCloudContactcenterinsightsV1alpha1SpeechConfig {
     /**
@@ -1680,7 +1680,7 @@ export namespace contactcenterinsights_v1 {
    */
   export interface Schema$GoogleCloudContactcenterinsightsV1alpha1UndeployIssueModelResponse {}
   /**
-   * The metadata for an UploadConversation operation.
+   * The metadata for an `UploadConversation` operation.
    */
   export interface Schema$GoogleCloudContactcenterinsightsV1alpha1UploadConversationMetadata {
     /**
@@ -2766,11 +2766,11 @@ export namespace contactcenterinsights_v1 {
    */
   export interface Schema$GoogleCloudContactcenterinsightsV1ExportIssueModelRequest {
     /**
-     * Google Cloud Storage URI to export the Issue Model to.
+     * Google Cloud Storage URI to export the issue model to.
      */
     gcsDestination?: Schema$GoogleCloudContactcenterinsightsV1ExportIssueModelRequestGcsDestination;
     /**
-     * Required. The issue model to export
+     * Required. The issue model to export.
      */
     name?: string | null;
   }
@@ -2855,7 +2855,7 @@ export namespace contactcenterinsights_v1 {
    */
   export interface Schema$GoogleCloudContactcenterinsightsV1ImportIssueModelRequest {
     /**
-     * Optional. If set to true, will create a new issue model from the imported file with randomly generated IDs for the issue model and corresponding issues. Otherwise, replaces an existing model with the same ID as the file.
+     * Optional. If set to true, will create an issue model from the imported file with randomly generated IDs for the issue model and corresponding issues. Otherwise, replaces an existing model with the same ID as the file.
      */
     createNewModel?: boolean | null;
     /**
@@ -2947,7 +2947,7 @@ export namespace contactcenterinsights_v1 {
      */
     redactionConfig?: Schema$GoogleCloudContactcenterinsightsV1RedactionConfig;
     /**
-     * Optional. If set, this fields indicates the number of objects to ingest from the Cloud Storage bucket. If empty, the entire bucket will be ingested. Note that conversations produced via sampling will not be ingested by subsequent ingest requests unless they are first deleted.
+     * Optional. If set, this fields indicates the number of objects to ingest from the Cloud Storage bucket. If empty, the entire bucket will be ingested. Unless they are first deleted, conversations produced through sampling won't be ingested by subsequent ingest requests.
      */
     sampleSize?: number | null;
     /**
@@ -2968,7 +2968,7 @@ export namespace contactcenterinsights_v1 {
      */
     agentChannel?: number | null;
     /**
-     * Optional. An opaque, user-specified string representing a human agent who handled all conversations in the import. Note that this will be overridden if per-conversation metadata is provided via the `metadata_bucket_uri`.
+     * Optional. An opaque, user-specified string representing a human agent who handled all conversations in the import. Note that this will be overridden if per-conversation metadata is provided through the `metadata_bucket_uri`.
      */
     agentId?: string | null;
     /**
@@ -2993,7 +2993,7 @@ export namespace contactcenterinsights_v1 {
      */
     customMetadataKeys?: string[] | null;
     /**
-     * Optional. The Cloud Storage path to the source object metadata. Note that: [1] metadata files are expected to be in JSON format [2] metadata and source objects must be in separate buckets [3] a source object's metadata object must share the same name to be properly ingested
+     * Optional. The Cloud Storage path to the conversation metadata. Note that: [1] Metadata files are expected to be in JSON format. [2] Metadata and source files (transcripts or audio) must be in separate buckets. [3] A source file and its corresponding metadata file must share the same name to be properly ingested, E.g. `gs://bucket/audio/conversation1.mp3` and `gs://bucket/metadata/conversation1.json`.
      */
     metadataBucketUri?: string | null;
   }
@@ -3372,7 +3372,7 @@ export namespace contactcenterinsights_v1 {
     type?: string | null;
   }
   /**
-   * DLP resources used for redaction while ingesting conversations. DLP settings are applied to conversations ingested from the UploadConversation and IngestConversations endpoints, including conversation coming from CCAI Platform. They are not applied to conversations ingested from the CreateConversation endpoint or the Dialogflow / Agent Assist runtime integrations. When using Dialogflow / Agent Assist runtime integrations redaction should be performed in Dialogflow / Agent Assist.
+   * DLP resources used for redaction while ingesting conversations. DLP settings are applied to conversations ingested from the `UploadConversation` and `IngestConversations` endpoints, including conversation coming from CCAI Platform. They are not applied to conversations ingested from the `CreateConversation` endpoint or the Dialogflow / Agent Assist runtime integrations. When using Dialogflow / Agent Assist runtime integrations, redaction should be performed in Dialogflow / Agent Assist.
    */
   export interface Schema$GoogleCloudContactcenterinsightsV1RedactionConfig {
     /**
@@ -3464,7 +3464,7 @@ export namespace contactcenterinsights_v1 {
     score?: number | null;
   }
   /**
-   * The settings resource.
+   * The CCAI Insights project wide settings. Use these settings to configure the behavior of Insights. View these settings with [`getsettings`](https://cloud.google.com/contact-center/insights/docs/reference/rest/v1/projects.locations/getSettings) and change the settings with [`updateSettings`](https://cloud.google.com/contact-center/insights/docs/reference/rest/v1/projects.locations/updateSettings).
    */
   export interface Schema$GoogleCloudContactcenterinsightsV1Settings {
     /**
@@ -3488,15 +3488,15 @@ export namespace contactcenterinsights_v1 {
      */
     name?: string | null;
     /**
-     * A map that maps a notification trigger to a Pub/Sub topic. Each time a specified trigger occurs, Insights will notify the corresponding Pub/Sub topic. Keys are notification triggers. Supported keys are: * "all-triggers": Notify each time any of the supported triggers occurs. * "create-analysis": Notify each time an analysis is created. * "create-conversation": Notify each time a conversation is created. * "export-insights-data": Notify each time an export is complete. * "ingest-conversations": Notify each time an IngestConversations LRO completes. * "update-conversation": Notify each time a conversation is updated via UpdateConversation. * "upload-conversation": Notify when an UploadConversation LRO completes. Values are Pub/Sub topics. The format of each Pub/Sub topic is: projects/{project\}/topics/{topic\}
+     * A map that maps a notification trigger to a Pub/Sub topic. Each time a specified trigger occurs, Insights will notify the corresponding Pub/Sub topic. Keys are notification triggers. Supported keys are: * "all-triggers": Notify each time any of the supported triggers occurs. * "create-analysis": Notify each time an analysis is created. * "create-conversation": Notify each time a conversation is created. * "export-insights-data": Notify each time an export is complete. * "ingest-conversations": Notify each time an IngestConversations LRO is complete. * "update-conversation": Notify each time a conversation is updated via UpdateConversation. * "upload-conversation": Notify when an UploadConversation LRO is complete. Values are Pub/Sub topics. The format of each Pub/Sub topic is: projects/{project\}/topics/{topic\}
      */
     pubsubNotificationSettings?: {[key: string]: string} | null;
     /**
-     * Default DLP redaction resources to be applied while ingesting conversations. This applies to conversations ingested from the UploadConversation and IngestConversations endpoints, including conversations coming from CCAI Platform.
+     * Default DLP redaction resources to be applied while ingesting conversations. This applies to conversations ingested from the `UploadConversation` and `IngestConversations` endpoints, including conversations coming from CCAI Platform.
      */
     redactionConfig?: Schema$GoogleCloudContactcenterinsightsV1RedactionConfig;
     /**
-     * Optional. Default Speech-to-Text resources to be used while ingesting audio files. Optional, CCAI Insights will create a default if not provided. This applies to conversations ingested from the UploadConversation and IngestConversations endpoints, including conversations coming from CCAI Platform.
+     * Optional. Default Speech-to-Text resources to use while ingesting audio files. Optional, CCAI Insights will create a default if not provided. This applies to conversations ingested from the `UploadConversation` and `IngestConversations` endpoints, including conversations coming from CCAI Platform.
      */
     speechConfig?: Schema$GoogleCloudContactcenterinsightsV1SpeechConfig;
     /**
@@ -3568,7 +3568,7 @@ export namespace contactcenterinsights_v1 {
     reply?: string | null;
   }
   /**
-   * Speech-to-Text configuration. Speech-to-Text settings are applied to conversations ingested from the UploadConversation and IngestConversations endpoints, including conversation coming from CCAI Platform. They are not applied to conversations ingested from the CreateConversation endpoint.
+   * Speech-to-Text configuration. Speech-to-Text settings are applied to conversations ingested from the `UploadConversation` and `IngestConversations` endpoints, including conversation coming from CCAI Platform. They are not applied to conversations ingested from the `CreateConversation` endpoint.
    */
   export interface Schema$GoogleCloudContactcenterinsightsV1SpeechConfig {
     /**
@@ -3607,7 +3607,7 @@ export namespace contactcenterinsights_v1 {
    */
   export interface Schema$GoogleCloudContactcenterinsightsV1UndeployIssueModelResponse {}
   /**
-   * The metadata for an UploadConversation operation.
+   * The metadata for an `UploadConversation` operation.
    */
   export interface Schema$GoogleCloudContactcenterinsightsV1UploadConversationMetadata {
     /**
@@ -4296,7 +4296,7 @@ export namespace contactcenterinsights_v1 {
     }
 
     /**
-     * Creates a conversation. DEPRECATED: Use UploadConversation instead. CreateConversation does not support audio transcription or DLP redaction.
+     * Creates a conversation. Does not support audio transcription or DLP redaction. Use `conversations.upload` instead.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4867,7 +4867,7 @@ export namespace contactcenterinsights_v1 {
     }
 
     /**
-     * Create a longrunning conversation upload operation. This method differs from CreateConversation by allowing audio transcription and optional DLP redaction.
+     * Create a long-running conversation upload operation. This method differs from `CreateConversation` by allowing audio transcription and optional DLP redaction.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5055,7 +5055,7 @@ export namespace contactcenterinsights_v1 {
      */
     filter?: string;
     /**
-     * Optional. The attribute by which to order conversations in the response. If empty, conversations will be ordered by descending creation time. Supported values are one of the following: * create_time * customer_satisfaction_rating * duration * latest_analysis * start_time * turn_count The default sort order is ascending. To specify order, append `asc` or `desc`, i.e. `create_time desc`. See https://google.aip.dev/132#ordering for more details.
+     * Optional. The attribute by which to order conversations in the response. If empty, conversations will be ordered by descending creation time. Supported values are one of the following: * create_time * customer_satisfaction_rating * duration * latest_analysis * start_time * turn_count The default sort order is ascending. To specify order, append `asc` or `desc` (`create_time desc`). For more details, see [Google AIPs Ordering](https://google.aip.dev/132#ordering).
      */
     orderBy?: string;
     /**
@@ -6660,7 +6660,7 @@ export namespace contactcenterinsights_v1 {
   export interface Params$Resource$Projects$Locations$Issuemodels$Export
     extends StandardParameters {
     /**
-     * Required. The issue model to export
+     * Required. The issue model to export.
      */
     name?: string;
 
