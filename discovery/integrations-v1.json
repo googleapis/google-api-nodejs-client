@@ -1328,7 +1328,7 @@
                           "type": "string"
                         },
                         "orderBy": {
-                          "description": "Optional. The results would be returned in order you specified here. Currently supporting \"last_modified_time\" and \"create_time\".",
+                          "description": "Optional. The results would be returned in order you specified here. Currently supporting \"create_time\".",
                           "location": "query",
                           "type": "string"
                         },
@@ -2566,7 +2566,7 @@
                               "type": "string"
                             },
                             "orderBy": {
-                              "description": "Optional. The results would be returned in order you specified here. Currently supporting \"last_modified_time\" and \"create_time\".",
+                              "description": "Optional. The results would be returned in order you specified here. Currently supporting \"create_time\".",
                               "location": "query",
                               "type": "string"
                             },
@@ -3734,13 +3734,345 @@
                   }
                 }
               }
+            },
+            "templates": {
+              "methods": {
+                "create": {
+                  "description": "Creates a new template",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/templates",
+                  "httpMethod": "POST",
+                  "id": "integrations.projects.locations.templates.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. \"projects/{project}/locations/{location}\" format.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/templates",
+                  "request": {
+                    "$ref": "GoogleCloudIntegrationsV1alphaTemplate"
+                  },
+                  "response": {
+                    "$ref": "GoogleCloudIntegrationsV1alphaTemplate"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "delete": {
+                  "description": "Deletes a template",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/templates/{templatesId}",
+                  "httpMethod": "DELETE",
+                  "id": "integrations.projects.locations.templates.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name that is associated with the Template.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/templates/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "GoogleProtobufEmpty"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "get": {
+                  "description": "Get a template in the specified project.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/templates/{templatesId}",
+                  "httpMethod": "GET",
+                  "id": "integrations.projects.locations.templates.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The template to retrieve. Format: projects/{project}/locations/{location}/templates/{template}",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/templates/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "GoogleCloudIntegrationsV1alphaTemplate"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "import": {
+                  "description": "Import the template to an existing integration. This api would keep track of usage_count and last_used_time. PERMISSION_DENIED would be thrown if template is not accessible by client.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/templates/{templatesId}:import",
+                  "httpMethod": "POST",
+                  "id": "integrations.projects.locations.templates.import",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name that is associated with the Template.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/templates/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}:import",
+                  "request": {
+                    "$ref": "GoogleCloudIntegrationsV1alphaImportTemplateRequest"
+                  },
+                  "response": {
+                    "$ref": "GoogleCloudIntegrationsV1alphaImportTemplateResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "Lists all templates matching the filter.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/templates",
+                  "httpMethod": "GET",
+                  "id": "integrations.projects.locations.templates.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "Optional. Standard filter field to filter templates. client_id filter won't be supported and will restrict to templates belonging to the current client only. Return all templates of the current client if the filter is empty. Also supports operators like AND, OR, NOT For example, \"status=\\\"ACTIVE\\\"",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "orderBy": {
+                      "description": "Optional. The results would be returned in the order you specified here.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "Optional. The size of the response entries. If unspecified, defaults to 100. The maximum value is 1000; values above 1000 will be coerced to 1000.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. The token returned in the previous response.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The client, which owns this collection of Templates.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "readMask": {
+                      "description": "Optional. The mask which specifies fields that need to be returned in the template's response.",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/templates",
+                  "response": {
+                    "$ref": "GoogleCloudIntegrationsV1alphaListTemplatesResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "patch": {
+                  "description": "Updates the template by given id.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/templates/{templatesId}",
+                  "httpMethod": "PATCH",
+                  "id": "integrations.projects.locations.templates.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Identifier. Resource name of the template.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/templates/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "Required. Field mask specifying the fields in the above template that have been modified and must be updated.",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "request": {
+                    "$ref": "GoogleCloudIntegrationsV1alphaTemplate"
+                  },
+                  "response": {
+                    "$ref": "GoogleCloudIntegrationsV1alphaTemplate"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "search": {
+                  "description": "Search templates based on user query and filters. This api would query the templates and return a list of templates based on the user filter.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/templates:search",
+                  "httpMethod": "GET",
+                  "id": "integrations.projects.locations.templates.search",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "Optional. Standard filter field to filter templates. client_id filter won't be supported and will restrict to templates belonging to the current client only. Return all templates of the current client if the filter is empty. Also supports operators like AND, OR, NOT For example, \"status=\\\"ACTIVE\\\"",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "orderBy": {
+                      "description": "Optional. The results would be returned in the order you specified here.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "Optional. The size of the response entries. If unspecified, defaults to 100. The maximum value is 1000; values above 1000 will be coerced to 1000.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. The token returned in the previous response.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The client, which owns this collection of Templates.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "readMask": {
+                      "description": "Optional. The mask which specifies fields that need to be returned in the template's response.",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/templates:search",
+                  "response": {
+                    "$ref": "GoogleCloudIntegrationsV1alphaSearchTemplatesResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "share": {
+                  "description": "Share a template with other clients. Only the template owner can share the templates with other projects. PERMISSION_DENIED would be thrown if the request is not from the owner.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/templates/{templatesId}:share",
+                  "httpMethod": "POST",
+                  "id": "integrations.projects.locations.templates.share",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name that is associated with the Template.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/templates/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}:share",
+                  "request": {
+                    "$ref": "GoogleCloudIntegrationsV1alphaShareTemplateRequest"
+                  },
+                  "response": {
+                    "$ref": "GoogleProtobufEmpty"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "unshare": {
+                  "description": "Unshare a template from given clients. Owner of the template can unshare template with clients. Shared client can only unshare the template from itself. PERMISSION_DENIED would be thrown if request is not from owner or for unsharing itself.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/templates/{templatesId}:unshare",
+                  "httpMethod": "POST",
+                  "id": "integrations.projects.locations.templates.unshare",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name that is associated with the Template.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/templates/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}:unshare",
+                  "request": {
+                    "$ref": "GoogleCloudIntegrationsV1alphaUnshareTemplateRequest"
+                  },
+                  "response": {
+                    "$ref": "GoogleProtobufEmpty"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "use": {
+                  "description": "Use the template to create integration. This api would keep track of usage_count and last_used_time. PERMISSION_DENIED would be thrown if template is not accessible by client.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/templates/{templatesId}:use",
+                  "httpMethod": "POST",
+                  "id": "integrations.projects.locations.templates.use",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name that is associated with the Template.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/templates/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}:use",
+                  "request": {
+                    "$ref": "GoogleCloudIntegrationsV1alphaUseTemplateRequest"
+                  },
+                  "response": {
+                    "$ref": "GoogleCloudIntegrationsV1alphaUseTemplateResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
             }
           }
         }
       }
     }
   },
-  "revision": "20240526",
+  "revision": "20240622",
   "rootUrl": "https://integrations.googleapis.com/",
   "schemas": {
     "CrmlogErrorCode": {
@@ -10677,6 +11009,42 @@
       },
       "type": "object"
     },
+    "GoogleCloudIntegrationsV1alphaImportTemplateRequest": {
+      "description": "Request to Import template",
+      "id": "GoogleCloudIntegrationsV1alphaImportTemplateRequest",
+      "properties": {
+        "configParameters": {
+          "description": "Optional. Config parameters which would be used to configure template bundles.",
+          "items": {
+            "$ref": "GoogleCloudIntegrationsV1alphaIntegrationConfigParameter"
+          },
+          "type": "array"
+        },
+        "integration": {
+          "description": "Required. Name of the integration where template needs to be imported.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudIntegrationsV1alphaImportTemplateResponse": {
+      "description": "Response for import template",
+      "id": "GoogleCloudIntegrationsV1alphaImportTemplateResponse",
+      "properties": {
+        "integrationVersion": {
+          "$ref": "GoogleCloudIntegrationsV1alphaIntegrationVersion",
+          "description": "IntegrationVersion after the import."
+        },
+        "subIntegrationVersions": {
+          "description": "Sub integration versions which are imported.",
+          "items": {
+            "$ref": "GoogleCloudIntegrationsV1alphaIntegrationVersion"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudIntegrationsV1alphaIntParameterArray": {
       "description": "This message only contains a field of integer array.",
       "id": "GoogleCloudIntegrationsV1alphaIntParameterArray",
@@ -11144,6 +11512,24 @@
       },
       "type": "object"
     },
+    "GoogleCloudIntegrationsV1alphaIntegrationVersionTemplate": {
+      "description": "Define the template of IntegrationVersion.",
+      "id": "GoogleCloudIntegrationsV1alphaIntegrationVersionTemplate",
+      "properties": {
+        "configParameters": {
+          "description": "Required. Config parameters which are required for the integration template. These config parameters would be requested by users while creating integration.",
+          "items": {
+            "$ref": "GoogleCloudIntegrationsV1alphaIntegrationConfigParameter"
+          },
+          "type": "array"
+        },
+        "integrationVersion": {
+          "$ref": "GoogleCloudIntegrationsV1alphaIntegrationVersion",
+          "description": "Required. Templatized version of integration."
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudIntegrationsV1alphaJwt": {
       "description": "Represents JSON web token(JWT), which is a compact, URL-safe means of representing claims to be transferred between two parties, enabling the claims to be digitally signed or integrity protected.",
       "id": "GoogleCloudIntegrationsV1alphaJwt",
@@ -11415,6 +11801,24 @@
           "description": "The suspensions for the relevant execution which the caller has permissions to view and resolve.",
           "items": {
             "$ref": "GoogleCloudIntegrationsV1alphaSuspension"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudIntegrationsV1alphaListTemplatesResponse": {
+      "description": "Response for a request to list templates",
+      "id": "GoogleCloudIntegrationsV1alphaListTemplatesResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "The token used to retrieve the next page results.",
+          "type": "string"
+        },
+        "templates": {
+          "description": "List of templates retrieved.",
+          "items": {
+            "$ref": "GoogleCloudIntegrationsV1alphaTemplate"
           },
           "type": "array"
         }
@@ -12002,6 +12406,24 @@
       },
       "type": "object"
     },
+    "GoogleCloudIntegrationsV1alphaSearchTemplatesResponse": {
+      "description": "Response for a request to search templates",
+      "id": "GoogleCloudIntegrationsV1alphaSearchTemplatesResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "The token used to retrieve the next page results.",
+          "type": "string"
+        },
+        "templates": {
+          "description": "List of templates retrieved.",
+          "items": {
+            "$ref": "GoogleCloudIntegrationsV1alphaTemplate"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudIntegrationsV1alphaSerializedFile": {
       "description": "To store string representation of Integration file.",
       "id": "GoogleCloudIntegrationsV1alphaSerializedFile",
@@ -12139,6 +12561,20 @@
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudIntegrationsV1alphaShareTemplateRequest": {
+      "description": "Request to Share template",
+      "id": "GoogleCloudIntegrationsV1alphaShareTemplateRequest",
+      "properties": {
+        "resourceNames": {
+          "description": "Optional. Project name resources to share the template. The project names is expected in resource format Ex: projects/{project-number} or organization/{org-id}",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -12520,6 +12956,194 @@
       },
       "type": "object"
     },
+    "GoogleCloudIntegrationsV1alphaTemplate": {
+      "description": "Defines the template for Application Integration",
+      "id": "GoogleCloudIntegrationsV1alphaTemplate",
+      "properties": {
+        "author": {
+          "description": "Optional. Creator of the template.",
+          "type": "string"
+        },
+        "categories": {
+          "description": "Required. Categories associated with the Template. The categories listed below will be utilized for the Template listing.",
+          "items": {
+            "enum": [
+              "CATEGORY_UNSPECIFIED",
+              "AI_MACHINE_LEARNING",
+              "BUSINESS_INTELLIGENCE_",
+              "COLLABORATION",
+              "CUSTOMER_SERVICE",
+              "DATABASES",
+              "DEVOPS_IT",
+              "CONTENT_AND_FILES",
+              "FINANCE_AND_ACCOUNTING",
+              "HUMAN_RESOURCES",
+              "OPERATIONS",
+              "PRODUCT_PROJECT_MANAGEMENT",
+              "PRODUCTIVITY",
+              "SALES_AND_MARKETING",
+              "UNIVERSAL_CONNECTORS",
+              "UTILITY",
+              "OTHERS"
+            ],
+            "enumDescriptions": [
+              "Category is unspecified",
+              "AI_MACHINE_LEARNING",
+              "BUSINESS_INTELLIGENCE",
+              "COLLABORATION",
+              "CUSTOMER_SERVICE",
+              "DATAABASES",
+              "DEVOPS_IT",
+              "CONTENT_AND_FILES",
+              "FINANCE_AND_ACCOUNTING",
+              "HUMAN_RESOURCES",
+              "OPERATIONS",
+              "PRODUCT_PROJECT_MANAGEMENT",
+              "PRODUCTIVITY",
+              "SALES_AND_MARKETING",
+              "UNIVERSAL_CONNECTORS",
+              "UTILITY",
+              "OTHERS"
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "clientId": {
+          "description": "Required. Client id with which Template is associated",
+          "type": "string"
+        },
+        "components": {
+          "description": "Optional. Components being used in the template. This could be used to categorize and filter.",
+          "items": {
+            "$ref": "GoogleCloudIntegrationsV1alphaTemplateComponent"
+          },
+          "type": "array"
+        },
+        "createTime": {
+          "description": "Output only. Auto-generated.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "description": {
+          "description": "Optional. Description of the template. The length should not be more than 255 characters",
+          "type": "string"
+        },
+        "displayName": {
+          "description": "Required. The name of the template",
+          "type": "string"
+        },
+        "docLink": {
+          "description": "Optional. Link to template documentation.",
+          "type": "string"
+        },
+        "lastUsedTime": {
+          "description": "Optional. Time the template was last used.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "name": {
+          "description": "Identifier. Resource name of the template.",
+          "type": "string"
+        },
+        "sharedWith": {
+          "description": "Required. Resource names with which the template is shared for example ProjectNumber/Ord id",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "tags": {
+          "description": "Required. Tags which are used to identify templates. These tags could be for business use case, connectors etc.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "templateBundle": {
+          "$ref": "GoogleCloudIntegrationsV1alphaTemplateBundle",
+          "description": "Required. Bundle which is part of the templates. The template entities in the bundle would be converted to an actual entity."
+        },
+        "updateTime": {
+          "description": "Output only. Auto-generated",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "usageCount": {
+          "description": "Optional. Number of template usages.",
+          "format": "int64",
+          "type": "string"
+        },
+        "usageInfo": {
+          "description": "Optional. Information on how to use the template. This should contain detailed information about usage of the template.",
+          "type": "string"
+        },
+        "visibility": {
+          "description": "Required. Visibility of the template.",
+          "enum": [
+            "VISIBILITY_UNSPECIFIED",
+            "PRIVATE",
+            "SHARED",
+            "PUBLIC"
+          ],
+          "enumDescriptions": [
+            "Visibility is unspecified",
+            "Visibility is private",
+            "Visibility is shared",
+            "Visibility is public"
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudIntegrationsV1alphaTemplateBundle": {
+      "description": "Define the bundle of the template.",
+      "id": "GoogleCloudIntegrationsV1alphaTemplateBundle",
+      "properties": {
+        "integrationVersionTemplate": {
+          "$ref": "GoogleCloudIntegrationsV1alphaIntegrationVersionTemplate",
+          "description": "Required. Main integration templates of the template bundle."
+        },
+        "subIntegrationVersionTemplates": {
+          "description": "Optional. Sub integration templates which would be added along with main integration.",
+          "items": {
+            "$ref": "GoogleCloudIntegrationsV1alphaIntegrationVersionTemplate"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudIntegrationsV1alphaTemplateComponent": {
+      "description": "Define the components that are present in a template.",
+      "id": "GoogleCloudIntegrationsV1alphaTemplateComponent",
+      "properties": {
+        "name": {
+          "description": "Optional. Name of the component.",
+          "type": "string"
+        },
+        "type": {
+          "description": "Optional. Type of the component.",
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "TRIGGER",
+            "TASK",
+            "CONNECTOR"
+          ],
+          "enumDescriptions": [
+            "Component type is unspecified",
+            "Trigger component",
+            "Task component",
+            "Connector component"
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudIntegrationsV1alphaTestIntegrationsRequest": {
       "description": "The request for testing an integration.",
       "id": "GoogleCloudIntegrationsV1alphaTestIntegrationsRequest",
@@ -12709,6 +13333,20 @@
       "properties": {},
       "type": "object"
     },
+    "GoogleCloudIntegrationsV1alphaUnshareTemplateRequest": {
+      "description": "Request to Unshare template",
+      "id": "GoogleCloudIntegrationsV1alphaUnshareTemplateRequest",
+      "properties": {
+        "resourceNames": {
+          "description": "Optional. Project name resources to unshare the template. The project names is expected in resource format Ex: projects/{project-number}",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudIntegrationsV1alphaUploadIntegrationVersionRequest": {
       "description": "Request for UploadIntegrationVersion.",
       "id": "GoogleCloudIntegrationsV1alphaUploadIntegrationVersionRequest",
@@ -12741,6 +13379,46 @@
         "integrationVersion": {
           "$ref": "GoogleCloudIntegrationsV1alphaIntegrationVersion",
           "description": "The uploaded integration."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudIntegrationsV1alphaUseTemplateRequest": {
+      "description": "Request to Use template",
+      "id": "GoogleCloudIntegrationsV1alphaUseTemplateRequest",
+      "properties": {
+        "configParameters": {
+          "description": "Optional. Config parameters which would be used to configure template bundles.",
+          "items": {
+            "$ref": "GoogleCloudIntegrationsV1alphaIntegrationConfigParameter"
+          },
+          "type": "array"
+        },
+        "integration": {
+          "description": "Required. Name of the integration which would be created via templates.",
+          "type": "string"
+        },
+        "integrationDescription": {
+          "description": "Optional. Description of the integration which would be created via templates.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudIntegrationsV1alphaUseTemplateResponse": {
+      "description": "Response for use template",
+      "id": "GoogleCloudIntegrationsV1alphaUseTemplateResponse",
+      "properties": {
+        "integrationVersion": {
+          "$ref": "GoogleCloudIntegrationsV1alphaIntegrationVersion",
+          "description": "IntegrationVersion which is created."
+        },
+        "subIntegrationVersions": {
+          "description": "Sub integration versions which are created.",
+          "items": {
+            "$ref": "GoogleCloudIntegrationsV1alphaIntegrationVersion"
+          },
+          "type": "array"
         }
       },
       "type": "object"

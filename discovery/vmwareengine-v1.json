@@ -3173,7 +3173,7 @@
       }
     }
   },
-  "revision": "20240412",
+  "revision": "20240528",
   "rootUrl": "https://vmwareengine.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -3639,12 +3639,14 @@
           "enum": [
             "STATE_UNSPECIFIED",
             "ACTIVE",
-            "CREATING"
+            "CREATING",
+            "ACTIVATING"
           ],
           "enumDescriptions": [
             "Unspecified appliance state. This is the default value.",
             "The appliance is operational and can be used.",
-            "The appliance is being deployed."
+            "The appliance is being deployed.",
+            "The appliance is being activated."
           ],
           "readOnly": true,
           "type": "string"
@@ -4436,7 +4438,8 @@
             "PRIVATE_SERVICES_ACCESS",
             "NETAPP_CLOUD_VOLUMES",
             "THIRD_PARTY_SERVICE",
-            "DELL_POWERSCALE"
+            "DELL_POWERSCALE",
+            "GOOGLE_CLOUD_NETAPP_VOLUMES"
           ],
           "enumDescriptions": [
             "Unspecified",
@@ -4445,7 +4448,8 @@
             "Peering connection used for establishing [private services access](https://cloud.google.com/vpc/docs/private-services-access).",
             "Peering connection used for connecting to NetApp Cloud Volumes.",
             "Peering connection used for connecting to third-party services. Most third-party services require manual setup of reverse peering on the VPC network associated with the third-party service.",
-            "Peering connection used for connecting to Dell PowerScale Filers"
+            "Peering connection used for connecting to Dell PowerScale Filers",
+            "Peering connection used for connecting to Google Cloud NetApp Volumes."
           ],
           "type": "string"
         },
