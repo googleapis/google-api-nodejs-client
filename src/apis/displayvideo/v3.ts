@@ -3458,6 +3458,10 @@ export namespace displayvideo_v3 {
      */
     adGroupIds?: string[] | null;
     /**
+     * Optional. YouTube Ad Groups QA to download by ID. All IDs must belong to the same Advertiser or Partner specified in CreateSdfDownloadTaskRequest.
+     */
+    adGroupQaIds?: string[] | null;
+    /**
      * Campaigns to download by ID. All IDs must belong to the same Advertiser or Partner specified in CreateSdfDownloadTaskRequest.
      */
     campaignIds?: string[] | null;
@@ -3469,6 +3473,10 @@ export namespace displayvideo_v3 {
      * Line Items to download by ID. All IDs must belong to the same Advertiser or Partner specified in CreateSdfDownloadTaskRequest.
      */
     lineItemIds?: string[] | null;
+    /**
+     * Optional. Line Items QA to download by ID. All IDs must belong to the same Advertiser or Partner specified in CreateSdfDownloadTaskRequest.
+     */
+    lineItemQaIds?: string[] | null;
     /**
      * Media Products to download by ID. All IDs must belong to the same Advertiser or Partner specified in CreateSdfDownloadTaskRequest.
      */
