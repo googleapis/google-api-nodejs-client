@@ -294,6 +294,11 @@
     "src/apis/config": {},
     "src/apis/cloudcontrolspartner": {},
     "src/apis/addressvalidation": {},
-    "src/apis/developerconnect": {}
+    "src/apis/developerconnect": {},
+    "src/apis/merchantapi": {},
+    "src/apis/meet": {},
+    "src/apis/pollen": {},
+    "src/apis/airquality": {},
+    "src/apis/apim": {}
   }
 }

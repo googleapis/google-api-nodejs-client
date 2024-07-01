@@ -110,7 +110,7 @@
         "products": {
           "methods": {
             "list": {
-              "description": "To retrieve the products that can be resold by the partner. It should be autenticated with a service account.",
+              "description": "To retrieve the products that can be resold by the partner. It should be autenticated with a service account. - This API doesn't apply to YouTube products currently.",
               "flatPath": "v1/partners/{partnersId}/products",
               "httpMethod": "GET",
               "id": "paymentsresellersubscription.partners.products.list",
@@ -183,7 +183,7 @@
               ]
             },
             "list": {
-              "description": "To retrieve the promotions, such as free trial, that can be used by the partner. It should be autenticated with a service account.",
+              "description": "Retrieves the promotions, such as free trial, that can be used by the partner. - This API doesn't apply to YouTube promotions currently. It should be autenticated with a service account.",
               "flatPath": "v1/partners/{partnersId}/promotions",
               "httpMethod": "GET",
               "id": "paymentsresellersubscription.partners.promotions.list",
@@ -403,7 +403,7 @@
               ]
             },
             "undoCancel": {
-              "description": "Used by partners to revoke the pending cancellation of a subscription, which is currently in `STATE_CANCEL_AT_END_OF_CYCLE` state. If the subscription is already cancelled, the request will fail. It should be called directly by the partner using service accounts.",
+              "description": "Revokes the pending cancellation of a subscription, which is currently in `STATE_CANCEL_AT_END_OF_CYCLE` state. If the subscription is already cancelled, the request will fail. - **This API doesn't apply to YouTube subscriptions.** It should be called directly by the partner using service accounts.",
               "flatPath": "v1/partners/{partnersId}/subscriptions/{subscriptionsId}:undoCancel",
               "httpMethod": "POST",
               "id": "paymentsresellersubscription.partners.subscriptions.undoCancel",
@@ -435,7 +435,7 @@
       }
     }
   },
-  "revision": "20240430",
+  "revision": "20240626",
   "rootUrl": "https://paymentsresellersubscription.googleapis.com/",
   "schemas": {
     "GoogleCloudPaymentsResellerSubscriptionV1Amount": {
@@ -459,7 +459,7 @@
       "id": "GoogleCloudPaymentsResellerSubscriptionV1CancelSubscriptionRequest",
       "properties": {
         "cancelImmediately": {
-          "description": "Optional. If true, Google will cancel the subscription immediately, and may or may not (based on the contract) issue a prorated refund for the remainder of the billing cycle. Otherwise, Google defers the cancelation at renewal_time, and will not issue a refund.",
+          "description": "Optional. If true, Google will cancel the subscription immediately, and may or may not (based on the contract) issue a prorated refund for the remainder of the billing cycle. Otherwise, Google defers the cancelation at renewal_time, and will not issue a refund. - YouTube subscriptions must use this option currently. However, the user will still have access to the subscription until the end of the billing cycle.",
           "type": "boolean"
         },
         "cancellationReason": {
@@ -535,7 +535,7 @@
       "type": "object"
     },
     "GoogleCloudPaymentsResellerSubscriptionV1EntitleSubscriptionRequest": {
-      "description": "Partner request for entitling the previously provisioned subscription to an end user. The end user identity is inferred from the request OAuth context.",
+      "description": "LINT.IfChange Partner request for entitling the previously provisioned subscription to an end user. The end user identity is inferred from the request OAuth context.",
       "id": "GoogleCloudPaymentsResellerSubscriptionV1EntitleSubscriptionRequest",
       "properties": {
         "lineItemEntitlementDetails": {

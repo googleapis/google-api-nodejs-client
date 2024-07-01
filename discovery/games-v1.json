@@ -110,6 +110,67 @@
   },
   "protocol": "rest",
   "resources": {
+    "accesstokens": {
+      "methods": {
+        "generatePlayGroupingApiToken": {
+          "description": "Generates a Play Grouping API token for the PGS user identified by the attached credential.",
+          "flatPath": "games/v1/accesstokens/generatePlayGroupingApiToken",
+          "httpMethod": "POST",
+          "id": "games.accesstokens.generatePlayGroupingApiToken",
+          "parameterOrder": [],
+          "parameters": {
+            "packageName": {
+              "description": "Required. App package name to generate the token for (e.g. com.example.mygame).",
+              "location": "query",
+              "type": "string"
+            },
+            "persona": {
+              "description": "Required. Persona to associate with the token. Persona is a developer-provided stable identifier of the user. Must be deterministically generated (e.g. as a one-way hash) from the user account ID and user profile ID (if the app has the concept), according to the developer's own user identity system.",
+              "location": "query",
+              "type": "string"
+            }
+          },
+          "path": "games/v1/accesstokens/generatePlayGroupingApiToken",
+          "response": {
+            "$ref": "GeneratePlayGroupingApiTokenResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/games"
+          ]
+        },
+        "generateRecallPlayGroupingApiToken": {
+          "description": "Generates a Play Grouping API token for the PGS user identified by the Recall session ID provided in the request.",
+          "flatPath": "games/v1/accesstokens/generateRecallPlayGroupingApiToken",
+          "httpMethod": "POST",
+          "id": "games.accesstokens.generateRecallPlayGroupingApiToken",
+          "parameterOrder": [],
+          "parameters": {
+            "packageName": {
+              "description": "Required. App package name to generate the token for (e.g. com.example.mygame).",
+              "location": "query",
+              "type": "string"
+            },
+            "persona": {
+              "description": "Required. Persona to associate with the token. Persona is a developer-provided stable identifier of the user. Must be deterministically generated (e.g. as a one-way hash) from the user account ID and user profile ID (if the app has the concept), according to the developer's own user identity system.",
+              "location": "query",
+              "type": "string"
+            },
+            "recallSessionId": {
+              "description": "Required. Opaque server-generated string that encodes all the necessary information to identify the PGS player / Google user and application. See https://developer.android.com/games/pgs/recall/recall-setup on how to integrate with Recall and get session ID.",
+              "location": "query",
+              "type": "string"
+            }
+          },
+          "path": "games/v1/accesstokens/generateRecallPlayGroupingApiToken",
+          "response": {
+            "$ref": "GenerateRecallPlayGroupingApiTokenResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/androidpublisher"
+          ]
+        }
+      }
+    },
     "achievementDefinitions": {
       "methods": {
         "list": {
@@ -1408,7 +1469,7 @@
       }
     }
   },
-  "revision": "20240529",
+  "revision": "20240618",
   "rootUrl": "https://games.googleapis.com/",
   "schemas": {
     "AchievementDefinition": {
@@ -2217,6 +2278,28 @@
       },
       "type": "object"
     },
+    "GeneratePlayGroupingApiTokenResponse": {
+      "description": "Response for the GeneratePlayGroupingApiToken RPC.",
+      "id": "GeneratePlayGroupingApiTokenResponse",
+      "properties": {
+        "token": {
+          "$ref": "PlayGroupingApiToken",
+          "description": "Token for accessing the Play Grouping API."
+        }
+      },
+      "type": "object"
+    },
+    "GenerateRecallPlayGroupingApiTokenResponse": {
+      "description": "Response for the GenerateRecallPlayGroupingApiToken RPC.",
+      "id": "GenerateRecallPlayGroupingApiTokenResponse",
+      "properties": {
+        "token": {
+          "$ref": "PlayGroupingApiToken",
+          "description": "Token for accessing the Play Grouping API."
+        }
+      },
+      "type": "object"
+    },
     "GetMultipleApplicationPlayerIdsResponse": {
       "description": "Response message for GetMultipleApplicationPlayerIds rpc.",
       "id": "GetMultipleApplicationPlayerIdsResponse",
@@ -2662,6 +2745,17 @@
             "$ref": "PlayerLevel"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "PlayGroupingApiToken": {
+      "description": "Token data returned from GeneratePlayGroupingApiToken RPC.",
+      "id": "PlayGroupingApiToken",
+      "properties": {
+        "tokenValue": {
+          "description": "Value of the token.",
+          "type": "string"
         }
       },
       "type": "object"

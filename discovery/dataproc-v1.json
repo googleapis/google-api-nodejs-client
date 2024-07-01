@@ -3072,7 +3072,7 @@
       }
     }
   },
-  "revision": "20240505",
+  "revision": "20240617",
   "rootUrl": "https://dataproc.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -3206,6 +3206,32 @@
         "workerConfig": {
           "$ref": "InstanceGroupAutoscalingPolicyConfig",
           "description": "Required. Describes how the autoscaler will operate for primary workers."
+        }
+      },
+      "type": "object"
+    },
+    "AutotuningConfig": {
+      "description": "Autotuning configuration of the workload.",
+      "id": "AutotuningConfig",
+      "properties": {
+        "scenarios": {
+          "description": "Optional. Scenarios for which tunings are applied.",
+          "items": {
+            "enum": [
+              "SCENARIO_UNSPECIFIED",
+              "SCALING",
+              "BROADCAST_HASH_JOIN",
+              "MEMORY"
+            ],
+            "enumDescriptions": [
+              "Default value.",
+              "Scaling recommendations such as initialExecutors.",
+              "Adding hints for potential relation broadcasts.",
+              "Memory management for workloads."
+            ],
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -3946,6 +3972,16 @@
       "description": "Specifies the config of disk options for a group of VM instances.",
       "id": "DiskConfig",
       "properties": {
+        "bootDiskProvisionedIops": {
+          "description": "Optional. Indicates how many IOPS to provision for the disk. This sets the number of I/O operations per second that the disk can handle. Note: This field is only supported if boot_disk_type is hyperdisk-balanced.",
+          "format": "int64",
+          "type": "string"
+        },
+        "bootDiskProvisionedThroughput": {
+          "description": "Optional. Indicates how much throughput to provision for the disk. This sets the number of throughput mb per second that the disk can handle. Values must be greater than or equal to 1. Note: This field is only supported if boot_disk_type is hyperdisk-balanced.",
+          "format": "int64",
+          "type": "string"
+        },
         "bootDiskSizeGb": {
           "description": "Optional. Size in GB of the boot disk (default is 500GB).",
           "format": "int32",
@@ -4217,7 +4253,7 @@
           "type": "string"
         },
         "tags": {
-          "description": "The Compute Engine tags to add to all instances (see Tagging instances (https://cloud.google.com/compute/docs/label-or-tag-resources#tags)).",
+          "description": "The Compute Engine network tags to add to all instances (see Tagging instances (https://cloud.google.com/vpc/docs/add-remove-network-tags)).",
           "items": {
             "type": "string"
           },
@@ -5606,7 +5642,9 @@
             "DELETE",
             "RESIZE",
             "REPAIR",
-            "UPDATE_LABELS"
+            "UPDATE_LABELS",
+            "START",
+            "STOP"
           ],
           "enumDescriptions": [
             "Node group operation type is unknown.",
@@ -5615,7 +5653,9 @@
             "Delete node group operation type.",
             "Resize node group operation type.",
             "Repair node group operation type.",
-            "Update node group label operation type."
+            "Update node group label operation type.",
+            "Start node group operation type.",
+            "Stop node group operation type."
           ],
           "type": "string"
         },
@@ -6208,6 +6248,14 @@
       "description": "Runtime configuration for a workload.",
       "id": "RuntimeConfig",
       "properties": {
+        "autotuningConfig": {
+          "$ref": "AutotuningConfig",
+          "description": "Optional. Autotuning configuration of the workload."
+        },
+        "cohort": {
+          "description": "Optional. Cohort identifier. Identifies families of the workloads having the same shape, e.g. daily ETL jobs.",
+          "type": "string"
+        },
         "containerImage": {
           "description": "Optional. Optional custom container image for the job runtime environment. If not specified, a default container image will be used.",
           "type": "string"

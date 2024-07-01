@@ -287,7 +287,7 @@
                   ],
                   "parameters": {
                     "filter": {
-                      "description": "Filtering results",
+                      "description": "Filter to be applied when listing the evaluation results.",
                       "location": "query",
                       "type": "string"
                     },
@@ -461,7 +461,7 @@
                     "results": {
                       "methods": {
                         "list": {
-                          "description": "List the running result of a single Execution.",
+                          "description": "Lists the result of a single evaluation.",
                           "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/evaluations/{evaluationsId}/executions/{executionsId}/results",
                           "httpMethod": "GET",
                           "id": "workloadmanager.projects.locations.evaluations.executions.results.list",
@@ -772,9 +772,27 @@
       }
     }
   },
-  "revision": "20240501",
+  "revision": "20240619",
   "rootUrl": "https://workloadmanager.googleapis.com/",
   "schemas": {
+    "AgentCommand": {
+      "description": "* An AgentCommand specifies a one-time executable program for the agent to run.",
+      "id": "AgentCommand",
+      "properties": {
+        "command": {
+          "description": "command is the name of the agent one-time executable that will be invoked.",
+          "type": "string"
+        },
+        "parameters": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "parameters is a map of key/value pairs that can be used to specify additional one-time executable settings.",
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
     "AssetLocation": {
       "description": "Provides the mapping of a cloud asset to a direct physical location or to a proxy that defines the location on its behalf.",
       "id": "AssetLocation",
@@ -861,6 +879,21 @@
             "$ref": "CloudAsset"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "Command": {
+      "description": "* Command specifies the type of command to execute.",
+      "id": "Command",
+      "properties": {
+        "agentCommand": {
+          "$ref": "AgentCommand",
+          "description": "AgentCommand specifies a one-time executable program for the agent to run."
+        },
+        "shellCommand": {
+          "$ref": "ShellCommand",
+          "description": "ShellCommand is invoked via the agent's command line executor."
         }
       },
       "type": "object"
@@ -1036,28 +1069,35 @@
       "description": "Message describing the result of an execution",
       "id": "ExecutionResult",
       "properties": {
+        "commands": {
+          "description": "The commands to remediate the violation.",
+          "items": {
+            "$ref": "Command"
+          },
+          "type": "array"
+        },
         "documentationUrl": {
-          "description": "the document url of the rule",
+          "description": "The URL for the documentation of the rule.",
           "type": "string"
         },
         "resource": {
           "$ref": "Resource",
-          "description": "the violate resource"
+          "description": "The resource that violates the rule."
         },
         "rule": {
-          "description": "the rule which violate in execution",
+          "description": "The rule that is violated in an evaluation.",
           "type": "string"
         },
         "severity": {
-          "description": "severity of violation",
+          "description": "The severity of violation.",
           "type": "string"
         },
         "violationDetails": {
           "$ref": "ViolationDetails",
-          "description": "the details of violation in result"
+          "description": "The details of violation in an evaluation result."
         },
         "violationMessage": {
-          "description": "the violation message of an execution",
+          "description": "The violation message of an execution.",
           "type": "string"
         }
       },
@@ -1067,8 +1107,12 @@
       "description": "Message for external data sources",
       "id": "ExternalDataSources",
       "properties": {
+        "assetType": {
+          "description": "Required. The asset type of the external data source must be one of go/cai-asset-types",
+          "type": "string"
+        },
         "name": {
-          "description": "Required. Name of external data source. The name will be used inside the rego/sql to refer the external data",
+          "description": "Optional. Name of external data source. The name will be used inside the rego/sql to refer the external data",
           "type": "string"
         },
         "type": {
@@ -1488,6 +1532,9 @@
         "gcpProjectProxy": {
           "$ref": "TenantProjectProxy"
         },
+        "placerLocation": {
+          "$ref": "PlacerLocation"
+        },
         "spannerLocation": {
           "$ref": "SpannerLocation"
         }
@@ -1573,6 +1620,17 @@
       },
       "type": "object"
     },
+    "PlacerLocation": {
+      "description": "Message describing that the location of the customer resource is tied to placer allocations",
+      "id": "PlacerLocation",
+      "properties": {
+        "placerConfig": {
+          "description": "Directory with a config related to it in placer (e.g. \"/placer/prod/home/my-root/my-dir\")",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "RegionalMigDistributionPolicy": {
       "description": "To be used for specifying the intended distribution of regional compute.googleapis.com/InstanceGroupManager instances",
       "id": "RegionalMigDistributionPolicy",
@@ -1597,15 +1655,15 @@
       "id": "Resource",
       "properties": {
         "name": {
-          "description": "the name of the resource",
+          "description": "The name of the resource.",
           "type": "string"
         },
         "serviceAccount": {
-          "description": "the service account accosiate with resource",
+          "description": "The service account associated with the resource.",
           "type": "string"
         },
         "type": {
-          "description": "the type of reresource",
+          "description": "The type of resource.",
           "type": "string"
         }
       },
@@ -1808,6 +1866,13 @@
           "description": "Required. Pantheon Project in which the resources reside.",
           "type": "string"
         },
+        "replicationSites": {
+          "description": "Optional. A list of replication sites used in Disaster Recovery (DR) configurations.",
+          "items": {
+            "$ref": "SapDiscoveryComponent"
+          },
+          "type": "array"
+        },
         "resources": {
           "description": "Optional. The resources in a component.",
           "items": {
@@ -1841,7 +1906,8 @@
       "id": "SapDiscoveryComponentApplicationProperties",
       "properties": {
         "abap": {
-          "description": "Optional. Indicates whether this is a Java or ABAP Netweaver instance. true means it is ABAP, false means it is Java.",
+          "deprecated": true,
+          "description": "Optional. Deprecated: ApplicationType now tells you whether this is ABAP or Java.",
           "type": "boolean"
         },
         "appInstanceNumber": {
@@ -1852,11 +1918,15 @@
           "description": "Required. Type of the application. Netweaver, etc.",
           "enum": [
             "APPLICATION_TYPE_UNSPECIFIED",
-            "NETWEAVER"
+            "NETWEAVER",
+            "NETWEAVER_ABAP",
+            "NETWEAVER_JAVA"
           ],
           "enumDescriptions": [
             "Unspecified application type",
-            "SAP Netweaver"
+            "SAP Netweaver",
+            "SAP Netweaver ABAP",
+            "SAP Netweaver Java"
           ],
           "type": "string"
         },
@@ -2225,6 +2295,26 @@
       },
       "type": "object"
     },
+    "ShellCommand": {
+      "description": "* A ShellCommand is invoked via the agent's command line executor",
+      "id": "ShellCommand",
+      "properties": {
+        "args": {
+          "description": "args is a string of arguments to be passed to the command.",
+          "type": "string"
+        },
+        "command": {
+          "description": "command is the name of the command to be executed.",
+          "type": "string"
+        },
+        "timeoutSeconds": {
+          "description": "Optional. If not specified, the default timeout is 60 seconds.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
     "SpannerLocation": {
       "id": "SpannerLocation",
       "properties": {
@@ -2365,22 +2455,22 @@
       "type": "object"
     },
     "ViolationDetails": {
-      "description": "Message describing the violdation in execution result",
+      "description": "Message describing the violation in an evaluation result.",
       "id": "ViolationDetails",
       "properties": {
         "asset": {
-          "description": "the name of asset",
+          "description": "The name of the asset.",
           "type": "string"
         },
         "observed": {
           "additionalProperties": {
             "type": "string"
           },
-          "description": "observed",
+          "description": "Details of the violation.",
           "type": "object"
         },
         "serviceAccount": {
-          "description": "the service account associate with resource",
+          "description": "The service account associated with the resource.",
           "type": "string"
         }
       },

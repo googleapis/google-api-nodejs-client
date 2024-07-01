@@ -1327,6 +1327,10 @@ export namespace androidpublisher_v3 {
      */
     testPurchase?: Schema$ExternalTransactionTestPurchase;
     /**
+     * Optional. The transaction program code, used to help determine service fee for apps partcipating in special partner programs. This field can not be used for external offers transactions. Developers participating in the Play Media Experience Program (https://play.google.com/console/about/programs/mediaprogram/) must provide the program code when reporting alternative billing external transactions. If you are an eligible developer, please contact your BDM for more information on how to set this field.
+     */
+    transactionProgramCode?: number | null;
+    /**
      * Output only. The current state of the transaction.
      */
     transactionState?: string | null;
@@ -3799,7 +3803,7 @@ export namespace androidpublisher_v3 {
      */
     voidedQuantity?: number | null;
     /**
-     * The reason why the purchase was voided, possible values are: 0. Other 1. Remorse 2. Not_received 3. Defective 4. Accidental_purchase 5. Fraud 6. Friendly_fraud 7. Chargeback
+     * The reason why the purchase was voided, possible values are: 0. Other 1. Remorse 2. Not_received 3. Defective 4. Accidental_purchase 5. Fraud 6. Friendly_fraud 7. Chargeback 8. Unacknowledged_purchase
      */
     voidedReason?: number | null;
     /**

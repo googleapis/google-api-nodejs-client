@@ -337,9 +337,11 @@
                   },
                   "resources": {
                     "accessApprovalRequests": {
+                      "deprecated": true,
                       "methods": {
                         "list": {
-                          "description": "Lists access requests associated with a workload",
+                          "deprecated": true,
+                          "description": "Deprecated: Only returns access approval requests directly associated with an assured workload folder.",
                           "flatPath": "v1beta/organizations/{organizationsId}/locations/{locationsId}/customers/{customersId}/workloads/{workloadsId}/accessApprovalRequests",
                           "httpMethod": "GET",
                           "id": "cloudcontrolspartner.organizations.locations.customers.workloads.accessApprovalRequests.list",
@@ -482,7 +484,7 @@
       }
     }
   },
-  "revision": "20240424",
+  "revision": "20240619",
   "rootUrl": "https://cloudcontrolspartner.googleapis.com/",
   "schemas": {
     "AccessApprovalRequest": {

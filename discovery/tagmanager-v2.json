@@ -3890,7 +3890,7 @@
       }
     }
   },
-  "revision": "20231009",
+  "revision": "20240619",
   "rootUrl": "https://tagmanager.googleapis.com/",
   "schemas": {
     "Account": {
@@ -4353,7 +4353,7 @@
             "",
             "",
             "",
-            "NOTE(lanzone): When defining a ConditionType here, don't forget to also define a matching PredicateType (in condition.proto)."
+            ""
           ],
           "type": "string"
         }

@@ -689,6 +689,56 @@ export namespace firestore_v1 {
     weeklyRecurrence?: Schema$GoogleFirestoreAdminV1WeeklyRecurrence;
   }
   /**
+   * Metadata for google.longrunning.Operation results from FirestoreAdmin.BulkDeleteDocuments.
+   */
+  export interface Schema$GoogleFirestoreAdminV1BulkDeleteDocumentsMetadata {
+    /**
+     * The ids of the collection groups that are being deleted.
+     */
+    collectionIds?: string[] | null;
+    /**
+     * The time this operation completed. Will be unset if operation still in progress.
+     */
+    endTime?: string | null;
+    /**
+     * Which namespace ids are being deleted.
+     */
+    namespaceIds?: string[] | null;
+    /**
+     * The state of the operation.
+     */
+    operationState?: string | null;
+    /**
+     * The progress, in bytes, of this operation.
+     */
+    progressBytes?: Schema$GoogleFirestoreAdminV1Progress;
+    /**
+     * The progress, in documents, of this operation.
+     */
+    progressDocuments?: Schema$GoogleFirestoreAdminV1Progress;
+    /**
+     * The timestamp that corresponds to the version of the database that is being read to get the list of documents to delete. This time can also be used as the timestamp of PITR in case of disaster recovery (subject to PITR window limit).
+     */
+    snapshotTime?: string | null;
+    /**
+     * The time this operation started.
+     */
+    startTime?: string | null;
+  }
+  /**
+   * The request for FirestoreAdmin.BulkDeleteDocuments. When both collection_ids and namespace_ids are set, only documents satisfying both conditions will be deleted. Requests with namespace_ids and collection_ids both empty will be rejected. Please use FirestoreAdmin.DeleteDatabase instead.
+   */
+  export interface Schema$GoogleFirestoreAdminV1BulkDeleteDocumentsRequest {
+    /**
+     * Optional. IDs of the collection groups to delete. Unspecified means all collection groups. Each collection group in this list must be unique.
+     */
+    collectionIds?: string[] | null;
+    /**
+     * Optional. Namespaces to delete. An empty list means all namespaces. This is the recommended usage for databases that don't use namespaces. An empty string element represents the default namespace. This should be used if the database has data in non-default namespaces, but doesn't want to delete from them. Each namespace in this list must be unique.
+     */
+    namespaceIds?: string[] | null;
+  }
+  /**
    * The CMEK (Customer Managed Encryption Key) configuration for a Firestore database. If not present, the database is secured by the default Google encryption key.
    */
   export interface Schema$GoogleFirestoreAdminV1CmekConfig {
@@ -788,19 +838,6 @@ export namespace firestore_v1 {
     versionRetentionPeriod?: string | null;
   }
   /**
-   * A consistent snapshot of a database at a specific point in time.
-   */
-  export interface Schema$GoogleFirestoreAdminV1DatabaseSnapshot {
-    /**
-     * Required. A name of the form `projects/{project_id\}/databases/{database_id\}`
-     */
-    database?: string | null;
-    /**
-     * Required. The timestamp at which the database snapshot is taken. The requested timestamp must be a whole minute within the PITR window.
-     */
-    snapshotTime?: string | null;
-  }
-  /**
    * Metadata related to the delete database operation.
    */
   export interface Schema$GoogleFirestoreAdminV1DeleteDatabaseMetadata {}
@@ -884,7 +921,7 @@ export namespace firestore_v1 {
      */
     indexConfig?: Schema$GoogleFirestoreAdminV1IndexConfig;
     /**
-     * Required. A field name of the form `projects/{project_id\}/databases/{database_id\}/collectionGroups/{collection_id\}/fields/{field_path\}` A field path may be a simple field name, e.g. `address` or a path to fields within map_value , e.g. `address.city`, or a special field path. The only valid special field is `*`, which represents any field. Field paths may be quoted using ` (backtick). The only character that needs to be escaped within a quoted field path is the backtick character itself, escaped using a backslash. Special characters in field paths that must be quoted include: `*`, `.`, ``` (backtick), `[`, `]`, as well as any ascii symbolic characters. Examples: (Note: Comments here are written in markdown syntax, so there is an additional layer of backticks to represent a code block) `\`address.city\`` represents a field named `address.city`, not the map key `city` in the field `address`. `\`*\`` represents a field named `*`, not any field. A special `Field` contains the default indexing settings for all fields. This field's resource name is: `projects/{project_id\}/databases/{database_id\}/collectionGroups/__default__/fields/x` Indexes defined on this `Field` will be applied to all fields which do not have their own `Field` index configuration.
+     * Required. A field name of the form: `projects/{project_id\}/databases/{database_id\}/collectionGroups/{collection_id\}/fields/{field_path\}` A field path can be a simple field name, e.g. `address` or a path to fields within `map_value` , e.g. `address.city`, or a special field path. The only valid special field is `*`, which represents any field. Field paths can be quoted using `` ` `` (backtick). The only character that must be escaped within a quoted field path is the backtick character itself, escaped using a backslash. Special characters in field paths that must be quoted include: `*`, `.`, `` ` `` (backtick), `[`, `]`, as well as any ascii symbolic characters. Examples: `` `address.city` `` represents a field named `address.city`, not the map key `city` in the field `address`. `` `*` `` represents a field named `*`, not any field. A special `Field` contains the default indexing settings for all fields. This field's resource name is: `projects/{project_id\}/databases/{database_id\}/collectionGroups/__default__/fields/x` Indexes defined on this `Field` will be applied to all fields which do not have their own `Field` index configuration.
      */
     name?: string | null;
     /**
@@ -1216,9 +1253,17 @@ export namespace firestore_v1 {
      */
     databaseId?: string | null;
     /**
-     * Database snapshot to restore from. The source database must exist and have enabled PITR. The restored database will be created in the same location as the source database.
+     * Use Customer Managed Encryption Keys (CMEK) for encryption. Only keys in the same location as this database are allowed to be used for encryption. For Firestore's nam5 multi-region, this corresponds to Cloud KMS multi-region us. For Firestore's eur3 multi-region, this corresponds to Cloud KMS multi-region europe. See https://cloud.google.com/kms/docs/locations. The expected format is `projects/{project_id\}/locations/{kms_location\}/keyRings/{key_ring\}/cryptoKeys/{crypto_key\}`.
      */
-    databaseSnapshot?: Schema$GoogleFirestoreAdminV1DatabaseSnapshot;
+    kmsKeyName?: string | null;
+    /**
+     * The restored database will use the same encryption configuration as the backup. This is the default option when no `encryption_config` is specified.
+     */
+    useBackupEncryption?: Schema$Empty;
+    /**
+     * Use Google default encryption.
+     */
+    useGoogleDefaultEncryption?: Schema$Empty;
   }
   /**
    * Backup specific statistics.
@@ -2045,6 +2090,101 @@ export namespace firestore_v1 {
     }
 
     /**
+     * Bulk deletes a subset of documents from Google Cloud Firestore. Documents created or updated after the underlying system starts to process the request will not be deleted. The bulk delete occurs in the background and its progress can be monitored and managed via the Operation resource that is created. For more details on bulk delete behavior, refer to: https://cloud.google.com/firestore/docs/manage-data/bulk-delete
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    bulkDeleteDocuments(
+      params: Params$Resource$Projects$Databases$Bulkdeletedocuments,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    bulkDeleteDocuments(
+      params?: Params$Resource$Projects$Databases$Bulkdeletedocuments,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    bulkDeleteDocuments(
+      params: Params$Resource$Projects$Databases$Bulkdeletedocuments,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    bulkDeleteDocuments(
+      params: Params$Resource$Projects$Databases$Bulkdeletedocuments,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    bulkDeleteDocuments(
+      params: Params$Resource$Projects$Databases$Bulkdeletedocuments,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    bulkDeleteDocuments(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    bulkDeleteDocuments(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Databases$Bulkdeletedocuments
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Databases$Bulkdeletedocuments;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Databases$Bulkdeletedocuments;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://firestore.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:bulkDeleteDocuments').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+
+    /**
      * Create a database.
      *
      * @param params - Parameters for request
@@ -2800,6 +2940,18 @@ export namespace firestore_v1 {
     }
   }
 
+  export interface Params$Resource$Projects$Databases$Bulkdeletedocuments
+    extends StandardParameters {
+    /**
+     * Required. Database to operate. Should be of the form: `projects/{project_id\}/databases/{database_id\}`.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleFirestoreAdminV1BulkDeleteDocumentsRequest;
+  }
   export interface Params$Resource$Projects$Databases$Create
     extends StandardParameters {
     /**
@@ -3759,7 +3911,7 @@ export namespace firestore_v1 {
   export interface Params$Resource$Projects$Databases$Collectiongroups$Fields$Patch
     extends StandardParameters {
     /**
-     * Required. A field name of the form `projects/{project_id\}/databases/{database_id\}/collectionGroups/{collection_id\}/fields/{field_path\}` A field path may be a simple field name, e.g. `address` or a path to fields within map_value , e.g. `address.city`, or a special field path. The only valid special field is `*`, which represents any field. Field paths may be quoted using ` (backtick). The only character that needs to be escaped within a quoted field path is the backtick character itself, escaped using a backslash. Special characters in field paths that must be quoted include: `*`, `.`, ``` (backtick), `[`, `]`, as well as any ascii symbolic characters. Examples: (Note: Comments here are written in markdown syntax, so there is an additional layer of backticks to represent a code block) `\`address.city\`` represents a field named `address.city`, not the map key `city` in the field `address`. `\`*\`` represents a field named `*`, not any field. A special `Field` contains the default indexing settings for all fields. This field's resource name is: `projects/{project_id\}/databases/{database_id\}/collectionGroups/__default__/fields/x` Indexes defined on this `Field` will be applied to all fields which do not have their own `Field` index configuration.
+     * Required. A field name of the form: `projects/{project_id\}/databases/{database_id\}/collectionGroups/{collection_id\}/fields/{field_path\}` A field path can be a simple field name, e.g. `address` or a path to fields within `map_value` , e.g. `address.city`, or a special field path. The only valid special field is `*`, which represents any field. Field paths can be quoted using `` ` `` (backtick). The only character that must be escaped within a quoted field path is the backtick character itself, escaped using a backslash. Special characters in field paths that must be quoted include: `*`, `.`, `` ` `` (backtick), `[`, `]`, as well as any ascii symbolic characters. Examples: `` `address.city` `` represents a field named `address.city`, not the map key `city` in the field `address`. `` `*` `` represents a field named `*`, not any field. A special `Field` contains the default indexing settings for all fields. This field's resource name is: `projects/{project_id\}/databases/{database_id\}/collectionGroups/__default__/fields/x` Indexes defined on this `Field` will be applied to all fields which do not have their own `Field` index configuration.
      */
     name?: string;
     /**

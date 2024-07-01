@@ -475,7 +475,7 @@ export namespace retail_v2alpha {
     tableId?: string | null;
   }
   /**
-   * A data branch that stores Products.
+   * A data branch that stores all instances of Products.
    */
   export interface Schema$GoogleCloudRetailV2alphaBranch {
     /**
@@ -3227,19 +3227,6 @@ export namespace retail_v2alpha {
     tableId?: string | null;
   }
   /**
-   * Common metadata related to the progress of the operations.
-   */
-  export interface Schema$GoogleCloudRetailV2betaCreateMerchantCenterAccountLinkMetadata {
-    /**
-     * Operation create time.
-     */
-    createTime?: string | null;
-    /**
-     * Operation last update time. If the operation is done, this is also the finish time.
-     */
-    updateTime?: string | null;
-  }
-  /**
    * Metadata associated with a create operation.
    */
   export interface Schema$GoogleCloudRetailV2betaCreateModelMetadata {
@@ -3406,64 +3393,6 @@ export namespace retail_v2alpha {
      * Aggregated statistics of user event import status.
      */
     importSummary?: Schema$GoogleCloudRetailV2betaUserEventImportSummary;
-  }
-  /**
-   * Represents a link between a Merchant Center account and a branch. After a link is established, products from the linked Merchant Center account are streamed to the linked branch.
-   */
-  export interface Schema$GoogleCloudRetailV2betaMerchantCenterAccountLink {
-    /**
-     * Required. The branch ID (e.g. 0/1/2) within the catalog that products from merchant_center_account_id are streamed to. When updating this field, an empty value will use the currently configured default branch. However, changing the default branch later on won't change the linked branch here. A single branch ID can only have one linked Merchant Center account ID.
-     */
-    branchId?: string | null;
-    /**
-     * Criteria for the Merchant Center feeds to be ingested via the link. All offers will be ingested if the list is empty. Otherwise the offers will be ingested from selected feeds.
-     */
-    feedFilters?: Schema$GoogleCloudRetailV2betaMerchantCenterAccountLinkMerchantCenterFeedFilter[];
-    /**
-     * The FeedLabel used to perform filtering. Note: this replaces [region_id](https://developers.google.com/shopping-content/reference/rest/v2.1/products#Product.FIELDS.feed_label). Example value: `US`. Example value: `FeedLabel1`.
-     */
-    feedLabel?: string | null;
-    /**
-     * Output only. Immutable. MerchantCenterAccountLink identifier, which is the final component of name. This field is auto generated and follows the convention: `BranchId_MerchantCenterAccountId`. `projects/x/locations/global/catalogs/default_catalog/merchantCenterAccountLinks/id_1`.
-     */
-    id?: string | null;
-    /**
-     * Language of the title/description and other string attributes. Use language tags defined by [BCP 47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt). ISO 639-1. This specifies the language of offers in Merchant Center that will be accepted. If empty, no language filtering will be performed. Example value: `en`.
-     */
-    languageCode?: string | null;
-    /**
-     * Required. The linked [Merchant center account id](https://developers.google.com/shopping-content/guides/accountstatuses). The account must be a standalone account or a sub-account of a MCA.
-     */
-    merchantCenterAccountId?: string | null;
-    /**
-     * Output only. Immutable. Full resource name of the Merchant Center Account Link, such as `projects/x/locations/global/catalogs/default_catalog/merchantCenterAccountLinks/merchant_center_account_link`.
-     */
-    name?: string | null;
-    /**
-     * Output only. Google Cloud project ID.
-     */
-    projectId?: string | null;
-    /**
-     * Optional. An optional arbitrary string that could be used as a tag for tracking link source.
-     */
-    source?: string | null;
-    /**
-     * Output only. Represents the state of the link.
-     */
-    state?: string | null;
-  }
-  /**
-   * Merchant Center Feed filter criterion.
-   */
-  export interface Schema$GoogleCloudRetailV2betaMerchantCenterAccountLinkMerchantCenterFeedFilter {
-    /**
-     * Merchant Center primary feed ID.
-     */
-    primaryFeedId?: string | null;
-    /**
-     * Merchant Center primary feed name. The name is used for the display purposes only.
-     */
-    primaryFeedName?: string | null;
   }
   /**
    * Metadata that describes the training and serving parameters of a Model. A Model can be associated with a ServingConfig and then queried through the Predict API.
@@ -4857,7 +4786,7 @@ export namespace retail_v2alpha {
      */
     name?: string;
     /**
-     * Indicates which fields in the provided LoggingConfig to update. The following are the only supported fields: * LoggingConfig.default_log_generation_rule * LoggingConfig.per_service_log_generation_rules If not set, all supported fields are updated.
+     * Indicates which fields in the provided LoggingConfig to update. The following are the only supported fields: * LoggingConfig.default_log_generation_rule * LoggingConfig.service_log_generation_rules If not set, all supported fields are updated.
      */
     updateMask?: string;
 
@@ -5896,7 +5825,7 @@ export namespace retail_v2alpha {
      */
     deviceType?: string;
     /**
-     * If true, attribute suggestions are enabled and provided in response. This field is only available for "cloud-retail" dataset.
+     * If true, attribute suggestions are enabled and provided in the response. This field is only available for the "cloud-retail" dataset.
      */
     enableAttributeSuggestions?: boolean;
     /**
@@ -6589,7 +6518,7 @@ export namespace retail_v2alpha {
     }
 
     /**
-     * Lists all Branchs under the specified parent Catalog.
+     * Lists all instances of Branch under the specified parent Catalog.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.

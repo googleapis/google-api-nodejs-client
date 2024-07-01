@@ -467,11 +467,15 @@ export namespace healthcare_v1 {
    */
   export interface Schema$Dataset {
     /**
+     * Optional. Customer-managed encryption key spec for a Dataset. If set, this Dataset and all of its sub-resources will be secured by this key. If empty, the Dataset is secured by the default Google encryption key.
+     */
+    encryptionSpec?: Schema$EncryptionSpec;
+    /**
      * Identifier. Resource name of the dataset, of the form `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}`.
      */
     name?: string | null;
     /**
-     * The default timezone used by this dataset. Must be a either a valid IANA time zone name such as "America/New_York" or empty, which defaults to UTC. This is used for parsing times in resources, such as HL7 messages, where no explicit timezone is specified.
+     * Optional. The default timezone used by this dataset. Must be a either a valid IANA time zone name such as "America/New_York" or empty, which defaults to UTC. This is used for parsing times in resources, such as HL7 messages, where no explicit timezone is specified.
      */
     timeZone?: string | null;
   }
@@ -677,6 +681,15 @@ export namespace healthcare_v1 {
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
    */
   export interface Schema$Empty {}
+  /**
+   * Represents a customer-managed encryption key spec that can be applied to a resource.
+   */
+  export interface Schema$EncryptionSpec {
+    /**
+     * Required. The resource name of customer-managed encryption key that is used to secure a resource and its sub-resources. Only the key in the same location as this Dataset is allowed to be used for encryption. Format is: `projects/{project\}/locations/{location\}/keyRings/{keyRing\}/cryptoKeys/{key\}`
+     */
+    kmsKeyName?: string | null;
+  }
   /**
    * The candidate entities that an entity mention could link to.
    */

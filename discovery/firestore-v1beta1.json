@@ -950,7 +950,7 @@
       }
     }
   },
-  "revision": "20240420",
+  "revision": "20240617",
   "rootUrl": "https://firestore.googleapis.com/",
   "schemas": {
     "Aggregation": {
@@ -1663,6 +1663,74 @@
         "vectorField": {
           "$ref": "FieldReference",
           "description": "Required. An indexed vector field to search upon. Only documents which contain vectors whose dimensionality match the query_vector can be returned."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleFirestoreAdminV1BulkDeleteDocumentsMetadata": {
+      "description": "Metadata for google.longrunning.Operation results from FirestoreAdmin.BulkDeleteDocuments.",
+      "id": "GoogleFirestoreAdminV1BulkDeleteDocumentsMetadata",
+      "properties": {
+        "collectionIds": {
+          "description": "The ids of the collection groups that are being deleted.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "endTime": {
+          "description": "The time this operation completed. Will be unset if operation still in progress.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "namespaceIds": {
+          "description": "Which namespace ids are being deleted.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "operationState": {
+          "description": "The state of the operation.",
+          "enum": [
+            "OPERATION_STATE_UNSPECIFIED",
+            "INITIALIZING",
+            "PROCESSING",
+            "CANCELLING",
+            "FINALIZING",
+            "SUCCESSFUL",
+            "FAILED",
+            "CANCELLED"
+          ],
+          "enumDescriptions": [
+            "Unspecified.",
+            "Request is being prepared for processing.",
+            "Request is actively being processed.",
+            "Request is in the process of being cancelled after user called google.longrunning.Operations.CancelOperation on the operation.",
+            "Request has been processed and is in its finalization stage.",
+            "Request has completed successfully.",
+            "Request has finished being processed, but encountered an error.",
+            "Request has finished being cancelled after user called google.longrunning.Operations.CancelOperation."
+          ],
+          "type": "string"
+        },
+        "progressBytes": {
+          "$ref": "GoogleFirestoreAdminV1Progress",
+          "description": "The progress, in bytes, of this operation."
+        },
+        "progressDocuments": {
+          "$ref": "GoogleFirestoreAdminV1Progress",
+          "description": "The progress, in documents, of this operation."
+        },
+        "snapshotTime": {
+          "description": "The timestamp that corresponds to the version of the database that is being read to get the list of documents to delete. This time can also be used as the timestamp of PITR in case of disaster recovery (subject to PITR window limit).",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "startTime": {
+          "description": "The time this operation started.",
+          "format": "google-datetime",
+          "type": "string"
         }
       },
       "type": "object"

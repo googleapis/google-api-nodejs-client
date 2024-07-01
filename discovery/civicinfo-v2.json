@@ -143,14 +143,11 @@
           "flatPath": "civicinfo/v2/voterinfo",
           "httpMethod": "GET",
           "id": "civicinfo.elections.voterInfoQuery",
-          "parameterOrder": [
-            "address"
-          ],
+          "parameterOrder": [],
           "parameters": {
             "address": {
               "description": "The registered address of the voter to look up.",
               "location": "query",
-              "required": true,
               "type": "string"
             },
             "electionId": {
@@ -365,7 +362,7 @@
       }
     }
   },
-  "revision": "20230711",
+  "revision": "20240620",
   "rootUrl": "https://civicinfo.googleapis.com/",
   "schemas": {
     "AdministrationRegion": {

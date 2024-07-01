@@ -247,6 +247,10 @@ export namespace kmsinventory_v1 {
      */
     importOnly?: boolean | null;
     /**
+     * Optional. The policy used for Key Access Justifications Policy Enforcement. If this field is present and this key is enrolled in Key Access Justifications Policy Enforcement, the policy will be evaluated in encrypt, decrypt, and sign operations, and the operation will fail if rejected by the policy. The policy is defined by specifying zero or more allowed justification codes. https://cloud.google.com/assured-workloads/key-access-justifications/docs/justification-codes By default, this field is absent, and all justification codes are allowed.
+     */
+    keyAccessJustificationsPolicy?: Schema$GoogleCloudKmsV1KeyAccessJustificationsPolicy;
+    /**
      * Labels with user-defined metadata. For more information, see [Labeling Keys](https://cloud.google.com/kms/docs/labeling-keys).
      */
     labels?: {[key: string]: string} | null;
@@ -369,6 +373,15 @@ export namespace kmsinventory_v1 {
      * The URI for an external resource that this CryptoKeyVersion represents.
      */
     externalKeyUri?: string | null;
+  }
+  /**
+   * A KeyAccessJustificationsPolicy specifies zero or more allowed AccessReason values for encrypt, decrypt, and sign operations on a CryptoKey.
+   */
+  export interface Schema$GoogleCloudKmsV1KeyAccessJustificationsPolicy {
+    /**
+     * The list of allowed reasons for access to a CryptoKey. Zero allowed access reasons means all encrypt, decrypt, and sign operations for the CryptoKey associated with this policy will fail.
+     */
+    allowedAccessReasons?: string[] | null;
   }
   /**
    * Contains an HSM-generated attestation about a key operation. For more information, see [Verifying attestations] (https://cloud.google.com/kms/docs/attest-key).

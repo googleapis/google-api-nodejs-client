@@ -23,18 +23,28 @@
   "documentationLink": "https://cloud.google.com/dataflow",
   "endpoints": [
     {
-      "endpointUrl": "https://dataflow.me-central2.rep.googleapis.com/",
-      "location": "me-central2",
-      "description": "Regional Endpoint"
-    },
-    {
       "endpointUrl": "https://dataflow.europe-west3.rep.googleapis.com/",
       "location": "europe-west3",
       "description": "Regional Endpoint"
     },
     {
+      "endpointUrl": "https://dataflow.europe-west8.rep.googleapis.com/",
+      "location": "europe-west8",
+      "description": "Regional Endpoint"
+    },
+    {
       "endpointUrl": "https://dataflow.europe-west9.rep.googleapis.com/",
       "location": "europe-west9",
+      "description": "Regional Endpoint"
+    },
+    {
+      "endpointUrl": "https://dataflow.me-central2.rep.googleapis.com/",
+      "location": "me-central2",
+      "description": "Regional Endpoint"
+    },
+    {
+      "endpointUrl": "https://dataflow.us-east7.rep.googleapis.com/",
+      "location": "us-east7",
       "description": "Regional Endpoint"
     }
   ],
@@ -2187,7 +2197,7 @@
       }
     }
   },
-  "revision": "20240430",
+  "revision": "20240611",
   "rootUrl": "https://dataflow.googleapis.com/",
   "schemas": {
     "ApproximateProgress": {
@@ -4981,7 +4991,34 @@
             "BOOLEAN",
             "ENUM",
             "NUMBER",
-            "KAFKA_TOPIC"
+            "KAFKA_TOPIC",
+            "KAFKA_READ_TOPIC",
+            "KAFKA_WRITE_TOPIC"
+          ],
+          "enumDeprecated": [
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            true,
+            false,
+            false
           ],
           "enumDescriptions": [
             "Default input type.",
@@ -5004,7 +5041,9 @@
             "The parameter specifies a boolean input.",
             "The parameter specifies an enum input.",
             "The parameter specifies a number input.",
-            "The parameter specifies the fully-qualified name of an Apache Kafka topic. This can be either a Google Managed Kafka topic or a non-managed Kafka topic."
+            "Deprecated. Please use KAFKA_READ_TOPIC instead.",
+            "The parameter specifies the fully-qualified name of an Apache Kafka topic. This can be either a Google Managed Kafka topic or a non-managed Kafka topic.",
+            "The parameter specifies the fully-qualified name of an Apache Kafka topic. This can be an existing Google Managed Kafka topic, the name for a new Google Managed Kafka topic, or an existing non-managed Kafka topic."
           ],
           "type": "string"
         },

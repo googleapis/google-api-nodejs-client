@@ -4080,7 +4080,7 @@
       }
     }
   },
-  "revision": "20240508",
+  "revision": "20240612",
   "rootUrl": "https://beyondcorp.googleapis.com/",
   "schemas": {
     "AllocatedConnection": {
@@ -6198,6 +6198,21 @@
             "Represents an active subscription.",
             "Represents an upcomming subscription.",
             "Represents a completed subscription."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "subscriberType": {
+          "description": "Output only. Type of subscriber.",
+          "enum": [
+            "SUBSCRIBER_TYPE_UNSPECIFIED",
+            "ONLINE",
+            "OFFLINE"
+          ],
+          "enumDescriptions": [
+            "Default value. This value is unused.",
+            "Represents an online subscription.",
+            "Represents an offline subscription."
           ],
           "readOnly": true,
           "type": "string"

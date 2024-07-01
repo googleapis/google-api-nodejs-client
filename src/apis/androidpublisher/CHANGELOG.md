@@ -1,5 +1,21 @@
 # Changelog
 
+## [18.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/androidpublisher-v17.0.0...androidpublisher-v18.0.0) (2024-06-21)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+* This release has breaking changes.
+
+### Features
+
+* **androidpublisher:** update the API ([7b7a59e](https://github.com/googleapis/google-api-nodejs-client/commit/7b7a59ea8923a8516c6cebdabecc7a286c0ef53c))
+* **androidpublisher:** update the API ([f58a3c8](https://github.com/googleapis/google-api-nodejs-client/commit/f58a3c8544b91d6cb987f2b72f200e7b79eabe14))
+* run the generator ([181f2d5](https://github.com/googleapis/google-api-nodejs-client/commit/181f2d5118e33081dcd33a485ff79c5d6a7e1c43))
+* run the generator ([#3456](https://github.com/googleapis/google-api-nodejs-client/issues/3456)) ([a865e81](https://github.com/googleapis/google-api-nodejs-client/commit/a865e81539b315d3b321650663ba0b2555b1e5a1))
+* run the generator ([#3484](https://github.com/googleapis/google-api-nodejs-client/issues/3484)) ([99b6c8d](https://github.com/googleapis/google-api-nodejs-client/commit/99b6c8de5beb8447d177048a64a977ee39ee5ee6))
+
 ## [17.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/androidpublisher-v16.1.0...androidpublisher-v17.0.0) (2024-06-06)
 
 

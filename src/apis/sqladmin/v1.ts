@@ -1367,11 +1367,11 @@ export namespace sqladmin_v1 {
    */
   export interface Schema$MaintenanceWindow {
     /**
-     * day of week (1-7), starting on Monday.
+     * Day of week - `MONDAY`, `TUESDAY`, `WEDNESDAY`, `THURSDAY`, `FRIDAY`, `SATURDAY`, or `SUNDAY`. Specify in the UTC time zone. Returned in output as an integer, 1 to 7, where `1` equals Monday.
      */
     day?: number | null;
     /**
-     * hour of day - 0 to 23.
+     * Hour of day - 0 to 23. Specify in the UTC time zone.
      */
     hour?: number | null;
     /**
@@ -1379,7 +1379,7 @@ export namespace sqladmin_v1 {
      */
     kind?: string | null;
     /**
-     * Maintenance timing setting: `canary` (Earlier) or `stable` (Later). [Learn more](https://cloud.google.com/sql/docs/mysql/instance-settings#maintenance-timing-2ndgen).
+     * Maintenance timing settings: `canary`, `stable`, or `week5`. For more information, see [About maintenance on Cloud SQL instances](https://cloud.google.com/sql/docs/mysql/maintenance).
      */
     updateTrack?: string | null;
   }
@@ -1858,6 +1858,10 @@ export namespace sqladmin_v1 {
      * Optional. The edition of the instance.
      */
     edition?: string | null;
+    /**
+     * Optional. By default, Cloud SQL instances have schema extraction disabled for Dataplex. When this parameter is set to true, schema extraction for Dataplex on Cloud SQL instances is activated.
+     */
+    enableDataplexIntegration?: boolean | null;
     /**
      * Optional. When this parameter is set to true, Cloud SQL instances can connect to Vertex AI to pass requests for real-time predictions and insights to the AI. The default value is false. This applies only to Cloud SQL for PostgreSQL instances.
      */

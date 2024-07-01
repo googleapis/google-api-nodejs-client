@@ -491,7 +491,7 @@ export namespace dfareporting_v4 {
      */
     comments?: string | null;
     /**
-     * Email of the user profile. The email addresss must be linked to a Google Account. This field is required on insertion and is read-only after insertion.
+     * Email of the user profile. The email address must be linked to a Google Account. This field is required on insertion and is read-only after insertion.
      */
     email?: string | null;
     /**
@@ -1457,44 +1457,6 @@ export namespace dfareporting_v4 {
     nextPageToken?: string | null;
   }
   /**
-   * Represents a DfaReporting channel grouping.
-   */
-  export interface Schema$ChannelGrouping {
-    /**
-     * ChannelGrouping fallback name.
-     */
-    fallbackName?: string | null;
-    /**
-     * The kind of resource this is, in this case dfareporting#channelGrouping.
-     */
-    kind?: string | null;
-    /**
-     * ChannelGrouping name.
-     */
-    name?: string | null;
-    /**
-     * The rules contained within this channel grouping.
-     */
-    rules?: Schema$ChannelGroupingRule[];
-  }
-  /**
-   * Represents a DfaReporting channel grouping rule.
-   */
-  export interface Schema$ChannelGroupingRule {
-    /**
-     * The disjunctive match statements contained within this rule.
-     */
-    disjunctiveMatchStatements?: Schema$DisjunctiveMatchStatement[];
-    /**
-     * The kind of resource this is, in this case dfareporting#channelGroupingRule.
-     */
-    kind?: string | null;
-    /**
-     * Rule name.
-     */
-    name?: string | null;
-  }
-  /**
    * City List Response
    */
   export interface Schema$CitiesListResponse {
@@ -1649,14 +1611,6 @@ export namespace dfareporting_v4 {
      * The kind of resource this is, in this case dfareporting#compatibleFields.
      */
     kind?: string | null;
-    /**
-     * Contains items that are compatible to be selected for a report of type "PATH_ATTRIBUTION".
-     */
-    pathAttributionReportCompatibleFields?: Schema$PathReportCompatibleFields;
-    /**
-     * Contains items that are compatible to be selected for a report of type "PATH".
-     */
-    pathReportCompatibleFields?: Schema$PathReportCompatibleFields;
     /**
      * Contains items that are compatible to be selected for a report of type "PATH_TO_CONVERSION".
      */
@@ -3229,19 +3183,6 @@ export namespace dfareporting_v4 {
     nextPageToken?: string | null;
   }
   /**
-   * Represents a Disjunctive Match Statement resource, which is a conjunction (and) of disjunctive (or) boolean statements.
-   */
-  export interface Schema$DisjunctiveMatchStatement {
-    /**
-     * The event filters contained within this disjunctive match statement.
-     */
-    eventFilters?: Schema$EventFilter[];
-    /**
-     * The kind of resource this is, in this case dfareporting#disjunctiveMatchStatement.
-     */
-    kind?: string | null;
-  }
-  /**
    * Contains properties of a dynamic targeting key. Dynamic targeting keys are unique, user-friendly labels, created at the advertiser level in DCM, that can be assigned to ads, creatives, and placements and used for targeting with Studio dynamic creatives. Use these labels instead of numeric Campaign Manager IDs (such as placement IDs) to save time and avoid errors in your dynamic feeds.
    */
   export interface Schema$DynamicTargetingKey {
@@ -3295,23 +3236,6 @@ export namespace dfareporting_v4 {
      * Identifies what kind of resource this is. Value: the fixed string "dfareporting#encryptionInfo".
      */
     kind?: string | null;
-  }
-  /**
-   * Represents a DfaReporting event filter.
-   */
-  export interface Schema$EventFilter {
-    /**
-     * The dimension filter contained within this EventFilter.
-     */
-    dimensionFilter?: Schema$PathReportDimensionValue;
-    /**
-     * The kind of resource this is, in this case dfareporting#eventFilter.
-     */
-    kind?: string | null;
-    /**
-     * Filter on a custom variable.
-     */
-    uvarFilter?: Schema$UvarFilter;
   }
   /**
    * Contains properties of an event tag.
@@ -3502,11 +3426,11 @@ export namespace dfareporting_v4 {
    */
   export interface Schema$FloodlightActivitiesGenerateTagResponse {
     /**
-     * Generated tag for this Floodlight activity. For global site tags, this is the event snippet.
+     * Generated tag for this Floodlight activity. For Google tags, this is the event snippet.
      */
     floodlightActivityTag?: string | null;
     /**
-     * The global snippet section of a global site tag. The global site tag sets new cookies on your domain, which will store a unique identifier for a user or the ad click that brought the user to your site. Learn more.
+     * The global snippet section of a Google tag. The Google tag sets new cookies on your domain, which will store a unique identifier for a user or the ad click that brought the user to your site. Learn more.
      */
     globalSiteTagGlobalSnippet?: string | null;
     /**
@@ -4827,73 +4751,6 @@ export namespace dfareporting_v4 {
     orders?: Schema$Order[];
   }
   /**
-   * Represents a DfaReporting path filter.
-   */
-  export interface Schema$PathFilter {
-    /**
-     * Event filters in path report.
-     */
-    eventFilters?: Schema$EventFilter[];
-    /**
-     * The kind of resource this is, in this case dfareporting#pathFilter.
-     */
-    kind?: string | null;
-    /**
-     * Determines how the 'value' field is matched when filtering. If not specified, defaults to EXACT. If set to WILDCARD_EXPRESSION, '*' is allowed as a placeholder for variable length character sequences, and it can be escaped with a backslash. Note, only paid search dimensions ('dfa:paidSearch*') allow a matchType other than EXACT.
-     */
-    pathMatchPosition?: string | null;
-  }
-  /**
-   * Represents fields that are compatible to be selected for a report of type "PATH".
-   */
-  export interface Schema$PathReportCompatibleFields {
-    /**
-     * Dimensions which are compatible to be selected in the "channelGroupings" section of the report.
-     */
-    channelGroupings?: Schema$Dimension[];
-    /**
-     * Dimensions which are compatible to be selected in the "dimensions" section of the report.
-     */
-    dimensions?: Schema$Dimension[];
-    /**
-     * The kind of resource this is, in this case dfareporting#pathReportCompatibleFields.
-     */
-    kind?: string | null;
-    /**
-     * Metrics which are compatible to be selected in the "metricNames" section of the report.
-     */
-    metrics?: Schema$Metric[];
-    /**
-     * Dimensions which are compatible to be selected in the "pathFilters" section of the report.
-     */
-    pathFilters?: Schema$Dimension[];
-  }
-  /**
-   * Represents a PathReportDimensionValue resource.
-   */
-  export interface Schema$PathReportDimensionValue {
-    /**
-     * The name of the dimension.
-     */
-    dimensionName?: string | null;
-    /**
-     * The possible ID's associated with the value if available.
-     */
-    ids?: string[] | null;
-    /**
-     * The kind of resource this is, in this case dfareporting#pathReportDimensionValue.
-     */
-    kind?: string | null;
-    /**
-     * Determines how the 'value' field is matched when filtering. If not specified, defaults to EXACT. If set to WILDCARD_EXPRESSION, '*' is allowed as a placeholder for variable length character sequences, and it can be escaped with a backslash. Note, only paid search dimensions ('dfa:paidSearch*') allow a matchType other than EXACT.
-     */
-    matchType?: string | null;
-    /**
-     * The possible values of the dimension.
-     */
-    values?: string[] | null;
-  }
-  /**
    * Represents fields that are compatible to be selected for a report of type "PATH_TO_CONVERSION".
    */
   export interface Schema$PathToConversionReportCompatibleFields {
@@ -5885,30 +5742,6 @@ export namespace dfareporting_v4 {
      * The user profile id of the owner of this report.
      */
     ownerProfileId?: string | null;
-    /**
-     * The report criteria for a report of type "PATH_ATTRIBUTION".
-     */
-    pathAttributionCriteria?: {
-      activityFilters?: Schema$DimensionValue[];
-      customChannelGrouping?: Schema$ChannelGrouping;
-      dateRange?: Schema$DateRange;
-      dimensions?: Schema$SortedDimension[];
-      floodlightConfigId?: Schema$DimensionValue;
-      metricNames?: string[];
-      pathFilters?: Schema$PathFilter[];
-    } | null;
-    /**
-     * The report criteria for a report of type "PATH".
-     */
-    pathCriteria?: {
-      activityFilters?: Schema$DimensionValue[];
-      customChannelGrouping?: Schema$ChannelGrouping;
-      dateRange?: Schema$DateRange;
-      dimensions?: Schema$SortedDimension[];
-      floodlightConfigId?: Schema$DimensionValue;
-      metricNames?: string[];
-      pathFilters?: Schema$PathFilter[];
-    } | null;
     /**
      * The report criteria for a report of type "PATH_TO_CONVERSION".
      */
@@ -6921,31 +6754,6 @@ export namespace dfareporting_v4 {
      * User role collection.
      */
     userRoles?: Schema$UserRole[];
-  }
-  /**
-   * Defines the filtering on a single uvar.
-   */
-  export interface Schema$UvarFilter {
-    /**
-     * Return rows which don't match this filter.
-     */
-    complement?: boolean | null;
-    /**
-     * Custom variable index the filter is applied to.
-     */
-    index?: string | null;
-    /**
-     * The kind of resource this is, in this case dfareporting#uvarFilter.
-     */
-    kind?: string | null;
-    /**
-     * Indicates how the filter should be matched to the values.
-     */
-    match?: string | null;
-    /**
-     * Values to filter on.
-     */
-    values?: string[] | null;
   }
   /**
    * Contains information about supported video formats.
@@ -8296,7 +8104,7 @@ export namespace dfareporting_v4 {
     }
 
     /**
-     * Updates an existing user role. This method supports patch semantics.
+     * Updates an existing account user profile. This method supports patch semantics.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8838,7 +8646,7 @@ export namespace dfareporting_v4 {
     }
 
     /**
-     * Updates an existing event tag. This method supports patch semantics.
+     * Updates an existing ad. This method supports patch semantics.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10200,7 +10008,7 @@ export namespace dfareporting_v4 {
     }
 
     /**
-     * Updates an existing advertiser. This method supports patch semantics.
+     * Updates an existing landing page. This method supports patch semantics.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -12325,7 +12133,7 @@ export namespace dfareporting_v4 {
     }
 
     /**
-     * Updates an existing creative. This method supports patch semantics.
+     * Updates an existing campaign. This method supports patch semantics.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -18914,7 +18722,7 @@ export namespace dfareporting_v4 {
     }
 
     /**
-     * Updates an existing event tag. This method supports patch semantics.
+     * Updates an existing floodlight activity. This method supports patch semantics.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -19521,7 +19329,7 @@ export namespace dfareporting_v4 {
     }
 
     /**
-     * Updates an existing event tag. This method supports patch semantics.
+     * Updates an existing floodlight activity group. This method supports patch semantics.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -20001,7 +19809,7 @@ export namespace dfareporting_v4 {
     }
 
     /**
-     * Updates an existing event tag. This method supports patch semantics.
+     * Updates an existing floodlight configuration. This method supports patch semantics.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -24762,7 +24570,7 @@ export namespace dfareporting_v4 {
     }
 
     /**
-     * Updates an existing RemarketingList. This method supports patch semantics.
+     * Updates an existing remarketing list. This method supports patch semantics.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -25129,7 +24937,7 @@ export namespace dfareporting_v4 {
     }
 
     /**
-     * Updates an existing RemarketingListShare. This method supports patch semantics.
+     * Updates an existing remarketing list share. This method supports patch semantics.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.

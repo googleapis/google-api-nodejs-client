@@ -10045,7 +10045,7 @@
       }
     }
   },
-  "revision": "20240507",
+  "revision": "20240620",
   "rootUrl": "https://apigee.googleapis.com/",
   "schemas": {
     "EdgeConfigstoreBundleBadBundle": {
@@ -10207,7 +10207,7 @@
         },
         "analyticsConfig": {
           "$ref": "GoogleCloudApigeeV1AnalyticsConfig",
-          "description": "Configuration for the Analytics add-on."
+          "description": "Configuration for the Analytics add-on. Only used in organizations.environments.addonsConfig."
         },
         "apiSecurityConfig": {
           "$ref": "GoogleCloudApigeeV1ApiSecurityConfig",
@@ -14097,7 +14097,6 @@
       "type": "object"
     },
     "GoogleCloudApigeeV1ListApiProxiesResponse": {
-      "description": "To change this message, in the same CL add a change log in go/changing-api-proto-breaks-ui",
       "id": "GoogleCloudApigeeV1ListApiProxiesResponse",
       "properties": {
         "proxies": {
@@ -14611,7 +14610,6 @@
       "type": "object"
     },
     "GoogleCloudApigeeV1ListSharedFlowsResponse": {
-      "description": "To change this message, in the same CL add a change log in go/changing-api-proto-breaks-ui",
       "id": "GoogleCloudApigeeV1ListSharedFlowsResponse",
       "properties": {
         "sharedFlows": {

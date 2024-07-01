@@ -399,6 +399,58 @@ export namespace securitycenter_v1beta1 {
     name?: string | null;
   }
   /**
+   * Represents an Azure management group.
+   */
+  export interface Schema$AzureManagementGroup {
+    /**
+     * The display name of the Azure management group.
+     */
+    displayName?: string | null;
+    /**
+     * The UUID of the Azure management group, for example, "20000000-0001-0000-0000-000000000000".
+     */
+    id?: string | null;
+  }
+  /**
+   * Azure metadata associated with the resource, only applicable if the finding's cloud provider is Microsoft Azure.
+   */
+  export interface Schema$AzureMetadata {
+    /**
+     * A list of Azure management groups associated with the resource, ordered from lowest level (closest to the subscription) to highest level.
+     */
+    managementGroups?: Schema$AzureManagementGroup[];
+    /**
+     * The Azure resource group associated with the resource.
+     */
+    resourceGroup?: Schema$AzureResourceGroup;
+    /**
+     * The Azure subscription associated with the resource.
+     */
+    subscription?: Schema$AzureSubscription;
+  }
+  /**
+   * Represents an Azure resource group.
+   */
+  export interface Schema$AzureResourceGroup {
+    /**
+     * The name of the Azure resource group. This is not a UUID.
+     */
+    name?: string | null;
+  }
+  /**
+   * Represents an Azure subscription.
+   */
+  export interface Schema$AzureSubscription {
+    /**
+     * The display name of the Azure subscription.
+     */
+    displayName?: string | null;
+    /**
+     * The UUID of the Azure subscription, for example, "291bba3f-e0a5-47bc-a099-3bdcb2a50a05".
+     */
+    id?: string | null;
+  }
+  /**
    * Information related to Google Cloud Backup and DR Service findings.
    */
   export interface Schema$BackupDisasterRecovery {
@@ -999,6 +1051,10 @@ export namespace securitycenter_v1beta1 {
      */
     findingClass?: string | null;
     /**
+     * Contains details about groups of which this finding is a member. A group is a collection of findings that are related in some way. This field cannot be updated. Its value is ignored in all update requests.
+     */
+    groupMemberships?: Schema$GroupMembership[];
+    /**
      * Represents IAM bindings associated with the finding.
      */
     iamBindings?: Schema$IamBinding[];
@@ -1094,6 +1150,10 @@ export namespace securitycenter_v1beta1 {
      * The state of the finding.
      */
     state?: string | null;
+    /**
+     * Contains details about a group of security issues that, when the issues occur together, represent a greater risk than when the issues occur independently. A group of such issues is referred to as a toxic combination. This field cannot be updated. Its value is ignored in all update requests.
+     */
+    toxicCombination?: Schema$ToxicCombination;
     /**
      * Represents vulnerability-specific fields like CVE and CVSS scores. CVE stands for Common Vulnerabilities and Exposures (https://cve.mitre.org/about/)
      */
@@ -1623,6 +1683,10 @@ export namespace securitycenter_v1beta1 {
      */
     awsMetadata?: Schema$AwsMetadata;
     /**
+     * The Azure metadata associated with the finding.
+     */
+    azureMetadata?: Schema$AzureMetadata;
+    /**
      * Indicates which cloud provider the resource resides in.
      */
     cloudProvider?: string | null;
@@ -2001,6 +2065,58 @@ export namespace securitycenter_v1beta1 {
      * The friendly name of the OU.
      */
     name?: string | null;
+  }
+  /**
+   * Represents an Azure management group.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV2AzureManagementGroup {
+    /**
+     * The display name of the Azure management group.
+     */
+    displayName?: string | null;
+    /**
+     * The UUID of the Azure management group, for example, "20000000-0001-0000-0000-000000000000".
+     */
+    id?: string | null;
+  }
+  /**
+   * Azure metadata associated with the resource, only applicable if the finding's cloud provider is Microsoft Azure.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV2AzureMetadata {
+    /**
+     * A list of Azure management groups associated with the resource, ordered from lowest level (closest to the subscription) to highest level.
+     */
+    managementGroups?: Schema$GoogleCloudSecuritycenterV2AzureManagementGroup[];
+    /**
+     * The Azure resource group associated with the resource.
+     */
+    resourceGroup?: Schema$GoogleCloudSecuritycenterV2AzureResourceGroup;
+    /**
+     * The Azure subscription associated with the resource.
+     */
+    subscription?: Schema$GoogleCloudSecuritycenterV2AzureSubscription;
+  }
+  /**
+   * Represents an Azure resource group.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV2AzureResourceGroup {
+    /**
+     * The name of the Azure resource group. This is not a UUID.
+     */
+    name?: string | null;
+  }
+  /**
+   * Represents an Azure subscription.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV2AzureSubscription {
+    /**
+     * The display name of the Azure subscription.
+     */
+    displayName?: string | null;
+    /**
+     * The UUID of the Azure subscription, for example, "291bba3f-e0a5-47bc-a099-3bdcb2a50a05".
+     */
+    id?: string | null;
   }
   /**
    * Information related to Google Cloud Backup and DR Service findings.
@@ -2633,6 +2749,10 @@ export namespace securitycenter_v1beta1 {
      */
     findingClass?: string | null;
     /**
+     * Contains details about groups of which this finding is a member. A group is a collection of findings that are related in some way. This field cannot be updated. Its value is ignored in all update requests.
+     */
+    groupMemberships?: Schema$GoogleCloudSecuritycenterV2GroupMembership[];
+    /**
      * Represents IAM bindings associated with the finding.
      */
     iamBindings?: Schema$GoogleCloudSecuritycenterV2IamBinding[];
@@ -2729,6 +2849,10 @@ export namespace securitycenter_v1beta1 {
      */
     state?: string | null;
     /**
+     * Contains details about a group of security issues that, when the issues occur together, represent a greater risk than when the issues occur independently. A group of such issues is referred to as a toxic combination. This field cannot be updated. Its value is ignored in all update requests.
+     */
+    toxicCombination?: Schema$GoogleCloudSecuritycenterV2ToxicCombination;
+    /**
      * Represents vulnerability-specific fields like CVE and CVSS scores. CVE stands for Common Vulnerabilities and Exposures (https://cve.mitre.org/about/)
      */
     vulnerability?: Schema$GoogleCloudSecuritycenterV2Vulnerability;
@@ -2754,6 +2878,19 @@ export namespace securitycenter_v1beta1 {
      * A CLDR.
      */
     regionCode?: string | null;
+  }
+  /**
+   * Contains details about groups of which this finding is a member. A group is a collection of findings that are related in some way.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV2GroupMembership {
+    /**
+     * ID of the group.
+     */
+    groupId?: string | null;
+    /**
+     * Type of group.
+     */
+    groupType?: string | null;
   }
   /**
    * Represents a particular IAM binding, which captures a member's role addition, removal, or state.
@@ -3227,6 +3364,10 @@ export namespace securitycenter_v1beta1 {
      */
     awsMetadata?: Schema$GoogleCloudSecuritycenterV2AwsMetadata;
     /**
+     * The Azure metadata associated with the finding.
+     */
+    azureMetadata?: Schema$GoogleCloudSecuritycenterV2AzureMetadata;
+    /**
      * Indicates which cloud provider the finding is from.
      */
     cloudProvider?: string | null;
@@ -3516,6 +3657,19 @@ export namespace securitycenter_v1beta1 {
     uri?: string | null;
   }
   /**
+   * Contains details about a group of security issues that, when the issues occur together, represent a greater risk than when the issues occur independently. A group of such issues is referred to as a toxic combination.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV2ToxicCombination {
+    /**
+     * The [Attack exposure score](https://cloud.google.com/security-command-center/docs/attack-exposure-learn#attack_exposure_scores) of this toxic combination. The score is a measure of how much this toxic combination exposes one or more high-value resources to potential attack.
+     */
+    attackExposureScore?: number | null;
+    /**
+     * List of resource names of findings associated with this toxic combination. For example, organizations/123/sources/456/findings/789.
+     */
+    relatedFindings?: string[] | null;
+  }
+  /**
    * Refers to common vulnerability fields e.g. cve, cvss, cwe etc.
    */
   export interface Schema$GoogleCloudSecuritycenterV2Vulnerability {
@@ -3632,6 +3786,19 @@ export namespace securitycenter_v1beta1 {
      * Time used for executing the groupBy request.
      */
     readTime?: string | null;
+  }
+  /**
+   * Contains details about groups of which this finding is a member. A group is a collection of findings that are related in some way.
+   */
+  export interface Schema$GroupMembership {
+    /**
+     * ID of the group.
+     */
+    groupId?: string | null;
+    /**
+     * Type of group.
+     */
+    groupType?: string | null;
   }
   /**
    * Result containing the properties and count of a groupBy request.
@@ -4499,6 +4666,19 @@ export namespace securitycenter_v1beta1 {
      * The link to the ticket in the ticket system.
      */
     uri?: string | null;
+  }
+  /**
+   * Contains details about a group of security issues that, when the issues occur together, represent a greater risk than when the issues occur independently. A group of such issues is referred to as a toxic combination.
+   */
+  export interface Schema$ToxicCombination {
+    /**
+     * The [Attack exposure score](https://cloud.google.com/security-command-center/docs/attack-exposure-learn#attack_exposure_scores) of this toxic combination. The score is a measure of how much this toxic combination exposes one or more high-value resources to potential attack.
+     */
+    attackExposureScore?: number | null;
+    /**
+     * List of resource names of findings associated with this toxic combination. For example, organizations/123/sources/456/findings/789.
+     */
+    relatedFindings?: string[] | null;
   }
   /**
    * Refers to common vulnerability fields e.g. cve, cvss, cwe etc.

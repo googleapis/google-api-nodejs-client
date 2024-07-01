@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.3.0](https://github.com/googleapis/google-api-nodejs-client/compare/ids-v1.2.0...ids-v1.3.0) (2024-06-21)
+
+
+### Features
+
+* **ids:** update the API ([a45e553](https://github.com/googleapis/google-api-nodejs-client/commit/a45e553faab0540b5803dcd4ce4efd3e214b49e3))
+
+
+### Bug Fixes
+
+* **ids:** update the API ([5ad0d0b](https://github.com/googleapis/google-api-nodejs-client/commit/5ad0d0ba7b827d5b24e69baa8ec6fb6aff738d2f))
+
 ## [1.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/ids-v1.1.0...ids-v1.2.0) (2024-06-06)
 
 

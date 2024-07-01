@@ -451,10 +451,6 @@ export namespace sqladmin_v1beta4 {
      */
     pointInTime?: string | null;
     /**
-     * Optional. Copy clone and point-in-time recovery clone of a regional instance in the specified zones. If not specified, clone to the same secondary zone as the source instance. This value cannot be the same as the preferred_zone field.
-     */
-    preferredSecondaryZone?: string | null;
-    /**
      * Optional. Copy clone and point-in-time recovery clone of an instance to the specified zone. If no zone is specified, clone to the same primary zone as the source instance.
      */
     preferredZone?: string | null;
@@ -1374,11 +1370,11 @@ export namespace sqladmin_v1beta4 {
    */
   export interface Schema$MaintenanceWindow {
     /**
-     * day of week (1-7), starting on Monday.
+     * Day of week - `MONDAY`, `TUESDAY`, `WEDNESDAY`, `THURSDAY`, `FRIDAY`, `SATURDAY`, or `SUNDAY`. Specify in the UTC time zone. Returned in output as an integer, 1 to 7, where `1` equals Monday.
      */
     day?: number | null;
     /**
-     * hour of day - 0 to 23.
+     * Hour of day - 0 to 23. Specify in the UTC time zone.
      */
     hour?: number | null;
     /**
@@ -1386,7 +1382,7 @@ export namespace sqladmin_v1beta4 {
      */
     kind?: string | null;
     /**
-     * Maintenance timing setting: `canary` (Earlier) or `stable` (Later). [Learn more](https://cloud.google.com/sql/docs/mysql/instance-settings#maintenance-timing-2ndgen).
+     * Maintenance timing settings: `canary`, `stable`, or `week5`. For more information, see [About maintenance on Cloud SQL instances](https://cloud.google.com/sql/docs/mysql/maintenance).
      */
     updateTrack?: string | null;
   }
@@ -1865,6 +1861,10 @@ export namespace sqladmin_v1beta4 {
      * Optional. The edition of the instance.
      */
     edition?: string | null;
+    /**
+     * Optional. By default, Cloud SQL instances have schema extraction disabled for Dataplex. When this parameter is set to true, schema extraction for Dataplex on Cloud SQL instances is activated.
+     */
+    enableDataplexIntegration?: boolean | null;
     /**
      * Optional. When this parameter is set to true, Cloud SQL instances can connect to Vertex AI to pass requests for real-time predictions and insights to the AI. The default value is false. This applies only to Cloud SQL for PostgreSQL instances.
      */
