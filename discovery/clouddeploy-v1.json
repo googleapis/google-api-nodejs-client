@@ -2065,7 +2065,7 @@
       }
     }
   },
-  "revision": "20240515",
+  "revision": "20240614",
   "rootUrl": "https://clouddeploy.googleapis.com/",
   "schemas": {
     "AbandonReleaseRequest": {
@@ -2348,11 +2348,9 @@
             "TYPE_RESTRICTION_VIOLATED",
             "TYPE_RESOURCE_DELETED",
             "TYPE_ROLLOUT_UPDATE",
-            "TYPE_DEPLOY_POLICY_EVALUATION",
             "TYPE_RENDER_STATUES_CHANGE"
           ],
           "enumDeprecated": [
-            false,
             false,
             false,
             false,
@@ -2370,7 +2368,6 @@
             "Restriction check failed.",
             "Resource deleted.",
             "Rollout updated.",
-            "Deploy Policy evaluation.",
             "Deprecated: This field is never used. Use release_render log type instead."
           ],
           "type": "string"
@@ -2403,11 +2400,6 @@
           },
           "readOnly": true,
           "type": "array"
-        },
-        "currentRepairAutomationRun": {
-          "description": "Output only. The current AutomationRun repairing the rollout.",
-          "readOnly": true,
-          "type": "string"
         },
         "promoteAutomationRun": {
           "description": "Output only. The name of the AutomationRun initiated by a promote release rule.",
@@ -2602,11 +2594,9 @@
             "TYPE_RESTRICTION_VIOLATED",
             "TYPE_RESOURCE_DELETED",
             "TYPE_ROLLOUT_UPDATE",
-            "TYPE_DEPLOY_POLICY_EVALUATION",
             "TYPE_RENDER_STATUES_CHANGE"
           ],
           "enumDeprecated": [
-            false,
             false,
             false,
             false,
@@ -2624,7 +2614,6 @@
             "Restriction check failed.",
             "Resource deleted.",
             "Rollout updated.",
-            "Deploy Policy evaluation.",
             "Deprecated: This field is never used. Use release_render log type instead."
           ],
           "type": "string"
@@ -2693,7 +2682,7 @@
       "id": "CanaryDeployment",
       "properties": {
         "percentages": {
-          "description": "Required. The percentage based deployments that will occur as a part of a `Rollout`. List is expected in ascending order and each integer n is 0 <= n < 100.",
+          "description": "Required. The percentage based deployments that will occur as a part of a `Rollout`. List is expected in ascending order and each integer n is 0 <= n < 100. If the GatewayServiceMesh is configured for Kubernetes, then the range for n is 0 <= n <= 100.",
           "items": {
             "format": "int32",
             "type": "integer"
@@ -3157,11 +3146,9 @@
             "TYPE_RESTRICTION_VIOLATED",
             "TYPE_RESOURCE_DELETED",
             "TYPE_ROLLOUT_UPDATE",
-            "TYPE_DEPLOY_POLICY_EVALUATION",
             "TYPE_RENDER_STATUES_CHANGE"
           ],
           "enumDeprecated": [
-            false,
             false,
             false,
             false,
@@ -3179,7 +3166,6 @@
             "Restriction check failed.",
             "Resource deleted.",
             "Rollout updated.",
-            "Deploy Policy evaluation.",
             "Deprecated: This field is never used. Use release_render log type instead."
           ],
           "type": "string"
@@ -3461,6 +3447,10 @@
         "internalIp": {
           "description": "Optional. If true, `cluster` is accessed using the private IP address of the control plane endpoint. Otherwise, the default IP address of the control plane endpoint is used. The default IP address is the private IP address for clusters with private control-plane endpoints and the public IP address otherwise. Only specify this option when `cluster` is a [private GKE cluster](https://cloud.google.com/kubernetes-engine/docs/concepts/private-cluster-concept).",
           "type": "boolean"
+        },
+        "proxyUrl": {
+          "description": "Optional. If set, used to configure a [proxy](https://kubernetes.io/docs/concepts/configuration/organize-cluster-access-kubeconfig/#proxy) to the Kubernetes server.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -3711,11 +3701,9 @@
             "TYPE_RESTRICTION_VIOLATED",
             "TYPE_RESOURCE_DELETED",
             "TYPE_ROLLOUT_UPDATE",
-            "TYPE_DEPLOY_POLICY_EVALUATION",
             "TYPE_RENDER_STATUES_CHANGE"
           ],
           "enumDeprecated": [
-            false,
             false,
             false,
             false,
@@ -3733,7 +3721,6 @@
             "Restriction check failed.",
             "Resource deleted.",
             "Rollout updated.",
-            "Deploy Policy evaluation.",
             "Deprecated: This field is never used. Use release_render log type instead."
           ],
           "type": "string"
@@ -4711,11 +4698,9 @@
             "TYPE_RESTRICTION_VIOLATED",
             "TYPE_RESOURCE_DELETED",
             "TYPE_ROLLOUT_UPDATE",
-            "TYPE_DEPLOY_POLICY_EVALUATION",
             "TYPE_RENDER_STATUES_CHANGE"
           ],
           "enumDeprecated": [
-            false,
             false,
             false,
             false,
@@ -4733,7 +4718,6 @@
             "Restriction check failed.",
             "Resource deleted.",
             "Rollout updated.",
-            "Deploy Policy evaluation.",
             "Deprecated: This field is never used. Use release_render log type instead."
           ],
           "type": "string"
@@ -4794,11 +4778,9 @@
             "TYPE_RESTRICTION_VIOLATED",
             "TYPE_RESOURCE_DELETED",
             "TYPE_ROLLOUT_UPDATE",
-            "TYPE_DEPLOY_POLICY_EVALUATION",
             "TYPE_RENDER_STATUES_CHANGE"
           ],
           "enumDeprecated": [
-            false,
             false,
             false,
             false,
@@ -4816,7 +4798,6 @@
             "Restriction check failed.",
             "Resource deleted.",
             "Rollout updated.",
-            "Deploy Policy evaluation.",
             "Deprecated: This field is never used. Use release_render log type instead."
           ],
           "type": "string"
@@ -4841,23 +4822,8 @@
       },
       "type": "object"
     },
-    "RepairMode": {
-      "description": "Configuration of the repair action.",
-      "id": "RepairMode",
-      "properties": {
-        "retry": {
-          "$ref": "Retry",
-          "description": "Optional. Retries a failed job."
-        },
-        "rollback": {
-          "$ref": "Rollback",
-          "description": "Optional. Rolls back a `Rollout`."
-        }
-      },
-      "type": "object"
-    },
     "RepairPhase": {
-      "description": "RepairPhase tracks the repair attempts that have been made for each `RepairMode` specified in the `Automation` resource.",
+      "description": "RepairPhase tracks the repair attempts that have been made for each `RepairPhaseConfig` specified in the `Automation` resource.",
       "id": "RepairPhase",
       "properties": {
         "retry": {
@@ -4877,12 +4843,6 @@
       "description": "Contains the information for an automated `repair rollout` operation.",
       "id": "RepairRolloutOperation",
       "properties": {
-        "currentRepairModeIndex": {
-          "description": "Output only. The index of the current repair action in the repair sequence.",
-          "format": "int64",
-          "readOnly": true,
-          "type": "string"
-        },
         "jobId": {
           "description": "Output only. The job ID for the Job to repair.",
           "readOnly": true,
@@ -4928,51 +4888,6 @@
             "type": "string"
           },
           "type": "array"
-        },
-        "repairModes": {
-          "description": "Required. Defines the types of automatic repair actions for failed jobs.",
-          "items": {
-            "$ref": "RepairMode"
-          },
-          "type": "array"
-        },
-        "sourcePhases": {
-          "description": "Optional. Phases within which jobs are subject to automatic repair actions on failure. Proceeds only after phase name matched any one in the list, or for all phases if unspecified. This value must consist of lower-case letters, numbers, and hyphens, start with a letter and end with a letter or a number, and have a max length of 63 characters. In other words, it must match the following regex: `^[a-z]([a-z0-9-]{0,61}[a-z0-9])?$`.",
-          "items": {
-            "type": "string"
-          },
-          "type": "array"
-        }
-      },
-      "type": "object"
-    },
-    "Retry": {
-      "description": "Retries the failed job.",
-      "id": "Retry",
-      "properties": {
-        "attempts": {
-          "description": "Required. Total number of retries. Retry is skipped if set to 0; The minimum value is 1, and the maximum value is 10.",
-          "format": "int64",
-          "type": "string"
-        },
-        "backoffMode": {
-          "description": "Optional. The pattern of how wait time will be increased. Default is linear. Backoff mode will be ignored if `wait` is 0.",
-          "enum": [
-            "BACKOFF_MODE_UNSPECIFIED",
-            "BACKOFF_MODE_LINEAR",
-            "BACKOFF_MODE_EXPONENTIAL"
-          ],
-          "enumDescriptions": [
-            "No WaitMode is specified.",
-            "Increases the wait time linearly.",
-            "Increases the wait time exponentially."
-          ],
-          "type": "string"
-        },
-        "wait": {
-          "description": "Optional. How long to wait for the first retry. Default is 0, and the maximum value is 14d.",
-          "format": "google-duration",
-          "type": "string"
         }
       },
       "type": "object"
@@ -4996,7 +4911,6 @@
             "REPAIR_STATE_FAILED",
             "REPAIR_STATE_IN_PROGRESS",
             "REPAIR_STATE_PENDING",
-            "REPAIR_STATE_SKIPPED",
             "REPAIR_STATE_ABORTED"
           ],
           "enumDescriptions": [
@@ -5006,7 +4920,6 @@
             "The `repair` action has failed.",
             "The `repair` action is in progress.",
             "The `repair` action is pending.",
-            "The `repair` action was skipped.",
             "The `repair` action was aborted."
           ],
           "readOnly": true,
@@ -5074,33 +4987,10 @@
           "readOnly": true,
           "type": "string"
         },
-        "jobId": {
-          "deprecated": true,
-          "description": "Output only. The job ID for the Job to retry.",
-          "readOnly": true,
-          "type": "string"
-        },
-        "phaseId": {
-          "deprecated": true,
-          "description": "Output only. The phase ID of the phase that includes the job being retried.",
-          "readOnly": true,
-          "type": "string"
-        },
         "totalAttempts": {
           "description": "Output only. The number of attempts that have been made.",
           "format": "int64",
           "readOnly": true,
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "Rollback": {
-      "description": "Rolls back a `Rollout`.",
-      "id": "Rollback",
-      "properties": {
-        "destinationPhase": {
-          "description": "Optional. The starting phase ID for the `Rollout`. If unspecified, the `Rollout` will start in the stable phase.",
           "type": "string"
         }
       },
@@ -5129,7 +5019,6 @@
             "REPAIR_STATE_FAILED",
             "REPAIR_STATE_IN_PROGRESS",
             "REPAIR_STATE_PENDING",
-            "REPAIR_STATE_SKIPPED",
             "REPAIR_STATE_ABORTED"
           ],
           "enumDescriptions": [
@@ -5139,7 +5028,6 @@
             "The `repair` action has failed.",
             "The `repair` action is in progress.",
             "The `repair` action is pending.",
-            "The `repair` action was skipped.",
             "The `repair` action was aborted."
           ],
           "readOnly": true,
@@ -5442,11 +5330,9 @@
             "TYPE_RESTRICTION_VIOLATED",
             "TYPE_RESOURCE_DELETED",
             "TYPE_ROLLOUT_UPDATE",
-            "TYPE_DEPLOY_POLICY_EVALUATION",
             "TYPE_RENDER_STATUES_CHANGE"
           ],
           "enumDeprecated": [
-            false,
             false,
             false,
             false,
@@ -5464,7 +5350,6 @@
             "Restriction check failed.",
             "Resource deleted.",
             "Rollout updated.",
-            "Deploy Policy evaluation.",
             "Deprecated: This field is never used. Use release_render log type instead."
           ],
           "type": "string"
@@ -5546,11 +5431,9 @@
             "TYPE_RESTRICTION_VIOLATED",
             "TYPE_RESOURCE_DELETED",
             "TYPE_ROLLOUT_UPDATE",
-            "TYPE_DEPLOY_POLICY_EVALUATION",
             "TYPE_RENDER_STATUES_CHANGE"
           ],
           "enumDeprecated": [
-            false,
             false,
             false,
             false,
@@ -5568,7 +5451,6 @@
             "Restriction check failed.",
             "Resource deleted.",
             "Rollout updated.",
-            "Deploy Policy evaluation.",
             "Deprecated: This field is never used. Use release_render log type instead."
           ],
           "type": "string"
@@ -6034,11 +5916,9 @@
             "TYPE_RESTRICTION_VIOLATED",
             "TYPE_RESOURCE_DELETED",
             "TYPE_ROLLOUT_UPDATE",
-            "TYPE_DEPLOY_POLICY_EVALUATION",
             "TYPE_RENDER_STATUES_CHANGE"
           ],
           "enumDeprecated": [
-            false,
             false,
             false,
             false,
@@ -6056,7 +5936,6 @@
             "Restriction check failed.",
             "Resource deleted.",
             "Rollout updated.",
-            "Deploy Policy evaluation.",
             "Deprecated: This field is never used. Use release_render log type instead."
           ],
           "type": "string"

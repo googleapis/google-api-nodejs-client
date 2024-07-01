@@ -146,17 +146,13 @@ export namespace contactcenteraiplatform_v1alpha1 {
    */
   export interface Schema$Component {
     /**
-     * The list of project ids that are allowed to send traffic to the service attachment. This field should be filled only for the ingress components.
-     */
-    allowedProjectIds?: string[] | null;
-    /**
      * Name of the component.
      */
     name?: string | null;
     /**
-     * Associated service attachments.
+     * Associated service attachments. The service attachment names that will be used for sending private traffic to the CCAIP tenant project. Example service attachment name: "projects/${TENANT_PROJECT_ID\}/regions/${REGION\}/serviceAttachments/ingress-default".
      */
-    serviceAttachments?: Schema$ServiceAttachment[];
+    serviceAttachmentNames?: string[] | null;
   }
   /**
    * Message describing ContactCenter object Next ID: 23
@@ -215,7 +211,7 @@ export namespace contactcenteraiplatform_v1alpha1 {
      */
     privateAccess?: Schema$PrivateAccess;
     /**
-     * Output only. A list of UJET components that should be privately accessed. This field is set by reading settings from the data plane. For more information about the format of the component please refer to go/ccaip-vpc-sc-org-policy. This field is must be fully populated only for Create/Update resource operations. The main use case for this field is OrgPolicy checks via CPE.
+     * Output only. TODO(b/283407860) Deprecate this field.
      */
     privateComponents?: string[] | null;
     /**
@@ -461,6 +457,19 @@ export namespace contactcenteraiplatform_v1alpha1 {
      * List of ingress components that should not be accessed via the Internet. For more information see go/ccaip-private-path-v2.
      */
     ingressSettings?: Schema$Component[];
+    /**
+     * Private service connect settings.
+     */
+    pscSetting?: Schema$PscSetting;
+  }
+  /**
+   * Private service connect settings.
+   */
+  export interface Schema$PscSetting {
+    /**
+     * The list of project ids that are allowed to send traffic to the service attachment. This field should be filled only for the ingress components.
+     */
+    allowedConsumerProjectIds?: string[] | null;
   }
   /**
    * Quota details.
@@ -507,15 +516,6 @@ export namespace contactcenteraiplatform_v1alpha1 {
      * Email address of the first admin users.
      */
     userEmail?: string | null;
-  }
-  /**
-   * Container for the VPC-SC networking configurations.
-   */
-  export interface Schema$ServiceAttachment {
-    /**
-     * The service attachment name that will be used for sending private traffic to the CCAIP tenant project. Example: "projects/${TENANT_PROJECT_ID\}/regions/${REGION\}/serviceAttachments/ingress-default".
-     */
-    name?: string | null;
   }
   /**
    * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).

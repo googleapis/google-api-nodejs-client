@@ -2,6 +2,9 @@
   "auth": {
     "oauth2": {
       "scopes": {
+        "https://www.googleapis.com/auth/factchecktools": {
+          "description": "Read, create, update, and delete your ClaimReview data."
+        },
         "https://www.googleapis.com/auth/userinfo.email": {
           "description": "See your primary Google Account email address"
         }
@@ -217,6 +220,7 @@
             "$ref": "GoogleFactcheckingFactchecktoolsV1alpha1ClaimReviewMarkupPage"
           },
           "scopes": [
+            "https://www.googleapis.com/auth/factchecktools",
             "https://www.googleapis.com/auth/userinfo.email"
           ]
         },
@@ -242,6 +246,7 @@
             "$ref": "GoogleProtobufEmpty"
           },
           "scopes": [
+            "https://www.googleapis.com/auth/factchecktools",
             "https://www.googleapis.com/auth/userinfo.email"
           ]
         },
@@ -267,6 +272,7 @@
             "$ref": "GoogleFactcheckingFactchecktoolsV1alpha1ClaimReviewMarkupPage"
           },
           "scopes": [
+            "https://www.googleapis.com/auth/factchecktools",
             "https://www.googleapis.com/auth/userinfo.email"
           ]
         },
@@ -310,6 +316,7 @@
             "$ref": "GoogleFactcheckingFactchecktoolsV1alpha1ListClaimReviewMarkupPagesResponse"
           },
           "scopes": [
+            "https://www.googleapis.com/auth/factchecktools",
             "https://www.googleapis.com/auth/userinfo.email"
           ]
         },
@@ -338,13 +345,14 @@
             "$ref": "GoogleFactcheckingFactchecktoolsV1alpha1ClaimReviewMarkupPage"
           },
           "scopes": [
+            "https://www.googleapis.com/auth/factchecktools",
             "https://www.googleapis.com/auth/userinfo.email"
           ]
         }
       }
     }
   },
-  "revision": "20240428",
+  "revision": "20240626",
   "rootUrl": "https://factchecktools.googleapis.com/",
   "schemas": {
     "GoogleFactcheckingFactchecktoolsV1alpha1Claim": {

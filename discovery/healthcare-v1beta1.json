@@ -2869,7 +2869,7 @@
                                       ],
                                       "parameters": {
                                         "resource": {
-                                          "description": "Required. The path of the resource for which the storage info is requested (for exaxmple for a DICOM Instance: `projects/{projectID}/locations/{locationID}/datasets/{datasetID}/dicomStores/{dicomStoreId}/dicomWeb/studies/{study_uid}/series/{series_uid}/instances/{instance_uid}`)",
+                                          "description": "Required. The path of the instance to return storage info for, in the form: `projects/{projectID}/locations/{locationID}/datasets/{datasetID}/dicomStores/{dicomStoreID}/dicomWeb/studies/{studyUID}/series/{seriesUID}/instances/{instanceUID}`",
                                           "location": "path",
                                           "pattern": "^projects/[^/]+/locations/[^/]+/datasets/[^/]+/dicomStores/[^/]+/dicomWeb/studies/[^/]+/series/[^/]+/instances/[^/]+$",
                                           "required": true,
@@ -5672,7 +5672,7 @@
       }
     }
   },
-  "revision": "20240521",
+  "revision": "20240619",
   "rootUrl": "https://healthcare.googleapis.com/",
   "schemas": {
     "AccessDeterminationLogConfig": {
@@ -6681,6 +6681,10 @@
       "description": "A message representing a health dataset. A health dataset represents a collection of healthcare data pertaining to one or more patients. This may include multiple modalities of healthcare data, such as electronic medical records or medical imaging data.",
       "id": "Dataset",
       "properties": {
+        "encryptionSpec": {
+          "$ref": "EncryptionSpec",
+          "description": "Customer-managed encryption key spec for a Dataset. If set, this Dataset and all of its sub-resources will be secured by this key. If empty, the Dataset is secured by the default Google encryption key."
+        },
         "name": {
           "description": "Identifier. Resource name of the dataset, of the form `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}`.",
           "type": "string"
@@ -7033,6 +7037,17 @@
       "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }",
       "id": "Empty",
       "properties": {},
+      "type": "object"
+    },
+    "EncryptionSpec": {
+      "description": "Represents a customer-managed encryption key spec that can be applied to a resource.",
+      "id": "EncryptionSpec",
+      "properties": {
+        "kmsKeyName": {
+          "description": "Required. The resource name of customer-managed encryption key that is used to secure a resource and its sub-resources. Only the key in the same location as this dataset is allowed to be used for encryption. Format is: `projects/{project}/locations/{location}/keyRings/{keyRing}/cryptoKeys/{key}`",
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "Entity": {
@@ -9915,7 +9930,7 @@
           "description": "Info about the data stored in blob storage for the resource."
         },
         "referencedResource": {
-          "description": "The resource whose storage info is returned. For example, to specify the resource path of a DICOM Instance: `projects/{projectID}/locations/{locationID}/datasets/{datasetID}/dicomStores/{dicom_store_id}/dicomWeb/studi/{study_uid}/series/{series_uid}/instances/{instance_uid}`",
+          "description": "The resource whose storage info is returned. For example: `projects/{projectID}/locations/{locationID}/datasets/{datasetID}/dicomStores/{dicomStoreID}/dicomWeb/studies/{studyUID}/series/{seriesUID}/instances/{instanceUID}`",
           "type": "string"
         },
         "structuredStorageInfo": {

@@ -368,7 +368,7 @@ export namespace bigqueryconnection_v1 {
    */
   export interface Schema$ConnectorConfiguration {
     /**
-     * Optional. Data asset.
+     * Data asset.
      */
     asset?: Schema$ConnectorConfigurationAsset;
     /**
@@ -393,7 +393,7 @@ export namespace bigqueryconnection_v1 {
    */
   export interface Schema$ConnectorConfigurationAsset {
     /**
-     * Optional. Name of the database.
+     * Name of the database.
      */
     database?: string | null;
     /**
@@ -405,6 +405,10 @@ export namespace bigqueryconnection_v1 {
    * Client authentication.
    */
   export interface Schema$ConnectorConfigurationAuthentication {
+    /**
+     * Output only. Google-managed service account associated with this connection, e.g., `service-{project_number\}@gcp-sa-bigqueryconnection.iam.gserviceaccount.com`. BigQuery jobs using this connection will act as `service_account` identity while connecting to the datasource.
+     */
+    serviceAccount?: string | null;
     /**
      * Username/password authentication.
      */

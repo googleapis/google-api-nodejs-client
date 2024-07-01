@@ -7199,7 +7199,7 @@ export namespace documentai_v1 {
     }
 
     /**
-     * Creates a processor from the ProcessorType provided. The processor will be at `ENABLED` state by default after its creation.
+     * Creates a processor from the ProcessorType provided. The processor will be at `ENABLED` state by default after its creation. Note that this method requires the `documentai.processors.create` permission on the project, which is highly privileged. A user or service account with this permission can create new processors that can interact with any gcs bucket in your project.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.

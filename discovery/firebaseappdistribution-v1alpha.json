@@ -585,7 +585,7 @@
       }
     }
   },
-  "revision": "20231221",
+  "revision": "20240628",
   "rootUrl": "https://firebaseappdistribution.googleapis.com/",
   "schemas": {
     "GoogleFirebaseAppdistroV1Release": {
@@ -692,6 +692,39 @@
         },
         "certificateHashSha256": {
           "description": "SHA256 hash of the certificate used to resign the AAB",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleFirebaseAppdistroV1alphaAiInstructions": {
+      "description": "Instructions for AI driven test",
+      "id": "GoogleFirebaseAppdistroV1alphaAiInstructions",
+      "properties": {
+        "appDescription": {
+          "description": "Optional. Describes the app to give the AI some context",
+          "type": "string"
+        },
+        "steps": {
+          "description": "Required. Steps to be accomplished by the AI",
+          "items": {
+            "$ref": "GoogleFirebaseAppdistroV1alphaAiInstructionsStep"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleFirebaseAppdistroV1alphaAiInstructionsStep": {
+      "description": "A step to be accomplished by the AI",
+      "id": "GoogleFirebaseAppdistroV1alphaAiInstructionsStep",
+      "properties": {
+        "assertion": {
+          "description": "An assertion to be checked by the AI",
+          "type": "string"
+        },
+        "goal": {
+          "description": "A goal to be accomplished by the AI",
           "type": "string"
         }
       },
@@ -1177,6 +1210,10 @@
       "description": "The results of running an automated test on a release.",
       "id": "GoogleFirebaseAppdistroV1alphaReleaseTest",
       "properties": {
+        "aiInstructions": {
+          "$ref": "GoogleFirebaseAppdistroV1alphaAiInstructions",
+          "description": "Optional. Input only. Instructions for AI driven test. Input only."
+        },
         "createTime": {
           "description": "Output only. Timestamp when the test was run.",
           "format": "google-datetime",
@@ -1205,6 +1242,10 @@
       "description": "Configuration for Robo crawler",
       "id": "GoogleFirebaseAppdistroV1alphaRoboCrawler",
       "properties": {
+        "aiInstructions": {
+          "$ref": "GoogleFirebaseAppdistroV1alphaAiInstructions",
+          "description": "Optional. Instructions for AI driven test"
+        },
         "loginCredential": {
           "$ref": "GoogleFirebaseAppdistroV1alphaLoginCredential",
           "description": "Optional. Login credential for automated tests"

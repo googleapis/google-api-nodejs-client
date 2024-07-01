@@ -139,7 +139,12 @@ export namespace cloudidentity_v1 {
   /**
    * LRO response metadata for InboundSamlSsoProfilesService.AddIdpCredential.
    */
-  export interface Schema$AddIdpCredentialOperationMetadata {}
+  export interface Schema$AddIdpCredentialOperationMetadata {
+    /**
+     * State of this Operation Will be "awaiting-multi-party-approval" when the operation is deferred due to the target customer having enabled [Multi-party approval for sensitive actions](https://support.google.com/a/answer/13790448).
+     */
+    state?: string | null;
+  }
   /**
    * The request for creating an IdpCredential with its associated payload. An InboundSamlSsoProfile can own up to 2 credentials.
    */
@@ -169,7 +174,12 @@ export namespace cloudidentity_v1 {
   /**
    * LRO response metadata for InboundSamlSsoProfilesService.CreateInboundSamlSsoProfile.
    */
-  export interface Schema$CreateInboundSamlSsoProfileOperationMetadata {}
+  export interface Schema$CreateInboundSamlSsoProfileOperationMetadata {
+    /**
+     * State of this Operation Will be "awaiting-multi-party-approval" when the operation is deferred due to the target customer having enabled [Multi-party approval for sensitive actions](https://support.google.com/a/answer/13790448).
+     */
+    state?: string | null;
+  }
   /**
    * LRO response metadata for InboundSsoAssignmentsService.CreateInboundSsoAssignment.
    */
@@ -1580,7 +1590,12 @@ export namespace cloudidentity_v1 {
   /**
    * LRO response metadata for InboundSamlSsoProfilesService.UpdateInboundSamlSsoProfile.
    */
-  export interface Schema$UpdateInboundSamlSsoProfileOperationMetadata {}
+  export interface Schema$UpdateInboundSamlSsoProfileOperationMetadata {
+    /**
+     * State of this Operation Will be "awaiting-multi-party-approval" when the operation is deferred due to the target customer having enabled [Multi-party approval for sensitive actions](https://support.google.com/a/answer/13790448).
+     */
+    state?: string | null;
+  }
   /**
    * LRO response metadata for InboundSsoAssignmentsService.UpdateInboundSsoAssignment.
    */
@@ -6086,7 +6101,7 @@ export namespace cloudidentity_v1 {
     }
 
     /**
-     * Creates an InboundSamlSsoProfile for a customer.
+     * Creates an InboundSamlSsoProfile for a customer. When the target customer has enabled [Multi-party approval for sensitive actions](https://support.google.com/a/answer/13790448), the `Operation` in the response will have `"done": false`, it will not have a response, and the metadata will have `"state": "awaiting-multi-party-approval"`.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6450,7 +6465,7 @@ export namespace cloudidentity_v1 {
     }
 
     /**
-     * Updates an InboundSamlSsoProfile.
+     * Updates an InboundSamlSsoProfile. When the target customer has enabled [Multi-party approval for sensitive actions](https://support.google.com/a/answer/13790448), the `Operation` in the response will have `"done": false`, it will not have a response, and the metadata will have `"state": "awaiting-multi-party-approval"`.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6596,7 +6611,7 @@ export namespace cloudidentity_v1 {
     }
 
     /**
-     * Adds an IdpCredential. Up to 2 credentials are allowed.
+     * Adds an IdpCredential. Up to 2 credentials are allowed. When the target customer has enabled [Multi-party approval for sensitive actions](https://support.google.com/a/answer/13790448), the `Operation` in the response will have `"done": false`, it will not have a response, and the metadata will have `"state": "awaiting-multi-party-approval"`.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.

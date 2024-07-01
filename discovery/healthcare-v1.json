@@ -4380,7 +4380,7 @@
                           ],
                           "parameters": {
                             "name": {
-                              "description": "Output only. Resource name of the Message, of the form `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/hl7V2Stores/{hl7_v2_store_id}/messages/{message_id}`. Assigned by the server.",
+                              "description": "Output only. Resource name of the Message, of the form `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/hl7V2Stores/{hl7_v2_store_id}/messages/{message_id}`.",
                               "location": "path",
                               "pattern": "^projects/[^/]+/locations/[^/]+/datasets/[^/]+/hl7V2Stores/[^/]+/messages/[^/]+$",
                               "required": true,
@@ -4554,7 +4554,7 @@
       }
     }
   },
-  "revision": "20240429",
+  "revision": "20240619",
   "rootUrl": "https://healthcare.googleapis.com/",
   "schemas": {
     "ActivateConsentRequest": {
@@ -5084,12 +5084,16 @@
       "description": "A message representing a health dataset. A health dataset represents a collection of healthcare data pertaining to one or more patients. This may include multiple modalities of healthcare data, such as electronic medical records or medical imaging data.",
       "id": "Dataset",
       "properties": {
+        "encryptionSpec": {
+          "$ref": "EncryptionSpec",
+          "description": "Optional. Customer-managed encryption key spec for a Dataset. If set, this Dataset and all of its sub-resources will be secured by this key. If empty, the Dataset is secured by the default Google encryption key."
+        },
         "name": {
           "description": "Identifier. Resource name of the dataset, of the form `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}`.",
           "type": "string"
         },
         "timeZone": {
-          "description": "The default timezone used by this dataset. Must be a either a valid IANA time zone name such as \"America/New_York\" or empty, which defaults to UTC. This is used for parsing times in resources, such as HL7 messages, where no explicit timezone is specified.",
+          "description": "Optional. The default timezone used by this dataset. Must be a either a valid IANA time zone name such as \"America/New_York\" or empty, which defaults to UTC. This is used for parsing times in resources, such as HL7 messages, where no explicit timezone is specified.",
           "type": "string"
         }
       },
@@ -5345,6 +5349,17 @@
       "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }",
       "id": "Empty",
       "properties": {},
+      "type": "object"
+    },
+    "EncryptionSpec": {
+      "description": "Represents a customer-managed encryption key spec that can be applied to a resource.",
+      "id": "EncryptionSpec",
+      "properties": {
+        "kmsKeyName": {
+          "description": "Required. The resource name of customer-managed encryption key that is used to secure a resource and its sub-resources. Only the key in the same location as this Dataset is allowed to be used for encryption. Format is: `projects/{project}/locations/{location}/keyRings/{keyRing}/cryptoKeys/{key}`",
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "Entity": {
@@ -6732,7 +6747,7 @@
           "type": "string"
         },
         "name": {
-          "description": "Output only. Resource name of the Message, of the form `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/hl7V2Stores/{hl7_v2_store_id}/messages/{message_id}`. Assigned by the server.",
+          "description": "Output only. Resource name of the Message, of the form `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/hl7V2Stores/{hl7_v2_store_id}/messages/{message_id}`.",
           "readOnly": true,
           "type": "string"
         },

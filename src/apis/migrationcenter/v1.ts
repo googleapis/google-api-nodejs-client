@@ -1530,7 +1530,7 @@ export namespace migrationcenter_v1 {
      */
     architecture?: Schema$MachineArchitectureDetails;
     /**
-     * Number of CPU cores in the machine. Must be non-negative.
+     * Number of logical CPU cores in the machine. Must be non-negative.
      */
     coreCount?: number | null;
     /**

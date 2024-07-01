@@ -343,7 +343,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. Unique name of the resource in this scope including project and location using the form: `projects/{project_id}/locations/{location_id}/clusters/{cluster_id}`",
+                      "description": "Required. Identifier. Unique name of the resource in this scope including project and location using the form: `projects/{project_id}/locations/{location_id}/clusters/{cluster_id}`",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/clusters/[^/]+$",
                       "required": true,
@@ -821,7 +821,7 @@
       }
     }
   },
-  "revision": "20240531",
+  "revision": "20240613",
   "rootUrl": "https://redis.googleapis.com/",
   "schemas": {
     "AOFConfig": {
@@ -1000,7 +1000,7 @@
           "type": "array"
         },
         "name": {
-          "description": "Required. Unique name of the resource in this scope including project and location using the form: `projects/{project_id}/locations/{location_id}/clusters/{cluster_id}`",
+          "description": "Required. Identifier. Unique name of the resource in this scope including project and location using the form: `projects/{project_id}/locations/{location_id}/clusters/{cluster_id}`",
           "type": "string"
         },
         "nodeType": {

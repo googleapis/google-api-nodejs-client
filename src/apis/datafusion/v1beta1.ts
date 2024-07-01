@@ -125,15 +125,15 @@ export namespace datafusion_v1beta1 {
   }
 
   /**
-   * Identifies Data Fusion accelerators for an instance.
+   * Identifies Cloud Data Fusion accelerators for an instance.
    */
   export interface Schema$Accelerator {
     /**
-     * The type of an accelator for a CDF instance.
+     * Optional. The type of an accelator for a Cloud Data Fusion instance.
      */
     acceleratorType?: string | null;
     /**
-     * The state of the accelerator.
+     * Output only. The state of the accelerator.
      */
     state?: string | null;
   }
@@ -176,7 +176,7 @@ export namespace datafusion_v1beta1 {
      */
     members?: string[] | null;
     /**
-     * Role that is assigned to the list of `members`, or principals. For example, `roles/viewer`, `roles/editor`, or `roles/owner`.
+     * Role that is assigned to the list of `members`, or principals. For example, `roles/viewer`, `roles/editor`, or `roles/owner`. For an overview of the IAM roles and permissions, see the [IAM documentation](https://cloud.google.com/iam/docs/roles-overview). For a list of the available pre-defined roles, see [here](https://cloud.google.com/iam/docs/understanding-roles).
      */
     role?: string | null;
   }
@@ -192,27 +192,6 @@ export namespace datafusion_v1beta1 {
      * The name of the key which is used to encrypt/decrypt customer data. For key in Cloud KMS, the key should be in the format of `projects/x/locations/x/keyRings/x/cryptoKeys/x`.
      */
     keyReference?: string | null;
-  }
-  /**
-   * Next tag: 7
-   */
-  export interface Schema$DataResidencyAugmentedView {
-    /**
-     * Cloud resource to Google owned production object mapping in the form of GURIs. The GURIs should be available in DG KB storage/cns tables. This is the preferred way of providing cloud resource mappings. For further details please read go/cloud-resource-monitoring_sig
-     */
-    crGopoGuris?: string[] | null;
-    /**
-     * Cloud resource to Google owned production object mapping in the form of prefixes. These should be available in DG KB storage/cns tables. The entity type, which is the part of the string before the first colon in the GURI, must be completely specified in prefix. For details about GURI please read go/guri. For further details about the field please read go/cloud-resource-monitoring_sig.
-     */
-    crGopoPrefixes?: string[] | null;
-    /**
-     * Service-specific data. Only required for pre-determined services. Generally used to bind a Cloud Resource to some a TI container that uniquely specifies a customer. See milestone 2 of DRZ KR8 SIG for more information.
-     */
-    serviceData?: Schema$ServiceData;
-    /**
-     * The list of project_id's of the tenant projects in the 'google.com' org which serve the Cloud Resource. See go/drz-mst-sig for more details.
-     */
-    tpIds?: string[] | null;
   }
   /**
    * DNS peering configuration. These configurations are used to create DNS peering with the customer Cloud DNS.
@@ -363,6 +342,10 @@ export namespace datafusion_v1beta1 {
      */
     labels?: {[key: string]: string} | null;
     /**
+     * Optional. Configure the maintenance policy for this instance.
+     */
+    maintenancePolicy?: Schema$MaintenancePolicy;
+    /**
      * Output only. The name of this instance is in the form of projects/{project\}/locations/{location\}/instances/{instance\}.
      */
     name?: string | null;
@@ -375,7 +358,7 @@ export namespace datafusion_v1beta1 {
      */
     options?: {[key: string]: string} | null;
     /**
-     * Output only. P4 service account for the customer project.
+     * Output only. Service agent for the customer project.
      */
     p4ServiceAccount?: string | null;
     /**
@@ -539,6 +522,28 @@ export namespace datafusion_v1beta1 {
     name?: string | null;
   }
   /**
+   * Maintenance policy of the instance.
+   */
+  export interface Schema$MaintenancePolicy {
+    /**
+     * Optional. The maintenance exclusion window of the instance.
+     */
+    maintenanceExclusionWindow?: Schema$TimeWindow;
+    /**
+     * Optional. The maintenance window of the instance.
+     */
+    maintenanceWindow?: Schema$MaintenanceWindow;
+  }
+  /**
+   * Maintenance window of the instance.
+   */
+  export interface Schema$MaintenanceWindow {
+    /**
+     * Required. The recurring time window of the maintenance window.
+     */
+    recurringTimeWindow?: Schema$RecurringTimeWindow;
+  }
+  /**
    * Represents the information of a namespace
    */
   export interface Schema$Namespace {
@@ -564,7 +569,7 @@ export namespace datafusion_v1beta1 {
      */
     ipAllocation?: string | null;
     /**
-     * Optional. Name of the network in the customer project with which the Tenant Project will be peered for executing pipelines. This is required only when using connection type VPC peering. In case of shared VPC where the network resides in another host project the network should specified in the form of projects/{host-project-id\}/global/networks/{network\}. This is only required for connectivity type VPC_PEERING.
+     * Optional. Name of the network in the customer project with which the Tenant Project will be peered for executing pipelines. In case of shared VPC where the network resides in another host project the network should specified in the form of projects/{host-project-id\}/global/networks/{network\}. This is only required for connectivity type VPC_PEERING.
      */
     network?: string | null;
     /**
@@ -635,19 +640,6 @@ export namespace datafusion_v1beta1 {
     verb?: string | null;
   }
   /**
-   * Persistent Disk service-specific Data. Contains information that may not be appropriate for the generic DRZ Augmented View. This currently includes LSV Colossus Roots and GCS Buckets.
-   */
-  export interface Schema$PersistentDiskData {
-    /**
-     * Path to Colossus root for an LSV. NOTE: Unlike `cr_ti_guris` and `cr_ti_prefixes`, the field `cfs_roots` below does not need to be a GUri or GUri prefix. It can simply be any valid CFS or CFS2 Path. The DRZ KR8 SIG has more details overall, but generally the `cfs_roots` provided here should be scoped to an individual Persistent Disk. An example for a PD Disk with a disk ID 3277719120423414466, follows: * `cr_ti_guris` could be ‘/cfs2/pj/pd-cloud-prod’ as this is a valid GUri present in the DG KB and contains enough information to perform location monitoring and scope ownership of the Production Object. * `cfs_roots` would be: ‘/cfs2/pj/pd-cloud-staging/lsv000001234@/ lsv/projects~773365403387~zones~2700~disks~3277719120423414466 ~bank-blue-careful-3526-lsv00054DB1B7254BA3/’ as this allows us to enumerate the files on CFS2 that belong to an individual Disk.
-     */
-    cfsRoots?: string[] | null;
-    /**
-     * The GCS Buckets that back this snapshot or image. This is required as `cr_ti_prefixes` and `cr_ti_guris` only accept TI resources. This should be the globally unique bucket name.
-     */
-    gcsBucketNames?: string[] | null;
-  }
-  /**
    * An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members`, or principals, to a single `role`. Principals can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** ``` { "bindings": [ { "role": "roles/resourcemanager.organizationAdmin", "members": [ "user:mike@example.com", "group:admins@example.com", "domain:google.com", "serviceAccount:my-project-id@appspot.gserviceaccount.com" ] \}, { "role": "roles/resourcemanager.organizationViewer", "members": [ "user:eve@example.com" ], "condition": { "title": "expirable access", "description": "Does not grant access after Sep 2020", "expression": "request.time < timestamp('2020-10-01T00:00:00.000Z')", \} \} ], "etag": "BwWWja0YfJA=", "version": 3 \} ``` **YAML example:** ``` bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time < timestamp('2020-10-01T00:00:00.000Z') etag: BwWWja0YfJA= version: 3 ``` For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).
    */
   export interface Schema$Policy {
@@ -686,6 +678,19 @@ export namespace datafusion_v1beta1 {
     unreachableCidrBlock?: string | null;
   }
   /**
+   * Represents an arbitrary window of time that recurs.
+   */
+  export interface Schema$RecurringTimeWindow {
+    /**
+     * Required. An RRULE with format [RFC-5545](https://tools.ietf.org/html/rfc5545#section-3.8.5.3) for how this window reccurs. They go on for the span of time between the start and end time. The only supported FREQ value is "WEEKLY". To have something repeat every weekday, use: "FREQ=WEEKLY;BYDAY=MO,TU,WE,TH,FR". This specifies how frequently the window starts. To have a 9 am - 5 pm UTC-4 window every weekday, use something like: ``` start time = 2019-01-01T09:00:00-0400 end time = 2019-01-01T17:00:00-0400 recurrence = FREQ=WEEKLY;BYDAY=MO,TU,WE,TH,FR ```
+     */
+    recurrence?: string | null;
+    /**
+     * Required. The window representing the start and end time of recurrences. This field ignores the date components of the provided timestamps. Only the time of day and duration between start and end time are relevant.
+     */
+    window?: Schema$TimeWindow;
+  }
+  /**
    * Request message for RemoveIamPolicy method.
    */
   export interface Schema$RemoveIamPolicyRequest {}
@@ -697,15 +702,6 @@ export namespace datafusion_v1beta1 {
    * Request message for restarting a Data Fusion instance.
    */
   export interface Schema$RestartInstanceRequest {}
-  /**
-   * This message defines service-specific data that certain service teams must provide as part of the Data Residency Augmented View for a resource. Next ID: 2
-   */
-  export interface Schema$ServiceData {
-    /**
-     * Auxiliary data for the persistent disk pipeline provided to provide the LSV Colossus Roots and GCS Buckets.
-     */
-    pd?: Schema$PersistentDiskData;
-  }
   /**
    * Request message for `SetIamPolicy` method.
    */
@@ -753,6 +749,19 @@ export namespace datafusion_v1beta1 {
      * A subset of `TestPermissionsRequest.permissions` that the caller is allowed.
      */
     permissions?: string[] | null;
+  }
+  /**
+   * Represents an arbitrary window of time.
+   */
+  export interface Schema$TimeWindow {
+    /**
+     * Required. The end time of the time window provided in [RFC 3339](https://www.ietf.org/rfc/rfc3339.txt) format. The end time should take place after the start time. Example: "2024-01-02T12:04:06-06:00"
+     */
+    endTime?: string | null;
+    /**
+     * Required. The start time of the time window provided in [RFC 3339](https://www.ietf.org/rfc/rfc3339.txt) format. Example: "2024-01-01T12:04:06-04:00"
+     */
+    startTime?: string | null;
   }
   /**
    * Request message for upgrading a Data Fusion instance. To change the instance properties, instance update should be used.
@@ -1090,10 +1099,6 @@ export namespace datafusion_v1beta1 {
      * A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
      */
     filter?: string;
-    /**
-     * If true, the returned list will include locations which are not yet revealed.
-     */
-    includeUnrevealedLocations?: boolean;
     /**
      * The resource that owns the locations collection, if applicable.
      */

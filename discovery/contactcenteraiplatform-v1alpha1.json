@@ -512,7 +512,7 @@
       }
     }
   },
-  "revision": "20240603",
+  "revision": "20240624",
   "rootUrl": "https://contactcenteraiplatform.googleapis.com/",
   "schemas": {
     "AdminUser": {
@@ -540,21 +540,14 @@
       "description": "Defines a logical CCAIP component that e.g. “EMAIL”, \"CRM\". For more information see go/ccaip-private-path-v2. Each logical component is associated with a list of service attachments.",
       "id": "Component",
       "properties": {
-        "allowedProjectIds": {
-          "description": "The list of project ids that are allowed to send traffic to the service attachment. This field should be filled only for the ingress components.",
-          "items": {
-            "type": "string"
-          },
-          "type": "array"
-        },
         "name": {
           "description": "Name of the component.",
           "type": "string"
         },
-        "serviceAttachments": {
-          "description": "Associated service attachments.",
+        "serviceAttachmentNames": {
+          "description": "Associated service attachments. The service attachment names that will be used for sending private traffic to the CCAIP tenant project. Example service attachment name: \"projects/${TENANT_PROJECT_ID}/regions/${REGION}/serviceAttachments/ingress-default\".",
           "items": {
-            "$ref": "ServiceAttachment"
+            "type": "string"
           },
           "type": "array"
         }
@@ -623,7 +616,7 @@
           "description": "Optional. VPC-SC related networking configuration."
         },
         "privateComponents": {
-          "description": "Output only. A list of UJET components that should be privately accessed. This field is set by reading settings from the data plane. For more information about the format of the component please refer to go/ccaip-vpc-sc-org-policy. This field is must be fully populated only for Create/Update resource operations. The main use case for this field is OrgPolicy checks via CPE.",
+          "description": "Output only. TODO(b/283407860) Deprecate this field.",
           "items": {
             "type": "string"
           },
@@ -1023,6 +1016,24 @@
             "$ref": "Component"
           },
           "type": "array"
+        },
+        "pscSetting": {
+          "$ref": "PscSetting",
+          "description": "Private service connect settings."
+        }
+      },
+      "type": "object"
+    },
+    "PscSetting": {
+      "description": "Private service connect settings.",
+      "id": "PscSetting",
+      "properties": {
+        "allowedConsumerProjectIds": {
+          "description": "The list of project ids that are allowed to send traffic to the service attachment. This field should be filled only for the ingress components.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -1164,17 +1175,6 @@
         "userEmail": {
           "deprecated": true,
           "description": "Email address of the first admin users.",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "ServiceAttachment": {
-      "description": "Container for the VPC-SC networking configurations.",
-      "id": "ServiceAttachment",
-      "properties": {
-        "name": {
-          "description": "The service attachment name that will be used for sending private traffic to the CCAIP tenant project. Example: \"projects/${TENANT_PROJECT_ID}/regions/${REGION}/serviceAttachments/ingress-default\".",
           "type": "string"
         }
       },

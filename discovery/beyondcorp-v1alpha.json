@@ -1323,7 +1323,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. Unique resource name of the Subscription. The name is ignored when creating a subscription.",
+                      "description": "Identifier. Unique resource name of the Subscription. The name is ignored when creating a subscription.",
                       "location": "path",
                       "pattern": "^organizations/[^/]+/locations/[^/]+/subscriptions/[^/]+$",
                       "required": true,
@@ -4080,7 +4080,7 @@
       }
     }
   },
-  "revision": "20240508",
+  "revision": "20240619",
   "rootUrl": "https://beyondcorp.googleapis.com/",
   "schemas": {
     "AllocatedConnection": {
@@ -5693,6 +5693,10 @@
           "readOnly": true,
           "type": "string"
         },
+        "proxyProtocolConfig": {
+          "$ref": "GoogleCloudBeyondcorpPartnerservicesV1alphaProxyProtocolConfig",
+          "description": "Optional. Protocol config data for the Proxy."
+        },
         "proxyUri": {
           "description": "Required. The URI of the proxy server.",
           "type": "string"
@@ -5710,6 +5714,20 @@
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudBeyondcorpPartnerservicesV1alphaProxyProtocolConfig": {
+      "description": "The protocol data that specifies how to communicate with Partner's Proxy.",
+      "id": "GoogleCloudBeyondcorpPartnerservicesV1alphaProxyProtocolConfig",
+      "properties": {
+        "metadata": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. Untyped property bag to be sent back to the proxy using client specific mechanism.",
+          "type": "object"
         }
       },
       "type": "object"
@@ -6159,7 +6177,7 @@
           "type": "string"
         },
         "name": {
-          "description": "Required. Unique resource name of the Subscription. The name is ignored when creating a subscription.",
+          "description": "Identifier. Unique resource name of the Subscription. The name is ignored when creating a subscription.",
           "type": "string"
         },
         "seatCount": {
@@ -6198,6 +6216,21 @@
             "Represents an active subscription.",
             "Represents an upcomming subscription.",
             "Represents a completed subscription."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "subscriberType": {
+          "description": "Output only. Type of subscriber.",
+          "enum": [
+            "SUBSCRIBER_TYPE_UNSPECIFIED",
+            "ONLINE",
+            "OFFLINE"
+          ],
+          "enumDescriptions": [
+            "Default value. This value is unused.",
+            "Represents an online subscription.",
+            "Represents an offline subscription."
           ],
           "readOnly": true,
           "type": "string"

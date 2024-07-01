@@ -151,7 +151,7 @@ export namespace accesscontextmanager_v1 {
      */
     description?: string | null;
     /**
-     * Resource name for the `AccessLevel`. Format: `accessPolicies/{access_policy\}/accessLevels/{access_level\}`. The `access_level` component must begin with a letter, followed by alphanumeric characters or `_`. Its maximum length is 50 characters. After you create an `AccessLevel`, you cannot change its `name`.
+     * Identifier. Resource name for the `AccessLevel`. Format: `accessPolicies/{access_policy\}/accessLevels/{access_level\}`. The `access_level` component must begin with a letter, followed by alphanumeric characters or `_`. Its maximum length is 50 characters. After you create an `AccessLevel`, you cannot change its `name`.
      */
     name?: string | null;
     /**
@@ -164,11 +164,11 @@ export namespace accesscontextmanager_v1 {
    */
   export interface Schema$AccessPolicy {
     /**
-     * Output only. An opaque identifier for the current version of the `AccessPolicy`. This will always be a strongly validated etag, meaning that two Access Polices will be identical if and only if their etags are identical. Clients should not expect this to be in any specific format.
+     * Output only. An opaque identifier for the current version of the `AccessPolicy`. This will always be a strongly validated etag, meaning that two Access Policies will be identical if and only if their etags are identical. Clients should not expect this to be in any specific format.
      */
     etag?: string | null;
     /**
-     * Output only. Resource name of the `AccessPolicy`. Format: `accessPolicies/{access_policy\}`
+     * Output only. Identifier. Resource name of the `AccessPolicy`. Format: `accessPolicies/{access_policy\}`
      */
     name?: string | null;
     /**
@@ -253,7 +253,7 @@ export namespace accesscontextmanager_v1 {
      */
     authorizationType?: string | null;
     /**
-     * Resource name for the `AuthorizedOrgsDesc`. Format: `accessPolicies/{access_policy\}/authorizedOrgsDescs/{authorized_orgs_desc\}`. The `authorized_orgs_desc` component must begin with a letter, followed by alphanumeric characters or `_`. After you create an `AuthorizedOrgsDesc`, you cannot change its `name`.
+     * Identifier. Resource name for the `AuthorizedOrgsDesc`. Format: `accessPolicies/{access_policy\}/authorizedOrgsDescs/{authorized_orgs_desc\}`. The `authorized_orgs_desc` component must begin with a letter, followed by alphanumeric characters or `_`. After you create an `AuthorizedOrgsDesc`, you cannot change its `name`.
      */
     name?: string | null;
     /**
@@ -792,7 +792,7 @@ export namespace accesscontextmanager_v1 {
      */
     description?: string | null;
     /**
-     * Resource name for the `ServicePerimeter`. Format: `accessPolicies/{access_policy\}/servicePerimeters/{service_perimeter\}`. The `service_perimeter` component must begin with a letter, followed by alphanumeric characters or `_`. After you create a `ServicePerimeter`, you cannot change its `name`.
+     * Identifier. Resource name for the `ServicePerimeter`. Format: `accessPolicies/{access_policy\}/servicePerimeters/{service_perimeter\}`. The `service_perimeter` component must begin with a letter, followed by alphanumeric characters or `_`. After you create a `ServicePerimeter`, you cannot change its `name`.
      */
     name?: string | null;
     /**
@@ -891,6 +891,10 @@ export namespace accesscontextmanager_v1 {
      * The service name or address of the supported service, such as `service.googleapis.com`.
      */
     name?: string | null;
+    /**
+     * The support stage of the service.
+     */
+    serviceSupportStage?: string | null;
     /**
      * The list of the supported methods. This field exists only in response to GetSupportedService
      */
@@ -1738,7 +1742,7 @@ export namespace accesscontextmanager_v1 {
   export interface Params$Resource$Accesspolicies$Patch
     extends StandardParameters {
     /**
-     * Output only. Resource name of the `AccessPolicy`. Format: `accessPolicies/{access_policy\}`
+     * Output only. Identifier. Resource name of the `AccessPolicy`. Format: `accessPolicies/{access_policy\}`
      */
     name?: string;
     /**
@@ -2462,7 +2466,7 @@ export namespace accesscontextmanager_v1 {
   export interface Params$Resource$Accesspolicies$Accesslevels$Patch
     extends StandardParameters {
     /**
-     * Resource name for the `AccessLevel`. Format: `accessPolicies/{access_policy\}/accessLevels/{access_level\}`. The `access_level` component must begin with a letter, followed by alphanumeric characters or `_`. Its maximum length is 50 characters. After you create an `AccessLevel`, you cannot change its `name`.
+     * Identifier. Resource name for the `AccessLevel`. Format: `accessPolicies/{access_policy\}/accessLevels/{access_level\}`. The `access_level` component must begin with a letter, followed by alphanumeric characters or `_`. Its maximum length is 50 characters. After you create an `AccessLevel`, you cannot change its `name`.
      */
     name?: string;
     /**
@@ -3001,7 +3005,7 @@ export namespace accesscontextmanager_v1 {
   export interface Params$Resource$Accesspolicies$Authorizedorgsdescs$Patch
     extends StandardParameters {
     /**
-     * Resource name for the `AuthorizedOrgsDesc`. Format: `accessPolicies/{access_policy\}/authorizedOrgsDescs/{authorized_orgs_desc\}`. The `authorized_orgs_desc` component must begin with a letter, followed by alphanumeric characters or `_`. After you create an `AuthorizedOrgsDesc`, you cannot change its `name`.
+     * Identifier. Resource name for the `AuthorizedOrgsDesc`. Format: `accessPolicies/{access_policy\}/authorizedOrgsDescs/{authorized_orgs_desc\}`. The `authorized_orgs_desc` component must begin with a letter, followed by alphanumeric characters or `_`. After you create an `AuthorizedOrgsDesc`, you cannot change its `name`.
      */
     name?: string;
     /**
@@ -3798,7 +3802,7 @@ export namespace accesscontextmanager_v1 {
   export interface Params$Resource$Accesspolicies$Serviceperimeters$Patch
     extends StandardParameters {
     /**
-     * Resource name for the `ServicePerimeter`. Format: `accessPolicies/{access_policy\}/servicePerimeters/{service_perimeter\}`. The `service_perimeter` component must begin with a letter, followed by alphanumeric characters or `_`. After you create a `ServicePerimeter`, you cannot change its `name`.
+     * Identifier. Resource name for the `ServicePerimeter`. Format: `accessPolicies/{access_policy\}/servicePerimeters/{service_perimeter\}`. The `service_perimeter` component must begin with a letter, followed by alphanumeric characters or `_`. After you create a `ServicePerimeter`, you cannot change its `name`.
      */
     name?: string;
     /**

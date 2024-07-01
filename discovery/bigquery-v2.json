@@ -36,11 +36,6 @@
   "endpoints": [
     {
       "description": "Regional Endpoint",
-      "endpointUrl": "https://bigquery.me-central2.rep.googleapis.com/",
-      "location": "me-central2"
-    },
-    {
-      "description": "Regional Endpoint",
       "endpointUrl": "https://bigquery.europe-west3.rep.googleapis.com/",
       "location": "europe-west3"
     },
@@ -48,6 +43,11 @@
       "description": "Regional Endpoint",
       "endpointUrl": "https://bigquery.europe-west9.rep.googleapis.com/",
       "location": "europe-west9"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://bigquery.me-central2.rep.googleapis.com/",
+      "location": "me-central2"
     },
     {
       "description": "Regional Endpoint",
@@ -1935,7 +1935,7 @@
       }
     }
   },
-  "revision": "20240418",
+  "revision": "20240616",
   "rootUrl": "https://bigquery.googleapis.com/",
   "schemas": {
     "AggregateClassificationMetrics": {
@@ -2998,7 +2998,7 @@
       "type": "object"
     },
     "ConnectionProperty": {
-      "description": "A connection-level property to customize query behavior. Under JDBC, these correspond directly to connection properties passed to the DriverManager. Under ODBC, these correspond to properties in the connection string. Currently supported connection properties: * **dataset_project_id**: represents the default project for datasets that are used in the query. Setting the system variable `@@dataset_project_id` achieves the same behavior. For more information about system variables, see: https://cloud.google.com/bigquery/docs/reference/system-variables * **time_zone**: represents the default timezone used to run the query. * **session_id**: associates the query with a given session. * **query_label**: associates the query with a given job label. If set, all subsequent queries in a script or session will have this label. For the format in which a you can specify a query label, see labels in the JobConfiguration resource type: https://cloud.google.com/bigquery/docs/reference/rest/v2/Job#jobconfiguration Additional properties are allowed, but ignored. Specifying multiple connection properties with the same key returns an error.",
+      "description": "A connection-level property to customize query behavior. Under JDBC, these correspond directly to connection properties passed to the DriverManager. Under ODBC, these correspond to properties in the connection string. Currently supported connection properties: * **dataset_project_id**: represents the default project for datasets that are used in the query. Setting the system variable `@@dataset_project_id` achieves the same behavior. For more information about system variables, see: https://cloud.google.com/bigquery/docs/reference/system-variables * **time_zone**: represents the default timezone used to run the query. * **session_id**: associates the query with a given session. * **query_label**: associates the query with a given job label. If set, all subsequent queries in a script or session will have this label. For the format in which a you can specify a query label, see labels in the JobConfiguration resource type: https://cloud.google.com/bigquery/docs/reference/rest/v2/Job#jobconfiguration * **service_account**: indicates the service account to use to run a continuous query. If set, the query job uses the service account to access Google Cloud resources. Service account access is bounded by the IAM permissions that you have granted to the service account. Additional properties are allowed, but ignored. Specifying multiple connection properties with the same key returns an error.",
       "id": "ConnectionProperty",
       "properties": {
         "key": {
@@ -3160,7 +3160,7 @@
         },
         "defaultEncryptionConfiguration": {
           "$ref": "EncryptionConfiguration",
-          "description": "The default encryption key for all tables in the dataset. Once this property is set, all newly-created partitioned tables in the dataset will have encryption key set to this value, unless table creation request (or query) overrides the key."
+          "description": "The default encryption key for all tables in the dataset. After this property is set, the encryption key of all newly-created tables in the dataset is set to this value unless the table creation request or query explicitly overrides the key."
         },
         "defaultPartitionExpirationMs": {
           "description": "This default partition expiration, expressed in milliseconds. When new time-partitioned tables are created in a dataset where this property is set, the table will inherit this value, propagated as the `TimePartitioning.expirationMs` property on the new table. If you set `TimePartitioning.expirationMs` explicitly when creating a table, the `defaultPartitionExpirationMs` of the containing dataset is ignored. When creating a partitioned table, if `defaultPartitionExpirationMs` is set, the `defaultTableExpirationMs` value is ignored and the table will not be inherit a table expiration deadline.",
@@ -3252,6 +3252,13 @@
           "description": "Optional. Defines the time travel window in hours. The value can be from 48 to 168 hours (2 to 7 days). The default value is 168 hours if this is not set.",
           "format": "int64",
           "type": "string"
+        },
+        "resourceTags": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. The [tags](/bigquery/docs/tags) attached to this dataset. Tag keys are globally unique. Tag key is expected to be in the namespaced format, for example \"123456789012/environment\" where 123456789012 is the ID of the parent organization or project resource for this tag key. Tag value is expected to be the short name, for example \"Production\". See [Tag definitions](/iam/docs/tags-access-control#definitions) for more details.",
+          "type": "object"
         },
         "restrictions": {
           "$ref": "RestrictionConfig",
@@ -4184,6 +4191,21 @@
       },
       "type": "object"
     },
+    "ForeignViewDefinition": {
+      "description": "A view can be represented in multiple ways. Each representation has its own dialect. This message stores the metadata required for these representations.",
+      "id": "ForeignViewDefinition",
+      "properties": {
+        "dialect": {
+          "description": "Optional. Represents the dialect of the query.",
+          "type": "string"
+        },
+        "query": {
+          "description": "Required. The query that defines the view.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GetIamPolicyRequest": {
       "description": "Request message for `GetIamPolicy` method.",
       "id": "GetIamPolicyRequest",
@@ -4846,7 +4868,7 @@
           "description": "[Pick one] Configures an extract job."
         },
         "jobTimeoutMs": {
-          "description": "Optional. Job timeout in milliseconds. If this time limit is exceeded, BigQuery might attempt to stop the job.",
+          "description": "Optional. Job timeout in milliseconds. If this time limit is exceeded, BigQuery will attempt to stop a longer job, but may not always succeed in canceling it before the job completes. For example, a job that takes more than 60 seconds to complete has a better chance of being stopped than a job that takes 10 seconds to complete.",
           "format": "int64",
           "type": "string"
         },
@@ -4942,6 +4964,22 @@
         "clustering": {
           "$ref": "Clustering",
           "description": "Clustering specification for the destination table."
+        },
+        "columnNameCharacterMap": {
+          "description": "Optional. Character map supported for column names in CSV/Parquet loads. Defaults to STRICT and can be overridden by Project Config Service. Using this option with unsupporting load formats will result in an error.",
+          "enum": [
+            "COLUMN_NAME_CHARACTER_MAP_UNSPECIFIED",
+            "STRICT",
+            "V1",
+            "V2"
+          ],
+          "enumDescriptions": [
+            "Unspecified column name character map.",
+            "Support flexible column name and reject invalid column names.",
+            "Support alphanumeric + underscore characters and names must start with a letter or underscore. Invalid column names will be normalized.",
+            "Support flexible column name. Invalid column names will be normalized."
+          ],
+          "type": "string"
         },
         "connectionProperties": {
           "description": "Optional. Connection properties which can modify the load job behavior. Currently, only the 'session_id' connection property is supported, and is used to resolve _SESSION appearing as the dataset id.",
@@ -6675,14 +6713,14 @@
           "type": "boolean"
         },
         "mapTargetType": {
-          "description": "Optional. Will indicate how to represent a parquet map if present.",
+          "description": "Optional. Indicates how to represent a Parquet map if present.",
           "enum": [
             "MAP_TARGET_TYPE_UNSPECIFIED",
             "ARRAY_OF_STRUCT"
           ],
           "enumDescriptions": [
-            "In this mode, we fall back to the default. Currently (3/24) we represent the map as: struct map_field_name { repeated struct key_value { key value } }",
-            "In this mode, we omit parquet's key_value struct and represent the map as: repeated struct map_field_name { key value }"
+            "In this mode, the map will have the following schema: struct map_field_name { repeated struct key_value { key value } }.",
+            "In this mode, the map will have the following schema: repeated struct map_field_name { key value }."
           ],
           "type": "string"
         }
@@ -6709,23 +6747,21 @@
       "id": "PartitionedColumn",
       "properties": {
         "field": {
-          "description": "Output only. The name of the partition column.",
-          "readOnly": true,
+          "description": "Required. The name of the partition column.",
           "type": "string"
         }
       },
       "type": "object"
     },
     "PartitioningDefinition": {
-      "description": "The partitioning information, which includes managed table and external table partition information.",
+      "description": "The partitioning information, which includes managed table, external table and metastore partitioned table partition information.",
       "id": "PartitioningDefinition",
       "properties": {
         "partitionedColumn": {
-          "description": "Output only. Details about each partitioning column. BigQuery native tables only support 1 partitioning column. Other table types may support 0, 1 or more partitioning columns.",
+          "description": "Optional. Details about each partitioning column. This field is output only for all partitioning types other than metastore partitioned tables. BigQuery native tables only support 1 partitioning column. Other table types may support 0, 1 or more partitioning columns. For metastore partitioned tables, the order must match the definition order in the Hive Metastore, where it must match the physical layout of the table. For example, CREATE TABLE a_table(id BIGINT, name STRING) PARTITIONED BY (city STRING, state STRING). In this case the values must be ['city', 'state'] in that order.",
           "items": {
             "$ref": "PartitionedColumn"
           },
-          "readOnly": true,
           "type": "array"
         }
       },
@@ -7243,7 +7279,7 @@
       "id": "RangePartitioning",
       "properties": {
         "field": {
-          "description": "Required. [Experimental] The table is partitioned by this field. The field must be a top-level NULLABLE/REQUIRED field. The only supported type is INTEGER/INT64.",
+          "description": "Required. The name of the column to partition the table on. It must be a top-level, INT64 column whose mode is NULLABLE or REQUIRED.",
           "type": "string"
         },
         "range": {
@@ -8407,6 +8443,12 @@
           "readOnly": true,
           "type": "string"
         },
+        "numCurrentPhysicalBytes": {
+          "description": "Output only. Number of physical bytes used by current live data storage. This data is not kept in real time, and might be delayed by a few seconds to a few minutes.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
         "numLongTermBytes": {
           "description": "Output only. The number of logical bytes in the table that are considered \"long-term storage\".",
           "format": "int64",
@@ -8463,8 +8505,7 @@
         },
         "partitionDefinition": {
           "$ref": "PartitioningDefinition",
-          "description": "Output only. The partition information for all table formats, including managed partitioned tables, hive partitioned tables, and iceberg partitioned tables.",
-          "readOnly": true
+          "description": "Optional. The partition information for all table formats, including managed partitioned tables, hive partitioned tables, iceberg partitioned, and metastore partitioned tables. This field is only populated for metastore partitioned tables. For other table formats, this is an output only field."
         },
         "rangePartitioning": {
           "$ref": "RangePartitioning",
@@ -9006,7 +9047,7 @@
           "readOnly": true
         },
         "replicationIntervalMs": {
-          "description": "Required. Specifies the interval at which the source table is polled for updates.",
+          "description": "Optional. Specifies the interval at which the source table is polled for updates. It's Optional. If not specified, default replication interval would be applied.",
           "format": "int64",
           "type": "string"
         },
@@ -10137,7 +10178,7 @@
       "id": "UndeleteDatasetRequest",
       "properties": {
         "deletionTime": {
-          "description": "Optional. The exact time when the dataset was deleted. If not specified, the most recently deleted version is undeleted.",
+          "description": "Optional. The exact time when the dataset was deleted. If not specified, the most recently deleted version is undeleted. Undeleting a dataset using deletion time is not supported.",
           "format": "google-datetime",
           "type": "string"
         }
@@ -10193,6 +10234,13 @@
       "description": "Describes the definition of a logical view.",
       "id": "ViewDefinition",
       "properties": {
+        "foreignDefinitions": {
+          "description": "Optional. Foreign view representations.",
+          "items": {
+            "$ref": "ForeignViewDefinition"
+          },
+          "type": "array"
+        },
         "privacyPolicy": {
           "$ref": "PrivacyPolicy",
           "description": "Optional. Specifices the privacy policy for the view."

@@ -753,7 +753,7 @@
       }
     }
   },
-  "revision": "20240505",
+  "revision": "20240623",
   "rootUrl": "https://monitoring.googleapis.com/",
   "schemas": {
     "Aggregation": {
@@ -1111,10 +1111,6 @@
       "description": "A filter to reduce the amount of data charted in relevant widgets.",
       "id": "DashboardFilter",
       "properties": {
-        "applyToNewWidgets": {
-          "description": "Whether to apply this filter to new widgets by default",
-          "type": "boolean"
-        },
         "filterType": {
           "description": "The specified filter type",
           "enum": [
@@ -1648,7 +1644,7 @@
           "type": "string"
         },
         "resourceNames": {
-          "description": "The names of logging resources to collect logs for. Currently only projects are supported. If empty, the widget will default to the host project.",
+          "description": "The names of logging resources to collect logs for. Currently projects and storage views are supported. If empty, the widget will default to the host project.",
           "items": {
             "type": "string"
           },
@@ -2145,9 +2141,23 @@
           "$ref": "Empty",
           "description": "Will cause the Scorecard to show only the value, with no indicator to its value relative to its thresholds."
         },
+        "dimensions": {
+          "description": "Optional. A dimension is a structured label, class, or category for a set of measurements in your data.",
+          "items": {
+            "$ref": "Dimension"
+          },
+          "type": "array"
+        },
         "gaugeView": {
           "$ref": "GaugeView",
           "description": "Will cause the scorecard to show a gauge chart."
+        },
+        "measures": {
+          "description": "Optional. A measure is a measured value of a property in your data. For example, rainfall in inches, number of units sold, revenue gained, etc.",
+          "items": {
+            "$ref": "Measure"
+          },
+          "type": "array"
         },
         "sparkChartView": {
           "$ref": "SparkChartView",

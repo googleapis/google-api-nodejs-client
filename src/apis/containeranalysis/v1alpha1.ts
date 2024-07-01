@@ -1698,6 +1698,10 @@ export namespace containeranalysis_v1alpha1 {
      * Output only. The status of an SBOM generation.
      */
     sbomStatus?: Schema$SBOMStatus;
+    /**
+     * Output only. The status of a vulnerability attestation generation.
+     */
+    vulnerabilityAttestation?: Schema$VulnerabilityAttestation;
   }
   /**
    * A note that indicates a type of analysis a provider would perform. This note exists in a provider's project. A `Discovery` occurrence is created in a consumer's project at the start of analysis. The occurrence's operation will indicate the status of the analysis. Absence of an occurrence linked to this note for a resource indicates that analysis hasn't started.
@@ -3698,6 +3702,23 @@ export namespace containeranalysis_v1alpha1 {
      * The title of the note. E.g. `Vex-Debian-11.4`
      */
     title?: string | null;
+  }
+  /**
+   * The status of a vulnerability attestation generation.
+   */
+  export interface Schema$VulnerabilityAttestation {
+    /**
+     * Output only. If failure, the error reason for why the attestation generation failed.
+     */
+    error?: string | null;
+    /**
+     * Output only. The last time we attempted to generate an attestation.
+     */
+    lastAttemptTime?: string | null;
+    /**
+     * Output only. The success/failure state of the latest attestation attempt.
+     */
+    state?: string | null;
   }
   /**
    * Used by Occurrence to point to where the vulnerability exists and how to fix it.

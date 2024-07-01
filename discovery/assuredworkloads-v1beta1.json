@@ -563,7 +563,7 @@
       }
     }
   },
-  "revision": "20240530",
+  "revision": "20240617",
   "rootUrl": "https://assuredworkloads.googleapis.com/",
   "schemas": {
     "GoogleCloudAssuredworkloadsV1beta1AcknowledgeViolationRequest": {
@@ -675,8 +675,7 @@
             "JP_REGIONS_AND_SUPPORT",
             "REGIONAL_CONTROLS_PREMIUM_JP",
             "KSA_REGIONS_AND_SUPPORT_WITH_SOVEREIGNTY_CONTROLS",
-            "REGIONAL_CONTROLS",
-            "FREE_REGIONS"
+            "REGIONAL_CONTROLS"
           ],
           "enumDescriptions": [
             "Unknown compliance regime.",
@@ -705,8 +704,7 @@
             "Assured Workloads for Japan Regions",
             "Assured Workloads for Japan Regions",
             "KSA R5 Controls.",
-            "Assured Workloads for Regional Controls/Free Regions",
-            "Assured Workloads for Regional Controls/Free Regions"
+            "Assured Workloads for Regional Controls"
           ],
           "type": "string"
         },
@@ -1164,8 +1162,7 @@
             "JP_REGIONS_AND_SUPPORT",
             "REGIONAL_CONTROLS_PREMIUM_JP",
             "KSA_REGIONS_AND_SUPPORT_WITH_SOVEREIGNTY_CONTROLS",
-            "REGIONAL_CONTROLS",
-            "FREE_REGIONS"
+            "REGIONAL_CONTROLS"
           ],
           "enumDescriptions": [
             "Unknown compliance regime.",
@@ -1194,8 +1191,7 @@
             "Assured Workloads for Japan Regions",
             "Assured Workloads for Japan Regions",
             "KSA R5 Controls.",
-            "Assured Workloads for Regional Controls/Free Regions",
-            "Assured Workloads for Regional Controls/Free Regions"
+            "Assured Workloads for Regional Controls"
           ],
           "type": "string"
         },

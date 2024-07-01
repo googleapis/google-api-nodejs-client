@@ -359,6 +359,10 @@ export namespace datastream_v1 {
      * PostgreSQL RDBMS to enrich with child data objects and metadata.
      */
     postgresqlRdbms?: Schema$PostgresqlRdbms;
+    /**
+     * SQLServer RDBMS to enrich with child data objects and metadata.
+     */
+    sqlServerRdbms?: Schema$SqlServerRdbms;
   }
   /**
    * Response from a discover request.
@@ -376,6 +380,10 @@ export namespace datastream_v1 {
      * Enriched PostgreSQL RDBMS object.
      */
     postgresqlRdbms?: Schema$PostgresqlRdbms;
+    /**
+     * Enriched SQLServer RDBMS object.
+     */
+    sqlServerRdbms?: Schema$SqlServerRdbms;
   }
   /**
    * Configuration to drop large object values.

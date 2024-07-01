@@ -1077,7 +1077,7 @@ export namespace civicinfo_v2 {
           options
         ),
         params,
-        requiredParams: ['address'],
+        requiredParams: [],
         pathParams: [],
         context: this.context,
       };

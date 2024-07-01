@@ -227,11 +227,11 @@ export namespace workstations_v1 {
     kmsKeyServiceAccount?: string | null;
   }
   /**
-   * Configuration options for a custom domain.
+   * Configuration options for private workstation clusters.
    */
   export interface Schema$DomainConfig {
     /**
-     * Immutable. Domain used by Workstations for HTTP ingress.
+     * Immutable. Whether Workstations endpoint is private.
      */
     domain?: string | null;
   }
@@ -303,7 +303,7 @@ export namespace workstations_v1 {
      */
     disableSsh?: boolean | null;
     /**
-     * Optional. Whether to enable nested virtualization on Cloud Workstations VMs created using this workstation configuration. Nested virtualization lets you run virtual machine (VM) instances inside your workstation. Before enabling nested virtualization, consider the following important considerations. Cloud Workstations instances are subject to the [same restrictions as Compute Engine instances](https://cloud.google.com/compute/docs/instances/nested-virtualization/overview#restrictions): * **Organization policy**: projects, folders, or organizations may be restricted from creating nested VMs if the **Disable VM nested virtualization** constraint is enforced in the organization policy. For more information, see the Compute Engine section, [Checking whether nested virtualization is allowed](https://cloud.google.com/compute/docs/instances/nested-virtualization/managing-constraint#checking_whether_nested_virtualization_is_allowed). * **Performance**: nested VMs might experience a 10% or greater decrease in performance for workloads that are CPU-bound and possibly greater than a 10% decrease for workloads that are input/output bound. * **Machine Type**: nested virtualization can only be enabled on workstation configurations that specify a machine_type in the N1 or N2 machine series. * **GPUs**: nested virtualization may not be enabled on workstation configurations with accelerators. * **Operating System**: Because [Container-Optimized OS](https://cloud.google.com/compute/docs/images/os-details#container-optimized_os_cos) does not support nested virtualization, when nested virtualization is enabled, the underlying Compute Engine VM instances boot from an [Ubuntu LTS](https://cloud.google.com/compute/docs/images/os-details#ubuntu_lts) image.
+     * Optional. Whether to enable nested virtualization on Cloud Workstations VMs created using this workstation configuration. Nested virtualization lets you run virtual machine (VM) instances inside your workstation. Before enabling nested virtualization, consider the following important considerations. Cloud Workstations instances are subject to the [same restrictions as Compute Engine instances](https://cloud.google.com/compute/docs/instances/nested-virtualization/overview#restrictions): * **Organization policy**: projects, folders, or organizations may be restricted from creating nested VMs if the **Disable VM nested virtualization** constraint is enforced in the organization policy. For more information, see the Compute Engine section, [Checking whether nested virtualization is allowed](https://cloud.google.com/compute/docs/instances/nested-virtualization/managing-constraint#checking_whether_nested_virtualization_is_allowed). * **Performance**: nested VMs might experience a 10% or greater decrease in performance for workloads that are CPU-bound and possibly greater than a 10% decrease for workloads that are input/output bound. * **Machine Type**: nested virtualization can only be enabled on workstation configurations that specify a machine_type in the N1 or N2 machine series. * **GPUs**: nested virtualization may not be enabled on workstation configurations with accelerators. * **Operating System**: because [Container-Optimized OS](https://cloud.google.com/compute/docs/images/os-details#container-optimized_os_cos) does not support nested virtualization, when nested virtualization is enabled, the underlying Compute Engine VM instances boot from an [Ubuntu LTS](https://cloud.google.com/compute/docs/images/os-details#ubuntu_lts) image.
      */
     enableNestedVirtualization?: boolean | null;
     /**
@@ -334,6 +334,10 @@ export namespace workstations_v1 {
      * Optional. Network tags to add to the Compute Engine VMs backing the workstations. This option applies [network tags](https://cloud.google.com/vpc/docs/add-remove-network-tags) to VMs created with this configuration. These network tags enable the creation of [firewall rules](https://cloud.google.com/workstations/docs/configure-firewall-rules).
      */
     tags?: string[] | null;
+    /**
+     * Optional. Resource manager tags to be bound to this instance. Tag keys and values have the same definition as https://cloud.google.com/resource-manager/docs/tags/tags-overview Keys must be in the format `tagKeys/{tag_key_id\}`, and values are in the format `tagValues/456`.
+     */
+    vmTags?: {[key: string]: string} | null;
   }
   /**
    * An EphemeralDirectory is backed by a Compute Engine persistent disk.
@@ -406,6 +410,10 @@ export namespace workstations_v1 {
      * Desired expiration time of the access token. This value must be at most 24 hours in the future. If a value is not specified, the token's expiration time will be set to a default value of 1 hour in the future.
      */
     expireTime?: string | null;
+    /**
+     * Optional. Port for which the access token should be generated. If specified, the generated access token grants access only to the specified port of the workstation. If specified, values must be within the range [1 - 65535]. If not specified, the generated access token grants access to all ports of the workstation.
+     */
+    port?: number | null;
     /**
      * Desired lifetime duration of the access token. This value must be at most 24 hours. If a value is not specified, the token's lifetime will be set to a default value of 1 hour.
      */
@@ -665,25 +673,10 @@ export namespace workstations_v1 {
      */
     version?: number | null;
   }
-  /**
-   * Configuration options for private workstation clusters.
-   */
   export interface Schema$PrivateClusterConfig {
-    /**
-     * Optional. Additional projects that are allowed to attach to the workstation cluster's service attachment. By default, the workstation cluster's project and the VPC host project (if different) are allowed.
-     */
     allowedProjects?: string[] | null;
-    /**
-     * Output only. Hostname for the workstation cluster. This field will be populated only when private endpoint is enabled. To access workstations in the workstation cluster, create a new DNS zone mapping this domain name to an internal IP address and a forwarding rule mapping that address to the service attachment.
-     */
     clusterHostname?: string | null;
-    /**
-     * Immutable. Whether Workstations endpoint is private.
-     */
     enablePrivateEndpoint?: boolean | null;
-    /**
-     * Output only. Service attachment URI for the workstation cluster. The service attachemnt is created when private endpoint is enabled. To access workstations in the workstation cluster, configure access to the managed service using [Private Service Connect](https://cloud.google.com/vpc/docs/configure-private-service-connect-services).
-     */
     serviceAttachmentUri?: string | null;
   }
   /**

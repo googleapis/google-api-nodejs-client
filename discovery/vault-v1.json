@@ -1203,7 +1203,7 @@
       }
     }
   },
-  "revision": "20240226",
+  "revision": "20240617",
   "rootUrl": "https://vault.googleapis.com/",
   "schemas": {
     "AccountCount": {
@@ -1478,6 +1478,10 @@
       "description": "Service-specific options for holds.",
       "id": "CorpusQuery",
       "properties": {
+        "calendarQuery": {
+          "$ref": "HeldCalendarQuery",
+          "description": "Service-specific options for Calendar holds. If set, **CorpusType** must be **CALENDAR**."
+        },
         "driveQuery": {
           "$ref": "HeldDriveQuery",
           "description": "Service-specific options for Drive holds. If set, **CorpusType** must be **DRIVE**."
@@ -1894,6 +1898,12 @@
           "type": "string"
         }
       },
+      "type": "object"
+    },
+    "HeldCalendarQuery": {
+      "description": "Options for Calendar holds.",
+      "id": "HeldCalendarQuery",
+      "properties": {},
       "type": "object"
     },
     "HeldDriveQuery": {

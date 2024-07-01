@@ -498,11 +498,11 @@ export namespace logging_v2 {
      */
     cacheValidatedWithOriginServer?: boolean | null;
     /**
-     * The request processing latency on the server, from the time the request was received until the response was sent.
+     * The request processing latency on the server, from the time the request was received until the response was sent. For WebSocket connections, this field refers to the entire time duration of the connection.
      */
     latency?: string | null;
     /**
-     * Protocol used for the request. Examples: "HTTP/1.1", "HTTP/2", "websocket"
+     * Protocol used for the request. Examples: "HTTP/1.1", "HTTP/2"
      */
     protocol?: string | null;
     /**
@@ -5089,6 +5089,10 @@ export namespace logging_v2 {
   export interface Params$Resource$Billingaccounts$Locations$Recentqueries$List
     extends StandardParameters {
     /**
+     * Optional. Specifies the type ("Logging" or "OpsAnalytics") of the recent queries to list. The only valid value for this field is one of the two allowable type function calls, which are the following: type("Logging") type("OpsAnalytics")
+     */
+    filter?: string;
+    /**
      * Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.
      */
     pageSize?: number;
@@ -5284,6 +5288,92 @@ export namespace logging_v2 {
     }
 
     /**
+     * Returns all data associated with the requested query.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Billingaccounts$Locations$Savedqueries$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Billingaccounts$Locations$Savedqueries$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SavedQuery>;
+    get(
+      params: Params$Resource$Billingaccounts$Locations$Savedqueries$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Billingaccounts$Locations$Savedqueries$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$SavedQuery>,
+      callback: BodyResponseCallback<Schema$SavedQuery>
+    ): void;
+    get(
+      params: Params$Resource$Billingaccounts$Locations$Savedqueries$Get,
+      callback: BodyResponseCallback<Schema$SavedQuery>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$SavedQuery>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Billingaccounts$Locations$Savedqueries$Get
+        | BodyResponseCallback<Schema$SavedQuery>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SavedQuery>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SavedQuery>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$SavedQuery> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Billingaccounts$Locations$Savedqueries$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Billingaccounts$Locations$Savedqueries$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$SavedQuery>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$SavedQuery>(parameters);
+      }
+    }
+
+    /**
      * Lists the SavedQueries that were created by the user making the request.
      *
      * @param params - Parameters for request
@@ -5376,6 +5466,92 @@ export namespace logging_v2 {
         return createAPIRequest<Schema$ListSavedQueriesResponse>(parameters);
       }
     }
+
+    /**
+     * Updates an existing SavedQuery.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Billingaccounts$Locations$Savedqueries$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Billingaccounts$Locations$Savedqueries$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SavedQuery>;
+    patch(
+      params: Params$Resource$Billingaccounts$Locations$Savedqueries$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Billingaccounts$Locations$Savedqueries$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$SavedQuery>,
+      callback: BodyResponseCallback<Schema$SavedQuery>
+    ): void;
+    patch(
+      params: Params$Resource$Billingaccounts$Locations$Savedqueries$Patch,
+      callback: BodyResponseCallback<Schema$SavedQuery>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$SavedQuery>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Billingaccounts$Locations$Savedqueries$Patch
+        | BodyResponseCallback<Schema$SavedQuery>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SavedQuery>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SavedQuery>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$SavedQuery> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Billingaccounts$Locations$Savedqueries$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Billingaccounts$Locations$Savedqueries$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$SavedQuery>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$SavedQuery>(parameters);
+      }
+    }
   }
 
   export interface Params$Resource$Billingaccounts$Locations$Savedqueries$Create
@@ -5401,6 +5577,13 @@ export namespace logging_v2 {
      */
     name?: string;
   }
+  export interface Params$Resource$Billingaccounts$Locations$Savedqueries$Get
+    extends StandardParameters {
+    /**
+     * Required. The resource name of the saved query. "projects/[PROJECT_ID]/locations/[LOCATION_ID]/savedQueries/[QUERY_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/savedQueries/[QUERY_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/savedQueries/[QUERY_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]/savedQueries/[QUERY_ID]" For example: "projects/my-project/locations/global/savedQueries/my-saved-query"
+     */
+    name?: string;
+  }
   export interface Params$Resource$Billingaccounts$Locations$Savedqueries$List
     extends StandardParameters {
     /**
@@ -5415,6 +5598,22 @@ export namespace logging_v2 {
      * Required. The resource to which the listed queries belong. "projects/[PROJECT_ID]/locations/[LOCATION_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]" For example: "projects/my-project/locations/us-central1" Note: The locations portion of the resource must be specified. To get a list of all saved queries, a wildcard character - can be used for LOCATION_ID, for example: "projects/my-project/locations/-"
      */
     parent?: string;
+  }
+  export interface Params$Resource$Billingaccounts$Locations$Savedqueries$Patch
+    extends StandardParameters {
+    /**
+     * Output only. Resource name of the saved query.In the format: "projects/[PROJECT_ID]/locations/[LOCATION_ID]/savedQueries/[QUERY_ID]" For a list of supported locations, see Supported Regions (https://cloud.google.com/logging/docs/region-support#bucket-regions)After the saved query is created, the location cannot be changed.If the user doesn't provide a QUERY_ID, the system will generate an alphanumeric ID.
+     */
+    name?: string;
+    /**
+     * Required. A non-empty list of fields to change in the existing saved query. Fields are relative to the saved_query and new values for the fields are taken from the corresponding fields in the SavedQuery included in this request. Fields not mentioned in update_mask are not changed and are ignored in the request.To update all mutable fields, specify an update_mask of *.For example, to change the description and query filter text of a saved query, specify an update_mask of "description, query.filter".
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$SavedQuery;
   }
 
   export class Resource$Billingaccounts$Logs {
@@ -6150,7 +6349,7 @@ export namespace logging_v2 {
   export interface Params$Resource$Billingaccounts$Sinks$Create
     extends StandardParameters {
     /**
-     * Optional. A service account provided by the caller that will be used to write the log entries. The format must be serviceAccount:some@email. This field can only be specified if you are routing logs to a destination outside this sink's project. If not specified, a Logging service account will automatically be generated.
+     * Optional. The service account provided by the caller that will be used to write the log entries. The format must be serviceAccount:some@email. This field can only be specified when you are routing logs to a log bucket that is in a different project than the sink. When not specified, a Logging service account will automatically be generated.
      */
     customWriterIdentity?: string;
     /**
@@ -6203,7 +6402,7 @@ export namespace logging_v2 {
   export interface Params$Resource$Billingaccounts$Sinks$Patch
     extends StandardParameters {
     /**
-     * Optional. A service account provided by the caller that will be used to write the log entries. The format must be serviceAccount:some@email. This field can only be specified if you are routing logs to a destination outside this sink's project. If not specified, a Logging service account will automatically be generated.
+     * Optional. The service account provided by the caller that will be used to write the log entries. The format must be serviceAccount:some@email. This field can only be specified when you are routing logs to a log bucket that is in a different project than the sink. When not specified, a Logging service account will automatically be generated.
      */
     customWriterIdentity?: string;
     /**
@@ -6227,7 +6426,7 @@ export namespace logging_v2 {
   export interface Params$Resource$Billingaccounts$Sinks$Update
     extends StandardParameters {
     /**
-     * Optional. A service account provided by the caller that will be used to write the log entries. The format must be serviceAccount:some@email. This field can only be specified if you are routing logs to a destination outside this sink's project. If not specified, a Logging service account will automatically be generated.
+     * Optional. The service account provided by the caller that will be used to write the log entries. The format must be serviceAccount:some@email. This field can only be specified when you are routing logs to a log bucket that is in a different project than the sink. When not specified, a Logging service account will automatically be generated.
      */
     customWriterIdentity?: string;
     /**
@@ -10723,6 +10922,10 @@ export namespace logging_v2 {
   export interface Params$Resource$Folders$Locations$Recentqueries$List
     extends StandardParameters {
     /**
+     * Optional. Specifies the type ("Logging" or "OpsAnalytics") of the recent queries to list. The only valid value for this field is one of the two allowable type function calls, which are the following: type("Logging") type("OpsAnalytics")
+     */
+    filter?: string;
+    /**
      * Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.
      */
     pageSize?: number;
@@ -10916,6 +11119,91 @@ export namespace logging_v2 {
     }
 
     /**
+     * Returns all data associated with the requested query.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Folders$Locations$Savedqueries$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Folders$Locations$Savedqueries$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SavedQuery>;
+    get(
+      params: Params$Resource$Folders$Locations$Savedqueries$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Folders$Locations$Savedqueries$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$SavedQuery>,
+      callback: BodyResponseCallback<Schema$SavedQuery>
+    ): void;
+    get(
+      params: Params$Resource$Folders$Locations$Savedqueries$Get,
+      callback: BodyResponseCallback<Schema$SavedQuery>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$SavedQuery>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Folders$Locations$Savedqueries$Get
+        | BodyResponseCallback<Schema$SavedQuery>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SavedQuery>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SavedQuery>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$SavedQuery> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Folders$Locations$Savedqueries$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Folders$Locations$Savedqueries$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$SavedQuery>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$SavedQuery>(parameters);
+      }
+    }
+
+    /**
      * Lists the SavedQueries that were created by the user making the request.
      *
      * @param params - Parameters for request
@@ -11007,6 +11295,91 @@ export namespace logging_v2 {
         return createAPIRequest<Schema$ListSavedQueriesResponse>(parameters);
       }
     }
+
+    /**
+     * Updates an existing SavedQuery.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Folders$Locations$Savedqueries$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Folders$Locations$Savedqueries$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SavedQuery>;
+    patch(
+      params: Params$Resource$Folders$Locations$Savedqueries$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Folders$Locations$Savedqueries$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$SavedQuery>,
+      callback: BodyResponseCallback<Schema$SavedQuery>
+    ): void;
+    patch(
+      params: Params$Resource$Folders$Locations$Savedqueries$Patch,
+      callback: BodyResponseCallback<Schema$SavedQuery>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$SavedQuery>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Folders$Locations$Savedqueries$Patch
+        | BodyResponseCallback<Schema$SavedQuery>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SavedQuery>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SavedQuery>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$SavedQuery> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Folders$Locations$Savedqueries$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Folders$Locations$Savedqueries$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$SavedQuery>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$SavedQuery>(parameters);
+      }
+    }
   }
 
   export interface Params$Resource$Folders$Locations$Savedqueries$Create
@@ -11032,6 +11405,13 @@ export namespace logging_v2 {
      */
     name?: string;
   }
+  export interface Params$Resource$Folders$Locations$Savedqueries$Get
+    extends StandardParameters {
+    /**
+     * Required. The resource name of the saved query. "projects/[PROJECT_ID]/locations/[LOCATION_ID]/savedQueries/[QUERY_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/savedQueries/[QUERY_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/savedQueries/[QUERY_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]/savedQueries/[QUERY_ID]" For example: "projects/my-project/locations/global/savedQueries/my-saved-query"
+     */
+    name?: string;
+  }
   export interface Params$Resource$Folders$Locations$Savedqueries$List
     extends StandardParameters {
     /**
@@ -11046,6 +11426,22 @@ export namespace logging_v2 {
      * Required. The resource to which the listed queries belong. "projects/[PROJECT_ID]/locations/[LOCATION_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]" For example: "projects/my-project/locations/us-central1" Note: The locations portion of the resource must be specified. To get a list of all saved queries, a wildcard character - can be used for LOCATION_ID, for example: "projects/my-project/locations/-"
      */
     parent?: string;
+  }
+  export interface Params$Resource$Folders$Locations$Savedqueries$Patch
+    extends StandardParameters {
+    /**
+     * Output only. Resource name of the saved query.In the format: "projects/[PROJECT_ID]/locations/[LOCATION_ID]/savedQueries/[QUERY_ID]" For a list of supported locations, see Supported Regions (https://cloud.google.com/logging/docs/region-support#bucket-regions)After the saved query is created, the location cannot be changed.If the user doesn't provide a QUERY_ID, the system will generate an alphanumeric ID.
+     */
+    name?: string;
+    /**
+     * Required. A non-empty list of fields to change in the existing saved query. Fields are relative to the saved_query and new values for the fields are taken from the corresponding fields in the SavedQuery included in this request. Fields not mentioned in update_mask are not changed and are ignored in the request.To update all mutable fields, specify an update_mask of *.For example, to change the description and query filter text of a saved query, specify an update_mask of "description, query.filter".
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$SavedQuery;
   }
 
   export class Resource$Folders$Logs {
@@ -11781,7 +12177,7 @@ export namespace logging_v2 {
   export interface Params$Resource$Folders$Sinks$Create
     extends StandardParameters {
     /**
-     * Optional. A service account provided by the caller that will be used to write the log entries. The format must be serviceAccount:some@email. This field can only be specified if you are routing logs to a destination outside this sink's project. If not specified, a Logging service account will automatically be generated.
+     * Optional. The service account provided by the caller that will be used to write the log entries. The format must be serviceAccount:some@email. This field can only be specified when you are routing logs to a log bucket that is in a different project than the sink. When not specified, a Logging service account will automatically be generated.
      */
     customWriterIdentity?: string;
     /**
@@ -11834,7 +12230,7 @@ export namespace logging_v2 {
   export interface Params$Resource$Folders$Sinks$Patch
     extends StandardParameters {
     /**
-     * Optional. A service account provided by the caller that will be used to write the log entries. The format must be serviceAccount:some@email. This field can only be specified if you are routing logs to a destination outside this sink's project. If not specified, a Logging service account will automatically be generated.
+     * Optional. The service account provided by the caller that will be used to write the log entries. The format must be serviceAccount:some@email. This field can only be specified when you are routing logs to a log bucket that is in a different project than the sink. When not specified, a Logging service account will automatically be generated.
      */
     customWriterIdentity?: string;
     /**
@@ -11858,7 +12254,7 @@ export namespace logging_v2 {
   export interface Params$Resource$Folders$Sinks$Update
     extends StandardParameters {
     /**
-     * Optional. A service account provided by the caller that will be used to write the log entries. The format must be serviceAccount:some@email. This field can only be specified if you are routing logs to a destination outside this sink's project. If not specified, a Logging service account will automatically be generated.
+     * Optional. The service account provided by the caller that will be used to write the log entries. The format must be serviceAccount:some@email. This field can only be specified when you are routing logs to a log bucket that is in a different project than the sink. When not specified, a Logging service account will automatically be generated.
      */
     customWriterIdentity?: string;
     /**
@@ -18466,6 +18862,10 @@ export namespace logging_v2 {
   export interface Params$Resource$Organizations$Locations$Recentqueries$List
     extends StandardParameters {
     /**
+     * Optional. Specifies the type ("Logging" or "OpsAnalytics") of the recent queries to list. The only valid value for this field is one of the two allowable type function calls, which are the following: type("Logging") type("OpsAnalytics")
+     */
+    filter?: string;
+    /**
      * Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.
      */
     pageSize?: number;
@@ -18661,6 +19061,91 @@ export namespace logging_v2 {
     }
 
     /**
+     * Returns all data associated with the requested query.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Organizations$Locations$Savedqueries$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Organizations$Locations$Savedqueries$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SavedQuery>;
+    get(
+      params: Params$Resource$Organizations$Locations$Savedqueries$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Organizations$Locations$Savedqueries$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$SavedQuery>,
+      callback: BodyResponseCallback<Schema$SavedQuery>
+    ): void;
+    get(
+      params: Params$Resource$Organizations$Locations$Savedqueries$Get,
+      callback: BodyResponseCallback<Schema$SavedQuery>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$SavedQuery>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Locations$Savedqueries$Get
+        | BodyResponseCallback<Schema$SavedQuery>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SavedQuery>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SavedQuery>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$SavedQuery> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Locations$Savedqueries$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Organizations$Locations$Savedqueries$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$SavedQuery>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$SavedQuery>(parameters);
+      }
+    }
+
+    /**
      * Lists the SavedQueries that were created by the user making the request.
      *
      * @param params - Parameters for request
@@ -18753,6 +19238,92 @@ export namespace logging_v2 {
         return createAPIRequest<Schema$ListSavedQueriesResponse>(parameters);
       }
     }
+
+    /**
+     * Updates an existing SavedQuery.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Organizations$Locations$Savedqueries$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Organizations$Locations$Savedqueries$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SavedQuery>;
+    patch(
+      params: Params$Resource$Organizations$Locations$Savedqueries$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Organizations$Locations$Savedqueries$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$SavedQuery>,
+      callback: BodyResponseCallback<Schema$SavedQuery>
+    ): void;
+    patch(
+      params: Params$Resource$Organizations$Locations$Savedqueries$Patch,
+      callback: BodyResponseCallback<Schema$SavedQuery>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$SavedQuery>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Locations$Savedqueries$Patch
+        | BodyResponseCallback<Schema$SavedQuery>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SavedQuery>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SavedQuery>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$SavedQuery> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Locations$Savedqueries$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Organizations$Locations$Savedqueries$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$SavedQuery>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$SavedQuery>(parameters);
+      }
+    }
   }
 
   export interface Params$Resource$Organizations$Locations$Savedqueries$Create
@@ -18778,6 +19349,13 @@ export namespace logging_v2 {
      */
     name?: string;
   }
+  export interface Params$Resource$Organizations$Locations$Savedqueries$Get
+    extends StandardParameters {
+    /**
+     * Required. The resource name of the saved query. "projects/[PROJECT_ID]/locations/[LOCATION_ID]/savedQueries/[QUERY_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/savedQueries/[QUERY_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/savedQueries/[QUERY_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]/savedQueries/[QUERY_ID]" For example: "projects/my-project/locations/global/savedQueries/my-saved-query"
+     */
+    name?: string;
+  }
   export interface Params$Resource$Organizations$Locations$Savedqueries$List
     extends StandardParameters {
     /**
@@ -18792,6 +19370,22 @@ export namespace logging_v2 {
      * Required. The resource to which the listed queries belong. "projects/[PROJECT_ID]/locations/[LOCATION_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]" For example: "projects/my-project/locations/us-central1" Note: The locations portion of the resource must be specified. To get a list of all saved queries, a wildcard character - can be used for LOCATION_ID, for example: "projects/my-project/locations/-"
      */
     parent?: string;
+  }
+  export interface Params$Resource$Organizations$Locations$Savedqueries$Patch
+    extends StandardParameters {
+    /**
+     * Output only. Resource name of the saved query.In the format: "projects/[PROJECT_ID]/locations/[LOCATION_ID]/savedQueries/[QUERY_ID]" For a list of supported locations, see Supported Regions (https://cloud.google.com/logging/docs/region-support#bucket-regions)After the saved query is created, the location cannot be changed.If the user doesn't provide a QUERY_ID, the system will generate an alphanumeric ID.
+     */
+    name?: string;
+    /**
+     * Required. A non-empty list of fields to change in the existing saved query. Fields are relative to the saved_query and new values for the fields are taken from the corresponding fields in the SavedQuery included in this request. Fields not mentioned in update_mask are not changed and are ignored in the request.To update all mutable fields, specify an update_mask of *.For example, to change the description and query filter text of a saved query, specify an update_mask of "description, query.filter".
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$SavedQuery;
   }
 
   export class Resource$Organizations$Logs {
@@ -19527,7 +20121,7 @@ export namespace logging_v2 {
   export interface Params$Resource$Organizations$Sinks$Create
     extends StandardParameters {
     /**
-     * Optional. A service account provided by the caller that will be used to write the log entries. The format must be serviceAccount:some@email. This field can only be specified if you are routing logs to a destination outside this sink's project. If not specified, a Logging service account will automatically be generated.
+     * Optional. The service account provided by the caller that will be used to write the log entries. The format must be serviceAccount:some@email. This field can only be specified when you are routing logs to a log bucket that is in a different project than the sink. When not specified, a Logging service account will automatically be generated.
      */
     customWriterIdentity?: string;
     /**
@@ -19580,7 +20174,7 @@ export namespace logging_v2 {
   export interface Params$Resource$Organizations$Sinks$Patch
     extends StandardParameters {
     /**
-     * Optional. A service account provided by the caller that will be used to write the log entries. The format must be serviceAccount:some@email. This field can only be specified if you are routing logs to a destination outside this sink's project. If not specified, a Logging service account will automatically be generated.
+     * Optional. The service account provided by the caller that will be used to write the log entries. The format must be serviceAccount:some@email. This field can only be specified when you are routing logs to a log bucket that is in a different project than the sink. When not specified, a Logging service account will automatically be generated.
      */
     customWriterIdentity?: string;
     /**
@@ -19604,7 +20198,7 @@ export namespace logging_v2 {
   export interface Params$Resource$Organizations$Sinks$Update
     extends StandardParameters {
     /**
-     * Optional. A service account provided by the caller that will be used to write the log entries. The format must be serviceAccount:some@email. This field can only be specified if you are routing logs to a destination outside this sink's project. If not specified, a Logging service account will automatically be generated.
+     * Optional. The service account provided by the caller that will be used to write the log entries. The format must be serviceAccount:some@email. This field can only be specified when you are routing logs to a log bucket that is in a different project than the sink. When not specified, a Logging service account will automatically be generated.
      */
     customWriterIdentity?: string;
     /**
@@ -23122,6 +23716,10 @@ export namespace logging_v2 {
   export interface Params$Resource$Projects$Locations$Recentqueries$List
     extends StandardParameters {
     /**
+     * Optional. Specifies the type ("Logging" or "OpsAnalytics") of the recent queries to list. The only valid value for this field is one of the two allowable type function calls, which are the following: type("Logging") type("OpsAnalytics")
+     */
+    filter?: string;
+    /**
      * Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.
      */
     pageSize?: number;
@@ -23315,6 +23913,91 @@ export namespace logging_v2 {
     }
 
     /**
+     * Returns all data associated with the requested query.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Savedqueries$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Savedqueries$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SavedQuery>;
+    get(
+      params: Params$Resource$Projects$Locations$Savedqueries$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Savedqueries$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$SavedQuery>,
+      callback: BodyResponseCallback<Schema$SavedQuery>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Savedqueries$Get,
+      callback: BodyResponseCallback<Schema$SavedQuery>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$SavedQuery>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Savedqueries$Get
+        | BodyResponseCallback<Schema$SavedQuery>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SavedQuery>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SavedQuery>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$SavedQuery> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Savedqueries$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Savedqueries$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$SavedQuery>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$SavedQuery>(parameters);
+      }
+    }
+
+    /**
      * Lists the SavedQueries that were created by the user making the request.
      *
      * @param params - Parameters for request
@@ -23406,6 +24089,91 @@ export namespace logging_v2 {
         return createAPIRequest<Schema$ListSavedQueriesResponse>(parameters);
       }
     }
+
+    /**
+     * Updates an existing SavedQuery.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Locations$Savedqueries$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Projects$Locations$Savedqueries$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SavedQuery>;
+    patch(
+      params: Params$Resource$Projects$Locations$Savedqueries$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Savedqueries$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$SavedQuery>,
+      callback: BodyResponseCallback<Schema$SavedQuery>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Savedqueries$Patch,
+      callback: BodyResponseCallback<Schema$SavedQuery>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$SavedQuery>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Savedqueries$Patch
+        | BodyResponseCallback<Schema$SavedQuery>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SavedQuery>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SavedQuery>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$SavedQuery> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Savedqueries$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Savedqueries$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$SavedQuery>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$SavedQuery>(parameters);
+      }
+    }
   }
 
   export interface Params$Resource$Projects$Locations$Savedqueries$Create
@@ -23431,6 +24199,13 @@ export namespace logging_v2 {
      */
     name?: string;
   }
+  export interface Params$Resource$Projects$Locations$Savedqueries$Get
+    extends StandardParameters {
+    /**
+     * Required. The resource name of the saved query. "projects/[PROJECT_ID]/locations/[LOCATION_ID]/savedQueries/[QUERY_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/savedQueries/[QUERY_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/savedQueries/[QUERY_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]/savedQueries/[QUERY_ID]" For example: "projects/my-project/locations/global/savedQueries/my-saved-query"
+     */
+    name?: string;
+  }
   export interface Params$Resource$Projects$Locations$Savedqueries$List
     extends StandardParameters {
     /**
@@ -23445,6 +24220,22 @@ export namespace logging_v2 {
      * Required. The resource to which the listed queries belong. "projects/[PROJECT_ID]/locations/[LOCATION_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]" For example: "projects/my-project/locations/us-central1" Note: The locations portion of the resource must be specified. To get a list of all saved queries, a wildcard character - can be used for LOCATION_ID, for example: "projects/my-project/locations/-"
      */
     parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Savedqueries$Patch
+    extends StandardParameters {
+    /**
+     * Output only. Resource name of the saved query.In the format: "projects/[PROJECT_ID]/locations/[LOCATION_ID]/savedQueries/[QUERY_ID]" For a list of supported locations, see Supported Regions (https://cloud.google.com/logging/docs/region-support#bucket-regions)After the saved query is created, the location cannot be changed.If the user doesn't provide a QUERY_ID, the system will generate an alphanumeric ID.
+     */
+    name?: string;
+    /**
+     * Required. A non-empty list of fields to change in the existing saved query. Fields are relative to the saved_query and new values for the fields are taken from the corresponding fields in the SavedQuery included in this request. Fields not mentioned in update_mask are not changed and are ignored in the request.To update all mutable fields, specify an update_mask of *.For example, to change the description and query filter text of a saved query, specify an update_mask of "description, query.filter".
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$SavedQuery;
   }
 
   export class Resource$Projects$Logs {
@@ -24677,7 +25468,7 @@ export namespace logging_v2 {
   export interface Params$Resource$Projects$Sinks$Create
     extends StandardParameters {
     /**
-     * Optional. A service account provided by the caller that will be used to write the log entries. The format must be serviceAccount:some@email. This field can only be specified if you are routing logs to a destination outside this sink's project. If not specified, a Logging service account will automatically be generated.
+     * Optional. The service account provided by the caller that will be used to write the log entries. The format must be serviceAccount:some@email. This field can only be specified when you are routing logs to a log bucket that is in a different project than the sink. When not specified, a Logging service account will automatically be generated.
      */
     customWriterIdentity?: string;
     /**
@@ -24730,7 +25521,7 @@ export namespace logging_v2 {
   export interface Params$Resource$Projects$Sinks$Patch
     extends StandardParameters {
     /**
-     * Optional. A service account provided by the caller that will be used to write the log entries. The format must be serviceAccount:some@email. This field can only be specified if you are routing logs to a destination outside this sink's project. If not specified, a Logging service account will automatically be generated.
+     * Optional. The service account provided by the caller that will be used to write the log entries. The format must be serviceAccount:some@email. This field can only be specified when you are routing logs to a log bucket that is in a different project than the sink. When not specified, a Logging service account will automatically be generated.
      */
     customWriterIdentity?: string;
     /**
@@ -24754,7 +25545,7 @@ export namespace logging_v2 {
   export interface Params$Resource$Projects$Sinks$Update
     extends StandardParameters {
     /**
-     * Optional. A service account provided by the caller that will be used to write the log entries. The format must be serviceAccount:some@email. This field can only be specified if you are routing logs to a destination outside this sink's project. If not specified, a Logging service account will automatically be generated.
+     * Optional. The service account provided by the caller that will be used to write the log entries. The format must be serviceAccount:some@email. This field can only be specified when you are routing logs to a log bucket that is in a different project than the sink. When not specified, a Logging service account will automatically be generated.
      */
     customWriterIdentity?: string;
     /**
@@ -25214,7 +26005,7 @@ export namespace logging_v2 {
 
   export interface Params$Resource$Sinks$Create extends StandardParameters {
     /**
-     * Optional. A service account provided by the caller that will be used to write the log entries. The format must be serviceAccount:some@email. This field can only be specified if you are routing logs to a destination outside this sink's project. If not specified, a Logging service account will automatically be generated.
+     * Optional. The service account provided by the caller that will be used to write the log entries. The format must be serviceAccount:some@email. This field can only be specified when you are routing logs to a log bucket that is in a different project than the sink. When not specified, a Logging service account will automatically be generated.
      */
     customWriterIdentity?: string;
     /**
@@ -25263,7 +26054,7 @@ export namespace logging_v2 {
   }
   export interface Params$Resource$Sinks$Update extends StandardParameters {
     /**
-     * Optional. A service account provided by the caller that will be used to write the log entries. The format must be serviceAccount:some@email. This field can only be specified if you are routing logs to a destination outside this sink's project. If not specified, a Logging service account will automatically be generated.
+     * Optional. The service account provided by the caller that will be used to write the log entries. The format must be serviceAccount:some@email. This field can only be specified when you are routing logs to a log bucket that is in a different project than the sink. When not specified, a Logging service account will automatically be generated.
      */
     customWriterIdentity?: string;
     /**

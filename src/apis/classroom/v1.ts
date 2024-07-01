@@ -131,6 +131,101 @@ export namespace classroom_v1 {
   }
 
   /**
+   * An add-on attachment on a post.
+   */
+  export interface Schema$AddOnAttachment {
+    /**
+     * Output only. Identifiers of attachments that were previous copies of this attachment. If the attachment was previously copied by virtue of its parent post being copied, this enumerates the identifiers of attachments that were its previous copies in ascending chronological order of copy.
+     */
+    copyHistory?: Schema$CopyHistory[];
+    /**
+     * Immutable. Identifier of the course.
+     */
+    courseId?: string | null;
+    /**
+     * Date, in UTC, that work on this attachment is due. This must be specified if `due_time` is specified.
+     */
+    dueDate?: Schema$Date;
+    /**
+     * Time of day, in UTC, that work on this attachment is due. This must be specified if `due_date` is specified.
+     */
+    dueTime?: Schema$TimeOfDay;
+    /**
+     * Immutable. Classroom-assigned identifier for this attachment, unique per post.
+     */
+    id?: string | null;
+    /**
+     * Immutable. Identifier of the announcement, courseWork, or courseWorkMaterial under which the attachment is attached. Unique per course.
+     */
+    itemId?: string | null;
+    /**
+     * Maximum grade for this attachment. Can only be set if `studentWorkReviewUri` is set. Set to a non-zero value to indicate that the attachment supports grade passback. If set, this must be a non-negative integer value. When set to zero, the attachment will not support grade passback.
+     */
+    maxPoints?: number | null;
+    /**
+     * Immutable. Deprecated, use item_id instead.
+     */
+    postId?: string | null;
+    /**
+     * Required. URI to show the student view of the attachment. The URI will be opened in an iframe with the `courseId`, `postId`, and `attachmentId` query parameters set.
+     */
+    studentViewUri?: Schema$EmbedUri;
+    /**
+     * URI for the teacher to see student work on the attachment, if applicable. The URI will be opened in an iframe with the `courseId`, `postId`, `attachmentId`, and `submissionId` query parameters set. This is the same `submissionId` returned by google.classroom.AddOns.GetAddOnContext when a student views the attachment. If the URI is omitted or removed, `max_points` will also be discarded.
+     */
+    studentWorkReviewUri?: Schema$EmbedUri;
+    /**
+     * Required. URI to show the teacher view of the attachment. The URI will be opened in an iframe with the `courseId`, `postId`, and `attachmentId` query parameters set.
+     */
+    teacherViewUri?: Schema$EmbedUri;
+    /**
+     * Required. Title of this attachment. The title must be between 1 and 1000 characters.
+     */
+    title?: string | null;
+  }
+  /**
+   * Payload for grade update requests.
+   */
+  export interface Schema$AddOnAttachmentStudentSubmission {
+    /**
+     * Student grade on this attachment. If unset, no grade was set.
+     */
+    pointsEarned?: number | null;
+    /**
+     * Submission state of add-on attachment's parent post (i.e. assignment).
+     */
+    postSubmissionState?: string | null;
+  }
+  /**
+   * Attachment-relevant metadata for Classroom add-ons in the context of a specific post.
+   */
+  export interface Schema$AddOnContext {
+    /**
+     * Immutable. Identifier of the course.
+     */
+    courseId?: string | null;
+    /**
+     * Immutable. Identifier of the announcement, courseWork, or courseWorkMaterial under which the attachment is attached.
+     */
+    itemId?: string | null;
+    /**
+     * Immutable. Deprecated, use item_id instead.
+     */
+    postId?: string | null;
+    /**
+     * Add-on context corresponding to the requesting user's role as a student. Its presence implies that the requesting user is a student in the course.
+     */
+    studentContext?: Schema$StudentContext;
+    /**
+     * Optional. Whether the post allows the teacher to see student work and passback grades.
+     */
+    supportsStudentWork?: boolean | null;
+    /**
+     * Add-on context corresponding to the requesting user's role as a teacher. Its presence implies that the requesting user is a teacher in the course.
+     */
+    teacherContext?: Schema$TeacherContext;
+  }
+  /**
    * Announcement created by a teacher for students of the course
    */
   export interface Schema$Announcement {
@@ -230,6 +325,27 @@ export namespace classroom_v1 {
      * The `name` field of a Cloud Pub/Sub [Topic](https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.topics#Topic).
      */
     topicName?: string | null;
+  }
+  /**
+   * Identifier of a previous copy of a given attachment.
+   */
+  export interface Schema$CopyHistory {
+    /**
+     * Immutable. Identifier of the attachment.
+     */
+    attachmentId?: string | null;
+    /**
+     * Immutable. Identifier of the course.
+     */
+    courseId?: string | null;
+    /**
+     * Immutable. Identifier of the announcement, courseWork, or courseWorkMaterial under which the attachment is attached.
+     */
+    itemId?: string | null;
+    /**
+     * Immutable. Deprecated, use item_id instead.
+     */
+    postId?: string | null;
   }
   /**
    * A Course in Classroom.
@@ -587,6 +703,15 @@ export namespace classroom_v1 {
     title?: string | null;
   }
   /**
+   * URI to be iframed after being populated with query parameters.
+   */
+  export interface Schema$EmbedUri {
+    /**
+     * Required. URI to be iframed after being populated with query parameters. This must be a valid UTF-8 string containing between 1 and 1800 characters.
+     */
+    uri?: string | null;
+  }
+  /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
    */
   export interface Schema$Empty {}
@@ -792,6 +917,19 @@ export namespace classroom_v1 {
      * URL to link to. This must be a valid UTF-8 string containing between 1 and 2024 characters.
      */
     url?: string | null;
+  }
+  /**
+   * Response when listing add-on attachments.
+   */
+  export interface Schema$ListAddOnAttachmentsResponse {
+    /**
+     * Attachments under the given post.
+     */
+    addOnAttachments?: Schema$AddOnAttachment[];
+    /**
+     * A token, which can be sent as `pageToken` to retrieve the next page. If this field is omitted, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
   }
   /**
    * Response when listing course work.
@@ -1143,6 +1281,15 @@ export namespace classroom_v1 {
     userId?: string | null;
   }
   /**
+   * Role-specific context if the requesting user is a student.
+   */
+  export interface Schema$StudentContext {
+    /**
+     * Requesting user's submission id to be used for grade passback and to identify the student when showing student work to the teacher. This is set exactly when `supportsStudentWork` is `true`.
+     */
+    submissionId?: string | null;
+  }
+  /**
    * Student submission for course work. `StudentSubmission` items are generated when a `CourseWork` item is created. Student submissions that have never been accessed (i.e. with `state` = NEW) may not have a creation time or update time.
    */
   export interface Schema$StudentSubmission {
@@ -1246,6 +1393,10 @@ export namespace classroom_v1 {
     userId?: string | null;
   }
   /**
+   * Role-specific context if the requesting user is a teacher.
+   */
+  export interface Schema$TeacherContext {}
+  /**
    * Represents a time of day. The date and time zone are either not significant or are specified elsewhere. An API may choose to allow leap seconds. Related types are google.type.Date and `google.protobuf.Timestamp`.
    */
   export interface Schema$TimeOfDay {
@@ -1348,6 +1499,7 @@ export namespace classroom_v1 {
     announcements: Resource$Courses$Announcements;
     courseWork: Resource$Courses$Coursework;
     courseWorkMaterials: Resource$Courses$Courseworkmaterials;
+    posts: Resource$Courses$Posts;
     students: Resource$Courses$Students;
     teachers: Resource$Courses$Teachers;
     topics: Resource$Courses$Topics;
@@ -1359,6 +1511,7 @@ export namespace classroom_v1 {
       this.courseWorkMaterials = new Resource$Courses$Courseworkmaterials(
         this.context
       );
+      this.posts = new Resource$Courses$Posts(this.context);
       this.students = new Resource$Courses$Students(this.context);
       this.teachers = new Resource$Courses$Teachers(this.context);
       this.topics = new Resource$Courses$Topics(this.context);
@@ -2258,8 +2411,11 @@ export namespace classroom_v1 {
 
   export class Resource$Courses$Announcements {
     context: APIRequestContext;
+    addOnAttachments: Resource$Courses$Announcements$Addonattachments;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.addOnAttachments =
+        new Resource$Courses$Announcements$Addonattachments(this.context);
     }
 
     /**
@@ -2521,6 +2677,94 @@ export namespace classroom_v1 {
         );
       } else {
         return createAPIRequest<Schema$Announcement>(parameters);
+      }
+    }
+
+    /**
+     * Gets metadata for Classroom add-ons in the context of a specific post. To maintain the integrity of its own data and permissions model, an add-on should call this to validate query parameters and the requesting user's role whenever the add-on is opened in an [iframe](https://developers.google.com/classroom/add-ons/get-started/iframes/iframes-overview). This method returns the following error codes: * `PERMISSION_DENIED` for access errors. * `INVALID_ARGUMENT` if the request is malformed. * `NOT_FOUND` if one of the identified resources does not exist.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getAddOnContext(
+      params: Params$Resource$Courses$Announcements$Getaddoncontext,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getAddOnContext(
+      params?: Params$Resource$Courses$Announcements$Getaddoncontext,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AddOnContext>;
+    getAddOnContext(
+      params: Params$Resource$Courses$Announcements$Getaddoncontext,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getAddOnContext(
+      params: Params$Resource$Courses$Announcements$Getaddoncontext,
+      options: MethodOptions | BodyResponseCallback<Schema$AddOnContext>,
+      callback: BodyResponseCallback<Schema$AddOnContext>
+    ): void;
+    getAddOnContext(
+      params: Params$Resource$Courses$Announcements$Getaddoncontext,
+      callback: BodyResponseCallback<Schema$AddOnContext>
+    ): void;
+    getAddOnContext(callback: BodyResponseCallback<Schema$AddOnContext>): void;
+    getAddOnContext(
+      paramsOrCallback?:
+        | Params$Resource$Courses$Announcements$Getaddoncontext
+        | BodyResponseCallback<Schema$AddOnContext>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AddOnContext>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AddOnContext>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$AddOnContext> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Courses$Announcements$Getaddoncontext;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Courses$Announcements$Getaddoncontext;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v1/courses/{courseId}/announcements/{itemId}/addOnContext'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['courseId', 'itemId'],
+        pathParams: ['courseId', 'itemId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$AddOnContext>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$AddOnContext>(parameters);
       }
     }
 
@@ -2829,6 +3073,29 @@ export namespace classroom_v1 {
      */
     id?: string;
   }
+  export interface Params$Resource$Courses$Announcements$Getaddoncontext
+    extends StandardParameters {
+    /**
+     * Optional. Token that authorizes the request. The token is passed as a query parameter when the user is redirected from Classroom to the add-on's URL. The authorization token is required when neither of the following is true: * The add-on has attachments on the post. * The developer project issuing the request is the same project that created the post.
+     */
+    addOnToken?: string;
+    /**
+     * Optional. The identifier of the attachment. This field is required for student users and optional for teacher users. If not provided in the student case, an error is returned.
+     */
+    attachmentId?: string;
+    /**
+     * Required. Identifier of the course.
+     */
+    courseId?: string;
+    /**
+     * Identifier of the announcement, courseWork, or courseWorkMaterial under which the attachment is attached. This field is required, but is not marked as such while we are migrating from post_id.
+     */
+    itemId?: string;
+    /**
+     * Optional. Deprecated, use item_id instead.
+     */
+    postId?: string;
+  }
   export interface Params$Resource$Courses$Announcements$List
     extends StandardParameters {
     /**
@@ -2889,11 +3156,590 @@ export namespace classroom_v1 {
     requestBody?: Schema$Announcement;
   }
 
+  export class Resource$Courses$Announcements$Addonattachments {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Creates an add-on attachment under a post. Requires the add-on to have permission to create new attachments on the post. This method returns the following error codes: * `PERMISSION_DENIED` for access errors. * `INVALID_ARGUMENT` if the request is malformed. * `NOT_FOUND` if one of the identified resources does not exist.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Courses$Announcements$Addonattachments$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Courses$Announcements$Addonattachments$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AddOnAttachment>;
+    create(
+      params: Params$Resource$Courses$Announcements$Addonattachments$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Courses$Announcements$Addonattachments$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$AddOnAttachment>,
+      callback: BodyResponseCallback<Schema$AddOnAttachment>
+    ): void;
+    create(
+      params: Params$Resource$Courses$Announcements$Addonattachments$Create,
+      callback: BodyResponseCallback<Schema$AddOnAttachment>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$AddOnAttachment>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Courses$Announcements$Addonattachments$Create
+        | BodyResponseCallback<Schema$AddOnAttachment>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AddOnAttachment>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AddOnAttachment>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$AddOnAttachment> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Courses$Announcements$Addonattachments$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Courses$Announcements$Addonattachments$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v1/courses/{courseId}/announcements/{itemId}/addOnAttachments'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['courseId', 'itemId'],
+        pathParams: ['courseId', 'itemId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$AddOnAttachment>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$AddOnAttachment>(parameters);
+      }
+    }
+
+    /**
+     * Deletes an add-on attachment. Requires the add-on to have been the original creator of the attachment. This method returns the following error codes: * `PERMISSION_DENIED` for access errors. * `INVALID_ARGUMENT` if the request is malformed. * `NOT_FOUND` if one of the identified resources does not exist.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Courses$Announcements$Addonattachments$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Courses$Announcements$Addonattachments$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Courses$Announcements$Addonattachments$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Courses$Announcements$Addonattachments$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(
+      params: Params$Resource$Courses$Announcements$Addonattachments$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Courses$Announcements$Addonattachments$Delete
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Courses$Announcements$Addonattachments$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Courses$Announcements$Addonattachments$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v1/courses/{courseId}/announcements/{itemId}/addOnAttachments/{attachmentId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['courseId', 'itemId', 'attachmentId'],
+        pathParams: ['attachmentId', 'courseId', 'itemId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+
+    /**
+     * Returns an add-on attachment. Requires the add-on requesting the attachment to be the original creator of the attachment. This method returns the following error codes: * `PERMISSION_DENIED` for access errors. * `INVALID_ARGUMENT` if the request is malformed. * `NOT_FOUND` if one of the identified resources does not exist.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Courses$Announcements$Addonattachments$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Courses$Announcements$Addonattachments$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AddOnAttachment>;
+    get(
+      params: Params$Resource$Courses$Announcements$Addonattachments$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Courses$Announcements$Addonattachments$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$AddOnAttachment>,
+      callback: BodyResponseCallback<Schema$AddOnAttachment>
+    ): void;
+    get(
+      params: Params$Resource$Courses$Announcements$Addonattachments$Get,
+      callback: BodyResponseCallback<Schema$AddOnAttachment>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$AddOnAttachment>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Courses$Announcements$Addonattachments$Get
+        | BodyResponseCallback<Schema$AddOnAttachment>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AddOnAttachment>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AddOnAttachment>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$AddOnAttachment> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Courses$Announcements$Addonattachments$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Courses$Announcements$Addonattachments$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v1/courses/{courseId}/announcements/{itemId}/addOnAttachments/{attachmentId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['courseId', 'itemId', 'attachmentId'],
+        pathParams: ['attachmentId', 'courseId', 'itemId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$AddOnAttachment>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$AddOnAttachment>(parameters);
+      }
+    }
+
+    /**
+     * Returns all attachments created by an add-on under the post. Requires the add-on to have active attachments on the post or have permission to create new attachments on the post. This method returns the following error codes: * `PERMISSION_DENIED` for access errors. * `INVALID_ARGUMENT` if the request is malformed. * `NOT_FOUND` if one of the identified resources does not exist.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Courses$Announcements$Addonattachments$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Courses$Announcements$Addonattachments$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListAddOnAttachmentsResponse>;
+    list(
+      params: Params$Resource$Courses$Announcements$Addonattachments$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Courses$Announcements$Addonattachments$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListAddOnAttachmentsResponse>,
+      callback: BodyResponseCallback<Schema$ListAddOnAttachmentsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Courses$Announcements$Addonattachments$List,
+      callback: BodyResponseCallback<Schema$ListAddOnAttachmentsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListAddOnAttachmentsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Courses$Announcements$Addonattachments$List
+        | BodyResponseCallback<Schema$ListAddOnAttachmentsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListAddOnAttachmentsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListAddOnAttachmentsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListAddOnAttachmentsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Courses$Announcements$Addonattachments$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Courses$Announcements$Addonattachments$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v1/courses/{courseId}/announcements/{itemId}/addOnAttachments'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['courseId', 'itemId'],
+        pathParams: ['courseId', 'itemId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListAddOnAttachmentsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListAddOnAttachmentsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Updates an add-on attachment. Requires the add-on to have been the original creator of the attachment. This method returns the following error codes: * `PERMISSION_DENIED` for access errors. * `INVALID_ARGUMENT` if the request is malformed. * `NOT_FOUND` if one of the identified resources does not exist.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Courses$Announcements$Addonattachments$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Courses$Announcements$Addonattachments$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AddOnAttachment>;
+    patch(
+      params: Params$Resource$Courses$Announcements$Addonattachments$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Courses$Announcements$Addonattachments$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$AddOnAttachment>,
+      callback: BodyResponseCallback<Schema$AddOnAttachment>
+    ): void;
+    patch(
+      params: Params$Resource$Courses$Announcements$Addonattachments$Patch,
+      callback: BodyResponseCallback<Schema$AddOnAttachment>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$AddOnAttachment>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Courses$Announcements$Addonattachments$Patch
+        | BodyResponseCallback<Schema$AddOnAttachment>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AddOnAttachment>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AddOnAttachment>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$AddOnAttachment> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Courses$Announcements$Addonattachments$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Courses$Announcements$Addonattachments$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v1/courses/{courseId}/announcements/{itemId}/addOnAttachments/{attachmentId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['courseId', 'itemId', 'attachmentId'],
+        pathParams: ['attachmentId', 'courseId', 'itemId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$AddOnAttachment>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$AddOnAttachment>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Courses$Announcements$Addonattachments$Create
+    extends StandardParameters {
+    /**
+     * Optional. Token that authorizes the request. The token is passed as a query parameter when the user is redirected from Classroom to the add-on's URL. This authorization token is required for in-Classroom attachment creation but optional for partner-first attachment creation. Returns an error if not provided for partner-first attachment creation and the developer projects that created the attachment and its parent stream item do not match.
+     */
+    addOnToken?: string;
+    /**
+     * Required. Identifier of the course.
+     */
+    courseId?: string;
+    /**
+     * Identifier of the announcement, courseWork, or courseWorkMaterial under which to create the attachment. This field is required, but is not marked as such while we are migrating from post_id.
+     */
+    itemId?: string;
+    /**
+     * Optional. Deprecated, use item_id instead.
+     */
+    postId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$AddOnAttachment;
+  }
+  export interface Params$Resource$Courses$Announcements$Addonattachments$Delete
+    extends StandardParameters {
+    /**
+     * Required. Identifier of the attachment.
+     */
+    attachmentId?: string;
+    /**
+     * Required. Identifier of the course.
+     */
+    courseId?: string;
+    /**
+     * Identifier of the announcement, courseWork, or courseWorkMaterial under which the attachment is attached. This field is required, but is not marked as such while we are migrating from post_id.
+     */
+    itemId?: string;
+    /**
+     * Optional. Deprecated, use item_id instead.
+     */
+    postId?: string;
+  }
+  export interface Params$Resource$Courses$Announcements$Addonattachments$Get
+    extends StandardParameters {
+    /**
+     * Required. Identifier of the attachment.
+     */
+    attachmentId?: string;
+    /**
+     * Required. Identifier of the course.
+     */
+    courseId?: string;
+    /**
+     * Identifier of the announcement, courseWork, or courseWorkMaterial under which the attachment is attached. This field is required, but is not marked as such while we are migrating from post_id.
+     */
+    itemId?: string;
+    /**
+     * Optional. Deprecated, use item_id instead.
+     */
+    postId?: string;
+  }
+  export interface Params$Resource$Courses$Announcements$Addonattachments$List
+    extends StandardParameters {
+    /**
+     * Required. Identifier of the course.
+     */
+    courseId?: string;
+    /**
+     * Identifier of the announcement, courseWork, or courseWorkMaterial whose attachments should be enumerated. This field is required, but is not marked as such while we are migrating from post_id.
+     */
+    itemId?: string;
+    /**
+     * The maximum number of attachments to return. The service may return fewer than this value. If unspecified, at most 20 attachments will be returned. The maximum value is 20; values above 20 will be coerced to 20.
+     */
+    pageSize?: number;
+    /**
+     * A page token, received from a previous `ListAddOnAttachments` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListAddOnAttachments` must match the call that provided the page token.
+     */
+    pageToken?: string;
+    /**
+     * Optional. Identifier of the post under the course whose attachments to enumerate. Deprecated, use item_id instead.
+     */
+    postId?: string;
+  }
+  export interface Params$Resource$Courses$Announcements$Addonattachments$Patch
+    extends StandardParameters {
+    /**
+     * Required. Identifier of the attachment.
+     */
+    attachmentId?: string;
+    /**
+     * Required. Identifier of the course.
+     */
+    courseId?: string;
+    /**
+     * Identifier of the post under which the attachment is attached.
+     */
+    itemId?: string;
+    /**
+     * Required. Identifier of the post under which the attachment is attached.
+     */
+    postId?: string;
+    /**
+     * Required. Mask that identifies which fields on the attachment to update. The update fails if invalid fields are specified. If a field supports empty values, it can be cleared by specifying it in the update mask and not in the `AddOnAttachment` object. If a field that does not support empty values is included in the update mask and not set in the `AddOnAttachment` object, an `INVALID_ARGUMENT` error is returned. The following fields may be specified by teachers: * `title` * `teacher_view_uri` * `student_view_uri` * `student_work_review_uri` * `due_date` * `due_time` * `max_points`
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$AddOnAttachment;
+  }
+
   export class Resource$Courses$Coursework {
     context: APIRequestContext;
+    addOnAttachments: Resource$Courses$Coursework$Addonattachments;
     studentSubmissions: Resource$Courses$Coursework$Studentsubmissions;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.addOnAttachments = new Resource$Courses$Coursework$Addonattachments(
+        this.context
+      );
       this.studentSubmissions =
         new Resource$Courses$Coursework$Studentsubmissions(this.context);
     }
@@ -3159,6 +4005,94 @@ export namespace classroom_v1 {
         );
       } else {
         return createAPIRequest<Schema$CourseWork>(parameters);
+      }
+    }
+
+    /**
+     * Gets metadata for Classroom add-ons in the context of a specific post. To maintain the integrity of its own data and permissions model, an add-on should call this to validate query parameters and the requesting user's role whenever the add-on is opened in an [iframe](https://developers.google.com/classroom/add-ons/get-started/iframes/iframes-overview). This method returns the following error codes: * `PERMISSION_DENIED` for access errors. * `INVALID_ARGUMENT` if the request is malformed. * `NOT_FOUND` if one of the identified resources does not exist.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getAddOnContext(
+      params: Params$Resource$Courses$Coursework$Getaddoncontext,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getAddOnContext(
+      params?: Params$Resource$Courses$Coursework$Getaddoncontext,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AddOnContext>;
+    getAddOnContext(
+      params: Params$Resource$Courses$Coursework$Getaddoncontext,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getAddOnContext(
+      params: Params$Resource$Courses$Coursework$Getaddoncontext,
+      options: MethodOptions | BodyResponseCallback<Schema$AddOnContext>,
+      callback: BodyResponseCallback<Schema$AddOnContext>
+    ): void;
+    getAddOnContext(
+      params: Params$Resource$Courses$Coursework$Getaddoncontext,
+      callback: BodyResponseCallback<Schema$AddOnContext>
+    ): void;
+    getAddOnContext(callback: BodyResponseCallback<Schema$AddOnContext>): void;
+    getAddOnContext(
+      paramsOrCallback?:
+        | Params$Resource$Courses$Coursework$Getaddoncontext
+        | BodyResponseCallback<Schema$AddOnContext>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AddOnContext>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AddOnContext>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$AddOnContext> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Courses$Coursework$Getaddoncontext;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Courses$Coursework$Getaddoncontext;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v1/courses/{courseId}/courseWork/{itemId}/addOnContext'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['courseId', 'itemId'],
+        pathParams: ['courseId', 'itemId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$AddOnContext>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$AddOnContext>(parameters);
       }
     }
 
@@ -3465,6 +4399,29 @@ export namespace classroom_v1 {
      */
     id?: string;
   }
+  export interface Params$Resource$Courses$Coursework$Getaddoncontext
+    extends StandardParameters {
+    /**
+     * Optional. Token that authorizes the request. The token is passed as a query parameter when the user is redirected from Classroom to the add-on's URL. The authorization token is required when neither of the following is true: * The add-on has attachments on the post. * The developer project issuing the request is the same project that created the post.
+     */
+    addOnToken?: string;
+    /**
+     * Optional. The identifier of the attachment. This field is required for student users and optional for teacher users. If not provided in the student case, an error is returned.
+     */
+    attachmentId?: string;
+    /**
+     * Required. Identifier of the course.
+     */
+    courseId?: string;
+    /**
+     * Identifier of the announcement, courseWork, or courseWorkMaterial under which the attachment is attached. This field is required, but is not marked as such while we are migrating from post_id.
+     */
+    itemId?: string;
+    /**
+     * Optional. Deprecated, use item_id instead.
+     */
+    postId?: string;
+  }
   export interface Params$Resource$Courses$Coursework$List
     extends StandardParameters {
     /**
@@ -3523,6 +4480,843 @@ export namespace classroom_v1 {
      * Request body metadata
      */
     requestBody?: Schema$CourseWork;
+  }
+
+  export class Resource$Courses$Coursework$Addonattachments {
+    context: APIRequestContext;
+    studentSubmissions: Resource$Courses$Coursework$Addonattachments$Studentsubmissions;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.studentSubmissions =
+        new Resource$Courses$Coursework$Addonattachments$Studentsubmissions(
+          this.context
+        );
+    }
+
+    /**
+     * Creates an add-on attachment under a post. Requires the add-on to have permission to create new attachments on the post. This method returns the following error codes: * `PERMISSION_DENIED` for access errors. * `INVALID_ARGUMENT` if the request is malformed. * `NOT_FOUND` if one of the identified resources does not exist.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Courses$Coursework$Addonattachments$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Courses$Coursework$Addonattachments$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AddOnAttachment>;
+    create(
+      params: Params$Resource$Courses$Coursework$Addonattachments$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Courses$Coursework$Addonattachments$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$AddOnAttachment>,
+      callback: BodyResponseCallback<Schema$AddOnAttachment>
+    ): void;
+    create(
+      params: Params$Resource$Courses$Coursework$Addonattachments$Create,
+      callback: BodyResponseCallback<Schema$AddOnAttachment>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$AddOnAttachment>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Courses$Coursework$Addonattachments$Create
+        | BodyResponseCallback<Schema$AddOnAttachment>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AddOnAttachment>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AddOnAttachment>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$AddOnAttachment> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Courses$Coursework$Addonattachments$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Courses$Coursework$Addonattachments$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v1/courses/{courseId}/courseWork/{itemId}/addOnAttachments'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['courseId', 'itemId'],
+        pathParams: ['courseId', 'itemId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$AddOnAttachment>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$AddOnAttachment>(parameters);
+      }
+    }
+
+    /**
+     * Deletes an add-on attachment. Requires the add-on to have been the original creator of the attachment. This method returns the following error codes: * `PERMISSION_DENIED` for access errors. * `INVALID_ARGUMENT` if the request is malformed. * `NOT_FOUND` if one of the identified resources does not exist.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Courses$Coursework$Addonattachments$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Courses$Coursework$Addonattachments$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Courses$Coursework$Addonattachments$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Courses$Coursework$Addonattachments$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(
+      params: Params$Resource$Courses$Coursework$Addonattachments$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Courses$Coursework$Addonattachments$Delete
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Courses$Coursework$Addonattachments$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Courses$Coursework$Addonattachments$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v1/courses/{courseId}/courseWork/{itemId}/addOnAttachments/{attachmentId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['courseId', 'itemId', 'attachmentId'],
+        pathParams: ['attachmentId', 'courseId', 'itemId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+
+    /**
+     * Returns an add-on attachment. Requires the add-on requesting the attachment to be the original creator of the attachment. This method returns the following error codes: * `PERMISSION_DENIED` for access errors. * `INVALID_ARGUMENT` if the request is malformed. * `NOT_FOUND` if one of the identified resources does not exist.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Courses$Coursework$Addonattachments$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Courses$Coursework$Addonattachments$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AddOnAttachment>;
+    get(
+      params: Params$Resource$Courses$Coursework$Addonattachments$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Courses$Coursework$Addonattachments$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$AddOnAttachment>,
+      callback: BodyResponseCallback<Schema$AddOnAttachment>
+    ): void;
+    get(
+      params: Params$Resource$Courses$Coursework$Addonattachments$Get,
+      callback: BodyResponseCallback<Schema$AddOnAttachment>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$AddOnAttachment>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Courses$Coursework$Addonattachments$Get
+        | BodyResponseCallback<Schema$AddOnAttachment>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AddOnAttachment>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AddOnAttachment>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$AddOnAttachment> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Courses$Coursework$Addonattachments$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Courses$Coursework$Addonattachments$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v1/courses/{courseId}/courseWork/{itemId}/addOnAttachments/{attachmentId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['courseId', 'itemId', 'attachmentId'],
+        pathParams: ['attachmentId', 'courseId', 'itemId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$AddOnAttachment>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$AddOnAttachment>(parameters);
+      }
+    }
+
+    /**
+     * Returns all attachments created by an add-on under the post. Requires the add-on to have active attachments on the post or have permission to create new attachments on the post. This method returns the following error codes: * `PERMISSION_DENIED` for access errors. * `INVALID_ARGUMENT` if the request is malformed. * `NOT_FOUND` if one of the identified resources does not exist.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Courses$Coursework$Addonattachments$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Courses$Coursework$Addonattachments$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListAddOnAttachmentsResponse>;
+    list(
+      params: Params$Resource$Courses$Coursework$Addonattachments$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Courses$Coursework$Addonattachments$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListAddOnAttachmentsResponse>,
+      callback: BodyResponseCallback<Schema$ListAddOnAttachmentsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Courses$Coursework$Addonattachments$List,
+      callback: BodyResponseCallback<Schema$ListAddOnAttachmentsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListAddOnAttachmentsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Courses$Coursework$Addonattachments$List
+        | BodyResponseCallback<Schema$ListAddOnAttachmentsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListAddOnAttachmentsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListAddOnAttachmentsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListAddOnAttachmentsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Courses$Coursework$Addonattachments$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Courses$Coursework$Addonattachments$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v1/courses/{courseId}/courseWork/{itemId}/addOnAttachments'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['courseId', 'itemId'],
+        pathParams: ['courseId', 'itemId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListAddOnAttachmentsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListAddOnAttachmentsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Updates an add-on attachment. Requires the add-on to have been the original creator of the attachment. This method returns the following error codes: * `PERMISSION_DENIED` for access errors. * `INVALID_ARGUMENT` if the request is malformed. * `NOT_FOUND` if one of the identified resources does not exist.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Courses$Coursework$Addonattachments$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Courses$Coursework$Addonattachments$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AddOnAttachment>;
+    patch(
+      params: Params$Resource$Courses$Coursework$Addonattachments$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Courses$Coursework$Addonattachments$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$AddOnAttachment>,
+      callback: BodyResponseCallback<Schema$AddOnAttachment>
+    ): void;
+    patch(
+      params: Params$Resource$Courses$Coursework$Addonattachments$Patch,
+      callback: BodyResponseCallback<Schema$AddOnAttachment>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$AddOnAttachment>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Courses$Coursework$Addonattachments$Patch
+        | BodyResponseCallback<Schema$AddOnAttachment>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AddOnAttachment>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AddOnAttachment>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$AddOnAttachment> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Courses$Coursework$Addonattachments$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Courses$Coursework$Addonattachments$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v1/courses/{courseId}/courseWork/{itemId}/addOnAttachments/{attachmentId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['courseId', 'itemId', 'attachmentId'],
+        pathParams: ['attachmentId', 'courseId', 'itemId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$AddOnAttachment>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$AddOnAttachment>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Courses$Coursework$Addonattachments$Create
+    extends StandardParameters {
+    /**
+     * Optional. Token that authorizes the request. The token is passed as a query parameter when the user is redirected from Classroom to the add-on's URL. This authorization token is required for in-Classroom attachment creation but optional for partner-first attachment creation. Returns an error if not provided for partner-first attachment creation and the developer projects that created the attachment and its parent stream item do not match.
+     */
+    addOnToken?: string;
+    /**
+     * Required. Identifier of the course.
+     */
+    courseId?: string;
+    /**
+     * Identifier of the announcement, courseWork, or courseWorkMaterial under which to create the attachment. This field is required, but is not marked as such while we are migrating from post_id.
+     */
+    itemId?: string;
+    /**
+     * Optional. Deprecated, use item_id instead.
+     */
+    postId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$AddOnAttachment;
+  }
+  export interface Params$Resource$Courses$Coursework$Addonattachments$Delete
+    extends StandardParameters {
+    /**
+     * Required. Identifier of the attachment.
+     */
+    attachmentId?: string;
+    /**
+     * Required. Identifier of the course.
+     */
+    courseId?: string;
+    /**
+     * Identifier of the announcement, courseWork, or courseWorkMaterial under which the attachment is attached. This field is required, but is not marked as such while we are migrating from post_id.
+     */
+    itemId?: string;
+    /**
+     * Optional. Deprecated, use item_id instead.
+     */
+    postId?: string;
+  }
+  export interface Params$Resource$Courses$Coursework$Addonattachments$Get
+    extends StandardParameters {
+    /**
+     * Required. Identifier of the attachment.
+     */
+    attachmentId?: string;
+    /**
+     * Required. Identifier of the course.
+     */
+    courseId?: string;
+    /**
+     * Identifier of the announcement, courseWork, or courseWorkMaterial under which the attachment is attached. This field is required, but is not marked as such while we are migrating from post_id.
+     */
+    itemId?: string;
+    /**
+     * Optional. Deprecated, use item_id instead.
+     */
+    postId?: string;
+  }
+  export interface Params$Resource$Courses$Coursework$Addonattachments$List
+    extends StandardParameters {
+    /**
+     * Required. Identifier of the course.
+     */
+    courseId?: string;
+    /**
+     * Identifier of the announcement, courseWork, or courseWorkMaterial whose attachments should be enumerated. This field is required, but is not marked as such while we are migrating from post_id.
+     */
+    itemId?: string;
+    /**
+     * The maximum number of attachments to return. The service may return fewer than this value. If unspecified, at most 20 attachments will be returned. The maximum value is 20; values above 20 will be coerced to 20.
+     */
+    pageSize?: number;
+    /**
+     * A page token, received from a previous `ListAddOnAttachments` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListAddOnAttachments` must match the call that provided the page token.
+     */
+    pageToken?: string;
+    /**
+     * Optional. Identifier of the post under the course whose attachments to enumerate. Deprecated, use item_id instead.
+     */
+    postId?: string;
+  }
+  export interface Params$Resource$Courses$Coursework$Addonattachments$Patch
+    extends StandardParameters {
+    /**
+     * Required. Identifier of the attachment.
+     */
+    attachmentId?: string;
+    /**
+     * Required. Identifier of the course.
+     */
+    courseId?: string;
+    /**
+     * Identifier of the post under which the attachment is attached.
+     */
+    itemId?: string;
+    /**
+     * Required. Identifier of the post under which the attachment is attached.
+     */
+    postId?: string;
+    /**
+     * Required. Mask that identifies which fields on the attachment to update. The update fails if invalid fields are specified. If a field supports empty values, it can be cleared by specifying it in the update mask and not in the `AddOnAttachment` object. If a field that does not support empty values is included in the update mask and not set in the `AddOnAttachment` object, an `INVALID_ARGUMENT` error is returned. The following fields may be specified by teachers: * `title` * `teacher_view_uri` * `student_view_uri` * `student_work_review_uri` * `due_date` * `due_time` * `max_points`
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$AddOnAttachment;
+  }
+
+  export class Resource$Courses$Coursework$Addonattachments$Studentsubmissions {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Returns a student submission for an add-on attachment. This method returns the following error codes: * `PERMISSION_DENIED` for access errors. * `INVALID_ARGUMENT` if the request is malformed. * `NOT_FOUND` if one of the identified resources does not exist.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Courses$Coursework$Addonattachments$Studentsubmissions$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Courses$Coursework$Addonattachments$Studentsubmissions$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AddOnAttachmentStudentSubmission>;
+    get(
+      params: Params$Resource$Courses$Coursework$Addonattachments$Studentsubmissions$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Courses$Coursework$Addonattachments$Studentsubmissions$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AddOnAttachmentStudentSubmission>,
+      callback: BodyResponseCallback<Schema$AddOnAttachmentStudentSubmission>
+    ): void;
+    get(
+      params: Params$Resource$Courses$Coursework$Addonattachments$Studentsubmissions$Get,
+      callback: BodyResponseCallback<Schema$AddOnAttachmentStudentSubmission>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$AddOnAttachmentStudentSubmission>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Courses$Coursework$Addonattachments$Studentsubmissions$Get
+        | BodyResponseCallback<Schema$AddOnAttachmentStudentSubmission>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AddOnAttachmentStudentSubmission>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AddOnAttachmentStudentSubmission>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$AddOnAttachmentStudentSubmission>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Courses$Coursework$Addonattachments$Studentsubmissions$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Courses$Coursework$Addonattachments$Studentsubmissions$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v1/courses/{courseId}/courseWork/{itemId}/addOnAttachments/{attachmentId}/studentSubmissions/{submissionId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['courseId', 'itemId', 'attachmentId', 'submissionId'],
+        pathParams: ['attachmentId', 'courseId', 'itemId', 'submissionId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$AddOnAttachmentStudentSubmission>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$AddOnAttachmentStudentSubmission>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Updates data associated with an add-on attachment submission. Requires the add-on to have been the original creator of the attachment and the attachment to have a positive `max_points` value set. This method returns the following error codes: * `PERMISSION_DENIED` for access errors. * `INVALID_ARGUMENT` if the request is malformed. * `NOT_FOUND` if one of the identified resources does not exist.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Courses$Coursework$Addonattachments$Studentsubmissions$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Courses$Coursework$Addonattachments$Studentsubmissions$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AddOnAttachmentStudentSubmission>;
+    patch(
+      params: Params$Resource$Courses$Coursework$Addonattachments$Studentsubmissions$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Courses$Coursework$Addonattachments$Studentsubmissions$Patch,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AddOnAttachmentStudentSubmission>,
+      callback: BodyResponseCallback<Schema$AddOnAttachmentStudentSubmission>
+    ): void;
+    patch(
+      params: Params$Resource$Courses$Coursework$Addonattachments$Studentsubmissions$Patch,
+      callback: BodyResponseCallback<Schema$AddOnAttachmentStudentSubmission>
+    ): void;
+    patch(
+      callback: BodyResponseCallback<Schema$AddOnAttachmentStudentSubmission>
+    ): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Courses$Coursework$Addonattachments$Studentsubmissions$Patch
+        | BodyResponseCallback<Schema$AddOnAttachmentStudentSubmission>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AddOnAttachmentStudentSubmission>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AddOnAttachmentStudentSubmission>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$AddOnAttachmentStudentSubmission>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Courses$Coursework$Addonattachments$Studentsubmissions$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Courses$Coursework$Addonattachments$Studentsubmissions$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v1/courses/{courseId}/courseWork/{itemId}/addOnAttachments/{attachmentId}/studentSubmissions/{submissionId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['courseId', 'itemId', 'attachmentId', 'submissionId'],
+        pathParams: ['attachmentId', 'courseId', 'itemId', 'submissionId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$AddOnAttachmentStudentSubmission>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$AddOnAttachmentStudentSubmission>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Courses$Coursework$Addonattachments$Studentsubmissions$Get
+    extends StandardParameters {
+    /**
+     * Required. Identifier of the attachment.
+     */
+    attachmentId?: string;
+    /**
+     * Required. Identifier of the course.
+     */
+    courseId?: string;
+    /**
+     * Identifier of the announcement, courseWork, or courseWorkMaterial under which the attachment is attached. This field is required, but is not marked as such while we are migrating from post_id.
+     */
+    itemId?: string;
+    /**
+     * Optional. Deprecated, use item_id instead.
+     */
+    postId?: string;
+    /**
+     * Required. Identifier of the student’s submission.
+     */
+    submissionId?: string;
+  }
+  export interface Params$Resource$Courses$Coursework$Addonattachments$Studentsubmissions$Patch
+    extends StandardParameters {
+    /**
+     * Required. Identifier of the attachment.
+     */
+    attachmentId?: string;
+    /**
+     * Required. Identifier of the course.
+     */
+    courseId?: string;
+    /**
+     * Identifier of the announcement, courseWork, or courseWorkMaterial under which the attachment is attached. This field is required, but is not marked as such while we are migrating from post_id.
+     */
+    itemId?: string;
+    /**
+     * Optional. Deprecated, use item_id instead.
+     */
+    postId?: string;
+    /**
+     * Required. Identifier of the student's submission.
+     */
+    submissionId?: string;
+    /**
+     * Required. Mask that identifies which fields on the attachment to update. The update fails if invalid fields are specified. If a field supports empty values, it can be cleared by specifying it in the update mask and not in the `AddOnAttachmentStudentSubmission` object. The following fields may be specified by teachers: * `points_earned`
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$AddOnAttachmentStudentSubmission;
   }
 
   export class Resource$Courses$Coursework$Studentsubmissions {
@@ -4328,8 +6122,11 @@ export namespace classroom_v1 {
 
   export class Resource$Courses$Courseworkmaterials {
     context: APIRequestContext;
+    addOnAttachments: Resource$Courses$Courseworkmaterials$Addonattachments;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.addOnAttachments =
+        new Resource$Courses$Courseworkmaterials$Addonattachments(this.context);
     }
 
     /**
@@ -4600,6 +6397,95 @@ export namespace classroom_v1 {
     }
 
     /**
+     * Gets metadata for Classroom add-ons in the context of a specific post. To maintain the integrity of its own data and permissions model, an add-on should call this to validate query parameters and the requesting user's role whenever the add-on is opened in an [iframe](https://developers.google.com/classroom/add-ons/get-started/iframes/iframes-overview). This method returns the following error codes: * `PERMISSION_DENIED` for access errors. * `INVALID_ARGUMENT` if the request is malformed. * `NOT_FOUND` if one of the identified resources does not exist.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getAddOnContext(
+      params: Params$Resource$Courses$Courseworkmaterials$Getaddoncontext,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getAddOnContext(
+      params?: Params$Resource$Courses$Courseworkmaterials$Getaddoncontext,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AddOnContext>;
+    getAddOnContext(
+      params: Params$Resource$Courses$Courseworkmaterials$Getaddoncontext,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getAddOnContext(
+      params: Params$Resource$Courses$Courseworkmaterials$Getaddoncontext,
+      options: MethodOptions | BodyResponseCallback<Schema$AddOnContext>,
+      callback: BodyResponseCallback<Schema$AddOnContext>
+    ): void;
+    getAddOnContext(
+      params: Params$Resource$Courses$Courseworkmaterials$Getaddoncontext,
+      callback: BodyResponseCallback<Schema$AddOnContext>
+    ): void;
+    getAddOnContext(callback: BodyResponseCallback<Schema$AddOnContext>): void;
+    getAddOnContext(
+      paramsOrCallback?:
+        | Params$Resource$Courses$Courseworkmaterials$Getaddoncontext
+        | BodyResponseCallback<Schema$AddOnContext>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AddOnContext>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AddOnContext>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$AddOnContext> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Courses$Courseworkmaterials$Getaddoncontext;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Courses$Courseworkmaterials$Getaddoncontext;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v1/courses/{courseId}/courseWorkMaterials/{itemId}/addOnContext'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['courseId', 'itemId'],
+        pathParams: ['courseId', 'itemId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$AddOnContext>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$AddOnContext>(parameters);
+      }
+    }
+
+    /**
      * Returns a list of course work material that the requester is permitted to view. Course students may only view `PUBLISHED` course work material. Course teachers and domain administrators may view all course work material. This method returns the following error codes: * `PERMISSION_DENIED` if the requesting user is not permitted to access the requested course or for access errors. * `INVALID_ARGUMENT` if the request is malformed. * `NOT_FOUND` if the requested course does not exist.
      *
      * @param params - Parameters for request
@@ -4820,6 +6706,29 @@ export namespace classroom_v1 {
      */
     id?: string;
   }
+  export interface Params$Resource$Courses$Courseworkmaterials$Getaddoncontext
+    extends StandardParameters {
+    /**
+     * Optional. Token that authorizes the request. The token is passed as a query parameter when the user is redirected from Classroom to the add-on's URL. The authorization token is required when neither of the following is true: * The add-on has attachments on the post. * The developer project issuing the request is the same project that created the post.
+     */
+    addOnToken?: string;
+    /**
+     * Optional. The identifier of the attachment. This field is required for student users and optional for teacher users. If not provided in the student case, an error is returned.
+     */
+    attachmentId?: string;
+    /**
+     * Required. Identifier of the course.
+     */
+    courseId?: string;
+    /**
+     * Identifier of the announcement, courseWork, or courseWorkMaterial under which the attachment is attached. This field is required, but is not marked as such while we are migrating from post_id.
+     */
+    itemId?: string;
+    /**
+     * Optional. Deprecated, use item_id instead.
+     */
+    postId?: string;
+  }
   export interface Params$Resource$Courses$Courseworkmaterials$List
     extends StandardParameters {
     /**
@@ -4870,6 +6779,1535 @@ export namespace classroom_v1 {
      * Request body metadata
      */
     requestBody?: Schema$CourseWorkMaterial;
+  }
+
+  export class Resource$Courses$Courseworkmaterials$Addonattachments {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Creates an add-on attachment under a post. Requires the add-on to have permission to create new attachments on the post. This method returns the following error codes: * `PERMISSION_DENIED` for access errors. * `INVALID_ARGUMENT` if the request is malformed. * `NOT_FOUND` if one of the identified resources does not exist.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Courses$Courseworkmaterials$Addonattachments$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Courses$Courseworkmaterials$Addonattachments$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AddOnAttachment>;
+    create(
+      params: Params$Resource$Courses$Courseworkmaterials$Addonattachments$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Courses$Courseworkmaterials$Addonattachments$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$AddOnAttachment>,
+      callback: BodyResponseCallback<Schema$AddOnAttachment>
+    ): void;
+    create(
+      params: Params$Resource$Courses$Courseworkmaterials$Addonattachments$Create,
+      callback: BodyResponseCallback<Schema$AddOnAttachment>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$AddOnAttachment>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Courses$Courseworkmaterials$Addonattachments$Create
+        | BodyResponseCallback<Schema$AddOnAttachment>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AddOnAttachment>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AddOnAttachment>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$AddOnAttachment> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Courses$Courseworkmaterials$Addonattachments$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Courses$Courseworkmaterials$Addonattachments$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v1/courses/{courseId}/courseWorkMaterials/{itemId}/addOnAttachments'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['courseId', 'itemId'],
+        pathParams: ['courseId', 'itemId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$AddOnAttachment>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$AddOnAttachment>(parameters);
+      }
+    }
+
+    /**
+     * Deletes an add-on attachment. Requires the add-on to have been the original creator of the attachment. This method returns the following error codes: * `PERMISSION_DENIED` for access errors. * `INVALID_ARGUMENT` if the request is malformed. * `NOT_FOUND` if one of the identified resources does not exist.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Courses$Courseworkmaterials$Addonattachments$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Courses$Courseworkmaterials$Addonattachments$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Courses$Courseworkmaterials$Addonattachments$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Courses$Courseworkmaterials$Addonattachments$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(
+      params: Params$Resource$Courses$Courseworkmaterials$Addonattachments$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Courses$Courseworkmaterials$Addonattachments$Delete
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Courses$Courseworkmaterials$Addonattachments$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Courses$Courseworkmaterials$Addonattachments$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v1/courses/{courseId}/courseWorkMaterials/{itemId}/addOnAttachments/{attachmentId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['courseId', 'itemId', 'attachmentId'],
+        pathParams: ['attachmentId', 'courseId', 'itemId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+
+    /**
+     * Returns an add-on attachment. Requires the add-on requesting the attachment to be the original creator of the attachment. This method returns the following error codes: * `PERMISSION_DENIED` for access errors. * `INVALID_ARGUMENT` if the request is malformed. * `NOT_FOUND` if one of the identified resources does not exist.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Courses$Courseworkmaterials$Addonattachments$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Courses$Courseworkmaterials$Addonattachments$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AddOnAttachment>;
+    get(
+      params: Params$Resource$Courses$Courseworkmaterials$Addonattachments$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Courses$Courseworkmaterials$Addonattachments$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$AddOnAttachment>,
+      callback: BodyResponseCallback<Schema$AddOnAttachment>
+    ): void;
+    get(
+      params: Params$Resource$Courses$Courseworkmaterials$Addonattachments$Get,
+      callback: BodyResponseCallback<Schema$AddOnAttachment>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$AddOnAttachment>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Courses$Courseworkmaterials$Addonattachments$Get
+        | BodyResponseCallback<Schema$AddOnAttachment>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AddOnAttachment>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AddOnAttachment>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$AddOnAttachment> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Courses$Courseworkmaterials$Addonattachments$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Courses$Courseworkmaterials$Addonattachments$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v1/courses/{courseId}/courseWorkMaterials/{itemId}/addOnAttachments/{attachmentId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['courseId', 'itemId', 'attachmentId'],
+        pathParams: ['attachmentId', 'courseId', 'itemId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$AddOnAttachment>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$AddOnAttachment>(parameters);
+      }
+    }
+
+    /**
+     * Returns all attachments created by an add-on under the post. Requires the add-on to have active attachments on the post or have permission to create new attachments on the post. This method returns the following error codes: * `PERMISSION_DENIED` for access errors. * `INVALID_ARGUMENT` if the request is malformed. * `NOT_FOUND` if one of the identified resources does not exist.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Courses$Courseworkmaterials$Addonattachments$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Courses$Courseworkmaterials$Addonattachments$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListAddOnAttachmentsResponse>;
+    list(
+      params: Params$Resource$Courses$Courseworkmaterials$Addonattachments$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Courses$Courseworkmaterials$Addonattachments$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListAddOnAttachmentsResponse>,
+      callback: BodyResponseCallback<Schema$ListAddOnAttachmentsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Courses$Courseworkmaterials$Addonattachments$List,
+      callback: BodyResponseCallback<Schema$ListAddOnAttachmentsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListAddOnAttachmentsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Courses$Courseworkmaterials$Addonattachments$List
+        | BodyResponseCallback<Schema$ListAddOnAttachmentsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListAddOnAttachmentsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListAddOnAttachmentsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListAddOnAttachmentsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Courses$Courseworkmaterials$Addonattachments$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Courses$Courseworkmaterials$Addonattachments$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v1/courses/{courseId}/courseWorkMaterials/{itemId}/addOnAttachments'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['courseId', 'itemId'],
+        pathParams: ['courseId', 'itemId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListAddOnAttachmentsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListAddOnAttachmentsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Updates an add-on attachment. Requires the add-on to have been the original creator of the attachment. This method returns the following error codes: * `PERMISSION_DENIED` for access errors. * `INVALID_ARGUMENT` if the request is malformed. * `NOT_FOUND` if one of the identified resources does not exist.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Courses$Courseworkmaterials$Addonattachments$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Courses$Courseworkmaterials$Addonattachments$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AddOnAttachment>;
+    patch(
+      params: Params$Resource$Courses$Courseworkmaterials$Addonattachments$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Courses$Courseworkmaterials$Addonattachments$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$AddOnAttachment>,
+      callback: BodyResponseCallback<Schema$AddOnAttachment>
+    ): void;
+    patch(
+      params: Params$Resource$Courses$Courseworkmaterials$Addonattachments$Patch,
+      callback: BodyResponseCallback<Schema$AddOnAttachment>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$AddOnAttachment>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Courses$Courseworkmaterials$Addonattachments$Patch
+        | BodyResponseCallback<Schema$AddOnAttachment>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AddOnAttachment>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AddOnAttachment>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$AddOnAttachment> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Courses$Courseworkmaterials$Addonattachments$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Courses$Courseworkmaterials$Addonattachments$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v1/courses/{courseId}/courseWorkMaterials/{itemId}/addOnAttachments/{attachmentId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['courseId', 'itemId', 'attachmentId'],
+        pathParams: ['attachmentId', 'courseId', 'itemId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$AddOnAttachment>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$AddOnAttachment>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Courses$Courseworkmaterials$Addonattachments$Create
+    extends StandardParameters {
+    /**
+     * Optional. Token that authorizes the request. The token is passed as a query parameter when the user is redirected from Classroom to the add-on's URL. This authorization token is required for in-Classroom attachment creation but optional for partner-first attachment creation. Returns an error if not provided for partner-first attachment creation and the developer projects that created the attachment and its parent stream item do not match.
+     */
+    addOnToken?: string;
+    /**
+     * Required. Identifier of the course.
+     */
+    courseId?: string;
+    /**
+     * Identifier of the announcement, courseWork, or courseWorkMaterial under which to create the attachment. This field is required, but is not marked as such while we are migrating from post_id.
+     */
+    itemId?: string;
+    /**
+     * Optional. Deprecated, use item_id instead.
+     */
+    postId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$AddOnAttachment;
+  }
+  export interface Params$Resource$Courses$Courseworkmaterials$Addonattachments$Delete
+    extends StandardParameters {
+    /**
+     * Required. Identifier of the attachment.
+     */
+    attachmentId?: string;
+    /**
+     * Required. Identifier of the course.
+     */
+    courseId?: string;
+    /**
+     * Identifier of the announcement, courseWork, or courseWorkMaterial under which the attachment is attached. This field is required, but is not marked as such while we are migrating from post_id.
+     */
+    itemId?: string;
+    /**
+     * Optional. Deprecated, use item_id instead.
+     */
+    postId?: string;
+  }
+  export interface Params$Resource$Courses$Courseworkmaterials$Addonattachments$Get
+    extends StandardParameters {
+    /**
+     * Required. Identifier of the attachment.
+     */
+    attachmentId?: string;
+    /**
+     * Required. Identifier of the course.
+     */
+    courseId?: string;
+    /**
+     * Identifier of the announcement, courseWork, or courseWorkMaterial under which the attachment is attached. This field is required, but is not marked as such while we are migrating from post_id.
+     */
+    itemId?: string;
+    /**
+     * Optional. Deprecated, use item_id instead.
+     */
+    postId?: string;
+  }
+  export interface Params$Resource$Courses$Courseworkmaterials$Addonattachments$List
+    extends StandardParameters {
+    /**
+     * Required. Identifier of the course.
+     */
+    courseId?: string;
+    /**
+     * Identifier of the announcement, courseWork, or courseWorkMaterial whose attachments should be enumerated. This field is required, but is not marked as such while we are migrating from post_id.
+     */
+    itemId?: string;
+    /**
+     * The maximum number of attachments to return. The service may return fewer than this value. If unspecified, at most 20 attachments will be returned. The maximum value is 20; values above 20 will be coerced to 20.
+     */
+    pageSize?: number;
+    /**
+     * A page token, received from a previous `ListAddOnAttachments` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListAddOnAttachments` must match the call that provided the page token.
+     */
+    pageToken?: string;
+    /**
+     * Optional. Identifier of the post under the course whose attachments to enumerate. Deprecated, use item_id instead.
+     */
+    postId?: string;
+  }
+  export interface Params$Resource$Courses$Courseworkmaterials$Addonattachments$Patch
+    extends StandardParameters {
+    /**
+     * Required. Identifier of the attachment.
+     */
+    attachmentId?: string;
+    /**
+     * Required. Identifier of the course.
+     */
+    courseId?: string;
+    /**
+     * Identifier of the post under which the attachment is attached.
+     */
+    itemId?: string;
+    /**
+     * Required. Identifier of the post under which the attachment is attached.
+     */
+    postId?: string;
+    /**
+     * Required. Mask that identifies which fields on the attachment to update. The update fails if invalid fields are specified. If a field supports empty values, it can be cleared by specifying it in the update mask and not in the `AddOnAttachment` object. If a field that does not support empty values is included in the update mask and not set in the `AddOnAttachment` object, an `INVALID_ARGUMENT` error is returned. The following fields may be specified by teachers: * `title` * `teacher_view_uri` * `student_view_uri` * `student_work_review_uri` * `due_date` * `due_time` * `max_points`
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$AddOnAttachment;
+  }
+
+  export class Resource$Courses$Posts {
+    context: APIRequestContext;
+    addOnAttachments: Resource$Courses$Posts$Addonattachments;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.addOnAttachments = new Resource$Courses$Posts$Addonattachments(
+        this.context
+      );
+    }
+
+    /**
+     * Gets metadata for Classroom add-ons in the context of a specific post. To maintain the integrity of its own data and permissions model, an add-on should call this to validate query parameters and the requesting user's role whenever the add-on is opened in an [iframe](https://developers.google.com/classroom/add-ons/get-started/iframes/iframes-overview). This method returns the following error codes: * `PERMISSION_DENIED` for access errors. * `INVALID_ARGUMENT` if the request is malformed. * `NOT_FOUND` if one of the identified resources does not exist.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getAddOnContext(
+      params: Params$Resource$Courses$Posts$Getaddoncontext,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getAddOnContext(
+      params?: Params$Resource$Courses$Posts$Getaddoncontext,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AddOnContext>;
+    getAddOnContext(
+      params: Params$Resource$Courses$Posts$Getaddoncontext,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getAddOnContext(
+      params: Params$Resource$Courses$Posts$Getaddoncontext,
+      options: MethodOptions | BodyResponseCallback<Schema$AddOnContext>,
+      callback: BodyResponseCallback<Schema$AddOnContext>
+    ): void;
+    getAddOnContext(
+      params: Params$Resource$Courses$Posts$Getaddoncontext,
+      callback: BodyResponseCallback<Schema$AddOnContext>
+    ): void;
+    getAddOnContext(callback: BodyResponseCallback<Schema$AddOnContext>): void;
+    getAddOnContext(
+      paramsOrCallback?:
+        | Params$Resource$Courses$Posts$Getaddoncontext
+        | BodyResponseCallback<Schema$AddOnContext>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AddOnContext>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AddOnContext>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$AddOnContext> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Courses$Posts$Getaddoncontext;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Courses$Posts$Getaddoncontext;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1/courses/{courseId}/posts/{postId}/addOnContext'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['courseId', 'postId'],
+        pathParams: ['courseId', 'postId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$AddOnContext>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$AddOnContext>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Courses$Posts$Getaddoncontext
+    extends StandardParameters {
+    /**
+     * Optional. Token that authorizes the request. The token is passed as a query parameter when the user is redirected from Classroom to the add-on's URL. The authorization token is required when neither of the following is true: * The add-on has attachments on the post. * The developer project issuing the request is the same project that created the post.
+     */
+    addOnToken?: string;
+    /**
+     * Optional. The identifier of the attachment. This field is required for student users and optional for teacher users. If not provided in the student case, an error is returned.
+     */
+    attachmentId?: string;
+    /**
+     * Required. Identifier of the course.
+     */
+    courseId?: string;
+    /**
+     * Identifier of the announcement, courseWork, or courseWorkMaterial under which the attachment is attached. This field is required, but is not marked as such while we are migrating from post_id.
+     */
+    itemId?: string;
+    /**
+     * Optional. Deprecated, use item_id instead.
+     */
+    postId?: string;
+  }
+
+  export class Resource$Courses$Posts$Addonattachments {
+    context: APIRequestContext;
+    studentSubmissions: Resource$Courses$Posts$Addonattachments$Studentsubmissions;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.studentSubmissions =
+        new Resource$Courses$Posts$Addonattachments$Studentsubmissions(
+          this.context
+        );
+    }
+
+    /**
+     * Creates an add-on attachment under a post. Requires the add-on to have permission to create new attachments on the post. This method returns the following error codes: * `PERMISSION_DENIED` for access errors. * `INVALID_ARGUMENT` if the request is malformed. * `NOT_FOUND` if one of the identified resources does not exist.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Courses$Posts$Addonattachments$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Courses$Posts$Addonattachments$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AddOnAttachment>;
+    create(
+      params: Params$Resource$Courses$Posts$Addonattachments$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Courses$Posts$Addonattachments$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$AddOnAttachment>,
+      callback: BodyResponseCallback<Schema$AddOnAttachment>
+    ): void;
+    create(
+      params: Params$Resource$Courses$Posts$Addonattachments$Create,
+      callback: BodyResponseCallback<Schema$AddOnAttachment>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$AddOnAttachment>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Courses$Posts$Addonattachments$Create
+        | BodyResponseCallback<Schema$AddOnAttachment>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AddOnAttachment>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AddOnAttachment>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$AddOnAttachment> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Courses$Posts$Addonattachments$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Courses$Posts$Addonattachments$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1/courses/{courseId}/posts/{postId}/addOnAttachments'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['courseId', 'postId'],
+        pathParams: ['courseId', 'postId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$AddOnAttachment>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$AddOnAttachment>(parameters);
+      }
+    }
+
+    /**
+     * Deletes an add-on attachment. Requires the add-on to have been the original creator of the attachment. This method returns the following error codes: * `PERMISSION_DENIED` for access errors. * `INVALID_ARGUMENT` if the request is malformed. * `NOT_FOUND` if one of the identified resources does not exist.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Courses$Posts$Addonattachments$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Courses$Posts$Addonattachments$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Courses$Posts$Addonattachments$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Courses$Posts$Addonattachments$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(
+      params: Params$Resource$Courses$Posts$Addonattachments$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Courses$Posts$Addonattachments$Delete
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Courses$Posts$Addonattachments$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Courses$Posts$Addonattachments$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v1/courses/{courseId}/posts/{postId}/addOnAttachments/{attachmentId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['courseId', 'postId', 'attachmentId'],
+        pathParams: ['attachmentId', 'courseId', 'postId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+
+    /**
+     * Returns an add-on attachment. Requires the add-on requesting the attachment to be the original creator of the attachment. This method returns the following error codes: * `PERMISSION_DENIED` for access errors. * `INVALID_ARGUMENT` if the request is malformed. * `NOT_FOUND` if one of the identified resources does not exist.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Courses$Posts$Addonattachments$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Courses$Posts$Addonattachments$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AddOnAttachment>;
+    get(
+      params: Params$Resource$Courses$Posts$Addonattachments$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Courses$Posts$Addonattachments$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$AddOnAttachment>,
+      callback: BodyResponseCallback<Schema$AddOnAttachment>
+    ): void;
+    get(
+      params: Params$Resource$Courses$Posts$Addonattachments$Get,
+      callback: BodyResponseCallback<Schema$AddOnAttachment>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$AddOnAttachment>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Courses$Posts$Addonattachments$Get
+        | BodyResponseCallback<Schema$AddOnAttachment>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AddOnAttachment>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AddOnAttachment>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$AddOnAttachment> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Courses$Posts$Addonattachments$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Courses$Posts$Addonattachments$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v1/courses/{courseId}/posts/{postId}/addOnAttachments/{attachmentId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['courseId', 'postId', 'attachmentId'],
+        pathParams: ['attachmentId', 'courseId', 'postId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$AddOnAttachment>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$AddOnAttachment>(parameters);
+      }
+    }
+
+    /**
+     * Returns all attachments created by an add-on under the post. Requires the add-on to have active attachments on the post or have permission to create new attachments on the post. This method returns the following error codes: * `PERMISSION_DENIED` for access errors. * `INVALID_ARGUMENT` if the request is malformed. * `NOT_FOUND` if one of the identified resources does not exist.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Courses$Posts$Addonattachments$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Courses$Posts$Addonattachments$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListAddOnAttachmentsResponse>;
+    list(
+      params: Params$Resource$Courses$Posts$Addonattachments$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Courses$Posts$Addonattachments$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListAddOnAttachmentsResponse>,
+      callback: BodyResponseCallback<Schema$ListAddOnAttachmentsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Courses$Posts$Addonattachments$List,
+      callback: BodyResponseCallback<Schema$ListAddOnAttachmentsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListAddOnAttachmentsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Courses$Posts$Addonattachments$List
+        | BodyResponseCallback<Schema$ListAddOnAttachmentsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListAddOnAttachmentsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListAddOnAttachmentsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListAddOnAttachmentsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Courses$Posts$Addonattachments$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Courses$Posts$Addonattachments$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1/courses/{courseId}/posts/{postId}/addOnAttachments'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['courseId', 'postId'],
+        pathParams: ['courseId', 'postId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListAddOnAttachmentsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListAddOnAttachmentsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Updates an add-on attachment. Requires the add-on to have been the original creator of the attachment. This method returns the following error codes: * `PERMISSION_DENIED` for access errors. * `INVALID_ARGUMENT` if the request is malformed. * `NOT_FOUND` if one of the identified resources does not exist.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Courses$Posts$Addonattachments$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Courses$Posts$Addonattachments$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AddOnAttachment>;
+    patch(
+      params: Params$Resource$Courses$Posts$Addonattachments$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Courses$Posts$Addonattachments$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$AddOnAttachment>,
+      callback: BodyResponseCallback<Schema$AddOnAttachment>
+    ): void;
+    patch(
+      params: Params$Resource$Courses$Posts$Addonattachments$Patch,
+      callback: BodyResponseCallback<Schema$AddOnAttachment>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$AddOnAttachment>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Courses$Posts$Addonattachments$Patch
+        | BodyResponseCallback<Schema$AddOnAttachment>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AddOnAttachment>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AddOnAttachment>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$AddOnAttachment> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Courses$Posts$Addonattachments$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Courses$Posts$Addonattachments$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v1/courses/{courseId}/posts/{postId}/addOnAttachments/{attachmentId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['courseId', 'postId', 'attachmentId'],
+        pathParams: ['attachmentId', 'courseId', 'postId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$AddOnAttachment>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$AddOnAttachment>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Courses$Posts$Addonattachments$Create
+    extends StandardParameters {
+    /**
+     * Optional. Token that authorizes the request. The token is passed as a query parameter when the user is redirected from Classroom to the add-on's URL. This authorization token is required for in-Classroom attachment creation but optional for partner-first attachment creation. Returns an error if not provided for partner-first attachment creation and the developer projects that created the attachment and its parent stream item do not match.
+     */
+    addOnToken?: string;
+    /**
+     * Required. Identifier of the course.
+     */
+    courseId?: string;
+    /**
+     * Identifier of the announcement, courseWork, or courseWorkMaterial under which to create the attachment. This field is required, but is not marked as such while we are migrating from post_id.
+     */
+    itemId?: string;
+    /**
+     * Optional. Deprecated, use item_id instead.
+     */
+    postId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$AddOnAttachment;
+  }
+  export interface Params$Resource$Courses$Posts$Addonattachments$Delete
+    extends StandardParameters {
+    /**
+     * Required. Identifier of the attachment.
+     */
+    attachmentId?: string;
+    /**
+     * Required. Identifier of the course.
+     */
+    courseId?: string;
+    /**
+     * Identifier of the announcement, courseWork, or courseWorkMaterial under which the attachment is attached. This field is required, but is not marked as such while we are migrating from post_id.
+     */
+    itemId?: string;
+    /**
+     * Optional. Deprecated, use item_id instead.
+     */
+    postId?: string;
+  }
+  export interface Params$Resource$Courses$Posts$Addonattachments$Get
+    extends StandardParameters {
+    /**
+     * Required. Identifier of the attachment.
+     */
+    attachmentId?: string;
+    /**
+     * Required. Identifier of the course.
+     */
+    courseId?: string;
+    /**
+     * Identifier of the announcement, courseWork, or courseWorkMaterial under which the attachment is attached. This field is required, but is not marked as such while we are migrating from post_id.
+     */
+    itemId?: string;
+    /**
+     * Optional. Deprecated, use item_id instead.
+     */
+    postId?: string;
+  }
+  export interface Params$Resource$Courses$Posts$Addonattachments$List
+    extends StandardParameters {
+    /**
+     * Required. Identifier of the course.
+     */
+    courseId?: string;
+    /**
+     * Identifier of the announcement, courseWork, or courseWorkMaterial whose attachments should be enumerated. This field is required, but is not marked as such while we are migrating from post_id.
+     */
+    itemId?: string;
+    /**
+     * The maximum number of attachments to return. The service may return fewer than this value. If unspecified, at most 20 attachments will be returned. The maximum value is 20; values above 20 will be coerced to 20.
+     */
+    pageSize?: number;
+    /**
+     * A page token, received from a previous `ListAddOnAttachments` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListAddOnAttachments` must match the call that provided the page token.
+     */
+    pageToken?: string;
+    /**
+     * Optional. Identifier of the post under the course whose attachments to enumerate. Deprecated, use item_id instead.
+     */
+    postId?: string;
+  }
+  export interface Params$Resource$Courses$Posts$Addonattachments$Patch
+    extends StandardParameters {
+    /**
+     * Required. Identifier of the attachment.
+     */
+    attachmentId?: string;
+    /**
+     * Required. Identifier of the course.
+     */
+    courseId?: string;
+    /**
+     * Identifier of the post under which the attachment is attached.
+     */
+    itemId?: string;
+    /**
+     * Required. Identifier of the post under which the attachment is attached.
+     */
+    postId?: string;
+    /**
+     * Required. Mask that identifies which fields on the attachment to update. The update fails if invalid fields are specified. If a field supports empty values, it can be cleared by specifying it in the update mask and not in the `AddOnAttachment` object. If a field that does not support empty values is included in the update mask and not set in the `AddOnAttachment` object, an `INVALID_ARGUMENT` error is returned. The following fields may be specified by teachers: * `title` * `teacher_view_uri` * `student_view_uri` * `student_work_review_uri` * `due_date` * `due_time` * `max_points`
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$AddOnAttachment;
+  }
+
+  export class Resource$Courses$Posts$Addonattachments$Studentsubmissions {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Returns a student submission for an add-on attachment. This method returns the following error codes: * `PERMISSION_DENIED` for access errors. * `INVALID_ARGUMENT` if the request is malformed. * `NOT_FOUND` if one of the identified resources does not exist.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Courses$Posts$Addonattachments$Studentsubmissions$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Courses$Posts$Addonattachments$Studentsubmissions$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AddOnAttachmentStudentSubmission>;
+    get(
+      params: Params$Resource$Courses$Posts$Addonattachments$Studentsubmissions$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Courses$Posts$Addonattachments$Studentsubmissions$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AddOnAttachmentStudentSubmission>,
+      callback: BodyResponseCallback<Schema$AddOnAttachmentStudentSubmission>
+    ): void;
+    get(
+      params: Params$Resource$Courses$Posts$Addonattachments$Studentsubmissions$Get,
+      callback: BodyResponseCallback<Schema$AddOnAttachmentStudentSubmission>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$AddOnAttachmentStudentSubmission>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Courses$Posts$Addonattachments$Studentsubmissions$Get
+        | BodyResponseCallback<Schema$AddOnAttachmentStudentSubmission>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AddOnAttachmentStudentSubmission>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AddOnAttachmentStudentSubmission>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$AddOnAttachmentStudentSubmission>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Courses$Posts$Addonattachments$Studentsubmissions$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Courses$Posts$Addonattachments$Studentsubmissions$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v1/courses/{courseId}/posts/{postId}/addOnAttachments/{attachmentId}/studentSubmissions/{submissionId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['courseId', 'postId', 'attachmentId', 'submissionId'],
+        pathParams: ['attachmentId', 'courseId', 'postId', 'submissionId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$AddOnAttachmentStudentSubmission>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$AddOnAttachmentStudentSubmission>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Updates data associated with an add-on attachment submission. Requires the add-on to have been the original creator of the attachment and the attachment to have a positive `max_points` value set. This method returns the following error codes: * `PERMISSION_DENIED` for access errors. * `INVALID_ARGUMENT` if the request is malformed. * `NOT_FOUND` if one of the identified resources does not exist.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Courses$Posts$Addonattachments$Studentsubmissions$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Courses$Posts$Addonattachments$Studentsubmissions$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AddOnAttachmentStudentSubmission>;
+    patch(
+      params: Params$Resource$Courses$Posts$Addonattachments$Studentsubmissions$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Courses$Posts$Addonattachments$Studentsubmissions$Patch,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AddOnAttachmentStudentSubmission>,
+      callback: BodyResponseCallback<Schema$AddOnAttachmentStudentSubmission>
+    ): void;
+    patch(
+      params: Params$Resource$Courses$Posts$Addonattachments$Studentsubmissions$Patch,
+      callback: BodyResponseCallback<Schema$AddOnAttachmentStudentSubmission>
+    ): void;
+    patch(
+      callback: BodyResponseCallback<Schema$AddOnAttachmentStudentSubmission>
+    ): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Courses$Posts$Addonattachments$Studentsubmissions$Patch
+        | BodyResponseCallback<Schema$AddOnAttachmentStudentSubmission>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AddOnAttachmentStudentSubmission>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AddOnAttachmentStudentSubmission>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$AddOnAttachmentStudentSubmission>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Courses$Posts$Addonattachments$Studentsubmissions$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Courses$Posts$Addonattachments$Studentsubmissions$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v1/courses/{courseId}/posts/{postId}/addOnAttachments/{attachmentId}/studentSubmissions/{submissionId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['courseId', 'postId', 'attachmentId', 'submissionId'],
+        pathParams: ['attachmentId', 'courseId', 'postId', 'submissionId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$AddOnAttachmentStudentSubmission>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$AddOnAttachmentStudentSubmission>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Courses$Posts$Addonattachments$Studentsubmissions$Get
+    extends StandardParameters {
+    /**
+     * Required. Identifier of the attachment.
+     */
+    attachmentId?: string;
+    /**
+     * Required. Identifier of the course.
+     */
+    courseId?: string;
+    /**
+     * Identifier of the announcement, courseWork, or courseWorkMaterial under which the attachment is attached. This field is required, but is not marked as such while we are migrating from post_id.
+     */
+    itemId?: string;
+    /**
+     * Optional. Deprecated, use item_id instead.
+     */
+    postId?: string;
+    /**
+     * Required. Identifier of the student’s submission.
+     */
+    submissionId?: string;
+  }
+  export interface Params$Resource$Courses$Posts$Addonattachments$Studentsubmissions$Patch
+    extends StandardParameters {
+    /**
+     * Required. Identifier of the attachment.
+     */
+    attachmentId?: string;
+    /**
+     * Required. Identifier of the course.
+     */
+    courseId?: string;
+    /**
+     * Identifier of the announcement, courseWork, or courseWorkMaterial under which the attachment is attached. This field is required, but is not marked as such while we are migrating from post_id.
+     */
+    itemId?: string;
+    /**
+     * Optional. Deprecated, use item_id instead.
+     */
+    postId?: string;
+    /**
+     * Required. Identifier of the student's submission.
+     */
+    submissionId?: string;
+    /**
+     * Required. Mask that identifies which fields on the attachment to update. The update fails if invalid fields are specified. If a field supports empty values, it can be cleared by specifying it in the update mask and not in the `AddOnAttachmentStudentSubmission` object. The following fields may be specified by teachers: * `points_earned`
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$AddOnAttachmentStudentSubmission;
   }
 
   export class Resource$Courses$Students {

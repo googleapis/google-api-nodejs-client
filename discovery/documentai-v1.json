@@ -422,7 +422,7 @@
                   ]
                 },
                 "create": {
-                  "description": "Creates a processor from the ProcessorType provided. The processor will be at `ENABLED` state by default after its creation.",
+                  "description": "Creates a processor from the ProcessorType provided. The processor will be at `ENABLED` state by default after its creation. Note that this method requires the `documentai.processors.create` permission on the project, which is highly privileged. A user or service account with this permission can create new processors that can interact with any gcs bucket in your project.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/processors",
                   "httpMethod": "POST",
                   "id": "documentai.projects.locations.processors.create",
@@ -1042,7 +1042,7 @@
       }
     }
   },
-  "revision": "20240531",
+  "revision": "20240619",
   "rootUrl": "https://documentai.googleapis.com/",
   "schemas": {
     "GoogleCloudDocumentaiUiv1beta3AutoLabelDocumentsMetadata": {

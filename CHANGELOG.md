@@ -4,6 +4,13 @@
 
 [1]: https://www.npmjs.com/package/googleapis?activeTab=versions
 
+## [140.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/googleapis-v140.0.0...googleapis-v140.0.1) (2024-06-21)
+
+
+### Bug Fixes
+
+* **deps:** update dependency uuid to v10 ([#3499](https://github.com/googleapis/google-api-nodejs-client/issues/3499)) ([712c2f2](https://github.com/googleapis/google-api-nodejs-client/commit/712c2f2bfec7c27d750d64d68fd35afec5b3fce3))
+
 ## [140.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/googleapis-v139.0.0...googleapis-v140.0.0) (2024-06-06)
 
 

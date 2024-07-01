@@ -112,6 +112,7 @@ export namespace games_v1 {
    */
   export class Games {
     context: APIRequestContext;
+    accesstokens: Resource$Accesstokens;
     achievementDefinitions: Resource$Achievementdefinitions;
     achievements: Resource$Achievements;
     applications: Resource$Applications;
@@ -131,6 +132,7 @@ export namespace games_v1 {
         google,
       };
 
+      this.accesstokens = new Resource$Accesstokens(this.context);
       this.achievementDefinitions = new Resource$Achievementdefinitions(
         this.context
       );
@@ -745,6 +747,24 @@ export namespace games_v1 {
      * The minimum number of steps for the achievement to be set to.
      */
     steps?: number | null;
+  }
+  /**
+   * Response for the GeneratePlayGroupingApiToken RPC.
+   */
+  export interface Schema$GeneratePlayGroupingApiTokenResponse {
+    /**
+     * Token for accessing the Play Grouping API.
+     */
+    token?: Schema$PlayGroupingApiToken;
+  }
+  /**
+   * Response for the GenerateRecallPlayGroupingApiToken RPC.
+   */
+  export interface Schema$GenerateRecallPlayGroupingApiTokenResponse {
+    /**
+     * Token for accessing the Play Grouping API.
+     */
+    token?: Schema$PlayGroupingApiToken;
   }
   /**
    * Response message for GetMultipleApplicationPlayerIds rpc.
@@ -1451,6 +1471,15 @@ export namespace games_v1 {
     scores?: Schema$ScoreSubmission[];
   }
   /**
+   * Token data returned from GeneratePlayGroupingApiToken RPC.
+   */
+  export interface Schema$PlayGroupingApiToken {
+    /**
+     * Value of the token.
+     */
+    tokenValue?: string | null;
+  }
+  /**
    * Profile settings
    */
   export interface Schema$ProfileSettings {
@@ -1746,6 +1775,235 @@ export namespace games_v1 {
      * Required. Whether a Recall token specified by the request was deleted. Can be 'false' when there were no Recall tokens satisfied the criteria from the request.
      */
     unlinked?: boolean | null;
+  }
+
+  export class Resource$Accesstokens {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Generates a Play Grouping API token for the PGS user identified by the attached credential.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    generatePlayGroupingApiToken(
+      params: Params$Resource$Accesstokens$Generateplaygroupingapitoken,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    generatePlayGroupingApiToken(
+      params?: Params$Resource$Accesstokens$Generateplaygroupingapitoken,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GeneratePlayGroupingApiTokenResponse>;
+    generatePlayGroupingApiToken(
+      params: Params$Resource$Accesstokens$Generateplaygroupingapitoken,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    generatePlayGroupingApiToken(
+      params: Params$Resource$Accesstokens$Generateplaygroupingapitoken,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GeneratePlayGroupingApiTokenResponse>,
+      callback: BodyResponseCallback<Schema$GeneratePlayGroupingApiTokenResponse>
+    ): void;
+    generatePlayGroupingApiToken(
+      params: Params$Resource$Accesstokens$Generateplaygroupingapitoken,
+      callback: BodyResponseCallback<Schema$GeneratePlayGroupingApiTokenResponse>
+    ): void;
+    generatePlayGroupingApiToken(
+      callback: BodyResponseCallback<Schema$GeneratePlayGroupingApiTokenResponse>
+    ): void;
+    generatePlayGroupingApiToken(
+      paramsOrCallback?:
+        | Params$Resource$Accesstokens$Generateplaygroupingapitoken
+        | BodyResponseCallback<Schema$GeneratePlayGroupingApiTokenResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GeneratePlayGroupingApiTokenResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GeneratePlayGroupingApiTokenResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GeneratePlayGroupingApiTokenResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accesstokens$Generateplaygroupingapitoken;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Accesstokens$Generateplaygroupingapitoken;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://games.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/games/v1/accesstokens/generatePlayGroupingApiToken'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: [],
+        pathParams: [],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GeneratePlayGroupingApiTokenResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GeneratePlayGroupingApiTokenResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Generates a Play Grouping API token for the PGS user identified by the Recall session ID provided in the request.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    generateRecallPlayGroupingApiToken(
+      params: Params$Resource$Accesstokens$Generaterecallplaygroupingapitoken,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    generateRecallPlayGroupingApiToken(
+      params?: Params$Resource$Accesstokens$Generaterecallplaygroupingapitoken,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GenerateRecallPlayGroupingApiTokenResponse>;
+    generateRecallPlayGroupingApiToken(
+      params: Params$Resource$Accesstokens$Generaterecallplaygroupingapitoken,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    generateRecallPlayGroupingApiToken(
+      params: Params$Resource$Accesstokens$Generaterecallplaygroupingapitoken,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GenerateRecallPlayGroupingApiTokenResponse>,
+      callback: BodyResponseCallback<Schema$GenerateRecallPlayGroupingApiTokenResponse>
+    ): void;
+    generateRecallPlayGroupingApiToken(
+      params: Params$Resource$Accesstokens$Generaterecallplaygroupingapitoken,
+      callback: BodyResponseCallback<Schema$GenerateRecallPlayGroupingApiTokenResponse>
+    ): void;
+    generateRecallPlayGroupingApiToken(
+      callback: BodyResponseCallback<Schema$GenerateRecallPlayGroupingApiTokenResponse>
+    ): void;
+    generateRecallPlayGroupingApiToken(
+      paramsOrCallback?:
+        | Params$Resource$Accesstokens$Generaterecallplaygroupingapitoken
+        | BodyResponseCallback<Schema$GenerateRecallPlayGroupingApiTokenResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GenerateRecallPlayGroupingApiTokenResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GenerateRecallPlayGroupingApiTokenResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GenerateRecallPlayGroupingApiTokenResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accesstokens$Generaterecallplaygroupingapitoken;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Accesstokens$Generaterecallplaygroupingapitoken;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://games.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/games/v1/accesstokens/generateRecallPlayGroupingApiToken'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: [],
+        pathParams: [],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GenerateRecallPlayGroupingApiTokenResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GenerateRecallPlayGroupingApiTokenResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Accesstokens$Generateplaygroupingapitoken
+    extends StandardParameters {
+    /**
+     * Required. App package name to generate the token for (e.g. com.example.mygame).
+     */
+    packageName?: string;
+    /**
+     * Required. Persona to associate with the token. Persona is a developer-provided stable identifier of the user. Must be deterministically generated (e.g. as a one-way hash) from the user account ID and user profile ID (if the app has the concept), according to the developer's own user identity system.
+     */
+    persona?: string;
+  }
+  export interface Params$Resource$Accesstokens$Generaterecallplaygroupingapitoken
+    extends StandardParameters {
+    /**
+     * Required. App package name to generate the token for (e.g. com.example.mygame).
+     */
+    packageName?: string;
+    /**
+     * Required. Persona to associate with the token. Persona is a developer-provided stable identifier of the user. Must be deterministically generated (e.g. as a one-way hash) from the user account ID and user profile ID (if the app has the concept), according to the developer's own user identity system.
+     */
+    persona?: string;
+    /**
+     * Required. Opaque server-generated string that encodes all the necessary information to identify the PGS player / Google user and application. See https://developer.android.com/games/pgs/recall/recall-setup on how to integrate with Recall and get session ID.
+     */
+    recallSessionId?: string;
   }
 
   export class Resource$Achievementdefinitions {

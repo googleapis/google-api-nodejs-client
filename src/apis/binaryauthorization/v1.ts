@@ -558,7 +558,7 @@ export namespace binaryauthorization_v1 {
    */
   export interface Schema$PkixPublicKey {
     /**
-     * Optional. The ID of this public key. Signatures verified by Binary Authorization must include the ID of the public key that can be used to verify them, and that ID must match the contents of this field exactly. This may be explicitly provided by the caller, but it MUST be a valid RFC3986 URI. If `key_id` is left blank and this `PkixPublicKey` is not used in the context of a wrapper (see next paragraph), a default key ID will be computed based on the digest of the DER encoding of the public key. If this `PkixPublicKey` is used in the context of a wrapper that has its own notion of key ID (e.g. `AttestorPublicKey`), then this field can either: * Match that value exactly. * Or be left blank, in which case it behaves exactly as though it is equal to that wrapper value.
+     * Optional. The ID of this public key. Signatures verified by Binary Authorization must include the ID of the public key that can be used to verify them. The ID must match exactly contents of the `key_id` field exactly. The ID may be explicitly provided by the caller, but it MUST be a valid RFC3986 URI. If `key_id` is left blank and this `PkixPublicKey` is not used in the context of a wrapper (see next paragraph), a default key ID will be computed based on the digest of the DER encoding of the public key. If this `PkixPublicKey` is used in the context of a wrapper that has its own notion of key ID (e.g. `AttestorPublicKey`), then this field can either match that value exactly, or be left blank, in which case it behaves exactly as though it is equal to that wrapper value.
      */
     keyId?: string | null;
     /**
@@ -587,6 +587,10 @@ export namespace binaryauthorization_v1 {
      * Optional. A description comment about the policy.
      */
     description?: string | null;
+    /**
+     * Optional. Used to prevent updating the policy when another request has updated it since it was retrieved.
+     */
+    etag?: string | null;
     /**
      * Optional. GKE platform-specific policy.
      */
@@ -2639,6 +2643,10 @@ export namespace binaryauthorization_v1 {
   }
   export interface Params$Resource$Projects$Platforms$Policies$Delete
     extends StandardParameters {
+    /**
+     * Optional. Used to prevent deleting the policy when another request has updated it since it was retrieved.
+     */
+    etag?: string;
     /**
      * Required. The name of the platform policy to delete, in the format `projects/x/platforms/x/policies/x`.
      */

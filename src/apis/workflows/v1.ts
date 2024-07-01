@@ -294,11 +294,11 @@ export namespace workflows_v1 {
    */
   export interface Schema$Workflow {
     /**
-     * Output only. A list of all KMS crypto keys used to encrypt or decrpt the data associated with the workflow.
+     * Output only. A list of all KMS crypto keys used to encrypt or decrypt the data associated with the workflow.
      */
     allKmsKeys?: string[] | null;
     /**
-     * Output only. A list of all KMS crypto keys versions used to encrypt or decrpt the data associated with the workflow.
+     * Output only. A list of all KMS crypto key versions used to encrypt or decrypt the data associated with the workflow.
      */
     allKmsKeysVersions?: string[] | null;
     /**

@@ -112,6 +112,35 @@
       "resources": {
         "databases": {
           "methods": {
+            "bulkDeleteDocuments": {
+              "description": "Bulk deletes a subset of documents from Google Cloud Firestore. Documents created or updated after the underlying system starts to process the request will not be deleted. The bulk delete occurs in the background and its progress can be monitored and managed via the Operation resource that is created. For more details on bulk delete behavior, refer to: https://cloud.google.com/firestore/docs/manage-data/bulk-delete",
+              "flatPath": "v1/projects/{projectsId}/databases/{databasesId}:bulkDeleteDocuments",
+              "httpMethod": "POST",
+              "id": "firestore.projects.databases.bulkDeleteDocuments",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. Database to operate. Should be of the form: `projects/{project_id}/databases/{database_id}`.",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+/databases/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+name}:bulkDeleteDocuments",
+              "request": {
+                "$ref": "GoogleFirestoreAdminV1BulkDeleteDocumentsRequest"
+              },
+              "response": {
+                "$ref": "GoogleLongrunningOperation"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/datastore"
+              ]
+            },
             "create": {
               "description": "Create a database.",
               "flatPath": "v1/projects/{projectsId}/databases",
@@ -586,7 +615,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "Required. A field name of the form `projects/{project_id}/databases/{database_id}/collectionGroups/{collection_id}/fields/{field_path}` A field path may be a simple field name, e.g. `address` or a path to fields within map_value , e.g. `address.city`, or a special field path. The only valid special field is `*`, which represents any field. Field paths may be quoted using ` (backtick). The only character that needs to be escaped within a quoted field path is the backtick character itself, escaped using a backslash. Special characters in field paths that must be quoted include: `*`, `.`, ``` (backtick), `[`, `]`, as well as any ascii symbolic characters. Examples: (Note: Comments here are written in markdown syntax, so there is an additional layer of backticks to represent a code block) `\\`address.city\\`` represents a field named `address.city`, not the map key `city` in the field `address`. `\\`*\\`` represents a field named `*`, not any field. A special `Field` contains the default indexing settings for all fields. This field's resource name is: `projects/{project_id}/databases/{database_id}/collectionGroups/__default__/fields/*` Indexes defined on this `Field` will be applied to all fields which do not have their own `Field` index configuration.",
+                          "description": "Required. A field name of the form: `projects/{project_id}/databases/{database_id}/collectionGroups/{collection_id}/fields/{field_path}` A field path can be a simple field name, e.g. `address` or a path to fields within `map_value` , e.g. `address.city`, or a special field path. The only valid special field is `*`, which represents any field. Field paths can be quoted using `` ` `` (backtick). The only character that must be escaped within a quoted field path is the backtick character itself, escaped using a backslash. Special characters in field paths that must be quoted include: `*`, `.`, `` ` `` (backtick), `[`, `]`, as well as any ascii symbolic characters. Examples: `` `address.city` `` represents a field named `address.city`, not the map key `city` in the field `address`. `` `*` `` represents a field named `*`, not any field. A special `Field` contains the default indexing settings for all fields. This field's resource name is: `projects/{project_id}/databases/{database_id}/collectionGroups/__default__/fields/*` Indexes defined on this `Field` will be applied to all fields which do not have their own `Field` index configuration.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/databases/[^/]+/collectionGroups/[^/]+/fields/[^/]+$",
                           "required": true,
@@ -1677,7 +1706,7 @@
       }
     }
   },
-  "revision": "20240521",
+  "revision": "20240617",
   "rootUrl": "https://firestore.googleapis.com/",
   "schemas": {
     "Aggregation": {
@@ -2487,6 +2516,95 @@
       },
       "type": "object"
     },
+    "GoogleFirestoreAdminV1BulkDeleteDocumentsMetadata": {
+      "description": "Metadata for google.longrunning.Operation results from FirestoreAdmin.BulkDeleteDocuments.",
+      "id": "GoogleFirestoreAdminV1BulkDeleteDocumentsMetadata",
+      "properties": {
+        "collectionIds": {
+          "description": "The ids of the collection groups that are being deleted.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "endTime": {
+          "description": "The time this operation completed. Will be unset if operation still in progress.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "namespaceIds": {
+          "description": "Which namespace ids are being deleted.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "operationState": {
+          "description": "The state of the operation.",
+          "enum": [
+            "OPERATION_STATE_UNSPECIFIED",
+            "INITIALIZING",
+            "PROCESSING",
+            "CANCELLING",
+            "FINALIZING",
+            "SUCCESSFUL",
+            "FAILED",
+            "CANCELLED"
+          ],
+          "enumDescriptions": [
+            "Unspecified.",
+            "Request is being prepared for processing.",
+            "Request is actively being processed.",
+            "Request is in the process of being cancelled after user called google.longrunning.Operations.CancelOperation on the operation.",
+            "Request has been processed and is in its finalization stage.",
+            "Request has completed successfully.",
+            "Request has finished being processed, but encountered an error.",
+            "Request has finished being cancelled after user called google.longrunning.Operations.CancelOperation."
+          ],
+          "type": "string"
+        },
+        "progressBytes": {
+          "$ref": "GoogleFirestoreAdminV1Progress",
+          "description": "The progress, in bytes, of this operation."
+        },
+        "progressDocuments": {
+          "$ref": "GoogleFirestoreAdminV1Progress",
+          "description": "The progress, in documents, of this operation."
+        },
+        "snapshotTime": {
+          "description": "The timestamp that corresponds to the version of the database that is being read to get the list of documents to delete. This time can also be used as the timestamp of PITR in case of disaster recovery (subject to PITR window limit).",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "startTime": {
+          "description": "The time this operation started.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleFirestoreAdminV1BulkDeleteDocumentsRequest": {
+      "description": "The request for FirestoreAdmin.BulkDeleteDocuments. When both collection_ids and namespace_ids are set, only documents satisfying both conditions will be deleted. Requests with namespace_ids and collection_ids both empty will be rejected. Please use FirestoreAdmin.DeleteDatabase instead.",
+      "id": "GoogleFirestoreAdminV1BulkDeleteDocumentsRequest",
+      "properties": {
+        "collectionIds": {
+          "description": "Optional. IDs of the collection groups to delete. Unspecified means all collection groups. Each collection group in this list must be unique.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "namespaceIds": {
+          "description": "Optional. Namespaces to delete. An empty list means all namespaces. This is the recommended usage for databases that don't use namespaces. An empty string element represents the default namespace. This should be used if the database has data in non-default namespaces, but doesn't want to delete from them. Each namespace in this list must be unique.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "GoogleFirestoreAdminV1CmekConfig": {
       "description": "The CMEK (Customer Managed Encryption Key) configuration for a Firestore database. If not present, the database is secured by the default Google encryption key.",
       "id": "GoogleFirestoreAdminV1CmekConfig",
@@ -2637,7 +2755,7 @@
             "DATASTORE_MODE"
           ],
           "enumDescriptions": [
-            "The default value. This value is used if the database type is omitted.",
+            "Not used.",
             "Firestore Native Mode",
             "Firestore in Datastore Mode."
           ],
@@ -2658,22 +2776,6 @@
           "description": "Output only. The period during which past versions of data are retained in the database. Any read or query can specify a `read_time` within this window, and will read the state of the database at that time. If the PITR feature is enabled, the retention period is 7 days. Otherwise, the retention period is 1 hour.",
           "format": "google-duration",
           "readOnly": true,
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "GoogleFirestoreAdminV1DatabaseSnapshot": {
-      "description": "A consistent snapshot of a database at a specific point in time.",
-      "id": "GoogleFirestoreAdminV1DatabaseSnapshot",
-      "properties": {
-        "database": {
-          "description": "Required. A name of the form `projects/{project_id}/databases/{database_id}`",
-          "type": "string"
-        },
-        "snapshotTime": {
-          "description": "Required. The timestamp at which the database snapshot is taken. The requested timestamp must be a whole minute within the PITR window.",
-          "format": "google-datetime",
           "type": "string"
         }
       },
@@ -2807,7 +2909,7 @@
           "description": "The index configuration for this field. If unset, field indexing will revert to the configuration defined by the `ancestor_field`. To explicitly remove all indexes for this field, specify an index config with an empty list of indexes."
         },
         "name": {
-          "description": "Required. A field name of the form `projects/{project_id}/databases/{database_id}/collectionGroups/{collection_id}/fields/{field_path}` A field path may be a simple field name, e.g. `address` or a path to fields within map_value , e.g. `address.city`, or a special field path. The only valid special field is `*`, which represents any field. Field paths may be quoted using ` (backtick). The only character that needs to be escaped within a quoted field path is the backtick character itself, escaped using a backslash. Special characters in field paths that must be quoted include: `*`, `.`, ``` (backtick), `[`, `]`, as well as any ascii symbolic characters. Examples: (Note: Comments here are written in markdown syntax, so there is an additional layer of backticks to represent a code block) `\\`address.city\\`` represents a field named `address.city`, not the map key `city` in the field `address`. `\\`*\\`` represents a field named `*`, not any field. A special `Field` contains the default indexing settings for all fields. This field's resource name is: `projects/{project_id}/databases/{database_id}/collectionGroups/__default__/fields/*` Indexes defined on this `Field` will be applied to all fields which do not have their own `Field` index configuration.",
+          "description": "Required. A field name of the form: `projects/{project_id}/databases/{database_id}/collectionGroups/{collection_id}/fields/{field_path}` A field path can be a simple field name, e.g. `address` or a path to fields within `map_value` , e.g. `address.city`, or a special field path. The only valid special field is `*`, which represents any field. Field paths can be quoted using `` ` `` (backtick). The only character that must be escaped within a quoted field path is the backtick character itself, escaped using a backslash. Special characters in field paths that must be quoted include: `*`, `.`, `` ` `` (backtick), `[`, `]`, as well as any ascii symbolic characters. Examples: `` `address.city` `` represents a field named `address.city`, not the map key `city` in the field `address`. `` `*` `` represents a field named `*`, not any field. A special `Field` contains the default indexing settings for all fields. This field's resource name is: `projects/{project_id}/databases/{database_id}/collectionGroups/__default__/fields/*` Indexes defined on this `Field` will be applied to all fields which do not have their own `Field` index configuration.",
           "type": "string"
         },
         "ttlConfig": {
@@ -3366,9 +3468,17 @@
           "description": "Required. The ID to use for the database, which will become the final component of the database's resource name. This database id must not be associated with an existing database. This value should be 4-63 characters. Valid characters are /a-z-/ with first character a letter and the last a letter or a number. Must not be UUID-like /[0-9a-f]{8}(-[0-9a-f]{4}){3}-[0-9a-f]{12}/. \"(default)\" database id is also valid.",
           "type": "string"
         },
-        "databaseSnapshot": {
-          "$ref": "GoogleFirestoreAdminV1DatabaseSnapshot",
-          "description": "Database snapshot to restore from. The source database must exist and have enabled PITR. The restored database will be created in the same location as the source database."
+        "kmsKeyName": {
+          "description": "Use Customer Managed Encryption Keys (CMEK) for encryption. Only keys in the same location as this database are allowed to be used for encryption. For Firestore's nam5 multi-region, this corresponds to Cloud KMS multi-region us. For Firestore's eur3 multi-region, this corresponds to Cloud KMS multi-region europe. See https://cloud.google.com/kms/docs/locations. The expected format is `projects/{project_id}/locations/{kms_location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}`.",
+          "type": "string"
+        },
+        "useBackupEncryption": {
+          "$ref": "Empty",
+          "description": "The restored database will use the same encryption configuration as the backup. This is the default option when no `encryption_config` is specified."
+        },
+        "useGoogleDefaultEncryption": {
+          "$ref": "Empty",
+          "description": "Use Google default encryption."
         }
       },
       "type": "object"

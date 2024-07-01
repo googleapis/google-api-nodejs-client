@@ -844,7 +844,7 @@
       }
     }
   },
-  "revision": "20240528",
+  "revision": "20240618",
   "rootUrl": "https://cloudbuild.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -1873,14 +1873,16 @@
             "BUNDLES",
             "GCB_REPO",
             "GIT",
-            "DEVELOPER_CONNECT"
+            "DEVELOPER_CONNECT",
+            "DEFAULT"
           ],
           "enumDescriptions": [
             "Default enum type; should not be used.",
             "Bundles resolver. https://tekton.dev/docs/pipelines/bundle-resolver/",
             "GCB repo resolver.",
             "Simple Git resolver. https://tekton.dev/docs/pipelines/git-resolver/",
-            "Developer Connect resolver."
+            "Developer Connect resolver.",
+            "Default resolver."
           ],
           "type": "string"
         }
@@ -2723,6 +2725,20 @@
           "description": "Name of the container specified as a DNS_LABEL.",
           "type": "string"
         },
+        "onError": {
+          "description": "Optional. OnError defines the exiting behavior on error can be set to [ continue | stopAndFail ]",
+          "enum": [
+            "ON_ERROR_TYPE_UNSPECIFIED",
+            "STOP_AND_FAIL",
+            "CONTINUE"
+          ],
+          "enumDescriptions": [
+            "Default enum type; should not be used.",
+            "StopAndFail indicates exit if the step/task exits with non-zero exit code",
+            "Continue indicates continue executing the rest of the steps/tasks irrespective of the exit code"
+          ],
+          "type": "string"
+        },
         "params": {
           "description": "Optional. Optional parameters passed to the StepAction.",
           "items": {
@@ -2783,14 +2799,16 @@
             "BUNDLES",
             "GCB_REPO",
             "GIT",
-            "DEVELOPER_CONNECT"
+            "DEVELOPER_CONNECT",
+            "DEFAULT"
           ],
           "enumDescriptions": [
             "Default enum type; should not be used.",
             "Bundles resolver. https://tekton.dev/docs/pipelines/bundle-resolver/",
             "GCB repo resolver.",
             "Simple Git resolver. https://tekton.dev/docs/pipelines/git-resolver/",
-            "Developer Connect resolver."
+            "Developer Connect resolver.",
+            "Default resolver."
           ],
           "type": "string"
         }
@@ -2841,14 +2859,16 @@
             "BUNDLES",
             "GCB_REPO",
             "GIT",
-            "DEVELOPER_CONNECT"
+            "DEVELOPER_CONNECT",
+            "DEFAULT"
           ],
           "enumDescriptions": [
             "Default enum type; should not be used.",
             "Bundles resolver. https://tekton.dev/docs/pipelines/bundle-resolver/",
             "GCB repo resolver.",
             "Simple Git resolver. https://tekton.dev/docs/pipelines/git-resolver/",
-            "Developer Connect resolver."
+            "Developer Connect resolver.",
+            "Default resolver."
           ],
           "type": "string"
         }

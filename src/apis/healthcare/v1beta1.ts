@@ -803,6 +803,10 @@ export namespace healthcare_v1beta1 {
    */
   export interface Schema$Dataset {
     /**
+     * Customer-managed encryption key spec for a Dataset. If set, this Dataset and all of its sub-resources will be secured by this key. If empty, the Dataset is secured by the default Google encryption key.
+     */
+    encryptionSpec?: Schema$EncryptionSpec;
+    /**
      * Identifier. Resource name of the dataset, of the form `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}`.
      */
     name?: string | null;
@@ -1069,6 +1073,15 @@ export namespace healthcare_v1beta1 {
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
    */
   export interface Schema$Empty {}
+  /**
+   * Represents a customer-managed encryption key spec that can be applied to a resource.
+   */
+  export interface Schema$EncryptionSpec {
+    /**
+     * Required. The resource name of customer-managed encryption key that is used to secure a resource and its sub-resources. Only the key in the same location as this dataset is allowed to be used for encryption. Format is: `projects/{project\}/locations/{location\}/keyRings/{keyRing\}/cryptoKeys/{key\}`
+     */
+    kmsKeyName?: string | null;
+  }
   /**
    * The candidate entities that an entity mention could link to.
    */
@@ -3077,7 +3090,7 @@ export namespace healthcare_v1beta1 {
      */
     blobStorageInfo?: Schema$BlobStorageInfo;
     /**
-     * The resource whose storage info is returned. For example, to specify the resource path of a DICOM Instance: `projects/{projectID\}/locations/{locationID\}/datasets/{datasetID\}/dicomStores/{dicom_store_id\}/dicomWeb/studi/{study_uid\}/series/{series_uid\}/instances/{instance_uid\}`
+     * The resource whose storage info is returned. For example: `projects/{projectID\}/locations/{locationID\}/datasets/{datasetID\}/dicomStores/{dicomStoreID\}/dicomWeb/studies/{studyUID\}/series/{seriesUID\}/instances/{instanceUID\}`
      */
     referencedResource?: string | null;
     /**
@@ -12375,7 +12388,7 @@ export namespace healthcare_v1beta1 {
   export interface Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series$Instances$Getstorageinfo
     extends StandardParameters {
     /**
-     * Required. The path of the resource for which the storage info is requested (for exaxmple for a DICOM Instance: `projects/{projectID\}/locations/{locationID\}/datasets/{datasetID\}/dicomStores/{dicomStoreId\}/dicomWeb/studies/{study_uid\}/series/{series_uid\}/instances/{instance_uid\}`)
+     * Required. The path of the instance to return storage info for, in the form: `projects/{projectID\}/locations/{locationID\}/datasets/{datasetID\}/dicomStores/{dicomStoreID\}/dicomWeb/studies/{studyUID\}/series/{seriesUID\}/instances/{instanceUID\}`
      */
     resource?: string;
   }

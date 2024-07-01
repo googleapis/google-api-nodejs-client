@@ -6027,7 +6027,7 @@
       }
     }
   },
-  "revision": "20240527",
+  "revision": "20240622",
   "rootUrl": "https://securitycenter.googleapis.com/",
   "schemas": {
     "Access": {
@@ -6523,6 +6523,69 @@
         },
         "name": {
           "description": "The friendly name of the OU.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AzureManagementGroup": {
+      "description": "Represents an Azure management group.",
+      "id": "AzureManagementGroup",
+      "properties": {
+        "displayName": {
+          "description": "The display name of the Azure management group.",
+          "type": "string"
+        },
+        "id": {
+          "description": "The UUID of the Azure management group, for example, \"20000000-0001-0000-0000-000000000000\".",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AzureMetadata": {
+      "description": "Azure metadata associated with the resource, only applicable if the finding's cloud provider is Microsoft Azure.",
+      "id": "AzureMetadata",
+      "properties": {
+        "managementGroups": {
+          "description": "A list of Azure management groups associated with the resource, ordered from lowest level (closest to the subscription) to highest level.",
+          "items": {
+            "$ref": "AzureManagementGroup"
+          },
+          "type": "array"
+        },
+        "resourceGroup": {
+          "$ref": "AzureResourceGroup",
+          "description": "The Azure resource group associated with the resource."
+        },
+        "subscription": {
+          "$ref": "AzureSubscription",
+          "description": "The Azure subscription associated with the resource."
+        }
+      },
+      "type": "object"
+    },
+    "AzureResourceGroup": {
+      "description": "Represents an Azure resource group.",
+      "id": "AzureResourceGroup",
+      "properties": {
+        "name": {
+          "description": "The name of the Azure resource group. This is not a UUID.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AzureSubscription": {
+      "description": "Represents an Azure subscription.",
+      "id": "AzureSubscription",
+      "properties": {
+        "displayName": {
+          "description": "The display name of the Azure subscription.",
+          "type": "string"
+        },
+        "id": {
+          "description": "The UUID of the Azure subscription, for example, \"291bba3f-e0a5-47bc-a099-3bdcb2a50a05\".",
           "type": "string"
         }
       },
@@ -7614,7 +7677,8 @@
             "MISCONFIGURATION",
             "OBSERVATION",
             "SCC_ERROR",
-            "POSTURE_VIOLATION"
+            "POSTURE_VIOLATION",
+            "TOXIC_COMBINATION"
           ],
           "enumDescriptions": [
             "Unspecified finding class.",
@@ -7623,9 +7687,17 @@
             "Describes a potential weakness in cloud resource/asset configuration that increases risk.",
             "Describes a security observation that is for informational purposes.",
             "Describes an error that prevents some SCC functionality.",
-            "Describes a potential security risk due to a change in the security posture."
+            "Describes a potential security risk due to a change in the security posture.",
+            "Describes a group of security issues that, when the issues occur together, represent a greater risk than when the issues occur independently. A group of such issues is referred to as a toxic combination."
           ],
           "type": "string"
+        },
+        "groupMemberships": {
+          "description": "Contains details about groups of which this finding is a member. A group is a collection of findings that are related in some way. This field cannot be updated. Its value is ignored in all update requests.",
+          "items": {
+            "$ref": "GroupMembership"
+          },
+          "type": "array"
         },
         "iamBindings": {
           "description": "Represents IAM bindings associated with the finding.",
@@ -7780,6 +7852,10 @@
             "The finding has been fixed, triaged as a non-issue or otherwise addressed and is no longer active."
           ],
           "type": "string"
+        },
+        "toxicCombination": {
+          "$ref": "ToxicCombination",
+          "description": "Contains details about a group of security issues that, when the issues occur together, represent a greater risk than when the issues occur independently. A group of such issues is referred to as a toxic combination. This field cannot be updated. Its value is ignored in all update requests."
         },
         "vulnerability": {
           "$ref": "Vulnerability",
@@ -8185,6 +8261,10 @@
         "awsMetadata": {
           "$ref": "AwsMetadata",
           "description": "The AWS metadata associated with the finding."
+        },
+        "azureMetadata": {
+          "$ref": "AzureMetadata",
+          "description": "The Azure metadata associated with the finding."
         },
         "cloudProvider": {
           "description": "Indicates which cloud provider the resource resides in.",
@@ -8962,6 +9042,69 @@
         },
         "name": {
           "description": "The friendly name of the OU.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudSecuritycenterV2AzureManagementGroup": {
+      "description": "Represents an Azure management group.",
+      "id": "GoogleCloudSecuritycenterV2AzureManagementGroup",
+      "properties": {
+        "displayName": {
+          "description": "The display name of the Azure management group.",
+          "type": "string"
+        },
+        "id": {
+          "description": "The UUID of the Azure management group, for example, \"20000000-0001-0000-0000-000000000000\".",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudSecuritycenterV2AzureMetadata": {
+      "description": "Azure metadata associated with the resource, only applicable if the finding's cloud provider is Microsoft Azure.",
+      "id": "GoogleCloudSecuritycenterV2AzureMetadata",
+      "properties": {
+        "managementGroups": {
+          "description": "A list of Azure management groups associated with the resource, ordered from lowest level (closest to the subscription) to highest level.",
+          "items": {
+            "$ref": "GoogleCloudSecuritycenterV2AzureManagementGroup"
+          },
+          "type": "array"
+        },
+        "resourceGroup": {
+          "$ref": "GoogleCloudSecuritycenterV2AzureResourceGroup",
+          "description": "The Azure resource group associated with the resource."
+        },
+        "subscription": {
+          "$ref": "GoogleCloudSecuritycenterV2AzureSubscription",
+          "description": "The Azure subscription associated with the resource."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudSecuritycenterV2AzureResourceGroup": {
+      "description": "Represents an Azure resource group.",
+      "id": "GoogleCloudSecuritycenterV2AzureResourceGroup",
+      "properties": {
+        "name": {
+          "description": "The name of the Azure resource group. This is not a UUID.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudSecuritycenterV2AzureSubscription": {
+      "description": "Represents an Azure subscription.",
+      "id": "GoogleCloudSecuritycenterV2AzureSubscription",
+      "properties": {
+        "displayName": {
+          "description": "The display name of the Azure subscription.",
+          "type": "string"
+        },
+        "id": {
+          "description": "The UUID of the Azure subscription, for example, \"291bba3f-e0a5-47bc-a099-3bdcb2a50a05\".",
           "type": "string"
         }
       },
@@ -9877,7 +10020,8 @@
             "MISCONFIGURATION",
             "OBSERVATION",
             "SCC_ERROR",
-            "POSTURE_VIOLATION"
+            "POSTURE_VIOLATION",
+            "TOXIC_COMBINATION"
           ],
           "enumDescriptions": [
             "Unspecified finding class.",
@@ -9886,9 +10030,17 @@
             "Describes a potential weakness in cloud resource/asset configuration that increases risk.",
             "Describes a security observation that is for informational purposes.",
             "Describes an error that prevents some SCC functionality.",
-            "Describes a potential security risk due to a change in the security posture."
+            "Describes a potential security risk due to a change in the security posture.",
+            "Describes a combination of security issues that represent a more severe security problem when taken together."
           ],
           "type": "string"
+        },
+        "groupMemberships": {
+          "description": "Contains details about groups of which this finding is a member. A group is a collection of findings that are related in some way. This field cannot be updated. Its value is ignored in all update requests.",
+          "items": {
+            "$ref": "GoogleCloudSecuritycenterV2GroupMembership"
+          },
+          "type": "array"
         },
         "iamBindings": {
           "description": "Represents IAM bindings associated with the finding.",
@@ -10045,6 +10197,10 @@
           "readOnly": true,
           "type": "string"
         },
+        "toxicCombination": {
+          "$ref": "GoogleCloudSecuritycenterV2ToxicCombination",
+          "description": "Contains details about a group of security issues that, when the issues occur together, represent a greater risk than when the issues occur independently. A group of such issues is referred to as a toxic combination. This field cannot be updated. Its value is ignored in all update requests."
+        },
         "vulnerability": {
           "$ref": "GoogleCloudSecuritycenterV2Vulnerability",
           "description": "Represents vulnerability-specific fields like CVE and CVSS scores. CVE stands for Common Vulnerabilities and Exposures (https://cve.mitre.org/about/)"
@@ -10073,6 +10229,29 @@
       "properties": {
         "regionCode": {
           "description": "A CLDR.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudSecuritycenterV2GroupMembership": {
+      "description": "Contains details about groups of which this finding is a member. A group is a collection of findings that are related in some way.",
+      "id": "GoogleCloudSecuritycenterV2GroupMembership",
+      "properties": {
+        "groupId": {
+          "description": "ID of the group.",
+          "type": "string"
+        },
+        "groupType": {
+          "description": "Type of group.",
+          "enum": [
+            "GROUP_TYPE_UNSPECIFIED",
+            "GROUP_TYPE_TOXIC_COMBINATION"
+          ],
+          "enumDescriptions": [
+            "Default value.",
+            "Group represents a toxic combination."
+          ],
           "type": "string"
         }
       },
@@ -10404,7 +10583,10 @@
               "OBTAIN_CAPABILITIES",
               "ACTIVE_SCANNING",
               "SCANNING_IP_BLOCKS",
-              "CONTAINER_AND_RESOURCE_DISCOVERY"
+              "CONTAINER_ADMINISTRATION_COMMAND",
+              "ESCAPE_TO_HOST",
+              "CONTAINER_AND_RESOURCE_DISCOVERY",
+              "STEAL_OR_FORGE_AUTHENTICATION_CERTIFICATES"
             ],
             "enumDescriptions": [
               "Unspecified value.",
@@ -10466,7 +10648,10 @@
               "T1588",
               "T1595",
               "T1595.001",
-              "T1613"
+              "T1613",
+              "T1611",
+              "T1613",
+              "T1649"
             ],
             "type": "string"
           },
@@ -10573,7 +10758,10 @@
               "OBTAIN_CAPABILITIES",
               "ACTIVE_SCANNING",
               "SCANNING_IP_BLOCKS",
-              "CONTAINER_AND_RESOURCE_DISCOVERY"
+              "CONTAINER_ADMINISTRATION_COMMAND",
+              "ESCAPE_TO_HOST",
+              "CONTAINER_AND_RESOURCE_DISCOVERY",
+              "STEAL_OR_FORGE_AUTHENTICATION_CERTIFICATES"
             ],
             "enumDescriptions": [
               "Unspecified value.",
@@ -10635,7 +10823,10 @@
               "T1588",
               "T1595",
               "T1595.001",
-              "T1613"
+              "T1613",
+              "T1611",
+              "T1613",
+              "T1649"
             ],
             "type": "string"
           },
@@ -11016,6 +11207,10 @@
         "awsMetadata": {
           "$ref": "GoogleCloudSecuritycenterV2AwsMetadata",
           "description": "The AWS metadata associated with the finding."
+        },
+        "azureMetadata": {
+          "$ref": "GoogleCloudSecuritycenterV2AzureMetadata",
+          "description": "The Azure metadata associated with the finding."
         },
         "cloudProvider": {
           "description": "Indicates which cloud provider the finding is from.",
@@ -11465,6 +11660,25 @@
       },
       "type": "object"
     },
+    "GoogleCloudSecuritycenterV2ToxicCombination": {
+      "description": "Contains details about a group of security issues that, when the issues occur together, represent a greater risk than when the issues occur independently. A group of such issues is referred to as a toxic combination.",
+      "id": "GoogleCloudSecuritycenterV2ToxicCombination",
+      "properties": {
+        "attackExposureScore": {
+          "description": "The [Attack exposure score](https://cloud.google.com/security-command-center/docs/attack-exposure-learn#attack_exposure_scores) of this toxic combination. The score is a measure of how much this toxic combination exposes one or more high-value resources to potential attack.",
+          "format": "double",
+          "type": "number"
+        },
+        "relatedFindings": {
+          "description": "List of resource names of findings associated with this toxic combination. For example, organizations/123/sources/456/findings/789.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudSecuritycenterV2Vulnerability": {
       "description": "Refers to common vulnerability fields e.g. cve, cvss, cwe etc.",
       "id": "GoogleCloudSecuritycenterV2Vulnerability",
@@ -11619,6 +11833,29 @@
           "description": "The total number of results matching the query.",
           "format": "int32",
           "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "GroupMembership": {
+      "description": "Contains details about groups of which this finding is a member. A group is a collection of findings that are related in some way.",
+      "id": "GroupMembership",
+      "properties": {
+        "groupId": {
+          "description": "ID of the group.",
+          "type": "string"
+        },
+        "groupType": {
+          "description": "Type of group.",
+          "enum": [
+            "GROUP_TYPE_UNSPECIFIED",
+            "GROUP_TYPE_TOXIC_COMBINATION"
+          ],
+          "enumDescriptions": [
+            "Default value.",
+            "Group represents a toxic combination."
+          ],
+          "type": "string"
         }
       },
       "type": "object"
@@ -12353,7 +12590,10 @@
               "OBTAIN_CAPABILITIES",
               "ACTIVE_SCANNING",
               "SCANNING_IP_BLOCKS",
-              "CONTAINER_AND_RESOURCE_DISCOVERY"
+              "CONTAINER_ADMINISTRATION_COMMAND",
+              "ESCAPE_TO_HOST",
+              "CONTAINER_AND_RESOURCE_DISCOVERY",
+              "STEAL_OR_FORGE_AUTHENTICATION_CERTIFICATES"
             ],
             "enumDescriptions": [
               "Unspecified value.",
@@ -12415,7 +12655,10 @@
               "T1588",
               "T1595",
               "T1595.001",
-              "T1613"
+              "T1609",
+              "T1611",
+              "T1613",
+              "T1649"
             ],
             "type": "string"
           },
@@ -12522,7 +12765,10 @@
               "OBTAIN_CAPABILITIES",
               "ACTIVE_SCANNING",
               "SCANNING_IP_BLOCKS",
-              "CONTAINER_AND_RESOURCE_DISCOVERY"
+              "CONTAINER_ADMINISTRATION_COMMAND",
+              "ESCAPE_TO_HOST",
+              "CONTAINER_AND_RESOURCE_DISCOVERY",
+              "STEAL_OR_FORGE_AUTHENTICATION_CERTIFICATES"
             ],
             "enumDescriptions": [
               "Unspecified value.",
@@ -12584,7 +12830,10 @@
               "T1588",
               "T1595",
               "T1595.001",
-              "T1613"
+              "T1609",
+              "T1611",
+              "T1613",
+              "T1649"
             ],
             "type": "string"
           },
@@ -13045,6 +13294,10 @@
         "awsMetadata": {
           "$ref": "AwsMetadata",
           "description": "The AWS metadata associated with the finding."
+        },
+        "azureMetadata": {
+          "$ref": "AzureMetadata",
+          "description": "The Azure metadata associated with the finding."
         },
         "cloudProvider": {
           "description": "Indicates which cloud provider the finding is from.",
@@ -13711,6 +13964,25 @@
         "uri": {
           "description": "The link to the ticket in the ticket system.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ToxicCombination": {
+      "description": "Contains details about a group of security issues that, when the issues occur together, represent a greater risk than when the issues occur independently. A group of such issues is referred to as a toxic combination.",
+      "id": "ToxicCombination",
+      "properties": {
+        "attackExposureScore": {
+          "description": "The [Attack exposure score](https://cloud.google.com/security-command-center/docs/attack-exposure-learn#attack_exposure_scores) of this toxic combination. The score is a measure of how much this toxic combination exposes one or more high-value resources to potential attack.",
+          "format": "double",
+          "type": "number"
+        },
+        "relatedFindings": {
+          "description": "List of resource names of findings associated with this toxic combination. For example, organizations/123/sources/456/findings/789.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"

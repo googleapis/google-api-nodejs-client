@@ -2309,7 +2309,7 @@
       }
     }
   },
-  "revision": "20240523",
+  "revision": "20240620",
   "rootUrl": "https://migrationcenter.googleapis.com/",
   "schemas": {
     "AddAssetsToGroupRequest": {
@@ -4370,7 +4370,7 @@
           "description": "Architecture details (vendor, CPU architecture)."
         },
         "coreCount": {
-          "description": "Number of CPU cores in the machine. Must be non-negative.",
+          "description": "Number of logical CPU cores in the machine. Must be non-negative.",
           "format": "int32",
           "type": "integer"
         },

@@ -3458,6 +3458,10 @@ export namespace displayvideo_v3 {
      */
     adGroupIds?: string[] | null;
     /**
+     * Optional. YouTube Ad Groups QA to download by ID. All IDs must belong to the same Advertiser or Partner specified in CreateSdfDownloadTaskRequest.
+     */
+    adGroupQaIds?: string[] | null;
+    /**
      * Campaigns to download by ID. All IDs must belong to the same Advertiser or Partner specified in CreateSdfDownloadTaskRequest.
      */
     campaignIds?: string[] | null;
@@ -3469,6 +3473,10 @@ export namespace displayvideo_v3 {
      * Line Items to download by ID. All IDs must belong to the same Advertiser or Partner specified in CreateSdfDownloadTaskRequest.
      */
     lineItemIds?: string[] | null;
+    /**
+     * Optional. Line Items QA to download by ID. All IDs must belong to the same Advertiser or Partner specified in CreateSdfDownloadTaskRequest.
+     */
+    lineItemQaIds?: string[] | null;
     /**
      * Media Products to download by ID. All IDs must belong to the same Advertiser or Partner specified in CreateSdfDownloadTaskRequest.
      */
@@ -3543,6 +3551,10 @@ export namespace displayvideo_v3 {
      * Output only. The resource name of the insertion order.
      */
     name?: string | null;
+    /**
+     * Optional. The optimization objective of the insertion order. **This field is only available to allowlisted customers.** If a customer is not allowlisted, this field will be null and attempts to set it will return an error.
+     */
+    optimizationObjective?: string | null;
     /**
      * Required. The budget spending speed setting of the insertion order.
      */
@@ -16059,7 +16071,7 @@ export namespace displayvideo_v3 {
      */
     assignedTargetingOptionId?: string;
     /**
-     * Required. Identifies the type of this assigned targeting option. Supported targeting types: * `TARGETING_TYPE_CHANNEL` * `TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION` * `TARGETING_TYPE_OMID` * `TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION` * `TARGETING_TYPE_YOUTUBE_VIDEO` * `TARGETING_TYPE_YOUTUBE_CHANNEL`
+     * Required. Identifies the type of this assigned targeting option. Supported targeting types: * `TARGETING_TYPE_CHANNEL` * `TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION` * `TARGETING_TYPE_OMID` * `TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION` * `TARGETING_TYPE_YOUTUBE_VIDEO` * `TARGETING_TYPE_YOUTUBE_CHANNEL` * `TARGETING_TYPE_KEYWORD`
      */
     targetingType?: string;
   }
@@ -16086,7 +16098,7 @@ export namespace displayvideo_v3 {
      */
     pageToken?: string;
     /**
-     * Required. Identifies the type of assigned targeting options to list. Supported targeting types: * `TARGETING_TYPE_CHANNEL` * `TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION` * `TARGETING_TYPE_OMID` * `TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION` * `TARGETING_TYPE_YOUTUBE_VIDEO` * `TARGETING_TYPE_YOUTUBE_CHANNEL`
+     * Required. Identifies the type of assigned targeting options to list. Supported targeting types: * `TARGETING_TYPE_CHANNEL` * `TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION` * `TARGETING_TYPE_OMID` * `TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION` * `TARGETING_TYPE_YOUTUBE_VIDEO` * `TARGETING_TYPE_YOUTUBE_CHANNEL` * `TARGETING_TYPE_KEYWORD`
      */
     targetingType?: string;
   }

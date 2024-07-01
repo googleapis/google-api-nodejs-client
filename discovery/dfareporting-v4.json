@@ -441,7 +441,7 @@
           ]
         },
         "patch": {
-          "description": "Updates an existing user role. This method supports patch semantics.",
+          "description": "Updates an existing account user profile. This method supports patch semantics.",
           "flatPath": "userprofiles/{userprofilesId}/accountUserProfiles",
           "httpMethod": "PATCH",
           "id": "dfareporting.accountUserProfiles.patch",
@@ -975,7 +975,7 @@
           ]
         },
         "patch": {
-          "description": "Updates an existing event tag. This method supports patch semantics.",
+          "description": "Updates an existing ad. This method supports patch semantics.",
           "flatPath": "userprofiles/{userprofilesId}/ads",
           "httpMethod": "PATCH",
           "id": "dfareporting.ads.patch",
@@ -1512,7 +1512,7 @@
           ]
         },
         "patch": {
-          "description": "Updates an existing advertiser. This method supports patch semantics.",
+          "description": "Updates an existing landing page. This method supports patch semantics.",
           "flatPath": "userprofiles/{userprofilesId}/advertiserLandingPages",
           "httpMethod": "PATCH",
           "id": "dfareporting.advertiserLandingPages.patch",
@@ -2450,7 +2450,7 @@
           ]
         },
         "patch": {
-          "description": "Updates an existing creative. This method supports patch semantics.",
+          "description": "Updates an existing campaign. This method supports patch semantics.",
           "flatPath": "userprofiles/{userprofilesId}/campaigns",
           "httpMethod": "PATCH",
           "id": "dfareporting.campaigns.patch",
@@ -5433,7 +5433,7 @@
           ]
         },
         "patch": {
-          "description": "Updates an existing event tag. This method supports patch semantics.",
+          "description": "Updates an existing floodlight activity. This method supports patch semantics.",
           "flatPath": "userprofiles/{userprofilesId}/floodlightActivities",
           "httpMethod": "PATCH",
           "id": "dfareporting.floodlightActivities.patch",
@@ -5670,7 +5670,7 @@
           ]
         },
         "patch": {
-          "description": "Updates an existing event tag. This method supports patch semantics.",
+          "description": "Updates an existing floodlight activity group. This method supports patch semantics.",
           "flatPath": "userprofiles/{userprofilesId}/floodlightActivityGroups",
           "httpMethod": "PATCH",
           "id": "dfareporting.floodlightActivityGroups.patch",
@@ -5808,7 +5808,7 @@
           ]
         },
         "patch": {
-          "description": "Updates an existing event tag. This method supports patch semantics.",
+          "description": "Updates an existing floodlight configuration. This method supports patch semantics.",
           "flatPath": "userprofiles/{userprofilesId}/floodlightConfigurations",
           "httpMethod": "PATCH",
           "id": "dfareporting.floodlightConfigurations.patch",
@@ -7897,7 +7897,7 @@
           ]
         },
         "patch": {
-          "description": "Updates an existing RemarketingListShare. This method supports patch semantics.",
+          "description": "Updates an existing remarketing list share. This method supports patch semantics.",
           "flatPath": "userprofiles/{userprofilesId}/remarketingListShares",
           "httpMethod": "PATCH",
           "id": "dfareporting.remarketingListShares.patch",
@@ -8121,7 +8121,7 @@
           ]
         },
         "patch": {
-          "description": "Updates an existing RemarketingList. This method supports patch semantics.",
+          "description": "Updates an existing remarketing list. This method supports patch semantics.",
           "flatPath": "userprofiles/{userprofilesId}/remarketingLists",
           "httpMethod": "PATCH",
           "id": "dfareporting.remarketingLists.patch",
@@ -10067,7 +10067,7 @@
       }
     }
   },
-  "revision": "20240201",
+  "revision": "20240625",
   "rootUrl": "https://dfareporting.googleapis.com/",
   "schemas": {
     "Account": {
@@ -10379,7 +10379,7 @@
           "type": "string"
         },
         "email": {
-          "description": "Email of the user profile. The email addresss must be linked to a Google Account. This field is required on insertion and is read-only after insertion.",
+          "description": "Email of the user profile. The email address must be linked to a Google Account. This field is required on insertion and is read-only after insertion.",
           "type": "string"
         },
         "id": {
@@ -11754,54 +11754,6 @@
       },
       "type": "object"
     },
-    "ChannelGrouping": {
-      "description": "Represents a DfaReporting channel grouping.",
-      "id": "ChannelGrouping",
-      "properties": {
-        "fallbackName": {
-          "description": "ChannelGrouping fallback name.",
-          "type": "string"
-        },
-        "kind": {
-          "description": "The kind of resource this is, in this case dfareporting#channelGrouping.",
-          "type": "string"
-        },
-        "name": {
-          "description": "ChannelGrouping name.",
-          "type": "string"
-        },
-        "rules": {
-          "description": "The rules contained within this channel grouping.",
-          "items": {
-            "$ref": "ChannelGroupingRule"
-          },
-          "type": "array"
-        }
-      },
-      "type": "object"
-    },
-    "ChannelGroupingRule": {
-      "description": "Represents a DfaReporting channel grouping rule.",
-      "id": "ChannelGroupingRule",
-      "properties": {
-        "disjunctiveMatchStatements": {
-          "description": "The disjunctive match statements contained within this rule.",
-          "items": {
-            "$ref": "DisjunctiveMatchStatement"
-          },
-          "type": "array"
-        },
-        "kind": {
-          "description": "The kind of resource this is, in this case dfareporting#channelGroupingRule.",
-          "type": "string"
-        },
-        "name": {
-          "description": "Rule name.",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
     "CitiesListResponse": {
       "description": "City List Response",
       "id": "CitiesListResponse",
@@ -11982,14 +11934,6 @@
         "kind": {
           "description": "The kind of resource this is, in this case dfareporting#compatibleFields.",
           "type": "string"
-        },
-        "pathAttributionReportCompatibleFields": {
-          "$ref": "PathReportCompatibleFields",
-          "description": "Contains items that are compatible to be selected for a report of type \"PATH_ATTRIBUTION\"."
-        },
-        "pathReportCompatibleFields": {
-          "$ref": "PathReportCompatibleFields",
-          "description": "Contains items that are compatible to be selected for a report of type \"PATH\"."
         },
         "pathToConversionReportCompatibleFields": {
           "$ref": "PathToConversionReportCompatibleFields",
@@ -13722,12 +13666,12 @@
               "Click tag invalid (failed url validation).",
               "Orphaned asset not referenced.",
               "Primary html file missing.",
-              "Reference to a third-party resource. Problematic because the volume of ad serving could bring down unprepared web servers due to high load. e.g. http://www.zibble.net/smiles.gif",
+              "Reference to a third-party resource.",
               "Reference to INAPP MRAID feature.",
               "Reference to INAPP ADMOB feature.",
               "Invalid file type referenced.",
-              "Invalid zip passed in (could not extract from zip",
-              "A relative file was linked to that wasn't included in zip. e.g. images/missing_file.gif",
+              "Invalid zip passed in",
+              "A relative file was linked to that wasn't included in zip.",
               "Max flash version at 11.",
               "Whether the asset uses secure urls or not.",
               "File detail empty.",
@@ -15076,24 +15020,6 @@
       },
       "type": "object"
     },
-    "DisjunctiveMatchStatement": {
-      "description": "Represents a Disjunctive Match Statement resource, which is a conjunction (and) of disjunctive (or) boolean statements.",
-      "id": "DisjunctiveMatchStatement",
-      "properties": {
-        "eventFilters": {
-          "description": "The event filters contained within this disjunctive match statement.",
-          "items": {
-            "$ref": "EventFilter"
-          },
-          "type": "array"
-        },
-        "kind": {
-          "description": "The kind of resource this is, in this case dfareporting#disjunctiveMatchStatement.",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
     "DynamicTargetingKey": {
       "description": "Contains properties of a dynamic targeting key. Dynamic targeting keys are unique, user-friendly labels, created at the advertiser level in DCM, that can be assigned to ads, creatives, and placements and used for targeting with Studio dynamic creatives. Use these labels instead of numeric Campaign Manager IDs (such as placement IDs) to save time and avoid errors in your dynamic feeds.",
       "id": "DynamicTargetingKey",
@@ -15196,25 +15122,6 @@
         "kind": {
           "description": "Identifies what kind of resource this is. Value: the fixed string \"dfareporting#encryptionInfo\".",
           "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "EventFilter": {
-      "description": "Represents a DfaReporting event filter.",
-      "id": "EventFilter",
-      "properties": {
-        "dimensionFilter": {
-          "$ref": "PathReportDimensionValue",
-          "description": "The dimension filter contained within this EventFilter."
-        },
-        "kind": {
-          "description": "The kind of resource this is, in this case dfareporting#eventFilter.",
-          "type": "string"
-        },
-        "uvarFilter": {
-          "$ref": "UvarFilter",
-          "description": "Filter on a custom variable."
         }
       },
       "type": "object"
@@ -15506,11 +15413,11 @@
       "id": "FloodlightActivitiesGenerateTagResponse",
       "properties": {
         "floodlightActivityTag": {
-          "description": "Generated tag for this Floodlight activity. For global site tags, this is the event snippet.",
+          "description": "Generated tag for this Floodlight activity. For Google tags, this is the event snippet.",
           "type": "string"
         },
         "globalSiteTagGlobalSnippet": {
-          "description": "The global snippet section of a global site tag. The global site tag sets new cookies on your domain, which will store a unique identifier for a user or the ad click that brought the user to your site. Learn more.",
+          "description": "The global snippet section of a Google tag. The Google tag sets new cookies on your domain, which will store a unique identifier for a user or the ad click that brought the user to your site. Learn more.",
           "type": "string"
         },
         "kind": {
@@ -16847,7 +16754,8 @@
             "MEASUREMENT_PARTNER_LINK_OPT_OUT",
             "MEASUREMENT_PARTNER_LINK_OPT_OUT_PENDING",
             "MEASUREMENT_PARTNER_LINK_WRAPPING_PENDING",
-            "MEASUREMENT_PARTNER_MODE_CHANGE_PENDING"
+            "MEASUREMENT_PARTNER_MODE_CHANGE_PENDING",
+            "MEASUREMENT_PARTNER_UNLINK_PENDING"
           ],
           "enumDescriptions": [
             "Unlinked.",
@@ -16857,7 +16765,8 @@
             "Link opt-out by user.",
             "Link opt-out pending sync.",
             "Link wrap answer pending.",
-            "Mode change pending."
+            "Mode change pending.",
+            "Partner unlink pending."
           ],
           "type": "string"
         },
@@ -16895,7 +16804,8 @@
             "MEASUREMENT_PARTNER_LINK_OPT_OUT",
             "MEASUREMENT_PARTNER_LINK_OPT_OUT_PENDING",
             "MEASUREMENT_PARTNER_LINK_WRAPPING_PENDING",
-            "MEASUREMENT_PARTNER_MODE_CHANGE_PENDING"
+            "MEASUREMENT_PARTNER_MODE_CHANGE_PENDING",
+            "MEASUREMENT_PARTNER_UNLINK_PENDING"
           ],
           "enumDescriptions": [
             "Unlinked.",
@@ -16905,7 +16815,8 @@
             "Link opt-out by user.",
             "Link opt-out pending sync.",
             "Link wrap answer pending.",
-            "Mode change pending."
+            "Mode change pending.",
+            "Partner unlink pending."
           ],
           "type": "string"
         },
@@ -16944,7 +16855,8 @@
             "MEASUREMENT_PARTNER_LINK_OPT_OUT",
             "MEASUREMENT_PARTNER_LINK_OPT_OUT_PENDING",
             "MEASUREMENT_PARTNER_LINK_WRAPPING_PENDING",
-            "MEASUREMENT_PARTNER_MODE_CHANGE_PENDING"
+            "MEASUREMENT_PARTNER_MODE_CHANGE_PENDING",
+            "MEASUREMENT_PARTNER_UNLINK_PENDING"
           ],
           "enumDescriptions": [
             "Unlinked.",
@@ -16954,7 +16866,8 @@
             "Link opt-out by user.",
             "Link opt-out pending sync.",
             "Link wrap answer pending.",
-            "Mode change pending."
+            "Mode change pending.",
+            "Partner unlink pending."
           ],
           "type": "string"
         },
@@ -17625,124 +17538,6 @@
           "description": "Order collection.",
           "items": {
             "$ref": "Order"
-          },
-          "type": "array"
-        }
-      },
-      "type": "object"
-    },
-    "PathFilter": {
-      "description": "Represents a DfaReporting path filter.",
-      "id": "PathFilter",
-      "properties": {
-        "eventFilters": {
-          "description": "Event filters in path report.",
-          "items": {
-            "$ref": "EventFilter"
-          },
-          "type": "array"
-        },
-        "kind": {
-          "description": "The kind of resource this is, in this case dfareporting#pathFilter.",
-          "type": "string"
-        },
-        "pathMatchPosition": {
-          "description": "Determines how the 'value' field is matched when filtering. If not specified, defaults to EXACT. If set to WILDCARD_EXPRESSION, '*' is allowed as a placeholder for variable length character sequences, and it can be escaped with a backslash. Note, only paid search dimensions ('dfa:paidSearch*') allow a matchType other than EXACT.",
-          "enum": [
-            "PATH_MATCH_POSITION_UNSPECIFIED",
-            "ANY",
-            "FIRST",
-            "LAST"
-          ],
-          "enumDescriptions": [
-            "",
-            "",
-            "",
-            ""
-          ],
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "PathReportCompatibleFields": {
-      "description": "Represents fields that are compatible to be selected for a report of type \"PATH\".",
-      "id": "PathReportCompatibleFields",
-      "properties": {
-        "channelGroupings": {
-          "description": "Dimensions which are compatible to be selected in the \"channelGroupings\" section of the report.",
-          "items": {
-            "$ref": "Dimension"
-          },
-          "type": "array"
-        },
-        "dimensions": {
-          "description": "Dimensions which are compatible to be selected in the \"dimensions\" section of the report.",
-          "items": {
-            "$ref": "Dimension"
-          },
-          "type": "array"
-        },
-        "kind": {
-          "description": "The kind of resource this is, in this case dfareporting#pathReportCompatibleFields.",
-          "type": "string"
-        },
-        "metrics": {
-          "description": "Metrics which are compatible to be selected in the \"metricNames\" section of the report.",
-          "items": {
-            "$ref": "Metric"
-          },
-          "type": "array"
-        },
-        "pathFilters": {
-          "description": "Dimensions which are compatible to be selected in the \"pathFilters\" section of the report.",
-          "items": {
-            "$ref": "Dimension"
-          },
-          "type": "array"
-        }
-      },
-      "type": "object"
-    },
-    "PathReportDimensionValue": {
-      "description": "Represents a PathReportDimensionValue resource.",
-      "id": "PathReportDimensionValue",
-      "properties": {
-        "dimensionName": {
-          "description": "The name of the dimension.",
-          "type": "string"
-        },
-        "ids": {
-          "description": "The possible ID's associated with the value if available.",
-          "items": {
-            "type": "string"
-          },
-          "type": "array"
-        },
-        "kind": {
-          "description": "The kind of resource this is, in this case dfareporting#pathReportDimensionValue.",
-          "type": "string"
-        },
-        "matchType": {
-          "description": "Determines how the 'value' field is matched when filtering. If not specified, defaults to EXACT. If set to WILDCARD_EXPRESSION, '*' is allowed as a placeholder for variable length character sequences, and it can be escaped with a backslash. Note, only paid search dimensions ('dfa:paidSearch*') allow a matchType other than EXACT.",
-          "enum": [
-            "EXACT",
-            "BEGINS_WITH",
-            "CONTAINS",
-            "WILDCARD_EXPRESSION"
-          ],
-          "enumDescriptions": [
-            "",
-            "",
-            "",
-            ""
-          ],
-          "type": "string"
-        },
-        "values": {
-          "description": "The possible values of the dimension.",
-          "items": {
-            "type": "string"
           },
           "type": "array"
         }
@@ -19391,98 +19186,6 @@
           "format": "int64",
           "type": "string"
         },
-        "pathAttributionCriteria": {
-          "description": "The report criteria for a report of type \"PATH_ATTRIBUTION\".",
-          "properties": {
-            "activityFilters": {
-              "description": "The list of 'dfa:activity' values to filter on.",
-              "items": {
-                "$ref": "DimensionValue"
-              },
-              "type": "array"
-            },
-            "customChannelGrouping": {
-              "$ref": "ChannelGrouping",
-              "description": "Channel Grouping."
-            },
-            "dateRange": {
-              "$ref": "DateRange",
-              "description": "The date range this report should be run for."
-            },
-            "dimensions": {
-              "description": "The list of dimensions the report should include.",
-              "items": {
-                "$ref": "SortedDimension"
-              },
-              "type": "array"
-            },
-            "floodlightConfigId": {
-              "$ref": "DimensionValue",
-              "description": "The floodlight ID for which to show data in this report. All advertisers associated with that ID will automatically be added. The dimension of the value needs to be 'dfa:floodlightConfigId'."
-            },
-            "metricNames": {
-              "description": "The list of names of metrics the report should include.",
-              "items": {
-                "type": "string"
-              },
-              "type": "array"
-            },
-            "pathFilters": {
-              "description": "Path Filters.",
-              "items": {
-                "$ref": "PathFilter"
-              },
-              "type": "array"
-            }
-          },
-          "type": "object"
-        },
-        "pathCriteria": {
-          "description": "The report criteria for a report of type \"PATH\".",
-          "properties": {
-            "activityFilters": {
-              "description": "The list of 'dfa:activity' values to filter on.",
-              "items": {
-                "$ref": "DimensionValue"
-              },
-              "type": "array"
-            },
-            "customChannelGrouping": {
-              "$ref": "ChannelGrouping",
-              "description": "Channel Grouping."
-            },
-            "dateRange": {
-              "$ref": "DateRange",
-              "description": "The date range this report should be run for."
-            },
-            "dimensions": {
-              "description": "The list of dimensions the report should include.",
-              "items": {
-                "$ref": "SortedDimension"
-              },
-              "type": "array"
-            },
-            "floodlightConfigId": {
-              "$ref": "DimensionValue",
-              "description": "The floodlight ID for which to show data in this report. All advertisers associated with that ID will automatically be added. The dimension of the value needs to be 'dfa:floodlightConfigId'."
-            },
-            "metricNames": {
-              "description": "The list of names of metrics the report should include.",
-              "items": {
-                "type": "string"
-              },
-              "type": "array"
-            },
-            "pathFilters": {
-              "description": "Path Filters.",
-              "items": {
-                "$ref": "PathFilter"
-              },
-              "type": "array"
-            }
-          },
-          "type": "object"
-        },
         "pathToConversionCriteria": {
           "description": "The report criteria for a report of type \"PATH_TO_CONVERSION\".",
           "properties": {
@@ -19716,13 +19419,9 @@
             "REACH",
             "PATH_TO_CONVERSION",
             "CROSS_DIMENSION_REACH",
-            "FLOODLIGHT",
-            "PATH",
-            "PATH_ATTRIBUTION"
+            "FLOODLIGHT"
           ],
           "enumDescriptions": [
-            "",
-            "",
             "",
             "",
             "",
@@ -21296,47 +20995,6 @@
           "description": "User role collection.",
           "items": {
             "$ref": "UserRole"
-          },
-          "type": "array"
-        }
-      },
-      "type": "object"
-    },
-    "UvarFilter": {
-      "description": "Defines the filtering on a single uvar.",
-      "id": "UvarFilter",
-      "properties": {
-        "complement": {
-          "description": "Return rows which don't match this filter.",
-          "type": "boolean"
-        },
-        "index": {
-          "description": "Custom variable index the filter is applied to.",
-          "format": "int64",
-          "type": "string"
-        },
-        "kind": {
-          "description": "The kind of resource this is, in this case dfareporting#uvarFilter.",
-          "type": "string"
-        },
-        "match": {
-          "description": "Indicates how the filter should be matched to the values.",
-          "enum": [
-            "UNSPECIFIED",
-            "EXACT",
-            "CONTAINS"
-          ],
-          "enumDescriptions": [
-            "",
-            "",
-            ""
-          ],
-          "type": "string"
-        },
-        "values": {
-          "description": "Values to filter on.",
-          "items": {
-            "type": "string"
           },
           "type": "array"
         }

@@ -2644,7 +2644,7 @@ export namespace walletobjects_v1 {
      */
     filename?: string | null;
     /**
-     * Deprecated, use one of explicit hash type fields instead. These two hash related fields will only be populated on Scotty based media uploads and will contain the content of the hash group in the NotificationRequest: http://cs/#google3/uploader/service/proto/upload_listener.proto&q=class:Hash Hex encoded hash value of the uploaded media.
+     * Deprecated, use one of explicit hash type fields instead. These two hash related fields will only be populated on Scotty based media uploads and will contain the content of the hash group in the NotificationRequest: http://cs/#google3/blobstore2/api/scotty/service/proto/upload_listener.proto&q=class:Hash Hex encoded hash value of the uploaded media.
      */
     hash?: string | null;
     /**
@@ -3218,17 +3218,61 @@ export namespace walletobjects_v1 {
     kind?: string | null;
   }
   export interface Schema$Resources {
+    /**
+     * A list of event ticket classes.
+     */
     eventTicketClasses?: Schema$EventTicketClass[];
+    /**
+     * A list of event ticket objects.
+     */
     eventTicketObjects?: Schema$EventTicketObject[];
+    /**
+     * A list of flight classes.
+     */
     flightClasses?: Schema$FlightClass[];
+    /**
+     * A list of flight objects.
+     */
     flightObjects?: Schema$FlightObject[];
+    /**
+     * A list of generic classes.
+     */
+    genericClasses?: Schema$GenericClass[];
+    /**
+     * A list of generic objects.
+     */
+    genericObjects?: Schema$GenericObject[];
+    /**
+     * A list of gift card classes.
+     */
     giftCardClasses?: Schema$GiftCardClass[];
+    /**
+     * A list of gift card objects.
+     */
     giftCardObjects?: Schema$GiftCardObject[];
+    /**
+     * A list of loyalty classes.
+     */
     loyaltyClasses?: Schema$LoyaltyClass[];
+    /**
+     * A list of loyalty objects.
+     */
     loyaltyObjects?: Schema$LoyaltyObject[];
+    /**
+     * A list of offer classes.
+     */
     offerClasses?: Schema$OfferClass[];
+    /**
+     * A list of offer objects.
+     */
     offerObjects?: Schema$OfferObject[];
+    /**
+     * A list of transit classes.
+     */
     transitClasses?: Schema$TransitClass[];
+    /**
+     * A list of transit objects.
+     */
     transitObjects?: Schema$TransitObject[];
   }
   export interface Schema$Review {
@@ -3378,7 +3422,7 @@ export namespace walletobjects_v1 {
      */
     header?: string | null;
     /**
-     * The ID associated with a text module. This field is here to enable ease of management of text modules.
+     * The ID associated with a text module. This field is here to enable ease of management of text modules and referencing them in template overrides. The ID should only include alphanumeric characters, '_', or '-'. It can not include dots, as dots are used to separate fields within FieldReference.fieldPaths in template overrides.
      */
     id?: string | null;
     /**

@@ -591,7 +591,7 @@
       }
     }
   },
-  "revision": "20240515",
+  "revision": "20240612",
   "rootUrl": "https://networkmanagement.googleapis.com/",
   "schemas": {
     "AbortInfo": {
@@ -893,6 +893,11 @@
           "description": "Location in which this revision is deployed.",
           "type": "string"
         },
+        "serviceName": {
+          "deprecated": true,
+          "description": "ID of Cloud Run Service this revision belongs to. Was never set, is not exported to v1 proto and public protos. Do not export to v1beta1 public proto.",
+          "type": "string"
+        },
         "serviceUri": {
           "description": "URI of Cloud Run service this revision belongs to.",
           "type": "string"
@@ -1120,6 +1125,7 @@
             "CLOUD_SQL_INSTANCE_NOT_CONFIGURED_FOR_EXTERNAL_TRAFFIC",
             "PUBLIC_CLOUD_SQL_INSTANCE_TO_PRIVATE_DESTINATION",
             "CLOUD_SQL_INSTANCE_NO_ROUTE",
+            "CLOUD_SQL_CONNECTOR_REQUIRED",
             "CLOUD_FUNCTION_NOT_ACTIVE",
             "VPC_CONNECTOR_NOT_SET",
             "VPC_CONNECTOR_NOT_RUNNING",
@@ -1132,6 +1138,7 @@
             "PSC_NEG_PRODUCER_FORWARDING_RULE_MULTIPLE_PORTS",
             "CLOUD_SQL_PSC_NEG_UNSUPPORTED",
             "NO_NAT_SUBNETS_FOR_PSC_SERVICE_ATTACHMENT",
+            "PSC_TRANSITIVITY_NOT_PROPAGATED",
             "HYBRID_NEG_NON_DYNAMIC_ROUTE_MATCHED",
             "HYBRID_NEG_NON_LOCAL_DYNAMIC_ROUTE_MATCHED",
             "CLOUD_RUN_REVISION_NOT_READY",
@@ -1185,6 +1192,7 @@
             "Packet sent from a Cloud SQL instance to an external IP address is not allowed. The Cloud SQL instance is not configured to send packets to external IP addresses.",
             "Packet sent from a Cloud SQL instance with only a public IP address to a private IP address.",
             "Packet was dropped because there is no route from a Cloud SQL instance to a destination network.",
+            "Packet was dropped because the Cloud SQL instance requires all connections to use Cloud SQL connectors and to target the Cloud SQL proxy port (3307).",
             "Packet could be dropped because the Cloud Function is not in an active status.",
             "Packet could be dropped because no VPC connector is set.",
             "Packet could be dropped because the VPC connector is not in a running state.",
@@ -1197,6 +1205,7 @@
             "The packet is sent to the Private Service Connect backend (network endpoint group), but the producer PSC forwarding rule has multiple ports specified.",
             "The packet is sent to the Private Service Connect backend (network endpoint group) targeting a Cloud SQL service attachment, but this configuration is not supported.",
             "No NAT subnets are defined for the PSC service attachment.",
+            "PSC endpoint is accessed via NCC, but PSC transitivity configuration is not yet propagated.",
             "The packet sent from the hybrid NEG proxy matches a non-dynamic route, but such a configuration is not supported.",
             "The packet sent from the hybrid NEG proxy matches a dynamic route with a next hop in a different region, but such a configuration is not supported.",
             "Packet sent from a Cloud Run revision that is not ready.",
