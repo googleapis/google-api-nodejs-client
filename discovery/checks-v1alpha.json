@@ -414,7 +414,7 @@
       }
     }
   },
-  "revision": "20240430",
+  "revision": "20240627",
   "rootUrl": "https://checks.googleapis.com/",
   "schemas": {
     "CancelOperationRequest": {
@@ -674,7 +674,8 @@
             "DATA_MONITORING_ENDPOINTS_DENYLIST_VIOLATION",
             "DATA_MONITORING_OUTDATED_SDK_VERSION",
             "DATA_MONITORING_CRITICAL_SDK_ISSUE",
-            "PRIVACY_POLICY_DATA_TYPE_SENSITIVE_INFO"
+            "PRIVACY_POLICY_DATA_TYPE_SENSITIVE_INFO",
+            "DATA_MONITORING_PII_LOGCAT_LEAK"
           ],
           "enumDescriptions": [
             "Not specified.",
@@ -764,7 +765,8 @@
             "Checks if any endpoints were detected that are specified in the denylist.",
             "Checks if there are any outdated SDKs.",
             "Checks if there are any SDKs with critical issues.",
-            "Checks if the Sensitive Information data type declaration matches usage."
+            "Checks if the Sensitive Information data type declaration matches usage.",
+            "Checks if there were any PII leaked to device logs."
           ],
           "type": "string"
         }
