@@ -134,6 +134,19 @@ export namespace pubsub_v1 {
     ackIds?: string[] | null;
   }
   /**
+   * Information about an associated Analytics Hub subscription (https://cloud.google.com/bigquery/docs/analytics-hub-manage-subscriptions).
+   */
+  export interface Schema$AnalyticsHubSubscriptionInfo {
+    /**
+     * Optional. The name of the associated Analytics Hub listing resource. Pattern: "projects/{project\}/locations/{location\}/dataExchanges/{data_exchange\}/listings/{listing\}"
+     */
+    listing?: string | null;
+    /**
+     * Optional. The name of the associated Analytics Hub subscription resource. Pattern: "projects/{project\}/locations/{location\}/subscriptions/{subscription\}"
+     */
+    subscription?: string | null;
+  }
+  /**
    * Configuration for writing message data in Avro format. Message payloads and metadata will be written to files as an Avro binary.
    */
   export interface Schema$AvroConfig {
@@ -747,6 +760,10 @@ export namespace pubsub_v1 {
      * Optional. The approximate amount of time (on a best-effort basis) Pub/Sub waits for the subscriber to acknowledge receipt before resending the message. In the interval after the message is delivered and before it is acknowledged, it is considered to be _outstanding_. During that time period, the message will not be redelivered (on a best-effort basis). For pull subscriptions, this value is used as the initial value for the ack deadline. To override this value for a given message, call `ModifyAckDeadline` with the corresponding `ack_id` if using non-streaming pull or send the `ack_id` in a `StreamingModifyAckDeadlineRequest` if using streaming pull. The minimum custom deadline you can specify is 10 seconds. The maximum custom deadline you can specify is 600 seconds (10 minutes). If this parameter is 0, a default value of 10 seconds is used. For push delivery, this value is also used to set the request timeout for the call to the push endpoint. If the subscriber never acknowledges the message, the Pub/Sub system will eventually redeliver the message.
      */
     ackDeadlineSeconds?: number | null;
+    /**
+     * Output only. Information about the associated Analytics Hub subscription. Only set if the subscritpion is created by Analytics Hub.
+     */
+    analyticsHubSubscriptionInfo?: Schema$AnalyticsHubSubscriptionInfo;
     /**
      * Optional. If delivery to BigQuery is used with this subscription, this field is used to configure it.
      */

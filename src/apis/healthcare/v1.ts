@@ -1665,7 +1665,7 @@ export namespace healthcare_v1 {
      */
     messageType?: string | null;
     /**
-     * Output only. Resource name of the Message, of the form `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/hl7V2Stores/{hl7_v2_store_id\}/messages/{message_id\}`. Assigned by the server.
+     * Output only. Resource name of the Message, of the form `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/hl7V2Stores/{hl7_v2_store_id\}/messages/{message_id\}`.
      */
     name?: string | null;
     /**
@@ -15893,7 +15893,7 @@ export namespace healthcare_v1 {
   export interface Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Messages$Patch
     extends StandardParameters {
     /**
-     * Output only. Resource name of the Message, of the form `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/hl7V2Stores/{hl7_v2_store_id\}/messages/{message_id\}`. Assigned by the server.
+     * Output only. Resource name of the Message, of the form `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/hl7V2Stores/{hl7_v2_store_id\}/messages/{message_id\}`.
      */
     name?: string;
     /**

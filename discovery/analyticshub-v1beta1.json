@@ -695,7 +695,7 @@
       }
     }
   },
-  "revision": "20240122",
+  "revision": "20240624",
   "rootUrl": "https://analyticshub.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -938,6 +938,16 @@
           "description": "Output only. Name of the linked dataset, e.g. projects/subscriberproject/datasets/linked_dataset",
           "readOnly": true,
           "type": "string"
+        },
+        "linkedPubsubSubscription": {
+          "description": "Output only. Name of the Pub/Sub subscription, e.g. projects/subscriberproject/subscriptions/subscriptions/sub_id",
+          "readOnly": true,
+          "type": "string"
+        },
+        "listing": {
+          "description": "Output only. Listing for which linked resource is created.",
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"
@@ -1095,7 +1105,7 @@
         },
         "restrictedExportConfig": {
           "$ref": "RestrictedExportConfig",
-          "description": "Optional. If set, restricted export configuration will be propagated and enforced on the linked dataset."
+          "description": "Optional. If set, restricted export configuration will be propagated and enforced on the linked dataset. This is a required field for data clean room exchanges."
         },
         "state": {
           "description": "Output only. Current state of the listing.",
@@ -1307,6 +1317,14 @@
           "readOnly": true,
           "type": "object"
         },
+        "linkedResources": {
+          "description": "Output only. Linked resources created in the subscription. Only contains values if state = STATE_ACTIVE.",
+          "items": {
+            "$ref": "LinkedResource"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
         "listing": {
           "description": "Output only. Resource name of the source Listing. e.g. projects/123/locations/US/dataExchanges/456/listings/789",
           "readOnly": true,
@@ -1324,6 +1342,21 @@
         },
         "organizationId": {
           "description": "Output only. Organization of the project this subscription belongs to.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "resourceType": {
+          "description": "Output only. Listing shared asset type.",
+          "enum": [
+            "SHARED_RESOURCE_TYPE_UNSPECIFIED",
+            "BIGQUERY_DATASET",
+            "PUBSUB_TOPIC"
+          ],
+          "enumDescriptions": [
+            "Not specified.",
+            "BigQuery Dataset Asset.",
+            "Pub/Sub Topic Asset."
+          ],
           "readOnly": true,
           "type": "string"
         },

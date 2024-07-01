@@ -291,31 +291,6 @@
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
-                "enableComplianceUpdates": {
-                  "description": "This endpoint enables Assured Workloads service to offer compliance updates for the folder based assured workload. It sets up an Assured Workloads Service Agent, having permissions to read compliance controls (for example: Org Policies) applied on the workload. The caller must have `resourcemanager.folders.getIamPolicy` and `resourcemanager.folders.setIamPolicy` permissions on the assured workload folder.",
-                  "flatPath": "v1beta1/organizations/{organizationsId}/locations/{locationsId}/workloads/{workloadsId}:enableComplianceUpdates",
-                  "httpMethod": "PUT",
-                  "id": "assuredworkloads.organizations.locations.workloads.enableComplianceUpdates",
-                  "parameterOrder": [
-                    "name"
-                  ],
-                  "parameters": {
-                    "name": {
-                      "description": "Required. The `name` field is used to identify the workload. Format: organizations/{org_id}/locations/{location_id}/workloads/{workload_id}",
-                      "location": "path",
-                      "pattern": "^organizations/[^/]+/locations/[^/]+/workloads/[^/]+$",
-                      "required": true,
-                      "type": "string"
-                    }
-                  },
-                  "path": "v1beta1/{+name}:enableComplianceUpdates",
-                  "response": {
-                    "$ref": "GoogleCloudAssuredworkloadsV1beta1EnableComplianceUpdatesResponse"
-                  },
-                  "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
-                  ]
-                },
                 "enableResourceMonitoring": {
                   "description": "Enable resource violation monitoring for a workload.",
                   "flatPath": "v1beta1/organizations/{organizationsId}/locations/{locationsId}/workloads/{workloadsId}:enableResourceMonitoring",
@@ -588,7 +563,7 @@
       }
     }
   },
-  "revision": "20240621",
+  "revision": "20240617",
   "rootUrl": "https://assuredworkloads.googleapis.com/",
   "schemas": {
     "GoogleCloudAssuredworkloadsV1beta1AcknowledgeViolationRequest": {
@@ -754,12 +729,6 @@
           "type": "array"
         }
       },
-      "type": "object"
-    },
-    "GoogleCloudAssuredworkloadsV1beta1EnableComplianceUpdatesResponse": {
-      "description": "Response for EnableComplianceUpdates endpoint.",
-      "id": "GoogleCloudAssuredworkloadsV1beta1EnableComplianceUpdatesResponse",
-      "properties": {},
       "type": "object"
     },
     "GoogleCloudAssuredworkloadsV1beta1EnableResourceMonitoringResponse": {
@@ -1230,11 +1199,6 @@
           "$ref": "GoogleCloudAssuredworkloadsV1beta1WorkloadComplianceStatus",
           "description": "Output only. Count of active Violations in the Workload.",
           "readOnly": true
-        },
-        "complianceUpdatesEnabled": {
-          "description": "Output only. Indicates whether the compliance updates feature is enabled for a workload. The compliance updates feature can be enabled via the EnableComplianceUpdates endpoint.",
-          "readOnly": true,
-          "type": "boolean"
         },
         "compliantButDisallowedServices": {
           "description": "Output only. Urls for services which are compliant for this Assured Workload, but which are currently disallowed by the ResourceUsageRestriction org policy. Invoke RestrictAllowedResources endpoint to allow your project developers to use these services in their environment.",

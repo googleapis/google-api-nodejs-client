@@ -1172,7 +1172,7 @@
       }
     }
   },
-  "revision": "20240604",
+  "revision": "20240627",
   "rootUrl": "https://chromemanagement.googleapis.com/",
   "schemas": {
     "GoogleChromeManagementV1AndroidAppInfo": {
@@ -3681,7 +3681,8 @@
             "APPLICATION_LAUNCH_SOURCE_INSTALLER",
             "APPLICATION_LAUNCH_SOURCE_FIRST_RUN",
             "APPLICATION_LAUNCH_SOURCE_WELCOME_TOUR",
-            "APPLICATION_LAUNCH_SOURCE_FOCUS_MODE"
+            "APPLICATION_LAUNCH_SOURCE_FOCUS_MODE",
+            "APPLICATION_LAUNCH_SOURCE_SPARKY"
           ],
           "enumDescriptions": [
             "Application launch source unknown.",
@@ -3724,7 +3725,8 @@
             "Application launched from source installer.",
             "Count first-run Help app launches separately so that we can understand the number of user-triggered launches.",
             "Application launched from welcome tour.",
-            "Applicationed launched from focus panel."
+            "Applicationed launched from focus panel.",
+            "Application launched from experimental feature Sparky."
           ],
           "type": "string"
         },

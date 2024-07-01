@@ -1226,6 +1226,11 @@
                     "parent"
                   ],
                   "parameters": {
+                    "filter": {
+                      "description": "Optional. Specifies the type (\"Logging\" or \"OpsAnalytics\") of the recent queries to list. The only valid value for this field is one of the two allowable type function calls, which are the following: type(\"Logging\") type(\"OpsAnalytics\")",
+                      "location": "query",
+                      "type": "string"
+                    },
                     "pageSize": {
                       "description": "Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.",
                       "format": "int32",
@@ -1320,6 +1325,34 @@
                     "https://www.googleapis.com/auth/logging.admin"
                   ]
                 },
+                "get": {
+                  "description": "Returns all data associated with the requested query.",
+                  "flatPath": "v2/billingAccounts/{billingAccountsId}/locations/{locationsId}/savedQueries/{savedQueriesId}",
+                  "httpMethod": "GET",
+                  "id": "logging.billingAccounts.locations.savedQueries.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The resource name of the saved query. \"projects/[PROJECT_ID]/locations/[LOCATION_ID]/savedQueries/[QUERY_ID]\" \"organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/savedQueries/[QUERY_ID]\" \"billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/savedQueries/[QUERY_ID]\" \"folders/[FOLDER_ID]/locations/[LOCATION_ID]/savedQueries/[QUERY_ID]\" For example: \"projects/my-project/locations/global/savedQueries/my-saved-query\" ",
+                      "location": "path",
+                      "pattern": "^billingAccounts/[^/]+/locations/[^/]+/savedQueries/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2/{+name}",
+                  "response": {
+                    "$ref": "SavedQuery"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/cloud-platform.read-only",
+                    "https://www.googleapis.com/auth/logging.admin",
+                    "https://www.googleapis.com/auth/logging.read"
+                  ]
+                },
                 "list": {
                   "description": "Lists the SavedQueries that were created by the user making the request.",
                   "flatPath": "v2/billingAccounts/{billingAccountsId}/locations/{locationsId}/savedQueries",
@@ -1357,6 +1390,41 @@
                     "https://www.googleapis.com/auth/cloud-platform.read-only",
                     "https://www.googleapis.com/auth/logging.admin",
                     "https://www.googleapis.com/auth/logging.read"
+                  ]
+                },
+                "patch": {
+                  "description": "Updates an existing SavedQuery.",
+                  "flatPath": "v2/billingAccounts/{billingAccountsId}/locations/{locationsId}/savedQueries/{savedQueriesId}",
+                  "httpMethod": "PATCH",
+                  "id": "logging.billingAccounts.locations.savedQueries.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Output only. Resource name of the saved query.In the format: \"projects/[PROJECT_ID]/locations/[LOCATION_ID]/savedQueries/[QUERY_ID]\" For a list of supported locations, see Supported Regions (https://cloud.google.com/logging/docs/region-support#bucket-regions)After the saved query is created, the location cannot be changed.If the user doesn't provide a QUERY_ID, the system will generate an alphanumeric ID.",
+                      "location": "path",
+                      "pattern": "^billingAccounts/[^/]+/locations/[^/]+/savedQueries/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "Required. A non-empty list of fields to change in the existing saved query. Fields are relative to the saved_query and new values for the fields are taken from the corresponding fields in the SavedQuery included in this request. Fields not mentioned in update_mask are not changed and are ignored in the request.To update all mutable fields, specify an update_mask of *.For example, to change the description and query filter text of a saved query, specify an update_mask of \"description, query.filter\".",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2/{+name}",
+                  "request": {
+                    "$ref": "SavedQuery"
+                  },
+                  "response": {
+                    "$ref": "SavedQuery"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/logging.admin"
                   ]
                 }
               }
@@ -1450,7 +1518,7 @@
               ],
               "parameters": {
                 "customWriterIdentity": {
-                  "description": "Optional. A service account provided by the caller that will be used to write the log entries. The format must be serviceAccount:some@email. This field can only be specified if you are routing logs to a destination outside this sink's project. If not specified, a Logging service account will automatically be generated.",
+                  "description": "Optional. The service account provided by the caller that will be used to write the log entries. The format must be serviceAccount:some@email. This field can only be specified when you are routing logs to a log bucket that is in a different project than the sink. When not specified, a Logging service account will automatically be generated.",
                   "location": "query",
                   "type": "string"
                 },
@@ -1587,7 +1655,7 @@
               ],
               "parameters": {
                 "customWriterIdentity": {
-                  "description": "Optional. A service account provided by the caller that will be used to write the log entries. The format must be serviceAccount:some@email. This field can only be specified if you are routing logs to a destination outside this sink's project. If not specified, a Logging service account will automatically be generated.",
+                  "description": "Optional. The service account provided by the caller that will be used to write the log entries. The format must be serviceAccount:some@email. This field can only be specified when you are routing logs to a log bucket that is in a different project than the sink. When not specified, a Logging service account will automatically be generated.",
                   "location": "query",
                   "type": "string"
                 },
@@ -1632,7 +1700,7 @@
               ],
               "parameters": {
                 "customWriterIdentity": {
-                  "description": "Optional. A service account provided by the caller that will be used to write the log entries. The format must be serviceAccount:some@email. This field can only be specified if you are routing logs to a destination outside this sink's project. If not specified, a Logging service account will automatically be generated.",
+                  "description": "Optional. The service account provided by the caller that will be used to write the log entries. The format must be serviceAccount:some@email. This field can only be specified when you are routing logs to a log bucket that is in a different project than the sink. When not specified, a Logging service account will automatically be generated.",
                   "location": "query",
                   "type": "string"
                 },
@@ -3070,6 +3138,11 @@
                     "parent"
                   ],
                   "parameters": {
+                    "filter": {
+                      "description": "Optional. Specifies the type (\"Logging\" or \"OpsAnalytics\") of the recent queries to list. The only valid value for this field is one of the two allowable type function calls, which are the following: type(\"Logging\") type(\"OpsAnalytics\")",
+                      "location": "query",
+                      "type": "string"
+                    },
                     "pageSize": {
                       "description": "Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.",
                       "format": "int32",
@@ -3164,6 +3237,34 @@
                     "https://www.googleapis.com/auth/logging.admin"
                   ]
                 },
+                "get": {
+                  "description": "Returns all data associated with the requested query.",
+                  "flatPath": "v2/folders/{foldersId}/locations/{locationsId}/savedQueries/{savedQueriesId}",
+                  "httpMethod": "GET",
+                  "id": "logging.folders.locations.savedQueries.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The resource name of the saved query. \"projects/[PROJECT_ID]/locations/[LOCATION_ID]/savedQueries/[QUERY_ID]\" \"organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/savedQueries/[QUERY_ID]\" \"billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/savedQueries/[QUERY_ID]\" \"folders/[FOLDER_ID]/locations/[LOCATION_ID]/savedQueries/[QUERY_ID]\" For example: \"projects/my-project/locations/global/savedQueries/my-saved-query\" ",
+                      "location": "path",
+                      "pattern": "^folders/[^/]+/locations/[^/]+/savedQueries/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2/{+name}",
+                  "response": {
+                    "$ref": "SavedQuery"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/cloud-platform.read-only",
+                    "https://www.googleapis.com/auth/logging.admin",
+                    "https://www.googleapis.com/auth/logging.read"
+                  ]
+                },
                 "list": {
                   "description": "Lists the SavedQueries that were created by the user making the request.",
                   "flatPath": "v2/folders/{foldersId}/locations/{locationsId}/savedQueries",
@@ -3201,6 +3302,41 @@
                     "https://www.googleapis.com/auth/cloud-platform.read-only",
                     "https://www.googleapis.com/auth/logging.admin",
                     "https://www.googleapis.com/auth/logging.read"
+                  ]
+                },
+                "patch": {
+                  "description": "Updates an existing SavedQuery.",
+                  "flatPath": "v2/folders/{foldersId}/locations/{locationsId}/savedQueries/{savedQueriesId}",
+                  "httpMethod": "PATCH",
+                  "id": "logging.folders.locations.savedQueries.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Output only. Resource name of the saved query.In the format: \"projects/[PROJECT_ID]/locations/[LOCATION_ID]/savedQueries/[QUERY_ID]\" For a list of supported locations, see Supported Regions (https://cloud.google.com/logging/docs/region-support#bucket-regions)After the saved query is created, the location cannot be changed.If the user doesn't provide a QUERY_ID, the system will generate an alphanumeric ID.",
+                      "location": "path",
+                      "pattern": "^folders/[^/]+/locations/[^/]+/savedQueries/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "Required. A non-empty list of fields to change in the existing saved query. Fields are relative to the saved_query and new values for the fields are taken from the corresponding fields in the SavedQuery included in this request. Fields not mentioned in update_mask are not changed and are ignored in the request.To update all mutable fields, specify an update_mask of *.For example, to change the description and query filter text of a saved query, specify an update_mask of \"description, query.filter\".",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2/{+name}",
+                  "request": {
+                    "$ref": "SavedQuery"
+                  },
+                  "response": {
+                    "$ref": "SavedQuery"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/logging.admin"
                   ]
                 }
               }
@@ -3294,7 +3430,7 @@
               ],
               "parameters": {
                 "customWriterIdentity": {
-                  "description": "Optional. A service account provided by the caller that will be used to write the log entries. The format must be serviceAccount:some@email. This field can only be specified if you are routing logs to a destination outside this sink's project. If not specified, a Logging service account will automatically be generated.",
+                  "description": "Optional. The service account provided by the caller that will be used to write the log entries. The format must be serviceAccount:some@email. This field can only be specified when you are routing logs to a log bucket that is in a different project than the sink. When not specified, a Logging service account will automatically be generated.",
                   "location": "query",
                   "type": "string"
                 },
@@ -3431,7 +3567,7 @@
               ],
               "parameters": {
                 "customWriterIdentity": {
-                  "description": "Optional. A service account provided by the caller that will be used to write the log entries. The format must be serviceAccount:some@email. This field can only be specified if you are routing logs to a destination outside this sink's project. If not specified, a Logging service account will automatically be generated.",
+                  "description": "Optional. The service account provided by the caller that will be used to write the log entries. The format must be serviceAccount:some@email. This field can only be specified when you are routing logs to a log bucket that is in a different project than the sink. When not specified, a Logging service account will automatically be generated.",
                   "location": "query",
                   "type": "string"
                 },
@@ -3476,7 +3612,7 @@
               ],
               "parameters": {
                 "customWriterIdentity": {
-                  "description": "Optional. A service account provided by the caller that will be used to write the log entries. The format must be serviceAccount:some@email. This field can only be specified if you are routing logs to a destination outside this sink's project. If not specified, a Logging service account will automatically be generated.",
+                  "description": "Optional. The service account provided by the caller that will be used to write the log entries. The format must be serviceAccount:some@email. This field can only be specified when you are routing logs to a log bucket that is in a different project than the sink. When not specified, a Logging service account will automatically be generated.",
                   "location": "query",
                   "type": "string"
                 },
@@ -5649,6 +5785,11 @@
                     "parent"
                   ],
                   "parameters": {
+                    "filter": {
+                      "description": "Optional. Specifies the type (\"Logging\" or \"OpsAnalytics\") of the recent queries to list. The only valid value for this field is one of the two allowable type function calls, which are the following: type(\"Logging\") type(\"OpsAnalytics\")",
+                      "location": "query",
+                      "type": "string"
+                    },
                     "pageSize": {
                       "description": "Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.",
                       "format": "int32",
@@ -5743,6 +5884,34 @@
                     "https://www.googleapis.com/auth/logging.admin"
                   ]
                 },
+                "get": {
+                  "description": "Returns all data associated with the requested query.",
+                  "flatPath": "v2/organizations/{organizationsId}/locations/{locationsId}/savedQueries/{savedQueriesId}",
+                  "httpMethod": "GET",
+                  "id": "logging.organizations.locations.savedQueries.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The resource name of the saved query. \"projects/[PROJECT_ID]/locations/[LOCATION_ID]/savedQueries/[QUERY_ID]\" \"organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/savedQueries/[QUERY_ID]\" \"billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/savedQueries/[QUERY_ID]\" \"folders/[FOLDER_ID]/locations/[LOCATION_ID]/savedQueries/[QUERY_ID]\" For example: \"projects/my-project/locations/global/savedQueries/my-saved-query\" ",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/locations/[^/]+/savedQueries/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2/{+name}",
+                  "response": {
+                    "$ref": "SavedQuery"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/cloud-platform.read-only",
+                    "https://www.googleapis.com/auth/logging.admin",
+                    "https://www.googleapis.com/auth/logging.read"
+                  ]
+                },
                 "list": {
                   "description": "Lists the SavedQueries that were created by the user making the request.",
                   "flatPath": "v2/organizations/{organizationsId}/locations/{locationsId}/savedQueries",
@@ -5780,6 +5949,41 @@
                     "https://www.googleapis.com/auth/cloud-platform.read-only",
                     "https://www.googleapis.com/auth/logging.admin",
                     "https://www.googleapis.com/auth/logging.read"
+                  ]
+                },
+                "patch": {
+                  "description": "Updates an existing SavedQuery.",
+                  "flatPath": "v2/organizations/{organizationsId}/locations/{locationsId}/savedQueries/{savedQueriesId}",
+                  "httpMethod": "PATCH",
+                  "id": "logging.organizations.locations.savedQueries.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Output only. Resource name of the saved query.In the format: \"projects/[PROJECT_ID]/locations/[LOCATION_ID]/savedQueries/[QUERY_ID]\" For a list of supported locations, see Supported Regions (https://cloud.google.com/logging/docs/region-support#bucket-regions)After the saved query is created, the location cannot be changed.If the user doesn't provide a QUERY_ID, the system will generate an alphanumeric ID.",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/locations/[^/]+/savedQueries/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "Required. A non-empty list of fields to change in the existing saved query. Fields are relative to the saved_query and new values for the fields are taken from the corresponding fields in the SavedQuery included in this request. Fields not mentioned in update_mask are not changed and are ignored in the request.To update all mutable fields, specify an update_mask of *.For example, to change the description and query filter text of a saved query, specify an update_mask of \"description, query.filter\".",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2/{+name}",
+                  "request": {
+                    "$ref": "SavedQuery"
+                  },
+                  "response": {
+                    "$ref": "SavedQuery"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/logging.admin"
                   ]
                 }
               }
@@ -5873,7 +6077,7 @@
               ],
               "parameters": {
                 "customWriterIdentity": {
-                  "description": "Optional. A service account provided by the caller that will be used to write the log entries. The format must be serviceAccount:some@email. This field can only be specified if you are routing logs to a destination outside this sink's project. If not specified, a Logging service account will automatically be generated.",
+                  "description": "Optional. The service account provided by the caller that will be used to write the log entries. The format must be serviceAccount:some@email. This field can only be specified when you are routing logs to a log bucket that is in a different project than the sink. When not specified, a Logging service account will automatically be generated.",
                   "location": "query",
                   "type": "string"
                 },
@@ -6010,7 +6214,7 @@
               ],
               "parameters": {
                 "customWriterIdentity": {
-                  "description": "Optional. A service account provided by the caller that will be used to write the log entries. The format must be serviceAccount:some@email. This field can only be specified if you are routing logs to a destination outside this sink's project. If not specified, a Logging service account will automatically be generated.",
+                  "description": "Optional. The service account provided by the caller that will be used to write the log entries. The format must be serviceAccount:some@email. This field can only be specified when you are routing logs to a log bucket that is in a different project than the sink. When not specified, a Logging service account will automatically be generated.",
                   "location": "query",
                   "type": "string"
                 },
@@ -6055,7 +6259,7 @@
               ],
               "parameters": {
                 "customWriterIdentity": {
-                  "description": "Optional. A service account provided by the caller that will be used to write the log entries. The format must be serviceAccount:some@email. This field can only be specified if you are routing logs to a destination outside this sink's project. If not specified, a Logging service account will automatically be generated.",
+                  "description": "Optional. The service account provided by the caller that will be used to write the log entries. The format must be serviceAccount:some@email. This field can only be specified when you are routing logs to a log bucket that is in a different project than the sink. When not specified, a Logging service account will automatically be generated.",
                   "location": "query",
                   "type": "string"
                 },
@@ -7212,6 +7416,11 @@
                     "parent"
                   ],
                   "parameters": {
+                    "filter": {
+                      "description": "Optional. Specifies the type (\"Logging\" or \"OpsAnalytics\") of the recent queries to list. The only valid value for this field is one of the two allowable type function calls, which are the following: type(\"Logging\") type(\"OpsAnalytics\")",
+                      "location": "query",
+                      "type": "string"
+                    },
                     "pageSize": {
                       "description": "Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.",
                       "format": "int32",
@@ -7306,6 +7515,34 @@
                     "https://www.googleapis.com/auth/logging.admin"
                   ]
                 },
+                "get": {
+                  "description": "Returns all data associated with the requested query.",
+                  "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/savedQueries/{savedQueriesId}",
+                  "httpMethod": "GET",
+                  "id": "logging.projects.locations.savedQueries.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The resource name of the saved query. \"projects/[PROJECT_ID]/locations/[LOCATION_ID]/savedQueries/[QUERY_ID]\" \"organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/savedQueries/[QUERY_ID]\" \"billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/savedQueries/[QUERY_ID]\" \"folders/[FOLDER_ID]/locations/[LOCATION_ID]/savedQueries/[QUERY_ID]\" For example: \"projects/my-project/locations/global/savedQueries/my-saved-query\" ",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/savedQueries/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2/{+name}",
+                  "response": {
+                    "$ref": "SavedQuery"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/cloud-platform.read-only",
+                    "https://www.googleapis.com/auth/logging.admin",
+                    "https://www.googleapis.com/auth/logging.read"
+                  ]
+                },
                 "list": {
                   "description": "Lists the SavedQueries that were created by the user making the request.",
                   "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/savedQueries",
@@ -7343,6 +7580,41 @@
                     "https://www.googleapis.com/auth/cloud-platform.read-only",
                     "https://www.googleapis.com/auth/logging.admin",
                     "https://www.googleapis.com/auth/logging.read"
+                  ]
+                },
+                "patch": {
+                  "description": "Updates an existing SavedQuery.",
+                  "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/savedQueries/{savedQueriesId}",
+                  "httpMethod": "PATCH",
+                  "id": "logging.projects.locations.savedQueries.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Output only. Resource name of the saved query.In the format: \"projects/[PROJECT_ID]/locations/[LOCATION_ID]/savedQueries/[QUERY_ID]\" For a list of supported locations, see Supported Regions (https://cloud.google.com/logging/docs/region-support#bucket-regions)After the saved query is created, the location cannot be changed.If the user doesn't provide a QUERY_ID, the system will generate an alphanumeric ID.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/savedQueries/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "Required. A non-empty list of fields to change in the existing saved query. Fields are relative to the saved_query and new values for the fields are taken from the corresponding fields in the SavedQuery included in this request. Fields not mentioned in update_mask are not changed and are ignored in the request.To update all mutable fields, specify an update_mask of *.For example, to change the description and query filter text of a saved query, specify an update_mask of \"description, query.filter\".",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2/{+name}",
+                  "request": {
+                    "$ref": "SavedQuery"
+                  },
+                  "response": {
+                    "$ref": "SavedQuery"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/logging.admin"
                   ]
                 }
               }
@@ -7594,7 +7866,7 @@
               ],
               "parameters": {
                 "customWriterIdentity": {
-                  "description": "Optional. A service account provided by the caller that will be used to write the log entries. The format must be serviceAccount:some@email. This field can only be specified if you are routing logs to a destination outside this sink's project. If not specified, a Logging service account will automatically be generated.",
+                  "description": "Optional. The service account provided by the caller that will be used to write the log entries. The format must be serviceAccount:some@email. This field can only be specified when you are routing logs to a log bucket that is in a different project than the sink. When not specified, a Logging service account will automatically be generated.",
                   "location": "query",
                   "type": "string"
                 },
@@ -7731,7 +8003,7 @@
               ],
               "parameters": {
                 "customWriterIdentity": {
-                  "description": "Optional. A service account provided by the caller that will be used to write the log entries. The format must be serviceAccount:some@email. This field can only be specified if you are routing logs to a destination outside this sink's project. If not specified, a Logging service account will automatically be generated.",
+                  "description": "Optional. The service account provided by the caller that will be used to write the log entries. The format must be serviceAccount:some@email. This field can only be specified when you are routing logs to a log bucket that is in a different project than the sink. When not specified, a Logging service account will automatically be generated.",
                   "location": "query",
                   "type": "string"
                 },
@@ -7776,7 +8048,7 @@
               ],
               "parameters": {
                 "customWriterIdentity": {
-                  "description": "Optional. A service account provided by the caller that will be used to write the log entries. The format must be serviceAccount:some@email. This field can only be specified if you are routing logs to a destination outside this sink's project. If not specified, a Logging service account will automatically be generated.",
+                  "description": "Optional. The service account provided by the caller that will be used to write the log entries. The format must be serviceAccount:some@email. This field can only be specified when you are routing logs to a log bucket that is in a different project than the sink. When not specified, a Logging service account will automatically be generated.",
                   "location": "query",
                   "type": "string"
                 },
@@ -7827,7 +8099,7 @@
           ],
           "parameters": {
             "customWriterIdentity": {
-              "description": "Optional. A service account provided by the caller that will be used to write the log entries. The format must be serviceAccount:some@email. This field can only be specified if you are routing logs to a destination outside this sink's project. If not specified, a Logging service account will automatically be generated.",
+              "description": "Optional. The service account provided by the caller that will be used to write the log entries. The format must be serviceAccount:some@email. This field can only be specified when you are routing logs to a log bucket that is in a different project than the sink. When not specified, a Logging service account will automatically be generated.",
               "location": "query",
               "type": "string"
             },
@@ -7964,7 +8236,7 @@
           ],
           "parameters": {
             "customWriterIdentity": {
-              "description": "Optional. A service account provided by the caller that will be used to write the log entries. The format must be serviceAccount:some@email. This field can only be specified if you are routing logs to a destination outside this sink's project. If not specified, a Logging service account will automatically be generated.",
+              "description": "Optional. The service account provided by the caller that will be used to write the log entries. The format must be serviceAccount:some@email. This field can only be specified when you are routing logs to a log bucket that is in a different project than the sink. When not specified, a Logging service account will automatically be generated.",
               "location": "query",
               "type": "string"
             },
@@ -8132,7 +8404,7 @@
       }
     }
   },
-  "revision": "20240503",
+  "revision": "20240620",
   "rootUrl": "https://logging.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -8629,12 +8901,12 @@
           "type": "boolean"
         },
         "latency": {
-          "description": "The request processing latency on the server, from the time the request was received until the response was sent.",
+          "description": "The request processing latency on the server, from the time the request was received until the response was sent. For WebSocket connections, this field refers to the entire time duration of the connection.",
           "format": "google-duration",
           "type": "string"
         },
         "protocol": {
-          "description": "Protocol used for the request. Examples: \"HTTP/1.1\", \"HTTP/2\", \"websocket\"",
+          "description": "Protocol used for the request. Examples: \"HTTP/1.1\", \"HTTP/2\"",
           "type": "string"
         },
         "referer": {

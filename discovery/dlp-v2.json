@@ -17,14 +17,14 @@
   "documentationLink": "https://cloud.google.com/sensitive-data-protection/docs/",
   "endpoints": [
     {
-      "description": "Regional Endpoint",
+      "endpointUrl": "https://dlp.africa-south1.rep.googleapis.com/",
       "location": "africa-south1",
-      "endpointUrl": "https://dlp.africa-south1.rep.googleapis.com/"
+      "description": "Regional Endpoint"
     },
     {
+      "description": "Regional Endpoint",
       "endpointUrl": "https://dlp.australia-southeast1.rep.googleapis.com/",
-      "location": "australia-southeast1",
-      "description": "Regional Endpoint"
+      "location": "australia-southeast1"
     },
     {
       "location": "europe-west9",
@@ -1122,6 +1122,106 @@
                   "path": "v2/{+parent}/dlpJobs",
                   "response": {
                     "$ref": "GooglePrivacyDlpV2ListDlpJobsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            },
+            "fileStoreDataProfiles": {
+              "methods": {
+                "delete": {
+                  "description": "Delete a FileStoreDataProfile. Will not prevent the profile from being regenerated if the resource is still included in a discovery configuration.",
+                  "flatPath": "v2/organizations/{organizationsId}/locations/{locationsId}/fileStoreDataProfiles/{fileStoreDataProfilesId}",
+                  "httpMethod": "DELETE",
+                  "id": "dlp.organizations.locations.fileStoreDataProfiles.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Resource name of the file store data profile.",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/locations/[^/]+/fileStoreDataProfiles/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2/{+name}",
+                  "response": {
+                    "$ref": "GoogleProtobufEmpty"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "get": {
+                  "description": "Gets a file store data profile.",
+                  "flatPath": "v2/organizations/{organizationsId}/locations/{locationsId}/fileStoreDataProfiles/{fileStoreDataProfilesId}",
+                  "httpMethod": "GET",
+                  "id": "dlp.organizations.locations.fileStoreDataProfiles.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Resource name, for example `organizations/12345/locations/us/fileStoreDataProfiles/53234423`.",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/locations/[^/]+/fileStoreDataProfiles/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2/{+name}",
+                  "response": {
+                    "$ref": "GooglePrivacyDlpV2FileStoreDataProfile"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "Lists file store data profiles for an organization.",
+                  "flatPath": "v2/organizations/{organizationsId}/locations/{locationsId}/fileStoreDataProfiles",
+                  "httpMethod": "GET",
+                  "id": "dlp.organizations.locations.fileStoreDataProfiles.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "Optional. Allows filtering. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field} {operator} {value}`. * Supported fields/values: - `project_id` - The Google Cloud project ID. - `file_store_path` - The path like \"gs://bucket\". - `sensitivity_level` - HIGH|MODERATE|LOW - `data_risk_level` - HIGH|MODERATE|LOW - `resource_visibility`: PUBLIC|RESTRICTED - `status_code` - an RPC status code as defined in https://github.com/googleapis/googleapis/blob/master/google/rpc/code.proto * The operator must be `=` or `!=`. Examples: * `project_id = 12345 AND status_code = 1` * `project_id = 12345 AND sensitivity_level = HIGH` * `project_id = 12345 AND resource_visibility = PUBLIC` . * 'file_store_path = \"gs://mybucket\"` The length of this field should be no more than 500 characters.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "orderBy": {
+                      "description": "Optional. Comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case insensitive. The default sorting order is ascending. Redundant space characters are insignificant. Only one order field at a time is allowed. Examples: * `project_id asc` * `name` * `sensitivity_level desc` Supported fields are: - `project_id`: The Google Cloud project ID. - `sensitivity_level`: How sensitive the data in a table is, at most. - `data_risk_level`: How much risk is associated with this data. - `profile_last_generated`: When the profile was last updated in epoch seconds. - `last_modified`: The last time the resource was modified. - `resource_visibility`: Visibility restriction for this resource. - `name`: The name of the profile. - `create_time`: The time the file store was first created.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "Optional. Size of the page. This value can be limited by the server. If zero, server returns a page of max size 100.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. Page token to continue retrieval.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. Resource name of the organization or project, for example `organizations/433245324/locations/europe` or `projects/project-id/locations/asia`.",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2/{+parent}/fileStoreDataProfiles",
+                  "response": {
+                    "$ref": "GooglePrivacyDlpV2ListFileStoreDataProfilesResponse"
                   },
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform"
@@ -3662,6 +3762,106 @@
                 }
               }
             },
+            "fileStoreDataProfiles": {
+              "methods": {
+                "delete": {
+                  "description": "Delete a FileStoreDataProfile. Will not prevent the profile from being regenerated if the resource is still included in a discovery configuration.",
+                  "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/fileStoreDataProfiles/{fileStoreDataProfilesId}",
+                  "httpMethod": "DELETE",
+                  "id": "dlp.projects.locations.fileStoreDataProfiles.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Resource name of the file store data profile.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/fileStoreDataProfiles/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2/{+name}",
+                  "response": {
+                    "$ref": "GoogleProtobufEmpty"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "get": {
+                  "description": "Gets a file store data profile.",
+                  "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/fileStoreDataProfiles/{fileStoreDataProfilesId}",
+                  "httpMethod": "GET",
+                  "id": "dlp.projects.locations.fileStoreDataProfiles.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Resource name, for example `organizations/12345/locations/us/fileStoreDataProfiles/53234423`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/fileStoreDataProfiles/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2/{+name}",
+                  "response": {
+                    "$ref": "GooglePrivacyDlpV2FileStoreDataProfile"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "Lists file store data profiles for an organization.",
+                  "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/fileStoreDataProfiles",
+                  "httpMethod": "GET",
+                  "id": "dlp.projects.locations.fileStoreDataProfiles.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "Optional. Allows filtering. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field} {operator} {value}`. * Supported fields/values: - `project_id` - The Google Cloud project ID. - `file_store_path` - The path like \"gs://bucket\". - `sensitivity_level` - HIGH|MODERATE|LOW - `data_risk_level` - HIGH|MODERATE|LOW - `resource_visibility`: PUBLIC|RESTRICTED - `status_code` - an RPC status code as defined in https://github.com/googleapis/googleapis/blob/master/google/rpc/code.proto * The operator must be `=` or `!=`. Examples: * `project_id = 12345 AND status_code = 1` * `project_id = 12345 AND sensitivity_level = HIGH` * `project_id = 12345 AND resource_visibility = PUBLIC` . * 'file_store_path = \"gs://mybucket\"` The length of this field should be no more than 500 characters.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "orderBy": {
+                      "description": "Optional. Comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case insensitive. The default sorting order is ascending. Redundant space characters are insignificant. Only one order field at a time is allowed. Examples: * `project_id asc` * `name` * `sensitivity_level desc` Supported fields are: - `project_id`: The Google Cloud project ID. - `sensitivity_level`: How sensitive the data in a table is, at most. - `data_risk_level`: How much risk is associated with this data. - `profile_last_generated`: When the profile was last updated in epoch seconds. - `last_modified`: The last time the resource was modified. - `resource_visibility`: Visibility restriction for this resource. - `name`: The name of the profile. - `create_time`: The time the file store was first created.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "Optional. Size of the page. This value can be limited by the server. If zero, server returns a page of max size 100.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. Page token to continue retrieval.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. Resource name of the organization or project, for example `organizations/433245324/locations/europe` or `projects/project-id/locations/asia`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2/{+parent}/fileStoreDataProfiles",
+                  "response": {
+                    "$ref": "GooglePrivacyDlpV2ListFileStoreDataProfilesResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            },
             "image": {
               "methods": {
                 "redact": {
@@ -4574,7 +4774,7 @@
       }
     }
   },
-  "revision": "20240616",
+  "revision": "20240624",
   "rootUrl": "https://dlp.googleapis.com/",
   "schemas": {
     "GooglePrivacyDlpV2Action": {
@@ -5000,7 +5200,10 @@
             "EXCEL_DOCUMENT",
             "AVRO",
             "CSV",
-            "TSV"
+            "TSV",
+            "AUDIO",
+            "VIDEO",
+            "EXECUTABLE"
           ],
           "enumDescriptions": [
             "Unused",
@@ -5016,7 +5219,10 @@
             "xlsx, xlsm, xltx, xltm",
             "avro",
             "csv",
-            "tsv"
+            "tsv",
+            "Audio file types. Only used for profiling.",
+            "Video file types. Only used for profiling.",
+            "Executable file types. Only used for profiling."
           ],
           "type": "string"
         }
@@ -6030,6 +6236,10 @@
           "$ref": "GooglePrivacyDlpV2ColumnDataProfile",
           "description": "Column data profile column"
         },
+        "fileStoreProfile": {
+          "$ref": "GooglePrivacyDlpV2FileStoreDataProfile",
+          "description": "File store data profile column."
+        },
         "tableProfile": {
           "$ref": "GooglePrivacyDlpV2TableDataProfile",
           "description": "Table data profile column"
@@ -6145,6 +6355,10 @@
           ],
           "type": "string"
         },
+        "fileStoreProfile": {
+          "$ref": "GooglePrivacyDlpV2FileStoreDataProfile",
+          "description": "If `DetailLevel` is `FILE_STORE_PROFILE` this will be fully populated. Otherwise, if `DetailLevel` is `RESOURCE_NAME`, then only `name` and `file_store_path` will be populated."
+        },
         "profile": {
           "$ref": "GooglePrivacyDlpV2TableDataProfile",
           "description": "If `DetailLevel` is `TABLE_PROFILE` this will be fully populated. Otherwise, if `DetailLevel` is `RESOURCE_NAME`, then only `name` and `full_resource` will be populated."
@@ -6161,12 +6375,14 @@
           "enum": [
             "RISK_SCORE_UNSPECIFIED",
             "RISK_LOW",
+            "RISK_UNKNOWN",
             "RISK_MODERATE",
             "RISK_HIGH"
           ],
           "enumDescriptions": [
             "Unused.",
             "Low risk - Lower indication of sensitive data that appears to have additional access restrictions in place or no indication of sensitive data found.",
+            "Unable to determine risk.",
             "Medium risk - Sensitive data may be present but additional access or fine grain access restrictions appear to be present. Consider limiting access even further or transform data to mask.",
             "High risk – SPII may be present. Access controls may include public ACLs. Exfiltration of data may lead to user data loss. Re-identification of users may be possible. Consider limiting usage and or removing SPII."
           ],
@@ -7145,6 +7361,20 @@
           "$ref": "GoogleRpcStatus",
           "description": "Detailed error codes and messages."
         },
+        "extraInfo": {
+          "description": "Additional information about the error.",
+          "enum": [
+            "ERROR_INFO_UNSPECIFIED",
+            "IMAGE_SCAN_UNAVAILABLE_IN_REGION",
+            "FILE_STORE_CLUSTER_UNSUPPORTED"
+          ],
+          "enumDescriptions": [
+            "Unused.",
+            "Image scan is not available in the region.",
+            "File store cluster is not supported for profile generation."
+          ],
+          "type": "string"
+        },
         "timestamps": {
           "description": "The times the error occurred. List includes the oldest timestamp and the last 9 timestamps.",
           "items": {
@@ -7295,6 +7525,103 @@
       },
       "type": "object"
     },
+    "GooglePrivacyDlpV2FileClusterSummary": {
+      "description": "The file cluster summary.",
+      "id": "GooglePrivacyDlpV2FileClusterSummary",
+      "properties": {
+        "dataRiskLevel": {
+          "$ref": "GooglePrivacyDlpV2DataRiskLevel",
+          "description": "The data risk level of this cluster. RISK_LOW if nothing has been scanned."
+        },
+        "errors": {
+          "description": "A list of Errors detected while scanning this cluster. The list is truncated to 10 per cluster.",
+          "items": {
+            "$ref": "GooglePrivacyDlpV2Error"
+          },
+          "type": "array"
+        },
+        "fileClusterType": {
+          "$ref": "GooglePrivacyDlpV2FileClusterType",
+          "description": "The file cluster type."
+        },
+        "fileExtensionsScanned": {
+          "description": "A sample of file types scanned in this cluster. Empty if no files were scanned.",
+          "items": {
+            "$ref": "GooglePrivacyDlpV2FileExtensionInfo"
+          },
+          "type": "array"
+        },
+        "fileExtensionsSeen": {
+          "description": "A sample of file types seen in this cluster. Empty if no files were seen.",
+          "items": {
+            "$ref": "GooglePrivacyDlpV2FileExtensionInfo"
+          },
+          "type": "array"
+        },
+        "fileStoreInfoTypeSummaries": {
+          "description": "InfoTypes detected in this cluster.",
+          "items": {
+            "$ref": "GooglePrivacyDlpV2FileStoreInfoTypeSummary"
+          },
+          "type": "array"
+        },
+        "noFilesExist": {
+          "description": "True if no files exist in this cluster. If the bucket had more files than could be listed, this will be false even if no files for this cluster were seen and file_extensions_seen is empty.",
+          "type": "boolean"
+        },
+        "sensitivityScore": {
+          "$ref": "GooglePrivacyDlpV2SensitivityScore",
+          "description": "The sensitivity score of this cluster. The score will be SENSITIVITY_LOW if nothing has been scanned."
+        }
+      },
+      "type": "object"
+    },
+    "GooglePrivacyDlpV2FileClusterType": {
+      "description": "Message used to identify file cluster type being profiled.",
+      "id": "GooglePrivacyDlpV2FileClusterType",
+      "properties": {
+        "cluster": {
+          "description": "Cluster type.",
+          "enum": [
+            "CLUSTER_UNSPECIFIED",
+            "CLUSTER_UNKNOWN",
+            "CLUSTER_TEXT",
+            "CLUSTER_STRUCTURED_DATA",
+            "CLUSTER_SOURCE_CODE",
+            "CLUSTER_RICH_DOCUMENT",
+            "CLUSTER_IMAGE",
+            "CLUSTER_ARCHIVE",
+            "CLUSTER_MULTIMEDIA",
+            "CLUSTER_EXECUTABLE"
+          ],
+          "enumDescriptions": [
+            "Unused.",
+            "Unsupported files.",
+            "Plain text.",
+            "Structured data like CSV, TSV etc.",
+            "Source code.",
+            "Rich document like docx, xlsx etc.",
+            "Images like jpeg, bmp.",
+            "Archives and containers like .zip, .tar etc.",
+            "Multimedia like .mp4, .avi etc.",
+            "Executable files like .exe, .class, .apk etc."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GooglePrivacyDlpV2FileExtensionInfo": {
+      "description": "Information regarding the discovered file extension.",
+      "id": "GooglePrivacyDlpV2FileExtensionInfo",
+      "properties": {
+        "fileExtension": {
+          "description": "The file extension if set. (aka .pdf, .jpg, .txt)",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GooglePrivacyDlpV2FileSet": {
       "description": "Set of files to scan.",
       "id": "GooglePrivacyDlpV2FileSet",
@@ -7306,6 +7633,156 @@
         "url": {
           "description": "The Cloud Storage url of the file(s) to scan, in the format `gs:///`. Trailing wildcard in the path is allowed. If the url ends in a trailing slash, the bucket or directory represented by the url will be scanned non-recursively (content in sub-directories will not be scanned). This means that `gs://mybucket/` is equivalent to `gs://mybucket/*`, and `gs://mybucket/directory/` is equivalent to `gs://mybucket/directory/*`. Exactly one of `url` or `regex_file_set` must be set.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GooglePrivacyDlpV2FileStoreDataProfile": {
+      "description": "The profile for a file store. * Google Cloud Storage: maps 1:1 with a bucket.",
+      "id": "GooglePrivacyDlpV2FileStoreDataProfile",
+      "properties": {
+        "configSnapshot": {
+          "$ref": "GooglePrivacyDlpV2DataProfileConfigSnapshot",
+          "description": "The snapshot of the configurations used to generate the profile."
+        },
+        "createTime": {
+          "description": "The time the file store was first created.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "dataRiskLevel": {
+          "$ref": "GooglePrivacyDlpV2DataRiskLevel",
+          "description": "The data risk level of this resource."
+        },
+        "dataSourceType": {
+          "$ref": "GooglePrivacyDlpV2DataSourceType",
+          "description": "The resource type that was profiled."
+        },
+        "dataStorageLocations": {
+          "description": "For resources that have multiple storage locations, these are those regions. For Google Cloud Storage this is the list of regions chosen for dual-region storage. `file_store_location` will normally be the corresponding multi-region for the list of individual locations. The first region is always picked as the processing and storage location for the data profile.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "fileClusterSummaries": {
+          "description": "FileClusterSummary per each cluster.",
+          "items": {
+            "$ref": "GooglePrivacyDlpV2FileClusterSummary"
+          },
+          "type": "array"
+        },
+        "fileStoreInfoTypeSummaries": {
+          "description": "InfoTypes detected in this file store.",
+          "items": {
+            "$ref": "GooglePrivacyDlpV2FileStoreInfoTypeSummary"
+          },
+          "type": "array"
+        },
+        "fileStoreIsEmpty": {
+          "description": "The file store does not have any files.",
+          "type": "boolean"
+        },
+        "fileStoreLocation": {
+          "description": "The location of the file store. * Google Cloud Storage: https://cloud.google.com/storage/docs/locations#available-locations",
+          "type": "string"
+        },
+        "fileStorePath": {
+          "description": "The file store path. * Google Cloud Storage: `gs://{bucket}`",
+          "type": "string"
+        },
+        "fullResource": {
+          "description": "The resource name of the resource profiled. https://cloud.google.com/apis/design/resource_names#full_resource_name",
+          "type": "string"
+        },
+        "lastModifiedTime": {
+          "description": "The time the file store was last modified.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "locationType": {
+          "description": "The location type of the bucket (region, dual-region, multi-region, etc). If dual-region, expect data_storage_locations to be populated.",
+          "type": "string"
+        },
+        "name": {
+          "description": "The name of the profile.",
+          "type": "string"
+        },
+        "profileLastGenerated": {
+          "description": "The last time the profile was generated.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "profileStatus": {
+          "$ref": "GooglePrivacyDlpV2ProfileStatus",
+          "description": "Success or error status from the most recent profile generation attempt. May be empty if the profile is still being generated."
+        },
+        "projectDataProfile": {
+          "description": "The resource name to the project data profile for this file store.",
+          "type": "string"
+        },
+        "projectId": {
+          "description": "The Google Cloud project ID that owns the resource.",
+          "type": "string"
+        },
+        "resourceAttributes": {
+          "additionalProperties": {
+            "$ref": "GooglePrivacyDlpV2Value"
+          },
+          "description": "Attributes of the resource being profiled. Currently used attributes: - customer_managed_encryption: boolean true: the resource is encrypted with a customer-managed key. false: the resource is encrypted with a provider-managed key.",
+          "type": "object"
+        },
+        "resourceLabels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "The labels applied to the resource at the time the profile was generated.",
+          "type": "object"
+        },
+        "resourceVisibility": {
+          "description": "How broadly a resource has been shared.",
+          "enum": [
+            "RESOURCE_VISIBILITY_UNSPECIFIED",
+            "RESOURCE_VISIBILITY_PUBLIC",
+            "RESOURCE_VISIBILITY_INCONCLUSIVE",
+            "RESOURCE_VISIBILITY_RESTRICTED"
+          ],
+          "enumDescriptions": [
+            "Unused.",
+            "Visible to any user.",
+            "May contain public items. For example, if a Cloud Storage bucket has uniform bucket level access disabled, some objects inside it may be public, but none are known yet.",
+            "Visible only to specific users."
+          ],
+          "type": "string"
+        },
+        "sensitivityScore": {
+          "$ref": "GooglePrivacyDlpV2SensitivityScore",
+          "description": "The sensitivity score of this resource."
+        },
+        "state": {
+          "description": "State of a profile.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "RUNNING",
+            "DONE"
+          ],
+          "enumDescriptions": [
+            "Unused.",
+            "The profile is currently running. Once a profile has finished it will transition to DONE.",
+            "The profile is no longer generating. If profile_status.status.code is 0, the profile succeeded, otherwise, it failed."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GooglePrivacyDlpV2FileStoreInfoTypeSummary": {
+      "description": "Information regarding the discovered InfoType.",
+      "id": "GooglePrivacyDlpV2FileStoreInfoTypeSummary",
+      "properties": {
+        "infoType": {
+          "$ref": "GooglePrivacyDlpV2InfoType",
+          "description": "The InfoType seen."
         }
       },
       "type": "object"
@@ -8802,6 +9279,24 @@
       },
       "type": "object"
     },
+    "GooglePrivacyDlpV2ListFileStoreDataProfilesResponse": {
+      "description": "List of file store data profiles generated for a given organization or project.",
+      "id": "GooglePrivacyDlpV2ListFileStoreDataProfilesResponse",
+      "properties": {
+        "fileStoreDataProfiles": {
+          "description": "List of data profiles.",
+          "items": {
+            "$ref": "GooglePrivacyDlpV2FileStoreDataProfile"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "The next page token.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GooglePrivacyDlpV2ListInfoTypesResponse": {
       "description": "Response to the ListInfoTypes request.",
       "id": "GooglePrivacyDlpV2ListInfoTypesResponse",
@@ -9222,6 +9717,11 @@
           "$ref": "GooglePrivacyDlpV2DataRiskLevel",
           "description": "The data risk level of this project."
         },
+        "fileStoreDataProfileCount": {
+          "description": "The number of file store data profiles generated for this project.",
+          "format": "int64",
+          "type": "string"
+        },
         "name": {
           "description": "The resource name of the profile.",
           "type": "string"
@@ -9242,6 +9742,11 @@
         "sensitivityScore": {
           "$ref": "GooglePrivacyDlpV2SensitivityScore",
           "description": "The sensitivity score of this project."
+        },
+        "tableDataProfileCount": {
+          "description": "The number of table data profiles generated for this project.",
+          "format": "int64",
+          "type": "string"
         }
       },
       "type": "object"
@@ -9335,12 +9840,14 @@
           "enum": [
             "DETAIL_LEVEL_UNSPECIFIED",
             "TABLE_PROFILE",
-            "RESOURCE_NAME"
+            "RESOURCE_NAME",
+            "FILE_STORE_PROFILE"
           ],
           "enumDescriptions": [
             "Unused.",
             "The full table data profile.",
-            "The name of the profiled resource."
+            "The name of the profiled resource.",
+            "The full file store data profile."
           ],
           "type": "string"
         },
@@ -9975,12 +10482,14 @@
           "enum": [
             "SENSITIVITY_SCORE_UNSPECIFIED",
             "SENSITIVITY_LOW",
+            "SENSITIVITY_UNKNOWN",
             "SENSITIVITY_MODERATE",
             "SENSITIVITY_HIGH"
           ],
           "enumDescriptions": [
             "Unused.",
             "No sensitive information detected. The resource isn't publicly accessible.",
+            "Unable to determine sensitivity.",
             "Medium risk. Contains personally identifiable information (PII), potentially sensitive data, or fields with free-text data that are at a higher risk of having intermittent sensitive data. Consider limiting access.",
             "High risk. Sensitive personally identifiable information (SPII) can be present. Exfiltration of data can lead to user data loss. Re-identification of users might be possible. Consider limiting usage and or removing SPII."
           ],
@@ -10342,7 +10851,7 @@
           "enumDescriptions": [
             "Unused.",
             "Visible to any user.",
-            "May contain public items. For example, if a Cloud Storage bucket has uniform bucket level access disabled, some objects inside it may be public.",
+            "May contain public items. For example, if a Cloud Storage bucket has uniform bucket level access disabled, some objects inside it may be public, but none are known yet.",
             "Visible only to specific users."
           ],
           "type": "string"

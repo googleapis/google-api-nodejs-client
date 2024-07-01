@@ -1127,7 +1127,7 @@
       }
     }
   },
-  "revision": "20240528",
+  "revision": "20240619",
   "rootUrl": "https://workstations.googleapis.com/",
   "schemas": {
     "Accelerator": {
@@ -1591,6 +1591,17 @@
         "gceInstance": {
           "$ref": "GceInstance",
           "description": "Specifies a Compute Engine instance as the host."
+        }
+      },
+      "type": "object"
+    },
+    "HttpOptions": {
+      "description": "Http options for the running workstations.",
+      "id": "HttpOptions",
+      "properties": {
+        "allowedUnauthenticatedCorsPreflightRequests": {
+          "description": "Optional. By default, the workstations service makes sure that all requests to the workstation are authenticated. CORS preflight requests do not include cookies or custom headers, and so are considered unauthenticated and blocked by the workstations service. Enabling this option allows these unauthenticated CORS preflight requests through to the workstation, where it becomes the responsibility of the destination server in the workstation to validate the request.",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -2088,6 +2099,10 @@
           "readOnly": true,
           "type": "boolean"
         },
+        "sourceWorkstation": {
+          "description": "Optional. The source workstation from which this workstations persistent directories were cloned on creation.",
+          "type": "string"
+        },
         "startTime": {
           "description": "Output only. Time when this workstation was most recently successfully started, regardless of the workstation's initial state.",
           "format": "google-datetime",
@@ -2299,6 +2314,10 @@
         "host": {
           "$ref": "Host",
           "description": "Optional. Runtime host for the workstation."
+        },
+        "httpOptions": {
+          "$ref": "HttpOptions",
+          "description": "Optional. Http options that customize the behavior of the workstation service's http proxy."
         },
         "idleTimeout": {
           "description": "Optional. Number of seconds to wait before automatically stopping a workstation after it last received user traffic. A value of `\"0s\"` indicates that Cloud Workstations VMs created with this configuration should never time out due to idleness. Provide [duration](https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#duration) terminated by `s` for seconds—for example, `\"7200s\"` (2 hours). The default is `\"1200s\"` (20 minutes).",

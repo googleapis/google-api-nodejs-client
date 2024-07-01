@@ -479,6 +479,15 @@ export namespace workstations_v1beta {
     gceInstance?: Schema$GceInstance;
   }
   /**
+   * Http options for the running workstations.
+   */
+  export interface Schema$HttpOptions {
+    /**
+     * Optional. By default, the workstations service makes sure that all requests to the workstation are authenticated. CORS preflight requests do not include cookies or custom headers, and so are considered unauthenticated and blocked by the workstations service. Enabling this option allows these unauthenticated CORS preflight requests through to the workstation, where it becomes the responsibility of the destination server in the workstation to validate the request.
+     */
+    allowedUnauthenticatedCorsPreflightRequests?: boolean | null;
+  }
+  /**
    * The response message for Operations.ListOperations.
    */
   export interface Schema$ListOperationsResponse {
@@ -827,6 +836,10 @@ export namespace workstations_v1beta {
      */
     reconciling?: boolean | null;
     /**
+     * Optional. The source workstation from which this workstations persistent directories were cloned on creation.
+     */
+    sourceWorkstation?: string | null;
+    /**
      * Output only. Time when this workstation was most recently successfully started, regardless of the workstation's initial state.
      */
     startTime?: string | null;
@@ -976,6 +989,10 @@ export namespace workstations_v1beta {
      * Optional. Runtime host for the workstation.
      */
     host?: Schema$Host;
+    /**
+     * Optional. Http options that customize the behavior of the workstation service's http proxy.
+     */
+    httpOptions?: Schema$HttpOptions;
     /**
      * Optional. Number of seconds to wait before automatically stopping a workstation after it last received user traffic. A value of `"0s"` indicates that Cloud Workstations VMs created with this configuration should never time out due to idleness. Provide [duration](https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#duration) terminated by `s` for seconds—for example, `"7200s"` (2 hours). The default is `"1200s"` (20 minutes).
      */
