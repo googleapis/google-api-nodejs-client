@@ -225,6 +225,10 @@ export namespace connectors_v1 {
      */
     enablePkce?: boolean | null;
     /**
+     * Optional. Omit query params from the redirect URI.
+     */
+    omitQueryParams?: string | null;
+    /**
      * The scopes for which the user will authorize Google Cloud Connectors on the connector data source.
      */
     scopes?: string[] | null;
