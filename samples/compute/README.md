@@ -6,4 +6,6 @@ The Google Compute Engine Metadata service lets you get and set key/value pairs 
 
 ## Running the sample
 
-`node listVMs.js`
+```sh
+node listVMs.js
+```

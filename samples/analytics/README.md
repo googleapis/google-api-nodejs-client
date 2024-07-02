@@ -6,4 +6,6 @@ The Google Analytics API lets you collect, configure, and analyze your data to r
 
 ## Running the sample
 
-`node analytics.js`
+```sh
+node analytics.js
+```
