@@ -310,7 +310,7 @@
                       "type": "string"
                     },
                     "pageSize": {
-                      "description": "Optional. The maximum number of items to return.",
+                      "description": "Optional. The maximum number of items to return. The default value is 100.",
                       "format": "int32",
                       "location": "query",
                       "type": "integer"
@@ -561,7 +561,7 @@
                           "type": "string"
                         },
                         "pageSize": {
-                          "description": "Optional. The maximum number of items to return.",
+                          "description": "Optional. The maximum number of items to return. The default value is 100.",
                           "format": "int32",
                           "location": "query",
                           "type": "integer"
@@ -812,7 +812,7 @@
                               "type": "string"
                             },
                             "pageSize": {
-                              "description": "Optional. The maximum number of items to return.",
+                              "description": "Optional. The maximum number of items to return. The default value is 100.",
                               "format": "int32",
                               "location": "query",
                               "type": "integer"
@@ -971,7 +971,7 @@
       }
     }
   },
-  "revision": "20240121",
+  "revision": "20240420",
   "rootUrl": "https://servicedirectory.googleapis.com/",
   "schemas": {
     "Binding": {

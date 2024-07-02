@@ -692,6 +692,7 @@ export namespace blogger_v3 {
           {
             url: (rootUrl + '/v3/blogs/{blogId}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -775,6 +776,7 @@ export namespace blogger_v3 {
           {
             url: (rootUrl + '/v3/blogs/byurl').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -861,6 +863,7 @@ export namespace blogger_v3 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1002,6 +1005,7 @@ export namespace blogger_v3 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1111,6 +1115,7 @@ export namespace blogger_v3 {
               '/v3/blogs/{blogId}/posts/{postId}/comments/{commentId}/approve'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1194,6 +1199,7 @@ export namespace blogger_v3 {
               rootUrl + '/v3/blogs/{blogId}/posts/{postId}/comments/{commentId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -1279,6 +1285,7 @@ export namespace blogger_v3 {
               rootUrl + '/v3/blogs/{blogId}/posts/{postId}/comments/{commentId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1364,6 +1371,7 @@ export namespace blogger_v3 {
               rootUrl + '/v3/blogs/{blogId}/posts/{postId}/comments'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1451,6 +1459,7 @@ export namespace blogger_v3 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1538,6 +1547,7 @@ export namespace blogger_v3 {
               '/v3/blogs/{blogId}/posts/{postId}/comments/{commentId}/spam'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1625,6 +1635,7 @@ export namespace blogger_v3 {
               '/v3/blogs/{blogId}/posts/{postId}/comments/{commentId}/removecontent'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1862,6 +1873,7 @@ export namespace blogger_v3 {
               '$1'
             ),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -1948,6 +1960,7 @@ export namespace blogger_v3 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2034,6 +2047,7 @@ export namespace blogger_v3 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2120,6 +2134,7 @@ export namespace blogger_v3 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2206,6 +2221,7 @@ export namespace blogger_v3 {
               '$1'
             ),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -2291,6 +2307,7 @@ export namespace blogger_v3 {
               rootUrl + '/v3/blogs/{blogId}/pages/{pageId}/publish'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2377,6 +2394,7 @@ export namespace blogger_v3 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2463,6 +2481,7 @@ export namespace blogger_v3 {
               '$1'
             ),
             method: 'PUT',
+            apiVersion: '',
           },
           options
         ),
@@ -2692,6 +2711,7 @@ export namespace blogger_v3 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2794,6 +2814,7 @@ export namespace blogger_v3 {
               '$1'
             ),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -2880,6 +2901,7 @@ export namespace blogger_v3 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2966,6 +2988,7 @@ export namespace blogger_v3 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3052,6 +3075,7 @@ export namespace blogger_v3 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3138,6 +3162,7 @@ export namespace blogger_v3 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3224,6 +3249,7 @@ export namespace blogger_v3 {
               '$1'
             ),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -3309,6 +3335,7 @@ export namespace blogger_v3 {
               rootUrl + '/v3/blogs/{blogId}/posts/{postId}/publish'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3395,6 +3422,7 @@ export namespace blogger_v3 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3481,6 +3509,7 @@ export namespace blogger_v3 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3567,6 +3596,7 @@ export namespace blogger_v3 {
               '$1'
             ),
             method: 'PUT',
+            apiVersion: '',
           },
           options
         ),
@@ -3904,6 +3934,7 @@ export namespace blogger_v3 {
               rootUrl + '/v3/users/{userId}/blogs/{blogId}/posts/{postId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3994,6 +4025,7 @@ export namespace blogger_v3 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4151,6 +4183,7 @@ export namespace blogger_v3 {
           {
             url: (rootUrl + '/v3/users/{userId}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),

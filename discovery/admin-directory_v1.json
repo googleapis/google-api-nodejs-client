@@ -403,7 +403,7 @@
             },
             "maxResults": {
               "default": "100",
-              "description": "Maximum number of results to return.",
+              "description": "Maximum number of results to return. Value should not exceed 300.",
               "format": "int32",
               "location": "query",
               "minimum": "1",
@@ -441,7 +441,7 @@
               "type": "string"
             },
             "projection": {
-              "description": "Restrict information returned to a set of selected fields.",
+              "description": "Determines whether the response contains the full list of properties or only a subset.",
               "enum": [
                 "BASIC",
                 "FULL"
@@ -535,7 +535,7 @@
               "type": "string"
             },
             "projection": {
-              "description": "Restrict information returned to a set of selected fields.",
+              "description": "Determines whether the response contains the full list of properties or only a subset.",
               "enum": [
                 "BASIC",
                 "FULL"
@@ -582,7 +582,7 @@
               "type": "string"
             },
             "projection": {
-              "description": "Restrict information returned to a set of selected fields.",
+              "description": "Determines whether the response contains the full list of properties or only a subset.",
               "enum": [
                 "BASIC",
                 "FULL"
@@ -3967,12 +3967,12 @@
               "type": "string"
             },
             "customer": {
-              "description": "The unique ID for the customer's Google Workspace account. In case of a multi-domain account, to fetch all groups for a customer, use this field instead of `domain`. You can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users](/admin-sdk/directory/v1/reference/users) resource. You must provide either the `customer` or the `domain` parameter.",
+              "description": "The unique ID for the customer's Google Workspace account. In case of a multi-domain account, to fetch all users for a customer, use this field instead of `domain`. You can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users](/admin-sdk/directory/v1/reference/users) resource. You must provide either the `customer` or the `domain` parameter.",
               "location": "query",
               "type": "string"
             },
             "domain": {
-              "description": "The domain name. Use this field to get groups from only one domain. To return all domains for a customer account, use the `customer` query parameter instead. Either the `customer` or the `domain` parameter must be provided.",
+              "description": "The domain name. Use this field to get users from only one domain. To return all domains for a customer account, use the `customer` query parameter instead. Either the `customer` or the `domain` parameter must be provided.",
               "location": "query",
               "type": "string"
             },
@@ -4671,7 +4671,7 @@
       }
     }
   },
-  "revision": "20240304",
+  "revision": "20240618",
   "rootUrl": "https://admin.googleapis.com/",
   "schemas": {
     "Alias": {
@@ -5403,8 +5403,14 @@
           "type": "string"
         },
         "autoUpdateExpiration": {
-          "description": "(Read-only) The timestamp after which the device will stop receiving Chrome updates or support",
+          "deprecated": true,
+          "description": "(Read-only) The timestamp after which the device will stop receiving Chrome updates or support. Please use \"autoUpdateThrough\" instead.",
           "format": "int64",
+          "type": "string"
+        },
+        "autoUpdateThrough": {
+          "description": "Output only. The timestamp after which the device will stop receiving Chrome updates or support.",
+          "readOnly": true,
           "type": "string"
         },
         "backlightInfo": {
@@ -5417,6 +5423,21 @@
         },
         "bootMode": {
           "description": "The boot mode for the device. The possible values are: * `Verified`: The device is running a valid version of the Chrome OS. * `Dev`: The devices's developer hardware switch is enabled. When booted, the device has a command line shell. For an example of a developer switch, see the [Chromebook developer information](https://www.chromium.org/chromium-os/developer-information-for-chrome-os-devices/samsung-series-5-chromebook#TOC-Developer-switch).",
+          "type": "string"
+        },
+        "chromeOsType": {
+          "description": "Output only. Chrome OS type of the device.",
+          "enum": [
+            "chromeOsTypeUnspecified",
+            "chromeOsFlex",
+            "chromeOs"
+          ],
+          "enumDescriptions": [
+            "Chrome OS Type unspecified.",
+            "Chrome OS Type Chrome OS Flex.",
+            "Chrome OS Type Chrome OS."
+          ],
+          "readOnly": true,
           "type": "string"
         },
         "cpuInfo": {
@@ -5666,6 +5687,29 @@
         "ethernetMacAddress0": {
           "description": "(Read-only) MAC address used by the Chromebook’s internal ethernet port, and for onboard network (ethernet) interface. The format is twelve (12) hexadecimal digits without any delimiter (uppercase letters). This is only relevant for some devices.",
           "type": "string"
+        },
+        "extendedSupportEligible": {
+          "description": "Output only. Whether or not the device requires the extended support opt in.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "extendedSupportEnabled": {
+          "description": "Output only. Whether extended support policy is enabled on the device.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "extendedSupportStart": {
+          "description": "Output only. Date of the device when extended support policy for automatic updates starts.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "fanInfo": {
+          "description": "Output only. Fan information for the device.",
+          "items": {
+            "$ref": "FanInfo"
+          },
+          "readOnly": true,
+          "type": "array"
         },
         "firmwareVersion": {
           "description": "The Chrome device's firmware version.",
@@ -6120,7 +6164,7 @@
           ],
           "enumDescriptions": [
             "The command type was unspecified.",
-            "Reboot the device. Can only be issued to Kiosk and managed guest session devices.",
+            "Reboot the device. Can be issued to Kiosk and managed guest session devices, and regular devices running ChromeOS version 113 or later.",
             "Take a screenshot of the device. Only available if the device is in Kiosk Mode.",
             "Set the volume of the device. Can only be issued to Kiosk and managed guest session devices.",
             "Wipe all the users off of the device. Executing this command in the device will remove all user profile data, but it will keep device policy and enrollment.",
@@ -6189,7 +6233,7 @@
           ],
           "enumDescriptions": [
             "The command type was unspecified.",
-            "Reboot the device. Can only be issued to Kiosk and managed guest session devices.",
+            "Reboot the device. Can be issued to Kiosk and managed guest session devices, and regular devices running ChromeOS version 113 or later.",
             "Take a screenshot of the device. Only available if the device is in Kiosk Mode.",
             "Set the volume of the device. Can only be issued to Kiosk and managed guest session devices.",
             "Wipe all the users off of the device. Executing this command in the device will remove all user profile data, but it will keep device policy and enrollment.",
@@ -6407,6 +6451,19 @@
         "printerId": {
           "description": "Id of a failed printer.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "FanInfo": {
+      "description": "Information about the device's fan.",
+      "id": "FanInfo",
+      "properties": {
+        "speedRpm": {
+          "description": "Output only. Fan speed in RPM.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
         }
       },
       "type": "object"

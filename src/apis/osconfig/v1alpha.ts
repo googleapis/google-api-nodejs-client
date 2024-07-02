@@ -859,7 +859,7 @@ export namespace osconfig_v1alpha {
      */
     complianceState?: string | null;
     /**
-     * The reason for the OS policy to be in an unknown compliance state. This field is always populated when `compliance_state` is `UNKNOWN`. If populated, the field can contain one of the following values: * `vm-not-running`: The VM was not running. * `os-policies-not-supported-by-agent`: The version of the OS Config agent running on the VM does not support running OS policies. * `no-agent-detected`: The OS Config agent is not detected for the VM. * `resource-execution-errors`: The OS Config agent encountered errors while executing one or more resources in the policy. See `os_policy_resource_compliances` for details. * `task-timeout`: The task sent to the agent to apply the policy timed out. * `unexpected-agent-state`: The OS Config agent did not report the final status of the task that attempted to apply the policy. Instead, the agent unexpectedly started working on a different task. This mostly happens when the agent or VM unexpectedly restarts while applying OS policies. * `internal-service-errors`: Internal service errors were encountered while attempting to apply the policy.
+     * The reason for the OS policy to be in an unknown compliance state. This field is always populated when `compliance_state` is `UNKNOWN`. If populated, the field can contain one of the following values: * `vm-not-running`: The VM was not running. * `os-policies-not-supported-by-agent`: The version of the OS Config agent running on the VM does not support running OS policies. * `no-agent-detected`: The OS Config agent is not detected for the VM. * `resource-execution-errors`: The OS Config agent encountered errors while executing one or more resources in the policy. See `os_policy_resource_compliances` for details. * `task-timeout`: The task sent to the agent to apply the policy timed out. * `unexpected-agent-state`: The OS Config agent did not report the final status of the task that attempted to apply the policy. Instead, the agent unexpectedly started working on a different task. This mostly happens when the agent or VM unexpectedly restarts while applying OS policies. * `internal-service-errors`: Internal service errors were encountered while attempting to apply the policy. * `os-policy-execution-pending`: OS policy was assigned to the given VM, but was not executed yet. Typically this is a transient condition that will go away after the next policy execution cycle.
      */
     complianceStateReason?: string | null;
     /**
@@ -880,7 +880,7 @@ export namespace osconfig_v1alpha {
      */
     complianceState?: string | null;
     /**
-     * A reason for the resource to be in the given compliance state. This field is always populated when `compliance_state` is `UNKNOWN`. The following values are supported when `compliance_state == UNKNOWN` * `execution-errors`: Errors were encountered by the agent while executing the resource and the compliance state couldn't be determined. * `execution-skipped-by-agent`: Resource execution was skipped by the agent because errors were encountered while executing prior resources in the OS policy. * `os-policy-execution-attempt-failed`: The execution of the OS policy containing this resource failed and the compliance state couldn't be determined.
+     * A reason for the resource to be in the given compliance state. This field is always populated when `compliance_state` is `UNKNOWN`. The following values are supported when `compliance_state == UNKNOWN` * `execution-errors`: Errors were encountered by the agent while executing the resource and the compliance state couldn't be determined. * `execution-skipped-by-agent`: Resource execution was skipped by the agent because errors were encountered while executing prior resources in the OS policy. * `os-policy-execution-attempt-failed`: The execution of the OS policy containing this resource failed and the compliance state couldn't be determined. * `os-policy-execution-pending`: OS policy that owns this resource was assigned to the given VM, but was not executed yet.
      */
     complianceStateReason?: string | null;
     /**
@@ -1606,6 +1606,7 @@ export namespace osconfig_v1alpha {
           {
             url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1702,6 +1703,7 @@ export namespace osconfig_v1alpha {
               rootUrl + '/v1alpha/{+parent}/instanceOSPoliciesCompliances'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1844,6 +1846,7 @@ export namespace osconfig_v1alpha {
           {
             url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1937,6 +1940,7 @@ export namespace osconfig_v1alpha {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2081,6 +2085,7 @@ export namespace osconfig_v1alpha {
           {
             url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2176,6 +2181,7 @@ export namespace osconfig_v1alpha {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2300,6 +2306,7 @@ export namespace osconfig_v1alpha {
           {
             url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2395,6 +2402,7 @@ export namespace osconfig_v1alpha {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2524,6 +2532,7 @@ export namespace osconfig_v1alpha {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2609,6 +2618,7 @@ export namespace osconfig_v1alpha {
           {
             url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -2697,6 +2707,7 @@ export namespace osconfig_v1alpha {
           {
             url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2792,6 +2803,7 @@ export namespace osconfig_v1alpha {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2889,6 +2901,7 @@ export namespace osconfig_v1alpha {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2976,6 +2989,7 @@ export namespace osconfig_v1alpha {
           {
             url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -3005,6 +3019,10 @@ export namespace osconfig_v1alpha {
      * Required. The parent resource name in the form: projects/{project\}/locations/{location\}
      */
     parent?: string;
+    /**
+     * Optional. A unique identifier for this request. Restricted to 36 ASCII characters. A random UUID is recommended. This request is only idempotent if a `request_id` is provided.
+     */
+    requestId?: string;
 
     /**
      * Request body metadata
@@ -3017,6 +3035,10 @@ export namespace osconfig_v1alpha {
      * Required. The name of the OS policy assignment to be deleted
      */
     name?: string;
+    /**
+     * Optional. A unique identifier for this request. Restricted to 36 ASCII characters. A random UUID is recommended. This request is only idempotent if a `request_id` is provided.
+     */
+    requestId?: string;
   }
   export interface Params$Resource$Projects$Locations$Ospolicyassignments$Get
     extends StandardParameters {
@@ -3058,9 +3080,17 @@ export namespace osconfig_v1alpha {
   export interface Params$Resource$Projects$Locations$Ospolicyassignments$Patch
     extends StandardParameters {
     /**
+     * Optional. If set to true, and the OS policy assignment is not found, a new OS policy assignment will be created. In this situation, `update_mask` is ignored.
+     */
+    allowMissing?: boolean;
+    /**
      * Resource name. Format: `projects/{project_number\}/locations/{location\}/osPolicyAssignments/{os_policy_assignment_id\}` This field is ignored when you create an OS policy assignment.
      */
     name?: string;
+    /**
+     * Optional. A unique identifier for this request. Restricted to 36 ASCII characters. A random UUID is recommended. This request is only idempotent if a `request_id` is provided.
+     */
+    requestId?: string;
     /**
      * Optional. Field mask that controls which fields of the assignment should be updated.
      */
@@ -3148,6 +3178,7 @@ export namespace osconfig_v1alpha {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3233,6 +3264,7 @@ export namespace osconfig_v1alpha {
           {
             url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),

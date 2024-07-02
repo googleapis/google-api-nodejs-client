@@ -138,6 +138,15 @@ export namespace notebooks_v2 {
     type?: string | null;
   }
   /**
+   * An access configuration attached to an instance's network interface.
+   */
+  export interface Schema$AccessConfig {
+    /**
+     * An external IP address associated with this instance. Specify an unused static external IP address available to the project or leave this field undefined to use an IP from a shared ephemeral IP address pool. If you specify a static external IP address, it must live in the same region as the zone of the instance.
+     */
+    externalIp?: string | null;
+  }
+  /**
    * Associates `members`, or principals, with a `role`.
    */
   export interface Schema$Binding {
@@ -476,6 +485,14 @@ export namespace notebooks_v2 {
      */
     proxyUri?: string | null;
     /**
+     * Output only. Reserved for future use for Zone Isolation.
+     */
+    satisfiesPzi?: boolean | null;
+    /**
+     * Output only. Reserved for future use for Zone Separation.
+     */
+    satisfiesPzs?: boolean | null;
+    /**
      * Output only. The state of this instance.
      */
     state?: string | null;
@@ -564,6 +581,10 @@ export namespace notebooks_v2 {
    * The definition of a network interface resource attached to a VM.
    */
   export interface Schema$NetworkInterface {
+    /**
+     * Optional. An array of configurations for this interface. Currently, only one access config, ONE_TO_ONE_NAT, is supported. If no accessConfigs specified, the instance will have an external internet access through an ephemeral external IP address.
+     */
+    accessConfigs?: Schema$AccessConfig[];
     /**
      * Optional. The name of the VPC that this VM instance is in. Format: `projects/{project_id\}/global/networks/{network_id\}`
      */
@@ -953,6 +974,7 @@ export namespace notebooks_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1045,6 +1067,7 @@ export namespace notebooks_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1173,6 +1196,7 @@ export namespace notebooks_v2 {
               rootUrl + '/v2/{+notebookInstance}:checkUpgradability'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1262,6 +1286,7 @@ export namespace notebooks_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1346,6 +1371,7 @@ export namespace notebooks_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -1433,6 +1459,7 @@ export namespace notebooks_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1517,6 +1544,7 @@ export namespace notebooks_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1604,6 +1632,7 @@ export namespace notebooks_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1692,6 +1721,7 @@ export namespace notebooks_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1784,6 +1814,7 @@ export namespace notebooks_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1868,6 +1899,7 @@ export namespace notebooks_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -1956,6 +1988,7 @@ export namespace notebooks_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2040,6 +2073,7 @@ export namespace notebooks_v2 {
           {
             url: (rootUrl + '/v2/{+name}:reset').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2127,6 +2161,7 @@ export namespace notebooks_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2214,6 +2249,7 @@ export namespace notebooks_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2302,6 +2338,7 @@ export namespace notebooks_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2386,6 +2423,7 @@ export namespace notebooks_v2 {
           {
             url: (rootUrl + '/v2/{+name}:start').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2470,6 +2508,7 @@ export namespace notebooks_v2 {
           {
             url: (rootUrl + '/v2/{+name}:stop').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2565,6 +2604,7 @@ export namespace notebooks_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2652,6 +2692,7 @@ export namespace notebooks_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2740,6 +2781,7 @@ export namespace notebooks_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3070,6 +3112,7 @@ export namespace notebooks_v2 {
           {
             url: (rootUrl + '/v2/{+name}:cancel').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3154,6 +3197,7 @@ export namespace notebooks_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -3238,6 +3282,7 @@ export namespace notebooks_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3330,6 +3375,7 @@ export namespace notebooks_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),

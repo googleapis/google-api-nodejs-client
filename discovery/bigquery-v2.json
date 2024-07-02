@@ -33,6 +33,38 @@
   "description": "A data platform for customers to create, manage, share and query data.",
   "discoveryVersion": "v1",
   "documentationLink": "https://cloud.google.com/bigquery/",
+  "endpoints": [
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://bigquery.europe-west3.rep.googleapis.com/",
+      "location": "europe-west3"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://bigquery.europe-west9.rep.googleapis.com/",
+      "location": "europe-west9"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://bigquery.me-central2.rep.googleapis.com/",
+      "location": "me-central2"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://bigquery.us-east4.rep.googleapis.com/",
+      "location": "us-east4"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://bigquery.us-east7.rep.googleapis.com/",
+      "location": "us-east7"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://bigquery.us-west1.rep.googleapis.com/",
+      "location": "us-west1"
+    }
+  ],
   "fullyEncodeReservedExpansion": true,
   "icons": {
     "x16": "http://www.google.com/images/icons/product/search-16.gif",
@@ -257,7 +289,7 @@
               "type": "boolean"
             },
             "filter": {
-              "description": "An expression for filtering the results of the request by label. The syntax is \\\"labels.<name>[:<value>]\\\". Multiple filters can be ANDed together by connecting with a space. Example: \\\"labels.department:receiving labels.active\\\". See [Filtering datasets using labels](/bigquery/docs/labeling-datasets#filtering_datasets_using_labels) for details.",
+              "description": "An expression for filtering the results of the request by label. The syntax is \\\"labels.<name>[:<value>]\\\". Multiple filters can be ANDed together by connecting with a space. Example: \\\"labels.department:receiving labels.active\\\". See [Filtering datasets using labels](/bigquery/docs/filtering-labels#filtering_datasets_using_labels) for details.",
               "location": "query",
               "type": "string"
             },
@@ -1084,6 +1116,36 @@
             "https://www.googleapis.com/auth/cloud-platform.read-only"
           ]
         },
+        "getIamPolicy": {
+          "description": "Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.",
+          "flatPath": "projects/{projectsId}/datasets/{datasetsId}/routines/{routinesId}:getIamPolicy",
+          "httpMethod": "POST",
+          "id": "bigquery.routines.getIamPolicy",
+          "parameterOrder": [
+            "resource"
+          ],
+          "parameters": {
+            "resource": {
+              "description": "REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
+              "location": "path",
+              "pattern": "^projects/[^/]+/datasets/[^/]+/routines/[^/]+$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "{+resource}:getIamPolicy",
+          "request": {
+            "$ref": "GetIamPolicyRequest"
+          },
+          "response": {
+            "$ref": "Policy"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/bigquery",
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/cloud-platform.read-only"
+          ]
+        },
         "insert": {
           "description": "Creates a new routine in the dataset.",
           "flatPath": "projects/{projectsId}/datasets/{datasetsId}/routines",
@@ -1176,6 +1238,35 @@
             "https://www.googleapis.com/auth/bigquery",
             "https://www.googleapis.com/auth/cloud-platform",
             "https://www.googleapis.com/auth/cloud-platform.read-only"
+          ]
+        },
+        "setIamPolicy": {
+          "description": "Sets the access control policy on the specified resource. Replaces any existing policy. Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.",
+          "flatPath": "projects/{projectsId}/datasets/{datasetsId}/routines/{routinesId}:setIamPolicy",
+          "httpMethod": "POST",
+          "id": "bigquery.routines.setIamPolicy",
+          "parameterOrder": [
+            "resource"
+          ],
+          "parameters": {
+            "resource": {
+              "description": "REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
+              "location": "path",
+              "pattern": "^projects/[^/]+/datasets/[^/]+/routines/[^/]+$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "{+resource}:setIamPolicy",
+          "request": {
+            "$ref": "SetIamPolicyRequest"
+          },
+          "response": {
+            "$ref": "Policy"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/bigquery",
+            "https://www.googleapis.com/auth/cloud-platform"
           ]
         },
         "update": {
@@ -1844,7 +1935,7 @@
       }
     }
   },
-  "revision": "20240229",
+  "revision": "20240616",
   "rootUrl": "https://bigquery.googleapis.com/",
   "schemas": {
     "AggregateClassificationMetrics": {
@@ -2907,7 +2998,7 @@
       "type": "object"
     },
     "ConnectionProperty": {
-      "description": "A connection-level property to customize query behavior. Under JDBC, these correspond directly to connection properties passed to the DriverManager. Under ODBC, these correspond to properties in the connection string. Currently supported connection properties: * **dataset_project_id**: represents the default project for datasets that are used in the query. Setting the system variable `@@dataset_project_id` achieves the same behavior. For more information about system variables, see: https://cloud.google.com/bigquery/docs/reference/system-variables * **time_zone**: represents the default timezone used to run the query. * **session_id**: associates the query with a given session. * **query_label**: associates the query with a given job label. If set, all subsequent queries in a script or session will have this label. For the format in which a you can specify a query label, see labels in the JobConfiguration resource type: https://cloud.google.com/bigquery/docs/reference/rest/v2/Job#jobconfiguration Additional properties are allowed, but ignored. Specifying multiple connection properties with the same key returns an error.",
+      "description": "A connection-level property to customize query behavior. Under JDBC, these correspond directly to connection properties passed to the DriverManager. Under ODBC, these correspond to properties in the connection string. Currently supported connection properties: * **dataset_project_id**: represents the default project for datasets that are used in the query. Setting the system variable `@@dataset_project_id` achieves the same behavior. For more information about system variables, see: https://cloud.google.com/bigquery/docs/reference/system-variables * **time_zone**: represents the default timezone used to run the query. * **session_id**: associates the query with a given session. * **query_label**: associates the query with a given job label. If set, all subsequent queries in a script or session will have this label. For the format in which a you can specify a query label, see labels in the JobConfiguration resource type: https://cloud.google.com/bigquery/docs/reference/rest/v2/Job#jobconfiguration * **service_account**: indicates the service account to use to run a continuous query. If set, the query job uses the service account to access Google Cloud resources. Service account access is bounded by the IAM permissions that you have granted to the service account. Additional properties are allowed, but ignored. Specifying multiple connection properties with the same key returns an error.",
       "id": "ConnectionProperty",
       "properties": {
         "key": {
@@ -2942,7 +3033,7 @@
           "type": "string"
         },
         "nullMarker": {
-          "description": "[Optional] A custom string that will represent a NULL value in CSV import data.",
+          "description": "Optional. Specifies a string that represents a null value in a CSV file. For example, if you specify \"\\N\", BigQuery interprets \"\\N\" as a null value when querying a CSV file. The default value is the empty string. If you set this property to a custom value, BigQuery throws an error if an empty string is present for all data types except for STRING and BYTE. For STRING and BYTE columns, BigQuery interprets the empty string as an empty value.",
           "type": "string"
         },
         "preserveAsciiControlCharacters": {
@@ -3069,7 +3160,7 @@
         },
         "defaultEncryptionConfiguration": {
           "$ref": "EncryptionConfiguration",
-          "description": "The default encryption key for all tables in the dataset. Once this property is set, all newly-created partitioned tables in the dataset will have encryption key set to this value, unless table creation request (or query) overrides the key."
+          "description": "The default encryption key for all tables in the dataset. After this property is set, the encryption key of all newly-created tables in the dataset is set to this value unless the table creation request or query explicitly overrides the key."
         },
         "defaultPartitionExpirationMs": {
           "description": "This default partition expiration, expressed in milliseconds. When new time-partitioned tables are created in a dataset where this property is set, the table will inherit this value, propagated as the `TimePartitioning.expirationMs` property on the new table. If you set `TimePartitioning.expirationMs` explicitly when creating a table, the `defaultPartitionExpirationMs` of the containing dataset is ignored. When creating a partitioned table, if `defaultPartitionExpirationMs` is set, the `defaultTableExpirationMs` value is ignored and the table will not be inherit a table expiration deadline.",
@@ -3103,6 +3194,10 @@
           "description": "Output only. A hash of the resource.",
           "readOnly": true,
           "type": "string"
+        },
+        "externalCatalogDatasetOptions": {
+          "$ref": "ExternalCatalogDatasetOptions",
+          "description": "Optional. Options defining open source compatible datasets living in the BigQuery catalog. Contains metadata of open source database, schema or namespace represented by the current dataset."
         },
         "externalDatasetReference": {
           "$ref": "ExternalDatasetReference",
@@ -3158,6 +3253,18 @@
           "format": "int64",
           "type": "string"
         },
+        "resourceTags": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. The [tags](/bigquery/docs/tags) attached to this dataset. Tag keys are globally unique. Tag key is expected to be in the namespaced format, for example \"123456789012/environment\" where 123456789012 is the ID of the parent organization or project resource for this tag key. Tag value is expected to be the short name, for example \"Production\". See [Tag definitions](/iam/docs/tags-access-control#definitions) for more details.",
+          "type": "object"
+        },
+        "restrictions": {
+          "$ref": "RestrictionConfig",
+          "description": "Optional. Output only. Restriction config for all tables and dataset. If set, restrict certain accesses on the dataset and all its tables based on the config. See [Data egress](/bigquery/docs/analytics-hub-introduction#data_egress) for more details.",
+          "readOnly": true
+        },
         "satisfiesPzi": {
           "description": "Output only. Reserved for future use.",
           "readOnly": true,
@@ -3207,7 +3314,7 @@
           "type": "array"
         },
         "type": {
-          "description": "Output only. Same as `type` in `ListFormatDataset`. The type of the dataset, one of: * DEFAULT - only accessible by owner and authorized accounts, * PUBLIC - accessible by everyone, * LINKED - linked dataset, * EXTERNAL - dataset with definition in external metadata catalog. -- *BIGLAKE_METASTORE - dataset that references a database created in BigLakeMetastore service. --",
+          "description": "Output only. Same as `type` in `ListFormatDataset`. The type of the dataset, one of: * DEFAULT - only accessible by owner and authorized accounts, * PUBLIC - accessible by everyone, * LINKED - linked dataset, * EXTERNAL - dataset with definition in external metadata catalog.",
           "readOnly": true,
           "type": "string"
         }
@@ -3345,6 +3452,54 @@
           },
           "description": "Optional. The labels associated with this table. You can use these to organize and group your tables. This will only be used if the destination table is newly created. If the table already exists and labels are different than the current labels are provided, the job will fail.",
           "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "DifferentialPrivacyPolicy": {
+      "description": "Represents privacy policy associated with \"differential privacy\" method.",
+      "id": "DifferentialPrivacyPolicy",
+      "properties": {
+        "deltaBudget": {
+          "description": "Optional. The total delta budget for all queries against the privacy-protected view. Each subscriber query against this view charges the amount of delta that is pre-defined by the contributor through the privacy policy delta_per_query field. If there is sufficient budget, then the subscriber query attempts to complete. It might still fail due to other reasons, in which case the charge is refunded. If there is insufficient budget the query is rejected. There might be multiple charge attempts if a single query references multiple views. In this case there must be sufficient budget for all charges or the query is rejected and charges are refunded in best effort. The budget does not have a refresh policy and can only be updated via ALTER VIEW or circumvented by creating a new view that can be queried with a fresh budget.",
+          "format": "double",
+          "type": "number"
+        },
+        "deltaBudgetRemaining": {
+          "description": "Output only. The delta budget remaining. If budget is exhausted, no more queries are allowed. Note that the budget for queries that are in progress is deducted before the query executes. If the query fails or is cancelled then the budget is refunded. In this case the amount of budget remaining can increase.",
+          "format": "double",
+          "readOnly": true,
+          "type": "number"
+        },
+        "deltaPerQuery": {
+          "description": "Optional. The delta value that is used per query. Delta represents the probability that any row will fail to be epsilon differentially private. Indicates the risk associated with exposing aggregate rows in the result of a query.",
+          "format": "double",
+          "type": "number"
+        },
+        "epsilonBudget": {
+          "description": "Optional. The total epsilon budget for all queries against the privacy-protected view. Each subscriber query against this view charges the amount of epsilon they request in their query. If there is sufficient budget, then the subscriber query attempts to complete. It might still fail due to other reasons, in which case the charge is refunded. If there is insufficient budget the query is rejected. There might be multiple charge attempts if a single query references multiple views. In this case there must be sufficient budget for all charges or the query is rejected and charges are refunded in best effort. The budget does not have a refresh policy and can only be updated via ALTER VIEW or circumvented by creating a new view that can be queried with a fresh budget.",
+          "format": "double",
+          "type": "number"
+        },
+        "epsilonBudgetRemaining": {
+          "description": "Output only. The epsilon budget remaining. If budget is exhausted, no more queries are allowed. Note that the budget for queries that are in progress is deducted before the query executes. If the query fails or is cancelled then the budget is refunded. In this case the amount of budget remaining can increase.",
+          "format": "double",
+          "readOnly": true,
+          "type": "number"
+        },
+        "maxEpsilonPerQuery": {
+          "description": "Optional. The maximum epsilon value that a query can consume. If the subscriber specifies epsilon as a parameter in a SELECT query, it must be less than or equal to this value. The epsilon parameter controls the amount of noise that is added to the groups — a higher epsilon means less noise.",
+          "format": "double",
+          "type": "number"
+        },
+        "maxGroupsContributed": {
+          "description": "Optional. The maximum groups contributed value that is used per query. Represents the maximum number of groups to which each protected entity can contribute. Changing this value does not improve or worsen privacy. The best value for accuracy and utility depends on the query and data.",
+          "format": "int64",
+          "type": "string"
+        },
+        "privacyUnitColumn": {
+          "description": "Optional. The privacy unit column associated with this policy. Differential privacy policies can only have one privacy unit column per data source object (table, view).",
+          "type": "string"
         }
       },
       "type": "object"
@@ -3766,6 +3921,46 @@
       },
       "type": "object"
     },
+    "ExternalCatalogDatasetOptions": {
+      "description": "Options defining open source compatible datasets living in the BigQuery catalog. Contains metadata of open source database, schema or namespace represented by the current dataset.",
+      "id": "ExternalCatalogDatasetOptions",
+      "properties": {
+        "defaultStorageLocationUri": {
+          "description": "Optional. The storage location URI for all tables in the dataset. Equivalent to hive metastore's database locationUri. Maximum length of 1024 characters.",
+          "type": "string"
+        },
+        "parameters": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. A map of key value pairs defining the parameters and properties of the open source schema. Maximum size of 2Mib.",
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "ExternalCatalogTableOptions": {
+      "description": "Metadata about open source compatible table. The fields contained in these options correspond to hive metastore's table level properties.",
+      "id": "ExternalCatalogTableOptions",
+      "properties": {
+        "connectionId": {
+          "description": "Optional. The connection specifying the credentials to be used to read external storage, such as Azure Blob, Cloud Storage, or S3. The connection is needed to read the open source table from BigQuery Engine. The connection_id can have the form `..` or `projects//locations//connections/`.",
+          "type": "string"
+        },
+        "parameters": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. A map of key value pairs defining the parameters and properties of the open source table. Corresponds with hive meta store table parameters. Maximum size of 4Mib.",
+          "type": "object"
+        },
+        "storageDescriptor": {
+          "$ref": "StorageDescriptor",
+          "description": "Optional. A storage descriptor containing information about the physical storage of this table."
+        }
+      },
+      "type": "object"
+    },
     "ExternalDataConfiguration": {
       "id": "ExternalDataConfiguration",
       "properties": {
@@ -3973,6 +4168,40 @@
           "description": "The numerical feature value. This is the centroid value for this feature.",
           "format": "double",
           "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "ForeignTypeInfo": {
+      "description": "Metadata about the foreign data type definition such as the system in which the type is defined.",
+      "id": "ForeignTypeInfo",
+      "properties": {
+        "typeSystem": {
+          "description": "Required. Specifies the system which defines the foreign data type.",
+          "enum": [
+            "TYPE_SYSTEM_UNSPECIFIED",
+            "HIVE"
+          ],
+          "enumDescriptions": [
+            "TypeSystem not specified.",
+            "Represents Hive data types."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ForeignViewDefinition": {
+      "description": "A view can be represented in multiple ways. Each representation has its own dialect. This message stores the metadata required for these representations.",
+      "id": "ForeignViewDefinition",
+      "properties": {
+        "dialect": {
+          "description": "Optional. Represents the dialect of the query.",
+          "type": "string"
+        },
+        "query": {
+          "description": "Required. The query that defines the view.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -4639,7 +4868,7 @@
           "description": "[Pick one] Configures an extract job."
         },
         "jobTimeoutMs": {
-          "description": "Optional. Job timeout in milliseconds. If this time limit is exceeded, BigQuery might attempt to stop the job.",
+          "description": "Optional. Job timeout in milliseconds. If this time limit is exceeded, BigQuery will attempt to stop a longer job, but may not always succeed in canceling it before the job completes. For example, a job that takes more than 60 seconds to complete has a better chance of being stopped than a job that takes 10 seconds to complete.",
           "format": "int64",
           "type": "string"
         },
@@ -4736,6 +4965,22 @@
           "$ref": "Clustering",
           "description": "Clustering specification for the destination table."
         },
+        "columnNameCharacterMap": {
+          "description": "Optional. Character map supported for column names in CSV/Parquet loads. Defaults to STRICT and can be overridden by Project Config Service. Using this option with unsupporting load formats will result in an error.",
+          "enum": [
+            "COLUMN_NAME_CHARACTER_MAP_UNSPECIFIED",
+            "STRICT",
+            "V1",
+            "V2"
+          ],
+          "enumDescriptions": [
+            "Unspecified column name character map.",
+            "Support flexible column name and reject invalid column names.",
+            "Support alphanumeric + underscore characters and names must start with a letter or underscore. Invalid column names will be normalized.",
+            "Support flexible column name. Invalid column names will be normalized."
+          ],
+          "type": "string"
+        },
         "connectionProperties": {
           "description": "Optional. Connection properties which can modify the load job behavior. Currently, only the 'session_id' connection property is supported, and is used to resolve _SESSION appearing as the dataset id.",
           "items": {
@@ -4744,7 +4989,7 @@
           "type": "array"
         },
         "copyFilesOnly": {
-          "description": "Optional. [Experimental] Configures the load job to only copy files to the destination BigLake managed table with an external storage_uri, without reading file content and writing them to new files. Copying files only is supported when: * source_uris are in the same external storage system as the destination table but they do not overlap with storage_uri of the destination table. * source_format is the same file format as the destination table. * destination_table is an existing BigLake managed table. Its schema does not have default value expression. It schema does not have type parameters other than precision and scale. * No options other than the above are specified.",
+          "description": "Optional. [Experimental] Configures the load job to copy files directly to the destination BigLake managed table, bypassing file content reading and rewriting. Copying files only is supported when all the following are true: * `source_uris` are located in the same Cloud Storage location as the destination table's `storage_uri` location. * `source_format` is `PARQUET`. * `destination_table` is an existing BigLake managed table. The table's schema does not have flexible column names. The table's columns do not have type parameters other than precision and scale. * No options other than the above are specified.",
           "type": "boolean"
         },
         "createDisposition": {
@@ -5311,7 +5556,7 @@
             "description": "Job resource usage breakdown by reservation.",
             "properties": {
               "name": {
-                "description": "Reservation name or \"unreserved\" for on-demand resources usage.",
+                "description": "Reservation name or \"unreserved\" for on-demand resource usage and multi-statement queries.",
                 "type": "string"
               },
               "slotMs": {
@@ -5547,7 +5792,7 @@
             "description": "Job resource usage breakdown by reservation.",
             "properties": {
               "name": {
-                "description": "Reservation name or \"unreserved\" for on-demand resources usage.",
+                "description": "Reservation name or \"unreserved\" for on-demand resource usage and multi-statement queries.",
                 "type": "string"
               },
               "slotMs": {
@@ -5753,6 +5998,38 @@
         "state": {
           "description": "Output only. Running state of the job. Valid states include 'PENDING', 'RUNNING', and 'DONE'.",
           "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "JoinRestrictionPolicy": {
+      "description": "Represents privacy policy associated with \"join restrictions\". Join restriction gives data providers the ability to enforce joins on the 'join_allowed_columns' when data is queried from a privacy protected view.",
+      "id": "JoinRestrictionPolicy",
+      "properties": {
+        "joinAllowedColumns": {
+          "description": "Optional. The only columns that joins are allowed on. This field is must be specified for join_conditions JOIN_ANY and JOIN_ALL and it cannot be set for JOIN_BLOCKED.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "joinCondition": {
+          "description": "Optional. Specifies if a join is required or not on queries for the view. Default is JOIN_CONDITION_UNSPECIFIED.",
+          "enum": [
+            "JOIN_CONDITION_UNSPECIFIED",
+            "JOIN_ANY",
+            "JOIN_ALL",
+            "JOIN_NOT_REQUIRED",
+            "JOIN_BLOCKED"
+          ],
+          "enumDescriptions": [
+            "A join is neither required nor restricted on any column. Default value.",
+            "A join is required on at least one of the specified columns.",
+            "A join is required on all specified columns.",
+            "A join is not required, but if present it is only permitted on 'join_allowed_columns'",
+            "Joins are blocked for all queries."
+          ],
           "type": "string"
         }
       },
@@ -5964,7 +6241,7 @@
             "View is invalidated because it was refreshed with a time zone other than that of the current job.",
             "View is outside the time travel window.",
             "View is inaccessible to the user because of a fine-grained security policy on one of its base tables.",
-            "One of the view's base tables is too stale. For example, the cached metadata of a biglake table needs to be updated."
+            "One of the view's base tables is too stale. For example, the cached metadata of a BigLake external table needs to be updated."
           ],
           "type": "string"
         },
@@ -5980,7 +6257,7 @@
       "id": "MaterializedViewDefinition",
       "properties": {
         "allowNonIncrementalDefinition": {
-          "description": "Optional. This option declares authors intention to construct a materialized view that will not be refreshed incrementally.",
+          "description": "Optional. This option declares the intention to construct a materialized view that isn't refreshed incrementally.",
           "type": "boolean"
         },
         "enableRefresh": {
@@ -6107,7 +6384,8 @@
             "RANDOM_FOREST_REGRESSOR",
             "RANDOM_FOREST_CLASSIFIER",
             "TENSORFLOW_LITE",
-            "ONNX"
+            "ONNX",
+            "TRANSFORM_ONLY"
           ],
           "enumDescriptions": [
             "Default value.",
@@ -6133,7 +6411,8 @@
             "Random forest regressor model.",
             "Random forest classifier model.",
             "An imported TensorFlow Lite model.",
-            "An imported ONNX model."
+            "An imported ONNX model.",
+            "Model to capture the manual preprocessing logic in the transform clause."
           ],
           "readOnly": true,
           "type": "string"
@@ -6276,7 +6555,8 @@
             "RANDOM_FOREST_REGRESSOR",
             "RANDOM_FOREST_CLASSIFIER",
             "TENSORFLOW_LITE",
-            "ONNX"
+            "ONNX",
+            "TRANSFORM_ONLY"
           ],
           "enumDescriptions": [
             "Default value.",
@@ -6302,7 +6582,8 @@
             "Random forest regressor model.",
             "Random forest classifier model.",
             "An imported TensorFlow Lite model.",
-            "An imported ONNX model."
+            "An imported ONNX model.",
+            "Model to capture the manual preprocessing logic in the transform clause."
           ],
           "readOnly": true,
           "type": "string"
@@ -6430,6 +6711,33 @@
         "enumAsString": {
           "description": "Optional. Indicates whether to infer Parquet ENUM logical type as STRING instead of BYTES by default.",
           "type": "boolean"
+        },
+        "mapTargetType": {
+          "description": "Optional. Indicates how to represent a Parquet map if present.",
+          "enum": [
+            "MAP_TARGET_TYPE_UNSPECIFIED",
+            "ARRAY_OF_STRUCT"
+          ],
+          "enumDescriptions": [
+            "In this mode, the map will have the following schema: struct map_field_name { repeated struct key_value { key value } }.",
+            "In this mode, the map will have the following schema: repeated struct map_field_name { key value }."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "PartitionSkew": {
+      "description": "Partition skew detailed information.",
+      "id": "PartitionSkew",
+      "properties": {
+        "skewSources": {
+          "description": "Output only. Source stages which produce skewed data.",
+          "items": {
+            "$ref": "SkewSource"
+          },
+          "readOnly": true,
+          "type": "array"
         }
       },
       "type": "object"
@@ -6439,23 +6747,21 @@
       "id": "PartitionedColumn",
       "properties": {
         "field": {
-          "description": "Output only. The name of the partition column.",
-          "readOnly": true,
+          "description": "Required. The name of the partition column.",
           "type": "string"
         }
       },
       "type": "object"
     },
     "PartitioningDefinition": {
-      "description": "The partitioning information, which includes managed table and external table partition information.",
+      "description": "The partitioning information, which includes managed table, external table and metastore partitioned table partition information.",
       "id": "PartitioningDefinition",
       "properties": {
         "partitionedColumn": {
-          "description": "Output only. Details about each partitioning column. BigQuery native tables only support 1 partitioning column. Other table types may support 0, 1 or more partitioning columns.",
+          "description": "Optional. Details about each partitioning column. This field is output only for all partitioning types other than metastore partitioned tables. BigQuery native tables only support 1 partitioning column. Other table types may support 0, 1 or more partitioning columns. For metastore partitioned tables, the order must match the definition order in the Hive Metastore, where it must match the physical layout of the table. For example, CREATE TABLE a_table(id BIGINT, name STRING) PARTITIONED BY (city STRING, state STRING). In this case the values must be ['city', 'state'] in that order.",
           "items": {
             "$ref": "PartitionedColumn"
           },
-          "readOnly": true,
           "type": "array"
         }
       },
@@ -6555,6 +6861,14 @@
         "aggregationThresholdPolicy": {
           "$ref": "AggregationThresholdPolicy",
           "description": "Optional. Policy used for aggregation thresholds."
+        },
+        "differentialPrivacyPolicy": {
+          "$ref": "DifferentialPrivacyPolicy",
+          "description": "Optional. Policy used for differential privacy."
+        },
+        "joinRestrictionPolicy": {
+          "$ref": "JoinRestrictionPolicy",
+          "description": "Optional. Join restriction policy is outside of the one of policies, since this policy can be set along with other policies. This policy gives data providers the ability to enforce joins on the 'join_allowed_columns' when data is queried from a privacy protected view."
         }
       },
       "type": "object"
@@ -6965,7 +7279,7 @@
       "id": "RangePartitioning",
       "properties": {
         "field": {
-          "description": "Required. [Experimental] The table is partitioned by this field. The field must be a top-level NULLABLE/REQUIRED field. The only supported type is INTEGER/INT64.",
+          "description": "Required. The name of the column to partition the table on. It must be a top-level, INT64 column whose mode is NULLABLE or REQUIRED.",
           "type": "string"
         },
         "range": {
@@ -7139,6 +7453,25 @@
         },
         "speechRecognizer": {
           "description": "Output only. The name of the speech recognizer to use for speech recognition. The expected format is `projects/{project}/locations/{location}/recognizers/{recognizer}`. Customers can specify this field at model creation. If not specified, a default recognizer `projects/{model project}/locations/global/recognizers/_` will be used. See more details at [recognizers](https://cloud.google.com/speech-to-text/v2/docs/reference/rest/v2/projects.locations.recognizers)",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "RestrictionConfig": {
+      "id": "RestrictionConfig",
+      "properties": {
+        "type": {
+          "description": "Output only. Specifies the type of dataset/table restriction.",
+          "enum": [
+            "RESTRICTION_TYPE_UNSPECIFIED",
+            "RESTRICTED_DATA_EGRESS"
+          ],
+          "enumDescriptions": [
+            "Should never be used.",
+            "Restrict data egress. See [Data egress](/bigquery/docs/analytics-hub-introduction#data_egress) for more details."
+          ],
           "readOnly": true,
           "type": "string"
         }
@@ -7526,6 +7859,28 @@
       },
       "type": "object"
     },
+    "SerDeInfo": {
+      "description": "Serializer and deserializer information.",
+      "id": "SerDeInfo",
+      "properties": {
+        "name": {
+          "description": "Optional. Name of the SerDe. The maximum length is 256 characters.",
+          "type": "string"
+        },
+        "parameters": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. Key-value pairs that define the initialization parameters for the serialization library. Maximum size 10 Kib.",
+          "type": "object"
+        },
+        "serializationLibrary": {
+          "description": "Required. Specifies a fully-qualified class name of the serialization library that is responsible for the translation of data between table representation and the underlying low-level input and output format structures. The maximum length is 256 characters.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "SessionInfo": {
       "description": "[Preview] Information related to sessions.",
       "id": "SessionInfo",
@@ -7549,6 +7904,19 @@
         "updateMask": {
           "description": "OPTIONAL: A FieldMask specifying which fields of the policy to modify. Only the fields in the mask will be modified. If no mask is provided, the following default mask is used: `paths: \"bindings, etag\"`",
           "format": "google-fieldmask",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SkewSource": {
+      "description": "Details about source stages which produce skewed data.",
+      "id": "SkewSource",
+      "properties": {
+        "stageId": {
+          "description": "Output only. Stage id of the skew source stage.",
+          "format": "int64",
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -7732,6 +8100,11 @@
           "readOnly": true,
           "type": "boolean"
         },
+        "partitionSkew": {
+          "$ref": "PartitionSkew",
+          "description": "Output only. Partition skew in the stage.",
+          "readOnly": true
+        },
         "slotContention": {
           "description": "Output only. True if the stage has a slot contention issue.",
           "readOnly": true,
@@ -7848,6 +8221,29 @@
             "$ref": "StandardSqlField"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "StorageDescriptor": {
+      "description": "Contains information about how a table's data is stored and accessed by open source query engines.",
+      "id": "StorageDescriptor",
+      "properties": {
+        "inputFormat": {
+          "description": "Optional. Specifies the fully qualified class name of the InputFormat (e.g. \"org.apache.hadoop.hive.ql.io.orc.OrcInputFormat\"). The maximum length is 128 characters.",
+          "type": "string"
+        },
+        "locationUri": {
+          "description": "Optional. The physical location of the table (e.g. 'gs://spark-dataproc-data/pangea-data/case_sensitive/' or 'gs://spark-dataproc-data/pangea-data/*'). The maximum length is 2056 bytes.",
+          "type": "string"
+        },
+        "outputFormat": {
+          "description": "Optional. Specifies the fully qualified class name of the OutputFormat (e.g. \"org.apache.hadoop.hive.ql.io.orc.OrcOutputFormat\"). The maximum length is 128 characters.",
+          "type": "string"
+        },
+        "serdeInfo": {
+          "$ref": "SerDeInfo",
+          "description": "Optional. Serializer and deserializer information."
         }
       },
       "type": "object"
@@ -7972,6 +8368,10 @@
           "format": "int64",
           "type": "string"
         },
+        "externalCatalogTableOptions": {
+          "$ref": "ExternalCatalogTableOptions",
+          "description": "Optional. Options defining open source compatible table."
+        },
         "externalDataConfiguration": {
           "$ref": "ExternalDataConfiguration",
           "description": "Optional. Describes the data format, location, and other properties of a table stored outside of BigQuery. By defining these properties, the data source can then be queried as if it were a standard BigQuery table."
@@ -8043,6 +8443,12 @@
           "readOnly": true,
           "type": "string"
         },
+        "numCurrentPhysicalBytes": {
+          "description": "Output only. Number of physical bytes used by current live data storage. This data is not kept in real time, and might be delayed by a few seconds to a few minutes.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
         "numLongTermBytes": {
           "description": "Output only. The number of logical bytes in the table that are considered \"long-term storage\".",
           "format": "int64",
@@ -8099,8 +8505,7 @@
         },
         "partitionDefinition": {
           "$ref": "PartitioningDefinition",
-          "description": "Output only. The partition information for all table formats, including managed partitioned tables, hive partitioned tables, and iceberg partitioned tables.",
-          "readOnly": true
+          "description": "Optional. The partition information for all table formats, including managed partitioned tables, hive partitioned tables, iceberg partitioned, and metastore partitioned tables. This field is only populated for metastore partitioned tables. For other table formats, this is an output only field."
         },
         "rangePartitioning": {
           "$ref": "RangePartitioning",
@@ -8125,6 +8530,11 @@
           },
           "description": "[Optional] The tags associated with this table. Tag keys are globally unique. See additional information on [tags](https://cloud.google.com/iam/docs/tags-access-control#definitions). An object containing a list of \"key\": value pairs. The key is the namespaced friendly name of the tag key, e.g. \"12345/environment\" where 12345 is parent id. The value is the friendly short name of the tag value, e.g. \"production\".",
           "type": "object"
+        },
+        "restrictions": {
+          "$ref": "RestrictionConfig",
+          "description": "Optional. Output only. Restriction config for table. If set, restrict certain accesses on the table based on the config. See [Data egress](/bigquery/docs/analytics-hub-introduction#data_egress) for more details.",
+          "readOnly": true
         },
         "schema": {
           "$ref": "TableSchema",
@@ -8394,6 +8804,10 @@
           },
           "type": "array"
         },
+        "foreignTypeDefinition": {
+          "description": "Optional. Definition of the foreign data type. Only valid for top-level schema fields (not nested fields). If the type is FOREIGN, this field is required.",
+          "type": "string"
+        },
         "maxLength": {
           "description": "Optional. Maximum length of values of this field for STRINGS or BYTES. If max_length is not specified, no maximum length constraint is imposed on this field. If type = \"STRING\", then max_length represents the maximum UTF-8 length of strings in this field. If type = \"BYTES\", then max_length represents the maximum number of bytes in this field. It is invalid to set this field if type ≠ \"STRING\" and ≠ \"BYTES\".",
           "format": "int64",
@@ -8633,7 +9047,7 @@
           "readOnly": true
         },
         "replicationIntervalMs": {
-          "description": "Required. Specifies the interval at which the source table is polled for updates.",
+          "description": "Optional. Specifies the interval at which the source table is polled for updates. It's Optional. If not specified, default replication interval would be applied.",
           "format": "int64",
           "type": "string"
         },
@@ -8686,6 +9100,10 @@
             "$ref": "TableFieldSchema"
           },
           "type": "array"
+        },
+        "foreignTypeInfo": {
+          "$ref": "ForeignTypeInfo",
+          "description": "Optional. Specifies metadata of the foreign data type definition in field schema (TableFieldSchema.foreign_type_definition)."
         }
       },
       "type": "object"
@@ -9760,7 +10178,7 @@
       "id": "UndeleteDatasetRequest",
       "properties": {
         "deletionTime": {
-          "description": "Optional. The exact time when the dataset was deleted. If not specified, it will undelete the most recently deleted version.",
+          "description": "Optional. The exact time when the dataset was deleted. If not specified, the most recently deleted version is undeleted. Undeleting a dataset using deletion time is not supported.",
           "format": "google-datetime",
           "type": "string"
         }
@@ -9816,6 +10234,13 @@
       "description": "Describes the definition of a logical view.",
       "id": "ViewDefinition",
       "properties": {
+        "foreignDefinitions": {
+          "description": "Optional. Foreign view representations.",
+          "items": {
+            "$ref": "ForeignViewDefinition"
+          },
+          "type": "array"
+        },
         "privacyPolicy": {
           "$ref": "PrivacyPolicy",
           "description": "Optional. Specifices the privacy policy for the view."

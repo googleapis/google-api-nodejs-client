@@ -111,7 +111,7 @@
     "tasklists": {
       "methods": {
         "delete": {
-          "description": "Deletes the authenticated user's specified task list.",
+          "description": "Deletes the authenticated user's specified task list. If the list contains assigned tasks, both the assigned tasks and the original tasks in the assignment surface (Docs, Chat Spaces) are deleted.",
           "flatPath": "tasks/v1/users/@me/lists/{tasklist}",
           "httpMethod": "DELETE",
           "id": "tasks.tasklists.delete",
@@ -157,7 +157,7 @@
           ]
         },
         "insert": {
-          "description": "Creates a new task list and adds it to the authenticated user's task lists.",
+          "description": "Creates a new task list and adds it to the authenticated user's task lists. A user can have up to 2000 lists at a time.",
           "flatPath": "tasks/v1/users/@me/lists",
           "httpMethod": "POST",
           "id": "tasks.tasklists.insert",
@@ -175,7 +175,7 @@
           ]
         },
         "list": {
-          "description": "Returns all the authenticated user's task lists.",
+          "description": "Returns all the authenticated user's task lists. A user can have up to 2000 lists at a time.",
           "flatPath": "tasks/v1/users/@me/lists",
           "httpMethod": "GET",
           "id": "tasks.tasklists.list",
@@ -282,7 +282,7 @@
           ]
         },
         "delete": {
-          "description": "Deletes the specified task from the task list.",
+          "description": "Deletes the specified task from the task list. If the task is assigned, both the assigned task and the original task (in Docs, Chat Spaces) are deleted. To delete the assigned task only, navigate to the assignment surface and unassign the task from there.",
           "flatPath": "tasks/v1/lists/{tasklist}/tasks/{task}",
           "httpMethod": "DELETE",
           "id": "tasks.tasks.delete",
@@ -342,7 +342,7 @@
           ]
         },
         "insert": {
-          "description": "Creates a new task on the specified task list.",
+          "description": "Creates a new task on the specified task list. Tasks assigned from Docs or Chat Spaces cannot be inserted from Tasks Public API; they can only be created by assigning them from Docs or Chat Spaces. A user can have up to 20,000 non-hidden tasks per list and up to 100,000 tasks in total at a time.",
           "flatPath": "tasks/v1/lists/{tasklist}/tasks",
           "httpMethod": "POST",
           "id": "tasks.tasks.insert",
@@ -351,7 +351,7 @@
           ],
           "parameters": {
             "parent": {
-              "description": "Parent task identifier. If the task is created at the top level, this parameter is omitted. Optional.",
+              "description": "Parent task identifier. If the task is created at the top level, this parameter is omitted. An assigned task cannot be a parent task, nor can it have a parent. Setting the parent to an assigned task results in failure of the request. Optional.",
               "location": "query",
               "type": "string"
             },
@@ -379,7 +379,7 @@
           ]
         },
         "list": {
-          "description": "Returns all tasks in the specified task list.",
+          "description": "Returns all tasks in the specified task list. Does not return assigned tasks be default (from Docs, Chat Spaces). A user can have up to 20,000 non-hidden tasks per list and up to 100,000 tasks in total at a time.",
           "flatPath": "tasks/v1/lists/{tasklist}/tasks",
           "httpMethod": "GET",
           "id": "tasks.tasks.list",
@@ -418,8 +418,13 @@
               "location": "query",
               "type": "string"
             },
+            "showAssigned": {
+              "description": "Optional. Flag indicating whether tasks assigned to the current user are returned in the result. Optional. The default is False.",
+              "location": "query",
+              "type": "boolean"
+            },
             "showCompleted": {
-              "description": "Flag indicating whether completed tasks are returned in the result. Optional. The default is True. Note that showHidden must also be True to show tasks completed in first party clients, such as the web UI and Google's mobile apps.",
+              "description": "Flag indicating whether completed tasks are returned in the result. Note that showHidden must also be True to show tasks completed in first party clients, such as the web UI and Google's mobile apps. Optional. The default is True.",
               "location": "query",
               "type": "boolean"
             },
@@ -455,7 +460,7 @@
           ]
         },
         "move": {
-          "description": "Moves the specified task to another position in the task list. This can include putting it as a child task under a new parent and/or move it to a different position among its sibling tasks.",
+          "description": "Moves the specified task to another position in the destination task list. If the destination list is not specified, the task is moved within its current list. This can include putting it as a child task under a new parent and/or move it to a different position among its sibling tasks. A user can have up to 2,000 subtasks per task.",
           "flatPath": "tasks/v1/lists/{tasklist}/tasks/{task}/move",
           "httpMethod": "POST",
           "id": "tasks.tasks.move",
@@ -464,8 +469,13 @@
             "task"
           ],
           "parameters": {
+            "destinationTasklist": {
+              "description": "Optional. Destination task list identifier. If set, the task is moved from tasklist to the destinationTasklist list. Otherwise the task is moved within its current list. Recurrent tasks cannot currently be moved between lists. Optional.",
+              "location": "query",
+              "type": "string"
+            },
             "parent": {
-              "description": "New parent task identifier. If the task is moved to the top level, this parameter is omitted. Optional.",
+              "description": "New parent task identifier. If the task is moved to the top level, this parameter is omitted. Assigned tasks can not be set as parent task (have subtasks) or be moved under a parent task (become subtasks). Optional.",
               "location": "query",
               "type": "string"
             },
@@ -566,18 +576,91 @@
       }
     }
   },
-  "revision": "20240312",
+  "revision": "20240630",
   "rootUrl": "https://tasks.googleapis.com/",
   "schemas": {
+    "AssignmentInfo": {
+      "description": "Information about the source of the task assignment (Document, Chat Space).",
+      "id": "AssignmentInfo",
+      "properties": {
+        "driveResourceInfo": {
+          "$ref": "DriveResourceInfo",
+          "description": "Output only. Information about the Drive file where this task originates from. Currently, the Drive file can only be a document. This field is read-only.",
+          "readOnly": true
+        },
+        "linkToTask": {
+          "description": "Output only. An absolute link to the original task in the surface of assignment (Docs, Chat spaces, etc.).",
+          "readOnly": true,
+          "type": "string"
+        },
+        "spaceInfo": {
+          "$ref": "SpaceInfo",
+          "description": "Output only. Information about the Chat Space where this task originates from. This field is read-only.",
+          "readOnly": true
+        },
+        "surfaceType": {
+          "description": "Output only. The type of surface this assigned task originates from. Currently limited to DOCUMENT or SPACE.",
+          "enum": [
+            "CONTEXT_TYPE_UNSPECIFIED",
+            "GMAIL",
+            "DOCUMENT",
+            "SPACE"
+          ],
+          "enumDescriptions": [
+            "Unknown value for this task's context.",
+            "The task is created from Gmail.",
+            "The task is assigned from a document.",
+            "The task is assigned from a Chat Space."
+          ],
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "DriveResourceInfo": {
+      "description": "Information about the Drive resource where a task was assigned from (the document, sheet, etc.).",
+      "id": "DriveResourceInfo",
+      "properties": {
+        "driveFileId": {
+          "description": "Output only. Identifier of the file in the Drive API.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "resourceKey": {
+          "description": "Output only. Resource key required to access files shared via a shared link. Not required for all files. See also developers.google.com/drive/api/guides/resource-keys.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SpaceInfo": {
+      "description": "Information about the Chat Space where a task was assigned from.",
+      "id": "SpaceInfo",
+      "properties": {
+        "space": {
+          "description": "Output only. The Chat space where this task originates from. The format is \"spaces/{space}\".",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "Task": {
       "id": "Task",
       "properties": {
+        "assignmentInfo": {
+          "$ref": "AssignmentInfo",
+          "description": "Output only. Context information for assigned tasks. A task can be assigned to a user, currently possible from surfaces like Docs and Chat Spaces. This field is populated for tasks assigned to the current user and identifies where the task was assigned from. This field is read-only.",
+          "readOnly": true
+        },
         "completed": {
           "description": "Completion date of the task (as a RFC 3339 timestamp). This field is omitted if the task has not been completed.",
           "type": "string"
         },
         "deleted": {
-          "description": "Flag indicating whether the task has been deleted. The default is False.",
+          "description": "Flag indicating whether the task has been deleted. For assigned tasks this field is read-only. They can only be deleted by calling tasks.delete, in which case both the assigned task and the original task (in Docs or Chat Spaces) are deleted. To delete the assigned task only, navigate to the assignment surface and unassign the task from there. The default is False.",
           "type": "boolean"
         },
         "due": {
@@ -597,11 +680,12 @@
           "type": "string"
         },
         "kind": {
-          "description": "Type of the resource. This is always \"tasks#task\".",
+          "description": "Output only. Type of the resource. This is always \"tasks#task\".",
+          "readOnly": true,
           "type": "string"
         },
         "links": {
-          "description": "Collection of links. This collection is read-only.",
+          "description": "Output only. Collection of links. This collection is read-only.",
           "items": {
             "properties": {
               "description": {
@@ -619,22 +703,26 @@
             },
             "type": "object"
           },
+          "readOnly": true,
           "type": "array"
         },
         "notes": {
-          "description": "Notes describing the task. Optional.",
+          "description": "Notes describing the task. Tasks assigned from Google Docs cannot have notes. Optional. Maximum length allowed: 8192 characters.",
           "type": "string"
         },
         "parent": {
-          "description": "Parent task identifier. This field is omitted if it is a top-level task. This field is read-only. Use the \"move\" method to move the task under a different parent or to the top level.",
+          "description": "Output only. Parent task identifier. This field is omitted if it is a top-level task. Use the \"move\" method to move the task under a different parent or to the top level. A parent task can never be an assigned task (from Chat Spaces, Docs). This field is read-only.",
+          "readOnly": true,
           "type": "string"
         },
         "position": {
-          "description": "String indicating the position of the task among its sibling tasks under the same parent task or at the top level. If this string is greater than another task's corresponding position string according to lexicographical ordering, the task is positioned after the other task under the same parent task (or at the top level). This field is read-only. Use the \"move\" method to move the task to another position.",
+          "description": "Output only. String indicating the position of the task among its sibling tasks under the same parent task or at the top level. If this string is greater than another task's corresponding position string according to lexicographical ordering, the task is positioned after the other task under the same parent task (or at the top level). Use the \"move\" method to move the task to another position.",
+          "readOnly": true,
           "type": "string"
         },
         "selfLink": {
-          "description": "URL pointing to this task. Used to retrieve, update, or delete this task.",
+          "description": "Output only. URL pointing to this task. Used to retrieve, update, or delete this task.",
+          "readOnly": true,
           "type": "string"
         },
         "status": {
@@ -642,15 +730,17 @@
           "type": "string"
         },
         "title": {
-          "description": "Title of the task.",
+          "description": "Title of the task. Maximum length allowed: 1024 characters.",
           "type": "string"
         },
         "updated": {
-          "description": "Last modification time of the task (as a RFC 3339 timestamp).",
+          "description": "Output only. Last modification time of the task (as a RFC 3339 timestamp).",
+          "readOnly": true,
           "type": "string"
         },
         "webViewLink": {
-          "description": "An absolute link to the task in the Google Tasks Web UI. This field is read-only.",
+          "description": "Output only. An absolute link to the task in the Google Tasks Web UI.",
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -668,19 +758,22 @@
           "type": "string"
         },
         "kind": {
-          "description": "Type of the resource. This is always \"tasks#taskList\".",
+          "description": "Output only. Type of the resource. This is always \"tasks#taskList\".",
+          "readOnly": true,
           "type": "string"
         },
         "selfLink": {
-          "description": "URL pointing to this task list. Used to retrieve, update, or delete this task list.",
+          "description": "Output only. URL pointing to this task list. Used to retrieve, update, or delete this task list.",
+          "readOnly": true,
           "type": "string"
         },
         "title": {
-          "description": "Title of the task list.",
+          "description": "Title of the task list. Maximum length allowed: 1024 characters.",
           "type": "string"
         },
         "updated": {
-          "description": "Last modification time of the task list (as a RFC 3339 timestamp).",
+          "description": "Output only. Last modification time of the task list (as a RFC 3339 timestamp).",
+          "readOnly": true,
           "type": "string"
         }
       },

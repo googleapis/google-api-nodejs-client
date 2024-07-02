@@ -1,5 +1,39 @@
 # Changelog
 
+## [4.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/localservices-v3.0.1...localservices-v4.0.0) (2024-05-02)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#3434](https://github.com/googleapis/google-api-nodejs-client/issues/3434)) ([f0db524](https://github.com/googleapis/google-api-nodejs-client/commit/f0db524bb26f05cea3dec4c0ed66b496399e3857))
+
+
+### Bug Fixes
+
+* **localservices:** update the API ([ca0c8d7](https://github.com/googleapis/google-api-nodejs-client/commit/ca0c8d7c7409cccbdf436d539119f093d3f62eec))
+
+## [3.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/localservices-v3.0.0...localservices-v3.0.1) (2024-05-02)
+
+
+### Bug Fixes
+
+* **localservices:** update the API ([ca0c8d7](https://github.com/googleapis/google-api-nodejs-client/commit/ca0c8d7c7409cccbdf436d539119f093d3f62eec))
+
+## [3.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/localservices-v2.0.0...localservices-v3.0.0) (2024-04-04)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#3434](https://github.com/googleapis/google-api-nodejs-client/issues/3434)) ([f0db524](https://github.com/googleapis/google-api-nodejs-client/commit/f0db524bb26f05cea3dec4c0ed66b496399e3857))
+
 ## [2.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/localservices-v1.0.5...localservices-v2.0.0) (2024-03-12)
 
 

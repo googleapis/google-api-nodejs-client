@@ -937,6 +937,25 @@
     },
     "query": {
       "methods": {
+        "debugSearch": {
+          "description": "Returns Debug information for Cloud Search Query API provides the search method. **Note:** This API requires a standard end user account to execute. A service account can't perform Query API requests directly; to use a service account to perform queries, set up [Google Workspace domain-wide delegation of authority](https://developers.google.com/cloud-search/docs/guides/delegation/).",
+          "flatPath": "v1/query:debugSearch",
+          "httpMethod": "POST",
+          "id": "cloudsearch.query.debugSearch",
+          "parameterOrder": [],
+          "parameters": {},
+          "path": "v1/query:debugSearch",
+          "request": {
+            "$ref": "SearchRequest"
+          },
+          "response": {
+            "$ref": "DebugResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud_search",
+            "https://www.googleapis.com/auth/cloud_search.query"
+          ]
+        },
         "removeActivity": {
           "description": "Provides functionality to remove logged activity for a user. Currently to be used only for Chat 1p clients **Note:** This API requires a standard end user account to execute. A service account can't perform Remove Activity requests directly; to use a service account to perform queries, set up [Google Workspace domain-wide delegation of authority](https://developers.google.com/cloud-search/docs/guides/delegation/).",
           "flatPath": "v1/query:removeActivity",
@@ -2096,7 +2115,7 @@
       }
     }
   },
-  "revision": "20230831",
+  "revision": "20240529",
   "rootUrl": "https://cloudsearch.googleapis.com/",
   "schemas": {
     "Action": {
@@ -2649,6 +2668,27 @@
         "enableDebugging": {
           "description": "If you are asked by Google to help with debugging, set this field. Otherwise, ignore this field.",
           "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "DebugResponse": {
+      "description": "Debug Search Response.",
+      "id": "DebugResponse",
+      "properties": {
+        "gsrRequest": {
+          "description": "Serialized string of GenericSearchRequest.",
+          "format": "byte",
+          "type": "string"
+        },
+        "gsrResponse": {
+          "description": "Serialized string of GenericSearchResponse.",
+          "format": "byte",
+          "type": "string"
+        },
+        "searchResponse": {
+          "$ref": "SearchResponse",
+          "description": "Search response."
         }
       },
       "type": "object"
@@ -6996,6 +7036,68 @@
             "Treat the match with higher importance than body text.",
             "Treat the match with lower importance than body text.",
             "Do not match against this field during retrieval. The property can still be used for operator matching, faceting, and suggest if desired."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "RewrittenQueries": {
+      "description": "The rewritten queries returned by Apps Search Query Understanding service.",
+      "id": "RewrittenQueries",
+      "properties": {
+        "rewrittenQueries": {
+          "items": {
+            "$ref": "RewrittenQuery"
+          },
+          "type": "array"
+        },
+        "selectedQueryIndex": {
+          "description": "The index of the selected query in `rewritten_queries` that is used by QAPI to call CSSR to get search results. If none of the queries were used (i.e. they all give empty search results), `selected_query_index` would default to -1.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "RewrittenQuery": {
+      "id": "RewrittenQuery",
+      "properties": {
+        "rewrittenQuery": {
+          "type": "string"
+        },
+        "score": {
+          "format": "double",
+          "type": "number"
+        },
+        "sortBy": {
+          "enum": [
+            "SORTBY_UNSUPPORTED",
+            "SORTBY_RELEVANCY",
+            "SORTBY_LATEST",
+            "SORTBY_OLDEST",
+            "SORTBY_LARGEST",
+            "SORTBY_SMALLEST",
+            "SORTBY_MODIFY_LATEST",
+            "SORTBY_MODIFY_OLDEST",
+            "SORTBY_VIEW_LATEST",
+            "SORTBY_VIEW_OLDEST",
+            "SORTBY_CREATE_LATEST",
+            "SORTBY_CREATE_OLDEST"
+          ],
+          "enumDescriptions": [
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            ""
           ],
           "type": "string"
         }

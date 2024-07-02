@@ -675,6 +675,45 @@
                             "https://www.googleapis.com/auth/cloud-platform"
                           ]
                         },
+                        "patch": {
+                          "description": "Updates the parameters of a Network Connectivity Center group.",
+                          "flatPath": "v1/projects/{projectsId}/locations/global/hubs/{hubsId}/groups/{groupsId}",
+                          "httpMethod": "PATCH",
+                          "id": "networkconnectivity.projects.locations.global.hubs.groups.patch",
+                          "parameterOrder": [
+                            "name"
+                          ],
+                          "parameters": {
+                            "name": {
+                              "description": "Immutable. The name of the group. Group names must be unique. They use the following form: `projects/{project_number}/locations/global/hubs/{hub}/groups/{group_id}`",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/global/hubs/[^/]+/groups/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            },
+                            "requestId": {
+                              "description": "Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server knows to ignore the request if it has already been completed. The server guarantees that a request doesn't result in creation of duplicate commitments for at least 60 minutes. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check to see whether the original operation was received. If it was, the server ignores the second request. This behavior prevents clients from mistakenly creating duplicate commitments. The request ID must be a valid UUID, with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                              "location": "query",
+                              "type": "string"
+                            },
+                            "updateMask": {
+                              "description": "Optional. In the case of an update to an existing group, field mask is used to specify the fields to be overwritten. The fields specified in the update_mask are relative to the resource, not the full request. A field is overwritten if it is in the mask. If the user does not provide a mask, then all fields are overwritten.",
+                              "format": "google-fieldmask",
+                              "location": "query",
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1/{+name}",
+                          "request": {
+                            "$ref": "Group"
+                          },
+                          "response": {
+                            "$ref": "GoogleLongrunningOperation"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        },
                         "setIamPolicy": {
                           "description": "Sets the access control policy on the specified resource. Replaces any existing policy. Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.",
                           "flatPath": "v1/projects/{projectsId}/locations/global/hubs/{hubsId}/groups/{groupsId}:setIamPolicy",
@@ -911,7 +950,7 @@
                           "type": "string"
                         },
                         "requestId": {
-                          "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                          "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server knows to ignore the request if it has already been completed. The server guarantees that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
                           "location": "query",
                           "type": "string"
                         }
@@ -944,7 +983,7 @@
                           "type": "string"
                         },
                         "requestId": {
-                          "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                          "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server knows to ignore the request if it has already been completed. The server guarantees that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
                           "location": "query",
                           "type": "string"
                         }
@@ -1417,6 +1456,149 @@
                   "path": "v1/{+name}/operations",
                   "response": {
                     "$ref": "GoogleLongrunningListOperationsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            },
+            "regionalEndpoints": {
+              "methods": {
+                "create": {
+                  "description": "Creates a new RegionalEndpoint in a given project and location.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/regionalEndpoints",
+                  "httpMethod": "POST",
+                  "id": "networkconnectivity.projects.locations.regionalEndpoints.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. The parent resource's name of the RegionalEndpoint.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "regionalEndpointId": {
+                      "description": "Required. Unique id of the Regional Endpoint to be created.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server knows to ignore the request if it has already been completed. The server guarantees that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if the original operation with the same request ID was received, and if so, ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/regionalEndpoints",
+                  "request": {
+                    "$ref": "RegionalEndpoint"
+                  },
+                  "response": {
+                    "$ref": "GoogleLongrunningOperation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "delete": {
+                  "description": "Deletes a single RegionalEndpoint.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/regionalEndpoints/{regionalEndpointsId}",
+                  "httpMethod": "DELETE",
+                  "id": "networkconnectivity.projects.locations.regionalEndpoints.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the RegionalEndpoint to delete.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/regionalEndpoints/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server knows to ignore the request if it has already been completed. The server guarantees that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if the original operation with the same request ID was received, and if so, ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "GoogleLongrunningOperation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "get": {
+                  "description": "Gets details of a single RegionalEndpoint.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/regionalEndpoints/{regionalEndpointsId}",
+                  "httpMethod": "GET",
+                  "id": "networkconnectivity.projects.locations.regionalEndpoints.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Name of the RegionalEndpoint resource to get. Format: `projects/{project}/locations/{location}/regionalEndpoints/{regional_endpoint}`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/regionalEndpoints/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "RegionalEndpoint"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "Lists RegionalEndpoints in a given project and location.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/regionalEndpoints",
+                  "httpMethod": "GET",
+                  "id": "networkconnectivity.projects.locations.regionalEndpoints.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "A filter expression that filters the results listed in the response.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "orderBy": {
+                      "description": "Sort the results by a certain order.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "A page token.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The parent resource's name of the RegionalEndpoint.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/regionalEndpoints",
+                  "response": {
+                    "$ref": "ListRegionalEndpointsResponse"
                   },
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform"
@@ -2630,7 +2812,7 @@
       }
     }
   },
-  "revision": "20240228",
+  "revision": "20240618",
   "rootUrl": "https://networkconnectivity.googleapis.com/",
   "schemas": {
     "AcceptHubSpokeRequest": {
@@ -2707,6 +2889,20 @@
       },
       "type": "object"
     },
+    "AutoAccept": {
+      "description": "The auto-accept setting for a group controls whether proposed spokes are automatically attached to the hub. If auto-accept is enabled, the spoke immediately is attached to the hub and becomes part of the group. In this case, the new spoke is in the ACTIVE state. If auto-accept is disabled, the spoke goes to the INACTIVE state, and it must be reviewed and accepted by a hub administrator.",
+      "id": "AutoAccept",
+      "properties": {
+        "autoAcceptProjects": {
+          "description": "A list of project ids or project numbers for which you want to enable auto-accept. The auto-accept setting is applied to spokes being created or updated in these projects.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "Binding": {
       "description": "Associates `members`, or principals, with a `role`.",
       "id": "Binding",
@@ -2733,6 +2929,10 @@
       "description": "Allow the producer to specify which consumers can connect to it.",
       "id": "ConsumerPscConfig",
       "properties": {
+        "consumerInstanceProject": {
+          "description": "Required. The project ID or project number of the consumer project. This project is the one that the consumer uses to interact with the producer instance. From the perspective of a consumer who's created a producer instance, this is the project of the producer instance. Format: 'projects/' Eg. 'projects/consumer-project' or 'projects/1234'",
+          "type": "string"
+        },
         "disableGlobalAccess": {
           "description": "This is used in PSC consumer ForwardingRule to control whether the PSC endpoint can be accessed from another region.",
           "type": "boolean"
@@ -2741,9 +2941,21 @@
           "description": "The resource path of the consumer network where PSC connections are allowed to be created in. Note, this network does not need be in the ConsumerPscConfig.project in the case of SharedVPC. Example: projects/{projectNumOrId}/global/networks/{networkId}.",
           "type": "string"
         },
+        "producerInstanceId": {
+          "description": "Immutable. An immutable identifier for the producer instance.",
+          "type": "string"
+        },
         "project": {
           "description": "The consumer project where PSC connections are allowed to be created in.",
           "type": "string"
+        },
+        "serviceAttachmentIpAddressMap": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Output only. A map to store mapping between customer vip and target service attachment. Only service attachment with producer specified ip addresses are stored here.",
+          "readOnly": true,
+          "type": "object"
         },
         "state": {
           "description": "Output only. Overall state of PSC Connections management for this consumer psc config.",
@@ -2809,6 +3021,10 @@
         },
         "network": {
           "description": "The consumer network whose PSC forwarding rule is connected to the service attachments in this service connection map. Note that the network could be on a different project (shared VPC).",
+          "type": "string"
+        },
+        "producerInstanceId": {
+          "description": "Immutable. An immutable identifier for the producer instance.",
           "type": "string"
         },
         "project": {
@@ -2891,7 +3107,7 @@
           "type": "string"
         },
         "protocolVersion": {
-          "description": "Required. Internet protocol versions this policy-based route applies to. For this version, only IPV4 is supported.",
+          "description": "Required. Internet protocol versions this policy-based route applies to. For this version, only IPV4 is supported. IPV6 is supported in preview.",
           "enum": [
             "PROTOCOL_VERSION_UNSPECIFIED",
             "IPV4"
@@ -2980,7 +3196,7 @@
           "additionalProperties": {
             "type": "string"
           },
-          "description": "Additional structured details about this error. Keys should match /[a-zA-Z0-9-_]/ and be limited to 64 characters in length. When identifying the current value of an exceeded limit, the units should be contained in the key, not the value. For example, rather than {\"instanceLimit\": \"100/request\"}, should be returned as, {\"instanceLimitPerRequest\": \"100\"}, if the client exceeds the number of instances that can be created in a single (batch) request.",
+          "description": "Additional structured details about this error. Keys must match /a-z+/ but should ideally be lowerCamelCase. Also they must be limited to 64 characters in length. When identifying the current value of an exceeded limit, the units should be contained in the key, not the value. For example, rather than {\"instanceLimit\": \"100/request\"}, should be returned as, {\"instanceLimitPerRequest\": \"100\"}, if the client exceeds the number of instances that can be created in a single (batch) request.",
           "type": "object"
         },
         "reason": {
@@ -3021,6 +3237,10 @@
       "description": "A group represents a subset of spokes attached to a hub.",
       "id": "Group",
       "properties": {
+        "autoAccept": {
+          "$ref": "AutoAccept",
+          "description": "Optional. The auto-accept setting for this group."
+        },
         "createTime": {
           "description": "Output only. The time the group was created.",
           "format": "google-datetime",
@@ -3040,6 +3260,11 @@
         },
         "name": {
           "description": "Immutable. The name of the group. Group names must be unique. They use the following form: `projects/{project_number}/locations/global/hubs/{hub}/groups/{group_id}`",
+          "type": "string"
+        },
+        "routeTable": {
+          "description": "Output only. The name of the route table that corresponds to this group. They use the following form: `projects/{project_number}/locations/global/hubs/{hub_id}/routeTables/{route_table_id}`",
+          "readOnly": true,
           "type": "string"
         },
         "state": {
@@ -3097,6 +3322,10 @@
           "description": "An optional description of the hub.",
           "type": "string"
         },
+        "exportPsc": {
+          "description": "Optional. Whether Private Service Connect transitivity is enabled for the hub. If true, Private Service Connect endpoints in VPC spokes attached to the hub are made accessible to other VPC spokes attached to the hub. The default value is false.",
+          "type": "boolean"
+        },
         "labels": {
           "additionalProperties": {
             "type": "string"
@@ -3106,6 +3335,32 @@
         },
         "name": {
           "description": "Immutable. The name of the hub. Hub names must be unique. They use the following form: `projects/{project_number}/locations/global/hubs/{hub_id}`",
+          "type": "string"
+        },
+        "policyMode": {
+          "description": "Optional. The policy mode of this hub. This field can be either PRESET or CUSTOM. If unspecified, the policy_mode defaults to PRESET.",
+          "enum": [
+            "POLICY_MODE_UNSPECIFIED",
+            "PRESET"
+          ],
+          "enumDescriptions": [
+            "Policy mode is unspecified. It defaults to PRESET with preset_topology = MESH.",
+            "Hub uses one of the preset topologies."
+          ],
+          "type": "string"
+        },
+        "presetTopology": {
+          "description": "Optional. The topology implemented in this hub. Currently, this field is only used when policy_mode = PRESET. The available preset topologies are MESH and STAR. If preset_topology is unspecified and policy_mode = PRESET, the preset_topology defaults to MESH. When policy_mode = CUSTOM, the preset_topology is set to PRESET_TOPOLOGY_UNSPECIFIED.",
+          "enum": [
+            "PRESET_TOPOLOGY_UNSPECIFIED",
+            "MESH",
+            "STAR"
+          ],
+          "enumDescriptions": [
+            "Preset topology is unspecified. When policy_mode = PRESET, it defaults to MESH.",
+            "Mesh topology is implemented. Group `default` is automatically created. All spokes in the hub are added to group `default`.",
+            "Star topology is implemented. Two groups, `center` and `edge`, are automatically created along with hub creation. Spokes have to join one of the groups during creation."
+          ],
           "type": "string"
         },
         "routeTables": {
@@ -3209,7 +3464,7 @@
           "type": "string"
         },
         "network": {
-          "description": "The URL or resource ID of the network in which to reserve the internal range. The network cannot be deleted if there are any reserved internal ranges referring to it. Legacy networks are not supported. This can only be specified for a global internal address. Example: - URL: /compute/v1/projects/{project}/global/networks/{resourceId} - ID: network123",
+          "description": "The URL or resource ID of the network in which to reserve the internal range. The network cannot be deleted if there are any reserved internal ranges referring to it. Legacy networks are not supported. For example: https://www.googleapis.com/compute/v1/projects/{project}/locations/global/networks/{network} projects/{project}/locations/global/networks/{network} {network}",
           "type": "string"
         },
         "overlaps": {
@@ -3291,6 +3546,13 @@
       "description": "A collection of VLAN attachment resources. These resources should be redundant attachments that all advertise the same prefixes to Google Cloud. Alternatively, in active/passive configurations, all attachments should be capable of advertising the same prefixes.",
       "id": "LinkedInterconnectAttachments",
       "properties": {
+        "includeImportRanges": {
+          "description": "Optional. IP ranges allowed to be included during import from hub.(does not control transit connectivity) The only allowed value for now is \"ALL_IPV4_RANGES\".",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
         "siteToSiteDataTransfer": {
           "description": "A value that controls whether site-to-site data transfer is enabled for these resources. Data transfer is available only in [supported locations](https://cloud.google.com/network-connectivity/docs/network-connectivity-center/concepts/locations).",
           "type": "boolean"
@@ -3314,6 +3576,13 @@
       "description": "A collection of router appliance instances. If you configure multiple router appliance instances to receive data from the same set of sites outside of Google Cloud, we recommend that you associate those instances with the same spoke.",
       "id": "LinkedRouterApplianceInstances",
       "properties": {
+        "includeImportRanges": {
+          "description": "Optional. IP ranges allowed to be included during import from hub.(does not control transit connectivity) The only allowed value for now is \"ALL_IPV4_RANGES\".",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
         "instances": {
           "description": "The list of router appliance instances.",
           "items": {
@@ -3344,6 +3613,13 @@
           },
           "type": "array"
         },
+        "includeExportRanges": {
+          "description": "Optional. IP ranges allowed to be included from peering.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
         "uri": {
           "description": "Required. The URI of the VPC network resource.",
           "type": "string"
@@ -3355,6 +3631,13 @@
       "description": "A collection of Cloud VPN tunnel resources. These resources should be redundant HA VPN tunnels that all advertise the same prefixes to Google Cloud. Alternatively, in a passive/active configuration, all tunnels should be capable of advertising the same prefixes.",
       "id": "LinkedVpnTunnels",
       "properties": {
+        "includeImportRanges": {
+          "description": "Optional. IP ranges allowed to be included during import from hub.(does not control transit connectivity) The only allowed value for now is \"ALL_IPV4_RANGES\".",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
         "siteToSiteDataTransfer": {
           "description": "A value that controls whether site-to-site data transfer is enabled for these resources. Data transfer is available only in [supported locations](https://cloud.google.com/network-connectivity/docs/network-connectivity-center/concepts/locations).",
           "type": "boolean"
@@ -3504,6 +3787,31 @@
           "description": "Policy-based routes to be returned.",
           "items": {
             "$ref": "PolicyBasedRoute"
+          },
+          "type": "array"
+        },
+        "unreachable": {
+          "description": "Locations that could not be reached.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ListRegionalEndpointsResponse": {
+      "description": "Response for ListRegionalEndpoints.",
+      "id": "ListRegionalEndpointsResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "The next pagination token in the List response. It should be used as page_token for the following request. An empty value means no more result.",
+          "type": "string"
+        },
+        "regionalEndpoints": {
+          "description": "Regional endpoints to be returned.",
+          "items": {
+            "$ref": "RegionalEndpoint"
           },
           "type": "array"
         },
@@ -3750,6 +4058,63 @@
       },
       "type": "object"
     },
+    "NextHopInterconnectAttachment": {
+      "description": "A route next hop that leads to an interconnect attachment resource.",
+      "id": "NextHopInterconnectAttachment",
+      "properties": {
+        "siteToSiteDataTransfer": {
+          "description": "Indicates whether site-to-site data transfer is allowed for this interconnect attachment resource. Data transfer is available only in [supported locations](https://cloud.google.com/network-connectivity/docs/network-connectivity-center/concepts/locations).",
+          "type": "boolean"
+        },
+        "uri": {
+          "description": "The URI of the interconnect attachment resource.",
+          "type": "string"
+        },
+        "vpcNetwork": {
+          "description": "The VPC network where this interconnect attachment is located.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "NextHopRouterApplianceInstance": {
+      "description": "A route next hop that leads to a Router appliance instance.",
+      "id": "NextHopRouterApplianceInstance",
+      "properties": {
+        "siteToSiteDataTransfer": {
+          "description": "Indicates whether site-to-site data transfer is allowed for this Router appliance instance resource. Data transfer is available only in [supported locations](https://cloud.google.com/network-connectivity/docs/network-connectivity-center/concepts/locations).",
+          "type": "boolean"
+        },
+        "uri": {
+          "description": "The URI of the Router appliance instance.",
+          "type": "string"
+        },
+        "vpcNetwork": {
+          "description": "The VPC network where this VM is located.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "NextHopVPNTunnel": {
+      "description": "A route next hop that leads to a VPN tunnel resource.",
+      "id": "NextHopVPNTunnel",
+      "properties": {
+        "siteToSiteDataTransfer": {
+          "description": "Indicates whether site-to-site data transfer is allowed for this VPN tunnel resource. Data transfer is available only in [supported locations](https://cloud.google.com/network-connectivity/docs/network-connectivity-center/concepts/locations).",
+          "type": "boolean"
+        },
+        "uri": {
+          "description": "The URI of the VPN tunnel resource.",
+          "type": "string"
+        },
+        "vpcNetwork": {
+          "description": "The VPC network where this VPN tunnel is located.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "NextHopVpcNetwork": {
       "id": "NextHopVpcNetwork",
       "properties": {
@@ -3836,7 +4201,7 @@
       "type": "object"
     },
     "PolicyBasedRoute": {
-      "description": "Policy-based routes route L4 network traffic based on not just destination IP address, but also source IP address, protocol, and more. If a policy-based route conflicts with other types of routes, the policy-based route always take precedence.",
+      "description": "Policy-based routes route L4 network traffic based on not just destination IP address, but also source IP address, protocol, and more. If a policy-based route conflicts with other types of routes, the policy-based route always takes precedence.",
       "id": "PolicyBasedRoute",
       "properties": {
         "createTime": {
@@ -3889,7 +4254,7 @@
           ],
           "enumDescriptions": [
             "Default value.",
-            "Use the routes from the default routing tables (system-generated routes, custom routes, peering route) to determine the next hop. This will effectively exclude matching packets being applied on other PBRs with a lower priority."
+            "Use the routes from the default routing tables (system-generated routes, custom routes, peering route) to determine the next hop. This effectively excludes matching packets being applied on other PBRs with a lower priority."
           ],
           "type": "string"
         },
@@ -3911,7 +4276,7 @@
         },
         "virtualMachine": {
           "$ref": "VirtualMachine",
-          "description": "Optional. VM instances to which this policy-based route applies to."
+          "description": "Optional. VM instances that this policy-based route applies to."
         },
         "warnings": {
           "description": "Output only. If potential misconfigurations are detected for this route, this field will be populated with warning messages.",
@@ -3939,9 +4304,28 @@
       "description": "Configuration used for Private Service Connect connections. Used when Infrastructure is PSC.",
       "id": "PscConfig",
       "properties": {
+        "allowedGoogleProducersResourceHierarchyLevel": {
+          "description": "Optional. List of Projects, Folders, or Organizations from where the Producer instance can be within. For example, a network administrator can provide both 'organizations/foo' and 'projects/bar' as allowed_google_producers_resource_hierarchy_levels. This allowlists this network to connect with any Producer instance within the 'foo' organization or the 'bar' project. By default, allowed_google_producers_resource_hierarchy_level is empty. The format for each allowed_google_producers_resource_hierarchy_level is / where is one of 'projects', 'folders', or 'organizations' and is either the ID or the number of the resource type. Format for each allowed_google_producers_resource_hierarchy_level value: 'projects/' or 'folders/' or 'organizations/' Eg. [projects/my-project-id, projects/567, folders/891, organizations/123]",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
         "limit": {
           "description": "Optional. Max number of PSC connections for this policy.",
           "format": "int64",
+          "type": "string"
+        },
+        "producerInstanceLocation": {
+          "description": "Required. ProducerInstanceLocation is used to specify which authorization mechanism to use to determine which projects the Producer instance can be within.",
+          "enum": [
+            "PRODUCER_INSTANCE_LOCATION_UNSPECIFIED",
+            "CUSTOM_RESOURCE_HIERARCHY_LEVELS"
+          ],
+          "enumDescriptions": [
+            "Producer instance location is not specified. When this option is chosen, then the PSC connections created by this ServiceConnectionPolicy must be within the same project as the Producer instance. This is the default ProducerInstanceLocation value. To allow for PSC connections from this network to other networks, use the CUSTOM_RESOURCE_HIERARCHY_LEVELS option.",
+            "Producer instance must be within one of the values provided in allowed_google_producers_resource_hierarchy_level."
+          ],
           "type": "string"
         },
         "subnetworks": {
@@ -4000,6 +4384,10 @@
           "description": "The last Compute Engine operation to setup PSC connection.",
           "type": "string"
         },
+        "producerInstanceId": {
+          "description": "Immutable. An immutable identifier for the producer instance.",
+          "type": "string"
+        },
         "pscConnectionId": {
           "description": "The PSC connection id of the PSC forwarding rule.",
           "type": "string"
@@ -4025,6 +4413,82 @@
             "The connection is being created.",
             "The connection is being deleted."
           ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "RegionalEndpoint": {
+      "description": "The RegionalEndpoint resource.",
+      "id": "RegionalEndpoint",
+      "properties": {
+        "accessType": {
+          "description": "Required. The access type of this regional endpoint. This field is reflected in the PSC Forwarding Rule configuration to enable global access.",
+          "enum": [
+            "ACCESS_TYPE_UNSPECIFIED",
+            "GLOBAL",
+            "REGIONAL"
+          ],
+          "enumDescriptions": [
+            "An invalid type as the default case.",
+            "This regional endpoint is accessible from all regions.",
+            "This regional endpoint is only accessible from the same region where it resides."
+          ],
+          "type": "string"
+        },
+        "address": {
+          "description": "Optional. The IP Address of the Regional Endpoint. When no address is provided, an IP from the subnetwork is allocated. Use one of the following formats: * IPv4 address as in `10.0.0.1` * Address resource URI as in `projects/{project}/regions/{region}/addresses/{address_name}`",
+          "type": "string"
+        },
+        "createTime": {
+          "description": "Output only. Time when the RegionalEndpoint was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "description": {
+          "description": "Optional. A description of this resource.",
+          "type": "string"
+        },
+        "ipAddress": {
+          "deprecated": true,
+          "description": "Output only. The literal IP address of the PSC Forwarding Rule created on behalf of the customer. This field is deprecated. Use address instead.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "User-defined labels.",
+          "type": "object"
+        },
+        "name": {
+          "description": "Output only. The name of a RegionalEndpoint. Format: `projects/{project}/locations/{location}/regionalEndpoints/{regional_endpoint}`.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "network": {
+          "description": "The name of the VPC network for this private regional endpoint. Format: `projects/{project}/global/networks/{network}`",
+          "type": "string"
+        },
+        "pscForwardingRule": {
+          "description": "Output only. The resource reference of the PSC Forwarding Rule created on behalf of the customer. Format: `//compute.googleapis.com/projects/{project}/regions/{region}/forwardingRules/{forwarding_rule_name}`",
+          "readOnly": true,
+          "type": "string"
+        },
+        "subnetwork": {
+          "description": "The name of the subnetwork from which the IP address will be allocated. Format: `projects/{project}/regions/{region}/subnetworks/{subnetwork}`",
+          "type": "string"
+        },
+        "targetGoogleApi": {
+          "description": "Required. The service endpoint this private regional endpoint connects to. Format: `{apiname}.{region}.p.rep.googleapis.com` Example: \"cloudkms.us-central1.p.rep.googleapis.com\".",
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. Time when the RegionalEndpoint was updated.",
+          "format": "google-datetime",
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -4094,9 +4558,27 @@
           "description": "Immutable. The name of the route. Route names must be unique. Route names use the following form: `projects/{project_number}/locations/global/hubs/{hub}/routeTables/{route_table_id}/routes/{route_id}`",
           "type": "string"
         },
+        "nextHopInterconnectAttachment": {
+          "$ref": "NextHopInterconnectAttachment",
+          "description": "Immutable. The next-hop VLAN attachment for packets on this route."
+        },
+        "nextHopRouterApplianceInstance": {
+          "$ref": "NextHopRouterApplianceInstance",
+          "description": "Immutable. The next-hop Router appliance instance for packets on this route."
+        },
         "nextHopVpcNetwork": {
           "$ref": "NextHopVpcNetwork",
           "description": "Immutable. The destination VPC network for packets on this route."
+        },
+        "nextHopVpnTunnel": {
+          "$ref": "NextHopVPNTunnel",
+          "description": "Immutable. The next-hop VPN tunnel for packets on this route."
+        },
+        "priority": {
+          "description": "Output only. The priority of this route. Priority is used to break ties in cases where a destination matches more than one route. In these cases the route with the lowest-numbered priority value wins.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
         },
         "spoke": {
           "description": "Immutable. The spoke that this route leads to. Example: projects/12345/locations/global/spokes/SPOKE",
@@ -4134,12 +4616,14 @@
           "enum": [
             "ROUTE_TYPE_UNSPECIFIED",
             "VPC_PRIMARY_SUBNET",
-            "VPC_SECONDARY_SUBNET"
+            "VPC_SECONDARY_SUBNET",
+            "DYNAMIC_ROUTE"
           ],
           "enumDescriptions": [
             "No route type information specified",
             "The route leads to a destination within the primary address range of the VPC network's subnet.",
-            "The route leads to a destination within the secondary address range of the VPC network's subnet."
+            "The route leads to a destination within the secondary address range of the VPC network's subnet.",
+            "The route leads to a destination in a dynamic route. Dynamic routes are derived from Border Gateway Protocol (BGP) advertisements received from an NCC hybrid spoke."
           ],
           "readOnly": true,
           "type": "string"
@@ -4837,11 +5321,11 @@
       "type": "object"
     },
     "VirtualMachine": {
-      "description": "VM instances to which this policy-based route applies to.",
+      "description": "VM instances that this policy-based route applies to.",
       "id": "VirtualMachine",
       "properties": {
         "tags": {
-          "description": "Optional. A list of VM instance tags the this policy-based route applies to. VM instances that have ANY of tags specified here will install this PBR.",
+          "description": "Optional. A list of VM instance tags that this policy-based route applies to. VM instances that have ANY of tags specified here installs this PBR.",
           "items": {
             "type": "string"
           },
@@ -4863,7 +5347,7 @@
           ],
           "enumDescriptions": [
             "Default value.",
-            "The policy-based route is not active and functioning. Common causes are the dependent network was deleted or the resource project was turned off.",
+            "The policy-based route is not active and functioning. Common causes are that the dependent network was deleted or the resource project was turned off.",
             "The policy-based route is being modified (e.g. created/deleted) at this time."
           ],
           "readOnly": true,

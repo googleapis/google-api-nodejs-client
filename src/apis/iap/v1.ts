@@ -148,40 +148,48 @@ export namespace iap_v1 {
    */
   export interface Schema$AccessSettings {
     /**
-     * Settings to configure and enable allowed domains.
+     * Optional. Settings to configure and enable allowed domains.
      */
     allowedDomainsSettings?: Schema$AllowedDomainsSettings;
     /**
-     * Configuration to allow cross-origin requests via IAP.
+     * Optional. Configuration to allow cross-origin requests via IAP.
      */
     corsSettings?: Schema$CorsSettings;
     /**
-     * GCIP claims and endpoint configurations for 3p identity providers.
+     * Optional. GCIP claims and endpoint configurations for 3p identity providers.
      */
     gcipSettings?: Schema$GcipSettings;
     /**
-     * Settings to configure IAP's OAuth behavior.
+     * Optional. Identity sources that IAP can use to authenticate the end user. Only one identity source can be configured.
+     */
+    identitySources?: string[] | null;
+    /**
+     * Optional. Settings to configure IAP's OAuth behavior.
      */
     oauthSettings?: Schema$OAuthSettings;
     /**
-     * Settings to configure Policy delegation for apps hosted in tenant projects. INTERNAL_ONLY.
+     * Optional. Settings to configure Policy delegation for apps hosted in tenant projects. INTERNAL_ONLY.
      */
     policyDelegationSettings?: Schema$PolicyDelegationSettings;
     /**
-     * Settings to configure reauthentication policies in IAP.
+     * Optional. Settings to configure reauthentication policies in IAP.
      */
     reauthSettings?: Schema$ReauthSettings;
+    /**
+     * Optional. Settings to configure the workforce identity federation, including workforce pools and OAuth 2.0 settings.
+     */
+    workforceIdentitySettings?: Schema$WorkforceIdentitySettings;
   }
   /**
    * Configuration for IAP allowed domains. Lets you to restrict access to an app and allow access to only the domains that you list.
    */
   export interface Schema$AllowedDomainsSettings {
     /**
-     * List of trusted domains.
+     * Optional. List of trusted domains.
      */
     domains?: string[] | null;
     /**
-     * Configuration for customers to opt in for the feature.
+     * Optional. Configuration for customers to opt in for the feature.
      */
     enable?: boolean | null;
   }
@@ -190,11 +198,11 @@ export namespace iap_v1 {
    */
   export interface Schema$ApplicationSettings {
     /**
-     * Customization for Access Denied page.
+     * Optional. Customization for Access Denied page.
      */
     accessDeniedPageSettings?: Schema$AccessDeniedPageSettings;
     /**
-     * Settings to configure attribute propagation.
+     * Optional. Settings to configure attribute propagation.
      */
     attributePropagationSettings?: Schema$AttributePropagationSettings;
     /**
@@ -202,7 +210,7 @@ export namespace iap_v1 {
      */
     cookieDomain?: string | null;
     /**
-     * Settings to configure IAP's behavior for a service mesh.
+     * Optional. Settings to configure IAP's behavior for a service mesh.
      */
     csmSettings?: Schema$CsmSettings;
   }
@@ -211,15 +219,15 @@ export namespace iap_v1 {
    */
   export interface Schema$AttributePropagationSettings {
     /**
-     * Whether the provided attribute propagation settings should be evaluated on user requests. If set to true, attributes returned from the expression will be propagated in the set output credentials.
+     * Optional. Whether the provided attribute propagation settings should be evaluated on user requests. If set to true, attributes returned from the expression will be propagated in the set output credentials.
      */
     enable?: boolean | null;
     /**
-     * Raw string CEL expression. Must return a list of attributes. A maximum of 45 attributes can be selected. Expressions can select different attribute types from `attributes`: `attributes.saml_attributes`, `attributes.iap_attributes`. The following functions are supported: - filter `.filter(, )`: Returns a subset of `` where `` is true for every item. - in ` in `: Returns true if `` contains ``. - selectByName `.selectByName()`: Returns the attribute in `` with the given `` name, otherwise returns empty. - emitAs `.emitAs()`: Sets the `` name field to the given `` for propagation in selected output credentials. - strict `.strict()`: Ignores the `x-goog-iap-attr-` prefix for the provided `` when propagating with the `HEADER` output credential, such as request headers. - append `.append()` OR `.append()`: Appends the provided `` or `` to the end of ``. Example expression: `attributes.saml_attributes.filter(x, x.name in ['test']).append(attributes.iap_attributes.selectByName('exact').emitAs('custom').strict())`
+     * Optional. Raw string CEL expression. Must return a list of attributes. A maximum of 45 attributes can be selected. Expressions can select different attribute types from `attributes`: `attributes.saml_attributes`, `attributes.iap_attributes`. The following functions are supported: - filter `.filter(, )`: Returns a subset of `` where `` is true for every item. - in ` in `: Returns true if `` contains ``. - selectByName `.selectByName()`: Returns the attribute in `` with the given `` name, otherwise returns empty. - emitAs `.emitAs()`: Sets the `` name field to the given `` for propagation in selected output credentials. - strict `.strict()`: Ignores the `x-goog-iap-attr-` prefix for the provided `` when propagating with the `HEADER` output credential, such as request headers. - append `.append()` OR `.append()`: Appends the provided `` or `` to the end of ``. Example expression: `attributes.saml_attributes.filter(x, x.name in ['test']).append(attributes.iap_attributes.selectByName('exact').emitAs('custom').strict())`
      */
     expression?: string | null;
     /**
-     * Which output credentials attributes selected by the CEL expression should be propagated in. All attributes will be fully duplicated in each selected output credential.
+     * Optional. Which output credentials attributes selected by the CEL expression should be propagated in. All attributes will be fully duplicated in each selected output credential.
      */
     outputCredentials?: string[] | null;
   }
@@ -313,7 +321,7 @@ export namespace iap_v1 {
      */
     loginPageUri?: string | null;
     /**
-     * GCIP tenant ids that are linked to the IAP resource. tenant_ids could be a string beginning with a number character to indicate authenticating with GCIP tenant flow, or in the format of _ to indicate authenticating with GCIP agent flow. If agent flow is used, tenant_ids should only contain one single element, while for tenant flow, tenant_ids can contain multiple elements.
+     * Optional. GCIP tenant ids that are linked to the IAP resource. tenant_ids could be a string beginning with a number character to indicate authenticating with GCIP tenant flow, or in the format of _ to indicate authenticating with GCIP agent flow. If agent flow is used, tenant_ids should only contain one single element, while for tenant flow, tenant_ids can contain multiple elements.
      */
     tenantIds?: string[] | null;
   }
@@ -340,11 +348,11 @@ export namespace iap_v1 {
    */
   export interface Schema$IapSettings {
     /**
-     * Top level wrapper for all access related setting in IAP
+     * Optional. Top level wrapper for all access related setting in IAP
      */
     accessSettings?: Schema$AccessSettings;
     /**
-     * Top level wrapper for all application related settings in IAP
+     * Optional. Top level wrapper for all application related settings in IAP
      */
     applicationSettings?: Schema$ApplicationSettings;
     /**
@@ -405,6 +413,31 @@ export namespace iap_v1 {
     tunnelDestGroups?: Schema$TunnelDestGroup[];
   }
   /**
+   * Used for calculating the next state of tags on the resource being passed for the CheckCustomConstraints RPC call. The detail evaluation of each field is described in go/op-create-update-time-tags and go/tags-in-orgpolicy-requests.
+   */
+  export interface Schema$NextStateOfTags {
+    tagsFullState?: Schema$TagsFullState;
+    tagsFullStateForChildResource?: Schema$TagsFullStateForChildResource;
+    tagsPartialState?: Schema$TagsPartialState;
+  }
+  /**
+   * The OAuth 2.0 Settings
+   */
+  export interface Schema$OAuth2 {
+    /**
+     * The OAuth 2.0 client ID registered in the workforce identity federation OAuth 2.0 Server.
+     */
+    clientId?: string | null;
+    /**
+     * Input only. The OAuth 2.0 client secret created while registering the client ID.
+     */
+    clientSecret?: string | null;
+    /**
+     * Output only. SHA256 hash value for the client secret. This field is returned by IAP when the settings are retrieved.
+     */
+    clientSecretSha256?: string | null;
+  }
+  /**
    * Configuration for OAuth login&consent flow behavior as well as for OAuth Credentials.
    */
   export interface Schema$OAuthSettings {
@@ -413,7 +446,7 @@ export namespace iap_v1 {
      */
     loginHint?: string | null;
     /**
-     * List of client ids allowed to use IAP programmatically.
+     * Optional. List of client ids allowed to use IAP programmatically.
      */
     programmaticClients?: string[] | null;
   }
@@ -468,7 +501,7 @@ export namespace iap_v1 {
      */
     region?: string | null;
     /**
-     * Resource type. Types are defined in IAM's .service files. Valid values for type might be 'gce', 'gcs', 'project', 'account' etc.
+     * Resource type. Types are defined in IAM's .service files. Valid values for type might be 'storage_buckets', 'compute_instances', 'resourcemanager_customers', 'billing_accounts', etc.
      */
     type?: string | null;
   }
@@ -477,7 +510,7 @@ export namespace iap_v1 {
    */
   export interface Schema$ReauthSettings {
     /**
-     * Reauth session lifetime, how long before a user has to reauthenticate again.
+     * Optional. Reauth session lifetime, how long before a user has to reauthenticate again.
      */
     maxAge?: string | null;
     /**
@@ -485,7 +518,7 @@ export namespace iap_v1 {
      */
     method?: string | null;
     /**
-     * How IAP determines the effective policy in cases of hierarchical policies. Policies are merged from higher in the hierarchy to lower in the hierarchy.
+     * Optional. How IAP determines the effective policy in cases of hierarchical policies. Policies are merged from higher in the hierarchy to lower in the hierarchy.
      */
     policyType?: string | null;
   }
@@ -503,15 +536,19 @@ export namespace iap_v1 {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * Name of the resource on which conditions will be evaluated. Must use the Relative Resource Name of the resource, which is the URI path of the resource without the leading "/". Examples are "projects/_/buckets/[BUCKET-ID]" for storage buckets or "projects/[PROJECT-ID]/global/firewalls/[FIREWALL-ID]" for a firewall. This field is required for evaluating conditions with rules on resource names. For a `list` permission check, the resource.name value must be set to the parent resource. If the parent resource is a project, this field should be left unset.
+     * The **relative** name of the resource, which is the URI path of the resource without the leading "/". See https://cloud.google.com/iam/docs/conditions-resource-attributes#resource-name for examples used by other GCP Services. This field is **required** for services integrated with resource-attribute-based IAM conditions and/or CustomOrgPolicy. This field requires special handling for parents-only permissions such as `create` and `list`. See the document linked below for further details. See go/iam-conditions-sig-g3#populate-resource-attributes for specific details on populating this field.
      */
     name?: string | null;
     /**
-     * The name of the service this resource belongs to. It is configured using the official_service_name of the Service as defined in service configurations under //configs/cloud/resourcetypes. For example, the official_service_name of cloud resource manager service is set as 'cloudresourcemanager.googleapis.com' according to //configs/cloud/resourcetypes/google/cloud/resourcemanager/prod.yaml
+     * Used for calculating the next state of tags on the resource being passed for Custom Org Policy enforcement. NOTE: Only one of the tags representations (i.e. numeric or namespaced) should be populated. The input tags will be converted to the same representation before the calculation. This behavior intentionally may differ from other tags related fields in CheckPolicy request, which may require both formats to be passed in. IMPORTANT: If tags are unchanged, this field should not be set.
+     */
+    nextStateOfTags?: Schema$NextStateOfTags;
+    /**
+     * The name of the service this resource belongs to. It is configured using the official_service_name of the Service as defined in service configurations under //configs/cloud/resourcetypes. For example, the official_service_name of cloud resource manager service is set as 'cloudresourcemanager.googleapis.com' according to //configs/cloud/resourcetypes/google/cloud/resourcemanager/prod.yaml This field is **required** for services integrated with resource-attribute-based IAM conditions and/or CustomOrgPolicy. This field requires special handling for parents-only permissions such as `create` and `list`. See the document linked below for further details. See go/iam-conditions-sig-g3#populate-resource-attributes for specific details on populating this field.
      */
     service?: string | null;
     /**
-     * The public resource type name of the resource on which conditions will be evaluated. It is configured using the official_name of the ResourceType as defined in service configurations under //configs/cloud/resourcetypes. For example, the official_name for GCP projects is set as 'cloudresourcemanager.googleapis.com/Project' according to //configs/cloud/resourcetypes/google/cloud/resourcemanager/prod.yaml For details see go/iam-conditions-integration-guide.
+     * The public resource type name of the resource. It is configured using the official_name of the ResourceType as defined in service configurations under //configs/cloud/resourcetypes. For example, the official_name for GCP projects is set as 'cloudresourcemanager.googleapis.com/Project' according to //configs/cloud/resourcetypes/google/cloud/resourcemanager/prod.yaml This field is **required** for services integrated with resource-attribute-based IAM conditions and/or CustomOrgPolicy. This field requires special handling for parents-only permissions such as `create` and `list`. See the document linked below for further details. See go/iam-conditions-sig-g3#populate-resource-attributes for specific details on populating this field.
      */
     type?: string | null;
   }
@@ -523,6 +560,28 @@ export namespace iap_v1 {
      * REQUIRED: The complete policy to be applied to the `resource`. The size of the policy is limited to a few 10s of KB. An empty policy is a valid policy but certain Google Cloud services (such as Projects) might reject them.
      */
     policy?: Schema$Policy;
+  }
+  export interface Schema$TagsFullState {
+    /**
+     * If TagsFullState is initialized, the values in this field fully represent all the tags in the next state (the current tag values are not used). If tags.size() == 0, the next state of tags would be no tags for evaluation purposes. Only one type of tags reference (numeric or namespace) is required to be passed.
+     */
+    tags?: {[key: string]: string} | null;
+  }
+  export interface Schema$TagsFullStateForChildResource {
+    /**
+     * If TagsFullStateForChildResource is initialized, the values in this field represent all the tags in the next state for the child resource. Only one type of tags reference (numeric or namespace) is required to be passed. IMPORTANT: This field should only be used when the target resource IAM policy name is UNKNOWN and the resource's parent IAM policy name is being passed in the request.
+     */
+    tags?: {[key: string]: string} | null;
+  }
+  export interface Schema$TagsPartialState {
+    /**
+     * Keys of the tags that should be removed for evaluation purposes. IMPORTANT: Currently only numeric references are supported. Once support for namespace references is added, both the tag references (numeric and namespace) will be removed.
+     */
+    tagKeysToRemove?: string[] | null;
+    /**
+     * Tags that’ll be updated or added to the current state of tags for evaluation purposes. If a key exists in both "tags_to_upsert" and "tag_keys_to_remove", the one in "tag_keys_to_remove" is ignored. Only one type of tags reference (numeric or namespace) is required to be passed.
+     */
+    tagsToUpsert?: {[key: string]: string} | null;
   }
   /**
    * Request message for `TestIamPermissions` method.
@@ -547,22 +606,35 @@ export namespace iap_v1 {
    */
   export interface Schema$TunnelDestGroup {
     /**
-     * Unordered list. List of CIDRs that this group applies to.
+     * Optional. Unordered list. List of CIDRs that this group applies to.
      */
     cidrs?: string[] | null;
     /**
-     * Unordered list. List of FQDNs that this group applies to.
+     * Optional. Unordered list. List of FQDNs that this group applies to.
      */
     fqdns?: string[] | null;
     /**
-     * Required. Immutable. Identifier for the TunnelDestGroup. Must be unique within the project and contain only lower case letters (a-z) and dashes (-).
+     * Identifier. Identifier for the TunnelDestGroup. Must be unique within the project and contain only lower case letters (a-z) and dashes (-).
      */
     name?: string | null;
   }
   /**
-   * API requires a return message, but currently all response strings will fit in the status and public message. In the future, this response can hold AST validation info.
+   * IAP Expression Linter endpoint returns empty response body.
    */
   export interface Schema$ValidateIapAttributeExpressionResponse {}
+  /**
+   * WorkforceIdentitySettings allows customers to configure workforce pools and OAuth 2.0 settings to gate their applications using a third-party IdP with access control.
+   */
+  export interface Schema$WorkforceIdentitySettings {
+    /**
+     * OAuth 2.0 settings for IAP to perform OIDC flow with workforce identity federation services.
+     */
+    oauth2?: Schema$OAuth2;
+    /**
+     * The workforce pool resources. Only one workforce pool is accepted.
+     */
+    workforcePools?: string[] | null;
+  }
 
   export class Resource$Projects {
     context: APIRequestContext;
@@ -653,6 +725,7 @@ export namespace iap_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -737,6 +810,7 @@ export namespace iap_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -827,6 +901,7 @@ export namespace iap_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -956,6 +1031,7 @@ export namespace iap_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1041,6 +1117,7 @@ export namespace iap_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -1131,6 +1208,7 @@ export namespace iap_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1226,6 +1304,7 @@ export namespace iap_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1323,6 +1402,7 @@ export namespace iap_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1492,6 +1572,7 @@ export namespace iap_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1577,6 +1658,7 @@ export namespace iap_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -1662,6 +1744,7 @@ export namespace iap_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1757,6 +1840,7 @@ export namespace iap_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1844,6 +1928,7 @@ export namespace iap_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -1911,7 +1996,7 @@ export namespace iap_v1 {
   export interface Params$Resource$Projects$Iap_tunnel$Locations$Destgroups$Patch
     extends StandardParameters {
     /**
-     * Required. Immutable. Identifier for the TunnelDestGroup. Must be unique within the project and contain only lower case letters (a-z) and dashes (-).
+     * Identifier. Identifier for the TunnelDestGroup. Must be unique within the project and contain only lower case letters (a-z) and dashes (-).
      */
     name?: string;
     /**
@@ -1999,6 +2084,7 @@ export namespace iap_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2086,6 +2172,7 @@ export namespace iap_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2172,6 +2259,7 @@ export namespace iap_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2266,6 +2354,7 @@ export namespace iap_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2353,6 +2442,7 @@ export namespace iap_v1 {
               '$1'
             ),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -2447,6 +2537,7 @@ export namespace iap_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),

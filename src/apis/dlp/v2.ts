@@ -185,6 +185,10 @@ export namespace dlp_v2 {
    */
   export interface Schema$GooglePrivacyDlpV2AllOtherBigQueryTables {}
   /**
+   * Match database resources not covered by any other filter.
+   */
+  export interface Schema$GooglePrivacyDlpV2AllOtherDatabaseResources {}
+  /**
    * Apply to all text.
    */
   export interface Schema$GooglePrivacyDlpV2AllText {}
@@ -426,7 +430,7 @@ export namespace dlp_v2 {
     replacementValue?: Schema$GooglePrivacyDlpV2Value;
   }
   /**
-   * Generalization function that buckets values based on ranges. The ranges and replacement values are dynamically provided by the user for custom behavior, such as 1-30 -\> LOW 31-65 -\> MEDIUM 66-100 -\> HIGH This can be used on data of type: number, long, string, timestamp. If the bound `Value` type differs from the type of data being transformed, we will first attempt converting the type of the data to be transformed to match the type of the bound before comparing. See https://cloud.google.com/sensitive-data-protection/docs/concepts-bucketing to learn more.
+   * Generalization function that buckets values based on ranges. The ranges and replacement values are dynamically provided by the user for custom behavior, such as 1-30 -\> LOW, 31-65 -\> MEDIUM, 66-100 -\> HIGH. This can be used on data of type: number, long, string, timestamp. If the bound `Value` type differs from the type of data being transformed, we will first attempt converting the type of the data to be transformed to match the type of the bound before comparing. See https://cloud.google.com/sensitive-data-protection/docs/concepts-bucketing to learn more.
    */
   export interface Schema$GooglePrivacyDlpV2BucketingConfig {
     /**
@@ -527,6 +531,56 @@ export namespace dlp_v2 {
      * Common characters to not transform when masking. Useful to avoid removing punctuation.
      */
     commonCharactersToIgnore?: string | null;
+  }
+  /**
+   * Target used to match against for discovery with Cloud SQL tables.
+   */
+  export interface Schema$GooglePrivacyDlpV2CloudSqlDiscoveryTarget {
+    /**
+     * In addition to matching the filter, these conditions must be true before a profile is generated.
+     */
+    conditions?: Schema$GooglePrivacyDlpV2DiscoveryCloudSqlConditions;
+    /**
+     * Disable profiling for database resources that match this filter.
+     */
+    disabled?: Schema$GooglePrivacyDlpV2Disabled;
+    /**
+     * Required. The tables the discovery cadence applies to. The first target with a matching filter will be the one to apply to a table.
+     */
+    filter?: Schema$GooglePrivacyDlpV2DiscoveryCloudSqlFilter;
+    /**
+     * How often and when to update profiles. New tables that match both the filter and conditions are scanned as quickly as possible depending on system capacity.
+     */
+    generationCadence?: Schema$GooglePrivacyDlpV2DiscoveryCloudSqlGenerationCadence;
+  }
+  /**
+   * Use IAM authentication to connect. This requires the Cloud SQL IAM feature to be enabled on the instance, which is not the default for Cloud SQL. See https://cloud.google.com/sql/docs/postgres/authentication and https://cloud.google.com/sql/docs/mysql/authentication.
+   */
+  export interface Schema$GooglePrivacyDlpV2CloudSqlIamCredential {}
+  /**
+   * Cloud SQL connection properties.
+   */
+  export interface Schema$GooglePrivacyDlpV2CloudSqlProperties {
+    /**
+     * Built-in IAM authentication (must be configured in Cloud SQL).
+     */
+    cloudSqlIam?: Schema$GooglePrivacyDlpV2CloudSqlIamCredential;
+    /**
+     * Optional. Immutable. The Cloud SQL instance for which the connection is defined. Only one connection per instance is allowed. This can only be set at creation time, and cannot be updated. It is an error to use a connection_name from different project or region than the one that holds the connection. For example, a Connection resource for Cloud SQL connection_name `project-id:us-central1:sql-instance` must be created under the parent `projects/project-id/locations/us-central1`
+     */
+    connectionName?: string | null;
+    /**
+     * Required. The database engine used by the Cloud SQL instance that this connection configures.
+     */
+    databaseEngine?: string | null;
+    /**
+     * Required. DLP will limit its connections to max_connections. Must be 2 or greater.
+     */
+    maxConnections?: number | null;
+    /**
+     * A username and password stored in Secret Manager.
+     */
+    usernamePassword?: Schema$GooglePrivacyDlpV2SecretManagerCredential;
   }
   /**
    * Message representing a set of files in Cloud Storage.
@@ -721,6 +775,27 @@ export namespace dlp_v2 {
     conditions?: Schema$GooglePrivacyDlpV2Condition[];
   }
   /**
+   * A data connection to allow DLP to profile data in locations that require additional configuration.
+   */
+  export interface Schema$GooglePrivacyDlpV2Connection {
+    /**
+     * Connect to a Cloud SQL instance.
+     */
+    cloudSql?: Schema$GooglePrivacyDlpV2CloudSqlProperties;
+    /**
+     * Output only. Set if status == ERROR, to provide additional details. Will store the last 10 errors sorted with the most recent first.
+     */
+    errors?: Schema$GooglePrivacyDlpV2Error[];
+    /**
+     * Output only. Name of the connection: `projects/{project\}/locations/{location\}/connections/{name\}`.
+     */
+    name?: string | null;
+    /**
+     * Required. The connection's state in its lifecycle.
+     */
+    state?: string | null;
+  }
+  /**
    * Represents a container that may contain DLP findings. Examples of a container include a file, table, or database record.
    */
   export interface Schema$GooglePrivacyDlpV2Container {
@@ -802,6 +877,15 @@ export namespace dlp_v2 {
      * Location within a row or record of a database table.
      */
     recordLocation?: Schema$GooglePrivacyDlpV2RecordLocation;
+  }
+  /**
+   * Request message for CreateConnection.
+   */
+  export interface Schema$GooglePrivacyDlpV2CreateConnectionRequest {
+    /**
+     * Required. The connection resource.
+     */
+    connection?: Schema$GooglePrivacyDlpV2Connection;
   }
   /**
    * Request message for CreateDeidentifyTemplate.
@@ -1019,6 +1103,66 @@ export namespace dlp_v2 {
     surrogateType?: Schema$GooglePrivacyDlpV2SurrogateType;
   }
   /**
+   * Match database resources using regex filters. Examples of database resources are tables, views, and stored procedures.
+   */
+  export interface Schema$GooglePrivacyDlpV2DatabaseResourceCollection {
+    /**
+     * A collection of regular expressions to match a database resource against.
+     */
+    includeRegexes?: Schema$GooglePrivacyDlpV2DatabaseResourceRegexes;
+  }
+  /**
+   * Identifies a single database resource, like a table within a database.
+   */
+  export interface Schema$GooglePrivacyDlpV2DatabaseResourceReference {
+    /**
+     * Required. Name of a database within the instance.
+     */
+    database?: string | null;
+    /**
+     * Required. Name of a database resource, for example, a table within the database.
+     */
+    databaseResource?: string | null;
+    /**
+     * Required. The instance where this resource is located. For example: Cloud SQL instance ID.
+     */
+    instance?: string | null;
+    /**
+     * Required. If within a project-level config, then this must match the config's project ID.
+     */
+    projectId?: string | null;
+  }
+  /**
+   * A pattern to match against one or more database resources. At least one pattern must be specified. Regular expressions use RE2 [syntax](https://github.com/google/re2/wiki/Syntax); a guide can be found under the google/re2 repository on GitHub.
+   */
+  export interface Schema$GooglePrivacyDlpV2DatabaseResourceRegex {
+    /**
+     * Regex to test the database name against. If empty, all databases match.
+     */
+    databaseRegex?: string | null;
+    /**
+     * Regex to test the database resource's name against. An example of a database resource name is a table's name. Other database resource names like view names could be included in the future. If empty, all database resources match.
+     */
+    databaseResourceNameRegex?: string | null;
+    /**
+     * Regex to test the instance name against. If empty, all instances match.
+     */
+    instanceRegex?: string | null;
+    /**
+     * For organizations, if unset, will match all projects. Has no effect for configurations created within a project.
+     */
+    projectIdRegex?: string | null;
+  }
+  /**
+   * A collection of regular expressions to determine what database resources to match against.
+   */
+  export interface Schema$GooglePrivacyDlpV2DatabaseResourceRegexes {
+    /**
+     * A group of regular expression patterns to match against one or more database resources. Maximum of 100 entries. The sum of all regular expression's length can't exceed 10 KiB.
+     */
+    patterns?: Schema$GooglePrivacyDlpV2DatabaseResourceRegex[];
+  }
+  /**
    * A task to execute when a data profile has been generated.
    */
   export interface Schema$GooglePrivacyDlpV2DataProfileAction {
@@ -1039,6 +1183,10 @@ export namespace dlp_v2 {
      * Column data profile column
      */
     columnProfile?: Schema$GooglePrivacyDlpV2ColumnDataProfile;
+    /**
+     * File store data profile column.
+     */
+    fileStoreProfile?: Schema$GooglePrivacyDlpV2FileStoreDataProfile;
     /**
      * Table data profile column
      */
@@ -1120,6 +1268,10 @@ export namespace dlp_v2 {
      * The event that caused the Pub/Sub message to be sent.
      */
     event?: string | null;
+    /**
+     * If `DetailLevel` is `FILE_STORE_PROFILE` this will be fully populated. Otherwise, if `DetailLevel` is `RESOURCE_NAME`, then only `name` and `file_store_path` will be populated.
+     */
+    fileStoreProfile?: Schema$GooglePrivacyDlpV2FileStoreDataProfile;
     /**
      * If `DetailLevel` is `TABLE_PROFILE` this will be fully populated. Otherwise, if `DetailLevel` is `RESOURCE_NAME`, then only `name` and `full_resource` will be populated.
      */
@@ -1470,9 +1622,56 @@ export namespace dlp_v2 {
      */
     otherTables?: Schema$GooglePrivacyDlpV2AllOtherBigQueryTables;
     /**
+     * The table to scan. Discovery configurations including this can only include one DiscoveryTarget (the DiscoveryTarget with this TableReference).
+     */
+    tableReference?: Schema$GooglePrivacyDlpV2TableReference;
+    /**
      * A specific set of tables for this filter to apply to. A table collection must be specified in only one filter per config. If a table id or dataset is empty, Cloud DLP assumes all tables in that collection must be profiled. Must specify a project ID.
      */
     tables?: Schema$GooglePrivacyDlpV2BigQueryTableCollection;
+  }
+  /**
+   * Requirements that must be true before a table is profiled for the first time.
+   */
+  export interface Schema$GooglePrivacyDlpV2DiscoveryCloudSqlConditions {
+    /**
+     * Optional. Database engines that should be profiled. Optional. Defaults to ALL_SUPPORTED_DATABASE_ENGINES if unspecified.
+     */
+    databaseEngines?: string[] | null;
+    /**
+     * Data profiles will only be generated for the database resource types specified in this field. If not specified, defaults to [DATABASE_RESOURCE_TYPE_ALL_SUPPORTED_TYPES].
+     */
+    types?: string[] | null;
+  }
+  /**
+   * Determines what tables will have profiles generated within an organization or project. Includes the ability to filter by regular expression patterns on project ID, location, instance, database, and database resource name.
+   */
+  export interface Schema$GooglePrivacyDlpV2DiscoveryCloudSqlFilter {
+    /**
+     * A specific set of database resources for this filter to apply to.
+     */
+    collection?: Schema$GooglePrivacyDlpV2DatabaseResourceCollection;
+    /**
+     * The database resource to scan. Targets including this can only include one target (the target with this database resource reference).
+     */
+    databaseResourceReference?: Schema$GooglePrivacyDlpV2DatabaseResourceReference;
+    /**
+     * Catch-all. This should always be the last target in the list because anything above it will apply first. Should only appear once in a configuration. If none is specified, a default one will be added automatically.
+     */
+    others?: Schema$GooglePrivacyDlpV2AllOtherDatabaseResources;
+  }
+  /**
+   * How often existing tables should have their profiles refreshed. New tables are scanned as quickly as possible depending on system capacity.
+   */
+  export interface Schema$GooglePrivacyDlpV2DiscoveryCloudSqlGenerationCadence {
+    /**
+     * Data changes (non-schema changes) in Cloud SQL tables can't trigger reprofiling. If you set this field, profiles are refreshed at this frequency regardless of whether the underlying tables have changed. Defaults to never.
+     */
+    refreshFrequency?: string | null;
+    /**
+     * When to reprofile if the schema has changed.
+     */
+    schemaModifiedCadence?: Schema$GooglePrivacyDlpV2SchemaModifiedCadence;
   }
   /**
    * Configuration for discovery to scan resources for profile generation. Only one discovery configuration may exist per organization, folder, or project. The generated data profiles are retained according to the [data retention policy] (https://cloud.google.com/sensitive-data-protection/docs/data-profiles#retention).
@@ -1583,6 +1782,14 @@ export namespace dlp_v2 {
      * BigQuery target for Discovery. The first target to match a table will be the one applied.
      */
     bigQueryTarget?: Schema$GooglePrivacyDlpV2BigQueryDiscoveryTarget;
+    /**
+     * Cloud SQL target for Discovery. The first target to match a table will be the one applied.
+     */
+    cloudSqlTarget?: Schema$GooglePrivacyDlpV2CloudSqlDiscoveryTarget;
+    /**
+     * Discovery target that looks for credentials and secrets stored in cloud resource metadata and reports them as vulnerabilities to Security Command Center. Only one target of this type is allowed.
+     */
+    secretsTarget?: Schema$GooglePrivacyDlpV2SecretsDiscoveryTarget;
   }
   /**
    * Combines all of the information about a DLP job.
@@ -1664,6 +1871,10 @@ export namespace dlp_v2 {
      */
     details?: Schema$GoogleRpcStatus;
     /**
+     * Additional information about the error.
+     */
+    extraInfo?: string | null;
+    /**
      * The times the error occurred. List includes the oldest timestamp and the last 9 timestamps.
      */
     timestamps?: string[] | null;
@@ -1720,7 +1931,7 @@ export namespace dlp_v2 {
    */
   export interface Schema$GooglePrivacyDlpV2Export {
     /**
-     * Store all table and column profiles in an existing table or a new table in an existing dataset. Each re-generation will result in a new row in BigQuery.
+     * Store all table and column profiles in an existing table or a new table in an existing dataset. Each re-generation will result in new rows in BigQuery. Data is inserted using [streaming insert](https://cloud.google.com/blog/products/bigquery/life-of-a-bigquery-streaming-insert) and so data may be in the buffer for a period of time after the profile has finished. The Pub/Sub notification is sent before the streaming buffer is guaranteed to be written, so data may not be instantly visible to queries by the time your topic receives the Pub/Sub notification.
      */
     profileTable?: Schema$GooglePrivacyDlpV2BigQueryTable;
   }
@@ -1768,6 +1979,61 @@ export namespace dlp_v2 {
     primitiveTransformation?: Schema$GooglePrivacyDlpV2PrimitiveTransformation;
   }
   /**
+   * The file cluster summary.
+   */
+  export interface Schema$GooglePrivacyDlpV2FileClusterSummary {
+    /**
+     * The data risk level of this cluster. RISK_LOW if nothing has been scanned.
+     */
+    dataRiskLevel?: Schema$GooglePrivacyDlpV2DataRiskLevel;
+    /**
+     * A list of Errors detected while scanning this cluster. The list is truncated to 10 per cluster.
+     */
+    errors?: Schema$GooglePrivacyDlpV2Error[];
+    /**
+     * The file cluster type.
+     */
+    fileClusterType?: Schema$GooglePrivacyDlpV2FileClusterType;
+    /**
+     * A sample of file types scanned in this cluster. Empty if no files were scanned.
+     */
+    fileExtensionsScanned?: Schema$GooglePrivacyDlpV2FileExtensionInfo[];
+    /**
+     * A sample of file types seen in this cluster. Empty if no files were seen.
+     */
+    fileExtensionsSeen?: Schema$GooglePrivacyDlpV2FileExtensionInfo[];
+    /**
+     * InfoTypes detected in this cluster.
+     */
+    fileStoreInfoTypeSummaries?: Schema$GooglePrivacyDlpV2FileStoreInfoTypeSummary[];
+    /**
+     * True if no files exist in this cluster. If the bucket had more files than could be listed, this will be false even if no files for this cluster were seen and file_extensions_seen is empty.
+     */
+    noFilesExist?: boolean | null;
+    /**
+     * The sensitivity score of this cluster. The score will be SENSITIVITY_LOW if nothing has been scanned.
+     */
+    sensitivityScore?: Schema$GooglePrivacyDlpV2SensitivityScore;
+  }
+  /**
+   * Message used to identify file cluster type being profiled.
+   */
+  export interface Schema$GooglePrivacyDlpV2FileClusterType {
+    /**
+     * Cluster type.
+     */
+    cluster?: string | null;
+  }
+  /**
+   * Information regarding the discovered file extension.
+   */
+  export interface Schema$GooglePrivacyDlpV2FileExtensionInfo {
+    /**
+     * The file extension if set. (aka .pdf, .jpg, .txt)
+     */
+    fileExtension?: string | null;
+  }
+  /**
    * Set of files to scan.
    */
   export interface Schema$GooglePrivacyDlpV2FileSet {
@@ -1779,6 +2045,112 @@ export namespace dlp_v2 {
      * The Cloud Storage url of the file(s) to scan, in the format `gs:///`. Trailing wildcard in the path is allowed. If the url ends in a trailing slash, the bucket or directory represented by the url will be scanned non-recursively (content in sub-directories will not be scanned). This means that `gs://mybucket/` is equivalent to `gs://mybucket/x`, and `gs://mybucket/directory/` is equivalent to `gs://mybucket/directory/x`. Exactly one of `url` or `regex_file_set` must be set.
      */
     url?: string | null;
+  }
+  /**
+   * The profile for a file store. * Google Cloud Storage: maps 1:1 with a bucket.
+   */
+  export interface Schema$GooglePrivacyDlpV2FileStoreDataProfile {
+    /**
+     * The snapshot of the configurations used to generate the profile.
+     */
+    configSnapshot?: Schema$GooglePrivacyDlpV2DataProfileConfigSnapshot;
+    /**
+     * The time the file store was first created.
+     */
+    createTime?: string | null;
+    /**
+     * The data risk level of this resource.
+     */
+    dataRiskLevel?: Schema$GooglePrivacyDlpV2DataRiskLevel;
+    /**
+     * The resource type that was profiled.
+     */
+    dataSourceType?: Schema$GooglePrivacyDlpV2DataSourceType;
+    /**
+     * For resources that have multiple storage locations, these are those regions. For Google Cloud Storage this is the list of regions chosen for dual-region storage. `file_store_location` will normally be the corresponding multi-region for the list of individual locations. The first region is always picked as the processing and storage location for the data profile.
+     */
+    dataStorageLocations?: string[] | null;
+    /**
+     * FileClusterSummary per each cluster.
+     */
+    fileClusterSummaries?: Schema$GooglePrivacyDlpV2FileClusterSummary[];
+    /**
+     * InfoTypes detected in this file store.
+     */
+    fileStoreInfoTypeSummaries?: Schema$GooglePrivacyDlpV2FileStoreInfoTypeSummary[];
+    /**
+     * The file store does not have any files.
+     */
+    fileStoreIsEmpty?: boolean | null;
+    /**
+     * The location of the file store. * Google Cloud Storage: https://cloud.google.com/storage/docs/locations#available-locations
+     */
+    fileStoreLocation?: string | null;
+    /**
+     * The file store path. * Google Cloud Storage: `gs://{bucket\}`
+     */
+    fileStorePath?: string | null;
+    /**
+     * The resource name of the resource profiled. https://cloud.google.com/apis/design/resource_names#full_resource_name
+     */
+    fullResource?: string | null;
+    /**
+     * The time the file store was last modified.
+     */
+    lastModifiedTime?: string | null;
+    /**
+     * The location type of the bucket (region, dual-region, multi-region, etc). If dual-region, expect data_storage_locations to be populated.
+     */
+    locationType?: string | null;
+    /**
+     * The name of the profile.
+     */
+    name?: string | null;
+    /**
+     * The last time the profile was generated.
+     */
+    profileLastGenerated?: string | null;
+    /**
+     * Success or error status from the most recent profile generation attempt. May be empty if the profile is still being generated.
+     */
+    profileStatus?: Schema$GooglePrivacyDlpV2ProfileStatus;
+    /**
+     * The resource name to the project data profile for this file store.
+     */
+    projectDataProfile?: string | null;
+    /**
+     * The Google Cloud project ID that owns the resource.
+     */
+    projectId?: string | null;
+    /**
+     * Attributes of the resource being profiled. Currently used attributes: - customer_managed_encryption: boolean true: the resource is encrypted with a customer-managed key. false: the resource is encrypted with a provider-managed key.
+     */
+    resourceAttributes?: {[key: string]: Schema$GooglePrivacyDlpV2Value} | null;
+    /**
+     * The labels applied to the resource at the time the profile was generated.
+     */
+    resourceLabels?: {[key: string]: string} | null;
+    /**
+     * How broadly a resource has been shared.
+     */
+    resourceVisibility?: string | null;
+    /**
+     * The sensitivity score of this resource.
+     */
+    sensitivityScore?: Schema$GooglePrivacyDlpV2SensitivityScore;
+    /**
+     * State of a profile.
+     */
+    state?: string | null;
+  }
+  /**
+   * Information regarding the discovered InfoType.
+   */
+  export interface Schema$GooglePrivacyDlpV2FileStoreInfoTypeSummary {
+    /**
+     * The InfoType seen.
+     */
+    infoType?: Schema$GooglePrivacyDlpV2InfoType;
   }
   /**
    * Represents a piece of potentially sensitive content.
@@ -2365,7 +2737,7 @@ export namespace dlp_v2 {
    */
   export interface Schema$GooglePrivacyDlpV2JobNotificationEmails {}
   /**
-   * Contains a configuration to make dlp api calls on a repeating basis. See https://cloud.google.com/sensitive-data-protection/docs/concepts-job-triggers to learn more.
+   * Contains a configuration to make API calls on a repeating basis. See https://cloud.google.com/sensitive-data-protection/docs/concepts-job-triggers to learn more.
    */
   export interface Schema$GooglePrivacyDlpV2JobTrigger {
     /**
@@ -2693,6 +3065,19 @@ export namespace dlp_v2 {
     nextPageToken?: string | null;
   }
   /**
+   * Response message for ListConnections.
+   */
+  export interface Schema$GooglePrivacyDlpV2ListConnectionsResponse {
+    /**
+     * List of connections.
+     */
+    connections?: Schema$GooglePrivacyDlpV2Connection[];
+    /**
+     * Token to retrieve the next page of results. An empty value means there are no more results.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
    * Response message for ListDeidentifyTemplates.
    */
   export interface Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse {
@@ -2728,6 +3113,19 @@ export namespace dlp_v2 {
     jobs?: Schema$GooglePrivacyDlpV2DlpJob[];
     /**
      * The standard List next-page token.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
+   * List of file store data profiles generated for a given organization or project.
+   */
+  export interface Schema$GooglePrivacyDlpV2ListFileStoreDataProfilesResponse {
+    /**
+     * List of data profiles.
+     */
+    fileStoreDataProfiles?: Schema$GooglePrivacyDlpV2FileStoreDataProfile[];
+    /**
+     * The next page token.
      */
     nextPageToken?: string | null;
   }
@@ -3059,6 +3457,10 @@ export namespace dlp_v2 {
      */
     dataRiskLevel?: Schema$GooglePrivacyDlpV2DataRiskLevel;
     /**
+     * The number of file store data profiles generated for this project.
+     */
+    fileStoreDataProfileCount?: string | null;
+    /**
      * The resource name of the profile.
      */
     name?: string | null;
@@ -3078,6 +3480,10 @@ export namespace dlp_v2 {
      * The sensitivity score of this project.
      */
     sensitivityScore?: Schema$GooglePrivacyDlpV2SensitivityScore;
+    /**
+     * The number of table data profiles generated for this project.
+     */
+    tableDataProfileCount?: string | null;
   }
   /**
    * Message for specifying a window around a finding to apply a detection rule.
@@ -3486,6 +3892,10 @@ export namespace dlp_v2 {
      */
     infoTypeStats?: Schema$GooglePrivacyDlpV2InfoTypeStats[];
     /**
+     * Number of rows scanned after sampling and time filtering (applicable for row based stores such as BigQuery).
+     */
+    numRowsProcessed?: string | null;
+    /**
      * Total size in bytes that were processed.
      */
     processedBytes?: string | null;
@@ -3538,6 +3948,49 @@ export namespace dlp_v2 {
      */
     recurrencePeriodDuration?: string | null;
   }
+  /**
+   * How frequently to modify the profile when the table's schema is modified.
+   */
+  export interface Schema$GooglePrivacyDlpV2SchemaModifiedCadence {
+    /**
+     * Frequency to regenerate data profiles when the schema is modified. Defaults to monthly.
+     */
+    frequency?: string | null;
+    /**
+     * The types of schema modifications to consider. Defaults to NEW_COLUMNS.
+     */
+    types?: string[] | null;
+  }
+  /**
+   * Response message for SearchConnections.
+   */
+  export interface Schema$GooglePrivacyDlpV2SearchConnectionsResponse {
+    /**
+     * List of connections that match the search query. Note that only a subset of the fields will be populated, and only "name" is guaranteed to be set. For full details of a Connection, call GetConnection with the name.
+     */
+    connections?: Schema$GooglePrivacyDlpV2Connection[];
+    /**
+     * Token to retrieve the next page of results. An empty value means there are no more results.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
+   * A credential consisting of a username and password, where the password is stored in a Secret Manager resource. Note: Secret Manager [charges apply](https://cloud.google.com/secret-manager/pricing).
+   */
+  export interface Schema$GooglePrivacyDlpV2SecretManagerCredential {
+    /**
+     * Required. The name of the Secret Manager resource that stores the password, in the form `projects/project-id/secrets/secret-name/versions/version`.
+     */
+    passwordSecretVersionName?: string | null;
+    /**
+     * Required. The username.
+     */
+    username?: string | null;
+  }
+  /**
+   * Discovery target for credentials and secrets in cloud resource metadata. This target does not include any filtering or frequency controls. Cloud DLP will scan cloud resource metadata for secrets daily. No inspect template should be included in the discovery config for a security benchmarks scan. Instead, the built-in list of secrets and credentials infoTypes will be used (see https://cloud.google.com/sensitive-data-protection/docs/infotypes-reference#credentials_and_secrets). Credentials and secrets discovered will be reported as vulnerabilities to Security Command Center.
+   */
+  export interface Schema$GooglePrivacyDlpV2SecretsDiscoveryTarget {}
   /**
    * Apply transformation to the selected info_types.
    */
@@ -3858,6 +4311,19 @@ export namespace dlp_v2 {
     identifyingFields?: Schema$GooglePrivacyDlpV2FieldId[];
   }
   /**
+   * Message defining the location of a BigQuery table with the projectId inferred from the parent project.
+   */
+  export interface Schema$GooglePrivacyDlpV2TableReference {
+    /**
+     * Dataset ID of the table.
+     */
+    datasetId?: string | null;
+    /**
+     * Name of the table.
+     */
+    tableId?: string | null;
+  }
+  /**
    * A column with a semantic tag attached.
    */
   export interface Schema$GooglePrivacyDlpV2TaggedField {
@@ -3896,7 +4362,7 @@ export namespace dlp_v2 {
    */
   export interface Schema$GooglePrivacyDlpV2TimespanConfig {
     /**
-     * When the job is started by a JobTrigger we will automatically figure out a valid start_time to avoid scanning files that have not been modified since the last time the JobTrigger executed. This will be based on the time of the execution of the last run of the JobTrigger or the timespan end_time used in the last run of the JobTrigger.
+     * When the job is started by a JobTrigger we will automatically figure out a valid start_time to avoid scanning files that have not been modified since the last time the JobTrigger executed. This will be based on the time of the execution of the last run of the JobTrigger or the timespan end_time used in the last run of the JobTrigger. **For BigQuery** Inspect jobs triggered by automatic population will scan data that is at least three hours old when the job starts. This is because streaming buffer rows are not read during inspection and reading up to the current timestamp will result in skipped rows. See the [known issue](https://cloud.google.com/sensitive-data-protection/docs/known-issues#recently-streamed-data) related to this operation.
      */
     enableAutoPopulationOfTimespanConfig?: boolean | null;
     /**
@@ -4116,6 +4582,19 @@ export namespace dlp_v2 {
      * Required. A 128/192/256 bit key.
      */
     key?: string | null;
+  }
+  /**
+   * Request message for UpdateConnection.
+   */
+  export interface Schema$GooglePrivacyDlpV2UpdateConnectionRequest {
+    /**
+     * Required. The connection with new values for the relevant fields.
+     */
+    connection?: Schema$GooglePrivacyDlpV2Connection;
+    /**
+     * Optional. Mask to control which fields get updated.
+     */
+    updateMask?: string | null;
   }
   /**
    * Request message for UpdateDeidentifyTemplate.
@@ -4392,6 +4871,7 @@ export namespace dlp_v2 {
           {
             url: (rootUrl + '/v2/infoTypes').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4523,6 +5003,7 @@ export namespace dlp_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4667,6 +5148,7 @@ export namespace dlp_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4756,6 +5238,7 @@ export namespace dlp_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -4847,6 +5330,7 @@ export namespace dlp_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4943,6 +5427,7 @@ export namespace dlp_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5036,6 +5521,7 @@ export namespace dlp_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -5060,7 +5546,7 @@ export namespace dlp_v2 {
   export interface Params$Resource$Organizations$Deidentifytemplates$Create
     extends StandardParameters {
     /**
-     * Required. Parent resource name. The format of this value varies depending on the scope of the request (project or organization) and whether you have [specified a processing location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/`PROJECT_ID`/locations/`LOCATION_ID + Projects scope, no location specified (defaults to global): `projects/`PROJECT_ID + Organizations scope, location specified: `organizations/`ORG_ID`/locations/`LOCATION_ID + Organizations scope, no location specified (defaults to global): `organizations/`ORG_ID The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
+     * Required. Parent resource name. The format of this value varies depending on the scope of the request (project or organization) and whether you have [specified a processing location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/`PROJECT_ID`/locations/` LOCATION_ID + Projects scope, no location specified (defaults to global): `projects/`PROJECT_ID + Organizations scope, location specified: `organizations/`ORG_ID`/locations/`LOCATION_ID + Organizations scope, no location specified (defaults to global): `organizations/`ORG_ID The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
      */
     parent?: string;
 
@@ -5102,7 +5588,7 @@ export namespace dlp_v2 {
      */
     pageToken?: string;
     /**
-     * Required. Parent resource name. The format of this value varies depending on the scope of the request (project or organization) and whether you have [specified a processing location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/`PROJECT_ID`/locations/`LOCATION_ID + Projects scope, no location specified (defaults to global): `projects/`PROJECT_ID + Organizations scope, location specified: `organizations/`ORG_ID`/locations/`LOCATION_ID + Organizations scope, no location specified (defaults to global): `organizations/`ORG_ID The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
+     * Required. Parent resource name. The format of this value varies depending on the scope of the request (project or organization) and whether you have [specified a processing location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/`PROJECT_ID`/locations/` LOCATION_ID + Projects scope, no location specified (defaults to global): `projects/`PROJECT_ID + Organizations scope, location specified: `organizations/`ORG_ID`/locations/`LOCATION_ID + Organizations scope, no location specified (defaults to global): `organizations/`ORG_ID The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
      */
     parent?: string;
   }
@@ -5201,6 +5687,7 @@ export namespace dlp_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5290,6 +5777,7 @@ export namespace dlp_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -5381,6 +5869,7 @@ export namespace dlp_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5477,6 +5966,7 @@ export namespace dlp_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5570,6 +6060,7 @@ export namespace dlp_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -5594,7 +6085,7 @@ export namespace dlp_v2 {
   export interface Params$Resource$Organizations$Inspecttemplates$Create
     extends StandardParameters {
     /**
-     * Required. Parent resource name. The format of this value varies depending on the scope of the request (project or organization) and whether you have [specified a processing location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/`PROJECT_ID`/locations/`LOCATION_ID + Projects scope, no location specified (defaults to global): `projects/`PROJECT_ID + Organizations scope, location specified: `organizations/`ORG_ID`/locations/`LOCATION_ID + Organizations scope, no location specified (defaults to global): `organizations/`ORG_ID The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
+     * Required. Parent resource name. The format of this value varies depending on the scope of the request (project or organization) and whether you have [specified a processing location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/`PROJECT_ID`/locations/` LOCATION_ID + Projects scope, no location specified (defaults to global): `projects/`PROJECT_ID + Organizations scope, location specified: `organizations/`ORG_ID`/locations/`LOCATION_ID + Organizations scope, no location specified (defaults to global): `organizations/`ORG_ID The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
      */
     parent?: string;
 
@@ -5636,7 +6127,7 @@ export namespace dlp_v2 {
      */
     pageToken?: string;
     /**
-     * Required. Parent resource name. The format of this value varies depending on the scope of the request (project or organization) and whether you have [specified a processing location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/`PROJECT_ID`/locations/`LOCATION_ID + Projects scope, no location specified (defaults to global): `projects/`PROJECT_ID + Organizations scope, location specified: `organizations/`ORG_ID`/locations/`LOCATION_ID + Organizations scope, no location specified (defaults to global): `organizations/`ORG_ID The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
+     * Required. Parent resource name. The format of this value varies depending on the scope of the request (project or organization) and whether you have [specified a processing location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/`PROJECT_ID`/locations/` LOCATION_ID + Projects scope, no location specified (defaults to global): `projects/`PROJECT_ID + Organizations scope, location specified: `organizations/`ORG_ID`/locations/`LOCATION_ID + Organizations scope, no location specified (defaults to global): `organizations/`ORG_ID The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
      */
     parent?: string;
   }
@@ -5656,9 +6147,11 @@ export namespace dlp_v2 {
   export class Resource$Organizations$Locations {
     context: APIRequestContext;
     columnDataProfiles: Resource$Organizations$Locations$Columndataprofiles;
+    connections: Resource$Organizations$Locations$Connections;
     deidentifyTemplates: Resource$Organizations$Locations$Deidentifytemplates;
     discoveryConfigs: Resource$Organizations$Locations$Discoveryconfigs;
     dlpJobs: Resource$Organizations$Locations$Dlpjobs;
+    fileStoreDataProfiles: Resource$Organizations$Locations$Filestoredataprofiles;
     inspectTemplates: Resource$Organizations$Locations$Inspecttemplates;
     jobTriggers: Resource$Organizations$Locations$Jobtriggers;
     projectDataProfiles: Resource$Organizations$Locations$Projectdataprofiles;
@@ -5668,11 +6161,18 @@ export namespace dlp_v2 {
       this.context = context;
       this.columnDataProfiles =
         new Resource$Organizations$Locations$Columndataprofiles(this.context);
+      this.connections = new Resource$Organizations$Locations$Connections(
+        this.context
+      );
       this.deidentifyTemplates =
         new Resource$Organizations$Locations$Deidentifytemplates(this.context);
       this.discoveryConfigs =
         new Resource$Organizations$Locations$Discoveryconfigs(this.context);
       this.dlpJobs = new Resource$Organizations$Locations$Dlpjobs(this.context);
+      this.fileStoreDataProfiles =
+        new Resource$Organizations$Locations$Filestoredataprofiles(
+          this.context
+        );
       this.inspectTemplates =
         new Resource$Organizations$Locations$Inspecttemplates(this.context);
       this.jobTriggers = new Resource$Organizations$Locations$Jobtriggers(
@@ -5767,6 +6267,7 @@ export namespace dlp_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5864,6 +6365,7 @@ export namespace dlp_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5912,6 +6414,545 @@ export namespace dlp_v2 {
     pageToken?: string;
     /**
      * Required. Resource name of the organization or project, for example `organizations/433245324/locations/europe` or `projects/project-id/locations/asia`.
+     */
+    parent?: string;
+  }
+
+  export class Resource$Organizations$Locations$Connections {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Create a Connection to an external data source.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Organizations$Locations$Connections$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Organizations$Locations$Connections$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GooglePrivacyDlpV2Connection>;
+    create(
+      params: Params$Resource$Organizations$Locations$Connections$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Organizations$Locations$Connections$Create,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2Connection>,
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2Connection>
+    ): void;
+    create(
+      params: Params$Resource$Organizations$Locations$Connections$Create,
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2Connection>
+    ): void;
+    create(
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2Connection>
+    ): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Locations$Connections$Create
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2Connection>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2Connection>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2Connection>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GooglePrivacyDlpV2Connection>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Locations$Connections$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Organizations$Locations$Connections$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+parent}/connections').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GooglePrivacyDlpV2Connection>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GooglePrivacyDlpV2Connection>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Delete a Connection.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Organizations$Locations$Connections$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Organizations$Locations$Connections$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    delete(
+      params: Params$Resource$Organizations$Locations$Connections$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Organizations$Locations$Connections$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+    ): void;
+    delete(
+      params: Params$Resource$Organizations$Locations$Connections$Delete,
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Locations$Connections$Delete
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleProtobufEmpty>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Locations$Connections$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Organizations$Locations$Connections$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleProtobufEmpty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
+      }
+    }
+
+    /**
+     * Get a Connection by name.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Organizations$Locations$Connections$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Organizations$Locations$Connections$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GooglePrivacyDlpV2Connection>;
+    get(
+      params: Params$Resource$Organizations$Locations$Connections$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Organizations$Locations$Connections$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2Connection>,
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2Connection>
+    ): void;
+    get(
+      params: Params$Resource$Organizations$Locations$Connections$Get,
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2Connection>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2Connection>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Locations$Connections$Get
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2Connection>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2Connection>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2Connection>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GooglePrivacyDlpV2Connection>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Locations$Connections$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Organizations$Locations$Connections$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GooglePrivacyDlpV2Connection>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GooglePrivacyDlpV2Connection>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Update a Connection.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Organizations$Locations$Connections$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Organizations$Locations$Connections$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GooglePrivacyDlpV2Connection>;
+    patch(
+      params: Params$Resource$Organizations$Locations$Connections$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Organizations$Locations$Connections$Patch,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2Connection>,
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2Connection>
+    ): void;
+    patch(
+      params: Params$Resource$Organizations$Locations$Connections$Patch,
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2Connection>
+    ): void;
+    patch(
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2Connection>
+    ): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Locations$Connections$Patch
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2Connection>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2Connection>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2Connection>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GooglePrivacyDlpV2Connection>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Locations$Connections$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Organizations$Locations$Connections$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GooglePrivacyDlpV2Connection>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GooglePrivacyDlpV2Connection>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Searches for Connections in a parent.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    search(
+      params: Params$Resource$Organizations$Locations$Connections$Search,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    search(
+      params?: Params$Resource$Organizations$Locations$Connections$Search,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GooglePrivacyDlpV2SearchConnectionsResponse>;
+    search(
+      params: Params$Resource$Organizations$Locations$Connections$Search,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    search(
+      params: Params$Resource$Organizations$Locations$Connections$Search,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2SearchConnectionsResponse>,
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2SearchConnectionsResponse>
+    ): void;
+    search(
+      params: Params$Resource$Organizations$Locations$Connections$Search,
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2SearchConnectionsResponse>
+    ): void;
+    search(
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2SearchConnectionsResponse>
+    ): void;
+    search(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Locations$Connections$Search
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2SearchConnectionsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2SearchConnectionsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2SearchConnectionsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GooglePrivacyDlpV2SearchConnectionsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Locations$Connections$Search;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Organizations$Locations$Connections$Search;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+parent}/connections:search').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GooglePrivacyDlpV2SearchConnectionsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GooglePrivacyDlpV2SearchConnectionsResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Organizations$Locations$Connections$Create
+    extends StandardParameters {
+    /**
+     * Required. Parent resource name. The format of this value varies depending on the scope of the request (project or organization): + Projects scope: `projects/`PROJECT_ID`/locations/`LOCATION_ID + Organizations scope: `organizations/`ORG_ID`/locations/`LOCATION_ID
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GooglePrivacyDlpV2CreateConnectionRequest;
+  }
+  export interface Params$Resource$Organizations$Locations$Connections$Delete
+    extends StandardParameters {
+    /**
+     * Required. Resource name of the Connection to be deleted, in the format: `projects/{project\}/locations/{location\}/connections/{connection\}`.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Organizations$Locations$Connections$Get
+    extends StandardParameters {
+    /**
+     * Required. Resource name in the format: `projects/{project\}/locations/{location\}/connections/{connection\}`.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Organizations$Locations$Connections$Patch
+    extends StandardParameters {
+    /**
+     * Required. Resource name in the format: `projects/{project\}/locations/{location\}/connections/{connection\}`.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GooglePrivacyDlpV2UpdateConnectionRequest;
+  }
+  export interface Params$Resource$Organizations$Locations$Connections$Search
+    extends StandardParameters {
+    /**
+     * Optional. Supported field/value: - `state` - MISSING|AVAILABLE|ERROR
+     */
+    filter?: string;
+    /**
+     * Optional. Number of results per page, max 1000.
+     */
+    pageSize?: number;
+    /**
+     * Optional. Page token from a previous page to return the next set of results. If set, all other request fields must match the original request.
+     */
+    pageToken?: string;
+    /**
+     * Required. Parent name, typically an organization, without location. For example: `organizations/12345678`.
      */
     parent?: string;
   }
@@ -5999,6 +7040,7 @@ export namespace dlp_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -6089,6 +7131,7 @@ export namespace dlp_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -6181,6 +7224,7 @@ export namespace dlp_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6278,6 +7322,7 @@ export namespace dlp_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6372,6 +7417,7 @@ export namespace dlp_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -6396,7 +7442,7 @@ export namespace dlp_v2 {
   export interface Params$Resource$Organizations$Locations$Deidentifytemplates$Create
     extends StandardParameters {
     /**
-     * Required. Parent resource name. The format of this value varies depending on the scope of the request (project or organization) and whether you have [specified a processing location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/`PROJECT_ID`/locations/`LOCATION_ID + Projects scope, no location specified (defaults to global): `projects/`PROJECT_ID + Organizations scope, location specified: `organizations/`ORG_ID`/locations/`LOCATION_ID + Organizations scope, no location specified (defaults to global): `organizations/`ORG_ID The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
+     * Required. Parent resource name. The format of this value varies depending on the scope of the request (project or organization) and whether you have [specified a processing location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/`PROJECT_ID`/locations/` LOCATION_ID + Projects scope, no location specified (defaults to global): `projects/`PROJECT_ID + Organizations scope, location specified: `organizations/`ORG_ID`/locations/`LOCATION_ID + Organizations scope, no location specified (defaults to global): `organizations/`ORG_ID The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
      */
     parent?: string;
 
@@ -6438,7 +7484,7 @@ export namespace dlp_v2 {
      */
     pageToken?: string;
     /**
-     * Required. Parent resource name. The format of this value varies depending on the scope of the request (project or organization) and whether you have [specified a processing location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/`PROJECT_ID`/locations/`LOCATION_ID + Projects scope, no location specified (defaults to global): `projects/`PROJECT_ID + Organizations scope, location specified: `organizations/`ORG_ID`/locations/`LOCATION_ID + Organizations scope, no location specified (defaults to global): `organizations/`ORG_ID The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
+     * Required. Parent resource name. The format of this value varies depending on the scope of the request (project or organization) and whether you have [specified a processing location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/`PROJECT_ID`/locations/` LOCATION_ID + Projects scope, no location specified (defaults to global): `projects/`PROJECT_ID + Organizations scope, location specified: `organizations/`ORG_ID`/locations/`LOCATION_ID + Organizations scope, no location specified (defaults to global): `organizations/`ORG_ID The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
      */
     parent?: string;
   }
@@ -6538,6 +7584,7 @@ export namespace dlp_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -6628,6 +7675,7 @@ export namespace dlp_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -6720,6 +7768,7 @@ export namespace dlp_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6817,6 +7866,7 @@ export namespace dlp_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6911,6 +7961,7 @@ export namespace dlp_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -6935,7 +7986,7 @@ export namespace dlp_v2 {
   export interface Params$Resource$Organizations$Locations$Discoveryconfigs$Create
     extends StandardParameters {
     /**
-     * Required. Parent resource name. The format of this value is as follows: `projects/`PROJECT_ID`/locations/`LOCATION_ID The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
+     * Required. Parent resource name. The format of this value varies depending on the scope of the request (project or organization): + Projects scope: `projects/`PROJECT_ID`/locations/`LOCATION_ID + Organizations scope: `organizations/`ORG_ID`/locations/`LOCATION_ID The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
      */
     parent?: string;
 
@@ -7072,6 +8123,7 @@ export namespace dlp_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -7116,13 +8168,340 @@ export namespace dlp_v2 {
      */
     pageToken?: string;
     /**
-     * Required. Parent resource name. The format of this value varies depending on whether you have [specified a processing location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/`PROJECT_ID`/locations/`LOCATION_ID + Projects scope, no location specified (defaults to global): `projects/`PROJECT_ID The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
+     * Required. Parent resource name. The format of this value varies depending on whether you have [specified a processing location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/`PROJECT_ID`/locations/` LOCATION_ID + Projects scope, no location specified (defaults to global): `projects/`PROJECT_ID The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
      */
     parent?: string;
     /**
      * The type of job. Defaults to `DlpJobType.INSPECT`
      */
     type?: string;
+  }
+
+  export class Resource$Organizations$Locations$Filestoredataprofiles {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Delete a FileStoreDataProfile. Will not prevent the profile from being regenerated if the resource is still included in a discovery configuration.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Organizations$Locations$Filestoredataprofiles$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Organizations$Locations$Filestoredataprofiles$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    delete(
+      params: Params$Resource$Organizations$Locations$Filestoredataprofiles$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Organizations$Locations$Filestoredataprofiles$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+    ): void;
+    delete(
+      params: Params$Resource$Organizations$Locations$Filestoredataprofiles$Delete,
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Locations$Filestoredataprofiles$Delete
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleProtobufEmpty>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Locations$Filestoredataprofiles$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Organizations$Locations$Filestoredataprofiles$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleProtobufEmpty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
+      }
+    }
+
+    /**
+     * Gets a file store data profile.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Organizations$Locations$Filestoredataprofiles$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Organizations$Locations$Filestoredataprofiles$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GooglePrivacyDlpV2FileStoreDataProfile>;
+    get(
+      params: Params$Resource$Organizations$Locations$Filestoredataprofiles$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Organizations$Locations$Filestoredataprofiles$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2FileStoreDataProfile>,
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2FileStoreDataProfile>
+    ): void;
+    get(
+      params: Params$Resource$Organizations$Locations$Filestoredataprofiles$Get,
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2FileStoreDataProfile>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2FileStoreDataProfile>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Locations$Filestoredataprofiles$Get
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2FileStoreDataProfile>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2FileStoreDataProfile>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2FileStoreDataProfile>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GooglePrivacyDlpV2FileStoreDataProfile>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Locations$Filestoredataprofiles$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Organizations$Locations$Filestoredataprofiles$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GooglePrivacyDlpV2FileStoreDataProfile>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GooglePrivacyDlpV2FileStoreDataProfile>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Lists file store data profiles for an organization.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Organizations$Locations$Filestoredataprofiles$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Organizations$Locations$Filestoredataprofiles$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GooglePrivacyDlpV2ListFileStoreDataProfilesResponse>;
+    list(
+      params: Params$Resource$Organizations$Locations$Filestoredataprofiles$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Organizations$Locations$Filestoredataprofiles$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ListFileStoreDataProfilesResponse>,
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2ListFileStoreDataProfilesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Organizations$Locations$Filestoredataprofiles$List,
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2ListFileStoreDataProfilesResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2ListFileStoreDataProfilesResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Locations$Filestoredataprofiles$List
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ListFileStoreDataProfilesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ListFileStoreDataProfilesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ListFileStoreDataProfilesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GooglePrivacyDlpV2ListFileStoreDataProfilesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Locations$Filestoredataprofiles$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Organizations$Locations$Filestoredataprofiles$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+parent}/fileStoreDataProfiles').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GooglePrivacyDlpV2ListFileStoreDataProfilesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GooglePrivacyDlpV2ListFileStoreDataProfilesResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Organizations$Locations$Filestoredataprofiles$Delete
+    extends StandardParameters {
+    /**
+     * Required. Resource name of the file store data profile.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Organizations$Locations$Filestoredataprofiles$Get
+    extends StandardParameters {
+    /**
+     * Required. Resource name, for example `organizations/12345/locations/us/fileStoreDataProfiles/53234423`.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Organizations$Locations$Filestoredataprofiles$List
+    extends StandardParameters {
+    /**
+     * Optional. Allows filtering. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field\} {operator\} {value\}`. * Supported fields/values: - `project_id` - The Google Cloud project ID. - `file_store_path` - The path like "gs://bucket". - `sensitivity_level` - HIGH|MODERATE|LOW - `data_risk_level` - HIGH|MODERATE|LOW - `resource_visibility`: PUBLIC|RESTRICTED - `status_code` - an RPC status code as defined in https://github.com/googleapis/googleapis/blob/master/google/rpc/code.proto * The operator must be `=` or `!=`. Examples: * `project_id = 12345 AND status_code = 1` * `project_id = 12345 AND sensitivity_level = HIGH` * `project_id = 12345 AND resource_visibility = PUBLIC` . * 'file_store_path = "gs://mybucket"` The length of this field should be no more than 500 characters.
+     */
+    filter?: string;
+    /**
+     * Optional. Comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case insensitive. The default sorting order is ascending. Redundant space characters are insignificant. Only one order field at a time is allowed. Examples: * `project_id asc` * `name` * `sensitivity_level desc` Supported fields are: - `project_id`: The Google Cloud project ID. - `sensitivity_level`: How sensitive the data in a table is, at most. - `data_risk_level`: How much risk is associated with this data. - `profile_last_generated`: When the profile was last updated in epoch seconds. - `last_modified`: The last time the resource was modified. - `resource_visibility`: Visibility restriction for this resource. - `name`: The name of the profile. - `create_time`: The time the file store was first created.
+     */
+    orderBy?: string;
+    /**
+     * Optional. Size of the page. This value can be limited by the server. If zero, server returns a page of max size 100.
+     */
+    pageSize?: number;
+    /**
+     * Optional. Page token to continue retrieval.
+     */
+    pageToken?: string;
+    /**
+     * Required. Resource name of the organization or project, for example `organizations/433245324/locations/europe` or `projects/project-id/locations/asia`.
+     */
+    parent?: string;
   }
 
   export class Resource$Organizations$Locations$Inspecttemplates {
@@ -7208,6 +8587,7 @@ export namespace dlp_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -7298,6 +8678,7 @@ export namespace dlp_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -7390,6 +8771,7 @@ export namespace dlp_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -7487,6 +8869,7 @@ export namespace dlp_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -7581,6 +8964,7 @@ export namespace dlp_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -7605,7 +8989,7 @@ export namespace dlp_v2 {
   export interface Params$Resource$Organizations$Locations$Inspecttemplates$Create
     extends StandardParameters {
     /**
-     * Required. Parent resource name. The format of this value varies depending on the scope of the request (project or organization) and whether you have [specified a processing location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/`PROJECT_ID`/locations/`LOCATION_ID + Projects scope, no location specified (defaults to global): `projects/`PROJECT_ID + Organizations scope, location specified: `organizations/`ORG_ID`/locations/`LOCATION_ID + Organizations scope, no location specified (defaults to global): `organizations/`ORG_ID The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
+     * Required. Parent resource name. The format of this value varies depending on the scope of the request (project or organization) and whether you have [specified a processing location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/`PROJECT_ID`/locations/` LOCATION_ID + Projects scope, no location specified (defaults to global): `projects/`PROJECT_ID + Organizations scope, location specified: `organizations/`ORG_ID`/locations/`LOCATION_ID + Organizations scope, no location specified (defaults to global): `organizations/`ORG_ID The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
      */
     parent?: string;
 
@@ -7647,7 +9031,7 @@ export namespace dlp_v2 {
      */
     pageToken?: string;
     /**
-     * Required. Parent resource name. The format of this value varies depending on the scope of the request (project or organization) and whether you have [specified a processing location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/`PROJECT_ID`/locations/`LOCATION_ID + Projects scope, no location specified (defaults to global): `projects/`PROJECT_ID + Organizations scope, location specified: `organizations/`ORG_ID`/locations/`LOCATION_ID + Organizations scope, no location specified (defaults to global): `organizations/`ORG_ID The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
+     * Required. Parent resource name. The format of this value varies depending on the scope of the request (project or organization) and whether you have [specified a processing location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/`PROJECT_ID`/locations/` LOCATION_ID + Projects scope, no location specified (defaults to global): `projects/`PROJECT_ID + Organizations scope, location specified: `organizations/`ORG_ID`/locations/`LOCATION_ID + Organizations scope, no location specified (defaults to global): `organizations/`ORG_ID The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
      */
     parent?: string;
   }
@@ -7747,6 +9131,7 @@ export namespace dlp_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -7837,6 +9222,7 @@ export namespace dlp_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -7928,6 +9314,7 @@ export namespace dlp_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -8024,6 +9411,7 @@ export namespace dlp_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -8118,6 +9506,7 @@ export namespace dlp_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -8142,7 +9531,7 @@ export namespace dlp_v2 {
   export interface Params$Resource$Organizations$Locations$Jobtriggers$Create
     extends StandardParameters {
     /**
-     * Required. Parent resource name. The format of this value varies depending on whether you have [specified a processing location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/`PROJECT_ID`/locations/`LOCATION_ID + Projects scope, no location specified (defaults to global): `projects/`PROJECT_ID The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
+     * Required. Parent resource name. The format of this value varies depending on whether you have [specified a processing location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/`PROJECT_ID`/locations/` LOCATION_ID + Projects scope, no location specified (defaults to global): `projects/`PROJECT_ID The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
      */
     parent?: string;
 
@@ -8188,7 +9577,7 @@ export namespace dlp_v2 {
      */
     pageToken?: string;
     /**
-     * Required. Parent resource name. The format of this value varies depending on whether you have [specified a processing location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/`PROJECT_ID`/locations/`LOCATION_ID + Projects scope, no location specified (defaults to global): `projects/`PROJECT_ID The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
+     * Required. Parent resource name. The format of this value varies depending on whether you have [specified a processing location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/`PROJECT_ID`/locations/` LOCATION_ID + Projects scope, no location specified (defaults to global): `projects/`PROJECT_ID The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
      */
     parent?: string;
     /**
@@ -8289,6 +9678,7 @@ export namespace dlp_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -8386,6 +9776,7 @@ export namespace dlp_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -8521,6 +9912,7 @@ export namespace dlp_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -8611,6 +10003,7 @@ export namespace dlp_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -8703,6 +10096,7 @@ export namespace dlp_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -8800,6 +10194,7 @@ export namespace dlp_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -8894,6 +10289,7 @@ export namespace dlp_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -8918,7 +10314,7 @@ export namespace dlp_v2 {
   export interface Params$Resource$Organizations$Locations$Storedinfotypes$Create
     extends StandardParameters {
     /**
-     * Required. Parent resource name. The format of this value varies depending on the scope of the request (project or organization) and whether you have [specified a processing location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/`PROJECT_ID`/locations/`LOCATION_ID + Projects scope, no location specified (defaults to global): `projects/`PROJECT_ID + Organizations scope, location specified: `organizations/`ORG_ID`/locations/`LOCATION_ID + Organizations scope, no location specified (defaults to global): `organizations/`ORG_ID The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
+     * Required. Parent resource name. The format of this value varies depending on the scope of the request (project or organization) and whether you have [specified a processing location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/`PROJECT_ID`/locations/` LOCATION_ID + Projects scope, no location specified (defaults to global): `projects/`PROJECT_ID + Organizations scope, location specified: `organizations/`ORG_ID`/locations/`LOCATION_ID + Organizations scope, no location specified (defaults to global): `organizations/`ORG_ID The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
      */
     parent?: string;
 
@@ -8960,7 +10356,7 @@ export namespace dlp_v2 {
      */
     pageToken?: string;
     /**
-     * Required. Parent resource name. The format of this value varies depending on the scope of the request (project or organization) and whether you have [specified a processing location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/`PROJECT_ID`/locations/`LOCATION_ID + Projects scope, no location specified (defaults to global): `projects/`PROJECT_ID The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
+     * Required. Parent resource name. The format of this value varies depending on the scope of the request (project or organization) and whether you have [specified a processing location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/`PROJECT_ID`/locations/` LOCATION_ID + Projects scope, no location specified (defaults to global): `projects/`PROJECT_ID The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
      */
     parent?: string;
   }
@@ -8981,6 +10377,95 @@ export namespace dlp_v2 {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
+    }
+
+    /**
+     * Delete a TableDataProfile. Will not prevent the profile from being regenerated if the table is still included in a discovery configuration.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Organizations$Locations$Tabledataprofiles$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Organizations$Locations$Tabledataprofiles$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    delete(
+      params: Params$Resource$Organizations$Locations$Tabledataprofiles$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Organizations$Locations$Tabledataprofiles$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+    ): void;
+    delete(
+      params: Params$Resource$Organizations$Locations$Tabledataprofiles$Delete,
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Locations$Tabledataprofiles$Delete
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleProtobufEmpty>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Locations$Tabledataprofiles$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Organizations$Locations$Tabledataprofiles$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleProtobufEmpty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
+      }
     }
 
     /**
@@ -9057,6 +10542,7 @@ export namespace dlp_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -9154,6 +10640,7 @@ export namespace dlp_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -9175,6 +10662,13 @@ export namespace dlp_v2 {
     }
   }
 
+  export interface Params$Resource$Organizations$Locations$Tabledataprofiles$Delete
+    extends StandardParameters {
+    /**
+     * Required. Resource name of the table data profile.
+     */
+    name?: string;
+  }
   export interface Params$Resource$Organizations$Locations$Tabledataprofiles$Get
     extends StandardParameters {
     /**
@@ -9288,6 +10782,7 @@ export namespace dlp_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -9377,6 +10872,7 @@ export namespace dlp_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -9468,6 +10964,7 @@ export namespace dlp_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -9564,6 +11061,7 @@ export namespace dlp_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -9657,6 +11155,7 @@ export namespace dlp_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -9681,7 +11180,7 @@ export namespace dlp_v2 {
   export interface Params$Resource$Organizations$Storedinfotypes$Create
     extends StandardParameters {
     /**
-     * Required. Parent resource name. The format of this value varies depending on the scope of the request (project or organization) and whether you have [specified a processing location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/`PROJECT_ID`/locations/`LOCATION_ID + Projects scope, no location specified (defaults to global): `projects/`PROJECT_ID + Organizations scope, location specified: `organizations/`ORG_ID`/locations/`LOCATION_ID + Organizations scope, no location specified (defaults to global): `organizations/`ORG_ID The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
+     * Required. Parent resource name. The format of this value varies depending on the scope of the request (project or organization) and whether you have [specified a processing location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/`PROJECT_ID`/locations/` LOCATION_ID + Projects scope, no location specified (defaults to global): `projects/`PROJECT_ID + Organizations scope, location specified: `organizations/`ORG_ID`/locations/`LOCATION_ID + Organizations scope, no location specified (defaults to global): `organizations/`ORG_ID The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
      */
     parent?: string;
 
@@ -9723,7 +11222,7 @@ export namespace dlp_v2 {
      */
     pageToken?: string;
     /**
-     * Required. Parent resource name. The format of this value varies depending on the scope of the request (project or organization) and whether you have [specified a processing location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/`PROJECT_ID`/locations/`LOCATION_ID + Projects scope, no location specified (defaults to global): `projects/`PROJECT_ID The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
+     * Required. Parent resource name. The format of this value varies depending on the scope of the request (project or organization) and whether you have [specified a processing location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/`PROJECT_ID`/locations/` LOCATION_ID + Projects scope, no location specified (defaults to global): `projects/`PROJECT_ID The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
      */
     parent?: string;
   }
@@ -9851,6 +11350,7 @@ export namespace dlp_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -9947,6 +11447,7 @@ export namespace dlp_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -10043,6 +11544,7 @@ export namespace dlp_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -10067,7 +11569,7 @@ export namespace dlp_v2 {
   export interface Params$Resource$Projects$Content$Deidentify
     extends StandardParameters {
     /**
-     * Parent resource name. The format of this value varies depending on whether you have [specified a processing location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/`PROJECT_ID`/locations/`LOCATION_ID + Projects scope, no location specified (defaults to global): `projects/`PROJECT_ID The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
+     * Parent resource name. The format of this value varies depending on whether you have [specified a processing location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/`PROJECT_ID`/locations/` LOCATION_ID + Projects scope, no location specified (defaults to global): `projects/`PROJECT_ID The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
      */
     parent?: string;
 
@@ -10079,7 +11581,7 @@ export namespace dlp_v2 {
   export interface Params$Resource$Projects$Content$Inspect
     extends StandardParameters {
     /**
-     * Parent resource name. The format of this value varies depending on whether you have [specified a processing location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/`PROJECT_ID`/locations/`LOCATION_ID + Projects scope, no location specified (defaults to global): `projects/`PROJECT_ID The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
+     * Parent resource name. The format of this value varies depending on whether you have [specified a processing location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/`PROJECT_ID`/locations/` LOCATION_ID + Projects scope, no location specified (defaults to global): `projects/`PROJECT_ID The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
      */
     parent?: string;
 
@@ -10091,7 +11593,7 @@ export namespace dlp_v2 {
   export interface Params$Resource$Projects$Content$Reidentify
     extends StandardParameters {
     /**
-     * Required. Parent resource name. The format of this value varies depending on whether you have [specified a processing location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/`PROJECT_ID`/locations/`LOCATION_ID + Projects scope, no location specified (defaults to global): `projects/`PROJECT_ID The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
+     * Required. Parent resource name. The format of this value varies depending on whether you have [specified a processing location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/`PROJECT_ID`/locations/` LOCATION_ID + Projects scope, no location specified (defaults to global): `projects/`PROJECT_ID The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
      */
     parent?: string;
 
@@ -10183,6 +11685,7 @@ export namespace dlp_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -10272,6 +11775,7 @@ export namespace dlp_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -10363,6 +11867,7 @@ export namespace dlp_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -10459,6 +11964,7 @@ export namespace dlp_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -10552,6 +12058,7 @@ export namespace dlp_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -10576,7 +12083,7 @@ export namespace dlp_v2 {
   export interface Params$Resource$Projects$Deidentifytemplates$Create
     extends StandardParameters {
     /**
-     * Required. Parent resource name. The format of this value varies depending on the scope of the request (project or organization) and whether you have [specified a processing location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/`PROJECT_ID`/locations/`LOCATION_ID + Projects scope, no location specified (defaults to global): `projects/`PROJECT_ID + Organizations scope, location specified: `organizations/`ORG_ID`/locations/`LOCATION_ID + Organizations scope, no location specified (defaults to global): `organizations/`ORG_ID The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
+     * Required. Parent resource name. The format of this value varies depending on the scope of the request (project or organization) and whether you have [specified a processing location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/`PROJECT_ID`/locations/` LOCATION_ID + Projects scope, no location specified (defaults to global): `projects/`PROJECT_ID + Organizations scope, location specified: `organizations/`ORG_ID`/locations/`LOCATION_ID + Organizations scope, no location specified (defaults to global): `organizations/`ORG_ID The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
      */
     parent?: string;
 
@@ -10618,7 +12125,7 @@ export namespace dlp_v2 {
      */
     pageToken?: string;
     /**
-     * Required. Parent resource name. The format of this value varies depending on the scope of the request (project or organization) and whether you have [specified a processing location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/`PROJECT_ID`/locations/`LOCATION_ID + Projects scope, no location specified (defaults to global): `projects/`PROJECT_ID + Organizations scope, location specified: `organizations/`ORG_ID`/locations/`LOCATION_ID + Organizations scope, no location specified (defaults to global): `organizations/`ORG_ID The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
+     * Required. Parent resource name. The format of this value varies depending on the scope of the request (project or organization) and whether you have [specified a processing location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/`PROJECT_ID`/locations/` LOCATION_ID + Projects scope, no location specified (defaults to global): `projects/`PROJECT_ID + Organizations scope, location specified: `organizations/`ORG_ID`/locations/`LOCATION_ID + Organizations scope, no location specified (defaults to global): `organizations/`ORG_ID The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
      */
     parent?: string;
   }
@@ -10710,6 +12217,7 @@ export namespace dlp_v2 {
           {
             url: (rootUrl + '/v2/{+name}:cancel').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -10804,6 +12312,7 @@ export namespace dlp_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -10891,6 +12400,7 @@ export namespace dlp_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -10980,6 +12490,7 @@ export namespace dlp_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -11074,6 +12585,7 @@ export namespace dlp_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -11110,7 +12622,7 @@ export namespace dlp_v2 {
   export interface Params$Resource$Projects$Dlpjobs$Create
     extends StandardParameters {
     /**
-     * Required. Parent resource name. The format of this value varies depending on whether you have [specified a processing location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/`PROJECT_ID`/locations/`LOCATION_ID + Projects scope, no location specified (defaults to global): `projects/`PROJECT_ID The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
+     * Required. Parent resource name. The format of this value varies depending on whether you have [specified a processing location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/`PROJECT_ID`/locations/` LOCATION_ID + Projects scope, no location specified (defaults to global): `projects/`PROJECT_ID The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
      */
     parent?: string;
 
@@ -11156,7 +12668,7 @@ export namespace dlp_v2 {
      */
     pageToken?: string;
     /**
-     * Required. Parent resource name. The format of this value varies depending on whether you have [specified a processing location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/`PROJECT_ID`/locations/`LOCATION_ID + Projects scope, no location specified (defaults to global): `projects/`PROJECT_ID The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
+     * Required. Parent resource name. The format of this value varies depending on whether you have [specified a processing location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/`PROJECT_ID`/locations/` LOCATION_ID + Projects scope, no location specified (defaults to global): `projects/`PROJECT_ID The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
      */
     parent?: string;
     /**
@@ -11247,6 +12759,7 @@ export namespace dlp_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -11271,7 +12784,7 @@ export namespace dlp_v2 {
   export interface Params$Resource$Projects$Image$Redact
     extends StandardParameters {
     /**
-     * Parent resource name. The format of this value varies depending on whether you have [specified a processing location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/`PROJECT_ID`/locations/`LOCATION_ID + Projects scope, no location specified (defaults to global): `projects/`PROJECT_ID The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
+     * Parent resource name. The format of this value varies depending on whether you have [specified a processing location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/`PROJECT_ID`/locations/` LOCATION_ID + Projects scope, no location specified (defaults to global): `projects/`PROJECT_ID The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
      */
     parent?: string;
 
@@ -11363,6 +12876,7 @@ export namespace dlp_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -11452,6 +12966,7 @@ export namespace dlp_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -11543,6 +13058,7 @@ export namespace dlp_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -11639,6 +13155,7 @@ export namespace dlp_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -11732,6 +13249,7 @@ export namespace dlp_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -11756,7 +13274,7 @@ export namespace dlp_v2 {
   export interface Params$Resource$Projects$Inspecttemplates$Create
     extends StandardParameters {
     /**
-     * Required. Parent resource name. The format of this value varies depending on the scope of the request (project or organization) and whether you have [specified a processing location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/`PROJECT_ID`/locations/`LOCATION_ID + Projects scope, no location specified (defaults to global): `projects/`PROJECT_ID + Organizations scope, location specified: `organizations/`ORG_ID`/locations/`LOCATION_ID + Organizations scope, no location specified (defaults to global): `organizations/`ORG_ID The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
+     * Required. Parent resource name. The format of this value varies depending on the scope of the request (project or organization) and whether you have [specified a processing location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/`PROJECT_ID`/locations/` LOCATION_ID + Projects scope, no location specified (defaults to global): `projects/`PROJECT_ID + Organizations scope, location specified: `organizations/`ORG_ID`/locations/`LOCATION_ID + Organizations scope, no location specified (defaults to global): `organizations/`ORG_ID The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
      */
     parent?: string;
 
@@ -11798,7 +13316,7 @@ export namespace dlp_v2 {
      */
     pageToken?: string;
     /**
-     * Required. Parent resource name. The format of this value varies depending on the scope of the request (project or organization) and whether you have [specified a processing location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/`PROJECT_ID`/locations/`LOCATION_ID + Projects scope, no location specified (defaults to global): `projects/`PROJECT_ID + Organizations scope, location specified: `organizations/`ORG_ID`/locations/`LOCATION_ID + Organizations scope, no location specified (defaults to global): `organizations/`ORG_ID The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
+     * Required. Parent resource name. The format of this value varies depending on the scope of the request (project or organization) and whether you have [specified a processing location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/`PROJECT_ID`/locations/` LOCATION_ID + Projects scope, no location specified (defaults to global): `projects/`PROJECT_ID + Organizations scope, location specified: `organizations/`ORG_ID`/locations/`LOCATION_ID + Organizations scope, no location specified (defaults to global): `organizations/`ORG_ID The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
      */
     parent?: string;
   }
@@ -11897,6 +13415,7 @@ export namespace dlp_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -11991,6 +13510,7 @@ export namespace dlp_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -12080,6 +13600,7 @@ export namespace dlp_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -12171,6 +13692,7 @@ export namespace dlp_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -12267,6 +13789,7 @@ export namespace dlp_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -12360,6 +13883,7 @@ export namespace dlp_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -12396,7 +13920,7 @@ export namespace dlp_v2 {
   export interface Params$Resource$Projects$Jobtriggers$Create
     extends StandardParameters {
     /**
-     * Required. Parent resource name. The format of this value varies depending on whether you have [specified a processing location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/`PROJECT_ID`/locations/`LOCATION_ID + Projects scope, no location specified (defaults to global): `projects/`PROJECT_ID The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
+     * Required. Parent resource name. The format of this value varies depending on whether you have [specified a processing location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/`PROJECT_ID`/locations/` LOCATION_ID + Projects scope, no location specified (defaults to global): `projects/`PROJECT_ID The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
      */
     parent?: string;
 
@@ -12442,7 +13966,7 @@ export namespace dlp_v2 {
      */
     pageToken?: string;
     /**
-     * Required. Parent resource name. The format of this value varies depending on whether you have [specified a processing location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/`PROJECT_ID`/locations/`LOCATION_ID + Projects scope, no location specified (defaults to global): `projects/`PROJECT_ID The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
+     * Required. Parent resource name. The format of this value varies depending on whether you have [specified a processing location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/`PROJECT_ID`/locations/` LOCATION_ID + Projects scope, no location specified (defaults to global): `projects/`PROJECT_ID The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
      */
     parent?: string;
     /**
@@ -12466,10 +13990,12 @@ export namespace dlp_v2 {
   export class Resource$Projects$Locations {
     context: APIRequestContext;
     columnDataProfiles: Resource$Projects$Locations$Columndataprofiles;
+    connections: Resource$Projects$Locations$Connections;
     content: Resource$Projects$Locations$Content;
     deidentifyTemplates: Resource$Projects$Locations$Deidentifytemplates;
     discoveryConfigs: Resource$Projects$Locations$Discoveryconfigs;
     dlpJobs: Resource$Projects$Locations$Dlpjobs;
+    fileStoreDataProfiles: Resource$Projects$Locations$Filestoredataprofiles;
     image: Resource$Projects$Locations$Image;
     inspectTemplates: Resource$Projects$Locations$Inspecttemplates;
     jobTriggers: Resource$Projects$Locations$Jobtriggers;
@@ -12480,6 +14006,9 @@ export namespace dlp_v2 {
       this.context = context;
       this.columnDataProfiles =
         new Resource$Projects$Locations$Columndataprofiles(this.context);
+      this.connections = new Resource$Projects$Locations$Connections(
+        this.context
+      );
       this.content = new Resource$Projects$Locations$Content(this.context);
       this.deidentifyTemplates =
         new Resource$Projects$Locations$Deidentifytemplates(this.context);
@@ -12487,6 +14016,8 @@ export namespace dlp_v2 {
         this.context
       );
       this.dlpJobs = new Resource$Projects$Locations$Dlpjobs(this.context);
+      this.fileStoreDataProfiles =
+        new Resource$Projects$Locations$Filestoredataprofiles(this.context);
       this.image = new Resource$Projects$Locations$Image(this.context);
       this.inspectTemplates = new Resource$Projects$Locations$Inspecttemplates(
         this.context
@@ -12584,6 +14115,7 @@ export namespace dlp_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -12681,6 +14213,7 @@ export namespace dlp_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -12729,6 +14262,657 @@ export namespace dlp_v2 {
     pageToken?: string;
     /**
      * Required. Resource name of the organization or project, for example `organizations/433245324/locations/europe` or `projects/project-id/locations/asia`.
+     */
+    parent?: string;
+  }
+
+  export class Resource$Projects$Locations$Connections {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Create a Connection to an external data source.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Locations$Connections$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Projects$Locations$Connections$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GooglePrivacyDlpV2Connection>;
+    create(
+      params: Params$Resource$Projects$Locations$Connections$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Connections$Create,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2Connection>,
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2Connection>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Connections$Create,
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2Connection>
+    ): void;
+    create(
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2Connection>
+    ): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Connections$Create
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2Connection>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2Connection>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2Connection>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GooglePrivacyDlpV2Connection>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Connections$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Connections$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+parent}/connections').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GooglePrivacyDlpV2Connection>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GooglePrivacyDlpV2Connection>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Delete a Connection.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Connections$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Connections$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    delete(
+      params: Params$Resource$Projects$Locations$Connections$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Connections$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Connections$Delete,
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Connections$Delete
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleProtobufEmpty>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Connections$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Connections$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleProtobufEmpty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
+      }
+    }
+
+    /**
+     * Get a Connection by name.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Connections$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Connections$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GooglePrivacyDlpV2Connection>;
+    get(
+      params: Params$Resource$Projects$Locations$Connections$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Connections$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2Connection>,
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2Connection>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Connections$Get,
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2Connection>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2Connection>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Connections$Get
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2Connection>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2Connection>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2Connection>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GooglePrivacyDlpV2Connection>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Connections$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Connections$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GooglePrivacyDlpV2Connection>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GooglePrivacyDlpV2Connection>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Lists Connections in a parent.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Connections$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Connections$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GooglePrivacyDlpV2ListConnectionsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Connections$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Connections$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ListConnectionsResponse>,
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2ListConnectionsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Connections$List,
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2ListConnectionsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2ListConnectionsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Connections$List
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ListConnectionsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ListConnectionsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ListConnectionsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GooglePrivacyDlpV2ListConnectionsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Connections$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Connections$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+parent}/connections').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GooglePrivacyDlpV2ListConnectionsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GooglePrivacyDlpV2ListConnectionsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Update a Connection.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Locations$Connections$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Projects$Locations$Connections$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GooglePrivacyDlpV2Connection>;
+    patch(
+      params: Params$Resource$Projects$Locations$Connections$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Connections$Patch,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2Connection>,
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2Connection>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Connections$Patch,
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2Connection>
+    ): void;
+    patch(
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2Connection>
+    ): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Connections$Patch
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2Connection>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2Connection>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2Connection>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GooglePrivacyDlpV2Connection>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Connections$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Connections$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GooglePrivacyDlpV2Connection>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GooglePrivacyDlpV2Connection>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Searches for Connections in a parent.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    search(
+      params: Params$Resource$Projects$Locations$Connections$Search,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    search(
+      params?: Params$Resource$Projects$Locations$Connections$Search,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GooglePrivacyDlpV2SearchConnectionsResponse>;
+    search(
+      params: Params$Resource$Projects$Locations$Connections$Search,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    search(
+      params: Params$Resource$Projects$Locations$Connections$Search,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2SearchConnectionsResponse>,
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2SearchConnectionsResponse>
+    ): void;
+    search(
+      params: Params$Resource$Projects$Locations$Connections$Search,
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2SearchConnectionsResponse>
+    ): void;
+    search(
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2SearchConnectionsResponse>
+    ): void;
+    search(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Connections$Search
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2SearchConnectionsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2SearchConnectionsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2SearchConnectionsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GooglePrivacyDlpV2SearchConnectionsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Connections$Search;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Connections$Search;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+parent}/connections:search').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GooglePrivacyDlpV2SearchConnectionsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GooglePrivacyDlpV2SearchConnectionsResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Connections$Create
+    extends StandardParameters {
+    /**
+     * Required. Parent resource name. The format of this value varies depending on the scope of the request (project or organization): + Projects scope: `projects/`PROJECT_ID`/locations/`LOCATION_ID + Organizations scope: `organizations/`ORG_ID`/locations/`LOCATION_ID
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GooglePrivacyDlpV2CreateConnectionRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Connections$Delete
+    extends StandardParameters {
+    /**
+     * Required. Resource name of the Connection to be deleted, in the format: `projects/{project\}/locations/{location\}/connections/{connection\}`.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Connections$Get
+    extends StandardParameters {
+    /**
+     * Required. Resource name in the format: `projects/{project\}/locations/{location\}/connections/{connection\}`.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Connections$List
+    extends StandardParameters {
+    /**
+     * Optional. Supported field/value: `state` - MISSING|AVAILABLE|ERROR
+     */
+    filter?: string;
+    /**
+     * Optional. Number of results per page, max 1000.
+     */
+    pageSize?: number;
+    /**
+     * Optional. Page token from a previous page to return the next set of results. If set, all other request fields must match the original request.
+     */
+    pageToken?: string;
+    /**
+     * Required. Parent name, for example: `projects/project-id/locations/global`.
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Connections$Patch
+    extends StandardParameters {
+    /**
+     * Required. Resource name in the format: `projects/{project\}/locations/{location\}/connections/{connection\}`.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GooglePrivacyDlpV2UpdateConnectionRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Connections$Search
+    extends StandardParameters {
+    /**
+     * Optional. Supported field/value: - `state` - MISSING|AVAILABLE|ERROR
+     */
+    filter?: string;
+    /**
+     * Optional. Number of results per page, max 1000.
+     */
+    pageSize?: number;
+    /**
+     * Optional. Page token from a previous page to return the next set of results. If set, all other request fields must match the original request.
+     */
+    pageToken?: string;
+    /**
+     * Required. Parent name, typically an organization, without location. For example: `organizations/12345678`.
      */
     parent?: string;
   }
@@ -12815,6 +14999,7 @@ export namespace dlp_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -12911,6 +15096,7 @@ export namespace dlp_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -13007,6 +15193,7 @@ export namespace dlp_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -13031,7 +15218,7 @@ export namespace dlp_v2 {
   export interface Params$Resource$Projects$Locations$Content$Deidentify
     extends StandardParameters {
     /**
-     * Parent resource name. The format of this value varies depending on whether you have [specified a processing location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/`PROJECT_ID`/locations/`LOCATION_ID + Projects scope, no location specified (defaults to global): `projects/`PROJECT_ID The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
+     * Parent resource name. The format of this value varies depending on whether you have [specified a processing location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/`PROJECT_ID`/locations/` LOCATION_ID + Projects scope, no location specified (defaults to global): `projects/`PROJECT_ID The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
      */
     parent?: string;
 
@@ -13043,7 +15230,7 @@ export namespace dlp_v2 {
   export interface Params$Resource$Projects$Locations$Content$Inspect
     extends StandardParameters {
     /**
-     * Parent resource name. The format of this value varies depending on whether you have [specified a processing location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/`PROJECT_ID`/locations/`LOCATION_ID + Projects scope, no location specified (defaults to global): `projects/`PROJECT_ID The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
+     * Parent resource name. The format of this value varies depending on whether you have [specified a processing location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/`PROJECT_ID`/locations/` LOCATION_ID + Projects scope, no location specified (defaults to global): `projects/`PROJECT_ID The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
      */
     parent?: string;
 
@@ -13055,7 +15242,7 @@ export namespace dlp_v2 {
   export interface Params$Resource$Projects$Locations$Content$Reidentify
     extends StandardParameters {
     /**
-     * Required. Parent resource name. The format of this value varies depending on whether you have [specified a processing location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/`PROJECT_ID`/locations/`LOCATION_ID + Projects scope, no location specified (defaults to global): `projects/`PROJECT_ID The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
+     * Required. Parent resource name. The format of this value varies depending on whether you have [specified a processing location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/`PROJECT_ID`/locations/` LOCATION_ID + Projects scope, no location specified (defaults to global): `projects/`PROJECT_ID The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
      */
     parent?: string;
 
@@ -13148,6 +15335,7 @@ export namespace dlp_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -13238,6 +15426,7 @@ export namespace dlp_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -13330,6 +15519,7 @@ export namespace dlp_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -13427,6 +15617,7 @@ export namespace dlp_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -13521,6 +15712,7 @@ export namespace dlp_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -13545,7 +15737,7 @@ export namespace dlp_v2 {
   export interface Params$Resource$Projects$Locations$Deidentifytemplates$Create
     extends StandardParameters {
     /**
-     * Required. Parent resource name. The format of this value varies depending on the scope of the request (project or organization) and whether you have [specified a processing location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/`PROJECT_ID`/locations/`LOCATION_ID + Projects scope, no location specified (defaults to global): `projects/`PROJECT_ID + Organizations scope, location specified: `organizations/`ORG_ID`/locations/`LOCATION_ID + Organizations scope, no location specified (defaults to global): `organizations/`ORG_ID The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
+     * Required. Parent resource name. The format of this value varies depending on the scope of the request (project or organization) and whether you have [specified a processing location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/`PROJECT_ID`/locations/` LOCATION_ID + Projects scope, no location specified (defaults to global): `projects/`PROJECT_ID + Organizations scope, location specified: `organizations/`ORG_ID`/locations/`LOCATION_ID + Organizations scope, no location specified (defaults to global): `organizations/`ORG_ID The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
      */
     parent?: string;
 
@@ -13587,7 +15779,7 @@ export namespace dlp_v2 {
      */
     pageToken?: string;
     /**
-     * Required. Parent resource name. The format of this value varies depending on the scope of the request (project or organization) and whether you have [specified a processing location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/`PROJECT_ID`/locations/`LOCATION_ID + Projects scope, no location specified (defaults to global): `projects/`PROJECT_ID + Organizations scope, location specified: `organizations/`ORG_ID`/locations/`LOCATION_ID + Organizations scope, no location specified (defaults to global): `organizations/`ORG_ID The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
+     * Required. Parent resource name. The format of this value varies depending on the scope of the request (project or organization) and whether you have [specified a processing location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/`PROJECT_ID`/locations/` LOCATION_ID + Projects scope, no location specified (defaults to global): `projects/`PROJECT_ID + Organizations scope, location specified: `organizations/`ORG_ID`/locations/`LOCATION_ID + Organizations scope, no location specified (defaults to global): `organizations/`ORG_ID The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
      */
     parent?: string;
   }
@@ -13687,6 +15879,7 @@ export namespace dlp_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -13777,6 +15970,7 @@ export namespace dlp_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -13868,6 +16062,7 @@ export namespace dlp_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -13964,6 +16159,7 @@ export namespace dlp_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -14058,6 +16254,7 @@ export namespace dlp_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -14082,7 +16279,7 @@ export namespace dlp_v2 {
   export interface Params$Resource$Projects$Locations$Discoveryconfigs$Create
     extends StandardParameters {
     /**
-     * Required. Parent resource name. The format of this value is as follows: `projects/`PROJECT_ID`/locations/`LOCATION_ID The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
+     * Required. Parent resource name. The format of this value varies depending on the scope of the request (project or organization): + Projects scope: `projects/`PROJECT_ID`/locations/`LOCATION_ID + Organizations scope: `organizations/`ORG_ID`/locations/`LOCATION_ID The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
      */
     parent?: string;
 
@@ -14212,6 +16409,7 @@ export namespace dlp_v2 {
           {
             url: (rootUrl + '/v2/{+name}:cancel').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -14306,6 +16504,7 @@ export namespace dlp_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -14393,6 +16592,7 @@ export namespace dlp_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -14480,6 +16680,7 @@ export namespace dlp_v2 {
           {
             url: (rootUrl + '/v2/{+name}:finish').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -14569,6 +16770,7 @@ export namespace dlp_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -14663,6 +16865,7 @@ export namespace dlp_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -14759,6 +16962,7 @@ export namespace dlp_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -14795,7 +16999,7 @@ export namespace dlp_v2 {
   export interface Params$Resource$Projects$Locations$Dlpjobs$Create
     extends StandardParameters {
     /**
-     * Required. Parent resource name. The format of this value varies depending on whether you have [specified a processing location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/`PROJECT_ID`/locations/`LOCATION_ID + Projects scope, no location specified (defaults to global): `projects/`PROJECT_ID The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
+     * Required. Parent resource name. The format of this value varies depending on whether you have [specified a processing location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/`PROJECT_ID`/locations/` LOCATION_ID + Projects scope, no location specified (defaults to global): `projects/`PROJECT_ID The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
      */
     parent?: string;
 
@@ -14865,13 +17069,340 @@ export namespace dlp_v2 {
      */
     pageToken?: string;
     /**
-     * Required. Parent resource name. The format of this value varies depending on whether you have [specified a processing location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/`PROJECT_ID`/locations/`LOCATION_ID + Projects scope, no location specified (defaults to global): `projects/`PROJECT_ID The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
+     * Required. Parent resource name. The format of this value varies depending on whether you have [specified a processing location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/`PROJECT_ID`/locations/` LOCATION_ID + Projects scope, no location specified (defaults to global): `projects/`PROJECT_ID The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
      */
     parent?: string;
     /**
      * The type of job. Defaults to `DlpJobType.INSPECT`
      */
     type?: string;
+  }
+
+  export class Resource$Projects$Locations$Filestoredataprofiles {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Delete a FileStoreDataProfile. Will not prevent the profile from being regenerated if the resource is still included in a discovery configuration.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Filestoredataprofiles$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Filestoredataprofiles$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    delete(
+      params: Params$Resource$Projects$Locations$Filestoredataprofiles$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Filestoredataprofiles$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Filestoredataprofiles$Delete,
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Filestoredataprofiles$Delete
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleProtobufEmpty>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Filestoredataprofiles$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Filestoredataprofiles$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleProtobufEmpty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
+      }
+    }
+
+    /**
+     * Gets a file store data profile.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Filestoredataprofiles$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Filestoredataprofiles$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GooglePrivacyDlpV2FileStoreDataProfile>;
+    get(
+      params: Params$Resource$Projects$Locations$Filestoredataprofiles$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Filestoredataprofiles$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2FileStoreDataProfile>,
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2FileStoreDataProfile>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Filestoredataprofiles$Get,
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2FileStoreDataProfile>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2FileStoreDataProfile>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Filestoredataprofiles$Get
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2FileStoreDataProfile>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2FileStoreDataProfile>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2FileStoreDataProfile>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GooglePrivacyDlpV2FileStoreDataProfile>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Filestoredataprofiles$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Filestoredataprofiles$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GooglePrivacyDlpV2FileStoreDataProfile>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GooglePrivacyDlpV2FileStoreDataProfile>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Lists file store data profiles for an organization.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Filestoredataprofiles$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Filestoredataprofiles$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GooglePrivacyDlpV2ListFileStoreDataProfilesResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Filestoredataprofiles$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Filestoredataprofiles$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ListFileStoreDataProfilesResponse>,
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2ListFileStoreDataProfilesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Filestoredataprofiles$List,
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2ListFileStoreDataProfilesResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2ListFileStoreDataProfilesResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Filestoredataprofiles$List
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ListFileStoreDataProfilesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ListFileStoreDataProfilesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ListFileStoreDataProfilesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GooglePrivacyDlpV2ListFileStoreDataProfilesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Filestoredataprofiles$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Filestoredataprofiles$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+parent}/fileStoreDataProfiles').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GooglePrivacyDlpV2ListFileStoreDataProfilesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GooglePrivacyDlpV2ListFileStoreDataProfilesResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Filestoredataprofiles$Delete
+    extends StandardParameters {
+    /**
+     * Required. Resource name of the file store data profile.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Filestoredataprofiles$Get
+    extends StandardParameters {
+    /**
+     * Required. Resource name, for example `organizations/12345/locations/us/fileStoreDataProfiles/53234423`.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Filestoredataprofiles$List
+    extends StandardParameters {
+    /**
+     * Optional. Allows filtering. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field\} {operator\} {value\}`. * Supported fields/values: - `project_id` - The Google Cloud project ID. - `file_store_path` - The path like "gs://bucket". - `sensitivity_level` - HIGH|MODERATE|LOW - `data_risk_level` - HIGH|MODERATE|LOW - `resource_visibility`: PUBLIC|RESTRICTED - `status_code` - an RPC status code as defined in https://github.com/googleapis/googleapis/blob/master/google/rpc/code.proto * The operator must be `=` or `!=`. Examples: * `project_id = 12345 AND status_code = 1` * `project_id = 12345 AND sensitivity_level = HIGH` * `project_id = 12345 AND resource_visibility = PUBLIC` . * 'file_store_path = "gs://mybucket"` The length of this field should be no more than 500 characters.
+     */
+    filter?: string;
+    /**
+     * Optional. Comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case insensitive. The default sorting order is ascending. Redundant space characters are insignificant. Only one order field at a time is allowed. Examples: * `project_id asc` * `name` * `sensitivity_level desc` Supported fields are: - `project_id`: The Google Cloud project ID. - `sensitivity_level`: How sensitive the data in a table is, at most. - `data_risk_level`: How much risk is associated with this data. - `profile_last_generated`: When the profile was last updated in epoch seconds. - `last_modified`: The last time the resource was modified. - `resource_visibility`: Visibility restriction for this resource. - `name`: The name of the profile. - `create_time`: The time the file store was first created.
+     */
+    orderBy?: string;
+    /**
+     * Optional. Size of the page. This value can be limited by the server. If zero, server returns a page of max size 100.
+     */
+    pageSize?: number;
+    /**
+     * Optional. Page token to continue retrieval.
+     */
+    pageToken?: string;
+    /**
+     * Required. Resource name of the organization or project, for example `organizations/433245324/locations/europe` or `projects/project-id/locations/asia`.
+     */
+    parent?: string;
   }
 
   export class Resource$Projects$Locations$Image {
@@ -14956,6 +17487,7 @@ export namespace dlp_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -14980,7 +17512,7 @@ export namespace dlp_v2 {
   export interface Params$Resource$Projects$Locations$Image$Redact
     extends StandardParameters {
     /**
-     * Parent resource name. The format of this value varies depending on whether you have [specified a processing location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/`PROJECT_ID`/locations/`LOCATION_ID + Projects scope, no location specified (defaults to global): `projects/`PROJECT_ID The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
+     * Parent resource name. The format of this value varies depending on whether you have [specified a processing location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/`PROJECT_ID`/locations/` LOCATION_ID + Projects scope, no location specified (defaults to global): `projects/`PROJECT_ID The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
      */
     parent?: string;
 
@@ -15073,6 +17605,7 @@ export namespace dlp_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -15163,6 +17696,7 @@ export namespace dlp_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -15254,6 +17788,7 @@ export namespace dlp_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -15350,6 +17885,7 @@ export namespace dlp_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -15444,6 +17980,7 @@ export namespace dlp_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -15468,7 +18005,7 @@ export namespace dlp_v2 {
   export interface Params$Resource$Projects$Locations$Inspecttemplates$Create
     extends StandardParameters {
     /**
-     * Required. Parent resource name. The format of this value varies depending on the scope of the request (project or organization) and whether you have [specified a processing location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/`PROJECT_ID`/locations/`LOCATION_ID + Projects scope, no location specified (defaults to global): `projects/`PROJECT_ID + Organizations scope, location specified: `organizations/`ORG_ID`/locations/`LOCATION_ID + Organizations scope, no location specified (defaults to global): `organizations/`ORG_ID The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
+     * Required. Parent resource name. The format of this value varies depending on the scope of the request (project or organization) and whether you have [specified a processing location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/`PROJECT_ID`/locations/` LOCATION_ID + Projects scope, no location specified (defaults to global): `projects/`PROJECT_ID + Organizations scope, location specified: `organizations/`ORG_ID`/locations/`LOCATION_ID + Organizations scope, no location specified (defaults to global): `organizations/`ORG_ID The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
      */
     parent?: string;
 
@@ -15510,7 +18047,7 @@ export namespace dlp_v2 {
      */
     pageToken?: string;
     /**
-     * Required. Parent resource name. The format of this value varies depending on the scope of the request (project or organization) and whether you have [specified a processing location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/`PROJECT_ID`/locations/`LOCATION_ID + Projects scope, no location specified (defaults to global): `projects/`PROJECT_ID + Organizations scope, location specified: `organizations/`ORG_ID`/locations/`LOCATION_ID + Organizations scope, no location specified (defaults to global): `organizations/`ORG_ID The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
+     * Required. Parent resource name. The format of this value varies depending on the scope of the request (project or organization) and whether you have [specified a processing location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/`PROJECT_ID`/locations/` LOCATION_ID + Projects scope, no location specified (defaults to global): `projects/`PROJECT_ID + Organizations scope, location specified: `organizations/`ORG_ID`/locations/`LOCATION_ID + Organizations scope, no location specified (defaults to global): `organizations/`ORG_ID The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
      */
     parent?: string;
   }
@@ -15609,6 +18146,7 @@ export namespace dlp_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -15703,6 +18241,7 @@ export namespace dlp_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -15792,6 +18331,7 @@ export namespace dlp_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -15883,6 +18423,7 @@ export namespace dlp_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -15980,6 +18521,7 @@ export namespace dlp_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -16076,6 +18618,7 @@ export namespace dlp_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -16169,6 +18712,7 @@ export namespace dlp_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -16205,7 +18749,7 @@ export namespace dlp_v2 {
   export interface Params$Resource$Projects$Locations$Jobtriggers$Create
     extends StandardParameters {
     /**
-     * Required. Parent resource name. The format of this value varies depending on whether you have [specified a processing location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/`PROJECT_ID`/locations/`LOCATION_ID + Projects scope, no location specified (defaults to global): `projects/`PROJECT_ID The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
+     * Required. Parent resource name. The format of this value varies depending on whether you have [specified a processing location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/`PROJECT_ID`/locations/` LOCATION_ID + Projects scope, no location specified (defaults to global): `projects/`PROJECT_ID The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
      */
     parent?: string;
 
@@ -16263,7 +18807,7 @@ export namespace dlp_v2 {
      */
     pageToken?: string;
     /**
-     * Required. Parent resource name. The format of this value varies depending on whether you have [specified a processing location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/`PROJECT_ID`/locations/`LOCATION_ID + Projects scope, no location specified (defaults to global): `projects/`PROJECT_ID The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
+     * Required. Parent resource name. The format of this value varies depending on whether you have [specified a processing location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/`PROJECT_ID`/locations/` LOCATION_ID + Projects scope, no location specified (defaults to global): `projects/`PROJECT_ID The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
      */
     parent?: string;
     /**
@@ -16364,6 +18908,7 @@ export namespace dlp_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -16461,6 +19006,7 @@ export namespace dlp_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -16596,6 +19142,7 @@ export namespace dlp_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -16686,6 +19233,7 @@ export namespace dlp_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -16777,6 +19325,7 @@ export namespace dlp_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -16873,6 +19422,7 @@ export namespace dlp_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -16966,6 +19516,7 @@ export namespace dlp_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -16990,7 +19541,7 @@ export namespace dlp_v2 {
   export interface Params$Resource$Projects$Locations$Storedinfotypes$Create
     extends StandardParameters {
     /**
-     * Required. Parent resource name. The format of this value varies depending on the scope of the request (project or organization) and whether you have [specified a processing location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/`PROJECT_ID`/locations/`LOCATION_ID + Projects scope, no location specified (defaults to global): `projects/`PROJECT_ID + Organizations scope, location specified: `organizations/`ORG_ID`/locations/`LOCATION_ID + Organizations scope, no location specified (defaults to global): `organizations/`ORG_ID The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
+     * Required. Parent resource name. The format of this value varies depending on the scope of the request (project or organization) and whether you have [specified a processing location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/`PROJECT_ID`/locations/` LOCATION_ID + Projects scope, no location specified (defaults to global): `projects/`PROJECT_ID + Organizations scope, location specified: `organizations/`ORG_ID`/locations/`LOCATION_ID + Organizations scope, no location specified (defaults to global): `organizations/`ORG_ID The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
      */
     parent?: string;
 
@@ -17032,7 +19583,7 @@ export namespace dlp_v2 {
      */
     pageToken?: string;
     /**
-     * Required. Parent resource name. The format of this value varies depending on the scope of the request (project or organization) and whether you have [specified a processing location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/`PROJECT_ID`/locations/`LOCATION_ID + Projects scope, no location specified (defaults to global): `projects/`PROJECT_ID The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
+     * Required. Parent resource name. The format of this value varies depending on the scope of the request (project or organization) and whether you have [specified a processing location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/`PROJECT_ID`/locations/` LOCATION_ID + Projects scope, no location specified (defaults to global): `projects/`PROJECT_ID The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
      */
     parent?: string;
   }
@@ -17053,6 +19604,95 @@ export namespace dlp_v2 {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
+    }
+
+    /**
+     * Delete a TableDataProfile. Will not prevent the profile from being regenerated if the table is still included in a discovery configuration.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Tabledataprofiles$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Tabledataprofiles$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    delete(
+      params: Params$Resource$Projects$Locations$Tabledataprofiles$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Tabledataprofiles$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Tabledataprofiles$Delete,
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Tabledataprofiles$Delete
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleProtobufEmpty>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Tabledataprofiles$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Tabledataprofiles$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleProtobufEmpty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
+      }
     }
 
     /**
@@ -17128,6 +19768,7 @@ export namespace dlp_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -17225,6 +19866,7 @@ export namespace dlp_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -17246,6 +19888,13 @@ export namespace dlp_v2 {
     }
   }
 
+  export interface Params$Resource$Projects$Locations$Tabledataprofiles$Delete
+    extends StandardParameters {
+    /**
+     * Required. Resource name of the table data profile.
+     */
+    name?: string;
+  }
   export interface Params$Resource$Projects$Locations$Tabledataprofiles$Get
     extends StandardParameters {
     /**
@@ -17359,6 +20008,7 @@ export namespace dlp_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -17448,6 +20098,7 @@ export namespace dlp_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -17539,6 +20190,7 @@ export namespace dlp_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -17635,6 +20287,7 @@ export namespace dlp_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -17728,6 +20381,7 @@ export namespace dlp_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -17752,7 +20406,7 @@ export namespace dlp_v2 {
   export interface Params$Resource$Projects$Storedinfotypes$Create
     extends StandardParameters {
     /**
-     * Required. Parent resource name. The format of this value varies depending on the scope of the request (project or organization) and whether you have [specified a processing location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/`PROJECT_ID`/locations/`LOCATION_ID + Projects scope, no location specified (defaults to global): `projects/`PROJECT_ID + Organizations scope, location specified: `organizations/`ORG_ID`/locations/`LOCATION_ID + Organizations scope, no location specified (defaults to global): `organizations/`ORG_ID The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
+     * Required. Parent resource name. The format of this value varies depending on the scope of the request (project or organization) and whether you have [specified a processing location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/`PROJECT_ID`/locations/` LOCATION_ID + Projects scope, no location specified (defaults to global): `projects/`PROJECT_ID + Organizations scope, location specified: `organizations/`ORG_ID`/locations/`LOCATION_ID + Organizations scope, no location specified (defaults to global): `organizations/`ORG_ID The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
      */
     parent?: string;
 
@@ -17794,7 +20448,7 @@ export namespace dlp_v2 {
      */
     pageToken?: string;
     /**
-     * Required. Parent resource name. The format of this value varies depending on the scope of the request (project or organization) and whether you have [specified a processing location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/`PROJECT_ID`/locations/`LOCATION_ID + Projects scope, no location specified (defaults to global): `projects/`PROJECT_ID The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
+     * Required. Parent resource name. The format of this value varies depending on the scope of the request (project or organization) and whether you have [specified a processing location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location): + Projects scope, location specified: `projects/`PROJECT_ID`/locations/` LOCATION_ID + Projects scope, no location specified (defaults to global): `projects/`PROJECT_ID The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
      */
     parent?: string;
   }

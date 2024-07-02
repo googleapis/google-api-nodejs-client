@@ -211,6 +211,23 @@ export namespace sqladmin_v1beta4 {
     region?: string | null;
   }
   /**
+   * An available database version. It can be a major or a minor version.
+   */
+  export interface Schema$AvailableDatabaseVersion {
+    /**
+     * The database version's display name.
+     */
+    displayName?: string | null;
+    /**
+     * The version's major version name.
+     */
+    majorVersion?: string | null;
+    /**
+     * The database version name. For MySQL 8.0, this string provides the database major and minor version.
+     */
+    name?: string | null;
+  }
+  /**
    * Database instance backup configuration.
    */
   export interface Schema$BackupConfiguration {
@@ -434,7 +451,7 @@ export namespace sqladmin_v1beta4 {
      */
     pointInTime?: string | null;
     /**
-     * Optional. (Point-in-time recovery for PostgreSQL only) Clone to an instance in the specified zone. If no zone is specified, clone to the same zone as the source instance.
+     * Optional. Copy clone and point-in-time recovery clone of an instance to the specified zone. If no zone is specified, clone to the same primary zone as the source instance.
      */
     preferredZone?: string | null;
   }
@@ -651,7 +668,7 @@ export namespace sqladmin_v1beta4 {
      */
     replicaNames?: string[] | null;
     /**
-     * The pair of a primary instance and disaster recovery (DR) replica. A DR replica is a cross-region replica that you designate for failover in the event that the primary instance has regional failure.
+     * A primary instance and disaster recovery (DR) replica pair. A DR replica is a cross-region replica that you designate for failover in the event that the primary instance experiences regional failure. Only applicable to MySQL.
      */
     replicationCluster?: Schema$ReplicationCluster;
     /**
@@ -659,7 +676,7 @@ export namespace sqladmin_v1beta4 {
      */
     rootPassword?: string | null;
     /**
-     * The status indicating if instance satisfiesPzs. Reserved for future use.
+     * This status indicates whether the instance satisfies PZS. The status is reserved for future use.
      */
     satisfiesPzs?: boolean | null;
     /**
@@ -698,6 +715,10 @@ export namespace sqladmin_v1beta4 {
      * If the instance state is SUSPENDED, the reason for the suspension.
      */
     suspensionReason?: string[] | null;
+    /**
+     * Output only. All database versions that are available for upgrade.
+     */
+    upgradableDatabaseVersions?: Schema$AvailableDatabaseVersion[];
     /**
      * Output only. The dns name of the primary instance in a replication group.
      */
@@ -979,11 +1000,11 @@ export namespace sqladmin_v1beta4 {
     kind?: string | null;
   }
   /**
-   * Gemini configuration.
+   * Gemini instance configuration.
    */
   export interface Schema$GeminiInstanceConfig {
     /**
-     * Output only. Whether active query is enabled.
+     * Output only. Whether the active query is enabled.
      */
     activeQueryEnabled?: boolean | null;
     /**
@@ -991,19 +1012,19 @@ export namespace sqladmin_v1beta4 {
      */
     entitled?: boolean | null;
     /**
-     * Output only. Whether flag recommender is enabled.
+     * Output only. Whether the flag recommender is enabled.
      */
     flagRecommenderEnabled?: boolean | null;
     /**
-     * Output only. Whether vacuum management is enabled.
+     * Output only. Whether the vacuum management is enabled.
      */
     googleVacuumMgmtEnabled?: boolean | null;
     /**
-     * Output only. Whether index advisor is enabled.
+     * Output only. Whether the index advisor is enabled.
      */
     indexAdvisorEnabled?: boolean | null;
     /**
-     * Output only. Whether oom session cancel is enabled.
+     * Output only. Whether canceling the out-of-memory (OOM) session is enabled.
      */
     oomSessionCancelEnabled?: boolean | null;
   }
@@ -1084,6 +1105,10 @@ export namespace sqladmin_v1beta4 {
      * This is always `sql#importContext`.
      */
     kind?: string | null;
+    /**
+     * Optional. Options for importing data from SQL statements.
+     */
+    sqlImportOptions?: {parallel?: boolean; threads?: number} | null;
     /**
      * Path to the import file in Cloud Storage, in the form `gs://bucketName/fileName`. Compressed gzip files (.gz) are supported when `fileType` is `SQL`. The instance must have write permissions to the bucket and read access to the file.
      */
@@ -1294,11 +1319,11 @@ export namespace sqladmin_v1beta4 {
      */
     pscConfig?: Schema$PscConfig;
     /**
-     * Use `ssl_mode` instead for MySQL and PostgreSQL. SQL Server uses this flag. Whether SSL/TLS connections over IP are enforced. If set to false, then allow both non-SSL/non-TLS and SSL/TLS connections. For SSL/TLS connections, the client certificate won't be verified. If set to true, then only allow connections encrypted with SSL/TLS and with valid client certificates. If you want to enforce SSL/TLS without enforcing the requirement for valid client certificates, then use the `ssl_mode` flag instead of the legacy `require_ssl` flag.
+     * Use `ssl_mode` instead. Whether SSL/TLS connections over IP are enforced. If set to false, then allow both non-SSL/non-TLS and SSL/TLS connections. For SSL/TLS connections, the client certificate won't be verified. If set to true, then only allow connections encrypted with SSL/TLS and with valid client certificates. If you want to enforce SSL/TLS without enforcing the requirement for valid client certificates, then use the `ssl_mode` flag instead of the legacy `require_ssl` flag.
      */
     requireSsl?: boolean | null;
     /**
-     * Specify how SSL/TLS is enforced in database connections. MySQL and PostgreSQL use the `ssl_mode` flag. If you must use the `require_ssl` flag for backward compatibility, then only the following value pairs are valid: * `ssl_mode=ALLOW_UNENCRYPTED_AND_ENCRYPTED` and `require_ssl=false` * `ssl_mode=ENCRYPTED_ONLY` and `require_ssl=false` * `ssl_mode=TRUSTED_CLIENT_CERTIFICATE_REQUIRED` and `require_ssl=true` The value of `ssl_mode` gets priority over the value of `require_ssl`. For example, for the pair `ssl_mode=ENCRYPTED_ONLY` and `require_ssl=false`, the `ssl_mode=ENCRYPTED_ONLY` means only accept SSL connections, while the `require_ssl=false` means accept both non-SSL and SSL connections. MySQL and PostgreSQL databases respect `ssl_mode` in this case and accept only SSL connections. SQL Server uses the `require_ssl` flag. You can set the value for this flag to `true` or `false`.
+     * Specify how SSL/TLS is enforced in database connections. If you must use the `require_ssl` flag for backward compatibility, then only the following value pairs are valid: For PostgreSQL and MySQL: * `ssl_mode=ALLOW_UNENCRYPTED_AND_ENCRYPTED` and `require_ssl=false` * `ssl_mode=ENCRYPTED_ONLY` and `require_ssl=false` * `ssl_mode=TRUSTED_CLIENT_CERTIFICATE_REQUIRED` and `require_ssl=true` For SQL Server: * `ssl_mode=ALLOW_UNENCRYPTED_AND_ENCRYPTED` and `require_ssl=false` * `ssl_mode=ENCRYPTED_ONLY` and `require_ssl=true` The value of `ssl_mode` has priority over the value of `require_ssl`. For example, for the pair `ssl_mode=ENCRYPTED_ONLY` and `require_ssl=false`, `ssl_mode=ENCRYPTED_ONLY` means accept only SSL connections, while `require_ssl=false` means accept both non-SSL and SSL connections. In this case, MySQL and PostgreSQL databases respect `ssl_mode` and accepts only SSL connections.
      */
     sslMode?: string | null;
   }
@@ -1345,11 +1370,11 @@ export namespace sqladmin_v1beta4 {
    */
   export interface Schema$MaintenanceWindow {
     /**
-     * day of week (1-7), starting on Monday.
+     * Day of week - `MONDAY`, `TUESDAY`, `WEDNESDAY`, `THURSDAY`, `FRIDAY`, `SATURDAY`, or `SUNDAY`. Specify in the UTC time zone. Returned in output as an integer, 1 to 7, where `1` equals Monday.
      */
     day?: number | null;
     /**
-     * hour of day - 0 to 23.
+     * Hour of day - 0 to 23. Specify in the UTC time zone.
      */
     hour?: number | null;
     /**
@@ -1357,7 +1382,7 @@ export namespace sqladmin_v1beta4 {
      */
     kind?: string | null;
     /**
-     * Maintenance timing setting: `canary` (Earlier) or `stable` (Later). [Learn more](https://cloud.google.com/sql/docs/mysql/instance-settings#maintenance-timing-2ndgen).
+     * Maintenance timing settings: `canary`, `stable`, or `week5`. For more information, see [About maintenance on Cloud SQL instances](https://cloud.google.com/sql/docs/mysql/maintenance).
      */
     updateTrack?: string | null;
   }
@@ -1704,17 +1729,21 @@ export namespace sqladmin_v1beta4 {
     mysqlReplicaConfiguration?: Schema$MySqlReplicaConfiguration;
   }
   /**
-   * Primary-DR replica pair
+   * A primary instance and disaster recovery (DR) replica pair. A DR replica is a cross-region replica that you designate for failover in the event that the primary instance has regional failure. Only applicable to MySQL.
    */
   export interface Schema$ReplicationCluster {
     /**
-     * Output only. read-only field that indicates if the replica is a dr_replica; not set for a primary.
+     * Output only. Read-only field that indicates whether the replica is a DR replica. This field is not set if the instance is a primary instance.
      */
     drReplica?: boolean | null;
     /**
-     * Optional. If the instance is a primary instance, then this field identifies the disaster recovery (DR) replica. A DR replica is an optional configuration for Enterprise Plus edition instances. If the instance is a read replica, then the field is not set. Users can set this field to set a designated DR replica for a primary. Removing this field removes the DR replica.
+     * Optional. If the instance is a primary instance, then this field identifies the disaster recovery (DR) replica. A DR replica is an optional configuration for Enterprise Plus edition instances. If the instance is a read replica, then the field is not set. Set this field to a replica name to designate a DR replica for a primary instance. Remove the replica name to remove the DR replica designation.
      */
     failoverDrReplicaName?: string | null;
+    /**
+     * Output only. If set, it indicates this instance has a private service access (PSA) dns endpoint that is pointing to the primary instance of the cluster. If this instance is the primary, the dns should be pointing to this instance. After Switchover or Replica failover, this DNS endpoint points to the promoted instance. This is a read-only field, returned to the user as information. This field can exist even if a standalone instance does not yet have a replica, or had a DR replica that was deleted.
+     */
+    psaWriteEndpoint?: string | null;
   }
   export interface Schema$Reschedule {
     /**
@@ -1773,7 +1802,7 @@ export namespace sqladmin_v1beta4 {
      */
     activeDirectoryConfig?: Schema$SqlActiveDirectoryConfig;
     /**
-     * Specifies advance machine configuration for the instance relevant only for SQL Server.
+     * Specifies advanced machine configuration for the instances relevant only for SQL Server.
      */
     advancedMachineFeatures?: Schema$AdvancedMachineFeatures;
     /**
@@ -1832,6 +1861,10 @@ export namespace sqladmin_v1beta4 {
      * Optional. The edition of the instance.
      */
     edition?: string | null;
+    /**
+     * Optional. By default, Cloud SQL instances have schema extraction disabled for Dataplex. When this parameter is set to true, schema extraction for Dataplex on Cloud SQL instances is activated.
+     */
+    enableDataplexIntegration?: boolean | null;
     /**
      * Optional. When this parameter is set to true, Cloud SQL instances can connect to Vertex AI to pass requests for real-time predictions and insights to the AI. The default value is false. This applies only to Cloud SQL for PostgreSQL instances.
      */
@@ -1990,7 +2023,7 @@ export namespace sqladmin_v1beta4 {
   export interface Schema$SqlInstancesResetReplicaSizeRequest {}
   export interface Schema$SqlInstancesStartExternalSyncRequest {
     /**
-     * Optional. MigrationType decides if the migration is a physical file based migration or logical migration.
+     * Optional. MigrationType configures the migration to use physical files or logical dump files. If not set, then the logical dump file configuration is used. Valid values are `LOGICAL` or `PHYSICAL`. Only applicable to MySQL.
      */
     migrationType?: string | null;
     /**
@@ -2012,7 +2045,7 @@ export namespace sqladmin_v1beta4 {
   }
   export interface Schema$SqlInstancesVerifyExternalSyncSettingsRequest {
     /**
-     * Optional. MigrationType field decides if the migration is a physical file based migration or logical migration
+     * Optional. MigrationType configures the migration to use physical files or logical dump files. If not set, then the logical dump file configuration is used. Valid values are `LOGICAL` or `PHYSICAL`. Only applicable to MySQL.
      */
     migrationType?: string | null;
     /**
@@ -2024,7 +2057,7 @@ export namespace sqladmin_v1beta4 {
      */
     syncMode?: string | null;
     /**
-     * Optional. Parallel level for initial data sync. Currently only applicable for PostgreSQL.
+     * Optional. Parallel level for initial data sync. Only applicable for PostgreSQL.
      */
     syncParallelLevel?: string | null;
     /**
@@ -2469,6 +2502,7 @@ export namespace sqladmin_v1beta4 {
               '/sql/v1beta4/projects/{project}/instances/{instance}/backupRuns/{id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -2555,6 +2589,7 @@ export namespace sqladmin_v1beta4 {
               '/sql/v1beta4/projects/{project}/instances/{instance}/backupRuns/{id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2642,6 +2677,7 @@ export namespace sqladmin_v1beta4 {
               '/sql/v1beta4/projects/{project}/instances/{instance}/backupRuns'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2733,6 +2769,7 @@ export namespace sqladmin_v1beta4 {
               '/sql/v1beta4/projects/{project}/instances/{instance}/backupRuns'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2898,6 +2935,7 @@ export namespace sqladmin_v1beta4 {
               '/sql/v1beta4/projects/{project}/instances/{instance}:generateEphemeralCert'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2986,6 +3024,7 @@ export namespace sqladmin_v1beta4 {
               '/sql/v1beta4/projects/{project}/instances/{instance}/connectSettings'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3110,6 +3149,7 @@ export namespace sqladmin_v1beta4 {
               '/sql/v1beta4/projects/{project}/instances/{instance}/databases/{database}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -3196,6 +3236,7 @@ export namespace sqladmin_v1beta4 {
               '/sql/v1beta4/projects/{project}/instances/{instance}/databases/{database}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3282,6 +3323,7 @@ export namespace sqladmin_v1beta4 {
               '/sql/v1beta4/projects/{project}/instances/{instance}/databases'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3373,6 +3415,7 @@ export namespace sqladmin_v1beta4 {
               '/sql/v1beta4/projects/{project}/instances/{instance}/databases'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3459,6 +3502,7 @@ export namespace sqladmin_v1beta4 {
               '/sql/v1beta4/projects/{project}/instances/{instance}/databases/{database}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -3545,6 +3589,7 @@ export namespace sqladmin_v1beta4 {
               '/sql/v1beta4/projects/{project}/instances/{instance}/databases/{database}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
+            apiVersion: '',
           },
           options
         ),
@@ -3730,6 +3775,7 @@ export namespace sqladmin_v1beta4 {
           {
             url: (rootUrl + '/sql/v1beta4/flags').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3838,6 +3884,7 @@ export namespace sqladmin_v1beta4 {
               '/sql/v1beta4/projects/{project}/instances/{instance}/acquireSsrsLease'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3927,6 +3974,7 @@ export namespace sqladmin_v1beta4 {
               '/sql/v1beta4/projects/{project}/instances/{instance}/addServerCa'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4013,6 +4061,7 @@ export namespace sqladmin_v1beta4 {
               '/sql/v1beta4/projects/{project}/instances/{instance}/clone'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4098,6 +4147,7 @@ export namespace sqladmin_v1beta4 {
               rootUrl + '/sql/v1beta4/projects/{project}/instances/{instance}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -4184,6 +4234,7 @@ export namespace sqladmin_v1beta4 {
               '/sql/v1beta4/projects/{project}/instances/{instance}/demote'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4271,6 +4322,7 @@ export namespace sqladmin_v1beta4 {
               '/sql/v1beta4/projects/{project}/instances/{instance}/demoteMaster'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4357,6 +4409,7 @@ export namespace sqladmin_v1beta4 {
               '/sql/v1beta4/projects/{project}/instances/{instance}/export'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4444,6 +4497,7 @@ export namespace sqladmin_v1beta4 {
               '/sql/v1beta4/projects/{project}/instances/{instance}/failover'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4529,6 +4583,7 @@ export namespace sqladmin_v1beta4 {
               rootUrl + '/sql/v1beta4/projects/{project}/instances/{instance}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4615,6 +4670,7 @@ export namespace sqladmin_v1beta4 {
               '/sql/v1beta4/projects/{project}/instances/{instance}/import'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4700,6 +4756,7 @@ export namespace sqladmin_v1beta4 {
               rootUrl + '/sql/v1beta4/projects/{project}/instances'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4790,6 +4847,7 @@ export namespace sqladmin_v1beta4 {
               rootUrl + '/sql/v1beta4/projects/{project}/instances'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4884,6 +4942,7 @@ export namespace sqladmin_v1beta4 {
               '/sql/v1beta4/projects/{project}/instances/{instance}/listServerCas'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4971,6 +5030,7 @@ export namespace sqladmin_v1beta4 {
               rootUrl + '/sql/v1beta4/projects/{project}/instances/{instance}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -4990,7 +5050,7 @@ export namespace sqladmin_v1beta4 {
     }
 
     /**
-     * Promotes the read replica instance to be a stand-alone Cloud SQL instance. Using this operation might cause your instance to restart.
+     * Promotes the read replica instance to be an independent Cloud SQL primary instance. Using this operation might cause your instance to restart.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5058,6 +5118,7 @@ export namespace sqladmin_v1beta4 {
               '/sql/v1beta4/projects/{project}/instances/{instance}/promoteReplica'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5145,6 +5206,7 @@ export namespace sqladmin_v1beta4 {
               '/sql/v1beta4/projects/{project}/instances/{instance}/reencrypt'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5239,6 +5301,7 @@ export namespace sqladmin_v1beta4 {
               '/sql/v1beta4/projects/{project}/instances/{instance}/releaseSsrsLease'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5328,6 +5391,7 @@ export namespace sqladmin_v1beta4 {
               '/sql/v1beta4/projects/{project}/instances/{instance}/resetSslConfig'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5415,6 +5479,7 @@ export namespace sqladmin_v1beta4 {
               '/sql/v1beta4/projects/{project}/instances/{instance}/restart'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5502,6 +5567,7 @@ export namespace sqladmin_v1beta4 {
               '/sql/v1beta4/projects/{project}/instances/{instance}/restoreBackup'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5589,6 +5655,7 @@ export namespace sqladmin_v1beta4 {
               '/sql/v1beta4/projects/{project}/instances/{instance}/rotateServerCa'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5676,6 +5743,7 @@ export namespace sqladmin_v1beta4 {
               '/sql/v1beta4/projects/{project}/instances/{instance}/startReplica'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5763,6 +5831,7 @@ export namespace sqladmin_v1beta4 {
               '/sql/v1beta4/projects/{project}/instances/{instance}/stopReplica'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5782,7 +5851,7 @@ export namespace sqladmin_v1beta4 {
     }
 
     /**
-     * Switches over from the primary instance to a replica instance.
+     * Switches over from the primary instance to the designated DR replica instance.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5850,6 +5919,7 @@ export namespace sqladmin_v1beta4 {
               '/sql/v1beta4/projects/{project}/instances/{instance}/switchover'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5937,6 +6007,7 @@ export namespace sqladmin_v1beta4 {
               '/sql/v1beta4/projects/{project}/instances/{instance}/truncateLog'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -6022,6 +6093,7 @@ export namespace sqladmin_v1beta4 {
               rootUrl + '/sql/v1beta4/projects/{project}/instances/{instance}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
+            apiVersion: '',
           },
           options
         ),
@@ -6238,7 +6310,7 @@ export namespace sqladmin_v1beta4 {
   export interface Params$Resource$Instances$Promotereplica
     extends StandardParameters {
     /**
-     * Set to true if the promote operation should attempt to re-add the original primary as a replica when it comes back online. Otherwise, if this value is false or not set, the original primary will be a standalone instance.
+     * Set to true to invoke a replica failover to the designated DR replica. As part of replica failover, the promote operation attempts to add the original primary instance as a replica of the promoted DR replica when the original primary instance comes back online. If set to false or not specified, then the original primary instance becomes an independent Cloud SQL primary instance. Only applicable to MySQL.
      */
     failover?: boolean;
     /**
@@ -6475,6 +6547,7 @@ export namespace sqladmin_v1beta4 {
               '/sql/v1beta4/projects/{project}/operations/{operation}/cancel'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -6560,6 +6633,7 @@ export namespace sqladmin_v1beta4 {
               rootUrl + '/sql/v1beta4/projects/{project}/operations/{operation}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6650,6 +6724,7 @@ export namespace sqladmin_v1beta4 {
               rootUrl + '/sql/v1beta4/projects/{project}/operations'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6800,6 +6875,7 @@ export namespace sqladmin_v1beta4 {
               '/sql/v1beta4/projects/{project}/instances/{instance}/getDiskShrinkConfig'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6896,6 +6972,7 @@ export namespace sqladmin_v1beta4 {
               '/sql/v1beta4/projects/{project}/instances/{instance}/getLatestRecoveryTime'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6985,6 +7062,7 @@ export namespace sqladmin_v1beta4 {
               '/sql/v1beta4/projects/{project}/instances/{instance}/performDiskShrink'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -7074,6 +7152,7 @@ export namespace sqladmin_v1beta4 {
               '/sql/v1beta4/projects/{project}/instances/{instance}/rescheduleMaintenance'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -7161,6 +7240,7 @@ export namespace sqladmin_v1beta4 {
               '/sql/v1beta4/projects/{project}/instances/{instance}/resetReplicaSize'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -7248,6 +7328,7 @@ export namespace sqladmin_v1beta4 {
               '/sql/v1beta4/projects/{project}/instances/{instance}/startExternalSync'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -7343,6 +7424,7 @@ export namespace sqladmin_v1beta4 {
               '/sql/v1beta4/projects/{project}/instances/{instance}/verifyExternalSyncSettings'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -7542,6 +7624,7 @@ export namespace sqladmin_v1beta4 {
               '/sql/v1beta4/projects/{project}/instances/{instance}/createEphemeral'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -7628,6 +7711,7 @@ export namespace sqladmin_v1beta4 {
               '/sql/v1beta4/projects/{project}/instances/{instance}/sslCerts/{sha1Fingerprint}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -7714,6 +7798,7 @@ export namespace sqladmin_v1beta4 {
               '/sql/v1beta4/projects/{project}/instances/{instance}/sslCerts/{sha1Fingerprint}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -7805,6 +7890,7 @@ export namespace sqladmin_v1beta4 {
               '/sql/v1beta4/projects/{project}/instances/{instance}/sslCerts'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -7896,6 +7982,7 @@ export namespace sqladmin_v1beta4 {
               '/sql/v1beta4/projects/{project}/instances/{instance}/sslCerts'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -8062,6 +8149,7 @@ export namespace sqladmin_v1beta4 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -8162,6 +8250,7 @@ export namespace sqladmin_v1beta4 {
               '/sql/v1beta4/projects/{project}/instances/{instance}/users'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -8248,6 +8337,7 @@ export namespace sqladmin_v1beta4 {
               '/sql/v1beta4/projects/{project}/instances/{instance}/users/{name}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -8334,6 +8424,7 @@ export namespace sqladmin_v1beta4 {
               '/sql/v1beta4/projects/{project}/instances/{instance}/users'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -8423,6 +8514,7 @@ export namespace sqladmin_v1beta4 {
               '/sql/v1beta4/projects/{project}/instances/{instance}/users'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -8509,6 +8601,7 @@ export namespace sqladmin_v1beta4 {
               '/sql/v1beta4/projects/{project}/instances/{instance}/users'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
+            apiVersion: '',
           },
           options
         ),

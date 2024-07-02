@@ -274,7 +274,7 @@ export namespace networkmanagement_v1beta1 {
      */
     location?: string | null;
     /**
-     * ID of Cloud Run Service this revision belongs to.
+     * ID of Cloud Run Service this revision belongs to. Was never set, is not exported to v1 proto and public protos. Do not export to v1beta1 public proto.
      */
     serviceName?: string | null;
     /**
@@ -344,7 +344,7 @@ export namespace networkmanagement_v1beta1 {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * Required. Unique name of the resource using the form: `projects/{project_id\}/locations/global/connectivityTests/{test\}`
+     * Identifier. Unique name of the resource using the form: `projects/{project_id\}/locations/global/connectivityTests/{test\}`
      */
     name?: string | null;
     /**
@@ -381,9 +381,17 @@ export namespace networkmanagement_v1beta1 {
      */
     ipAddress?: string | null;
     /**
+     * PSC Google API target the packet is delivered to (if applicable).
+     */
+    pscGoogleApiTarget?: string | null;
+    /**
      * URI of the resource that the packet is delivered to.
      */
     resourceUri?: string | null;
+    /**
+     * Name of the Cloud Storage Bucket the packet is delivered to (if applicable).
+     */
+    storageBucket?: string | null;
     /**
      * Target type where the packet is delivered to.
      */
@@ -617,27 +625,43 @@ export namespace networkmanagement_v1beta1 {
    */
   export interface Schema$ForwardingRuleInfo {
     /**
-     * Name of a Compute Engine forwarding rule.
+     * Name of the forwarding rule.
      */
     displayName?: string | null;
     /**
-     * Port range defined in the forwarding rule that matches the test.
+     * Name of the load balancer the forwarding rule belongs to. Empty for forwarding rules not related to load balancers (like PSC forwarding rules).
+     */
+    loadBalancerName?: string | null;
+    /**
+     * Port range defined in the forwarding rule that matches the packet.
      */
     matchedPortRange?: string | null;
     /**
-     * Protocol defined in the forwarding rule that matches the test.
+     * Protocol defined in the forwarding rule that matches the packet.
      */
     matchedProtocol?: string | null;
     /**
-     * Network URI. Only valid for Internal Load Balancer.
+     * Network URI.
      */
     networkUri?: string | null;
+    /**
+     * PSC Google API target this forwarding rule targets (if applicable).
+     */
+    pscGoogleApiTarget?: string | null;
+    /**
+     * URI of the PSC service attachment this forwarding rule targets (if applicable).
+     */
+    pscServiceAttachmentUri?: string | null;
+    /**
+     * Region of the forwarding rule. Set only for regional forwarding rules.
+     */
+    region?: string | null;
     /**
      * Target type of the forwarding rule.
      */
     target?: string | null;
     /**
-     * URI of a Compute Engine forwarding rule.
+     * URI of the forwarding rule.
      */
     uri?: string | null;
     /**
@@ -1239,6 +1263,15 @@ export namespace networkmanagement_v1beta1 {
     uri?: string | null;
   }
   /**
+   * For display only. Metadata associated with the serverless network endpoint group backend.
+   */
+  export interface Schema$ServerlessNegInfo {
+    /**
+     * URI of the serverless network endpoint group.
+     */
+    negUri?: string | null;
+  }
+  /**
    * Request message for `SetIamPolicy` method.
    */
   export interface Schema$SetIamPolicyRequest {
@@ -1364,6 +1397,10 @@ export namespace networkmanagement_v1beta1 {
      * Display information of a Compute Engine route.
      */
     route?: Schema$RouteInfo;
+    /**
+     * Display information of a Serverless network endpoint group backend. Used only for return traces.
+     */
+    serverlessNeg?: Schema$ServerlessNegInfo;
     /**
      * Each step is in one of the pre-defined states.
      */
@@ -1601,6 +1638,7 @@ export namespace networkmanagement_v1beta1 {
           {
             url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1694,6 +1732,7 @@ export namespace networkmanagement_v1beta1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1831,6 +1870,7 @@ export namespace networkmanagement_v1beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1917,6 +1957,7 @@ export namespace networkmanagement_v1beta1 {
           {
             url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -2003,6 +2044,7 @@ export namespace networkmanagement_v1beta1 {
           {
             url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2092,6 +2134,7 @@ export namespace networkmanagement_v1beta1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2188,6 +2231,7 @@ export namespace networkmanagement_v1beta1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2209,7 +2253,7 @@ export namespace networkmanagement_v1beta1 {
     }
 
     /**
-     * Updates the configuration of an existing `ConnectivityTest`. After you update a test, the reachability analysis is performed as part of the long running operation, which completes when the analysis completes. The Reachability state in the test resource is updated with the new result. If the endpoint specifications in `ConnectivityTest` are invalid (for example, they contain non-existent resources in the network, or the user does not have read permissions to the network configurations of listed projects), then the reachability result returns a value of UNKNOWN. If the endpoint specifications in `ConnectivityTest` are incomplete, the reachability result returns a value of `AMBIGUOUS`. See the documentation in `ConnectivityTest` for for more details.
+     * Updates the configuration of an existing `ConnectivityTest`. After you update a test, the reachability analysis is performed as part of the long running operation, which completes when the analysis completes. The Reachability state in the test resource is updated with the new result. If the endpoint specifications in `ConnectivityTest` are invalid (for example, they contain non-existent resources in the network, or the user does not have read permissions to the network configurations of listed projects), then the reachability result returns a value of UNKNOWN. If the endpoint specifications in `ConnectivityTest` are incomplete, the reachability result returns a value of `AMBIGUOUS`. See the documentation in `ConnectivityTest` for more details.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2276,6 +2320,7 @@ export namespace networkmanagement_v1beta1 {
           {
             url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -2365,6 +2410,7 @@ export namespace networkmanagement_v1beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2454,6 +2500,7 @@ export namespace networkmanagement_v1beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2550,6 +2597,7 @@ export namespace networkmanagement_v1beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2636,7 +2684,7 @@ export namespace networkmanagement_v1beta1 {
   export interface Params$Resource$Projects$Locations$Global$Connectivitytests$Patch
     extends StandardParameters {
     /**
-     * Required. Unique name of the resource using the form: `projects/{project_id\}/locations/global/connectivityTests/{test\}`
+     * Identifier. Unique name of the resource using the form: `projects/{project_id\}/locations/global/connectivityTests/{test\}`
      */
     name?: string;
     /**
@@ -2763,6 +2811,7 @@ export namespace networkmanagement_v1beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2849,6 +2898,7 @@ export namespace networkmanagement_v1beta1 {
           {
             url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -2934,6 +2984,7 @@ export namespace networkmanagement_v1beta1 {
           {
             url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3028,6 +3079,7 @@ export namespace networkmanagement_v1beta1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),

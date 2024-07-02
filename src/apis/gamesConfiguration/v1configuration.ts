@@ -443,6 +443,7 @@ export namespace gamesConfiguration_v1configuration {
               rootUrl + '/games/v1configuration/achievements/{achievementId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -535,6 +536,7 @@ export namespace gamesConfiguration_v1configuration {
               rootUrl + '/games/v1configuration/achievements/{achievementId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -630,6 +632,7 @@ export namespace gamesConfiguration_v1configuration {
               '/games/v1configuration/applications/{applicationId}/achievements'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -725,6 +728,7 @@ export namespace gamesConfiguration_v1configuration {
               '/games/v1configuration/applications/{applicationId}/achievements'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -821,6 +825,7 @@ export namespace gamesConfiguration_v1configuration {
               rootUrl + '/games/v1configuration/achievements/{achievementId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
+            apiVersion: '',
           },
           options
         ),
@@ -967,6 +972,7 @@ export namespace gamesConfiguration_v1configuration {
               rootUrl + '/games/v1configuration/leaderboards/{leaderboardId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -1059,6 +1065,7 @@ export namespace gamesConfiguration_v1configuration {
               rootUrl + '/games/v1configuration/leaderboards/{leaderboardId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1154,6 +1161,7 @@ export namespace gamesConfiguration_v1configuration {
               '/games/v1configuration/applications/{applicationId}/leaderboards'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1249,6 +1257,7 @@ export namespace gamesConfiguration_v1configuration {
               '/games/v1configuration/applications/{applicationId}/leaderboards'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1345,6 +1354,7 @@ export namespace gamesConfiguration_v1configuration {
               rootUrl + '/games/v1configuration/leaderboards/{leaderboardId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
+            apiVersion: '',
           },
           options
         ),

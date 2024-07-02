@@ -185,6 +185,23 @@ export namespace metastore_v1 {
     logType?: string | null;
   }
   /**
+   * Represents the autoscaling configuration of a metastore service.
+   */
+  export interface Schema$AutoscalingConfig {
+    /**
+     * Optional. Whether or not autoscaling is enabled for this service.
+     */
+    autoscalingEnabled?: boolean | null;
+    /**
+     * Output only. The scaling factor of a service with autoscaling enabled.
+     */
+    autoscalingFactor?: number | null;
+    /**
+     * Optional. The LimitConfig of the service.
+     */
+    limitConfig?: Schema$LimitConfig;
+  }
+  /**
    * Configuration information for the auxiliary service versions.
    */
   export interface Schema$AuxiliaryVersionConfig {
@@ -265,9 +282,100 @@ export namespace metastore_v1 {
     role?: string | null;
   }
   /**
+   * Request message for DataprocMetastore.CancelMigration.
+   */
+  export interface Schema$CancelMigrationRequest {}
+  /**
    * The request message for Operations.CancelOperation.
    */
   export interface Schema$CancelOperationRequest {}
+  /**
+   * Configuration information to start the Change Data Capture (CDC) streams from customer database to backend database of Dataproc Metastore.
+   */
+  export interface Schema$CdcConfig {
+    /**
+     * Optional. The bucket to write the intermediate stream event data in. The bucket name must be without any prefix like "gs://". See the bucket naming requirements (https://cloud.google.com/storage/docs/buckets#naming). This field is optional. If not set, the Artifacts Cloud Storage bucket will be used.
+     */
+    bucket?: string | null;
+    /**
+     * Required. Input only. The password for the user that Datastream service should use for the MySQL connection. This field is not returned on request.
+     */
+    password?: string | null;
+    /**
+     * Required. The URL of the subnetwork resource to create the VM instance hosting the reverse proxy in. More context in https://cloud.google.com/datastream/docs/private-connectivity#reverse-csql-proxy The subnetwork should reside in the network provided in the request that Datastream will peer to and should be in the same region as Datastream, in the following format. projects/{project_id\}/regions/{region_id\}/subnetworks/{subnetwork_id\}
+     */
+    reverseProxySubnet?: string | null;
+    /**
+     * Optional. The root path inside the Cloud Storage bucket. The stream event data will be written to this path. The default value is /migration.
+     */
+    rootPath?: string | null;
+    /**
+     * Required. A /29 CIDR IP range for peering with datastream.
+     */
+    subnetIpRange?: string | null;
+    /**
+     * Required. The username that the Datastream service should use for the MySQL connection.
+     */
+    username?: string | null;
+    /**
+     * Required. Fully qualified name of the Cloud SQL instance's VPC network or the shared VPC network that Datastream will peer to, in the following format: projects/{project_id\}/locations/global/networks/{network_id\}. More context in https://cloud.google.com/datastream/docs/network-connectivity-options#privateconnectivity
+     */
+    vpcNetwork?: string | null;
+  }
+  /**
+   * Configuration information to establish customer database connection before the cutover phase of migration
+   */
+  export interface Schema$CloudSQLConnectionConfig {
+    /**
+     * Required. The hive database name.
+     */
+    hiveDatabaseName?: string | null;
+    /**
+     * Required. Cloud SQL database connection name (project_id:region:instance_name)
+     */
+    instanceConnectionName?: string | null;
+    /**
+     * Required. The private IP address of the Cloud SQL instance.
+     */
+    ipAddress?: string | null;
+    /**
+     * Required. The relative resource name of the subnetwork to be used for Private Service Connect. Note that this cannot be a regular subnet and is used only for NAT. (https://cloud.google.com/vpc/docs/about-vpc-hosted-services#psc-subnets) This subnet is used to publish the SOCKS5 proxy service. The subnet size must be at least /29 and it should reside in a network through which the Cloud SQL instance is accessible. The resource name should be in the format, projects/{project_id\}/regions/{region_id\}/subnetworks/{subnetwork_id\}
+     */
+    natSubnet?: string | null;
+    /**
+     * Required. Input only. The password for the user that Dataproc Metastore service will be using to connect to the database. This field is not returned on request.
+     */
+    password?: string | null;
+    /**
+     * Required. The network port of the database.
+     */
+    port?: number | null;
+    /**
+     * Required. The relative resource name of the subnetwork to deploy the SOCKS5 proxy service in. The subnetwork should reside in a network through which the Cloud SQL instance is accessible. The resource name should be in the format, projects/{project_id\}/regions/{region_id\}/subnetworks/{subnetwork_id\}
+     */
+    proxySubnet?: string | null;
+    /**
+     * Required. The username that Dataproc Metastore service will use to connect to the database.
+     */
+    username?: string | null;
+  }
+  /**
+   * Configuration information for migrating from self-managed hive metastore on Google Cloud using Cloud SQL as the backend database to Dataproc Metastore.
+   */
+  export interface Schema$CloudSQLMigrationConfig {
+    /**
+     * Required. Configuration information to start the Change Data Capture (CDC) streams from customer database to backend database of Dataproc Metastore. Dataproc Metastore switches to using its backend database after the cutover phase of migration.
+     */
+    cdcConfig?: Schema$CdcConfig;
+    /**
+     * Required. Configuration information to establish customer database connection before the cutover phase of migration
+     */
+    cloudSqlConnectionConfig?: Schema$CloudSQLConnectionConfig;
+  }
+  /**
+   * Request message for DataprocMetastore.CompleteMigration.
+   */
+  export interface Schema$CompleteMigrationRequest {}
   /**
    * Contains information of the customer's network configurations.
    */
@@ -324,7 +432,7 @@ export namespace metastore_v1 {
    */
   export interface Schema$EncryptionConfig {
     /**
-     * The fully qualified customer provided Cloud KMS key name to use for customer data encryption, in the following form:projects/{project_number\}/locations/{location_id\}/keyRings/{key_ring_id\}/cryptoKeys/{crypto_key_id\}.
+     * The fully qualified customer provided Cloud KMS key name to use for customer data encryption, in the following format:projects/{project_number\}/locations/{location_id\}/keyRings/{key_ring_id\}/cryptoKeys/{crypto_key_id\}.
      */
     kmsKey?: string | null;
   }
@@ -497,6 +605,19 @@ export namespace metastore_v1 {
     state?: string | null;
   }
   /**
+   * Represents the autoscaling limit configuration of a metastore service.
+   */
+  export interface Schema$LimitConfig {
+    /**
+     * Optional. The highest scaling factor that the service should be autoscaled to.
+     */
+    maxScalingFactor?: number | null;
+    /**
+     * Optional. The lowest scaling factor that the service should be autoscaled to.
+     */
+    minScalingFactor?: number | null;
+  }
+  /**
    * Response message for DataprocMetastore.ListBackups.
    */
   export interface Schema$ListBackupsResponse {
@@ -551,6 +672,23 @@ export namespace metastore_v1 {
      * The imports in the specified service.
      */
     metadataImports?: Schema$MetadataImport[];
+    /**
+     * A token that can be sent as page_token to retrieve the next page. If this field is omitted, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
+    /**
+     * Locations that could not be reached.
+     */
+    unreachable?: string[] | null;
+  }
+  /**
+   * Response message for DataprocMetastore.ListMigrationExecutions.
+   */
+  export interface Schema$ListMigrationExecutionsResponse {
+    /**
+     * The migration executions on the specified service.
+     */
+    migrationExecutions?: Schema$MigrationExecution[];
     /**
      * A token that can be sent as page_token to retrieve the next page. If this field is omitted, there are no subsequent pages.
      */
@@ -722,6 +860,39 @@ export namespace metastore_v1 {
     restores?: Schema$Restore[];
   }
   /**
+   * The details of a migration execution resource.
+   */
+  export interface Schema$MigrationExecution {
+    /**
+     * Configuration information specific to migrating from self-managed hive metastore on Google Cloud using Cloud SQL as the backend database to Dataproc Metastore.
+     */
+    cloudSqlMigrationConfig?: Schema$CloudSQLMigrationConfig;
+    /**
+     * Output only. The time when the migration execution was started.
+     */
+    createTime?: string | null;
+    /**
+     * Output only. The time when the migration execution finished.
+     */
+    endTime?: string | null;
+    /**
+     * Output only. The relative resource name of the migration execution, in the following form: projects/{project_number\}/locations/{location_id\}/services/{service_id\}/migrationExecutions/{migration_execution_id\}
+     */
+    name?: string | null;
+    /**
+     * Output only. The current phase of the migration execution.
+     */
+    phase?: string | null;
+    /**
+     * Output only. The current state of the migration execution.
+     */
+    state?: string | null;
+    /**
+     * Output only. Additional information about the current state of the migration execution.
+     */
+    stateMessage?: string | null;
+  }
+  /**
    * Request message for DataprocMetastore.MoveTableToDatabase.
    */
   export interface Schema$MoveTableToDatabaseRequest {
@@ -743,7 +914,7 @@ export namespace metastore_v1 {
    */
   export interface Schema$MoveTableToDatabaseResponse {}
   /**
-   * The metadata for the multi-region that includes the constituent regions. The metadata is only populated if the region is multi-region. For single region, it will be empty.
+   * The metadata for the multi-region that includes the constituent regions. The metadata is only populated if the region is multi-region. For single region or custom dual region, it will be empty.
    */
   export interface Schema$MultiRegionMetadata {
     /**
@@ -916,6 +1087,10 @@ export namespace metastore_v1 {
    */
   export interface Schema$ScalingConfig {
     /**
+     * Optional. The autoscaling configuration.
+     */
+    autoscalingConfig?: Schema$AutoscalingConfig;
+    /**
      * An enum of readable instance sizes, with each instance size mapping to a float value (e.g. InstanceSize.EXTRA_SMALL = scaling_factor(0.1))
      */
     instanceSize?: string | null;
@@ -978,6 +1153,10 @@ export namespace metastore_v1 {
      * Immutable. The database type that the Metastore service stores its data.
      */
     databaseType?: string | null;
+    /**
+     * Optional. Indicates if the dataproc metastore should be protected against accidental deletions.
+     */
+    deletionProtection?: boolean | null;
     /**
      * Immutable. Information used to configure the Dataproc Metastore service to encrypt customer data at rest. Cannot be updated.
      */
@@ -1071,6 +1250,19 @@ export namespace metastore_v1 {
      * OPTIONAL: A FieldMask specifying which fields of the policy to modify. Only the fields in the mask will be modified. If no mask is provided, the following default mask is used:paths: "bindings, etag"
      */
     updateMask?: string | null;
+  }
+  /**
+   * Request message for DataprocMetastore.StartMigration.
+   */
+  export interface Schema$StartMigrationRequest {
+    /**
+     * Required. The configuration details for the migration.
+     */
+    migrationExecution?: Schema$MigrationExecution;
+    /**
+     * Optional. A request ID. Specify a unique request ID to allow the server to ignore the request if it has completed. The server will ignore subsequent requests that provide a duplicate request ID for at least 60 minutes after the first request.For example, if an initial request times out, followed by another request with the same request ID, the server ignores the second request to prevent the creation of duplicate commitments.The request ID must be a valid UUID (https://en.wikipedia.org/wiki/Universally_unique_identifier#Format) A zero UUID (00000000-0000-0000-0000-000000000000) is not supported.
+     */
+    requestId?: string | null;
   }
   /**
    * The Status type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by gRPC (https://github.com/grpc). Each Status message contains three pieces of data: error code, error message, and error details.You can find out more about this error model and how to work with it in the API Design Guide (https://cloud.google.com/apis/design/errors).
@@ -1208,6 +1400,7 @@ export namespace metastore_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1300,6 +1493,7 @@ export namespace metastore_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1421,6 +1615,7 @@ export namespace metastore_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1505,6 +1700,7 @@ export namespace metastore_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -1589,6 +1785,7 @@ export namespace metastore_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1677,6 +1874,7 @@ export namespace metastore_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1769,6 +1967,7 @@ export namespace metastore_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1853,6 +2052,7 @@ export namespace metastore_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -1941,6 +2141,7 @@ export namespace metastore_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2036,6 +2237,7 @@ export namespace metastore_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2244,6 +2446,7 @@ export namespace metastore_v1 {
           {
             url: (rootUrl + '/v1/{+name}:cancel').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2328,6 +2531,7 @@ export namespace metastore_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -2412,6 +2616,7 @@ export namespace metastore_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2504,6 +2709,7 @@ export namespace metastore_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2572,14 +2778,23 @@ export namespace metastore_v1 {
   export class Resource$Projects$Locations$Services {
     context: APIRequestContext;
     backups: Resource$Projects$Locations$Services$Backups;
+    databases: Resource$Projects$Locations$Services$Databases;
     metadataImports: Resource$Projects$Locations$Services$Metadataimports;
+    migrationExecutions: Resource$Projects$Locations$Services$Migrationexecutions;
     constructor(context: APIRequestContext) {
       this.context = context;
       this.backups = new Resource$Projects$Locations$Services$Backups(
         this.context
       );
+      this.databases = new Resource$Projects$Locations$Services$Databases(
+        this.context
+      );
       this.metadataImports =
         new Resource$Projects$Locations$Services$Metadataimports(this.context);
+      this.migrationExecutions =
+        new Resource$Projects$Locations$Services$Migrationexecutions(
+          this.context
+        );
     }
 
     /**
@@ -2652,6 +2867,7 @@ export namespace metastore_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2742,6 +2958,185 @@ export namespace metastore_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['service'],
+        pathParams: ['service'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Cancels the ongoing Managed Migration process.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    cancelMigration(
+      params: Params$Resource$Projects$Locations$Services$Cancelmigration,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    cancelMigration(
+      params?: Params$Resource$Projects$Locations$Services$Cancelmigration,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    cancelMigration(
+      params: Params$Resource$Projects$Locations$Services$Cancelmigration,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    cancelMigration(
+      params: Params$Resource$Projects$Locations$Services$Cancelmigration,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    cancelMigration(
+      params: Params$Resource$Projects$Locations$Services$Cancelmigration,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    cancelMigration(callback: BodyResponseCallback<Schema$Operation>): void;
+    cancelMigration(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Services$Cancelmigration
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Services$Cancelmigration;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Services$Cancelmigration;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://metastore.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+service}:cancelMigration').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['service'],
+        pathParams: ['service'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Completes the managed migration process. The Dataproc Metastore service will switch to using its own backend database after successful migration.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    completeMigration(
+      params: Params$Resource$Projects$Locations$Services$Completemigration,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    completeMigration(
+      params?: Params$Resource$Projects$Locations$Services$Completemigration,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    completeMigration(
+      params: Params$Resource$Projects$Locations$Services$Completemigration,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    completeMigration(
+      params: Params$Resource$Projects$Locations$Services$Completemigration,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    completeMigration(
+      params: Params$Resource$Projects$Locations$Services$Completemigration,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    completeMigration(callback: BodyResponseCallback<Schema$Operation>): void;
+    completeMigration(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Services$Completemigration
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Services$Completemigration;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Services$Completemigration;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://metastore.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+service}:completeMigration').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2829,6 +3224,7 @@ export namespace metastore_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2913,6 +3309,7 @@ export namespace metastore_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -3001,6 +3398,7 @@ export namespace metastore_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3085,6 +3483,7 @@ export namespace metastore_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3172,6 +3571,7 @@ export namespace metastore_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3264,6 +3664,7 @@ export namespace metastore_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3352,6 +3753,7 @@ export namespace metastore_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3436,6 +3838,7 @@ export namespace metastore_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -3455,7 +3858,7 @@ export namespace metastore_v1 {
     }
 
     /**
-     * Query DPMS metadata.
+     * Query Dataproc Metastore metadata.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3524,6 +3927,7 @@ export namespace metastore_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3611,6 +4015,7 @@ export namespace metastore_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3698,6 +4103,7 @@ export namespace metastore_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3713,6 +4119,95 @@ export namespace metastore_v1 {
         );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
+      }
+    }
+
+    /**
+     * Starts the Managed Migration process.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    startMigration(
+      params: Params$Resource$Projects$Locations$Services$Startmigration,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    startMigration(
+      params?: Params$Resource$Projects$Locations$Services$Startmigration,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    startMigration(
+      params: Params$Resource$Projects$Locations$Services$Startmigration,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    startMigration(
+      params: Params$Resource$Projects$Locations$Services$Startmigration,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    startMigration(
+      params: Params$Resource$Projects$Locations$Services$Startmigration,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    startMigration(callback: BodyResponseCallback<Schema$Operation>): void;
+    startMigration(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Services$Startmigration
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Services$Startmigration;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Services$Startmigration;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://metastore.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+service}:startMigration').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['service'],
+        pathParams: ['service'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
       }
     }
 
@@ -3793,6 +4288,7 @@ export namespace metastore_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3835,6 +4331,30 @@ export namespace metastore_v1 {
      * Request body metadata
      */
     requestBody?: Schema$AlterTablePropertiesRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Services$Cancelmigration
+    extends StandardParameters {
+    /**
+     * Required. The relative resource name of the metastore service to cancel the ongoing migration to, in the following format:projects/{project_id\}/locations/{location_id\}/services/{service_id\}.
+     */
+    service?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$CancelMigrationRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Services$Completemigration
+    extends StandardParameters {
+    /**
+     * Required. The relative resource name of the metastore service to complete the migration to, in the following format:projects/{project_id\}/locations/{location_id\}/services/{service_id\}.
+     */
+    service?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$CompleteMigrationRequest;
   }
   export interface Params$Resource$Projects$Locations$Services$Create
     extends StandardParameters {
@@ -3988,6 +4508,18 @@ export namespace metastore_v1 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
+  export interface Params$Resource$Projects$Locations$Services$Startmigration
+    extends StandardParameters {
+    /**
+     * Required. The relative resource name of the metastore service to start migrating to, in the following format:projects/{project_id\}/locations/{location_id\}/services/{service_id\}.
+     */
+    service?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$StartMigrationRequest;
+  }
   export interface Params$Resource$Projects$Locations$Services$Testiampermissions
     extends StandardParameters {
     /**
@@ -4077,6 +4609,7 @@ export namespace metastore_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4162,6 +4695,7 @@ export namespace metastore_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -4246,6 +4780,7 @@ export namespace metastore_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4334,6 +4869,7 @@ export namespace metastore_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4424,6 +4960,7 @@ export namespace metastore_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4512,6 +5049,7 @@ export namespace metastore_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4616,6 +5154,428 @@ export namespace metastore_v1 {
     requestBody?: Schema$SetIamPolicyRequest;
   }
 
+  export class Resource$Projects$Locations$Services$Databases {
+    context: APIRequestContext;
+    tables: Resource$Projects$Locations$Services$Databases$Tables;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.tables = new Resource$Projects$Locations$Services$Databases$Tables(
+        this.context
+      );
+    }
+
+    /**
+     * Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getIamPolicy(
+      params: Params$Resource$Projects$Locations$Services$Databases$Getiampolicy,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getIamPolicy(
+      params?: Params$Resource$Projects$Locations$Services$Databases$Getiampolicy,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Policy>;
+    getIamPolicy(
+      params: Params$Resource$Projects$Locations$Services$Databases$Getiampolicy,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getIamPolicy(
+      params: Params$Resource$Projects$Locations$Services$Databases$Getiampolicy,
+      options: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
+    getIamPolicy(
+      params: Params$Resource$Projects$Locations$Services$Databases$Getiampolicy,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
+    getIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
+    getIamPolicy(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Services$Databases$Getiampolicy
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Services$Databases$Getiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Services$Databases$Getiampolicy;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://metastore.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+resource}:getIamPolicy').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['resource'],
+        pathParams: ['resource'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Policy>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Policy>(parameters);
+      }
+    }
+
+    /**
+     * Sets the access control policy on the specified resource. Replaces any existing policy.Can return NOT_FOUND, INVALID_ARGUMENT, and PERMISSION_DENIED errors.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    setIamPolicy(
+      params: Params$Resource$Projects$Locations$Services$Databases$Setiampolicy,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    setIamPolicy(
+      params?: Params$Resource$Projects$Locations$Services$Databases$Setiampolicy,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Policy>;
+    setIamPolicy(
+      params: Params$Resource$Projects$Locations$Services$Databases$Setiampolicy,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    setIamPolicy(
+      params: Params$Resource$Projects$Locations$Services$Databases$Setiampolicy,
+      options: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
+    setIamPolicy(
+      params: Params$Resource$Projects$Locations$Services$Databases$Setiampolicy,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
+    setIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
+    setIamPolicy(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Services$Databases$Setiampolicy
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Services$Databases$Setiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Services$Databases$Setiampolicy;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://metastore.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+resource}:setIamPolicy').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['resource'],
+        pathParams: ['resource'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Policy>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Policy>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Services$Databases$Getiampolicy
+    extends StandardParameters {
+    /**
+     * Optional. The maximum policy version that will be used to format the policy.Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset.The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1.To learn which resources support conditions in their IAM policies, see the IAM documentation (https://cloud.google.com/iam/help/conditions/resource-policies).
+     */
+    'options.requestedPolicyVersion'?: number;
+    /**
+     * REQUIRED: The resource for which the policy is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     */
+    resource?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Services$Databases$Setiampolicy
+    extends StandardParameters {
+    /**
+     * REQUIRED: The resource for which the policy is being specified. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     */
+    resource?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$SetIamPolicyRequest;
+  }
+
+  export class Resource$Projects$Locations$Services$Databases$Tables {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getIamPolicy(
+      params: Params$Resource$Projects$Locations$Services$Databases$Tables$Getiampolicy,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getIamPolicy(
+      params?: Params$Resource$Projects$Locations$Services$Databases$Tables$Getiampolicy,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Policy>;
+    getIamPolicy(
+      params: Params$Resource$Projects$Locations$Services$Databases$Tables$Getiampolicy,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getIamPolicy(
+      params: Params$Resource$Projects$Locations$Services$Databases$Tables$Getiampolicy,
+      options: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
+    getIamPolicy(
+      params: Params$Resource$Projects$Locations$Services$Databases$Tables$Getiampolicy,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
+    getIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
+    getIamPolicy(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Services$Databases$Tables$Getiampolicy
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Services$Databases$Tables$Getiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Services$Databases$Tables$Getiampolicy;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://metastore.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+resource}:getIamPolicy').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['resource'],
+        pathParams: ['resource'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Policy>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Policy>(parameters);
+      }
+    }
+
+    /**
+     * Sets the access control policy on the specified resource. Replaces any existing policy.Can return NOT_FOUND, INVALID_ARGUMENT, and PERMISSION_DENIED errors.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    setIamPolicy(
+      params: Params$Resource$Projects$Locations$Services$Databases$Tables$Setiampolicy,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    setIamPolicy(
+      params?: Params$Resource$Projects$Locations$Services$Databases$Tables$Setiampolicy,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Policy>;
+    setIamPolicy(
+      params: Params$Resource$Projects$Locations$Services$Databases$Tables$Setiampolicy,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    setIamPolicy(
+      params: Params$Resource$Projects$Locations$Services$Databases$Tables$Setiampolicy,
+      options: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
+    setIamPolicy(
+      params: Params$Resource$Projects$Locations$Services$Databases$Tables$Setiampolicy,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
+    setIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
+    setIamPolicy(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Services$Databases$Tables$Setiampolicy
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Services$Databases$Tables$Setiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Services$Databases$Tables$Setiampolicy;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://metastore.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+resource}:setIamPolicy').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['resource'],
+        pathParams: ['resource'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Policy>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Policy>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Services$Databases$Tables$Getiampolicy
+    extends StandardParameters {
+    /**
+     * Optional. The maximum policy version that will be used to format the policy.Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset.The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1.To learn which resources support conditions in their IAM policies, see the IAM documentation (https://cloud.google.com/iam/help/conditions/resource-policies).
+     */
+    'options.requestedPolicyVersion'?: number;
+    /**
+     * REQUIRED: The resource for which the policy is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     */
+    resource?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Services$Databases$Tables$Setiampolicy
+    extends StandardParameters {
+    /**
+     * REQUIRED: The resource for which the policy is being specified. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     */
+    resource?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$SetIamPolicyRequest;
+  }
+
   export class Resource$Projects$Locations$Services$Metadataimports {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
@@ -4692,6 +5652,7 @@ export namespace metastore_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4777,6 +5738,7 @@ export namespace metastore_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4872,6 +5834,7 @@ export namespace metastore_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4957,6 +5920,7 @@ export namespace metastore_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -5045,5 +6009,327 @@ export namespace metastore_v1 {
      * Request body metadata
      */
     requestBody?: Schema$MetadataImport;
+  }
+
+  export class Resource$Projects$Locations$Services$Migrationexecutions {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Deletes a single migration execution.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Services$Migrationexecutions$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Services$Migrationexecutions$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    delete(
+      params: Params$Resource$Projects$Locations$Services$Migrationexecutions$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Services$Migrationexecutions$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Services$Migrationexecutions$Delete,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Services$Migrationexecutions$Delete
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Services$Migrationexecutions$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Services$Migrationexecutions$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://metastore.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Gets details of a single migration execution.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Services$Migrationexecutions$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Services$Migrationexecutions$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$MigrationExecution>;
+    get(
+      params: Params$Resource$Projects$Locations$Services$Migrationexecutions$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Services$Migrationexecutions$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$MigrationExecution>,
+      callback: BodyResponseCallback<Schema$MigrationExecution>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Services$Migrationexecutions$Get,
+      callback: BodyResponseCallback<Schema$MigrationExecution>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$MigrationExecution>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Services$Migrationexecutions$Get
+        | BodyResponseCallback<Schema$MigrationExecution>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$MigrationExecution>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$MigrationExecution>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$MigrationExecution>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Services$Migrationexecutions$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Services$Migrationexecutions$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://metastore.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$MigrationExecution>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$MigrationExecution>(parameters);
+      }
+    }
+
+    /**
+     * Lists migration executions on a service.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Services$Migrationexecutions$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Services$Migrationexecutions$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListMigrationExecutionsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Services$Migrationexecutions$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Services$Migrationexecutions$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListMigrationExecutionsResponse>,
+      callback: BodyResponseCallback<Schema$ListMigrationExecutionsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Services$Migrationexecutions$List,
+      callback: BodyResponseCallback<Schema$ListMigrationExecutionsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListMigrationExecutionsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Services$Migrationexecutions$List
+        | BodyResponseCallback<Schema$ListMigrationExecutionsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListMigrationExecutionsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListMigrationExecutionsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListMigrationExecutionsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Services$Migrationexecutions$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Services$Migrationexecutions$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://metastore.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/migrationExecutions').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListMigrationExecutionsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListMigrationExecutionsResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Services$Migrationexecutions$Delete
+    extends StandardParameters {
+    /**
+     * Required. The relative resource name of the migrationExecution to delete, in the following form:projects/{project_number\}/locations/{location_id\}/services/{service_id\}/migrationExecutions/{migration_execution_id\}.
+     */
+    name?: string;
+    /**
+     * Optional. A request ID. Specify a unique request ID to allow the server to ignore the request if it has completed. The server will ignore subsequent requests that provide a duplicate request ID for at least 60 minutes after the first request.For example, if an initial request times out, followed by another request with the same request ID, the server ignores the second request to prevent the creation of duplicate commitments.The request ID must be a valid UUID (https://en.wikipedia.org/wiki/Universally_unique_identifier#Format) A zero UUID (00000000-0000-0000-0000-000000000000) is not supported.
+     */
+    requestId?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Services$Migrationexecutions$Get
+    extends StandardParameters {
+    /**
+     * Required. The relative resource name of the migration execution to retrieve, in the following form:projects/{project_number\}/locations/{location_id\}/services/{service_id\}/migrationExecutions/{migration_execution_id\}.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Services$Migrationexecutions$List
+    extends StandardParameters {
+    /**
+     * Optional. The filter to apply to list results.
+     */
+    filter?: string;
+    /**
+     * Optional. Specify the ordering of results as described in Sorting Order (https://cloud.google.com/apis/design/design_patterns#sorting_order). If not specified, the results will be sorted in the default order.
+     */
+    orderBy?: string;
+    /**
+     * Optional. The maximum number of migration executions to return. The response may contain less than the maximum number. If unspecified, no more than 500 migration executions are returned. The maximum value is 1000; values above 1000 are changed to 1000.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A page token, received from a previous DataprocMetastore.ListMigrationExecutions call. Provide this token to retrieve the subsequent page.To retrieve the first page, supply an empty page token.When paginating, other parameters provided to DataprocMetastore.ListMigrationExecutions must match the call that provided the page token.
+     */
+    pageToken?: string;
+    /**
+     * Required. The relative resource name of the service whose migration executions to list, in the following form:projects/{project_number\}/locations/{location_id\}/services/{service_id\}/migrationExecutions.
+     */
+    parent?: string;
   }
 }

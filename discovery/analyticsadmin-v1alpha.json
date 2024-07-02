@@ -2089,8 +2089,10 @@
           }
         },
         "conversionEvents": {
+          "deprecated": true,
           "methods": {
             "create": {
+              "deprecated": true,
               "description": "Creates a conversion event with the specified attributes.",
               "flatPath": "v1alpha/properties/{propertiesId}/conversionEvents",
               "httpMethod": "POST",
@@ -2119,6 +2121,7 @@
               ]
             },
             "delete": {
+              "deprecated": true,
               "description": "Deletes a conversion event in a property.",
               "flatPath": "v1alpha/properties/{propertiesId}/conversionEvents/{conversionEventsId}",
               "httpMethod": "DELETE",
@@ -2144,6 +2147,7 @@
               ]
             },
             "get": {
+              "deprecated": true,
               "description": "Retrieve a single conversion event.",
               "flatPath": "v1alpha/properties/{propertiesId}/conversionEvents/{conversionEventsId}",
               "httpMethod": "GET",
@@ -2170,6 +2174,7 @@
               ]
             },
             "list": {
+              "deprecated": true,
               "description": "Returns a list of conversion events in the specified parent property. Returns an empty list if no conversion events are found.",
               "flatPath": "v1alpha/properties/{propertiesId}/conversionEvents",
               "httpMethod": "GET",
@@ -2207,6 +2212,7 @@
               ]
             },
             "patch": {
+              "deprecated": true,
               "description": "Updates a conversion event with the specified attributes.",
               "flatPath": "v1alpha/properties/{propertiesId}/conversionEvents/{conversionEventsId}",
               "httpMethod": "PATCH",
@@ -3007,6 +3013,35 @@
                   "scopes": [
                     "https://www.googleapis.com/auth/analytics.edit"
                   ]
+                }
+              }
+            },
+            "eventEditRules": {
+              "methods": {
+                "reorder": {
+                  "description": "Changes the processing order of event edit rules on the specified stream.",
+                  "flatPath": "v1alpha/properties/{propertiesId}/dataStreams/{dataStreamsId}/eventEditRules:reorder",
+                  "httpMethod": "POST",
+                  "id": "analyticsadmin.properties.dataStreams.eventEditRules.reorder",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. Example format: properties/123/dataStreams/456",
+                      "location": "path",
+                      "pattern": "^properties/[^/]+/dataStreams/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha/{+parent}/eventEditRules:reorder",
+                  "request": {
+                    "$ref": "GoogleAnalyticsAdminV1alphaReorderEventEditRulesRequest"
+                  },
+                  "response": {
+                    "$ref": "GoogleProtobufEmpty"
+                  }
                 }
               }
             },
@@ -4026,6 +4061,160 @@
             }
           }
         },
+        "keyEvents": {
+          "methods": {
+            "create": {
+              "description": "Creates a Key Event.",
+              "flatPath": "v1alpha/properties/{propertiesId}/keyEvents",
+              "httpMethod": "POST",
+              "id": "analyticsadmin.properties.keyEvents.create",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "parent": {
+                  "description": "Required. The resource name of the parent property where this Key Event will be created. Format: properties/123",
+                  "location": "path",
+                  "pattern": "^properties/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha/{+parent}/keyEvents",
+              "request": {
+                "$ref": "GoogleAnalyticsAdminV1alphaKeyEvent"
+              },
+              "response": {
+                "$ref": "GoogleAnalyticsAdminV1alphaKeyEvent"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/analytics.edit"
+              ]
+            },
+            "delete": {
+              "description": "Deletes a Key Event.",
+              "flatPath": "v1alpha/properties/{propertiesId}/keyEvents/{keyEventsId}",
+              "httpMethod": "DELETE",
+              "id": "analyticsadmin.properties.keyEvents.delete",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. The resource name of the Key Event to delete. Format: properties/{property}/keyEvents/{key_event} Example: \"properties/123/keyEvents/456\"",
+                  "location": "path",
+                  "pattern": "^properties/[^/]+/keyEvents/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha/{+name}",
+              "response": {
+                "$ref": "GoogleProtobufEmpty"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/analytics.edit"
+              ]
+            },
+            "get": {
+              "description": "Retrieve a single Key Event.",
+              "flatPath": "v1alpha/properties/{propertiesId}/keyEvents/{keyEventsId}",
+              "httpMethod": "GET",
+              "id": "analyticsadmin.properties.keyEvents.get",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. The resource name of the Key Event to retrieve. Format: properties/{property}/keyEvents/{key_event} Example: \"properties/123/keyEvents/456\"",
+                  "location": "path",
+                  "pattern": "^properties/[^/]+/keyEvents/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha/{+name}",
+              "response": {
+                "$ref": "GoogleAnalyticsAdminV1alphaKeyEvent"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/analytics.edit",
+                "https://www.googleapis.com/auth/analytics.readonly"
+              ]
+            },
+            "list": {
+              "description": "Returns a list of Key Events in the specified parent property. Returns an empty list if no Key Events are found.",
+              "flatPath": "v1alpha/properties/{propertiesId}/keyEvents",
+              "httpMethod": "GET",
+              "id": "analyticsadmin.properties.keyEvents.list",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "pageSize": {
+                  "description": "The maximum number of resources to return. If unspecified, at most 50 resources will be returned. The maximum value is 200; (higher values will be coerced to the maximum)",
+                  "format": "int32",
+                  "location": "query",
+                  "type": "integer"
+                },
+                "pageToken": {
+                  "description": "A page token, received from a previous `ListKeyEvents` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListKeyEvents` must match the call that provided the page token.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "parent": {
+                  "description": "Required. The resource name of the parent property. Example: 'properties/123'",
+                  "location": "path",
+                  "pattern": "^properties/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha/{+parent}/keyEvents",
+              "response": {
+                "$ref": "GoogleAnalyticsAdminV1alphaListKeyEventsResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/analytics.edit",
+                "https://www.googleapis.com/auth/analytics.readonly"
+              ]
+            },
+            "patch": {
+              "description": "Updates a Key Event.",
+              "flatPath": "v1alpha/properties/{propertiesId}/keyEvents/{keyEventsId}",
+              "httpMethod": "PATCH",
+              "id": "analyticsadmin.properties.keyEvents.patch",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Output only. Resource name of this key event. Format: properties/{property}/keyEvents/{key_event}",
+                  "location": "path",
+                  "pattern": "^properties/[^/]+/keyEvents/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                },
+                "updateMask": {
+                  "description": "Required. The list of fields to be updated. Field names must be in snake case (e.g., \"field_to_update\"). Omitted fields will not be updated. To replace the entire entity, use one path with the string \"*\" to match all fields.",
+                  "format": "google-fieldmask",
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha/{+name}",
+              "request": {
+                "$ref": "GoogleAnalyticsAdminV1alphaKeyEvent"
+              },
+              "response": {
+                "$ref": "GoogleAnalyticsAdminV1alphaKeyEvent"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/analytics.edit"
+              ]
+            }
+          }
+        },
         "rollupPropertySourceLinks": {
           "methods": {
             "create": {
@@ -4457,7 +4646,7 @@
       }
     }
   },
-  "revision": "20240312",
+  "revision": "20240529",
   "rootUrl": "https://analyticsadmin.googleapis.com/",
   "schemas": {
     "GoogleAnalyticsAdminV1alphaAccessBetweenFilter": {
@@ -4870,6 +5059,11 @@
           "description": "Required. Human-readable display name for this account.",
           "type": "string"
         },
+        "gmpOrganization": {
+          "description": "Output only. The URI for a Google Marketing Platform organization resource. Only set when this account is connected to a GMP organization. Format: marketingplatformadmin.googleapis.com/organizations/{org_id}",
+          "readOnly": true,
+          "type": "string"
+        },
         "name": {
           "description": "Output only. Resource name of this account. Format: accounts/{account} Example: \"accounts/100\"",
           "readOnly": true,
@@ -5064,6 +5258,12 @@
           "description": "Output only. It is automatically set by GA to false if this is an NPA Audience and is excluded from ads personalization.",
           "readOnly": true,
           "type": "boolean"
+        },
+        "createTime": {
+          "description": "Output only. Time when the Audience was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
         },
         "description": {
           "description": "Required. The description of the Audience.",
@@ -6219,10 +6419,6 @@
       "description": "Request message for CreateSubproperty RPC.",
       "id": "GoogleAnalyticsAdminV1alphaCreateSubpropertyRequest",
       "properties": {
-        "parent": {
-          "description": "Required. The ordinary property for which to create a subproperty. Format: properties/property_id Example: properties/123",
-          "type": "string"
-        },
         "subproperty": {
           "$ref": "GoogleAnalyticsAdminV1alphaProperty",
           "description": "Required. The subproperty to create."
@@ -7110,6 +7306,72 @@
       },
       "type": "object"
     },
+    "GoogleAnalyticsAdminV1alphaKeyEvent": {
+      "description": "A key event in a Google Analytics property.",
+      "id": "GoogleAnalyticsAdminV1alphaKeyEvent",
+      "properties": {
+        "countingMethod": {
+          "description": "Required. The method by which Key Events will be counted across multiple events within a session.",
+          "enum": [
+            "COUNTING_METHOD_UNSPECIFIED",
+            "ONCE_PER_EVENT",
+            "ONCE_PER_SESSION"
+          ],
+          "enumDescriptions": [
+            "Counting method not specified.",
+            "Each Event instance is considered a Key Event.",
+            "An Event instance is considered a Key Event at most once per session per user."
+          ],
+          "type": "string"
+        },
+        "createTime": {
+          "description": "Output only. Time when this key event was created in the property.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "custom": {
+          "description": "Output only. If set to true, this key event refers to a custom event. If set to false, this key event refers to a default event in GA. Default events typically have special meaning in GA. Default events are usually created for you by the GA system, but in some cases can be created by property admins. Custom events count towards the maximum number of custom key events that may be created per property.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "defaultValue": {
+          "$ref": "GoogleAnalyticsAdminV1alphaKeyEventDefaultValue",
+          "description": "Optional. Defines a default value/currency for a key event."
+        },
+        "deletable": {
+          "description": "Output only. If set to true, this event can be deleted.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "eventName": {
+          "description": "Immutable. The event name for this key event. Examples: 'click', 'purchase'",
+          "type": "string"
+        },
+        "name": {
+          "description": "Output only. Resource name of this key event. Format: properties/{property}/keyEvents/{key_event}",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAnalyticsAdminV1alphaKeyEventDefaultValue": {
+      "description": "Defines a default value/currency for a key event.",
+      "id": "GoogleAnalyticsAdminV1alphaKeyEventDefaultValue",
+      "properties": {
+        "currencyCode": {
+          "description": "Required. When an occurrence of this Key Event (specified by event_name) has no set currency this currency will be applied as the default. Must be in ISO 4217 currency code format. See https://en.wikipedia.org/wiki/ISO_4217 for more information.",
+          "type": "string"
+        },
+        "numericValue": {
+          "description": "Required. This will be used to populate the \"value\" parameter for all occurrences of this Key Event (specified by event_name) where that parameter is unset.",
+          "format": "double",
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
     "GoogleAnalyticsAdminV1alphaLinkProposalStatusDetails": {
       "description": "Status information for a link proposal.",
       "id": "GoogleAnalyticsAdminV1alphaLinkProposalStatusDetails",
@@ -7499,6 +7761,24 @@
           "description": "List of GoogleAdsLinks.",
           "items": {
             "$ref": "GoogleAnalyticsAdminV1alphaGoogleAdsLink"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAnalyticsAdminV1alphaListKeyEventsResponse": {
+      "description": "Response message for ListKeyEvents RPC.",
+      "id": "GoogleAnalyticsAdminV1alphaListKeyEventsResponse",
+      "properties": {
+        "keyEvents": {
+          "description": "The requested Key Events",
+          "items": {
+            "$ref": "GoogleAnalyticsAdminV1alphaKeyEvent"
           },
           "type": "array"
         },
@@ -7951,6 +8231,20 @@
         "accountTicketId": {
           "description": "The param to be passed in the ToS link.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAnalyticsAdminV1alphaReorderEventEditRulesRequest": {
+      "description": "Request message for ReorderEventEditRules RPC.",
+      "id": "GoogleAnalyticsAdminV1alphaReorderEventEditRulesRequest",
+      "properties": {
+        "eventEditRules": {
+          "description": "Required. EventEditRule resource names for the specified data stream, in the needed processing order. All EventEditRules for the stream must be present in the list.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"

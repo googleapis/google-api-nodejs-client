@@ -591,7 +591,7 @@
       }
     }
   },
-  "revision": "20240314",
+  "revision": "20240621",
   "rootUrl": "https://assuredworkloads.googleapis.com/",
   "schemas": {
     "GoogleCloudAssuredworkloadsV1AcknowledgeViolationRequest": {
@@ -683,20 +683,27 @@
             "FEDRAMP_HIGH",
             "FEDRAMP_MODERATE",
             "US_REGIONAL_ACCESS",
+            "REGIONAL_CONTROLS_PREMIUM_US",
             "HIPAA",
             "HITRUST",
             "EU_REGIONS_AND_SUPPORT",
+            "REGIONAL_CONTROLS_PREMIUM_EU",
             "CA_REGIONS_AND_SUPPORT",
+            "REGIONAL_CONTROLS_PREMIUM_CA",
             "ITAR",
             "AU_REGIONS_AND_US_SUPPORT",
+            "REGIONAL_CONTROLS_PREMIUM_AU",
             "ASSURED_WORKLOADS_FOR_PARTNERS",
             "ISR_REGIONS",
+            "REGIONAL_CONTROLS_PREMIUM_ISR",
             "ISR_REGIONS_AND_SUPPORT",
             "CA_PROTECTED_B",
             "IL5",
             "IL2",
             "JP_REGIONS_AND_SUPPORT",
-            "KSA_REGIONS_AND_SUPPORT_WITH_SOVEREIGNTY_CONTROLS"
+            "REGIONAL_CONTROLS_PREMIUM_JP",
+            "KSA_REGIONS_AND_SUPPORT_WITH_SOVEREIGNTY_CONTROLS",
+            "REGIONAL_CONTROLS"
           ],
           "enumDescriptions": [
             "Unknown compliance regime.",
@@ -705,20 +712,27 @@
             "FedRAMP High data protection controls",
             "FedRAMP Moderate data protection controls",
             "Assured Workloads For US Regions data protection controls",
+            "Assured Workloads For US Regions data protection controls",
             "Health Insurance Portability and Accountability Act controls",
             "Health Information Trust Alliance controls",
             "Assured Workloads For EU Regions and Support controls",
+            "Assured Workloads For EU Regions and Support controls",
+            "Assured Workloads For Canada Regions and Support controls",
             "Assured Workloads For Canada Regions and Support controls",
             "International Traffic in Arms Regulations",
             "Assured Workloads for Australia Regions and Support controls",
+            "Assured Workloads for Australia Regions and Support controls",
             "Assured Workloads for Partners;",
+            "Assured Workloads for Israel Regions",
             "Assured Workloads for Israel",
             "Assured Workloads for Israel Regions",
             "Assured Workloads for Canada Protected B regime",
             "Information protection as per DoD IL5 requirements.",
             "Information protection as per DoD IL2 requirements.",
             "Assured Workloads for Japan Regions",
-            "KSA R5 Controls."
+            "Assured Workloads for Japan Regions",
+            "KSA R5 Controls.",
+            "Assured Workloads for Regional Controls"
           ],
           "type": "string"
         },
@@ -1058,7 +1072,8 @@
             "REMEDIATION_LIST_ALLOWED_VALUES_ORG_POLICY_VIOLATION",
             "REMEDIATION_LIST_DENIED_VALUES_ORG_POLICY_VIOLATION",
             "REMEDIATION_RESTRICT_CMEK_CRYPTO_KEY_PROJECTS_ORG_POLICY_VIOLATION",
-            "REMEDIATION_RESOURCE_VIOLATION"
+            "REMEDIATION_RESOURCE_VIOLATION",
+            "REMEDIATION_RESOURCE_VIOLATION_NON_CMEK_SERVICES"
           ],
           "enumDescriptions": [
             "Unspecified remediation type",
@@ -1066,7 +1081,8 @@
             "Remediation type for list org policy which have allowed values in the monitoring rule",
             "Remediation type for list org policy which have denied values in the monitoring rule",
             "Remediation type for gcp.restrictCmekCryptoKeyProjects",
-            "Remediation type for resource violation."
+            "Remediation type for resource violation.",
+            "Remediation type for resource violation due to gcp.restrictNonCmekServices"
           ],
           "readOnly": true,
           "type": "string"
@@ -1162,20 +1178,27 @@
             "FEDRAMP_HIGH",
             "FEDRAMP_MODERATE",
             "US_REGIONAL_ACCESS",
+            "REGIONAL_CONTROLS_PREMIUM_US",
             "HIPAA",
             "HITRUST",
             "EU_REGIONS_AND_SUPPORT",
+            "REGIONAL_CONTROLS_PREMIUM_EU",
             "CA_REGIONS_AND_SUPPORT",
+            "REGIONAL_CONTROLS_PREMIUM_CA",
             "ITAR",
             "AU_REGIONS_AND_US_SUPPORT",
+            "REGIONAL_CONTROLS_PREMIUM_AU",
             "ASSURED_WORKLOADS_FOR_PARTNERS",
             "ISR_REGIONS",
+            "REGIONAL_CONTROLS_PREMIUM_ISR",
             "ISR_REGIONS_AND_SUPPORT",
             "CA_PROTECTED_B",
             "IL5",
             "IL2",
             "JP_REGIONS_AND_SUPPORT",
-            "KSA_REGIONS_AND_SUPPORT_WITH_SOVEREIGNTY_CONTROLS"
+            "REGIONAL_CONTROLS_PREMIUM_JP",
+            "KSA_REGIONS_AND_SUPPORT_WITH_SOVEREIGNTY_CONTROLS",
+            "REGIONAL_CONTROLS"
           ],
           "enumDescriptions": [
             "Unknown compliance regime.",
@@ -1184,20 +1207,27 @@
             "FedRAMP High data protection controls",
             "FedRAMP Moderate data protection controls",
             "Assured Workloads For US Regions data protection controls",
+            "Assured Workloads For US Regions data protection controls",
             "Health Insurance Portability and Accountability Act controls",
             "Health Information Trust Alliance controls",
             "Assured Workloads For EU Regions and Support controls",
+            "Assured Workloads For EU Regions and Support controls",
+            "Assured Workloads For Canada Regions and Support controls",
             "Assured Workloads For Canada Regions and Support controls",
             "International Traffic in Arms Regulations",
             "Assured Workloads for Australia Regions and Support controls",
+            "Assured Workloads for Australia Regions and Support controls",
             "Assured Workloads for Partners;",
+            "Assured Workloads for Israel Regions",
             "Assured Workloads for Israel",
             "Assured Workloads for Israel Regions",
             "Assured Workloads for Canada Protected B regime",
             "Information protection as per DoD IL5 requirements.",
             "Information protection as per DoD IL2 requirements.",
             "Assured Workloads for Japan Regions",
-            "KSA R5 Controls."
+            "Assured Workloads for Japan Regions",
+            "KSA R5 Controls.",
+            "Assured Workloads for Regional Controls"
           ],
           "type": "string"
         },

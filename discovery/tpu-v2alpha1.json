@@ -965,7 +965,7 @@
       }
     }
   },
-  "revision": "20240208",
+  "revision": "20240613",
   "rootUrl": "https://tpu.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -983,6 +983,7 @@
             "V2",
             "V3",
             "V4",
+            "V5LITE_POD",
             "V5P"
           ],
           "enumDescriptions": [
@@ -990,6 +991,7 @@
             "TPU v2.",
             "TPU v3.",
             "TPU v4.",
+            "TPU v5lite pod.",
             "TPU v5."
           ],
           "type": "string"
@@ -1983,6 +1985,29 @@
         },
         "standard": {
           "$ref": "Standard"
+        },
+        "state": {
+          "description": "Output only. The state of the Reservation.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "APPROVED",
+            "PROVISIONING",
+            "ACTIVE",
+            "DEPROVISIONING",
+            "EXPIRED",
+            "FAILED"
+          ],
+          "enumDescriptions": [
+            "The Reservation state is unspecified.",
+            "The Reservation has been approved.",
+            "The Reservation is being provisioned.",
+            "The Reservation is active.",
+            "The Reservation is being deprovisioned.",
+            "The Reservation is past its end date.",
+            "The Reservation encountered a failure during mutation."
+          ],
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"

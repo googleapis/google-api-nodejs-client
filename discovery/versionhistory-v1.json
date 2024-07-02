@@ -271,7 +271,7 @@
       }
     }
   },
-  "revision": "20240131",
+  "revision": "20240529",
   "rootUrl": "https://versionhistory.googleapis.com/",
   "schemas": {
     "Channel": {
@@ -294,13 +294,13 @@
           ],
           "enumDescriptions": [
             "",
+            "The Stable channel.",
+            "The Beta channel.",
+            "The Dev channel.",
+            "The Canary channel.",
+            "The Canary channel for Chrome, with DCHECK/ASAN enabled.",
             "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
+            "The Extended Stable channel for Chrome.",
             "The Long-term support channel for ChromeOS.",
             "The Long-term support candidate channel for ChromeOS."
           ],
@@ -427,24 +427,26 @@
             "LACROS_ARM32",
             "CHROMEOS",
             "LACROS_ARM64",
-            "FUCHSIA"
+            "FUCHSIA",
+            "WIN_ARM64"
           ],
           "enumDescriptions": [
             "",
+            "Chrome Desktop for Windows (32-bit).",
+            "Chrome Desktop for Windows (x86_64).",
+            "Chrome Desktop for macOS (x86_64).",
+            "Chrome Desktop for Linux.",
+            "Chrome for Android.",
+            "WebView for Android.",
+            "Chrome for iOS.",
             "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            ""
+            "Chrome for macOS (ARM64).",
+            "ChromeOS Lacros (x86_64).",
+            "ChromeOS Lacros (ARM).",
+            "ChromeOS.",
+            "ChromeOS Lacros (ARM64).",
+            "Chrome for Fuchsia.",
+            "Chrome Desktop for Windows (ARM64)."
           ],
           "type": "string"
         }
@@ -468,6 +470,10 @@
         "name": {
           "description": "Release name. Format is \"{product}/platforms/{platform}/channels/{channel}/versions/{version}/releases/{release}\"",
           "type": "string"
+        },
+        "pinnable": {
+          "description": "Whether or not the release was available for version pinning.",
+          "type": "boolean"
         },
         "serving": {
           "$ref": "Interval",

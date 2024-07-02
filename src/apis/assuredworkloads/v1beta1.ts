@@ -201,6 +201,10 @@ export namespace assuredworkloads_v1beta1 {
     resourceSettings?: Schema$GoogleCloudAssuredworkloadsV1beta1WorkloadResourceSettings[];
   }
   /**
+   * Response for EnableComplianceUpdates endpoint.
+   */
+  export interface Schema$GoogleCloudAssuredworkloadsV1beta1EnableComplianceUpdatesResponse {}
+  /**
    * Response for EnableResourceMonitoring endpoint.
    */
   export interface Schema$GoogleCloudAssuredworkloadsV1beta1EnableResourceMonitoringResponse {}
@@ -468,6 +472,10 @@ export namespace assuredworkloads_v1beta1 {
      * Output only. Count of active Violations in the Workload.
      */
     complianceStatus?: Schema$GoogleCloudAssuredworkloadsV1beta1WorkloadComplianceStatus;
+    /**
+     * Output only. Indicates whether the compliance updates feature is enabled for a workload. The compliance updates feature can be enabled via the EnableComplianceUpdates endpoint.
+     */
+    complianceUpdatesEnabled?: boolean | null;
     /**
      * Output only. Urls for services which are compliant for this Assured Workload, but which are currently disallowed by the ResourceUsageRestriction org policy. Invoke RestrictAllowedResources endpoint to allow your project developers to use these services in their environment.
      */
@@ -864,6 +872,7 @@ export namespace assuredworkloads_v1beta1 {
           {
             url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -959,6 +968,7 @@ export namespace assuredworkloads_v1beta1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1094,6 +1104,7 @@ export namespace assuredworkloads_v1beta1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1191,6 +1202,7 @@ export namespace assuredworkloads_v1beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1279,6 +1291,7 @@ export namespace assuredworkloads_v1beta1 {
           {
             url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -1294,6 +1307,105 @@ export namespace assuredworkloads_v1beta1 {
         );
       } else {
         return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
+      }
+    }
+
+    /**
+     * This endpoint enables Assured Workloads service to offer compliance updates for the folder based assured workload. It sets up an Assured Workloads Service Agent, having permissions to read compliance controls (for example: Org Policies) applied on the workload. The caller must have `resourcemanager.folders.getIamPolicy` and `resourcemanager.folders.setIamPolicy` permissions on the assured workload folder.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    enableComplianceUpdates(
+      params: Params$Resource$Organizations$Locations$Workloads$Enablecomplianceupdates,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    enableComplianceUpdates(
+      params?: Params$Resource$Organizations$Locations$Workloads$Enablecomplianceupdates,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudAssuredworkloadsV1beta1EnableComplianceUpdatesResponse>;
+    enableComplianceUpdates(
+      params: Params$Resource$Organizations$Locations$Workloads$Enablecomplianceupdates,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    enableComplianceUpdates(
+      params: Params$Resource$Organizations$Locations$Workloads$Enablecomplianceupdates,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1beta1EnableComplianceUpdatesResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1beta1EnableComplianceUpdatesResponse>
+    ): void;
+    enableComplianceUpdates(
+      params: Params$Resource$Organizations$Locations$Workloads$Enablecomplianceupdates,
+      callback: BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1beta1EnableComplianceUpdatesResponse>
+    ): void;
+    enableComplianceUpdates(
+      callback: BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1beta1EnableComplianceUpdatesResponse>
+    ): void;
+    enableComplianceUpdates(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Locations$Workloads$Enablecomplianceupdates
+        | BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1beta1EnableComplianceUpdatesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1beta1EnableComplianceUpdatesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1beta1EnableComplianceUpdatesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudAssuredworkloadsV1beta1EnableComplianceUpdatesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Locations$Workloads$Enablecomplianceupdates;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Organizations$Locations$Workloads$Enablecomplianceupdates;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://assuredworkloads.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}:enableComplianceUpdates').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'PUT',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudAssuredworkloadsV1beta1EnableComplianceUpdatesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudAssuredworkloadsV1beta1EnableComplianceUpdatesResponse>(
+          parameters
+        );
       }
     }
 
@@ -1374,6 +1486,7 @@ export namespace assuredworkloads_v1beta1 {
               rootUrl + '/v1beta1/{+name}:enableResourceMonitoring'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1468,6 +1581,7 @@ export namespace assuredworkloads_v1beta1 {
           {
             url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1565,6 +1679,7 @@ export namespace assuredworkloads_v1beta1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1659,6 +1774,7 @@ export namespace assuredworkloads_v1beta1 {
           {
             url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -1756,6 +1872,7 @@ export namespace assuredworkloads_v1beta1 {
               rootUrl + '/v1beta1/{+name}:restrictAllowedResources'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1822,6 +1939,13 @@ export namespace assuredworkloads_v1beta1 {
      * Optional. The etag of the workload. If this is provided, it must match the server's etag.
      */
     etag?: string;
+    /**
+     * Required. The `name` field is used to identify the workload. Format: organizations/{org_id\}/locations/{location_id\}/workloads/{workload_id\}
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Organizations$Locations$Workloads$Enablecomplianceupdates
+    extends StandardParameters {
     /**
      * Required. The `name` field is used to identify the workload. Format: organizations/{org_id\}/locations/{location_id\}/workloads/{workload_id\}
      */
@@ -1973,6 +2097,7 @@ export namespace assuredworkloads_v1beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2068,6 +2193,7 @@ export namespace assuredworkloads_v1beta1 {
           {
             url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2166,6 +2292,7 @@ export namespace assuredworkloads_v1beta1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),

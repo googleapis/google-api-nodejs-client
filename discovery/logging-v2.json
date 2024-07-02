@@ -29,11 +29,6 @@
   "documentationLink": "https://cloud.google.com/logging/docs/",
   "endpoints": [
     {
-      "endpointUrl": "https://logging.me-central2.rep.googleapis.com/",
-      "location": "me-central2",
-      "description": "Regional Endpoint"
-    },
-    {
       "endpointUrl": "https://logging.europe-west3.rep.googleapis.com/",
       "location": "europe-west3",
       "description": "Regional Endpoint"
@@ -46,6 +41,11 @@
     {
       "endpointUrl": "https://logging.europe-west9.rep.googleapis.com/",
       "location": "europe-west9",
+      "description": "Regional Endpoint"
+    },
+    {
+      "endpointUrl": "https://logging.me-central2.rep.googleapis.com/",
+      "location": "me-central2",
       "description": "Regional Endpoint"
     },
     {
@@ -1226,6 +1226,11 @@
                     "parent"
                   ],
                   "parameters": {
+                    "filter": {
+                      "description": "Optional. Specifies the type (\"Logging\" or \"OpsAnalytics\") of the recent queries to list. The only valid value for this field is one of the two allowable type function calls, which are the following: type(\"Logging\") type(\"OpsAnalytics\")",
+                      "location": "query",
+                      "type": "string"
+                    },
                     "pageSize": {
                       "description": "Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.",
                       "format": "int32",
@@ -1320,6 +1325,34 @@
                     "https://www.googleapis.com/auth/logging.admin"
                   ]
                 },
+                "get": {
+                  "description": "Returns all data associated with the requested query.",
+                  "flatPath": "v2/billingAccounts/{billingAccountsId}/locations/{locationsId}/savedQueries/{savedQueriesId}",
+                  "httpMethod": "GET",
+                  "id": "logging.billingAccounts.locations.savedQueries.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The resource name of the saved query. \"projects/[PROJECT_ID]/locations/[LOCATION_ID]/savedQueries/[QUERY_ID]\" \"organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/savedQueries/[QUERY_ID]\" \"billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/savedQueries/[QUERY_ID]\" \"folders/[FOLDER_ID]/locations/[LOCATION_ID]/savedQueries/[QUERY_ID]\" For example: \"projects/my-project/locations/global/savedQueries/my-saved-query\" ",
+                      "location": "path",
+                      "pattern": "^billingAccounts/[^/]+/locations/[^/]+/savedQueries/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2/{+name}",
+                  "response": {
+                    "$ref": "SavedQuery"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/cloud-platform.read-only",
+                    "https://www.googleapis.com/auth/logging.admin",
+                    "https://www.googleapis.com/auth/logging.read"
+                  ]
+                },
                 "list": {
                   "description": "Lists the SavedQueries that were created by the user making the request.",
                   "flatPath": "v2/billingAccounts/{billingAccountsId}/locations/{locationsId}/savedQueries",
@@ -1357,6 +1390,41 @@
                     "https://www.googleapis.com/auth/cloud-platform.read-only",
                     "https://www.googleapis.com/auth/logging.admin",
                     "https://www.googleapis.com/auth/logging.read"
+                  ]
+                },
+                "patch": {
+                  "description": "Updates an existing SavedQuery.",
+                  "flatPath": "v2/billingAccounts/{billingAccountsId}/locations/{locationsId}/savedQueries/{savedQueriesId}",
+                  "httpMethod": "PATCH",
+                  "id": "logging.billingAccounts.locations.savedQueries.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Output only. Resource name of the saved query.In the format: \"projects/[PROJECT_ID]/locations/[LOCATION_ID]/savedQueries/[QUERY_ID]\" For a list of supported locations, see Supported Regions (https://cloud.google.com/logging/docs/region-support#bucket-regions)After the saved query is created, the location cannot be changed.If the user doesn't provide a QUERY_ID, the system will generate an alphanumeric ID.",
+                      "location": "path",
+                      "pattern": "^billingAccounts/[^/]+/locations/[^/]+/savedQueries/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "Required. A non-empty list of fields to change in the existing saved query. Fields are relative to the saved_query and new values for the fields are taken from the corresponding fields in the SavedQuery included in this request. Fields not mentioned in update_mask are not changed and are ignored in the request.To update all mutable fields, specify an update_mask of *.For example, to change the description and query filter text of a saved query, specify an update_mask of \"description, query.filter\".",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2/{+name}",
+                  "request": {
+                    "$ref": "SavedQuery"
+                  },
+                  "response": {
+                    "$ref": "SavedQuery"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/logging.admin"
                   ]
                 }
               }
@@ -1450,7 +1518,7 @@
               ],
               "parameters": {
                 "customWriterIdentity": {
-                  "description": "Optional. A service account provided by the caller that will be used to write the log entries. The format must be serviceAccount:some@email. This field can only be specified if you are routing logs to a destination outside this sink's project. If not specified, a Logging service account will automatically be generated.",
+                  "description": "Optional. The service account provided by the caller that will be used to write the log entries. The format must be serviceAccount:some@email. This field can only be specified when you are routing logs to a log bucket that is in a different project than the sink. When not specified, a Logging service account will automatically be generated.",
                   "location": "query",
                   "type": "string"
                 },
@@ -1587,7 +1655,7 @@
               ],
               "parameters": {
                 "customWriterIdentity": {
-                  "description": "Optional. A service account provided by the caller that will be used to write the log entries. The format must be serviceAccount:some@email. This field can only be specified if you are routing logs to a destination outside this sink's project. If not specified, a Logging service account will automatically be generated.",
+                  "description": "Optional. The service account provided by the caller that will be used to write the log entries. The format must be serviceAccount:some@email. This field can only be specified when you are routing logs to a log bucket that is in a different project than the sink. When not specified, a Logging service account will automatically be generated.",
                   "location": "query",
                   "type": "string"
                 },
@@ -1632,7 +1700,7 @@
               ],
               "parameters": {
                 "customWriterIdentity": {
-                  "description": "Optional. A service account provided by the caller that will be used to write the log entries. The format must be serviceAccount:some@email. This field can only be specified if you are routing logs to a destination outside this sink's project. If not specified, a Logging service account will automatically be generated.",
+                  "description": "Optional. The service account provided by the caller that will be used to write the log entries. The format must be serviceAccount:some@email. This field can only be specified when you are routing logs to a log bucket that is in a different project than the sink. When not specified, a Logging service account will automatically be generated.",
                   "location": "query",
                   "type": "string"
                 },
@@ -2734,6 +2802,37 @@
                         "https://www.googleapis.com/auth/logging.read"
                       ]
                     },
+                    "getIamPolicy": {
+                      "description": "Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.",
+                      "flatPath": "v2/folders/{foldersId}/locations/{locationsId}/buckets/{bucketsId}/views/{viewsId}:getIamPolicy",
+                      "httpMethod": "POST",
+                      "id": "logging.folders.locations.buckets.views.getIamPolicy",
+                      "parameterOrder": [
+                        "resource"
+                      ],
+                      "parameters": {
+                        "resource": {
+                          "description": "REQUIRED: The resource for which the policy is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
+                          "location": "path",
+                          "pattern": "^folders/[^/]+/locations/[^/]+/buckets/[^/]+/views/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v2/{+resource}:getIamPolicy",
+                      "request": {
+                        "$ref": "GetIamPolicyRequest"
+                      },
+                      "response": {
+                        "$ref": "Policy"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/cloud-platform.read-only",
+                        "https://www.googleapis.com/auth/logging.admin",
+                        "https://www.googleapis.com/auth/logging.read"
+                      ]
+                    },
                     "list": {
                       "description": "Lists views on a log bucket.",
                       "flatPath": "v2/folders/{foldersId}/locations/{locationsId}/buckets/{bucketsId}/views",
@@ -2806,6 +2905,66 @@
                       "scopes": [
                         "https://www.googleapis.com/auth/cloud-platform",
                         "https://www.googleapis.com/auth/logging.admin"
+                      ]
+                    },
+                    "setIamPolicy": {
+                      "description": "Sets the access control policy on the specified resource. Replaces any existing policy.Can return NOT_FOUND, INVALID_ARGUMENT, and PERMISSION_DENIED errors.",
+                      "flatPath": "v2/folders/{foldersId}/locations/{locationsId}/buckets/{bucketsId}/views/{viewsId}:setIamPolicy",
+                      "httpMethod": "POST",
+                      "id": "logging.folders.locations.buckets.views.setIamPolicy",
+                      "parameterOrder": [
+                        "resource"
+                      ],
+                      "parameters": {
+                        "resource": {
+                          "description": "REQUIRED: The resource for which the policy is being specified. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
+                          "location": "path",
+                          "pattern": "^folders/[^/]+/locations/[^/]+/buckets/[^/]+/views/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v2/{+resource}:setIamPolicy",
+                      "request": {
+                        "$ref": "SetIamPolicyRequest"
+                      },
+                      "response": {
+                        "$ref": "Policy"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/logging.admin"
+                      ]
+                    },
+                    "testIamPermissions": {
+                      "description": "Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a NOT_FOUND error.Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may \"fail open\" without warning.",
+                      "flatPath": "v2/folders/{foldersId}/locations/{locationsId}/buckets/{bucketsId}/views/{viewsId}:testIamPermissions",
+                      "httpMethod": "POST",
+                      "id": "logging.folders.locations.buckets.views.testIamPermissions",
+                      "parameterOrder": [
+                        "resource"
+                      ],
+                      "parameters": {
+                        "resource": {
+                          "description": "REQUIRED: The resource for which the policy detail is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
+                          "location": "path",
+                          "pattern": "^folders/[^/]+/locations/[^/]+/buckets/[^/]+/views/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v2/{+resource}:testIamPermissions",
+                      "request": {
+                        "$ref": "TestIamPermissionsRequest"
+                      },
+                      "response": {
+                        "$ref": "TestIamPermissionsResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/cloud-platform.read-only",
+                        "https://www.googleapis.com/auth/logging.admin",
+                        "https://www.googleapis.com/auth/logging.read"
                       ]
                     }
                   },
@@ -2979,6 +3138,11 @@
                     "parent"
                   ],
                   "parameters": {
+                    "filter": {
+                      "description": "Optional. Specifies the type (\"Logging\" or \"OpsAnalytics\") of the recent queries to list. The only valid value for this field is one of the two allowable type function calls, which are the following: type(\"Logging\") type(\"OpsAnalytics\")",
+                      "location": "query",
+                      "type": "string"
+                    },
                     "pageSize": {
                       "description": "Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.",
                       "format": "int32",
@@ -3073,6 +3237,34 @@
                     "https://www.googleapis.com/auth/logging.admin"
                   ]
                 },
+                "get": {
+                  "description": "Returns all data associated with the requested query.",
+                  "flatPath": "v2/folders/{foldersId}/locations/{locationsId}/savedQueries/{savedQueriesId}",
+                  "httpMethod": "GET",
+                  "id": "logging.folders.locations.savedQueries.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The resource name of the saved query. \"projects/[PROJECT_ID]/locations/[LOCATION_ID]/savedQueries/[QUERY_ID]\" \"organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/savedQueries/[QUERY_ID]\" \"billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/savedQueries/[QUERY_ID]\" \"folders/[FOLDER_ID]/locations/[LOCATION_ID]/savedQueries/[QUERY_ID]\" For example: \"projects/my-project/locations/global/savedQueries/my-saved-query\" ",
+                      "location": "path",
+                      "pattern": "^folders/[^/]+/locations/[^/]+/savedQueries/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2/{+name}",
+                  "response": {
+                    "$ref": "SavedQuery"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/cloud-platform.read-only",
+                    "https://www.googleapis.com/auth/logging.admin",
+                    "https://www.googleapis.com/auth/logging.read"
+                  ]
+                },
                 "list": {
                   "description": "Lists the SavedQueries that were created by the user making the request.",
                   "flatPath": "v2/folders/{foldersId}/locations/{locationsId}/savedQueries",
@@ -3110,6 +3302,41 @@
                     "https://www.googleapis.com/auth/cloud-platform.read-only",
                     "https://www.googleapis.com/auth/logging.admin",
                     "https://www.googleapis.com/auth/logging.read"
+                  ]
+                },
+                "patch": {
+                  "description": "Updates an existing SavedQuery.",
+                  "flatPath": "v2/folders/{foldersId}/locations/{locationsId}/savedQueries/{savedQueriesId}",
+                  "httpMethod": "PATCH",
+                  "id": "logging.folders.locations.savedQueries.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Output only. Resource name of the saved query.In the format: \"projects/[PROJECT_ID]/locations/[LOCATION_ID]/savedQueries/[QUERY_ID]\" For a list of supported locations, see Supported Regions (https://cloud.google.com/logging/docs/region-support#bucket-regions)After the saved query is created, the location cannot be changed.If the user doesn't provide a QUERY_ID, the system will generate an alphanumeric ID.",
+                      "location": "path",
+                      "pattern": "^folders/[^/]+/locations/[^/]+/savedQueries/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "Required. A non-empty list of fields to change in the existing saved query. Fields are relative to the saved_query and new values for the fields are taken from the corresponding fields in the SavedQuery included in this request. Fields not mentioned in update_mask are not changed and are ignored in the request.To update all mutable fields, specify an update_mask of *.For example, to change the description and query filter text of a saved query, specify an update_mask of \"description, query.filter\".",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2/{+name}",
+                  "request": {
+                    "$ref": "SavedQuery"
+                  },
+                  "response": {
+                    "$ref": "SavedQuery"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/logging.admin"
                   ]
                 }
               }
@@ -3203,7 +3430,7 @@
               ],
               "parameters": {
                 "customWriterIdentity": {
-                  "description": "Optional. A service account provided by the caller that will be used to write the log entries. The format must be serviceAccount:some@email. This field can only be specified if you are routing logs to a destination outside this sink's project. If not specified, a Logging service account will automatically be generated.",
+                  "description": "Optional. The service account provided by the caller that will be used to write the log entries. The format must be serviceAccount:some@email. This field can only be specified when you are routing logs to a log bucket that is in a different project than the sink. When not specified, a Logging service account will automatically be generated.",
                   "location": "query",
                   "type": "string"
                 },
@@ -3340,7 +3567,7 @@
               ],
               "parameters": {
                 "customWriterIdentity": {
-                  "description": "Optional. A service account provided by the caller that will be used to write the log entries. The format must be serviceAccount:some@email. This field can only be specified if you are routing logs to a destination outside this sink's project. If not specified, a Logging service account will automatically be generated.",
+                  "description": "Optional. The service account provided by the caller that will be used to write the log entries. The format must be serviceAccount:some@email. This field can only be specified when you are routing logs to a log bucket that is in a different project than the sink. When not specified, a Logging service account will automatically be generated.",
                   "location": "query",
                   "type": "string"
                 },
@@ -3385,7 +3612,7 @@
               ],
               "parameters": {
                 "customWriterIdentity": {
-                  "description": "Optional. A service account provided by the caller that will be used to write the log entries. The format must be serviceAccount:some@email. This field can only be specified if you are routing logs to a destination outside this sink's project. If not specified, a Logging service account will automatically be generated.",
+                  "description": "Optional. The service account provided by the caller that will be used to write the log entries. The format must be serviceAccount:some@email. This field can only be specified when you are routing logs to a log bucket that is in a different project than the sink. When not specified, a Logging service account will automatically be generated.",
                   "location": "query",
                   "type": "string"
                 },
@@ -3985,6 +4212,37 @@
                     "https://www.googleapis.com/auth/logging.read"
                   ]
                 },
+                "getIamPolicy": {
+                  "description": "Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.",
+                  "flatPath": "v2/{v2Id}/{v2Id1}/locations/{locationsId}/buckets/{bucketsId}/views/{viewsId}:getIamPolicy",
+                  "httpMethod": "POST",
+                  "id": "logging.locations.buckets.views.getIamPolicy",
+                  "parameterOrder": [
+                    "resource"
+                  ],
+                  "parameters": {
+                    "resource": {
+                      "description": "REQUIRED: The resource for which the policy is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
+                      "location": "path",
+                      "pattern": "^[^/]+/[^/]+/locations/[^/]+/buckets/[^/]+/views/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2/{+resource}:getIamPolicy",
+                  "request": {
+                    "$ref": "GetIamPolicyRequest"
+                  },
+                  "response": {
+                    "$ref": "Policy"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/cloud-platform.read-only",
+                    "https://www.googleapis.com/auth/logging.admin",
+                    "https://www.googleapis.com/auth/logging.read"
+                  ]
+                },
                 "list": {
                   "description": "Lists views on a log bucket.",
                   "flatPath": "v2/{v2Id}/{v2Id1}/locations/{locationsId}/buckets/{bucketsId}/views",
@@ -4057,6 +4315,66 @@
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform",
                     "https://www.googleapis.com/auth/logging.admin"
+                  ]
+                },
+                "setIamPolicy": {
+                  "description": "Sets the access control policy on the specified resource. Replaces any existing policy.Can return NOT_FOUND, INVALID_ARGUMENT, and PERMISSION_DENIED errors.",
+                  "flatPath": "v2/{v2Id}/{v2Id1}/locations/{locationsId}/buckets/{bucketsId}/views/{viewsId}:setIamPolicy",
+                  "httpMethod": "POST",
+                  "id": "logging.locations.buckets.views.setIamPolicy",
+                  "parameterOrder": [
+                    "resource"
+                  ],
+                  "parameters": {
+                    "resource": {
+                      "description": "REQUIRED: The resource for which the policy is being specified. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
+                      "location": "path",
+                      "pattern": "^[^/]+/[^/]+/locations/[^/]+/buckets/[^/]+/views/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2/{+resource}:setIamPolicy",
+                  "request": {
+                    "$ref": "SetIamPolicyRequest"
+                  },
+                  "response": {
+                    "$ref": "Policy"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/logging.admin"
+                  ]
+                },
+                "testIamPermissions": {
+                  "description": "Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a NOT_FOUND error.Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may \"fail open\" without warning.",
+                  "flatPath": "v2/{v2Id}/{v2Id1}/locations/{locationsId}/buckets/{bucketsId}/views/{viewsId}:testIamPermissions",
+                  "httpMethod": "POST",
+                  "id": "logging.locations.buckets.views.testIamPermissions",
+                  "parameterOrder": [
+                    "resource"
+                  ],
+                  "parameters": {
+                    "resource": {
+                      "description": "REQUIRED: The resource for which the policy detail is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
+                      "location": "path",
+                      "pattern": "^[^/]+/[^/]+/locations/[^/]+/buckets/[^/]+/views/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2/{+resource}:testIamPermissions",
+                  "request": {
+                    "$ref": "TestIamPermissionsRequest"
+                  },
+                  "response": {
+                    "$ref": "TestIamPermissionsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/cloud-platform.read-only",
+                    "https://www.googleapis.com/auth/logging.admin",
+                    "https://www.googleapis.com/auth/logging.read"
                   ]
                 }
               }
@@ -5131,6 +5449,37 @@
                         "https://www.googleapis.com/auth/logging.read"
                       ]
                     },
+                    "getIamPolicy": {
+                      "description": "Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.",
+                      "flatPath": "v2/organizations/{organizationsId}/locations/{locationsId}/buckets/{bucketsId}/views/{viewsId}:getIamPolicy",
+                      "httpMethod": "POST",
+                      "id": "logging.organizations.locations.buckets.views.getIamPolicy",
+                      "parameterOrder": [
+                        "resource"
+                      ],
+                      "parameters": {
+                        "resource": {
+                          "description": "REQUIRED: The resource for which the policy is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
+                          "location": "path",
+                          "pattern": "^organizations/[^/]+/locations/[^/]+/buckets/[^/]+/views/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v2/{+resource}:getIamPolicy",
+                      "request": {
+                        "$ref": "GetIamPolicyRequest"
+                      },
+                      "response": {
+                        "$ref": "Policy"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/cloud-platform.read-only",
+                        "https://www.googleapis.com/auth/logging.admin",
+                        "https://www.googleapis.com/auth/logging.read"
+                      ]
+                    },
                     "list": {
                       "description": "Lists views on a log bucket.",
                       "flatPath": "v2/organizations/{organizationsId}/locations/{locationsId}/buckets/{bucketsId}/views",
@@ -5203,6 +5552,66 @@
                       "scopes": [
                         "https://www.googleapis.com/auth/cloud-platform",
                         "https://www.googleapis.com/auth/logging.admin"
+                      ]
+                    },
+                    "setIamPolicy": {
+                      "description": "Sets the access control policy on the specified resource. Replaces any existing policy.Can return NOT_FOUND, INVALID_ARGUMENT, and PERMISSION_DENIED errors.",
+                      "flatPath": "v2/organizations/{organizationsId}/locations/{locationsId}/buckets/{bucketsId}/views/{viewsId}:setIamPolicy",
+                      "httpMethod": "POST",
+                      "id": "logging.organizations.locations.buckets.views.setIamPolicy",
+                      "parameterOrder": [
+                        "resource"
+                      ],
+                      "parameters": {
+                        "resource": {
+                          "description": "REQUIRED: The resource for which the policy is being specified. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
+                          "location": "path",
+                          "pattern": "^organizations/[^/]+/locations/[^/]+/buckets/[^/]+/views/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v2/{+resource}:setIamPolicy",
+                      "request": {
+                        "$ref": "SetIamPolicyRequest"
+                      },
+                      "response": {
+                        "$ref": "Policy"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/logging.admin"
+                      ]
+                    },
+                    "testIamPermissions": {
+                      "description": "Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a NOT_FOUND error.Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may \"fail open\" without warning.",
+                      "flatPath": "v2/organizations/{organizationsId}/locations/{locationsId}/buckets/{bucketsId}/views/{viewsId}:testIamPermissions",
+                      "httpMethod": "POST",
+                      "id": "logging.organizations.locations.buckets.views.testIamPermissions",
+                      "parameterOrder": [
+                        "resource"
+                      ],
+                      "parameters": {
+                        "resource": {
+                          "description": "REQUIRED: The resource for which the policy detail is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
+                          "location": "path",
+                          "pattern": "^organizations/[^/]+/locations/[^/]+/buckets/[^/]+/views/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v2/{+resource}:testIamPermissions",
+                      "request": {
+                        "$ref": "TestIamPermissionsRequest"
+                      },
+                      "response": {
+                        "$ref": "TestIamPermissionsResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/cloud-platform.read-only",
+                        "https://www.googleapis.com/auth/logging.admin",
+                        "https://www.googleapis.com/auth/logging.read"
                       ]
                     }
                   },
@@ -5376,6 +5785,11 @@
                     "parent"
                   ],
                   "parameters": {
+                    "filter": {
+                      "description": "Optional. Specifies the type (\"Logging\" or \"OpsAnalytics\") of the recent queries to list. The only valid value for this field is one of the two allowable type function calls, which are the following: type(\"Logging\") type(\"OpsAnalytics\")",
+                      "location": "query",
+                      "type": "string"
+                    },
                     "pageSize": {
                       "description": "Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.",
                       "format": "int32",
@@ -5470,6 +5884,34 @@
                     "https://www.googleapis.com/auth/logging.admin"
                   ]
                 },
+                "get": {
+                  "description": "Returns all data associated with the requested query.",
+                  "flatPath": "v2/organizations/{organizationsId}/locations/{locationsId}/savedQueries/{savedQueriesId}",
+                  "httpMethod": "GET",
+                  "id": "logging.organizations.locations.savedQueries.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The resource name of the saved query. \"projects/[PROJECT_ID]/locations/[LOCATION_ID]/savedQueries/[QUERY_ID]\" \"organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/savedQueries/[QUERY_ID]\" \"billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/savedQueries/[QUERY_ID]\" \"folders/[FOLDER_ID]/locations/[LOCATION_ID]/savedQueries/[QUERY_ID]\" For example: \"projects/my-project/locations/global/savedQueries/my-saved-query\" ",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/locations/[^/]+/savedQueries/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2/{+name}",
+                  "response": {
+                    "$ref": "SavedQuery"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/cloud-platform.read-only",
+                    "https://www.googleapis.com/auth/logging.admin",
+                    "https://www.googleapis.com/auth/logging.read"
+                  ]
+                },
                 "list": {
                   "description": "Lists the SavedQueries that were created by the user making the request.",
                   "flatPath": "v2/organizations/{organizationsId}/locations/{locationsId}/savedQueries",
@@ -5507,6 +5949,41 @@
                     "https://www.googleapis.com/auth/cloud-platform.read-only",
                     "https://www.googleapis.com/auth/logging.admin",
                     "https://www.googleapis.com/auth/logging.read"
+                  ]
+                },
+                "patch": {
+                  "description": "Updates an existing SavedQuery.",
+                  "flatPath": "v2/organizations/{organizationsId}/locations/{locationsId}/savedQueries/{savedQueriesId}",
+                  "httpMethod": "PATCH",
+                  "id": "logging.organizations.locations.savedQueries.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Output only. Resource name of the saved query.In the format: \"projects/[PROJECT_ID]/locations/[LOCATION_ID]/savedQueries/[QUERY_ID]\" For a list of supported locations, see Supported Regions (https://cloud.google.com/logging/docs/region-support#bucket-regions)After the saved query is created, the location cannot be changed.If the user doesn't provide a QUERY_ID, the system will generate an alphanumeric ID.",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/locations/[^/]+/savedQueries/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "Required. A non-empty list of fields to change in the existing saved query. Fields are relative to the saved_query and new values for the fields are taken from the corresponding fields in the SavedQuery included in this request. Fields not mentioned in update_mask are not changed and are ignored in the request.To update all mutable fields, specify an update_mask of *.For example, to change the description and query filter text of a saved query, specify an update_mask of \"description, query.filter\".",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2/{+name}",
+                  "request": {
+                    "$ref": "SavedQuery"
+                  },
+                  "response": {
+                    "$ref": "SavedQuery"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/logging.admin"
                   ]
                 }
               }
@@ -5600,7 +6077,7 @@
               ],
               "parameters": {
                 "customWriterIdentity": {
-                  "description": "Optional. A service account provided by the caller that will be used to write the log entries. The format must be serviceAccount:some@email. This field can only be specified if you are routing logs to a destination outside this sink's project. If not specified, a Logging service account will automatically be generated.",
+                  "description": "Optional. The service account provided by the caller that will be used to write the log entries. The format must be serviceAccount:some@email. This field can only be specified when you are routing logs to a log bucket that is in a different project than the sink. When not specified, a Logging service account will automatically be generated.",
                   "location": "query",
                   "type": "string"
                 },
@@ -5737,7 +6214,7 @@
               ],
               "parameters": {
                 "customWriterIdentity": {
-                  "description": "Optional. A service account provided by the caller that will be used to write the log entries. The format must be serviceAccount:some@email. This field can only be specified if you are routing logs to a destination outside this sink's project. If not specified, a Logging service account will automatically be generated.",
+                  "description": "Optional. The service account provided by the caller that will be used to write the log entries. The format must be serviceAccount:some@email. This field can only be specified when you are routing logs to a log bucket that is in a different project than the sink. When not specified, a Logging service account will automatically be generated.",
                   "location": "query",
                   "type": "string"
                 },
@@ -5782,7 +6259,7 @@
               ],
               "parameters": {
                 "customWriterIdentity": {
-                  "description": "Optional. A service account provided by the caller that will be used to write the log entries. The format must be serviceAccount:some@email. This field can only be specified if you are routing logs to a destination outside this sink's project. If not specified, a Logging service account will automatically be generated.",
+                  "description": "Optional. The service account provided by the caller that will be used to write the log entries. The format must be serviceAccount:some@email. This field can only be specified when you are routing logs to a log bucket that is in a different project than the sink. When not specified, a Logging service account will automatically be generated.",
                   "location": "query",
                   "type": "string"
                 },
@@ -6603,6 +7080,37 @@
                         "https://www.googleapis.com/auth/logging.read"
                       ]
                     },
+                    "getIamPolicy": {
+                      "description": "Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.",
+                      "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/buckets/{bucketsId}/views/{viewsId}:getIamPolicy",
+                      "httpMethod": "POST",
+                      "id": "logging.projects.locations.buckets.views.getIamPolicy",
+                      "parameterOrder": [
+                        "resource"
+                      ],
+                      "parameters": {
+                        "resource": {
+                          "description": "REQUIRED: The resource for which the policy is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/buckets/[^/]+/views/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v2/{+resource}:getIamPolicy",
+                      "request": {
+                        "$ref": "GetIamPolicyRequest"
+                      },
+                      "response": {
+                        "$ref": "Policy"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/cloud-platform.read-only",
+                        "https://www.googleapis.com/auth/logging.admin",
+                        "https://www.googleapis.com/auth/logging.read"
+                      ]
+                    },
                     "list": {
                       "description": "Lists views on a log bucket.",
                       "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/buckets/{bucketsId}/views",
@@ -6675,6 +7183,66 @@
                       "scopes": [
                         "https://www.googleapis.com/auth/cloud-platform",
                         "https://www.googleapis.com/auth/logging.admin"
+                      ]
+                    },
+                    "setIamPolicy": {
+                      "description": "Sets the access control policy on the specified resource. Replaces any existing policy.Can return NOT_FOUND, INVALID_ARGUMENT, and PERMISSION_DENIED errors.",
+                      "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/buckets/{bucketsId}/views/{viewsId}:setIamPolicy",
+                      "httpMethod": "POST",
+                      "id": "logging.projects.locations.buckets.views.setIamPolicy",
+                      "parameterOrder": [
+                        "resource"
+                      ],
+                      "parameters": {
+                        "resource": {
+                          "description": "REQUIRED: The resource for which the policy is being specified. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/buckets/[^/]+/views/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v2/{+resource}:setIamPolicy",
+                      "request": {
+                        "$ref": "SetIamPolicyRequest"
+                      },
+                      "response": {
+                        "$ref": "Policy"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/logging.admin"
+                      ]
+                    },
+                    "testIamPermissions": {
+                      "description": "Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a NOT_FOUND error.Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may \"fail open\" without warning.",
+                      "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/buckets/{bucketsId}/views/{viewsId}:testIamPermissions",
+                      "httpMethod": "POST",
+                      "id": "logging.projects.locations.buckets.views.testIamPermissions",
+                      "parameterOrder": [
+                        "resource"
+                      ],
+                      "parameters": {
+                        "resource": {
+                          "description": "REQUIRED: The resource for which the policy detail is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/buckets/[^/]+/views/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v2/{+resource}:testIamPermissions",
+                      "request": {
+                        "$ref": "TestIamPermissionsRequest"
+                      },
+                      "response": {
+                        "$ref": "TestIamPermissionsResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/cloud-platform.read-only",
+                        "https://www.googleapis.com/auth/logging.admin",
+                        "https://www.googleapis.com/auth/logging.read"
                       ]
                     }
                   },
@@ -6848,6 +7416,11 @@
                     "parent"
                   ],
                   "parameters": {
+                    "filter": {
+                      "description": "Optional. Specifies the type (\"Logging\" or \"OpsAnalytics\") of the recent queries to list. The only valid value for this field is one of the two allowable type function calls, which are the following: type(\"Logging\") type(\"OpsAnalytics\")",
+                      "location": "query",
+                      "type": "string"
+                    },
                     "pageSize": {
                       "description": "Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.",
                       "format": "int32",
@@ -6942,6 +7515,34 @@
                     "https://www.googleapis.com/auth/logging.admin"
                   ]
                 },
+                "get": {
+                  "description": "Returns all data associated with the requested query.",
+                  "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/savedQueries/{savedQueriesId}",
+                  "httpMethod": "GET",
+                  "id": "logging.projects.locations.savedQueries.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The resource name of the saved query. \"projects/[PROJECT_ID]/locations/[LOCATION_ID]/savedQueries/[QUERY_ID]\" \"organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/savedQueries/[QUERY_ID]\" \"billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/savedQueries/[QUERY_ID]\" \"folders/[FOLDER_ID]/locations/[LOCATION_ID]/savedQueries/[QUERY_ID]\" For example: \"projects/my-project/locations/global/savedQueries/my-saved-query\" ",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/savedQueries/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2/{+name}",
+                  "response": {
+                    "$ref": "SavedQuery"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/cloud-platform.read-only",
+                    "https://www.googleapis.com/auth/logging.admin",
+                    "https://www.googleapis.com/auth/logging.read"
+                  ]
+                },
                 "list": {
                   "description": "Lists the SavedQueries that were created by the user making the request.",
                   "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/savedQueries",
@@ -6979,6 +7580,41 @@
                     "https://www.googleapis.com/auth/cloud-platform.read-only",
                     "https://www.googleapis.com/auth/logging.admin",
                     "https://www.googleapis.com/auth/logging.read"
+                  ]
+                },
+                "patch": {
+                  "description": "Updates an existing SavedQuery.",
+                  "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/savedQueries/{savedQueriesId}",
+                  "httpMethod": "PATCH",
+                  "id": "logging.projects.locations.savedQueries.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Output only. Resource name of the saved query.In the format: \"projects/[PROJECT_ID]/locations/[LOCATION_ID]/savedQueries/[QUERY_ID]\" For a list of supported locations, see Supported Regions (https://cloud.google.com/logging/docs/region-support#bucket-regions)After the saved query is created, the location cannot be changed.If the user doesn't provide a QUERY_ID, the system will generate an alphanumeric ID.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/savedQueries/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "Required. A non-empty list of fields to change in the existing saved query. Fields are relative to the saved_query and new values for the fields are taken from the corresponding fields in the SavedQuery included in this request. Fields not mentioned in update_mask are not changed and are ignored in the request.To update all mutable fields, specify an update_mask of *.For example, to change the description and query filter text of a saved query, specify an update_mask of \"description, query.filter\".",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2/{+name}",
+                  "request": {
+                    "$ref": "SavedQuery"
+                  },
+                  "response": {
+                    "$ref": "SavedQuery"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/logging.admin"
                   ]
                 }
               }
@@ -7230,7 +7866,7 @@
               ],
               "parameters": {
                 "customWriterIdentity": {
-                  "description": "Optional. A service account provided by the caller that will be used to write the log entries. The format must be serviceAccount:some@email. This field can only be specified if you are routing logs to a destination outside this sink's project. If not specified, a Logging service account will automatically be generated.",
+                  "description": "Optional. The service account provided by the caller that will be used to write the log entries. The format must be serviceAccount:some@email. This field can only be specified when you are routing logs to a log bucket that is in a different project than the sink. When not specified, a Logging service account will automatically be generated.",
                   "location": "query",
                   "type": "string"
                 },
@@ -7367,7 +8003,7 @@
               ],
               "parameters": {
                 "customWriterIdentity": {
-                  "description": "Optional. A service account provided by the caller that will be used to write the log entries. The format must be serviceAccount:some@email. This field can only be specified if you are routing logs to a destination outside this sink's project. If not specified, a Logging service account will automatically be generated.",
+                  "description": "Optional. The service account provided by the caller that will be used to write the log entries. The format must be serviceAccount:some@email. This field can only be specified when you are routing logs to a log bucket that is in a different project than the sink. When not specified, a Logging service account will automatically be generated.",
                   "location": "query",
                   "type": "string"
                 },
@@ -7412,7 +8048,7 @@
               ],
               "parameters": {
                 "customWriterIdentity": {
-                  "description": "Optional. A service account provided by the caller that will be used to write the log entries. The format must be serviceAccount:some@email. This field can only be specified if you are routing logs to a destination outside this sink's project. If not specified, a Logging service account will automatically be generated.",
+                  "description": "Optional. The service account provided by the caller that will be used to write the log entries. The format must be serviceAccount:some@email. This field can only be specified when you are routing logs to a log bucket that is in a different project than the sink. When not specified, a Logging service account will automatically be generated.",
                   "location": "query",
                   "type": "string"
                 },
@@ -7463,7 +8099,7 @@
           ],
           "parameters": {
             "customWriterIdentity": {
-              "description": "Optional. A service account provided by the caller that will be used to write the log entries. The format must be serviceAccount:some@email. This field can only be specified if you are routing logs to a destination outside this sink's project. If not specified, a Logging service account will automatically be generated.",
+              "description": "Optional. The service account provided by the caller that will be used to write the log entries. The format must be serviceAccount:some@email. This field can only be specified when you are routing logs to a log bucket that is in a different project than the sink. When not specified, a Logging service account will automatically be generated.",
               "location": "query",
               "type": "string"
             },
@@ -7600,7 +8236,7 @@
           ],
           "parameters": {
             "customWriterIdentity": {
-              "description": "Optional. A service account provided by the caller that will be used to write the log entries. The format must be serviceAccount:some@email. This field can only be specified if you are routing logs to a destination outside this sink's project. If not specified, a Logging service account will automatically be generated.",
+              "description": "Optional. The service account provided by the caller that will be used to write the log entries. The format must be serviceAccount:some@email. This field can only be specified when you are routing logs to a log bucket that is in a different project than the sink. When not specified, a Logging service account will automatically be generated.",
               "location": "query",
               "type": "string"
             },
@@ -7768,9 +8404,57 @@
       }
     }
   },
-  "revision": "20240312",
+  "revision": "20240620",
   "rootUrl": "https://logging.googleapis.com/",
   "schemas": {
+    "AuditConfig": {
+      "description": "Specifies the audit configuration for a service. The configuration determines which permission types are logged, and what identities, if any, are exempted from logging. An AuditConfig must have one or more AuditLogConfigs.If there are AuditConfigs for both allServices and a specific service, the union of the two AuditConfigs is used for that service: the log_types specified in each AuditConfig are enabled, and the exempted_members in each AuditLogConfig are exempted.Example Policy with multiple AuditConfigs: { \"audit_configs\": [ { \"service\": \"allServices\", \"audit_log_configs\": [ { \"log_type\": \"DATA_READ\", \"exempted_members\": [ \"user:jose@example.com\" ] }, { \"log_type\": \"DATA_WRITE\" }, { \"log_type\": \"ADMIN_READ\" } ] }, { \"service\": \"sampleservice.googleapis.com\", \"audit_log_configs\": [ { \"log_type\": \"DATA_READ\" }, { \"log_type\": \"DATA_WRITE\", \"exempted_members\": [ \"user:aliya@example.com\" ] } ] } ] } For sampleservice, this policy enables DATA_READ, DATA_WRITE and ADMIN_READ logging. It also exempts jose@example.com from DATA_READ logging, and aliya@example.com from DATA_WRITE logging.",
+      "id": "AuditConfig",
+      "properties": {
+        "auditLogConfigs": {
+          "description": "The configuration for logging of each type of permission.",
+          "items": {
+            "$ref": "AuditLogConfig"
+          },
+          "type": "array"
+        },
+        "service": {
+          "description": "Specifies a service that will be enabled for audit logging. For example, storage.googleapis.com, cloudsql.googleapis.com. allServices is a special value that covers all services.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AuditLogConfig": {
+      "description": "Provides the configuration for logging a type of permissions. Example: { \"audit_log_configs\": [ { \"log_type\": \"DATA_READ\", \"exempted_members\": [ \"user:jose@example.com\" ] }, { \"log_type\": \"DATA_WRITE\" } ] } This enables 'DATA_READ' and 'DATA_WRITE' logging, while exempting jose@example.com from DATA_READ logging.",
+      "id": "AuditLogConfig",
+      "properties": {
+        "exemptedMembers": {
+          "description": "Specifies the identities that do not cause logging for this type of permission. Follows the same format of Binding.members.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "logType": {
+          "description": "The log type that this config enables.",
+          "enum": [
+            "LOG_TYPE_UNSPECIFIED",
+            "ADMIN_READ",
+            "DATA_WRITE",
+            "DATA_READ"
+          ],
+          "enumDescriptions": [
+            "Default case. Should never be this.",
+            "Admin reads. Example: CloudIAM getIamPolicy",
+            "Data writes. Example: CloudSQL Users create",
+            "Data reads. Example: CloudSQL Users list"
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "BigQueryDataset": {
       "description": "Describes a BigQuery dataset that was created by a link.",
       "id": "BigQueryDataset",
@@ -7795,6 +8479,28 @@
           "description": "Output only. True if new timestamp column based partitioning is in use, false if legacy ingress-time partitioning is in use.All new sinks will have this field set true and will use timestamp column based partitioning. If use_partitioned_tables is false, this value has no meaning and will be false. Legacy sinks using partitioned tables will have this field set to false.",
           "readOnly": true,
           "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "Binding": {
+      "description": "Associates members, or principals, with a role.",
+      "id": "Binding",
+      "properties": {
+        "condition": {
+          "$ref": "Expr",
+          "description": "The condition that is associated with this binding.If the condition evaluates to true, then this binding applies to the current request.If the condition evaluates to false, then this binding does not apply to the current request. However, a different role binding might grant the same role to one or more of the principals in this binding.To learn which resources support conditions in their IAM policies, see the IAM documentation (https://cloud.google.com/iam/help/conditions/resource-policies)."
+        },
+        "members": {
+          "description": "Specifies the principals requesting access for a Google Cloud resource. members can have the following values: allUsers: A special identifier that represents anyone who is on the internet; with or without a Google account. allAuthenticatedUsers: A special identifier that represents anyone who is authenticated with a Google account or a service account. Does not include identities that come from external identity providers (IdPs) through identity federation. user:{emailid}: An email address that represents a specific Google account. For example, alice@example.com . serviceAccount:{emailid}: An email address that represents a Google service account. For example, my-other-app@appspot.gserviceaccount.com. serviceAccount:{projectid}.svc.id.goog[{namespace}/{kubernetes-sa}]: An identifier for a Kubernetes service account (https://cloud.google.com/kubernetes-engine/docs/how-to/kubernetes-service-accounts). For example, my-project.svc.id.goog[my-namespace/my-kubernetes-sa]. group:{emailid}: An email address that represents a Google group. For example, admins@example.com. domain:{domain}: The G Suite domain (primary) that represents all the users of that domain. For example, google.com or example.com. principal://iam.googleapis.com/locations/global/workforcePools/{pool_id}/subject/{subject_attribute_value}: A single identity in a workforce identity pool. principalSet://iam.googleapis.com/locations/global/workforcePools/{pool_id}/group/{group_id}: All workforce identities in a group. principalSet://iam.googleapis.com/locations/global/workforcePools/{pool_id}/attribute.{attribute_name}/{attribute_value}: All workforce identities with a specific attribute value. principalSet://iam.googleapis.com/locations/global/workforcePools/{pool_id}/*: All identities in a workforce identity pool. principal://iam.googleapis.com/projects/{project_number}/locations/global/workloadIdentityPools/{pool_id}/subject/{subject_attribute_value}: A single identity in a workload identity pool. principalSet://iam.googleapis.com/projects/{project_number}/locations/global/workloadIdentityPools/{pool_id}/group/{group_id}: A workload identity pool group. principalSet://iam.googleapis.com/projects/{project_number}/locations/global/workloadIdentityPools/{pool_id}/attribute.{attribute_name}/{attribute_value}: All identities in a workload identity pool with a certain attribute. principalSet://iam.googleapis.com/projects/{project_number}/locations/global/workloadIdentityPools/{pool_id}/*: All identities in a workload identity pool. deleted:user:{emailid}?uid={uniqueid}: An email address (plus unique identifier) representing a user that has been recently deleted. For example, alice@example.com?uid=123456789012345678901. If the user is recovered, this value reverts to user:{emailid} and the recovered user retains the role in the binding. deleted:serviceAccount:{emailid}?uid={uniqueid}: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901. If the service account is undeleted, this value reverts to serviceAccount:{emailid} and the undeleted service account retains the role in the binding. deleted:group:{emailid}?uid={uniqueid}: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, admins@example.com?uid=123456789012345678901. If the group is recovered, this value reverts to group:{emailid} and the recovered group retains the role in the binding. deleted:principal://iam.googleapis.com/locations/global/workforcePools/{pool_id}/subject/{subject_attribute_value}: Deleted single identity in a workforce identity pool. For example, deleted:principal://iam.googleapis.com/locations/global/workforcePools/my-pool-id/subject/my-subject-attribute-value.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "role": {
+          "description": "Role that is assigned to the list of members, or principals. For example, roles/viewer, roles/editor, or roles/owner.For an overview of the IAM roles and permissions, see the IAM documentation (https://cloud.google.com/iam/docs/roles-overview). For a list of the available pre-defined roles, see here (https://cloud.google.com/iam/docs/understanding-roles).",
+          "type": "string"
         }
       },
       "type": "object"
@@ -8127,6 +8833,52 @@
       },
       "type": "object"
     },
+    "Expr": {
+      "description": "Represents a textual expression in the Common Expression Language (CEL) syntax. CEL is a C-like expression language. The syntax and semantics of CEL are documented at https://github.com/google/cel-spec.Example (Comparison): title: \"Summary size limit\" description: \"Determines if a summary is less than 100 chars\" expression: \"document.summary.size() < 100\" Example (Equality): title: \"Requestor is owner\" description: \"Determines if requestor is the document owner\" expression: \"document.owner == request.auth.claims.email\" Example (Logic): title: \"Public documents\" description: \"Determine whether the document should be publicly visible\" expression: \"document.type != 'private' && document.type != 'internal'\" Example (Data Manipulation): title: \"Notification string\" description: \"Create a notification string with a timestamp.\" expression: \"'New message received at ' + string(document.create_time)\" The exact variables and functions that may be referenced within an expression are determined by the service that evaluates it. See the service documentation for additional information.",
+      "id": "Expr",
+      "properties": {
+        "description": {
+          "description": "Optional. Description of the expression. This is a longer text which describes the expression, e.g. when hovered over it in a UI.",
+          "type": "string"
+        },
+        "expression": {
+          "description": "Textual representation of an expression in Common Expression Language syntax.",
+          "type": "string"
+        },
+        "location": {
+          "description": "Optional. String indicating the location of the expression for error reporting, e.g. a file name and a position in the file.",
+          "type": "string"
+        },
+        "title": {
+          "description": "Optional. Title for the expression, i.e. a short string describing its purpose. This can be used e.g. in UIs which allow to enter the expression.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GetIamPolicyRequest": {
+      "description": "Request message for GetIamPolicy method.",
+      "id": "GetIamPolicyRequest",
+      "properties": {
+        "options": {
+          "$ref": "GetPolicyOptions",
+          "description": "OPTIONAL: A GetPolicyOptions object for specifying options to GetIamPolicy."
+        }
+      },
+      "type": "object"
+    },
+    "GetPolicyOptions": {
+      "description": "Encapsulates settings provided to GetIamPolicy.",
+      "id": "GetPolicyOptions",
+      "properties": {
+        "requestedPolicyVersion": {
+          "description": "Optional. The maximum policy version that will be used to format the policy.Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset.The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1.To learn which resources support conditions in their IAM policies, see the IAM documentation (https://cloud.google.com/iam/help/conditions/resource-policies).",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
     "HttpRequest": {
       "description": "A common proto for logging HTTP requests. Only contains semantics defined by the HTTP specification. Product-specific logging information MUST be defined in a separate message.",
       "id": "HttpRequest",
@@ -8149,12 +8901,12 @@
           "type": "boolean"
         },
         "latency": {
-          "description": "The request processing latency on the server, from the time the request was received until the response was sent.",
+          "description": "The request processing latency on the server, from the time the request was received until the response was sent. For WebSocket connections, this field refers to the entire time duration of the connection.",
           "format": "google-duration",
           "type": "string"
         },
         "protocol": {
-          "description": "Protocol used for the request. Examples: \"HTTP/1.1\", \"HTTP/2\", \"websocket\"",
+          "description": "Protocol used for the request. Examples: \"HTTP/1.1\", \"HTTP/2\"",
           "type": "string"
         },
         "referer": {
@@ -8455,11 +9207,11 @@
       "id": "ListLogEntriesRequest",
       "properties": {
         "filter": {
-          "description": "Optional. A filter that chooses which log entries to return. For more information, see Logging query language (https://cloud.google.com/logging/docs/view/logging-query-language).Only log entries that match the filter are returned. An empty filter matches all log entries in the resources listed in resource_names. Referencing a parent resource that is not listed in resource_names will cause the filter to return no results. The maximum length of a filter is 20,000 characters.",
+          "description": "Optional. A filter that chooses which log entries to return. For more information, see Logging query language (https://cloud.google.com/logging/docs/view/logging-query-language).Only log entries that match the filter are returned. An empty filter matches all log entries in the resources listed in resource_names. Referencing a parent resource that is not listed in resource_names will cause the filter to return no results. The maximum length of a filter is 20,000 characters.To make queries faster, you can make the filter more selective by using restrictions on indexed fields (https://cloud.google.com/logging/docs/view/logging-query-language#indexed-fields) as well as limit the time range of the query by adding range restrictions on the timestamp field.",
           "type": "string"
         },
         "orderBy": {
-          "description": "Optional. How the results should be sorted. Presently, the only permitted values are \"timestamp asc\" (default) and \"timestamp desc\". The first option returns entries in order of increasing values of LogEntry.timestamp (oldest first), and the second option returns entries in order of decreasing timestamps (newest first). Entries with equal timestamps are returned in order of their insert_id values.",
+          "description": "Optional. How the results should be sorted. Presently, the only permitted values are \"timestamp asc\" (default) and \"timestamp desc\". The first option returns entries in order of increasing values of LogEntry.timestamp (oldest first), and the second option returns entries in order of decreasing timestamps (newest first). Entries with equal timestamps are returned in order of their insert_id values.We recommend setting the order_by field to \"timestamp desc\" when listing recently ingested log entries. If not set, the default value of \"timestamp asc\" may take a long time to fetch matching logs that are only recently ingested.",
           "type": "string"
         },
         "pageSize": {
@@ -9096,6 +9848,11 @@
           "description": "Required. The client-assigned metric identifier. Examples: \"error_count\", \"nginx/requests\".Metric identifiers are limited to 100 characters and can include only the following characters: A-Z, a-z, 0-9, and the special characters _-.,+!*',()%/. The forward-slash character (/) denotes a hierarchy of name pieces, and it cannot be the first character of the name.This field is the [METRIC_ID] part of a metric resource name in the format \"projects/PROJECT_ID/metrics/METRIC_ID\". Example: If the resource name of a metric is \"projects/my-project/metrics/nginx%2Frequests\", this field's value is \"nginx/requests\".",
           "type": "string"
         },
+        "resourceName": {
+          "description": "Output only. The resource name of the metric: \"projects/[PROJECT_ID]/metrics/[METRIC_ID]\" ",
+          "readOnly": true,
+          "type": "string"
+        },
         "updateTime": {
           "description": "Output only. The last update timestamp of the metric.This field may not be present for older metrics.",
           "format": "google-datetime",
@@ -9576,6 +10333,37 @@
       },
       "type": "object"
     },
+    "Policy": {
+      "description": "An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources.A Policy is a collection of bindings. A binding binds one or more members, or principals, to a single role. Principals can be user accounts, service accounts, Google groups, and domains (such as G Suite). A role is a named list of permissions; each role can be an IAM predefined role or a user-created custom role.For some types of Google Cloud resources, a binding can also specify a condition, which is a logical expression that allows access to a resource only if the expression evaluates to true. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the IAM documentation (https://cloud.google.com/iam/help/conditions/resource-policies).JSON example: { \"bindings\": [ { \"role\": \"roles/resourcemanager.organizationAdmin\", \"members\": [ \"user:mike@example.com\", \"group:admins@example.com\", \"domain:google.com\", \"serviceAccount:my-project-id@appspot.gserviceaccount.com\" ] }, { \"role\": \"roles/resourcemanager.organizationViewer\", \"members\": [ \"user:eve@example.com\" ], \"condition\": { \"title\": \"expirable access\", \"description\": \"Does not grant access after Sep 2020\", \"expression\": \"request.time < timestamp('2020-10-01T00:00:00.000Z')\", } } ], \"etag\": \"BwWWja0YfJA=\", \"version\": 3 } YAML example: bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time < timestamp('2020-10-01T00:00:00.000Z') etag: BwWWja0YfJA= version: 3 For a description of IAM and its features, see the IAM documentation (https://cloud.google.com/iam/docs/).",
+      "id": "Policy",
+      "properties": {
+        "auditConfigs": {
+          "description": "Specifies cloud audit logging configuration for this policy.",
+          "items": {
+            "$ref": "AuditConfig"
+          },
+          "type": "array"
+        },
+        "bindings": {
+          "description": "Associates a list of members, or principals, with a role. Optionally, may specify a condition that determines how and when the bindings are applied. Each of the bindings must contain at least one principal.The bindings in a Policy can refer to up to 1,500 principals; up to 250 of these principals can be Google groups. Each occurrence of a principal counts towards these limits. For example, if the bindings grant 50 different roles to user:alice@example.com, and not to any other principal, then you can add another 1,450 principals to the bindings in the Policy.",
+          "items": {
+            "$ref": "Binding"
+          },
+          "type": "array"
+        },
+        "etag": {
+          "description": "etag is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other. It is strongly suggested that systems make use of the etag in the read-modify-write cycle to perform policy updates in order to avoid race conditions: An etag is returned in the response to getIamPolicy, and systems are expected to put that etag in the request to setIamPolicy to ensure that their change will be applied to the same version of the policy.Important: If you use IAM Conditions, you must include the etag field whenever you call setIamPolicy. If you omit this field, then IAM allows you to overwrite a version 3 policy with a version 1 policy, and all of the conditions in the version 3 policy are lost.",
+          "format": "byte",
+          "type": "string"
+        },
+        "version": {
+          "description": "Specifies the format of the policy.Valid values are 0, 1, and 3. Requests that specify an invalid value are rejected.Any operation that affects conditional role bindings must specify version 3. This requirement applies to the following operations: Getting a policy that includes a conditional role binding Adding a conditional role binding to a policy Changing a conditional role binding in a policy Removing any role binding, with or without a condition, from a policy that includes conditionsImportant: If you use IAM Conditions, you must include the etag field whenever you call setIamPolicy. If you omit this field, then IAM allows you to overwrite a version 3 policy with a version 1 policy, and all of the conditions in the version 3 policy are lost.If a policy does not include any conditions, operations on that policy may specify any valid version or leave the field unset.To learn which resources support conditions in their IAM policies, see the IAM documentation (https://cloud.google.com/iam/help/conditions/resource-policies).",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
     "RecentQuery": {
       "description": "Describes a recent query executed on the Logs Explorer or Log Analytics page within the last ~ 30 days.",
       "id": "RecentQuery",
@@ -9814,6 +10602,22 @@
       },
       "type": "object"
     },
+    "SetIamPolicyRequest": {
+      "description": "Request message for SetIamPolicy method.",
+      "id": "SetIamPolicyRequest",
+      "properties": {
+        "policy": {
+          "$ref": "Policy",
+          "description": "REQUIRED: The complete policy to be applied to the resource. The size of the policy is limited to a few 10s of KB. An empty policy is a valid policy but certain Google Cloud services (such as Projects) might reject them."
+        },
+        "updateMask": {
+          "description": "OPTIONAL: A FieldMask specifying which fields of the policy to modify. Only the fields in the mask will be modified. If no mask is provided, the following default mask is used:paths: \"bindings, etag\"",
+          "format": "google-fieldmask",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "Settings": {
       "description": "Describes the settings associated with a project, folder, organization, or billing account.",
       "id": "Settings",
@@ -9989,6 +10793,34 @@
           "description": "If entries that otherwise would have been included in the session were not sent back to the client, counts of relevant entries omitted from the session with the reason that they were not included. There will be at most one of each reason per response. The counts represent the number of suppressed entries since the last streamed response.",
           "items": {
             "$ref": "SuppressionInfo"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "TestIamPermissionsRequest": {
+      "description": "Request message for TestIamPermissions method.",
+      "id": "TestIamPermissionsRequest",
+      "properties": {
+        "permissions": {
+          "description": "The set of permissions to check for the resource. Permissions with wildcards (such as * or storage.*) are not allowed. For more information see IAM Overview (https://cloud.google.com/iam/docs/overview#permissions).",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "TestIamPermissionsResponse": {
+      "description": "Response message for TestIamPermissions method.",
+      "id": "TestIamPermissionsResponse",
+      "properties": {
+        "permissions": {
+          "description": "A subset of TestPermissionsRequest.permissions that the caller is allowed.",
+          "items": {
+            "type": "string"
           },
           "type": "array"
         }

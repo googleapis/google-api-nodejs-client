@@ -2277,6 +2277,7 @@ export namespace adexchangebuyer2_v2beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2365,6 +2366,7 @@ export namespace adexchangebuyer2_v2beta1 {
               '/v2beta1/accounts/{accountId}/clients/{clientAccountId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2456,6 +2458,7 @@ export namespace adexchangebuyer2_v2beta1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2544,6 +2547,7 @@ export namespace adexchangebuyer2_v2beta1 {
               '/v2beta1/accounts/{accountId}/clients/{clientAccountId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
+            apiVersion: '',
           },
           options
         ),
@@ -2703,6 +2707,7 @@ export namespace adexchangebuyer2_v2beta1 {
               '/v2beta1/accounts/{accountId}/clients/{clientAccountId}/invitations'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2796,6 +2801,7 @@ export namespace adexchangebuyer2_v2beta1 {
               '/v2beta1/accounts/{accountId}/clients/{clientAccountId}/invitations/{invitationId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2891,6 +2897,7 @@ export namespace adexchangebuyer2_v2beta1 {
               '/v2beta1/accounts/{accountId}/clients/{clientAccountId}/invitations'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3039,6 +3046,7 @@ export namespace adexchangebuyer2_v2beta1 {
               '/v2beta1/accounts/{accountId}/clients/{clientAccountId}/users/{userId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3132,6 +3140,7 @@ export namespace adexchangebuyer2_v2beta1 {
               '/v2beta1/accounts/{accountId}/clients/{clientAccountId}/users'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3220,6 +3229,7 @@ export namespace adexchangebuyer2_v2beta1 {
               '/v2beta1/accounts/{accountId}/clients/{clientAccountId}/users/{userId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
+            apiVersion: '',
           },
           options
         ),
@@ -3374,6 +3384,7 @@ export namespace adexchangebuyer2_v2beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3461,6 +3472,7 @@ export namespace adexchangebuyer2_v2beta1 {
               rootUrl + '/v2beta1/accounts/{accountId}/creatives/{creativeId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3554,6 +3566,7 @@ export namespace adexchangebuyer2_v2beta1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3642,6 +3655,7 @@ export namespace adexchangebuyer2_v2beta1 {
               '/v2beta1/accounts/{accountId}/creatives/{creativeId}:stopWatching'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3729,6 +3743,7 @@ export namespace adexchangebuyer2_v2beta1 {
               rootUrl + '/v2beta1/accounts/{accountId}/creatives/{creativeId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
+            apiVersion: '',
           },
           options
         ),
@@ -3817,6 +3832,7 @@ export namespace adexchangebuyer2_v2beta1 {
               '/v2beta1/accounts/{accountId}/creatives/{creativeId}:watch'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4007,6 +4023,7 @@ export namespace adexchangebuyer2_v2beta1 {
               '/v2beta1/accounts/{accountId}/creatives/{creativeId}/dealAssociations:add'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4102,6 +4119,7 @@ export namespace adexchangebuyer2_v2beta1 {
               '/v2beta1/accounts/{accountId}/creatives/{creativeId}/dealAssociations'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4193,6 +4211,7 @@ export namespace adexchangebuyer2_v2beta1 {
               '/v2beta1/accounts/{accountId}/creatives/{creativeId}/dealAssociations:remove'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4348,6 +4367,7 @@ export namespace adexchangebuyer2_v2beta1 {
               rootUrl + '/v2beta1/accounts/{accountId}/finalizedProposals'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4436,6 +4456,7 @@ export namespace adexchangebuyer2_v2beta1 {
               '/v2beta1/accounts/{accountId}/finalizedProposals/{proposalId}:pause'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4524,6 +4545,7 @@ export namespace adexchangebuyer2_v2beta1 {
               '/v2beta1/accounts/{accountId}/finalizedProposals/{proposalId}:resume'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4674,6 +4696,7 @@ export namespace adexchangebuyer2_v2beta1 {
               rootUrl + '/v2beta1/accounts/{accountId}/products/{productId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4767,6 +4790,7 @@ export namespace adexchangebuyer2_v2beta1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4893,6 +4917,7 @@ export namespace adexchangebuyer2_v2beta1 {
               '/v2beta1/accounts/{accountId}/proposals/{proposalId}:accept'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4981,6 +5006,7 @@ export namespace adexchangebuyer2_v2beta1 {
               '/v2beta1/accounts/{accountId}/proposals/{proposalId}:addNote'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5069,6 +5095,7 @@ export namespace adexchangebuyer2_v2beta1 {
               '/v2beta1/accounts/{accountId}/proposals/{proposalId}:cancelNegotiation'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5157,6 +5184,7 @@ export namespace adexchangebuyer2_v2beta1 {
               '/v2beta1/accounts/{accountId}/proposals/{proposalId}:completeSetup'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5245,6 +5273,7 @@ export namespace adexchangebuyer2_v2beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5332,6 +5361,7 @@ export namespace adexchangebuyer2_v2beta1 {
               rootUrl + '/v2beta1/accounts/{accountId}/proposals/{proposalId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5425,6 +5455,7 @@ export namespace adexchangebuyer2_v2beta1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5513,6 +5544,7 @@ export namespace adexchangebuyer2_v2beta1 {
               '/v2beta1/accounts/{accountId}/proposals/{proposalId}:pause'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5601,6 +5633,7 @@ export namespace adexchangebuyer2_v2beta1 {
               '/v2beta1/accounts/{accountId}/proposals/{proposalId}:resume'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5688,6 +5721,7 @@ export namespace adexchangebuyer2_v2beta1 {
               rootUrl + '/v2beta1/accounts/{accountId}/proposals/{proposalId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
+            apiVersion: '',
           },
           options
         ),
@@ -5942,6 +5976,7 @@ export namespace adexchangebuyer2_v2beta1 {
               '/v2beta1/accounts/{accountId}/publisherProfiles/{publisherProfileId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6036,6 +6071,7 @@ export namespace adexchangebuyer2_v2beta1 {
               rootUrl + '/v2beta1/accounts/{accountId}/publisherProfiles'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6217,6 +6253,7 @@ export namespace adexchangebuyer2_v2beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -6302,6 +6339,7 @@ export namespace adexchangebuyer2_v2beta1 {
           {
             url: (rootUrl + '/v2beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -6387,6 +6425,7 @@ export namespace adexchangebuyer2_v2beta1 {
           {
             url: (rootUrl + '/v2beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6480,6 +6519,7 @@ export namespace adexchangebuyer2_v2beta1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6627,6 +6667,7 @@ export namespace adexchangebuyer2_v2beta1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6745,6 +6786,7 @@ export namespace adexchangebuyer2_v2beta1 {
               rootUrl + '/v2beta1/{+filterSetName}/bidResponseErrors'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6865,6 +6907,7 @@ export namespace adexchangebuyer2_v2beta1 {
               rootUrl + '/v2beta1/{+filterSetName}/bidResponsesWithoutBids'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6985,6 +7028,7 @@ export namespace adexchangebuyer2_v2beta1 {
               rootUrl + '/v2beta1/{+filterSetName}/filteredBidRequests'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -7114,6 +7158,7 @@ export namespace adexchangebuyer2_v2beta1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -7233,6 +7278,7 @@ export namespace adexchangebuyer2_v2beta1 {
               '/v2beta1/{+filterSetName}/filteredBids/{creativeStatusId}/creatives'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -7358,6 +7404,7 @@ export namespace adexchangebuyer2_v2beta1 {
               '/v2beta1/{+filterSetName}/filteredBids/{creativeStatusId}/details'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -7482,6 +7529,7 @@ export namespace adexchangebuyer2_v2beta1 {
               rootUrl + '/v2beta1/{+filterSetName}/impressionMetrics'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -7601,6 +7649,7 @@ export namespace adexchangebuyer2_v2beta1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -7719,6 +7768,7 @@ export namespace adexchangebuyer2_v2beta1 {
               rootUrl + '/v2beta1/{+filterSetName}/nonBillableWinningBids'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -7859,6 +7909,7 @@ export namespace adexchangebuyer2_v2beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -7944,6 +7995,7 @@ export namespace adexchangebuyer2_v2beta1 {
           {
             url: (rootUrl + '/v2beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -8029,6 +8081,7 @@ export namespace adexchangebuyer2_v2beta1 {
           {
             url: (rootUrl + '/v2beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -8122,6 +8175,7 @@ export namespace adexchangebuyer2_v2beta1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -8268,6 +8322,7 @@ export namespace adexchangebuyer2_v2beta1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -8386,6 +8441,7 @@ export namespace adexchangebuyer2_v2beta1 {
               rootUrl + '/v2beta1/{+filterSetName}/bidResponseErrors'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -8506,6 +8562,7 @@ export namespace adexchangebuyer2_v2beta1 {
               rootUrl + '/v2beta1/{+filterSetName}/bidResponsesWithoutBids'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -8626,6 +8683,7 @@ export namespace adexchangebuyer2_v2beta1 {
               rootUrl + '/v2beta1/{+filterSetName}/filteredBidRequests'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -8752,6 +8810,7 @@ export namespace adexchangebuyer2_v2beta1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -8871,6 +8930,7 @@ export namespace adexchangebuyer2_v2beta1 {
               '/v2beta1/{+filterSetName}/filteredBids/{creativeStatusId}/creatives'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -8996,6 +9056,7 @@ export namespace adexchangebuyer2_v2beta1 {
               '/v2beta1/{+filterSetName}/filteredBids/{creativeStatusId}/details'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -9120,6 +9181,7 @@ export namespace adexchangebuyer2_v2beta1 {
               rootUrl + '/v2beta1/{+filterSetName}/impressionMetrics'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -9238,6 +9300,7 @@ export namespace adexchangebuyer2_v2beta1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -9356,6 +9419,7 @@ export namespace adexchangebuyer2_v2beta1 {
               rootUrl + '/v2beta1/{+filterSetName}/nonBillableWinningBids'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -9503,6 +9567,7 @@ export namespace adexchangebuyer2_v2beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -9588,6 +9653,7 @@ export namespace adexchangebuyer2_v2beta1 {
           {
             url: (rootUrl + '/v2beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -9673,6 +9739,7 @@ export namespace adexchangebuyer2_v2beta1 {
           {
             url: (rootUrl + '/v2beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -9766,6 +9833,7 @@ export namespace adexchangebuyer2_v2beta1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -9912,6 +9980,7 @@ export namespace adexchangebuyer2_v2beta1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -10029,6 +10098,7 @@ export namespace adexchangebuyer2_v2beta1 {
               rootUrl + '/v2beta1/{+filterSetName}/bidResponseErrors'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -10149,6 +10219,7 @@ export namespace adexchangebuyer2_v2beta1 {
               rootUrl + '/v2beta1/{+filterSetName}/bidResponsesWithoutBids'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -10269,6 +10340,7 @@ export namespace adexchangebuyer2_v2beta1 {
               rootUrl + '/v2beta1/{+filterSetName}/filteredBidRequests'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -10395,6 +10467,7 @@ export namespace adexchangebuyer2_v2beta1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -10514,6 +10587,7 @@ export namespace adexchangebuyer2_v2beta1 {
               '/v2beta1/{+filterSetName}/filteredBids/{creativeStatusId}/creatives'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -10639,6 +10713,7 @@ export namespace adexchangebuyer2_v2beta1 {
               '/v2beta1/{+filterSetName}/filteredBids/{creativeStatusId}/details'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -10762,6 +10837,7 @@ export namespace adexchangebuyer2_v2beta1 {
               rootUrl + '/v2beta1/{+filterSetName}/impressionMetrics'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -10880,6 +10956,7 @@ export namespace adexchangebuyer2_v2beta1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -10998,6 +11075,7 @@ export namespace adexchangebuyer2_v2beta1 {
               rootUrl + '/v2beta1/{+filterSetName}/nonBillableWinningBids'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),

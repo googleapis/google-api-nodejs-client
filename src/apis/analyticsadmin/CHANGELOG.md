@@ -1,5 +1,62 @@
 # Changelog
 
+## [8.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/analyticsadmin-v7.0.0...analyticsadmin-v8.0.0) (2024-06-21)
+
+
+### ⚠ BREAKING CHANGES
+
+* **analyticsadmin:** This release has breaking changes.
+
+### Features
+
+* **analyticsadmin:** update the API ([c58f445](https://github.com/googleapis/google-api-nodejs-client/commit/c58f445d3259b765b1017a2bcd63da4166eb5590))
+* **analyticsadmin:** update the API ([8b4c314](https://github.com/googleapis/google-api-nodejs-client/commit/8b4c31451d3ace85c48b8a1170eac09024c518e0))
+
+## [7.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/analyticsadmin-v6.0.0...analyticsadmin-v7.0.0) (2024-06-06)
+
+
+### ⚠ BREAKING CHANGES
+
+* **analyticsadmin:** This release has breaking changes.
+
+### Features
+
+* **analyticsadmin:** update the API ([c58f445](https://github.com/googleapis/google-api-nodejs-client/commit/c58f445d3259b765b1017a2bcd63da4166eb5590))
+* **analyticsadmin:** update the API ([8b4c314](https://github.com/googleapis/google-api-nodejs-client/commit/8b4c31451d3ace85c48b8a1170eac09024c518e0))
+
+## [6.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/analyticsadmin-v5.4.0...analyticsadmin-v6.0.0) (2024-06-03)
+
+
+### ⚠ BREAKING CHANGES
+
+* **analyticsadmin:** This release has breaking changes.
+
+### Features
+
+* **analyticsadmin:** update the API ([c58f445](https://github.com/googleapis/google-api-nodejs-client/commit/c58f445d3259b765b1017a2bcd63da4166eb5590))
+
+## [5.4.0](https://github.com/googleapis/google-api-nodejs-client/compare/analyticsadmin-v5.3.0...analyticsadmin-v5.4.0) (2024-05-02)
+
+
+### Features
+
+* **analyticsadmin:** update the API ([8b4c314](https://github.com/googleapis/google-api-nodejs-client/commit/8b4c31451d3ace85c48b8a1170eac09024c518e0))
+* **analyticsadmin:** update the API ([6a12917](https://github.com/googleapis/google-api-nodejs-client/commit/6a129176d37b5c5089e367099482041b9b138852))
+
+## [5.3.0](https://github.com/googleapis/google-api-nodejs-client/compare/analyticsadmin-v5.2.0...analyticsadmin-v5.3.0) (2024-05-02)
+
+
+### Features
+
+* **analyticsadmin:** update the API ([8b4c314](https://github.com/googleapis/google-api-nodejs-client/commit/8b4c31451d3ace85c48b8a1170eac09024c518e0))
+
+## [5.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/analyticsadmin-v5.1.0...analyticsadmin-v5.2.0) (2024-04-04)
+
+
+### Features
+
+* **analyticsadmin:** update the API ([6a12917](https://github.com/googleapis/google-api-nodejs-client/commit/6a129176d37b5c5089e367099482041b9b138852))
+
 ## [5.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/analyticsadmin-v5.0.0...analyticsadmin-v5.1.0) (2024-02-02)
 
 

@@ -2,6 +2,9 @@
   "auth": {
     "oauth2": {
       "scopes": {
+        "https://www.googleapis.com/auth/factchecktools": {
+          "description": "Read, create, update, and delete your ClaimReview data."
+        },
         "https://www.googleapis.com/auth/userinfo.email": {
           "description": "See your primary Google Account email address"
         }
@@ -107,6 +110,46 @@
   "resources": {
     "claims": {
       "methods": {
+        "imageSearch": {
+          "description": "Search through fact-checked claims using an image as the query.",
+          "flatPath": "v1alpha1/claims:imageSearch",
+          "httpMethod": "GET",
+          "id": "factchecktools.claims.imageSearch",
+          "parameterOrder": [],
+          "parameters": {
+            "imageUri": {
+              "description": "Required. The URI of the source image. This must be a publicly-accessible image HTTP/HTTPS URL. When fetching images from HTTP/HTTPS URLs, Google cannot guarantee that the request will be completed. Your request may fail if the specified host denies the request (e.g. due to request throttling or DOS prevention), or if Google throttles requests to the site for abuse prevention. You should not depend on externally-hosted images for production applications.",
+              "location": "query",
+              "type": "string"
+            },
+            "languageCode": {
+              "description": "Optional. The BCP-47 language code, such as \"en-US\" or \"sr-Latn\". Can be used to restrict results by language, though we do not currently consider the region.",
+              "location": "query",
+              "type": "string"
+            },
+            "offset": {
+              "description": "Optional. An integer that specifies the current offset (that is, starting result location) in search results. This field is only considered if `page_token` is unset. For example, 0 means to return results starting from the first matching result, and 10 means to return from the 11th result.",
+              "format": "int32",
+              "location": "query",
+              "type": "integer"
+            },
+            "pageSize": {
+              "description": "Optional. The pagination size. We will return up to that many results. Defaults to 10 if not set.",
+              "format": "int32",
+              "location": "query",
+              "type": "integer"
+            },
+            "pageToken": {
+              "description": "Optional. The pagination token. You may provide the `next_page_token` returned from a previous List request, if any, in order to get the next page. All other fields must have the same values as in the previous request.",
+              "location": "query",
+              "type": "string"
+            }
+          },
+          "path": "v1alpha1/claims:imageSearch",
+          "response": {
+            "$ref": "GoogleFactcheckingFactchecktoolsV1alpha1FactCheckedClaimImageSearchResponse"
+          }
+        },
         "search": {
           "description": "Search through fact-checked claims.",
           "flatPath": "v1alpha1/claims:search",
@@ -177,6 +220,7 @@
             "$ref": "GoogleFactcheckingFactchecktoolsV1alpha1ClaimReviewMarkupPage"
           },
           "scopes": [
+            "https://www.googleapis.com/auth/factchecktools",
             "https://www.googleapis.com/auth/userinfo.email"
           ]
         },
@@ -202,6 +246,7 @@
             "$ref": "GoogleProtobufEmpty"
           },
           "scopes": [
+            "https://www.googleapis.com/auth/factchecktools",
             "https://www.googleapis.com/auth/userinfo.email"
           ]
         },
@@ -227,6 +272,7 @@
             "$ref": "GoogleFactcheckingFactchecktoolsV1alpha1ClaimReviewMarkupPage"
           },
           "scopes": [
+            "https://www.googleapis.com/auth/factchecktools",
             "https://www.googleapis.com/auth/userinfo.email"
           ]
         },
@@ -270,6 +316,7 @@
             "$ref": "GoogleFactcheckingFactchecktoolsV1alpha1ListClaimReviewMarkupPagesResponse"
           },
           "scopes": [
+            "https://www.googleapis.com/auth/factchecktools",
             "https://www.googleapis.com/auth/userinfo.email"
           ]
         },
@@ -298,13 +345,14 @@
             "$ref": "GoogleFactcheckingFactchecktoolsV1alpha1ClaimReviewMarkupPage"
           },
           "scopes": [
+            "https://www.googleapis.com/auth/factchecktools",
             "https://www.googleapis.com/auth/userinfo.email"
           ]
         }
       }
     }
   },
-  "revision": "20220321",
+  "revision": "20240626",
   "rootUrl": "https://factchecktools.googleapis.com/",
   "schemas": {
     "GoogleFactcheckingFactchecktoolsV1alpha1Claim": {
@@ -510,6 +558,35 @@
         "versionId": {
           "description": "The version ID for this markup. Except for update requests, this field is output-only and should not be set by the user.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleFactcheckingFactchecktoolsV1alpha1FactCheckedClaimImageSearchResponse": {
+      "description": "Response from searching fact-checked claims by image.",
+      "id": "GoogleFactcheckingFactchecktoolsV1alpha1FactCheckedClaimImageSearchResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "The next pagination token in the Search response. It should be used as the `page_token` for the following request. An empty value means no more results.",
+          "type": "string"
+        },
+        "results": {
+          "description": "The list of claims and all of their associated information.",
+          "items": {
+            "$ref": "GoogleFactcheckingFactchecktoolsV1alpha1FactCheckedClaimImageSearchResponseResult"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleFactcheckingFactchecktoolsV1alpha1FactCheckedClaimImageSearchResponseResult": {
+      "description": "A claim and its associated information.",
+      "id": "GoogleFactcheckingFactchecktoolsV1alpha1FactCheckedClaimImageSearchResponseResult",
+      "properties": {
+        "claim": {
+          "$ref": "GoogleFactcheckingFactchecktoolsV1alpha1Claim",
+          "description": "A claim which matched the query."
         }
       },
       "type": "object"

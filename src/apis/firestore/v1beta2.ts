@@ -416,6 +416,43 @@ export namespace firestore_v1beta2 {
     estimatedWork?: string | null;
   }
   /**
+   * Metadata for google.longrunning.Operation results from FirestoreAdmin.BulkDeleteDocuments.
+   */
+  export interface Schema$GoogleFirestoreAdminV1BulkDeleteDocumentsMetadata {
+    /**
+     * The ids of the collection groups that are being deleted.
+     */
+    collectionIds?: string[] | null;
+    /**
+     * The time this operation completed. Will be unset if operation still in progress.
+     */
+    endTime?: string | null;
+    /**
+     * Which namespace ids are being deleted.
+     */
+    namespaceIds?: string[] | null;
+    /**
+     * The state of the operation.
+     */
+    operationState?: string | null;
+    /**
+     * The progress, in bytes, of this operation.
+     */
+    progressBytes?: Schema$GoogleFirestoreAdminV1Progress;
+    /**
+     * The progress, in documents, of this operation.
+     */
+    progressDocuments?: Schema$GoogleFirestoreAdminV1Progress;
+    /**
+     * The timestamp that corresponds to the version of the database that is being read to get the list of documents to delete. This time can also be used as the timestamp of PITR in case of disaster recovery (subject to PITR window limit).
+     */
+    snapshotTime?: string | null;
+    /**
+     * The time this operation started.
+     */
+    startTime?: string | null;
+  }
+  /**
    * Metadata related to the create database operation.
    */
   export interface Schema$GoogleFirestoreAdminV1CreateDatabaseMetadata {}
@@ -607,6 +644,7 @@ export namespace firestore_v1beta2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -701,6 +739,7 @@ export namespace firestore_v1beta2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -840,6 +879,7 @@ export namespace firestore_v1beta2 {
           {
             url: (rootUrl + '/v1beta2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -937,6 +977,7 @@ export namespace firestore_v1beta2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1031,6 +1072,7 @@ export namespace firestore_v1beta2 {
           {
             url: (rootUrl + '/v1beta2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -1176,6 +1218,7 @@ export namespace firestore_v1beta2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1261,6 +1304,7 @@ export namespace firestore_v1beta2 {
           {
             url: (rootUrl + '/v1beta2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -1353,6 +1397,7 @@ export namespace firestore_v1beta2 {
           {
             url: (rootUrl + '/v1beta2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1450,6 +1495,7 @@ export namespace firestore_v1beta2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),

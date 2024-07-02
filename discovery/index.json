@@ -79,6 +79,21 @@
     },
     {
       "kind": "discovery#directoryItem",
+      "id": "addressvalidation:v1",
+      "name": "addressvalidation",
+      "version": "v1",
+      "title": "Address Validation API",
+      "description": "The Address Validation API allows developers to verify the accuracy of addresses. Given an address, it returns information about the correctness of the components of the parsed address, a geocode, and a verdict on the deliverability of the parsed address.",
+      "discoveryRestUrl": "https://addressvalidation.googleapis.com/$discovery/rest?version=v1",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://developers.google.com/maps/documentation/addressvalidation",
+      "preferred": true
+    },
+    {
+      "kind": "discovery#directoryItem",
       "id": "adexchangebuyer2:v2beta1",
       "name": "adexchangebuyer2",
       "version": "v2beta1",
@@ -255,6 +270,21 @@
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
       },
       "documentationLink": "https://cloud.google.com/vertex-ai/",
+      "preferred": true
+    },
+    {
+      "kind": "discovery#directoryItem",
+      "id": "airquality:v1",
+      "name": "airquality",
+      "version": "v1",
+      "title": "Air Quality API",
+      "description": "The Air Quality API.",
+      "discoveryRestUrl": "https://airquality.googleapis.com/$discovery/rest?version=v1",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://developers.google.com/maps/documentation/air-quality",
       "preferred": true
     },
     {
@@ -554,6 +584,21 @@
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
       },
       "documentationLink": "https://cloud.google.com/api-keys/docs",
+      "preferred": true
+    },
+    {
+      "kind": "discovery#directoryItem",
+      "id": "apim:v1alpha",
+      "name": "apim",
+      "version": "v1alpha",
+      "title": "API Management API",
+      "description": "Enables users to discover shadow APIs in existing Google Cloud infrastructure.",
+      "discoveryRestUrl": "https://apim.googleapis.com/$discovery/rest?version=v1alpha",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://cloud.google.com/apigee/",
       "preferred": true
     },
     {
@@ -1353,6 +1398,36 @@
     },
     {
       "kind": "discovery#directoryItem",
+      "id": "cloudcontrolspartner:v1beta",
+      "name": "cloudcontrolspartner",
+      "version": "v1beta",
+      "title": "Cloud Controls Partner API",
+      "description": "Provides insights about your customers and their Assured Workloads based on your Sovereign Controls by Partners offering.",
+      "discoveryRestUrl": "https://cloudcontrolspartner.googleapis.com/$discovery/rest?version=v1beta",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://cloud.google.com/sovereign-controls-by-partners/docs/sovereign-partners/reference/rest",
+      "preferred": false
+    },
+    {
+      "kind": "discovery#directoryItem",
+      "id": "cloudcontrolspartner:v1",
+      "name": "cloudcontrolspartner",
+      "version": "v1",
+      "title": "Cloud Controls Partner API",
+      "description": "Provides insights about your customers and their Assured Workloads based on your Sovereign Controls by Partners offering.",
+      "discoveryRestUrl": "https://cloudcontrolspartner.googleapis.com/$discovery/rest?version=v1",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://cloud.google.com/sovereign-controls-by-partners/docs/sovereign-partners/reference/rest",
+      "preferred": true
+    },
+    {
+      "kind": "discovery#directoryItem",
       "id": "clouddeploy:v1",
       "name": "clouddeploy",
       "version": "v1",
@@ -1832,6 +1907,21 @@
         "x32": "https://www.google.com/images/icons/product/compute_engine-32.png"
       },
       "documentationLink": "https://developers.google.com/compute/docs/reference/latest/",
+      "preferred": true
+    },
+    {
+      "kind": "discovery#directoryItem",
+      "id": "config:v1",
+      "name": "config",
+      "version": "v1",
+      "title": "Infrastructure Manager API",
+      "description": "Creates and manages Google Cloud Platform resources and infrastructure.",
+      "discoveryRestUrl": "https://config.googleapis.com/$discovery/rest?version=v1",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://cloud.google.com/infrastructure-manager/docs",
       "preferred": true
     },
     {
@@ -2361,6 +2451,21 @@
     },
     {
       "kind": "discovery#directoryItem",
+      "id": "developerconnect:v1",
+      "name": "developerconnect",
+      "version": "v1",
+      "title": "Developer Connect API",
+      "description": "Connect third-party source code management to Google",
+      "discoveryRestUrl": "https://developerconnect.googleapis.com/$discovery/rest?version=v1",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "http://cloud.google.com/developer-connect/docs/overview",
+      "preferred": true
+    },
+    {
+      "kind": "discovery#directoryItem",
       "id": "dfareporting:v3.5",
       "name": "dfareporting",
       "version": "v3.5",
@@ -2502,6 +2607,21 @@
       "title": "Discovery Engine API",
       "description": "Discovery Engine API.",
       "discoveryRestUrl": "https://discoveryengine.googleapis.com/$discovery/rest?version=v1beta",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://cloud.google.com/discovery-engine/docs",
+      "preferred": false
+    },
+    {
+      "kind": "discovery#directoryItem",
+      "id": "discoveryengine:v1",
+      "name": "discoveryengine",
+      "version": "v1",
+      "title": "Discovery Engine API",
+      "description": "Discovery Engine API.",
+      "discoveryRestUrl": "https://discoveryengine.googleapis.com/$discovery/rest?version=v1",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
@@ -2828,21 +2948,6 @@
     },
     {
       "kind": "discovery#directoryItem",
-      "id": "eventarc:v1beta1",
-      "name": "eventarc",
-      "version": "v1beta1",
-      "title": "Eventarc API",
-      "description": "Build event-driven applications on Google Cloud Platform.",
-      "discoveryRestUrl": "https://eventarc.googleapis.com/$discovery/rest?version=v1beta1",
-      "icons": {
-        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
-        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
-      },
-      "documentationLink": "https://cloud.google.com/eventarc",
-      "preferred": false
-    },
-    {
-      "kind": "discovery#directoryItem",
       "id": "eventarc:v1",
       "name": "eventarc",
       "version": "v1",
@@ -3074,6 +3179,21 @@
       "title": "Firebase ML API",
       "description": "Access custom machine learning models hosted via Firebase ML.",
       "discoveryRestUrl": "https://firebaseml.googleapis.com/$discovery/rest?version=v1beta2",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://firebase.google.com",
+      "preferred": false
+    },
+    {
+      "kind": "discovery#directoryItem",
+      "id": "firebaseml:v2beta",
+      "name": "firebaseml",
+      "version": "v2beta",
+      "title": "Firebase ML API",
+      "description": "Access custom machine learning models hosted via Firebase ML.",
+      "discoveryRestUrl": "https://firebaseml.googleapis.com/$discovery/rest?version=v2beta",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
@@ -3341,7 +3461,7 @@
       "id": "gkeonprem:v1",
       "name": "gkeonprem",
       "version": "v1",
-      "title": "Anthos On-Prem API",
+      "title": "GDC Virtual API",
       "description": "",
       "discoveryRestUrl": "https://gkeonprem.googleapis.com/$discovery/rest?version=v1",
       "icons": {
@@ -3638,12 +3758,12 @@
     },
     {
       "kind": "discovery#directoryItem",
-      "id": "integrations:v1alpha",
+      "id": "integrations:v1",
       "name": "integrations",
-      "version": "v1alpha",
+      "version": "v1",
       "title": "Application Integration API",
       "description": "",
-      "discoveryRestUrl": "https://integrations.googleapis.com/$discovery/rest?version=v1alpha",
+      "discoveryRestUrl": "https://integrations.googleapis.com/$discovery/rest?version=v1",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
@@ -3942,13 +4062,28 @@
       "name": "marketingplatformadmin",
       "version": "v1alpha",
       "title": "Google Marketing Platform Admin API",
-      "description": "The Google Marketing Platform Admin API allows for programmatic access to the Google Marketing Platform configuration data. You can use the Google Marketing Platform Admin API to manage links between your Google Marketing Platform organization and Google Analytics accounts, set the service level of your GA4 properties.",
+      "description": "The Google Marketing Platform Admin API allows for programmatic access to the Google Marketing Platform configuration data. You can use the Google Marketing Platform Admin API to manage links between your Google Marketing Platform organization and Google Analytics accounts, and to set the service level of your GA4 properties.",
       "discoveryRestUrl": "https://marketingplatformadmin.googleapis.com/$discovery/rest?version=v1alpha",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
       },
       "documentationLink": "https://developers.google.com/analytics/devguides/config/gmp/v1",
+      "preferred": true
+    },
+    {
+      "kind": "discovery#directoryItem",
+      "id": "meet:v2",
+      "name": "meet",
+      "version": "v2",
+      "title": "Google Meet API",
+      "description": "Create and manage meetings in Google Meet.",
+      "discoveryRestUrl": "https://meet.googleapis.com/$discovery/rest?version=v2",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://developers.google.com/meet/api",
       "preferred": true
     },
     {
@@ -3979,6 +4114,156 @@
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
       },
       "documentationLink": "https://cloud.google.com/memorystore/",
+      "preferred": true
+    },
+    {
+      "kind": "discovery#directoryItem",
+      "id": "merchantapi:accounts_v1beta",
+      "name": "merchantapi",
+      "version": "accounts_v1beta",
+      "title": "Merchant API",
+      "description": "Programmatically manage your Merchant Center Accounts.",
+      "discoveryRestUrl": "https://merchantapi.googleapis.com/$discovery/rest?version=accounts_v1beta",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://developers.devsite.corp.google.com/merchant/api",
+      "preferred": false
+    },
+    {
+      "kind": "discovery#directoryItem",
+      "id": "merchantapi:conversions_v1beta",
+      "name": "merchantapi",
+      "version": "conversions_v1beta",
+      "title": "Merchant API",
+      "description": "Programmatically manage your Merchant Center Accounts.",
+      "discoveryRestUrl": "https://merchantapi.googleapis.com/$discovery/rest?version=conversions_v1beta",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://developers.devsite.corp.google.com/merchant/api",
+      "preferred": false
+    },
+    {
+      "kind": "discovery#directoryItem",
+      "id": "merchantapi:datasources_v1beta",
+      "name": "merchantapi",
+      "version": "datasources_v1beta",
+      "title": "Merchant API",
+      "description": "Programmatically manage your Merchant Center Accounts.",
+      "discoveryRestUrl": "https://merchantapi.googleapis.com/$discovery/rest?version=datasources_v1beta",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://developers.devsite.corp.google.com/merchant/api",
+      "preferred": false
+    },
+    {
+      "kind": "discovery#directoryItem",
+      "id": "merchantapi:inventories_v1beta",
+      "name": "merchantapi",
+      "version": "inventories_v1beta",
+      "title": "Merchant API",
+      "description": "Programmatically manage your Merchant Center Accounts.",
+      "discoveryRestUrl": "https://merchantapi.googleapis.com/$discovery/rest?version=inventories_v1beta",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://developers.devsite.corp.google.com/merchant/api",
+      "preferred": false
+    },
+    {
+      "kind": "discovery#directoryItem",
+      "id": "merchantapi:lfp_v1beta",
+      "name": "merchantapi",
+      "version": "lfp_v1beta",
+      "title": "Merchant API",
+      "description": "Programmatically manage your Merchant Center Accounts.",
+      "discoveryRestUrl": "https://merchantapi.googleapis.com/$discovery/rest?version=lfp_v1beta",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://developers.devsite.corp.google.com/merchant/api",
+      "preferred": false
+    },
+    {
+      "kind": "discovery#directoryItem",
+      "id": "merchantapi:notifications_v1beta",
+      "name": "merchantapi",
+      "version": "notifications_v1beta",
+      "title": "Merchant API",
+      "description": "Programmatically manage your Merchant Center Accounts.",
+      "discoveryRestUrl": "https://merchantapi.googleapis.com/$discovery/rest?version=notifications_v1beta",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://developers.devsite.corp.google.com/merchant/api",
+      "preferred": false
+    },
+    {
+      "kind": "discovery#directoryItem",
+      "id": "merchantapi:products_v1beta",
+      "name": "merchantapi",
+      "version": "products_v1beta",
+      "title": "Merchant API",
+      "description": "Programmatically manage your Merchant Center Accounts.",
+      "discoveryRestUrl": "https://merchantapi.googleapis.com/$discovery/rest?version=products_v1beta",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://developers.devsite.corp.google.com/merchant/api",
+      "preferred": false
+    },
+    {
+      "kind": "discovery#directoryItem",
+      "id": "merchantapi:promotions_v1beta",
+      "name": "merchantapi",
+      "version": "promotions_v1beta",
+      "title": "Merchant API",
+      "description": "Programmatically manage your Merchant Center Accounts.",
+      "discoveryRestUrl": "https://merchantapi.googleapis.com/$discovery/rest?version=promotions_v1beta",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://developers.devsite.corp.google.com/merchant/api",
+      "preferred": false
+    },
+    {
+      "kind": "discovery#directoryItem",
+      "id": "merchantapi:quota_v1beta",
+      "name": "merchantapi",
+      "version": "quota_v1beta",
+      "title": "Merchant API",
+      "description": "Programmatically manage your Merchant Center Accounts.",
+      "discoveryRestUrl": "https://merchantapi.googleapis.com/$discovery/rest?version=quota_v1beta",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://developers.devsite.corp.google.com/merchant/api",
+      "preferred": false
+    },
+    {
+      "kind": "discovery#directoryItem",
+      "id": "merchantapi:reports_v1beta",
+      "name": "merchantapi",
+      "version": "reports_v1beta",
+      "title": "Merchant API",
+      "description": "Programmatically manage your Merchant Center Accounts.",
+      "discoveryRestUrl": "https://merchantapi.googleapis.com/$discovery/rest?version=reports_v1beta",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://developers.devsite.corp.google.com/merchant/api",
       "preferred": true
     },
     {
@@ -4745,6 +5030,21 @@
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
       },
       "documentationLink": "https://cloud.google.com/iam/",
+      "preferred": true
+    },
+    {
+      "kind": "discovery#directoryItem",
+      "id": "pollen:v1",
+      "name": "pollen",
+      "version": "v1",
+      "title": "Pollen API",
+      "description": "The Pollen API.",
+      "discoveryRestUrl": "https://pollen.googleapis.com/$discovery/rest?version=v1",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://developers.google.com/maps/documentation/pollen",
       "preferred": true
     },
     {
@@ -5604,17 +5904,17 @@
     },
     {
       "kind": "discovery#directoryItem",
-      "id": "sourcerepo:v1",
-      "name": "sourcerepo",
+      "id": "solar:v1",
+      "name": "solar",
       "version": "v1",
-      "title": "Cloud Source Repositories API",
-      "description": "Accesses source code repositories hosted by Google.",
-      "discoveryRestUrl": "https://sourcerepo.googleapis.com/$discovery/rest?version=v1",
+      "title": "Solar API",
+      "description": "Solar API.",
+      "discoveryRestUrl": "https://solar.googleapis.com/$discovery/rest?version=v1",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
       },
-      "documentationLink": "https://cloud.google.com/source-repositories/docs/apis",
+      "documentationLink": "https://developers.google.com/maps/documentation/solar",
       "preferred": true
     },
     {

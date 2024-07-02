@@ -108,7 +108,7 @@
     "iamPolicies": {
       "methods": {
         "searchAll": {
-          "description": "Searches all the IAM policies within a given accessible Resource Manager scope (project/folder/organization). This RPC gives callers especially administrators the ability to search all the IAM policies within a scope, even if they don't have `.getIamPolicy` permission of all the IAM policies. Callers should have `cloud.assets.SearchAllIamPolicies` permission on the requested scope, otherwise the request will be rejected.",
+          "description": "Searches all the IAM policies within a given accessible Resource Manager scope (project/folder/organization). This RPC gives callers especially administrators the ability to search all the IAM policies within a scope, even if they don't have `.getIamPolicy` permission of all the IAM policies. Callers should have `cloudasset.assets.searchAllIamPolicies` permission on the requested scope, otherwise the request will be rejected.",
           "flatPath": "v1p1beta1/{v1p1beta1Id}/{v1p1beta1Id1}/iamPolicies:searchAll",
           "httpMethod": "GET",
           "id": "cloudasset.iamPolicies.searchAll",
@@ -153,7 +153,7 @@
     "resources": {
       "methods": {
         "searchAll": {
-          "description": "Searches all the resources within a given accessible Resource Manager scope (project/folder/organization). This RPC gives callers especially administrators the ability to search all the resources within a scope, even if they don't have `.get` permission of all the resources. Callers should have `cloud.assets.SearchAllResources` permission on the requested scope, otherwise the request will be rejected.",
+          "description": "Searches all the resources within a given accessible Resource Manager scope (project/folder/organization). This RPC gives callers especially administrators the ability to search all the resources within a scope, even if they don't have `.get` permission of all the resources. Callers should have `cloudasset.assets.searchAllResources` permission on the requested scope, otherwise the request will be rejected.",
           "flatPath": "v1p1beta1/{v1p1beta1Id}/{v1p1beta1Id1}/resources:searchAll",
           "httpMethod": "GET",
           "id": "cloudasset.resources.searchAll",
@@ -207,7 +207,7 @@
       }
     }
   },
-  "revision": "20240130",
+  "revision": "20240621",
   "rootUrl": "https://cloudasset.googleapis.com/",
   "schemas": {
     "AnalyzeIamPolicyLongrunningMetadata": {
@@ -611,7 +611,7 @@
           "type": "string"
         },
         "name": {
-          "description": "Resource name for the `AccessLevel`. Format: `accessPolicies/{access_policy}/accessLevels/{access_level}`. The `access_level` component must begin with a letter, followed by alphanumeric characters or `_`. Its maximum length is 50 characters. After you create an `AccessLevel`, you cannot change its `name`.",
+          "description": "Identifier. Resource name for the `AccessLevel`. Format: `accessPolicies/{access_policy}/accessLevels/{access_level}`. The `access_level` component must begin with a letter, followed by alphanumeric characters or `_`. Its maximum length is 50 characters. After you create an `AccessLevel`, you cannot change its `name`.",
           "type": "string"
         },
         "title": {
@@ -626,11 +626,11 @@
       "id": "GoogleIdentityAccesscontextmanagerV1AccessPolicy",
       "properties": {
         "etag": {
-          "description": "Output only. An opaque identifier for the current version of the `AccessPolicy`. This will always be a strongly validated etag, meaning that two Access Polices will be identical if and only if their etags are identical. Clients should not expect this to be in any specific format.",
+          "description": "Output only. An opaque identifier for the current version of the `AccessPolicy`. This will always be a strongly validated etag, meaning that two Access Policies will be identical if and only if their etags are identical. Clients should not expect this to be in any specific format.",
           "type": "string"
         },
         "name": {
-          "description": "Output only. Resource name of the `AccessPolicy`. Format: `accessPolicies/{access_policy}`",
+          "description": "Output only. Identifier. Resource name of the `AccessPolicy`. Format: `accessPolicies/{access_policy}`",
           "type": "string"
         },
         "parent": {
@@ -825,7 +825,7 @@
       "id": "GoogleIdentityAccesscontextmanagerV1EgressFrom",
       "properties": {
         "identities": {
-          "description": "A list of identities that are allowed access through this [EgressPolicy], in the format of `user:{email_id}` or `serviceAccount:{email_id}`.",
+          "description": "A list of identities that are allowed access through [EgressPolicy]. Identities can be an individual user, service account, Google group, or third-party identity. The `v1` identities that have the prefix `user`, `group`, `serviceAccount`, `principal`, and `principalSet` in https://cloud.google.com/iam/docs/principal-identifiers#v1 are supported.",
           "items": {
             "type": "string"
           },
@@ -902,7 +902,7 @@
       "id": "GoogleIdentityAccesscontextmanagerV1EgressTo",
       "properties": {
         "externalResources": {
-          "description": "A list of external resources that are allowed to be accessed. Only AWS and Azure resources are supported. For Amazon S3, the supported format is s3://BUCKET_NAME. For Azure Storage, the supported format is azure://myaccount.blob.core.windows.net/CONTAINER_NAME. A request matches if it contains an external resource in this list (Example: s3://bucket/path). Currently '*' is not allowed.",
+          "description": "A list of external resources that are allowed to be accessed. Only AWS and Azure resources are supported. For Amazon S3, the supported formats are s3://BUCKET_NAME, s3a://BUCKET_NAME, and s3n://BUCKET_NAME. For Azure Storage, the supported format is azure://myaccount.blob.core.windows.net/CONTAINER_NAME. A request matches if it contains an external resource in this list (Example: s3://bucket/path). Currently '*' is not allowed.",
           "items": {
             "type": "string"
           },
@@ -930,7 +930,7 @@
       "id": "GoogleIdentityAccesscontextmanagerV1IngressFrom",
       "properties": {
         "identities": {
-          "description": "A list of identities that are allowed access through this ingress policy, in the format of `user:{email_id}` or `serviceAccount:{email_id}`.",
+          "description": "A list of identities that are allowed access through [IngressPolicy]. Identities can be an individual user, service account, Google group, or third-party identity. The `v1` identities that have the prefix `user`, `group`, `serviceAccount`, `principal`, and `principalSet` in https://cloud.google.com/iam/docs/principal-identifiers#v1 are supported.",
           "items": {
             "type": "string"
           },
@@ -1074,7 +1074,7 @@
           "type": "string"
         },
         "name": {
-          "description": "Resource name for the `ServicePerimeter`. Format: `accessPolicies/{access_policy}/servicePerimeters/{service_perimeter}`. The `service_perimeter` component must begin with a letter, followed by alphanumeric characters or `_`. After you create a `ServicePerimeter`, you cannot change its `name`.",
+          "description": "Identifier. Resource name for the `ServicePerimeter`. Format: `accessPolicies/{access_policy}/servicePerimeters/{service_perimeter}`. The `service_perimeter` component must begin with a letter, followed by alphanumeric characters or `_`. After you create a `ServicePerimeter`, you cannot change its `name`.",
           "type": "string"
         },
         "perimeterType": {

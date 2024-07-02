@@ -232,6 +232,10 @@ export namespace versionhistory_v1 {
      */
     name?: string | null;
     /**
+     * Whether or not the release was available for version pinning.
+     */
+    pinnable?: boolean | null;
+    /**
      * Timestamp interval of when the release was live. If end_time is unspecified, the release is currently live.
      */
     serving?: Schema$Interval;
@@ -336,6 +340,7 @@ export namespace versionhistory_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -453,6 +458,7 @@ export namespace versionhistory_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -573,6 +579,7 @@ export namespace versionhistory_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -698,6 +705,7 @@ export namespace versionhistory_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),

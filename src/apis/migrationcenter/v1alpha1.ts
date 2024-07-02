@@ -150,7 +150,7 @@ export namespace migrationcenter_v1alpha1 {
      */
     aggregations?: Schema$Aggregation[];
     /**
-     * The aggregation will be performed on assets that match the provided filter.
+     * Optional. The aggregation will be performed on assets that match the provided filter.
      */
     filter?: string | null;
     /**
@@ -284,6 +284,14 @@ export namespace migrationcenter_v1alpha1 {
      */
     createTime?: string | null;
     /**
+     * Output only. Asset information specific for database deployments.
+     */
+    databaseDeploymentDetails?: Schema$DatabaseDeploymentDetails;
+    /**
+     * Output only. Asset information specific for logical databases.
+     */
+    databaseDetails?: Schema$DatabaseDetails;
+    /**
      * Optional. Indicates if the asset is hidden.
      */
     hidden?: boolean | null;
@@ -316,6 +324,10 @@ export namespace migrationcenter_v1alpha1 {
      */
     sources?: string[] | null;
     /**
+     * Output only. Server generated human readable name of the asset.
+     */
+    title?: string | null;
+    /**
      * Output only. The timestamp when the asset was last updated.
      */
     updateTime?: string | null;
@@ -332,6 +344,18 @@ export namespace migrationcenter_v1alpha1 {
      * Generic asset attributes.
      */
     attributes?: {[key: string]: string} | null;
+    /**
+     * Optional. Frame collection type, if not specified the collection type will be based on the source type of the source the frame was reported on.
+     */
+    collectionType?: string | null;
+    /**
+     * Asset information specific for database deployments.
+     */
+    databaseDeploymentDetails?: Schema$DatabaseDeploymentDetails;
+    /**
+     * Asset information specific for logical databases.
+     */
+    databaseDetails?: Schema$DatabaseDetails;
     /**
      * Labels as key value pairs.
      */
@@ -370,6 +394,99 @@ export namespace migrationcenter_v1alpha1 {
      * Daily resource usage aggregations. Contains all of the data available for an asset, up to the last 420 days. Aggregations are sorted from oldest to most recent.
      */
     dailyResourceUsageAggregations?: Schema$DailyResourceUsageAggregation[];
+  }
+  /**
+   * Assets export job message.
+   */
+  export interface Schema$AssetsExportJob {
+    /**
+     * Optional. Conditions for selecting assets to export.
+     */
+    condition?: Schema$AssetsExportJobExportCondition;
+    /**
+     * Output only. Resource creation time.
+     */
+    createTime?: string | null;
+    /**
+     * Optional. Labels as key value pairs. Labels must meet the following constraints: * Keys and values can contain only lowercase letters, numeric characters, underscores, and dashes. * All characters must use UTF-8 encoding, and international characters are allowed. * Keys must start with a lowercase letter or international character. * Each resource is limited to a maximum of 64 labels. Both keys and values are additionally constrained to be <= 128 bytes.
+     */
+    labels?: {[key: string]: string} | null;
+    /**
+     * Output only. Identifier. Resource name.
+     */
+    name?: string | null;
+    /**
+     * Export data regarding asset network dependencies.
+     */
+    networkDependencies?: Schema$AssetsExportJobNetworkDependencies;
+    /**
+     * Output only. Recent non expired executions of the job.
+     */
+    recentExecutions?: Schema$AssetsExportJobExecution[];
+    /**
+     * Export to Cloud Storage files downloadable using signed URIs.
+     */
+    signedUriDestination?: Schema$SignedUriDestination;
+    /**
+     * Output only. Resource update time.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * Execution status of assets export job.
+   */
+  export interface Schema$AssetsExportJobExecution {
+    /**
+     * Output only. Completion time of the export.
+     */
+    endTime?: string | null;
+    /**
+     * Output only. Globally unique identifier of the execution.
+     */
+    executionId?: string | null;
+    /**
+     * Output only. Expiration time for the export and artifacts.
+     */
+    expireTime?: string | null;
+    /**
+     * Output only. Result of the export execution.
+     */
+    result?: Schema$AssetsExportJobExecutionResult;
+    /**
+     * Output only. Execution timestamp.
+     */
+    startTime?: string | null;
+  }
+  /**
+   * Contains the result of the assets export.
+   */
+  export interface Schema$AssetsExportJobExecutionResult {
+    /**
+     * Output only. Error encountered during export.
+     */
+    error?: Schema$Status;
+    /**
+     * Output only. Signed URLs for downloading export artifacts.
+     */
+    signedUris?: Schema$SignedUris;
+  }
+  /**
+   * Conditions for selecting assets to export.
+   */
+  export interface Schema$AssetsExportJobExportCondition {
+    /**
+     * Optional. Assets filter, supports the same syntax as asset listing.
+     */
+    filter?: string | null;
+  }
+  /**
+   * Configuration for network dependencies exports.
+   */
+  export interface Schema$AssetsExportJobNetworkDependencies {
+    /**
+     * Optional. When this value is set to a positive integer, network connections data will be returned for the most recent days for which data is available. When this value is unset (or set to zero), all available data is returned.
+     */
+    maxDays?: number | null;
   }
   /**
    * AWS EC2 specific details.
@@ -462,6 +579,138 @@ export namespace migrationcenter_v1alpha1 {
    */
   export interface Schema$CancelOperationRequest {}
   /**
+   * Cloud database migration target.
+   */
+  export interface Schema$CloudDatabaseMigrationTarget {
+    /**
+     * Cloud SQL for MySQL database shape.
+     */
+    cloudSqlForMysqlShape?: Schema$CloudSqlForMySqlShape;
+    /**
+     * Cloud SQL for Postgres database shape.
+     */
+    cloudSqlForPostgresqlShape?: Schema$CloudSqlForPostgreSqlShape;
+    /**
+     * Cloud SQL for SQL Server database shape.
+     */
+    cloudSqlShape?: Schema$CloudSqlForSqlServerShape;
+  }
+  /**
+   * Cloud SQL for MySQL database shape.
+   */
+  export interface Schema$CloudSqlForMySqlShape {
+    /**
+     * Output only. Predicted backup storage size in GiB.
+     */
+    backupStorageGb?: number | null;
+    /**
+     * Output only. Cloud SQL edition.
+     */
+    edition?: string | null;
+    /**
+     * Output only. Predicted Network Out traffic GiB per month.
+     */
+    egressGbPerMonth?: string | null;
+    /**
+     * Output only. Number of logical cores.
+     */
+    logicalCoreCount?: number | null;
+    /**
+     * Output only. Predicted amount of memory in MiB.
+     */
+    memoryMb?: number | null;
+    /**
+     * Output only. Predicted storage shape.
+     */
+    storage?: Schema$ComputeStorageDescriptor;
+    /**
+     * Output only. MySQL version to be used on the Cloud SQL for MySQL instance.
+     */
+    version?: string | null;
+    /**
+     * Output only. Cloud SQL zone availability.
+     */
+    zoneAvailability?: string | null;
+  }
+  /**
+   * Cloud SQL for Postgres database shape.
+   */
+  export interface Schema$CloudSqlForPostgreSqlShape {
+    /**
+     * Output only. Predicted backup storage size in GiB.
+     */
+    backupStorageGb?: number | null;
+    /**
+     * Output only. Cloud SQL edition.
+     */
+    edition?: string | null;
+    /**
+     * Output only. Predicted Network Out traffic GiB per month.
+     */
+    egressGbPerMonth?: string | null;
+    /**
+     * Output only. Number of logical cores.
+     */
+    logicalCoreCount?: number | null;
+    /**
+     * Output only. Predicted amount of memory in MiB.
+     */
+    memoryMb?: number | null;
+    /**
+     * Output only. Predicted storage shape.
+     */
+    storage?: Schema$ComputeStorageDescriptor;
+    /**
+     * Output only. PostgreSql version to be used on the Cloud SQL for PostgreSql instance.
+     */
+    version?: string | null;
+    /**
+     * Output only. Cloud SQL zone availability.
+     */
+    zoneAvailability?: string | null;
+  }
+  /**
+   * Cloud SQL for SQL Server database shape.
+   */
+  export interface Schema$CloudSqlForSqlServerShape {
+    /**
+     * Output only. Predicted backup storage size in GiB.
+     */
+    backupStorageGb?: number | null;
+    /**
+     * Output only. Cloud SQL edition.
+     */
+    edition?: string | null;
+    /**
+     * Output only. Predicted Network Out traffic GiB per month.
+     */
+    egressGbPerMonth?: string | null;
+    /**
+     * Output only. Number of logical cores.
+     */
+    logicalCoreCount?: number | null;
+    /**
+     * Output only. Predicted amount of memory in MiB.
+     */
+    memoryMb?: number | null;
+    /**
+     * Output only. Whether simultaneous multithreading is enabled (see https://cloud.google.com/sql/docs/sqlserver/create-instance#smt-create-instance).
+     */
+    smtEnabled?: boolean | null;
+    /**
+     * Output only. Predicted storage shape.
+     */
+    storage?: Schema$ComputeStorageDescriptor;
+    /**
+     * Output only. Microsoft SQL Server version to be used on the Cloud SQL for SQL server instance.
+     */
+    version?: string | null;
+    /**
+     * Output only. Cloud SQL zone availability.
+     */
+    zoneAvailability?: string | null;
+  }
+  /**
    * Compute engine migration target.
    */
   export interface Schema$ComputeEngineMigrationTarget {
@@ -475,13 +724,21 @@ export namespace migrationcenter_v1alpha1 {
    */
   export interface Schema$ComputeEnginePreferences {
     /**
-     * Overridden by os_pricing_preferences if specified. License type to consider when calculating costs for virtual machine insights and recommendations. If unspecified, costs are calculated based on the default licensing plan.
+     * License type to consider when calculating costs for operating systems. If unspecified, costs are calculated based on the default licensing plan. If os_pricing_preferences is specified, it overrides this field.
      */
     licenseType?: string | null;
     /**
      * Preferences concerning the machine types to consider on Compute Engine.
      */
     machinePreferences?: Schema$MachinePreferences;
+    /**
+     * Optional. Preferences for multithreading support.
+     */
+    multithreading?: string | null;
+    /**
+     * Optional. Pricing options for OS images.
+     */
+    osPricingPreferences?: Schema$OperatingSystemPricingPreferences;
     /**
      * Persistent disk type to use. If unspecified (default), all types are considered, based on available usage data.
      */
@@ -492,27 +749,31 @@ export namespace migrationcenter_v1alpha1 {
    */
   export interface Schema$ComputeEngineShapeDescriptor {
     /**
-     * Number of logical cores.
+     * Output only. Number of logical cores.
      */
     logicalCoreCount?: number | null;
     /**
-     * Compute Engine machine type.
+     * Output only. Compute Engine machine type.
      */
     machineType?: string | null;
     /**
-     * Memory in mebibytes.
+     * Output only. Memory in mebibytes.
      */
     memoryMb?: number | null;
     /**
-     * Number of physical cores.
+     * Output only. Number of physical cores.
      */
     physicalCoreCount?: number | null;
     /**
-     * Compute Engine machine series.
+     * Output only. Compute Engine machine series.
      */
     series?: string | null;
     /**
-     * Compute Engine storage. Never empty.
+     * Output only. Whether simultaneous multithreading is enabled (see https://cloud.google.com/compute/docs/instances/set-threads-per-core).
+     */
+    smtEnabled?: boolean | null;
+    /**
+     * Output only. Compute Engine storage. Never empty.
      */
     storage?: Schema$ComputeStorageDescriptor[];
   }
@@ -584,6 +845,14 @@ export namespace migrationcenter_v1alpha1 {
      * Disk I/O operations per second.
      */
     iops?: Schema$DailyResourceUsageAggregationStats;
+    /**
+     * Disk read I/O operations per second.
+     */
+    readIops?: Schema$DailyResourceUsageAggregationStats;
+    /**
+     * Disk write I/O operations per second.
+     */
+    writeIops?: Schema$DailyResourceUsageAggregationStats;
   }
   /**
    * Statistical aggregation of memory usage.
@@ -627,6 +896,268 @@ export namespace migrationcenter_v1alpha1 {
      * Peak usage value.
      */
     peak?: number | null;
+  }
+  /**
+   * The details of a database deployment asset.
+   */
+  export interface Schema$DatabaseDeploymentDetails {
+    /**
+     * Output only. Aggregated stats for the database deployment.
+     */
+    aggregatedStats?: Schema$DatabaseDeploymentDetailsAggregatedStats;
+    /**
+     * The database deployment edition.
+     */
+    edition?: string | null;
+    /**
+     * The database deployment generated ID.
+     */
+    generatedId?: string | null;
+    /**
+     * A manual unique ID set by the user.
+     */
+    manualUniqueId?: string | null;
+    /**
+     * Details of a MYSQL database deployment.
+     */
+    mysql?: Schema$MysqlDatabaseDeployment;
+    /**
+     * Details of a PostgreSQL database deployment.
+     */
+    postgresql?: Schema$PostgreSqlDatabaseDeployment;
+    /**
+     * Details of a Microsoft SQL Server database deployment.
+     */
+    sqlServer?: Schema$SqlServerDatabaseDeployment;
+    /**
+     * Details of the database deployment topology.
+     */
+    topology?: Schema$DatabaseDeploymentTopology;
+    /**
+     * The database deployment version.
+     */
+    version?: string | null;
+  }
+  /**
+   * Aggregated stats for the database deployment.
+   */
+  export interface Schema$DatabaseDeploymentDetailsAggregatedStats {
+    /**
+     * Output only. The number of databases in the deployment.
+     */
+    databaseCount?: number | null;
+  }
+  /**
+   * Details of database deployment's topology.
+   */
+  export interface Schema$DatabaseDeploymentTopology {
+    /**
+     * Optional. Number of total logical cores.
+     */
+    coreCount?: number | null;
+    /**
+     * Optional. Number of total logical cores limited by db deployment.
+     */
+    coreLimit?: number | null;
+    /**
+     * Optional. Disk allocated in bytes.
+     */
+    diskAllocatedBytes?: string | null;
+    /**
+     * Optional. Disk used in bytes.
+     */
+    diskUsedBytes?: string | null;
+    /**
+     * Optional. List of database instances.
+     */
+    instances?: Schema$DatabaseInstance[];
+    /**
+     * Optional. Total memory in bytes.
+     */
+    memoryBytes?: string | null;
+    /**
+     * Optional. Total memory in bytes limited by db deployment.
+     */
+    memoryLimitBytes?: string | null;
+  }
+  /**
+   * Details of a logical database.
+   */
+  export interface Schema$DatabaseDetails {
+    /**
+     * The allocated storage for the database in bytes.
+     */
+    allocatedStorageBytes?: string | null;
+    /**
+     * The name of the database.
+     */
+    databaseName?: string | null;
+    /**
+     * The parent database deployment that contains the logical database.
+     */
+    parentDatabaseDeployment?: Schema$DatabaseDetailsParentDatabaseDeployment;
+    /**
+     * The database schemas.
+     */
+    schemas?: Schema$DatabaseSchema[];
+  }
+  /**
+   * The identifiers of the parent database deployment.
+   */
+  export interface Schema$DatabaseDetailsParentDatabaseDeployment {
+    /**
+     * The parent database deployment generated ID.
+     */
+    generatedId?: string | null;
+    /**
+     * The parent database deployment optional manual unique ID set by the user.
+     */
+    manualUniqueId?: string | null;
+  }
+  /**
+   * Details of a database instance.
+   */
+  export interface Schema$DatabaseInstance {
+    /**
+     * The instance's name.
+     */
+    instanceName?: string | null;
+    /**
+     * The instance role in the database engine.
+     */
+    role?: string | null;
+  }
+  /**
+   * Details of a group of database objects.
+   */
+  export interface Schema$DatabaseObjects {
+    /**
+     * The category of the objects.
+     */
+    category?: string | null;
+    /**
+     * The number of objects.
+     */
+    count?: string | null;
+  }
+  /**
+   * DatabasePreferences enables you to create sets of preferences for your migrated databases.
+   */
+  export interface Schema$DatabasePreferences {
+    /**
+     * Optional. Preferences for target SQL Server on Cloud SQL when migrating from source Microsoft SQL server.
+     */
+    mssqlToCloudSqlForSqlServerPreferences?: Schema$DatabasePreferencesCloudSqlSqlServer;
+    /**
+     * Optional. Preferences for target MySQL on Cloud SQL when migrating from source MySQL.
+     */
+    mysqlToCloudSqlForMysqlPreferences?: Schema$DatabasePreferencesCloudSqlMySql;
+    /**
+     * Optional. Preferences for target PostgreSQL on Cloud SQL when migrating from source PostgreSQL.
+     */
+    postgresqlToCloudSqlForPostgresqlPreferences?: Schema$DatabasePreferencesCloudSqlPostgreSql;
+  }
+  /**
+   * Preferences common to Cloud SQL databases.
+   */
+  export interface Schema$DatabasePreferencesCloudSqlCommon {
+    /**
+     * Optional. Preferences for database backups.
+     */
+    backup?: Schema$DatabasePreferencesCloudSqlCommonBackup;
+    /**
+     * Optional. Commitment plan to consider when calculating costs. Only regular CUDs (not flexible) are currently available.
+     */
+    commitmentPlan?: string | null;
+    /**
+     * Optional. Cloud SQL edition. For SQL Server, only Enterprise is available.
+     */
+    edition?: string | null;
+    /**
+     * Optional. Persistent disk type to use. If unspecified, a disk type is recommended based on available usage data. For SQL Server, only SSD is available. For MySQL and PostgreSQL, only STANDARD (HDD) and SSD types are available.
+     */
+    persistentDiskType?: string | null;
+    /**
+     * Optional. Sizing optimization strategy of the database. Currently supported for Cloud SQL are just two values: SIZING_OPTIMIZATION_STRATEGY_MODERATE and SIZING_OPTIMIZATION_STRATEGY_SAME_AS_SOURCE. SIZING_OPTIMIZATION_STRATEGY_UNSPECIFIED will behave like SIZING_OPTIMIZATION_STRATEGY_MODERATE.
+     */
+    sizingOptimizationStrategy?: string | null;
+    /**
+     * Optional. Preferred zone availability.
+     */
+    zoneAvailability?: string | null;
+  }
+  /**
+   * Preferences for database backups.
+   */
+  export interface Schema$DatabasePreferencesCloudSqlCommonBackup {
+    /**
+     * Optional. Mode of automated backups.
+     */
+    backupMode?: string | null;
+  }
+  /**
+   * Preferences for MySQL on Cloud SQL.
+   */
+  export interface Schema$DatabasePreferencesCloudSqlMySql {
+    /**
+     * Optional. Preferences to Cloud SQL databases.
+     */
+    common?: Schema$DatabasePreferencesCloudSqlCommon;
+  }
+  /**
+   * Preferences for PostgreSQL on Cloud SQL.
+   */
+  export interface Schema$DatabasePreferencesCloudSqlPostgreSql {
+    /**
+     * Optional. Preferences to Cloud SQL databases.
+     */
+    common?: Schema$DatabasePreferencesCloudSqlCommon;
+  }
+  /**
+   * Preferences for SQL Server on Cloud SQL.
+   */
+  export interface Schema$DatabasePreferencesCloudSqlSqlServer {
+    /**
+     * Optional. Preferences to Cloud SQL databases.
+     */
+    common?: Schema$DatabasePreferencesCloudSqlCommon;
+    /**
+     * Optional. Preferences for multithreading support.
+     */
+    multithreading?: string | null;
+    /**
+     * Optional. Edition of Microsoft SQL version that is used on a Cloud SQL for SQL server instance.
+     */
+    versionType?: string | null;
+  }
+  /**
+   * Details of a database schema.
+   */
+  export interface Schema$DatabaseSchema {
+    /**
+     * Details of a Mysql schema.
+     */
+    mysql?: Schema$MySqlSchemaDetails;
+    /**
+     * List of details of objects by category.
+     */
+    objects?: Schema$DatabaseObjects[];
+    /**
+     * Details of a PostgreSql schema.
+     */
+    postgresql?: Schema$PostgreSqlSchemaDetails;
+    /**
+     * The name of the schema.
+     */
+    schemaName?: string | null;
+    /**
+     * Details of a SqlServer schema.
+     */
+    sqlServer?: Schema$SqlServerSchemaDetails;
+    /**
+     * The total size of tables in bytes.
+     */
+    tablesSizeBytes?: string | null;
   }
   /**
    * Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: * A full date, with non-zero year, month, and day values. * A month and day, with a zero year (for example, an anniversary). * A year on its own, with a zero month and a zero day. * A year and month, with a zero day (for example, a credit card expiration date). Related types: * google.type.TimeOfDay * google.type.DateTime * google.protobuf.Timestamp
@@ -698,6 +1229,71 @@ export namespace migrationcenter_v1alpha1 {
      * Output only. Software's name.
      */
     softwareName?: string | null;
+  }
+  /**
+   * Represents an installed Migration Center Discovery Client instance.
+   */
+  export interface Schema$DiscoveryClient {
+    /**
+     * Output only. Time when the discovery client was first created.
+     */
+    createTime?: string | null;
+    /**
+     * Optional. Free text description. Maximum length is 1000 characters.
+     */
+    description?: string | null;
+    /**
+     * Optional. Free text display name. Maximum length is 63 characters.
+     */
+    displayName?: string | null;
+    /**
+     * Output only. Errors affecting client functionality.
+     */
+    errors?: Schema$Status[];
+    /**
+     * Optional. Client expiration time in UTC. If specified, the backend will not accept new frames after this time.
+     */
+    expireTime?: string | null;
+    /**
+     * Output only. Last heartbeat time. Healthy clients are expected to send heartbeats regularly (normally every few minutes).
+     */
+    heartbeatTime?: string | null;
+    /**
+     * Optional. Labels as key value pairs.
+     */
+    labels?: {[key: string]: string} | null;
+    /**
+     * Output only. Identifier. Full name of this discovery client.
+     */
+    name?: string | null;
+    /**
+     * Required. Service account used by the discovery client for various operation.
+     */
+    serviceAccount?: string | null;
+    /**
+     * Output only. This field is intended for internal use.
+     */
+    signalsEndpoint?: string | null;
+    /**
+     * Required. Full name of the source object associated with this discovery client.
+     */
+    source?: string | null;
+    /**
+     * Output only. Current state of the discovery client.
+     */
+    state?: string | null;
+    /**
+     * Optional. Input only. Client time-to-live. If specified, the backend will not accept new frames after this time. This field is input only. The derived expiration time is provided as output through the `expire_time` field.
+     */
+    ttl?: string | null;
+    /**
+     * Output only. Time when the discovery client was last updated. This value is not updated by heartbeats, to view the last heartbeat time please refer to the `heartbeat_time` field.
+     */
+    updateTime?: string | null;
+    /**
+     * Output only. Client version, as reported in recent heartbeat.
+     */
+    version?: string | null;
   }
   /**
    * Single disk entry.
@@ -799,6 +1395,14 @@ export namespace migrationcenter_v1alpha1 {
      * Average IOPS sampled over a short window. Must be non-negative. Must be equal to the sum of read and write if one of them is positive. if both read and write are zero they are ignored.
      */
     averageIops?: number | null;
+    /**
+     * Average read IOPS sampled over a short window. Must be non-negative.
+     */
+    averageReadIops?: number | null;
+    /**
+     * Average write IOPS sampled over a short window. Must be non-negative.
+     */
+    averageWriteIops?: number | null;
   }
   /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
@@ -1243,9 +1847,25 @@ export namespace migrationcenter_v1alpha1 {
    */
   export interface Schema$ImportRowError {
     /**
+     * Error details for an archive file.
+     */
+    archiveError?: Schema$ImportRowErrorArchiveErrorDetails;
+    /**
+     * The asset title.
+     */
+    assetTitle?: string | null;
+    /**
+     * Error details for a CSV file.
+     */
+    csvError?: Schema$ImportRowErrorCsvErrorDetails;
+    /**
      * The list of errors detected in the row.
      */
     errors?: Schema$ImportError[];
+    /**
+     * Error details for a JSON file.
+     */
+    jsonError?: Schema$ImportRowErrorJsonErrorDetails;
     /**
      * The row number where the error was detected.
      */
@@ -1258,6 +1878,49 @@ export namespace migrationcenter_v1alpha1 {
      * The VM UUID.
      */
     vmUuid?: string | null;
+    /**
+     * Error details for an XLSX file.
+     */
+    xlsxError?: Schema$ImportRowErrorXlsxErrorDetails;
+  }
+  /**
+   * Error details for an archive file.
+   */
+  export interface Schema$ImportRowErrorArchiveErrorDetails {
+    /**
+     * Error details for a CSV file.
+     */
+    csvError?: Schema$ImportRowErrorCsvErrorDetails;
+    /**
+     * The file path inside the archive where the error was detected.
+     */
+    filePath?: string | null;
+  }
+  /**
+   * Error details for a CSV file.
+   */
+  export interface Schema$ImportRowErrorCsvErrorDetails {
+    /**
+     * The row number where the error was detected.
+     */
+    rowNumber?: number | null;
+  }
+  /**
+   * Error details for a JSON file.
+   */
+  export interface Schema$ImportRowErrorJsonErrorDetails {}
+  /**
+   * Error details for an XLSX file.
+   */
+  export interface Schema$ImportRowErrorXlsxErrorDetails {
+    /**
+     * The row number where the error was detected.
+     */
+    rowNumber?: number | null;
+    /**
+     * The name of the sheet where the error was detected.
+     */
+    sheet?: string | null;
   }
   /**
    * A resource that represents the inline import job payload.
@@ -1303,6 +1966,57 @@ export namespace migrationcenter_v1alpha1 {
     updateTime?: string | null;
   }
   /**
+   * An issue associated with a migration.
+   */
+  export interface Schema$Issue {
+    /**
+     * Output only. Details about a compatibility issue.
+     */
+    compatibilityIssue?: Schema$IssueCompatibilityIssue;
+    /**
+     * Output only. English description of the issue.
+     */
+    description?: string | null;
+    /**
+     * Output only. Unique identifier for this issue type.
+     */
+    issueCode?: string | null;
+  }
+  /**
+   * Details about a compatibility issue.
+   */
+  export interface Schema$IssueCompatibilityIssue {
+    /**
+     * Output only. Name of the object associated with this compatibility issue relative to the relevant asset. Does not represent a fully qualified resource name and is not intended for programmatic use.
+     */
+    associatedObject?: string | null;
+    /**
+     * Output only. Type of object associated with this migration compatibility issue.
+     */
+    associatedObjectType?: string | null;
+    /**
+     * Output only. A string representation of actual value associated with this issue. Some values may contain aggregated information, such as a flag name and the actual value assigned to it.
+     */
+    associatedValue?: string | null;
+    /**
+     * Output only. Category of this compatibility issue.
+     */
+    category?: string | null;
+  }
+  /**
+   * Response message for listing assets export jobs.
+   */
+  export interface Schema$ListAssetsExportJobsResponse {
+    /**
+     * Output only. The list of assets export jobs.
+     */
+    assetsExportJobs?: Schema$AssetsExportJob[];
+    /**
+     * Output only. A token identifying a page of results the server should return.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
    * Response message for listing assets.
    */
   export interface Schema$ListAssetsResponse {
@@ -1312,6 +2026,23 @@ export namespace migrationcenter_v1alpha1 {
     assets?: Schema$Asset[];
     /**
      * A token identifying a page of results the server should return.
+     */
+    nextPageToken?: string | null;
+    /**
+     * Locations that could not be reached.
+     */
+    unreachable?: string[] | null;
+  }
+  /**
+   * Response message for listing discovery clients.
+   */
+  export interface Schema$ListDiscoveryClientsResponse {
+    /**
+     * List of discovery clients.
+     */
+    discoveryClients?: Schema$DiscoveryClient[];
+    /**
+     * A token that can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
      */
     nextPageToken?: string | null;
     /**
@@ -1507,7 +2238,7 @@ export namespace migrationcenter_v1alpha1 {
     name?: string | null;
   }
   /**
-   * The type of machines to consider when calculating virtual machine migration insights and recommendations. Not all machine types are available in all zones and regions.
+   * The type of machines to consider when calculating virtual machine migration insights and recommendations for GCE. Not all machine types are available in all zones and regions.
    */
   export interface Schema$MachinePreferences {
     /**
@@ -1516,11 +2247,11 @@ export namespace migrationcenter_v1alpha1 {
     allowedMachineSeries?: Schema$MachineSeries[];
   }
   /**
-   * A Compute Engine machine series.
+   * A machine series, for a target product (e.g. Compute Engine, Google Cloud VMware Engine).
    */
   export interface Schema$MachineSeries {
     /**
-     * Code to identify a Compute Engine machine series. Consult https://cloud.google.com/compute/docs/machine-resource#machine_type_comparison for more details on the available series.
+     * Code to identify a machine series. Consult this for more details on the available series for Compute Engine: https://cloud.google.com/compute/docs/machine-resource#machine_type_comparison Consult this for more details on the available series for Google Cloud VMware Engine: https://cloud.google.com/vmware-engine/pricing
      */
     code?: string | null;
   }
@@ -1538,6 +2269,10 @@ export namespace migrationcenter_v1alpha1 {
    */
   export interface Schema$MigrationInsight {
     /**
+     * Output only. A Cloud database migration target.
+     */
+    cloudDatabaseTarget?: Schema$CloudDatabaseMigrationTarget;
+    /**
      * Output only. A Google Compute Engine Sole Tenant target.
      */
     computeEngineSoleTenantTarget?: Schema$ComputeEngineSoleTenantMigrationTarget;
@@ -1553,6 +2288,10 @@ export namespace migrationcenter_v1alpha1 {
      * Output only. A Google Kubernetes Engine target.
      */
     gkeTarget?: Schema$GoogleKubernetesEngineMigrationTarget;
+    /**
+     * Output only. Issues associated with this migration.
+     */
+    issues?: Schema$Issue[];
     /**
      * Output only. A VMWare Engine target.
      */
@@ -1574,6 +2313,104 @@ export namespace migrationcenter_v1alpha1 {
      * The whole units of the amount. For example if `currencyCode` is `"USD"`, then 1 unit is one US dollar.
      */
     units?: string | null;
+  }
+  /**
+   * Specific details for a Mysql database deployment.
+   */
+  export interface Schema$MysqlDatabaseDeployment {
+    /**
+     * Optional. List of MySql plugins.
+     */
+    plugins?: Schema$MySqlPlugin[];
+    /**
+     * Optional. List of MySql properties.
+     */
+    properties?: Schema$MySqlProperty[];
+    /**
+     * Optional. Number of resource groups.
+     */
+    resourceGroupsCount?: number | null;
+    /**
+     * Optional. List of MySql variables.
+     */
+    variables?: Schema$MySqlVariable[];
+  }
+  /**
+   * MySql plugin.
+   */
+  export interface Schema$MySqlPlugin {
+    /**
+     * Required. The plugin is active.
+     */
+    enabled?: boolean | null;
+    /**
+     * Required. The plugin name.
+     */
+    plugin?: string | null;
+    /**
+     * Required. The plugin version.
+     */
+    version?: string | null;
+  }
+  /**
+   * MySql property.
+   */
+  export interface Schema$MySqlProperty {
+    /**
+     * Required. The property is enabled.
+     */
+    enabled?: boolean | null;
+    /**
+     * Required. The property numeric value.
+     */
+    numericValue?: string | null;
+    /**
+     * Required. The property name.
+     */
+    property?: string | null;
+  }
+  /**
+   * Specific details for a Mysql database.
+   */
+  export interface Schema$MySqlSchemaDetails {
+    /**
+     * Optional. Mysql storage engine tables.
+     */
+    storageEngines?: Schema$MySqlStorageEngineDetails[];
+  }
+  /**
+   * Mysql storage engine tables.
+   */
+  export interface Schema$MySqlStorageEngineDetails {
+    /**
+     * Optional. The number of encrypted tables.
+     */
+    encryptedTableCount?: number | null;
+    /**
+     * Required. The storage engine.
+     */
+    engine?: string | null;
+    /**
+     * Optional. The number of tables.
+     */
+    tableCount?: number | null;
+  }
+  /**
+   * MySql variable.
+   */
+  export interface Schema$MySqlVariable {
+    /**
+     * Required. The variable category.
+     */
+    category?: string | null;
+    /**
+     * Required. The variable value.
+     */
+    value?: string | null;
+    /**
+     * Required. The variable name.
+     */
+    variable?: string | null;
   }
   /**
    * Details of network adapter.
@@ -1744,6 +2581,40 @@ export namespace migrationcenter_v1alpha1 {
     entries?: Schema$OpenFileDetails[];
   }
   /**
+   * Pricing options for OS images.
+   */
+  export interface Schema$OperatingSystemPricingPreferences {
+    /**
+     * Optional. Pricing options for RHEL images.
+     */
+    rhel?: Schema$OperatingSystemPricingPreferencesOperatingSystemPricing;
+    /**
+     * Optional. Pricing options for SLES images.
+     */
+    sles?: Schema$OperatingSystemPricingPreferencesOperatingSystemPricing;
+    /**
+     * Optional. Pricing options for SLES for SAP images.
+     */
+    slesForSap?: Schema$OperatingSystemPricingPreferencesOperatingSystemPricing;
+    /**
+     * Optional. Pricing options for Windows images. No commitment plans are available, set it to unspecified.
+     */
+    windows?: Schema$OperatingSystemPricingPreferencesOperatingSystemPricing;
+  }
+  /**
+   * Pricing options of an OS image.
+   */
+  export interface Schema$OperatingSystemPricingPreferencesOperatingSystemPricing {
+    /**
+     * Optional. The plan of commitments for committed use discounts (CUD).
+     */
+    commitmentPlan?: string | null;
+    /**
+     * Optional. License type of the OS image.
+     */
+    licenseType?: string | null;
+  }
+  /**
    * This resource represents a long-running operation that is the result of a network API call.
    */
   export interface Schema$Operation {
@@ -1874,6 +2745,95 @@ export namespace migrationcenter_v1alpha1 {
     vmwareDetails?: Schema$VmwarePlatformDetails;
   }
   /**
+   * Specific details for a PostgreSQL database deployment.
+   */
+  export interface Schema$PostgreSqlDatabaseDeployment {
+    /**
+     * Optional. List of PostgreSql properties.
+     */
+    properties?: Schema$PostgreSqlProperty[];
+    /**
+     * Optional. List of PostgreSql settings.
+     */
+    settings?: Schema$PostgreSqlSetting[];
+  }
+  /**
+   * PostgreSql extension.
+   */
+  export interface Schema$PostgreSqlExtension {
+    /**
+     * Required. The extension name.
+     */
+    extension?: string | null;
+    /**
+     * Required. The extension version.
+     */
+    version?: string | null;
+  }
+  /**
+   * PostgreSql property.
+   */
+  export interface Schema$PostgreSqlProperty {
+    /**
+     * Required. The property is enabled.
+     */
+    enabled?: boolean | null;
+    /**
+     * Required. The property numeric value.
+     */
+    numericValue?: string | null;
+    /**
+     * Required. The property name.
+     */
+    property?: string | null;
+  }
+  /**
+   * Specific details for a PostgreSql schema.
+   */
+  export interface Schema$PostgreSqlSchemaDetails {
+    /**
+     * Optional. PostgreSql foreign tables.
+     */
+    foreignTablesCount?: number | null;
+    /**
+     * Optional. PostgreSql extensions.
+     */
+    postgresqlExtensions?: Schema$PostgreSqlExtension[];
+  }
+  /**
+   * PostgreSql setting.
+   */
+  export interface Schema$PostgreSqlSetting {
+    /**
+     * Required. The setting boolean value.
+     */
+    boolValue?: boolean | null;
+    /**
+     * Required. The setting int value.
+     */
+    intValue?: string | null;
+    /**
+     * Required. The setting real value.
+     */
+    realValue?: number | null;
+    /**
+     * Required. The setting name.
+     */
+    setting?: string | null;
+    /**
+     * Required. The setting source.
+     */
+    source?: string | null;
+    /**
+     * Required. The setting string value. Notice that enum values are stored as strings.
+     */
+    stringValue?: string | null;
+    /**
+     * Optional. The setting unit.
+     */
+    unit?: string | null;
+  }
+  /**
    * The preferences that apply to all assets in a given context.
    */
   export interface Schema$PreferenceSet {
@@ -1881,6 +2841,10 @@ export namespace migrationcenter_v1alpha1 {
      * Output only. The timestamp when the preference set was created.
      */
     createTime?: string | null;
+    /**
+     * Optional. A set of preferences that applies to all databases in the context.
+     */
+    databasePreferences?: Schema$DatabasePreferences;
     /**
      * A description of the preference set.
      */
@@ -1893,6 +2857,10 @@ export namespace migrationcenter_v1alpha1 {
      * Output only. Name of the preference set.
      */
     name?: string | null;
+    /**
+     * Optional. Region preferences for assets using this preference set. If you are unsure which value to set, the migration service API region is often a good value to start with. If unspecified, VirtualMachinePreferences.RegionPreferences is used.
+     */
+    regionPreferences?: Schema$RegionPreferences;
     /**
      * Output only. The timestamp when the preference set was last updated.
      */
@@ -2020,9 +2988,17 @@ export namespace migrationcenter_v1alpha1 {
      */
     allAssetsStats?: Schema$ReportSummaryAssetAggregateStats;
     /**
+     * Output only. Aggregate statistics for unique database assets across all the groups.
+     */
+    databaseStats?: Schema$ReportSummaryAssetAggregateStats;
+    /**
      * Findings for each Group included in this report.
      */
     groupFindings?: Schema$ReportSummaryGroupFinding[];
+    /**
+     * Output only. Aggregate statistics for unique virtual machine assets across all the groups.
+     */
+    virtualMachineStats?: Schema$ReportSummaryAssetAggregateStats;
   }
   /**
    * Aggregate statistics for a collection of assets.
@@ -2036,6 +3012,10 @@ export namespace migrationcenter_v1alpha1 {
      * Histogram showing a distribution of CPU core counts.
      */
     coreCountHistogram?: Schema$ReportSummaryHistogramChartData;
+    /**
+     * Output only. Count of assets grouped by database type. Keys here are taken from DatabaseType enum. Only present for databases.
+     */
+    databaseTypes?: Schema$ReportSummaryChartData;
     /**
      * Histogram showing a distribution of memory sizes.
      */
@@ -2104,6 +3084,19 @@ export namespace migrationcenter_v1alpha1 {
     value?: number | null;
   }
   /**
+   * DatabaseFinding contains an aggregate costs and shapes for a single database type.
+   */
+  export interface Schema$ReportSummaryDatabaseFinding {
+    /**
+     * Output only. Number of database assets which were successfully assigned in this finding.
+     */
+    allocatedAssetCount?: string | null;
+    /**
+     * Output only. Number of database assets in this finding.
+     */
+    totalAssets?: string | null;
+  }
+  /**
    * Summary Findings for a specific Group.
    */
   export interface Schema$ReportSummaryGroupFinding {
@@ -2112,6 +3105,14 @@ export namespace migrationcenter_v1alpha1 {
      */
     assetAggregateStats?: Schema$ReportSummaryAssetAggregateStats;
     /**
+     * Output only. Asset type for the group finding.
+     */
+    assetType?: string | null;
+    /**
+     * Output only. Source asset database type for the group finding. Only present for databases.
+     */
+    databaseType?: string | null;
+    /**
      * Description for this group finding.
      */
     description?: string | null;
@@ -2119,6 +3120,10 @@ export namespace migrationcenter_v1alpha1 {
      * Display Name for this group finding.
      */
     displayName?: string | null;
+    /**
+     * Output only. Full name of the group.
+     */
+    group?: string | null;
     /**
      * This field is deprecated, do not rely on it having a value.
      */
@@ -2132,6 +3137,10 @@ export namespace migrationcenter_v1alpha1 {
    * Summary Findings for a specific Group/PreferenceSet combination.
    */
   export interface Schema$ReportSummaryGroupPreferenceSetFinding {
+    /**
+     * Output only. Details about databases in this finding. Only present for databases.
+     */
+    databaseFinding?: Schema$ReportSummaryDatabaseFinding;
     /**
      * Description for the Preference Set.
      */
@@ -2153,6 +3162,14 @@ export namespace migrationcenter_v1alpha1 {
      */
     monthlyCostCompute?: Schema$Money;
     /**
+     * Output only. Backup monthly cost for this preference set. Only present for databases.
+     */
+    monthlyCostDatabaseBackup?: Schema$Money;
+    /**
+     * Output only. Database licensing monthly cost for this preference set. Only present for databases.
+     */
+    monthlyCostDatabaseLicensing?: Schema$Money;
+    /**
      * Network Egress monthly cost for this preference set. Only present for virtual machines.
      */
     monthlyCostNetworkEgress?: Schema$Money;
@@ -2172,6 +3189,10 @@ export namespace migrationcenter_v1alpha1 {
      * Total monthly cost for this preference set.
      */
     monthlyCostTotal?: Schema$Money;
+    /**
+     * Output only. A copy of the preference set used for this finding.
+     */
+    preferenceSet?: Schema$PreferenceSet;
     /**
      * Target region for this Preference Set
      */
@@ -2344,6 +3365,24 @@ export namespace migrationcenter_v1alpha1 {
     vmwareNode?: Schema$ReportSummaryVMWareNode;
   }
   /**
+   * A request to run an assets export job.
+   */
+  export interface Schema$RunAssetsExportJobRequest {
+    /**
+     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string | null;
+  }
+  /**
+   * Response message for running an assets export job.
+   */
+  export interface Schema$RunAssetsExportJobResponse {
+    /**
+     * Output only. Execution status of the assets export operation.
+     */
+    assetsExportJobExecution?: Schema$AssetsExportJobExecution;
+  }
+  /**
    * A request to run an import job.
    */
   export interface Schema$RunImportJobRequest {
@@ -2459,6 +3498,19 @@ export namespace migrationcenter_v1alpha1 {
     mode?: string | null;
   }
   /**
+   * A request to send a discovery client heartbeat.
+   */
+  export interface Schema$SendDiscoveryClientHeartbeatRequest {
+    /**
+     * Optional. Errors affecting client functionality.
+     */
+    errors?: Schema$Status[];
+    /**
+     * Optional. Client application version.
+     */
+    version?: string | null;
+  }
+  /**
    * Describes the Migration Center settings related to the project.
    */
   export interface Schema$Settings {
@@ -2474,6 +3526,32 @@ export namespace migrationcenter_v1alpha1 {
      * The preference set used by default for a project.
      */
     preferenceSet?: string | null;
+  }
+  /**
+   * Contains a signed URI.
+   */
+  export interface Schema$SignedUri {
+    /**
+     * Output only. Name of the file the Signed URI references.
+     */
+    file?: string | null;
+    /**
+     * Output only. Download URI for the file.
+     */
+    uri?: string | null;
+  }
+  /**
+   * Signed URI destination configuration.
+   */
+  export interface Schema$SignedUriDestination {}
+  /**
+   * Contains a list of Signed URIs.
+   */
+  export interface Schema$SignedUris {
+    /**
+     * Output only. List of signed URIs.
+     */
+    signedUris?: Schema$SignedUri[];
   }
   /**
    * An insight regarding software detected on an asset.
@@ -2504,6 +3582,10 @@ export namespace migrationcenter_v1alpha1 {
      * A list of sole tenant node types. An empty list means that all possible node types will be considered.
      */
     nodeTypes?: Schema$SoleTenantNodeType[];
+    /**
+     * Optional. Pricing options for OS images.
+     */
+    osPricingPreferences?: Schema$OperatingSystemPricingPreferences;
   }
   /**
    * A Sole Tenant node type.
@@ -2562,6 +3644,70 @@ export namespace migrationcenter_v1alpha1 {
      * Output only. The timestamp when the source was last updated.
      */
     updateTime?: string | null;
+  }
+  /**
+   * Specific details for a Microsoft SQL Server database deployment.
+   */
+  export interface Schema$SqlServerDatabaseDeployment {
+    /**
+     * Optional. List of SQL Server features.
+     */
+    features?: Schema$SqlServerFeature[];
+    /**
+     * Optional. List of SQL Server server flags.
+     */
+    serverFlags?: Schema$SqlServerServerFlag[];
+    /**
+     * Optional. List of SQL Server trace flags.
+     */
+    traceFlags?: Schema$SqlServerTraceFlag[];
+  }
+  /**
+   * SQL Server feature details.
+   */
+  export interface Schema$SqlServerFeature {
+    /**
+     * Required. Field enabled is set when a feature is used on the source deployment.
+     */
+    enabled?: boolean | null;
+    /**
+     * Required. The feature name.
+     */
+    featureName?: string | null;
+  }
+  /**
+   * Specific details for a SqlServer database.
+   */
+  export interface Schema$SqlServerSchemaDetails {}
+  /**
+   * SQL Server server flag details.
+   */
+  export interface Schema$SqlServerServerFlag {
+    /**
+     * Required. The server flag name.
+     */
+    serverFlagName?: string | null;
+    /**
+     * Required. The server flag value set by the user.
+     */
+    value?: string | null;
+    /**
+     * Required. The server flag actual value. If `value_in_use` is different from `value` it means that either the configuration change was not applied or it is an expected behavior. See SQL Server documentation for more details.
+     */
+    valueInUse?: string | null;
+  }
+  /**
+   * SQL Server trace flag details.
+   */
+  export interface Schema$SqlServerTraceFlag {
+    /**
+     * Required. The trace flag scope.
+     */
+    scope?: string | null;
+    /**
+     * Required. The trace flag name.
+     */
+    traceFlagName?: string | null;
   }
   /**
    * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
@@ -2695,7 +3841,7 @@ export namespace migrationcenter_v1alpha1 {
    */
   export interface Schema$VirtualMachineDetails {
     /**
-     * Number of CPU cores in the VirtualMachine. Must be non-negative.
+     * Number of logical CPU cores in the VirtualMachine. Must be non-negative.
      */
     coreCount?: number | null;
     /**
@@ -2956,6 +4102,8 @@ export namespace migrationcenter_v1alpha1 {
   export class Resource$Projects$Locations {
     context: APIRequestContext;
     assets: Resource$Projects$Locations$Assets;
+    assetsExportJobs: Resource$Projects$Locations$Assetsexportjobs;
+    discoveryClients: Resource$Projects$Locations$Discoveryclients;
     groups: Resource$Projects$Locations$Groups;
     importJobs: Resource$Projects$Locations$Importjobs;
     operations: Resource$Projects$Locations$Operations;
@@ -2965,6 +4113,12 @@ export namespace migrationcenter_v1alpha1 {
     constructor(context: APIRequestContext) {
       this.context = context;
       this.assets = new Resource$Projects$Locations$Assets(this.context);
+      this.assetsExportJobs = new Resource$Projects$Locations$Assetsexportjobs(
+        this.context
+      );
+      this.discoveryClients = new Resource$Projects$Locations$Discoveryclients(
+        this.context
+      );
       this.groups = new Resource$Projects$Locations$Groups(this.context);
       this.importJobs = new Resource$Projects$Locations$Importjobs(
         this.context
@@ -3048,6 +4202,7 @@ export namespace migrationcenter_v1alpha1 {
           {
             url: (rootUrl + '/v1alpha1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3133,6 +4288,7 @@ export namespace migrationcenter_v1alpha1 {
           {
             url: (rootUrl + '/v1alpha1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3226,6 +4382,7 @@ export namespace migrationcenter_v1alpha1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3311,6 +4468,7 @@ export namespace migrationcenter_v1alpha1 {
           {
             url: (rootUrl + '/v1alpha1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -3467,6 +4625,7 @@ export namespace migrationcenter_v1alpha1 {
               rootUrl + '/v1alpha1/{+parent}/assets:aggregateValues'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3557,6 +4716,7 @@ export namespace migrationcenter_v1alpha1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3652,6 +4812,7 @@ export namespace migrationcenter_v1alpha1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3737,6 +4898,7 @@ export namespace migrationcenter_v1alpha1 {
           {
             url: (rootUrl + '/v1alpha1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -3822,6 +4984,7 @@ export namespace migrationcenter_v1alpha1 {
           {
             url: (rootUrl + '/v1alpha1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3913,6 +5076,7 @@ export namespace migrationcenter_v1alpha1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3998,6 +5162,7 @@ export namespace migrationcenter_v1alpha1 {
           {
             url: (rootUrl + '/v1alpha1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -4093,6 +5258,7 @@ export namespace migrationcenter_v1alpha1 {
               rootUrl + '/v1alpha1/{+parent}/assets:reportAssetFrames'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4238,6 +5404,1164 @@ export namespace migrationcenter_v1alpha1 {
     requestBody?: Schema$Frames;
   }
 
+  export class Resource$Projects$Locations$Assetsexportjobs {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Creates a new assets export job.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Locations$Assetsexportjobs$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Projects$Locations$Assetsexportjobs$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    create(
+      params: Params$Resource$Projects$Locations$Assetsexportjobs$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Assetsexportjobs$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Assetsexportjobs$Create,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$Operation>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Assetsexportjobs$Create
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Assetsexportjobs$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Assetsexportjobs$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://migrationcenter.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha1/{+parent}/assetsExportJobs').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Deletes an assets export job.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Assetsexportjobs$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Assetsexportjobs$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    delete(
+      params: Params$Resource$Projects$Locations$Assetsexportjobs$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Assetsexportjobs$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Assetsexportjobs$Delete,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Assetsexportjobs$Delete
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Assetsexportjobs$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Assetsexportjobs$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://migrationcenter.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Gets the details of an assets export job.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Assetsexportjobs$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Assetsexportjobs$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AssetsExportJob>;
+    get(
+      params: Params$Resource$Projects$Locations$Assetsexportjobs$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Assetsexportjobs$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$AssetsExportJob>,
+      callback: BodyResponseCallback<Schema$AssetsExportJob>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Assetsexportjobs$Get,
+      callback: BodyResponseCallback<Schema$AssetsExportJob>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$AssetsExportJob>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Assetsexportjobs$Get
+        | BodyResponseCallback<Schema$AssetsExportJob>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AssetsExportJob>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AssetsExportJob>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$AssetsExportJob> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Assetsexportjobs$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Assetsexportjobs$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://migrationcenter.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$AssetsExportJob>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$AssetsExportJob>(parameters);
+      }
+    }
+
+    /**
+     * Lists all the assets export jobs in a given project and location.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Assetsexportjobs$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Assetsexportjobs$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListAssetsExportJobsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Assetsexportjobs$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Assetsexportjobs$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListAssetsExportJobsResponse>,
+      callback: BodyResponseCallback<Schema$ListAssetsExportJobsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Assetsexportjobs$List,
+      callback: BodyResponseCallback<Schema$ListAssetsExportJobsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListAssetsExportJobsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Assetsexportjobs$List
+        | BodyResponseCallback<Schema$ListAssetsExportJobsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListAssetsExportJobsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListAssetsExportJobsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListAssetsExportJobsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Assetsexportjobs$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Assetsexportjobs$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://migrationcenter.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha1/{+parent}/assetsExportJobs').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListAssetsExportJobsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListAssetsExportJobsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Runs an assets export job, returning an AssetsExportJobExecution.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    run(
+      params: Params$Resource$Projects$Locations$Assetsexportjobs$Run,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    run(
+      params?: Params$Resource$Projects$Locations$Assetsexportjobs$Run,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    run(
+      params: Params$Resource$Projects$Locations$Assetsexportjobs$Run,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    run(
+      params: Params$Resource$Projects$Locations$Assetsexportjobs$Run,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    run(
+      params: Params$Resource$Projects$Locations$Assetsexportjobs$Run,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    run(callback: BodyResponseCallback<Schema$Operation>): void;
+    run(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Assetsexportjobs$Run
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Assetsexportjobs$Run;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Assetsexportjobs$Run;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://migrationcenter.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha1/{+name}:run').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Assetsexportjobs$Create
+    extends StandardParameters {
+    /**
+     * Required. The ID to use for the asset export job.
+     */
+    assetsExportJobId?: string;
+    /**
+     * Required. The parent resource where the assts export job will be created.
+     */
+    parent?: string;
+    /**
+     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$AssetsExportJob;
+  }
+  export interface Params$Resource$Projects$Locations$Assetsexportjobs$Delete
+    extends StandardParameters {
+    /**
+     * Required. The name of the assets export job to delete.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Assetsexportjobs$Get
+    extends StandardParameters {
+    /**
+     * Required. Name of the resource.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Assetsexportjobs$List
+    extends StandardParameters {
+    /**
+     * Optional. Requested page size. The server may return fewer items than requested. If unspecified, the server will pick an appropriate default value.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A token identifying a page of results that the server should return.
+     */
+    pageToken?: string;
+    /**
+     * Required. Parent resource.
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Assetsexportjobs$Run
+    extends StandardParameters {
+    /**
+     * Required. Name of the resource.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$RunAssetsExportJobRequest;
+  }
+
+  export class Resource$Projects$Locations$Discoveryclients {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Creates a new discovery client.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Locations$Discoveryclients$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Projects$Locations$Discoveryclients$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    create(
+      params: Params$Resource$Projects$Locations$Discoveryclients$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Discoveryclients$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Discoveryclients$Create,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$Operation>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Discoveryclients$Create
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Discoveryclients$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Discoveryclients$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://migrationcenter.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha1/{+parent}/discoveryClients').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Deletes a discovery client.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Discoveryclients$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Discoveryclients$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    delete(
+      params: Params$Resource$Projects$Locations$Discoveryclients$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Discoveryclients$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Discoveryclients$Delete,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Discoveryclients$Delete
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Discoveryclients$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Discoveryclients$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://migrationcenter.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Gets the details of a discovery client.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Discoveryclients$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Discoveryclients$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$DiscoveryClient>;
+    get(
+      params: Params$Resource$Projects$Locations$Discoveryclients$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Discoveryclients$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$DiscoveryClient>,
+      callback: BodyResponseCallback<Schema$DiscoveryClient>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Discoveryclients$Get,
+      callback: BodyResponseCallback<Schema$DiscoveryClient>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$DiscoveryClient>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Discoveryclients$Get
+        | BodyResponseCallback<Schema$DiscoveryClient>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$DiscoveryClient>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$DiscoveryClient>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$DiscoveryClient> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Discoveryclients$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Discoveryclients$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://migrationcenter.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$DiscoveryClient>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$DiscoveryClient>(parameters);
+      }
+    }
+
+    /**
+     * Lists all the discovery clients in a given project and location.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Discoveryclients$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Discoveryclients$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListDiscoveryClientsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Discoveryclients$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Discoveryclients$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListDiscoveryClientsResponse>,
+      callback: BodyResponseCallback<Schema$ListDiscoveryClientsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Discoveryclients$List,
+      callback: BodyResponseCallback<Schema$ListDiscoveryClientsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListDiscoveryClientsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Discoveryclients$List
+        | BodyResponseCallback<Schema$ListDiscoveryClientsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListDiscoveryClientsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListDiscoveryClientsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListDiscoveryClientsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Discoveryclients$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Discoveryclients$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://migrationcenter.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha1/{+parent}/discoveryClients').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListDiscoveryClientsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListDiscoveryClientsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Updates a discovery client.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Locations$Discoveryclients$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Projects$Locations$Discoveryclients$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    patch(
+      params: Params$Resource$Projects$Locations$Discoveryclients$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Discoveryclients$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Discoveryclients$Patch,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$Operation>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Discoveryclients$Patch
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Discoveryclients$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Discoveryclients$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://migrationcenter.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Sends a discovery client heartbeat. Healthy clients are expected to send heartbeats regularly (normally every few minutes).
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    sendHeartbeat(
+      params: Params$Resource$Projects$Locations$Discoveryclients$Sendheartbeat,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    sendHeartbeat(
+      params?: Params$Resource$Projects$Locations$Discoveryclients$Sendheartbeat,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    sendHeartbeat(
+      params: Params$Resource$Projects$Locations$Discoveryclients$Sendheartbeat,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    sendHeartbeat(
+      params: Params$Resource$Projects$Locations$Discoveryclients$Sendheartbeat,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    sendHeartbeat(
+      params: Params$Resource$Projects$Locations$Discoveryclients$Sendheartbeat,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    sendHeartbeat(callback: BodyResponseCallback<Schema$Operation>): void;
+    sendHeartbeat(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Discoveryclients$Sendheartbeat
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Discoveryclients$Sendheartbeat;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Discoveryclients$Sendheartbeat;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://migrationcenter.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha1/{+name}:sendHeartbeat').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Discoveryclients$Create
+    extends StandardParameters {
+    /**
+     * Required. User specified ID for the discovery client. It will become the last component of the discovery client name. The ID must be unique within the project, is restricted to lower-cased letters and has a maximum length of 63 characters. The ID must match the regular expression: `[a-z]([a-z0-9-]{0,61\}[a-z0-9])?`.
+     */
+    discoveryClientId?: string;
+    /**
+     * Required. Parent resource.
+     */
+    parent?: string;
+    /**
+     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$DiscoveryClient;
+  }
+  export interface Params$Resource$Projects$Locations$Discoveryclients$Delete
+    extends StandardParameters {
+    /**
+     * Required. The discovery client name.
+     */
+    name?: string;
+    /**
+     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Discoveryclients$Get
+    extends StandardParameters {
+    /**
+     * Required. The discovery client name.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Discoveryclients$List
+    extends StandardParameters {
+    /**
+     * Optional. Filter expression to filter results by.
+     */
+    filter?: string;
+    /**
+     * Optional. Field to sort by.
+     */
+    orderBy?: string;
+    /**
+     * Optional. The maximum number of items to return. The server may return fewer items than requested. If unspecified, the server will pick an appropriate default value.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A page token, received from a previous `ListDiscoveryClients` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListDiscoveryClients` must match the call that provided the page token.
+     */
+    pageToken?: string;
+    /**
+     * Required. Parent resource.
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Discoveryclients$Patch
+    extends StandardParameters {
+    /**
+     * Output only. Identifier. Full name of this discovery client.
+     */
+    name?: string;
+    /**
+     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+    /**
+     * Required. Update mask is used to specify the fields to be overwritten in the `DiscoveryClient` resource by the update. The values specified in the `update_mask` field are relative to the resource, not the full request. A field will be overwritten if it is in the mask. A single * value in the mask lets you to overwrite all fields.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$DiscoveryClient;
+  }
+  export interface Params$Resource$Projects$Locations$Discoveryclients$Sendheartbeat
+    extends StandardParameters {
+    /**
+     * Required. The discovery client name.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$SendDiscoveryClientHeartbeatRequest;
+  }
+
   export class Resource$Projects$Locations$Groups {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
@@ -4314,6 +6638,7 @@ export namespace migrationcenter_v1alpha1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4402,6 +6727,7 @@ export namespace migrationcenter_v1alpha1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4487,6 +6813,7 @@ export namespace migrationcenter_v1alpha1 {
           {
             url: (rootUrl + '/v1alpha1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -4572,6 +6899,7 @@ export namespace migrationcenter_v1alpha1 {
           {
             url: (rootUrl + '/v1alpha1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4663,6 +6991,7 @@ export namespace migrationcenter_v1alpha1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4748,6 +7077,7 @@ export namespace migrationcenter_v1alpha1 {
           {
             url: (rootUrl + '/v1alpha1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -4836,6 +7166,7 @@ export namespace migrationcenter_v1alpha1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5042,6 +7373,7 @@ export namespace migrationcenter_v1alpha1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5127,6 +7459,7 @@ export namespace migrationcenter_v1alpha1 {
           {
             url: (rootUrl + '/v1alpha1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -5212,6 +7545,7 @@ export namespace migrationcenter_v1alpha1 {
           {
             url: (rootUrl + '/v1alpha1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5305,6 +7639,7 @@ export namespace migrationcenter_v1alpha1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5390,6 +7725,7 @@ export namespace migrationcenter_v1alpha1 {
           {
             url: (rootUrl + '/v1alpha1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -5478,6 +7814,7 @@ export namespace migrationcenter_v1alpha1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5566,6 +7903,7 @@ export namespace migrationcenter_v1alpha1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5780,6 +8118,7 @@ export namespace migrationcenter_v1alpha1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5866,6 +8205,7 @@ export namespace migrationcenter_v1alpha1 {
           {
             url: (rootUrl + '/v1alpha1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -5952,6 +8292,7 @@ export namespace migrationcenter_v1alpha1 {
           {
             url: (rootUrl + '/v1alpha1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6048,6 +8389,7 @@ export namespace migrationcenter_v1alpha1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6205,6 +8547,7 @@ export namespace migrationcenter_v1alpha1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -6290,6 +8633,7 @@ export namespace migrationcenter_v1alpha1 {
           {
             url: (rootUrl + '/v1alpha1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -6375,6 +8719,7 @@ export namespace migrationcenter_v1alpha1 {
           {
             url: (rootUrl + '/v1alpha1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6468,6 +8813,7 @@ export namespace migrationcenter_v1alpha1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6609,6 +8955,7 @@ export namespace migrationcenter_v1alpha1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -6694,6 +9041,7 @@ export namespace migrationcenter_v1alpha1 {
           {
             url: (rootUrl + '/v1alpha1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -6779,6 +9127,7 @@ export namespace migrationcenter_v1alpha1 {
           {
             url: (rootUrl + '/v1alpha1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6874,6 +9223,7 @@ export namespace migrationcenter_v1alpha1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6959,6 +9309,7 @@ export namespace migrationcenter_v1alpha1 {
           {
             url: (rootUrl + '/v1alpha1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -7136,6 +9487,7 @@ export namespace migrationcenter_v1alpha1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -7221,6 +9573,7 @@ export namespace migrationcenter_v1alpha1 {
           {
             url: (rootUrl + '/v1alpha1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -7306,6 +9659,7 @@ export namespace migrationcenter_v1alpha1 {
           {
             url: (rootUrl + '/v1alpha1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -7401,6 +9755,7 @@ export namespace migrationcenter_v1alpha1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -7563,6 +9918,7 @@ export namespace migrationcenter_v1alpha1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -7649,6 +10005,7 @@ export namespace migrationcenter_v1alpha1 {
           {
             url: (rootUrl + '/v1alpha1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -7735,6 +10092,7 @@ export namespace migrationcenter_v1alpha1 {
           {
             url: (rootUrl + '/v1alpha1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -7827,6 +10185,7 @@ export namespace migrationcenter_v1alpha1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -7996,6 +10355,7 @@ export namespace migrationcenter_v1alpha1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -8081,6 +10441,7 @@ export namespace migrationcenter_v1alpha1 {
           {
             url: (rootUrl + '/v1alpha1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -8166,6 +10527,7 @@ export namespace migrationcenter_v1alpha1 {
           {
             url: (rootUrl + '/v1alpha1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -8257,6 +10619,7 @@ export namespace migrationcenter_v1alpha1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -8342,6 +10705,7 @@ export namespace migrationcenter_v1alpha1 {
           {
             url: (rootUrl + '/v1alpha1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -8517,6 +10881,7 @@ export namespace migrationcenter_v1alpha1 {
           {
             url: (rootUrl + '/v1alpha1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -8611,6 +10976,7 @@ export namespace migrationcenter_v1alpha1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),

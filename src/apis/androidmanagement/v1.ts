@@ -392,6 +392,10 @@ export namespace androidmanagement_v1 {
      */
     permissionGrants?: Schema$PermissionGrant[];
     /**
+     * Optional. Specifies whether user control is permitted for the app. User control includes user actions like force-stopping and clearing app data. Supported on Android 11 and above.
+     */
+    userControlSettings?: string | null;
+    /**
      * Specifies whether the app installed in the work profile is allowed to add widgets to the home screen.
      */
     workProfileWidgets?: string | null;
@@ -539,7 +543,7 @@ export namespace androidmanagement_v1 {
    */
   export interface Schema$BatchUsageLogEvents {
     /**
-     * The name of the device in the form ‘enterprises/{enterpriseId\}/devices/{deviceId\}’
+     * If present, the name of the device in the form ‘enterprises/{enterpriseId\}/devices/{deviceId\}’
      */
     device?: string | null;
     /**
@@ -551,7 +555,7 @@ export namespace androidmanagement_v1 {
      */
     usageLogEvents?: Schema$UsageLogEvent[];
     /**
-     * The resource name of the user that owns this device in the form ‘enterprises/{enterpriseId\}/users/{userId\}’.
+     * If present, the resource name of the user that owns this device in the form ‘enterprises/{enterpriseId\}/users/{userId\}’.
      */
     user?: string | null;
   }
@@ -1020,6 +1024,10 @@ export namespace androidmanagement_v1 {
      * Controls configuring and using Wi-Fi direct settings. Supported on company-owned devices running Android 13 and above.
      */
     wifiDirectSettings?: string | null;
+    /**
+     * Restrictions on which Wi-Fi SSIDs the device can connect to. Note that this does not affect which networks can be configured on the device. Supported on company-owned devices running Android 13 and above.
+     */
+    wifiSsidPolicy?: Schema$WifiSsidPolicy;
   }
   /**
    * Controls for device radio settings.
@@ -1113,6 +1121,19 @@ export namespace androidmanagement_v1 {
     width?: number | null;
   }
   /**
+   * Controls for the display settings.
+   */
+  export interface Schema$DisplaySettings {
+    /**
+     * Optional. Controls the screen brightness settings.
+     */
+    screenBrightnessSettings?: Schema$ScreenBrightnessSettings;
+    /**
+     * Optional. Controls the screen timeout settings.
+     */
+    screenTimeoutSettings?: Schema$ScreenTimeoutSettings;
+  }
+  /**
    * A DNS lookup event was initiated through the standard network stack.
    */
   export interface Schema$DnsEvent {
@@ -1191,7 +1212,7 @@ export namespace androidmanagement_v1 {
      */
     qrCode?: string | null;
     /**
-     * The user associated with this enrollment token. If it's specified when the enrollment token is created and the user does not exist, the user will be created. This field must not contain personally identifiable information. Only the account_identifier field needs to be set.
+     * This field is deprecated and the value is ignored.
      */
     user?: Schema$User;
     /**
@@ -1220,6 +1241,10 @@ export namespace androidmanagement_v1 {
      */
     enterpriseDisplayName?: string | null;
     /**
+     * Settings for Google-provided user authentication.
+     */
+    googleAuthenticationSettings?: Schema$GoogleAuthenticationSettings;
+    /**
      * An image displayed as a logo during device provisioning. Supported types are: image/bmp, image/gif, image/x-ico, image/jpeg, image/png, image/webp, image/vnd.wap.wbmp, image/x-adobe-dng.
      */
     logo?: Schema$ExternalData;
@@ -1245,7 +1270,7 @@ export namespace androidmanagement_v1 {
     termsAndConditions?: Schema$TermsAndConditions[];
   }
   /**
-   * Configuration to enable an app as an extension app, with the capability of interacting with Android Device Policy offline. For Android versions 13 and above, extension apps are exempt from battery restrictions so will not be placed into the restricted App Standby Bucket (https://developer.android.com/topic/performance/appstandby#restricted-bucket). Extensions apps are also protected against users clearing their data or force-closing the application, although admins can continue to use the clear app data command (https://developer.android.com/management/reference/rest/v1/enterprises.devices/issueCommand#CommandType) on extension apps if needed for Android 13 and above.
+   * Configuration to enable an app as an extension app, with the capability of interacting with Android Device Policy offline. For Android versions 13 and above, extension apps are exempt from battery restrictions so will not be placed into the restricted App Standby Bucket (https://developer.android.com/topic/performance/appstandby#restricted-bucket). Extensions apps are also protected against users clearing their data or force-closing the application, although admins can continue to use the clear app data command on extension apps if needed for Android 13 and above.
    */
   export interface Schema$ExtensionConfig {
     /**
@@ -1300,6 +1325,15 @@ export namespace androidmanagement_v1 {
      * The start date (inclusive) of the freeze period. Note: year must not be set. For example, {"month": 1,"date": 30\}.
      */
     startDate?: Schema$Date;
+  }
+  /**
+   * Contains settings for Google-provided user authentication.
+   */
+  export interface Schema$GoogleAuthenticationSettings {
+    /**
+     * Output only. Whether users need to be authenticated by Google during the enrollment process. IT admin can specify if Google authentication is enabled for the enterprise for knowledge worker devices. This value can be set only via the Google Admin Console. Google authentication can be used with signin_url In the case where Google authentication is required and a signin_url is specified, Google authentication will be launched before signin_url.
+     */
+    googleAuthenticationRequired?: string | null;
   }
   /**
    * Information about device hardware. The fields related to temperature thresholds are only available if hardwareStatusEnabled is true in the device's policy.
@@ -1817,7 +1851,7 @@ export namespace androidmanagement_v1 {
     totalRam?: string | null;
   }
   /**
-   * A token to initiate the migration of a device from being managed by a third-party DPC to being managed by Android Management API. A migration token is valid only for a single device.
+   * A token to initiate the migration of a device from being managed by a third-party DPC to being managed by Android Management API. A migration token is valid only for a single device. See the guide (https://developers.google.com/android/management/dpc-migration) for more details.
    */
   export interface Schema$MigrationToken {
     /**
@@ -2289,6 +2323,10 @@ export namespace androidmanagement_v1 {
      */
     deviceRadioState?: Schema$DeviceRadioState;
     /**
+     * Optional. Controls for the display settings.
+     */
+    displaySettings?: Schema$DisplaySettings;
+    /**
      * Whether encryption is enabled
      */
     encryptionPolicy?: string | null;
@@ -2497,7 +2535,7 @@ export namespace androidmanagement_v1 {
      */
     stayOnPluggedModes?: string[] | null;
     /**
-     * The system update policy, which controls how OS updates are applied. If the update type is WINDOWED, the update window will automatically apply to Play app updates as well.
+     * The system update policy, which controls how OS updates are applied. If the update type is WINDOWED, the update window will automatically apply to Play app updates as well.Note: Google Play system updates (https://source.android.com/docs/core/ota/modular-system) (also called Mainline updates) are automatically downloaded and require a device reboot to be installed. Refer to the mainline section in Manage system updates (https://developer.android.com/work/dpc/system-updates#mainline) for further details.
      */
     systemUpdate?: Schema$SystemUpdate;
     /**
@@ -2597,6 +2635,10 @@ export namespace androidmanagement_v1 {
      */
     apiLevel?: number | null;
     /**
+     * The email address of the authenticated user (only present for Google Account provisioning method).
+     */
+    authenticatedUserEmail?: string | null;
+    /**
      * The brand of the device. For example, Google.
      */
     brand?: string | null;
@@ -2605,9 +2647,17 @@ export namespace androidmanagement_v1 {
      */
     enterprise?: string | null;
     /**
+     * For corporate-owned devices, IMEI number of the GSM device. For example, A1000031212.
+     */
+    imei?: string | null;
+    /**
      * The management mode of the device or profile.
      */
     managementMode?: string | null;
+    /**
+     * For corporate-owned devices, MEID number of the CDMA device. For example, A00000292788E1.
+     */
+    meid?: string | null;
     /**
      * The model of the device. For example, Asus Nexus 7.
      */
@@ -2620,6 +2670,10 @@ export namespace androidmanagement_v1 {
      * Ownership of the managed device.
      */
     ownership?: string | null;
+    /**
+     * For corporate-owned devices, The device serial number.
+     */
+    serialNumber?: string | null;
   }
   /**
    * Configuration info for an HTTP proxy. For a direct proxy, set the host, port, and excluded_hosts fields. For a PAC script proxy, set the pac_uri field.
@@ -2658,6 +2712,32 @@ export namespace androidmanagement_v1 {
      * User ID in which the change was requested in.
      */
     targetUserId?: number | null;
+  }
+  /**
+   * Controls for the screen brightness settings.
+   */
+  export interface Schema$ScreenBrightnessSettings {
+    /**
+     * Optional. The screen brightness between 1 and 255 where 1 is the lowest and 255 is the highest brightness. A value of 0 (default) means no screen brightness set. Any other value is rejected. screenBrightnessMode must be either BRIGHTNESS_AUTOMATIC or BRIGHTNESS_FIXED to set this. Supported on Android 9 and above on fully managed devices. A NonComplianceDetail with API_LEVEL is reported if the Android version is less than 9.
+     */
+    screenBrightness?: number | null;
+    /**
+     * Optional. Controls the screen brightness mode.
+     */
+    screenBrightnessMode?: string | null;
+  }
+  /**
+   * Controls the screen timeout settings.
+   */
+  export interface Schema$ScreenTimeoutSettings {
+    /**
+     * Optional. Controls the screen timeout duration. The screen timeout duration must be greater than 0, otherwise it is rejected. Additionally, it should not be greater than maximumTimeToLock, otherwise the screen timeout is set to maximumTimeToLock and a NonComplianceDetail with INVALID_VALUE reason and SCREEN_TIMEOUT_GREATER_THAN_MAXIMUM_TIME_TO_LOCK specific reason is reported. If the screen timeout is less than a certain lower bound, it is set to the lower bound. The lower bound may vary across devices. If this is set, screenTimeoutMode must be SCREEN_TIMEOUT_ENFORCED. Supported on Android 9 and above on fully managed devices. A NonComplianceDetail with API_LEVEL is reported if the Android version is less than 9.
+     */
+    screenTimeout?: string | null;
+    /**
+     * Optional. Controls whether the user is allowed to configure the screen timeout.
+     */
+    screenTimeoutMode?: string | null;
   }
   /**
    * The security posture of the device, as determined by the current device state and the policies applied.
@@ -2806,7 +2886,7 @@ export namespace androidmanagement_v1 {
      */
     lostOrganization?: Schema$UserFacingMessage;
     /**
-     * The phone number displayed to the user when the device is in lost mode.
+     * The phone number that will be called when the device is in lost mode and the call owner button is tapped.
      */
     lostPhoneNumber?: Schema$UserFacingMessage;
     /**
@@ -2912,7 +2992,7 @@ export namespace androidmanagement_v1 {
     status?: string | null;
   }
   /**
-   * Configuration for managing system updates
+   * Configuration for managing system updatesNote: Google Play system updates (https://source.android.com/docs/core/ota/modular-system) (also called Mainline updates) are automatically downloaded but require a device reboot to be installed. Refer to the mainline section in Manage system updates (https://developer.android.com/work/dpc/system-updates#mainline) for further details.
    */
   export interface Schema$SystemUpdate {
     /**
@@ -3211,6 +3291,28 @@ export namespace androidmanagement_v1 {
     value?: string | null;
   }
   /**
+   * Represents a Wi-Fi SSID.
+   */
+  export interface Schema$WifiSsid {
+    /**
+     * Required. Wi-Fi SSID represented as a string.
+     */
+    wifiSsid?: string | null;
+  }
+  /**
+   * Restrictions on which Wi-Fi SSIDs the device can connect to. Note that this does not affect which networks can be configured on the device. Supported on company-owned devices running Android 13 and above.
+   */
+  export interface Schema$WifiSsidPolicy {
+    /**
+     * Type of the Wi-Fi SSID policy to be applied.
+     */
+    wifiSsidPolicyType?: string | null;
+    /**
+     * Optional. List of Wi-Fi SSIDs that should be applied in the policy. This field must be non-empty when WifiSsidPolicyType is set to WIFI_SSID_ALLOWLIST. If this is set to a non-empty list, then a nonComplianceDetail detail with API_LEVEL is reported if the Android version is less than 13 and a nonComplianceDetail with MANAGEMENT_MODE is reported for non-company-owned devices.
+     */
+    wifiSsids?: Schema$WifiSsid[];
+  }
+  /**
    * An action to reset a company owned device or delete a work profile. Note: blockAction must also be specified.
    */
   export interface Schema$WipeAction {
@@ -3319,6 +3421,7 @@ export namespace androidmanagement_v1 {
           {
             url: (rootUrl + '/v1/enterprises').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3404,6 +3507,7 @@ export namespace androidmanagement_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -3488,6 +3592,7 @@ export namespace androidmanagement_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3577,6 +3682,7 @@ export namespace androidmanagement_v1 {
           {
             url: (rootUrl + '/v1/enterprises').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3662,6 +3768,7 @@ export namespace androidmanagement_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -3826,6 +3933,7 @@ export namespace androidmanagement_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3934,6 +4042,7 @@ export namespace androidmanagement_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -4019,6 +4128,7 @@ export namespace androidmanagement_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4107,6 +4217,7 @@ export namespace androidmanagement_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4198,6 +4309,7 @@ export namespace androidmanagement_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4283,6 +4395,7 @@ export namespace androidmanagement_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -4441,6 +4554,7 @@ export namespace androidmanagement_v1 {
           {
             url: (rootUrl + '/v1/{+name}:cancel').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4526,6 +4640,7 @@ export namespace androidmanagement_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4616,6 +4731,7 @@ export namespace androidmanagement_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4745,6 +4861,7 @@ export namespace androidmanagement_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4830,6 +4947,7 @@ export namespace androidmanagement_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -4849,7 +4967,7 @@ export namespace androidmanagement_v1 {
     }
 
     /**
-     * Gets an active, unexpired enrollment token. Only a partial view of EnrollmentToken is returned: all the fields but name and expiration_timestamp are empty. This method is meant to help manage active enrollment tokens lifecycle. For security reasons, it's recommended to delete active enrollment tokens as soon as they're not intended to be used anymore.
+     * Gets an active, unexpired enrollment token. A partial view of the enrollment token is returned. Only the following fields are populated: name, expirationTimestamp, allowPersonalUsage, value, qrCode. This method is meant to help manage active enrollment tokens lifecycle. For security reasons, it's recommended to delete active enrollment tokens as soon as they're not intended to be used anymore.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4915,6 +5033,7 @@ export namespace androidmanagement_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4934,7 +5053,7 @@ export namespace androidmanagement_v1 {
     }
 
     /**
-     * Lists active, unexpired enrollment tokens for a given enterprise. The list items contain only a partial view of EnrollmentToken: all the fields but name and expiration_timestamp are empty. This method is meant to help manage active enrollment tokens lifecycle. For security reasons, it's recommended to delete active enrollment tokens as soon as they're not intended to be used anymore.
+     * Lists active, unexpired enrollment tokens for a given enterprise. The list items contain only a partial view of EnrollmentToken object. Only the following fields are populated: name, expirationTimestamp, allowPersonalUsage, value, qrCode. This method is meant to help manage active enrollment tokens lifecycle. For security reasons, it's recommended to delete active enrollment tokens as soon as they're not intended to be used anymore.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5010,6 +5129,7 @@ export namespace androidmanagement_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5080,7 +5200,7 @@ export namespace androidmanagement_v1 {
     }
 
     /**
-     * Creates a migration token, to migrate an existing device from being managed by the EMM's Device Policy Controller (DPC) to being managed by the Android Management API.
+     * Creates a migration token, to migrate an existing device from being managed by the EMM's Device Policy Controller (DPC) to being managed by the Android Management API. See the guide (https://developers.google.com/android/management/dpc-migration) for more details.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5149,6 +5269,7 @@ export namespace androidmanagement_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5234,6 +5355,7 @@ export namespace androidmanagement_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5329,6 +5451,7 @@ export namespace androidmanagement_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5351,7 +5474,7 @@ export namespace androidmanagement_v1 {
   export interface Params$Resource$Enterprises$Migrationtokens$Create
     extends StandardParameters {
     /**
-     * Required. The enterprise in which this migration token will be created. Format: enterprises/{enterprise\}
+     * Required. The enterprise in which this migration token is created. This must be the same enterprise which already manages the device in the Play EMM API. Format: enterprises/{enterprise\}
      */
     parent?: string;
 
@@ -5456,6 +5579,7 @@ export namespace androidmanagement_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -5541,6 +5665,7 @@ export namespace androidmanagement_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5634,6 +5759,7 @@ export namespace androidmanagement_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5719,6 +5845,7 @@ export namespace androidmanagement_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -5860,6 +5987,7 @@ export namespace androidmanagement_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5945,6 +6073,7 @@ export namespace androidmanagement_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -6030,6 +6159,7 @@ export namespace androidmanagement_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6121,6 +6251,7 @@ export namespace androidmanagement_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6206,6 +6337,7 @@ export namespace androidmanagement_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -6359,6 +6491,7 @@ export namespace androidmanagement_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -6464,6 +6597,7 @@ export namespace androidmanagement_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6564,6 +6698,7 @@ export namespace androidmanagement_v1 {
           {
             url: (rootUrl + '/v1/signupUrls').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -6585,6 +6720,10 @@ export namespace androidmanagement_v1 {
 
   export interface Params$Resource$Signupurls$Create
     extends StandardParameters {
+    /**
+     * Optional. Email address used to prefill the admin field of the enterprise signup form. This value is a hint only and can be altered by the user.
+     */
+    adminEmail?: string;
     /**
      * The callback URL that the admin will be redirected to after successfully creating an enterprise. Before redirecting there the system will add a query parameter to this URL named enterpriseToken which will contain an opaque token to be used for the create enterprise request. The URL will be parsed then reformatted in order to add the enterpriseToken parameter, so there may be some minor formatting changes.
      */

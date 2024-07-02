@@ -112,6 +112,8 @@ export namespace policyanalyzer_v1 {
    */
   export class Policyanalyzer {
     context: APIRequestContext;
+    folders: Resource$Folders;
+    organizations: Resource$Organizations;
     projects: Resource$Projects;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
@@ -120,10 +122,15 @@ export namespace policyanalyzer_v1 {
         google,
       };
 
+      this.folders = new Resource$Folders(this.context);
+      this.organizations = new Resource$Organizations(this.context);
       this.projects = new Resource$Projects(this.context);
     }
   }
 
+  /**
+   * Represents Activity on a GCP resource over specific observation period.
+   */
   export interface Schema$GoogleCloudPolicyanalyzerV1Activity {
     /**
      * A struct of custom fields to explain the activity.
@@ -167,6 +174,321 @@ export namespace policyanalyzer_v1 {
      * If there might be more results than those appearing in this response, then `nextPageToken` is included. To get the next set of results, call this method again using the value of `nextPageToken` as `pageToken`.
      */
     nextPageToken?: string | null;
+  }
+
+  export class Resource$Folders {
+    context: APIRequestContext;
+    locations: Resource$Folders$Locations;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.locations = new Resource$Folders$Locations(this.context);
+    }
+  }
+
+  export class Resource$Folders$Locations {
+    context: APIRequestContext;
+    activityTypes: Resource$Folders$Locations$Activitytypes;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.activityTypes = new Resource$Folders$Locations$Activitytypes(
+        this.context
+      );
+    }
+  }
+
+  export class Resource$Folders$Locations$Activitytypes {
+    context: APIRequestContext;
+    activities: Resource$Folders$Locations$Activitytypes$Activities;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.activities = new Resource$Folders$Locations$Activitytypes$Activities(
+        this.context
+      );
+    }
+  }
+
+  export class Resource$Folders$Locations$Activitytypes$Activities {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Queries policy activities on Google Cloud resources.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    query(
+      params: Params$Resource$Folders$Locations$Activitytypes$Activities$Query,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    query(
+      params?: Params$Resource$Folders$Locations$Activitytypes$Activities$Query,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudPolicyanalyzerV1QueryActivityResponse>;
+    query(
+      params: Params$Resource$Folders$Locations$Activitytypes$Activities$Query,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    query(
+      params: Params$Resource$Folders$Locations$Activitytypes$Activities$Query,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudPolicyanalyzerV1QueryActivityResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudPolicyanalyzerV1QueryActivityResponse>
+    ): void;
+    query(
+      params: Params$Resource$Folders$Locations$Activitytypes$Activities$Query,
+      callback: BodyResponseCallback<Schema$GoogleCloudPolicyanalyzerV1QueryActivityResponse>
+    ): void;
+    query(
+      callback: BodyResponseCallback<Schema$GoogleCloudPolicyanalyzerV1QueryActivityResponse>
+    ): void;
+    query(
+      paramsOrCallback?:
+        | Params$Resource$Folders$Locations$Activitytypes$Activities$Query
+        | BodyResponseCallback<Schema$GoogleCloudPolicyanalyzerV1QueryActivityResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudPolicyanalyzerV1QueryActivityResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudPolicyanalyzerV1QueryActivityResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudPolicyanalyzerV1QueryActivityResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Folders$Locations$Activitytypes$Activities$Query;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Folders$Locations$Activitytypes$Activities$Query;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://policyanalyzer.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/activities:query').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudPolicyanalyzerV1QueryActivityResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudPolicyanalyzerV1QueryActivityResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Folders$Locations$Activitytypes$Activities$Query
+    extends StandardParameters {
+    /**
+     * Optional. Filter expression to restrict the activities returned. For serviceAccountLastAuthentication activities, supported filters are: - `activities.full_resource_name {=\} [STRING]` - `activities.fullResourceName {=\} [STRING]` where `[STRING]` is the full resource name of the service account. For serviceAccountKeyLastAuthentication activities, supported filters are: - `activities.full_resource_name {=\} [STRING]` - `activities.fullResourceName {=\} [STRING]` where `[STRING]` is the full resource name of the service account key.
+     */
+    filter?: string;
+    /**
+     * Optional. The maximum number of results to return from this request. Max limit is 1000. Non-positive values are ignored. The presence of `nextPageToken` in the response indicates that more results might be available.
+     */
+    pageSize?: number;
+    /**
+     * Optional. If present, then retrieve the next batch of results from the preceding call to this method. `pageToken` must be the value of `nextPageToken` from the previous response. The values of other method parameters should be identical to those in the previous call.
+     */
+    pageToken?: string;
+    /**
+     * Required. The container resource on which to execute the request. Acceptable formats: `projects/[PROJECT_ID|PROJECT_NUMBER]/locations/[LOCATION]/activityTypes/[ACTIVITY_TYPE]` LOCATION here refers to Google Cloud Locations: https://cloud.google.com/about/locations/
+     */
+    parent?: string;
+  }
+
+  export class Resource$Organizations {
+    context: APIRequestContext;
+    locations: Resource$Organizations$Locations;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.locations = new Resource$Organizations$Locations(this.context);
+    }
+  }
+
+  export class Resource$Organizations$Locations {
+    context: APIRequestContext;
+    activityTypes: Resource$Organizations$Locations$Activitytypes;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.activityTypes = new Resource$Organizations$Locations$Activitytypes(
+        this.context
+      );
+    }
+  }
+
+  export class Resource$Organizations$Locations$Activitytypes {
+    context: APIRequestContext;
+    activities: Resource$Organizations$Locations$Activitytypes$Activities;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.activities =
+        new Resource$Organizations$Locations$Activitytypes$Activities(
+          this.context
+        );
+    }
+  }
+
+  export class Resource$Organizations$Locations$Activitytypes$Activities {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Queries policy activities on Google Cloud resources.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    query(
+      params: Params$Resource$Organizations$Locations$Activitytypes$Activities$Query,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    query(
+      params?: Params$Resource$Organizations$Locations$Activitytypes$Activities$Query,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudPolicyanalyzerV1QueryActivityResponse>;
+    query(
+      params: Params$Resource$Organizations$Locations$Activitytypes$Activities$Query,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    query(
+      params: Params$Resource$Organizations$Locations$Activitytypes$Activities$Query,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudPolicyanalyzerV1QueryActivityResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudPolicyanalyzerV1QueryActivityResponse>
+    ): void;
+    query(
+      params: Params$Resource$Organizations$Locations$Activitytypes$Activities$Query,
+      callback: BodyResponseCallback<Schema$GoogleCloudPolicyanalyzerV1QueryActivityResponse>
+    ): void;
+    query(
+      callback: BodyResponseCallback<Schema$GoogleCloudPolicyanalyzerV1QueryActivityResponse>
+    ): void;
+    query(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Locations$Activitytypes$Activities$Query
+        | BodyResponseCallback<Schema$GoogleCloudPolicyanalyzerV1QueryActivityResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudPolicyanalyzerV1QueryActivityResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudPolicyanalyzerV1QueryActivityResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudPolicyanalyzerV1QueryActivityResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Locations$Activitytypes$Activities$Query;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Organizations$Locations$Activitytypes$Activities$Query;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://policyanalyzer.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/activities:query').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudPolicyanalyzerV1QueryActivityResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudPolicyanalyzerV1QueryActivityResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Organizations$Locations$Activitytypes$Activities$Query
+    extends StandardParameters {
+    /**
+     * Optional. Filter expression to restrict the activities returned. For serviceAccountLastAuthentication activities, supported filters are: - `activities.full_resource_name {=\} [STRING]` - `activities.fullResourceName {=\} [STRING]` where `[STRING]` is the full resource name of the service account. For serviceAccountKeyLastAuthentication activities, supported filters are: - `activities.full_resource_name {=\} [STRING]` - `activities.fullResourceName {=\} [STRING]` where `[STRING]` is the full resource name of the service account key.
+     */
+    filter?: string;
+    /**
+     * Optional. The maximum number of results to return from this request. Max limit is 1000. Non-positive values are ignored. The presence of `nextPageToken` in the response indicates that more results might be available.
+     */
+    pageSize?: number;
+    /**
+     * Optional. If present, then retrieve the next batch of results from the preceding call to this method. `pageToken` must be the value of `nextPageToken` from the previous response. The values of other method parameters should be identical to those in the previous call.
+     */
+    pageToken?: string;
+    /**
+     * Required. The container resource on which to execute the request. Acceptable formats: `projects/[PROJECT_ID|PROJECT_NUMBER]/locations/[LOCATION]/activityTypes/[ACTIVITY_TYPE]` LOCATION here refers to Google Cloud Locations: https://cloud.google.com/about/locations/
+     */
+    parent?: string;
   }
 
   export class Resource$Projects {
@@ -283,6 +605,7 @@ export namespace policyanalyzer_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),

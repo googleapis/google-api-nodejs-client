@@ -1521,6 +1521,15 @@ export namespace gkehub_v1beta {
     idAttribute?: string | null;
   }
   /**
+   * Holds non-protocol-related configuration options.
+   */
+  export interface Schema$IdentityServiceIdentityServiceOptions {
+    /**
+     * Optional. Determines the lifespan of STS tokens issued by Anthos Identity Service.
+     */
+    sessionDuration?: string | null;
+  }
+  /**
    * Configuration for the LDAP Auth flow.
    */
   export interface Schema$IdentityServiceLdapConfig {
@@ -1549,6 +1558,10 @@ export namespace gkehub_v1beta {
      * A member may support multiple auth methods.
      */
     authMethods?: Schema$IdentityServiceAuthMethod[];
+    /**
+     * Optional. non-protocol-related configuration options.
+     */
+    identityServiceOptions?: Schema$IdentityServiceIdentityServiceOptions;
   }
   /**
    * **Anthos Identity Service**: State for a single Membership.
@@ -1851,6 +1864,10 @@ export namespace gkehub_v1beta {
      * A token to request the next page of resources from the `ListMembershipBindings` method. The value of an empty string means that there are no more resources to return.
      */
     nextPageToken?: string | null;
+    /**
+     * List of locations that could not be reached while fetching this list.
+     */
+    unreachable?: string[] | null;
   }
   /**
    * List of Membership RBACRoleBindings.
@@ -1864,6 +1881,10 @@ export namespace gkehub_v1beta {
      * The list of Membership RBACRoleBindings.
      */
     rbacrolebindings?: Schema$RBACRoleBinding[];
+    /**
+     * List of locations that could not be reached while fetching this list.
+     */
+    unreachable?: string[] | null;
   }
   /**
    * Response message for the `GkeHub.ListMemberships` method.
@@ -2833,6 +2854,27 @@ export namespace gkehub_v1beta {
     vulnerabilityMode?: string | null;
   }
   /**
+   * Condition being reported.
+   */
+  export interface Schema$ServiceMeshCondition {
+    /**
+     * Unique identifier of the condition which describes the condition recognizable to the user.
+     */
+    code?: string | null;
+    /**
+     * A short summary about the issue.
+     */
+    details?: string | null;
+    /**
+     * Links contains actionable information.
+     */
+    documentationLink?: string | null;
+    /**
+     * Severity level of the condition.
+     */
+    severity?: string | null;
+  }
+  /**
    * Status of control plane management.
    */
   export interface Schema$ServiceMeshControlPlaneManagement {
@@ -2840,6 +2882,10 @@ export namespace gkehub_v1beta {
      * Explanation of state.
      */
     details?: Schema$ServiceMeshStatusDetails[];
+    /**
+     * Output only. Implementation of managed control plane.
+     */
+    implementation?: string | null;
     /**
      * LifecycleState of control plane management.
      */
@@ -2875,6 +2921,10 @@ export namespace gkehub_v1beta {
    * **Service Mesh**: State for a single Membership, as analyzed by the Service Mesh Hub Controller.
    */
   export interface Schema$ServiceMeshMembershipState {
+    /**
+     * Output only. List of conditions reported for this membership.
+     */
+    conditions?: Schema$ServiceMeshCondition[];
     /**
      * Output only. Status of control plane management
      */
@@ -3051,6 +3101,7 @@ export namespace gkehub_v1beta {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3181,6 +3232,7 @@ export namespace gkehub_v1beta {
           {
             url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3273,6 +3325,7 @@ export namespace gkehub_v1beta {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3394,6 +3447,7 @@ export namespace gkehub_v1beta {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3478,6 +3532,7 @@ export namespace gkehub_v1beta {
           {
             url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -3562,6 +3617,7 @@ export namespace gkehub_v1beta {
           {
             url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3649,6 +3705,7 @@ export namespace gkehub_v1beta {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3741,6 +3798,7 @@ export namespace gkehub_v1beta {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3825,6 +3883,7 @@ export namespace gkehub_v1beta {
           {
             url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -3912,6 +3971,7 @@ export namespace gkehub_v1beta {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4007,6 +4067,7 @@ export namespace gkehub_v1beta {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4222,6 +4283,7 @@ export namespace gkehub_v1beta {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4306,6 +4368,7 @@ export namespace gkehub_v1beta {
           {
             url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -4390,6 +4453,7 @@ export namespace gkehub_v1beta {
           {
             url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4480,6 +4544,7 @@ export namespace gkehub_v1beta {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4564,6 +4629,7 @@ export namespace gkehub_v1beta {
           {
             url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -4725,6 +4791,7 @@ export namespace gkehub_v1beta {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4809,6 +4876,7 @@ export namespace gkehub_v1beta {
           {
             url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -4904,6 +4972,7 @@ export namespace gkehub_v1beta {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4990,6 +5059,7 @@ export namespace gkehub_v1beta {
           {
             url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5078,6 +5148,7 @@ export namespace gkehub_v1beta {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5170,6 +5241,7 @@ export namespace gkehub_v1beta {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5254,6 +5326,7 @@ export namespace gkehub_v1beta {
           {
             url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -5342,6 +5415,7 @@ export namespace gkehub_v1beta {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5437,6 +5511,7 @@ export namespace gkehub_v1beta {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5684,6 +5759,7 @@ export namespace gkehub_v1beta {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5769,6 +5845,7 @@ export namespace gkehub_v1beta {
           {
             url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -5857,6 +5934,7 @@ export namespace gkehub_v1beta {
           {
             url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5952,6 +6030,7 @@ export namespace gkehub_v1beta {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6039,6 +6118,7 @@ export namespace gkehub_v1beta {
           {
             url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -6200,6 +6280,7 @@ export namespace gkehub_v1beta {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -6285,6 +6366,7 @@ export namespace gkehub_v1beta {
           {
             url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -6380,6 +6462,7 @@ export namespace gkehub_v1beta {
               '/v1beta/{+parent}/rbacrolebindings:generateMembershipRBACRoleBindingYAML'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -6467,6 +6550,7 @@ export namespace gkehub_v1beta {
           {
             url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6562,6 +6646,7 @@ export namespace gkehub_v1beta {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6649,6 +6734,7 @@ export namespace gkehub_v1beta {
           {
             url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -6821,6 +6907,7 @@ export namespace gkehub_v1beta {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -6905,6 +6992,7 @@ export namespace gkehub_v1beta {
           {
             url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -6989,6 +7077,7 @@ export namespace gkehub_v1beta {
           {
             url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -7081,6 +7170,7 @@ export namespace gkehub_v1beta {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -7228,6 +7318,7 @@ export namespace gkehub_v1beta {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -7312,6 +7403,7 @@ export namespace gkehub_v1beta {
           {
             url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -7396,6 +7488,7 @@ export namespace gkehub_v1beta {
           {
             url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -7483,6 +7576,7 @@ export namespace gkehub_v1beta {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -7573,6 +7667,7 @@ export namespace gkehub_v1beta {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -7668,6 +7763,7 @@ export namespace gkehub_v1beta {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -7764,6 +7860,7 @@ export namespace gkehub_v1beta {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -7848,6 +7945,7 @@ export namespace gkehub_v1beta {
           {
             url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -7935,6 +8033,7 @@ export namespace gkehub_v1beta {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -8030,6 +8129,7 @@ export namespace gkehub_v1beta {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -8256,6 +8356,7 @@ export namespace gkehub_v1beta {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -8341,6 +8442,7 @@ export namespace gkehub_v1beta {
           {
             url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -8425,6 +8527,7 @@ export namespace gkehub_v1beta {
           {
             url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -8520,6 +8623,7 @@ export namespace gkehub_v1beta {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -8605,6 +8709,7 @@ export namespace gkehub_v1beta {
           {
             url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -8762,6 +8867,7 @@ export namespace gkehub_v1beta {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -8847,6 +8953,7 @@ export namespace gkehub_v1beta {
           {
             url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -8932,6 +9039,7 @@ export namespace gkehub_v1beta {
           {
             url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -9027,6 +9135,7 @@ export namespace gkehub_v1beta {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -9114,6 +9223,7 @@ export namespace gkehub_v1beta {
           {
             url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),

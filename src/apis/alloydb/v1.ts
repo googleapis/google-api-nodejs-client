@@ -371,6 +371,14 @@ export namespace alloydb_v1 {
      */
     labels?: {[key: string]: string} | null;
     /**
+     * Output only. The maintenance schedule for the cluster, generated for a specific rollout if a maintenance window is set.
+     */
+    maintenanceSchedule?: Schema$MaintenanceSchedule;
+    /**
+     * Optional. The maintenance update policy determines when to allow or deny updates.
+     */
+    maintenanceUpdatePolicy?: Schema$MaintenanceUpdatePolicy;
+    /**
      * Output only. Cluster created via DMS migration.
      */
     migrationSource?: Schema$MigrationSource;
@@ -387,6 +395,10 @@ export namespace alloydb_v1 {
      * Output only. Cross Region replication config specific to PRIMARY cluster.
      */
     primaryConfig?: Schema$PrimaryConfig;
+    /**
+     * Optional. The configuration for Private Service Connect (PSC) for the cluster.
+     */
+    pscConfig?: Schema$PscConfig;
     /**
      * Output only. Reconciling (https://google.aip.dev/128#reconciliation). Set to true if the current state of Cluster does not match the user's intended state, and the service is actively updating the resource to reconcile them. This can happen due to user-triggered updates or system actions like failover or maintenance.
      */
@@ -672,6 +684,10 @@ export namespace alloydb_v1 {
      */
     nodes?: Schema$Node[];
     /**
+     * Optional. The configuration for Private Service Connect (PSC) for the instance.
+     */
+    pscInstanceConfig?: Schema$PscInstanceConfig;
+    /**
      * Output only. The public IP addresses for the Instance. This is available ONLY when enable_public_ip is set. This is the connection endpoint for an end-user application.
      */
     publicIpAddress?: string | null;
@@ -838,6 +854,37 @@ export namespace alloydb_v1 {
     cpuCount?: number | null;
   }
   /**
+   * MaintenanceSchedule stores the maintenance schedule generated from the MaintenanceUpdatePolicy, once a maintenance rollout is triggered, if MaintenanceWindow is set, and if there is no conflicting DenyPeriod. The schedule is cleared once the update takes place. This field cannot be manually changed; modify the MaintenanceUpdatePolicy instead.
+   */
+  export interface Schema$MaintenanceSchedule {
+    /**
+     * Output only. The scheduled start time for the maintenance.
+     */
+    startTime?: string | null;
+  }
+  /**
+   * MaintenanceUpdatePolicy defines the policy for system updates.
+   */
+  export interface Schema$MaintenanceUpdatePolicy {
+    /**
+     * Preferred windows to perform maintenance. Currently limited to 1.
+     */
+    maintenanceWindows?: Schema$MaintenanceWindow[];
+  }
+  /**
+   * MaintenanceWindow specifies a preferred day and time for maintenance.
+   */
+  export interface Schema$MaintenanceWindow {
+    /**
+     * Preferred day of the week for maintenance, e.g. MONDAY, TUESDAY, etc.
+     */
+    day?: string | null;
+    /**
+     * Preferred time to start the maintenance operation on the specified day. Maintenance will start within 1 hour of this time.
+     */
+    startTime?: Schema$GoogleTypeTimeOfDay;
+  }
+  /**
    * Subset of the source instance configuration that is available when reading the cluster resource.
    */
   export interface Schema$MigrationSource {
@@ -971,6 +1018,32 @@ export namespace alloydb_v1 {
      * Optional. If set, performs request validation (e.g. permission checks and any other type of validation), but do not actually execute the delete.
      */
     validateOnly?: boolean | null;
+  }
+  /**
+   * PscConfig contains PSC related configuration at a cluster level.
+   */
+  export interface Schema$PscConfig {
+    /**
+     * Optional. Create an instance that allows connections from Private Service Connect endpoints to the instance.
+     */
+    pscEnabled?: boolean | null;
+  }
+  /**
+   * PscInstanceConfig contains PSC related configuration at an instance level.
+   */
+  export interface Schema$PscInstanceConfig {
+    /**
+     * Optional. List of consumer projects that are allowed to create PSC endpoints to service-attachments to this instance.
+     */
+    allowedConsumerProjects?: string[] | null;
+    /**
+     * Output only. The DNS name of the instance for PSC connectivity. Name convention: ...alloydb-psc.goog
+     */
+    pscDnsName?: string | null;
+    /**
+     * Output only. The service attachment created when Private Service Connect (PSC) is enabled for the instance. The name of the resource will be in the format of `projects//regions//serviceAttachments/`
+     */
+    serviceAttachmentLink?: string | null;
   }
   /**
    * A backup's position in a quantity-based retention queue, of backups with the same source cluster and type, with length, retention, specified by the backup's retention policy. Once the position is greater than the retention, the backup is eligible to be garbage collected. Example: 5 backups from the same source cluster and type with a quantity-based retention of 3 and denoted by backup_id (position, retention). Safe: backup_5 (1, 3), backup_4, (2, 3), backup_3 (3, 3). Awaiting garbage collection: backup_2 (4, 3), backup_1 (5, 3)
@@ -1110,6 +1183,10 @@ export namespace alloydb_v1 {
      * Availability type. Potential values: * `ZONAL`: The instance serves data from only one zone. Outages in that zone affect data accessibility. * `REGIONAL`: The instance can serve data from more than one zone in a region (it is highly available).
      */
     availabilityType?: string | null;
+    /**
+     * Checks for resources that are configured to have redundancy, and ongoing replication across regions
+     */
+    crossRegionReplicaConfigured?: boolean | null;
     externalReplicaConfigured?: boolean | null;
     promotableReplicaConfigured?: boolean | null;
   }
@@ -1204,6 +1281,7 @@ export namespace alloydb_v1 {
     /**
      * More feed data would be added in subsequent CLs
      */
+    observabilityMetricData?: Schema$StorageDatabasecenterPartnerapiV1mainObservabilityMetricData;
     recommendationSignalData?: Schema$StorageDatabasecenterPartnerapiV1mainDatabaseResourceRecommendationSignalData;
     resourceHealthSignalData?: Schema$StorageDatabasecenterPartnerapiV1mainDatabaseResourceHealthSignalData;
     /**
@@ -1336,6 +1414,10 @@ export namespace alloydb_v1 {
      */
     location?: string | null;
     /**
+     * Machine configuration for this resource.
+     */
+    machineConfiguration?: Schema$StorageDatabasecenterPartnerapiV1mainMachineConfiguration;
+    /**
      * Identifier for this resource's immediate parent/primary resource if the current resource is a replica or derived form of another Database resource. Else it would be NULL. REQUIRED if the immediate parent exists when first time resource is getting ingested, otherwise optional.
      */
     primaryResourceId?: Schema$StorageDatabasecenterPartnerapiV1mainDatabaseResourceId;
@@ -1355,10 +1437,6 @@ export namespace alloydb_v1 {
      * The time at which the resource was updated and recorded at partner service.
      */
     updationTime?: string | null;
-    /**
-     * User-provided labels, represented as a dictionary where each label is a single key value pair.
-     */
-    userLabels?: {[key: string]: string} | null;
     /**
      * User-provided labels associated with the resource
      */
@@ -1415,6 +1493,41 @@ export namespace alloydb_v1 {
     type?: string | null;
   }
   /**
+   * MachineConfiguration describes the configuration of a machine specific to Database Resource.
+   */
+  export interface Schema$StorageDatabasecenterPartnerapiV1mainMachineConfiguration {
+    /**
+     * The number of CPUs. TODO(b/342344482, b/342346271) add proto validations again after bug fix.
+     */
+    cpuCount?: number | null;
+    /**
+     * Memory size in bytes. TODO(b/342344482, b/342346271) add proto validations again after bug fix.
+     */
+    memorySizeInBytes?: string | null;
+  }
+  export interface Schema$StorageDatabasecenterPartnerapiV1mainObservabilityMetricData {
+    /**
+     * Required. Type of aggregation performed on the metric.
+     */
+    aggregationType?: string | null;
+    /**
+     * Required. Type of metric like CPU, Memory, etc.
+     */
+    metricType?: string | null;
+    /**
+     * Required. The time the metric value was observed.
+     */
+    observationTime?: string | null;
+    /**
+     * Required. Database resource name associated with the signal. Resource name to follow CAIS resource_name format as noted here go/condor-common-datamodel
+     */
+    resourceName?: string | null;
+    /**
+     * Required. Value of the metric type.
+     */
+    value?: Schema$StorageDatabasecenterProtoCommonTypedValue;
+  }
+  /**
    * An error that occurred during a backup creation operation.
    */
   export interface Schema$StorageDatabasecenterPartnerapiV1mainOperationError {
@@ -1460,6 +1573,27 @@ export namespace alloydb_v1 {
     version?: string | null;
   }
   /**
+   * TypedValue represents the value of a metric type. It can either be a double, an int64, a string or a bool.
+   */
+  export interface Schema$StorageDatabasecenterProtoCommonTypedValue {
+    /**
+     * For boolean value
+     */
+    boolValue?: boolean | null;
+    /**
+     * For double value
+     */
+    doubleValue?: number | null;
+    /**
+     * For integer value
+     */
+    int64Value?: string | null;
+    /**
+     * For string value
+     */
+    stringValue?: string | null;
+  }
+  /**
    * Restrictions on STRING type values
    */
   export interface Schema$StringRestrictions {
@@ -1501,6 +1635,19 @@ export namespace alloydb_v1 {
      */
     supportedDbVersions?: string[] | null;
     valueType?: string | null;
+  }
+  /**
+   * Message for switching over to a cluster
+   */
+  export interface Schema$SwitchoverClusterRequest {
+    /**
+     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string | null;
+    /**
+     * Optional. If set, performs request validation (e.g. permission checks and any other type of validation), but do not actually execute the delete.
+     */
+    validateOnly?: boolean | null;
   }
   /**
    * A time based retention policy specifies that all backups within a certain time period should be retained.
@@ -1658,6 +1805,7 @@ export namespace alloydb_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1752,6 +1900,7 @@ export namespace alloydb_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1875,6 +2024,7 @@ export namespace alloydb_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1959,6 +2109,7 @@ export namespace alloydb_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -2043,6 +2194,7 @@ export namespace alloydb_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2133,6 +2285,7 @@ export namespace alloydb_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2217,6 +2370,7 @@ export namespace alloydb_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -2419,6 +2573,7 @@ export namespace alloydb_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2507,6 +2662,7 @@ export namespace alloydb_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2591,6 +2747,7 @@ export namespace alloydb_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -2675,6 +2832,7 @@ export namespace alloydb_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2767,6 +2925,7 @@ export namespace alloydb_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2851,6 +3010,7 @@ export namespace alloydb_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -2938,6 +3098,7 @@ export namespace alloydb_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3025,12 +3186,101 @@ export namespace alloydb_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Switches the role of PRIMARY and SECONDARY cluster without any data loss. This promotes the SECONDARY cluster to PRIMARY and sets up original PRIMARY cluster to replicate from this newly promoted cluster.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    switchover(
+      params: Params$Resource$Projects$Locations$Clusters$Switchover,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    switchover(
+      params?: Params$Resource$Projects$Locations$Clusters$Switchover,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    switchover(
+      params: Params$Resource$Projects$Locations$Clusters$Switchover,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    switchover(
+      params: Params$Resource$Projects$Locations$Clusters$Switchover,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    switchover(
+      params: Params$Resource$Projects$Locations$Clusters$Switchover,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    switchover(callback: BodyResponseCallback<Schema$Operation>): void;
+    switchover(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Clusters$Switchover
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Clusters$Switchover;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Clusters$Switchover;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://alloydb.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:switchover').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
         context: this.context,
       };
       if (callback) {
@@ -3201,6 +3451,18 @@ export namespace alloydb_v1 {
      */
     requestBody?: Schema$RestoreClusterRequest;
   }
+  export interface Params$Resource$Projects$Locations$Clusters$Switchover
+    extends StandardParameters {
+    /**
+     * Required. The name of the resource. For the required format, see the comment on the Cluster.name field
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$SwitchoverClusterRequest;
+  }
 
   export class Resource$Projects$Locations$Clusters$Instances {
     context: APIRequestContext;
@@ -3278,6 +3540,7 @@ export namespace alloydb_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3366,6 +3629,7 @@ export namespace alloydb_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3451,6 +3715,7 @@ export namespace alloydb_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -3539,6 +3804,7 @@ export namespace alloydb_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3624,6 +3890,7 @@ export namespace alloydb_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3714,6 +3981,7 @@ export namespace alloydb_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3802,6 +4070,7 @@ export namespace alloydb_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3895,6 +4164,7 @@ export namespace alloydb_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3980,6 +4250,7 @@ export namespace alloydb_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -4068,6 +4339,7 @@ export namespace alloydb_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4339,6 +4611,7 @@ export namespace alloydb_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4423,6 +4696,7 @@ export namespace alloydb_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -4507,6 +4781,7 @@ export namespace alloydb_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4597,6 +4872,7 @@ export namespace alloydb_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4681,6 +4957,7 @@ export namespace alloydb_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -4870,6 +5147,7 @@ export namespace alloydb_v1 {
           {
             url: (rootUrl + '/v1/{+name}:cancel').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4954,6 +5232,7 @@ export namespace alloydb_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -5038,6 +5317,7 @@ export namespace alloydb_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5130,6 +5410,7 @@ export namespace alloydb_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5278,6 +5559,7 @@ export namespace alloydb_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),

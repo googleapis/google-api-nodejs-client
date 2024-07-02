@@ -286,7 +286,7 @@
               "type": "string"
             },
             "updateMask": {
-              "description": "Indicates which fields in the provided LoggingConfig to update. The following are the only supported fields: * LoggingConfig.default_log_generation_rule * LoggingConfig.per_service_log_generation_rules If not set, all supported fields are updated.",
+              "description": "Indicates which fields in the provided LoggingConfig to update. The following are the only supported fields: * LoggingConfig.default_log_generation_rule * LoggingConfig.service_log_generation_rules If not set, all supported fields are updated.",
               "format": "google-fieldmask",
               "location": "query",
               "type": "string"
@@ -336,7 +336,7 @@
                       "type": "string"
                     },
                     "enableAttributeSuggestions": {
-                      "description": "If true, attribute suggestions are enabled and provided in response. This field is only available for \"cloud-retail\" dataset.",
+                      "description": "If true, attribute suggestions are enabled and provided in the response. This field is only available for the \"cloud-retail\" dataset.",
                       "location": "query",
                       "type": "boolean"
                     },
@@ -764,6 +764,88 @@
                   }
                 },
                 "branches": {
+                  "methods": {
+                    "get": {
+                      "description": "Retrieves a Branch.",
+                      "flatPath": "v2alpha/projects/{projectsId}/locations/{locationsId}/catalogs/{catalogsId}/branches/{branchesId}",
+                      "httpMethod": "GET",
+                      "id": "retail.projects.locations.catalogs.branches.get",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The name of the branch to retrieve. Format: `projects/*/locations/global/catalogs/default_catalog/branches/some_branch_id`. \"default_branch\" can be used as a special branch_id, it returns the default branch that has been set for the catalog.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/catalogs/[^/]+/branches/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "view": {
+                          "description": "The view to apply to the returned Branch. Defaults to [Branch.BranchView.BASIC] if unspecified. See documentation of fields of Branch to find what fields are excluded from BASIC view.",
+                          "enum": [
+                            "BRANCH_VIEW_UNSPECIFIED",
+                            "BRANCH_VIEW_BASIC",
+                            "BRANCH_VIEW_FULL"
+                          ],
+                          "enumDescriptions": [
+                            "The value when it's unspecified. This defaults to the BASIC view.",
+                            "Includes basic metadata about the branch, but not statistical fields. See documentation of fields of Branch to find what fields are excluded from BASIC view.",
+                            "Includes all fields of a Branch."
+                          ],
+                          "location": "query",
+                          "type": "string"
+                        }
+                      },
+                      "path": "v2alpha/{+name}",
+                      "response": {
+                        "$ref": "GoogleCloudRetailV2alphaBranch"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "list": {
+                      "description": "Lists all instances of Branch under the specified parent Catalog.",
+                      "flatPath": "v2alpha/projects/{projectsId}/locations/{locationsId}/catalogs/{catalogsId}/branches",
+                      "httpMethod": "GET",
+                      "id": "retail.projects.locations.catalogs.branches.list",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "parent": {
+                          "description": "Required. The parent catalog resource name.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/catalogs/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "view": {
+                          "description": "The view to apply to the returned Branch. Defaults to [Branch.BranchView.BASIC] if unspecified. See documentation of fields of Branch to find what fields are excluded from BASIC view.",
+                          "enum": [
+                            "BRANCH_VIEW_UNSPECIFIED",
+                            "BRANCH_VIEW_BASIC",
+                            "BRANCH_VIEW_FULL"
+                          ],
+                          "enumDescriptions": [
+                            "The value when it's unspecified. This defaults to the BASIC view.",
+                            "Includes basic metadata about the branch, but not statistical fields. See documentation of fields of Branch to find what fields are excluded from BASIC view.",
+                            "Includes all fields of a Branch."
+                          ],
+                          "location": "query",
+                          "type": "string"
+                        }
+                      },
+                      "path": "v2alpha/{+parent}/branches",
+                      "response": {
+                        "$ref": "GoogleCloudRetailV2alphaListBranchesResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    }
+                  },
                   "resources": {
                     "operations": {
                       "methods": {
@@ -2475,7 +2557,7 @@
       }
     }
   },
-  "revision": "20240315",
+  "revision": "20240614",
   "rootUrl": "https://retail.googleapis.com/",
   "schemas": {
     "GoogleApiHttpBody": {
@@ -3492,6 +3574,121 @@
         "tableId": {
           "description": "Required. The BigQuery table to copy the data from with a length limit of 1,024 characters.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRetailV2alphaBranch": {
+      "description": "A data branch that stores all instances of Products.",
+      "id": "GoogleCloudRetailV2alphaBranch",
+      "properties": {
+        "displayName": {
+          "description": "Output only. Human readable name of the branch to display in the UI.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "isDefault": {
+          "description": "Output only. Indicates whether this branch is set as the default branch of its parent catalog.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "lastProductImportTime": {
+          "description": "Output only. Timestamp of last import through ProductService.ImportProducts. Empty value means no import has been made to this branch.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "Immutable. Full resource name of the branch, such as `projects/*/locations/global/catalogs/default_catalog/branches/branch_id`.",
+          "type": "string"
+        },
+        "productCountStats": {
+          "description": "Output only. Statistics for number of products in the branch, provided for different scopes. This field is not populated in BranchView.BASIC view.",
+          "items": {
+            "$ref": "GoogleCloudRetailV2alphaBranchProductCountStatistic"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "productCounts": {
+          "additionalProperties": {
+            "format": "int64",
+            "type": "string"
+          },
+          "deprecated": true,
+          "description": "Output only. The number of products in different groups that this branch has. The key is a group representing a set of products, and the value is the number of products in that group. Note: keys in this map may change over time. Possible keys: * \"primary-in-stock\", products have Product.Type.PRIMARY type and Product.Availability.IN_STOCK availability. * \"primary-out-of-stock\", products have Product.Type.PRIMARY type and Product.Availability.OUT_OF_STOCK availability. * \"primary-preorder\", products have Product.Type.PRIMARY type and Product.Availability.PREORDER availability. * \"primary-backorder\", products have Product.Type.PRIMARY type and Product.Availability.BACKORDER availability. * \"variant-in-stock\", products have Product.Type.VARIANT type and Product.Availability.IN_STOCK availability. * \"variant-out-of-stock\", products have Product.Type.VARIANT type and Product.Availability.OUT_OF_STOCK availability. * \"variant-preorder\", products have Product.Type.VARIANT type and Product.Availability.PREORDER availability. * \"variant-backorder\", products have Product.Type.VARIANT type and Product.Availability.BACKORDER availability. * \"price-discounted\", products have [Product.price_info.price] < [Product.price_info.original_price]. This field is not populated in BranchView.BASIC view.",
+          "readOnly": true,
+          "type": "object"
+        },
+        "qualityMetrics": {
+          "description": "Output only. The quality metrics measured among products of this branch. See QualityMetric.requirement_key for supported metrics. Metrics could be missing if failed to retrieve. This field is not populated in BranchView.BASIC view.",
+          "items": {
+            "$ref": "GoogleCloudRetailV2alphaBranchQualityMetric"
+          },
+          "readOnly": true,
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRetailV2alphaBranchProductCountStatistic": {
+      "description": "A statistic about the number of products in a branch.",
+      "id": "GoogleCloudRetailV2alphaBranchProductCountStatistic",
+      "properties": {
+        "counts": {
+          "additionalProperties": {
+            "format": "int64",
+            "type": "string"
+          },
+          "description": "The number of products in scope broken down into different groups. The key is a group representing a set of products, and the value is the number of products in that group. Note: keys in this map may change over time. Possible keys: * \"primary-in-stock\", products have Product.Type.PRIMARY type and Product.Availability.IN_STOCK availability. * \"primary-out-of-stock\", products have Product.Type.PRIMARY type and Product.Availability.OUT_OF_STOCK availability. * \"primary-preorder\", products have Product.Type.PRIMARY type and Product.Availability.PREORDER availability. * \"primary-backorder\", products have Product.Type.PRIMARY type and Product.Availability.BACKORDER availability. * \"variant-in-stock\", products have Product.Type.VARIANT type and Product.Availability.IN_STOCK availability. * \"variant-out-of-stock\", products have Product.Type.VARIANT type and Product.Availability.OUT_OF_STOCK availability. * \"variant-preorder\", products have Product.Type.VARIANT type and Product.Availability.PREORDER availability. * \"variant-backorder\", products have Product.Type.VARIANT type and Product.Availability.BACKORDER availability. * \"price-discounted\", products have [Product.price_info.price] < [Product.price_info.original_price].",
+          "type": "object"
+        },
+        "scope": {
+          "description": "[ProductCountScope] of the [counts].",
+          "enum": [
+            "PRODUCT_COUNT_SCOPE_UNSPECIFIED",
+            "ALL_PRODUCTS",
+            "LAST_24_HOUR_UPDATE"
+          ],
+          "enumDescriptions": [
+            "Default value for enum. This value is not used in the API response.",
+            "Scope for all existing products in the branch. Useful for understanding how many products there are in a branch.",
+            "Scope for products created or updated in the last 24 hours."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRetailV2alphaBranchQualityMetric": {
+      "description": "Metric measured on a group of Products against a certain quality requirement. Contains the number of products that pass the check and the number of products that don't.",
+      "id": "GoogleCloudRetailV2alphaBranchQualityMetric",
+      "properties": {
+        "qualifiedProductCount": {
+          "description": "Number of products passing the quality requirement check. We only check searchable products.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "requirementKey": {
+          "description": "The key that represents a quality requirement rule. Supported keys: * \"has-valid-uri\": product has a valid and accessible uri. * \"available-expire-time-conformance\": Product.available_time is early than \"now\", and Product.expire_time is greater than \"now\". * \"has-searchable-attributes\": product has at least one attribute set to searchable. * \"has-description\": product has non-empty description. * \"has-at-least-bigram-title\": Product title has at least two words. A comprehensive title helps to improve search quality. * \"variant-has-image\": the variant products has at least one image. You may ignore this metric if all your products are at primary level. * \"variant-has-price-info\": the variant products has price_info set. You may ignore this metric if all your products are at primary level. * \"has-publish-time\": product has non-empty publish_time.",
+          "type": "string"
+        },
+        "suggestedQualityPercentThreshold": {
+          "description": "Value from 0 to 100 representing the suggested percentage of products that meet the quality requirements to get good search and recommendation performance. 100 * (qualified_product_count) / (qualified_product_count + unqualified_product_count) should be greater or equal to this suggestion.",
+          "format": "double",
+          "type": "number"
+        },
+        "unqualifiedProductCount": {
+          "description": "Number of products failing the quality requirement check. We only check searchable products.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "unqualifiedSampleProducts": {
+          "description": "A list of a maximum of 100 sample products that do not qualify for this requirement. This field is only populated in the response to BranchService.GetBranch API, and is always empty for BranchService.ListBranches. Only the following fields are set in the Product. * Product.name * Product.id * Product.title",
+          "items": {
+            "$ref": "GoogleCloudRetailV2alphaProduct"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -4623,6 +4820,20 @@
       },
       "type": "object"
     },
+    "GoogleCloudRetailV2alphaListBranchesResponse": {
+      "description": "Response for BranchService.ListBranches method.",
+      "id": "GoogleCloudRetailV2alphaListBranchesResponse",
+      "properties": {
+        "branches": {
+          "description": "The Branches.",
+          "items": {
+            "$ref": "GoogleCloudRetailV2alphaBranch"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudRetailV2alphaListCatalogsResponse": {
       "description": "Response for CatalogService.ListCatalogs method.",
       "id": "GoogleCloudRetailV2alphaListCatalogsResponse",
@@ -5525,7 +5736,7 @@
           "type": "array"
         },
         "categories": {
-          "description": "Product categories. This field is repeated for supporting one product belonging to several parallel categories. Strongly recommended using the full path for better search / recommendation quality. To represent full path of category, use '>' sign to separate different hierarchies. If '>' is part of the category name, replace it with other character(s). For example, if a shoes product belongs to both [\"Shoes & Accessories\" -> \"Shoes\"] and [\"Sports & Fitness\" -> \"Athletic Clothing\" -> \"Shoes\"], it could be represented as: \"categories\": [ \"Shoes & Accessories > Shoes\", \"Sports & Fitness > Athletic Clothing > Shoes\" ] Must be set for Type.PRIMARY Product otherwise an INVALID_ARGUMENT error is returned. At most 250 values are allowed per Product unless overridden via pantheon UI. Empty values are not allowed. Each value must be a UTF-8 encoded string with a length limit of 5,000 characters. Otherwise, an INVALID_ARGUMENT error is returned. Corresponding properties: Google Merchant Center property google_product_category. Schema.org property [Product.category] (https://schema.org/category). [mc_google_product_category]: https://support.google.com/merchants/answer/6324436",
+          "description": "Product categories. This field is repeated for supporting one product belonging to several parallel categories. Strongly recommended using the full path for better search / recommendation quality. To represent full path of category, use '>' sign to separate different hierarchies. If '>' is part of the category name, replace it with other character(s). For example, if a shoes product belongs to both [\"Shoes & Accessories\" -> \"Shoes\"] and [\"Sports & Fitness\" -> \"Athletic Clothing\" -> \"Shoes\"], it could be represented as: \"categories\": [ \"Shoes & Accessories > Shoes\", \"Sports & Fitness > Athletic Clothing > Shoes\" ] Must be set for Type.PRIMARY Product otherwise an INVALID_ARGUMENT error is returned. At most 250 values are allowed per Product unless overridden through the Google Cloud console. Empty values are not allowed. Each value must be a UTF-8 encoded string with a length limit of 5,000 characters. Otherwise, an INVALID_ARGUMENT error is returned. Corresponding properties: Google Merchant Center property google_product_category. Schema.org property [Product.category] (https://schema.org/category). [mc_google_product_category]: https://support.google.com/merchants/answer/6324436",
           "items": {
             "type": "string"
           },
@@ -6928,6 +7139,10 @@
           },
           "type": "array"
         },
+        "ignoreRecsDenylist": {
+          "description": "When the flag is enabled, the products in the denylist will not be filtered out in the recommendation filtering results.",
+          "type": "boolean"
+        },
         "modelId": {
           "description": "The id of the model in the same Catalog to use at serving time. Currently only RecommendationModels are supported: https://cloud.google.com/retail/recommendations-ai/docs/create-models Can be changed but only to a compatible model (e.g. others-you-may-like CTR to others-you-may-like CVR). Required when solution_types is SOLUTION_TYPE_RECOMMENDATION.",
           "type": "string"
@@ -7121,7 +7336,7 @@
           "type": "string"
         },
         "eventType": {
-          "description": "Required. User event type. Allowed values are: * `add-to-cart`: Products being added to cart. * `category-page-view`: Special pages such as sale or promotion pages viewed. * `detail-page-view`: Products detail page viewed. * `home-page-view`: Homepage viewed. * `promotion-offered`: Promotion is offered to a user. * `promotion-not-offered`: Promotion is not offered to a user. * `purchase-complete`: User finishing a purchase. * `search`: Product search. * `shopping-cart-page-view`: User viewing a shopping cart.",
+          "description": "Required. User event type. Allowed values are: * `add-to-cart`: Products being added to cart. * `remove-from-cart`: Products being removed from cart. * `category-page-view`: Special pages such as sale or promotion pages viewed. * `detail-page-view`: Products detail page viewed. * `home-page-view`: Homepage viewed. * `promotion-offered`: Promotion is offered to a user. * `promotion-not-offered`: Promotion is not offered to a user. * `purchase-complete`: User finishing a purchase. * `search`: Product search. * `shopping-cart-page-view`: User viewing a shopping cart.",
           "type": "string"
         },
         "experimentIds": {
@@ -7300,23 +7515,6 @@
         },
         "tableId": {
           "description": "The ID of a BigQuery Table.",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "GoogleCloudRetailV2betaCreateMerchantCenterAccountLinkMetadata": {
-      "description": "Common metadata related to the progress of the operations.",
-      "id": "GoogleCloudRetailV2betaCreateMerchantCenterAccountLinkMetadata",
-      "properties": {
-        "createTime": {
-          "description": "Operation create time.",
-          "format": "google-datetime",
-          "type": "string"
-        },
-        "updateTime": {
-          "description": "Operation last update time. If the operation is done, this is also the finish time.",
-          "format": "google-datetime",
           "type": "string"
         }
       },
@@ -7535,89 +7733,6 @@
         "importSummary": {
           "$ref": "GoogleCloudRetailV2betaUserEventImportSummary",
           "description": "Aggregated statistics of user event import status."
-        }
-      },
-      "type": "object"
-    },
-    "GoogleCloudRetailV2betaMerchantCenterAccountLink": {
-      "description": "Represents a link between a Merchant Center account and a branch. After a link is established, products from the linked Merchant Center account are streamed to the linked branch.",
-      "id": "GoogleCloudRetailV2betaMerchantCenterAccountLink",
-      "properties": {
-        "branchId": {
-          "description": "Required. The branch ID (e.g. 0/1/2) within the catalog that products from merchant_center_account_id are streamed to. When updating this field, an empty value will use the currently configured default branch. However, changing the default branch later on won't change the linked branch here. A single branch ID can only have one linked Merchant Center account ID.",
-          "type": "string"
-        },
-        "feedFilters": {
-          "description": "Criteria for the Merchant Center feeds to be ingested via the link. All offers will be ingested if the list is empty. Otherwise the offers will be ingested from selected feeds.",
-          "items": {
-            "$ref": "GoogleCloudRetailV2betaMerchantCenterAccountLinkMerchantCenterFeedFilter"
-          },
-          "type": "array"
-        },
-        "feedLabel": {
-          "description": "The FeedLabel used to perform filtering. Note: this replaces [region_id](https://developers.google.com/shopping-content/reference/rest/v2.1/products#Product.FIELDS.feed_label). Example value: `US`. Example value: `FeedLabel1`.",
-          "type": "string"
-        },
-        "id": {
-          "description": "Output only. Immutable. MerchantCenterAccountLink identifier, which is the final component of name. This field is auto generated and follows the convention: `BranchId_MerchantCenterAccountId`. `projects/*/locations/global/catalogs/default_catalog/merchantCenterAccountLinks/id_1`.",
-          "readOnly": true,
-          "type": "string"
-        },
-        "languageCode": {
-          "description": "Language of the title/description and other string attributes. Use language tags defined by [BCP 47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt). ISO 639-1. This specifies the language of offers in Merchant Center that will be accepted. If empty, no language filtering will be performed. Example value: `en`.",
-          "type": "string"
-        },
-        "merchantCenterAccountId": {
-          "description": "Required. The linked [Merchant center account id](https://developers.google.com/shopping-content/guides/accountstatuses). The account must be a standalone account or a sub-account of a MCA.",
-          "format": "int64",
-          "type": "string"
-        },
-        "name": {
-          "description": "Output only. Immutable. Full resource name of the Merchant Center Account Link, such as `projects/*/locations/global/catalogs/default_catalog/merchantCenterAccountLinks/merchant_center_account_link`.",
-          "readOnly": true,
-          "type": "string"
-        },
-        "projectId": {
-          "description": "Output only. Google Cloud project ID.",
-          "readOnly": true,
-          "type": "string"
-        },
-        "source": {
-          "description": "Optional. An optional arbitrary string that could be used as a tag for tracking link source.",
-          "type": "string"
-        },
-        "state": {
-          "description": "Output only. Represents the state of the link.",
-          "enum": [
-            "STATE_UNSPECIFIED",
-            "PENDING",
-            "ACTIVE",
-            "FAILED"
-          ],
-          "enumDescriptions": [
-            "Default value.",
-            "Link is created and LRO is not complete.",
-            "Link is active.",
-            "Link creation failed."
-          ],
-          "readOnly": true,
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "GoogleCloudRetailV2betaMerchantCenterAccountLinkMerchantCenterFeedFilter": {
-      "description": "Merchant Center Feed filter criterion.",
-      "id": "GoogleCloudRetailV2betaMerchantCenterAccountLinkMerchantCenterFeedFilter",
-      "properties": {
-        "primaryFeedId": {
-          "description": "Merchant Center primary feed ID.",
-          "format": "int64",
-          "type": "string"
-        },
-        "primaryFeedName": {
-          "description": "Merchant Center primary feed name. The name is used for the display purposes only.",
-          "type": "string"
         }
       },
       "type": "object"

@@ -313,6 +313,14 @@ export namespace analyticshub_v1beta1 {
      * Output only. Name of the linked dataset, e.g. projects/subscriberproject/datasets/linked_dataset
      */
     linkedDataset?: string | null;
+    /**
+     * Output only. Name of the Pub/Sub subscription, e.g. projects/subscriberproject/subscriptions/subscriptions/sub_id
+     */
+    linkedPubsubSubscription?: string | null;
+    /**
+     * Output only. Listing for which linked resource is created.
+     */
+    listing?: string | null;
   }
   /**
    * Message for response to the list of data exchanges.
@@ -376,7 +384,7 @@ export namespace analyticshub_v1beta1 {
      */
     requestAccess?: string | null;
     /**
-     * Optional. If set, restricted export configuration will be propagated and enforced on the linked dataset.
+     * Optional. If set, restricted export configuration will be propagated and enforced on the linked dataset. This is a required field for data clean room exchanges.
      */
     restrictedExportConfig?: Schema$RestrictedExportConfig;
     /**
@@ -559,6 +567,10 @@ export namespace analyticshub_v1beta1 {
      */
     linkedDatasetMap?: {[key: string]: Schema$LinkedResource} | null;
     /**
+     * Output only. Linked resources created in the subscription. Only contains values if state = STATE_ACTIVE.
+     */
+    linkedResources?: Schema$LinkedResource[];
+    /**
      * Output only. Resource name of the source Listing. e.g. projects/123/locations/US/dataExchanges/456/listings/789
      */
     listing?: string | null;
@@ -574,6 +586,10 @@ export namespace analyticshub_v1beta1 {
      * Output only. Organization of the project this subscription belongs to.
      */
     organizationId?: string | null;
+    /**
+     * Output only. Listing shared asset type.
+     */
+    resourceType?: string | null;
     /**
      * Output only. Current state of the subscription.
      */
@@ -705,6 +721,7 @@ export namespace analyticshub_v1beta1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -841,6 +858,7 @@ export namespace analyticshub_v1beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -925,6 +943,7 @@ export namespace analyticshub_v1beta1 {
           {
             url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -1009,6 +1028,7 @@ export namespace analyticshub_v1beta1 {
           {
             url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1097,6 +1117,7 @@ export namespace analyticshub_v1beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1191,6 +1212,7 @@ export namespace analyticshub_v1beta1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1275,6 +1297,7 @@ export namespace analyticshub_v1beta1 {
           {
             url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -1363,6 +1386,7 @@ export namespace analyticshub_v1beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1458,6 +1482,7 @@ export namespace analyticshub_v1beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1651,6 +1676,7 @@ export namespace analyticshub_v1beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1736,6 +1762,7 @@ export namespace analyticshub_v1beta1 {
           {
             url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -1821,6 +1848,7 @@ export namespace analyticshub_v1beta1 {
           {
             url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1909,6 +1937,7 @@ export namespace analyticshub_v1beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2002,6 +2031,7 @@ export namespace analyticshub_v1beta1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2087,6 +2117,7 @@ export namespace analyticshub_v1beta1 {
           {
             url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -2175,6 +2206,7 @@ export namespace analyticshub_v1beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2270,6 +2302,7 @@ export namespace analyticshub_v1beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2365,6 +2398,7 @@ export namespace analyticshub_v1beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),

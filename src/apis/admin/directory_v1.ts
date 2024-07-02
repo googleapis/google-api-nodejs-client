@@ -646,9 +646,13 @@ export namespace admin_directory_v1 {
      */
     annotatedUser?: string | null;
     /**
-     * (Read-only) The timestamp after which the device will stop receiving Chrome updates or support
+     * (Read-only) The timestamp after which the device will stop receiving Chrome updates or support. Please use "autoUpdateThrough" instead.
      */
     autoUpdateExpiration?: string | null;
+    /**
+     * Output only. The timestamp after which the device will stop receiving Chrome updates or support.
+     */
+    autoUpdateThrough?: string | null;
     /**
      * Output only. Contains backlight information for the device.
      */
@@ -657,6 +661,10 @@ export namespace admin_directory_v1 {
      * The boot mode for the device. The possible values are: * `Verified`: The device is running a valid version of the Chrome OS. * `Dev`: The devices's developer hardware switch is enabled. When booted, the device has a command line shell. For an example of a developer switch, see the [Chromebook developer information](https://www.chromium.org/chromium-os/developer-information-for-chrome-os-devices/samsung-series-5-chromebook#TOC-Developer-switch).
      */
     bootMode?: string | null;
+    /**
+     * Output only. Chrome OS type of the device.
+     */
+    chromeOsType?: string | null;
     /**
      * Information regarding CPU specs in the device.
      */
@@ -726,6 +734,22 @@ export namespace admin_directory_v1 {
      * (Read-only) MAC address used by the Chromebook’s internal ethernet port, and for onboard network (ethernet) interface. The format is twelve (12) hexadecimal digits without any delimiter (uppercase letters). This is only relevant for some devices.
      */
     ethernetMacAddress0?: string | null;
+    /**
+     * Output only. Whether or not the device requires the extended support opt in.
+     */
+    extendedSupportEligible?: boolean | null;
+    /**
+     * Output only. Whether extended support policy is enabled on the device.
+     */
+    extendedSupportEnabled?: boolean | null;
+    /**
+     * Output only. Date of the device when extended support policy for automatic updates starts.
+     */
+    extendedSupportStart?: string | null;
+    /**
+     * Output only. Fan information for the device.
+     */
+    fanInfo?: Schema$FanInfo[];
     /**
      * The Chrome device's firmware version.
      */
@@ -1176,6 +1200,15 @@ export namespace admin_directory_v1 {
      * Id of a failed printer.
      */
     printerId?: string | null;
+  }
+  /**
+   * Information about the device's fan.
+   */
+  export interface Schema$FanInfo {
+    /**
+     * Output only. Fan speed in RPM.
+     */
+    speedRpm?: number | null;
   }
   /**
    * JSON template for Feature object in Directory API.
@@ -2931,6 +2964,7 @@ export namespace admin_directory_v1 {
               rootUrl + '/admin/directory/v1/users/{userKey}/asps/{codeId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -3016,6 +3050,7 @@ export namespace admin_directory_v1 {
               rootUrl + '/admin/directory/v1/users/{userKey}/asps/{codeId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3102,6 +3137,7 @@ export namespace admin_directory_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3220,6 +3256,7 @@ export namespace admin_directory_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3319,6 +3356,7 @@ export namespace admin_directory_v1 {
               '/admin/directory/v1/customer/{customerId}/devices/chromeos/{resourceId}/action'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3406,6 +3444,7 @@ export namespace admin_directory_v1 {
               '/admin/directory/v1/customer/{customerId}/devices/chromeos/{deviceId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3493,6 +3532,7 @@ export namespace admin_directory_v1 {
               '/admin/directory/v1/customer/{customerId}/devices/chromeos'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3578,6 +3618,7 @@ export namespace admin_directory_v1 {
               '/admin/directory/v1/customer/{customerId}/devices/chromeos/moveDevicesToOu'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3665,6 +3706,7 @@ export namespace admin_directory_v1 {
               '/admin/directory/v1/customer/{customerId}/devices/chromeos/{deviceId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -3752,6 +3794,7 @@ export namespace admin_directory_v1 {
               '/admin/directory/v1/customer/{customerId}/devices/chromeos/{deviceId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
+            apiVersion: '',
           },
           options
         ),
@@ -3813,7 +3856,7 @@ export namespace admin_directory_v1 {
      */
     includeChildOrgunits?: boolean;
     /**
-     * Maximum number of results to return.
+     * Maximum number of results to return. Value should not exceed 300.
      */
     maxResults?: number;
     /**
@@ -3829,7 +3872,7 @@ export namespace admin_directory_v1 {
      */
     pageToken?: string;
     /**
-     * Restrict information returned to a set of selected fields.
+     * Determines whether the response contains the full list of properties or only a subset.
      */
     projection?: string;
     /**
@@ -3868,7 +3911,7 @@ export namespace admin_directory_v1 {
      */
     deviceId?: string;
     /**
-     * Restrict information returned to a set of selected fields.
+     * Determines whether the response contains the full list of properties or only a subset.
      */
     projection?: string;
 
@@ -3888,7 +3931,7 @@ export namespace admin_directory_v1 {
      */
     deviceId?: string;
     /**
-     * Restrict information returned to a set of selected fields.
+     * Determines whether the response contains the full list of properties or only a subset.
      */
     projection?: string;
 
@@ -4003,6 +4046,7 @@ export namespace admin_directory_v1 {
               '/admin/directory/v1/customer/{customerId}/devices/chromeos:batchChangeStatus'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4099,6 +4143,7 @@ export namespace admin_directory_v1 {
               '/admin/directory/v1/customer/{customerId}/devices/chromeos/{deviceId}:issueCommand'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4231,6 +4276,7 @@ export namespace admin_directory_v1 {
               '/admin/directory/v1/customer/{customerId}/devices/chromeos/{deviceId}/commands/{commandId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4343,6 +4389,7 @@ export namespace admin_directory_v1 {
               rootUrl + '/admin/directory/v1/customers/{customerKey}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4428,6 +4475,7 @@ export namespace admin_directory_v1 {
               rootUrl + '/admin/directory/v1/customers/{customerKey}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -4513,6 +4561,7 @@ export namespace admin_directory_v1 {
               rootUrl + '/admin/directory/v1/customers/{customerKey}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
+            apiVersion: '',
           },
           options
         ),
@@ -4657,6 +4706,7 @@ export namespace admin_directory_v1 {
               '/admin/directory/v1/{+parent}/chrome/printers:batchCreatePrinters'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4752,6 +4802,7 @@ export namespace admin_directory_v1 {
               '/admin/directory/v1/{+parent}/chrome/printers:batchDeletePrinters'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4838,6 +4889,7 @@ export namespace admin_directory_v1 {
               rootUrl + '/admin/directory/v1/{+parent}/chrome/printers'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4925,6 +4977,7 @@ export namespace admin_directory_v1 {
               '$1'
             ),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -5012,6 +5065,7 @@ export namespace admin_directory_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5103,6 +5157,7 @@ export namespace admin_directory_v1 {
               rootUrl + '/admin/directory/v1/{+parent}/chrome/printers'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5198,6 +5253,7 @@ export namespace admin_directory_v1 {
               '/admin/directory/v1/{+parent}/chrome/printers:listPrinterModels'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5285,6 +5341,7 @@ export namespace admin_directory_v1 {
               '$1'
             ),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -5504,6 +5561,7 @@ export namespace admin_directory_v1 {
               '/admin/directory/v1/{+parent}/chrome/printServers:batchCreatePrintServers'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5601,6 +5659,7 @@ export namespace admin_directory_v1 {
               '/admin/directory/v1/{+parent}/chrome/printServers:batchDeletePrintServers'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5689,6 +5748,7 @@ export namespace admin_directory_v1 {
               rootUrl + '/admin/directory/v1/{+parent}/chrome/printServers'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5776,6 +5836,7 @@ export namespace admin_directory_v1 {
               '$1'
             ),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -5863,6 +5924,7 @@ export namespace admin_directory_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5954,6 +6016,7 @@ export namespace admin_directory_v1 {
               rootUrl + '/admin/directory/v1/{+parent}/chrome/printServers'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6041,6 +6104,7 @@ export namespace admin_directory_v1 {
               '$1'
             ),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -6227,6 +6291,7 @@ export namespace admin_directory_v1 {
               '/admin/directory/v1/customer/{customer}/domainaliases/{domainAliasName}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -6314,6 +6379,7 @@ export namespace admin_directory_v1 {
               '/admin/directory/v1/customer/{customer}/domainaliases/{domainAliasName}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6400,6 +6466,7 @@ export namespace admin_directory_v1 {
               rootUrl + '/admin/directory/v1/customer/{customer}/domainaliases'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -6486,6 +6553,7 @@ export namespace admin_directory_v1 {
               rootUrl + '/admin/directory/v1/customer/{customer}/domainaliases'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6623,6 +6691,7 @@ export namespace admin_directory_v1 {
               '/admin/directory/v1/customer/{customer}/domains/{domainName}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -6709,6 +6778,7 @@ export namespace admin_directory_v1 {
               '/admin/directory/v1/customer/{customer}/domains/{domainName}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6794,6 +6864,7 @@ export namespace admin_directory_v1 {
               rootUrl + '/admin/directory/v1/customer/{customer}/domains'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -6879,6 +6950,7 @@ export namespace admin_directory_v1 {
               rootUrl + '/admin/directory/v1/customer/{customer}/domains'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -7010,6 +7082,7 @@ export namespace admin_directory_v1 {
               '$1'
             ),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -7096,6 +7169,7 @@ export namespace admin_directory_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -7182,6 +7256,7 @@ export namespace admin_directory_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -7268,6 +7343,7 @@ export namespace admin_directory_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -7354,6 +7430,7 @@ export namespace admin_directory_v1 {
               '$1'
             ),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -7440,6 +7517,7 @@ export namespace admin_directory_v1 {
               '$1'
             ),
             method: 'PUT',
+            apiVersion: '',
           },
           options
         ),
@@ -7606,6 +7684,7 @@ export namespace admin_directory_v1 {
               rootUrl + '/admin/directory/v1/groups/{groupKey}/aliases/{alias}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -7692,6 +7771,7 @@ export namespace admin_directory_v1 {
               rootUrl + '/admin/directory/v1/groups/{groupKey}/aliases'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -7778,6 +7858,7 @@ export namespace admin_directory_v1 {
               rootUrl + '/admin/directory/v1/groups/{groupKey}/aliases'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -7900,6 +7981,7 @@ export namespace admin_directory_v1 {
               '/admin/directory/v1/groups/{groupKey}/members/{memberKey}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -7986,6 +8068,7 @@ export namespace admin_directory_v1 {
               '/admin/directory/v1/groups/{groupKey}/members/{memberKey}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -8073,6 +8156,7 @@ export namespace admin_directory_v1 {
               '/admin/directory/v1/groups/{groupKey}/hasMember/{memberKey}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -8158,6 +8242,7 @@ export namespace admin_directory_v1 {
               rootUrl + '/admin/directory/v1/groups/{groupKey}/members'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -8243,6 +8328,7 @@ export namespace admin_directory_v1 {
               rootUrl + '/admin/directory/v1/groups/{groupKey}/members'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -8329,6 +8415,7 @@ export namespace admin_directory_v1 {
               '/admin/directory/v1/groups/{groupKey}/members/{memberKey}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -8415,6 +8502,7 @@ export namespace admin_directory_v1 {
               '/admin/directory/v1/groups/{groupKey}/members/{memberKey}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
+            apiVersion: '',
           },
           options
         ),
@@ -8602,6 +8690,7 @@ export namespace admin_directory_v1 {
               '/admin/directory/v1/customer/{customerId}/devices/mobile/{resourceId}/action'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -8687,6 +8776,7 @@ export namespace admin_directory_v1 {
               '/admin/directory/v1/customer/{customerId}/devices/mobile/{resourceId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -8774,6 +8864,7 @@ export namespace admin_directory_v1 {
               '/admin/directory/v1/customer/{customerId}/devices/mobile/{resourceId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -8861,6 +8952,7 @@ export namespace admin_directory_v1 {
               '/admin/directory/v1/customer/{customerId}/devices/mobile'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -9026,6 +9118,7 @@ export namespace admin_directory_v1 {
               '/admin/directory/v1/customer/{customerId}/orgunits/{+orgUnitPath}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -9112,6 +9205,7 @@ export namespace admin_directory_v1 {
               '/admin/directory/v1/customer/{customerId}/orgunits/{+orgUnitPath}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -9197,6 +9291,7 @@ export namespace admin_directory_v1 {
               rootUrl + '/admin/directory/v1/customer/{customerId}/orgunits'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -9282,6 +9377,7 @@ export namespace admin_directory_v1 {
               rootUrl + '/admin/directory/v1/customer/{customerId}/orgunits'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -9368,6 +9464,7 @@ export namespace admin_directory_v1 {
               '/admin/directory/v1/customer/{customerId}/orgunits/{+orgUnitPath}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -9454,6 +9551,7 @@ export namespace admin_directory_v1 {
               '/admin/directory/v1/customer/{customerId}/orgunits/{+orgUnitPath}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
+            apiVersion: '',
           },
           options
         ),
@@ -9623,6 +9721,7 @@ export namespace admin_directory_v1 {
               '/admin/directory/v1/customer/{customer}/roles/ALL/privileges'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -9735,6 +9834,7 @@ export namespace admin_directory_v1 {
               '/admin/directory/v1/customer/{customer}/resources/buildings/{buildingId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -9822,6 +9922,7 @@ export namespace admin_directory_v1 {
               '/admin/directory/v1/customer/{customer}/resources/buildings/{buildingId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -9909,6 +10010,7 @@ export namespace admin_directory_v1 {
               '/admin/directory/v1/customer/{customer}/resources/buildings'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -9996,6 +10098,7 @@ export namespace admin_directory_v1 {
               '/admin/directory/v1/customer/{customer}/resources/buildings'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -10083,6 +10186,7 @@ export namespace admin_directory_v1 {
               '/admin/directory/v1/customer/{customer}/resources/buildings/{buildingId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -10170,6 +10274,7 @@ export namespace admin_directory_v1 {
               '/admin/directory/v1/customer/{customer}/resources/buildings/{buildingId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
+            apiVersion: '',
           },
           options
         ),
@@ -10356,6 +10461,7 @@ export namespace admin_directory_v1 {
               '/admin/directory/v1/customer/{customer}/resources/calendars/{calendarResourceId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -10443,6 +10549,7 @@ export namespace admin_directory_v1 {
               '/admin/directory/v1/customer/{customer}/resources/calendars/{calendarResourceId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -10530,6 +10637,7 @@ export namespace admin_directory_v1 {
               '/admin/directory/v1/customer/{customer}/resources/calendars'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -10620,6 +10728,7 @@ export namespace admin_directory_v1 {
               '/admin/directory/v1/customer/{customer}/resources/calendars'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -10707,6 +10816,7 @@ export namespace admin_directory_v1 {
               '/admin/directory/v1/customer/{customer}/resources/calendars/{calendarResourceId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -10794,6 +10904,7 @@ export namespace admin_directory_v1 {
               '/admin/directory/v1/customer/{customer}/resources/calendars/{calendarResourceId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
+            apiVersion: '',
           },
           options
         ),
@@ -10976,6 +11087,7 @@ export namespace admin_directory_v1 {
               '/admin/directory/v1/customer/{customer}/resources/features/{featureKey}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -11063,6 +11175,7 @@ export namespace admin_directory_v1 {
               '/admin/directory/v1/customer/{customer}/resources/features/{featureKey}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -11150,6 +11263,7 @@ export namespace admin_directory_v1 {
               '/admin/directory/v1/customer/{customer}/resources/features'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -11237,6 +11351,7 @@ export namespace admin_directory_v1 {
               '/admin/directory/v1/customer/{customer}/resources/features'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -11324,6 +11439,7 @@ export namespace admin_directory_v1 {
               '/admin/directory/v1/customer/{customer}/resources/features/{featureKey}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -11409,6 +11525,7 @@ export namespace admin_directory_v1 {
               '/admin/directory/v1/customer/{customer}/resources/features/{oldName}/rename'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -11496,6 +11613,7 @@ export namespace admin_directory_v1 {
               '/admin/directory/v1/customer/{customer}/resources/features/{featureKey}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
+            apiVersion: '',
           },
           options
         ),
@@ -11686,6 +11804,7 @@ export namespace admin_directory_v1 {
               '/admin/directory/v1/customer/{customer}/roleassignments/{roleAssignmentId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -11773,6 +11892,7 @@ export namespace admin_directory_v1 {
               '/admin/directory/v1/customer/{customer}/roleassignments/{roleAssignmentId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -11860,6 +11980,7 @@ export namespace admin_directory_v1 {
               '/admin/directory/v1/customer/{customer}/roleassignments'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -11947,6 +12068,7 @@ export namespace admin_directory_v1 {
               '/admin/directory/v1/customer/{customer}/roleassignments'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -12099,6 +12221,7 @@ export namespace admin_directory_v1 {
               rootUrl + '/admin/directory/v1/customer/{customer}/roles/{roleId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -12184,6 +12307,7 @@ export namespace admin_directory_v1 {
               rootUrl + '/admin/directory/v1/customer/{customer}/roles/{roleId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -12269,6 +12393,7 @@ export namespace admin_directory_v1 {
               rootUrl + '/admin/directory/v1/customer/{customer}/roles'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -12354,6 +12479,7 @@ export namespace admin_directory_v1 {
               rootUrl + '/admin/directory/v1/customer/{customer}/roles'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -12439,6 +12565,7 @@ export namespace admin_directory_v1 {
               rootUrl + '/admin/directory/v1/customer/{customer}/roles/{roleId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -12524,6 +12651,7 @@ export namespace admin_directory_v1 {
               rootUrl + '/admin/directory/v1/customer/{customer}/roles/{roleId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
+            apiVersion: '',
           },
           options
         ),
@@ -12691,6 +12819,7 @@ export namespace admin_directory_v1 {
               '/admin/directory/v1/customer/{customerId}/schemas/{schemaKey}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -12777,6 +12906,7 @@ export namespace admin_directory_v1 {
               '/admin/directory/v1/customer/{customerId}/schemas/{schemaKey}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -12862,6 +12992,7 @@ export namespace admin_directory_v1 {
               rootUrl + '/admin/directory/v1/customer/{customerId}/schemas'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -12947,6 +13078,7 @@ export namespace admin_directory_v1 {
               rootUrl + '/admin/directory/v1/customer/{customerId}/schemas'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -13033,6 +13165,7 @@ export namespace admin_directory_v1 {
               '/admin/directory/v1/customer/{customerId}/schemas/{schemaKey}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -13119,6 +13252,7 @@ export namespace admin_directory_v1 {
               '/admin/directory/v1/customer/{customerId}/schemas/{schemaKey}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
+            apiVersion: '',
           },
           options
         ),
@@ -13277,6 +13411,7 @@ export namespace admin_directory_v1 {
               rootUrl + '/admin/directory/v1/users/{userKey}/tokens/{clientId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -13362,6 +13497,7 @@ export namespace admin_directory_v1 {
               rootUrl + '/admin/directory/v1/users/{userKey}/tokens/{clientId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -13447,6 +13583,7 @@ export namespace admin_directory_v1 {
               rootUrl + '/admin/directory/v1/users/{userKey}/tokens'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -13566,6 +13703,7 @@ export namespace admin_directory_v1 {
               '/admin/directory/v1/users/{userKey}/twoStepVerification/turnOff'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -13669,6 +13807,7 @@ export namespace admin_directory_v1 {
               '$1'
             ),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -13755,6 +13894,7 @@ export namespace admin_directory_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -13841,6 +13981,7 @@ export namespace admin_directory_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -13927,6 +14068,7 @@ export namespace admin_directory_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -14010,6 +14152,7 @@ export namespace admin_directory_v1 {
               rootUrl + '/admin/directory/v1/users/{userKey}/makeAdmin'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -14096,6 +14239,7 @@ export namespace admin_directory_v1 {
               '$1'
             ),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -14179,6 +14323,7 @@ export namespace admin_directory_v1 {
               rootUrl + '/admin/directory/v1/users/{userKey}/signOut'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -14262,6 +14407,7 @@ export namespace admin_directory_v1 {
               rootUrl + '/admin/directory/v1/users/{userKey}/undelete'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -14348,6 +14494,7 @@ export namespace admin_directory_v1 {
               '$1'
             ),
             method: 'PUT',
+            apiVersion: '',
           },
           options
         ),
@@ -14434,6 +14581,7 @@ export namespace admin_directory_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -14490,7 +14638,7 @@ export namespace admin_directory_v1 {
   }
   export interface Params$Resource$Users$List extends StandardParameters {
     /**
-     * The unique ID for the customer's Google Workspace account. In case of a multi-domain account, to fetch all groups for a customer, use this field instead of `domain`. You can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users](/admin-sdk/directory/v1/reference/users) resource. You must provide either the `customer` or the `domain` parameter.
+     * The unique ID for the customer's Google Workspace account. In case of a multi-domain account, to fetch all users for a customer, use this field instead of `domain`. You can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users](/admin-sdk/directory/v1/reference/users) resource. You must provide either the `customer` or the `domain` parameter.
      */
     customer?: string;
     /**
@@ -14498,7 +14646,7 @@ export namespace admin_directory_v1 {
      */
     customFieldMask?: string;
     /**
-     * The domain name. Use this field to get groups from only one domain. To return all domains for a customer account, use the `customer` query parameter instead. Either the `customer` or the `domain` parameter must be provided.
+     * The domain name. Use this field to get users from only one domain. To return all domains for a customer account, use the `customer` query parameter instead. Either the `customer` or the `domain` parameter must be provided.
      */
     domain?: string;
     /**
@@ -14716,6 +14864,7 @@ export namespace admin_directory_v1 {
               rootUrl + '/admin/directory/v1/users/{userKey}/aliases/{alias}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -14802,6 +14951,7 @@ export namespace admin_directory_v1 {
               rootUrl + '/admin/directory/v1/users/{userKey}/aliases'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -14888,6 +15038,7 @@ export namespace admin_directory_v1 {
               rootUrl + '/admin/directory/v1/users/{userKey}/aliases'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -14974,6 +15125,7 @@ export namespace admin_directory_v1 {
               rootUrl + '/admin/directory/v1/users/{userKey}/aliases/watch'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -15116,6 +15268,7 @@ export namespace admin_directory_v1 {
               rootUrl + '/admin/directory/v1/users/{userKey}/photos/thumbnail'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -15201,6 +15354,7 @@ export namespace admin_directory_v1 {
               rootUrl + '/admin/directory/v1/users/{userKey}/photos/thumbnail'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -15287,6 +15441,7 @@ export namespace admin_directory_v1 {
               rootUrl + '/admin/directory/v1/users/{userKey}/photos/thumbnail'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -15373,6 +15528,7 @@ export namespace admin_directory_v1 {
               rootUrl + '/admin/directory/v1/users/{userKey}/photos/thumbnail'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
+            apiVersion: '',
           },
           options
         ),
@@ -15503,6 +15659,7 @@ export namespace admin_directory_v1 {
               '/admin/directory/v1/users/{userKey}/verificationCodes/generate'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -15588,6 +15745,7 @@ export namespace admin_directory_v1 {
               '/admin/directory/v1/users/{userKey}/verificationCodes/invalidate'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -15677,6 +15835,7 @@ export namespace admin_directory_v1 {
               rootUrl + '/admin/directory/v1/users/{userKey}/verificationCodes'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),

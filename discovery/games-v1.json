@@ -110,6 +110,67 @@
   },
   "protocol": "rest",
   "resources": {
+    "accesstokens": {
+      "methods": {
+        "generatePlayGroupingApiToken": {
+          "description": "Generates a Play Grouping API token for the PGS user identified by the attached credential.",
+          "flatPath": "games/v1/accesstokens/generatePlayGroupingApiToken",
+          "httpMethod": "POST",
+          "id": "games.accesstokens.generatePlayGroupingApiToken",
+          "parameterOrder": [],
+          "parameters": {
+            "packageName": {
+              "description": "Required. App package name to generate the token for (e.g. com.example.mygame).",
+              "location": "query",
+              "type": "string"
+            },
+            "persona": {
+              "description": "Required. Persona to associate with the token. Persona is a developer-provided stable identifier of the user. Must be deterministically generated (e.g. as a one-way hash) from the user account ID and user profile ID (if the app has the concept), according to the developer's own user identity system.",
+              "location": "query",
+              "type": "string"
+            }
+          },
+          "path": "games/v1/accesstokens/generatePlayGroupingApiToken",
+          "response": {
+            "$ref": "GeneratePlayGroupingApiTokenResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/games"
+          ]
+        },
+        "generateRecallPlayGroupingApiToken": {
+          "description": "Generates a Play Grouping API token for the PGS user identified by the Recall session ID provided in the request.",
+          "flatPath": "games/v1/accesstokens/generateRecallPlayGroupingApiToken",
+          "httpMethod": "POST",
+          "id": "games.accesstokens.generateRecallPlayGroupingApiToken",
+          "parameterOrder": [],
+          "parameters": {
+            "packageName": {
+              "description": "Required. App package name to generate the token for (e.g. com.example.mygame).",
+              "location": "query",
+              "type": "string"
+            },
+            "persona": {
+              "description": "Required. Persona to associate with the token. Persona is a developer-provided stable identifier of the user. Must be deterministically generated (e.g. as a one-way hash) from the user account ID and user profile ID (if the app has the concept), according to the developer's own user identity system.",
+              "location": "query",
+              "type": "string"
+            },
+            "recallSessionId": {
+              "description": "Required. Opaque server-generated string that encodes all the necessary information to identify the PGS player / Google user and application. See https://developer.android.com/games/pgs/recall/recall-setup on how to integrate with Recall and get session ID.",
+              "location": "query",
+              "type": "string"
+            }
+          },
+          "path": "games/v1/accesstokens/generateRecallPlayGroupingApiToken",
+          "response": {
+            "$ref": "GenerateRecallPlayGroupingApiTokenResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/androidpublisher"
+          ]
+        }
+      }
+    },
     "achievementDefinitions": {
       "methods": {
         "list": {
@@ -822,6 +883,60 @@
     },
     "recall": {
       "methods": {
+        "gamesPlayerTokens": {
+          "description": "Retrieve the Recall tokens from all requested games that is associated with the PGS Player encoded in the provided recall session id. The API is only available for users that have an active PGS Player profile.",
+          "flatPath": "games/v1/recall/gamesPlayerTokens/{sessionId}",
+          "httpMethod": "GET",
+          "id": "games.recall.gamesPlayerTokens",
+          "parameterOrder": [
+            "sessionId"
+          ],
+          "parameters": {
+            "applicationIds": {
+              "description": "Required. The application IDs from the Google Play developer console for the games to return scoped ids for.",
+              "location": "query",
+              "repeated": true,
+              "type": "string"
+            },
+            "sessionId": {
+              "description": "Required. Opaque server-generated string that encodes all the necessary information to identify the PGS player / Google user and application.",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "games/v1/recall/gamesPlayerTokens/{sessionId}",
+          "response": {
+            "$ref": "RetrieveGamesPlayerTokensResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/androidpublisher"
+          ]
+        },
+        "lastTokenFromAllDeveloperGames": {
+          "description": "Retrieve the last Recall token from all developer games that is associated with the PGS Player encoded in the provided recall session id. The API is only available for users that have active PGS Player profile.",
+          "flatPath": "games/v1/recall/developerGamesLastPlayerToken/{sessionId}",
+          "httpMethod": "GET",
+          "id": "games.recall.lastTokenFromAllDeveloperGames",
+          "parameterOrder": [
+            "sessionId"
+          ],
+          "parameters": {
+            "sessionId": {
+              "description": "Required. Opaque server-generated string that encodes all the necessary information to identify the PGS player / Google user and application.",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "games/v1/recall/developerGamesLastPlayerToken/{sessionId}",
+          "response": {
+            "$ref": "RetrieveDeveloperGamesLastPlayerTokenResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/androidpublisher"
+          ]
+        },
         "linkPersona": {
           "description": "Associate the PGS Player principal encoded in the provided recall session id with an in-game account",
           "flatPath": "games/v1/recall:linkPersona",
@@ -859,7 +974,7 @@
           ]
         },
         "retrieveTokens": {
-          "description": "Retrieve all Recall tokens associated with the PGS Player principal encoded in the provided recall session id. The API is only available for users that have active PGS Player profile.",
+          "description": "Retrieve all Recall tokens associated with the PGS Player encoded in the provided recall session id. The API is only available for users that have active PGS Player profile.",
           "flatPath": "games/v1/recall/tokens/{sessionId}",
           "httpMethod": "GET",
           "id": "games.recall.retrieveTokens",
@@ -1354,7 +1469,7 @@
       }
     }
   },
-  "revision": "20230906",
+  "revision": "20240618",
   "rootUrl": "https://games.googleapis.com/",
   "schemas": {
     "AchievementDefinition": {
@@ -2108,6 +2223,24 @@
       },
       "type": "object"
     },
+    "GamePlayerToken": {
+      "description": "Recall tokens for a game.",
+      "id": "GamePlayerToken",
+      "properties": {
+        "applicationId": {
+          "description": "The application that this player identifier is for.",
+          "type": "string"
+        },
+        "token": {
+          "description": "Recall token data.",
+          "items": {
+            "$ref": "RecallToken"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "GamesAchievementIncrement": {
       "description": "The payload to request to increment an achievement.",
       "id": "GamesAchievementIncrement",
@@ -2141,6 +2274,28 @@
           "description": "The minimum number of steps for the achievement to be set to.",
           "format": "int32",
           "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "GeneratePlayGroupingApiTokenResponse": {
+      "description": "Response for the GeneratePlayGroupingApiToken RPC.",
+      "id": "GeneratePlayGroupingApiTokenResponse",
+      "properties": {
+        "token": {
+          "$ref": "PlayGroupingApiToken",
+          "description": "Token for accessing the Play Grouping API."
+        }
+      },
+      "type": "object"
+    },
+    "GenerateRecallPlayGroupingApiTokenResponse": {
+      "description": "Response for the GenerateRecallPlayGroupingApiToken RPC.",
+      "id": "GenerateRecallPlayGroupingApiTokenResponse",
+      "properties": {
+        "token": {
+          "$ref": "PlayGroupingApiToken",
+          "description": "Token for accessing the Play Grouping API."
         }
       },
       "type": "object"
@@ -2590,6 +2745,17 @@
             "$ref": "PlayerLevel"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "PlayGroupingApiToken": {
+      "description": "Token data returned from GeneratePlayGroupingApiToken RPC.",
+      "id": "PlayGroupingApiToken",
+      "properties": {
+        "tokenValue": {
+          "description": "Value of the token.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -3140,6 +3306,31 @@
         "unlinked": {
           "description": "Required. Whether any tokens were unlinked as a result of this request.",
           "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "RetrieveDeveloperGamesLastPlayerTokenResponse": {
+      "description": "Recall token data returned from for the RetrieveDeveloperGamesLastPlayerToken RPC",
+      "id": "RetrieveDeveloperGamesLastPlayerTokenResponse",
+      "properties": {
+        "token": {
+          "$ref": "RecallToken",
+          "description": "The recall token associated with the requested PGS Player principal. It can be unset if there is no recall token associated with the requested principal."
+        }
+      },
+      "type": "object"
+    },
+    "RetrieveGamesPlayerTokensResponse": {
+      "description": "A list of recall token data returned from the RetrieveGamesPlayerTokens RPC",
+      "id": "RetrieveGamesPlayerTokensResponse",
+      "properties": {
+        "applicationRecallTokens": {
+          "description": "The requested applications along with the recall tokens for the player. If the player does not have recall tokens for an application, that application is not included in the response.",
+          "items": {
+            "$ref": "GamePlayerToken"
+          },
+          "type": "array"
         }
       },
       "type": "object"

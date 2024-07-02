@@ -656,7 +656,8 @@ export namespace calendar_v3 {
      * - "default" - A regular event or not further specified.
      * - "outOfOffice" - An out-of-office event.
      * - "focusTime" - A focus-time event.
-     * - "workingLocation" - A working location event.  Currently, only "default " and "workingLocation" events can be created using the API. Extended support for other event types will be made available in later releases.
+     * - "workingLocation" - A working location event.
+     * - "fromGmail" - An event from Gmail. This type of event cannot be created.
      */
     eventType?: string | null;
     /**
@@ -1216,6 +1217,7 @@ export namespace calendar_v3 {
               rootUrl + '/calendar/v3/calendars/{calendarId}/acl/{ruleId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -1301,6 +1303,7 @@ export namespace calendar_v3 {
               rootUrl + '/calendar/v3/calendars/{calendarId}/acl/{ruleId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1387,6 +1390,7 @@ export namespace calendar_v3 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1473,6 +1477,7 @@ export namespace calendar_v3 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1558,6 +1563,7 @@ export namespace calendar_v3 {
               rootUrl + '/calendar/v3/calendars/{calendarId}/acl/{ruleId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -1643,6 +1649,7 @@ export namespace calendar_v3 {
               rootUrl + '/calendar/v3/calendars/{calendarId}/acl/{ruleId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
+            apiVersion: '',
           },
           options
         ),
@@ -1728,6 +1735,7 @@ export namespace calendar_v3 {
               rootUrl + '/calendar/v3/calendars/{calendarId}/acl/watch'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1948,6 +1956,7 @@ export namespace calendar_v3 {
               rootUrl + '/calendar/v3/users/me/calendarList/{calendarId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -2036,6 +2045,7 @@ export namespace calendar_v3 {
               rootUrl + '/calendar/v3/users/me/calendarList/{calendarId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2126,6 +2136,7 @@ export namespace calendar_v3 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2213,6 +2224,7 @@ export namespace calendar_v3 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2302,6 +2314,7 @@ export namespace calendar_v3 {
               rootUrl + '/calendar/v3/users/me/calendarList/{calendarId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -2391,6 +2404,7 @@ export namespace calendar_v3 {
               rootUrl + '/calendar/v3/users/me/calendarList/{calendarId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
+            apiVersion: '',
           },
           options
         ),
@@ -2478,6 +2492,7 @@ export namespace calendar_v3 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2693,6 +2708,7 @@ export namespace calendar_v3 {
               rootUrl + '/calendar/v3/calendars/{calendarId}/clear'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2777,6 +2793,7 @@ export namespace calendar_v3 {
               '$1'
             ),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -2863,6 +2880,7 @@ export namespace calendar_v3 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2949,6 +2967,7 @@ export namespace calendar_v3 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3035,6 +3054,7 @@ export namespace calendar_v3 {
               '$1'
             ),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -3121,6 +3141,7 @@ export namespace calendar_v3 {
               '$1'
             ),
             method: 'PUT',
+            apiVersion: '',
           },
           options
         ),
@@ -3259,6 +3280,7 @@ export namespace calendar_v3 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3359,6 +3381,7 @@ export namespace calendar_v3 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3451,6 +3474,7 @@ export namespace calendar_v3 {
               rootUrl + '/calendar/v3/calendars/{calendarId}/events/{eventId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -3536,6 +3560,7 @@ export namespace calendar_v3 {
               rootUrl + '/calendar/v3/calendars/{calendarId}/events/{eventId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3555,7 +3580,8 @@ export namespace calendar_v3 {
     }
 
     /**
-     * Imports an event. This operation is used to add a private copy of an existing event to a calendar.
+     * Imports an event. This operation is used to add a private copy of an existing event to a calendar. Only events with an eventType of default may be imported.
+     * Deprecated behavior: If a non-default event is imported, its type will be changed to default and any event-type-specific properties it may have will be dropped.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3621,6 +3647,7 @@ export namespace calendar_v3 {
               rootUrl + '/calendar/v3/calendars/{calendarId}/events/import'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3706,6 +3733,7 @@ export namespace calendar_v3 {
               rootUrl + '/calendar/v3/calendars/{calendarId}/events'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3792,6 +3820,7 @@ export namespace calendar_v3 {
               '/calendar/v3/calendars/{calendarId}/events/{eventId}/instances'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3877,6 +3906,7 @@ export namespace calendar_v3 {
               rootUrl + '/calendar/v3/calendars/{calendarId}/events'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3896,7 +3926,7 @@ export namespace calendar_v3 {
     }
 
     /**
-     * Moves an event to another calendar, i.e. changes an event's organizer. Note that only default events can be moved; outOfOffice, focusTime and workingLocation events cannot be moved.
+     * Moves an event to another calendar, i.e. changes an event's organizer. Note that only default events can be moved; outOfOffice, focusTime, workingLocation and fromGmail events cannot be moved.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3963,6 +3993,7 @@ export namespace calendar_v3 {
               '/calendar/v3/calendars/{calendarId}/events/{eventId}/move'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4048,6 +4079,7 @@ export namespace calendar_v3 {
               rootUrl + '/calendar/v3/calendars/{calendarId}/events/{eventId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -4133,6 +4165,7 @@ export namespace calendar_v3 {
               rootUrl + '/calendar/v3/calendars/{calendarId}/events/quickAdd'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4218,6 +4251,7 @@ export namespace calendar_v3 {
               rootUrl + '/calendar/v3/calendars/{calendarId}/events/{eventId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
+            apiVersion: '',
           },
           options
         ),
@@ -4303,6 +4337,7 @@ export namespace calendar_v3 {
               rootUrl + '/calendar/v3/calendars/{calendarId}/events/watch'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4472,7 +4507,7 @@ export namespace calendar_v3 {
      */
     calendarId?: string;
     /**
-     * Event types to return. Optional. This parameter can be repeated multiple times to return events of different types. The default is ["default", "focusTime", "outOfOffice"].
+     * Event types to return. Optional. This parameter can be repeated multiple times to return events of different types. If unset, returns all event types.
      */
     eventTypes?: string[];
     /**
@@ -4702,7 +4737,7 @@ export namespace calendar_v3 {
      */
     calendarId?: string;
     /**
-     * Event types to return. Optional. This parameter can be repeated multiple times to return events of different types. The default is ["default", "focusTime", "outOfOffice"].
+     * Event types to return. Optional. This parameter can be repeated multiple times to return events of different types. If unset, returns all event types.
      */
     eventTypes?: string[];
     /**
@@ -4876,6 +4911,7 @@ export namespace calendar_v3 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4976,6 +5012,7 @@ export namespace calendar_v3 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5062,6 +5099,7 @@ export namespace calendar_v3 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5148,6 +5186,7 @@ export namespace calendar_v3 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),

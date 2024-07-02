@@ -552,7 +552,7 @@
       }
     }
   },
-  "revision": "20240312",
+  "revision": "20240430",
   "rootUrl": "https://cloudsupport.googleapis.com/",
   "schemas": {
     "Actor": {
@@ -778,31 +778,32 @@
       "type": "object"
     },
     "Comment": {
-      "description": "Case comments are the main way Google Support communicates with a user who has opened a case. When a user responds to Google Support, the user's responses also appear as comments.",
+      "description": "A comment associated with a support case. Case comments are the primary way for Google Support to communicate with a user who has opened a case. When a user responds to Google Support, the user's responses also appear as comments.",
       "id": "Comment",
       "properties": {
         "body": {
-          "description": "The full comment body. Maximum of 12800 characters. This can contain rich text syntax.",
+          "description": "The full comment body. Maximum of 12800 characters.",
           "type": "string"
         },
         "createTime": {
-          "description": "Output only. The time when this comment was created.",
+          "description": "Output only. The time when the comment was created.",
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
         },
         "creator": {
           "$ref": "Actor",
-          "description": "Output only. The user or Google Support agent created this comment.",
+          "description": "Output only. The user or Google Support agent who created the comment.",
           "readOnly": true
         },
         "name": {
-          "description": "Output only. The resource name for the comment.",
+          "description": "Output only. Identifier. The resource name of the comment.",
           "readOnly": true,
           "type": "string"
         },
         "plainTextBody": {
-          "description": "Output only. DEPRECATED. An automatically generated plain text version of body with all rich text syntax stripped.",
+          "deprecated": true,
+          "description": "Output only. DEPRECATED. DO NOT USE. A duplicate of the `body` field. This field is only present for legacy reasons.",
           "readOnly": true,
           "type": "string"
         }

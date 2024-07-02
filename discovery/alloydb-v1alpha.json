@@ -707,6 +707,34 @@
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
+                },
+                "switchover": {
+                  "description": "Switches the role of PRIMARY and SECONDARY cluster without any data loss. This promotes the SECONDARY cluster to PRIMARY and sets up original PRIMARY cluster to replicate from this newly promoted cluster.",
+                  "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/clusters/{clustersId}:switchover",
+                  "httpMethod": "POST",
+                  "id": "alloydb.projects.locations.clusters.switchover",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the resource. For the required format, see the comment on the Cluster.name field",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/clusters/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha/{+name}:switchover",
+                  "request": {
+                    "$ref": "SwitchoverClusterRequest"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
                 }
               },
               "resources": {
@@ -1461,7 +1489,7 @@
       }
     }
   },
-  "revision": "20240315",
+  "revision": "20240612",
   "rootUrl": "https://alloydb.googleapis.com/",
   "schemas": {
     "AuthorizedNetwork": {
@@ -1852,7 +1880,7 @@
         },
         "geminiConfig": {
           "$ref": "GeminiClusterConfig",
-          "description": "Optional. Configuration parameters related to the Gemini in Databases add-on. See go/prd-enable-duet-ai-databases for more details."
+          "description": "Optional. Configuration parameters related to the Gemini in Databases add-on."
         },
         "initialUser": {
           "$ref": "UserPassword",
@@ -1864,6 +1892,11 @@
           },
           "description": "Labels as key value pairs",
           "type": "object"
+        },
+        "maintenanceSchedule": {
+          "$ref": "MaintenanceSchedule",
+          "description": "Output only. The maintenance schedule for the cluster, generated for a specific rollout if a maintenance window is set.",
+          "readOnly": true
         },
         "maintenanceUpdatePolicy": {
           "$ref": "MaintenanceUpdatePolicy",
@@ -1948,6 +1981,25 @@
           ],
           "readOnly": true,
           "type": "string"
+        },
+        "subscriptionType": {
+          "description": "Optional. Subscription type of the cluster.",
+          "enum": [
+            "SUBSCRIPTION_TYPE_UNSPECIFIED",
+            "STANDARD",
+            "TRIAL"
+          ],
+          "enumDescriptions": [
+            "This is an unknown Subscription type (By default, Subscription Type is STANDARD)",
+            "Standard subscription.",
+            "Trial subscription."
+          ],
+          "type": "string"
+        },
+        "trialMetadata": {
+          "$ref": "TrialMetadata",
+          "description": "Output only. Metadata for free trial clusters",
+          "readOnly": true
         },
         "uid": {
           "description": "Output only. The system-generated UID of the resource. The UID is assigned when the resource is created, and it is retained until it is deleted.",
@@ -2091,25 +2143,6 @@
       },
       "type": "object"
     },
-    "DenyMaintenancePeriod": {
-      "description": "DenyMaintenancePeriod definition. Excepting emergencies, maintenance will not be scheduled to start within this deny period. The start_date must be less than the end_date.",
-      "id": "DenyMaintenancePeriod",
-      "properties": {
-        "endDate": {
-          "$ref": "GoogleTypeDate",
-          "description": "Deny period end date. This can be: * A full date, with non-zero year, month and day values. * A month and day value, with a zero year for recurring. Date matching this period will have to be before the end."
-        },
-        "startDate": {
-          "$ref": "GoogleTypeDate",
-          "description": "Deny period start date. This can be: * A full date, with non-zero year, month and day values. * A month and day value, with a zero year for recurring. Date matching this period will have to be the same or after the start."
-        },
-        "time": {
-          "$ref": "GoogleTypeTimeOfDay",
-          "description": "Time in UTC when the deny period starts on start_date and ends on end_date. This can be: * Full time. * All zeros for 00:00:00 UTC"
-        }
-      },
-      "type": "object"
-    },
     "Empty": {
       "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }",
       "id": "Empty",
@@ -2173,7 +2206,7 @@
       "type": "object"
     },
     "GeminiClusterConfig": {
-      "description": "Cluster level configuration parameters related to the Gemini in Databases add-on. See go/prd-enable-duet-ai-databases for more details.",
+      "description": "Cluster level configuration parameters related to the Gemini in Databases add-on.",
       "id": "GeminiClusterConfig",
       "properties": {
         "entitled": {
@@ -2185,7 +2218,7 @@
       "type": "object"
     },
     "GeminiInstanceConfig": {
-      "description": "Instance level configuration parameters related to the Gemini in Databases add-on. See go/prd-enable-duet-ai-databases for more details.",
+      "description": "Instance level configuration parameters related to the Gemini in Databases add-on.",
       "id": "GeminiInstanceConfig",
       "properties": {
         "entitled": {
@@ -2244,28 +2277,6 @@
         "name": {
           "description": "Resource name for the location, which may vary between implementations. For example: `\"projects/example-project/locations/us-east1\"`",
           "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "GoogleTypeDate": {
-      "description": "Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: * A full date, with non-zero year, month, and day values. * A month and day, with a zero year (for example, an anniversary). * A year on its own, with a zero month and a zero day. * A year and month, with a zero day (for example, a credit card expiration date). Related types: * google.type.TimeOfDay * google.type.DateTime * google.protobuf.Timestamp",
-      "id": "GoogleTypeDate",
-      "properties": {
-        "day": {
-          "description": "Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant.",
-          "format": "int32",
-          "type": "integer"
-        },
-        "month": {
-          "description": "Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day.",
-          "format": "int32",
-          "type": "integer"
-        },
-        "year": {
-          "description": "Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year.",
-          "format": "int32",
-          "type": "integer"
         }
       },
       "type": "object"
@@ -2386,7 +2397,7 @@
         },
         "geminiConfig": {
           "$ref": "GeminiInstanceConfig",
-          "description": "Optional. Configuration parameters related to the Gemini in Databases add-on. See go/prd-enable-duet-ai-databases for more details."
+          "description": "Optional. Configuration parameters related to the Gemini in Databases add-on."
         },
         "instanceType": {
           "description": "Required. The type of the instance. Specified at creation time.",
@@ -2440,6 +2451,14 @@
         "observabilityConfig": {
           "$ref": "ObservabilityInstanceConfig",
           "description": "Configuration for observability."
+        },
+        "outboundPublicIpAddresses": {
+          "description": "Output only. All outbound public IP addresses configured for the instance.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
         },
         "pscInstanceConfig": {
           "$ref": "PscInstanceConfig",
@@ -2533,6 +2552,10 @@
             "$ref": "AuthorizedNetwork"
           },
           "type": "array"
+        },
+        "enableOutboundPublicIp": {
+          "description": "Optional. Enabling an outbound public IP address to support a database server sending requests out into the internet.",
+          "type": "boolean"
         },
         "enablePublicIp": {
           "description": "Optional. Enabling public ip for the instance.",
@@ -2706,17 +2729,23 @@
       },
       "type": "object"
     },
+    "MaintenanceSchedule": {
+      "description": "MaintenanceSchedule stores the maintenance schedule generated from the MaintenanceUpdatePolicy, once a maintenance rollout is triggered, if MaintenanceWindow is set, and if there is no conflicting DenyPeriod. The schedule is cleared once the update takes place. This field cannot be manually changed; modify the MaintenanceUpdatePolicy instead.",
+      "id": "MaintenanceSchedule",
+      "properties": {
+        "startTime": {
+          "description": "Output only. The scheduled start time for the maintenance.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "MaintenanceUpdatePolicy": {
       "description": "MaintenanceUpdatePolicy defines the policy for system updates.",
       "id": "MaintenanceUpdatePolicy",
       "properties": {
-        "denyMaintenancePeriods": {
-          "description": "Periods to deny maintenance. Currently limited to 1.",
-          "items": {
-            "$ref": "DenyMaintenancePeriod"
-          },
-          "type": "array"
-        },
         "maintenanceWindows": {
           "description": "Preferred windows to perform maintenance. Currently limited to 1.",
           "items": {
@@ -3000,22 +3029,8 @@
       "description": "PscInstanceConfig contains PSC related configuration at an instance level.",
       "id": "PscInstanceConfig",
       "properties": {
-        "allowedConsumerNetworks": {
-          "description": "Optional. List of consumer networks that are allowed to create PSC endpoints to service-attachments to this instance.",
-          "items": {
-            "type": "string"
-          },
-          "type": "array"
-        },
         "allowedConsumerProjects": {
           "description": "Optional. List of consumer projects that are allowed to create PSC endpoints to service-attachments to this instance.",
-          "items": {
-            "type": "string"
-          },
-          "type": "array"
-        },
-        "outgoingServiceAttachmentLinks": {
-          "description": "Optional. List of service attachments that this instance has created endpoints to connect with. Currently, only a single outgoing service attachment is supported per instance.",
           "items": {
             "type": "string"
           },
@@ -3026,38 +3041,9 @@
           "readOnly": true,
           "type": "string"
         },
-        "pscEnabled": {
-          "description": "Optional. Whether PSC connectivity is enabled for this instance. This is populated by referencing the value from the parent cluster.",
-          "type": "boolean"
-        },
-        "pscInterfaceConfigs": {
-          "description": "Optional. Configurations for setting up PSC interfaces attached to the instance which are used for outbound connectivity. Only primary instances can have PSC interface attached. All the VMs created for the primary instance will share the same configurations. Currently we only support 0 or 1 PSC interface.",
-          "items": {
-            "$ref": "PscInterfaceConfig"
-          },
-          "type": "array"
-        },
         "serviceAttachmentLink": {
           "description": "Output only. The service attachment created when Private Service Connect (PSC) is enabled for the instance. The name of the resource will be in the format of `projects//regions//serviceAttachments/`",
           "readOnly": true,
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "PscInterfaceConfig": {
-      "description": "Configuration for setting up a PSC interface. This information needs to be provided by the customer. PSC interfaces will be created and added to VMs via SLM (adding a network interface will require recreating the VM). For HA instances this will be done via LDTM.",
-      "id": "PscInterfaceConfig",
-      "properties": {
-        "consumerEndpointIps": {
-          "description": "A list of endpoints in the consumer VPC the interface might initiate outbound connections to. This list has to be provided when the PSC interface is created.",
-          "items": {
-            "type": "string"
-          },
-          "type": "array"
-        },
-        "networkAttachment": {
-          "description": "The NetworkAttachment resource created in the consumer VPC to which the PSC interface will be linked, in the form of: `projects/${CONSUMER_PROJECT}/regions/${REGION}/networkAttachments/${NETWORK_ATTACHMENT_NAME}`. NetworkAttachment has to be provided when the PSC interface is created.",
           "type": "string"
         }
       },
@@ -3283,6 +3269,10 @@
           ],
           "type": "string"
         },
+        "crossRegionReplicaConfigured": {
+          "description": "Checks for resources that are configured to have redundancy, and ongoing replication across regions",
+          "type": "boolean"
+        },
         "externalReplicaConfigured": {
           "type": "boolean"
         },
@@ -3426,9 +3416,12 @@
           ],
           "type": "string"
         },
-        "recommendationSignalData": {
-          "$ref": "StorageDatabasecenterPartnerapiV1mainDatabaseResourceRecommendationSignalData",
+        "observabilityMetricData": {
+          "$ref": "StorageDatabasecenterPartnerapiV1mainObservabilityMetricData",
           "description": "More feed data would be added in subsequent CLs"
+        },
+        "recommendationSignalData": {
+          "$ref": "StorageDatabasecenterPartnerapiV1mainDatabaseResourceRecommendationSignalData"
         },
         "resourceHealthSignalData": {
           "$ref": "StorageDatabasecenterPartnerapiV1mainDatabaseResourceHealthSignalData"
@@ -3552,9 +3545,17 @@
             "SIGNAL_TYPE_VIOLATES_CIS_GCP_FOUNDATION_1_2",
             "SIGNAL_TYPE_VIOLATES_CIS_GCP_FOUNDATION_1_1",
             "SIGNAL_TYPE_VIOLATES_CIS_GCP_FOUNDATION_1_0",
+            "SIGNAL_TYPE_VIOLATES_CIS_CONTROLS_V8_0",
             "SIGNAL_TYPE_VIOLATES_NIST_800_53",
+            "SIGNAL_TYPE_VIOLATES_NIST_800_53_R5",
+            "SIGNAL_TYPE_VIOLATES_NIST_CYBERSECURITY_FRAMEWORK_V1_0",
             "SIGNAL_TYPE_VIOLATES_ISO_27001",
+            "SIGNAL_TYPE_VIOLATES_ISO_27001_V2022",
             "SIGNAL_TYPE_VIOLATES_PCI_DSS_V3_2_1",
+            "SIGNAL_TYPE_VIOLATES_PCI_DSS_V4_0",
+            "SIGNAL_TYPE_VIOLATES_CLOUD_CONTROLS_MATRIX_V4",
+            "SIGNAL_TYPE_VIOLATES_HIPAA",
+            "SIGNAL_TYPE_VIOLATES_SOC2_V2017",
             "SIGNAL_TYPE_LOGS_NOT_OPTIMIZED_FOR_TROUBLESHOOTING",
             "SIGNAL_TYPE_QUERY_DURATIONS_NOT_LOGGED",
             "SIGNAL_TYPE_VERBOSE_ERROR_LOGGING",
@@ -3603,7 +3604,11 @@
             "SIGNAL_TYPE_CONNECTIONS_PERFORMANCE_IMPACT",
             "SIGNAL_TYPE_TMP_TABLES_PERFORMANCE_IMPACT",
             "SIGNAL_TYPE_TRANS_LOGS_PERFORMANCE_IMPACT",
-            "SIGNAL_TYPE_HIGH_JOINS_WITHOUT_INDEXES"
+            "SIGNAL_TYPE_HIGH_JOINS_WITHOUT_INDEXES",
+            "SIGNAL_TYPE_SUPERUSER_WRITING_TO_USER_TABLES",
+            "SIGNAL_TYPE_USER_GRANTED_ALL_PERMISSIONS",
+            "SIGNAL_TYPE_DATA_EXPORT_TO_EXTERNAL_CLOUD_STORAGE_BUCKET",
+            "SIGNAL_TYPE_DATA_EXPORT_TO_PUBLIC_CLOUD_STORAGE_BUCKET"
           ],
           "enumDeprecated": [
             false,
@@ -3611,6 +3616,18 @@
             false,
             true,
             true,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
             false,
             false,
             false,
@@ -3690,9 +3707,17 @@
             "Represents if a resource violates CIS GCP Foundation 1.2.",
             "Represents if a resource violates CIS GCP Foundation 1.1.",
             "Represents if a resource violates CIS GCP Foundation 1.0.",
+            "Represents if a resource violates CIS Controls 8.0.",
             "Represents if a resource violates NIST 800-53.",
+            "Represents if a resource violates NIST 800-53 R5.",
+            "Represents if a resource violates NIST Cybersecurity Framework 1.0.",
             "Represents if a resource violates ISO-27001.",
+            "Represents if a resource violates ISO 27001 2022.",
             "Represents if a resource violates PCI-DSS v3.2.1.",
+            "Represents if a resource violates PCI-DSS v4.0.",
+            "Represents if a resource violates Cloud Controls Matrix v4.0.",
+            "Represents if a resource violates HIPAA.",
+            "Represents if a resource violates SOC2 v2017.",
             "Represents if log_checkpoints database flag for a Cloud SQL for PostgreSQL instance is not set to on.",
             "Represents if the log_duration database flag for a Cloud SQL for PostgreSQL instance is not set to on.",
             "Represents if the log_error_verbosity database flag for a Cloud SQL for PostgreSQL instance is not set to default or stricter (default or terse).",
@@ -3741,7 +3766,11 @@
             "Performance impact of connections settings",
             "Performance impact of temporary tables settings",
             "Performance impact of transaction logs settings",
-            "Performance impact of high joins without indexes"
+            "Performance impact of high joins without indexes",
+            "Detects events where a Cloud SQL superuser (postgres for PostgreSQL servers or root for MySQL users) writes to non-system tables.",
+            "Detects events where a database user or role has been granted all privileges to a database, or to all tables, procedures, or functions in a schema.",
+            "Detects if database instance data exported to a Cloud Storage bucket outside of the organization.",
+            "Detects if database instance data exported to a Cloud Storage bucket that is owned by the organization and is publicly accessible."
           ],
           "type": "string"
         },
@@ -3924,6 +3953,10 @@
           "description": "The resource location. REQUIRED",
           "type": "string"
         },
+        "machineConfiguration": {
+          "$ref": "StorageDatabasecenterPartnerapiV1mainMachineConfiguration",
+          "description": "Machine configuration for this resource."
+        },
         "primaryResourceId": {
           "$ref": "StorageDatabasecenterPartnerapiV1mainDatabaseResourceId",
           "description": "Identifier for this resource's immediate parent/primary resource if the current resource is a replica or derived form of another Database resource. Else it would be NULL. REQUIRED if the immediate parent exists when first time resource is getting ingested, otherwise optional."
@@ -3948,14 +3981,6 @@
         "userLabelSet": {
           "$ref": "StorageDatabasecenterPartnerapiV1mainUserLabels",
           "description": "User-provided labels associated with the resource"
-        },
-        "userLabels": {
-          "additionalProperties": {
-            "type": "string"
-          },
-          "deprecated": true,
-          "description": "User-provided labels, represented as a dictionary where each label is a single key value pair.",
-          "type": "object"
         }
       },
       "type": "object"
@@ -4031,9 +4056,17 @@
             "SIGNAL_TYPE_VIOLATES_CIS_GCP_FOUNDATION_1_2",
             "SIGNAL_TYPE_VIOLATES_CIS_GCP_FOUNDATION_1_1",
             "SIGNAL_TYPE_VIOLATES_CIS_GCP_FOUNDATION_1_0",
+            "SIGNAL_TYPE_VIOLATES_CIS_CONTROLS_V8_0",
             "SIGNAL_TYPE_VIOLATES_NIST_800_53",
+            "SIGNAL_TYPE_VIOLATES_NIST_800_53_R5",
+            "SIGNAL_TYPE_VIOLATES_NIST_CYBERSECURITY_FRAMEWORK_V1_0",
             "SIGNAL_TYPE_VIOLATES_ISO_27001",
+            "SIGNAL_TYPE_VIOLATES_ISO_27001_V2022",
             "SIGNAL_TYPE_VIOLATES_PCI_DSS_V3_2_1",
+            "SIGNAL_TYPE_VIOLATES_PCI_DSS_V4_0",
+            "SIGNAL_TYPE_VIOLATES_CLOUD_CONTROLS_MATRIX_V4",
+            "SIGNAL_TYPE_VIOLATES_HIPAA",
+            "SIGNAL_TYPE_VIOLATES_SOC2_V2017",
             "SIGNAL_TYPE_LOGS_NOT_OPTIMIZED_FOR_TROUBLESHOOTING",
             "SIGNAL_TYPE_QUERY_DURATIONS_NOT_LOGGED",
             "SIGNAL_TYPE_VERBOSE_ERROR_LOGGING",
@@ -4082,7 +4115,11 @@
             "SIGNAL_TYPE_CONNECTIONS_PERFORMANCE_IMPACT",
             "SIGNAL_TYPE_TMP_TABLES_PERFORMANCE_IMPACT",
             "SIGNAL_TYPE_TRANS_LOGS_PERFORMANCE_IMPACT",
-            "SIGNAL_TYPE_HIGH_JOINS_WITHOUT_INDEXES"
+            "SIGNAL_TYPE_HIGH_JOINS_WITHOUT_INDEXES",
+            "SIGNAL_TYPE_SUPERUSER_WRITING_TO_USER_TABLES",
+            "SIGNAL_TYPE_USER_GRANTED_ALL_PERMISSIONS",
+            "SIGNAL_TYPE_DATA_EXPORT_TO_EXTERNAL_CLOUD_STORAGE_BUCKET",
+            "SIGNAL_TYPE_DATA_EXPORT_TO_PUBLIC_CLOUD_STORAGE_BUCKET"
           ],
           "enumDeprecated": [
             false,
@@ -4090,6 +4127,18 @@
             false,
             true,
             true,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
             false,
             false,
             false,
@@ -4169,9 +4218,17 @@
             "Represents if a resource violates CIS GCP Foundation 1.2.",
             "Represents if a resource violates CIS GCP Foundation 1.1.",
             "Represents if a resource violates CIS GCP Foundation 1.0.",
+            "Represents if a resource violates CIS Controls 8.0.",
             "Represents if a resource violates NIST 800-53.",
+            "Represents if a resource violates NIST 800-53 R5.",
+            "Represents if a resource violates NIST Cybersecurity Framework 1.0.",
             "Represents if a resource violates ISO-27001.",
+            "Represents if a resource violates ISO 27001 2022.",
             "Represents if a resource violates PCI-DSS v3.2.1.",
+            "Represents if a resource violates PCI-DSS v4.0.",
+            "Represents if a resource violates Cloud Controls Matrix v4.0.",
+            "Represents if a resource violates HIPAA.",
+            "Represents if a resource violates SOC2 v2017.",
             "Represents if log_checkpoints database flag for a Cloud SQL for PostgreSQL instance is not set to on.",
             "Represents if the log_duration database flag for a Cloud SQL for PostgreSQL instance is not set to on.",
             "Represents if the log_error_verbosity database flag for a Cloud SQL for PostgreSQL instance is not set to default or stricter (default or terse).",
@@ -4220,7 +4277,11 @@
             "Performance impact of connections settings",
             "Performance impact of temporary tables settings",
             "Performance impact of transaction logs settings",
-            "Performance impact of high joins without indexes"
+            "Performance impact of high joins without indexes",
+            "Detects events where a Cloud SQL superuser (postgres for PostgreSQL servers or root for MySQL users) writes to non-system tables.",
+            "Detects events where a database user or role has been granted all privileges to a database, or to all tables, procedures, or functions in a schema.",
+            "Detects if database instance data exported to a Cloud Storage bucket outside of the organization.",
+            "Detects if database instance data exported to a Cloud Storage bucket that is owned by the organization and is publicly accessible."
           ],
           "type": "string"
         }
@@ -4249,20 +4310,87 @@
           "description": "An enum that represents the type of this entitlement.",
           "enum": [
             "ENTITLEMENT_TYPE_UNSPECIFIED",
-            "DUET_AI",
             "GEMINI"
-          ],
-          "enumDeprecated": [
-            false,
-            true,
-            false
           ],
           "enumDescriptions": [
             "",
-            "The root entitlement representing Duet AI package ownership.",
             "The root entitlement representing Gemini package ownership."
           ],
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "StorageDatabasecenterPartnerapiV1mainMachineConfiguration": {
+      "description": "MachineConfiguration describes the configuration of a machine specific to Database Resource.",
+      "id": "StorageDatabasecenterPartnerapiV1mainMachineConfiguration",
+      "properties": {
+        "cpuCount": {
+          "description": "The number of CPUs. TODO(b/342344482, b/342346271) add proto validations again after bug fix.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "memorySizeInBytes": {
+          "description": "Memory size in bytes. TODO(b/342344482, b/342346271) add proto validations again after bug fix.",
+          "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "StorageDatabasecenterPartnerapiV1mainObservabilityMetricData": {
+      "id": "StorageDatabasecenterPartnerapiV1mainObservabilityMetricData",
+      "properties": {
+        "aggregationType": {
+          "description": "Required. Type of aggregation performed on the metric.",
+          "enum": [
+            "AGGREGATION_TYPE_UNSPECIFIED",
+            "PEAK",
+            "P99",
+            "P95",
+            "CURRENT"
+          ],
+          "enumDescriptions": [
+            "Unspecified aggregation type.",
+            "PEAK aggregation type.",
+            "P99 aggregation type.",
+            "P95 aggregation type.",
+            "current aggregation type."
+          ],
+          "type": "string"
+        },
+        "metricType": {
+          "description": "Required. Type of metric like CPU, Memory, etc.",
+          "enum": [
+            "METRIC_TYPE_UNSPECIFIED",
+            "CPU_UTILIZATION",
+            "MEMORY_UTILIZATION",
+            "NETWORK_CONNECTIONS",
+            "STORAGE_UTILIZATION",
+            "STORAGE_USED_BYTES"
+          ],
+          "enumDescriptions": [
+            "Unspecified metric type.",
+            "CPU utilization for a resource. The value is a fraction between 0.0 and 1.0 (may momentarily exceed 1.0 in some cases).",
+            "Memory utilization for a resource. The value is a fraction between 0.0 and 1.0 (may momentarily exceed 1.0 in some cases).",
+            "Number of network connections for a resource.",
+            "Storage utilization for a resource. The value is a fraction between 0.0 and 1.0 (may momentarily exceed 1.0 in some cases).",
+            "Sotrage used by a resource."
+          ],
+          "type": "string"
+        },
+        "observationTime": {
+          "description": "Required. The time the metric value was observed.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "resourceName": {
+          "description": "Required. Database resource name associated with the signal. Resource name to follow CAIS resource_name format as noted here go/condor-common-datamodel",
+          "type": "string"
+        },
+        "value": {
+          "$ref": "StorageDatabasecenterProtoCommonTypedValue",
+          "description": "Required. Value of the metric type."
         }
       },
       "type": "object"
@@ -4414,6 +4542,7 @@
             "PRODUCT_TYPE_ON_PREM",
             "ON_PREM",
             "PRODUCT_TYPE_MEMORYSTORE",
+            "PRODUCT_TYPE_BIGTABLE",
             "PRODUCT_TYPE_OTHER"
           ],
           "enumDeprecated": [
@@ -4425,6 +4554,7 @@
             false,
             false,
             true,
+            false,
             false,
             false
           ],
@@ -4438,12 +4568,38 @@
             "On premises database product.",
             "On premises database product.",
             "Memorystore product area in GCP",
+            "Bigtable product area in GCP",
             "Other refers to rest of other product type. This is to be when product type is known, but it is not present in this enum."
           ],
           "type": "string"
         },
         "version": {
           "description": "Version of the underlying database engine. Example values: For MySQL, it could be \"8.0\", \"5.7\" etc.. For Postgres, it could be \"14\", \"15\" etc..",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "StorageDatabasecenterProtoCommonTypedValue": {
+      "description": "TypedValue represents the value of a metric type. It can either be a double, an int64, a string or a bool.",
+      "id": "StorageDatabasecenterProtoCommonTypedValue",
+      "properties": {
+        "boolValue": {
+          "description": "For boolean value",
+          "type": "boolean"
+        },
+        "doubleValue": {
+          "description": "For double value",
+          "format": "double",
+          "type": "number"
+        },
+        "int64Value": {
+          "description": "For integer value",
+          "format": "int64",
+          "type": "string"
+        },
+        "stringValue": {
+          "description": "For string value",
           "type": "string"
         }
       },
@@ -4536,6 +4692,21 @@
       },
       "type": "object"
     },
+    "SwitchoverClusterRequest": {
+      "description": "Message for switching over to a cluster",
+      "id": "SwitchoverClusterRequest",
+      "properties": {
+        "requestId": {
+          "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+          "type": "string"
+        },
+        "validateOnly": {
+          "description": "Optional. If set, performs request validation (e.g. permission checks and any other type of validation), but do not actually execute the delete.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
     "TimeBasedRetention": {
       "description": "A time based retention policy specifies that all backups within a certain time period should be retained.",
       "id": "TimeBasedRetention",
@@ -4543,6 +4714,28 @@
         "retentionPeriod": {
           "description": "The retention period.",
           "format": "google-duration",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "TrialMetadata": {
+      "description": "Contains information and all metadata related to TRIAL clusters.",
+      "id": "TrialMetadata",
+      "properties": {
+        "endTime": {
+          "description": "End time of the trial cluster.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "startTime": {
+          "description": "start time of the trial cluster.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "upgradeTime": {
+          "description": "Upgrade time of trial cluster to Standard cluster.",
+          "format": "google-datetime",
           "type": "string"
         }
       },

@@ -184,6 +184,10 @@ export namespace file_v1 {
      * Output only. The size of the storage used by the backup. As backups share storage, this number is expected to change with backup creation/deletion.
      */
     storageBytes?: string | null;
+    /**
+     * Optional. Input only. Immutable. Tag keys/values directly bound to this resource. For example: "123/environment": "production", "123/costCenter": "marketing"
+     */
+    tags?: {[key: string]: string} | null;
   }
   /**
    * The request message for Operations.CancelOperation.
@@ -257,9 +261,26 @@ export namespace file_v1 {
      */
     nfsExportOptions?: Schema$NfsExportOptions[];
     /**
+     * Optional. Used to configure performance.
+     */
+    performanceConfig?: Schema$PerformanceConfig;
+    /**
+     * Output only. Used for getting performance limits.
+     */
+    performanceLimits?: Schema$PerformanceLimits;
+    /**
      * The resource name of the backup, in the format `projects/{project_number\}/locations/{location_id\}/backups/{backup_id\}`, that this file share has been restored from.
      */
     sourceBackup?: string | null;
+  }
+  /**
+   * Fixed IOPS parameters.
+   */
+  export interface Schema$FixedIOPS {
+    /**
+     * Required. Maximum raw read IOPS.
+     */
+    maxReadIops?: string | null;
   }
   /**
    * Instance represents the interface for SLM services to actuate the state of control plane resources. Example Instance in JSON, where consumer-project-number=123456, producer-project-id=cloud-sql: ```json Instance: { "name": "projects/123456/locations/us-east1/instances/prod-instance", "create_time": { "seconds": 1526406431, \}, "labels": { "env": "prod", "foo": "bar" \}, "state": READY, "software_versions": { "software_update": "cloud-sql-09-28-2018", \}, "maintenance_policy_names": { "UpdatePolicy": "projects/123456/locations/us-east1/maintenancePolicies/prod-update-policy", \} "tenant_project_id": "cloud-sql-test-tenant", "producer_metadata": { "cloud-sql-tier": "basic", "cloud-sql-instance-size": "1G", \}, "provisioned_resources": [ { "resource-type": "compute-instance", "resource-url": "https://www.googleapis.com/compute/v1/projects/cloud-sql/zones/us-east1-b/instances/vm-1", \} ], "maintenance_schedules": { "csa_rollout": { "start_time": { "seconds": 1526406431, \}, "end_time": { "seconds": 1535406431, \}, \}, "ncsa_rollout": { "start_time": { "seconds": 1526406431, \}, "end_time": { "seconds": 1535406431, \}, \} \}, "consumer_defined_name": "my-sql-instance1", \} ``` LINT.IfChange
@@ -503,6 +524,10 @@ export namespace file_v1 {
      */
     networks?: Schema$NetworkConfig[];
     /**
+     * Optional. Replicaition configuration.
+     */
+    replication?: Schema$Replication;
+    /**
      * Output only. Reserved for future use.
      */
     satisfiesPzi?: boolean | null;
@@ -523,9 +548,22 @@ export namespace file_v1 {
      */
     suspensionReasons?: string[] | null;
     /**
+     * Optional. Input only. Immutable. Tag keys/values directly bound to this resource. For example: "123/environment": "production", "123/costCenter": "marketing"
+     */
+    tags?: {[key: string]: string} | null;
+    /**
      * The service tier of the instance.
      */
     tier?: string | null;
+  }
+  /**
+   * IOPS per capacity parameters.
+   */
+  export interface Schema$IOPSPerGB {
+    /**
+     * Required. Maximum read IOPS per GB.
+     */
+    maxReadIopsPerGb?: string | null;
   }
   /**
    * ListBackupsResponse is the result of ListBackupsRequest.
@@ -780,6 +818,82 @@ export namespace file_v1 {
     verb?: string | null;
   }
   /**
+   * Performance configuration. Used for setting the performance configuration. Defaults to `iops_by_capacity` if unset in instance creation.
+   */
+  export interface Schema$PerformanceConfig {
+    /**
+     * Choose a fixed provisioned IOPS value for the instance, which will remain constant regardless of instance capacity. Value must be a multiple of 1000. If the chosen value is outside the supported range for the instance's capacity during instance creation, instance creation will fail with an `InvalidArgument` error. Similarly, if an instance capacity update would result in a value outside the supported range, the update will fail with an `InvalidArgument` error.
+     */
+    fixedIops?: Schema$FixedIOPS;
+    /**
+     * Automatically provision maximum available IOPS based on the capacity of the instance. Larger instances will be granted more IOPS. If instance capacity is increased or decreased, IOPS will be automatically adjusted upwards or downwards accordingly. The maximum available IOPS for a given capacity is defined in Filestore documentation.
+     */
+    iopsByCapacity?: boolean | null;
+    /**
+     * Provision IOPS dynamically based on the capacity of the instance. Provisioned read IOPS will be calculated by by multiplying the capacity of the instance in GiB by the `iops_per_gb` value, and rounding to the nearest 1000. For example, for a 1 TiB instance with an `iops_per_gb` value of 15, the provisioned read IOPS would be `1024 * 15 = 15,360`, rounded to `15,000`. If the calculated value is outside the supported range for the instance's capacity during instance creation, instance creation will fail with an `InvalidArgument` error. Similarly, if an instance capacity update would result in a value outside the supported range, the update will fail with an `InvalidArgument` error.
+     */
+    iopsPerGb?: Schema$IOPSPerGB;
+  }
+  /**
+   * The enforced performance limits, calculated from the instance's performance configuration.
+   */
+  export interface Schema$PerformanceLimits {
+    /**
+     * Output only. The max read IOPS.
+     */
+    maxReadIops?: string | null;
+    /**
+     * Output only. The max read throughput.
+     */
+    maxReadThroughput?: string | null;
+    /**
+     * Output only. The max write IOPS.
+     */
+    maxWriteIops?: string | null;
+    /**
+     * Output only. The max write throughput.
+     */
+    maxWriteThroughput?: string | null;
+  }
+  /**
+   * PromoteReplicaRequest promotes a Filestore standby instance (replica).
+   */
+  export interface Schema$PromoteReplicaRequest {}
+  /**
+   * Replica configuration for the instance.
+   */
+  export interface Schema$ReplicaConfig {
+    /**
+     * Output only. The timestamp of the latest replication snapshot taken on the active instance and is already replicated safely.
+     */
+    lastActiveSyncTime?: string | null;
+    /**
+     * Optional. The peer instance.
+     */
+    peerInstance?: string | null;
+    /**
+     * Output only. The replica state.
+     */
+    state?: string | null;
+    /**
+     * Output only. Additional information about the replication state, if available.
+     */
+    stateReasons?: string[] | null;
+  }
+  /**
+   * Replication specifications.
+   */
+  export interface Schema$Replication {
+    /**
+     * Optional. Replicas configuration on the instance. For now, only a single replica config is supported.
+     */
+    replicas?: Schema$ReplicaConfig[];
+    /**
+     * Optional. The replication role.
+     */
+    role?: string | null;
+  }
+  /**
    * RestoreInstanceRequest restores an existing instance's file share from a backup.
    */
   export interface Schema$RestoreInstanceRequest {
@@ -846,6 +960,10 @@ export namespace file_v1 {
      * Output only. The snapshot state.
      */
     state?: string | null;
+    /**
+     * Optional. Input only. Immutable. Tag keys/values directly bound to this resource. For example: "123/environment": "production", "123/costCenter": "marketing"
+     */
+    tags?: {[key: string]: string} | null;
   }
   /**
    * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
@@ -1001,6 +1119,7 @@ export namespace file_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1093,6 +1212,7 @@ export namespace file_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1218,6 +1338,7 @@ export namespace file_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1302,6 +1423,7 @@ export namespace file_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -1386,6 +1508,7 @@ export namespace file_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1476,6 +1599,7 @@ export namespace file_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1560,6 +1684,7 @@ export namespace file_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -1728,6 +1853,7 @@ export namespace file_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1812,6 +1938,7 @@ export namespace file_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -1896,6 +2023,7 @@ export namespace file_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1988,6 +2116,7 @@ export namespace file_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2072,6 +2201,96 @@ export namespace file_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Promote an standby instance (replica).
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    promoteReplica(
+      params: Params$Resource$Projects$Locations$Instances$Promotereplica,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    promoteReplica(
+      params?: Params$Resource$Projects$Locations$Instances$Promotereplica,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    promoteReplica(
+      params: Params$Resource$Projects$Locations$Instances$Promotereplica,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    promoteReplica(
+      params: Params$Resource$Projects$Locations$Instances$Promotereplica,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    promoteReplica(
+      params: Params$Resource$Projects$Locations$Instances$Promotereplica,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    promoteReplica(callback: BodyResponseCallback<Schema$Operation>): void;
+    promoteReplica(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Instances$Promotereplica
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Instances$Promotereplica;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Instances$Promotereplica;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://file.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:promoteReplica').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2159,6 +2378,7 @@ export namespace file_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2243,6 +2463,7 @@ export namespace file_v1 {
           {
             url: (rootUrl + '/v1/{+name}:revert').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2334,6 +2555,18 @@ export namespace file_v1 {
      * Request body metadata
      */
     requestBody?: Schema$Instance;
+  }
+  export interface Params$Resource$Projects$Locations$Instances$Promotereplica
+    extends StandardParameters {
+    /**
+     * Required. The resource name of the instance, in the format `projects/{project_id\}/locations/{location_id\}/instances/{instance_id\}`.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$PromoteReplicaRequest;
   }
   export interface Params$Resource$Projects$Locations$Instances$Restore
     extends StandardParameters {
@@ -2436,6 +2669,7 @@ export namespace file_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2521,6 +2755,7 @@ export namespace file_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -2606,6 +2841,7 @@ export namespace file_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2699,6 +2935,7 @@ export namespace file_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2784,6 +3021,7 @@ export namespace file_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -2945,6 +3183,7 @@ export namespace file_v1 {
           {
             url: (rootUrl + '/v1/{+name}:cancel').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3029,6 +3268,7 @@ export namespace file_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -3113,6 +3353,7 @@ export namespace file_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3205,6 +3446,7 @@ export namespace file_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),

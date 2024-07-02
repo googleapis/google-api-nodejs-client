@@ -1,5 +1,47 @@
 # Changelog
 
+## [6.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/datamigration-v6.0.0...datamigration-v6.1.0) (2024-06-03)
+
+
+### Features
+
+* **datamigration:** update the API ([663287e](https://github.com/googleapis/google-api-nodejs-client/commit/663287e672785aa0a2d1a8cd6e22d7d90d8c0a46))
+
+## [6.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/datamigration-v5.1.0...datamigration-v6.0.0) (2024-05-02)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* **datamigration:** update the API ([f0e692d](https://github.com/googleapis/google-api-nodejs-client/commit/f0e692d9169793bc8abe3cd33982e36e04faf3ea))
+* run the generator ([#3456](https://github.com/googleapis/google-api-nodejs-client/issues/3456)) ([a865e81](https://github.com/googleapis/google-api-nodejs-client/commit/a865e81539b315d3b321650663ba0b2555b1e5a1))
+
+
+### Bug Fixes
+
+* **datamigration:** update the API ([059747e](https://github.com/googleapis/google-api-nodejs-client/commit/059747ee0faa9825e0346380b2cb08f2857e0318))
+
+## [5.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/datamigration-v5.0.0...datamigration-v5.1.0) (2024-05-02)
+
+
+### Features
+
+* **datamigration:** update the API ([f0e692d](https://github.com/googleapis/google-api-nodejs-client/commit/f0e692d9169793bc8abe3cd33982e36e04faf3ea))
+
+## [5.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/datamigration-v4.6.2...datamigration-v5.0.0) (2024-04-04)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#3456](https://github.com/googleapis/google-api-nodejs-client/issues/3456)) ([a865e81](https://github.com/googleapis/google-api-nodejs-client/commit/a865e81539b315d3b321650663ba0b2555b1e5a1))
+
 ## [4.6.2](https://github.com/googleapis/google-api-nodejs-client/compare/datamigration-v4.6.1...datamigration-v4.6.2) (2024-02-07)
 
 

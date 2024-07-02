@@ -141,7 +141,12 @@ export namespace cloudidentity_v1beta1 {
   /**
    * LRO response metadata for InboundSamlSsoProfilesService.AddIdpCredential.
    */
-  export interface Schema$AddIdpCredentialOperationMetadata {}
+  export interface Schema$AddIdpCredentialOperationMetadata {
+    /**
+     * State of this Operation Will be "awaiting-multi-party-approval" when the operation is deferred due to the target customer having enabled [Multi-party approval for sensitive actions](https://support.google.com/a/answer/13790448).
+     */
+    state?: string | null;
+  }
   /**
    * The request for creating an IdpCredential with its associated payload. An InboundSamlSsoProfile can own up to 2 credentials.
    */
@@ -478,7 +483,12 @@ export namespace cloudidentity_v1beta1 {
   /**
    * LRO response metadata for InboundSamlSsoProfilesService.CreateInboundSamlSsoProfile.
    */
-  export interface Schema$CreateInboundSamlSsoProfileOperationMetadata {}
+  export interface Schema$CreateInboundSamlSsoProfileOperationMetadata {
+    /**
+     * State of this Operation Will be "awaiting-multi-party-approval" when the operation is deferred due to the target customer having enabled [Multi-party approval for sensitive actions](https://support.google.com/a/answer/13790448).
+     */
+    state?: string | null;
+  }
   /**
    * LRO response metadata for InboundSsoAssignmentsService.CreateInboundSsoAssignment.
    */
@@ -640,6 +650,10 @@ export namespace cloudidentity_v1beta1 {
      * Serial Number of device. Example: HT82V1A01076.
      */
     serialNumber?: string | null;
+    /**
+     * Output only. Unified device id of the device.
+     */
+    unifiedDeviceId?: string | null;
     /**
      * WiFi MAC addresses of device.
      */
@@ -1222,6 +1236,10 @@ export namespace cloudidentity_v1beta1 {
      * Serial Number of device. Example: HT82V1A01076.
      */
     serialNumber?: string | null;
+    /**
+     * Output only. Unified device id of the device.
+     */
+    unifiedDeviceId?: string | null;
     /**
      * WiFi MAC addresses of device.
      */
@@ -2088,7 +2106,12 @@ export namespace cloudidentity_v1beta1 {
   /**
    * LRO response metadata for InboundSamlSsoProfilesService.UpdateInboundSamlSsoProfile.
    */
-  export interface Schema$UpdateInboundSamlSsoProfileOperationMetadata {}
+  export interface Schema$UpdateInboundSamlSsoProfileOperationMetadata {
+    /**
+     * State of this Operation Will be "awaiting-multi-party-approval" when the operation is deferred due to the target customer having enabled [Multi-party approval for sensitive actions](https://support.google.com/a/answer/13790448).
+     */
+    state?: string | null;
+  }
   /**
    * LRO response metadata for InboundSsoAssignmentsService.UpdateInboundSsoAssignment.
    */
@@ -2255,6 +2278,7 @@ export namespace cloudidentity_v1beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2340,6 +2364,7 @@ export namespace cloudidentity_v1beta1 {
           {
             url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2436,6 +2461,7 @@ export namespace cloudidentity_v1beta1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2531,6 +2557,7 @@ export namespace cloudidentity_v1beta1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2619,6 +2646,7 @@ export namespace cloudidentity_v1beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2778,6 +2806,7 @@ export namespace cloudidentity_v1beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2862,6 +2891,7 @@ export namespace cloudidentity_v1beta1 {
           {
             url: (rootUrl + '/v1beta1/devices').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2946,6 +2976,7 @@ export namespace cloudidentity_v1beta1 {
           {
             url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -3030,6 +3061,7 @@ export namespace cloudidentity_v1beta1 {
           {
             url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3117,6 +3149,7 @@ export namespace cloudidentity_v1beta1 {
           {
             url: (rootUrl + '/v1beta1/devices').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3204,6 +3237,7 @@ export namespace cloudidentity_v1beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3379,6 +3413,7 @@ export namespace cloudidentity_v1beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3467,6 +3502,7 @@ export namespace cloudidentity_v1beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3555,6 +3591,7 @@ export namespace cloudidentity_v1beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3640,6 +3677,7 @@ export namespace cloudidentity_v1beta1 {
           {
             url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -3725,6 +3763,7 @@ export namespace cloudidentity_v1beta1 {
           {
             url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3818,6 +3857,7 @@ export namespace cloudidentity_v1beta1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3913,6 +3953,7 @@ export namespace cloudidentity_v1beta1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4003,6 +4044,7 @@ export namespace cloudidentity_v1beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4220,6 +4262,7 @@ export namespace cloudidentity_v1beta1 {
           {
             url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4305,6 +4348,7 @@ export namespace cloudidentity_v1beta1 {
           {
             url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -4430,6 +4474,7 @@ export namespace cloudidentity_v1beta1 {
           {
             url: (rootUrl + '/v1beta1/groups').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4514,6 +4559,7 @@ export namespace cloudidentity_v1beta1 {
           {
             url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -4598,6 +4644,7 @@ export namespace cloudidentity_v1beta1 {
           {
             url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4685,6 +4732,7 @@ export namespace cloudidentity_v1beta1 {
           {
             url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4772,6 +4820,7 @@ export namespace cloudidentity_v1beta1 {
           {
             url: (rootUrl + '/v1beta1/groups').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4866,6 +4915,7 @@ export namespace cloudidentity_v1beta1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4950,6 +5000,7 @@ export namespace cloudidentity_v1beta1 {
           {
             url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -5042,6 +5093,7 @@ export namespace cloudidentity_v1beta1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5129,6 +5181,7 @@ export namespace cloudidentity_v1beta1 {
           {
             url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -5348,6 +5401,7 @@ export namespace cloudidentity_v1beta1 {
               '/v1beta1/{+parent}/memberships:checkTransitiveMembership'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5438,6 +5492,7 @@ export namespace cloudidentity_v1beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5523,6 +5578,7 @@ export namespace cloudidentity_v1beta1 {
           {
             url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -5608,6 +5664,7 @@ export namespace cloudidentity_v1beta1 {
           {
             url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5695,6 +5752,7 @@ export namespace cloudidentity_v1beta1 {
               rootUrl + '/v1beta1/{+parent}/memberships:getMembershipGraph'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5788,6 +5846,7 @@ export namespace cloudidentity_v1beta1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5883,6 +5942,7 @@ export namespace cloudidentity_v1beta1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5980,6 +6040,7 @@ export namespace cloudidentity_v1beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -6076,6 +6137,7 @@ export namespace cloudidentity_v1beta1 {
               rootUrl + '/v1beta1/{+parent}/memberships:searchDirectGroups'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6171,6 +6233,7 @@ export namespace cloudidentity_v1beta1 {
               rootUrl + '/v1beta1/{+parent}/memberships:searchTransitiveGroups'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6269,6 +6332,7 @@ export namespace cloudidentity_v1beta1 {
               '/v1beta1/{+parent}/memberships:searchTransitiveMemberships'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6453,7 +6517,7 @@ export namespace cloudidentity_v1beta1 {
     }
 
     /**
-     * Creates an InboundSamlSsoProfile for a customer.
+     * Creates an InboundSamlSsoProfile for a customer. When the target customer has enabled [Multi-party approval for sensitive actions](https://support.google.com/a/answer/13790448), the `Operation` in the response will have `"done": false`, it will not have a response, and the metadata will have `"state": "awaiting-multi-party-approval"`.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6522,6 +6586,7 @@ export namespace cloudidentity_v1beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -6607,6 +6672,7 @@ export namespace cloudidentity_v1beta1 {
           {
             url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -6697,6 +6763,7 @@ export namespace cloudidentity_v1beta1 {
           {
             url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6792,6 +6859,7 @@ export namespace cloudidentity_v1beta1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6813,7 +6881,7 @@ export namespace cloudidentity_v1beta1 {
     }
 
     /**
-     * Updates an InboundSamlSsoProfile.
+     * Updates an InboundSamlSsoProfile. When the target customer has enabled [Multi-party approval for sensitive actions](https://support.google.com/a/answer/13790448), the `Operation` in the response will have `"done": false`, it will not have a response, and the metadata will have `"state": "awaiting-multi-party-approval"`.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6879,6 +6947,7 @@ export namespace cloudidentity_v1beta1 {
           {
             url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -6958,7 +7027,7 @@ export namespace cloudidentity_v1beta1 {
     }
 
     /**
-     * Adds an IdpCredential. Up to 2 credentials are allowed.
+     * Adds an IdpCredential. Up to 2 credentials are allowed. When the target customer has enabled [Multi-party approval for sensitive actions](https://support.google.com/a/answer/13790448), the `Operation` in the response will have `"done": false`, it will not have a response, and the metadata will have `"state": "awaiting-multi-party-approval"`.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7028,6 +7097,7 @@ export namespace cloudidentity_v1beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -7114,6 +7184,7 @@ export namespace cloudidentity_v1beta1 {
           {
             url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -7200,6 +7271,7 @@ export namespace cloudidentity_v1beta1 {
           {
             url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -7296,6 +7368,7 @@ export namespace cloudidentity_v1beta1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -7433,6 +7506,7 @@ export namespace cloudidentity_v1beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -7518,6 +7592,7 @@ export namespace cloudidentity_v1beta1 {
           {
             url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -7608,6 +7683,7 @@ export namespace cloudidentity_v1beta1 {
           {
             url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -7703,6 +7779,7 @@ export namespace cloudidentity_v1beta1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -7790,6 +7867,7 @@ export namespace cloudidentity_v1beta1 {
           {
             url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -7954,6 +8032,7 @@ export namespace cloudidentity_v1beta1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -8042,6 +8121,7 @@ export namespace cloudidentity_v1beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),

@@ -384,7 +384,7 @@ export namespace firestore_v1beta1 {
     updateTime?: string | null;
   }
   /**
-   * A Document has changed. May be the result of multiple writes, including deletes, that ultimately resulted in a new value for the Document. Multiple DocumentChange messages may be returned for the same logical change, if multiple targets are affected.
+   * A Document has changed. May be the result of multiple writes, including deletes, that ultimately resulted in a new value for the Document. Multiple DocumentChange messages may be returned for the same logical change, if multiple targets are affected. For PipelineQueryTargets, `document` will be in the new pipeline format, For a Listen stream with both QueryTargets and PipelineQueryTargets present, if a document matches both types of queries, then a separate DocumentChange messages will be sent out one for each set.
    */
   export interface Schema$DocumentChange {
     /**
@@ -606,6 +606,27 @@ export namespace firestore_v1beta1 {
     unaryFilter?: Schema$UnaryFilter;
   }
   /**
+   * Nearest Neighbors search config.
+   */
+  export interface Schema$FindNearest {
+    /**
+     * Required. The distance measure to use, required.
+     */
+    distanceMeasure?: string | null;
+    /**
+     * Required. The number of nearest neighbors to return. Must be a positive integer of no more than 1000.
+     */
+    limit?: number | null;
+    /**
+     * Required. The query vector that we are searching on. Must be a vector of no more than 2048 dimensions.
+     */
+    queryVector?: Schema$Value;
+    /**
+     * Required. An indexed vector field to search upon. Only documents which contain vectors whose dimensionality match the query_vector can be returned.
+     */
+    vectorField?: Schema$FieldReference;
+  }
+  /**
    * Metadata for ExportDocuments operations.
    */
   export interface Schema$GoogleFirestoreAdminV1beta1ExportDocumentsMetadata {
@@ -798,6 +819,43 @@ export namespace firestore_v1beta1 {
      * An estimate of how much work needs to be performed. Zero if the work estimate is unavailable. May change as work progresses.
      */
     workEstimated?: string | null;
+  }
+  /**
+   * Metadata for google.longrunning.Operation results from FirestoreAdmin.BulkDeleteDocuments.
+   */
+  export interface Schema$GoogleFirestoreAdminV1BulkDeleteDocumentsMetadata {
+    /**
+     * The ids of the collection groups that are being deleted.
+     */
+    collectionIds?: string[] | null;
+    /**
+     * The time this operation completed. Will be unset if operation still in progress.
+     */
+    endTime?: string | null;
+    /**
+     * Which namespace ids are being deleted.
+     */
+    namespaceIds?: string[] | null;
+    /**
+     * The state of the operation.
+     */
+    operationState?: string | null;
+    /**
+     * The progress, in bytes, of this operation.
+     */
+    progressBytes?: Schema$GoogleFirestoreAdminV1Progress;
+    /**
+     * The progress, in documents, of this operation.
+     */
+    progressDocuments?: Schema$GoogleFirestoreAdminV1Progress;
+    /**
+     * The timestamp that corresponds to the version of the database that is being read to get the list of documents to delete. This time can also be used as the timestamp of PITR in case of disaster recovery (subject to PITR window limit).
+     */
+    snapshotTime?: string | null;
+    /**
+     * The time this operation started.
+     */
+    startTime?: string | null;
   }
   /**
    * Metadata related to the create database operation.
@@ -1246,6 +1304,10 @@ export namespace firestore_v1beta1 {
      */
     endAt?: Schema$Cursor;
     /**
+     * Optional. A potential nearest neighbors search. Applies after all other filters and ordering. Finds the closest vector embeddings to the given query vector.
+     */
+    findNearest?: Schema$FindNearest;
+    /**
      * The collections to query.
      */
     from?: Schema$CollectionSelector[];
@@ -1372,7 +1434,7 @@ export namespace firestore_v1beta1 {
    */
   export interface Schema$Value {
     /**
-     * An array value. Cannot directly contain another array value, though can contain an map which contains another array.
+     * An array value. Cannot directly contain another array value, though can contain a map which contains another array.
      */
     arrayValue?: Schema$ArrayValue;
     /**
@@ -1596,6 +1658,7 @@ export namespace firestore_v1beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1690,6 +1753,7 @@ export namespace firestore_v1beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1816,6 +1880,7 @@ export namespace firestore_v1beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1905,6 +1970,7 @@ export namespace firestore_v1beta1 {
               rootUrl + '/v1beta1/{+database}/documents:batchWrite'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1999,6 +2065,7 @@ export namespace firestore_v1beta1 {
               rootUrl + '/v1beta1/{+database}/documents:beginTransaction'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2086,6 +2153,7 @@ export namespace firestore_v1beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2174,6 +2242,7 @@ export namespace firestore_v1beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2258,6 +2327,7 @@ export namespace firestore_v1beta1 {
           {
             url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -2342,6 +2412,7 @@ export namespace firestore_v1beta1 {
           {
             url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2434,6 +2505,7 @@ export namespace firestore_v1beta1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2529,6 +2601,7 @@ export namespace firestore_v1beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2624,6 +2697,7 @@ export namespace firestore_v1beta1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2711,6 +2785,7 @@ export namespace firestore_v1beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2806,6 +2881,7 @@ export namespace firestore_v1beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2890,6 +2966,7 @@ export namespace firestore_v1beta1 {
           {
             url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -2977,6 +3054,7 @@ export namespace firestore_v1beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3072,6 +3150,7 @@ export namespace firestore_v1beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3159,6 +3238,7 @@ export namespace firestore_v1beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3246,6 +3326,7 @@ export namespace firestore_v1beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3644,6 +3725,7 @@ export namespace firestore_v1beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3728,6 +3810,7 @@ export namespace firestore_v1beta1 {
           {
             url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -3819,6 +3902,7 @@ export namespace firestore_v1beta1 {
           {
             url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3915,6 +3999,7 @@ export namespace firestore_v1beta1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),

@@ -6,4 +6,6 @@ The Blogger API v3 allows client applications to view and update Blogger content
 
 ## Running the sample
 
-`node blogger.js`
+```sh
+node blogger.js
+```

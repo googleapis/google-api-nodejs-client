@@ -126,13 +126,60 @@ export namespace tasks_v1 {
     }
   }
 
+  /**
+   * Information about the source of the task assignment (Document, Chat Space).
+   */
+  export interface Schema$AssignmentInfo {
+    /**
+     * Output only. Information about the Drive file where this task originates from. Currently, the Drive file can only be a document. This field is read-only.
+     */
+    driveResourceInfo?: Schema$DriveResourceInfo;
+    /**
+     * Output only. An absolute link to the original task in the surface of assignment (Docs, Chat spaces, etc.).
+     */
+    linkToTask?: string | null;
+    /**
+     * Output only. Information about the Chat Space where this task originates from. This field is read-only.
+     */
+    spaceInfo?: Schema$SpaceInfo;
+    /**
+     * Output only. The type of surface this assigned task originates from. Currently limited to DOCUMENT or SPACE.
+     */
+    surfaceType?: string | null;
+  }
+  /**
+   * Information about the Drive resource where a task was assigned from (the document, sheet, etc.).
+   */
+  export interface Schema$DriveResourceInfo {
+    /**
+     * Output only. Identifier of the file in the Drive API.
+     */
+    driveFileId?: string | null;
+    /**
+     * Output only. Resource key required to access files shared via a shared link. Not required for all files. See also developers.google.com/drive/api/guides/resource-keys.
+     */
+    resourceKey?: string | null;
+  }
+  /**
+   * Information about the Chat Space where a task was assigned from.
+   */
+  export interface Schema$SpaceInfo {
+    /**
+     * Output only. The Chat space where this task originates from. The format is "spaces/{space\}".
+     */
+    space?: string | null;
+  }
   export interface Schema$Task {
+    /**
+     * Output only. Context information for assigned tasks. A task can be assigned to a user, currently possible from surfaces like Docs and Chat Spaces. This field is populated for tasks assigned to the current user and identifies where the task was assigned from. This field is read-only.
+     */
+    assignmentInfo?: Schema$AssignmentInfo;
     /**
      * Completion date of the task (as a RFC 3339 timestamp). This field is omitted if the task has not been completed.
      */
     completed?: string | null;
     /**
-     * Flag indicating whether the task has been deleted. The default is False.
+     * Flag indicating whether the task has been deleted. For assigned tasks this field is read-only. They can only be deleted by calling tasks.delete, in which case both the assigned task and the original task (in Docs or Chat Spaces) are deleted. To delete the assigned task only, navigate to the assignment surface and unassign the task from there. The default is False.
      */
     deleted?: boolean | null;
     /**
@@ -152,27 +199,27 @@ export namespace tasks_v1 {
      */
     id?: string | null;
     /**
-     * Type of the resource. This is always "tasks#task".
+     * Output only. Type of the resource. This is always "tasks#task".
      */
     kind?: string | null;
     /**
-     * Collection of links. This collection is read-only.
+     * Output only. Collection of links. This collection is read-only.
      */
     links?: Array<{description?: string; link?: string; type?: string}> | null;
     /**
-     * Notes describing the task. Optional.
+     * Notes describing the task. Tasks assigned from Google Docs cannot have notes. Optional. Maximum length allowed: 8192 characters.
      */
     notes?: string | null;
     /**
-     * Parent task identifier. This field is omitted if it is a top-level task. This field is read-only. Use the "move" method to move the task under a different parent or to the top level.
+     * Output only. Parent task identifier. This field is omitted if it is a top-level task. Use the "move" method to move the task under a different parent or to the top level. A parent task can never be an assigned task (from Chat Spaces, Docs). This field is read-only.
      */
     parent?: string | null;
     /**
-     * String indicating the position of the task among its sibling tasks under the same parent task or at the top level. If this string is greater than another task's corresponding position string according to lexicographical ordering, the task is positioned after the other task under the same parent task (or at the top level). This field is read-only. Use the "move" method to move the task to another position.
+     * Output only. String indicating the position of the task among its sibling tasks under the same parent task or at the top level. If this string is greater than another task's corresponding position string according to lexicographical ordering, the task is positioned after the other task under the same parent task (or at the top level). Use the "move" method to move the task to another position.
      */
     position?: string | null;
     /**
-     * URL pointing to this task. Used to retrieve, update, or delete this task.
+     * Output only. URL pointing to this task. Used to retrieve, update, or delete this task.
      */
     selfLink?: string | null;
     /**
@@ -180,15 +227,15 @@ export namespace tasks_v1 {
      */
     status?: string | null;
     /**
-     * Title of the task.
+     * Title of the task. Maximum length allowed: 1024 characters.
      */
     title?: string | null;
     /**
-     * Last modification time of the task (as a RFC 3339 timestamp).
+     * Output only. Last modification time of the task (as a RFC 3339 timestamp).
      */
     updated?: string | null;
     /**
-     * An absolute link to the task in the Google Tasks Web UI. This field is read-only.
+     * Output only. An absolute link to the task in the Google Tasks Web UI.
      */
     webViewLink?: string | null;
   }
@@ -202,19 +249,19 @@ export namespace tasks_v1 {
      */
     id?: string | null;
     /**
-     * Type of the resource. This is always "tasks#taskList".
+     * Output only. Type of the resource. This is always "tasks#taskList".
      */
     kind?: string | null;
     /**
-     * URL pointing to this task list. Used to retrieve, update, or delete this task list.
+     * Output only. URL pointing to this task list. Used to retrieve, update, or delete this task list.
      */
     selfLink?: string | null;
     /**
-     * Title of the task list.
+     * Title of the task list. Maximum length allowed: 1024 characters.
      */
     title?: string | null;
     /**
-     * Last modification time of the task list (as a RFC 3339 timestamp).
+     * Output only. Last modification time of the task list (as a RFC 3339 timestamp).
      */
     updated?: string | null;
   }
@@ -262,7 +309,7 @@ export namespace tasks_v1 {
     }
 
     /**
-     * Deletes the authenticated user's specified task list.
+     * Deletes the authenticated user's specified task list. If the list contains assigned tasks, both the assigned tasks and the original tasks in the assignment surface (Docs, Chat Spaces) are deleted.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -327,6 +374,7 @@ export namespace tasks_v1 {
               '$1'
             ),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -413,6 +461,7 @@ export namespace tasks_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -432,7 +481,7 @@ export namespace tasks_v1 {
     }
 
     /**
-     * Creates a new task list and adds it to the authenticated user's task lists.
+     * Creates a new task list and adds it to the authenticated user's task lists. A user can have up to 2000 lists at a time.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -499,6 +548,7 @@ export namespace tasks_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -518,7 +568,7 @@ export namespace tasks_v1 {
     }
 
     /**
-     * Returns all the authenticated user's task lists.
+     * Returns all the authenticated user's task lists. A user can have up to 2000 lists at a time.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -585,6 +635,7 @@ export namespace tasks_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -671,6 +722,7 @@ export namespace tasks_v1 {
               '$1'
             ),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -757,6 +809,7 @@ export namespace tasks_v1 {
               '$1'
             ),
             method: 'PUT',
+            apiVersion: '',
           },
           options
         ),
@@ -899,6 +952,7 @@ export namespace tasks_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -918,7 +972,7 @@ export namespace tasks_v1 {
     }
 
     /**
-     * Deletes the specified task from the task list.
+     * Deletes the specified task from the task list. If the task is assigned, both the assigned task and the original task (in Docs, Chat Spaces) are deleted. To delete the assigned task only, navigate to the assignment surface and unassign the task from there.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -983,6 +1037,7 @@ export namespace tasks_v1 {
               '$1'
             ),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -1069,6 +1124,7 @@ export namespace tasks_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1088,7 +1144,7 @@ export namespace tasks_v1 {
     }
 
     /**
-     * Creates a new task on the specified task list.
+     * Creates a new task on the specified task list. Tasks assigned from Docs or Chat Spaces cannot be inserted from Tasks Public API; they can only be created by assigning them from Docs or Chat Spaces. A user can have up to 20,000 non-hidden tasks per list and up to 100,000 tasks in total at a time.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1155,6 +1211,7 @@ export namespace tasks_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1174,7 +1231,7 @@ export namespace tasks_v1 {
     }
 
     /**
-     * Returns all tasks in the specified task list.
+     * Returns all tasks in the specified task list. Does not return assigned tasks be default (from Docs, Chat Spaces). A user can have up to 20,000 non-hidden tasks per list and up to 100,000 tasks in total at a time.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1241,6 +1298,7 @@ export namespace tasks_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1260,7 +1318,7 @@ export namespace tasks_v1 {
     }
 
     /**
-     * Moves the specified task to another position in the task list. This can include putting it as a child task under a new parent and/or move it to a different position among its sibling tasks.
+     * Moves the specified task to another position in the destination task list. If the destination list is not specified, the task is moved within its current list. This can include putting it as a child task under a new parent and/or move it to a different position among its sibling tasks. A user can have up to 2,000 subtasks per task.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1326,6 +1384,7 @@ export namespace tasks_v1 {
               rootUrl + '/tasks/v1/lists/{tasklist}/tasks/{task}/move'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1412,6 +1471,7 @@ export namespace tasks_v1 {
               '$1'
             ),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -1498,6 +1558,7 @@ export namespace tasks_v1 {
               '$1'
             ),
             method: 'PUT',
+            apiVersion: '',
           },
           options
         ),
@@ -1545,7 +1606,7 @@ export namespace tasks_v1 {
   }
   export interface Params$Resource$Tasks$Insert extends StandardParameters {
     /**
-     * Parent task identifier. If the task is created at the top level, this parameter is omitted. Optional.
+     * Parent task identifier. If the task is created at the top level, this parameter is omitted. An assigned task cannot be a parent task, nor can it have a parent. Setting the parent to an assigned task results in failure of the request. Optional.
      */
     parent?: string;
     /**
@@ -1588,7 +1649,11 @@ export namespace tasks_v1 {
      */
     pageToken?: string;
     /**
-     * Flag indicating whether completed tasks are returned in the result. Optional. The default is True. Note that showHidden must also be True to show tasks completed in first party clients, such as the web UI and Google's mobile apps.
+     * Optional. Flag indicating whether tasks assigned to the current user are returned in the result. Optional. The default is False.
+     */
+    showAssigned?: boolean;
+    /**
+     * Flag indicating whether completed tasks are returned in the result. Note that showHidden must also be True to show tasks completed in first party clients, such as the web UI and Google's mobile apps. Optional. The default is True.
      */
     showCompleted?: boolean;
     /**
@@ -1610,7 +1675,11 @@ export namespace tasks_v1 {
   }
   export interface Params$Resource$Tasks$Move extends StandardParameters {
     /**
-     * New parent task identifier. If the task is moved to the top level, this parameter is omitted. Optional.
+     * Optional. Destination task list identifier. If set, the task is moved from tasklist to the destinationTasklist list. Otherwise the task is moved within its current list. Recurrent tasks cannot currently be moved between lists. Optional.
+     */
+    destinationTasklist?: string;
+    /**
+     * New parent task identifier. If the task is moved to the top level, this parameter is omitted. Assigned tasks can not be set as parent task (have subtasks) or be moved under a parent task (become subtasks). Optional.
      */
     parent?: string;
     /**

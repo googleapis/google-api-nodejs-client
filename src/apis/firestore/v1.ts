@@ -384,7 +384,7 @@ export namespace firestore_v1 {
     updateTime?: string | null;
   }
   /**
-   * A Document has changed. May be the result of multiple writes, including deletes, that ultimately resulted in a new value for the Document. Multiple DocumentChange messages may be returned for the same logical change, if multiple targets are affected.
+   * A Document has changed. May be the result of multiple writes, including deletes, that ultimately resulted in a new value for the Document. Multiple DocumentChange messages may be returned for the same logical change, if multiple targets are affected. For PipelineQueryTargets, `document` will be in the new pipeline format, For a Listen stream with both QueryTargets and PipelineQueryTargets present, if a document matches both types of queries, then a separate DocumentChange messages will be sent out one for each set.
    */
   export interface Schema$DocumentChange {
     /**
@@ -606,6 +606,27 @@ export namespace firestore_v1 {
     unaryFilter?: Schema$UnaryFilter;
   }
   /**
+   * Nearest Neighbors search config.
+   */
+  export interface Schema$FindNearest {
+    /**
+     * Required. The distance measure to use, required.
+     */
+    distanceMeasure?: string | null;
+    /**
+     * Required. The number of nearest neighbors to return. Must be a positive integer of no more than 1000.
+     */
+    limit?: number | null;
+    /**
+     * Required. The query vector that we are searching on. Must be a vector of no more than 2048 dimensions.
+     */
+    queryVector?: Schema$Value;
+    /**
+     * Required. An indexed vector field to search upon. Only documents which contain vectors whose dimensionality match the query_vector can be returned.
+     */
+    vectorField?: Schema$FieldReference;
+  }
+  /**
    * A Backup of a Cloud Firestore Database. The backup contains all documents and index configurations for the given database at a specific point in time.
    */
   export interface Schema$GoogleFirestoreAdminV1Backup {
@@ -647,7 +668,7 @@ export namespace firestore_v1 {
      */
     createTime?: string | null;
     /**
-     * For a schedule that runs daily at a specified time.
+     * For a schedule that runs daily.
      */
     dailyRecurrence?: Schema$GoogleFirestoreAdminV1DailyRecurrence;
     /**
@@ -663,9 +684,59 @@ export namespace firestore_v1 {
      */
     updateTime?: string | null;
     /**
-     * For a schedule that runs weekly on a specific day and time.
+     * For a schedule that runs weekly on a specific day.
      */
     weeklyRecurrence?: Schema$GoogleFirestoreAdminV1WeeklyRecurrence;
+  }
+  /**
+   * Metadata for google.longrunning.Operation results from FirestoreAdmin.BulkDeleteDocuments.
+   */
+  export interface Schema$GoogleFirestoreAdminV1BulkDeleteDocumentsMetadata {
+    /**
+     * The ids of the collection groups that are being deleted.
+     */
+    collectionIds?: string[] | null;
+    /**
+     * The time this operation completed. Will be unset if operation still in progress.
+     */
+    endTime?: string | null;
+    /**
+     * Which namespace ids are being deleted.
+     */
+    namespaceIds?: string[] | null;
+    /**
+     * The state of the operation.
+     */
+    operationState?: string | null;
+    /**
+     * The progress, in bytes, of this operation.
+     */
+    progressBytes?: Schema$GoogleFirestoreAdminV1Progress;
+    /**
+     * The progress, in documents, of this operation.
+     */
+    progressDocuments?: Schema$GoogleFirestoreAdminV1Progress;
+    /**
+     * The timestamp that corresponds to the version of the database that is being read to get the list of documents to delete. This time can also be used as the timestamp of PITR in case of disaster recovery (subject to PITR window limit).
+     */
+    snapshotTime?: string | null;
+    /**
+     * The time this operation started.
+     */
+    startTime?: string | null;
+  }
+  /**
+   * The request for FirestoreAdmin.BulkDeleteDocuments. When both collection_ids and namespace_ids are set, only documents satisfying both conditions will be deleted. Requests with namespace_ids and collection_ids both empty will be rejected. Please use FirestoreAdmin.DeleteDatabase instead.
+   */
+  export interface Schema$GoogleFirestoreAdminV1BulkDeleteDocumentsRequest {
+    /**
+     * Optional. IDs of the collection groups to delete. Unspecified means all collection groups. Each collection group in this list must be unique.
+     */
+    collectionIds?: string[] | null;
+    /**
+     * Optional. Namespaces to delete. An empty list means all namespaces. This is the recommended usage for databases that don't use namespaces. An empty string element represents the default namespace. This should be used if the database has data in non-default namespaces, but doesn't want to delete from them. Each namespace in this list must be unique.
+     */
+    namespaceIds?: string[] | null;
   }
   /**
    * The CMEK (Customer Managed Encryption Key) configuration for a Firestore database. If not present, the database is secured by the default Google encryption key.
@@ -685,9 +756,14 @@ export namespace firestore_v1 {
    */
   export interface Schema$GoogleFirestoreAdminV1CreateDatabaseMetadata {}
   /**
-   * Represents a recurring schedule that runs at a specific time every day. The time zone is UTC.
+   * Represents a recurring schedule that runs every day. The time zone is UTC.
    */
-  export interface Schema$GoogleFirestoreAdminV1DailyRecurrence {}
+  export interface Schema$GoogleFirestoreAdminV1DailyRecurrence {
+    /**
+     * Time of the day. The first run scheduled will be either on the same day if schedule creation time precedes time_of_day or the next day otherwise.
+     */
+    time?: Schema$TimeOfDay;
+  }
   /**
    * A Cloud Firestore Database.
    */
@@ -713,6 +789,10 @@ export namespace firestore_v1 {
      */
     deleteProtectionState?: string | null;
     /**
+     * Output only. The timestamp at which this database was deleted. Only set if the database has been deleted.
+     */
+    deleteTime?: string | null;
+    /**
      * Output only. The earliest timestamp at which older versions of the data can be read from the database. See [version_retention_period] above; this field is populated with `now - version_retention_period`. This value is continuously updated, and becomes stale the moment it is queried. If you are using this value to recover data, make sure to account for the time from the moment when the value is queried to the moment when you initiate the recovery.
      */
     earliestVersionTime?: string | null;
@@ -737,6 +817,10 @@ export namespace firestore_v1 {
      */
     pointInTimeRecoveryEnablement?: string | null;
     /**
+     * Output only. The database resource's prior database ID. This field is only populated for deleted databases.
+     */
+    previousId?: string | null;
+    /**
      * The type of the database. See https://cloud.google.com/datastore/docs/firestore-or-datastore for information about how to choose.
      */
     type?: string | null;
@@ -752,19 +836,6 @@ export namespace firestore_v1 {
      * Output only. The period during which past versions of data are retained in the database. Any read or query can specify a `read_time` within this window, and will read the state of the database at that time. If the PITR feature is enabled, the retention period is 7 days. Otherwise, the retention period is 1 hour.
      */
     versionRetentionPeriod?: string | null;
-  }
-  /**
-   * A consistent snapshot of a database at a specific point in time.
-   */
-  export interface Schema$GoogleFirestoreAdminV1DatabaseSnapshot {
-    /**
-     * Required. A name of the form `projects/{project_id\}/databases/{database_id\}`
-     */
-    database?: string | null;
-    /**
-     * Required. The timestamp at which the database snapshot is taken. The requested timestamp must be a whole minute within the PITR window.
-     */
-    snapshotTime?: string | null;
   }
   /**
    * Metadata related to the delete database operation.
@@ -816,7 +887,7 @@ export namespace firestore_v1 {
    */
   export interface Schema$GoogleFirestoreAdminV1ExportDocumentsRequest {
     /**
-     * Which collection ids to export. Unspecified means all collections.
+     * Which collection ids to export. Unspecified means all collections. Each collection id in this list must be unique.
      */
     collectionIds?: string[] | null;
     /**
@@ -850,7 +921,7 @@ export namespace firestore_v1 {
      */
     indexConfig?: Schema$GoogleFirestoreAdminV1IndexConfig;
     /**
-     * Required. A field name of the form `projects/{project_id\}/databases/{database_id\}/collectionGroups/{collection_id\}/fields/{field_path\}` A field path may be a simple field name, e.g. `address` or a path to fields within map_value , e.g. `address.city`, or a special field path. The only valid special field is `*`, which represents any field. Field paths may be quoted using ` (backtick). The only character that needs to be escaped within a quoted field path is the backtick character itself, escaped using a backslash. Special characters in field paths that must be quoted include: `*`, `.`, ``` (backtick), `[`, `]`, as well as any ascii symbolic characters. Examples: (Note: Comments here are written in markdown syntax, so there is an additional layer of backticks to represent a code block) `\`address.city\`` represents a field named `address.city`, not the map key `city` in the field `address`. `\`*\`` represents a field named `*`, not any field. A special `Field` contains the default indexing settings for all fields. This field's resource name is: `projects/{project_id\}/databases/{database_id\}/collectionGroups/__default__/fields/x` Indexes defined on this `Field` will be applied to all fields which do not have their own `Field` index configuration.
+     * Required. A field name of the form: `projects/{project_id\}/databases/{database_id\}/collectionGroups/{collection_id\}/fields/{field_path\}` A field path can be a simple field name, e.g. `address` or a path to fields within `map_value` , e.g. `address.city`, or a special field path. The only valid special field is `*`, which represents any field. Field paths can be quoted using `` ` `` (backtick). The only character that must be escaped within a quoted field path is the backtick character itself, escaped using a backslash. Special characters in field paths that must be quoted include: `*`, `.`, `` ` `` (backtick), `[`, `]`, as well as any ascii symbolic characters. Examples: `` `address.city` `` represents a field named `address.city`, not the map key `city` in the field `address`. `` `*` `` represents a field named `*`, not any field. A special `Field` contains the default indexing settings for all fields. This field's resource name is: `projects/{project_id\}/databases/{database_id\}/collectionGroups/__default__/fields/x` Indexes defined on this `Field` will be applied to all fields which do not have their own `Field` index configuration.
      */
     name?: string | null;
     /**
@@ -941,7 +1012,7 @@ export namespace firestore_v1 {
    */
   export interface Schema$GoogleFirestoreAdminV1ImportDocumentsRequest {
     /**
-     * Which collection ids to import. Unspecified means all collections included in the import.
+     * Which collection ids to import. Unspecified means all collections included in the import. Each collection id in this list must be unique.
      */
     collectionIds?: string[] | null;
     /**
@@ -1029,7 +1100,7 @@ export namespace firestore_v1 {
      */
     order?: string | null;
     /**
-     * Indicates that this field supports nearest neighbors and distance operations on vector.
+     * Indicates that this field supports nearest neighbor and distance operations on vector.
      */
     vectorConfig?: Schema$GoogleFirestoreAdminV1VectorConfig;
   }
@@ -1182,9 +1253,17 @@ export namespace firestore_v1 {
      */
     databaseId?: string | null;
     /**
-     * Database snapshot to restore from. The source database must exist and have enabled PITR. The restored database will be created in the same location as the source database.
+     * Use Customer Managed Encryption Keys (CMEK) for encryption. Only keys in the same location as this database are allowed to be used for encryption. For Firestore's nam5 multi-region, this corresponds to Cloud KMS multi-region us. For Firestore's eur3 multi-region, this corresponds to Cloud KMS multi-region europe. See https://cloud.google.com/kms/docs/locations. The expected format is `projects/{project_id\}/locations/{kms_location\}/keyRings/{key_ring\}/cryptoKeys/{crypto_key\}`.
      */
-    databaseSnapshot?: Schema$GoogleFirestoreAdminV1DatabaseSnapshot;
+    kmsKeyName?: string | null;
+    /**
+     * The restored database will use the same encryption configuration as the backup. This is the default option when no `encryption_config` is specified.
+     */
+    useBackupEncryption?: Schema$Empty;
+    /**
+     * Use Google default encryption.
+     */
+    useGoogleDefaultEncryption?: Schema$Empty;
   }
   /**
    * Backup specific statistics.
@@ -1246,6 +1325,10 @@ export namespace firestore_v1 {
      * The day of week to run. DAY_OF_WEEK_UNSPECIFIED is not allowed.
      */
     day?: string | null;
+    /**
+     * Time of the day. If day is today, the first run will happen today if schedule creation time precedes time_of_day, and the next week otherwise.
+     */
+    time?: Schema$TimeOfDay;
   }
   /**
    * The request message for Operations.CancelOperation.
@@ -1695,6 +1778,10 @@ export namespace firestore_v1 {
      */
     endAt?: Schema$Cursor;
     /**
+     * Optional. A potential nearest neighbors search. Applies after all other filters and ordering. Finds the closest vector embeddings to the given query vector.
+     */
+    findNearest?: Schema$FindNearest;
+    /**
      * The collections to query.
      */
     from?: Schema$CollectionSelector[];
@@ -1791,6 +1878,27 @@ export namespace firestore_v1 {
     targetIds?: number[] | null;
   }
   /**
+   * Represents a time of day. The date and time zone are either not significant or are specified elsewhere. An API may choose to allow leap seconds. Related types are google.type.Date and `google.protobuf.Timestamp`.
+   */
+  export interface Schema$TimeOfDay {
+    /**
+     * Hours of day in 24 hour format. Should be from 0 to 23. An API may choose to allow the value "24:00:00" for scenarios like business closing time.
+     */
+    hours?: number | null;
+    /**
+     * Minutes of hour of day. Must be from 0 to 59.
+     */
+    minutes?: number | null;
+    /**
+     * Fractions of seconds in nanoseconds. Must be from 0 to 999,999,999.
+     */
+    nanos?: number | null;
+    /**
+     * Seconds of minutes of the time. Must normally be from 0 to 59. An API may allow the value 60 if it allows leap-seconds.
+     */
+    seconds?: number | null;
+  }
+  /**
    * Options for creating a new transaction.
    */
   export interface Schema$TransactionOptions {
@@ -1821,7 +1929,7 @@ export namespace firestore_v1 {
    */
   export interface Schema$Value {
     /**
-     * An array value. Cannot directly contain another array value, though can contain an map which contains another array.
+     * An array value. Cannot directly contain another array value, though can contain a map which contains another array.
      */
     arrayValue?: Schema$ArrayValue;
     /**
@@ -1982,6 +2090,101 @@ export namespace firestore_v1 {
     }
 
     /**
+     * Bulk deletes a subset of documents from Google Cloud Firestore. Documents created or updated after the underlying system starts to process the request will not be deleted. The bulk delete occurs in the background and its progress can be monitored and managed via the Operation resource that is created. For more details on bulk delete behavior, refer to: https://cloud.google.com/firestore/docs/manage-data/bulk-delete
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    bulkDeleteDocuments(
+      params: Params$Resource$Projects$Databases$Bulkdeletedocuments,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    bulkDeleteDocuments(
+      params?: Params$Resource$Projects$Databases$Bulkdeletedocuments,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    bulkDeleteDocuments(
+      params: Params$Resource$Projects$Databases$Bulkdeletedocuments,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    bulkDeleteDocuments(
+      params: Params$Resource$Projects$Databases$Bulkdeletedocuments,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    bulkDeleteDocuments(
+      params: Params$Resource$Projects$Databases$Bulkdeletedocuments,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    bulkDeleteDocuments(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    bulkDeleteDocuments(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Databases$Bulkdeletedocuments
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Databases$Bulkdeletedocuments;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Databases$Bulkdeletedocuments;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://firestore.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:bulkDeleteDocuments').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+
+    /**
      * Create a database.
      *
      * @param params - Parameters for request
@@ -2057,6 +2260,7 @@ export namespace firestore_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2148,6 +2352,7 @@ export namespace firestore_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -2242,6 +2447,7 @@ export namespace firestore_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2333,6 +2539,7 @@ export namespace firestore_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2429,6 +2636,7 @@ export namespace firestore_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2523,6 +2731,7 @@ export namespace firestore_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2616,6 +2825,7 @@ export namespace firestore_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -2710,6 +2920,7 @@ export namespace firestore_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2729,6 +2940,18 @@ export namespace firestore_v1 {
     }
   }
 
+  export interface Params$Resource$Projects$Databases$Bulkdeletedocuments
+    extends StandardParameters {
+    /**
+     * Required. Database to operate. Should be of the form: `projects/{project_id\}/databases/{database_id\}`.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleFirestoreAdminV1BulkDeleteDocumentsRequest;
+  }
   export interface Params$Resource$Projects$Databases$Create
     extends StandardParameters {
     /**
@@ -2793,6 +3016,10 @@ export namespace firestore_v1 {
      * Required. A parent name of the form `projects/{project_id\}`
      */
     parent?: string;
+    /**
+     * If true, also returns deleted resources.
+     */
+    showDeleted?: boolean;
   }
   export interface Params$Resource$Projects$Databases$Patch
     extends StandardParameters {
@@ -2830,7 +3057,7 @@ export namespace firestore_v1 {
     }
 
     /**
-     * Creates a backup schedule on a database. At most two backup schedules can be configured on a database, one daily backup schedule with retention up to 7 days and one weekly backup schedule with retention up to 14 weeks.
+     * Creates a backup schedule on a database. At most two backup schedules can be configured on a database, one daily backup schedule and one weekly backup schedule.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2906,6 +3133,7 @@ export namespace firestore_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2993,6 +3221,7 @@ export namespace firestore_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -3084,6 +3313,7 @@ export namespace firestore_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3180,6 +3410,7 @@ export namespace firestore_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3273,6 +3504,7 @@ export namespace firestore_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -3439,6 +3671,7 @@ export namespace firestore_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3534,6 +3767,7 @@ export namespace firestore_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3628,6 +3862,7 @@ export namespace firestore_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -3657,7 +3892,7 @@ export namespace firestore_v1 {
   export interface Params$Resource$Projects$Databases$Collectiongroups$Fields$List
     extends StandardParameters {
     /**
-     * The filter to apply to list results. Currently, FirestoreAdmin.ListFields only supports listing fields that have been explicitly overridden. To issue this query, call FirestoreAdmin.ListFields with a filter that includes `indexConfig.usesAncestorConfig:false` .
+     * The filter to apply to list results. Currently, FirestoreAdmin.ListFields only supports listing fields that have been explicitly overridden. To issue this query, call FirestoreAdmin.ListFields with a filter that includes `indexConfig.usesAncestorConfig:false` or `ttlConfig:*`.
      */
     filter?: string;
     /**
@@ -3676,7 +3911,7 @@ export namespace firestore_v1 {
   export interface Params$Resource$Projects$Databases$Collectiongroups$Fields$Patch
     extends StandardParameters {
     /**
-     * Required. A field name of the form `projects/{project_id\}/databases/{database_id\}/collectionGroups/{collection_id\}/fields/{field_path\}` A field path may be a simple field name, e.g. `address` or a path to fields within map_value , e.g. `address.city`, or a special field path. The only valid special field is `*`, which represents any field. Field paths may be quoted using ` (backtick). The only character that needs to be escaped within a quoted field path is the backtick character itself, escaped using a backslash. Special characters in field paths that must be quoted include: `*`, `.`, ``` (backtick), `[`, `]`, as well as any ascii symbolic characters. Examples: (Note: Comments here are written in markdown syntax, so there is an additional layer of backticks to represent a code block) `\`address.city\`` represents a field named `address.city`, not the map key `city` in the field `address`. `\`*\`` represents a field named `*`, not any field. A special `Field` contains the default indexing settings for all fields. This field's resource name is: `projects/{project_id\}/databases/{database_id\}/collectionGroups/__default__/fields/x` Indexes defined on this `Field` will be applied to all fields which do not have their own `Field` index configuration.
+     * Required. A field name of the form: `projects/{project_id\}/databases/{database_id\}/collectionGroups/{collection_id\}/fields/{field_path\}` A field path can be a simple field name, e.g. `address` or a path to fields within `map_value` , e.g. `address.city`, or a special field path. The only valid special field is `*`, which represents any field. Field paths can be quoted using `` ` `` (backtick). The only character that must be escaped within a quoted field path is the backtick character itself, escaped using a backslash. Special characters in field paths that must be quoted include: `*`, `.`, `` ` `` (backtick), `[`, `]`, as well as any ascii symbolic characters. Examples: `` `address.city` `` represents a field named `address.city`, not the map key `city` in the field `address`. `` `*` `` represents a field named `*`, not any field. A special `Field` contains the default indexing settings for all fields. This field's resource name is: `projects/{project_id\}/databases/{database_id\}/collectionGroups/__default__/fields/x` Indexes defined on this `Field` will be applied to all fields which do not have their own `Field` index configuration.
      */
     name?: string;
     /**
@@ -3773,6 +4008,7 @@ export namespace firestore_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3858,6 +4094,7 @@ export namespace firestore_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -3950,6 +4187,7 @@ export namespace firestore_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4045,6 +4283,7 @@ export namespace firestore_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4194,6 +4433,7 @@ export namespace firestore_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4284,6 +4524,7 @@ export namespace firestore_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4378,6 +4619,7 @@ export namespace firestore_v1 {
               rootUrl + '/v1/{+database}/documents:beginTransaction'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4465,6 +4707,7 @@ export namespace firestore_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4553,6 +4796,7 @@ export namespace firestore_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4637,6 +4881,7 @@ export namespace firestore_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -4721,6 +4966,7 @@ export namespace firestore_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4813,6 +5059,7 @@ export namespace firestore_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4908,6 +5155,7 @@ export namespace firestore_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5003,6 +5251,7 @@ export namespace firestore_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5090,6 +5339,7 @@ export namespace firestore_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5185,6 +5435,7 @@ export namespace firestore_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5269,6 +5520,7 @@ export namespace firestore_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -5356,6 +5608,7 @@ export namespace firestore_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5451,6 +5704,7 @@ export namespace firestore_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5538,6 +5792,7 @@ export namespace firestore_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5625,6 +5880,7 @@ export namespace firestore_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -6013,6 +6269,7 @@ export namespace firestore_v1 {
           {
             url: (rootUrl + '/v1/{+name}:cancel').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -6097,6 +6354,7 @@ export namespace firestore_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -6188,6 +6446,7 @@ export namespace firestore_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6282,6 +6541,7 @@ export namespace firestore_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6423,6 +6683,7 @@ export namespace firestore_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6515,6 +6776,7 @@ export namespace firestore_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6633,6 +6895,7 @@ export namespace firestore_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -6724,6 +6987,7 @@ export namespace firestore_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6820,6 +7084,7 @@ export namespace firestore_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),

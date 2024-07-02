@@ -1,5 +1,47 @@
 # Changelog
 
+## [10.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/bigquery-v10.0.0...bigquery-v10.0.1) (2024-06-03)
+
+
+### Bug Fixes
+
+* **bigquery:** update the API ([bb98a47](https://github.com/googleapis/google-api-nodejs-client/commit/bb98a472120eeed02fc4c510ec416325d7c9003e))
+
+## [10.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/bigquery-v9.1.0...bigquery-v10.0.0) (2024-05-02)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* **bigquery:** update the API ([72b5d21](https://github.com/googleapis/google-api-nodejs-client/commit/72b5d21ed11f1bcde638a1240c02d6ce03906844))
+* **bigquery:** update the API ([bb0336c](https://github.com/googleapis/google-api-nodejs-client/commit/bb0336c60f51e34284473f3091b6e24290187d55))
+* run the generator ([#3434](https://github.com/googleapis/google-api-nodejs-client/issues/3434)) ([f0db524](https://github.com/googleapis/google-api-nodejs-client/commit/f0db524bb26f05cea3dec4c0ed66b496399e3857))
+
+## [9.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/bigquery-v9.0.0...bigquery-v9.1.0) (2024-05-02)
+
+
+### Features
+
+* **bigquery:** update the API ([72b5d21](https://github.com/googleapis/google-api-nodejs-client/commit/72b5d21ed11f1bcde638a1240c02d6ce03906844))
+
+## [9.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/bigquery-v8.0.0...bigquery-v9.0.0) (2024-04-04)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+* **bigquery:** This release has breaking changes.
+
+### Features
+
+* **bigquery:** update the API ([bb0336c](https://github.com/googleapis/google-api-nodejs-client/commit/bb0336c60f51e34284473f3091b6e24290187d55))
+* **bigquery:** update the API ([489bf2f](https://github.com/googleapis/google-api-nodejs-client/commit/489bf2ffd8ceb4f4269ed5240f1d85ba8de7f8c9))
+* **bigquery:** update the API ([f1deeab](https://github.com/googleapis/google-api-nodejs-client/commit/f1deeabbb09f97c56c14a419c24cee371be992ec))
+* run the generator ([#3434](https://github.com/googleapis/google-api-nodejs-client/issues/3434)) ([f0db524](https://github.com/googleapis/google-api-nodejs-client/commit/f0db524bb26f05cea3dec4c0ed66b496399e3857))
+
 ## [8.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/bigquery-v7.0.0...bigquery-v8.0.0) (2024-03-12)
 
 

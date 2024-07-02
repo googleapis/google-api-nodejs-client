@@ -112,6 +112,7 @@ export namespace games_v1 {
    */
   export class Games {
     context: APIRequestContext;
+    accesstokens: Resource$Accesstokens;
     achievementDefinitions: Resource$Achievementdefinitions;
     achievements: Resource$Achievements;
     applications: Resource$Applications;
@@ -131,6 +132,7 @@ export namespace games_v1 {
         google,
       };
 
+      this.accesstokens = new Resource$Accesstokens(this.context);
       this.achievementDefinitions = new Resource$Achievementdefinitions(
         this.context
       );
@@ -704,6 +706,19 @@ export namespace games_v1 {
     playerEvents?: Schema$PlayerEvent[];
   }
   /**
+   * Recall tokens for a game.
+   */
+  export interface Schema$GamePlayerToken {
+    /**
+     * The application that this player identifier is for.
+     */
+    applicationId?: string | null;
+    /**
+     * Recall token data.
+     */
+    token?: Schema$RecallToken[];
+  }
+  /**
    * The payload to request to increment an achievement.
    */
   export interface Schema$GamesAchievementIncrement {
@@ -732,6 +747,24 @@ export namespace games_v1 {
      * The minimum number of steps for the achievement to be set to.
      */
     steps?: number | null;
+  }
+  /**
+   * Response for the GeneratePlayGroupingApiToken RPC.
+   */
+  export interface Schema$GeneratePlayGroupingApiTokenResponse {
+    /**
+     * Token for accessing the Play Grouping API.
+     */
+    token?: Schema$PlayGroupingApiToken;
+  }
+  /**
+   * Response for the GenerateRecallPlayGroupingApiToken RPC.
+   */
+  export interface Schema$GenerateRecallPlayGroupingApiTokenResponse {
+    /**
+     * Token for accessing the Play Grouping API.
+     */
+    token?: Schema$PlayGroupingApiToken;
   }
   /**
    * Response message for GetMultipleApplicationPlayerIds rpc.
@@ -1438,6 +1471,15 @@ export namespace games_v1 {
     scores?: Schema$ScoreSubmission[];
   }
   /**
+   * Token data returned from GeneratePlayGroupingApiToken RPC.
+   */
+  export interface Schema$PlayGroupingApiToken {
+    /**
+     * Value of the token.
+     */
+    tokenValue?: string | null;
+  }
+  /**
    * Profile settings
    */
   export interface Schema$ProfileSettings {
@@ -1485,6 +1527,24 @@ export namespace games_v1 {
      * Required. Whether any tokens were unlinked as a result of this request.
      */
     unlinked?: boolean | null;
+  }
+  /**
+   * Recall token data returned from for the RetrieveDeveloperGamesLastPlayerToken RPC
+   */
+  export interface Schema$RetrieveDeveloperGamesLastPlayerTokenResponse {
+    /**
+     * The recall token associated with the requested PGS Player principal. It can be unset if there is no recall token associated with the requested principal.
+     */
+    token?: Schema$RecallToken;
+  }
+  /**
+   * A list of recall token data returned from the RetrieveGamesPlayerTokens RPC
+   */
+  export interface Schema$RetrieveGamesPlayerTokensResponse {
+    /**
+     * The requested applications along with the recall tokens for the player. If the player does not have recall tokens for an application, that application is not included in the response.
+     */
+    applicationRecallTokens?: Schema$GamePlayerToken[];
   }
   /**
    * Response for the RetrievePlayerTokens RPC
@@ -1717,6 +1777,235 @@ export namespace games_v1 {
     unlinked?: boolean | null;
   }
 
+  export class Resource$Accesstokens {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Generates a Play Grouping API token for the PGS user identified by the attached credential.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    generatePlayGroupingApiToken(
+      params: Params$Resource$Accesstokens$Generateplaygroupingapitoken,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    generatePlayGroupingApiToken(
+      params?: Params$Resource$Accesstokens$Generateplaygroupingapitoken,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GeneratePlayGroupingApiTokenResponse>;
+    generatePlayGroupingApiToken(
+      params: Params$Resource$Accesstokens$Generateplaygroupingapitoken,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    generatePlayGroupingApiToken(
+      params: Params$Resource$Accesstokens$Generateplaygroupingapitoken,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GeneratePlayGroupingApiTokenResponse>,
+      callback: BodyResponseCallback<Schema$GeneratePlayGroupingApiTokenResponse>
+    ): void;
+    generatePlayGroupingApiToken(
+      params: Params$Resource$Accesstokens$Generateplaygroupingapitoken,
+      callback: BodyResponseCallback<Schema$GeneratePlayGroupingApiTokenResponse>
+    ): void;
+    generatePlayGroupingApiToken(
+      callback: BodyResponseCallback<Schema$GeneratePlayGroupingApiTokenResponse>
+    ): void;
+    generatePlayGroupingApiToken(
+      paramsOrCallback?:
+        | Params$Resource$Accesstokens$Generateplaygroupingapitoken
+        | BodyResponseCallback<Schema$GeneratePlayGroupingApiTokenResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GeneratePlayGroupingApiTokenResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GeneratePlayGroupingApiTokenResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GeneratePlayGroupingApiTokenResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accesstokens$Generateplaygroupingapitoken;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Accesstokens$Generateplaygroupingapitoken;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://games.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/games/v1/accesstokens/generatePlayGroupingApiToken'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: [],
+        pathParams: [],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GeneratePlayGroupingApiTokenResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GeneratePlayGroupingApiTokenResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Generates a Play Grouping API token for the PGS user identified by the Recall session ID provided in the request.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    generateRecallPlayGroupingApiToken(
+      params: Params$Resource$Accesstokens$Generaterecallplaygroupingapitoken,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    generateRecallPlayGroupingApiToken(
+      params?: Params$Resource$Accesstokens$Generaterecallplaygroupingapitoken,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GenerateRecallPlayGroupingApiTokenResponse>;
+    generateRecallPlayGroupingApiToken(
+      params: Params$Resource$Accesstokens$Generaterecallplaygroupingapitoken,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    generateRecallPlayGroupingApiToken(
+      params: Params$Resource$Accesstokens$Generaterecallplaygroupingapitoken,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GenerateRecallPlayGroupingApiTokenResponse>,
+      callback: BodyResponseCallback<Schema$GenerateRecallPlayGroupingApiTokenResponse>
+    ): void;
+    generateRecallPlayGroupingApiToken(
+      params: Params$Resource$Accesstokens$Generaterecallplaygroupingapitoken,
+      callback: BodyResponseCallback<Schema$GenerateRecallPlayGroupingApiTokenResponse>
+    ): void;
+    generateRecallPlayGroupingApiToken(
+      callback: BodyResponseCallback<Schema$GenerateRecallPlayGroupingApiTokenResponse>
+    ): void;
+    generateRecallPlayGroupingApiToken(
+      paramsOrCallback?:
+        | Params$Resource$Accesstokens$Generaterecallplaygroupingapitoken
+        | BodyResponseCallback<Schema$GenerateRecallPlayGroupingApiTokenResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GenerateRecallPlayGroupingApiTokenResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GenerateRecallPlayGroupingApiTokenResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GenerateRecallPlayGroupingApiTokenResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accesstokens$Generaterecallplaygroupingapitoken;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Accesstokens$Generaterecallplaygroupingapitoken;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://games.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/games/v1/accesstokens/generateRecallPlayGroupingApiToken'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: [],
+        pathParams: [],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GenerateRecallPlayGroupingApiTokenResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GenerateRecallPlayGroupingApiTokenResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Accesstokens$Generateplaygroupingapitoken
+    extends StandardParameters {
+    /**
+     * Required. App package name to generate the token for (e.g. com.example.mygame).
+     */
+    packageName?: string;
+    /**
+     * Required. Persona to associate with the token. Persona is a developer-provided stable identifier of the user. Must be deterministically generated (e.g. as a one-way hash) from the user account ID and user profile ID (if the app has the concept), according to the developer's own user identity system.
+     */
+    persona?: string;
+  }
+  export interface Params$Resource$Accesstokens$Generaterecallplaygroupingapitoken
+    extends StandardParameters {
+    /**
+     * Required. App package name to generate the token for (e.g. com.example.mygame).
+     */
+    packageName?: string;
+    /**
+     * Required. Persona to associate with the token. Persona is a developer-provided stable identifier of the user. Must be deterministically generated (e.g. as a one-way hash) from the user account ID and user profile ID (if the app has the concept), according to the developer's own user identity system.
+     */
+    persona?: string;
+    /**
+     * Required. Opaque server-generated string that encodes all the necessary information to identify the PGS player / Google user and application. See https://developer.android.com/games/pgs/recall/recall-setup on how to integrate with Recall and get session ID.
+     */
+    recallSessionId?: string;
+  }
+
   export class Resource$Achievementdefinitions {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
@@ -1799,6 +2088,7 @@ export namespace games_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1917,6 +2207,7 @@ export namespace games_v1 {
               rootUrl + '/games/v1/achievements/{achievementId}/increment'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2012,6 +2303,7 @@ export namespace games_v1 {
               rootUrl + '/games/v1/players/{playerId}/achievements'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2107,6 +2399,7 @@ export namespace games_v1 {
               rootUrl + '/games/v1/achievements/{achievementId}/reveal'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2200,6 +2493,7 @@ export namespace games_v1 {
               rootUrl + '/games/v1/achievements/{achievementId}/setStepsAtLeast'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2295,6 +2589,7 @@ export namespace games_v1 {
               rootUrl + '/games/v1/achievements/{achievementId}/unlock'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2389,6 +2684,7 @@ export namespace games_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2555,6 +2851,7 @@ export namespace games_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2642,6 +2939,7 @@ export namespace games_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2727,6 +3025,7 @@ export namespace games_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2820,6 +3119,7 @@ export namespace games_v1 {
               rootUrl + '/games/v1/applications/{applicationId}/verify'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2953,6 +3253,7 @@ export namespace games_v1 {
           {
             url: (rootUrl + '/games/v1/events').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3047,6 +3348,7 @@ export namespace games_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3133,6 +3435,7 @@ export namespace games_v1 {
           {
             url: (rootUrl + '/games/v1/events').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3268,6 +3571,7 @@ export namespace games_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3360,6 +3664,7 @@ export namespace games_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3482,6 +3787,7 @@ export namespace games_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3575,6 +3881,7 @@ export namespace games_v1 {
               rootUrl + '/games/v1/players/{playerId}/categories/{collection}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3694,6 +4001,7 @@ export namespace games_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3787,6 +4095,7 @@ export namespace games_v1 {
               rootUrl + '/games/v1/players/me/multipleApplicationPlayerIds'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3878,6 +4187,7 @@ export namespace games_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3966,6 +4276,7 @@ export namespace games_v1 {
               rootUrl + '/games/v1/players/me/players/{collection}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4031,6 +4342,199 @@ export namespace games_v1 {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
+    }
+
+    /**
+     * Retrieve the Recall tokens from all requested games that is associated with the PGS Player encoded in the provided recall session id. The API is only available for users that have an active PGS Player profile.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    gamesPlayerTokens(
+      params: Params$Resource$Recall$Gamesplayertokens,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    gamesPlayerTokens(
+      params?: Params$Resource$Recall$Gamesplayertokens,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$RetrieveGamesPlayerTokensResponse>;
+    gamesPlayerTokens(
+      params: Params$Resource$Recall$Gamesplayertokens,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    gamesPlayerTokens(
+      params: Params$Resource$Recall$Gamesplayertokens,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$RetrieveGamesPlayerTokensResponse>,
+      callback: BodyResponseCallback<Schema$RetrieveGamesPlayerTokensResponse>
+    ): void;
+    gamesPlayerTokens(
+      params: Params$Resource$Recall$Gamesplayertokens,
+      callback: BodyResponseCallback<Schema$RetrieveGamesPlayerTokensResponse>
+    ): void;
+    gamesPlayerTokens(
+      callback: BodyResponseCallback<Schema$RetrieveGamesPlayerTokensResponse>
+    ): void;
+    gamesPlayerTokens(
+      paramsOrCallback?:
+        | Params$Resource$Recall$Gamesplayertokens
+        | BodyResponseCallback<Schema$RetrieveGamesPlayerTokensResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$RetrieveGamesPlayerTokensResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$RetrieveGamesPlayerTokensResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$RetrieveGamesPlayerTokensResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Recall$Gamesplayertokens;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Recall$Gamesplayertokens;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://games.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/games/v1/recall/gamesPlayerTokens/{sessionId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['sessionId'],
+        pathParams: ['sessionId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$RetrieveGamesPlayerTokensResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$RetrieveGamesPlayerTokensResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Retrieve the last Recall token from all developer games that is associated with the PGS Player encoded in the provided recall session id. The API is only available for users that have active PGS Player profile.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    lastTokenFromAllDeveloperGames(
+      params: Params$Resource$Recall$Lasttokenfromalldevelopergames,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    lastTokenFromAllDeveloperGames(
+      params?: Params$Resource$Recall$Lasttokenfromalldevelopergames,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$RetrieveDeveloperGamesLastPlayerTokenResponse>;
+    lastTokenFromAllDeveloperGames(
+      params: Params$Resource$Recall$Lasttokenfromalldevelopergames,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    lastTokenFromAllDeveloperGames(
+      params: Params$Resource$Recall$Lasttokenfromalldevelopergames,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$RetrieveDeveloperGamesLastPlayerTokenResponse>,
+      callback: BodyResponseCallback<Schema$RetrieveDeveloperGamesLastPlayerTokenResponse>
+    ): void;
+    lastTokenFromAllDeveloperGames(
+      params: Params$Resource$Recall$Lasttokenfromalldevelopergames,
+      callback: BodyResponseCallback<Schema$RetrieveDeveloperGamesLastPlayerTokenResponse>
+    ): void;
+    lastTokenFromAllDeveloperGames(
+      callback: BodyResponseCallback<Schema$RetrieveDeveloperGamesLastPlayerTokenResponse>
+    ): void;
+    lastTokenFromAllDeveloperGames(
+      paramsOrCallback?:
+        | Params$Resource$Recall$Lasttokenfromalldevelopergames
+        | BodyResponseCallback<Schema$RetrieveDeveloperGamesLastPlayerTokenResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$RetrieveDeveloperGamesLastPlayerTokenResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$RetrieveDeveloperGamesLastPlayerTokenResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$RetrieveDeveloperGamesLastPlayerTokenResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Recall$Lasttokenfromalldevelopergames;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Recall$Lasttokenfromalldevelopergames;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://games.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/games/v1/recall/developerGamesLastPlayerToken/{sessionId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['sessionId'],
+        pathParams: ['sessionId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$RetrieveDeveloperGamesLastPlayerTokenResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$RetrieveDeveloperGamesLastPlayerTokenResponse>(
+          parameters
+        );
+      }
     }
 
     /**
@@ -4107,6 +4611,7 @@ export namespace games_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4201,6 +4706,7 @@ export namespace games_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4220,7 +4726,7 @@ export namespace games_v1 {
     }
 
     /**
-     * Retrieve all Recall tokens associated with the PGS Player principal encoded in the provided recall session id. The API is only available for users that have active PGS Player profile.
+     * Retrieve all Recall tokens associated with the PGS Player encoded in the provided recall session id. The API is only available for users that have active PGS Player profile.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4295,6 +4801,7 @@ export namespace games_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4391,6 +4898,7 @@ export namespace games_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4410,6 +4918,24 @@ export namespace games_v1 {
     }
   }
 
+  export interface Params$Resource$Recall$Gamesplayertokens
+    extends StandardParameters {
+    /**
+     * Required. The application IDs from the Google Play developer console for the games to return scoped ids for.
+     */
+    applicationIds?: string[];
+    /**
+     * Required. Opaque server-generated string that encodes all the necessary information to identify the PGS player / Google user and application.
+     */
+    sessionId?: string;
+  }
+  export interface Params$Resource$Recall$Lasttokenfromalldevelopergames
+    extends StandardParameters {
+    /**
+     * Required. Opaque server-generated string that encodes all the necessary information to identify the PGS player / Google user and application.
+     */
+    sessionId?: string;
+  }
   export interface Params$Resource$Recall$Linkpersona
     extends StandardParameters {
     /**
@@ -4518,6 +5044,7 @@ export namespace games_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4625,6 +5152,7 @@ export namespace games_v1 {
               '/games/v1/players/{playerId}/leaderboards/{leaderboardId}/scores/{timeSpan}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4716,6 +5244,7 @@ export namespace games_v1 {
               '/games/v1/leaderboards/{leaderboardId}/scores/{collection}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4806,6 +5335,7 @@ export namespace games_v1 {
               '/games/v1/leaderboards/{leaderboardId}/window/{collection}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4894,6 +5424,7 @@ export namespace games_v1 {
               rootUrl + '/games/v1/leaderboards/{leaderboardId}/scores'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4988,6 +5519,7 @@ export namespace games_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5203,6 +5735,7 @@ export namespace games_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5294,6 +5827,7 @@ export namespace games_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5413,6 +5947,7 @@ export namespace games_v1 {
           {
             url: (rootUrl + '/games/v1/stats').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),

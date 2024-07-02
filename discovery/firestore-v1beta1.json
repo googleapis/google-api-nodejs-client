@@ -950,7 +950,7 @@
       }
     }
   },
-  "revision": "20240317",
+  "revision": "20240617",
   "rootUrl": "https://firestore.googleapis.com/",
   "schemas": {
     "Aggregation": {
@@ -1310,7 +1310,7 @@
       "type": "object"
     },
     "DocumentChange": {
-      "description": "A Document has changed. May be the result of multiple writes, including deletes, that ultimately resulted in a new value for the Document. Multiple DocumentChange messages may be returned for the same logical change, if multiple targets are affected.",
+      "description": "A Document has changed. May be the result of multiple writes, including deletes, that ultimately resulted in a new value for the Document. Multiple DocumentChange messages may be returned for the same logical change, if multiple targets are affected. For PipelineQueryTargets, `document` will be in the new pipeline format, For a Listen stream with both QueryTargets and PipelineQueryTargets present, if a document matches both types of queries, then a separate DocumentChange messages will be sent out one for each set.",
       "id": "DocumentChange",
       "properties": {
         "document": {
@@ -1627,6 +1627,110 @@
         "unaryFilter": {
           "$ref": "UnaryFilter",
           "description": "A filter that takes exactly one argument."
+        }
+      },
+      "type": "object"
+    },
+    "FindNearest": {
+      "description": "Nearest Neighbors search config.",
+      "id": "FindNearest",
+      "properties": {
+        "distanceMeasure": {
+          "description": "Required. The distance measure to use, required.",
+          "enum": [
+            "DISTANCE_MEASURE_UNSPECIFIED",
+            "EUCLIDEAN",
+            "COSINE",
+            "DOT_PRODUCT"
+          ],
+          "enumDescriptions": [
+            "Should not be set.",
+            "Measures the EUCLIDEAN distance between the vectors. See [Euclidean](https://en.wikipedia.org/wiki/Euclidean_distance) to learn more",
+            "Compares vectors based on the angle between them, which allows you to measure similarity that isn't based on the vectors magnitude. We recommend using DOT_PRODUCT with unit normalized vectors instead of COSINE distance, which is mathematically equivalent with better performance. See [Cosine Similarity](https://en.wikipedia.org/wiki/Cosine_similarity) to learn more.",
+            "Similar to cosine but is affected by the magnitude of the vectors. See [Dot Product](https://en.wikipedia.org/wiki/Dot_product) to learn more."
+          ],
+          "type": "string"
+        },
+        "limit": {
+          "description": "Required. The number of nearest neighbors to return. Must be a positive integer of no more than 1000.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "queryVector": {
+          "$ref": "Value",
+          "description": "Required. The query vector that we are searching on. Must be a vector of no more than 2048 dimensions."
+        },
+        "vectorField": {
+          "$ref": "FieldReference",
+          "description": "Required. An indexed vector field to search upon. Only documents which contain vectors whose dimensionality match the query_vector can be returned."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleFirestoreAdminV1BulkDeleteDocumentsMetadata": {
+      "description": "Metadata for google.longrunning.Operation results from FirestoreAdmin.BulkDeleteDocuments.",
+      "id": "GoogleFirestoreAdminV1BulkDeleteDocumentsMetadata",
+      "properties": {
+        "collectionIds": {
+          "description": "The ids of the collection groups that are being deleted.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "endTime": {
+          "description": "The time this operation completed. Will be unset if operation still in progress.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "namespaceIds": {
+          "description": "Which namespace ids are being deleted.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "operationState": {
+          "description": "The state of the operation.",
+          "enum": [
+            "OPERATION_STATE_UNSPECIFIED",
+            "INITIALIZING",
+            "PROCESSING",
+            "CANCELLING",
+            "FINALIZING",
+            "SUCCESSFUL",
+            "FAILED",
+            "CANCELLED"
+          ],
+          "enumDescriptions": [
+            "Unspecified.",
+            "Request is being prepared for processing.",
+            "Request is actively being processed.",
+            "Request is in the process of being cancelled after user called google.longrunning.Operations.CancelOperation on the operation.",
+            "Request has been processed and is in its finalization stage.",
+            "Request has completed successfully.",
+            "Request has finished being processed, but encountered an error.",
+            "Request has finished being cancelled after user called google.longrunning.Operations.CancelOperation."
+          ],
+          "type": "string"
+        },
+        "progressBytes": {
+          "$ref": "GoogleFirestoreAdminV1Progress",
+          "description": "The progress, in bytes, of this operation."
+        },
+        "progressDocuments": {
+          "$ref": "GoogleFirestoreAdminV1Progress",
+          "description": "The progress, in documents, of this operation."
+        },
+        "snapshotTime": {
+          "description": "The timestamp that corresponds to the version of the database that is being read to get the list of documents to delete. This time can also be used as the timestamp of PITR in case of disaster recovery (subject to PITR window limit).",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "startTime": {
+          "description": "The time this operation started.",
+          "format": "google-datetime",
+          "type": "string"
         }
       },
       "type": "object"
@@ -2548,6 +2652,10 @@
           "$ref": "Cursor",
           "description": "A potential prefix of a position in the result set to end the query at. This is similar to `START_AT` but with it controlling the end position rather than the start position. Requires: * The number of values cannot be greater than the number of fields specified in the `ORDER BY` clause."
         },
+        "findNearest": {
+          "$ref": "FindNearest",
+          "description": "Optional. A potential nearest neighbors search. Applies after all other filters and ordering. Finds the closest vector embeddings to the given query vector."
+        },
         "from": {
           "description": "The collections to query.",
           "items": {
@@ -2734,7 +2842,7 @@
       "properties": {
         "arrayValue": {
           "$ref": "ArrayValue",
-          "description": "An array value. Cannot directly contain another array value, though can contain an map which contains another array."
+          "description": "An array value. Cannot directly contain another array value, though can contain a map which contains another array."
         },
         "booleanValue": {
           "description": "A boolean value.",

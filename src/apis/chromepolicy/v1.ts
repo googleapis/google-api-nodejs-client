@@ -1033,6 +1033,7 @@ export namespace chromepolicy_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1146,6 +1147,7 @@ export namespace chromepolicy_v1 {
               rootUrl + '/v1/{+customer}/policies/groups:batchDelete'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1237,6 +1239,7 @@ export namespace chromepolicy_v1 {
               rootUrl + '/v1/{+customer}/policies/groups:batchModify'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1332,6 +1335,7 @@ export namespace chromepolicy_v1 {
               '/v1/{+customer}/policies/groups:listGroupPriorityOrdering'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1427,6 +1431,7 @@ export namespace chromepolicy_v1 {
               '/v1/{+customer}/policies/groups:updateGroupPriorityOrdering'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1577,6 +1582,7 @@ export namespace chromepolicy_v1 {
               rootUrl + '/v1/{+customer}/policies/networks:defineCertificate'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1673,6 +1679,7 @@ export namespace chromepolicy_v1 {
               rootUrl + '/v1/{+customer}/policies/networks:defineNetwork'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1769,6 +1776,7 @@ export namespace chromepolicy_v1 {
               rootUrl + '/v1/{+customer}/policies/networks:removeCertificate'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1865,6 +1873,7 @@ export namespace chromepolicy_v1 {
               rootUrl + '/v1/{+customer}/policies/networks:removeNetwork'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2014,6 +2023,7 @@ export namespace chromepolicy_v1 {
               rootUrl + '/v1/{+customer}/policies/orgunits:batchInherit'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2105,6 +2115,7 @@ export namespace chromepolicy_v1 {
               rootUrl + '/v1/{+customer}/policies/orgunits:batchModify'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2228,6 +2239,7 @@ export namespace chromepolicy_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2324,6 +2336,7 @@ export namespace chromepolicy_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2452,6 +2465,7 @@ export namespace chromepolicy_v1 {
               rootUrl + '/v1/{+customer}/policies/files:uploadPolicyFile'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),

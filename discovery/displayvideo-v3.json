@@ -4898,7 +4898,7 @@
                       "type": "string"
                     },
                     "targetingType": {
-                      "description": "Required. Identifies the type of this assigned targeting option. Supported targeting types: * `TARGETING_TYPE_CHANNEL` * `TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION` * `TARGETING_TYPE_OMID` * `TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION`",
+                      "description": "Required. Identifies the type of this assigned targeting option. Supported targeting types: * `TARGETING_TYPE_CHANNEL` * `TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION` * `TARGETING_TYPE_OMID` * `TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION` * `TARGETING_TYPE_KEYWORD`",
                       "enum": [
                         "TARGETING_TYPE_UNSPECIFIED",
                         "TARGETING_TYPE_CHANNEL",
@@ -5045,7 +5045,7 @@
                       "type": "string"
                     },
                     "targetingType": {
-                      "description": "Required. Identifies the type of this assigned targeting option. Supported targeting types: * `TARGETING_TYPE_CHANNEL` * `TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION` * `TARGETING_TYPE_OMID` * `TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION`",
+                      "description": "Required. Identifies the type of this assigned targeting option. Supported targeting types: * `TARGETING_TYPE_CHANNEL` * `TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION` * `TARGETING_TYPE_OMID` * `TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION` * `TARGETING_TYPE_KEYWORD`",
                       "enum": [
                         "TARGETING_TYPE_UNSPECIFIED",
                         "TARGETING_TYPE_CHANNEL",
@@ -5189,7 +5189,7 @@
                       "type": "string"
                     },
                     "targetingType": {
-                      "description": "Required. Identifies the type of this assigned targeting option. Supported targeting types: * `TARGETING_TYPE_CHANNEL` * `TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION` * `TARGETING_TYPE_OMID` * `TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION` * `TARGETING_TYPE_YOUTUBE_VIDEO` * `TARGETING_TYPE_YOUTUBE_CHANNEL`",
+                      "description": "Required. Identifies the type of this assigned targeting option. Supported targeting types: * `TARGETING_TYPE_CHANNEL` * `TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION` * `TARGETING_TYPE_OMID` * `TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION` * `TARGETING_TYPE_YOUTUBE_VIDEO` * `TARGETING_TYPE_YOUTUBE_CHANNEL` * `TARGETING_TYPE_KEYWORD`",
                       "enum": [
                         "TARGETING_TYPE_UNSPECIFIED",
                         "TARGETING_TYPE_CHANNEL",
@@ -5346,7 +5346,7 @@
                       "type": "string"
                     },
                     "targetingType": {
-                      "description": "Required. Identifies the type of assigned targeting options to list. Supported targeting types: * `TARGETING_TYPE_CHANNEL` * `TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION` * `TARGETING_TYPE_OMID` * `TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION` * `TARGETING_TYPE_YOUTUBE_VIDEO` * `TARGETING_TYPE_YOUTUBE_CHANNEL`",
+                      "description": "Required. Identifies the type of assigned targeting options to list. Supported targeting types: * `TARGETING_TYPE_CHANNEL` * `TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION` * `TARGETING_TYPE_OMID` * `TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION` * `TARGETING_TYPE_YOUTUBE_VIDEO` * `TARGETING_TYPE_YOUTUBE_CHANNEL` * `TARGETING_TYPE_KEYWORD`",
                       "enum": [
                         "TARGETING_TYPE_UNSPECIFIED",
                         "TARGETING_TYPE_CHANNEL",
@@ -9222,7 +9222,7 @@
       }
     }
   },
-  "revision": "20240314",
+  "revision": "20240627",
   "rootUrl": "https://displayvideo.googleapis.com/",
   "schemas": {
     "ActiveViewVideoViewabilityMetricConfig": {
@@ -10042,6 +10042,7 @@
             "EXCHANGE_CONNATIX",
             "EXCHANGE_RESET_DIGITAL",
             "EXCHANGE_HIVESTACK",
+            "EXCHANGE_DRAX",
             "EXCHANGE_APPLOVIN_GBID",
             "EXCHANGE_FYBER_GBID",
             "EXCHANGE_UNITY_GBID",
@@ -10125,6 +10126,7 @@
             "Connatix.",
             "Reset Digital.",
             "Hivestack.",
+            "Drax.",
             "AppLovin MAX.",
             "DT Fairbid.",
             "Unity LevelPlay.",
@@ -11220,14 +11222,14 @@
       "id": "BulkEditAdvertiserAssignedTargetingOptionsRequest",
       "properties": {
         "createRequests": {
-          "description": "The assigned targeting options to create in batch, specified as a list of `CreateAssignedTargetingOptionsRequest`. Supported targeting types: * `TARGETING_TYPE_CHANNEL` * `TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION` * `TARGETING_TYPE_OMID` * `TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION`",
+          "description": "The assigned targeting options to create in batch, specified as a list of `CreateAssignedTargetingOptionsRequest`. Supported targeting types: * `TARGETING_TYPE_CHANNEL` * `TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION` * `TARGETING_TYPE_OMID` * `TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION` * `TARGETING_TYPE_KEYWORD`",
           "items": {
             "$ref": "CreateAssignedTargetingOptionsRequest"
           },
           "type": "array"
         },
         "deleteRequests": {
-          "description": "The assigned targeting options to delete in batch, specified as a list of `DeleteAssignedTargetingOptionsRequest`. Supported targeting types: * `TARGETING_TYPE_CHANNEL` * `TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION` * `TARGETING_TYPE_OMID` * `TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION`",
+          "description": "The assigned targeting options to delete in batch, specified as a list of `DeleteAssignedTargetingOptionsRequest`. Supported targeting types: * `TARGETING_TYPE_CHANNEL` * `TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION` * `TARGETING_TYPE_OMID` * `TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION` * `TARGETING_TYPE_KEYWORD`",
           "items": {
             "$ref": "DeleteAssignedTargetingOptionsRequest"
           },
@@ -12902,7 +12904,8 @@
             "SDF_VERSION_5_4",
             "SDF_VERSION_5_5",
             "SDF_VERSION_6",
-            "SDF_VERSION_7"
+            "SDF_VERSION_7",
+            "SDF_VERSION_7_1"
           ],
           "enumDeprecated": [
             false,
@@ -12915,6 +12918,7 @@
             true,
             true,
             true,
+            false,
             false,
             false,
             false
@@ -12932,7 +12936,8 @@
             "SDF version 5.4",
             "SDF version 5.5",
             "SDF version 6",
-            "SDF version 7. Read the [v7 migration guide](/display-video/api/structured-data-file/v7-migration-guide) before migrating to this version."
+            "SDF version 7. Read the [v7 migration guide](/display-video/api/structured-data-file/v7-migration-guide) before migrating to this version.",
+            "SDF version 7.1. Read the [v7 migration guide](/display-video/api/structured-data-file/v7-migration-guide) before migrating to this version."
           ],
           "type": "string"
         }
@@ -14808,6 +14813,7 @@
             "EXCHANGE_CONNATIX",
             "EXCHANGE_RESET_DIGITAL",
             "EXCHANGE_HIVESTACK",
+            "EXCHANGE_DRAX",
             "EXCHANGE_APPLOVIN_GBID",
             "EXCHANGE_FYBER_GBID",
             "EXCHANGE_UNITY_GBID",
@@ -14891,6 +14897,7 @@
             "Connatix.",
             "Reset Digital.",
             "Hivestack.",
+            "Drax.",
             "AppLovin MAX.",
             "DT Fairbid.",
             "Unity LevelPlay.",
@@ -14999,6 +15006,7 @@
             "EXCHANGE_CONNATIX",
             "EXCHANGE_RESET_DIGITAL",
             "EXCHANGE_HIVESTACK",
+            "EXCHANGE_DRAX",
             "EXCHANGE_APPLOVIN_GBID",
             "EXCHANGE_FYBER_GBID",
             "EXCHANGE_UNITY_GBID",
@@ -15082,6 +15090,7 @@
             "Connatix.",
             "Reset Digital.",
             "Hivestack.",
+            "Drax.",
             "AppLovin MAX.",
             "DT Fairbid.",
             "Unity LevelPlay.",
@@ -15191,6 +15200,7 @@
             "EXCHANGE_CONNATIX",
             "EXCHANGE_RESET_DIGITAL",
             "EXCHANGE_HIVESTACK",
+            "EXCHANGE_DRAX",
             "EXCHANGE_APPLOVIN_GBID",
             "EXCHANGE_FYBER_GBID",
             "EXCHANGE_UNITY_GBID",
@@ -15274,6 +15284,7 @@
             "Connatix.",
             "Reset Digital.",
             "Hivestack.",
+            "Drax.",
             "AppLovin MAX.",
             "DT Fairbid.",
             "Unity LevelPlay.",
@@ -15384,6 +15395,7 @@
             "EXCHANGE_CONNATIX",
             "EXCHANGE_RESET_DIGITAL",
             "EXCHANGE_HIVESTACK",
+            "EXCHANGE_DRAX",
             "EXCHANGE_APPLOVIN_GBID",
             "EXCHANGE_FYBER_GBID",
             "EXCHANGE_UNITY_GBID",
@@ -15467,6 +15479,7 @@
             "Connatix.",
             "Reset Digital.",
             "Hivestack.",
+            "Drax.",
             "AppLovin MAX.",
             "DT Fairbid.",
             "Unity LevelPlay.",
@@ -16428,6 +16441,7 @@
             "EXCHANGE_CONNATIX",
             "EXCHANGE_RESET_DIGITAL",
             "EXCHANGE_HIVESTACK",
+            "EXCHANGE_DRAX",
             "EXCHANGE_APPLOVIN_GBID",
             "EXCHANGE_FYBER_GBID",
             "EXCHANGE_UNITY_GBID",
@@ -16511,6 +16525,7 @@
             "Connatix.",
             "Reset Digital.",
             "Hivestack.",
+            "Drax.",
             "AppLovin MAX.",
             "DT Fairbid.",
             "Unity LevelPlay.",
@@ -16703,6 +16718,14 @@
           },
           "type": "array"
         },
+        "adGroupQaIds": {
+          "description": "Optional. YouTube Ad Groups QA to download by ID. All IDs must belong to the same Advertiser or Partner specified in CreateSdfDownloadTaskRequest.",
+          "items": {
+            "format": "int64",
+            "type": "string"
+          },
+          "type": "array"
+        },
         "campaignIds": {
           "description": "Campaigns to download by ID. All IDs must belong to the same Advertiser or Partner specified in CreateSdfDownloadTaskRequest.",
           "items": {
@@ -16721,6 +16744,14 @@
         },
         "lineItemIds": {
           "description": "Line Items to download by ID. All IDs must belong to the same Advertiser or Partner specified in CreateSdfDownloadTaskRequest.",
+          "items": {
+            "format": "int64",
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "lineItemQaIds": {
+          "description": "Optional. Line Items QA to download by ID. All IDs must belong to the same Advertiser or Partner specified in CreateSdfDownloadTaskRequest.",
           "items": {
             "format": "int64",
             "type": "string"
@@ -16858,6 +16889,26 @@
         "name": {
           "description": "Output only. The resource name of the insertion order.",
           "readOnly": true,
+          "type": "string"
+        },
+        "optimizationObjective": {
+          "description": "Optional. The optimization objective of the insertion order. **This field is only available to allowlisted customers.** If a customer is not allowlisted, this field will be null and attempts to set it will return an error.",
+          "enum": [
+            "OPTIMIZATION_OBJECTIVE_UNSPECIFIED",
+            "CONVERSION",
+            "CLICK",
+            "BRAND_AWARENESS",
+            "CUSTOM",
+            "NO_OBJECTIVE"
+          ],
+          "enumDescriptions": [
+            "Type value is not specified or is unknown in this version.",
+            "Prioritize impressions that increase sales and conversions.",
+            "Prioritize impressions that increase website traffic, apps, app stores.",
+            "Prioritize impressions of specific quality.",
+            "Objective is defined by the assigned custom bidding algorithm.",
+            "Objective is not defined. Any KPI or bidding strategy can be used."
+          ],
           "type": "string"
         },
         "pacing": {
@@ -17315,6 +17366,7 @@
             "EXCHANGE_CONNATIX",
             "EXCHANGE_RESET_DIGITAL",
             "EXCHANGE_HIVESTACK",
+            "EXCHANGE_DRAX",
             "EXCHANGE_APPLOVIN_GBID",
             "EXCHANGE_FYBER_GBID",
             "EXCHANGE_UNITY_GBID",
@@ -17398,6 +17450,7 @@
             "Connatix.",
             "Reset Digital.",
             "Hivestack.",
+            "Drax.",
             "AppLovin MAX.",
             "DT Fairbid.",
             "Unity LevelPlay.",
@@ -17836,6 +17889,11 @@
       "description": "Settings that control the key performance indicator, or KPI, of an insertion order.",
       "id": "Kpi",
       "properties": {
+        "kpiAlgorithmId": {
+          "description": "Optional. Custom Bidding Algorithm ID associated with KPI_CUSTOM_IMPRESSION_VALUE_OVER_COST. This field is ignored if the proper KPI is not selected.",
+          "format": "int64",
+          "type": "string"
+        },
         "kpiAmountMicros": {
           "description": "The goal amount, in micros of the advertiser's currency. Applicable when kpi_type is one of: * `KPI_TYPE_CPM` * `KPI_TYPE_CPC` * `KPI_TYPE_CPA` * `KPI_TYPE_CPIAVC` * `KPI_TYPE_VCPM` For example: 1500000 represents 1.5 standard units of the currency.",
           "format": "int64",
@@ -17861,12 +17919,18 @@
             "KPI_TYPE_VIEWABILITY",
             "KPI_TYPE_CPIAVC",
             "KPI_TYPE_CPE",
+            "KPI_TYPE_CPV",
             "KPI_TYPE_CLICK_CVR",
             "KPI_TYPE_IMPRESSION_CVR",
             "KPI_TYPE_VCPM",
             "KPI_TYPE_VTR",
             "KPI_TYPE_AUDIO_COMPLETION_RATE",
             "KPI_TYPE_VIDEO_COMPLETION_RATE",
+            "KPI_TYPE_CPCL",
+            "KPI_TYPE_CPCV",
+            "KPI_TYPE_TOS10",
+            "KPI_TYPE_MAXIMIZE_PACING",
+            "KPI_TYPE_CUSTOM_IMPRESSION_VALUE_OVER_COST",
             "KPI_TYPE_OTHER"
           ],
           "enumDescriptions": [
@@ -17878,12 +17942,18 @@
             "The KPI is Viewability percentage.",
             "The KPI is CPIAVC (cost per impression audible and visible at completion).",
             "The KPI is CPE (cost per engagement).",
+            "The KPI is set in CPV (cost per view).",
             "The KPI is click conversion rate (conversions per click) percentage.",
             "The KPI is impression conversion rate (conversions per impression) percentage.",
             "The KPI is VCPM (cost per thousand viewable impressions).",
             "The KPI is YouTube view rate (YouTube views per impression) percentage.",
             "The KPI is audio completion rate (complete audio listens per impression) percentage.",
             "The KPI is video completion rate (complete video views per impression) percentage.",
+            "The KPI is set in CPCL (cost per complete audio listen).",
+            "The KPI is set in CPCV (cost per complete video view).",
+            "The KPI is set in rate of time on screen 10+ seconds (Percentage of measurable, non-skippable impressions that were on the screen for at least 10 seconds).",
+            "The KPI is set to maximize brand impact while prioritizing spending the full budget.",
+            "The KPI is set in custom impression value divided by cost.",
             "The KPI is some other value."
           ],
           "type": "string"
@@ -19542,7 +19612,9 @@
               "FILE_TYPE_INSERTION_ORDER",
               "FILE_TYPE_LINE_ITEM",
               "FILE_TYPE_AD_GROUP",
-              "FILE_TYPE_AD"
+              "FILE_TYPE_AD",
+              "FILE_TYPE_LINE_ITEM_QA",
+              "FILE_TYPE_AD_GROUP_QA"
             ],
             "enumDescriptions": [
               "Default value when type is unspecified or is unknown in this version.",
@@ -19551,7 +19623,9 @@
               "Insertion Order.",
               "Line Item.",
               "YouTube Ad Group.",
-              "YouTube Ad."
+              "YouTube Ad.",
+              "Line Item QA.",
+              "YouTube Ad Group QA."
             ],
             "type": "string"
           },
@@ -20455,7 +20529,7 @@
           "type": "array"
         },
         "publisherReviewStatuses": {
-          "description": "Publisher review statuses for the creative.",
+          "description": "Publisher review statuses for the creative. **Warning:** This field will be deprecated on June 26th, 2024. After this date, this field will be empty. Read our [feature deprecation announcement](/display-video/api/deprecations#features.creative_publisher_review_statuses) for more information.",
           "items": {
             "$ref": "PublisherReviewStatus"
           },
@@ -20524,7 +20598,8 @@
             "SDF_VERSION_5_4",
             "SDF_VERSION_5_5",
             "SDF_VERSION_6",
-            "SDF_VERSION_7"
+            "SDF_VERSION_7",
+            "SDF_VERSION_7_1"
           ],
           "enumDeprecated": [
             false,
@@ -20537,6 +20612,7 @@
             true,
             true,
             true,
+            false,
             false,
             false,
             false
@@ -20554,7 +20630,8 @@
             "SDF version 5.4",
             "SDF version 5.5",
             "SDF version 6",
-            "SDF version 7. Read the [v7 migration guide](/display-video/api/structured-data-file/v7-migration-guide) before migrating to this version."
+            "SDF version 7. Read the [v7 migration guide](/display-video/api/structured-data-file/v7-migration-guide) before migrating to this version.",
+            "SDF version 7.1. Read the [v7 migration guide](/display-video/api/structured-data-file/v7-migration-guide) before migrating to this version."
           ],
           "type": "string"
         }
@@ -20601,7 +20678,8 @@
             "SDF_VERSION_5_4",
             "SDF_VERSION_5_5",
             "SDF_VERSION_6",
-            "SDF_VERSION_7"
+            "SDF_VERSION_7",
+            "SDF_VERSION_7_1"
           ],
           "enumDeprecated": [
             false,
@@ -20614,6 +20692,7 @@
             true,
             true,
             true,
+            false,
             false,
             false,
             false
@@ -20631,7 +20710,8 @@
             "SDF version 5.4",
             "SDF version 5.5",
             "SDF version 6",
-            "SDF version 7. Read the [v7 migration guide](/display-video/api/structured-data-file/v7-migration-guide) before migrating to this version."
+            "SDF version 7. Read the [v7 migration guide](/display-video/api/structured-data-file/v7-migration-guide) before migrating to this version.",
+            "SDF version 7.1. Read the [v7 migration guide](/display-video/api/structured-data-file/v7-migration-guide) before migrating to this version."
           ],
           "type": "string"
         }

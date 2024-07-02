@@ -282,7 +282,7 @@ export namespace cloudbuild_v2 {
    */
   export interface Schema$Connection {
     /**
-     * Allows clients to store small amounts of arbitrary data.
+     * Optional. Allows clients to store small amounts of arbitrary data.
      */
     annotations?: {[key: string]: string} | null;
     /**
@@ -298,7 +298,7 @@ export namespace cloudbuild_v2 {
      */
     createTime?: string | null;
     /**
-     * If disabled is set to true, functionality is disabled for this connection. Repository based API methods and webhooks processing for repositories in this connection will be disabled.
+     * Optional. If disabled is set to true, functionality is disabled for this connection. Repository based API methods and webhooks processing for repositories in this connection will be disabled.
      */
     disabled?: boolean | null;
     /**
@@ -480,11 +480,11 @@ export namespace cloudbuild_v2 {
    */
   export interface Schema$GitHubConfig {
     /**
-     * GitHub App installation id.
+     * Optional. GitHub App installation id.
      */
     appInstallationId?: string | null;
     /**
-     * OAuth credential of the account that authorized the Cloud Build GitHub App. It is recommended to use a robot account instead of a human user account. The OAuth token must be tied to the Cloud Build GitHub App.
+     * Optional. OAuth credential of the account that authorized the Cloud Build GitHub App. It is recommended to use a robot account instead of a human user account. The OAuth token must be tied to the Cloud Build GitHub App.
      */
     authorizerCredential?: Schema$OAuthCredential;
   }
@@ -526,15 +526,15 @@ export namespace cloudbuild_v2 {
      */
     apiKey?: string | null;
     /**
-     * Id of the GitHub App created from the manifest.
+     * Optional. Id of the GitHub App created from the manifest.
      */
     appId?: string | null;
     /**
-     * ID of the installation of the GitHub App.
+     * Optional. ID of the installation of the GitHub App.
      */
     appInstallationId?: string | null;
     /**
-     * The URL-friendly name of the GitHub App.
+     * Optional. The URL-friendly name of the GitHub App.
      */
     appSlug?: string | null;
     /**
@@ -542,7 +542,7 @@ export namespace cloudbuild_v2 {
      */
     hostUri?: string | null;
     /**
-     * SecretManager resource containing the private key of the GitHub App, formatted as `projects/x/secrets/x/versions/x`.
+     * Optional. SecretManager resource containing the private key of the GitHub App, formatted as `projects/x/secrets/x/versions/x`.
      */
     privateKeySecretVersion?: string | null;
     /**
@@ -550,15 +550,15 @@ export namespace cloudbuild_v2 {
      */
     serverVersion?: string | null;
     /**
-     * Configuration for using Service Directory to privately connect to a GitHub Enterprise server. This should only be set if the GitHub Enterprise server is hosted on-premises and not reachable by public internet. If this field is left empty, calls to the GitHub Enterprise server will be made over the public internet.
+     * Optional. Configuration for using Service Directory to privately connect to a GitHub Enterprise server. This should only be set if the GitHub Enterprise server is hosted on-premises and not reachable by public internet. If this field is left empty, calls to the GitHub Enterprise server will be made over the public internet.
      */
     serviceDirectoryConfig?: Schema$GoogleDevtoolsCloudbuildV2ServiceDirectoryConfig;
     /**
-     * SSL certificate to use for requests to GitHub Enterprise.
+     * Optional. SSL certificate to use for requests to GitHub Enterprise.
      */
     sslCa?: string | null;
     /**
-     * SecretManager resource containing the webhook secret of the GitHub App, formatted as `projects/x/secrets/x/versions/x`.
+     * Optional. SecretManager resource containing the webhook secret of the GitHub App, formatted as `projects/x/secrets/x/versions/x`.
      */
     webhookSecretSecretVersion?: string | null;
   }
@@ -571,7 +571,7 @@ export namespace cloudbuild_v2 {
      */
     authorizerCredential?: Schema$UserCredential;
     /**
-     * The URI of the GitLab Enterprise host this connection is for. If not specified, the default value is https://gitlab.com.
+     * Optional. The URI of the GitLab Enterprise host this connection is for. If not specified, the default value is https://gitlab.com.
      */
     hostUri?: string | null;
     /**
@@ -583,11 +583,11 @@ export namespace cloudbuild_v2 {
      */
     serverVersion?: string | null;
     /**
-     * Configuration for using Service Directory to privately connect to a GitLab Enterprise server. This should only be set if the GitLab Enterprise server is hosted on-premises and not reachable by public internet. If this field is left empty, calls to the GitLab Enterprise server will be made over the public internet.
+     * Optional. Configuration for using Service Directory to privately connect to a GitLab Enterprise server. This should only be set if the GitLab Enterprise server is hosted on-premises and not reachable by public internet. If this field is left empty, calls to the GitLab Enterprise server will be made over the public internet.
      */
     serviceDirectoryConfig?: Schema$GoogleDevtoolsCloudbuildV2ServiceDirectoryConfig;
     /**
-     * SSL certificate to use for requests to GitLab Enterprise.
+     * Optional. SSL certificate to use for requests to GitLab Enterprise.
      */
     sslCa?: string | null;
     /**
@@ -740,7 +740,7 @@ export namespace cloudbuild_v2 {
    */
   export interface Schema$OAuthCredential {
     /**
-     * A SecretManager resource containing the OAuth token that authorizes the Cloud Build connection. Format: `projects/x/secrets/x/versions/x`.
+     * Optional. A SecretManager resource containing the OAuth token that authorizes the Cloud Build connection. Format: `projects/x/secrets/x/versions/x`.
      */
     oauthTokenSecretVersion?: string | null;
     /**
@@ -951,6 +951,10 @@ export namespace cloudbuild_v2 {
      * PipelineSpec defines the desired state of Pipeline.
      */
     pipelineSpec?: Schema$PipelineSpec;
+    /**
+     * Output only. Inline pipelineSpec yaml string, used by workflow run requests.
+     */
+    pipelineSpecYaml?: string | null;
     /**
      * Optional. Provenance configuration.
      */
@@ -1177,7 +1181,7 @@ export namespace cloudbuild_v2 {
    */
   export interface Schema$Repository {
     /**
-     * Allows clients to store small amounts of arbitrary data.
+     * Optional. Allows clients to store small amounts of arbitrary data.
      */
     annotations?: {[key: string]: string} | null;
     /**
@@ -1431,6 +1435,18 @@ export namespace cloudbuild_v2 {
      */
     name?: string | null;
     /**
+     * Optional. OnError defines the exiting behavior on error can be set to [ continue | stopAndFail ]
+     */
+    onError?: string | null;
+    /**
+     * Optional. Optional parameters passed to the StepAction.
+     */
+    params?: Schema$Param[];
+    /**
+     * Optional. Optional reference to a remote StepAction.
+     */
+    ref?: Schema$StepRef;
+    /**
      * The contents of an executable file to execute.
      */
     script?: string | null;
@@ -1450,6 +1466,23 @@ export namespace cloudbuild_v2 {
      * Container's working directory.
      */
     workingDir?: string | null;
+  }
+  /**
+   * A reference to a remote Step, i.e. a StepAction.
+   */
+  export interface Schema$StepRef {
+    /**
+     * Optional. Name of the step.
+     */
+    name?: string | null;
+    /**
+     * Optional. Parameters used to control the resolution.
+     */
+    params?: Schema$Param[];
+    /**
+     * Optional. Type of the resolver.
+     */
+    resolver?: string | null;
   }
   /**
    * StepTemplate can be used as the basis for all step containers within the Task, so that the steps inherit settings on the base container.
@@ -1501,6 +1534,10 @@ export namespace cloudbuild_v2 {
      * The type of data that the result holds.
      */
     type?: string | null;
+    /**
+     * Optional. Optionally used to initialize a Task's result with a Step's result.
+     */
+    value?: Schema$ParamValue;
   }
   /**
    * TaskSpec contains the Spec to instantiate a TaskRun.
@@ -1804,6 +1841,7 @@ export namespace cloudbuild_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1896,6 +1934,7 @@ export namespace cloudbuild_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2020,6 +2059,7 @@ export namespace cloudbuild_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2104,6 +2144,7 @@ export namespace cloudbuild_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -2198,6 +2239,7 @@ export namespace cloudbuild_v2 {
               rootUrl + '/v2/{+connection}:fetchLinkableRepositories'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2284,6 +2326,7 @@ export namespace cloudbuild_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2372,6 +2415,7 @@ export namespace cloudbuild_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2464,6 +2508,7 @@ export namespace cloudbuild_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2548,6 +2593,7 @@ export namespace cloudbuild_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -2636,6 +2682,7 @@ export namespace cloudbuild_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2724,6 +2771,7 @@ export namespace cloudbuild_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2819,6 +2867,7 @@ export namespace cloudbuild_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3065,6 +3114,7 @@ export namespace cloudbuild_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3160,6 +3210,7 @@ export namespace cloudbuild_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3248,6 +3299,7 @@ export namespace cloudbuild_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3336,6 +3388,7 @@ export namespace cloudbuild_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3421,6 +3474,7 @@ export namespace cloudbuild_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -3516,6 +3570,7 @@ export namespace cloudbuild_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3601,6 +3656,7 @@ export namespace cloudbuild_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3694,6 +3750,7 @@ export namespace cloudbuild_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3898,6 +3955,7 @@ export namespace cloudbuild_v2 {
           {
             url: (rootUrl + '/v2/{+name}:cancel').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3982,6 +4040,7 @@ export namespace cloudbuild_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),

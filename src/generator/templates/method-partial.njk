@@ -51,7 +51,8 @@
   const parameters = {
     options: Object.assign({
       url: (rootUrl + {{ ('/' + rootApi.servicePath + m.path)|buildurl|safe }}).replace(/([^:]\/)\/+/g, '$1'),
-      method: '{{ m.httpMethod }}'
+      method: '{{ m.httpMethod }}',
+      apiVersion: '{{ m.apiVersion }}'
     }, options),
     params,
     {% if m.mediaUpload.protocols.simple.path %}mediaUrl: (rootUrl + {{ ('/' + m.mediaUpload.protocols.simple.path)|buildurl|safe }}).replace(/([^:]\/)\/+/g, '$1'),{% endif %}

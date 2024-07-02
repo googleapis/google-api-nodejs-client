@@ -2838,6 +2838,39 @@
           "scopes": [
             "https://www.googleapis.com/auth/content"
           ]
+        },
+        "triggeraction": {
+          "description": "Start an action. The action can be requested by merchants in third-party application. Before merchants can request the action, the third-party application needs to show them action specific content and display a user input form. The action can be successfully started only once all `required` inputs are provided. If any `required` input is missing, or invalid value was provided, the service will return 400 error. Validation errors will contain Ids for all problematic field together with translated, human readable error messages that can be shown to the user.",
+          "flatPath": "{merchantId}/merchantsupport/triggeraction",
+          "httpMethod": "POST",
+          "id": "content.merchantsupport.triggeraction",
+          "parameterOrder": [
+            "merchantId"
+          ],
+          "parameters": {
+            "languageCode": {
+              "description": "Optional. Language code [IETF BCP 47 syntax](https://tools.ietf.org/html/bcp47) used to localize the response. If not set, the result will be in default language `en-US`.",
+              "location": "query",
+              "type": "string"
+            },
+            "merchantId": {
+              "description": "Required. The ID of the merchant's account.",
+              "format": "int64",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "{merchantId}/merchantsupport/triggeraction",
+          "request": {
+            "$ref": "TriggerActionPayload"
+          },
+          "response": {
+            "$ref": "TriggerActionResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/content"
+          ]
         }
       }
     },
@@ -6186,7 +6219,7 @@
       }
     }
   },
-  "revision": "20240320",
+  "revision": "20240614",
   "rootUrl": "https://shoppingcontent.googleapis.com/",
   "schemas": {
     "Account": {
@@ -6982,7 +7015,7 @@
           "type": "boolean"
         },
         "reportingManager": {
-          "description": "Whether user is a reporting manager.",
+          "description": "Whether user is a reporting manager. This role is equivalent to the Performance and insights role in Merchant Center.",
           "type": "boolean"
         }
       },
@@ -7485,6 +7518,10 @@
           "$ref": "BuiltInSimpleAction",
           "description": "Action implemented and performed in (your) third-party application. The application should point the merchant to the place, where they can access the corresponding functionality or provide instructions, if the specific functionality is not available."
         },
+        "builtinUserInputAction": {
+          "$ref": "BuiltInUserInputAction",
+          "description": "Action implemented and performed in (your) third-party application. The application needs to show an additional content and input form to the merchant as specified for given action. They can trigger the action only when they provided all required inputs."
+        },
         "buttonLabel": {
           "description": "Label of the action button.",
           "type": "string"
@@ -7501,6 +7538,62 @@
           "description": "List of reasons why the action is not available. The list of reasons is empty if the action is available. If there is only one reason, it can be displayed next to the disabled button. If there are more reasons, all of them should be displayed, for example in a pop-up dialog.",
           "items": {
             "$ref": "ActionReason"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ActionFlow": {
+      "description": "Flow that can be selected for an action. When merchant selects a flow, application should open a dialog with more information and input form.",
+      "id": "ActionFlow",
+      "properties": {
+        "dialogButtonLabel": {
+          "description": "Label for the button to trigger the action from the action dialog. For example: \"Request review\"",
+          "type": "string"
+        },
+        "dialogCallout": {
+          "$ref": "Callout",
+          "description": "Important message to be highlighted in the request dialog. For example: \"You can only request a review for disagreeing with this issue once. If it's not approved, you'll need to fix the issue and wait a few days before you can request another review.\""
+        },
+        "dialogMessage": {
+          "$ref": "TextWithTooltip",
+          "description": "Message displayed in the request dialog. For example: \"Make sure you've fixed all your country-specific issues. If not, you may have to wait 7 days to request another review\". There may be an more information to be shown in a tooltip."
+        },
+        "dialogTitle": {
+          "description": "Title of the request dialog. For example: \"Before you request a review\"",
+          "type": "string"
+        },
+        "id": {
+          "description": "Not for display but need to be sent back for the selected action flow.",
+          "type": "string"
+        },
+        "inputs": {
+          "description": "A list of input fields.",
+          "items": {
+            "$ref": "InputField"
+          },
+          "type": "array"
+        },
+        "label": {
+          "description": "Text value describing the intent for the action flow. It can be used as an input label if merchant needs to pick one of multiple flows. For example: \"I disagree with the issue\"",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ActionInput": {
+      "description": "Input provided by the merchant.",
+      "id": "ActionInput",
+      "properties": {
+        "actionFlowId": {
+          "description": "Required. Id of the selected action flow.",
+          "type": "string"
+        },
+        "inputValues": {
+          "description": "Required. Values for input fields.",
+          "items": {
+            "$ref": "InputValue"
           },
           "type": "array"
         }
@@ -7855,6 +7948,24 @@
       },
       "type": "object"
     },
+    "BuiltInUserInputAction": {
+      "description": "Action that is implemented and performed in (your) third-party application. The application needs to show an additional content and input form to the merchant. They can start the action only when they provided all required inputs. The application will request processing of the action by calling the [triggeraction method](https://developers.google.com/shopping-content/reference/rest/v2.1/merchantsupport/triggeraction).",
+      "id": "BuiltInUserInputAction",
+      "properties": {
+        "actionContext": {
+          "description": "Internal details. Not for display but need to be sent back when triggering the action.",
+          "type": "string"
+        },
+        "flows": {
+          "description": "Actions may provide multiple different flows. Merchant selects one that fits best to their intent. Selecting the flow is the first step in user's interaction with the action. It affects what input fields will be available and required and also how the request will be processed.",
+          "items": {
+            "$ref": "ActionFlow"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "BusinessDayConfig": {
       "id": "BusinessDayConfig",
       "properties": {
@@ -7961,6 +8072,33 @@
             "The program cannot be further reactivated or paused. See more about [Buy on Google](https://support.google.com/merchants/answer/7679273)."
           ],
           "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "Callout": {
+      "description": "An important message that should be highlighted. Usually displayed as a banner.",
+      "id": "Callout",
+      "properties": {
+        "fullMessage": {
+          "$ref": "TextWithTooltip",
+          "description": "A full message that needs to be shown to the merchant."
+        },
+        "styleHint": {
+          "description": "Can be used to render messages with different severity in different styles. Snippets off all types contain important information that should be displayed to merchants.",
+          "enum": [
+            "CALLOUT_STYLE_HINT_UNSPECIFIED",
+            "ERROR",
+            "WARNING",
+            "INFO"
+          ],
+          "enumDescriptions": [
+            "Default value. Will never be provided by the API.",
+            "The most important type of information highlighting problems, like an unsuccessful outcome of previously requested actions.",
+            "Information warning about pending problems, risks or deadlines.",
+            "Default severity for important information like pending status of previously requested action or cooldown for re-review."
+          ],
           "type": "string"
         }
       },
@@ -9495,6 +9633,21 @@
       },
       "type": "object"
     },
+    "FreeShippingThreshold": {
+      "description": "Conditions to be met for a product to have free shipping.",
+      "id": "FreeShippingThreshold",
+      "properties": {
+        "country": {
+          "description": "Required. The [CLDR territory code](http://www.unicode.org/repos/cldr/tags/latest/common/main/en.xml) of the country to which an item will ship.",
+          "type": "string"
+        },
+        "priceThreshold": {
+          "$ref": "Price",
+          "description": "Required. The minimum product price for the shipping cost to become free. Represented as a number."
+        }
+      },
+      "type": "object"
+    },
     "GenerateRecommendationsResponse": {
       "description": "Response containing generated recommendations.",
       "id": "GenerateRecommendationsResponse",
@@ -9677,6 +9830,165 @@
       },
       "type": "object"
     },
+    "InputField": {
+      "description": "Input field that needs to be available to the merchant. If the field is marked as required, then a value needs to be provided for a successful processing of the request.",
+      "id": "InputField",
+      "properties": {
+        "checkboxInput": {
+          "$ref": "InputFieldCheckboxInput",
+          "description": "Input field to provide a boolean value. Corresponds to the [html input type=checkbox](https://www.w3.org/TR/2012/WD-html-markup-20121025/input.checkbox.html#input.checkbox)."
+        },
+        "choiceInput": {
+          "$ref": "InputFieldChoiceInput",
+          "description": "Input field to select one of the offered choices. Corresponds to the [html input type=radio](https://www.w3.org/TR/2012/WD-html-markup-20121025/input.radio.html#input.radio)."
+        },
+        "id": {
+          "description": "Not for display but need to be sent back for the given input field.",
+          "type": "string"
+        },
+        "label": {
+          "$ref": "TextWithTooltip",
+          "description": "Input field label. There may be more information to be shown in a tooltip."
+        },
+        "required": {
+          "description": "Whether the field is required. The action button needs to stay disabled till values for all required fields are provided.",
+          "type": "boolean"
+        },
+        "textInput": {
+          "$ref": "InputFieldTextInput",
+          "description": "Input field to provide text information. Corresponds to the [html input type=text](https://www.w3.org/TR/2012/WD-html-markup-20121025/input.text.html#input.text) or [html textarea](https://www.w3.org/TR/2012/WD-html-markup-20121025/textarea.html#textarea)."
+        }
+      },
+      "type": "object"
+    },
+    "InputFieldCheckboxInput": {
+      "description": "Checkbox input allows merchants to provide a boolean value. Corresponds to the [html input type=checkbox](https://www.w3.org/TR/2012/WD-html-markup-20121025/input.checkbox.html#input.checkbox). If merchant checks the box, the input value for the field is `true`, otherwise it is `false`. This type of input is often used as a confirmation that the merchant completed required steps before they are allowed to start the action. In such a case, the input field is marked as required and the button to trigger the action should stay disabled until the merchant checks the box.",
+      "id": "InputFieldCheckboxInput",
+      "properties": {},
+      "type": "object"
+    },
+    "InputFieldChoiceInput": {
+      "description": "Choice input allows merchants to select one of the offered choices. Some choices may be linked to additional input fields that should be displayed under or next to the choice option. The value for the additional input field needs to be provided only when the specific choice is selected by the merchant. For example, additional input field can be hidden or disabled until the merchant selects the specific choice.",
+      "id": "InputFieldChoiceInput",
+      "properties": {
+        "options": {
+          "description": "A list of choices. Only one option can be selected.",
+          "items": {
+            "$ref": "InputFieldChoiceInputChoiceInputOption"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "InputFieldChoiceInputChoiceInputOption": {
+      "description": "A choice that merchant can select.",
+      "id": "InputFieldChoiceInputChoiceInputOption",
+      "properties": {
+        "additionalInput": {
+          "$ref": "InputField",
+          "description": "Input that should be displayed when this option is selected. The additional input will not contain a `ChoiceInput`."
+        },
+        "id": {
+          "description": "Not for display but need to be sent back for the selected choice option.",
+          "type": "string"
+        },
+        "label": {
+          "$ref": "TextWithTooltip",
+          "description": "Short description of the choice option. There may be more information to be shown as a tooltip."
+        }
+      },
+      "type": "object"
+    },
+    "InputFieldTextInput": {
+      "description": "Text input allows merchants to provide a text value.",
+      "id": "InputFieldTextInput",
+      "properties": {
+        "additionalInfo": {
+          "$ref": "TextWithTooltip",
+          "description": "Additional info regarding the field to be displayed to merchant. For example, warning to not include personal identifiable information. There may be more information to be shown in a tooltip."
+        },
+        "ariaLabel": {
+          "description": "Text to be used as the [aria-label](https://www.w3.org/TR/WCAG20-TECHS/ARIA14.html) for the input.",
+          "type": "string"
+        },
+        "formatInfo": {
+          "description": "Information about the required format. If present, it should be shown close to the input field to help merchants to provide a correct value. For example: \"VAT numbers should be in a format similar to SK9999999999\"",
+          "type": "string"
+        },
+        "type": {
+          "description": "Type of the text input",
+          "enum": [
+            "TEXT_INPUT_TYPE_UNSPECIFIED",
+            "GENERIC_SHORT_TEXT",
+            "GENERIC_LONG_TEXT"
+          ],
+          "enumDescriptions": [
+            "Default value. Will never be provided by the API.",
+            "Used when a short text is expected. The field can be rendered as a [text field](https://www.w3.org/TR/2012/WD-html-markup-20121025/input.text.html#input.text).",
+            "Used when a longer text is expected. The field should be rendered as a [textarea](https://www.w3.org/TR/2012/WD-html-markup-20121025/textarea.html#textarea)."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "InputValue": {
+      "description": "Input provided by the merchant for input field.",
+      "id": "InputValue",
+      "properties": {
+        "checkboxInputValue": {
+          "$ref": "InputValueCheckboxInputValue",
+          "description": "Value for checkbox input field."
+        },
+        "choiceInputValue": {
+          "$ref": "InputValueChoiceInputValue",
+          "description": "Value for choice input field."
+        },
+        "inputFieldId": {
+          "description": "Required. Id of the corresponding input field.",
+          "type": "string"
+        },
+        "textInputValue": {
+          "$ref": "InputValueTextInputValue",
+          "description": "Value for text input field."
+        }
+      },
+      "type": "object"
+    },
+    "InputValueCheckboxInputValue": {
+      "description": "Value for checkbox input field.",
+      "id": "InputValueCheckboxInputValue",
+      "properties": {
+        "value": {
+          "description": "Required. True if the merchant checked the box field. False otherwise.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "InputValueChoiceInputValue": {
+      "description": "Value for choice input field.",
+      "id": "InputValueChoiceInputValue",
+      "properties": {
+        "choiceInputOptionId": {
+          "description": "Required. Id of the option that was selected by the merchant.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "InputValueTextInputValue": {
+      "description": "Value for text input field.",
+      "id": "InputValueTextInputValue",
+      "properties": {
+        "value": {
+          "description": "Required. Text provided by the merchant.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "InsertCheckoutSettingsRequest": {
       "description": "Request message for the `InsertCheckoutSettings` method.",
       "id": "InsertCheckoutSettingsRequest",
@@ -9689,11 +10001,20 @@
       "type": "object"
     },
     "Installment": {
+      "description": "Details of a monthly installment payment offering. [Learn more](https://support.google.com/merchants/answer/6324474) about installments.",
       "id": "Installment",
       "properties": {
         "amount": {
           "$ref": "Price",
           "description": "The amount the buyer has to pay per month."
+        },
+        "creditType": {
+          "description": "Optional. Type of installment payments. Supported values are: - \"`finance`\" - \"`lease`\" ",
+          "type": "string"
+        },
+        "downpayment": {
+          "$ref": "Price",
+          "description": "Optional. The initial down payment amount the buyer has to pay."
         },
         "months": {
           "description": "The number of installments the buyer has to pay.",
@@ -9753,7 +10074,7 @@
       "id": "LiaAboutPageSettings",
       "properties": {
         "status": {
-          "description": "The status of the verification process for the About page. Acceptable values are: - \"`active`\" - \"`inactive`\" - \"`pending`\" ",
+          "description": "The status of the verification process for the About page. Supported values are: - \"`active`\" - \"`inactive`\" - \"`pending`\" ",
           "type": "string"
         },
         "url": {
@@ -10472,22 +10793,30 @@
       },
       "type": "object"
     },
-    "LoyaltyPoints": {
-      "id": "LoyaltyPoints",
+    "LoyaltyProgram": {
+      "description": "Allows the setting up of loyalty program benefits (for example price or points). https://support.google.com/merchants/answer/12922446",
+      "id": "LoyaltyProgram",
       "properties": {
-        "name": {
-          "description": "Name of loyalty points program. It is recommended to limit the name to 12 full-width characters or 24 Roman characters.",
-          "type": "string"
+        "cashbackForFutureUse": {
+          "$ref": "Price",
+          "description": "Optional. The cashback that can be used for future purchases."
         },
-        "pointsValue": {
-          "description": "The retailer's loyalty points in absolute value.",
+        "loyaltyPoints": {
+          "description": "Optional. The amount of loyalty points earned on a purchase.",
           "format": "int64",
           "type": "string"
         },
-        "ratio": {
-          "description": "The ratio of a point when converted to currency. Google assumes currency based on Merchant Center settings. If ratio is left out, it defaults to 1.0.",
-          "format": "double",
-          "type": "number"
+        "price": {
+          "$ref": "Price",
+          "description": "Optional. The price for members of the given tier (instant discount price). Must be smaller or equal to the regular price."
+        },
+        "programLabel": {
+          "description": "Required. The label of the loyalty program. This is an internal label that uniquely identifies the relationship between a merchant entity and a loyalty program entity. It must be provided so that system can associate the assets below (for example, price and points) with a merchant. The corresponding program must be linked to the merchant account.",
+          "type": "string"
+        },
+        "tierLabel": {
+          "description": "Required. The label of the tier within the loyalty program. Must match one of the labels within the program.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -10659,12 +10988,12 @@
       "id": "Metrics",
       "properties": {
         "aos": {
-          "description": "Average order size - the average number of items in an order. **This metric cannot be segmented by product dimensions and customer_country_code.**",
+          "description": "*Deprecated*: This field is no longer supported and retrieving it returns 0 starting from May 2024. Average order size - the average number of items in an order. **This metric cannot be segmented by product dimensions and customer_country_code.**",
           "format": "double",
           "type": "number"
         },
         "aovMicros": {
-          "description": "Average order value in micros (1 millionth of a standard unit, 1 USD = 1000000 micros) - the average value (total price of items) of all placed orders. The currency of the returned value is stored in the currency_code segment. If this metric is selected, 'segments.currency_code' is automatically added to the SELECT clause in the search query (unless it is explicitly selected by the user) and the currency_code segment is populated in the response. **This metric cannot be segmented by product dimensions and customer_country_code.**",
+          "description": "*Deprecated*: This field is no longer supported and retrieving it returns 0 starting from May 2024. Average order value in micros (1 millionth of a standard unit, 1 USD = 1000000 micros) - the average value (total price of items) of all placed orders. The currency of the returned value is stored in the currency_code segment. If this metric is selected, 'segments.currency_code' is automatically added to the SELECT clause in the search query (unless it is explicitly selected by the user) and the currency_code segment is populated in the response. **This metric cannot be segmented by product dimensions and customer_country_code.**",
           "format": "double",
           "type": "number"
         },
@@ -10674,17 +11003,17 @@
           "type": "string"
         },
         "conversionRate": {
-          "description": "Number of conversions divided by the number of clicks, reported on the impression date. The metric is currently available only for the FREE_PRODUCT_LISTING program.",
+          "description": "Number of conversions divided by the number of clicks, reported on the impression date. The metric is currently available only for the `FREE_PRODUCT_LISTING` program.",
           "format": "double",
           "type": "number"
         },
         "conversionValueMicros": {
-          "description": "Value of conversions in micros (1 millionth of a standard unit, 1 USD = 1000000 micros) attributed to the product, reported on the conversion date. The metric is currently available only for the FREE_PRODUCT_LISTING program. The currency of the returned value is stored in the currency_code segment. If this metric is selected, 'segments.currency_code' is automatically added to the SELECT clause in the search query (unless it is explicitly selected by the user) and the currency_code segment is populated in the response.",
+          "description": "Value of conversions in micros (1 millionth of a standard unit, 1 USD = 1000000 micros) attributed to the product, reported on the conversion date. The metric is currently available only for the `FREE_PRODUCT_LISTING` program. The currency of the returned value is stored in the currency_code segment. If this metric is selected, 'segments.currency_code' is automatically added to the SELECT clause in the search query (unless it is explicitly selected by the user) and the currency_code segment is populated in the response.",
           "format": "int64",
           "type": "string"
         },
         "conversions": {
-          "description": "Number of conversions attributed to the product, reported on the conversion date. Depending on the attribution model, a conversion might be distributed across multiple clicks, where each click gets its own credit assigned. This metric is a sum of all such credits. The metric is currently available only for the FREE_PRODUCT_LISTING program.",
+          "description": "Number of conversions attributed to the product, reported on the conversion date. Depending on the attribution model, a conversion might be distributed across multiple clicks, where each click gets its own credit assigned. This metric is a sum of all such credits. The metric is currently available only for the `FREE_PRODUCT_LISTING` program.",
           "format": "double",
           "type": "number"
         },
@@ -10694,7 +11023,7 @@
           "type": "number"
         },
         "daysToShip": {
-          "description": "Average number of days between an order being placed and the order being fully shipped, reported on the last shipment date. **This metric cannot be segmented by product dimensions and customer_country_code.**",
+          "description": "*Deprecated*: This field is no longer supported and retrieving it returns 0 starting from May 2024. Average number of days between an order being placed and the order being fully shipped, reported on the last shipment date. **This metric cannot be segmented by product dimensions and customer_country_code.**",
           "format": "double",
           "type": "number"
         },
@@ -10704,72 +11033,72 @@
           "type": "string"
         },
         "itemDaysToShip": {
-          "description": "Average number of days between an item being ordered and the item being **This metric cannot be segmented by customer_country_code.**",
+          "description": "*Deprecated*: This field is no longer supported and retrieving it returns 0 starting from May 2024. Average number of days between an item being ordered and the item being **This metric cannot be segmented by customer_country_code.**",
           "format": "double",
           "type": "number"
         },
         "itemFillRate": {
-          "description": "Percentage of shipped items in relation to all finalized items (shipped or rejected by the merchant; unshipped items are not taken into account), reported on the order date. Item fill rate is lowered by merchant rejections. **This metric cannot be segmented by customer_country_code.**",
+          "description": "*Deprecated*: This field is no longer supported and retrieving it returns 0 starting from May 2024. Percentage of shipped items in relation to all finalized items (shipped or rejected by the merchant; unshipped items are not taken into account), reported on the order date. Item fill rate is lowered by merchant rejections. **This metric cannot be segmented by customer_country_code.**",
           "format": "double",
           "type": "number"
         },
         "orderedItemSalesMicros": {
-          "description": "Total price of ordered items in micros (1 millionth of a standard unit, 1 USD = 1000000 micros). Excludes shipping, taxes (US only), and customer cancellations that happened within 30 minutes of placing the order. The currency of the returned value is stored in the currency_code segment. If this metric is selected, 'segments.currency_code' is automatically added to the SELECT clause in the search query (unless it is explicitly selected by the user) and the currency_code segment is populated in the response. **This metric cannot be segmented by customer_country_code.**",
+          "description": "*Deprecated*: This field is no longer supported and retrieving it returns 0 starting from May 2024. Total price of ordered items in micros (1 millionth of a standard unit, 1 USD = 1000000 micros). Excludes shipping, taxes (US only), and customer cancellations that happened within 30 minutes of placing the order. The currency of the returned value is stored in the currency_code segment. If this metric is selected, 'segments.currency_code' is automatically added to the SELECT clause in the search query (unless it is explicitly selected by the user) and the currency_code segment is populated in the response. **This metric cannot be segmented by customer_country_code.**",
           "format": "int64",
           "type": "string"
         },
         "orderedItems": {
-          "description": "Number of ordered items. Excludes customer cancellations that happened within 30 minutes of placing the order. **This metric cannot be segmented by customer_country_code.**",
+          "description": "*Deprecated*: This field is no longer supported and retrieving it returns 0 starting from May 2024. Number of ordered items. Excludes customer cancellations that happened within 30 minutes of placing the order. **This metric cannot be segmented by customer_country_code.**",
           "format": "int64",
           "type": "string"
         },
         "orders": {
-          "description": "Number of placed orders. Excludes customer cancellations that happened within 30 minutes of placing the order. **This metric cannot be segmented by product dimensions and customer_country_code.**",
+          "description": "*Deprecated*: This field is no longer supported and retrieving it returns 0 starting from May 2024. Number of placed orders. Excludes customer cancellations that happened within 30 minutes of placing the order. **This metric cannot be segmented by product dimensions and customer_country_code.**",
           "format": "int64",
           "type": "string"
         },
         "rejectedItems": {
-          "description": "Number of ordered items canceled by the merchant, reported on the order date. **This metric cannot be segmented by customer_country_code.**",
+          "description": "*Deprecated*: This field is no longer supported and retrieving it returns 0 starting from May 2024. Number of ordered items canceled by the merchant, reported on the order date. **This metric cannot be segmented by customer_country_code.**",
           "format": "int64",
           "type": "string"
         },
         "returnRate": {
-          "description": "Total price of returned items divided by the total price of shipped items, reported on the order date. If this metric is selected, 'segments.currency_code' is automatically added to the SELECT clause in the search query (unless it is explicitly selected by the user) and the currency_code segment is populated in the response. **This metric cannot be segmented by customer_country_code.**",
+          "description": "*Deprecated*: This field is no longer supported and retrieving it returns 0 starting from May 2024. Total price of returned items divided by the total price of shipped items, reported on the order date. If this metric is selected, 'segments.currency_code' is automatically added to the SELECT clause in the search query (unless it is explicitly selected by the user) and the currency_code segment is populated in the response. **This metric cannot be segmented by customer_country_code.**",
           "format": "double",
           "type": "number"
         },
         "returnedItems": {
-          "description": "Number of ordered items sent back for return, reported on the date when the merchant accepted the return. **This metric cannot be segmented by customer_country_code.**",
+          "description": "*Deprecated*: This field is no longer supported and retrieving it returns 0 starting from May 2024. Number of ordered items sent back for return, reported on the date when the merchant accepted the return. **This metric cannot be segmented by customer_country_code.**",
           "format": "int64",
           "type": "string"
         },
         "returnsMicros": {
-          "description": "Total price of ordered items sent back for return in micros (1 millionth of a standard unit, 1 USD = 1000000 micros), reported on the date when the merchant accepted the return. The currency of the returned value is stored in the currency_code segment. If this metric is selected, 'segments.currency_code' is automatically added to the SELECT clause in the search query (unless it is explicitly selected by the user) and the currency_code segment is populated in the response. **This metric cannot be segmented by customer_country_code.**",
+          "description": "*Deprecated*: This field is no longer supported and retrieving it returns 0 starting from May 2024. Total price of ordered items sent back for return in micros (1 millionth of a standard unit, 1 USD = 1000000 micros), reported on the date when the merchant accepted the return. The currency of the returned value is stored in the currency_code segment. If this metric is selected, 'segments.currency_code' is automatically added to the SELECT clause in the search query (unless it is explicitly selected by the user) and the currency_code segment is populated in the response. **This metric cannot be segmented by customer_country_code.**",
           "format": "int64",
           "type": "string"
         },
         "shippedItemSalesMicros": {
-          "description": "Total price of shipped items in micros (1 millionth of a standard unit, 1 USD = 1000000 micros), reported on the order date. Excludes shipping and taxes (US only). The currency of the returned value is stored in the currency_code segment. If this metric is selected, 'segments.currency_code' is automatically added to the SELECT clause in the search query (unless it is explicitly selected by the user) and the currency_code segment is populated in the response. **This metric cannot be segmented by customer_country_code.**",
+          "description": "*Deprecated*: This field is no longer supported and retrieving it returns 0 starting from May 2024. Total price of shipped items in micros (1 millionth of a standard unit, 1 USD = 1000000 micros), reported on the order date. Excludes shipping and taxes (US only). The currency of the returned value is stored in the currency_code segment. If this metric is selected, 'segments.currency_code' is automatically added to the SELECT clause in the search query (unless it is explicitly selected by the user) and the currency_code segment is populated in the response. **This metric cannot be segmented by customer_country_code.**",
           "format": "int64",
           "type": "string"
         },
         "shippedItems": {
-          "description": "Number of shipped items, reported on the shipment date. **This metric cannot be segmented by customer_country_code.**",
+          "description": "*Deprecated*: This field is no longer supported and retrieving it returns 0 starting from May 2024. Number of shipped items, reported on the shipment date. **This metric cannot be segmented by customer_country_code.**",
           "format": "int64",
           "type": "string"
         },
         "shippedOrders": {
-          "description": "Number of fully shipped orders, reported on the last shipment date. **This metric cannot be segmented by product dimensions and customer_country_code.**",
+          "description": "*Deprecated*: This field is no longer supported and retrieving it returns 0 starting from May 2024. Number of fully shipped orders, reported on the last shipment date. **This metric cannot be segmented by product dimensions and customer_country_code.**",
           "format": "int64",
           "type": "string"
         },
         "unshippedItems": {
-          "description": "Number of ordered items not shipped up until the end of the queried day. If a multi-day period is specified in the search query, the returned value is the average number of unshipped items over the days in the queried period. **This metric cannot be segmented by customer_country_code.**",
+          "description": "*Deprecated*: This field is no longer supported and retrieving it returns 0 starting from May 2024. Number of ordered items not shipped up until the end of the queried day. If a multi-day period is specified in the search query, the returned value is the average number of unshipped items over the days in the queried period. **This metric cannot be segmented by customer_country_code.**",
           "format": "double",
           "type": "number"
         },
         "unshippedOrders": {
-          "description": "Number of orders not shipped or partially shipped up until the end of the queried day. If a multi-day period is specified in the search query, the returned value is the average number of unshipped orders over the days in the queried period. **This metric cannot be segmented by product dimensions and customer_country_code.**",
+          "description": "*Deprecated*: This field is no longer supported and retrieving it returns 0 starting from May 2024. Number of orders not shipped or partially shipped up until the end of the queried day. If a multi-day period is specified in the search query, the returned value is the average number of unshipped orders over the days in the queried period. **This metric cannot be segmented by product dimensions and customer_country_code.**",
           "format": "double",
           "type": "number"
         }
@@ -13686,6 +14015,22 @@
       "description": "Price insights fields requested by the merchant in the query. Field values are only set if the merchant queries `PriceInsightsProductView`. https://support.google.com/merchants/answer/11916926",
       "id": "PriceInsights",
       "properties": {
+        "effectiveness": {
+          "description": "The predicted effectiveness of applying the price suggestion, bucketed.",
+          "enum": [
+            "EFFECTIVENESS_UNSPECIFIED",
+            "LOW",
+            "MEDIUM",
+            "HIGH"
+          ],
+          "enumDescriptions": [
+            "Effectiveness is unknown.",
+            "Effectiveness is low.",
+            "Effectiveness is medium.",
+            "Effectiveness is high."
+          ],
+          "type": "string"
+        },
         "predictedClicksChangeFraction": {
           "description": "The predicted change in clicks as a fraction after introducing the suggested price compared to current active price. For example, 0.05 is a 5% predicted increase in clicks.",
           "format": "double",
@@ -13764,6 +14109,10 @@
         "ageGroup": {
           "description": "Target age group of the item.",
           "type": "string"
+        },
+        "autoPricingMinPrice": {
+          "$ref": "Price",
+          "description": "A safeguard in the [Automated Discounts](//support.google.com/merchants/answer/10295759) and [Dynamic Promotions](//support.google.com/merchants/answer/13949249) projects, ensuring that discounts on merchants' offers do not fall below this value, thereby preserving the offer's value and profitability."
         },
         "availability": {
           "description": "Availability status of the item.",
@@ -13897,6 +14246,13 @@
           "description": "Feed label for the item. Either `targetCountry` or `feedLabel` is required. Must be less than or equal to 20 uppercase letters (A-Z), numbers (0-9), and dashes (-).",
           "type": "string"
         },
+        "freeShippingThreshold": {
+          "description": "Optional. Conditions to be met for a product to have free shipping.",
+          "items": {
+            "$ref": "FreeShippingThreshold"
+          },
+          "type": "array"
+        },
         "gender": {
           "description": "Target gender of the item.",
           "type": "string"
@@ -13959,9 +14315,16 @@
           "description": "URL template for merchant hosted local storefront.",
           "type": "string"
         },
-        "loyaltyPoints": {
-          "$ref": "LoyaltyPoints",
-          "description": "Loyalty points that users receive after purchasing the item. Japan only."
+        "loyaltyProgram": {
+          "$ref": "LoyaltyProgram",
+          "description": "Loyalty program information that is used to surface loyalty benefits ( for example, better pricing, points, etc) to the user of this item. This signular field points to the latest uploaded loyalty program info. This field will be deprecated in the coming weeks and should not be used in favor of the plural 'LoyaltyProgram' field below."
+        },
+        "loyaltyPrograms": {
+          "description": "Optional. A list of loyalty program information that is used to surface loyalty benefits (for example, better pricing, points, etc) to the user of this item.",
+          "items": {
+            "$ref": "LoyaltyProgram"
+          },
+          "type": "array"
         },
         "material": {
           "description": "The material of which the item is made.",
@@ -14136,6 +14499,14 @@
           "description": "The source of the offer, that is, how the offer was created. Acceptable values are: - \"`api`\" - \"`crawl`\" - \"`feed`\" ",
           "type": "string"
         },
+        "structuredDescription": {
+          "$ref": "ProductStructuredDescription",
+          "description": "Structured description, for algorithmically (AI)-generated descriptions."
+        },
+        "structuredTitle": {
+          "$ref": "ProductStructuredTitle",
+          "description": "Structured title, for algorithmically (AI)-generated titles."
+        },
         "subscriptionCost": {
           "$ref": "ProductSubscriptionCost",
           "description": "Number of periods (months or years) and amount of payment per period for an item with an associated subscription contract."
@@ -14210,6 +14581,10 @@
         },
         "certificationName": {
           "description": "The name of the certification, for example \"EPREL\". Maximum length is 2000 characters.",
+          "type": "string"
+        },
+        "certificationValue": {
+          "description": "The certification value (also known as class, level or grade), for example \"A+\", \"C\", \"gold\". Maximum length is 2000 characters.",
           "type": "string"
         }
       },
@@ -14391,7 +14766,7 @@
           "description": "Clarifies the severity of the issue. The summarizing message, if present, should be shown right under the title for each issue. It helps merchants to quickly understand the impact of the issue. The detailed breakdown helps the merchant to fully understand the impact of the issue. It can be rendered as dialog that opens when the merchant mouse over the summarized impact statement. Issues with different severity can be styled differently. They may use a different color or icon to signal the difference between `ERROR`, `WARNING` and `INFO`."
         },
         "prerenderedContent": {
-          "description": "Details of the issue as a pre-rendered HTML. HTML elements contain CSS classes that can be used to customize the style of the content. Always sanitize the HTML before embedding it directly to your application. The sanitizer needs to allow basic HTML tags, such as: `div`, `span`, `p`, `a`, `ul`, `li`, `table`, `tr`, `td`. For example, you can use [DOMPurify](https://www.npmjs.com/package/dompurify). CSS classes: * `issue-detail` - top level container for the detail of the issue * `callout-banners` - section of the `issue-detail` with callout banners * `callout-banner` - single callout banner, inside `callout-banners` * `callout-banner-info` - callout with important information (default) * `callout-banner-warning` - callout with a warning * `callout-banner-error` - callout informing about an error (most severe) * `issue-content` - section of the `issue-detail`, contains multiple `content-element` * `content-element` - content element such as a list, link or paragraph, inside `issue-content` * `root-causes` - unordered list with items describing root causes of the issue, inside `issue-content` * `root-causes-intro` - intro text before the `root-causes` list, inside `issue-content` * `segment` - section of the text, `span` inside paragraph * `segment-attribute` - section of the text that represents a product attribute, for example 'image\\_link' * `segment-literal` - section of the text that contains a special value, for example '0-1000 kg' * `segment-bold` - section of the text that should be rendered as bold * `segment-italic` - section of the text that should be rendered as italic * `tooltip` - used on paragraphs that should be rendered with a tooltip. A section of the text in such a paragraph will have a class `tooltip-text` and is intended to be shown in a mouse over dialog. If the style is not used, the `tooltip-text` section would be shown on a new line, after the main part of the text. * `tooltip-text` - marks a section of the text within a `tooltip`, that is intended to be shown in a mouse over dialog. * `tooltip-icon` - marks a section of the text within a `tooltip`, that can be replaced with a tooltip icon, for example '?' or 'i'. By default, this section contains a `br` tag, that is separating the main text and the tooltip text when the style is not used. * `tooltip-style-question` - the tooltip shows helpful information, can use the '?' as an icon. * `tooltip-style-info` - the tooltip adds additional information fitting to the context, can use the 'i' as an icon. * `content-moderation` - marks the paragraph that explains how the issue was identified. * `new-element` - Present for new elements added to the pre-rendered content in the future. To make sure that a new content element does not break your style, you can hide everything with this class.",
+          "description": "Details of the issue as a pre-rendered HTML. HTML elements contain CSS classes that can be used to customize the style of the content. Always sanitize the HTML before embedding it directly to your application. The sanitizer needs to allow basic HTML tags, such as: `div`, `span`, `p`, `a`, `ul`, `li`, `table`, `tr`, `td`. For example, you can use [DOMPurify](https://www.npmjs.com/package/dompurify). CSS classes: * `issue-detail` - top level container for the detail of the issue * `callout-banners` - section of the `issue-detail` with callout banners * `callout-banner` - single callout banner, inside `callout-banners` * `callout-banner-info` - callout with important information (default) * `callout-banner-warning` - callout with a warning * `callout-banner-error` - callout informing about an error (most severe) * `issue-content` - section of the `issue-detail`, contains multiple `content-element` * `content-element` - content element such as a list, link or paragraph, inside `issue-content` * `root-causes` - unordered list with items describing root causes of the issue, inside `issue-content` * `root-causes-intro` - intro text before the `root-causes` list, inside `issue-content` * `segment` - section of the text, `span` inside paragraph * `segment-attribute` - section of the text that represents a product attribute, for example 'image\\_link' * `segment-literal` - section of the text that contains a special value, for example '0-1000 kg' * `segment-bold` - section of the text that should be rendered as bold * `segment-italic` - section of the text that should be rendered as italic * `tooltip` - used on paragraphs that should be rendered with a tooltip. A section of the text in such a paragraph will have a class `tooltip-text` and is intended to be shown in a mouse over dialog. If the style is not used, the `tooltip-text` section would be shown on a new line, after the main part of the text. * `tooltip-text` - marks a section of the text within a `tooltip`, that is intended to be shown in a mouse over dialog. * `tooltip-icon` - marks a section of the text within a `tooltip`, that can be replaced with a tooltip icon, for example '?' or 'i'. By default, this section contains a `br` tag, that is separating the main text and the tooltip text when the style is not used. * `tooltip-style-question` - the tooltip shows helpful information, can use the '?' as an icon. * `tooltip-style-info` - the tooltip adds additional information fitting to the context, can use the 'i' as an icon. * `content-moderation` - marks the paragraph that explains how the issue was identified. * `list-intro` - marks the paragraph that contains an intro for a list. This paragraph will be always followed by a list. * `new-element` - Present for new elements added to the pre-rendered content in the future. To make sure that a new content element does not break your style, you can hide everything with this class.",
           "type": "string"
         },
         "title": {
@@ -14668,6 +15043,36 @@
       },
       "type": "object"
     },
+    "ProductStructuredDescription": {
+      "description": "Structured description, for algorithmically (AI)-generated descriptions. See [description](https://support.google.com/merchants/answer/6324468#When_to_use) for more information.",
+      "id": "ProductStructuredDescription",
+      "properties": {
+        "content": {
+          "description": "Required. The description text. Maximum length is 5000 characters.",
+          "type": "string"
+        },
+        "digitalSourceType": {
+          "description": "Optional. The digital source type. Acceptable values are: - \"`trained_algorithmic_media`\" - \"`default`\" ",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ProductStructuredTitle": {
+      "description": "Structured title, for algorithmically (AI)-generated titles. See [title](https://support.google.com/merchants/answer/6324415#Whentouse) for more information.",
+      "id": "ProductStructuredTitle",
+      "properties": {
+        "content": {
+          "description": "Required. The title text. Maximum length is 150 characters.",
+          "type": "string"
+        },
+        "digitalSourceType": {
+          "description": "Optional. The digital source type. Acceptable values are: - \"`trained_algorithmic_media`\" - \"`default`\" ",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ProductSubscriptionCost": {
       "id": "ProductSubscriptionCost",
       "properties": {
@@ -14676,7 +15081,7 @@
           "description": "The amount the buyer has to pay per subscription period."
         },
         "period": {
-          "description": "The type of subscription period.",
+          "description": "The type of subscription period. - \"`month`\" - \"`year`\" ",
           "type": "string"
         },
         "periodLength": {
@@ -16058,6 +16463,20 @@
             "Returns the detail of the issue as a pre-rendered HTML text."
           ],
           "type": "string"
+        },
+        "userInputActionOption": {
+          "description": "Optional. How actions with user input form should be handled. If not provided, actions will be returned as links that points merchant to Merchant Center where they can request the action.",
+          "enum": [
+            "USER_INPUT_ACTION_RENDERING_OPTION_UNSPECIFIED",
+            "REDIRECT_TO_MERCHANT_CENTER",
+            "BUILT_IN_USER_INPUT_ACTIONS"
+          ],
+          "enumDescriptions": [
+            "Default value. Will never be provided by the API.",
+            "Actions that require user input are represented only as links that points merchant to Merchant Center where they can request the action. Provides easier to implement alternative to `BUILT_IN_USER_INPUT_ACTIONS`.",
+            "Returns content and input form definition for each complex action. Your application needs to display this content and input form to the merchant before they can request processing of the action. To start the action, your application needs to call the `triggeraction` method."
+          ],
+          "type": "string"
         }
       },
       "type": "object"
@@ -16093,6 +16512,20 @@
           "enumDescriptions": [
             "Default value. Will never be provided by the API.",
             "Returns the detail of the issue as a pre-rendered HTML text."
+          ],
+          "type": "string"
+        },
+        "userInputActionOption": {
+          "description": "Optional. How actions with user input form should be handled. If not provided, actions will be returned as links that points merchant to Merchant Center where they can request the action.",
+          "enum": [
+            "USER_INPUT_ACTION_RENDERING_OPTION_UNSPECIFIED",
+            "REDIRECT_TO_MERCHANT_CENTER",
+            "BUILT_IN_USER_INPUT_ACTIONS"
+          ],
+          "enumDescriptions": [
+            "Default value. Will never be provided by the API.",
+            "Actions that require user input are represented only as links that points merchant to Merchant Center where they can request the action. Provides easier to implement alternative to `BUILT_IN_USER_INPUT_ACTIONS`.",
+            "Returns content and input form definition for each complex action. Your application needs to display this content and input form to the merchant before they can request processing of the action. To start the action, your application needs to call the `triggeraction` method."
           ],
           "type": "string"
         }
@@ -17044,7 +17477,7 @@
             "Shopping Ads.",
             "Free Product Listing.",
             "Free Local Product Listing.",
-            "Buy on Google Listing."
+            "*Deprecated*: This value is no longer supported. Retrieving all metrics for the `BUY_ON_GOOGLE_LISTING` program returns 0 starting from May 2024. Buy on Google Listing."
           ],
           "type": "string"
         },
@@ -18035,6 +18468,35 @@
       },
       "type": "object"
     },
+    "TextWithTooltip": {
+      "description": "Block of text that may contain a tooltip with more information.",
+      "id": "TextWithTooltip",
+      "properties": {
+        "simpleTooltipValue": {
+          "description": "Value of the tooltip as a simple text.",
+          "type": "string"
+        },
+        "simpleValue": {
+          "description": "Value of the message as a simple text.",
+          "type": "string"
+        },
+        "tooltipIconStyle": {
+          "description": "The suggested type of an icon for tooltip, if a tooltip is present.",
+          "enum": [
+            "TOOLTIP_ICON_STYLE_UNSPECIFIED",
+            "INFO",
+            "QUESTION"
+          ],
+          "enumDescriptions": [
+            "Default value. Will never be provided by the API.",
+            "Used when the tooltip adds additional information to the context, the 'i' can be used as an icon.",
+            "Used when the tooltip shows helpful information, the '?' can be used as an icon."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "TimePeriod": {
       "description": "A message that represents a time period.",
       "id": "TimePeriod",
@@ -18166,6 +18628,32 @@
           "description": "Transit time range (min-max) in business days. 0 means same day delivery, 1 means next day delivery.",
           "format": "uint32",
           "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "TriggerActionPayload": {
+      "description": "The payload for the triggered action.",
+      "id": "TriggerActionPayload",
+      "properties": {
+        "actionContext": {
+          "description": "Required. The context from the selected action. The value is obtained from rendered issues and needs to be sent back to identify the action that is being triggered.",
+          "type": "string"
+        },
+        "actionInput": {
+          "$ref": "ActionInput",
+          "description": "Required. Input provided by the merchant."
+        }
+      },
+      "type": "object"
+    },
+    "TriggerActionResponse": {
+      "description": "Response informing about the started action.",
+      "id": "TriggerActionResponse",
+      "properties": {
+        "message": {
+          "description": "The message for merchant.",
+          "type": "string"
         }
       },
       "type": "object"

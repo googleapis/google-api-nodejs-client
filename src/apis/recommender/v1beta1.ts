@@ -251,7 +251,7 @@ export namespace recommender_v1beta1 {
      */
     lastRefreshTime?: string | null;
     /**
-     * Name of the insight.
+     * Identifier. Name of the insight.
      */
     name?: string | null;
     /**
@@ -323,7 +323,7 @@ export namespace recommender_v1beta1 {
      */
     insightTypeGenerationConfig?: Schema$GoogleCloudRecommenderV1beta1InsightTypeGenerationConfig;
     /**
-     * Name of insight type config. Eg, projects/[PROJECT_NUMBER]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]/config
+     * Identifier. Name of insight type config. Eg, projects/[PROJECT_NUMBER]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]/config
      */
     name?: string | null;
     /**
@@ -542,7 +542,7 @@ export namespace recommender_v1beta1 {
      */
     lastRefreshTime?: string | null;
     /**
-     * Name of recommendation.
+     * Identifier. Name of recommendation.
      */
     name?: string | null;
     /**
@@ -622,7 +622,7 @@ export namespace recommender_v1beta1 {
      */
     etag?: string | null;
     /**
-     * Name of recommender config. Eg, projects/[PROJECT_NUMBER]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]/config
+     * Identifier. Name of recommender config. Eg, projects/[PROJECT_NUMBER]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]/config
      */
     name?: string | null;
     /**
@@ -817,6 +817,7 @@ export namespace recommender_v1beta1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -943,6 +944,7 @@ export namespace recommender_v1beta1 {
           {
             url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1037,6 +1039,7 @@ export namespace recommender_v1beta1 {
           {
             url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -1068,7 +1071,7 @@ export namespace recommender_v1beta1 {
   export interface Params$Resource$Billingaccounts$Locations$Insighttypes$Updateconfig
     extends StandardParameters {
     /**
-     * Name of insight type config. Eg, projects/[PROJECT_NUMBER]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]/config
+     * Identifier. Name of insight type config. Eg, projects/[PROJECT_NUMBER]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]/config
      */
     name?: string;
     /**
@@ -1166,6 +1169,7 @@ export namespace recommender_v1beta1 {
           {
             url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1263,6 +1267,7 @@ export namespace recommender_v1beta1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1360,6 +1365,7 @@ export namespace recommender_v1beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1505,6 +1511,7 @@ export namespace recommender_v1beta1 {
           {
             url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1599,6 +1606,7 @@ export namespace recommender_v1beta1 {
           {
             url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -1630,7 +1638,7 @@ export namespace recommender_v1beta1 {
   export interface Params$Resource$Billingaccounts$Locations$Recommenders$Updateconfig
     extends StandardParameters {
     /**
-     * Name of recommender config. Eg, projects/[PROJECT_NUMBER]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]/config
+     * Identifier. Name of recommender config. Eg, projects/[PROJECT_NUMBER]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]/config
      */
     name?: string;
     /**
@@ -1728,6 +1736,7 @@ export namespace recommender_v1beta1 {
           {
             url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1825,6 +1834,7 @@ export namespace recommender_v1beta1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1922,6 +1932,7 @@ export namespace recommender_v1beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2019,6 +2030,7 @@ export namespace recommender_v1beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2116,6 +2128,7 @@ export namespace recommender_v1beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2213,6 +2226,7 @@ export namespace recommender_v1beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2408,6 +2422,7 @@ export namespace recommender_v1beta1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2540,6 +2555,7 @@ export namespace recommender_v1beta1 {
           {
             url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2637,6 +2653,7 @@ export namespace recommender_v1beta1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2734,6 +2751,7 @@ export namespace recommender_v1beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2886,6 +2904,7 @@ export namespace recommender_v1beta1 {
           {
             url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2983,6 +3002,7 @@ export namespace recommender_v1beta1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3080,6 +3100,7 @@ export namespace recommender_v1beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3177,6 +3198,7 @@ export namespace recommender_v1beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3274,6 +3296,7 @@ export namespace recommender_v1beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3371,6 +3394,7 @@ export namespace recommender_v1beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3549,6 +3573,7 @@ export namespace recommender_v1beta1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3681,6 +3706,7 @@ export namespace recommender_v1beta1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3807,6 +3833,7 @@ export namespace recommender_v1beta1 {
           {
             url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3901,6 +3928,7 @@ export namespace recommender_v1beta1 {
           {
             url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -3932,7 +3960,7 @@ export namespace recommender_v1beta1 {
   export interface Params$Resource$Organizations$Locations$Insighttypes$Updateconfig
     extends StandardParameters {
     /**
-     * Name of insight type config. Eg, projects/[PROJECT_NUMBER]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]/config
+     * Identifier. Name of insight type config. Eg, projects/[PROJECT_NUMBER]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]/config
      */
     name?: string;
     /**
@@ -4030,6 +4058,7 @@ export namespace recommender_v1beta1 {
           {
             url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4127,6 +4156,7 @@ export namespace recommender_v1beta1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4224,6 +4254,7 @@ export namespace recommender_v1beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4369,6 +4400,7 @@ export namespace recommender_v1beta1 {
           {
             url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4463,6 +4495,7 @@ export namespace recommender_v1beta1 {
           {
             url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -4494,7 +4527,7 @@ export namespace recommender_v1beta1 {
   export interface Params$Resource$Organizations$Locations$Recommenders$Updateconfig
     extends StandardParameters {
     /**
-     * Name of recommender config. Eg, projects/[PROJECT_NUMBER]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]/config
+     * Identifier. Name of recommender config. Eg, projects/[PROJECT_NUMBER]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]/config
      */
     name?: string;
     /**
@@ -4592,6 +4625,7 @@ export namespace recommender_v1beta1 {
           {
             url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4689,6 +4723,7 @@ export namespace recommender_v1beta1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4786,6 +4821,7 @@ export namespace recommender_v1beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4883,6 +4919,7 @@ export namespace recommender_v1beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4980,6 +5017,7 @@ export namespace recommender_v1beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5077,6 +5115,7 @@ export namespace recommender_v1beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5272,6 +5311,7 @@ export namespace recommender_v1beta1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5397,6 +5437,7 @@ export namespace recommender_v1beta1 {
           {
             url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5491,6 +5532,7 @@ export namespace recommender_v1beta1 {
           {
             url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -5522,7 +5564,7 @@ export namespace recommender_v1beta1 {
   export interface Params$Resource$Projects$Locations$Insighttypes$Updateconfig
     extends StandardParameters {
     /**
-     * Name of insight type config. Eg, projects/[PROJECT_NUMBER]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]/config
+     * Identifier. Name of insight type config. Eg, projects/[PROJECT_NUMBER]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]/config
      */
     name?: string;
     /**
@@ -5620,6 +5662,7 @@ export namespace recommender_v1beta1 {
           {
             url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5717,6 +5760,7 @@ export namespace recommender_v1beta1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5814,6 +5858,7 @@ export namespace recommender_v1beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5959,6 +6004,7 @@ export namespace recommender_v1beta1 {
           {
             url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6053,6 +6099,7 @@ export namespace recommender_v1beta1 {
           {
             url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -6084,7 +6131,7 @@ export namespace recommender_v1beta1 {
   export interface Params$Resource$Projects$Locations$Recommenders$Updateconfig
     extends StandardParameters {
     /**
-     * Name of recommender config. Eg, projects/[PROJECT_NUMBER]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]/config
+     * Identifier. Name of recommender config. Eg, projects/[PROJECT_NUMBER]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]/config
      */
     name?: string;
     /**
@@ -6182,6 +6229,7 @@ export namespace recommender_v1beta1 {
           {
             url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6279,6 +6327,7 @@ export namespace recommender_v1beta1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6376,6 +6425,7 @@ export namespace recommender_v1beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -6473,6 +6523,7 @@ export namespace recommender_v1beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -6570,6 +6621,7 @@ export namespace recommender_v1beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -6667,6 +6719,7 @@ export namespace recommender_v1beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -6845,6 +6898,7 @@ export namespace recommender_v1beta1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),

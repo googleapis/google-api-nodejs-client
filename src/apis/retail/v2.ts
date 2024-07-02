@@ -941,19 +941,6 @@ export namespace retail_v2 {
     tableId?: string | null;
   }
   /**
-   * Common metadata related to the progress of the operations.
-   */
-  export interface Schema$GoogleCloudRetailV2betaCreateMerchantCenterAccountLinkMetadata {
-    /**
-     * Operation create time.
-     */
-    createTime?: string | null;
-    /**
-     * Operation last update time. If the operation is done, this is also the finish time.
-     */
-    updateTime?: string | null;
-  }
-  /**
    * Metadata associated with a create operation.
    */
   export interface Schema$GoogleCloudRetailV2betaCreateModelMetadata {
@@ -1120,64 +1107,6 @@ export namespace retail_v2 {
      * Aggregated statistics of user event import status.
      */
     importSummary?: Schema$GoogleCloudRetailV2betaUserEventImportSummary;
-  }
-  /**
-   * Represents a link between a Merchant Center account and a branch. After a link is established, products from the linked Merchant Center account are streamed to the linked branch.
-   */
-  export interface Schema$GoogleCloudRetailV2betaMerchantCenterAccountLink {
-    /**
-     * Required. The branch ID (e.g. 0/1/2) within the catalog that products from merchant_center_account_id are streamed to. When updating this field, an empty value will use the currently configured default branch. However, changing the default branch later on won't change the linked branch here. A single branch ID can only have one linked Merchant Center account ID.
-     */
-    branchId?: string | null;
-    /**
-     * Criteria for the Merchant Center feeds to be ingested via the link. All offers will be ingested if the list is empty. Otherwise the offers will be ingested from selected feeds.
-     */
-    feedFilters?: Schema$GoogleCloudRetailV2betaMerchantCenterAccountLinkMerchantCenterFeedFilter[];
-    /**
-     * The FeedLabel used to perform filtering. Note: this replaces [region_id](https://developers.google.com/shopping-content/reference/rest/v2.1/products#Product.FIELDS.feed_label). Example value: `US`. Example value: `FeedLabel1`.
-     */
-    feedLabel?: string | null;
-    /**
-     * Output only. Immutable. MerchantCenterAccountLink identifier, which is the final component of name. This field is auto generated and follows the convention: `BranchId_MerchantCenterAccountId`. `projects/x/locations/global/catalogs/default_catalog/merchantCenterAccountLinks/id_1`.
-     */
-    id?: string | null;
-    /**
-     * Language of the title/description and other string attributes. Use language tags defined by [BCP 47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt). ISO 639-1. This specifies the language of offers in Merchant Center that will be accepted. If empty, no language filtering will be performed. Example value: `en`.
-     */
-    languageCode?: string | null;
-    /**
-     * Required. The linked [Merchant center account id](https://developers.google.com/shopping-content/guides/accountstatuses). The account must be a standalone account or a sub-account of a MCA.
-     */
-    merchantCenterAccountId?: string | null;
-    /**
-     * Output only. Immutable. Full resource name of the Merchant Center Account Link, such as `projects/x/locations/global/catalogs/default_catalog/merchantCenterAccountLinks/merchant_center_account_link`.
-     */
-    name?: string | null;
-    /**
-     * Output only. Google Cloud project ID.
-     */
-    projectId?: string | null;
-    /**
-     * Optional. An optional arbitrary string that could be used as a tag for tracking link source.
-     */
-    source?: string | null;
-    /**
-     * Output only. Represents the state of the link.
-     */
-    state?: string | null;
-  }
-  /**
-   * Merchant Center Feed filter criterion.
-   */
-  export interface Schema$GoogleCloudRetailV2betaMerchantCenterAccountLinkMerchantCenterFeedFilter {
-    /**
-     * Merchant Center primary feed ID.
-     */
-    primaryFeedId?: string | null;
-    /**
-     * Merchant Center primary feed name. The name is used for the display purposes only.
-     */
-    primaryFeedName?: string | null;
   }
   /**
    * Metadata that describes the training and serving parameters of a Model. A Model can be associated with a ServingConfig and then queried through the Predict API.
@@ -2486,7 +2415,7 @@ export namespace retail_v2 {
      */
     brands?: string[] | null;
     /**
-     * Product categories. This field is repeated for supporting one product belonging to several parallel categories. Strongly recommended using the full path for better search / recommendation quality. To represent full path of category, use '\>' sign to separate different hierarchies. If '\>' is part of the category name, replace it with other character(s). For example, if a shoes product belongs to both ["Shoes & Accessories" -\> "Shoes"] and ["Sports & Fitness" -\> "Athletic Clothing" -\> "Shoes"], it could be represented as: "categories": [ "Shoes & Accessories \> Shoes", "Sports & Fitness \> Athletic Clothing \> Shoes" ] Must be set for Type.PRIMARY Product otherwise an INVALID_ARGUMENT error is returned. At most 250 values are allowed per Product unless overridden via pantheon UI. Empty values are not allowed. Each value must be a UTF-8 encoded string with a length limit of 5,000 characters. Otherwise, an INVALID_ARGUMENT error is returned. Corresponding properties: Google Merchant Center property google_product_category. Schema.org property [Product.category] (https://schema.org/category). [mc_google_product_category]: https://support.google.com/merchants/answer/6324436
+     * Product categories. This field is repeated for supporting one product belonging to several parallel categories. Strongly recommended using the full path for better search / recommendation quality. To represent full path of category, use '\>' sign to separate different hierarchies. If '\>' is part of the category name, replace it with other character(s). For example, if a shoes product belongs to both ["Shoes & Accessories" -\> "Shoes"] and ["Sports & Fitness" -\> "Athletic Clothing" -\> "Shoes"], it could be represented as: "categories": [ "Shoes & Accessories \> Shoes", "Sports & Fitness \> Athletic Clothing \> Shoes" ] Must be set for Type.PRIMARY Product otherwise an INVALID_ARGUMENT error is returned. At most 250 values are allowed per Product unless overridden through the Google Cloud console. Empty values are not allowed. Each value must be a UTF-8 encoded string with a length limit of 5,000 characters. Otherwise, an INVALID_ARGUMENT error is returned. Corresponding properties: Google Merchant Center property google_product_category. Schema.org property [Product.category] (https://schema.org/category). [mc_google_product_category]: https://support.google.com/merchants/answer/6324436
      */
     categories?: string[] | null;
     /**
@@ -3460,6 +3389,10 @@ export namespace retail_v2 {
      */
     ignoreControlIds?: string[] | null;
     /**
+     * When the flag is enabled, the products in the denylist will not be filtered out in the recommendation filtering results.
+     */
+    ignoreRecsDenylist?: boolean | null;
+    /**
      * The id of the model in the same Catalog to use at serving time. Currently only RecommendationModels are supported: https://cloud.google.com/retail/recommendations-ai/docs/create-models Can be changed but only to a compatible model (e.g. others-you-may-like CTR to others-you-may-like CVR). Required when solution_types is SOLUTION_TYPE_RECOMMENDATION.
      */
     modelId?: string | null;
@@ -3590,7 +3523,7 @@ export namespace retail_v2 {
      */
     eventTime?: string | null;
     /**
-     * Required. User event type. Allowed values are: * `add-to-cart`: Products being added to cart. * `category-page-view`: Special pages such as sale or promotion pages viewed. * `detail-page-view`: Products detail page viewed. * `home-page-view`: Homepage viewed. * `promotion-offered`: Promotion is offered to a user. * `promotion-not-offered`: Promotion is not offered to a user. * `purchase-complete`: User finishing a purchase. * `search`: Product search. * `shopping-cart-page-view`: User viewing a shopping cart.
+     * Required. User event type. Allowed values are: * `add-to-cart`: Products being added to cart. * `remove-from-cart`: Products being removed from cart. * `category-page-view`: Special pages such as sale or promotion pages viewed. * `detail-page-view`: Products detail page viewed. * `home-page-view`: Homepage viewed. * `promotion-offered`: Promotion is offered to a user. * `promotion-not-offered`: Promotion is not offered to a user. * `purchase-complete`: User finishing a purchase. * `search`: Product search. * `shopping-cart-page-view`: User viewing a shopping cart.
      */
     eventType?: string | null;
     /**
@@ -3927,6 +3860,7 @@ export namespace retail_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4024,6 +3958,7 @@ export namespace retail_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4116,6 +4051,7 @@ export namespace retail_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4210,6 +4146,7 @@ export namespace retail_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4307,6 +4244,7 @@ export namespace retail_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4403,6 +4341,7 @@ export namespace retail_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4496,6 +4435,7 @@ export namespace retail_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -4589,6 +4529,7 @@ export namespace retail_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4681,6 +4622,7 @@ export namespace retail_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -4775,6 +4717,7 @@ export namespace retail_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -4810,6 +4753,10 @@ export namespace retail_v2 {
      * The device type context for completion suggestions. We recommend that you leave this field empty. It can apply different suggestions on different device types, e.g. `DESKTOP`, `MOBILE`. If it is empty, the suggestions are across all device types. Supported formats: * `UNKNOWN_DEVICE_TYPE` * `DESKTOP` * `MOBILE` * A customized string starts with `OTHER_`, e.g. `OTHER_IPHONE`.
      */
     deviceType?: string;
+    /**
+     * If true, attribute suggestions are enabled and provided in the response. This field is only available for the "cloud-retail" dataset.
+     */
+    enableAttributeSuggestions?: boolean;
     /**
      * The entity for customers who run multiple entities, domains, sites, or regions, for example, `Google US`, `Google Ads`, `Waymo`, `google.com`, `youtube.com`, etc. If this is set, it must be an exact match with UserEvent.entity to get per-entity autocomplete results.
      */
@@ -5022,6 +4969,7 @@ export namespace retail_v2 {
               rootUrl + '/v2/{+attributesConfig}:addCatalogAttribute'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5118,6 +5066,7 @@ export namespace retail_v2 {
               rootUrl + '/v2/{+attributesConfig}:removeCatalogAttribute'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5214,6 +5163,7 @@ export namespace retail_v2 {
               rootUrl + '/v2/{+attributesConfig}:replaceCatalogAttribute'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5369,6 +5319,7 @@ export namespace retail_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5479,6 +5430,7 @@ export namespace retail_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5574,6 +5526,7 @@ export namespace retail_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5669,6 +5622,7 @@ export namespace retail_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5757,6 +5711,7 @@ export namespace retail_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -5849,6 +5804,7 @@ export namespace retail_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5944,6 +5900,7 @@ export namespace retail_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -6039,6 +5996,7 @@ export namespace retail_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6133,6 +6091,7 @@ export namespace retail_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -6228,6 +6187,7 @@ export namespace retail_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -6323,6 +6283,7 @@ export namespace retail_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -6418,6 +6379,7 @@ export namespace retail_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -6513,6 +6475,7 @@ export namespace retail_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -6773,6 +6736,7 @@ export namespace retail_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -6888,6 +6852,7 @@ export namespace retail_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -6976,6 +6941,7 @@ export namespace retail_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -7067,6 +7033,7 @@ export namespace retail_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -7162,6 +7129,7 @@ export namespace retail_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -7256,6 +7224,7 @@ export namespace retail_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -7424,6 +7393,7 @@ export namespace retail_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -7512,6 +7482,7 @@ export namespace retail_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -7601,6 +7572,7 @@ export namespace retail_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -7695,6 +7667,7 @@ export namespace retail_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -7788,6 +7761,7 @@ export namespace retail_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -7879,6 +7853,7 @@ export namespace retail_v2 {
           {
             url: (rootUrl + '/v2/{+name}:pause').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -7971,6 +7946,7 @@ export namespace retail_v2 {
           {
             url: (rootUrl + '/v2/{+name}:resume').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -8062,6 +8038,7 @@ export namespace retail_v2 {
           {
             url: (rootUrl + '/v2/{+name}:tune').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -8259,6 +8236,7 @@ export namespace retail_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -8354,6 +8332,7 @@ export namespace retail_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -8485,6 +8464,7 @@ export namespace retail_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -8582,6 +8562,7 @@ export namespace retail_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -8711,6 +8692,7 @@ export namespace retail_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -8808,6 +8790,7 @@ export namespace retail_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -8898,6 +8881,7 @@ export namespace retail_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -8990,6 +8974,7 @@ export namespace retail_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -9087,6 +9072,7 @@ export namespace retail_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -9181,6 +9167,7 @@ export namespace retail_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -9278,6 +9265,7 @@ export namespace retail_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -9375,6 +9363,7 @@ export namespace retail_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -9472,6 +9461,7 @@ export namespace retail_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -9682,6 +9672,7 @@ export namespace retail_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -9777,6 +9768,7 @@ export namespace retail_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -9872,6 +9864,7 @@ export namespace retail_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -9967,6 +9960,7 @@ export namespace retail_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -10062,6 +10056,7 @@ export namespace retail_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -10242,6 +10237,7 @@ export namespace retail_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -10336,6 +10332,7 @@ export namespace retail_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -10463,6 +10460,7 @@ export namespace retail_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -10557,6 +10555,7 @@ export namespace retail_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),

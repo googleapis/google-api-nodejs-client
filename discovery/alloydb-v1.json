@@ -707,6 +707,34 @@
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
+                },
+                "switchover": {
+                  "description": "Switches the role of PRIMARY and SECONDARY cluster without any data loss. This promotes the SECONDARY cluster to PRIMARY and sets up original PRIMARY cluster to replicate from this newly promoted cluster.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/clusters/{clustersId}:switchover",
+                  "httpMethod": "POST",
+                  "id": "alloydb.projects.locations.clusters.switchover",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the resource. For the required format, see the comment on the Cluster.name field",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/clusters/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}:switchover",
+                  "request": {
+                    "$ref": "SwitchoverClusterRequest"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
                 }
               },
               "resources": {
@@ -1461,7 +1489,7 @@
       }
     }
   },
-  "revision": "20240315",
+  "revision": "20240612",
   "rootUrl": "https://alloydb.googleapis.com/",
   "schemas": {
     "AuthorizedNetwork": {
@@ -1856,6 +1884,15 @@
           "description": "Labels as key value pairs",
           "type": "object"
         },
+        "maintenanceSchedule": {
+          "$ref": "MaintenanceSchedule",
+          "description": "Output only. The maintenance schedule for the cluster, generated for a specific rollout if a maintenance window is set.",
+          "readOnly": true
+        },
+        "maintenanceUpdatePolicy": {
+          "$ref": "MaintenanceUpdatePolicy",
+          "description": "Optional. The maintenance update policy determines when to allow or deny updates."
+        },
         "migrationSource": {
           "$ref": "MigrationSource",
           "description": "Output only. Cluster created via DMS migration.",
@@ -1878,6 +1915,10 @@
           "$ref": "PrimaryConfig",
           "description": "Output only. Cross Region replication config specific to PRIMARY cluster.",
           "readOnly": true
+        },
+        "pscConfig": {
+          "$ref": "PscConfig",
+          "description": "Optional. The configuration for Private Service Connect (PSC) for the cluster."
         },
         "reconciling": {
           "description": "Output only. Reconciling (https://google.aip.dev/128#reconciliation). Set to true if the current state of Cluster does not match the user's intended state, and the service is actively updating the resource to reconcile them. This can happen due to user-triggered updates or system actions like failover or maintenance.",
@@ -2332,6 +2373,10 @@
           "readOnly": true,
           "type": "array"
         },
+        "pscInstanceConfig": {
+          "$ref": "PscInstanceConfig",
+          "description": "Optional. The configuration for Private Service Connect (PSC) for the instance."
+        },
         "publicIpAddress": {
           "description": "Output only. The public IP addresses for the Instance. This is available ONLY when enable_public_ip is set. This is the connection endpoint for an end-user application.",
           "readOnly": true,
@@ -2584,6 +2629,68 @@
       },
       "type": "object"
     },
+    "MaintenanceSchedule": {
+      "description": "MaintenanceSchedule stores the maintenance schedule generated from the MaintenanceUpdatePolicy, once a maintenance rollout is triggered, if MaintenanceWindow is set, and if there is no conflicting DenyPeriod. The schedule is cleared once the update takes place. This field cannot be manually changed; modify the MaintenanceUpdatePolicy instead.",
+      "id": "MaintenanceSchedule",
+      "properties": {
+        "startTime": {
+          "description": "Output only. The scheduled start time for the maintenance.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "MaintenanceUpdatePolicy": {
+      "description": "MaintenanceUpdatePolicy defines the policy for system updates.",
+      "id": "MaintenanceUpdatePolicy",
+      "properties": {
+        "maintenanceWindows": {
+          "description": "Preferred windows to perform maintenance. Currently limited to 1.",
+          "items": {
+            "$ref": "MaintenanceWindow"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "MaintenanceWindow": {
+      "description": "MaintenanceWindow specifies a preferred day and time for maintenance.",
+      "id": "MaintenanceWindow",
+      "properties": {
+        "day": {
+          "description": "Preferred day of the week for maintenance, e.g. MONDAY, TUESDAY, etc.",
+          "enum": [
+            "DAY_OF_WEEK_UNSPECIFIED",
+            "MONDAY",
+            "TUESDAY",
+            "WEDNESDAY",
+            "THURSDAY",
+            "FRIDAY",
+            "SATURDAY",
+            "SUNDAY"
+          ],
+          "enumDescriptions": [
+            "The day of the week is unspecified.",
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday",
+            "Sunday"
+          ],
+          "type": "string"
+        },
+        "startTime": {
+          "$ref": "GoogleTypeTimeOfDay",
+          "description": "Preferred time to start the maintenance operation on the specified day. Maintenance will start within 1 hour of this time."
+        }
+      },
+      "type": "object"
+    },
     "MigrationSource": {
       "description": "Subset of the source instance configuration that is available when reading the cluster resource.",
       "id": "MigrationSource",
@@ -2761,6 +2868,41 @@
         "validateOnly": {
           "description": "Optional. If set, performs request validation (e.g. permission checks and any other type of validation), but do not actually execute the delete.",
           "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "PscConfig": {
+      "description": "PscConfig contains PSC related configuration at a cluster level.",
+      "id": "PscConfig",
+      "properties": {
+        "pscEnabled": {
+          "description": "Optional. Create an instance that allows connections from Private Service Connect endpoints to the instance.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "PscInstanceConfig": {
+      "description": "PscInstanceConfig contains PSC related configuration at an instance level.",
+      "id": "PscInstanceConfig",
+      "properties": {
+        "allowedConsumerProjects": {
+          "description": "Optional. List of consumer projects that are allowed to create PSC endpoints to service-attachments to this instance.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "pscDnsName": {
+          "description": "Output only. The DNS name of the instance for PSC connectivity. Name convention: ...alloydb-psc.goog",
+          "readOnly": true,
+          "type": "string"
+        },
+        "serviceAttachmentLink": {
+          "description": "Output only. The service attachment created when Private Service Connect (PSC) is enabled for the instance. The name of the resource will be in the format of `projects//regions//serviceAttachments/`",
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"
@@ -2985,6 +3127,10 @@
           ],
           "type": "string"
         },
+        "crossRegionReplicaConfigured": {
+          "description": "Checks for resources that are configured to have redundancy, and ongoing replication across regions",
+          "type": "boolean"
+        },
         "externalReplicaConfigured": {
           "type": "boolean"
         },
@@ -3128,9 +3274,12 @@
           ],
           "type": "string"
         },
-        "recommendationSignalData": {
-          "$ref": "StorageDatabasecenterPartnerapiV1mainDatabaseResourceRecommendationSignalData",
+        "observabilityMetricData": {
+          "$ref": "StorageDatabasecenterPartnerapiV1mainObservabilityMetricData",
           "description": "More feed data would be added in subsequent CLs"
+        },
+        "recommendationSignalData": {
+          "$ref": "StorageDatabasecenterPartnerapiV1mainDatabaseResourceRecommendationSignalData"
         },
         "resourceHealthSignalData": {
           "$ref": "StorageDatabasecenterPartnerapiV1mainDatabaseResourceHealthSignalData"
@@ -3254,9 +3403,17 @@
             "SIGNAL_TYPE_VIOLATES_CIS_GCP_FOUNDATION_1_2",
             "SIGNAL_TYPE_VIOLATES_CIS_GCP_FOUNDATION_1_1",
             "SIGNAL_TYPE_VIOLATES_CIS_GCP_FOUNDATION_1_0",
+            "SIGNAL_TYPE_VIOLATES_CIS_CONTROLS_V8_0",
             "SIGNAL_TYPE_VIOLATES_NIST_800_53",
+            "SIGNAL_TYPE_VIOLATES_NIST_800_53_R5",
+            "SIGNAL_TYPE_VIOLATES_NIST_CYBERSECURITY_FRAMEWORK_V1_0",
             "SIGNAL_TYPE_VIOLATES_ISO_27001",
+            "SIGNAL_TYPE_VIOLATES_ISO_27001_V2022",
             "SIGNAL_TYPE_VIOLATES_PCI_DSS_V3_2_1",
+            "SIGNAL_TYPE_VIOLATES_PCI_DSS_V4_0",
+            "SIGNAL_TYPE_VIOLATES_CLOUD_CONTROLS_MATRIX_V4",
+            "SIGNAL_TYPE_VIOLATES_HIPAA",
+            "SIGNAL_TYPE_VIOLATES_SOC2_V2017",
             "SIGNAL_TYPE_LOGS_NOT_OPTIMIZED_FOR_TROUBLESHOOTING",
             "SIGNAL_TYPE_QUERY_DURATIONS_NOT_LOGGED",
             "SIGNAL_TYPE_VERBOSE_ERROR_LOGGING",
@@ -3305,7 +3462,11 @@
             "SIGNAL_TYPE_CONNECTIONS_PERFORMANCE_IMPACT",
             "SIGNAL_TYPE_TMP_TABLES_PERFORMANCE_IMPACT",
             "SIGNAL_TYPE_TRANS_LOGS_PERFORMANCE_IMPACT",
-            "SIGNAL_TYPE_HIGH_JOINS_WITHOUT_INDEXES"
+            "SIGNAL_TYPE_HIGH_JOINS_WITHOUT_INDEXES",
+            "SIGNAL_TYPE_SUPERUSER_WRITING_TO_USER_TABLES",
+            "SIGNAL_TYPE_USER_GRANTED_ALL_PERMISSIONS",
+            "SIGNAL_TYPE_DATA_EXPORT_TO_EXTERNAL_CLOUD_STORAGE_BUCKET",
+            "SIGNAL_TYPE_DATA_EXPORT_TO_PUBLIC_CLOUD_STORAGE_BUCKET"
           ],
           "enumDeprecated": [
             false,
@@ -3313,6 +3474,18 @@
             false,
             true,
             true,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
             false,
             false,
             false,
@@ -3392,9 +3565,17 @@
             "Represents if a resource violates CIS GCP Foundation 1.2.",
             "Represents if a resource violates CIS GCP Foundation 1.1.",
             "Represents if a resource violates CIS GCP Foundation 1.0.",
+            "Represents if a resource violates CIS Controls 8.0.",
             "Represents if a resource violates NIST 800-53.",
+            "Represents if a resource violates NIST 800-53 R5.",
+            "Represents if a resource violates NIST Cybersecurity Framework 1.0.",
             "Represents if a resource violates ISO-27001.",
+            "Represents if a resource violates ISO 27001 2022.",
             "Represents if a resource violates PCI-DSS v3.2.1.",
+            "Represents if a resource violates PCI-DSS v4.0.",
+            "Represents if a resource violates Cloud Controls Matrix v4.0.",
+            "Represents if a resource violates HIPAA.",
+            "Represents if a resource violates SOC2 v2017.",
             "Represents if log_checkpoints database flag for a Cloud SQL for PostgreSQL instance is not set to on.",
             "Represents if the log_duration database flag for a Cloud SQL for PostgreSQL instance is not set to on.",
             "Represents if the log_error_verbosity database flag for a Cloud SQL for PostgreSQL instance is not set to default or stricter (default or terse).",
@@ -3443,7 +3624,11 @@
             "Performance impact of connections settings",
             "Performance impact of temporary tables settings",
             "Performance impact of transaction logs settings",
-            "Performance impact of high joins without indexes"
+            "Performance impact of high joins without indexes",
+            "Detects events where a Cloud SQL superuser (postgres for PostgreSQL servers or root for MySQL users) writes to non-system tables.",
+            "Detects events where a database user or role has been granted all privileges to a database, or to all tables, procedures, or functions in a schema.",
+            "Detects if database instance data exported to a Cloud Storage bucket outside of the organization.",
+            "Detects if database instance data exported to a Cloud Storage bucket that is owned by the organization and is publicly accessible."
           ],
           "type": "string"
         },
@@ -3626,6 +3811,10 @@
           "description": "The resource location. REQUIRED",
           "type": "string"
         },
+        "machineConfiguration": {
+          "$ref": "StorageDatabasecenterPartnerapiV1mainMachineConfiguration",
+          "description": "Machine configuration for this resource."
+        },
         "primaryResourceId": {
           "$ref": "StorageDatabasecenterPartnerapiV1mainDatabaseResourceId",
           "description": "Identifier for this resource's immediate parent/primary resource if the current resource is a replica or derived form of another Database resource. Else it would be NULL. REQUIRED if the immediate parent exists when first time resource is getting ingested, otherwise optional."
@@ -3650,14 +3839,6 @@
         "userLabelSet": {
           "$ref": "StorageDatabasecenterPartnerapiV1mainUserLabels",
           "description": "User-provided labels associated with the resource"
-        },
-        "userLabels": {
-          "additionalProperties": {
-            "type": "string"
-          },
-          "deprecated": true,
-          "description": "User-provided labels, represented as a dictionary where each label is a single key value pair.",
-          "type": "object"
         }
       },
       "type": "object"
@@ -3733,9 +3914,17 @@
             "SIGNAL_TYPE_VIOLATES_CIS_GCP_FOUNDATION_1_2",
             "SIGNAL_TYPE_VIOLATES_CIS_GCP_FOUNDATION_1_1",
             "SIGNAL_TYPE_VIOLATES_CIS_GCP_FOUNDATION_1_0",
+            "SIGNAL_TYPE_VIOLATES_CIS_CONTROLS_V8_0",
             "SIGNAL_TYPE_VIOLATES_NIST_800_53",
+            "SIGNAL_TYPE_VIOLATES_NIST_800_53_R5",
+            "SIGNAL_TYPE_VIOLATES_NIST_CYBERSECURITY_FRAMEWORK_V1_0",
             "SIGNAL_TYPE_VIOLATES_ISO_27001",
+            "SIGNAL_TYPE_VIOLATES_ISO_27001_V2022",
             "SIGNAL_TYPE_VIOLATES_PCI_DSS_V3_2_1",
+            "SIGNAL_TYPE_VIOLATES_PCI_DSS_V4_0",
+            "SIGNAL_TYPE_VIOLATES_CLOUD_CONTROLS_MATRIX_V4",
+            "SIGNAL_TYPE_VIOLATES_HIPAA",
+            "SIGNAL_TYPE_VIOLATES_SOC2_V2017",
             "SIGNAL_TYPE_LOGS_NOT_OPTIMIZED_FOR_TROUBLESHOOTING",
             "SIGNAL_TYPE_QUERY_DURATIONS_NOT_LOGGED",
             "SIGNAL_TYPE_VERBOSE_ERROR_LOGGING",
@@ -3784,7 +3973,11 @@
             "SIGNAL_TYPE_CONNECTIONS_PERFORMANCE_IMPACT",
             "SIGNAL_TYPE_TMP_TABLES_PERFORMANCE_IMPACT",
             "SIGNAL_TYPE_TRANS_LOGS_PERFORMANCE_IMPACT",
-            "SIGNAL_TYPE_HIGH_JOINS_WITHOUT_INDEXES"
+            "SIGNAL_TYPE_HIGH_JOINS_WITHOUT_INDEXES",
+            "SIGNAL_TYPE_SUPERUSER_WRITING_TO_USER_TABLES",
+            "SIGNAL_TYPE_USER_GRANTED_ALL_PERMISSIONS",
+            "SIGNAL_TYPE_DATA_EXPORT_TO_EXTERNAL_CLOUD_STORAGE_BUCKET",
+            "SIGNAL_TYPE_DATA_EXPORT_TO_PUBLIC_CLOUD_STORAGE_BUCKET"
           ],
           "enumDeprecated": [
             false,
@@ -3792,6 +3985,18 @@
             false,
             true,
             true,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
             false,
             false,
             false,
@@ -3871,9 +4076,17 @@
             "Represents if a resource violates CIS GCP Foundation 1.2.",
             "Represents if a resource violates CIS GCP Foundation 1.1.",
             "Represents if a resource violates CIS GCP Foundation 1.0.",
+            "Represents if a resource violates CIS Controls 8.0.",
             "Represents if a resource violates NIST 800-53.",
+            "Represents if a resource violates NIST 800-53 R5.",
+            "Represents if a resource violates NIST Cybersecurity Framework 1.0.",
             "Represents if a resource violates ISO-27001.",
+            "Represents if a resource violates ISO 27001 2022.",
             "Represents if a resource violates PCI-DSS v3.2.1.",
+            "Represents if a resource violates PCI-DSS v4.0.",
+            "Represents if a resource violates Cloud Controls Matrix v4.0.",
+            "Represents if a resource violates HIPAA.",
+            "Represents if a resource violates SOC2 v2017.",
             "Represents if log_checkpoints database flag for a Cloud SQL for PostgreSQL instance is not set to on.",
             "Represents if the log_duration database flag for a Cloud SQL for PostgreSQL instance is not set to on.",
             "Represents if the log_error_verbosity database flag for a Cloud SQL for PostgreSQL instance is not set to default or stricter (default or terse).",
@@ -3922,7 +4135,11 @@
             "Performance impact of connections settings",
             "Performance impact of temporary tables settings",
             "Performance impact of transaction logs settings",
-            "Performance impact of high joins without indexes"
+            "Performance impact of high joins without indexes",
+            "Detects events where a Cloud SQL superuser (postgres for PostgreSQL servers or root for MySQL users) writes to non-system tables.",
+            "Detects events where a database user or role has been granted all privileges to a database, or to all tables, procedures, or functions in a schema.",
+            "Detects if database instance data exported to a Cloud Storage bucket outside of the organization.",
+            "Detects if database instance data exported to a Cloud Storage bucket that is owned by the organization and is publicly accessible."
           ],
           "type": "string"
         }
@@ -3951,20 +4168,87 @@
           "description": "An enum that represents the type of this entitlement.",
           "enum": [
             "ENTITLEMENT_TYPE_UNSPECIFIED",
-            "DUET_AI",
             "GEMINI"
-          ],
-          "enumDeprecated": [
-            false,
-            true,
-            false
           ],
           "enumDescriptions": [
             "",
-            "The root entitlement representing Duet AI package ownership.",
             "The root entitlement representing Gemini package ownership."
           ],
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "StorageDatabasecenterPartnerapiV1mainMachineConfiguration": {
+      "description": "MachineConfiguration describes the configuration of a machine specific to Database Resource.",
+      "id": "StorageDatabasecenterPartnerapiV1mainMachineConfiguration",
+      "properties": {
+        "cpuCount": {
+          "description": "The number of CPUs. TODO(b/342344482, b/342346271) add proto validations again after bug fix.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "memorySizeInBytes": {
+          "description": "Memory size in bytes. TODO(b/342344482, b/342346271) add proto validations again after bug fix.",
+          "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "StorageDatabasecenterPartnerapiV1mainObservabilityMetricData": {
+      "id": "StorageDatabasecenterPartnerapiV1mainObservabilityMetricData",
+      "properties": {
+        "aggregationType": {
+          "description": "Required. Type of aggregation performed on the metric.",
+          "enum": [
+            "AGGREGATION_TYPE_UNSPECIFIED",
+            "PEAK",
+            "P99",
+            "P95",
+            "CURRENT"
+          ],
+          "enumDescriptions": [
+            "Unspecified aggregation type.",
+            "PEAK aggregation type.",
+            "P99 aggregation type.",
+            "P95 aggregation type.",
+            "current aggregation type."
+          ],
+          "type": "string"
+        },
+        "metricType": {
+          "description": "Required. Type of metric like CPU, Memory, etc.",
+          "enum": [
+            "METRIC_TYPE_UNSPECIFIED",
+            "CPU_UTILIZATION",
+            "MEMORY_UTILIZATION",
+            "NETWORK_CONNECTIONS",
+            "STORAGE_UTILIZATION",
+            "STORAGE_USED_BYTES"
+          ],
+          "enumDescriptions": [
+            "Unspecified metric type.",
+            "CPU utilization for a resource. The value is a fraction between 0.0 and 1.0 (may momentarily exceed 1.0 in some cases).",
+            "Memory utilization for a resource. The value is a fraction between 0.0 and 1.0 (may momentarily exceed 1.0 in some cases).",
+            "Number of network connections for a resource.",
+            "Storage utilization for a resource. The value is a fraction between 0.0 and 1.0 (may momentarily exceed 1.0 in some cases).",
+            "Sotrage used by a resource."
+          ],
+          "type": "string"
+        },
+        "observationTime": {
+          "description": "Required. The time the metric value was observed.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "resourceName": {
+          "description": "Required. Database resource name associated with the signal. Resource name to follow CAIS resource_name format as noted here go/condor-common-datamodel",
+          "type": "string"
+        },
+        "value": {
+          "$ref": "StorageDatabasecenterProtoCommonTypedValue",
+          "description": "Required. Value of the metric type."
         }
       },
       "type": "object"
@@ -4116,6 +4400,7 @@
             "PRODUCT_TYPE_ON_PREM",
             "ON_PREM",
             "PRODUCT_TYPE_MEMORYSTORE",
+            "PRODUCT_TYPE_BIGTABLE",
             "PRODUCT_TYPE_OTHER"
           ],
           "enumDeprecated": [
@@ -4127,6 +4412,7 @@
             false,
             false,
             true,
+            false,
             false,
             false
           ],
@@ -4140,12 +4426,38 @@
             "On premises database product.",
             "On premises database product.",
             "Memorystore product area in GCP",
+            "Bigtable product area in GCP",
             "Other refers to rest of other product type. This is to be when product type is known, but it is not present in this enum."
           ],
           "type": "string"
         },
         "version": {
           "description": "Version of the underlying database engine. Example values: For MySQL, it could be \"8.0\", \"5.7\" etc.. For Postgres, it could be \"14\", \"15\" etc..",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "StorageDatabasecenterProtoCommonTypedValue": {
+      "description": "TypedValue represents the value of a metric type. It can either be a double, an int64, a string or a bool.",
+      "id": "StorageDatabasecenterProtoCommonTypedValue",
+      "properties": {
+        "boolValue": {
+          "description": "For boolean value",
+          "type": "boolean"
+        },
+        "doubleValue": {
+          "description": "For double value",
+          "format": "double",
+          "type": "number"
+        },
+        "int64Value": {
+          "description": "For integer value",
+          "format": "int64",
+          "type": "string"
+        },
+        "stringValue": {
+          "description": "For string value",
           "type": "string"
         }
       },
@@ -4234,6 +4546,21 @@
             "Denotes that the flag does not accept any values."
           ],
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SwitchoverClusterRequest": {
+      "description": "Message for switching over to a cluster",
+      "id": "SwitchoverClusterRequest",
+      "properties": {
+        "requestId": {
+          "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+          "type": "string"
+        },
+        "validateOnly": {
+          "description": "Optional. If set, performs request validation (e.g. permission checks and any other type of validation), but do not actually execute the delete.",
+          "type": "boolean"
         }
       },
       "type": "object"

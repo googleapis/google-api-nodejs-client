@@ -209,33 +209,33 @@ export namespace walletobjects_v1 {
   }
   export interface Schema$AppLinkData {
     /**
-     * Optional information about the partner app link. If included, the app link link module will be rendered on the valuable details on the android client.
+     * Optional information about the partner app link.
      */
     androidAppLinkInfo?: Schema$AppLinkDataAppLinkInfo;
     /**
-     * Optional information about the partner app link. If included, the app link link module will be rendered on the valuable details on the ios client.
+     * Deprecated. Links to open iOS apps are not supported.
      */
     iosAppLinkInfo?: Schema$AppLinkDataAppLinkInfo;
     /**
-     * Optional information about the partner app link. If included, the app link link module will be rendered on the valuable details on the web client.
+     * Optional information about the partner web link.
      */
     webAppLinkInfo?: Schema$AppLinkDataAppLinkInfo;
   }
   export interface Schema$AppLinkDataAppLinkInfo {
     /**
-     * Optional image to be displayed in the App Link Module
+     * Deprecated. Image isn't supported in the app link module.
      */
     appLogoImage?: Schema$Image;
     /**
-     * Url to follow when opening the App Link Module on clients. It will be used by partners to open their webpage or deeplink into their app.
+     * Target to follow when opening the app link on clients. It will be used by partners to open their app or webpage.
      */
     appTarget?: Schema$AppLinkDataAppLinkInfoAppTarget;
     /**
-     * String to be displayed in the description of the App Link Module Required
+     * Deprecated. Description isn't supported in the app link module.
      */
     description?: Schema$LocalizedString;
     /**
-     * String to be displayed in the title of the App Link Module Required
+     * Deprecated. Title isn't supported in the app link module.
      */
     title?: Schema$LocalizedString;
   }
@@ -754,6 +754,10 @@ export namespace walletobjects_v1 {
      */
     allowMultipleUsersPerObject?: boolean | null;
     /**
+     * Optional app or website link that will be displayed as a button on the front of the pass. If AppLinkData is provided for the corresponding object that will be used instead.
+     */
+    appLinkData?: Schema$AppLinkData;
+    /**
      * Callback options to be used to call the issuer back for every save/delete of an object for this class by the end-user. All objects of this class are eligible for the callback.
      */
     callbackOptions?: Schema$CallbackOptions;
@@ -940,7 +944,7 @@ export namespace walletobjects_v1 {
   }
   export interface Schema$EventTicketObject {
     /**
-     * Optional information about the partner app link.
+     * Optional app or website link that will be displayed as a button on the front of the pass. If AppLinkData is provided for the corresponding class only object AppLinkData will be displayed.
      */
     appLinkData?: Schema$AppLinkData;
     /**
@@ -1168,6 +1172,10 @@ export namespace walletobjects_v1 {
      */
     allowMultipleUsersPerObject?: boolean | null;
     /**
+     * Optional app or website link that will be displayed as a button on the front of the pass. If AppLinkData is provided for the corresponding object that will be used instead.
+     */
+    appLinkData?: Schema$AppLinkData;
+    /**
      * Policies for boarding and seating. These will inform which labels will be shown to users.
      */
     boardingAndSeatingPolicy?: Schema$BoardingAndSeatingPolicy;
@@ -1360,7 +1368,7 @@ export namespace walletobjects_v1 {
   }
   export interface Schema$FlightObject {
     /**
-     * Optional information about the partner app link.
+     * Optional app or website link that will be displayed as a button on the front of the pass. If AppLinkData is provided for the corresponding class only object AppLinkData will be displayed.
      */
     appLinkData?: Schema$AppLinkData;
     /**
@@ -1507,6 +1515,10 @@ export namespace walletobjects_v1 {
    */
   export interface Schema$GenericClass {
     /**
+     * Optional app or website link that will be displayed as a button on the front of the pass. If AppLinkData is provided for the corresponding object that will be used instead.
+     */
+    appLinkData?: Schema$AppLinkData;
+    /**
      * Callback options to be used to call the issuer back for every save/delete of an object for this class by the end-user. All objects of this class are eligible for the callback.
      */
     callbackOptions?: Schema$CallbackOptions;
@@ -1578,11 +1590,11 @@ export namespace walletobjects_v1 {
     resources?: Schema$GenericClass[];
   }
   /**
-   * Generic Object Next ID: 121
+   * Generic Object
    */
   export interface Schema$GenericObject {
     /**
-     * Information about the partner app link. The maximum number of these fields displayed is 10.
+     * Optional app or website link that will be displayed as a button on the front of the pass. If AppLinkData is provided for the corresponding class only object AppLinkData will be displayed.
      */
     appLinkData?: Schema$AppLinkData;
     /**
@@ -1705,6 +1717,10 @@ export namespace walletobjects_v1 {
      * Deprecated. Use `multipleDevicesAndHoldersAllowedStatus` instead.
      */
     allowMultipleUsersPerObject?: boolean | null;
+    /**
+     * Optional app or website link that will be displayed as a button on the front of the pass. If AppLinkData is provided for the corresponding object that will be used instead.
+     */
+    appLinkData?: Schema$AppLinkData;
     /**
      * Callback options to be used to call the issuer back for every save/delete of an object for this class by the end-user. All objects of this class are eligible for the callback.
      */
@@ -1864,7 +1880,7 @@ export namespace walletobjects_v1 {
   }
   export interface Schema$GiftCardObject {
     /**
-     * Optional information about the partner app link.
+     * Optional app or website link that will be displayed as a button on the front of the pass. If AppLinkData is provided for the corresponding class only object AppLinkData will be displayed.
      */
     appLinkData?: Schema$AppLinkData;
     /**
@@ -2217,6 +2233,10 @@ export namespace walletobjects_v1 {
      */
     allowMultipleUsersPerObject?: boolean | null;
     /**
+     * Optional app or website link that will be displayed as a button on the front of the pass. If AppLinkData is provided for the corresponding object that will be used instead.
+     */
+    appLinkData?: Schema$AppLinkData;
+    /**
      * Callback options to be used to call the issuer back for every save/delete of an object for this class by the end-user. All objects of this class are eligible for the callback.
      */
     callbackOptions?: Schema$CallbackOptions;
@@ -2403,7 +2423,7 @@ export namespace walletobjects_v1 {
      */
     accountName?: string | null;
     /**
-     * Optional information about the partner app link.
+     * Optional app or website link that will be displayed as a button on the front of the pass. If AppLinkData is provided for the corresponding class only object AppLinkData will be displayed.
      */
     appLinkData?: Schema$AppLinkData;
     /**
@@ -2624,7 +2644,7 @@ export namespace walletobjects_v1 {
      */
     filename?: string | null;
     /**
-     * Deprecated, use one of explicit hash type fields instead. These two hash related fields will only be populated on Scotty based media uploads and will contain the content of the hash group in the NotificationRequest: http://cs/#google3/uploader/service/proto/upload_listener.proto&q=class:Hash Hex encoded hash value of the uploaded media.
+     * Deprecated, use one of explicit hash type fields instead. These two hash related fields will only be populated on Scotty based media uploads and will contain the content of the hash group in the NotificationRequest: http://cs/#google3/blobstore2/api/scotty/service/proto/upload_listener.proto&q=class:Hash Hex encoded hash value of the uploaded media.
      */
     hash?: string | null;
     /**
@@ -2824,6 +2844,10 @@ export namespace walletobjects_v1 {
      */
     allowMultipleUsersPerObject?: boolean | null;
     /**
+     * Optional app or website link that will be displayed as a button on the front of the pass. If AppLinkData is provided for the corresponding object that will be used instead.
+     */
+    appLinkData?: Schema$AppLinkData;
+    /**
      * Callback options to be used to call the issuer back for every save/delete of an object for this class by the end-user. All objects of this class are eligible for the callback.
      */
     callbackOptions?: Schema$CallbackOptions;
@@ -2998,7 +3022,7 @@ export namespace walletobjects_v1 {
   }
   export interface Schema$OfferObject {
     /**
-     * Optional information about the partner app link.
+     * Optional app or website link that will be displayed as a button on the front of the pass. If AppLinkData is provided for the corresponding class only object AppLinkData will be displayed.
      */
     appLinkData?: Schema$AppLinkData;
     /**
@@ -3194,17 +3218,61 @@ export namespace walletobjects_v1 {
     kind?: string | null;
   }
   export interface Schema$Resources {
+    /**
+     * A list of event ticket classes.
+     */
     eventTicketClasses?: Schema$EventTicketClass[];
+    /**
+     * A list of event ticket objects.
+     */
     eventTicketObjects?: Schema$EventTicketObject[];
+    /**
+     * A list of flight classes.
+     */
     flightClasses?: Schema$FlightClass[];
+    /**
+     * A list of flight objects.
+     */
     flightObjects?: Schema$FlightObject[];
+    /**
+     * A list of generic classes.
+     */
+    genericClasses?: Schema$GenericClass[];
+    /**
+     * A list of generic objects.
+     */
+    genericObjects?: Schema$GenericObject[];
+    /**
+     * A list of gift card classes.
+     */
     giftCardClasses?: Schema$GiftCardClass[];
+    /**
+     * A list of gift card objects.
+     */
     giftCardObjects?: Schema$GiftCardObject[];
+    /**
+     * A list of loyalty classes.
+     */
     loyaltyClasses?: Schema$LoyaltyClass[];
+    /**
+     * A list of loyalty objects.
+     */
     loyaltyObjects?: Schema$LoyaltyObject[];
+    /**
+     * A list of offer classes.
+     */
     offerClasses?: Schema$OfferClass[];
+    /**
+     * A list of offer objects.
+     */
     offerObjects?: Schema$OfferObject[];
+    /**
+     * A list of transit classes.
+     */
     transitClasses?: Schema$TransitClass[];
+    /**
+     * A list of transit objects.
+     */
     transitObjects?: Schema$TransitObject[];
   }
   export interface Schema$Review {
@@ -3354,7 +3422,7 @@ export namespace walletobjects_v1 {
      */
     header?: string | null;
     /**
-     * The ID associated with a text module. This field is here to enable ease of management of text modules.
+     * The ID associated with a text module. This field is here to enable ease of management of text modules and referencing them in template overrides. The ID should only include alphanumeric characters, '_', or '-'. It can not include dots, as dots are used to separate fields within FieldReference.fieldPaths in template overrides.
      */
     id?: string | null;
     /**
@@ -3501,6 +3569,10 @@ export namespace walletobjects_v1 {
      * Deprecated. Use `multipleDevicesAndHoldersAllowedStatus` instead.
      */
     allowMultipleUsersPerObject?: boolean | null;
+    /**
+     * Optional app or website link that will be displayed as a button on the front of the pass. If AppLinkData is provided for the corresponding object that will be used instead.
+     */
+    appLinkData?: Schema$AppLinkData;
     /**
      * Callback options to be used to call the issuer back for every save/delete of an object for this class by the end-user. All objects of this class are eligible for the callback.
      */
@@ -3724,7 +3796,7 @@ export namespace walletobjects_v1 {
      */
     activationStatus?: Schema$ActivationStatus;
     /**
-     * Optional information about the partner app link.
+     * Optional app or website link that will be displayed as a button on the front of the pass. If AppLinkData is provided for the corresponding class only object AppLinkData will be displayed.
      */
     appLinkData?: Schema$AppLinkData;
     /**
@@ -4034,6 +4106,7 @@ export namespace walletobjects_v1 {
               '/walletobjects/v1/eventTicketClass/{resourceId}/addMessage'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4123,6 +4196,7 @@ export namespace walletobjects_v1 {
               rootUrl + '/walletobjects/v1/eventTicketClass/{resourceId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4211,6 +4285,7 @@ export namespace walletobjects_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4306,6 +4381,7 @@ export namespace walletobjects_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4395,6 +4471,7 @@ export namespace walletobjects_v1 {
               rootUrl + '/walletobjects/v1/eventTicketClass/{resourceId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -4482,6 +4559,7 @@ export namespace walletobjects_v1 {
               rootUrl + '/walletobjects/v1/eventTicketClass/{resourceId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
+            apiVersion: '',
           },
           options
         ),
@@ -4650,6 +4728,7 @@ export namespace walletobjects_v1 {
               '/walletobjects/v1/eventTicketObject/{resourceId}/addMessage'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4742,6 +4821,7 @@ export namespace walletobjects_v1 {
               rootUrl + '/walletobjects/v1/eventTicketObject/{resourceId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4833,6 +4913,7 @@ export namespace walletobjects_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4928,6 +5009,7 @@ export namespace walletobjects_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5024,6 +5106,7 @@ export namespace walletobjects_v1 {
               '/walletobjects/v1/eventTicketObject/{resourceId}/modifyLinkedOfferObjects'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5114,6 +5197,7 @@ export namespace walletobjects_v1 {
               rootUrl + '/walletobjects/v1/eventTicketObject/{resourceId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -5204,6 +5288,7 @@ export namespace walletobjects_v1 {
               rootUrl + '/walletobjects/v1/eventTicketObject/{resourceId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
+            apiVersion: '',
           },
           options
         ),
@@ -5383,6 +5468,7 @@ export namespace walletobjects_v1 {
               rootUrl + '/walletobjects/v1/flightClass/{resourceId}/addMessage'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5471,6 +5557,7 @@ export namespace walletobjects_v1 {
               rootUrl + '/walletobjects/v1/flightClass/{resourceId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5559,6 +5646,7 @@ export namespace walletobjects_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5651,6 +5739,7 @@ export namespace walletobjects_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5738,6 +5827,7 @@ export namespace walletobjects_v1 {
               rootUrl + '/walletobjects/v1/flightClass/{resourceId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -5825,6 +5915,7 @@ export namespace walletobjects_v1 {
               rootUrl + '/walletobjects/v1/flightClass/{resourceId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
+            apiVersion: '',
           },
           options
         ),
@@ -5990,6 +6081,7 @@ export namespace walletobjects_v1 {
               rootUrl + '/walletobjects/v1/flightObject/{resourceId}/addMessage'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -6078,6 +6170,7 @@ export namespace walletobjects_v1 {
               rootUrl + '/walletobjects/v1/flightObject/{resourceId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6166,6 +6259,7 @@ export namespace walletobjects_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -6259,6 +6353,7 @@ export namespace walletobjects_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6346,6 +6441,7 @@ export namespace walletobjects_v1 {
               rootUrl + '/walletobjects/v1/flightObject/{resourceId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -6433,6 +6529,7 @@ export namespace walletobjects_v1 {
               rootUrl + '/walletobjects/v1/flightObject/{resourceId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
+            apiVersion: '',
           },
           options
         ),
@@ -6599,6 +6696,7 @@ export namespace walletobjects_v1 {
               rootUrl + '/walletobjects/v1/genericClass/{resourceId}/addMessage'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -6687,6 +6785,7 @@ export namespace walletobjects_v1 {
               rootUrl + '/walletobjects/v1/genericClass/{resourceId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6775,6 +6874,7 @@ export namespace walletobjects_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -6868,6 +6968,7 @@ export namespace walletobjects_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6955,6 +7056,7 @@ export namespace walletobjects_v1 {
               rootUrl + '/walletobjects/v1/genericClass/{resourceId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -7042,6 +7144,7 @@ export namespace walletobjects_v1 {
               rootUrl + '/walletobjects/v1/genericClass/{resourceId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
+            apiVersion: '',
           },
           options
         ),
@@ -7209,6 +7312,7 @@ export namespace walletobjects_v1 {
               '/walletobjects/v1/genericObject/{resourceId}/addMessage'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -7298,6 +7402,7 @@ export namespace walletobjects_v1 {
               rootUrl + '/walletobjects/v1/genericObject/{resourceId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -7386,6 +7491,7 @@ export namespace walletobjects_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -7481,6 +7587,7 @@ export namespace walletobjects_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -7568,6 +7675,7 @@ export namespace walletobjects_v1 {
               rootUrl + '/walletobjects/v1/genericObject/{resourceId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -7655,6 +7763,7 @@ export namespace walletobjects_v1 {
               rootUrl + '/walletobjects/v1/genericObject/{resourceId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
+            apiVersion: '',
           },
           options
         ),
@@ -7823,6 +7932,7 @@ export namespace walletobjects_v1 {
               '/walletobjects/v1/giftCardClass/{resourceId}/addMessage'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -7912,6 +8022,7 @@ export namespace walletobjects_v1 {
               rootUrl + '/walletobjects/v1/giftCardClass/{resourceId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -8000,6 +8111,7 @@ export namespace walletobjects_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -8095,6 +8207,7 @@ export namespace walletobjects_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -8182,6 +8295,7 @@ export namespace walletobjects_v1 {
               rootUrl + '/walletobjects/v1/giftCardClass/{resourceId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -8269,6 +8383,7 @@ export namespace walletobjects_v1 {
               rootUrl + '/walletobjects/v1/giftCardClass/{resourceId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
+            apiVersion: '',
           },
           options
         ),
@@ -8437,6 +8552,7 @@ export namespace walletobjects_v1 {
               '/walletobjects/v1/giftCardObject/{resourceId}/addMessage'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -8526,6 +8642,7 @@ export namespace walletobjects_v1 {
               rootUrl + '/walletobjects/v1/giftCardObject/{resourceId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -8614,6 +8731,7 @@ export namespace walletobjects_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -8709,6 +8827,7 @@ export namespace walletobjects_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -8796,6 +8915,7 @@ export namespace walletobjects_v1 {
               rootUrl + '/walletobjects/v1/giftCardObject/{resourceId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -8883,6 +9003,7 @@ export namespace walletobjects_v1 {
               rootUrl + '/walletobjects/v1/giftCardObject/{resourceId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
+            apiVersion: '',
           },
           options
         ),
@@ -9043,6 +9164,7 @@ export namespace walletobjects_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -9130,6 +9252,7 @@ export namespace walletobjects_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -9220,6 +9343,7 @@ export namespace walletobjects_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -9307,6 +9431,7 @@ export namespace walletobjects_v1 {
               '$1'
             ),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -9394,6 +9519,7 @@ export namespace walletobjects_v1 {
               '$1'
             ),
             method: 'PUT',
+            apiVersion: '',
           },
           options
         ),
@@ -9527,6 +9653,7 @@ export namespace walletobjects_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -9635,6 +9762,7 @@ export namespace walletobjects_v1 {
               rootUrl + '/walletobjects/v1/loyaltyClass/{resourceId}/addMessage'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -9723,6 +9851,7 @@ export namespace walletobjects_v1 {
               rootUrl + '/walletobjects/v1/loyaltyClass/{resourceId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -9811,6 +9940,7 @@ export namespace walletobjects_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -9904,6 +10034,7 @@ export namespace walletobjects_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -9991,6 +10122,7 @@ export namespace walletobjects_v1 {
               rootUrl + '/walletobjects/v1/loyaltyClass/{resourceId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -10078,6 +10210,7 @@ export namespace walletobjects_v1 {
               rootUrl + '/walletobjects/v1/loyaltyClass/{resourceId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
+            apiVersion: '',
           },
           options
         ),
@@ -10245,6 +10378,7 @@ export namespace walletobjects_v1 {
               '/walletobjects/v1/loyaltyObject/{resourceId}/addMessage'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -10334,6 +10468,7 @@ export namespace walletobjects_v1 {
               rootUrl + '/walletobjects/v1/loyaltyObject/{resourceId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -10422,6 +10557,7 @@ export namespace walletobjects_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -10517,6 +10653,7 @@ export namespace walletobjects_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -10607,6 +10744,7 @@ export namespace walletobjects_v1 {
               '/walletobjects/v1/loyaltyObject/{resourceId}/modifyLinkedOfferObjects'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -10694,6 +10832,7 @@ export namespace walletobjects_v1 {
               rootUrl + '/walletobjects/v1/loyaltyObject/{resourceId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -10781,6 +10920,7 @@ export namespace walletobjects_v1 {
               rootUrl + '/walletobjects/v1/loyaltyObject/{resourceId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
+            apiVersion: '',
           },
           options
         ),
@@ -10953,6 +11093,7 @@ export namespace walletobjects_v1 {
               '/walletobjects/v1/transitObject/{resourceId}/downloadRotatingBarcodeValues'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -11047,6 +11188,7 @@ export namespace walletobjects_v1 {
               '/walletobjects/v1/transitObject/{resourceId}/uploadRotatingBarcodeValues'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -11187,6 +11329,7 @@ export namespace walletobjects_v1 {
               rootUrl + '/walletobjects/v1/offerClass/{resourceId}/addMessage'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -11275,6 +11418,7 @@ export namespace walletobjects_v1 {
               rootUrl + '/walletobjects/v1/offerClass/{resourceId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -11363,6 +11507,7 @@ export namespace walletobjects_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -11455,6 +11600,7 @@ export namespace walletobjects_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -11541,6 +11687,7 @@ export namespace walletobjects_v1 {
               rootUrl + '/walletobjects/v1/offerClass/{resourceId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -11628,6 +11775,7 @@ export namespace walletobjects_v1 {
               rootUrl + '/walletobjects/v1/offerClass/{resourceId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
+            apiVersion: '',
           },
           options
         ),
@@ -11792,6 +11940,7 @@ export namespace walletobjects_v1 {
               rootUrl + '/walletobjects/v1/offerObject/{resourceId}/addMessage'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -11880,6 +12029,7 @@ export namespace walletobjects_v1 {
               rootUrl + '/walletobjects/v1/offerObject/{resourceId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -11968,6 +12118,7 @@ export namespace walletobjects_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -12060,6 +12211,7 @@ export namespace walletobjects_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -12147,6 +12299,7 @@ export namespace walletobjects_v1 {
               rootUrl + '/walletobjects/v1/offerObject/{resourceId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -12234,6 +12387,7 @@ export namespace walletobjects_v1 {
               rootUrl + '/walletobjects/v1/offerObject/{resourceId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
+            apiVersion: '',
           },
           options
         ),
@@ -12391,6 +12545,7 @@ export namespace walletobjects_v1 {
               rootUrl + '/walletobjects/v1/permissions/{resourceId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -12478,6 +12633,7 @@ export namespace walletobjects_v1 {
               rootUrl + '/walletobjects/v1/permissions/{resourceId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
+            apiVersion: '',
           },
           options
         ),
@@ -12591,6 +12747,7 @@ export namespace walletobjects_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -12699,6 +12856,7 @@ export namespace walletobjects_v1 {
               rootUrl + '/walletobjects/v1/transitClass/{resourceId}/addMessage'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -12787,6 +12945,7 @@ export namespace walletobjects_v1 {
               rootUrl + '/walletobjects/v1/transitClass/{resourceId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -12875,6 +13034,7 @@ export namespace walletobjects_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -12968,6 +13128,7 @@ export namespace walletobjects_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -13055,6 +13216,7 @@ export namespace walletobjects_v1 {
               rootUrl + '/walletobjects/v1/transitClass/{resourceId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -13142,6 +13304,7 @@ export namespace walletobjects_v1 {
               rootUrl + '/walletobjects/v1/transitClass/{resourceId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
+            apiVersion: '',
           },
           options
         ),
@@ -13309,6 +13472,7 @@ export namespace walletobjects_v1 {
               '/walletobjects/v1/transitObject/{resourceId}/addMessage'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -13398,6 +13562,7 @@ export namespace walletobjects_v1 {
               rootUrl + '/walletobjects/v1/transitObject/{resourceId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -13486,6 +13651,7 @@ export namespace walletobjects_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -13581,6 +13747,7 @@ export namespace walletobjects_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -13668,6 +13835,7 @@ export namespace walletobjects_v1 {
               rootUrl + '/walletobjects/v1/transitObject/{resourceId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -13755,6 +13923,7 @@ export namespace walletobjects_v1 {
               rootUrl + '/walletobjects/v1/transitObject/{resourceId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
+            apiVersion: '',
           },
           options
         ),

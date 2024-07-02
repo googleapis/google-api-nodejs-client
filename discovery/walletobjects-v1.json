@@ -2681,7 +2681,7 @@
       }
     }
   },
-  "revision": "20240313",
+  "revision": "20240628",
   "rootUrl": "https://walletobjects.googleapis.com/",
   "schemas": {
     "ActivationOptions": {
@@ -2772,15 +2772,16 @@
       "properties": {
         "androidAppLinkInfo": {
           "$ref": "AppLinkDataAppLinkInfo",
-          "description": "Optional information about the partner app link. If included, the app link link module will be rendered on the valuable details on the android client."
+          "description": "Optional information about the partner app link."
         },
         "iosAppLinkInfo": {
           "$ref": "AppLinkDataAppLinkInfo",
-          "description": "Optional information about the partner app link. If included, the app link link module will be rendered on the valuable details on the ios client."
+          "deprecated": true,
+          "description": "Deprecated. Links to open iOS apps are not supported."
         },
         "webAppLinkInfo": {
           "$ref": "AppLinkDataAppLinkInfo",
-          "description": "Optional information about the partner app link. If included, the app link link module will be rendered on the valuable details on the web client."
+          "description": "Optional information about the partner web link."
         }
       },
       "type": "object"
@@ -2790,19 +2791,22 @@
       "properties": {
         "appLogoImage": {
           "$ref": "Image",
-          "description": "Optional image to be displayed in the App Link Module"
+          "deprecated": true,
+          "description": "Deprecated. Image isn't supported in the app link module."
         },
         "appTarget": {
           "$ref": "AppLinkDataAppLinkInfoAppTarget",
-          "description": "Url to follow when opening the App Link Module on clients. It will be used by partners to open their webpage or deeplink into their app."
+          "description": "Target to follow when opening the app link on clients. It will be used by partners to open their app or webpage."
         },
         "description": {
           "$ref": "LocalizedString",
-          "description": "String to be displayed in the description of the App Link Module Required"
+          "deprecated": true,
+          "description": "Deprecated. Description isn't supported in the app link module."
         },
         "title": {
           "$ref": "LocalizedString",
-          "description": "String to be displayed in the title of the App Link Module Required"
+          "deprecated": true,
+          "description": "Deprecated. Title isn't supported in the app link module."
         }
       },
       "type": "object"
@@ -3732,6 +3736,10 @@
           "description": "Deprecated. Use `multipleDevicesAndHoldersAllowedStatus` instead.",
           "type": "boolean"
         },
+        "appLinkData": {
+          "$ref": "AppLinkData",
+          "description": "Optional app or website link that will be displayed as a button on the front of the pass. If AppLinkData is provided for the corresponding object that will be used instead."
+        },
         "callbackOptions": {
           "$ref": "CallbackOptions",
           "description": "Callback options to be used to call the issuer back for every save/delete of an object for this class by the end-user. All objects of this class are eligible for the callback."
@@ -4137,7 +4145,7 @@
       "properties": {
         "appLinkData": {
           "$ref": "AppLinkData",
-          "description": "Optional information about the partner app link."
+          "description": "Optional app or website link that will be displayed as a button on the front of the pass. If AppLinkData is provided for the corresponding class only object AppLinkData will be displayed."
         },
         "barcode": {
           "$ref": "Barcode",
@@ -4527,6 +4535,10 @@
           "description": "Deprecated. Use `multipleDevicesAndHoldersAllowedStatus` instead.",
           "type": "boolean"
         },
+        "appLinkData": {
+          "$ref": "AppLinkData",
+          "description": "Optional app or website link that will be displayed as a button on the front of the pass. If AppLinkData is provided for the corresponding object that will be used instead."
+        },
         "boardingAndSeatingPolicy": {
           "$ref": "BoardingAndSeatingPolicy",
           "description": "Policies for boarding and seating. These will inform which labels will be shown to users."
@@ -4877,7 +4889,7 @@
       "properties": {
         "appLinkData": {
           "$ref": "AppLinkData",
-          "description": "Optional information about the partner app link."
+          "description": "Optional app or website link that will be displayed as a button on the front of the pass. If AppLinkData is provided for the corresponding class only object AppLinkData will be displayed."
         },
         "barcode": {
           "$ref": "Barcode",
@@ -5088,6 +5100,10 @@
       "description": "Generic Class",
       "id": "GenericClass",
       "properties": {
+        "appLinkData": {
+          "$ref": "AppLinkData",
+          "description": "Optional app or website link that will be displayed as a button on the front of the pass. If AppLinkData is provided for the corresponding object that will be used instead."
+        },
         "callbackOptions": {
           "$ref": "CallbackOptions",
           "description": "Callback options to be used to call the issuer back for every save/delete of an object for this class by the end-user. All objects of this class are eligible for the callback."
@@ -5219,12 +5235,12 @@
       "type": "object"
     },
     "GenericObject": {
-      "description": "Generic Object Next ID: 121",
+      "description": "Generic Object",
       "id": "GenericObject",
       "properties": {
         "appLinkData": {
           "$ref": "AppLinkData",
-          "description": "Information about the partner app link. The maximum number of these fields displayed is 10."
+          "description": "Optional app or website link that will be displayed as a button on the front of the pass. If AppLinkData is provided for the corresponding class only object AppLinkData will be displayed."
         },
         "barcode": {
           "$ref": "Barcode",
@@ -5426,6 +5442,10 @@
           "deprecated": true,
           "description": "Deprecated. Use `multipleDevicesAndHoldersAllowedStatus` instead.",
           "type": "boolean"
+        },
+        "appLinkData": {
+          "$ref": "AppLinkData",
+          "description": "Optional app or website link that will be displayed as a button on the front of the pass. If AppLinkData is provided for the corresponding object that will be used instead."
         },
         "callbackOptions": {
           "$ref": "CallbackOptions",
@@ -5693,7 +5713,7 @@
       "properties": {
         "appLinkData": {
           "$ref": "AppLinkData",
-          "description": "Optional information about the partner app link."
+          "description": "Optional app or website link that will be displayed as a button on the front of the pass. If AppLinkData is provided for the corresponding class only object AppLinkData will be displayed."
         },
         "balance": {
           "$ref": "Money",
@@ -6228,6 +6248,10 @@
           "description": "Deprecated. Use `multipleDevicesAndHoldersAllowedStatus` instead.",
           "type": "boolean"
         },
+        "appLinkData": {
+          "$ref": "AppLinkData",
+          "description": "Optional app or website link that will be displayed as a button on the front of the pass. If AppLinkData is provided for the corresponding object that will be used instead."
+        },
         "callbackOptions": {
           "$ref": "CallbackOptions",
           "description": "Callback options to be used to call the issuer back for every save/delete of an object for this class by the end-user. All objects of this class are eligible for the callback."
@@ -6522,7 +6546,7 @@
         },
         "appLinkData": {
           "$ref": "AppLinkData",
-          "description": "Optional information about the partner app link."
+          "description": "Optional app or website link that will be displayed as a button on the front of the pass. If AppLinkData is provided for the corresponding class only object AppLinkData will be displayed."
         },
         "barcode": {
           "$ref": "Barcode",
@@ -6827,7 +6851,7 @@
         },
         "hash": {
           "deprecated": true,
-          "description": "Deprecated, use one of explicit hash type fields instead. These two hash related fields will only be populated on Scotty based media uploads and will contain the content of the hash group in the NotificationRequest: http://cs/#google3/uploader/service/proto/upload_listener.proto&q=class:Hash Hex encoded hash value of the uploaded media.",
+          "description": "Deprecated, use one of explicit hash type fields instead. These two hash related fields will only be populated on Scotty based media uploads and will contain the content of the hash group in the NotificationRequest: http://cs/#google3/blobstore2/api/scotty/service/proto/upload_listener.proto&q=class:Hash Hex encoded hash value of the uploaded media.",
           "type": "string"
         },
         "hashVerified": {
@@ -7023,21 +7047,24 @@
             "TEXT",
             "text",
             "EXPIRATION_NOTIFICATION",
-            "expirationNotification"
+            "expirationNotification",
+            "TEXT_AND_NOTIFY"
           ],
           "enumDeprecated": [
             false,
             false,
             true,
             false,
-            true
+            true,
+            false
           ],
           "enumDescriptions": [
             "",
             "Renders the message as text on the card details screen. This is the default message type.",
             "Legacy alias for `TEXT`. Deprecated.",
             "Note: This enum is currently not supported.",
-            "Legacy alias for `EXPIRATION_NOTIFICATION`. Deprecated."
+            "Legacy alias for `EXPIRATION_NOTIFICATION`. Deprecated.",
+            "Renders the message as text on the card details screen and as an Android notification."
           ],
           "type": "string"
         }
@@ -7136,6 +7163,10 @@
           "deprecated": true,
           "description": "Deprecated. Use `multipleDevicesAndHoldersAllowedStatus` instead.",
           "type": "boolean"
+        },
+        "appLinkData": {
+          "$ref": "AppLinkData",
+          "description": "Optional app or website link that will be displayed as a button on the front of the pass. If AppLinkData is provided for the corresponding object that will be used instead."
         },
         "callbackOptions": {
           "$ref": "CallbackOptions",
@@ -7452,7 +7483,7 @@
       "properties": {
         "appLinkData": {
           "$ref": "AppLinkData",
-          "description": "Optional information about the partner app link."
+          "description": "Optional app or website link that will be displayed as a button on the front of the pass. If AppLinkData is provided for the corresponding class only object AppLinkData will be displayed."
         },
         "barcode": {
           "$ref": "Barcode",
@@ -7790,72 +7821,98 @@
       "id": "Resources",
       "properties": {
         "eventTicketClasses": {
+          "description": "A list of event ticket classes.",
           "items": {
             "$ref": "EventTicketClass"
           },
           "type": "array"
         },
         "eventTicketObjects": {
+          "description": "A list of event ticket objects.",
           "items": {
             "$ref": "EventTicketObject"
           },
           "type": "array"
         },
         "flightClasses": {
+          "description": "A list of flight classes.",
           "items": {
             "$ref": "FlightClass"
           },
           "type": "array"
         },
         "flightObjects": {
+          "description": "A list of flight objects.",
           "items": {
             "$ref": "FlightObject"
           },
           "type": "array"
         },
+        "genericClasses": {
+          "description": "A list of generic classes.",
+          "items": {
+            "$ref": "GenericClass"
+          },
+          "type": "array"
+        },
+        "genericObjects": {
+          "description": "A list of generic objects.",
+          "items": {
+            "$ref": "GenericObject"
+          },
+          "type": "array"
+        },
         "giftCardClasses": {
+          "description": "A list of gift card classes.",
           "items": {
             "$ref": "GiftCardClass"
           },
           "type": "array"
         },
         "giftCardObjects": {
+          "description": "A list of gift card objects.",
           "items": {
             "$ref": "GiftCardObject"
           },
           "type": "array"
         },
         "loyaltyClasses": {
+          "description": "A list of loyalty classes.",
           "items": {
             "$ref": "LoyaltyClass"
           },
           "type": "array"
         },
         "loyaltyObjects": {
+          "description": "A list of loyalty objects.",
           "items": {
             "$ref": "LoyaltyObject"
           },
           "type": "array"
         },
         "offerClasses": {
+          "description": "A list of offer classes.",
           "items": {
             "$ref": "OfferClass"
           },
           "type": "array"
         },
         "offerObjects": {
+          "description": "A list of offer objects.",
           "items": {
             "$ref": "OfferObject"
           },
           "type": "array"
         },
         "transitClasses": {
+          "description": "A list of transit classes.",
           "items": {
             "$ref": "TransitClass"
           },
           "type": "array"
         },
         "transitObjects": {
+          "description": "A list of transit objects.",
           "items": {
             "$ref": "TransitObject"
           },
@@ -8207,7 +8264,7 @@
           "type": "string"
         },
         "id": {
-          "description": "The ID associated with a text module. This field is here to enable ease of management of text modules.",
+          "description": "The ID associated with a text module. This field is here to enable ease of management of text modules and referencing them in template overrides. The ID should only include alphanumeric characters, '_', or '-'. It can not include dots, as dots are used to separate fields within FieldReference.fieldPaths in template overrides.",
           "type": "string"
         },
         "localizedBody": {
@@ -8409,6 +8466,10 @@
           "deprecated": true,
           "description": "Deprecated. Use `multipleDevicesAndHoldersAllowedStatus` instead.",
           "type": "boolean"
+        },
+        "appLinkData": {
+          "$ref": "AppLinkData",
+          "description": "Optional app or website link that will be displayed as a button on the front of the pass. If AppLinkData is provided for the corresponding object that will be used instead."
         },
         "callbackOptions": {
           "$ref": "CallbackOptions",
@@ -8778,7 +8839,7 @@
         },
         "appLinkData": {
           "$ref": "AppLinkData",
-          "description": "Optional information about the partner app link."
+          "description": "Optional app or website link that will be displayed as a button on the front of the pass. If AppLinkData is provided for the corresponding class only object AppLinkData will be displayed."
         },
         "barcode": {
           "$ref": "Barcode",

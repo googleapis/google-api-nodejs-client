@@ -177,38 +177,6 @@
             }
           },
           "resources": {
-            "backupVaults": {
-              "methods": {
-                "testIamPermissions": {
-                  "description": "Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a `NOT_FOUND` error. Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may \"fail open\" without warning.",
-                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/backupVaults/{backupVaultsId}:testIamPermissions",
-                  "httpMethod": "POST",
-                  "id": "backupdr.projects.locations.backupVaults.testIamPermissions",
-                  "parameterOrder": [
-                    "resource"
-                  ],
-                  "parameters": {
-                    "resource": {
-                      "description": "REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
-                      "location": "path",
-                      "pattern": "^projects/[^/]+/locations/[^/]+/backupVaults/[^/]+$",
-                      "required": true,
-                      "type": "string"
-                    }
-                  },
-                  "path": "v1/{+resource}:testIamPermissions",
-                  "request": {
-                    "$ref": "TestIamPermissionsRequest"
-                  },
-                  "response": {
-                    "$ref": "TestIamPermissionsResponse"
-                  },
-                  "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
-                  ]
-                }
-              }
-            },
             "managementServers": {
               "methods": {
                 "create": {
@@ -567,7 +535,7 @@
       }
     }
   },
-  "revision": "20240221",
+  "revision": "20240522",
   "rootUrl": "https://backupdr.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -774,6 +742,14 @@
       "description": "ManagementServer describes a single BackupDR ManagementServer instance.",
       "id": "ManagementServer",
       "properties": {
+        "baProxyUri": {
+          "description": "Output only. The hostname or ip address of the exposed AGM endpoints, used by BAs to connect to BA proxy.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
         "createTime": {
           "description": "Output only. The time when the instance was created.",
           "format": "google-datetime",
@@ -816,6 +792,16 @@
           "description": "Output only. The OAuth 2.0 client id is required to make API calls to the BackupDR instance API of this ManagementServer. This is the value that should be provided in the ‘aud’ field of the OIDC ID Token (see openid specification https://openid.net/specs/openid-connect-core-1_0.html#IDToken).",
           "readOnly": true,
           "type": "string"
+        },
+        "satisfiesPzi": {
+          "description": "Output only. Reserved for future use.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "satisfiesPzs": {
+          "description": "Output only. Reserved for future use.",
+          "readOnly": true,
+          "type": "boolean"
         },
         "state": {
           "description": "Output only. The ManagementServer state.",

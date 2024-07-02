@@ -1,5 +1,66 @@
 # Changelog
 
+## [16.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/servicenetworking-v15.0.0...servicenetworking-v16.0.0) (2024-06-21)
+
+
+### ⚠ BREAKING CHANGES
+
+* **servicenetworking:** This release has breaking changes.
+
+### Features
+
+* **servicenetworking:** update the API ([d481dce](https://github.com/googleapis/google-api-nodejs-client/commit/d481dce95d7f9f899d9b62f78933a731159f381c))
+
+
+### Bug Fixes
+
+* **servicenetworking:** update the API ([d4fb56f](https://github.com/googleapis/google-api-nodejs-client/commit/d4fb56f717daa95b8faf4a5a98bc358ca0be800a))
+
+## [15.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/servicenetworking-v14.0.1...servicenetworking-v15.0.0) (2024-06-06)
+
+
+### ⚠ BREAKING CHANGES
+
+* **servicenetworking:** This release has breaking changes.
+
+### Features
+
+* **servicenetworking:** update the API ([d481dce](https://github.com/googleapis/google-api-nodejs-client/commit/d481dce95d7f9f899d9b62f78933a731159f381c))
+
+
+### Bug Fixes
+
+* **servicenetworking:** update the API ([d4fb56f](https://github.com/googleapis/google-api-nodejs-client/commit/d4fb56f717daa95b8faf4a5a98bc358ca0be800a))
+
+## [14.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/servicenetworking-v14.0.0...servicenetworking-v14.0.1) (2024-06-03)
+
+
+### Bug Fixes
+
+* **servicenetworking:** update the API ([d4fb56f](https://github.com/googleapis/google-api-nodejs-client/commit/d4fb56f717daa95b8faf4a5a98bc358ca0be800a))
+
+## [14.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/servicenetworking-v13.0.0...servicenetworking-v14.0.0) (2024-05-02)
+
+
+### ⚠ BREAKING CHANGES
+
+* **servicenetworking:** This release has breaking changes.
+
+### Features
+
+* **servicenetworking:** update the API ([d481dce](https://github.com/googleapis/google-api-nodejs-client/commit/d481dce95d7f9f899d9b62f78933a731159f381c))
+
+## [13.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/servicenetworking-v12.7.0...servicenetworking-v13.0.0) (2024-05-02)
+
+
+### ⚠ BREAKING CHANGES
+
+* **servicenetworking:** This release has breaking changes.
+
+### Features
+
+* **servicenetworking:** update the API ([d481dce](https://github.com/googleapis/google-api-nodejs-client/commit/d481dce95d7f9f899d9b62f78933a731159f381c))
+
 ## [12.7.0](https://github.com/googleapis/google-api-nodejs-client/compare/servicenetworking-v12.6.0...servicenetworking-v12.7.0) (2024-01-05)
 
 

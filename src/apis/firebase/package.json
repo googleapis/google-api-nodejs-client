@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/firebase",
-  "version": "6.4.0",
+  "version": "6.4.2",
   "description": "firebase",
   "main": "build/index.js",
   "types": "build/index.d.ts",

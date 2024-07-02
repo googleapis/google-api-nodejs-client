@@ -263,6 +263,10 @@ export namespace batch_v1 {
      */
     instancePreemptionNoticeReceived?: boolean | null;
     /**
+     * Optional. machine type of the VM
+     */
+    machineType?: string | null;
+    /**
      * parsed contents of /etc/os-release
      */
     osRelease?: {[key: string]: string} | null;
@@ -380,7 +384,7 @@ export namespace batch_v1 {
      */
     environment?: Schema$AgentEnvironment;
     /**
-     * Maximum duration the task should run. The task will be killed and marked as FAILED if over this limit. The valid value range for max_run_duration in seconds is [0, 315576000000.999999999],
+     * Maximum duration the task should run before being automatically retried (if enabled) or automatically failed. Format the value of this field as a time limit in seconds followed by `s`—for example, `3600s` for 1 hour. The field accepts any value between 0 and the maximum listed for the `Duration` field type at https://protobuf.dev/reference/protobuf/google.protobuf/#duration; however, the actual maximum run time for a job will be limited to the maximum run time for a job listed at https://cloud.google.com/batch/quotas#max-job-duration.
      */
     maxRunDuration?: string | null;
     /**
@@ -447,7 +451,7 @@ export namespace batch_v1 {
      */
     placement?: Schema$PlacementPolicy;
     /**
-     * Service account that VMs will run as.
+     * Defines the service account for Batch-created VMs. If omitted, the [default Compute Engine service account](https://cloud.google.com/compute/docs/access/service-accounts#default_service_account) is used. Must match the service account specified in any used instance template configured in the Batch job. Includes the following fields: * email: The service account's email address. If not set, the default Compute Engine service account is used. * scopes: Additional OAuth scopes to grant the service account, beyond the default cloud-platform scope. (list of strings)
      */
     serviceAccount?: Schema$ServiceAccount;
     /**
@@ -570,7 +574,7 @@ export namespace batch_v1 {
      */
     snapshot?: string | null;
     /**
-     * Disk type as shown in `gcloud compute disk-types list`. For example, local SSD uses type "local-ssd". Persistent disks and boot disks use "pd-balanced", "pd-extreme", "pd-ssd" or "pd-standard".
+     * Disk type as shown in `gcloud compute disk-types list`. For example, local SSD uses type "local-ssd". Persistent disks and boot disks use "pd-balanced", "pd-extreme", "pd-ssd" or "pd-standard". If not specified, "pd-standard" will be used as the default type for non-boot disks, "pd-balanced" will be used as the default type for boot disks.
      */
     type?: string | null;
   }
@@ -642,9 +646,13 @@ export namespace batch_v1 {
    */
   export interface Schema$InstancePolicyOrTemplate {
     /**
-     * Set this field true if users want Batch to help fetch drivers from a third party location and install them for GPUs specified in policy.accelerators or instance_template on their behalf. Default is false. For Container-Optimized Image cases, Batch will install the accelerator driver following milestones of https://cloud.google.com/container-optimized-os/docs/release-notes. For non Container-Optimized Image cases, following https://github.com/GoogleCloudPlatform/compute-gpu-installation/blob/main/linux/install_gpu_driver.py.
+     * Set this field true if you want Batch to help fetch drivers from a third party location and install them for GPUs specified in `policy.accelerators` or `instance_template` on your behalf. Default is false. For Container-Optimized Image cases, Batch will install the accelerator driver following milestones of https://cloud.google.com/container-optimized-os/docs/release-notes. For non Container-Optimized Image cases, following https://github.com/GoogleCloudPlatform/compute-gpu-installation/blob/main/linux/install_gpu_driver.py.
      */
     installGpuDrivers?: boolean | null;
+    /**
+     * Optional. Set this field true if you want Batch to install Ops Agent on your behalf. Default is false.
+     */
+    installOpsAgent?: boolean | null;
     /**
      * Name of an instance template used to create VMs. Named the field as 'instance_template' instead of 'template' to avoid c++ keyword conflict.
      */
@@ -733,7 +741,7 @@ export namespace batch_v1 {
      */
     message?: Schema$Message;
     /**
-     * The Pub/Sub topic where notifications like the job state changes will be published. The topic must exist in the same project as the job and billings will be charged to this project. If not specified, no Pub/Sub messages will be sent. Topic format: `projects/{project\}/topics/{topic\}`.
+     * The Pub/Sub topic where notifications for the job, like state changes, will be published. If undefined, no Pub/Sub notifications are sent for this job. Specify the topic using the following format: `projects/{project\}/topics/{topic\}`. Notably, if you want to specify a Pub/Sub topic that is in a different project than the job, your administrator must grant your project's Batch service agent permission to publish to that topic. For more information about configuring Pub/Sub notifications for a job, see https://cloud.google.com/batch/docs/enable-notifications.
      */
     pubsubTopic?: string | null;
   }
@@ -868,7 +876,7 @@ export namespace batch_v1 {
   }
   export interface Schema$LocationPolicy {
     /**
-     * A list of allowed location names represented by internal URLs. Each location can be a region or a zone. Only one region or multiple zones in one region is supported now. For example, ["regions/us-central1"] allow VMs in any zones in region us-central1. ["zones/us-central1-a", "zones/us-central1-c"] only allow VMs in zones us-central1-a and us-central1-c. All locations end up in different regions would cause errors. For example, ["regions/us-central1", "zones/us-central1-a", "zones/us-central1-b", "zones/us-west1-a"] contains 2 regions "us-central1" and "us-west1". An error is expected in this case.
+     * A list of allowed location names represented by internal URLs. Each location can be a region or a zone. Only one region or multiple zones in one region is supported now. For example, ["regions/us-central1"] allow VMs in any zones in region us-central1. ["zones/us-central1-a", "zones/us-central1-c"] only allow VMs in zones us-central1-a and us-central1-c. Mixing locations from different regions would cause errors. For example, ["regions/us-central1", "zones/us-central1-a", "zones/us-central1-b", "zones/us-west1-a"] contains locations from two distinct regions: us-central1 and us-west1. This combination will trigger an error.
      */
     allowedLocations?: string[] | null;
   }
@@ -1117,11 +1125,11 @@ export namespace batch_v1 {
    */
   export interface Schema$ServiceAccount {
     /**
-     * Email address of the service account. If not specified, the default Compute Engine service account for the project will be used. If instance template is being used, the service account has to be specified in the instance template and it has to match the email field here.
+     * Email address of the service account.
      */
     email?: string | null;
     /**
-     * List of scopes to be enabled for this service account on the VM, in addition to the cloud-platform API scope that will be added by default.
+     * List of scopes to be enabled for this service account.
      */
     scopes?: string[] | null;
   }
@@ -1185,7 +1193,7 @@ export namespace batch_v1 {
    */
   export interface Schema$TaskExecution {
     /**
-     * When task is completed as the status of FAILED or SUCCEEDED, exit code is for one task execution result, default is 0 as success.
+     * The exit code of a finished task. If the task succeeded, the exit code will be 0. If the task failed but not due to the following reasons, the exit code will be 50000. Otherwise, it can be from different sources: * Batch known failures: https://cloud.google.com/batch/docs/troubleshooting#reserved-exit-codes. * Batch runnable execution failures; you can rely on Batch logs to further diagnose: https://cloud.google.com/batch/docs/analyze-job-using-logs. If there are multiple runnables failures, Batch only exposes the first error.
      */
     exitCode?: number | null;
   }
@@ -1272,7 +1280,7 @@ export namespace batch_v1 {
      */
     maxRetryCount?: number | null;
     /**
-     * Maximum duration the task should run. The task will be killed and marked as FAILED if over this limit. The valid value range for max_run_duration in seconds is [0, 315576000000.999999999],
+     * Maximum duration the task should run before being automatically retried (if enabled) or automatically failed. Format the value of this field as a time limit in seconds followed by `s`—for example, `3600s` for 1 hour. The field accepts any value between 0 and the maximum listed for the `Duration` field type at https://protobuf.dev/reference/protobuf/google.protobuf/#duration; however, the actual maximum run time for a job will be limited to the maximum run time for a job listed at https://cloud.google.com/batch/quotas#max-job-duration.
      */
     maxRunDuration?: string | null;
     /**
@@ -1310,7 +1318,7 @@ export namespace batch_v1 {
      */
     gcs?: Schema$GCS;
     /**
-     * For Google Cloud Storage (GCS), mount options are the options supported by the gcsfuse tool (https://github.com/GoogleCloudPlatform/gcsfuse). For existing persistent disks, mount options provided by the mount command (https://man7.org/linux/man-pages/man8/mount.8.html) except writing are supported. This is due to restrictions of multi-writer mode (https://cloud.google.com/compute/docs/disks/sharing-disks-between-vms). For other attached disks and Network File System (NFS), mount options are these supported by the mount command (https://man7.org/linux/man-pages/man8/mount.8.html).
+     * Mount options vary based on the type of storage volume: * For a Cloud Storage bucket, all the mount options provided by the [`gcsfuse` tool](https://cloud.google.com/storage/docs/gcsfuse-cli) are supported. * For an existing persistent disk, all mount options provided by the [`mount` command](https://man7.org/linux/man-pages/man8/mount.8.html) except writing are supported. This is due to restrictions of [multi-writer mode](https://cloud.google.com/compute/docs/disks/sharing-disks-between-vms). * For any other disk or a Network File System (NFS), all the mount options provided by the `mount` command are supported.
      */
     mountOptions?: string[] | null;
     /**
@@ -1412,6 +1420,7 @@ export namespace batch_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1504,6 +1513,7 @@ export namespace batch_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1626,6 +1636,7 @@ export namespace batch_v1 {
           {
             url: (rootUrl + '/v1/{+parent}/jobs').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1710,6 +1721,7 @@ export namespace batch_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -1794,6 +1806,7 @@ export namespace batch_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1878,6 +1891,7 @@ export namespace batch_v1 {
           {
             url: (rootUrl + '/v1/{+parent}/jobs').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2047,6 +2061,7 @@ export namespace batch_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2138,6 +2153,7 @@ export namespace batch_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2256,6 +2272,7 @@ export namespace batch_v1 {
           {
             url: (rootUrl + '/v1/{+name}:cancel').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2340,6 +2357,7 @@ export namespace batch_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -2424,6 +2442,7 @@ export namespace batch_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2516,6 +2535,7 @@ export namespace batch_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2663,6 +2683,7 @@ export namespace batch_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),

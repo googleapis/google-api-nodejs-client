@@ -4578,7 +4578,7 @@
                       "type": "string"
                     },
                     "targetingType": {
-                      "description": "Required. Identifies the type of this assigned targeting option. Supported targeting types: * `TARGETING_TYPE_CHANNEL` * `TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION` * `TARGETING_TYPE_OMID` * `TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION`",
+                      "description": "Required. Identifies the type of this assigned targeting option. Supported targeting types: * `TARGETING_TYPE_CHANNEL` * `TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION` * `TARGETING_TYPE_OMID` * `TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION` * `TARGETING_TYPE_KEYWORD`",
                       "enum": [
                         "TARGETING_TYPE_UNSPECIFIED",
                         "TARGETING_TYPE_CHANNEL",
@@ -4725,7 +4725,7 @@
                       "type": "string"
                     },
                     "targetingType": {
-                      "description": "Required. Identifies the type of this assigned targeting option. Supported targeting types: * `TARGETING_TYPE_CHANNEL` * `TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION` * `TARGETING_TYPE_OMID` * `TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION`",
+                      "description": "Required. Identifies the type of this assigned targeting option. Supported targeting types: * `TARGETING_TYPE_CHANNEL` * `TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION` * `TARGETING_TYPE_OMID` * `TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION` * `TARGETING_TYPE_KEYWORD`",
                       "enum": [
                         "TARGETING_TYPE_UNSPECIFIED",
                         "TARGETING_TYPE_CHANNEL",
@@ -4869,7 +4869,7 @@
                       "type": "string"
                     },
                     "targetingType": {
-                      "description": "Required. Identifies the type of this assigned targeting option. Supported targeting types: * `TARGETING_TYPE_CHANNEL` * `TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION` * `TARGETING_TYPE_OMID` * `TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION` * `TARGETING_TYPE_YOUTUBE_VIDEO` * `TARGETING_TYPE_YOUTUBE_CHANNEL`",
+                      "description": "Required. Identifies the type of this assigned targeting option. Supported targeting types: * `TARGETING_TYPE_CHANNEL` * `TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION` * `TARGETING_TYPE_OMID` * `TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION` * `TARGETING_TYPE_YOUTUBE_VIDEO` * `TARGETING_TYPE_YOUTUBE_CHANNEL` * `TARGETING_TYPE_KEYWORD`",
                       "enum": [
                         "TARGETING_TYPE_UNSPECIFIED",
                         "TARGETING_TYPE_CHANNEL",
@@ -5026,7 +5026,7 @@
                       "type": "string"
                     },
                     "targetingType": {
-                      "description": "Required. Identifies the type of assigned targeting options to list. Supported targeting types: * `TARGETING_TYPE_CHANNEL` * `TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION` * `TARGETING_TYPE_OMID` * `TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION` * `TARGETING_TYPE_YOUTUBE_VIDEO` * `TARGETING_TYPE_YOUTUBE_CHANNEL`",
+                      "description": "Required. Identifies the type of assigned targeting options to list. Supported targeting types: * `TARGETING_TYPE_CHANNEL` * `TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION` * `TARGETING_TYPE_OMID` * `TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION` * `TARGETING_TYPE_YOUTUBE_VIDEO` * `TARGETING_TYPE_YOUTUBE_CHANNEL` * `TARGETING_TYPE_KEYWORD`",
                       "enum": [
                         "TARGETING_TYPE_UNSPECIFIED",
                         "TARGETING_TYPE_CHANNEL",
@@ -9267,7 +9267,7 @@
       }
     }
   },
-  "revision": "20240314",
+  "revision": "20240620",
   "rootUrl": "https://displayvideo.googleapis.com/",
   "schemas": {
     "ActivateManualTriggerRequest": {
@@ -10649,14 +10649,14 @@
       "id": "BulkEditAdvertiserAssignedTargetingOptionsRequest",
       "properties": {
         "createRequests": {
-          "description": "The assigned targeting options to create in batch, specified as a list of `CreateAssignedTargetingOptionsRequest`. Supported targeting types: * `TARGETING_TYPE_CHANNEL` * `TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION` * `TARGETING_TYPE_OMID` * `TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION`",
+          "description": "The assigned targeting options to create in batch, specified as a list of `CreateAssignedTargetingOptionsRequest`. Supported targeting types: * `TARGETING_TYPE_CHANNEL` * `TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION` * `TARGETING_TYPE_OMID` * `TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION` * `TARGETING_TYPE_KEYWORD`",
           "items": {
             "$ref": "CreateAssignedTargetingOptionsRequest"
           },
           "type": "array"
         },
         "deleteRequests": {
-          "description": "The assigned targeting options to delete in batch, specified as a list of `DeleteAssignedTargetingOptionsRequest`. Supported targeting types: * `TARGETING_TYPE_CHANNEL` * `TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION` * `TARGETING_TYPE_OMID` * `TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION`",
+          "description": "The assigned targeting options to delete in batch, specified as a list of `DeleteAssignedTargetingOptionsRequest`. Supported targeting types: * `TARGETING_TYPE_CHANNEL` * `TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION` * `TARGETING_TYPE_OMID` * `TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION` * `TARGETING_TYPE_KEYWORD`",
           "items": {
             "$ref": "DeleteAssignedTargetingOptionsRequest"
           },
@@ -12331,7 +12331,8 @@
             "SDF_VERSION_5_4",
             "SDF_VERSION_5_5",
             "SDF_VERSION_6",
-            "SDF_VERSION_7"
+            "SDF_VERSION_7",
+            "SDF_VERSION_7_1"
           ],
           "enumDeprecated": [
             false,
@@ -12344,6 +12345,7 @@
             true,
             true,
             true,
+            false,
             false,
             false,
             false
@@ -12361,7 +12363,8 @@
             "SDF version 5.4",
             "SDF version 5.5",
             "SDF version 6",
-            "SDF version 7. Read the [v7 migration guide](/display-video/api/structured-data-file/v7-migration-guide) before migrating to this version."
+            "SDF version 7. Read the [v7 migration guide](/display-video/api/structured-data-file/v7-migration-guide) before migrating to this version.",
+            "SDF version 7.1. Read the [v7 migration guide](/display-video/api/structured-data-file/v7-migration-guide) before migrating to this version."
           ],
           "type": "string"
         }
@@ -14096,6 +14099,7 @@
             "EXCHANGE_CONNATIX",
             "EXCHANGE_RESET_DIGITAL",
             "EXCHANGE_HIVESTACK",
+            "EXCHANGE_DRAX",
             "EXCHANGE_APPLOVIN_GBID",
             "EXCHANGE_FYBER_GBID",
             "EXCHANGE_UNITY_GBID",
@@ -14179,6 +14183,7 @@
             "Connatix.",
             "Reset Digital.",
             "Hivestack.",
+            "Drax.",
             "AppLovin MAX.",
             "DT Fairbid.",
             "Unity LevelPlay.",
@@ -14287,6 +14292,7 @@
             "EXCHANGE_CONNATIX",
             "EXCHANGE_RESET_DIGITAL",
             "EXCHANGE_HIVESTACK",
+            "EXCHANGE_DRAX",
             "EXCHANGE_APPLOVIN_GBID",
             "EXCHANGE_FYBER_GBID",
             "EXCHANGE_UNITY_GBID",
@@ -14370,6 +14376,7 @@
             "Connatix.",
             "Reset Digital.",
             "Hivestack.",
+            "Drax.",
             "AppLovin MAX.",
             "DT Fairbid.",
             "Unity LevelPlay.",
@@ -14479,6 +14486,7 @@
             "EXCHANGE_CONNATIX",
             "EXCHANGE_RESET_DIGITAL",
             "EXCHANGE_HIVESTACK",
+            "EXCHANGE_DRAX",
             "EXCHANGE_APPLOVIN_GBID",
             "EXCHANGE_FYBER_GBID",
             "EXCHANGE_UNITY_GBID",
@@ -14562,6 +14570,7 @@
             "Connatix.",
             "Reset Digital.",
             "Hivestack.",
+            "Drax.",
             "AppLovin MAX.",
             "DT Fairbid.",
             "Unity LevelPlay.",
@@ -14672,6 +14681,7 @@
             "EXCHANGE_CONNATIX",
             "EXCHANGE_RESET_DIGITAL",
             "EXCHANGE_HIVESTACK",
+            "EXCHANGE_DRAX",
             "EXCHANGE_APPLOVIN_GBID",
             "EXCHANGE_FYBER_GBID",
             "EXCHANGE_UNITY_GBID",
@@ -14755,6 +14765,7 @@
             "Connatix.",
             "Reset Digital.",
             "Hivestack.",
+            "Drax.",
             "AppLovin MAX.",
             "DT Fairbid.",
             "Unity LevelPlay.",
@@ -15716,6 +15727,7 @@
             "EXCHANGE_CONNATIX",
             "EXCHANGE_RESET_DIGITAL",
             "EXCHANGE_HIVESTACK",
+            "EXCHANGE_DRAX",
             "EXCHANGE_APPLOVIN_GBID",
             "EXCHANGE_FYBER_GBID",
             "EXCHANGE_UNITY_GBID",
@@ -15799,6 +15811,7 @@
             "Connatix.",
             "Reset Digital.",
             "Hivestack.",
+            "Drax.",
             "AppLovin MAX.",
             "DT Fairbid.",
             "Unity LevelPlay.",
@@ -16625,6 +16638,7 @@
             "EXCHANGE_CONNATIX",
             "EXCHANGE_RESET_DIGITAL",
             "EXCHANGE_HIVESTACK",
+            "EXCHANGE_DRAX",
             "EXCHANGE_APPLOVIN_GBID",
             "EXCHANGE_FYBER_GBID",
             "EXCHANGE_UNITY_GBID",
@@ -16708,6 +16722,7 @@
             "Connatix.",
             "Reset Digital.",
             "Hivestack.",
+            "Drax.",
             "AppLovin MAX.",
             "DT Fairbid.",
             "Unity LevelPlay.",
@@ -19745,7 +19760,7 @@
           "type": "array"
         },
         "publisherReviewStatuses": {
-          "description": "Publisher review statuses for the creative.",
+          "description": "Publisher review statuses for the creative. **Warning:** This field will be deprecated on June 26th, 2024. After this date, this field will be empty. Read our [feature deprecation announcement](/display-video/api/deprecations#features.creative_publisher_review_statuses) for more information.",
           "items": {
             "$ref": "PublisherReviewStatus"
           },
@@ -19814,7 +19829,8 @@
             "SDF_VERSION_5_4",
             "SDF_VERSION_5_5",
             "SDF_VERSION_6",
-            "SDF_VERSION_7"
+            "SDF_VERSION_7",
+            "SDF_VERSION_7_1"
           ],
           "enumDeprecated": [
             false,
@@ -19827,6 +19843,7 @@
             true,
             true,
             true,
+            false,
             false,
             false,
             false
@@ -19844,7 +19861,8 @@
             "SDF version 5.4",
             "SDF version 5.5",
             "SDF version 6",
-            "SDF version 7. Read the [v7 migration guide](/display-video/api/structured-data-file/v7-migration-guide) before migrating to this version."
+            "SDF version 7. Read the [v7 migration guide](/display-video/api/structured-data-file/v7-migration-guide) before migrating to this version.",
+            "SDF version 7.1. Read the [v7 migration guide](/display-video/api/structured-data-file/v7-migration-guide) before migrating to this version."
           ],
           "type": "string"
         }
@@ -19891,7 +19909,8 @@
             "SDF_VERSION_5_4",
             "SDF_VERSION_5_5",
             "SDF_VERSION_6",
-            "SDF_VERSION_7"
+            "SDF_VERSION_7",
+            "SDF_VERSION_7_1"
           ],
           "enumDeprecated": [
             false,
@@ -19904,6 +19923,7 @@
             true,
             true,
             true,
+            false,
             false,
             false,
             false
@@ -19921,7 +19941,8 @@
             "SDF version 5.4",
             "SDF version 5.5",
             "SDF version 6",
-            "SDF version 7. Read the [v7 migration guide](/display-video/api/structured-data-file/v7-migration-guide) before migrating to this version."
+            "SDF version 7. Read the [v7 migration guide](/display-video/api/structured-data-file/v7-migration-guide) before migrating to this version.",
+            "SDF version 7.1. Read the [v7 migration guide](/display-video/api/structured-data-file/v7-migration-guide) before migrating to this version."
           ],
           "type": "string"
         }

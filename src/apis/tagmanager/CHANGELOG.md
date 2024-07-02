@@ -1,5 +1,19 @@
 # Changelog
 
+## [5.0.2](https://github.com/googleapis/google-api-nodejs-client/compare/tagmanager-v5.0.1...tagmanager-v5.0.2) (2024-05-02)
+
+
+### Bug Fixes
+
+* **tagmanager:** update the API ([594c354](https://github.com/googleapis/google-api-nodejs-client/commit/594c354031bb89976ac2b46054c2e0cf6bcd3ed0))
+
+## [5.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/tagmanager-v5.0.0...tagmanager-v5.0.1) (2024-05-02)
+
+
+### Bug Fixes
+
+* **tagmanager:** update the API ([594c354](https://github.com/googleapis/google-api-nodejs-client/commit/594c354031bb89976ac2b46054c2e0cf6bcd3ed0))
+
 ## [5.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/tagmanager-v4.1.1...tagmanager-v5.0.0) (2023-10-11)
 
 

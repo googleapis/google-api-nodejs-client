@@ -1,5 +1,51 @@
 # Changelog
 
+## [1.5.0](https://github.com/googleapis/google-api-nodejs-client/compare/workflows-v1.4.0...workflows-v1.5.0) (2024-06-21)
+
+
+### Features
+
+* **workflows:** update the API ([8975d1e](https://github.com/googleapis/google-api-nodejs-client/commit/8975d1e7ffba64e726eb55f08e3ed1660d9d0530))
+
+
+### Bug Fixes
+
+* **workflows:** update the API ([b75aa48](https://github.com/googleapis/google-api-nodejs-client/commit/b75aa48a774260202f951f0b0b45255c8b346d69))
+
+## [1.4.0](https://github.com/googleapis/google-api-nodejs-client/compare/workflows-v1.3.0...workflows-v1.4.0) (2024-06-06)
+
+
+### Features
+
+* **workflows:** update the API ([8975d1e](https://github.com/googleapis/google-api-nodejs-client/commit/8975d1e7ffba64e726eb55f08e3ed1660d9d0530))
+
+
+### Bug Fixes
+
+* **workflows:** update the API ([b75aa48](https://github.com/googleapis/google-api-nodejs-client/commit/b75aa48a774260202f951f0b0b45255c8b346d69))
+
+## [1.3.0](https://github.com/googleapis/google-api-nodejs-client/compare/workflows-v1.2.4...workflows-v1.3.0) (2024-06-03)
+
+
+### Features
+
+* **workflows:** update the API ([8975d1e](https://github.com/googleapis/google-api-nodejs-client/commit/8975d1e7ffba64e726eb55f08e3ed1660d9d0530))
+
+## [1.2.4](https://github.com/googleapis/google-api-nodejs-client/compare/workflows-v1.2.3...workflows-v1.2.4) (2024-05-02)
+
+
+### Bug Fixes
+
+* **workflows:** update the API ([b75aa48](https://github.com/googleapis/google-api-nodejs-client/commit/b75aa48a774260202f951f0b0b45255c8b346d69))
+* **workflows:** update the API ([57e6cd8](https://github.com/googleapis/google-api-nodejs-client/commit/57e6cd8ebfbebc811dc086789ad956108f8efd5f))
+
+## [1.2.3](https://github.com/googleapis/google-api-nodejs-client/compare/workflows-v1.2.2...workflows-v1.2.3) (2024-05-02)
+
+
+### Bug Fixes
+
+* **workflows:** update the API ([b75aa48](https://github.com/googleapis/google-api-nodejs-client/commit/b75aa48a774260202f951f0b0b45255c8b346d69))
+
 ## [1.2.2](https://github.com/googleapis/google-api-nodejs-client/compare/workflows-v1.2.1...workflows-v1.2.2) (2024-02-02)
 
 

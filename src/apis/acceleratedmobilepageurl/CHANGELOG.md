@@ -1,5 +1,19 @@
 # Changelog
 
+## [1.0.7](https://github.com/googleapis/google-api-nodejs-client/compare/acceleratedmobilepageurl-v1.0.6...acceleratedmobilepageurl-v1.0.7) (2024-05-02)
+
+
+### Bug Fixes
+
+* **acceleratedmobilepageurl:** update the API ([9b0387c](https://github.com/googleapis/google-api-nodejs-client/commit/9b0387c44997aab7f305900eee6fcb8801d3f7ee))
+
+## [1.0.6](https://github.com/googleapis/google-api-nodejs-client/compare/acceleratedmobilepageurl-v1.0.5...acceleratedmobilepageurl-v1.0.6) (2024-05-02)
+
+
+### Bug Fixes
+
+* **acceleratedmobilepageurl:** update the API ([9b0387c](https://github.com/googleapis/google-api-nodejs-client/commit/9b0387c44997aab7f305900eee6fcb8801d3f7ee))
+
 ## [1.0.5](https://github.com/googleapis/google-api-nodejs-client/compare/acceleratedmobilepageurl-v1.0.4...acceleratedmobilepageurl-v1.0.5) (2023-10-11)
 
 

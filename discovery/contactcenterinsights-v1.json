@@ -259,7 +259,8 @@
                   ]
                 },
                 "create": {
-                  "description": "Creates a conversation.",
+                  "deprecated": true,
+                  "description": "Creates a conversation. Does not support audio transcription or DLP redaction. Use `conversations.upload` instead.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/conversations",
                   "httpMethod": "POST",
                   "id": "contactcenterinsights.projects.locations.conversations.create",
@@ -404,7 +405,7 @@
                       "type": "string"
                     },
                     "orderBy": {
-                      "description": "Optional. The attribute by which to order conversations in the response. If empty, conversations will be ordered by descending creation time. Supported values are one of the following: * create_time * customer_satisfaction_rating * duration * latest_analysis * start_time * turn_count The default sort order is ascending. To specify order, append `asc` or `desc`, i.e. `create_time desc`. See https://google.aip.dev/132#ordering for more details.",
+                      "description": "Optional. The attribute by which to order conversations in the response. If empty, conversations will be ordered by descending creation time. Supported values are one of the following: * create_time * customer_satisfaction_rating * duration * latest_analysis * start_time * turn_count The default sort order is ascending. To specify order, append `asc` or `desc` (`create_time desc`). For more details, see [Google AIPs Ordering](https://google.aip.dev/132#ordering).",
                       "location": "query",
                       "type": "string"
                     },
@@ -467,7 +468,7 @@
                       "type": "string"
                     },
                     "updateMask": {
-                      "description": "The list of fields to be updated.",
+                      "description": "The list of fields to be updated. All possible fields can be updated by passing `*`, or a subset of the following updateable fields can be provided: * `agent_id` * `language_code` * `labels` * `metadata` * `quality_metadata` * `call_metadata` * `start_time` * `expire_time` or `ttl` * `data_source.gcs_source.audio_uri` or `data_source.dialogflow_source.audio_uri`",
                       "format": "google-fieldmask",
                       "location": "query",
                       "type": "string"
@@ -485,7 +486,7 @@
                   ]
                 },
                 "upload": {
-                  "description": "Create a longrunning conversation upload operation. This method differs from CreateConversation by allowing audio transcription and optional DLP redaction.",
+                  "description": "Create a long-running conversation upload operation. This method differs from `CreateConversation` by allowing audio transcription and optional DLP redaction.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/conversations:upload",
                   "httpMethod": "POST",
                   "id": "contactcenterinsights.projects.locations.conversations.upload",
@@ -789,7 +790,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. The issue model to export",
+                      "description": "Required. The issue model to export.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/issueModels/[^/]+$",
                       "required": true,
@@ -1473,7 +1474,7 @@
       }
     }
   },
-  "revision": "20240311",
+  "revision": "20240624",
   "rootUrl": "https://contactcenterinsights.googleapis.com/",
   "schemas": {
     "GoogleCloudContactcenterinsightsV1Analysis": {
@@ -1566,6 +1567,10 @@
             "$ref": "GoogleCloudContactcenterinsightsV1ConversationLevelSentiment"
           },
           "type": "array"
+        },
+        "silence": {
+          "$ref": "GoogleCloudContactcenterinsightsV1ConversationLevelSilence",
+          "description": "Overall conversation-level silence during the call."
         }
       },
       "type": "object"
@@ -2209,6 +2214,23 @@
       },
       "type": "object"
     },
+    "GoogleCloudContactcenterinsightsV1ConversationLevelSilence": {
+      "description": "Conversation-level silence data.",
+      "id": "GoogleCloudContactcenterinsightsV1ConversationLevelSilence",
+      "properties": {
+        "silenceDuration": {
+          "description": "Amount of time calculated to be in silence.",
+          "format": "google-duration",
+          "type": "string"
+        },
+        "silencePercentage": {
+          "description": "Percentage of the total conversation spent in silence.",
+          "format": "float",
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudContactcenterinsightsV1ConversationParticipant": {
       "description": "The call participant speaking for a given utterance.",
       "id": "GoogleCloudContactcenterinsightsV1ConversationParticipant",
@@ -2844,10 +2866,10 @@
       "properties": {
         "gcsDestination": {
           "$ref": "GoogleCloudContactcenterinsightsV1ExportIssueModelRequestGcsDestination",
-          "description": "Google Cloud Storage URI to export the Issue Model to."
+          "description": "Google Cloud Storage URI to export the issue model to."
         },
         "name": {
-          "description": "Required. The issue model to export",
+          "description": "Required. The issue model to export.",
           "type": "string"
         }
       },
@@ -2952,7 +2974,7 @@
       "id": "GoogleCloudContactcenterinsightsV1ImportIssueModelRequest",
       "properties": {
         "createNewModel": {
-          "description": "Optional. If set to true, will create a new issue model from the imported file with randomly generated IDs for the issue model and corresponding issues. Otherwise, replaces an existing model with the same ID as the file.",
+          "description": "Optional. If set to true, will create an issue model from the imported file with randomly generated IDs for the issue model and corresponding issues. Otherwise, replaces an existing model with the same ID as the file.",
           "type": "boolean"
         },
         "gcsSource": {
@@ -3071,6 +3093,11 @@
           "$ref": "GoogleCloudContactcenterinsightsV1RedactionConfig",
           "description": "Optional. DLP settings for transcript redaction. Optional, will default to the config specified in Settings."
         },
+        "sampleSize": {
+          "description": "Optional. If set, this fields indicates the number of objects to ingest from the Cloud Storage bucket. If empty, the entire bucket will be ingested. Unless they are first deleted, conversations produced through sampling won't be ingested by subsequent ingest requests.",
+          "format": "int32",
+          "type": "integer"
+        },
         "speechConfig": {
           "$ref": "GoogleCloudContactcenterinsightsV1SpeechConfig",
           "description": "Optional. Default Speech-to-Text configuration. Optional, will default to the config specified in Settings."
@@ -3092,7 +3119,7 @@
           "type": "integer"
         },
         "agentId": {
-          "description": "An opaque, user-specified string representing the human agent who handled the conversations.",
+          "description": "Optional. An opaque, user-specified string representing a human agent who handled all conversations in the import. Note that this will be overridden if per-conversation metadata is provided through the `metadata_bucket_uri`.",
           "type": "string"
         },
         "customerChannel": {
@@ -3133,7 +3160,7 @@
           "type": "array"
         },
         "metadataBucketUri": {
-          "description": "Optional. The Cloud Storage path to the source object metadata. Note that: [1] metadata files are expected to be in JSON format [2] metadata and source objects must be in separate buckets [3] a source object's metadata object must share the same name to be properly ingested",
+          "description": "Optional. The Cloud Storage path to the conversation metadata. Note that: [1] Metadata files are expected to be in JSON format. [2] Metadata and source files (transcripts or audio) must be in separate buckets. [3] A source file and its corresponding metadata file must share the same name to be properly ingested, E.g. `gs://bucket/audio/conversation1.mp3` and `gs://bucket/metadata/conversation1.json`.",
           "type": "string"
         }
       },
@@ -3698,7 +3725,7 @@
       "type": "object"
     },
     "GoogleCloudContactcenterinsightsV1RedactionConfig": {
-      "description": "DLP resources used for redaction while ingesting conversations.",
+      "description": "DLP resources used for redaction while ingesting conversations. DLP settings are applied to conversations ingested from the `UploadConversation` and `IngestConversations` endpoints, including conversation coming from CCAI Platform. They are not applied to conversations ingested from the `CreateConversation` endpoint or the Dialogflow / Agent Assist runtime integrations. When using Dialogflow / Agent Assist runtime integrations, redaction should be performed in Dialogflow / Agent Assist.",
       "id": "GoogleCloudContactcenterinsightsV1RedactionConfig",
       "properties": {
         "deidentifyTemplate": {
@@ -3760,6 +3787,25 @@
         "startBoundary": {
           "$ref": "GoogleCloudContactcenterinsightsV1AnnotationBoundary",
           "description": "The boundary in the conversation where the annotation starts, inclusive."
+        },
+        "userInput": {
+          "$ref": "GoogleCloudContactcenterinsightsV1RuntimeAnnotationUserInput",
+          "description": "Explicit input used for generating the answer"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1RuntimeAnnotationUserInput": {
+      "description": "Explicit input used for generating the answer",
+      "id": "GoogleCloudContactcenterinsightsV1RuntimeAnnotationUserInput",
+      "properties": {
+        "generatorName": {
+          "description": "The resource name of associated generator. Format: `projects//locations//generators/`",
+          "type": "string"
+        },
+        "query": {
+          "description": "Query text. Article Search uses this to store the input query used to generate the search results.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -3782,7 +3828,7 @@
       "type": "object"
     },
     "GoogleCloudContactcenterinsightsV1Settings": {
-      "description": "The settings resource.",
+      "description": "The CCAI Insights project wide settings. Use these settings to configure the behavior of Insights. View these settings with [`getsettings`](https://cloud.google.com/contact-center/insights/docs/reference/rest/v1/projects.locations/getSettings) and change the settings with [`updateSettings`](https://cloud.google.com/contact-center/insights/docs/reference/rest/v1/projects.locations/updateSettings).",
       "id": "GoogleCloudContactcenterinsightsV1Settings",
       "properties": {
         "analysisConfig": {
@@ -3812,16 +3858,16 @@
           "additionalProperties": {
             "type": "string"
           },
-          "description": "A map that maps a notification trigger to a Pub/Sub topic. Each time a specified trigger occurs, Insights will notify the corresponding Pub/Sub topic. Keys are notification triggers. Supported keys are: * \"all-triggers\": Notify each time any of the supported triggers occurs. * \"create-analysis\": Notify each time an analysis is created. * \"create-conversation\": Notify each time a conversation is created. * \"export-insights-data\": Notify each time an export is complete. * \"ingest-conversations\": Notify each time an IngestConversations LRO completes. * \"update-conversation\": Notify each time a conversation is updated via UpdateConversation. * \"upload-conversation\": Notify when an UploadConversation LRO completes. Values are Pub/Sub topics. The format of each Pub/Sub topic is: projects/{project}/topics/{topic}",
+          "description": "A map that maps a notification trigger to a Pub/Sub topic. Each time a specified trigger occurs, Insights will notify the corresponding Pub/Sub topic. Keys are notification triggers. Supported keys are: * \"all-triggers\": Notify each time any of the supported triggers occurs. * \"create-analysis\": Notify each time an analysis is created. * \"create-conversation\": Notify each time a conversation is created. * \"export-insights-data\": Notify each time an export is complete. * \"ingest-conversations\": Notify each time an IngestConversations LRO is complete. * \"update-conversation\": Notify each time a conversation is updated via UpdateConversation. * \"upload-conversation\": Notify when an UploadConversation LRO is complete. Values are Pub/Sub topics. The format of each Pub/Sub topic is: projects/{project}/topics/{topic}",
           "type": "object"
         },
         "redactionConfig": {
           "$ref": "GoogleCloudContactcenterinsightsV1RedactionConfig",
-          "description": "Default DLP redaction resources to be applied while ingesting conversations."
+          "description": "Default DLP redaction resources to be applied while ingesting conversations. This applies to conversations ingested from the `UploadConversation` and `IngestConversations` endpoints, including conversations coming from CCAI Platform."
         },
         "speechConfig": {
           "$ref": "GoogleCloudContactcenterinsightsV1SpeechConfig",
-          "description": "Optional. Default Speech-to-Text resources to be used while ingesting audio files. Optional, CCAI Insights will create a default if not provided."
+          "description": "Optional. Default Speech-to-Text resources to use while ingesting audio files. Optional, CCAI Insights will create a default if not provided. This applies to conversations ingested from the `UploadConversation` and `IngestConversations` endpoints, including conversations coming from CCAI Platform."
         },
         "updateTime": {
           "description": "Output only. The time at which the settings were last updated.",
@@ -3914,7 +3960,7 @@
       "type": "object"
     },
     "GoogleCloudContactcenterinsightsV1SpeechConfig": {
-      "description": "Speech-to-Text configuration.",
+      "description": "Speech-to-Text configuration. Speech-to-Text settings are applied to conversations ingested from the `UploadConversation` and `IngestConversations` endpoints, including conversation coming from CCAI Platform. They are not applied to conversations ingested from the `CreateConversation` endpoint.",
       "id": "GoogleCloudContactcenterinsightsV1SpeechConfig",
       "properties": {
         "speechRecognizer": {
@@ -3965,7 +4011,7 @@
       "type": "object"
     },
     "GoogleCloudContactcenterinsightsV1UploadConversationMetadata": {
-      "description": "The metadata for an UploadConversation operation.",
+      "description": "The metadata for an `UploadConversation` operation.",
       "id": "GoogleCloudContactcenterinsightsV1UploadConversationMetadata",
       "properties": {
         "analysisOperation": {
@@ -4146,6 +4192,10 @@
             "$ref": "GoogleCloudContactcenterinsightsV1alpha1ConversationLevelSentiment"
           },
           "type": "array"
+        },
+        "silence": {
+          "$ref": "GoogleCloudContactcenterinsightsV1alpha1ConversationLevelSilence",
+          "description": "Overall conversation-level silence during the call."
         }
       },
       "type": "object"
@@ -4680,6 +4730,23 @@
         "sentimentData": {
           "$ref": "GoogleCloudContactcenterinsightsV1alpha1SentimentData",
           "description": "Data specifying sentiment."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1alpha1ConversationLevelSilence": {
+      "description": "Conversation-level silence data.",
+      "id": "GoogleCloudContactcenterinsightsV1alpha1ConversationLevelSilence",
+      "properties": {
+        "silenceDuration": {
+          "description": "Amount of time calculated to be in silence.",
+          "format": "google-duration",
+          "type": "string"
+        },
+        "silencePercentage": {
+          "description": "Percentage of the total conversation spent in silence.",
+          "format": "float",
+          "type": "number"
         }
       },
       "type": "object"
@@ -5308,10 +5375,10 @@
       "properties": {
         "gcsDestination": {
           "$ref": "GoogleCloudContactcenterinsightsV1alpha1ExportIssueModelRequestGcsDestination",
-          "description": "Google Cloud Storage URI to export the Issue Model to."
+          "description": "Google Cloud Storage URI to export the issue model to."
         },
         "name": {
-          "description": "Required. The issue model to export",
+          "description": "Required. The issue model to export.",
           "type": "string"
         }
       },
@@ -5416,7 +5483,7 @@
       "id": "GoogleCloudContactcenterinsightsV1alpha1ImportIssueModelRequest",
       "properties": {
         "createNewModel": {
-          "description": "Optional. If set to true, will create a new issue model from the imported file with randomly generated IDs for the issue model and corresponding issues. Otherwise, replaces an existing model with the same ID as the file.",
+          "description": "Optional. If set to true, will create an issue model from the imported file with randomly generated IDs for the issue model and corresponding issues. Otherwise, replaces an existing model with the same ID as the file.",
           "type": "boolean"
         },
         "gcsSource": {
@@ -5535,6 +5602,11 @@
           "$ref": "GoogleCloudContactcenterinsightsV1alpha1RedactionConfig",
           "description": "Optional. DLP settings for transcript redaction. Optional, will default to the config specified in Settings."
         },
+        "sampleSize": {
+          "description": "Optional. If set, this fields indicates the number of objects to ingest from the Cloud Storage bucket. If empty, the entire bucket will be ingested. Unless they are first deleted, conversations produced through sampling won't be ingested by subsequent ingest requests.",
+          "format": "int32",
+          "type": "integer"
+        },
         "speechConfig": {
           "$ref": "GoogleCloudContactcenterinsightsV1alpha1SpeechConfig",
           "description": "Optional. Default Speech-to-Text configuration. Optional, will default to the config specified in Settings."
@@ -5556,7 +5628,7 @@
           "type": "integer"
         },
         "agentId": {
-          "description": "An opaque, user-specified string representing the human agent who handled the conversations.",
+          "description": "Optional. An opaque, user-specified string representing a human agent who handled all conversations in the import. Note that this will be overridden if per-conversation metadata is provided through the `metadata_bucket_uri`.",
           "type": "string"
         },
         "customerChannel": {
@@ -5597,7 +5669,7 @@
           "type": "array"
         },
         "metadataBucketUri": {
-          "description": "Optional. The Cloud Storage path to the source object metadata. Note that: [1] metadata files are expected to be in JSON format [2] metadata and source objects must be in separate buckets [3] a source object's metadata object must share the same name to be properly ingested",
+          "description": "Optional. The Cloud Storage path to the conversation metadata. Note that: [1] Metadata files are expected to be in JSON format. [2] Metadata and source files (transcripts or audio) must be in separate buckets. [3] A source file and its corresponding metadata file must share the same name to be properly ingested, E.g. `gs://bucket/audio/conversation1.mp3` and `gs://bucket/metadata/conversation1.json`.",
           "type": "string"
         }
       },
@@ -5884,7 +5956,7 @@
       "type": "object"
     },
     "GoogleCloudContactcenterinsightsV1alpha1RedactionConfig": {
-      "description": "DLP resources used for redaction while ingesting conversations.",
+      "description": "DLP resources used for redaction while ingesting conversations. DLP settings are applied to conversations ingested from the `UploadConversation` and `IngestConversations` endpoints, including conversation coming from CCAI Platform. They are not applied to conversations ingested from the `CreateConversation` endpoint or the Dialogflow / Agent Assist runtime integrations. When using Dialogflow / Agent Assist runtime integrations, redaction should be performed in Dialogflow / Agent Assist.",
       "id": "GoogleCloudContactcenterinsightsV1alpha1RedactionConfig",
       "properties": {
         "deidentifyTemplate": {
@@ -5946,6 +6018,25 @@
         "startBoundary": {
           "$ref": "GoogleCloudContactcenterinsightsV1alpha1AnnotationBoundary",
           "description": "The boundary in the conversation where the annotation starts, inclusive."
+        },
+        "userInput": {
+          "$ref": "GoogleCloudContactcenterinsightsV1alpha1RuntimeAnnotationUserInput",
+          "description": "Explicit input used for generating the answer"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1alpha1RuntimeAnnotationUserInput": {
+      "description": "Explicit input used for generating the answer",
+      "id": "GoogleCloudContactcenterinsightsV1alpha1RuntimeAnnotationUserInput",
+      "properties": {
+        "generatorName": {
+          "description": "The resource name of associated generator. Format: `projects//locations//generators/`",
+          "type": "string"
+        },
+        "query": {
+          "description": "Query text. Article Search uses this to store the input query used to generate the search results.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -6028,7 +6119,7 @@
       "type": "object"
     },
     "GoogleCloudContactcenterinsightsV1alpha1SpeechConfig": {
-      "description": "Speech-to-Text configuration.",
+      "description": "Speech-to-Text configuration. Speech-to-Text settings are applied to conversations ingested from the `UploadConversation` and `IngestConversations` endpoints, including conversation coming from CCAI Platform. They are not applied to conversations ingested from the `CreateConversation` endpoint.",
       "id": "GoogleCloudContactcenterinsightsV1alpha1SpeechConfig",
       "properties": {
         "speechRecognizer": {
@@ -6079,7 +6170,7 @@
       "type": "object"
     },
     "GoogleCloudContactcenterinsightsV1alpha1UploadConversationMetadata": {
-      "description": "The metadata for an UploadConversation operation.",
+      "description": "The metadata for an `UploadConversation` operation.",
       "id": "GoogleCloudContactcenterinsightsV1alpha1UploadConversationMetadata",
       "properties": {
         "analysisOperation": {

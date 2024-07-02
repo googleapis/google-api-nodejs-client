@@ -250,6 +250,10 @@ export namespace recaptchaenterprise_v1 {
      */
     name?: string | null;
     /**
+     * Output only. Assessment returned when a site key, a token, and a phone number as `user_id` are provided. Account defender and SMS toll fraud protection need to be enabled.
+     */
+    phoneFraudAssessment?: Schema$GoogleCloudRecaptchaenterpriseV1PhoneFraudAssessment;
+    /**
      * Optional. The private password leak verification field contains the parameters that are used to to check for leaks privately without sharing user credentials.
      */
     privatePasswordLeakVerification?: Schema$GoogleCloudRecaptchaenterpriseV1PrivatePasswordLeakVerification;
@@ -320,6 +324,10 @@ export namespace recaptchaenterprise_v1 {
      * Optional. Flag for enabling firewall policy config assessment. If this flag is enabled, the firewall policy will be evaluated and a suggested firewall action will be returned in the response.
      */
     firewallPolicyEvaluation?: boolean | null;
+    /**
+     * Optional. The Fraud Prevention setting for this assessment.
+     */
+    fraudPrevention?: string | null;
     /**
      * Optional. Deprecated: use `user_info.account_id` instead. Unique stable hashed user identifier for the request. The identifier must be hashed using hmac-sha256 with stable secret.
      */
@@ -694,6 +702,15 @@ export namespace recaptchaenterprise_v1 {
     skipBillingCheck?: boolean | null;
   }
   /**
+   * Assessment for Phone Fraud
+   */
+  export interface Schema$GoogleCloudRecaptchaenterpriseV1PhoneFraudAssessment {
+    /**
+     * Output only. Assessment of this phone event for risk of SMS toll fraud.
+     */
+    smsTollFraudVerdict?: Schema$GoogleCloudRecaptchaenterpriseV1SmsTollFraudVerdict;
+  }
+  /**
    * Private password leak verification info.
    */
   export interface Schema$GoogleCloudRecaptchaenterpriseV1PrivatePasswordLeakVerification {
@@ -836,6 +853,19 @@ export namespace recaptchaenterprise_v1 {
      * The queried memberships.
      */
     relatedAccountGroupMemberships?: Schema$GoogleCloudRecaptchaenterpriseV1RelatedAccountGroupMembership[];
+  }
+  /**
+   * Information about SMS toll fraud.
+   */
+  export interface Schema$GoogleCloudRecaptchaenterpriseV1SmsTollFraudVerdict {
+    /**
+     * Output only. Reasons contributing to the SMS toll fraud verdict.
+     */
+    reasons?: string[] | null;
+    /**
+     * Output only. Probability of an SMS event being fraudulent. Values are from 0.0 (lowest) to 1.0 (highest).
+     */
+    risk?: number | null;
   }
   /**
    * Options for user acceptance testing.
@@ -1260,6 +1290,7 @@ export namespace recaptchaenterprise_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1357,6 +1388,7 @@ export namespace recaptchaenterprise_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1486,6 +1518,7 @@ export namespace recaptchaenterprise_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1576,6 +1609,7 @@ export namespace recaptchaenterprise_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -1668,6 +1702,7 @@ export namespace recaptchaenterprise_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1765,6 +1800,7 @@ export namespace recaptchaenterprise_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1859,6 +1895,7 @@ export namespace recaptchaenterprise_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -1956,6 +1993,7 @@ export namespace recaptchaenterprise_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2127,6 +2165,7 @@ export namespace recaptchaenterprise_v1 {
           {
             url: (rootUrl + '/v1/{+parent}/keys').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2217,6 +2256,7 @@ export namespace recaptchaenterprise_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -2309,6 +2349,7 @@ export namespace recaptchaenterprise_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2403,6 +2444,7 @@ export namespace recaptchaenterprise_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2497,6 +2539,7 @@ export namespace recaptchaenterprise_v1 {
           {
             url: (rootUrl + '/v1/{+parent}/keys').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2594,6 +2637,7 @@ export namespace recaptchaenterprise_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2688,6 +2732,7 @@ export namespace recaptchaenterprise_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -2785,6 +2830,7 @@ export namespace recaptchaenterprise_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2973,6 +3019,7 @@ export namespace recaptchaenterprise_v1 {
               rootUrl + '/v1/{+project}/relatedaccountgroupmemberships:search'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3094,6 +3141,7 @@ export namespace recaptchaenterprise_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3215,6 +3263,7 @@ export namespace recaptchaenterprise_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),

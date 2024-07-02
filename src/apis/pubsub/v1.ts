@@ -134,9 +134,26 @@ export namespace pubsub_v1 {
     ackIds?: string[] | null;
   }
   /**
+   * Information about an associated Analytics Hub subscription (https://cloud.google.com/bigquery/docs/analytics-hub-manage-subscriptions).
+   */
+  export interface Schema$AnalyticsHubSubscriptionInfo {
+    /**
+     * Optional. The name of the associated Analytics Hub listing resource. Pattern: "projects/{project\}/locations/{location\}/dataExchanges/{data_exchange\}/listings/{listing\}"
+     */
+    listing?: string | null;
+    /**
+     * Optional. The name of the associated Analytics Hub subscription resource. Pattern: "projects/{project\}/locations/{location\}/subscriptions/{subscription\}"
+     */
+    subscription?: string | null;
+  }
+  /**
    * Configuration for writing message data in Avro format. Message payloads and metadata will be written to files as an Avro binary.
    */
   export interface Schema$AvroConfig {
+    /**
+     * Optional. When true, the output Cloud Storage file will be serialized using the topic schema, if it exists.
+     */
+    useTopicSchema?: boolean | null;
     /**
      * Optional. When true, write the subscription name, message_id, publish_time, attributes, and ordering_key as additional fields in the output. The subscription name, message_id, and publish_time fields are put in their own fields while all other message properties other than data (for example, an ordering_key, if present) are added as entries in the attributes map.
      */
@@ -229,6 +246,10 @@ export namespace pubsub_v1 {
      * Required. User-provided name for the Cloud Storage bucket. The bucket must be created by the user. The bucket name must be without any prefix like "gs://". See the [bucket naming requirements] (https://cloud.google.com/storage/docs/buckets#naming).
      */
     bucket?: string | null;
+    /**
+     * Optional. User-provided format string specifying how to represent datetimes in Cloud Storage filenames. See the [datetime format guidance](https://cloud.google.com/pubsub/docs/create-cloudstorage-subscription#file_names).
+     */
+    filenameDatetimeFormat?: string | null;
     /**
      * Optional. User-provided prefix for Cloud Storage filename. See the [object naming requirements](https://cloud.google.com/storage/docs/objects#naming).
      */
@@ -740,6 +761,10 @@ export namespace pubsub_v1 {
      */
     ackDeadlineSeconds?: number | null;
     /**
+     * Output only. Information about the associated Analytics Hub subscription. Only set if the subscritpion is created by Analytics Hub.
+     */
+    analyticsHubSubscriptionInfo?: Schema$AnalyticsHubSubscriptionInfo;
+    /**
      * Optional. If delivery to BigQuery is used with this subscription, this field is used to configure it.
      */
     bigqueryConfig?: Schema$BigQueryConfig;
@@ -1036,6 +1061,7 @@ export namespace pubsub_v1 {
           {
             url: (rootUrl + '/v1/{+name}:commit').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1123,6 +1149,7 @@ export namespace pubsub_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1207,6 +1234,7 @@ export namespace pubsub_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -1294,6 +1322,7 @@ export namespace pubsub_v1 {
               '$1'
             ),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -1378,6 +1407,7 @@ export namespace pubsub_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1465,6 +1495,7 @@ export namespace pubsub_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1555,6 +1586,7 @@ export namespace pubsub_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1649,6 +1681,7 @@ export namespace pubsub_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1736,6 +1769,7 @@ export namespace pubsub_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1823,6 +1857,7 @@ export namespace pubsub_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1917,6 +1952,7 @@ export namespace pubsub_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2011,6 +2047,7 @@ export namespace pubsub_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2105,6 +2142,7 @@ export namespace pubsub_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2363,6 +2401,7 @@ export namespace pubsub_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
+            apiVersion: '',
           },
           options
         ),
@@ -2447,6 +2486,7 @@ export namespace pubsub_v1 {
           {
             url: (rootUrl + '/v1/{+snapshot}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -2531,6 +2571,7 @@ export namespace pubsub_v1 {
           {
             url: (rootUrl + '/v1/{+snapshot}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2618,6 +2659,7 @@ export namespace pubsub_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2710,6 +2752,7 @@ export namespace pubsub_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2794,6 +2837,7 @@ export namespace pubsub_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -2881,6 +2925,7 @@ export namespace pubsub_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2975,6 +3020,7 @@ export namespace pubsub_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3158,6 +3204,7 @@ export namespace pubsub_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3242,6 +3289,7 @@ export namespace pubsub_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
+            apiVersion: '',
           },
           options
         ),
@@ -3329,6 +3377,7 @@ export namespace pubsub_v1 {
               '$1'
             ),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -3423,6 +3472,7 @@ export namespace pubsub_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3510,6 +3560,7 @@ export namespace pubsub_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3597,6 +3648,7 @@ export namespace pubsub_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3691,6 +3743,7 @@ export namespace pubsub_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3778,6 +3831,7 @@ export namespace pubsub_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3865,6 +3919,7 @@ export namespace pubsub_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3949,6 +4004,7 @@ export namespace pubsub_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -4036,6 +4092,7 @@ export namespace pubsub_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4123,6 +4180,7 @@ export namespace pubsub_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4210,6 +4268,7 @@ export namespace pubsub_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4305,6 +4364,7 @@ export namespace pubsub_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4558,6 +4618,7 @@ export namespace pubsub_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
+            apiVersion: '',
           },
           options
         ),
@@ -4642,6 +4703,7 @@ export namespace pubsub_v1 {
           {
             url: (rootUrl + '/v1/{+topic}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -4726,6 +4788,7 @@ export namespace pubsub_v1 {
           {
             url: (rootUrl + '/v1/{+topic}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4813,6 +4876,7 @@ export namespace pubsub_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4903,6 +4967,7 @@ export namespace pubsub_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4987,6 +5052,7 @@ export namespace pubsub_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -5074,6 +5140,7 @@ export namespace pubsub_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5161,6 +5228,7 @@ export namespace pubsub_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5255,6 +5323,7 @@ export namespace pubsub_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5457,6 +5526,7 @@ export namespace pubsub_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5574,6 +5644,7 @@ export namespace pubsub_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),

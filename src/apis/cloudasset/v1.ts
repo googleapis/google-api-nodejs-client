@@ -1237,7 +1237,7 @@ export namespace cloudasset_v1 {
      */
     description?: string | null;
     /**
-     * Resource name for the `AccessLevel`. Format: `accessPolicies/{access_policy\}/accessLevels/{access_level\}`. The `access_level` component must begin with a letter, followed by alphanumeric characters or `_`. Its maximum length is 50 characters. After you create an `AccessLevel`, you cannot change its `name`.
+     * Identifier. Resource name for the `AccessLevel`. Format: `accessPolicies/{access_policy\}/accessLevels/{access_level\}`. The `access_level` component must begin with a letter, followed by alphanumeric characters or `_`. Its maximum length is 50 characters. After you create an `AccessLevel`, you cannot change its `name`.
      */
     name?: string | null;
     /**
@@ -1250,11 +1250,11 @@ export namespace cloudasset_v1 {
    */
   export interface Schema$GoogleIdentityAccesscontextmanagerV1AccessPolicy {
     /**
-     * Output only. An opaque identifier for the current version of the `AccessPolicy`. This will always be a strongly validated etag, meaning that two Access Polices will be identical if and only if their etags are identical. Clients should not expect this to be in any specific format.
+     * Output only. An opaque identifier for the current version of the `AccessPolicy`. This will always be a strongly validated etag, meaning that two Access Policies will be identical if and only if their etags are identical. Clients should not expect this to be in any specific format.
      */
     etag?: string | null;
     /**
-     * Output only. Resource name of the `AccessPolicy`. Format: `accessPolicies/{access_policy\}`
+     * Output only. Identifier. Resource name of the `AccessPolicy`. Format: `accessPolicies/{access_policy\}`
      */
     name?: string | null;
     /**
@@ -1372,7 +1372,7 @@ export namespace cloudasset_v1 {
    */
   export interface Schema$GoogleIdentityAccesscontextmanagerV1EgressFrom {
     /**
-     * A list of identities that are allowed access through this [EgressPolicy], in the format of `user:{email_id\}` or `serviceAccount:{email_id\}`.
+     * A list of identities that are allowed access through [EgressPolicy]. Identities can be an individual user, service account, Google group, or third-party identity. The `v1` identities that have the prefix `user`, `group`, `serviceAccount`, `principal`, and `principalSet` in https://cloud.google.com/iam/docs/principal-identifiers#v1 are supported.
      */
     identities?: string[] | null;
     /**
@@ -1415,7 +1415,7 @@ export namespace cloudasset_v1 {
    */
   export interface Schema$GoogleIdentityAccesscontextmanagerV1EgressTo {
     /**
-     * A list of external resources that are allowed to be accessed. Only AWS and Azure resources are supported. For Amazon S3, the supported format is s3://BUCKET_NAME. For Azure Storage, the supported format is azure://myaccount.blob.core.windows.net/CONTAINER_NAME. A request matches if it contains an external resource in this list (Example: s3://bucket/path). Currently '*' is not allowed.
+     * A list of external resources that are allowed to be accessed. Only AWS and Azure resources are supported. For Amazon S3, the supported formats are s3://BUCKET_NAME, s3a://BUCKET_NAME, and s3n://BUCKET_NAME. For Azure Storage, the supported format is azure://myaccount.blob.core.windows.net/CONTAINER_NAME. A request matches if it contains an external resource in this list (Example: s3://bucket/path). Currently '*' is not allowed.
      */
     externalResources?: string[] | null;
     /**
@@ -1432,7 +1432,7 @@ export namespace cloudasset_v1 {
    */
   export interface Schema$GoogleIdentityAccesscontextmanagerV1IngressFrom {
     /**
-     * A list of identities that are allowed access through this ingress policy, in the format of `user:{email_id\}` or `serviceAccount:{email_id\}`.
+     * A list of identities that are allowed access through [IngressPolicy]. Identities can be an individual user, service account, Google group, or third-party identity. The `v1` identities that have the prefix `user`, `group`, `serviceAccount`, `principal`, and `principalSet` in https://cloud.google.com/iam/docs/principal-identifiers#v1 are supported.
      */
     identities?: string[] | null;
     /**
@@ -1522,7 +1522,7 @@ export namespace cloudasset_v1 {
      */
     description?: string | null;
     /**
-     * Resource name for the `ServicePerimeter`. Format: `accessPolicies/{access_policy\}/servicePerimeters/{service_perimeter\}`. The `service_perimeter` component must begin with a letter, followed by alphanumeric characters or `_`. After you create a `ServicePerimeter`, you cannot change its `name`.
+     * Identifier. Resource name for the `ServicePerimeter`. Format: `accessPolicies/{access_policy\}/servicePerimeters/{service_perimeter\}`. The `service_perimeter` component must begin with a letter, followed by alphanumeric characters or `_`. After you create a `ServicePerimeter`, you cannot change its `name`.
      */
     name?: string | null;
     /**
@@ -2284,7 +2284,7 @@ export namespace cloudasset_v1 {
     version?: string | null;
   }
   /**
-   * A result of Resource Search, containing information of a cloud resource. Next ID: 34
+   * A result of Resource Search, containing information of a cloud resource.
    */
   export interface Schema$ResourceSearchResult {
     /**
@@ -2312,7 +2312,7 @@ export namespace cloudasset_v1 {
      */
     displayName?: string | null;
     /**
-     * The effective tags on this resource. All of the tags that are both attached to and inherited by a resource are collectively called the effective tags. For more information, see [tag inheritance](https://cloud.google.com/resource-manager/docs/tags/tags-overview#inheritance). To search against the `effective_tags`: * Use a field query. Example: - `effectiveTagKeys:"123456789/env*"` - `effectiveTagKeys="123456789/env"` - `effectiveTagKeys:"env"` - `effectiveTagValues:"env"` - `effectiveTagValues:"env/prod"` - `effectiveTagValues:"123456789/env/prod*"` - `effectiveTagValues="123456789/env/prod"` - `effectiveTagValueIds="tagValues/456"`
+     * The effective tags on this resource. All of the tags that are both attached to and inherited by a resource are collectively called the effective tags. For more information, see [tag inheritance](https://cloud.google.com/resource-manager/docs/tags/tags-overview#inheritance). To search against the `effective_tags`: * Use a field query. Example: - `effectiveTagKeys:"123456789/env*"` - `effectiveTagKeys="123456789/env"` - `effectiveTagKeys:"env"` - `effectiveTagKeyIds="tagKeys/123"` - `effectiveTagValues:"env"` - `effectiveTagValues:"env/prod"` - `effectiveTagValues:"123456789/env/prod*"` - `effectiveTagValues="123456789/env/prod"` - `effectiveTagValueIds="tagValues/456"`
      */
     effectiveTags?: Schema$EffectiveTagDetails[];
     /**
@@ -2328,7 +2328,7 @@ export namespace cloudasset_v1 {
      */
     kmsKeys?: string[] | null;
     /**
-     * Labels associated with this resource. See [Labelling and grouping Google Cloud resources](https://cloud.google.com/blog/products/gcp/labelling-and-grouping-your-google-cloud-platform-resources) for more information. This field is available only when the resource's Protobuf contains it. To search against the `labels`: * Use a field query: - query on any label's key or value. Example: `labels:prod` - query by a given label. Example: `labels.env:prod` - query by a given label's existence. Example: `labels.env:*` * Use a free text query. Example: `prod`
+     * User labels associated with this resource. See [Labelling and grouping Google Cloud resources](https://cloud.google.com/blog/products/gcp/labelling-and-grouping-your-google-cloud-platform-resources) for more information. This field is available only when the resource's Protobuf contains it. To search against the `labels`: * Use a field query: - query on any label's key or value. Example: `labels:prod` - query by a given label. Example: `labels.env:prod` - query by a given label's existence. Example: `labels.env:*` * Use a free text query. Example: `prod`
      */
     labels?: {[key: string]: string} | null;
     /**
@@ -2376,7 +2376,7 @@ export namespace cloudasset_v1 {
      */
     tagKeys?: string[] | null;
     /**
-     * The tags directly attached to this resource. To search against the `tags`: * Use a field query. Example: - `tagKeys:"123456789/env*"` - `tagKeys="123456789/env"` - `tagKeys:"env"` - `tagValues:"env"` - `tagValues:"env/prod"` - `tagValues:"123456789/env/prod*"` - `tagValues="123456789/env/prod"` - `tagValueIds="tagValues/456"` * Use a free text query. Example: - `env/prod`
+     * The tags directly attached to this resource. To search against the `tags`: * Use a field query. Example: - `tagKeys:"123456789/env*"` - `tagKeys="123456789/env"` - `tagKeys:"env"` - `tagKeyIds="tagKeys/123"` - `tagValues:"env"` - `tagValues:"env/prod"` - `tagValues:"123456789/env/prod*"` - `tagValues="123456789/env/prod"` - `tagValueIds="tagValues/456"` * Use a free text query. Example: - `env/prod`
      */
     tags?: Schema$Tag[];
     /**
@@ -2564,6 +2564,10 @@ export namespace cloudasset_v1 {
      * TagKey namespaced name, in the format of {ORG_ID\}/{TAG_KEY_SHORT_NAME\}.
      */
     tagKey?: string | null;
+    /**
+     * TagKey ID, in the format of tagKeys/{TAG_KEY_ID\}.
+     */
+    tagKeyId?: string | null;
     /**
      * TagValue namespaced name, in the format of {ORG_ID\}/{TAG_KEY_SHORT_NAME\}/{TAG_VALUE_SHORT_NAME\}.
      */
@@ -2853,6 +2857,7 @@ export namespace cloudasset_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2984,6 +2989,7 @@ export namespace cloudasset_v1 {
               rootUrl + '/v1/{+scope}/effectiveIamPolicies:batchGet'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3091,6 +3097,7 @@ export namespace cloudasset_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3174,6 +3181,7 @@ export namespace cloudasset_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -3257,6 +3265,7 @@ export namespace cloudasset_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3346,6 +3355,7 @@ export namespace cloudasset_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3429,6 +3439,7 @@ export namespace cloudasset_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -3560,6 +3571,7 @@ export namespace cloudasset_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3661,6 +3673,7 @@ export namespace cloudasset_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3745,6 +3758,7 @@ export namespace cloudasset_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -3828,6 +3842,7 @@ export namespace cloudasset_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3920,6 +3935,7 @@ export namespace cloudasset_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4004,6 +4020,7 @@ export namespace cloudasset_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -4170,6 +4187,7 @@ export namespace cloudasset_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4259,6 +4277,7 @@ export namespace cloudasset_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4350,6 +4369,7 @@ export namespace cloudasset_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4444,6 +4464,7 @@ export namespace cloudasset_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4537,6 +4558,7 @@ export namespace cloudasset_v1 {
               rootUrl + '/v1/{+scope}:analyzeOrgPolicyGovernedAssets'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4632,6 +4654,7 @@ export namespace cloudasset_v1 {
               rootUrl + '/v1/{+scope}:analyzeOrgPolicyGovernedContainers'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4728,6 +4751,7 @@ export namespace cloudasset_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4816,6 +4840,7 @@ export namespace cloudasset_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4907,6 +4932,7 @@ export namespace cloudasset_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5001,6 +5027,7 @@ export namespace cloudasset_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5097,6 +5124,7 @@ export namespace cloudasset_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),

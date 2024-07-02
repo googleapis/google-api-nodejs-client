@@ -215,6 +215,10 @@ export namespace gkebackup_v1 {
      */
     name?: string | null;
     /**
+     * Output only. If false, Backup will fail when Backup for GKE detects Kubernetes configuration that is non-standard or requires additional setup to restore. Inherited from the parent BackupPlan's permissive_mode value.
+     */
+    permissiveMode?: boolean | null;
+    /**
      * Output only. The total number of Kubernetes Pods contained in the Backup.
      */
     podCount?: number | null;
@@ -284,6 +288,10 @@ export namespace gkebackup_v1 {
      */
     includeVolumeData?: boolean | null;
     /**
+     * Optional. If false, Backups will fail when Backup for GKE detects Kubernetes configuration that is non-standard or requires additional setup to restore. Default: False
+     */
+    permissiveMode?: boolean | null;
+    /**
      * If set, include just the resources referenced by the listed ProtectedApplications.
      */
     selectedApplications?: Schema$NamespacedNames;
@@ -340,6 +348,14 @@ export namespace gkebackup_v1 {
      * Optional. RetentionPolicy governs lifecycle of Backups created under this plan.
      */
     retentionPolicy?: Schema$RetentionPolicy;
+    /**
+     * Output only. A number that represents the current risk level of this BackupPlan from RPO perspective with 1 being no risk and 5 being highest risk.
+     */
+    rpoRiskLevel?: number | null;
+    /**
+     * Output only. Human-readable description of why the BackupPlan is in the current rpo_risk_level and action items if any.
+     */
+    rpoRiskReason?: string | null;
     /**
      * Output only. State of the BackupPlan. This State field reflects the various stages a BackupPlan can be in during the Create operation. It will be set to "DEACTIVATED" if the BackupPlan is deactivated on an Update
      */
@@ -421,6 +437,32 @@ export namespace gkebackup_v1 {
     selectedGroupKinds?: Schema$GroupKind[];
   }
   /**
+   * Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: * A full date, with non-zero year, month, and day values. * A month and day, with a zero year (for example, an anniversary). * A year on its own, with a zero month and a zero day. * A year and month, with a zero day (for example, a credit card expiration date). Related types: * google.type.TimeOfDay * google.type.DateTime * google.protobuf.Timestamp
+   */
+  export interface Schema$Date {
+    /**
+     * Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant.
+     */
+    day?: number | null;
+    /**
+     * Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day.
+     */
+    month?: number | null;
+    /**
+     * Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year.
+     */
+    year?: number | null;
+  }
+  /**
+   * Holds repeated DaysOfWeek values as a container.
+   */
+  export interface Schema$DayOfWeekList {
+    /**
+     * Optional. A list of days of week.
+     */
+    daysOfWeek?: string[] | null;
+  }
+  /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
    */
   export interface Schema$Empty {}
@@ -432,6 +474,31 @@ export namespace gkebackup_v1 {
      * Optional. Google Cloud KMS encryption key. Format: `projects/x/locations/x/keyRings/x/cryptoKeys/x`
      */
     gcpKmsEncryptionKey?: string | null;
+  }
+  /**
+   * Defines a time window during which no backup should happen. All time and date are in UTC.
+   */
+  export interface Schema$ExclusionWindow {
+    /**
+     * The exclusion window occurs every day if set to "True". Specifying this field to "False" is an error.
+     */
+    daily?: boolean | null;
+    /**
+     * The exclusion window occurs on these days of each week in UTC.
+     */
+    daysOfWeek?: Schema$DayOfWeekList;
+    /**
+     * Required. Specifies duration of the window. Duration must be \>= 5 minutes and < (target RPO - 20 minutes). Additional restrictions based on the recurrence type to allow some time for backup to happen: - single_occurrence_date: no restriction, but UI may warn about this when duration \>= target RPO - daily window: duration < 24 hours - weekly window: - days of week includes all seven days of a week: duration < 24 hours - all other weekly window: duration < 168 hours (i.e., 24 * 7 hours)
+     */
+    duration?: string | null;
+    /**
+     * No recurrence. The exclusion window occurs only once and on this date in UTC.
+     */
+    singleOccurrenceDate?: Schema$Date;
+    /**
+     * Required. Specifies the start time of the window using time of the day in UTC.
+     */
+    startTime?: Schema$TimeOfDay;
   }
   /**
    * Represents a textual expression in the Common Expression Language (CEL) syntax. CEL is a C-like expression language. The syntax and semantics of CEL are documented at https://github.com/google/cel-spec. Example (Comparison): title: "Summary size limit" description: "Determines if a summary is less than 100 chars" expression: "document.summary.size() < 100" Example (Equality): title: "Requestor is owner" description: "Determines if requestor is the document owner" expression: "document.owner == request.auth.claims.email" Example (Logic): title: "Public documents" description: "Determine whether the document should be publicly visible" expression: "document.type != 'private' && document.type != 'internal'" Example (Data Manipulation): title: "Notification string" description: "Create a notification string with a timestamp." expression: "'New message received at ' + string(document.create_time)" The exact variables and functions that may be referenced within an expression are determined by the service that evaluates it. See the service documentation for additional information.
@@ -453,6 +520,25 @@ export namespace gkebackup_v1 {
      * Optional. Title for the expression, i.e. a short string describing its purpose. This can be used e.g. in UIs which allow to enter the expression.
      */
     title?: string | null;
+  }
+  /**
+   * Defines the filter for `Restore`. This filter can be used to further refine the resource selection of the `Restore` beyond the coarse-grained scope defined in the `RestorePlan`. `exclusion_filters` take precedence over `inclusion_filters`. If a resource matches both `inclusion_filters` and `exclusion_filters`, it will not be restored.
+   */
+  export interface Schema$Filter {
+    /**
+     * Optional. Excludes resources from restoration. If specified, a resource will not be restored if it matches any `ResourceSelector` of the `exclusion_filters`.
+     */
+    exclusionFilters?: Schema$ResourceSelector[];
+    /**
+     * Optional. Selects resources for restoration. If specified, only resources which match `inclusion_filters` will be selected for restoration. A resource will be selected if it matches any `ResourceSelector` of the `inclusion_filters`.
+     */
+    inclusionFilters?: Schema$ResourceSelector[];
+  }
+  /**
+   * Response message for GetBackupIndexDownloadUrl.
+   */
+  export interface Schema$GetBackupIndexDownloadUrlResponse {
+    signedUrl?: string | null;
   }
   /**
    * The request message for Operations.CancelOperation.
@@ -525,6 +611,19 @@ export namespace gkebackup_v1 {
      * Optional. Kind of a Kubernetes resource, must be in UpperCamelCase (PascalCase) and singular form. E.g. "CustomResourceDefinition", "StorageClass", etc.
      */
     resourceKind?: string | null;
+  }
+  /**
+   * Defines a dependency between two group kinds.
+   */
+  export interface Schema$GroupKindDependency {
+    /**
+     * Required. The requiring group kind requires that the other group kind be restored first.
+     */
+    requiring?: Schema$GroupKind;
+    /**
+     * Required. The satisfying group kind must be restored first in order to satisfy the dependency.
+     */
+    satisfying?: Schema$GroupKind;
   }
   /**
    * Response message for ListBackupPlans.
@@ -757,6 +856,27 @@ export namespace gkebackup_v1 {
     namespaces?: string[] | null;
   }
   /**
+   * Defines a selector to identify a single or a group of resources. Conditions in the selector are optional, but at least one field should be set to a non-empty value. If a condition is not specified, no restrictions will be applied on that dimension. If more than one condition is specified, a resource will be selected if and only if all conditions are met.
+   */
+  export interface Schema$ResourceSelector {
+    /**
+     * Optional. Selects resources using their Kubernetes GroupKinds. If specified, only resources of provided GroupKind will be selected.
+     */
+    groupKind?: Schema$GroupKind;
+    /**
+     * Optional. Selects resources using Kubernetes [labels](https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/). If specified, a resource will be selected if and only if the resource has all of the provided labels and all the label values match.
+     */
+    labels?: {[key: string]: string} | null;
+    /**
+     * Optional. Selects resources using their resource names. If specified, only resources with the provided name will be selected.
+     */
+    name?: string | null;
+    /**
+     * Optional. Selects resources using their namespaces. This only applies to namespace scoped resources and cannot be used for selecting cluster scoped resources. If specified, only resources in the provided namespace will be selected. If not specified, the filter will apply to both cluster scoped and namespace scoped resources (e.g. name or label). The [Namespace](https://pkg.go.dev/k8s.io/api/core/v1#Namespace) resource itself will be restored if and only if any resources within the namespace are restored.
+     */
+    namespace?: string | null;
+  }
+  /**
    * Represents both a request to Restore some portion of a Backup into a target GKE cluster and a record of the restore operation itself.
    */
   export interface Schema$Restore {
@@ -784,6 +904,10 @@ export namespace gkebackup_v1 {
      * Output only. `etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a restore from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform restore updates in order to avoid race conditions: An `etag` is returned in the response to `GetRestore`, and systems are expected to put that etag in the request to `UpdateRestore` or `DeleteRestore` to ensure that their change will be applied to the same version of the resource.
      */
     etag?: string | null;
+    /**
+     * Optional. Immutable. Filters resources for `Restore`. If not specified, the scope of the restore will remain the same as defined in the `RestorePlan`. If this is specified, and no resources are matched by the `inclusion_filters` or everyting is excluded by the `exclusion_filters`, nothing will be restored. This filter can only be specified if the value of namespaced_resource_restore_mode is set to `MERGE_SKIP_ON_CONFLICT`, `MERGE_REPLACE_VOLUME_ON_CONFLICT` or `MERGE_REPLACE_ON_CONFLICT`.
+     */
+    filter?: Schema$Filter;
     /**
      * A set of custom labels supplied by user.
      */
@@ -825,6 +949,10 @@ export namespace gkebackup_v1 {
      */
     updateTime?: string | null;
     /**
+     * Optional. Immutable. Overrides the volume data restore policies selected in the Restore Config for override-scoped resources.
+     */
+    volumeDataRestorePolicyOverrides?: Schema$VolumeDataRestorePolicyOverride[];
+    /**
      * Output only. Number of volumes restored during the restore execution.
      */
     volumesRestoredCount?: number | null;
@@ -858,6 +986,10 @@ export namespace gkebackup_v1 {
      */
     noNamespaces?: boolean | null;
     /**
+     * Optional. RestoreOrder contains custom ordering to use on a Restore.
+     */
+    restoreOrder?: Schema$RestoreOrder;
+    /**
      * A list of selected ProtectedApplications to restore. The listed ProtectedApplications and all the resources to which they refer will be restored.
      */
     selectedApplications?: Schema$NamespacedNames;
@@ -877,6 +1009,19 @@ export namespace gkebackup_v1 {
      * Optional. Specifies the mechanism to be used to restore volume data. Default: VOLUME_DATA_RESTORE_POLICY_UNSPECIFIED (will be treated as NO_VOLUME_DATA_RESTORATION).
      */
     volumeDataRestorePolicy?: string | null;
+    /**
+     * Optional. A table that binds volumes by their scope to a restore policy. Bindings must have a unique scope. Any volumes not scoped in the bindings are subject to the policy defined in volume_data_restore_policy.
+     */
+    volumeDataRestorePolicyBindings?: Schema$VolumeDataRestorePolicyBinding[];
+  }
+  /**
+   * Allows customers to specify dependencies between resources that Backup for GKE can use to compute a resasonable restore order.
+   */
+  export interface Schema$RestoreOrder {
+    /**
+     * Optional. Contains a list of group kind dependency pairs provided by the customer, that is used by Backup for GKE to generate a group kind restore order.
+     */
+    groupKindDependencies?: Schema$GroupKindDependency[];
   }
   /**
    * The configuration of a potential series of Restore operations to be performed against Backups belong to a particular BackupPlan.
@@ -949,6 +1094,19 @@ export namespace gkebackup_v1 {
     locked?: boolean | null;
   }
   /**
+   * Defines RPO scheduling configuration for automatically creating Backups via this BackupPlan.
+   */
+  export interface Schema$RpoConfig {
+    /**
+     * Optional. User specified time windows during which backup can NOT happen for this BackupPlan - backups should start and finish outside of any given exclusion window. Note: backup jobs will be scheduled to start and finish outside the duration of the window as much as possible, but running jobs will not get canceled when it runs into the window. All the time and date values in exclusion_windows entry in the API are in UTC. We only allow <=1 recurrence (daily or weekly) exclusion window for a BackupPlan while no restriction on number of single occurrence windows.
+     */
+    exclusionWindows?: Schema$ExclusionWindow[];
+    /**
+     * Required. Defines the target RPO for the BackupPlan in minutes, which means the target maximum data loss in time that is acceptable for this BackupPlan. This must be at least 60, i.e., 1 hour, and at most 86400, i.e., 60 days.
+     */
+    targetRpoMinutes?: number | null;
+  }
+  /**
    * Defines scheduling parameters for automatically creating Backups via this BackupPlan.
    */
   export interface Schema$Schedule {
@@ -957,9 +1115,17 @@ export namespace gkebackup_v1 {
      */
     cronSchedule?: string | null;
     /**
+     * Output only. Start time of next scheduled backup under this BackupPlan by either cron_schedule or rpo config.
+     */
+    nextScheduledBackupTime?: string | null;
+    /**
      * Optional. This flag denotes whether automatic Backup creation is paused for this BackupPlan. Default: False
      */
     paused?: boolean | null;
+    /**
+     * Optional. Defines the RPO schedule configuration for this BackupPlan. This is mutually exclusive with the cron_schedule field since at most one schedule can be defined for a BackupPLan. If this is defined, then backup_retain_days must also be defined. Default (empty): no automatic backup creation will occur.
+     */
+    rpoConfig?: Schema$RpoConfig;
   }
   /**
    * Request message for `SetIamPolicy` method.
@@ -1016,6 +1182,27 @@ export namespace gkebackup_v1 {
      * A subset of `TestPermissionsRequest.permissions` that the caller is allowed.
      */
     permissions?: string[] | null;
+  }
+  /**
+   * Represents a time of day. The date and time zone are either not significant or are specified elsewhere. An API may choose to allow leap seconds. Related types are google.type.Date and `google.protobuf.Timestamp`.
+   */
+  export interface Schema$TimeOfDay {
+    /**
+     * Hours of day in 24 hour format. Should be from 0 to 23. An API may choose to allow the value "24:00:00" for scenarios like business closing time.
+     */
+    hours?: number | null;
+    /**
+     * Minutes of hour of day. Must be from 0 to 59.
+     */
+    minutes?: number | null;
+    /**
+     * Fractions of seconds in nanoseconds. Must be from 0 to 999,999,999.
+     */
+    nanos?: number | null;
+    /**
+     * Seconds of minutes of the time. Must normally be from 0 to 59. An API may allow the value 60 if it allows leap-seconds.
+     */
+    seconds?: number | null;
   }
   /**
    * A transformation rule to be applied against Kubernetes resources as they are selected for restoration from a Backup. A rule contains both filtering logic (which resources are subject to transform) and transformation logic.
@@ -1111,6 +1298,32 @@ export namespace gkebackup_v1 {
      * Output only. A storage system-specific opaque handle to the underlying volume backup.
      */
     volumeBackupHandle?: string | null;
+  }
+  /**
+   * Binds resources in the scope to the given VolumeDataRestorePolicy.
+   */
+  export interface Schema$VolumeDataRestorePolicyBinding {
+    /**
+     * Required. The VolumeDataRestorePolicy to apply when restoring volumes in scope.
+     */
+    policy?: string | null;
+    /**
+     * The volume type, as determined by the PVC's bound PV, to apply the policy to.
+     */
+    volumeType?: string | null;
+  }
+  /**
+   * Defines an override to apply a VolumeDataRestorePolicy for scoped resources.
+   */
+  export interface Schema$VolumeDataRestorePolicyOverride {
+    /**
+     * Required. The VolumeDataRestorePolicy to apply when restoring volumes in scope.
+     */
+    policy?: string | null;
+    /**
+     * A list of PVCs to apply the policy override to.
+     */
+    selectedPvcs?: Schema$NamespacedNames;
   }
   /**
    * Represents the operation of restoring a volume from a VolumeBackup.
@@ -1259,6 +1472,7 @@ export namespace gkebackup_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1351,6 +1565,7 @@ export namespace gkebackup_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1483,6 +1698,7 @@ export namespace gkebackup_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1574,6 +1790,7 @@ export namespace gkebackup_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -1658,6 +1875,7 @@ export namespace gkebackup_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1746,6 +1964,7 @@ export namespace gkebackup_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1838,6 +2057,7 @@ export namespace gkebackup_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1929,6 +2149,7 @@ export namespace gkebackup_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -2017,6 +2238,7 @@ export namespace gkebackup_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2112,6 +2334,7 @@ export namespace gkebackup_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2328,6 +2551,7 @@ export namespace gkebackup_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2420,6 +2644,7 @@ export namespace gkebackup_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -2505,6 +2730,7 @@ export namespace gkebackup_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2520,6 +2746,104 @@ export namespace gkebackup_v1 {
         );
       } else {
         return createAPIRequest<Schema$Backup>(parameters);
+      }
+    }
+
+    /**
+     * Retrieve the link to the backupIndex.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getBackupIndexDownloadUrl(
+      params: Params$Resource$Projects$Locations$Backupplans$Backups$Getbackupindexdownloadurl,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getBackupIndexDownloadUrl(
+      params?: Params$Resource$Projects$Locations$Backupplans$Backups$Getbackupindexdownloadurl,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GetBackupIndexDownloadUrlResponse>;
+    getBackupIndexDownloadUrl(
+      params: Params$Resource$Projects$Locations$Backupplans$Backups$Getbackupindexdownloadurl,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getBackupIndexDownloadUrl(
+      params: Params$Resource$Projects$Locations$Backupplans$Backups$Getbackupindexdownloadurl,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GetBackupIndexDownloadUrlResponse>,
+      callback: BodyResponseCallback<Schema$GetBackupIndexDownloadUrlResponse>
+    ): void;
+    getBackupIndexDownloadUrl(
+      params: Params$Resource$Projects$Locations$Backupplans$Backups$Getbackupindexdownloadurl,
+      callback: BodyResponseCallback<Schema$GetBackupIndexDownloadUrlResponse>
+    ): void;
+    getBackupIndexDownloadUrl(
+      callback: BodyResponseCallback<Schema$GetBackupIndexDownloadUrlResponse>
+    ): void;
+    getBackupIndexDownloadUrl(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Backupplans$Backups$Getbackupindexdownloadurl
+        | BodyResponseCallback<Schema$GetBackupIndexDownloadUrlResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GetBackupIndexDownloadUrlResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GetBackupIndexDownloadUrlResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GetBackupIndexDownloadUrlResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Backupplans$Backups$Getbackupindexdownloadurl;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Backupplans$Backups$Getbackupindexdownloadurl;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://gkebackup.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+backup}:getBackupIndexDownloadUrl').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['backup'],
+        pathParams: ['backup'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GetBackupIndexDownloadUrlResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GetBackupIndexDownloadUrlResponse>(
+          parameters
+        );
       }
     }
 
@@ -2593,6 +2917,7 @@ export namespace gkebackup_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2684,6 +3009,7 @@ export namespace gkebackup_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2776,6 +3102,7 @@ export namespace gkebackup_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -2864,6 +3191,7 @@ export namespace gkebackup_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2959,6 +3287,7 @@ export namespace gkebackup_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3015,6 +3344,13 @@ export namespace gkebackup_v1 {
      * Required. Full name of the Backup resource. Format: `projects/x/locations/x/backupPlans/x/backups/x`
      */
     name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Backupplans$Backups$Getbackupindexdownloadurl
+    extends StandardParameters {
+    /**
+     * Required. Full name of Backup resource. Format: projects/{project\}/locations/{location\}/backupPlans/{backup_plan\}/backups/{backup\}
+     */
+    backup?: string;
   }
   export interface Params$Resource$Projects$Locations$Backupplans$Backups$Getiampolicy
     extends StandardParameters {
@@ -3164,6 +3500,7 @@ export namespace gkebackup_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3252,6 +3589,7 @@ export namespace gkebackup_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3347,6 +3685,7 @@ export namespace gkebackup_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3435,6 +3774,7 @@ export namespace gkebackup_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3530,6 +3870,7 @@ export namespace gkebackup_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3687,6 +4028,7 @@ export namespace gkebackup_v1 {
           {
             url: (rootUrl + '/v1/{+name}:cancel').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3771,6 +4113,7 @@ export namespace gkebackup_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -3862,6 +4205,7 @@ export namespace gkebackup_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3956,6 +4300,7 @@ export namespace gkebackup_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4109,6 +4454,7 @@ export namespace gkebackup_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4200,6 +4546,7 @@ export namespace gkebackup_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -4284,6 +4631,7 @@ export namespace gkebackup_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4372,6 +4720,7 @@ export namespace gkebackup_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4464,6 +4813,7 @@ export namespace gkebackup_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4555,6 +4905,7 @@ export namespace gkebackup_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -4643,6 +4994,7 @@ export namespace gkebackup_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4738,6 +5090,7 @@ export namespace gkebackup_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4958,6 +5311,7 @@ export namespace gkebackup_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5050,6 +5404,7 @@ export namespace gkebackup_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -5135,6 +5490,7 @@ export namespace gkebackup_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5223,6 +5579,7 @@ export namespace gkebackup_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5316,6 +5673,7 @@ export namespace gkebackup_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5408,6 +5766,7 @@ export namespace gkebackup_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -5496,6 +5855,7 @@ export namespace gkebackup_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5591,6 +5951,7 @@ export namespace gkebackup_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5796,6 +6157,7 @@ export namespace gkebackup_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5884,6 +6246,7 @@ export namespace gkebackup_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5979,6 +6342,7 @@ export namespace gkebackup_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6067,6 +6431,7 @@ export namespace gkebackup_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -6162,6 +6527,7 @@ export namespace gkebackup_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),

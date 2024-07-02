@@ -1,5 +1,19 @@
 # Changelog
 
+## [1.1.2](https://github.com/googleapis/google-api-nodejs-client/compare/jobs-v1.1.1...jobs-v1.1.2) (2024-05-02)
+
+
+### Bug Fixes
+
+* **jobs:** update the API ([7687e7b](https://github.com/googleapis/google-api-nodejs-client/commit/7687e7b88acbf1c0803bb9490593839728e013e5))
+
+## [1.1.1](https://github.com/googleapis/google-api-nodejs-client/compare/jobs-v1.1.0...jobs-v1.1.1) (2024-05-02)
+
+
+### Bug Fixes
+
+* **jobs:** update the API ([7687e7b](https://github.com/googleapis/google-api-nodejs-client/commit/7687e7b88acbf1c0803bb9490593839728e013e5))
+
 ## [1.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/jobs-v1.0.2...jobs-v1.1.0) (2023-10-11)
 
 

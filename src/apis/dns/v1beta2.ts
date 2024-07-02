@@ -143,7 +143,7 @@ export namespace dns_v1beta2 {
   }
 
   /**
-   * A Change represents a set of ResourceRecordSet additions and deletions applied atomically to a ManagedZone. ResourceRecordSets within a ManagedZone are modified by creating a new Change element in the Changes collection. In turn the Changes collection also records the past modifications to the ResourceRecordSets in a ManagedZone. The current state of the ManagedZone is the sum effect of applying all Change elements in the Changes collection in sequence.
+   * A Change represents a set of `ResourceRecordSet` additions and deletions applied atomically to a ManagedZone. ResourceRecordSets within a ManagedZone are modified by creating a new Change element in the Changes collection. In turn the Changes collection also records the past modifications to the `ResourceRecordSets` in a `ManagedZone`. The current state of the `ManagedZone` is the sum effect of applying all `Change` elements in the `Changes` collection in sequence.
    */
   export interface Schema$Change {
     /**
@@ -180,13 +180,12 @@ export namespace dns_v1beta2 {
      * The requested changes.
      */
     changes?: Schema$Change[];
-    header?: Schema$ResponseHeader;
     /**
      * Type of resource.
      */
     kind?: string | null;
     /**
-     * The presence of this field indicates that there exist more results following your last page of results in pagination order. To fetch them, make another list request using this value as your pagination token. This lets you retrieve the complete contents of even very large collections one page at a time. However, if the contents of the collection change between the first and last paginated list request, the set of all elements returned are an inconsistent view of the collection. You cannot retrieve a "snapshot" of collections larger than the maximum page size.
+     * This field indicates that more results are available beyond the last page displayed. To fetch the results, make another list request and use this value as your page token. This lets you retrieve the complete contents of a very large collection one page at a time. However, if the contents of the collection change between the first and last paginated list request, the set of all elements returned are an inconsistent view of the collection. You can't retrieve a consistent snapshot of a collection larger than the maximum page size.
      */
     nextPageToken?: string | null;
   }
@@ -254,13 +253,12 @@ export namespace dns_v1beta2 {
      * The requested resources.
      */
     dnsKeys?: Schema$DnsKey[];
-    header?: Schema$ResponseHeader;
     /**
      * Type of resource.
      */
     kind?: string | null;
     /**
-     * The presence of this field indicates that there exist more results following your last page of results in pagination order. To fetch them, make another list request using this value as your pagination token. In this way you can retrieve the complete contents of even very large collections one page at a time. However, if the contents of the collection change between the first and last paginated list request, the set of all elements returned are an inconsistent view of the collection. There is no way to retrieve a "snapshot" of collections larger than the maximum page size.
+     * This field indicates that more results are available beyond the last page displayed. To fetch the results, make another list request and use this value as your page token. This lets you retrieve the complete contents of a very large collection one page at a time. However, if the contents of the collection change between the first and last paginated list request, the set of all elements returned are an inconsistent view of the collection. You can't retrieve a consistent snapshot of a collection larger than the maximum page size.
      */
     nextPageToken?: string | null;
   }
@@ -531,13 +529,12 @@ export namespace dns_v1beta2 {
     kind?: string | null;
   }
   export interface Schema$ManagedZoneOperationsListResponse {
-    header?: Schema$ResponseHeader;
     /**
      * Type of resource.
      */
     kind?: string | null;
     /**
-     * The presence of this field indicates that there exist more results following your last page of results in pagination order. To fetch them, make another list request using this value as your page token. This lets you retrieve the complete contents of even very large collections one page at a time. However, if the contents of the collection change between the first and last paginated list request, the set of all elements returned are an inconsistent view of the collection. You cannot retrieve a consistent snapshot of a collection larger than the maximum page size.
+     * This field indicates that more results are available beyond the last page displayed. To fetch the results, make another list request and use this value as your page token. This lets you retrieve the complete contents of a very large collection one page at a time. However, if the contents of the collection change between the first and last paginated list request, the set of all elements returned are an inconsistent view of the collection. You can't retrieve a consistent snapshot of a collection larger than the maximum page size.
      */
     nextPageToken?: string | null;
     /**
@@ -559,7 +556,7 @@ export namespace dns_v1beta2 {
     deactivateTime?: string | null;
     kind?: string | null;
     /**
-     * The fully qualified URL of the VPC network to forward queries to. This should be formatted like https://www.googleapis.com/compute/v1/projects/{project\}/global/networks/{network\}
+     * The fully qualified URL of the VPC network to forward queries to. This should be formatted like `https://www.googleapis.com/compute/v1/projects/{project\}/global/networks/{network\}`
      */
     networkUrl?: string | null;
   }
@@ -584,7 +581,7 @@ export namespace dns_v1beta2 {
   export interface Schema$ManagedZonePrivateVisibilityConfigNetwork {
     kind?: string | null;
     /**
-     * The fully qualified URL of the VPC network to bind to. Format this URL like https://www.googleapis.com/compute/v1/projects/{project\}/global/networks/{network\}
+     * The fully qualified URL of the VPC network to bind to. Format this URL like `https://www.googleapis.com/compute/v1/projects/{project\}/global/networks/{network\}`
      */
     networkUrl?: string | null;
   }
@@ -608,12 +605,11 @@ export namespace dns_v1beta2 {
     deletionTime?: string | null;
     kind?: string | null;
     /**
-     * The fully qualified URL of the namespace associated with the zone. Format must be https://servicedirectory.googleapis.com/v1/projects/{project\}/locations/{location\}/namespaces/{namespace\}
+     * The fully qualified URL of the namespace associated with the zone. Format must be `https://servicedirectory.googleapis.com/v1/projects/{project\}/locations/{location\}/namespaces/{namespace\}`
      */
     namespaceUrl?: string | null;
   }
   export interface Schema$ManagedZonesListResponse {
-    header?: Schema$ResponseHeader;
     /**
      * Type of resource.
      */
@@ -623,7 +619,7 @@ export namespace dns_v1beta2 {
      */
     managedZones?: Schema$ManagedZone[];
     /**
-     * The presence of this field indicates that there exist more results following your last page of results in pagination order. To fetch them, make another list request using this value as your page token. This lets you the complete contents of even very large collections one page at a time. However, if the contents of the collection change between the first and last paginated list request, the set of all elements returned are an inconsistent view of the collection. You cannot retrieve a consistent snapshot of a collection larger than the maximum page size.
+     * This field indicates that more results are available beyond the last page displayed. To fetch the results, make another list request and use this value as your page token. This lets you retrieve the complete contents of a very large collection one page at a time. However, if the contents of the collection change between the first and last paginated list request, the set of all elements returned are an inconsistent view of the collection. You can't retrieve a consistent snapshot of a collection larger than the maximum page size.
      */
     nextPageToken?: string | null;
   }
@@ -682,13 +678,12 @@ export namespace dns_v1beta2 {
     oldValue?: Schema$ManagedZone;
   }
   export interface Schema$PoliciesListResponse {
-    header?: Schema$ResponseHeader;
     /**
      * Type of resource.
      */
     kind?: string | null;
     /**
-     * The presence of this field indicates that there exist more results following your last page of results in pagination order. To fetch them, make another list request using this value as your page token. This lets you the complete contents of even very large collections one page at a time. However, if the contents of the collection change between the first and last paginated list request, the set of all elements returned are an inconsistent view of the collection. You cannot retrieve a consistent snapshot of a collection larger than the maximum page size.
+     * This field indicates that more results are available beyond the last page displayed. To fetch the results, make another list request and use this value as your page token. This lets you retrieve the complete contents of a very large collection one page at a time. However, if the contents of the collection change between the first and last paginated list request, the set of all elements returned are an inconsistent view of the collection. You can't retrieve a consistent snapshot of a collection larger than the maximum page size.
      */
     nextPageToken?: string | null;
     /**
@@ -697,11 +692,9 @@ export namespace dns_v1beta2 {
     policies?: Schema$Policy[];
   }
   export interface Schema$PoliciesPatchResponse {
-    header?: Schema$ResponseHeader;
     policy?: Schema$Policy;
   }
   export interface Schema$PoliciesUpdateResponse {
-    header?: Schema$ResponseHeader;
     policy?: Schema$Policy;
   }
   /**
@@ -768,7 +761,7 @@ export namespace dns_v1beta2 {
     networkUrl?: string | null;
   }
   /**
-   * A project resource. The project is a top level container for resources including Cloud DNS ManagedZones. Projects can be created only in the APIs console. Next tag: 7.
+   * A project resource. The project is a top level container for resources including Cloud DNS ManagedZones. Projects can be created only in the APIs console.
    */
   export interface Schema$Project {
     /**
@@ -897,7 +890,7 @@ export namespace dns_v1beta2 {
      */
     name?: string | null;
     /**
-     * Configures dynamic query responses based on either the geo location of the querying user or a weighted round robin based routing policy. A valid ResourceRecordSet contains only rrdata (for static resolution) or a routing_policy (for dynamic resolution).
+     * Configures dynamic query responses based on either the geo location of the querying user or a weighted round robin based routing policy. A valid `ResourceRecordSet` contains only `rrdata` (for static resolution) or a `routing_policy` (for dynamic resolution).
      */
     routingPolicy?: Schema$RRSetRoutingPolicy;
     /**
@@ -909,7 +902,7 @@ export namespace dns_v1beta2 {
      */
     signatureRrdatas?: string[] | null;
     /**
-     * Number of seconds that this ResourceRecordSet can be cached by resolvers.
+     * Number of seconds that this `ResourceRecordSet` can be cached by resolvers.
      */
     ttl?: number | null;
     /**
@@ -918,13 +911,12 @@ export namespace dns_v1beta2 {
     type?: string | null;
   }
   export interface Schema$ResourceRecordSetsListResponse {
-    header?: Schema$ResponseHeader;
     /**
      * Type of resource.
      */
     kind?: string | null;
     /**
-     * The presence of this field indicates that there exist more results following your last page of results in pagination order. To fetch them, make another list request using this value as your pagination token. This lets you retrieve the complete contents of even larger collections, one page at a time. However, if the collection changes between paginated list requests, the set of elements returned is an inconsistent view of the collection. You cannot retrieve a consistent snapshot of a collection larger than the maximum page size.
+     * This field indicates that more results are available beyond the last page displayed. To fetch the results, make another list request and use this value as your page token. This lets you retrieve the complete contents of a very large collection one page at a time. However, if the contents of the collection change between the first and last paginated list request, the set of all elements returned are an inconsistent view of the collection. You can't retrieve a consistent snapshot of a collection larger than the maximum page size.
      */
     nextPageToken?: string | null;
     /**
@@ -932,19 +924,9 @@ export namespace dns_v1beta2 {
      */
     rrsets?: Schema$ResourceRecordSet[];
   }
-  /**
-   * Elements common to every response.
-   */
-  export interface Schema$ResponseHeader {
-    /**
-     * For mutating operation requests that completed successfully. This is the client_operation_id if the client specified it, otherwise it is generated by the server (output only).
-     */
-    operationId?: string | null;
-  }
   export interface Schema$ResponsePoliciesListResponse {
-    header?: Schema$ResponseHeader;
     /**
-     * The presence of this field indicates that more results exist following your last page of results in pagination order. To fetch them, make another list request by using this value as your page token. This lets you view the complete contents of even very large collections one page at a time. However, if the contents of the collection change between the first and last paginated list request, the set of all elements returned are an inconsistent view of the collection. You cannot retrieve a consistent snapshot of a collection larger than the maximum page size.
+     * This field indicates that more results are available beyond the last page displayed. To fetch the results, make another list request and use this value as your page token. This lets you retrieve the complete contents of a very large collection one page at a time. However, if the contents of the collection change between the first and last paginated list request, the set of all elements returned are an inconsistent view of the collection. You can't retrieve a consistent snapshot of a collection larger than the maximum page size.
      */
     nextPageToken?: string | null;
     /**
@@ -953,11 +935,9 @@ export namespace dns_v1beta2 {
     responsePolicies?: Schema$ResponsePolicy[];
   }
   export interface Schema$ResponsePoliciesPatchResponse {
-    header?: Schema$ResponseHeader;
     responsePolicy?: Schema$ResponsePolicy;
   }
   export interface Schema$ResponsePoliciesUpdateResponse {
-    header?: Schema$ResponseHeader;
     responsePolicy?: Schema$ResponsePolicy;
   }
   /**
@@ -1000,7 +980,7 @@ export namespace dns_v1beta2 {
   export interface Schema$ResponsePolicyNetwork {
     kind?: string | null;
     /**
-     * The fully qualified URL of the VPC network to bind to. This should be formatted like https://www.googleapis.com/compute/v1/projects/{project\}/global/networks/{network\}
+     * The fully qualified URL of the VPC network to bind to. This should be formatted like `https://www.googleapis.com/compute/v1/projects/{project\}/global/networks/{network\}`
      */
     networkUrl?: string | null;
   }
@@ -1033,9 +1013,8 @@ export namespace dns_v1beta2 {
     localDatas?: Schema$ResourceRecordSet[];
   }
   export interface Schema$ResponsePolicyRulesListResponse {
-    header?: Schema$ResponseHeader;
     /**
-     * The presence of this field indicates that there exist more results following your last page of results in pagination order. To fetch them, make another list request using this value as your page token. This lets you the complete contents of even very large collections one page at a time. However, if the contents of the collection change between the first and last paginated list request, the set of all elements returned are an inconsistent view of the collection. You cannot retrieve a consistent snapshot of a collection larger than the maximum page size.
+     * This field indicates that more results are available beyond the last page displayed. To fetch the results, make another list request and use this value as your page token. This lets you retrieve the complete contents of a very large collection one page at a time. However, if the contents of the collection change between the first and last paginated list request, the set of all elements returned are an inconsistent view of the collection. You can't retrieve a consistent snapshot of a collection larger than the maximum page size.
      */
     nextPageToken?: string | null;
     /**
@@ -1044,11 +1023,9 @@ export namespace dns_v1beta2 {
     responsePolicyRules?: Schema$ResponsePolicyRule[];
   }
   export interface Schema$ResponsePolicyRulesPatchResponse {
-    header?: Schema$ResponseHeader;
     responsePolicyRule?: Schema$ResponsePolicyRule;
   }
   export interface Schema$ResponsePolicyRulesUpdateResponse {
-    header?: Schema$ResponseHeader;
     responsePolicyRule?: Schema$ResponsePolicyRule;
   }
   /**
@@ -1057,17 +1034,13 @@ export namespace dns_v1beta2 {
   export interface Schema$RRSetRoutingPolicy {
     geo?: Schema$RRSetRoutingPolicyGeoPolicy;
     geoPolicy?: Schema$RRSetRoutingPolicyGeoPolicy;
-    /**
-     * The selfLink attribute of the HealthCheck resource to use for this RRSetRoutingPolicy. https://cloud.google.com/compute/docs/reference/rest/v1/healthChecks
-     */
-    healthCheck?: string | null;
     kind?: string | null;
     primaryBackup?: Schema$RRSetRoutingPolicyPrimaryBackupPolicy;
     wrr?: Schema$RRSetRoutingPolicyWrrPolicy;
     wrrPolicy?: Schema$RRSetRoutingPolicyWrrPolicy;
   }
   /**
-   * Configures a RRSetRoutingPolicy that routes based on the geo location of the querying user.
+   * Configures a `RRSetRoutingPolicy` that routes based on the geo location of the querying user.
    */
   export interface Schema$RRSetRoutingPolicyGeoPolicy {
     /**
@@ -1085,7 +1058,7 @@ export namespace dns_v1beta2 {
    */
   export interface Schema$RRSetRoutingPolicyGeoPolicyGeoPolicyItem {
     /**
-     * For A and AAAA types only. Endpoints to return in the query result only if they are healthy. These can be specified along with rrdata within this item.
+     * For A and AAAA types only. Endpoints to return in the query result only if they are healthy. These can be specified along with `rrdata` within this item.
      */
     healthCheckedTargets?: Schema$RRSetRoutingPolicyHealthCheckTargets;
     kind?: string | null;
@@ -1095,18 +1068,14 @@ export namespace dns_v1beta2 {
     location?: string | null;
     rrdatas?: string[] | null;
     /**
-     * DNSSEC generated signatures for all the rrdata within this item. If health checked targets are provided for DNSSEC enabled zones, there's a restriction of 1 IP address per item.
+     * DNSSEC generated signatures for all the `rrdata` within this item. If health checked targets are provided for DNSSEC enabled zones, there's a restriction of 1 IP address per item.
      */
     signatureRrdatas?: string[] | null;
   }
   /**
-   * HealthCheckTargets describes endpoints to health-check when responding to Routing Policy queries. Only the healthy endpoints will be included in the response. Only one of internal_load_balancer and external_endpoints should be set.
+   * HealthCheckTargets describes endpoints to health-check when responding to Routing Policy queries. Only the healthy endpoints will be included in the response.
    */
   export interface Schema$RRSetRoutingPolicyHealthCheckTargets {
-    /**
-     * The Internet IP addresses to be health checked. The format matches the format of ResourceRecordSet.rrdata as defined in RFC 1035 (section 5) and RFC 1034 (section 3.6.1)
-     */
-    externalEndpoints?: string[] | null;
     /**
      * Configuration for internal load balancers to be health checked.
      */
@@ -1130,7 +1099,7 @@ export namespace dns_v1beta2 {
      */
     loadBalancerType?: string | null;
     /**
-     * The fully qualified URL of the network that the load balancer is attached to. This should be formatted like https://www.googleapis.com/compute/v1/projects/{project\}/global/networks/{network\} .
+     * The fully qualified URL of the network that the load balancer is attached to. This should be formatted like `https://www.googleapis.com/compute/v1/projects/{project\}/global/networks/{network\}`.
      */
     networkUrl?: string | null;
     /**
@@ -1151,16 +1120,16 @@ export namespace dns_v1beta2 {
    */
   export interface Schema$RRSetRoutingPolicyPrimaryBackupPolicy {
     /**
-     * Backup targets provide a regional failover policy for the otherwise global primary targets. If serving state is set to BACKUP, this policy essentially becomes a geo routing policy.
+     * Backup targets provide a regional failover policy for the otherwise global primary targets. If serving state is set to `BACKUP`, this policy essentially becomes a geo routing policy.
      */
     backupGeoTargets?: Schema$RRSetRoutingPolicyGeoPolicy;
     kind?: string | null;
     /**
-     * Endpoints that are health checked before making the routing decision. Unhealthy endpoints are omitted from the results. If all endpoints are unhealthy, we serve a response based on the backup_geo_targets.
+     * Endpoints that are health checked before making the routing decision. Unhealthy endpoints are omitted from the results. If all endpoints are unhealthy, we serve a response based on the `backup_geo_targets`.
      */
     primaryTargets?: Schema$RRSetRoutingPolicyHealthCheckTargets;
     /**
-     * When serving state is PRIMARY, this field provides the option of sending a small percentage of the traffic to the backup targets.
+     * When serving state is `PRIMARY`, this field provides the option of sending a small percentage of the traffic to the backup targets.
      */
     trickleTraffic?: number | null;
   }
@@ -1176,17 +1145,17 @@ export namespace dns_v1beta2 {
    */
   export interface Schema$RRSetRoutingPolicyWrrPolicyWrrPolicyItem {
     /**
-     * Endpoints that are health checked before making the routing decision. The unhealthy endpoints are omitted from the result. If all endpoints within a bucket are unhealthy, we choose a different bucket (sampled with respect to its weight) for responding. If DNSSEC is enabled for this zone, only one of rrdata or health_checked_targets can be set.
+     * Endpoints that are health checked before making the routing decision. The unhealthy endpoints are omitted from the result. If all endpoints within a bucket are unhealthy, we choose a different bucket (sampled with respect to its weight) for responding. If DNSSEC is enabled for this zone, only one of `rrdata` or `health_checked_targets` can be set.
      */
     healthCheckedTargets?: Schema$RRSetRoutingPolicyHealthCheckTargets;
     kind?: string | null;
     rrdatas?: string[] | null;
     /**
-     * DNSSEC generated signatures for all the rrdata within this item. Note that if health checked targets are provided for DNSSEC enabled zones, there's a restriction of 1 IP address per item.
+     * DNSSEC generated signatures for all the `rrdata` within this item. Note that if health checked targets are provided for DNSSEC enabled zones, there's a restriction of 1 IP address per item.
      */
     signatureRrdatas?: string[] | null;
     /**
-     * The weight corresponding to this WrrPolicyItem object. When multiple WrrPolicyItem objects are configured, the probability of returning an WrrPolicyItem object's data is proportional to its weight relative to the sum of weights configured for all items. This weight must be non-negative.
+     * The weight corresponding to this `WrrPolicyItem` object. When multiple `WrrPolicyItem` objects are configured, the probability of returning an `WrrPolicyItem` object's data is proportional to its weight relative to the sum of weights configured for all items. This weight must be non-negative.
      */
     weight?: number | null;
   }
@@ -1265,6 +1234,7 @@ export namespace dns_v1beta2 {
               '/dns/v1beta2/projects/{project}/managedZones/{managedZone}/changes'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1351,6 +1321,7 @@ export namespace dns_v1beta2 {
               '/dns/v1beta2/projects/{project}/managedZones/{managedZone}/changes/{changeId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1440,6 +1411,7 @@ export namespace dns_v1beta2 {
               '/dns/v1beta2/projects/{project}/managedZones/{managedZone}/changes'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1597,6 +1569,7 @@ export namespace dns_v1beta2 {
               '/dns/v1beta2/projects/{project}/managedZones/{managedZone}/dnsKeys/{dnsKeyId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1686,6 +1659,7 @@ export namespace dns_v1beta2 {
               '/dns/v1beta2/projects/{project}/managedZones/{managedZone}/dnsKeys'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1825,6 +1799,7 @@ export namespace dns_v1beta2 {
               '/dns/v1beta2/projects/{project}/managedZones/{managedZone}/operations/{operation}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1919,6 +1894,7 @@ export namespace dns_v1beta2 {
               '/dns/v1beta2/projects/{project}/managedZones/{managedZone}/operations'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2057,6 +2033,7 @@ export namespace dns_v1beta2 {
               rootUrl + '/dns/v1beta2/projects/{project}/managedZones'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2142,6 +2119,7 @@ export namespace dns_v1beta2 {
               '/dns/v1beta2/projects/{project}/managedZones/{managedZone}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -2228,6 +2206,7 @@ export namespace dns_v1beta2 {
               '/dns/v1beta2/projects/{project}/managedZones/{managedZone}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2320,6 +2299,7 @@ export namespace dns_v1beta2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2411,6 +2391,7 @@ export namespace dns_v1beta2 {
               rootUrl + '/dns/v1beta2/projects/{project}/managedZones'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2498,6 +2479,7 @@ export namespace dns_v1beta2 {
               '/dns/v1beta2/projects/{project}/managedZones/{managedZone}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -2590,6 +2572,7 @@ export namespace dns_v1beta2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2683,6 +2666,7 @@ export namespace dns_v1beta2 {
               rootUrl + '/dns/v1beta2/{+resource}:testIamPermissions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2772,6 +2756,7 @@ export namespace dns_v1beta2 {
               '/dns/v1beta2/projects/{project}/managedZones/{managedZone}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
+            apiVersion: '',
           },
           options
         ),
@@ -3006,6 +2991,7 @@ export namespace dns_v1beta2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3089,6 +3075,7 @@ export namespace dns_v1beta2 {
               rootUrl + '/dns/v1beta2/projects/{project}/policies/{policy}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -3174,6 +3161,7 @@ export namespace dns_v1beta2 {
               rootUrl + '/dns/v1beta2/projects/{project}/policies/{policy}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3265,6 +3253,7 @@ export namespace dns_v1beta2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3355,6 +3344,7 @@ export namespace dns_v1beta2 {
               rootUrl + '/dns/v1beta2/projects/{project}/policies/{policy}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -3445,6 +3435,7 @@ export namespace dns_v1beta2 {
               rootUrl + '/dns/v1beta2/projects/{project}/policies/{policy}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
+            apiVersion: '',
           },
           options
         ),
@@ -3634,6 +3625,7 @@ export namespace dns_v1beta2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3742,6 +3734,7 @@ export namespace dns_v1beta2 {
               '/dns/v1beta2/projects/{project}/managedZones/{managedZone}/rrsets'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3827,6 +3820,7 @@ export namespace dns_v1beta2 {
               '/dns/v1beta2/projects/{project}/managedZones/{managedZone}/rrsets/{name}/{type}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -3917,6 +3911,7 @@ export namespace dns_v1beta2 {
               '/dns/v1beta2/projects/{project}/managedZones/{managedZone}/rrsets/{name}/{type}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4011,6 +4006,7 @@ export namespace dns_v1beta2 {
               '/dns/v1beta2/projects/{project}/managedZones/{managedZone}/rrsets'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4103,6 +4099,7 @@ export namespace dns_v1beta2 {
               '/dns/v1beta2/projects/{project}/managedZones/{managedZone}/rrsets/{name}/{type}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -4318,6 +4315,7 @@ export namespace dns_v1beta2 {
               rootUrl + '/dns/v1beta2/projects/{project}/responsePolicies'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4403,6 +4401,7 @@ export namespace dns_v1beta2 {
               '/dns/v1beta2/projects/{project}/responsePolicies/{responsePolicy}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -4490,6 +4489,7 @@ export namespace dns_v1beta2 {
               '/dns/v1beta2/projects/{project}/responsePolicies/{responsePolicy}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4583,6 +4583,7 @@ export namespace dns_v1beta2 {
               rootUrl + '/dns/v1beta2/projects/{project}/responsePolicies'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4679,6 +4680,7 @@ export namespace dns_v1beta2 {
               '/dns/v1beta2/projects/{project}/responsePolicies/{responsePolicy}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -4775,6 +4777,7 @@ export namespace dns_v1beta2 {
               '/dns/v1beta2/projects/{project}/responsePolicies/{responsePolicy}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
+            apiVersion: '',
           },
           options
         ),
@@ -4976,6 +4979,7 @@ export namespace dns_v1beta2 {
               '/dns/v1beta2/projects/{project}/responsePolicies/{responsePolicy}/rules'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5061,6 +5065,7 @@ export namespace dns_v1beta2 {
               '/dns/v1beta2/projects/{project}/responsePolicies/{responsePolicy}/rules/{responsePolicyRule}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -5151,6 +5156,7 @@ export namespace dns_v1beta2 {
               '/dns/v1beta2/projects/{project}/responsePolicies/{responsePolicy}/rules/{responsePolicyRule}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5245,6 +5251,7 @@ export namespace dns_v1beta2 {
               '/dns/v1beta2/projects/{project}/responsePolicies/{responsePolicy}/rules'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5341,6 +5348,7 @@ export namespace dns_v1beta2 {
               '/dns/v1beta2/projects/{project}/responsePolicies/{responsePolicy}/rules/{responsePolicyRule}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -5437,6 +5445,7 @@ export namespace dns_v1beta2 {
               '/dns/v1beta2/projects/{project}/responsePolicies/{responsePolicy}/rules/{responsePolicyRule}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
+            apiVersion: '',
           },
           options
         ),

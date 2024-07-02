@@ -1,5 +1,63 @@
 # Changelog
 
+## [7.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/sts-v6.0.0...sts-v7.0.0) (2024-05-10)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#3484](https://github.com/googleapis/google-api-nodejs-client/issues/3484)) ([99b6c8d](https://github.com/googleapis/google-api-nodejs-client/commit/99b6c8de5beb8447d177048a64a977ee39ee5ee6))
+
+## [6.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/sts-v5.0.0...sts-v6.0.0) (2024-05-07)
+
+
+### ⚠ BREAKING CHANGES
+
+* **sts:** This release has breaking changes.
+
+### Features
+
+* **sts:** update the API ([9f4b7de](https://github.com/googleapis/google-api-nodejs-client/commit/9f4b7de7dbccee7440ecafcd10f869c8ff30c2ff))
+
+## [5.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/sts-v4.0.1...sts-v5.0.0) (2024-05-02)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#3456](https://github.com/googleapis/google-api-nodejs-client/issues/3456)) ([a865e81](https://github.com/googleapis/google-api-nodejs-client/commit/a865e81539b315d3b321650663ba0b2555b1e5a1))
+
+
+### Bug Fixes
+
+* **sts:** update the API ([bce176a](https://github.com/googleapis/google-api-nodejs-client/commit/bce176a17c9e5ff821d2e6a058720f9f744e18b4))
+* **sts:** update the API ([cf2b371](https://github.com/googleapis/google-api-nodejs-client/commit/cf2b3710e760a8283c0597ad7fd10f9100ec4da2))
+* **sts:** update the API ([b0d4b75](https://github.com/googleapis/google-api-nodejs-client/commit/b0d4b75f8381256cc74d782cd12d42abe5bc6eaf))
+
+## [4.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/sts-v4.0.0...sts-v4.0.1) (2024-05-02)
+
+
+### Bug Fixes
+
+* **sts:** update the API ([bce176a](https://github.com/googleapis/google-api-nodejs-client/commit/bce176a17c9e5ff821d2e6a058720f9f744e18b4))
+
+## [4.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/sts-v3.3.5...sts-v4.0.0) (2024-04-04)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#3456](https://github.com/googleapis/google-api-nodejs-client/issues/3456)) ([a865e81](https://github.com/googleapis/google-api-nodejs-client/commit/a865e81539b315d3b321650663ba0b2555b1e5a1))
+
 ## [3.3.5](https://github.com/googleapis/google-api-nodejs-client/compare/sts-v3.3.4...sts-v3.3.5) (2024-02-07)
 
 

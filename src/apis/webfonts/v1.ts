@@ -154,6 +154,10 @@ export namespace webfonts_v1 {
      */
     category?: string | null;
     /**
+     * The color format(s) available for this family.
+     */
+    colorCapabilities?: string[] | null;
+    /**
      * The name of the font.
      */
     family?: string | null;
@@ -271,6 +275,7 @@ export namespace webfonts_v1 {
           {
             url: (rootUrl + '/v1/webfonts').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),

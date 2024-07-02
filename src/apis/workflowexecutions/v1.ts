@@ -470,6 +470,10 @@ export namespace workflowexecutions_v1 {
    */
   export interface Schema$StepEntryMetadata {
     /**
+     * Expected iteration represents the expected number of iterations in the step's progress.
+     */
+    expectedIteration?: string | null;
+    /**
      * Progress number represents the current state of the current progress. eg: A step entry represents the 4th iteration in a progress of PROGRESS_TYPE_FOR.
      */
     progressNumber?: string | null;
@@ -605,6 +609,7 @@ export namespace workflowexecutions_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -721,6 +726,7 @@ export namespace workflowexecutions_v1 {
           {
             url: (rootUrl + '/v1/{+name}:cancel').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -810,6 +816,7 @@ export namespace workflowexecutions_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -902,6 +909,7 @@ export namespace workflowexecutions_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -988,6 +996,7 @@ export namespace workflowexecutions_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1082,6 +1091,7 @@ export namespace workflowexecutions_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1146,7 +1156,7 @@ export namespace workflowexecutions_v1 {
   export interface Params$Resource$Projects$Locations$Workflows$Executions$List
     extends StandardParameters {
     /**
-     * Optional. Filters applied to the `[Executions.ListExecutions]` results. The following fields are supported for filtering: `executionId`, `state`, `createTime`, `startTime`, `endTime`, `duration`, `workflowRevisionId`, `stepName`, and `label`. For details, see AIP-160. For example, if you are using the Google APIs Explorer: `state="SUCCEEDED"` or `startTime\>"2023-08-01" AND state="FAILED"`
+     * Optional. Filters applied to the `[Executions.ListExecutions]` results. The following fields are supported for filtering: `executionId`, `state`, `createTime`, `startTime`, `endTime`, `duration`, `workflowRevisionId`, `stepName`, and `label`. For details, see AIP-160. For more information, see Filter executions. For example, if you are using the Google APIs Explorer: `state="SUCCEEDED"` or `startTime\>"2023-08-01" AND state="FAILED"`
      */
     filter?: string;
     /**
@@ -1253,6 +1263,7 @@ export namespace workflowexecutions_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1362,6 +1373,7 @@ export namespace workflowexecutions_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1456,6 +1468,7 @@ export namespace workflowexecutions_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),

@@ -731,7 +731,7 @@
       }
     }
   },
-  "revision": "20240307",
+  "revision": "20240522",
   "rootUrl": "https://looker.googleapis.com/",
   "schemas": {
     "AdminSettings": {

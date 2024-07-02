@@ -150,9 +150,13 @@ export namespace fcmdata_v1beta1 {
    */
   export interface Schema$GoogleFirebaseFcmDataV1beta1Data {
     /**
-     * Count of messages accepted by FCM intended to Android devices. The targeted device must have opted in to the collection of usage and diagnostic information.
+     * Count of messages accepted by FCM intended for Android devices. The targeted device must have opted in to the collection of usage and diagnostic information.
      */
     countMessagesAccepted?: string | null;
+    /**
+     * Count of notifications accepted by FCM intended for Android devices. The targeted device must have opted in to the collection of usage and diagnostic information.
+     */
+    countNotificationsAccepted?: string | null;
     /**
      * Additional information about delivery performance for messages that were successfully delivered.
      */
@@ -165,6 +169,10 @@ export namespace fcmdata_v1beta1 {
      * Mutually exclusive breakdown of message delivery outcomes.
      */
     messageOutcomePercents?: Schema$GoogleFirebaseFcmDataV1beta1MessageOutcomePercents;
+    /**
+     * Additional insights about proxy notification delivery.
+     */
+    proxyNotificationInsightPercents?: Schema$GoogleFirebaseFcmDataV1beta1ProxyNotificationInsightPercents;
   }
   /**
    * Overview of delivery performance for messages that were successfully delivered. All percentages are calculated with countMessagesAccepted as the denominator. These categories are not mutually exclusive; a message can be delayed for multiple reasons.
@@ -218,6 +226,10 @@ export namespace fcmdata_v1beta1 {
    */
   export interface Schema$GoogleFirebaseFcmDataV1beta1MessageOutcomePercents {
     /**
+     * The percentage of accepted messages that were [collapsed](https://firebase.google.com/docs/cloud-messaging/concept-options#collapsible_and_non-collapsible_messages) by another message.
+     */
+    collapsed?: number | null;
+    /**
      * The percentage of all accepted messages that were successfully delivered to the device.
      */
     delivered?: number | null;
@@ -234,9 +246,42 @@ export namespace fcmdata_v1beta1 {
      */
     droppedTooManyPendingMessages?: number | null;
     /**
+     * The percentage of accepted messages that expired because [Time To Live (TTL)](https://firebase.google.com/docs/cloud-messaging/concept-options#ttl) elapsed before the target device reconnected.
+     */
+    droppedTtlExpired?: number | null;
+    /**
      * The percentage of messages accepted on this day that were not dropped and not delivered, due to the device being disconnected (as of the end of the America/Los_Angeles day when the message was sent to FCM). A portion of these messages will be delivered the next day when the device connects but others may be destined to devices that ultimately never reconnect.
      */
     pending?: number | null;
+  }
+  /**
+   * Additional information about [proxy notification](https://firebase.google.com/docs/cloud-messaging/android/message-priority#proxy) delivery. All percentages are calculated with countNotificationsAccepted as the denominator.
+   */
+  export interface Schema$GoogleFirebaseFcmDataV1beta1ProxyNotificationInsightPercents {
+    /**
+     * The percentage of accepted notifications that failed to be proxied. This is usually caused by exceptions that occurred while calling [notifyAsPackage](https://developer.android.com/reference/android/app/NotificationManager#notifyAsPackage%28java.lang.String,%20java.lang.String,%20int,%20android.app.Notification%29).
+     */
+    failed?: number | null;
+    /**
+     * The percentage of accepted notifications that were successfully proxied by [Google Play services](https://developers.google.com/android/guides/overview).
+     */
+    proxied?: number | null;
+    /**
+     * The percentage of accepted notifications that were skipped because the messages were not throttled.
+     */
+    skippedNotThrottled?: number | null;
+    /**
+     * The percentage of accepted notifications that were skipped because the app disallowed these messages to be proxied.
+     */
+    skippedOptedOut?: number | null;
+    /**
+     * The percentage of accepted notifications that were skipped because configurations required for notifications to be proxied were missing.
+     */
+    skippedUnconfigured?: number | null;
+    /**
+     * The percentage of accepted notifications that were skipped because proxy notification is unsupported for the recipient.
+     */
+    skippedUnsupported?: number | null;
   }
   /**
    * Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: * A full date, with non-zero year, month, and day values. * A month and day, with a zero year (for example, an anniversary). * A year on its own, with a zero month and a zero day. * A year and month, with a zero day (for example, a credit card expiration date). Related types: * google.type.TimeOfDay * google.type.DateTime * google.protobuf.Timestamp
@@ -358,6 +403,7 @@ export namespace fcmdata_v1beta1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),

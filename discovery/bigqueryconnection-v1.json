@@ -366,7 +366,7 @@
       }
     }
   },
-  "revision": "20240124",
+  "revision": "20240616",
   "rootUrl": "https://bigqueryconnection.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -679,6 +679,10 @@
       "description": "Represents concrete parameter values for Connector Configuration.",
       "id": "ConnectorConfiguration",
       "properties": {
+        "asset": {
+          "$ref": "ConnectorConfigurationAsset",
+          "description": "Data asset."
+        },
         "authentication": {
           "$ref": "ConnectorConfigurationAuthentication",
           "description": "Client authentication."
@@ -690,6 +694,25 @@
         "endpoint": {
           "$ref": "ConnectorConfigurationEndpoint",
           "description": "Specifies how to reach the remote system this connection is pointing to."
+        },
+        "network": {
+          "$ref": "ConnectorConfigurationNetwork",
+          "description": "Networking configuration."
+        }
+      },
+      "type": "object"
+    },
+    "ConnectorConfigurationAsset": {
+      "description": "Data Asset - a resource within instance of the system, reachable under specified endpoint. For example a database name in a SQL DB.",
+      "id": "ConnectorConfigurationAsset",
+      "properties": {
+        "database": {
+          "description": "Name of the database.",
+          "type": "string"
+        },
+        "googleCloudResource": {
+          "description": "Full Google Cloud resource name - https://cloud.google.com/apis/design/resource_names#full_resource_name. Example: `//library.googleapis.com/shelves/shelf1/books/book2`",
+          "type": "string"
         }
       },
       "type": "object"
@@ -698,6 +721,11 @@
       "description": "Client authentication.",
       "id": "ConnectorConfigurationAuthentication",
       "properties": {
+        "serviceAccount": {
+          "description": "Output only. Google-managed service account associated with this connection, e.g., `service-{project_number}@gcp-sa-bigqueryconnection.iam.gserviceaccount.com`. BigQuery jobs using this connection will act as `service_account` identity while connecting to the datasource.",
+          "readOnly": true,
+          "type": "string"
+        },
         "usernamePassword": {
           "$ref": "ConnectorConfigurationUsernamePassword",
           "description": "Username/password authentication."
@@ -711,6 +739,28 @@
       "properties": {
         "hostPort": {
           "description": "Host and port in a format of `hostname:port` as defined in https://www.ietf.org/rfc/rfc3986.html#section-3.2.2 and https://www.ietf.org/rfc/rfc3986.html#section-3.2.3.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ConnectorConfigurationNetwork": {
+      "description": "Network related configuration.",
+      "id": "ConnectorConfigurationNetwork",
+      "properties": {
+        "privateServiceConnect": {
+          "$ref": "ConnectorConfigurationPrivateServiceConnect",
+          "description": "Private Service Connect networking configuration."
+        }
+      },
+      "type": "object"
+    },
+    "ConnectorConfigurationPrivateServiceConnect": {
+      "description": "Private Service Connect configuration.",
+      "id": "ConnectorConfigurationPrivateServiceConnect",
+      "properties": {
+        "networkAttachment": {
+          "description": "Required. Network Attachment name in the format of `projects/{project}/regions/{region}/networkAttachments/{networkattachment}`.",
           "type": "string"
         }
       },

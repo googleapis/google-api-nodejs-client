@@ -154,9 +154,17 @@ export namespace dialogflow_v3 {
      */
     enabled?: boolean | null;
     /**
+     * Endpoint timeout setting for matching dtmf input to regex.
+     */
+    endpointingTimeoutDuration?: string | null;
+    /**
      * The digit that terminates a DTMF digit sequence.
      */
     finishDigit?: string | null;
+    /**
+     * Interdigit timeout setting for matching dtmf input to regex.
+     */
+    interdigitTimeoutDuration?: string | null;
     /**
      * Max length of DTMF digits.
      */
@@ -167,11 +175,11 @@ export namespace dialogflow_v3 {
    */
   export interface Schema$GoogleCloudDialogflowCxV3AdvancedSettingsLoggingSettings {
     /**
-     * If true, DF Interaction logging is currently enabled.
+     * Enables DF Interaction logging.
      */
     enableInteractionLogging?: boolean | null;
     /**
-     * If true, StackDriver logging is currently enabled.
+     * Enables StackDriver logging.
      */
     enableStackdriverLogging?: boolean | null;
   }
@@ -224,6 +232,10 @@ export namespace dialogflow_v3 {
      * Required. The human-readable name of the agent, unique within the location.
      */
     displayName?: string | null;
+    /**
+     * Optional. Enable training multi-lingual models for this agent. These models will be trained on all the languages supported by the agent.
+     */
+    enableMultiLanguageTraining?: boolean | null;
     /**
      * Indicates if automatic spell correction is enabled in detect intent requests.
      */
@@ -477,9 +489,17 @@ export namespace dialogflow_v3 {
      */
     enabled?: boolean | null;
     /**
+     * Endpoint timeout setting for matching dtmf input to regex.
+     */
+    endpointingTimeoutDuration?: string | null;
+    /**
      * The digit that terminates a DTMF digit sequence.
      */
     finishDigit?: string | null;
+    /**
+     * Interdigit timeout setting for matching dtmf input to regex.
+     */
+    interdigitTimeoutDuration?: string | null;
     /**
      * Max length of DTMF digits.
      */
@@ -490,11 +510,11 @@ export namespace dialogflow_v3 {
    */
   export interface Schema$GoogleCloudDialogflowCxV3beta1AdvancedSettingsLoggingSettings {
     /**
-     * If true, DF Interaction logging is currently enabled.
+     * Enables DF Interaction logging.
      */
     enableInteractionLogging?: boolean | null;
     /**
-     * If true, StackDriver logging is currently enabled.
+     * Enables StackDriver logging.
      */
     enableStackdriverLogging?: boolean | null;
   }
@@ -1358,6 +1378,23 @@ export namespace dialogflow_v3 {
     triggerFulfillment?: Schema$GoogleCloudDialogflowCxV3beta1Fulfillment;
   }
   /**
+   * Represents the language information of the request.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1LanguageInfo {
+    /**
+     * The confidence score of the detected language between 0 and 1.
+     */
+    confidenceScore?: number | null;
+    /**
+     * The language code specified in the original request.
+     */
+    inputLanguageCode?: string | null;
+    /**
+     * The language code detected for this request based on the user conversation.
+     */
+    resolvedLanguageCode?: string | null;
+  }
+  /**
    * A Dialogflow CX conversation (session) can be described and visualized as a state machine. The states of a CX session are represented by pages. For each flow, you define many pages, where your combined pages can handle a complete conversation on the topics the flow is designed for. At any given moment, exactly one page is the current page, the current page is considered active, and the flow associated with that page is considered active. Every flow has a special start page. When a flow initially becomes active, the start page page becomes the current page. For each conversational turn, the current page will either stay the same or transition to another page. You configure each page to collect information from the end-user that is relevant for the conversational state represented by the page. For more information, see the [Page guide](https://cloud.google.com/dialogflow/cx/docs/concept/page).
    */
   export interface Schema$GoogleCloudDialogflowCxV3beta1Page {
@@ -1481,6 +1518,10 @@ export namespace dialogflow_v3 {
      * The natural language text to be processed.
      */
     text?: Schema$GoogleCloudDialogflowCxV3beta1TextInput;
+    /**
+     * The results of a tool executed by the client.
+     */
+    toolCallResult?: Schema$GoogleCloudDialogflowCxV3beta1ToolCallResult;
   }
   /**
    * Metadata for ReloadDocument operation.
@@ -1539,6 +1580,10 @@ export namespace dialogflow_v3 {
      * Returns a text response.
      */
     text?: Schema$GoogleCloudDialogflowCxV3beta1ResponseMessageText;
+    /**
+     * Returns the definition of a tool call that should be executed by the client.
+     */
+    toolCall?: Schema$GoogleCloudDialogflowCxV3beta1ToolCall;
   }
   /**
    * Indicates that the conversation succeeded, i.e., the bot handled the issue that the customer talked to it about. Dialogflow only uses this to determine which conversations should be counted as successful and doesn't process the metadata in this message in any way. Note that Dialogflow also considers conversations that get to the conversation end page as successful even if they don't return ConversationSuccess. You may set this, for example: * In the entry_fulfillment of a Page if entering the page indicates that the conversation succeeded. * In a webhook response when you determine that you handled the customer issue.
@@ -1820,6 +1865,53 @@ export namespace dialogflow_v3 {
     text?: string | null;
   }
   /**
+   * Represents a call of a specific tool's action with the specified inputs.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1ToolCall {
+    /**
+     * Required. The name of the tool's action associated with this call.
+     */
+    action?: string | null;
+    /**
+     * Optional. The action's input parameters.
+     */
+    inputParameters?: {[key: string]: any} | null;
+    /**
+     * Required. The tool associated with this call. Format: `projects//locations//agents//tools/`.
+     */
+    tool?: string | null;
+  }
+  /**
+   * The result of calling a tool's action that has been executed by the client.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1ToolCallResult {
+    /**
+     * Required. The name of the tool's action associated with this call.
+     */
+    action?: string | null;
+    /**
+     * The tool call's error.
+     */
+    error?: Schema$GoogleCloudDialogflowCxV3beta1ToolCallResultError;
+    /**
+     * The tool call's output parameters.
+     */
+    outputParameters?: {[key: string]: any} | null;
+    /**
+     * Required. The tool associated with this call. Format: `projects//locations//agents//tools/`.
+     */
+    tool?: string | null;
+  }
+  /**
+   * An error produced by the tool call.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1ToolCallResultError {
+    /**
+     * Optional. The error message of the function.
+     */
+    message?: string | null;
+  }
+  /**
    * A transition route specifies a intent that can be matched and/or a data condition that can be evaluated during a session. When a specified transition is matched, the following actions are taken in order: * If there is a `trigger_fulfillment` associated with the transition, it will be called. * If there is a `target_page` associated with the transition, the session will transition into the specified page. * If there is a `target_flow` associated with the transition, the session will transition into the specified flow.
    */
   export interface Schema$GoogleCloudDialogflowCxV3beta1TransitionRoute {
@@ -2029,6 +2121,10 @@ export namespace dialogflow_v3 {
      * The language code specified in the original request.
      */
     languageCode?: string | null;
+    /**
+     * Information about the language of the request.
+     */
+    languageInfo?: Schema$GoogleCloudDialogflowCxV3beta1LanguageInfo;
     /**
      * The list of rich message responses to present to the user. Webhook can choose to append or replace this list in WebhookResponse.fulfillment_response;
      */
@@ -3261,6 +3357,10 @@ export namespace dialogflow_v3 {
      */
     knowledgeConnectorSettings?: Schema$GoogleCloudDialogflowCxV3KnowledgeConnectorSettings;
     /**
+     * Optional. Multi-lingual agent settings for this flow.
+     */
+    multiLanguageSettings?: Schema$GoogleCloudDialogflowCxV3FlowMultiLanguageSettings;
+    /**
      * The unique identifier of the flow. Format: `projects//locations//agents//flows/`.
      */
     name?: string | null;
@@ -3285,6 +3385,19 @@ export namespace dialogflow_v3 {
      * Optional. Import strategy for resource conflict resolution, applied globally throughout the flow. It will be applied for all display name conflicts in the imported content. If not specified, 'CREATE_NEW' is assumed.
      */
     globalImportStrategy?: string | null;
+  }
+  /**
+   * Settings for multi-lingual agents.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3FlowMultiLanguageSettings {
+    /**
+     * Optional. Enable multi-language detection for this flow. This can be set only if agent level multi language setting is enabled.
+     */
+    enableMultiLanguageDetection?: boolean | null;
+    /**
+     * Optional. Agent will respond in the detected language if the detected language code is in the supported resolved languages for this flow. This will be used only if multi-language training is enabled in the agent and multi-language detection is enabled in the flow. The supported languages must be a subset of the languages supported by the agent.
+     */
+    supportedResponseLanguageCodes?: string[] | null;
   }
   /**
    * The response message for Flows.GetFlowValidationResult.
@@ -4004,6 +4117,23 @@ export namespace dialogflow_v3 {
      * The fulfillment to be triggered. When the answers from the Knowledge Connector are selected by Dialogflow, you can utitlize the request scoped parameter `$request.knowledge.answers` (contains up to the 5 highest confidence answers) and `$request.knowledge.questions` (contains the corresponding questions) to construct the fulfillment.
      */
     triggerFulfillment?: Schema$GoogleCloudDialogflowCxV3Fulfillment;
+  }
+  /**
+   * Represents the language information of the request.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3LanguageInfo {
+    /**
+     * The confidence score of the detected language between 0 and 1.
+     */
+    confidenceScore?: number | null;
+    /**
+     * The language code specified in the original request.
+     */
+    inputLanguageCode?: string | null;
+    /**
+     * The language code detected for this request based on the user conversation.
+     */
+    resolvedLanguageCode?: string | null;
   }
   /**
    * The response message for Agents.ListAgents.
@@ -5058,6 +5188,10 @@ export namespace dialogflow_v3 {
      * Cloud Storage bucket to export audio record to. Setting this field would grant the Storage Object Creator role to the Dialogflow Service Agent. API caller that tries to modify this field should have the permission of storage.buckets.setIamPolicy.
      */
     gcsBucket?: string | null;
+    /**
+     * Whether to store TTS audio. By default, TTS audio from the virtual agent is not exported.
+     */
+    storeTtsAudio?: boolean | null;
   }
   /**
    * Settings for exporting conversations to [Insights](https://cloud.google.com/contact-center/insights/docs).
@@ -5765,6 +5899,10 @@ export namespace dialogflow_v3 {
      * The language code specified in the original request.
      */
     languageCode?: string | null;
+    /**
+     * Information about the language of the request.
+     */
+    languageInfo?: Schema$GoogleCloudDialogflowCxV3LanguageInfo;
     /**
      * The list of rich message responses to present to the user. Webhook can choose to append or replace this list in WebhookResponse.fulfillment_response;
      */
@@ -7185,6 +7323,84 @@ export namespace dialogflow_v3 {
     source?: string | null;
   }
   /**
+   * Represents a Knowledge Assist answer.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1KnowledgeAssistAnswer {
+    /**
+     * The name of the answer record. Format: `projects//locations//answer Records/`.
+     */
+    answerRecord?: string | null;
+    /**
+     * The query suggested based on the context. Suggestion is made only if it is different from the previous suggestion.
+     */
+    suggestedQuery?: Schema$GoogleCloudDialogflowV2beta1KnowledgeAssistAnswerSuggestedQuery;
+    /**
+     * The answer generated for the suggested query. Whether or not an answer is generated depends on how confident we are about the generated query.
+     */
+    suggestedQueryAnswer?: Schema$GoogleCloudDialogflowV2beta1KnowledgeAssistAnswerKnowledgeAnswer;
+  }
+  /**
+   * Represents an answer from Knowledge. Currently supports FAQ and Generative answers.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1KnowledgeAssistAnswerKnowledgeAnswer {
+    /**
+     * The piece of text from the `source` that answers this suggested query.
+     */
+    answerText?: string | null;
+    /**
+     * Populated if the prediction came from FAQ.
+     */
+    faqSource?: Schema$GoogleCloudDialogflowV2beta1KnowledgeAssistAnswerKnowledgeAnswerFaqSource;
+    /**
+     * Populated if the prediction was Generative.
+     */
+    generativeSource?: Schema$GoogleCloudDialogflowV2beta1KnowledgeAssistAnswerKnowledgeAnswerGenerativeSource;
+  }
+  /**
+   * Details about source of FAQ answer.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1KnowledgeAssistAnswerKnowledgeAnswerFaqSource {
+    /**
+     * The corresponding FAQ question.
+     */
+    question?: string | null;
+  }
+  /**
+   * Details about source of Generative answer.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1KnowledgeAssistAnswerKnowledgeAnswerGenerativeSource {
+    /**
+     * All snippets used for this Generative Prediction, with their source URI and data.
+     */
+    snippets?: Schema$GoogleCloudDialogflowV2beta1KnowledgeAssistAnswerKnowledgeAnswerGenerativeSourceSnippet[];
+  }
+  /**
+   * Snippet Source for a Generative Prediction.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1KnowledgeAssistAnswerKnowledgeAnswerGenerativeSourceSnippet {
+    /**
+     * Text taken from that URI.
+     */
+    text?: string | null;
+    /**
+     * Title of the document.
+     */
+    title?: string | null;
+    /**
+     * URI the data is sourced from.
+     */
+    uri?: string | null;
+  }
+  /**
+   * Represents a suggested query.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1KnowledgeAssistAnswerSuggestedQuery {
+    /**
+     * Suggested query text.
+     */
+    queryText?: string | null;
+  }
+  /**
    * Metadata in google::longrunning::Operation for Knowledge operations.
    */
   export interface Schema$GoogleCloudDialogflowV2beta1KnowledgeOperationMetadata {
@@ -7498,9 +7714,30 @@ export namespace dialogflow_v3 {
      */
     suggestFaqAnswersResponse?: Schema$GoogleCloudDialogflowV2beta1SuggestFaqAnswersResponse;
     /**
+     * SuggestKnowledgeAssistResponse if request is for KNOWLEDGE_ASSIST.
+     */
+    suggestKnowledgeAssistResponse?: Schema$GoogleCloudDialogflowV2beta1SuggestKnowledgeAssistResponse;
+    /**
      * SuggestSmartRepliesResponse if request is for SMART_REPLY.
      */
     suggestSmartRepliesResponse?: Schema$GoogleCloudDialogflowV2beta1SuggestSmartRepliesResponse;
+  }
+  /**
+   * The response message for Participants.SuggestKnowledgeAssist.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1SuggestKnowledgeAssistResponse {
+    /**
+     * Number of messages prior to and including latest_message to compile the suggestion. It may be smaller than the SuggestKnowledgeAssistRequest.context_size field in the request if there are fewer messages in the conversation.
+     */
+    contextSize?: number | null;
+    /**
+     * Output only. Knowledge Assist suggestion.
+     */
+    knowledgeAssistAnswer?: Schema$GoogleCloudDialogflowV2beta1KnowledgeAssistAnswer;
+    /**
+     * The name of the latest conversation message used to compile suggestion for. Format: `projects//locations//conversations//messages/`.
+     */
+    latestMessage?: string | null;
   }
   /**
    * The response message for Participants.SuggestSmartReplies.
@@ -8592,6 +8829,84 @@ export namespace dialogflow_v3 {
     userDefined?: boolean | null;
   }
   /**
+   * Represents a Knowledge Assist answer.
+   */
+  export interface Schema$GoogleCloudDialogflowV2KnowledgeAssistAnswer {
+    /**
+     * The name of the answer record. Format: `projects//locations//answer Records/`.
+     */
+    answerRecord?: string | null;
+    /**
+     * The query suggested based on the context. Suggestion is made only if it is different from the previous suggestion.
+     */
+    suggestedQuery?: Schema$GoogleCloudDialogflowV2KnowledgeAssistAnswerSuggestedQuery;
+    /**
+     * The answer generated for the suggested query. Whether or not an answer is generated depends on how confident we are about the generated query.
+     */
+    suggestedQueryAnswer?: Schema$GoogleCloudDialogflowV2KnowledgeAssistAnswerKnowledgeAnswer;
+  }
+  /**
+   * Represents an answer from Knowledge. Currently supports FAQ and Generative answers.
+   */
+  export interface Schema$GoogleCloudDialogflowV2KnowledgeAssistAnswerKnowledgeAnswer {
+    /**
+     * The piece of text from the `source` that answers this suggested query.
+     */
+    answerText?: string | null;
+    /**
+     * Populated if the prediction came from FAQ.
+     */
+    faqSource?: Schema$GoogleCloudDialogflowV2KnowledgeAssistAnswerKnowledgeAnswerFaqSource;
+    /**
+     * Populated if the prediction was Generative.
+     */
+    generativeSource?: Schema$GoogleCloudDialogflowV2KnowledgeAssistAnswerKnowledgeAnswerGenerativeSource;
+  }
+  /**
+   * Details about source of FAQ answer.
+   */
+  export interface Schema$GoogleCloudDialogflowV2KnowledgeAssistAnswerKnowledgeAnswerFaqSource {
+    /**
+     * The corresponding FAQ question.
+     */
+    question?: string | null;
+  }
+  /**
+   * Details about source of Generative answer.
+   */
+  export interface Schema$GoogleCloudDialogflowV2KnowledgeAssistAnswerKnowledgeAnswerGenerativeSource {
+    /**
+     * All snippets used for this Generative Prediction, with their source URI and data.
+     */
+    snippets?: Schema$GoogleCloudDialogflowV2KnowledgeAssistAnswerKnowledgeAnswerGenerativeSourceSnippet[];
+  }
+  /**
+   * Snippet Source for a Generative Prediction.
+   */
+  export interface Schema$GoogleCloudDialogflowV2KnowledgeAssistAnswerKnowledgeAnswerGenerativeSourceSnippet {
+    /**
+     * Text taken from that URI.
+     */
+    text?: string | null;
+    /**
+     * Title of the document.
+     */
+    title?: string | null;
+    /**
+     * URI the data is sourced from.
+     */
+    uri?: string | null;
+  }
+  /**
+   * Represents a suggested query.
+   */
+  export interface Schema$GoogleCloudDialogflowV2KnowledgeAssistAnswerSuggestedQuery {
+    /**
+     * Suggested query text.
+     */
+    queryText?: string | null;
+  }
+  /**
    * Metadata in google::longrunning::Operation for Knowledge operations.
    */
   export interface Schema$GoogleCloudDialogflowV2KnowledgeOperationMetadata {
@@ -8885,9 +9200,30 @@ export namespace dialogflow_v3 {
      */
     suggestFaqAnswersResponse?: Schema$GoogleCloudDialogflowV2SuggestFaqAnswersResponse;
     /**
+     * SuggestKnowledgeAssistResponse if request is for KNOWLEDGE_ASSIST.
+     */
+    suggestKnowledgeAssistResponse?: Schema$GoogleCloudDialogflowV2SuggestKnowledgeAssistResponse;
+    /**
      * SuggestSmartRepliesResponse if request is for SMART_REPLY.
      */
     suggestSmartRepliesResponse?: Schema$GoogleCloudDialogflowV2SuggestSmartRepliesResponse;
+  }
+  /**
+   * The response message for Participants.SuggestKnowledgeAssist.
+   */
+  export interface Schema$GoogleCloudDialogflowV2SuggestKnowledgeAssistResponse {
+    /**
+     * Number of messages prior to and including latest_message to compile the suggestion. It may be smaller than the SuggestKnowledgeAssistRequest.context_size field in the request if there are fewer messages in the conversation.
+     */
+    contextSize?: number | null;
+    /**
+     * Output only. Knowledge Assist suggestion.
+     */
+    knowledgeAssistAnswer?: Schema$GoogleCloudDialogflowV2KnowledgeAssistAnswer;
+    /**
+     * The name of the latest conversation message used to compile suggestion for. Format: `projects//locations//conversations//messages/`.
+     */
+    latestMessage?: string | null;
   }
   /**
    * The response message for Participants.SuggestSmartReplies.
@@ -9305,6 +9641,7 @@ export namespace dialogflow_v3 {
           {
             url: (rootUrl + '/v3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -9399,6 +9736,7 @@ export namespace dialogflow_v3 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -9568,6 +9906,7 @@ export namespace dialogflow_v3 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -9657,6 +9996,7 @@ export namespace dialogflow_v3 {
           {
             url: (rootUrl + '/v3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -9748,6 +10088,7 @@ export namespace dialogflow_v3 {
           {
             url: (rootUrl + '/v3/{+name}:export').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -9839,6 +10180,7 @@ export namespace dialogflow_v3 {
           {
             url: (rootUrl + '/v3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -9933,6 +10275,7 @@ export namespace dialogflow_v3 {
           {
             url: (rootUrl + '/v3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -10027,6 +10370,7 @@ export namespace dialogflow_v3 {
           {
             url: (rootUrl + '/v3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -10123,6 +10467,7 @@ export namespace dialogflow_v3 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -10216,6 +10561,7 @@ export namespace dialogflow_v3 {
           {
             url: (rootUrl + '/v3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -10312,6 +10658,7 @@ export namespace dialogflow_v3 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -10404,6 +10751,7 @@ export namespace dialogflow_v3 {
           {
             url: (rootUrl + '/v3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -10500,6 +10848,7 @@ export namespace dialogflow_v3 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -10732,6 +11081,7 @@ export namespace dialogflow_v3 {
           {
             url: (rootUrl + '/v3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -10829,6 +11179,7 @@ export namespace dialogflow_v3 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -10960,6 +11311,7 @@ export namespace dialogflow_v3 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -11050,6 +11402,7 @@ export namespace dialogflow_v3 {
           {
             url: (rootUrl + '/v3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -11145,6 +11498,7 @@ export namespace dialogflow_v3 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -11237,6 +11591,7 @@ export namespace dialogflow_v3 {
           {
             url: (rootUrl + '/v3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -11334,6 +11689,7 @@ export namespace dialogflow_v3 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -11429,6 +11785,7 @@ export namespace dialogflow_v3 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -11523,6 +11880,7 @@ export namespace dialogflow_v3 {
           {
             url: (rootUrl + '/v3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -11749,6 +12107,7 @@ export namespace dialogflow_v3 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -11837,6 +12196,7 @@ export namespace dialogflow_v3 {
           {
             url: (rootUrl + '/v3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -11932,6 +12292,7 @@ export namespace dialogflow_v3 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -12024,6 +12385,7 @@ export namespace dialogflow_v3 {
           {
             url: (rootUrl + '/v3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -12121,6 +12483,7 @@ export namespace dialogflow_v3 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -12218,6 +12581,7 @@ export namespace dialogflow_v3 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -12312,6 +12676,7 @@ export namespace dialogflow_v3 {
           {
             url: (rootUrl + '/v3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -12407,6 +12772,7 @@ export namespace dialogflow_v3 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -12606,6 +12972,7 @@ export namespace dialogflow_v3 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -12723,6 +13090,7 @@ export namespace dialogflow_v3 {
           {
             url: (rootUrl + '/v3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -12820,6 +13188,7 @@ export namespace dialogflow_v3 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -12947,6 +13316,7 @@ export namespace dialogflow_v3 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -13037,6 +13407,7 @@ export namespace dialogflow_v3 {
           {
             url: (rootUrl + '/v3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -13129,6 +13500,7 @@ export namespace dialogflow_v3 {
           {
             url: (rootUrl + '/v3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -13226,6 +13598,7 @@ export namespace dialogflow_v3 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -13320,6 +13693,7 @@ export namespace dialogflow_v3 {
           {
             url: (rootUrl + '/v3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -13414,6 +13788,7 @@ export namespace dialogflow_v3 {
           {
             url: (rootUrl + '/v3/{+name}:start').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -13508,6 +13883,7 @@ export namespace dialogflow_v3 {
           {
             url: (rootUrl + '/v3/{+name}:stop').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -13699,6 +14075,7 @@ export namespace dialogflow_v3 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -13796,6 +14173,7 @@ export namespace dialogflow_v3 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -13893,6 +14271,7 @@ export namespace dialogflow_v3 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -13989,6 +14368,7 @@ export namespace dialogflow_v3 {
               rootUrl + '/v3/{+session}:serverStreamingDetectIntent'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -14142,6 +14522,7 @@ export namespace dialogflow_v3 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -14232,6 +14613,7 @@ export namespace dialogflow_v3 {
           {
             url: (rootUrl + '/v3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -14324,6 +14706,7 @@ export namespace dialogflow_v3 {
           {
             url: (rootUrl + '/v3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -14421,6 +14804,7 @@ export namespace dialogflow_v3 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -14515,6 +14899,7 @@ export namespace dialogflow_v3 {
           {
             url: (rootUrl + '/v3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -14689,6 +15074,7 @@ export namespace dialogflow_v3 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -14778,6 +15164,7 @@ export namespace dialogflow_v3 {
           {
             url: (rootUrl + '/v3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -14869,6 +15256,7 @@ export namespace dialogflow_v3 {
           {
             url: (rootUrl + '/v3/{+name}:export').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -14960,6 +15348,7 @@ export namespace dialogflow_v3 {
           {
             url: (rootUrl + '/v3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -15054,6 +15443,7 @@ export namespace dialogflow_v3 {
           {
             url: (rootUrl + '/v3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -15150,6 +15540,7 @@ export namespace dialogflow_v3 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -15244,6 +15635,7 @@ export namespace dialogflow_v3 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -15337,6 +15729,7 @@ export namespace dialogflow_v3 {
           {
             url: (rootUrl + '/v3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -15430,6 +15823,7 @@ export namespace dialogflow_v3 {
           {
             url: (rootUrl + '/v3/{+name}:train').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -15524,6 +15918,7 @@ export namespace dialogflow_v3 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -15765,6 +16160,7 @@ export namespace dialogflow_v3 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -15855,6 +16251,7 @@ export namespace dialogflow_v3 {
           {
             url: (rootUrl + '/v3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -15947,6 +16344,7 @@ export namespace dialogflow_v3 {
           {
             url: (rootUrl + '/v3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -16044,6 +16442,7 @@ export namespace dialogflow_v3 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -16138,6 +16537,7 @@ export namespace dialogflow_v3 {
           {
             url: (rootUrl + '/v3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -16320,6 +16720,7 @@ export namespace dialogflow_v3 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -16410,6 +16811,7 @@ export namespace dialogflow_v3 {
           {
             url: (rootUrl + '/v3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -16502,6 +16904,7 @@ export namespace dialogflow_v3 {
           {
             url: (rootUrl + '/v3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -16599,6 +17002,7 @@ export namespace dialogflow_v3 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -16693,6 +17097,7 @@ export namespace dialogflow_v3 {
           {
             url: (rootUrl + '/v3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -16875,6 +17280,7 @@ export namespace dialogflow_v3 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -16972,6 +17378,7 @@ export namespace dialogflow_v3 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -17060,6 +17467,7 @@ export namespace dialogflow_v3 {
           {
             url: (rootUrl + '/v3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -17152,6 +17560,7 @@ export namespace dialogflow_v3 {
           {
             url: (rootUrl + '/v3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -17249,6 +17658,7 @@ export namespace dialogflow_v3 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -17343,6 +17753,7 @@ export namespace dialogflow_v3 {
           {
             url: (rootUrl + '/v3/{+name}:load').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -17435,6 +17846,7 @@ export namespace dialogflow_v3 {
           {
             url: (rootUrl + '/v3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -17621,6 +18033,7 @@ export namespace dialogflow_v3 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -17711,6 +18124,7 @@ export namespace dialogflow_v3 {
           {
             url: (rootUrl + '/v3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -17802,6 +18216,7 @@ export namespace dialogflow_v3 {
           {
             url: (rootUrl + '/v3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -17899,6 +18314,7 @@ export namespace dialogflow_v3 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -17993,6 +18409,7 @@ export namespace dialogflow_v3 {
           {
             url: (rootUrl + '/v3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -18174,6 +18591,7 @@ export namespace dialogflow_v3 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -18263,6 +18681,7 @@ export namespace dialogflow_v3 {
           {
             url: (rootUrl + '/v3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -18357,6 +18776,7 @@ export namespace dialogflow_v3 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -18448,6 +18868,7 @@ export namespace dialogflow_v3 {
           {
             url: (rootUrl + '/v3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -18544,6 +18965,7 @@ export namespace dialogflow_v3 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -18638,6 +19060,7 @@ export namespace dialogflow_v3 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -18731,6 +19154,7 @@ export namespace dialogflow_v3 {
           {
             url: (rootUrl + '/v3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -18942,6 +19366,7 @@ export namespace dialogflow_v3 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -19039,6 +19464,7 @@ export namespace dialogflow_v3 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -19136,6 +19562,7 @@ export namespace dialogflow_v3 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -19232,6 +19659,7 @@ export namespace dialogflow_v3 {
               rootUrl + '/v3/{+session}:serverStreamingDetectIntent'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -19329,6 +19757,7 @@ export namespace dialogflow_v3 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -19494,6 +19923,7 @@ export namespace dialogflow_v3 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -19584,6 +20014,7 @@ export namespace dialogflow_v3 {
           {
             url: (rootUrl + '/v3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -19676,6 +20107,7 @@ export namespace dialogflow_v3 {
           {
             url: (rootUrl + '/v3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -19773,6 +20205,7 @@ export namespace dialogflow_v3 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -19867,6 +20300,7 @@ export namespace dialogflow_v3 {
           {
             url: (rootUrl + '/v3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -20031,6 +20465,7 @@ export namespace dialogflow_v3 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -20126,6 +20561,7 @@ export namespace dialogflow_v3 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -20221,6 +20657,7 @@ export namespace dialogflow_v3 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -20318,6 +20755,7 @@ export namespace dialogflow_v3 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -20415,6 +20853,7 @@ export namespace dialogflow_v3 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -20506,6 +20945,7 @@ export namespace dialogflow_v3 {
           {
             url: (rootUrl + '/v3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -20603,6 +21043,7 @@ export namespace dialogflow_v3 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -20697,6 +21138,7 @@ export namespace dialogflow_v3 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -20791,6 +21233,7 @@ export namespace dialogflow_v3 {
           {
             url: (rootUrl + '/v3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -20884,6 +21327,7 @@ export namespace dialogflow_v3 {
           {
             url: (rootUrl + '/v3/{+name}:run').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -21109,6 +21553,7 @@ export namespace dialogflow_v3 {
           {
             url: (rootUrl + '/v3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -21206,6 +21651,7 @@ export namespace dialogflow_v3 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -21337,6 +21783,7 @@ export namespace dialogflow_v3 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -21427,6 +21874,7 @@ export namespace dialogflow_v3 {
           {
             url: (rootUrl + '/v3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -21519,6 +21967,7 @@ export namespace dialogflow_v3 {
           {
             url: (rootUrl + '/v3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -21616,6 +22065,7 @@ export namespace dialogflow_v3 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -21710,6 +22160,7 @@ export namespace dialogflow_v3 {
           {
             url: (rootUrl + '/v3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -21892,6 +22343,7 @@ export namespace dialogflow_v3 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -21982,6 +22434,7 @@ export namespace dialogflow_v3 {
           {
             url: (rootUrl + '/v3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -22073,6 +22526,7 @@ export namespace dialogflow_v3 {
           {
             url: (rootUrl + '/v3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -22169,6 +22623,7 @@ export namespace dialogflow_v3 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -22262,6 +22717,7 @@ export namespace dialogflow_v3 {
           {
             url: (rootUrl + '/v3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -22420,6 +22876,7 @@ export namespace dialogflow_v3 {
           {
             url: (rootUrl + '/v3/{+name}:cancel').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -22511,6 +22968,7 @@ export namespace dialogflow_v3 {
           {
             url: (rootUrl + '/v3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -22605,6 +23063,7 @@ export namespace dialogflow_v3 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -22743,6 +23202,7 @@ export namespace dialogflow_v3 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -22833,6 +23293,7 @@ export namespace dialogflow_v3 {
           {
             url: (rootUrl + '/v3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -22924,6 +23385,7 @@ export namespace dialogflow_v3 {
           {
             url: (rootUrl + '/v3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -23020,6 +23482,7 @@ export namespace dialogflow_v3 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -23114,6 +23577,7 @@ export namespace dialogflow_v3 {
           {
             url: (rootUrl + '/v3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -23268,6 +23732,7 @@ export namespace dialogflow_v3 {
           {
             url: (rootUrl + '/v3/{+name}:cancel').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -23359,6 +23824,7 @@ export namespace dialogflow_v3 {
           {
             url: (rootUrl + '/v3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -23453,6 +23919,7 @@ export namespace dialogflow_v3 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),

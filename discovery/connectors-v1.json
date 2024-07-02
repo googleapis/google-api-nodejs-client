@@ -523,7 +523,7 @@
                       "type": "string"
                     },
                     "updateMask": {
-                      "description": "Required. You can modify only the fields listed below. To lock/unlock a connection: * `lock_config` To suspend/resume a connection: * `suspended` To update the connection details: * `description` * `labels` * `connector_version` * `config_variables` * `auth_config` * `destination_configs` * `node_config` * `log_config` * `ssl_config` * `eventing_enablement_type` * `eventing_config`",
+                      "description": "Required. You can modify only the fields listed below. To lock/unlock a connection: * `lock_config` To suspend/resume a connection: * `suspended` To update the connection details: * `description` * `labels` * `connector_version` * `config_variables` * `auth_config` * `destination_configs` * `node_config` * `log_config` * `ssl_config` * `eventing_enablement_type` * `eventing_config` * `auth_override_enabled`",
                       "format": "google-fieldmask",
                       "location": "query",
                       "type": "string"
@@ -563,6 +563,47 @@
                   },
                   "response": {
                     "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "search": {
+                  "description": "Returns Top matching Connections for a given query.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/connections:search",
+                  "httpMethod": "GET",
+                  "id": "connectors.projects.locations.connections.search",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Parent resource of the Connection, of the form: `projects/*/locations/*/connections`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/connections$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "Optional. The number of top matching connectors to return",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. page_token",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "query": {
+                      "description": "Required. The query against which the search needs to be done.",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}:search",
+                  "response": {
+                    "$ref": "SearchConnectionsResponse"
                   },
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform"
@@ -1165,6 +1206,34 @@
                         }
                       },
                       "path": "v1/{+name}",
+                      "response": {
+                        "$ref": "Operation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "deprecate": {
+                      "description": "Deprecates a single CustomConnectorVersion.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/customConnectors/{customConnectorsId}/customConnectorVersions/{customConnectorVersionsId}:deprecate",
+                      "httpMethod": "POST",
+                      "id": "connectors.projects.locations.customConnectors.customConnectorVersions.deprecate",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. Resource name of the form: `projects/{project}/locations/{location}/customConnectors/{custom_connector}/customConnectorVersions/{custom_connector_version}`",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/customConnectors/[^/]+/customConnectorVersions/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}:deprecate",
+                      "request": {
+                        "$ref": "DeprecateCustomConnectorVersionRequest"
+                      },
                       "response": {
                         "$ref": "Operation"
                       },
@@ -2358,7 +2427,7 @@
       }
     }
   },
-  "revision": "20240319",
+  "revision": "20240625",
   "rootUrl": "https://connectors.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -2529,6 +2598,10 @@
           "description": "Whether to enable PKCE for the auth code flow.",
           "type": "boolean"
         },
+        "omitQueryParams": {
+          "description": "Optional. Omit query params from the redirect URI.",
+          "type": "string"
+        },
         "scopes": {
           "description": "The scopes for which the user will authorize Google Cloud Connectors on the connector data source.",
           "items": {
@@ -2538,6 +2611,28 @@
         },
         "uri": {
           "description": "The base URI the user must click to trigger the authorization code login flow.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "BillingConfig": {
+      "description": "Billing config for the connection.",
+      "id": "BillingConfig",
+      "properties": {
+        "billingCategory": {
+          "description": "Output only. Billing category for the connector.",
+          "enum": [
+            "BILLING_CATEGORY_UNSPECIFIED",
+            "GCP_AND_TECHNICAL_CONNECTOR",
+            "NON_GCP_CONNECTOR"
+          ],
+          "enumDescriptions": [
+            "Billing category is not specified.",
+            "GCP/Technical connector.",
+            "Non-GCP connector."
+          ],
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -2664,6 +2759,10 @@
           ],
           "type": "string"
         },
+        "multipleSelectConfig": {
+          "$ref": "MultipleSelectConfig",
+          "description": "Optional. MultipleSelectConfig represents the multiple options for a config variable."
+        },
         "required": {
           "description": "Flag represents that this `ConfigVariable` must be provided for a connection.",
           "type": "boolean"
@@ -2704,7 +2803,8 @@
             "SECRET",
             "ENUM",
             "AUTHORIZATION_CODE",
-            "ENCRYPTION_KEY"
+            "ENCRYPTION_KEY",
+            "MULTIPLE_SELECT"
           ],
           "enumDescriptions": [
             "Value type is not specified.",
@@ -2714,7 +2814,8 @@
             "Value type is secret.",
             "Value type is enum.",
             "Value type is authorization code.",
-            "Encryption Key."
+            "Encryption Key.",
+            "Value type is multiple select."
           ],
           "type": "string"
         }
@@ -2728,6 +2829,11 @@
         "authConfig": {
           "$ref": "AuthConfig",
           "description": "Optional. Configuration for establishing the connection's authentication with an external system."
+        },
+        "billingConfig": {
+          "$ref": "BillingConfig",
+          "description": "Output only. Billing config for the connection.",
+          "readOnly": true
         },
         "configVariables": {
           "description": "Optional. Configuration for configuring the connection with an external system.",
@@ -3007,6 +3113,28 @@
       "description": "Connectors indicates a specific connector type, e.x. Salesforce, SAP etc.",
       "id": "Connector",
       "properties": {
+        "category": {
+          "description": "Output only. Category of the connector.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "connectorType": {
+          "description": "Output only. The type of the connector.",
+          "enum": [
+            "CONNECTOR_TYPE_UNSPECIFIED",
+            "CONNECTOR_TYPE_GOOGLE",
+            "CONNECTOR_TYPE_TECHNICAL",
+            "CONNECTOR_TYPE_THIRD_PARTY"
+          ],
+          "enumDescriptions": [
+            "Default value.",
+            "Google connectors.",
+            "Technical connectors.",
+            "Third Party connectors."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
         "createTime": {
           "description": "Output only. Created time.",
           "format": "google-datetime",
@@ -3069,6 +3197,14 @@
           "description": "Output only. Resource name of the Connector. Format: projects/{project}/locations/{location}/providers/{provider}/connectors/{connector} Only global location is supported for Connector resource.",
           "readOnly": true,
           "type": "string"
+        },
+        "tags": {
+          "description": "Output only. Tags of the connector.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
         },
         "updateTime": {
           "description": "Output only. Updated time.",
@@ -3354,6 +3490,22 @@
         "enabled": {
           "description": "Enabled represents whether logging is enabled or not for a connection.",
           "type": "boolean"
+        },
+        "level": {
+          "description": "Optional. Log configuration level.",
+          "enum": [
+            "LOG_LEVEL_UNSPECIFIED",
+            "ERROR",
+            "INFO",
+            "DEBUG"
+          ],
+          "enumDescriptions": [
+            "Log level unspecified.",
+            "Only error logs are enabled.",
+            "Info and error logs are enabled.",
+            "Debug and high verbosity logs are enabled."
+          ],
+          "type": "string"
         }
       },
       "type": "object"
@@ -3363,10 +3515,19 @@
       "id": "CustomConnector",
       "properties": {
         "activeConnectorVersions": {
-          "description": "Optional. Active connector versions.",
+          "description": "Output only. Active connector versions.",
           "items": {
             "type": "string"
           },
+          "readOnly": true,
+          "type": "array"
+        },
+        "allConnectorVersions": {
+          "description": "Output only. All connector versions.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
           "type": "array"
         },
         "createTime": {
@@ -3577,6 +3738,12 @@
       },
       "type": "object"
     },
+    "DeprecateCustomConnectorVersionRequest": {
+      "description": "Request message for ConnectorsService.DeprecateCustomConnectorVersion",
+      "id": "DeprecateCustomConnectorVersionRequest",
+      "properties": {},
+      "type": "object"
+    },
     "Destination": {
       "id": "Destination",
       "properties": {
@@ -3782,6 +3949,10 @@
         "description": {
           "description": "Optional. Description of the resource.",
           "type": "string"
+        },
+        "endpointGlobalAccess": {
+          "description": "Optional. The Private Service Connect Connection Endpoint Global Access. https://cloud.google.com/vpc/docs/about-accessing-vpc-hosted-services-endpoints#global-access",
+          "type": "boolean"
         },
         "endpointIp": {
           "description": "Output only. The Private Service Connect connection endpoint ip",
@@ -5705,6 +5876,51 @@
       },
       "type": "object"
     },
+    "MultipleSelectConfig": {
+      "description": "MultipleSelectConfig represents the multiple options for a config variable.",
+      "id": "MultipleSelectConfig",
+      "properties": {
+        "allowCustomValues": {
+          "description": "Optional. Allow custom values.",
+          "type": "boolean"
+        },
+        "multipleSelectOptions": {
+          "description": "Required. Multiple select options.",
+          "items": {
+            "$ref": "MultipleSelectOption"
+          },
+          "type": "array"
+        },
+        "valueSeparator": {
+          "description": "Required. Value separator.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "MultipleSelectOption": {
+      "description": "MultiplSelecteOption represents the single option for a config variable.",
+      "id": "MultipleSelectOption",
+      "properties": {
+        "description": {
+          "description": "Optional. Value of the option.",
+          "type": "string"
+        },
+        "displayName": {
+          "description": "Required. Display name of the option.",
+          "type": "string"
+        },
+        "key": {
+          "description": "Required. Key of the option.",
+          "type": "string"
+        },
+        "preselected": {
+          "description": "Optional. Indicates if the option is preselected.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
     "NetworkConfig": {
       "description": "Regional Network Config.",
       "id": "NetworkConfig",
@@ -6528,6 +6744,29 @@
           "$ref": "JsonSchema",
           "description": "Output only. JsonSchema representation of this entity's metadata",
           "readOnly": true
+        },
+        "operations": {
+          "description": "List of operations supported by this entity",
+          "items": {
+            "enum": [
+              "OPERATION_UNSPECIFIED",
+              "LIST",
+              "GET",
+              "CREATE",
+              "UPDATE",
+              "DELETE"
+            ],
+            "enumDescriptions": [
+              "Operation unspecified.",
+              "This operation means entity type supports LIST entities.",
+              "This operation means entity type supports GET entity.",
+              "This operation means entity type supports CREATE entity.",
+              "This operation means entity type supports UPDATE entity.",
+              "This operation means entity type supports DELETE entity."
+            ],
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -6583,6 +6822,53 @@
         "useSynchronousSchemaRefresh": {
           "description": "Whether to use synchronous schema refresh.",
           "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "SearchConnectionInstance": {
+      "description": "SearchConnectionInstance represents an instance of connector with specific fields",
+      "id": "SearchConnectionInstance",
+      "properties": {
+        "actionSchema": {
+          "$ref": "RuntimeActionSchema",
+          "description": "Output only. Schema of a runtime action.",
+          "readOnly": true
+        },
+        "connection": {
+          "$ref": "Connection",
+          "description": "Output only. Connection details",
+          "readOnly": true
+        },
+        "entitySchema": {
+          "$ref": "RuntimeEntitySchema",
+          "description": "Output only. Schema of a runtime entity.",
+          "readOnly": true
+        }
+      },
+      "type": "object"
+    },
+    "SearchConnectionsResponse": {
+      "description": "Response message for Connectors.SearchConnections.",
+      "id": "SearchConnectionsResponse",
+      "properties": {
+        "connections": {
+          "description": "A list of connectors.",
+          "items": {
+            "$ref": "SearchConnectionInstance"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "Optional. page_token",
+          "type": "string"
+        },
+        "unreachable": {
+          "description": "Locations that could not be reached.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"

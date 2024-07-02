@@ -1,5 +1,102 @@
 # Changelog
 
+## [15.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/storage-v14.0.0...storage-v15.0.0) (2024-06-21)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+* **storage:** This release has breaking changes.
+
+### Features
+
+* run the generator ([#3456](https://github.com/googleapis/google-api-nodejs-client/issues/3456)) ([a865e81](https://github.com/googleapis/google-api-nodejs-client/commit/a865e81539b315d3b321650663ba0b2555b1e5a1))
+* **storage:** update the API ([fd1ec98](https://github.com/googleapis/google-api-nodejs-client/commit/fd1ec98730832ef545825ac940ac43b9f42b1214))
+* **storage:** update the API ([7c5e1b3](https://github.com/googleapis/google-api-nodejs-client/commit/7c5e1b3a32459c1cc9b72f7c6055115c7c451176))
+
+
+### Bug Fixes
+
+* **storage:** update the API ([cd03772](https://github.com/googleapis/google-api-nodejs-client/commit/cd037720cda614720bef7852812b1eb99d86d25f))
+
+## [14.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/storage-v13.1.0...storage-v14.0.0) (2024-06-06)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+* **storage:** This release has breaking changes.
+
+### Features
+
+* run the generator ([#3456](https://github.com/googleapis/google-api-nodejs-client/issues/3456)) ([a865e81](https://github.com/googleapis/google-api-nodejs-client/commit/a865e81539b315d3b321650663ba0b2555b1e5a1))
+* **storage:** update the API ([fd1ec98](https://github.com/googleapis/google-api-nodejs-client/commit/fd1ec98730832ef545825ac940ac43b9f42b1214))
+* **storage:** update the API ([7c5e1b3](https://github.com/googleapis/google-api-nodejs-client/commit/7c5e1b3a32459c1cc9b72f7c6055115c7c451176))
+
+
+### Bug Fixes
+
+* **storage:** update the API ([cd03772](https://github.com/googleapis/google-api-nodejs-client/commit/cd037720cda614720bef7852812b1eb99d86d25f))
+
+## [13.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/storage-v13.0.0...storage-v13.1.0) (2024-06-03)
+
+
+### Features
+
+* **storage:** update the API ([fd1ec98](https://github.com/googleapis/google-api-nodejs-client/commit/fd1ec98730832ef545825ac940ac43b9f42b1214))
+
+## [13.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/storage-v12.0.1...storage-v13.0.0) (2024-05-02)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+* **storage:** This release has breaking changes.
+* This release has breaking changes.
+* **storage:** This release has breaking changes.
+* **storage:** This release has breaking changes.
+
+### Features
+
+* run the generator ([#3434](https://github.com/googleapis/google-api-nodejs-client/issues/3434)) ([f0db524](https://github.com/googleapis/google-api-nodejs-client/commit/f0db524bb26f05cea3dec4c0ed66b496399e3857))
+* run the generator ([#3456](https://github.com/googleapis/google-api-nodejs-client/issues/3456)) ([a865e81](https://github.com/googleapis/google-api-nodejs-client/commit/a865e81539b315d3b321650663ba0b2555b1e5a1))
+* **storage:** update the API ([7c5e1b3](https://github.com/googleapis/google-api-nodejs-client/commit/7c5e1b3a32459c1cc9b72f7c6055115c7c451176))
+* **storage:** update the API ([170e77b](https://github.com/googleapis/google-api-nodejs-client/commit/170e77b695c2b43cbc8a3d991fbe86bdb7d3ba57))
+* **storage:** update the API ([5bc62e5](https://github.com/googleapis/google-api-nodejs-client/commit/5bc62e590c1b44ced15de06dc08c53445fcd00d0))
+
+
+### Bug Fixes
+
+* **storage:** update the API ([cd03772](https://github.com/googleapis/google-api-nodejs-client/commit/cd037720cda614720bef7852812b1eb99d86d25f))
+
+## [12.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/storage-v12.0.0...storage-v12.0.1) (2024-05-02)
+
+
+### Bug Fixes
+
+* **storage:** update the API ([cd03772](https://github.com/googleapis/google-api-nodejs-client/commit/cd037720cda614720bef7852812b1eb99d86d25f))
+
+## [12.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/storage-v11.0.0...storage-v12.0.0) (2024-04-04)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+* **storage:** This release has breaking changes.
+* This release has breaking changes.
+* **storage:** This release has breaking changes.
+* **storage:** This release has breaking changes.
+
+### Features
+
+* run the generator ([#3434](https://github.com/googleapis/google-api-nodejs-client/issues/3434)) ([f0db524](https://github.com/googleapis/google-api-nodejs-client/commit/f0db524bb26f05cea3dec4c0ed66b496399e3857))
+* run the generator ([#3456](https://github.com/googleapis/google-api-nodejs-client/issues/3456)) ([a865e81](https://github.com/googleapis/google-api-nodejs-client/commit/a865e81539b315d3b321650663ba0b2555b1e5a1))
+* **storage:** update the API ([7c5e1b3](https://github.com/googleapis/google-api-nodejs-client/commit/7c5e1b3a32459c1cc9b72f7c6055115c7c451176))
+* **storage:** update the API ([170e77b](https://github.com/googleapis/google-api-nodejs-client/commit/170e77b695c2b43cbc8a3d991fbe86bdb7d3ba57))
+* **storage:** update the API ([5bc62e5](https://github.com/googleapis/google-api-nodejs-client/commit/5bc62e590c1b44ced15de06dc08c53445fcd00d0))
+* **storage:** update the API ([c0609c9](https://github.com/googleapis/google-api-nodejs-client/commit/c0609c901b212d5b8a43b9f75099d759a800a4e5))
+* **storage:** update the API ([7bdec60](https://github.com/googleapis/google-api-nodejs-client/commit/7bdec601a5edf20d3e572e5dab97c2a7a6b1792f))
+
 ## [11.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/storage-v10.0.0...storage-v11.0.0) (2024-03-12)
 
 

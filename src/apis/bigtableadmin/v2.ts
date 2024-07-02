@@ -190,7 +190,7 @@ export namespace bigtableadmin_v2 {
     logType?: string | null;
   }
   /**
-   * Placeholder for admin API work while we work out the internals.
+   * An Authorized View of a Cloud Bigtable Table.
    */
   export interface Schema$AuthorizedView {
     /**
@@ -262,7 +262,7 @@ export namespace bigtableadmin_v2 {
      */
     endTime?: string | null;
     /**
-     * Required. The expiration time of the backup, with microseconds granularity that must be at least 6 hours and at most 90 days from the time the request is received. Once the `expire_time` has passed, Cloud Bigtable will delete the backup and free the resources used by the backup.
+     * Required. The expiration time of the backup. When creating a backup or updating its `expire_time`, the new value must: - Be at most 90 days in the future - Be at least 6 hours in the future Once the `expire_time` has passed, Cloud Bigtable will delete the backup.
      */
     expireTime?: string | null;
     /**
@@ -512,7 +512,7 @@ export namespace bigtableadmin_v2 {
      */
     finishTime?: string | null;
     /**
-     * The request that prompted the initiation of this CreateInstance operation.
+     * The request that prompted the initiation of this CreateAuthorizedView operation.
      */
     originalRequest?: Schema$CreateAuthorizedViewRequest;
     /**
@@ -652,7 +652,7 @@ export namespace bigtableadmin_v2 {
     tableId?: string | null;
   }
   /**
-   * Data Boost is a serverless compute capability that lets you run high-throughput read jobs on your Bigtable data, without impacting the performance of the clusters that handle your application traffic. Currently, Data Boost exclusively supports read-only use-cases with single-cluster routing. Data Boost reads are only guaranteed to see the results of writes that were written at least 30 minutes ago. This means newly written values may not become visible for up to 30m, and also means that old values may remain visible for up to 30m after being deleted or overwritten. To mitigate the staleness of the data, users may either wait 30m, or use CheckConsistency.
+   * Data Boost is a serverless compute capability that lets you run high-throughput read jobs and queries on your Bigtable data, without impacting the performance of the clusters that handle your application traffic. Data Boost supports read-only use cases with single-cluster routing.
    */
   export interface Schema$DataBoostIsolationReadOnly {
     /**
@@ -931,6 +931,10 @@ export namespace bigtableadmin_v2 {
      * The unique name of the instance. Values are of the form `projects/{project\}/instances/a-z+[a-z0-9]`.
      */
     name?: string | null;
+    /**
+     * Output only. Reserved for future use.
+     */
+    satisfiesPzi?: boolean | null;
     /**
      * Output only. Reserved for future use.
      */
@@ -1481,7 +1485,7 @@ export namespace bigtableadmin_v2 {
     permissions?: string[] | null;
   }
   /**
-   * `Type` represents the type of data that is written to, read from, or stored in Bigtable. It is heavily based on the GoogleSQL standard to help maintain familiarity and consistency across products and features. For compatibility with Bigtable's existing untyped APIs, each `Type` includes an `Encoding` which describes how to convert to/from the underlying data. This might involve composing a series of steps into an "encoding chain," for example to convert from INT64 -\> STRING -\> raw bytes. In most cases, a "link" in the encoding chain will be based an on existing GoogleSQL conversion function like `CAST`. Each link in the encoding chain also defines the following properties: * Natural sort: Does the encoded value sort consistently with the original typed value? Note that Bigtable will always sort data based on the raw encoded value, *not* the decoded type. - Example: STRING values sort in the same order as their UTF-8 encodings. - Counterexample: Encoding INT64 to a fixed-width STRING does *not* preserve sort order when dealing with negative numbers. INT64(1) \> INT64(-1), but STRING("-00001") \> STRING("00001). - The overall encoding chain sorts naturally if *every* link does. * Self-delimiting: If we concatenate two encoded values, can we always tell where the first one ends and the second one begins? - Example: If we encode INT64s to fixed-width STRINGs, the first value will always contain exactly N digits, possibly preceded by a sign. - Counterexample: If we concatenate two UTF-8 encoded STRINGs, we have no way to tell where the first one ends. - The overall encoding chain is self-delimiting if *any* link is. * Compatibility: Which other systems have matching encoding schemes? For example, does this encoding have a GoogleSQL equivalent? HBase? Java?
+   * `Type` represents the type of data that is written to, read from, or stored in Bigtable. It is heavily based on the GoogleSQL standard to help maintain familiarity and consistency across products and features. For compatibility with Bigtable's existing untyped APIs, each `Type` includes an `Encoding` which describes how to convert to/from the underlying data. This might involve composing a series of steps into an "encoding chain," for example to convert from INT64 -\> STRING -\> raw bytes. In most cases, a "link" in the encoding chain will be based an on existing GoogleSQL conversion function like `CAST`. Each link in the encoding chain also defines the following properties: * Natural sort: Does the encoded value sort consistently with the original typed value? Note that Bigtable will always sort data based on the raw encoded value, *not* the decoded type. - Example: BYTES values sort in the same order as their raw encodings. - Counterexample: Encoding INT64 to a fixed-width STRING does *not* preserve sort order when dealing with negative numbers. INT64(1) \> INT64(-1), but STRING("-00001") \> STRING("00001). - The overall encoding chain has this property if *every* link does. * Self-delimiting: If we concatenate two encoded values, can we always tell where the first one ends and the second one begins? - Example: If we encode INT64s to fixed-width STRINGs, the first value will always contain exactly N digits, possibly preceded by a sign. - Counterexample: If we concatenate two UTF-8 encoded STRINGs, we have no way to tell where the first one ends. - The overall encoding chain has this property if *any* link does. * Compatibility: Which other systems have matching encoding schemes? For example, does this encoding have a GoogleSQL equivalent? HBase? Java?
    */
   export interface Schema$Type {
     /**
@@ -1553,7 +1557,7 @@ export namespace bigtableadmin_v2 {
    */
   export interface Schema$UpdateAuthorizedViewRequest {
     /**
-     * Required. The AuthorizedView to update. The `name` in `authorized_view` is used to identify the AuthorizedView. AuthorizedView name must in this format projects//instances//tables//authorizedViews/
+     * Required. The AuthorizedView to update. The `name` in `authorized_view` is used to identify the AuthorizedView. AuthorizedView name must in this format: `projects/{project\}/instances/{instance\}/tables/{table\}/authorizedViews/{authorized_view\}`.
      */
     authorizedView?: Schema$AuthorizedView;
     /**
@@ -1691,6 +1695,7 @@ export namespace bigtableadmin_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1809,6 +1814,7 @@ export namespace bigtableadmin_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1943,6 +1949,7 @@ export namespace bigtableadmin_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2028,6 +2035,7 @@ export namespace bigtableadmin_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -2113,6 +2121,7 @@ export namespace bigtableadmin_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2201,6 +2210,7 @@ export namespace bigtableadmin_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2294,6 +2304,7 @@ export namespace bigtableadmin_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2381,6 +2392,7 @@ export namespace bigtableadmin_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -2469,6 +2481,7 @@ export namespace bigtableadmin_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2564,6 +2577,7 @@ export namespace bigtableadmin_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2649,6 +2663,7 @@ export namespace bigtableadmin_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
+            apiVersion: '',
           },
           options
         ),
@@ -2846,6 +2861,7 @@ export namespace bigtableadmin_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2931,6 +2947,7 @@ export namespace bigtableadmin_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -3016,6 +3033,7 @@ export namespace bigtableadmin_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3109,6 +3127,7 @@ export namespace bigtableadmin_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3194,6 +3213,7 @@ export namespace bigtableadmin_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -3371,6 +3391,7 @@ export namespace bigtableadmin_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3456,6 +3477,7 @@ export namespace bigtableadmin_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -3541,6 +3563,7 @@ export namespace bigtableadmin_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3634,6 +3657,7 @@ export namespace bigtableadmin_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3722,6 +3746,7 @@ export namespace bigtableadmin_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -3807,6 +3832,7 @@ export namespace bigtableadmin_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
+            apiVersion: '',
           },
           options
         ),
@@ -3972,6 +3998,7 @@ export namespace bigtableadmin_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4061,6 +4088,7 @@ export namespace bigtableadmin_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4147,6 +4175,7 @@ export namespace bigtableadmin_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -4232,6 +4261,7 @@ export namespace bigtableadmin_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4251,7 +4281,7 @@ export namespace bigtableadmin_v2 {
     }
 
     /**
-     * Gets the access control policy for a Table or Backup resource. Returns an empty policy if the resource exists but does not have a policy set.
+     * Gets the access control policy for a Bigtable resource. Returns an empty policy if the resource exists but does not have a policy set.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4321,6 +4351,7 @@ export namespace bigtableadmin_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4412,6 +4443,7 @@ export namespace bigtableadmin_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4498,6 +4530,7 @@ export namespace bigtableadmin_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -4517,7 +4550,7 @@ export namespace bigtableadmin_v2 {
     }
 
     /**
-     * Sets the access control policy on a Table or Backup resource. Replaces any existing policy.
+     * Sets the access control policy on a Bigtable resource. Replaces any existing policy.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4587,6 +4620,7 @@ export namespace bigtableadmin_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4606,7 +4640,7 @@ export namespace bigtableadmin_v2 {
     }
 
     /**
-     * Returns permissions that the caller has on the specified Table or Backup resource.
+     * Returns permissions that the caller has on the specified Bigtable resource.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4683,6 +4717,7 @@ export namespace bigtableadmin_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4902,6 +4937,7 @@ export namespace bigtableadmin_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5032,6 +5068,7 @@ export namespace bigtableadmin_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5120,6 +5157,7 @@ export namespace bigtableadmin_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5205,6 +5243,7 @@ export namespace bigtableadmin_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -5293,6 +5332,7 @@ export namespace bigtableadmin_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5389,6 +5429,7 @@ export namespace bigtableadmin_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5476,6 +5517,7 @@ export namespace bigtableadmin_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5495,7 +5537,7 @@ export namespace bigtableadmin_v2 {
     }
 
     /**
-     * Gets the access control policy for a Table or Backup resource. Returns an empty policy if the resource exists but does not have a policy set.
+     * Gets the access control policy for a Bigtable resource. Returns an empty policy if the resource exists but does not have a policy set.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5564,6 +5606,7 @@ export namespace bigtableadmin_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5655,6 +5698,7 @@ export namespace bigtableadmin_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5744,6 +5788,7 @@ export namespace bigtableadmin_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5829,6 +5874,7 @@ export namespace bigtableadmin_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -5917,6 +5963,7 @@ export namespace bigtableadmin_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5936,7 +5983,7 @@ export namespace bigtableadmin_v2 {
     }
 
     /**
-     * Sets the access control policy on a Table or Backup resource. Replaces any existing policy.
+     * Sets the access control policy on a Bigtable resource. Replaces any existing policy.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6005,6 +6052,7 @@ export namespace bigtableadmin_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -6024,7 +6072,7 @@ export namespace bigtableadmin_v2 {
     }
 
     /**
-     * Returns permissions that the caller has on the specified Table or Backup resource.
+     * Returns permissions that the caller has on the specified Bigtable resource.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6101,6 +6149,7 @@ export namespace bigtableadmin_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -6189,6 +6238,7 @@ export namespace bigtableadmin_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -6459,6 +6509,7 @@ export namespace bigtableadmin_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -6545,6 +6596,7 @@ export namespace bigtableadmin_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -6631,6 +6683,7 @@ export namespace bigtableadmin_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6646,6 +6699,96 @@ export namespace bigtableadmin_v2 {
         );
       } else {
         return createAPIRequest<Schema$AuthorizedView>(parameters);
+      }
+    }
+
+    /**
+     * Gets the access control policy for a Bigtable resource. Returns an empty policy if the resource exists but does not have a policy set.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getIamPolicy(
+      params: Params$Resource$Projects$Instances$Tables$Authorizedviews$Getiampolicy,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getIamPolicy(
+      params?: Params$Resource$Projects$Instances$Tables$Authorizedviews$Getiampolicy,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Policy>;
+    getIamPolicy(
+      params: Params$Resource$Projects$Instances$Tables$Authorizedviews$Getiampolicy,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getIamPolicy(
+      params: Params$Resource$Projects$Instances$Tables$Authorizedviews$Getiampolicy,
+      options: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
+    getIamPolicy(
+      params: Params$Resource$Projects$Instances$Tables$Authorizedviews$Getiampolicy,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
+    getIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
+    getIamPolicy(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Instances$Tables$Authorizedviews$Getiampolicy
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Instances$Tables$Authorizedviews$Getiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Instances$Tables$Authorizedviews$Getiampolicy;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://bigtableadmin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+resource}:getIamPolicy').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['resource'],
+        pathParams: ['resource'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Policy>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Policy>(parameters);
       }
     }
 
@@ -6727,6 +6870,7 @@ export namespace bigtableadmin_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6813,6 +6957,7 @@ export namespace bigtableadmin_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -6828,6 +6973,193 @@ export namespace bigtableadmin_v2 {
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Sets the access control policy on a Bigtable resource. Replaces any existing policy.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    setIamPolicy(
+      params: Params$Resource$Projects$Instances$Tables$Authorizedviews$Setiampolicy,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    setIamPolicy(
+      params?: Params$Resource$Projects$Instances$Tables$Authorizedviews$Setiampolicy,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Policy>;
+    setIamPolicy(
+      params: Params$Resource$Projects$Instances$Tables$Authorizedviews$Setiampolicy,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    setIamPolicy(
+      params: Params$Resource$Projects$Instances$Tables$Authorizedviews$Setiampolicy,
+      options: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
+    setIamPolicy(
+      params: Params$Resource$Projects$Instances$Tables$Authorizedviews$Setiampolicy,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
+    setIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
+    setIamPolicy(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Instances$Tables$Authorizedviews$Setiampolicy
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Instances$Tables$Authorizedviews$Setiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Instances$Tables$Authorizedviews$Setiampolicy;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://bigtableadmin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+resource}:setIamPolicy').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['resource'],
+        pathParams: ['resource'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Policy>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Policy>(parameters);
+      }
+    }
+
+    /**
+     * Returns permissions that the caller has on the specified Bigtable resource.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    testIamPermissions(
+      params: Params$Resource$Projects$Instances$Tables$Authorizedviews$Testiampermissions,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    testIamPermissions(
+      params?: Params$Resource$Projects$Instances$Tables$Authorizedviews$Testiampermissions,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
+    testIamPermissions(
+      params: Params$Resource$Projects$Instances$Tables$Authorizedviews$Testiampermissions,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    testIamPermissions(
+      params: Params$Resource$Projects$Instances$Tables$Authorizedviews$Testiampermissions,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+      callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
+    ): void;
+    testIamPermissions(
+      params: Params$Resource$Projects$Instances$Tables$Authorizedviews$Testiampermissions,
+      callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
+    ): void;
+    testIamPermissions(
+      callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
+    ): void;
+    testIamPermissions(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Instances$Tables$Authorizedviews$Testiampermissions
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$TestIamPermissionsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Instances$Tables$Authorizedviews$Testiampermissions;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Instances$Tables$Authorizedviews$Testiampermissions;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://bigtableadmin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+resource}:testIamPermissions').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['resource'],
+        pathParams: ['resource'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$TestIamPermissionsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);
       }
     }
   }
@@ -6870,6 +7202,18 @@ export namespace bigtableadmin_v2 {
      */
     view?: string;
   }
+  export interface Params$Resource$Projects$Instances$Tables$Authorizedviews$Getiampolicy
+    extends StandardParameters {
+    /**
+     * REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     */
+    resource?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GetIamPolicyRequest;
+  }
   export interface Params$Resource$Projects$Instances$Tables$Authorizedviews$List
     extends StandardParameters {
     /**
@@ -6885,7 +7229,7 @@ export namespace bigtableadmin_v2 {
      */
     parent?: string;
     /**
-     * Optional. The resource_view to be applied to the returned views' fields. Default to NAME_ONLY.
+     * Optional. The resource_view to be applied to the returned AuthorizedViews' fields. Default to NAME_ONLY.
      */
     view?: string;
   }
@@ -6908,6 +7252,30 @@ export namespace bigtableadmin_v2 {
      * Request body metadata
      */
     requestBody?: Schema$AuthorizedView;
+  }
+  export interface Params$Resource$Projects$Instances$Tables$Authorizedviews$Setiampolicy
+    extends StandardParameters {
+    /**
+     * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     */
+    resource?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$SetIamPolicyRequest;
+  }
+  export interface Params$Resource$Projects$Instances$Tables$Authorizedviews$Testiampermissions
+    extends StandardParameters {
+    /**
+     * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     */
+    resource?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$TestIamPermissionsRequest;
   }
 
   export class Resource$Projects$Locations {
@@ -6991,6 +7359,7 @@ export namespace bigtableadmin_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),

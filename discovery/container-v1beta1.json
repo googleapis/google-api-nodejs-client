@@ -2565,7 +2565,7 @@
       }
     }
   },
-  "revision": "20240313",
+  "revision": "20240618",
   "rootUrl": "https://container.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -2623,14 +2623,14 @@
       "properties": {
         "maxPodsPerNode": {
           "$ref": "MaxPodsConstraint",
-          "description": "The maximum number of pods per node which use this pod network"
+          "description": "The maximum number of pods per node which use this pod network."
         },
         "secondaryPodRange": {
-          "description": "The name of the secondary range on the subnet which provides IP address for this pod range",
+          "description": "The name of the secondary range on the subnet which provides IP address for this pod range.",
           "type": "string"
         },
         "subnetwork": {
-          "description": "Name of the subnetwork where the additional pod network belongs",
+          "description": "Name of the subnetwork where the additional pod network belongs.",
           "type": "string"
         }
       },
@@ -2759,6 +2759,10 @@
       "description": "Specifies options for controlling advanced machine features.",
       "id": "AdvancedMachineFeatures",
       "properties": {
+        "enableNestedVirtualization": {
+          "description": "Whether or not to enable nested virtualization (defaults to false).",
+          "type": "boolean"
+        },
         "threadsPerCore": {
           "description": "The number of threads per physical core. To disable simultaneous multithreading (SMT) set this to 1. If unset, the maximum number of threads supported per core by the underlying processor is assumed.",
           "format": "int64",
@@ -3127,6 +3131,24 @@
       },
       "type": "object"
     },
+    "CertificateAuthorityDomainConfig": {
+      "description": "CertificateAuthorityDomainConfig configures one or more fully qualified domain names (FQDN) to a specific certificate.",
+      "id": "CertificateAuthorityDomainConfig",
+      "properties": {
+        "fqdns": {
+          "description": "List of fully qualified domain names (FQDN). Specifying port is supported. Wilcards are NOT supported. Examples: - my.customdomain.com - 10.0.1.2:5000",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "gcpSecretManagerCertificateConfig": {
+          "$ref": "GCPSecretManagerCertificateConfig",
+          "description": "Google Secret Manager (GCP) certificate configuration."
+        }
+      },
+      "type": "object"
+    },
     "CheckAutopilotCompatibilityResponse": {
       "description": "CheckAutopilotCompatibilityResponse has a list of compatibility issues.",
       "id": "CheckAutopilotCompatibilityResponse",
@@ -3227,6 +3249,10 @@
         "clusterTelemetry": {
           "$ref": "ClusterTelemetry",
           "description": "Telemetry integration for the cluster."
+        },
+        "compliancePostureConfig": {
+          "$ref": "CompliancePostureConfig",
+          "description": "Enable/Disable Compliance Posture features for the cluster."
         },
         "conditions": {
           "description": "Which conditions caused the current cluster state.",
@@ -3479,6 +3505,16 @@
           "$ref": "ResourceUsageExportConfig",
           "description": "Configuration for exporting resource usages. Resource usage export is disabled when this config unspecified."
         },
+        "satisfiesPzi": {
+          "description": "Output only. Reserved for future use.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "satisfiesPzs": {
+          "description": "Output only. Reserved for future use.",
+          "readOnly": true,
+          "type": "boolean"
+        },
         "secretManagerConfig": {
           "$ref": "SecretManagerConfig",
           "description": "Secret CSI driver configuration."
@@ -3679,6 +3715,10 @@
           "$ref": "ClusterTelemetry",
           "description": "The desired telemetry integration for the cluster."
         },
+        "desiredContainerdConfig": {
+          "$ref": "ContainerdConfig",
+          "description": "The desired containerd config for the cluster."
+        },
         "desiredCostManagementConfig": {
           "$ref": "CostManagementConfig",
           "description": "The desired configuration for the fine-grained cost management feature."
@@ -3750,7 +3790,7 @@
           "type": "string"
         },
         "desiredInTransitEncryptionConfig": {
-          "description": "Specify the details of in-transit encryption.",
+          "description": "Specify the details of in-transit encryption. Now named inter-node transparent encryption.",
           "enum": [
             "IN_TRANSIT_ENCRYPTION_CONFIG_UNSPECIFIED",
             "IN_TRANSIT_ENCRYPTION_DISABLED",
@@ -3818,6 +3858,14 @@
           "$ref": "ClusterNetworkPerformanceConfig",
           "description": "The desired network performance config."
         },
+        "desiredNodeKubeletConfig": {
+          "$ref": "NodeKubeletConfig",
+          "description": "The desired node kubelet config for the cluster."
+        },
+        "desiredNodePoolAutoConfigKubeletConfig": {
+          "$ref": "NodeKubeletConfig",
+          "description": "The desired node kubelet config for all auto-provisioned node pools in autopilot clusters and node auto-provisioning enabled clusters."
+        },
         "desiredNodePoolAutoConfigNetworkTags": {
           "$ref": "NetworkTags",
           "description": "The desired network tags that apply to all auto-provisioned node pools in autopilot clusters and node auto-provisioning enabled clusters."
@@ -3856,7 +3904,7 @@
         },
         "desiredPrivateClusterConfig": {
           "$ref": "PrivateClusterConfig",
-          "description": "The desired private cluster configuration."
+          "description": "The desired private cluster configuration. master_global_access_config is the only field that can be changed via this field. See also ClusterUpdate.desired_enable_private_endpoint for modifying other fields within PrivateClusterConfig."
         },
         "desiredPrivateIpv6GoogleAccess": {
           "description": "The desired state of IPv6 connectivity to Google Services.",
@@ -3945,6 +3993,11 @@
           "description": "The current etag of the cluster. If an etag is provided and does not match the current etag of the cluster, update will be blocked and an ABORTED error will be returned.",
           "type": "string"
         },
+        "privateClusterConfig": {
+          "$ref": "PrivateClusterConfig",
+          "deprecated": true,
+          "description": "The desired private cluster configuration. Has no effect. Use desired_private_cluster_config instead."
+        },
         "removedAdditionalPodRangesConfig": {
           "$ref": "AdditionalPodRangesConfig",
           "description": "The additional pod ranges that are to be removed from the cluster. The pod ranges specified here must have been specified earlier in the 'additional_pod_ranges_config' argument."
@@ -3984,6 +4037,45 @@
       "properties": {},
       "type": "object"
     },
+    "CompliancePostureConfig": {
+      "description": "CompliancePostureConfig defines the settings needed to enable/disable features for the Compliance Posture.",
+      "id": "CompliancePostureConfig",
+      "properties": {
+        "complianceStandards": {
+          "description": "List of enabled compliance standards.",
+          "items": {
+            "$ref": "ComplianceStandard"
+          },
+          "type": "array"
+        },
+        "mode": {
+          "description": "Defines the enablement mode for Compliance Posture.",
+          "enum": [
+            "MODE_UNSPECIFIED",
+            "DISABLED",
+            "ENABLED"
+          ],
+          "enumDescriptions": [
+            "Default value not specified.",
+            "Disables Compliance Posture features on the cluster.",
+            "Enables Compliance Posture features on the cluster."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ComplianceStandard": {
+      "description": "Defines the details of a compliance standard.",
+      "id": "ComplianceStandard",
+      "properties": {
+        "standard": {
+          "description": "Name of the compliance standard.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ConfidentialNodes": {
       "description": "ConfidentialNodes is configuration for the confidential nodes feature, which makes nodes run on confidential VMs.",
       "id": "ConfidentialNodes",
@@ -4013,6 +4105,17 @@
         "enabled": {
           "description": "Whether to enable consumption metering for this cluster. If enabled, a second BigQuery table will be created to hold resource consumption records.",
           "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "ContainerdConfig": {
+      "description": "ContainerdConfig contains configuration to customize containerd.",
+      "id": "ContainerdConfig",
+      "properties": {
+        "privateRegistryAccessConfig": {
+          "$ref": "PrivateRegistryAccessConfig",
+          "description": "PrivateRegistryAccessConfig is used to configure access configuration for private container registries."
         }
       },
       "type": "object"
@@ -4087,6 +4190,10 @@
       "description": "DNSConfig contains the desired set of options for configuring clusterDNS.",
       "id": "DNSConfig",
       "properties": {
+        "additiveVpcScopeDnsDomain": {
+          "description": "Optional. The domain used in Additive VPC scope.",
+          "type": "string"
+        },
         "clusterDns": {
           "description": "cluster_dns indicates which in-cluster DNS provider should be used.",
           "enum": [
@@ -4355,6 +4462,17 @@
       },
       "type": "object"
     },
+    "GCPSecretManagerCertificateConfig": {
+      "description": "GCPSecretManagerCertificateConfig configures a secret from [Google Secret Manager](https://cloud.google.com/secret-manager).",
+      "id": "GCPSecretManagerCertificateConfig",
+      "properties": {
+        "secretUri": {
+          "description": "Secret URI, in the form \"projects/$PROJECT_ID/secrets/$SECRET_NAME/versions/$VERSION\". Version can be fixed (e.g. \"2\") or \"latest\"",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GPUDriverInstallationConfig": {
       "description": "GPUDriverInstallationConfig specifies the version of GPU driver to be auto installed.",
       "id": "GPUDriverInstallationConfig",
@@ -4386,11 +4504,13 @@
           "description": "The type of GPU sharing strategy to enable on the GPU node.",
           "enum": [
             "GPU_SHARING_STRATEGY_UNSPECIFIED",
-            "TIME_SHARING"
+            "TIME_SHARING",
+            "MPS"
           ],
           "enumDescriptions": [
             "Default value.",
-            "GPUs are time-shared between containers."
+            "GPUs are time-shared between containers.",
+            "GPUs are shared between containers with NVIDIA MPS."
           ],
           "type": "string"
         },
@@ -4414,10 +4534,16 @@
             "CHANNEL_EXPERIMENTAL",
             "CHANNEL_STANDARD"
           ],
+          "enumDeprecated": [
+            false,
+            false,
+            true,
+            false
+          ],
           "enumDescriptions": [
             "Default value.",
             "Gateway API support is disabled",
-            "Gateway API support is enabled, experimental CRDs are installed",
+            "Deprecated: use CHANNEL_STANDARD instead. Gateway API support is enabled, experimental CRDs are installed",
             "Gateway API support is enabled, standard CRDs are installed"
           ],
           "type": "string"
@@ -4615,6 +4741,23 @@
         "disabled": {
           "description": "Whether the HTTP Load Balancing controller is enabled in the cluster. When enabled, it runs a small pod in the cluster that manages the load balancers.",
           "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "HugepagesConfig": {
+      "description": "Hugepages amount in both 2m and 1g size",
+      "id": "HugepagesConfig",
+      "properties": {
+        "hugepageSize1g": {
+          "description": "Optional. Amount of 1G hugepages",
+          "format": "int32",
+          "type": "integer"
+        },
+        "hugepageSize2m": {
+          "description": "Optional. Amount of 2M hugepages",
+          "format": "int32",
+          "type": "integer"
         }
       },
       "type": "object"
@@ -4904,6 +5047,10 @@
             "CGROUP_MODE_V2 specifies to use cgroupv2 for the cgroup configuration on the node image."
           ],
           "type": "string"
+        },
+        "hugepages": {
+          "$ref": "HugepagesConfig",
+          "description": "Optional. Amounts for 2M and 1G hugepages"
         },
         "sysctls": {
           "additionalProperties": {
@@ -5306,12 +5453,18 @@
               "POD",
               "DAEMONSET",
               "DEPLOYMENT",
-              "STATEFULSET"
+              "STATEFULSET",
+              "CADVISOR",
+              "KUBELET",
+              "DCGM"
             ],
             "enumDeprecated": [
               false,
               false,
               true,
+              false,
+              false,
+              false,
               false,
               false,
               false,
@@ -5334,7 +5487,10 @@
               "Pod",
               "DaemonSet",
               "Deployment",
-              "Statefulset"
+              "Statefulset",
+              "CADVISOR",
+              "KUBELET",
+              "NVIDIA Data Center GPU Manager (DCGM)"
             ],
             "type": "string"
           },
@@ -5595,6 +5751,10 @@
           "$ref": "ConfidentialNodes",
           "description": "Confidential nodes config. All the nodes in the node pool will be Confidential VM once enabled."
         },
+        "containerdConfig": {
+          "$ref": "ContainerdConfig",
+          "description": "Parameters for containerd customization."
+        },
         "diskSizeGb": {
           "description": "Size of the disk attached to each node, specified in GB. The smallest allowed disk size is 10GB. If unspecified, the default disk size is 100GB.",
           "format": "int32",
@@ -5769,6 +5929,10 @@
       "description": "Subset of NodeConfig message that has defaults.",
       "id": "NodeConfigDefaults",
       "properties": {
+        "containerdConfig": {
+          "$ref": "ContainerdConfig",
+          "description": "Parameters for containerd customization."
+        },
         "gcfsConfig": {
           "$ref": "GcfsConfig",
           "description": "GCFS (Google Container File System, also known as Riptide) options."
@@ -5780,6 +5944,10 @@
         "loggingConfig": {
           "$ref": "NodePoolLoggingConfig",
           "description": "Logging configuration for node pools."
+        },
+        "nodeKubeletConfig": {
+          "$ref": "NodeKubeletConfig",
+          "description": "NodeKubeletConfig controls the defaults for new node-pools. Currently only `insecure_kubelet_readonly_port_enabled` can be set here."
         }
       },
       "type": "object"
@@ -6025,6 +6193,10 @@
         "networkTags": {
           "$ref": "NetworkTags",
           "description": "The list of instance tags applied to all nodes. Tags are used to identify valid sources or targets for network firewalls and are specified by the client during cluster creation. Each tag within the list must comply with RFC1035."
+        },
+        "nodeKubeletConfig": {
+          "$ref": "NodeKubeletConfig",
+          "description": "NodeKubeletConfig controls the defaults for autoprovisioned node-pools. Currently only `insecure_kubelet_readonly_port_enabled` can be set here."
         },
         "resourceManagerTags": {
           "$ref": "ResourceManagerTags",
@@ -6473,7 +6645,7 @@
       "id": "PolicyBinding",
       "properties": {
         "name": {
-          "description": "The relative resource name of the binauthz platform policy to audit. GKE platform policies have the following format: `projects/{project_number}/platforms/gke/policies/{policy_id}`.",
+          "description": "The relative resource name of the binauthz platform policy to evaluate. GKE platform policies have the following format: `projects/{project_number}/platforms/gke/policies/{policy_id}`.",
           "type": "string"
         }
       },
@@ -6524,6 +6696,24 @@
       "properties": {
         "enabled": {
           "description": "Whenever master is accessible globally or not.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "PrivateRegistryAccessConfig": {
+      "description": "PrivateRegistryAccessConfig contains access configuration for private container registries.",
+      "id": "PrivateRegistryAccessConfig",
+      "properties": {
+        "certificateAuthorityDomainConfig": {
+          "description": "Private registry access configuration.",
+          "items": {
+            "$ref": "CertificateAuthorityDomainConfig"
+          },
+          "type": "array"
+        },
+        "enabled": {
+          "description": "Private registry access is enabled.",
           "type": "boolean"
         }
       },
@@ -6948,12 +7138,14 @@
           "enum": [
             "MODE_UNSPECIFIED",
             "DISABLED",
-            "BASIC"
+            "BASIC",
+            "ENTERPRISE"
           ],
           "enumDescriptions": [
             "Default value not specified.",
             "Disables Security Posture features on the cluster.",
-            "Applies Security Posture features on the cluster."
+            "Applies Security Posture features on the cluster.",
+            "Applies the Security Posture off cluster Enterprise level features."
           ],
           "type": "string"
         },
@@ -7757,6 +7949,13 @@
       "description": "SetNodePoolVersionRequest updates the version of a node pool.",
       "id": "UpdateNodePoolRequest",
       "properties": {
+        "accelerators": {
+          "description": "A list of hardware accelerators to be attached to each node. See https://cloud.google.com/compute/docs/gpus for more information about support for GPUs.",
+          "items": {
+            "$ref": "AcceleratorConfig"
+          },
+          "type": "array"
+        },
         "clusterId": {
           "deprecated": true,
           "description": "Required. Deprecated. The name of the cluster to upgrade. This field has been deprecated and replaced by the name field.",
@@ -7765,6 +7964,10 @@
         "confidentialNodes": {
           "$ref": "ConfidentialNodes",
           "description": "Confidential nodes config. All the nodes in the node pool will be Confidential VM once enabled."
+        },
+        "containerdConfig": {
+          "$ref": "ContainerdConfig",
+          "description": "The desired containerd config for nodes in the node pool. Initiates an upgrade operation that recreates the nodes with the new config."
         },
         "diskSizeGb": {
           "description": "Optional. The desired disk size for nodes in the node pool. Initiates an upgrade operation that migrates the nodes in the node pool to the specified disk size.",

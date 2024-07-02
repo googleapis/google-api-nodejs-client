@@ -455,11 +455,11 @@ export namespace cloudbilling_v1 {
      */
     displayName?: string | null;
     /**
-     * The resource name for the service. Example: "services/DA34-426B-A397"
+     * The resource name for the service. Example: "services/6F81-5844-456A"
      */
     name?: string | null;
     /**
-     * The identifier for the service. Example: "DA34-426B-A397"
+     * The identifier for the service. Example: "6F81-5844-456A"
      */
     serviceId?: string | null;
   }
@@ -477,7 +477,7 @@ export namespace cloudbilling_v1 {
     updateMask?: string | null;
   }
   /**
-   * Encapsulates a single SKU in Google Cloud Platform
+   * Encapsulates a single SKU in Google Cloud
    */
   export interface Schema$Sku {
     /**
@@ -493,7 +493,7 @@ export namespace cloudbilling_v1 {
      */
     geoTaxonomy?: Schema$GeoTaxonomy;
     /**
-     * The resource name for the SKU. Example: "services/DA34-426B-A397/skus/AA95-CD31-42FE"
+     * The resource name for the SKU. Example: "services/6F81-5844-456A/skus/D041-B8A1-6E0B"
      */
     name?: string | null;
     /**
@@ -509,7 +509,7 @@ export namespace cloudbilling_v1 {
      */
     serviceRegions?: string[] | null;
     /**
-     * The identifier for the SKU. Example: "AA95-CD31-42FE"
+     * The identifier for the SKU. Example: "D041-B8A1-6E0B"
      */
     skuId?: string | null;
   }
@@ -624,6 +624,7 @@ export namespace cloudbilling_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -708,6 +709,7 @@ export namespace cloudbilling_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -795,6 +797,7 @@ export namespace cloudbilling_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -889,6 +892,7 @@ export namespace cloudbilling_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -973,6 +977,7 @@ export namespace cloudbilling_v1 {
           {
             url: (rootUrl + '/v1/{+name}:move').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1057,6 +1062,7 @@ export namespace cloudbilling_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -1144,6 +1150,7 @@ export namespace cloudbilling_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1238,6 +1245,7 @@ export namespace cloudbilling_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1441,6 +1449,7 @@ export namespace cloudbilling_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1553,6 +1562,7 @@ export namespace cloudbilling_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1647,6 +1657,7 @@ export namespace cloudbilling_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1784,6 +1795,7 @@ export namespace cloudbilling_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1878,6 +1890,7 @@ export namespace cloudbilling_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1965,6 +1978,7 @@ export namespace cloudbilling_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2107,6 +2121,7 @@ export namespace cloudbilling_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2199,6 +2214,7 @@ export namespace cloudbilling_v1 {
               '$1'
             ),
             method: 'PUT',
+            apiVersion: '',
           },
           options
         ),
@@ -2316,6 +2332,7 @@ export namespace cloudbilling_v1 {
           {
             url: (rootUrl + '/v1/services').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2418,6 +2435,7 @@ export namespace cloudbilling_v1 {
           {
             url: (rootUrl + '/v1/{+parent}/skus').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2456,7 +2474,7 @@ export namespace cloudbilling_v1 {
      */
     pageToken?: string;
     /**
-     * Required. The name of the service. Example: "services/DA34-426B-A397"
+     * Required. The name of the service. Example: "services/6F81-5844-456A"
      */
     parent?: string;
     /**

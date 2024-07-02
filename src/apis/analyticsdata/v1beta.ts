@@ -351,6 +351,40 @@ export namespace analyticsdata_v1beta {
     startOffset?: number | null;
   }
   /**
+   * Defines an individual comparison. Most requests will include multiple comparisons so that the report compares between the comparisons.
+   */
+  export interface Schema$Comparison {
+    /**
+     * A saved comparison identified by the comparison's resource name. For example, 'comparisons/1234'.
+     */
+    comparison?: string | null;
+    /**
+     * A basic comparison.
+     */
+    dimensionFilter?: Schema$FilterExpression;
+    /**
+     * Each comparison produces separate rows in the response. In the response, this comparison is identified by this name. If name is unspecified, we will use the saved comparisons display name.
+     */
+    name?: string | null;
+  }
+  /**
+   * The metadata for a single comparison.
+   */
+  export interface Schema$ComparisonMetadata {
+    /**
+     * This comparison's resource name. Useable in [Comparison](#Comparison)'s `comparison` field. For example, 'comparisons/1234'.
+     */
+    apiName?: string | null;
+    /**
+     * This comparison's description.
+     */
+    description?: string | null;
+    /**
+     * This comparison's name within the Google Analytics user interface.
+     */
+    uiName?: string | null;
+  }
+  /**
    * Used to combine dimension values to a single dimension.
    */
   export interface Schema$ConcatenateExpression {
@@ -568,6 +602,10 @@ export namespace analyticsdata_v1beta {
    * The dimensions, metrics and comparisons currently accepted in reporting methods.
    */
   export interface Schema$Metadata {
+    /**
+     * The comparison descriptions.
+     */
+    comparisons?: Schema$ComparisonMetadata[];
     /**
      * The dimension descriptions.
      */
@@ -972,6 +1010,10 @@ export namespace analyticsdata_v1beta {
      */
     cohortSpec?: Schema$CohortSpec;
     /**
+     * Optional. The configuration of comparisons requested and displayed. The request requires both a comparisons field and a comparisons dimension to receive a comparison column in the response.
+     */
+    comparisons?: Schema$Comparison[];
+    /**
      * A currency code in ISO4217 format, such as "AED", "USD", "JPY". If the field is empty, the report uses the property's default currency.
      */
     currencyCode?: string | null;
@@ -1139,6 +1181,10 @@ export namespace analyticsdata_v1beta {
      * Cohort group associated with this request. If there is a cohort group in the request the 'cohort' dimension must be present.
      */
     cohortSpec?: Schema$CohortSpec;
+    /**
+     * Optional. The configuration of comparisons requested and displayed. The request only requires a comparisons field in order to receive a comparison column in the response.
+     */
+    comparisons?: Schema$Comparison[];
     /**
      * A currency code in ISO4217 format, such as "AED", "USD", "JPY". If the field is empty, the report uses the property's default currency.
      */
@@ -1408,6 +1454,7 @@ export namespace analyticsdata_v1beta {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1505,6 +1552,7 @@ export namespace analyticsdata_v1beta {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1600,6 +1648,7 @@ export namespace analyticsdata_v1beta {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1685,6 +1734,7 @@ export namespace analyticsdata_v1beta {
           {
             url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1780,6 +1830,7 @@ export namespace analyticsdata_v1beta {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1875,6 +1926,7 @@ export namespace analyticsdata_v1beta {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1966,6 +2018,7 @@ export namespace analyticsdata_v1beta {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2141,6 +2194,7 @@ export namespace analyticsdata_v1beta {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2226,6 +2280,7 @@ export namespace analyticsdata_v1beta {
           {
             url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2321,6 +2376,7 @@ export namespace analyticsdata_v1beta {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2416,6 +2472,7 @@ export namespace analyticsdata_v1beta {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),

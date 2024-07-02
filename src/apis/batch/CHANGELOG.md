@@ -1,5 +1,59 @@
 # Changelog
 
+## [9.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/batch-v9.0.0...batch-v9.1.0) (2024-06-03)
+
+
+### Features
+
+* **batch:** update the API ([754dc37](https://github.com/googleapis/google-api-nodejs-client/commit/754dc376c29d8026d8764d33bb94c509d3f002ac))
+
+## [9.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/batch-v8.0.1...batch-v9.0.0) (2024-05-02)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#3434](https://github.com/googleapis/google-api-nodejs-client/issues/3434)) ([f0db524](https://github.com/googleapis/google-api-nodejs-client/commit/f0db524bb26f05cea3dec4c0ed66b496399e3857))
+* run the generator ([#3456](https://github.com/googleapis/google-api-nodejs-client/issues/3456)) ([a865e81](https://github.com/googleapis/google-api-nodejs-client/commit/a865e81539b315d3b321650663ba0b2555b1e5a1))
+
+
+### Bug Fixes
+
+* **batch:** update the API ([10727a4](https://github.com/googleapis/google-api-nodejs-client/commit/10727a4ccab11bd1203fa95cb14131a67804e7a5))
+* **batch:** update the API ([e36b7d9](https://github.com/googleapis/google-api-nodejs-client/commit/e36b7d985cf3ed72efdfc3a69a47b4bd72a16d06))
+
+## [8.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/batch-v8.0.0...batch-v8.0.1) (2024-05-02)
+
+
+### Bug Fixes
+
+* **batch:** update the API ([10727a4](https://github.com/googleapis/google-api-nodejs-client/commit/10727a4ccab11bd1203fa95cb14131a67804e7a5))
+
+## [8.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/batch-v7.0.0...batch-v8.0.0) (2024-04-04)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+* This release has breaking changes.
+* **batch:** This release has breaking changes.
+
+### Features
+
+* **batch:** update the API ([afcbf80](https://github.com/googleapis/google-api-nodejs-client/commit/afcbf805b24a9b789554df7bfb2d8cc22e304436))
+* **batch:** update the API ([9ef21e0](https://github.com/googleapis/google-api-nodejs-client/commit/9ef21e04593fc74206167811071c92c5c033a728))
+* run the generator ([#3434](https://github.com/googleapis/google-api-nodejs-client/issues/3434)) ([f0db524](https://github.com/googleapis/google-api-nodejs-client/commit/f0db524bb26f05cea3dec4c0ed66b496399e3857))
+* run the generator ([#3456](https://github.com/googleapis/google-api-nodejs-client/issues/3456)) ([a865e81](https://github.com/googleapis/google-api-nodejs-client/commit/a865e81539b315d3b321650663ba0b2555b1e5a1))
+
+
+### Bug Fixes
+
+* **batch:** update the API ([e36b7d9](https://github.com/googleapis/google-api-nodejs-client/commit/e36b7d985cf3ed72efdfc3a69a47b4bd72a16d06))
+
 ## [7.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/batch-v6.1.1...batch-v7.0.0) (2024-03-12)
 
 

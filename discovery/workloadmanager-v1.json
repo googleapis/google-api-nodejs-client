@@ -226,6 +226,11 @@
                     "name"
                   ],
                   "parameters": {
+                    "force": {
+                      "description": "Optional. Followed the best practice from https://aip.dev/135#cascading-delete",
+                      "location": "query",
+                      "type": "boolean"
+                    },
                     "name": {
                       "description": "Required. Name of the resource",
                       "location": "path",
@@ -282,7 +287,7 @@
                   ],
                   "parameters": {
                     "filter": {
-                      "description": "Filtering results",
+                      "description": "Filter to be applied when listing the evaluation results.",
                       "location": "query",
                       "type": "string"
                     },
@@ -456,7 +461,7 @@
                     "results": {
                       "methods": {
                         "list": {
-                          "description": "List the running result of a single Execution.",
+                          "description": "Lists the result of a single evaluation.",
                           "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/evaluations/{evaluationsId}/executions/{executionsId}/results",
                           "httpMethod": "GET",
                           "id": "workloadmanager.projects.locations.evaluations.executions.results.list",
@@ -767,9 +772,59 @@
       }
     }
   },
-  "revision": "20240306",
+  "revision": "20240619",
   "rootUrl": "https://workloadmanager.googleapis.com/",
   "schemas": {
+    "AgentCommand": {
+      "description": "* An AgentCommand specifies a one-time executable program for the agent to run.",
+      "id": "AgentCommand",
+      "properties": {
+        "command": {
+          "description": "command is the name of the agent one-time executable that will be invoked.",
+          "type": "string"
+        },
+        "parameters": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "parameters is a map of key/value pairs that can be used to specify additional one-time executable settings.",
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "AssetLocation": {
+      "description": "Provides the mapping of a cloud asset to a direct physical location or to a proxy that defines the location on its behalf.",
+      "id": "AssetLocation",
+      "properties": {
+        "expected": {
+          "$ref": "IsolationExpectations",
+          "description": "Defines the customer expectation around ZI/ZS for this asset and ZI/ZS state of the region at the time of asset creation."
+        },
+        "extraParameters": {
+          "description": "Defines extra parameters required for specific asset types.",
+          "items": {
+            "$ref": "ExtraParameter"
+          },
+          "type": "array"
+        },
+        "locationData": {
+          "description": "Contains all kinds of physical location definitions for this asset.",
+          "items": {
+            "$ref": "LocationData"
+          },
+          "type": "array"
+        },
+        "parentAsset": {
+          "description": "Defines parents assets if any in order to allow later generation of child_asset_location data via child assets.",
+          "items": {
+            "$ref": "CloudAsset"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "BigQueryDestination": {
       "description": "Message describing big query destination",
       "id": "BigQueryDestination",
@@ -785,10 +840,74 @@
       },
       "type": "object"
     },
+    "BlobstoreLocation": {
+      "description": "Policy ID that identified data placement in Blobstore as per go/blobstore-user-guide#data-metadata-placement-and-failure-domains",
+      "id": "BlobstoreLocation",
+      "properties": {
+        "policyId": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "CancelOperationRequest": {
       "description": "The request message for Operations.CancelOperation.",
       "id": "CancelOperationRequest",
       "properties": {},
+      "type": "object"
+    },
+    "CloudAsset": {
+      "id": "CloudAsset",
+      "properties": {
+        "assetName": {
+          "type": "string"
+        },
+        "assetType": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "CloudAssetComposition": {
+      "id": "CloudAssetComposition",
+      "properties": {
+        "childAsset": {
+          "items": {
+            "$ref": "CloudAsset"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "Command": {
+      "description": "* Command specifies the type of command to execute.",
+      "id": "Command",
+      "properties": {
+        "agentCommand": {
+          "$ref": "AgentCommand",
+          "description": "AgentCommand specifies a one-time executable program for the agent to run."
+        },
+        "shellCommand": {
+          "$ref": "ShellCommand",
+          "description": "ShellCommand is invoked via the agent's command line executor."
+        }
+      },
+      "type": "object"
+    },
+    "DirectLocationAssignment": {
+      "id": "DirectLocationAssignment",
+      "properties": {
+        "location": {
+          "items": {
+            "$ref": "LocationAssignment"
+          },
+          "type": "array"
+        }
+      },
       "type": "object"
     },
     "Empty": {
@@ -882,6 +1001,13 @@
           "readOnly": true,
           "type": "string"
         },
+        "externalDataSources": {
+          "description": "Optional. External data sources",
+          "items": {
+            "$ref": "ExternalDataSources"
+          },
+          "type": "array"
+        },
         "inventoryTime": {
           "description": "Output only. [Output only] Inventory time stamp",
           "format": "google-datetime",
@@ -943,29 +1069,78 @@
       "description": "Message describing the result of an execution",
       "id": "ExecutionResult",
       "properties": {
+        "commands": {
+          "description": "The commands to remediate the violation.",
+          "items": {
+            "$ref": "Command"
+          },
+          "type": "array"
+        },
         "documentationUrl": {
-          "description": "the document url of the rule",
+          "description": "The URL for the documentation of the rule.",
           "type": "string"
         },
         "resource": {
           "$ref": "Resource",
-          "description": "the violate resource"
+          "description": "The resource that violates the rule."
         },
         "rule": {
-          "description": "the rule which violate in execution",
+          "description": "The rule that is violated in an evaluation.",
           "type": "string"
         },
         "severity": {
-          "description": "severity of violation",
+          "description": "The severity of violation.",
           "type": "string"
         },
         "violationDetails": {
           "$ref": "ViolationDetails",
-          "description": "the details of violation in result"
+          "description": "The details of violation in an evaluation result."
         },
         "violationMessage": {
-          "description": "the violation message of an execution",
+          "description": "The violation message of an execution.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ExternalDataSources": {
+      "description": "Message for external data sources",
+      "id": "ExternalDataSources",
+      "properties": {
+        "assetType": {
+          "description": "Required. The asset type of the external data source must be one of go/cai-asset-types",
+          "type": "string"
+        },
+        "name": {
+          "description": "Optional. Name of external data source. The name will be used inside the rego/sql to refer the external data",
+          "type": "string"
+        },
+        "type": {
+          "description": "Required. Type of external data source",
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "BIG_QUERY_TABLE"
+          ],
+          "enumDescriptions": [
+            "Unknown type",
+            "BigQuery table"
+          ],
+          "type": "string"
+        },
+        "uri": {
+          "description": "Required. URI of external data source. example of bq table {project_ID}.{dataset_ID}.{table_ID}",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ExtraParameter": {
+      "description": "Defines parameters that should only be used for specific asset types.",
+      "id": "ExtraParameter",
+      "properties": {
+        "regionalMigDistributionPolicy": {
+          "$ref": "RegionalMigDistributionPolicy",
+          "description": "Details about zones used by regional compute.googleapis.com/InstanceGroupManager to create instances."
         }
       },
       "type": "object"
@@ -1009,6 +1184,127 @@
         "sqlserverValidation": {
           "$ref": "SqlserverValidation",
           "description": "The insights data for the sqlserver workload validation."
+        }
+      },
+      "type": "object"
+    },
+    "IsolationExpectations": {
+      "id": "IsolationExpectations",
+      "properties": {
+        "ziOrgPolicy": {
+          "enum": [
+            "ZI_UNSPECIFIED",
+            "ZI_UNKNOWN",
+            "ZI_NOT_REQUIRED",
+            "ZI_PREFERRED",
+            "ZI_REQUIRED"
+          ],
+          "enumDescriptions": [
+            "",
+            "To be used if tracking is not available",
+            "",
+            "",
+            ""
+          ],
+          "type": "string"
+        },
+        "ziRegionPolicy": {
+          "enum": [
+            "ZI_REGION_POLICY_UNSPECIFIED",
+            "ZI_REGION_POLICY_UNKNOWN",
+            "ZI_REGION_POLICY_NOT_SET",
+            "ZI_REGION_POLICY_FAIL_OPEN",
+            "ZI_REGION_POLICY_FAIL_CLOSED"
+          ],
+          "enumDescriptions": [
+            "",
+            "To be used if tracking is not available",
+            "",
+            "",
+            ""
+          ],
+          "type": "string"
+        },
+        "ziRegionState": {
+          "enum": [
+            "ZI_REGION_UNSPECIFIED",
+            "ZI_REGION_UNKNOWN",
+            "ZI_REGION_NOT_ENABLED",
+            "ZI_REGION_ENABLED"
+          ],
+          "enumDescriptions": [
+            "",
+            "To be used if tracking is not available",
+            "",
+            ""
+          ],
+          "type": "string"
+        },
+        "zoneIsolation": {
+          "deprecated": true,
+          "description": "Deprecated: use zi_org_policy, zi_region_policy and zi_region_state instead for setting ZI expectations as per go/zicy-publish-physical-location.",
+          "enum": [
+            "ZI_UNSPECIFIED",
+            "ZI_UNKNOWN",
+            "ZI_NOT_REQUIRED",
+            "ZI_PREFERRED",
+            "ZI_REQUIRED"
+          ],
+          "enumDescriptions": [
+            "",
+            "To be used if tracking is not available",
+            "",
+            "",
+            ""
+          ],
+          "type": "string"
+        },
+        "zoneSeparation": {
+          "deprecated": true,
+          "description": "Deprecated: use zs_org_policy, and zs_region_stateinstead for setting Zs expectations as per go/zicy-publish-physical-location.",
+          "enum": [
+            "ZS_UNSPECIFIED",
+            "ZS_UNKNOWN",
+            "ZS_NOT_REQUIRED",
+            "ZS_REQUIRED"
+          ],
+          "enumDescriptions": [
+            "",
+            "To be used if tracking is not available",
+            "",
+            ""
+          ],
+          "type": "string"
+        },
+        "zsOrgPolicy": {
+          "enum": [
+            "ZS_UNSPECIFIED",
+            "ZS_UNKNOWN",
+            "ZS_NOT_REQUIRED",
+            "ZS_REQUIRED"
+          ],
+          "enumDescriptions": [
+            "",
+            "To be used if tracking is not available",
+            "",
+            ""
+          ],
+          "type": "string"
+        },
+        "zsRegionState": {
+          "enum": [
+            "ZS_REGION_UNSPECIFIED",
+            "ZS_REGION_UNKNOWN",
+            "ZS_REGION_NOT_ENABLED",
+            "ZS_REGION_ENABLED"
+          ],
+          "enumDescriptions": [
+            "",
+            "To be used if tracking of the asset ZS-bit is not available",
+            "",
+            ""
+          ],
+          "type": "string"
         }
       },
       "type": "object"
@@ -1187,6 +1483,64 @@
       },
       "type": "object"
     },
+    "LocationAssignment": {
+      "id": "LocationAssignment",
+      "properties": {
+        "location": {
+          "type": "string"
+        },
+        "locationType": {
+          "enum": [
+            "UNSPECIFIED",
+            "CLUSTER",
+            "POP",
+            "CLOUD_ZONE",
+            "CLOUD_REGION",
+            "MULTI_REGION_GEO",
+            "MULTI_REGION_JURISDICTION",
+            "GLOBAL",
+            "OTHER"
+          ],
+          "enumDescriptions": [
+            "",
+            "1-10: Physical failure domains.",
+            "",
+            "11-20: Logical failure domains.",
+            "",
+            "",
+            "",
+            "",
+            ""
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "LocationData": {
+      "id": "LocationData",
+      "properties": {
+        "blobstoreLocation": {
+          "$ref": "BlobstoreLocation"
+        },
+        "childAssetLocation": {
+          "$ref": "CloudAssetComposition"
+        },
+        "directLocation": {
+          "$ref": "DirectLocationAssignment"
+        },
+        "gcpProjectProxy": {
+          "$ref": "TenantProjectProxy"
+        },
+        "placerLocation": {
+          "$ref": "PlacerLocation"
+        },
+        "spannerLocation": {
+          "$ref": "SpannerLocation"
+        }
+      },
+      "type": "object"
+    },
     "Operation": {
       "description": "This resource represents a long-running operation that is the result of a network API call.",
       "id": "Operation",
@@ -1266,20 +1620,50 @@
       },
       "type": "object"
     },
+    "PlacerLocation": {
+      "description": "Message describing that the location of the customer resource is tied to placer allocations",
+      "id": "PlacerLocation",
+      "properties": {
+        "placerConfig": {
+          "description": "Directory with a config related to it in placer (e.g. \"/placer/prod/home/my-root/my-dir\")",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "RegionalMigDistributionPolicy": {
+      "description": "To be used for specifying the intended distribution of regional compute.googleapis.com/InstanceGroupManager instances",
+      "id": "RegionalMigDistributionPolicy",
+      "properties": {
+        "targetShape": {
+          "description": "The shape in which the group converges around distribution of resources. Instance of proto2 enum",
+          "format": "int32",
+          "type": "integer"
+        },
+        "zones": {
+          "description": "Cloud zones used by regional MIG to create instances.",
+          "items": {
+            "$ref": "ZoneConfiguration"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "Resource": {
       "description": "Message represent resource in execution result",
       "id": "Resource",
       "properties": {
         "name": {
-          "description": "the name of the resource",
+          "description": "The name of the resource.",
           "type": "string"
         },
         "serviceAccount": {
-          "description": "the service account accosiate with resource",
+          "description": "The service account associated with the resource.",
           "type": "string"
         },
         "type": {
-          "description": "the type of reresource",
+          "description": "The type of resource.",
           "type": "string"
         }
       },
@@ -1482,6 +1866,13 @@
           "description": "Required. Pantheon Project in which the resources reside.",
           "type": "string"
         },
+        "replicationSites": {
+          "description": "Optional. A list of replication sites used in Disaster Recovery (DR) configurations.",
+          "items": {
+            "$ref": "SapDiscoveryComponent"
+          },
+          "type": "array"
+        },
         "resources": {
           "description": "Optional. The resources in a component.",
           "items": {
@@ -1515,27 +1906,40 @@
       "id": "SapDiscoveryComponentApplicationProperties",
       "properties": {
         "abap": {
-          "description": "Optional. Indicates whether this is a Java or ABAP Netweaver instance. true means it is ABAP, false means it is Java.",
+          "deprecated": true,
+          "description": "Optional. Deprecated: ApplicationType now tells you whether this is ABAP or Java.",
           "type": "boolean"
+        },
+        "appInstanceNumber": {
+          "description": "Optional. Instance number of the SAP application instance.",
+          "type": "string"
         },
         "applicationType": {
           "description": "Required. Type of the application. Netweaver, etc.",
           "enum": [
             "APPLICATION_TYPE_UNSPECIFIED",
-            "NETWEAVER"
+            "NETWEAVER",
+            "NETWEAVER_ABAP",
+            "NETWEAVER_JAVA"
           ],
           "enumDescriptions": [
             "Unspecified application type",
-            "SAP Netweaver"
+            "SAP Netweaver",
+            "SAP Netweaver ABAP",
+            "SAP Netweaver Java"
           ],
+          "type": "string"
+        },
+        "ascsInstanceNumber": {
+          "description": "Optional. Instance number of the ASCS instance.",
           "type": "string"
         },
         "ascsUri": {
           "description": "Optional. Resource URI of the recognized ASCS host of the application.",
           "type": "string"
         },
-        "instanceNumber": {
-          "description": "Optional. Instance number of the SAP instance.",
+        "ersInstanceNumber": {
+          "description": "Optional. Instance number of the ERS instance.",
           "type": "string"
         },
         "kernelVersion": {
@@ -1553,6 +1957,10 @@
       "description": "A set of properties describing an SAP Database layer.",
       "id": "SapDiscoveryComponentDatabaseProperties",
       "properties": {
+        "databaseSid": {
+          "description": "Optional. SID of the system database.",
+          "type": "string"
+        },
         "databaseType": {
           "description": "Required. Type of the database. HANA, DB2, etc.",
           "enum": [
@@ -1690,6 +2098,13 @@
       "description": "A set of properties only present for an instance type resource",
       "id": "SapDiscoveryResourceInstanceProperties",
       "properties": {
+        "appInstances": {
+          "description": "Optional. App server instances on the host",
+          "items": {
+            "$ref": "SapDiscoveryResourceInstancePropertiesAppInstance"
+          },
+          "type": "array"
+        },
         "clusterInstances": {
           "description": "Optional. A list of instance URIs that are part of a cluster with this one.",
           "items": {
@@ -1697,8 +2112,46 @@
           },
           "type": "array"
         },
+        "instanceNumber": {
+          "description": "Optional. The VM's instance number.",
+          "format": "int64",
+          "type": "string"
+        },
+        "instanceRole": {
+          "description": "Optional. Bitmask of instance role, a resource may have multiple roles at once.",
+          "enum": [
+            "INSTANCE_ROLE_UNSPECIFIED",
+            "INSTANCE_ROLE_ASCS",
+            "INSTANCE_ROLE_ERS",
+            "INSTANCE_ROLE_APP_SERVER",
+            "INSTANCE_ROLE_DATABASE"
+          ],
+          "enumDescriptions": [
+            "Unspecified instance role.",
+            "Application central services.",
+            "Enqueue replication server.",
+            "Application server.",
+            "Database node."
+          ],
+          "type": "string"
+        },
         "virtualHostname": {
           "description": "Optional. A virtual hostname of the instance if it has one.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SapDiscoveryResourceInstancePropertiesAppInstance": {
+      "description": "Fields to describe an SAP application server instance.",
+      "id": "SapDiscoveryResourceInstancePropertiesAppInstance",
+      "properties": {
+        "name": {
+          "description": "Optional. Instance name of the SAP application instance.",
+          "type": "string"
+        },
+        "number": {
+          "description": "Optional. Instance number of the SAP application instance.",
           "type": "string"
         }
       },
@@ -1842,6 +2295,38 @@
       },
       "type": "object"
     },
+    "ShellCommand": {
+      "description": "* A ShellCommand is invoked via the agent's command line executor",
+      "id": "ShellCommand",
+      "properties": {
+        "args": {
+          "description": "args is a string of arguments to be passed to the command.",
+          "type": "string"
+        },
+        "command": {
+          "description": "command is the name of the command to be executed.",
+          "type": "string"
+        },
+        "timeoutSeconds": {
+          "description": "Optional. If not specified, the default timeout is 60 seconds.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "SpannerLocation": {
+      "id": "SpannerLocation",
+      "properties": {
+        "dbName": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "SqlserverValidation": {
       "description": "A presentation of SQLServer workload insight. The schema of SqlServer workloads validation related data.",
       "id": "SqlserverValidation",
@@ -1957,23 +2442,35 @@
       },
       "type": "object"
     },
+    "TenantProjectProxy": {
+      "id": "TenantProjectProxy",
+      "properties": {
+        "projectNumbers": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "ViolationDetails": {
-      "description": "Message describing the violdation in execution result",
+      "description": "Message describing the violation in an evaluation result.",
       "id": "ViolationDetails",
       "properties": {
         "asset": {
-          "description": "the name of asset",
+          "description": "The name of the asset.",
           "type": "string"
         },
         "observed": {
           "additionalProperties": {
             "type": "string"
           },
-          "description": "observed",
+          "description": "Details of the violation.",
           "type": "object"
         },
         "serviceAccount": {
-          "description": "the service account associate with resource",
+          "description": "The service account associated with the resource.",
           "type": "string"
         }
       },
@@ -2002,6 +2499,15 @@
       "description": "The response for write insights request.",
       "id": "WriteInsightResponse",
       "properties": {},
+      "type": "object"
+    },
+    "ZoneConfiguration": {
+      "id": "ZoneConfiguration",
+      "properties": {
+        "zone": {
+          "type": "string"
+        }
+      },
       "type": "object"
     }
   },

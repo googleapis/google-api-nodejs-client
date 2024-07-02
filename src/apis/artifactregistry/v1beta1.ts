@@ -179,7 +179,7 @@ export namespace artifactregistry_v1beta1 {
      */
     hashes?: Schema$Hash[];
     /**
-     * The name of the file, for example: "projects/p1/locations/us-central1/repositories/repo1/files/a%2Fb%2Fc.txt". If the file ID part contains slashes, they are escaped.
+     * The name of the file, for example: `projects/p1/locations/us-central1/repositories/repo1/files/a%2Fb%2Fc.txt`. If the file ID part contains slashes, they are escaped.
      */
     name?: string | null;
     /**
@@ -399,9 +399,13 @@ export namespace artifactregistry_v1beta1 {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * The name of the repository, for example: `projects/p1/locations/us-central1/repositories/repo1`.
+     * The name of the repository, for example: `projects/p1/locations/us-central1/repositories/repo1`. For each location in a project, repository names must be unique.
      */
     name?: string | null;
+    /**
+     * Output only. If set, the repository satisfies physical zone isolation.
+     */
+    satisfiesPzi?: boolean | null;
     /**
      * Output only. If set, the repository satisfies physical zone separation.
      */
@@ -588,6 +592,7 @@ export namespace artifactregistry_v1beta1 {
           {
             url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -681,6 +686,7 @@ export namespace artifactregistry_v1beta1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -800,6 +806,7 @@ export namespace artifactregistry_v1beta1 {
           {
             url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -911,6 +918,7 @@ export namespace artifactregistry_v1beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -996,6 +1004,7 @@ export namespace artifactregistry_v1beta1 {
           {
             url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -1081,6 +1090,7 @@ export namespace artifactregistry_v1beta1 {
           {
             url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1170,6 +1180,7 @@ export namespace artifactregistry_v1beta1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1263,6 +1274,7 @@ export namespace artifactregistry_v1beta1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1348,6 +1360,7 @@ export namespace artifactregistry_v1beta1 {
           {
             url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -1437,6 +1450,7 @@ export namespace artifactregistry_v1beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1533,6 +1547,7 @@ export namespace artifactregistry_v1beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1611,7 +1626,7 @@ export namespace artifactregistry_v1beta1 {
   export interface Params$Resource$Projects$Locations$Repositories$Patch
     extends StandardParameters {
     /**
-     * The name of the repository, for example: `projects/p1/locations/us-central1/repositories/repo1`.
+     * The name of the repository, for example: `projects/p1/locations/us-central1/repositories/repo1`. For each location in a project, repository names must be unique.
      */
     name?: string;
     /**
@@ -1723,6 +1738,7 @@ export namespace artifactregistry_v1beta1 {
           {
             url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1815,6 +1831,7 @@ export namespace artifactregistry_v1beta1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1848,7 +1865,7 @@ export namespace artifactregistry_v1beta1 {
      */
     filter?: string;
     /**
-     * The maximum number of files to return.
+     * The maximum number of files to return. Maximum page size is 1,000.
      */
     pageSize?: number;
     /**
@@ -1944,6 +1961,7 @@ export namespace artifactregistry_v1beta1 {
           {
             url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -2030,6 +2048,7 @@ export namespace artifactregistry_v1beta1 {
           {
             url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2124,6 +2143,7 @@ export namespace artifactregistry_v1beta1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2250,6 +2270,7 @@ export namespace artifactregistry_v1beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2336,6 +2357,7 @@ export namespace artifactregistry_v1beta1 {
           {
             url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -2422,6 +2444,7 @@ export namespace artifactregistry_v1beta1 {
           {
             url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2511,6 +2534,7 @@ export namespace artifactregistry_v1beta1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2597,6 +2621,7 @@ export namespace artifactregistry_v1beta1 {
           {
             url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -2649,11 +2674,11 @@ export namespace artifactregistry_v1beta1 {
   export interface Params$Resource$Projects$Locations$Repositories$Packages$Tags$List
     extends StandardParameters {
     /**
-     * An expression for filtering the results of the request. Filter rules are case insensitive. The fields eligible for filtering are: * `version` An example of using a filter: * `version="projects/p1/locations/us-central1/repositories/repo1/packages/pkg1/versions/1.0"` --\> Tags that are applied to the version `1.0` in package `pkg1`.
+     * An expression for filtering the results of the request. Filter rules are case insensitive. The fields eligible for filtering are: * `version` An example of using a filter: * `version="projects/p1/locations/us-central1/repositories/repo1/packages/pkg1/versions/1.0"` --\> Tags that are applied to the version `1.0` in package `pkg1`. * `name="projects/p1/locations/us-central1/repositories/repo1/packages/pkg1/tags/a%2Fb%2F*"` --\> tags with an ID starting with "a/b/". * `name="projects/p1/locations/us-central1/repositories/repo1/packages/pkg1/tags/x%2Fb%2Fc"` --\> tags with an ID ending with "/b/c". * `name="projects/p1/locations/us-central1/repositories/repo1/packages/pkg1/tags/x%2Fb%2F*"` --\> tags with an ID containing "/b/".
      */
     filter?: string;
     /**
-     * The maximum number of tags to return. Maximum page size is 10,000.
+     * The maximum number of tags to return. Maximum page size is 1,000.
      */
     pageSize?: number;
     /**
@@ -2756,6 +2781,7 @@ export namespace artifactregistry_v1beta1 {
           {
             url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -2842,6 +2868,7 @@ export namespace artifactregistry_v1beta1 {
           {
             url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2936,6 +2963,7 @@ export namespace artifactregistry_v1beta1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),

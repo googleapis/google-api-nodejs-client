@@ -225,6 +225,10 @@ export namespace connectors_v1 {
      */
     enablePkce?: boolean | null;
     /**
+     * Optional. Omit query params from the redirect URI.
+     */
+    omitQueryParams?: string | null;
+    /**
      * The scopes for which the user will authorize Google Cloud Connectors on the connector data source.
      */
     scopes?: string[] | null;
@@ -232,6 +236,15 @@ export namespace connectors_v1 {
      * The base URI the user must click to trigger the authorization code login flow.
      */
     uri?: string | null;
+  }
+  /**
+   * Billing config for the connection.
+   */
+  export interface Schema$BillingConfig {
+    /**
+     * Output only. Billing category for the connector.
+     */
+    billingCategory?: string | null;
   }
   /**
    * Associates `members`, or principals, with a `role`.
@@ -320,6 +333,10 @@ export namespace connectors_v1 {
      */
     locationType?: string | null;
     /**
+     * Optional. MultipleSelectConfig represents the multiple options for a config variable.
+     */
+    multipleSelectConfig?: Schema$MultipleSelectConfig;
+    /**
      * Flag represents that this `ConfigVariable` must be provided for a connection.
      */
     required?: boolean | null;
@@ -352,6 +369,10 @@ export namespace connectors_v1 {
      * Optional. Configuration for establishing the connection's authentication with an external system.
      */
     authConfig?: Schema$AuthConfig;
+    /**
+     * Output only. Billing config for the connection.
+     */
+    billingConfig?: Schema$BillingConfig;
     /**
      * Optional. Configuration for configuring the connection with an external system.
      */
@@ -512,6 +533,14 @@ export namespace connectors_v1 {
    */
   export interface Schema$Connector {
     /**
+     * Output only. Category of the connector.
+     */
+    category?: string | null;
+    /**
+     * Output only. The type of the connector.
+     */
+    connectorType?: string | null;
+    /**
      * Output only. Created time.
      */
     createTime?: string | null;
@@ -547,6 +576,10 @@ export namespace connectors_v1 {
      * Output only. Resource name of the Connector. Format: projects/{project\}/locations/{location\}/providers/{provider\}/connectors/{connector\} Only global location is supported for Connector resource.
      */
     name?: string | null;
+    /**
+     * Output only. Tags of the connector.
+     */
+    tags?: string[] | null;
     /**
      * Output only. Updated time.
      */
@@ -601,6 +634,10 @@ export namespace connectors_v1 {
      * Enabled represents whether logging is enabled or not for a connection.
      */
     enabled?: boolean | null;
+    /**
+     * Optional. Log configuration level.
+     */
+    level?: string | null;
   }
   /**
    * ConnectorVersion indicates a specific version of a connector.
@@ -729,9 +766,13 @@ export namespace connectors_v1 {
    */
   export interface Schema$CustomConnector {
     /**
-     * Optional. Active connector versions.
+     * Output only. Active connector versions.
      */
     activeConnectorVersions?: string[] | null;
+    /**
+     * Output only. All connector versions.
+     */
+    allConnectorVersions?: string[] | null;
     /**
      * Output only. Created time.
      */
@@ -878,6 +919,10 @@ export namespace connectors_v1 {
      */
     time?: Schema$TimeOfDay;
   }
+  /**
+   * Request message for ConnectorsService.DeprecateCustomConnectorVersion
+   */
+  export interface Schema$DeprecateCustomConnectorVersionRequest {}
   export interface Schema$Destination {
     /**
      * For publicly routable host.
@@ -1018,6 +1063,10 @@ export namespace connectors_v1 {
      * Optional. Description of the resource.
      */
     description?: string | null;
+    /**
+     * Optional. The Private Service Connect Connection Endpoint Global Access. https://cloud.google.com/vpc/docs/about-accessing-vpc-hosted-services-endpoints#global-access
+     */
+    endpointGlobalAccess?: boolean | null;
     /**
      * Output only. The Private Service Connect connection endpoint ip
      */
@@ -2073,6 +2122,44 @@ export namespace connectors_v1 {
     updateTime?: string | null;
   }
   /**
+   * MultipleSelectConfig represents the multiple options for a config variable.
+   */
+  export interface Schema$MultipleSelectConfig {
+    /**
+     * Optional. Allow custom values.
+     */
+    allowCustomValues?: boolean | null;
+    /**
+     * Required. Multiple select options.
+     */
+    multipleSelectOptions?: Schema$MultipleSelectOption[];
+    /**
+     * Required. Value separator.
+     */
+    valueSeparator?: string | null;
+  }
+  /**
+   * MultiplSelecteOption represents the single option for a config variable.
+   */
+  export interface Schema$MultipleSelectOption {
+    /**
+     * Optional. Value of the option.
+     */
+    description?: string | null;
+    /**
+     * Required. Display name of the option.
+     */
+    displayName?: string | null;
+    /**
+     * Required. Key of the option.
+     */
+    key?: string | null;
+    /**
+     * Optional. Indicates if the option is preselected.
+     */
+    preselected?: boolean | null;
+  }
+  /**
    * Regional Network Config.
    */
   export interface Schema$NetworkConfig {
@@ -2541,6 +2628,10 @@ export namespace connectors_v1 {
      * Output only. JsonSchema representation of this entity's metadata
      */
     jsonSchema?: Schema$JsonSchema;
+    /**
+     * List of operations supported by this entity
+     */
+    operations?: string[] | null;
   }
   /**
    * Configure the schedule.
@@ -2571,6 +2662,40 @@ export namespace connectors_v1 {
      * Whether to use synchronous schema refresh.
      */
     useSynchronousSchemaRefresh?: boolean | null;
+  }
+  /**
+   * SearchConnectionInstance represents an instance of connector with specific fields
+   */
+  export interface Schema$SearchConnectionInstance {
+    /**
+     * Output only. Schema of a runtime action.
+     */
+    actionSchema?: Schema$RuntimeActionSchema;
+    /**
+     * Output only. Connection details
+     */
+    connection?: Schema$Connection;
+    /**
+     * Output only. Schema of a runtime entity.
+     */
+    entitySchema?: Schema$RuntimeEntitySchema;
+  }
+  /**
+   * Response message for Connectors.SearchConnections.
+   */
+  export interface Schema$SearchConnectionsResponse {
+    /**
+     * A list of connectors.
+     */
+    connections?: Schema$SearchConnectionInstance[];
+    /**
+     * Optional. page_token
+     */
+    nextPageToken?: string | null;
+    /**
+     * Locations that could not be reached.
+     */
+    unreachable?: string[] | null;
   }
   /**
    * Secret provides a reference to entries in Secret Manager.
@@ -3017,6 +3142,7 @@ export namespace connectors_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3103,6 +3229,7 @@ export namespace connectors_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3189,6 +3316,7 @@ export namespace connectors_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3281,6 +3409,7 @@ export namespace connectors_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3368,6 +3497,7 @@ export namespace connectors_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -3539,6 +3669,7 @@ export namespace connectors_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3623,6 +3754,7 @@ export namespace connectors_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -3707,6 +3839,7 @@ export namespace connectors_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3799,6 +3932,7 @@ export namespace connectors_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3887,6 +4021,7 @@ export namespace connectors_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3979,6 +4114,7 @@ export namespace connectors_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4072,6 +4208,7 @@ export namespace connectors_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4156,6 +4293,7 @@ export namespace connectors_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -4244,6 +4382,7 @@ export namespace connectors_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4259,6 +4398,98 @@ export namespace connectors_v1 {
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Returns Top matching Connections for a given query.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    search(
+      params: Params$Resource$Projects$Locations$Connections$Search,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    search(
+      params?: Params$Resource$Projects$Locations$Connections$Search,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SearchConnectionsResponse>;
+    search(
+      params: Params$Resource$Projects$Locations$Connections$Search,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    search(
+      params: Params$Resource$Projects$Locations$Connections$Search,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SearchConnectionsResponse>,
+      callback: BodyResponseCallback<Schema$SearchConnectionsResponse>
+    ): void;
+    search(
+      params: Params$Resource$Projects$Locations$Connections$Search,
+      callback: BodyResponseCallback<Schema$SearchConnectionsResponse>
+    ): void;
+    search(
+      callback: BodyResponseCallback<Schema$SearchConnectionsResponse>
+    ): void;
+    search(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Connections$Search
+        | BodyResponseCallback<Schema$SearchConnectionsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SearchConnectionsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SearchConnectionsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$SearchConnectionsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Connections$Search;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Connections$Search;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://connectors.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:search').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$SearchConnectionsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$SearchConnectionsResponse>(parameters);
       }
     }
 
@@ -4332,6 +4563,7 @@ export namespace connectors_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4427,6 +4659,7 @@ export namespace connectors_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4544,7 +4777,7 @@ export namespace connectors_v1 {
      */
     name?: string;
     /**
-     * Required. You can modify only the fields listed below. To lock/unlock a connection: * `lock_config` To suspend/resume a connection: * `suspended` To update the connection details: * `description` * `labels` * `connector_version` * `config_variables` * `auth_config` * `destination_configs` * `node_config` * `log_config` * `ssl_config` * `eventing_enablement_type` * `eventing_config`
+     * Required. You can modify only the fields listed below. To lock/unlock a connection: * `lock_config` To suspend/resume a connection: * `suspended` To update the connection details: * `description` * `labels` * `connector_version` * `config_variables` * `auth_config` * `destination_configs` * `node_config` * `log_config` * `ssl_config` * `eventing_enablement_type` * `eventing_config` * `auth_override_enabled`
      */
     updateMask?: string;
 
@@ -4564,6 +4797,25 @@ export namespace connectors_v1 {
      * Request body metadata
      */
     requestBody?: Schema$RepairEventingRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Connections$Search
+    extends StandardParameters {
+    /**
+     * Required. Parent resource of the Connection, of the form: `projects/x/locations/x/connections`
+     */
+    name?: string;
+    /**
+     * Optional. The number of top matching connectors to return
+     */
+    pageSize?: number;
+    /**
+     * Optional. page_token
+     */
+    pageToken?: string;
+    /**
+     * Required. The query against which the search needs to be done.
+     */
+    query?: string;
   }
   export interface Params$Resource$Projects$Locations$Connections$Setiampolicy
     extends StandardParameters {
@@ -4666,6 +4918,7 @@ export namespace connectors_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4754,6 +5007,7 @@ export namespace connectors_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4847,6 +5101,7 @@ export namespace connectors_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4942,6 +5197,7 @@ export namespace connectors_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5030,6 +5286,7 @@ export namespace connectors_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5206,6 +5463,7 @@ export namespace connectors_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5291,6 +5549,7 @@ export namespace connectors_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -5379,6 +5638,7 @@ export namespace connectors_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5474,6 +5734,7 @@ export namespace connectors_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5561,6 +5822,7 @@ export namespace connectors_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -5646,6 +5908,7 @@ export namespace connectors_v1 {
           {
             url: (rootUrl + '/v1/{+name}:retry').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5830,6 +6093,7 @@ export namespace connectors_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5954,6 +6218,7 @@ export namespace connectors_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6083,6 +6348,7 @@ export namespace connectors_v1 {
               '/v1/{+parent}/customConnectors:validateCustomConnectorSpec'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -6190,6 +6456,96 @@ export namespace connectors_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Deprecates a single CustomConnectorVersion.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    deprecate(
+      params: Params$Resource$Projects$Locations$Customconnectors$Customconnectorversions$Deprecate,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    deprecate(
+      params?: Params$Resource$Projects$Locations$Customconnectors$Customconnectorversions$Deprecate,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    deprecate(
+      params: Params$Resource$Projects$Locations$Customconnectors$Customconnectorversions$Deprecate,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    deprecate(
+      params: Params$Resource$Projects$Locations$Customconnectors$Customconnectorversions$Deprecate,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    deprecate(
+      params: Params$Resource$Projects$Locations$Customconnectors$Customconnectorversions$Deprecate,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    deprecate(callback: BodyResponseCallback<Schema$Operation>): void;
+    deprecate(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Customconnectors$Customconnectorversions$Deprecate
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Customconnectors$Customconnectorversions$Deprecate;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Customconnectors$Customconnectorversions$Deprecate;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://connectors.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:deprecate').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -6215,6 +6571,18 @@ export namespace connectors_v1 {
      * Required. Resource name of the form: `projects/{project\}/locations/{location\}/customConnectors/{custom_connector\}/customConnectorVersions/{custom_connector_version\}`
      */
     name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Customconnectors$Customconnectorversions$Deprecate
+    extends StandardParameters {
+    /**
+     * Required. Resource name of the form: `projects/{project\}/locations/{location\}/customConnectors/{custom_connector\}/customConnectorVersions/{custom_connector_version\}`
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$DeprecateCustomConnectorVersionRequest;
   }
 
   export class Resource$Projects$Locations$Endpointattachments {
@@ -6293,6 +6661,7 @@ export namespace connectors_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -6378,6 +6747,7 @@ export namespace connectors_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -6466,6 +6836,7 @@ export namespace connectors_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6561,6 +6932,7 @@ export namespace connectors_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6648,6 +7020,7 @@ export namespace connectors_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -6816,6 +7189,7 @@ export namespace connectors_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6900,6 +7274,7 @@ export namespace connectors_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -7024,6 +7399,7 @@ export namespace connectors_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -7109,6 +7485,7 @@ export namespace connectors_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -7194,6 +7571,7 @@ export namespace connectors_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -7289,6 +7667,7 @@ export namespace connectors_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -7376,6 +7755,7 @@ export namespace connectors_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -7541,6 +7921,7 @@ export namespace connectors_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -7631,6 +8012,7 @@ export namespace connectors_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -7726,6 +8108,7 @@ export namespace connectors_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -7862,6 +8245,7 @@ export namespace connectors_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -7947,6 +8331,7 @@ export namespace connectors_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -8032,6 +8417,7 @@ export namespace connectors_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -8125,6 +8511,7 @@ export namespace connectors_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -8210,6 +8597,7 @@ export namespace connectors_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -8371,6 +8759,7 @@ export namespace connectors_v1 {
           {
             url: (rootUrl + '/v1/{+name}:cancel').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -8455,6 +8844,7 @@ export namespace connectors_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -8539,6 +8929,7 @@ export namespace connectors_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -8631,6 +9022,7 @@ export namespace connectors_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -8772,6 +9164,7 @@ export namespace connectors_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -8860,6 +9253,7 @@ export namespace connectors_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -8952,6 +9346,7 @@ export namespace connectors_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -9040,6 +9435,7 @@ export namespace connectors_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -9135,6 +9531,7 @@ export namespace connectors_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -9290,6 +9687,7 @@ export namespace connectors_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -9383,6 +9781,7 @@ export namespace connectors_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -9507,6 +9906,7 @@ export namespace connectors_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -9602,6 +10002,7 @@ export namespace connectors_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -9727,6 +10128,7 @@ export namespace connectors_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -9820,6 +10222,7 @@ export namespace connectors_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),

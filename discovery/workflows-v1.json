@@ -485,7 +485,7 @@
       }
     }
   },
-  "revision": "20240117",
+  "revision": "20240612",
   "rootUrl": "https://workflows.googleapis.com/",
   "schemas": {
     "Empty": {
@@ -725,6 +725,22 @@
       "description": "Workflow program to be executed by Workflows.",
       "id": "Workflow",
       "properties": {
+        "allKmsKeys": {
+          "description": "Output only. A list of all KMS crypto keys used to encrypt or decrypt the data associated with the workflow.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "allKmsKeysVersions": {
+          "description": "Output only. A list of all KMS crypto key versions used to encrypt or decrypt the data associated with the workflow.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
         "callLogLevel": {
           "description": "Optional. Describes the level of platform logging to apply to calls and call responses during executions of this workflow. If both the workflow and the execution specify a logging level, the execution level takes precedence.",
           "enum": [
@@ -749,6 +765,11 @@
         },
         "cryptoKeyName": {
           "description": "Optional. The resource name of a KMS crypto key used to encrypt or decrypt the data associated with the workflow. Format: projects/{project}/locations/{location}/keyRings/{keyRing}/cryptoKeys/{cryptoKey} Using `-` as a wildcard for the `{project}` or not providing one at all will infer the project from the account. If not provided, data associated with the workflow will not be CMEK-encrypted.",
+          "type": "string"
+        },
+        "cryptoKeyVersion": {
+          "description": "Output only. The resource name of a KMS crypto key version used to encrypt or decrypt the data associated with the workflow. Format: projects/{project}/locations/{location}/keyRings/{keyRing}/cryptoKeys/{cryptoKey}/cryptoKeyVersions/{cryptoKeyVersion}",
+          "readOnly": true,
           "type": "string"
         },
         "description": {

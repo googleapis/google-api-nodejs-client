@@ -1,5 +1,26 @@
 # Changelog
 
+## [1.0.7](https://github.com/googleapis/google-api-nodejs-client/compare/firebaseappdistribution-v1.0.6...firebaseappdistribution-v1.0.7) (2024-06-06)
+
+
+### Bug Fixes
+
+* **firebaseappdistribution:** update the API ([e928bdf](https://github.com/googleapis/google-api-nodejs-client/commit/e928bdff463f201f651b42f18af53a79aa6bca98))
+
+## [1.0.6](https://github.com/googleapis/google-api-nodejs-client/compare/firebaseappdistribution-v1.0.5...firebaseappdistribution-v1.0.6) (2024-05-02)
+
+
+### Bug Fixes
+
+* **firebaseappdistribution:** update the API ([96163b7](https://github.com/googleapis/google-api-nodejs-client/commit/96163b73f732144c3da840b18d6a55aac62d6081))
+
+## [1.0.5](https://github.com/googleapis/google-api-nodejs-client/compare/firebaseappdistribution-v1.0.4...firebaseappdistribution-v1.0.5) (2024-05-02)
+
+
+### Bug Fixes
+
+* **firebaseappdistribution:** update the API ([96163b7](https://github.com/googleapis/google-api-nodejs-client/commit/96163b73f732144c3da840b18d6a55aac62d6081))
+
 ## [1.0.4](https://github.com/googleapis/google-api-nodejs-client/compare/firebaseappdistribution-v1.0.3...firebaseappdistribution-v1.0.4) (2024-01-03)
 
 

@@ -151,6 +151,15 @@ export namespace composer_v1 {
     value?: string | null;
   }
   /**
+   * Request to check whether image upgrade will succeed.
+   */
+  export interface Schema$CheckUpgradeRequest {
+    /**
+     * Optional. The version of the software running in the environment. This encapsulates both the version of Cloud Composer functionality and the version of Apache Airflow. It must match the regular expression `composer-([0-9]+(\.[0-9]+\.[0-9]+(-preview\.[0-9]+)?)?|latest)-airflow-([0-9]+(\.[0-9]+(\.[0-9]+)?)?)`. When used as input, the server also checks if the provided version is supported and denies the request for an unsupported version. The Cloud Composer portion of the image version is a full [semantic version](https://semver.org), or an alias in the form of major version number or `latest`. When an alias is provided, the server replaces it with the current Cloud Composer version that satisfies the alias. The Apache Airflow portion of the image version is a full semantic version that points to one of the supported Apache Airflow versions, or an alias in the form of only major or major.minor versions specified. When an alias is provided, the server replaces it with the latest Apache Airflow version that satisfies the alias and is supported in the given Cloud Composer version. In all cases, the resolved image version is stored in the same field. See also [version list](/composer/docs/concepts/versioning/composer-versions) and [versioning overview](/composer/docs/concepts/versioning/composer-versioning-overview).
+     */
+    imageVersion?: string | null;
+  }
+  /**
    * Message containing information about the result of an upgrade check operation.
    */
   export interface Schema$CheckUpgradeResponse {
@@ -1283,6 +1292,95 @@ export namespace composer_v1 {
     }
 
     /**
+     * Check if an upgrade operation on the environment will succeed. In case of problems detailed info can be found in the returned Operation.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    checkUpgrade(
+      params: Params$Resource$Projects$Locations$Environments$Checkupgrade,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    checkUpgrade(
+      params?: Params$Resource$Projects$Locations$Environments$Checkupgrade,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    checkUpgrade(
+      params: Params$Resource$Projects$Locations$Environments$Checkupgrade,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    checkUpgrade(
+      params: Params$Resource$Projects$Locations$Environments$Checkupgrade,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    checkUpgrade(
+      params: Params$Resource$Projects$Locations$Environments$Checkupgrade,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    checkUpgrade(callback: BodyResponseCallback<Schema$Operation>): void;
+    checkUpgrade(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Environments$Checkupgrade
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Environments$Checkupgrade;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Environments$Checkupgrade;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://composer.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+environment}:checkUpgrade').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['environment'],
+        pathParams: ['environment'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
      * Create a new environment.
      *
      * @param params - Parameters for request
@@ -1351,6 +1449,7 @@ export namespace composer_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1439,6 +1538,7 @@ export namespace composer_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1523,6 +1623,7 @@ export namespace composer_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -1618,6 +1719,7 @@ export namespace composer_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1714,6 +1816,7 @@ export namespace composer_v1 {
               rootUrl + '/v1/{+environment}:fetchDatabaseProperties'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1800,6 +1903,7 @@ export namespace composer_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1892,6 +1996,7 @@ export namespace composer_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1980,6 +2085,7 @@ export namespace composer_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2064,6 +2170,7 @@ export namespace composer_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -2159,6 +2266,7 @@ export namespace composer_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2247,6 +2355,7 @@ export namespace composer_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2342,6 +2451,7 @@ export namespace composer_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2361,6 +2471,18 @@ export namespace composer_v1 {
     }
   }
 
+  export interface Params$Resource$Projects$Locations$Environments$Checkupgrade
+    extends StandardParameters {
+    /**
+     * Required. The resource name of the environment to check upgrade for, in the form: "projects/{projectId\}/locations/{locationId\}/environments/{environmentId\}"
+     */
+    environment?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$CheckUpgradeRequest;
+  }
   export interface Params$Resource$Projects$Locations$Environments$Create
     extends StandardParameters {
     /**
@@ -2579,6 +2701,7 @@ export namespace composer_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2664,6 +2787,7 @@ export namespace composer_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -2754,6 +2878,7 @@ export namespace composer_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2849,6 +2974,7 @@ export namespace composer_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2941,6 +3067,7 @@ export namespace composer_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
+            apiVersion: '',
           },
           options
         ),
@@ -3093,6 +3220,7 @@ export namespace composer_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3178,6 +3306,7 @@ export namespace composer_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -3266,6 +3395,7 @@ export namespace composer_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3361,6 +3491,7 @@ export namespace composer_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3451,6 +3582,7 @@ export namespace composer_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
+            apiVersion: '',
           },
           options
         ),
@@ -3605,6 +3737,7 @@ export namespace composer_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3726,6 +3859,7 @@ export namespace composer_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3837,6 +3971,7 @@ export namespace composer_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -3921,6 +4056,7 @@ export namespace composer_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4013,6 +4149,7 @@ export namespace composer_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),

@@ -501,6 +501,7 @@ export namespace poly_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -587,6 +588,7 @@ export namespace poly_v1 {
           {
             url: (rootUrl + '/v1/assets').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -735,6 +737,7 @@ export namespace poly_v1 {
           {
             url: (rootUrl + '/v1/{+name}/assets').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -862,6 +865,7 @@ export namespace poly_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),

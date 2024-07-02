@@ -133,7 +133,7 @@ export namespace dataproc_v1 {
      */
     acceleratorCount?: number | null;
     /**
-     * Full URL, partial URI, or short name of the accelerator type resource to expose to this instance. See Compute Engine AcceleratorTypes (https://cloud.google.com/compute/docs/reference/v1/acceleratorTypes).Examples: https://www.googleapis.com/compute/v1/projects/[project_id]/zones/[zone]/acceleratorTypes/nvidia-tesla-k80 projects/[project_id]/zones/[zone]/acceleratorTypes/nvidia-tesla-k80 nvidia-tesla-k80Auto Zone Exception: If you are using the Dataproc Auto Zone Placement (https://cloud.google.com/dataproc/docs/concepts/configuring-clusters/auto-zone#using_auto_zone_placement) feature, you must use the short name of the accelerator type resource, for example, nvidia-tesla-k80.
+     * Full URL, partial URI, or short name of the accelerator type resource to expose to this instance. See Compute Engine AcceleratorTypes (https://cloud.google.com/compute/docs/reference/v1/acceleratorTypes).Examples: https://www.googleapis.com/compute/v1/projects/[project_id]/zones/[zone]/acceleratorTypes/nvidia-tesla-t4 projects/[project_id]/zones/[zone]/acceleratorTypes/nvidia-tesla-t4 nvidia-tesla-t4Auto Zone Exception: If you are using the Dataproc Auto Zone Placement (https://cloud.google.com/dataproc/docs/concepts/configuring-clusters/auto-zone#using_auto_zone_placement) feature, you must use the short name of the accelerator type resource, for example, nvidia-tesla-t4.
      */
     acceleratorTypeUri?: string | null;
   }
@@ -217,6 +217,15 @@ export namespace dataproc_v1 {
      * Required. Describes how the autoscaler will operate for primary workers.
      */
     workerConfig?: Schema$InstanceGroupAutoscalingPolicyConfig;
+  }
+  /**
+   * Autotuning configuration of the workload.
+   */
+  export interface Schema$AutotuningConfig {
+    /**
+     * Optional. Scenarios for which tunings are applied.
+     */
+    scenarios?: string[] | null;
   }
   /**
    * Node group identification and configuration information.
@@ -722,6 +731,14 @@ export namespace dataproc_v1 {
    */
   export interface Schema$DiskConfig {
     /**
+     * Optional. Indicates how many IOPS to provision for the disk. This sets the number of I/O operations per second that the disk can handle. Note: This field is only supported if boot_disk_type is hyperdisk-balanced.
+     */
+    bootDiskProvisionedIops?: string | null;
+    /**
+     * Optional. Indicates how much throughput to provision for the disk. This sets the number of throughput mb per second that the disk can handle. Values must be greater than or equal to 1. Note: This field is only supported if boot_disk_type is hyperdisk-balanced.
+     */
+    bootDiskProvisionedThroughput?: string | null;
+    /**
      * Optional. Size in GB of the boot disk (default is 500GB).
      */
     bootDiskSizeGb?: number | null;
@@ -934,7 +951,7 @@ export namespace dataproc_v1 {
      */
     subnetworkUri?: string | null;
     /**
-     * The Compute Engine tags to add to all instances (see Tagging instances (https://cloud.google.com/compute/docs/label-or-tag-resources#tags)).
+     * The Compute Engine network tags to add to all instances (see Tagging instances (https://cloud.google.com/vpc/docs/add-remove-network-tags)).
      */
     tags?: string[] | null;
     /**
@@ -2316,6 +2333,14 @@ export namespace dataproc_v1 {
    */
   export interface Schema$RuntimeConfig {
     /**
+     * Optional. Autotuning configuration of the workload.
+     */
+    autotuningConfig?: Schema$AutotuningConfig;
+    /**
+     * Optional. Cohort identifier. Identifies families of the workloads having the same shape, e.g. daily ETL jobs.
+     */
+    cohort?: string | null;
+    /**
      * Optional. Optional custom container image for the job runtime environment. If not specified, a default container image will be used.
      */
     containerImage?: string | null;
@@ -3311,6 +3336,7 @@ export namespace dataproc_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3396,6 +3422,7 @@ export namespace dataproc_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -3484,6 +3511,7 @@ export namespace dataproc_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3572,6 +3600,7 @@ export namespace dataproc_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3667,6 +3696,7 @@ export namespace dataproc_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3757,6 +3787,7 @@ export namespace dataproc_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3852,6 +3883,7 @@ export namespace dataproc_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3940,6 +3972,7 @@ export namespace dataproc_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
+            apiVersion: '',
           },
           options
         ),
@@ -4124,6 +4157,7 @@ export namespace dataproc_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4211,6 +4245,7 @@ export namespace dataproc_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4295,6 +4330,7 @@ export namespace dataproc_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -4379,6 +4415,7 @@ export namespace dataproc_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4469,6 +4506,7 @@ export namespace dataproc_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4630,6 +4668,7 @@ export namespace dataproc_v1 {
           {
             url: (rootUrl + '/v1/{+name}:cancel').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4714,6 +4753,7 @@ export namespace dataproc_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -4798,6 +4838,7 @@ export namespace dataproc_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4887,6 +4928,7 @@ export namespace dataproc_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5022,6 +5064,7 @@ export namespace dataproc_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5106,6 +5149,7 @@ export namespace dataproc_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -5190,6 +5234,7 @@ export namespace dataproc_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5282,6 +5327,7 @@ export namespace dataproc_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5369,6 +5415,7 @@ export namespace dataproc_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5534,6 +5581,7 @@ export namespace dataproc_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5619,6 +5667,7 @@ export namespace dataproc_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -5703,6 +5752,7 @@ export namespace dataproc_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5797,6 +5847,7 @@ export namespace dataproc_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5884,6 +5935,7 @@ export namespace dataproc_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -6037,6 +6089,7 @@ export namespace dataproc_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -6122,6 +6175,7 @@ export namespace dataproc_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -6206,6 +6260,7 @@ export namespace dataproc_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6294,6 +6349,7 @@ export namespace dataproc_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -6382,6 +6438,7 @@ export namespace dataproc_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -6469,6 +6526,7 @@ export namespace dataproc_v1 {
               rootUrl + '/v1/{+parent}/workflowTemplates:instantiateInline'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -6564,6 +6622,7 @@ export namespace dataproc_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6654,6 +6713,7 @@ export namespace dataproc_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -6749,6 +6809,7 @@ export namespace dataproc_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -6834,6 +6895,7 @@ export namespace dataproc_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
+            apiVersion: '',
           },
           options
         ),
@@ -7078,6 +7140,7 @@ export namespace dataproc_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -7163,6 +7226,7 @@ export namespace dataproc_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -7250,6 +7314,7 @@ export namespace dataproc_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -7338,6 +7403,7 @@ export namespace dataproc_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -7433,6 +7499,7 @@ export namespace dataproc_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -7523,6 +7590,7 @@ export namespace dataproc_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -7618,6 +7686,7 @@ export namespace dataproc_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -7706,6 +7775,7 @@ export namespace dataproc_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
+            apiVersion: '',
           },
           options
         ),
@@ -7893,6 +7963,7 @@ export namespace dataproc_v1 {
               rootUrl + '/v1/projects/{projectId}/regions/{region}/clusters'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -7980,6 +8051,7 @@ export namespace dataproc_v1 {
               '/v1/projects/{projectId}/regions/{region}/clusters/{clusterName}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -8067,6 +8139,7 @@ export namespace dataproc_v1 {
               '/v1/projects/{projectId}/regions/{region}/clusters/{clusterName}:diagnose'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -8154,6 +8227,7 @@ export namespace dataproc_v1 {
               '/v1/projects/{projectId}/regions/{region}/clusters/{clusterName}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -8241,6 +8315,7 @@ export namespace dataproc_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -8328,6 +8403,7 @@ export namespace dataproc_v1 {
               rootUrl + '/v1/{+project}/{+region}/{+cluster}:injectCredentials'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -8419,6 +8495,7 @@ export namespace dataproc_v1 {
               rootUrl + '/v1/projects/{projectId}/regions/{region}/clusters'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -8506,6 +8583,7 @@ export namespace dataproc_v1 {
               '/v1/projects/{projectId}/regions/{region}/clusters/{clusterName}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -8593,6 +8671,7 @@ export namespace dataproc_v1 {
               '/v1/projects/{projectId}/regions/{region}/clusters/{clusterName}:repair'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -8680,6 +8759,7 @@ export namespace dataproc_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -8767,6 +8847,7 @@ export namespace dataproc_v1 {
               '/v1/projects/{projectId}/regions/{region}/clusters/{clusterName}:start'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -8854,6 +8935,7 @@ export namespace dataproc_v1 {
               '/v1/projects/{projectId}/regions/{region}/clusters/{clusterName}:stop'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -8949,6 +9031,7 @@ export namespace dataproc_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -9302,6 +9385,7 @@ export namespace dataproc_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -9386,6 +9470,7 @@ export namespace dataproc_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -9471,6 +9556,7 @@ export namespace dataproc_v1 {
           {
             url: (rootUrl + '/v1/{+name}:repair').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -9556,6 +9642,7 @@ export namespace dataproc_v1 {
           {
             url: (rootUrl + '/v1/{+name}:resize').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -9706,6 +9793,7 @@ export namespace dataproc_v1 {
               '/v1/projects/{projectId}/regions/{region}/jobs/{jobId}:cancel'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -9792,6 +9880,7 @@ export namespace dataproc_v1 {
               rootUrl + '/v1/projects/{projectId}/regions/{region}/jobs/{jobId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -9878,6 +9967,7 @@ export namespace dataproc_v1 {
               rootUrl + '/v1/projects/{projectId}/regions/{region}/jobs/{jobId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -9965,6 +10055,7 @@ export namespace dataproc_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -10051,6 +10142,7 @@ export namespace dataproc_v1 {
               rootUrl + '/v1/projects/{projectId}/regions/{region}/jobs'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -10137,6 +10229,7 @@ export namespace dataproc_v1 {
               rootUrl + '/v1/projects/{projectId}/regions/{region}/jobs/{jobId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -10224,6 +10317,7 @@ export namespace dataproc_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -10310,6 +10404,7 @@ export namespace dataproc_v1 {
               rootUrl + '/v1/projects/{projectId}/regions/{region}/jobs:submit'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -10397,6 +10492,7 @@ export namespace dataproc_v1 {
               '/v1/projects/{projectId}/regions/{region}/jobs:submitAsOperation'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -10491,6 +10587,7 @@ export namespace dataproc_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -10756,6 +10853,7 @@ export namespace dataproc_v1 {
           {
             url: (rootUrl + '/v1/{+name}:cancel').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -10840,6 +10938,7 @@ export namespace dataproc_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -10924,6 +11023,7 @@ export namespace dataproc_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -11011,6 +11111,7 @@ export namespace dataproc_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -11100,6 +11201,7 @@ export namespace dataproc_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -11187,6 +11289,7 @@ export namespace dataproc_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -11282,6 +11385,7 @@ export namespace dataproc_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -11454,6 +11558,7 @@ export namespace dataproc_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -11539,6 +11644,7 @@ export namespace dataproc_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -11623,6 +11729,7 @@ export namespace dataproc_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -11711,6 +11818,7 @@ export namespace dataproc_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -11799,6 +11907,7 @@ export namespace dataproc_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -11886,6 +11995,7 @@ export namespace dataproc_v1 {
               rootUrl + '/v1/{+parent}/workflowTemplates:instantiateInline'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -11980,6 +12090,7 @@ export namespace dataproc_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -12070,6 +12181,7 @@ export namespace dataproc_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -12165,6 +12277,7 @@ export namespace dataproc_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -12250,6 +12363,7 @@ export namespace dataproc_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
+            apiVersion: '',
           },
           options
         ),

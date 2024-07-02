@@ -930,7 +930,7 @@
       }
     }
   },
-  "revision": "20231217",
+  "revision": "20240524",
   "rootUrl": "https://orgpolicy.googleapis.com/",
   "schemas": {
     "GoogleCloudOrgpolicyV2AlternatePolicySpec": {
@@ -1051,13 +1051,17 @@
               "METHOD_TYPE_UNSPECIFIED",
               "CREATE",
               "UPDATE",
-              "DELETE"
+              "DELETE",
+              "REMOVE_GRANT",
+              "GOVERN_TAGS"
             ],
             "enumDescriptions": [
               "Unspecified. Results in an error.",
               "Constraint applied when creating the resource.",
               "Constraint applied when updating the resource.",
-              "Constraint applied when deleting the resource. Not supported yet."
+              "Constraint applied when deleting the resource. Not supported yet.",
+              "Constraint applied when removing an IAM grant.",
+              "Constraint applied when enforcing forced tagging."
             ],
             "type": "string"
           },

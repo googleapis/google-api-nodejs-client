@@ -141,6 +141,10 @@ export namespace redis_v1 {
      * Availability type. Potential values: * `ZONAL`: The instance serves data from only one zone. Outages in that zone affect data accessibility. * `REGIONAL`: The instance can serve data from more than one zone in a region (it is highly available).
      */
     availabilityType?: string | null;
+    /**
+     * Checks for resources that are configured to have redundancy, and ongoing replication across regions
+     */
+    crossRegionReplicaConfigured?: boolean | null;
     externalReplicaConfigured?: boolean | null;
     promotableReplicaConfigured?: boolean | null;
   }
@@ -211,17 +215,29 @@ export namespace redis_v1 {
      */
     createTime?: string | null;
     /**
+     * Optional. The delete operation will fail when the value is set to true.
+     */
+    deletionProtectionEnabled?: boolean | null;
+    /**
      * Output only. Endpoints created on each given network, for Redis clients to connect to the cluster. Currently only one discovery endpoint is supported.
      */
     discoveryEndpoints?: Schema$DiscoveryEndpoint[];
     /**
-     * Required. Unique name of the resource in this scope including project and location using the form: `projects/{project_id\}/locations/{location_id\}/clusters/{cluster_id\}`
+     * Required. Identifier. Unique name of the resource in this scope including project and location using the form: `projects/{project_id\}/locations/{location_id\}/clusters/{cluster_id\}`
      */
     name?: string | null;
+    /**
+     * Optional. The type of a redis node in the cluster. NodeType determines the underlying machine-type of a redis node.
+     */
+    nodeType?: string | null;
     /**
      * Optional. Persistence config (RDB, AOF) for the cluster.
      */
     persistenceConfig?: Schema$ClusterPersistenceConfig;
+    /**
+     * Output only. Precise value of redis memory size in GB for the entire cluster.
+     */
+    preciseSizeGb?: number | null;
     /**
      * Required. Each PscConfig configures the consumer network where IPs will be designated to the cluster for client access through Private Service Connect Automation. Currently, only one PscConfig is supported.
      */
@@ -262,6 +278,10 @@ export namespace redis_v1 {
      * Output only. System assigned, unique identifier for the cluster.
      */
     uid?: string | null;
+    /**
+     * Optional. This config will be used to determine how the customer wants us to distribute cluster resources within the region.
+     */
+    zoneDistributionConfig?: Schema$ZoneDistributionConfig;
   }
   /**
    * Configuration of the persistence functionality.
@@ -333,6 +353,7 @@ export namespace redis_v1 {
     /**
      * More feed data would be added in subsequent CLs
      */
+    observabilityMetricData?: Schema$ObservabilityMetricData;
     recommendationSignalData?: Schema$DatabaseResourceRecommendationSignalData;
     resourceHealthSignalData?: Schema$DatabaseResourceHealthSignalData;
     /**
@@ -465,6 +486,10 @@ export namespace redis_v1 {
      */
     location?: string | null;
     /**
+     * Machine configuration for this resource.
+     */
+    machineConfiguration?: Schema$MachineConfiguration;
+    /**
      * Identifier for this resource's immediate parent/primary resource if the current resource is a replica or derived form of another Database resource. Else it would be NULL. REQUIRED if the immediate parent exists when first time resource is getting ingested, otherwise optional.
      */
     primaryResourceId?: Schema$DatabaseResourceId;
@@ -484,10 +509,6 @@ export namespace redis_v1 {
      * The time at which the resource was updated and recorded at partner service.
      */
     updationTime?: string | null;
-    /**
-     * User-provided labels, represented as a dictionary where each label is a single key value pair.
-     */
-    userLabels?: {[key: string]: string} | null;
     /**
      * User-provided labels associated with the resource
      */
@@ -914,6 +935,19 @@ export namespace redis_v1 {
     name?: string | null;
   }
   /**
+   * MachineConfiguration describes the configuration of a machine specific to Database Resource.
+   */
+  export interface Schema$MachineConfiguration {
+    /**
+     * The number of CPUs. TODO(b/342344482, b/342346271) add proto validations again after bug fix.
+     */
+    cpuCount?: number | null;
+    /**
+     * Memory size in bytes. TODO(b/342344482, b/342346271) add proto validations again after bug fix.
+     */
+    memorySizeInBytes?: string | null;
+  }
+  /**
    * Maintenance policy for an instance.
    */
   export interface Schema$MaintenancePolicy {
@@ -973,6 +1007,28 @@ export namespace redis_v1 {
      * Output only. Location of the node.
      */
     zone?: string | null;
+  }
+  export interface Schema$ObservabilityMetricData {
+    /**
+     * Required. Type of aggregation performed on the metric.
+     */
+    aggregationType?: string | null;
+    /**
+     * Required. Type of metric like CPU, Memory, etc.
+     */
+    metricType?: string | null;
+    /**
+     * Required. The time the metric value was observed.
+     */
+    observationTime?: string | null;
+    /**
+     * Required. Database resource name associated with the signal. Resource name to follow CAIS resource_name format as noted here go/condor-common-datamodel
+     */
+    resourceName?: string | null;
+    /**
+     * Required. Value of the metric type.
+     */
+    value?: Schema$TypedValue;
   }
   /**
    * This resource represents a long-running operation that is the result of a network API call.
@@ -1244,6 +1300,27 @@ export namespace redis_v1 {
     sha1Fingerprint?: string | null;
   }
   /**
+   * TypedValue represents the value of a metric type. It can either be a double, an int64, a string or a bool.
+   */
+  export interface Schema$TypedValue {
+    /**
+     * For boolean value
+     */
+    boolValue?: boolean | null;
+    /**
+     * For double value
+     */
+    doubleValue?: number | null;
+    /**
+     * For integer value
+     */
+    int64Value?: string | null;
+    /**
+     * For string value
+     */
+    stringValue?: string | null;
+  }
+  /**
    * Represents information about an updating cluster.
    */
   export interface Schema$UpdateInfo {
@@ -1287,6 +1364,19 @@ export namespace redis_v1 {
      * Required. Start time of the window in UTC time.
      */
     startTime?: Schema$TimeOfDay;
+  }
+  /**
+   * Zone distribution config for allocation of cluster resources.
+   */
+  export interface Schema$ZoneDistributionConfig {
+    /**
+     * Optional. The mode of zone distribution. Defaults to MULTI_ZONE, when not specified.
+     */
+    mode?: string | null;
+    /**
+     * Optional. When SINGLE ZONE distribution is selected, zone field would be used to allocate all resources in that zone. This is not applicable to MULTI_ZONE, and would be ignored for MULTI_ZONE clusters.
+     */
+    zone?: string | null;
   }
 
   export class Resource$Projects {
@@ -1378,6 +1468,7 @@ export namespace redis_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1470,6 +1561,7 @@ export namespace redis_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1591,6 +1683,7 @@ export namespace redis_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1675,6 +1768,7 @@ export namespace redis_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -1759,6 +1853,7 @@ export namespace redis_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1851,6 +1946,7 @@ export namespace redis_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1943,6 +2039,7 @@ export namespace redis_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2027,6 +2124,7 @@ export namespace redis_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -2109,7 +2207,7 @@ export namespace redis_v1 {
   export interface Params$Resource$Projects$Locations$Clusters$Patch
     extends StandardParameters {
     /**
-     * Required. Unique name of the resource in this scope including project and location using the form: `projects/{project_id\}/locations/{location_id\}/clusters/{cluster_id\}`
+     * Required. Identifier. Unique name of the resource in this scope including project and location using the form: `projects/{project_id\}/locations/{location_id\}/clusters/{cluster_id\}`
      */
     name?: string;
     /**
@@ -2202,6 +2300,7 @@ export namespace redis_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2286,6 +2385,7 @@ export namespace redis_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -2370,6 +2470,7 @@ export namespace redis_v1 {
           {
             url: (rootUrl + '/v1/{+name}:export').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2457,6 +2558,7 @@ export namespace redis_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2541,6 +2643,7 @@ export namespace redis_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2634,6 +2737,7 @@ export namespace redis_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2718,6 +2822,7 @@ export namespace redis_v1 {
           {
             url: (rootUrl + '/v1/{+name}:import').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2810,6 +2915,7 @@ export namespace redis_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2894,6 +3000,7 @@ export namespace redis_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -2984,6 +3091,7 @@ export namespace redis_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3071,6 +3179,7 @@ export namespace redis_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3291,6 +3400,7 @@ export namespace redis_v1 {
           {
             url: (rootUrl + '/v1/{+name}:cancel').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3375,6 +3485,7 @@ export namespace redis_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -3459,6 +3570,7 @@ export namespace redis_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3551,6 +3663,7 @@ export namespace redis_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),

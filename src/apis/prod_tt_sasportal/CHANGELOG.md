@@ -1,5 +1,69 @@
 # Changelog
 
+## [17.0.3](https://github.com/googleapis/google-api-nodejs-client/compare/prod_tt_sasportal-v17.0.2...prod_tt_sasportal-v17.0.3) (2024-06-21)
+
+
+### Bug Fixes
+
+* **prod_tt_sasportal:** update the API ([b75ecf2](https://github.com/googleapis/google-api-nodejs-client/commit/b75ecf2f34d78a20e15683d2f030be2722176de8))
+* **prod_tt_sasportal:** update the API ([5dfac38](https://github.com/googleapis/google-api-nodejs-client/commit/5dfac38e84b1d21146a9fecd9ead4a04d81e19f8))
+
+## [17.0.2](https://github.com/googleapis/google-api-nodejs-client/compare/prod_tt_sasportal-v17.0.1...prod_tt_sasportal-v17.0.2) (2024-06-06)
+
+
+### Bug Fixes
+
+* **prod_tt_sasportal:** update the API ([b75ecf2](https://github.com/googleapis/google-api-nodejs-client/commit/b75ecf2f34d78a20e15683d2f030be2722176de8))
+* **prod_tt_sasportal:** update the API ([5dfac38](https://github.com/googleapis/google-api-nodejs-client/commit/5dfac38e84b1d21146a9fecd9ead4a04d81e19f8))
+
+## [17.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/prod_tt_sasportal-v17.0.0...prod_tt_sasportal-v17.0.1) (2024-06-03)
+
+
+### Bug Fixes
+
+* **prod_tt_sasportal:** update the API ([b75ecf2](https://github.com/googleapis/google-api-nodejs-client/commit/b75ecf2f34d78a20e15683d2f030be2722176de8))
+
+## [17.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/prod_tt_sasportal-v16.0.1...prod_tt_sasportal-v17.0.0) (2024-05-02)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+* **prod_tt_sasportal:** This release has breaking changes.
+
+### Features
+
+* **prod_tt_sasportal:** update the API ([869d102](https://github.com/googleapis/google-api-nodejs-client/commit/869d1023477f2b83bbac3274e8be02480944fc60))
+* run the generator ([#3434](https://github.com/googleapis/google-api-nodejs-client/issues/3434)) ([f0db524](https://github.com/googleapis/google-api-nodejs-client/commit/f0db524bb26f05cea3dec4c0ed66b496399e3857))
+
+
+### Bug Fixes
+
+* **prod_tt_sasportal:** update the API ([5dfac38](https://github.com/googleapis/google-api-nodejs-client/commit/5dfac38e84b1d21146a9fecd9ead4a04d81e19f8))
+
+## [16.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/prod_tt_sasportal-v16.0.0...prod_tt_sasportal-v16.0.1) (2024-05-02)
+
+
+### Bug Fixes
+
+* **prod_tt_sasportal:** update the API ([5dfac38](https://github.com/googleapis/google-api-nodejs-client/commit/5dfac38e84b1d21146a9fecd9ead4a04d81e19f8))
+
+## [16.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/prod_tt_sasportal-v15.0.0...prod_tt_sasportal-v16.0.0) (2024-04-04)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+* **prod_tt_sasportal:** This release has breaking changes.
+* **prod_tt_sasportal:** This release has breaking changes.
+
+### Features
+
+* **prod_tt_sasportal:** update the API ([869d102](https://github.com/googleapis/google-api-nodejs-client/commit/869d1023477f2b83bbac3274e8be02480944fc60))
+* **prod_tt_sasportal:** update the API ([99b92fe](https://github.com/googleapis/google-api-nodejs-client/commit/99b92fe5d94f364f22a9162d85cc4c47548366f2))
+* **prod_tt_sasportal:** update the API ([9e3d6fe](https://github.com/googleapis/google-api-nodejs-client/commit/9e3d6fefdd82f36620ae1190dc9b925ce31c3735))
+* run the generator ([#3434](https://github.com/googleapis/google-api-nodejs-client/issues/3434)) ([f0db524](https://github.com/googleapis/google-api-nodejs-client/commit/f0db524bb26f05cea3dec4c0ed66b496399e3857))
+
 ## [15.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/prod_tt_sasportal-v14.0.0...prod_tt_sasportal-v15.0.0) (2024-03-12)
 
 

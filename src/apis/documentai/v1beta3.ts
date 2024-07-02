@@ -849,9 +849,17 @@ export namespace documentai_v1beta3 {
    */
   export interface Schema$GoogleCloudDocumentaiV1beta1Document {
     /**
+     * Document chunked based on chunking config.
+     */
+    chunkedDocument?: Schema$GoogleCloudDocumentaiV1beta1DocumentChunkedDocument;
+    /**
      * Optional. Inline document content, represented as a stream of bytes. Note: As with all `bytes` fields, protobuffers use a pure binary representation, whereas JSON representations use base64.
      */
     content?: string | null;
+    /**
+     * Parsed layout of the document.
+     */
+    documentLayout?: Schema$GoogleCloudDocumentaiV1beta1DocumentDocumentLayout;
     /**
      * A list of entities detected on Document.text. For document shards, entities in this list may cross shard boundaries.
      */
@@ -896,6 +904,212 @@ export namespace documentai_v1beta3 {
      * Optional. Currently supports Google Cloud Storage URI of the form `gs://bucket_name/object_name`. Object versioning is not supported. For more information, refer to [Google Cloud Storage Request URIs](https://cloud.google.com/storage/docs/reference-uris).
      */
     uri?: string | null;
+  }
+  /**
+   * Represents the chunks that the document is divided into.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta1DocumentChunkedDocument {
+    /**
+     * List of chunks.
+     */
+    chunks?: Schema$GoogleCloudDocumentaiV1beta1DocumentChunkedDocumentChunk[];
+  }
+  /**
+   * Represents a chunk.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta1DocumentChunkedDocumentChunk {
+    /**
+     * ID of the chunk.
+     */
+    chunkId?: string | null;
+    /**
+     * Text content of the chunk.
+     */
+    content?: string | null;
+    /**
+     * Page footers associated with the chunk.
+     */
+    pageFooters?: Schema$GoogleCloudDocumentaiV1beta1DocumentChunkedDocumentChunkChunkPageFooter[];
+    /**
+     * Page headers associated with the chunk.
+     */
+    pageHeaders?: Schema$GoogleCloudDocumentaiV1beta1DocumentChunkedDocumentChunkChunkPageHeader[];
+    /**
+     * Page span of the chunk.
+     */
+    pageSpan?: Schema$GoogleCloudDocumentaiV1beta1DocumentChunkedDocumentChunkChunkPageSpan;
+    /**
+     * Unused.
+     */
+    sourceBlockIds?: string[] | null;
+  }
+  /**
+   * Represents the page footer associated with the chunk.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta1DocumentChunkedDocumentChunkChunkPageFooter {
+    /**
+     * Page span of the footer.
+     */
+    pageSpan?: Schema$GoogleCloudDocumentaiV1beta1DocumentChunkedDocumentChunkChunkPageSpan;
+    /**
+     * Footer in text format.
+     */
+    text?: string | null;
+  }
+  /**
+   * Represents the page header associated with the chunk.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta1DocumentChunkedDocumentChunkChunkPageHeader {
+    /**
+     * Page span of the header.
+     */
+    pageSpan?: Schema$GoogleCloudDocumentaiV1beta1DocumentChunkedDocumentChunkChunkPageSpan;
+    /**
+     * Header in text format.
+     */
+    text?: string | null;
+  }
+  /**
+   * Represents where the chunk starts and ends in the document.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta1DocumentChunkedDocumentChunkChunkPageSpan {
+    /**
+     * Page where chunk ends in the document.
+     */
+    pageEnd?: number | null;
+    /**
+     * Page where chunk starts in the document.
+     */
+    pageStart?: number | null;
+  }
+  /**
+   * Represents the parsed layout of a document as a collection of blocks that the document is divided into.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta1DocumentDocumentLayout {
+    /**
+     * List of blocks in the document.
+     */
+    blocks?: Schema$GoogleCloudDocumentaiV1beta1DocumentDocumentLayoutDocumentLayoutBlock[];
+  }
+  /**
+   * Represents a block. A block could be one of the various types (text, table, list) supported.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta1DocumentDocumentLayoutDocumentLayoutBlock {
+    /**
+     * ID of the block.
+     */
+    blockId?: string | null;
+    /**
+     * Block consisting of list content/structure.
+     */
+    listBlock?: Schema$GoogleCloudDocumentaiV1beta1DocumentDocumentLayoutDocumentLayoutBlockLayoutListBlock;
+    /**
+     * Page span of the block.
+     */
+    pageSpan?: Schema$GoogleCloudDocumentaiV1beta1DocumentDocumentLayoutDocumentLayoutBlockLayoutPageSpan;
+    /**
+     * Block consisting of table content/structure.
+     */
+    tableBlock?: Schema$GoogleCloudDocumentaiV1beta1DocumentDocumentLayoutDocumentLayoutBlockLayoutTableBlock;
+    /**
+     * Block consisting of text content.
+     */
+    textBlock?: Schema$GoogleCloudDocumentaiV1beta1DocumentDocumentLayoutDocumentLayoutBlockLayoutTextBlock;
+  }
+  /**
+   * Represents a list type block.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta1DocumentDocumentLayoutDocumentLayoutBlockLayoutListBlock {
+    /**
+     * List entries that constitute a list block.
+     */
+    listEntries?: Schema$GoogleCloudDocumentaiV1beta1DocumentDocumentLayoutDocumentLayoutBlockLayoutListEntry[];
+    /**
+     * Type of the list_entries (if exist). Available options are `ordered` and `unordered`.
+     */
+    type?: string | null;
+  }
+  /**
+   * Represents an entry in the list.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta1DocumentDocumentLayoutDocumentLayoutBlockLayoutListEntry {
+    /**
+     * A list entry is a list of blocks. Repeated blocks support further hierarchies and nested blocks.
+     */
+    blocks?: Schema$GoogleCloudDocumentaiV1beta1DocumentDocumentLayoutDocumentLayoutBlock[];
+  }
+  /**
+   * Represents where the block starts and ends in the document.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta1DocumentDocumentLayoutDocumentLayoutBlockLayoutPageSpan {
+    /**
+     * Page where block ends in the document.
+     */
+    pageEnd?: number | null;
+    /**
+     * Page where block starts in the document.
+     */
+    pageStart?: number | null;
+  }
+  /**
+   * Represents a table type block.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta1DocumentDocumentLayoutDocumentLayoutBlockLayoutTableBlock {
+    /**
+     * Body rows containing main table content.
+     */
+    bodyRows?: Schema$GoogleCloudDocumentaiV1beta1DocumentDocumentLayoutDocumentLayoutBlockLayoutTableRow[];
+    /**
+     * Table caption/title.
+     */
+    caption?: string | null;
+    /**
+     * Header rows at the top of the table.
+     */
+    headerRows?: Schema$GoogleCloudDocumentaiV1beta1DocumentDocumentLayoutDocumentLayoutBlockLayoutTableRow[];
+  }
+  /**
+   * Represents a cell in a table row.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta1DocumentDocumentLayoutDocumentLayoutBlockLayoutTableCell {
+    /**
+     * A table cell is a list of blocks. Repeated blocks support further hierarchies and nested blocks.
+     */
+    blocks?: Schema$GoogleCloudDocumentaiV1beta1DocumentDocumentLayoutDocumentLayoutBlock[];
+    /**
+     * How many columns this cell spans.
+     */
+    colSpan?: number | null;
+    /**
+     * How many rows this cell spans.
+     */
+    rowSpan?: number | null;
+  }
+  /**
+   * Represents a row in a table.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta1DocumentDocumentLayoutDocumentLayoutBlockLayoutTableRow {
+    /**
+     * A table row is a list of table cells.
+     */
+    cells?: Schema$GoogleCloudDocumentaiV1beta1DocumentDocumentLayoutDocumentLayoutBlockLayoutTableCell[];
+  }
+  /**
+   * Represents a text type block.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta1DocumentDocumentLayoutDocumentLayoutBlockLayoutTextBlock {
+    /**
+     * A text block could further have child blocks. Repeated blocks support further hierarchies and nested blocks.
+     */
+    blocks?: Schema$GoogleCloudDocumentaiV1beta1DocumentDocumentLayoutDocumentLayoutBlock[];
+    /**
+     * Text content stored in the block.
+     */
+    text?: string | null;
+    /**
+     * Type of the text in the block. Available options are: `paragraph`, `subtitle`, `heading-1`, `heading-2`, `heading-3`, `heading-4`, `heading-5`, `header`, `footer`.
+     */
+    type?: string | null;
   }
   /**
    * An entity that could be a phrase in the text or a property that belongs to the document. It is a known entity type, such as a person, an organization, or location.
@@ -1470,19 +1684,19 @@ export namespace documentai_v1beta3 {
      */
     pixelFontSize?: number | null;
     /**
-     * Whether the text is in small caps.
+     * Whether the text is in small caps. This feature is not supported yet.
      */
     smallcaps?: boolean | null;
     /**
-     * Whether the text is strikethrough.
+     * Whether the text is strikethrough. This feature is not supported yet.
      */
     strikeout?: boolean | null;
     /**
-     * Whether the text is a subscript.
+     * Whether the text is a subscript. This feature is not supported yet.
      */
     subscript?: boolean | null;
     /**
-     * Whether the text is a superscript.
+     * Whether the text is a superscript. This feature is not supported yet.
      */
     superscript?: boolean | null;
     /**
@@ -1847,9 +2061,17 @@ export namespace documentai_v1beta3 {
    */
   export interface Schema$GoogleCloudDocumentaiV1beta2Document {
     /**
+     * Document chunked based on chunking config.
+     */
+    chunkedDocument?: Schema$GoogleCloudDocumentaiV1beta2DocumentChunkedDocument;
+    /**
      * Optional. Inline document content, represented as a stream of bytes. Note: As with all `bytes` fields, protobuffers use a pure binary representation, whereas JSON representations use base64.
      */
     content?: string | null;
+    /**
+     * Parsed layout of the document.
+     */
+    documentLayout?: Schema$GoogleCloudDocumentaiV1beta2DocumentDocumentLayout;
     /**
      * A list of entities detected on Document.text. For document shards, entities in this list may cross shard boundaries.
      */
@@ -1898,6 +2120,212 @@ export namespace documentai_v1beta3 {
      * Optional. Currently supports Google Cloud Storage URI of the form `gs://bucket_name/object_name`. Object versioning is not supported. For more information, refer to [Google Cloud Storage Request URIs](https://cloud.google.com/storage/docs/reference-uris).
      */
     uri?: string | null;
+  }
+  /**
+   * Represents the chunks that the document is divided into.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta2DocumentChunkedDocument {
+    /**
+     * List of chunks.
+     */
+    chunks?: Schema$GoogleCloudDocumentaiV1beta2DocumentChunkedDocumentChunk[];
+  }
+  /**
+   * Represents a chunk.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta2DocumentChunkedDocumentChunk {
+    /**
+     * ID of the chunk.
+     */
+    chunkId?: string | null;
+    /**
+     * Text content of the chunk.
+     */
+    content?: string | null;
+    /**
+     * Page footers associated with the chunk.
+     */
+    pageFooters?: Schema$GoogleCloudDocumentaiV1beta2DocumentChunkedDocumentChunkChunkPageFooter[];
+    /**
+     * Page headers associated with the chunk.
+     */
+    pageHeaders?: Schema$GoogleCloudDocumentaiV1beta2DocumentChunkedDocumentChunkChunkPageHeader[];
+    /**
+     * Page span of the chunk.
+     */
+    pageSpan?: Schema$GoogleCloudDocumentaiV1beta2DocumentChunkedDocumentChunkChunkPageSpan;
+    /**
+     * Unused.
+     */
+    sourceBlockIds?: string[] | null;
+  }
+  /**
+   * Represents the page footer associated with the chunk.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta2DocumentChunkedDocumentChunkChunkPageFooter {
+    /**
+     * Page span of the footer.
+     */
+    pageSpan?: Schema$GoogleCloudDocumentaiV1beta2DocumentChunkedDocumentChunkChunkPageSpan;
+    /**
+     * Footer in text format.
+     */
+    text?: string | null;
+  }
+  /**
+   * Represents the page header associated with the chunk.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta2DocumentChunkedDocumentChunkChunkPageHeader {
+    /**
+     * Page span of the header.
+     */
+    pageSpan?: Schema$GoogleCloudDocumentaiV1beta2DocumentChunkedDocumentChunkChunkPageSpan;
+    /**
+     * Header in text format.
+     */
+    text?: string | null;
+  }
+  /**
+   * Represents where the chunk starts and ends in the document.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta2DocumentChunkedDocumentChunkChunkPageSpan {
+    /**
+     * Page where chunk ends in the document.
+     */
+    pageEnd?: number | null;
+    /**
+     * Page where chunk starts in the document.
+     */
+    pageStart?: number | null;
+  }
+  /**
+   * Represents the parsed layout of a document as a collection of blocks that the document is divided into.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta2DocumentDocumentLayout {
+    /**
+     * List of blocks in the document.
+     */
+    blocks?: Schema$GoogleCloudDocumentaiV1beta2DocumentDocumentLayoutDocumentLayoutBlock[];
+  }
+  /**
+   * Represents a block. A block could be one of the various types (text, table, list) supported.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta2DocumentDocumentLayoutDocumentLayoutBlock {
+    /**
+     * ID of the block.
+     */
+    blockId?: string | null;
+    /**
+     * Block consisting of list content/structure.
+     */
+    listBlock?: Schema$GoogleCloudDocumentaiV1beta2DocumentDocumentLayoutDocumentLayoutBlockLayoutListBlock;
+    /**
+     * Page span of the block.
+     */
+    pageSpan?: Schema$GoogleCloudDocumentaiV1beta2DocumentDocumentLayoutDocumentLayoutBlockLayoutPageSpan;
+    /**
+     * Block consisting of table content/structure.
+     */
+    tableBlock?: Schema$GoogleCloudDocumentaiV1beta2DocumentDocumentLayoutDocumentLayoutBlockLayoutTableBlock;
+    /**
+     * Block consisting of text content.
+     */
+    textBlock?: Schema$GoogleCloudDocumentaiV1beta2DocumentDocumentLayoutDocumentLayoutBlockLayoutTextBlock;
+  }
+  /**
+   * Represents a list type block.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta2DocumentDocumentLayoutDocumentLayoutBlockLayoutListBlock {
+    /**
+     * List entries that constitute a list block.
+     */
+    listEntries?: Schema$GoogleCloudDocumentaiV1beta2DocumentDocumentLayoutDocumentLayoutBlockLayoutListEntry[];
+    /**
+     * Type of the list_entries (if exist). Available options are `ordered` and `unordered`.
+     */
+    type?: string | null;
+  }
+  /**
+   * Represents an entry in the list.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta2DocumentDocumentLayoutDocumentLayoutBlockLayoutListEntry {
+    /**
+     * A list entry is a list of blocks. Repeated blocks support further hierarchies and nested blocks.
+     */
+    blocks?: Schema$GoogleCloudDocumentaiV1beta2DocumentDocumentLayoutDocumentLayoutBlock[];
+  }
+  /**
+   * Represents where the block starts and ends in the document.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta2DocumentDocumentLayoutDocumentLayoutBlockLayoutPageSpan {
+    /**
+     * Page where block ends in the document.
+     */
+    pageEnd?: number | null;
+    /**
+     * Page where block starts in the document.
+     */
+    pageStart?: number | null;
+  }
+  /**
+   * Represents a table type block.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta2DocumentDocumentLayoutDocumentLayoutBlockLayoutTableBlock {
+    /**
+     * Body rows containing main table content.
+     */
+    bodyRows?: Schema$GoogleCloudDocumentaiV1beta2DocumentDocumentLayoutDocumentLayoutBlockLayoutTableRow[];
+    /**
+     * Table caption/title.
+     */
+    caption?: string | null;
+    /**
+     * Header rows at the top of the table.
+     */
+    headerRows?: Schema$GoogleCloudDocumentaiV1beta2DocumentDocumentLayoutDocumentLayoutBlockLayoutTableRow[];
+  }
+  /**
+   * Represents a cell in a table row.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta2DocumentDocumentLayoutDocumentLayoutBlockLayoutTableCell {
+    /**
+     * A table cell is a list of blocks. Repeated blocks support further hierarchies and nested blocks.
+     */
+    blocks?: Schema$GoogleCloudDocumentaiV1beta2DocumentDocumentLayoutDocumentLayoutBlock[];
+    /**
+     * How many columns this cell spans.
+     */
+    colSpan?: number | null;
+    /**
+     * How many rows this cell spans.
+     */
+    rowSpan?: number | null;
+  }
+  /**
+   * Represents a row in a table.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta2DocumentDocumentLayoutDocumentLayoutBlockLayoutTableRow {
+    /**
+     * A table row is a list of table cells.
+     */
+    cells?: Schema$GoogleCloudDocumentaiV1beta2DocumentDocumentLayoutDocumentLayoutBlockLayoutTableCell[];
+  }
+  /**
+   * Represents a text type block.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta2DocumentDocumentLayoutDocumentLayoutBlockLayoutTextBlock {
+    /**
+     * A text block could further have child blocks. Repeated blocks support further hierarchies and nested blocks.
+     */
+    blocks?: Schema$GoogleCloudDocumentaiV1beta2DocumentDocumentLayoutDocumentLayoutBlock[];
+    /**
+     * Text content stored in the block.
+     */
+    text?: string | null;
+    /**
+     * Type of the text in the block. Available options are: `paragraph`, `subtitle`, `heading-1`, `heading-2`, `heading-3`, `heading-4`, `heading-5`, `header`, `footer`.
+     */
+    type?: string | null;
   }
   /**
    * An entity that could be a phrase in the text or a property that belongs to the document. It is a known entity type, such as a person, an organization, or location.
@@ -2489,19 +2917,19 @@ export namespace documentai_v1beta3 {
      */
     pixelFontSize?: number | null;
     /**
-     * Whether the text is in small caps.
+     * Whether the text is in small caps. This feature is not supported yet.
      */
     smallcaps?: boolean | null;
     /**
-     * Whether the text is strikethrough.
+     * Whether the text is strikethrough. This feature is not supported yet.
      */
     strikeout?: boolean | null;
     /**
-     * Whether the text is a subscript.
+     * Whether the text is a subscript. This feature is not supported yet.
      */
     subscript?: boolean | null;
     /**
-     * Whether the text is a superscript.
+     * Whether the text is a superscript. This feature is not supported yet.
      */
     superscript?: boolean | null;
     /**
@@ -3083,6 +3511,14 @@ export namespace documentai_v1beta3 {
      */
     name?: string | null;
     /**
+     * Output only. Reserved for future use.
+     */
+    satisfiesPzi?: boolean | null;
+    /**
+     * Output only. Reserved for future use.
+     */
+    satisfiesPzs?: boolean | null;
+    /**
      * Optional. A lightweight indexing source with low latency and high reliability, but lacking advanced features like CMEK and content-based search.
      */
     spannerIndexingConfig?: Schema$GoogleCloudDocumentaiV1beta3DatasetSpannerIndexingConfig;
@@ -3195,9 +3631,17 @@ export namespace documentai_v1beta3 {
    */
   export interface Schema$GoogleCloudDocumentaiV1beta3Document {
     /**
+     * Document chunked based on chunking config.
+     */
+    chunkedDocument?: Schema$GoogleCloudDocumentaiV1beta3DocumentChunkedDocument;
+    /**
      * Optional. Inline document content, represented as a stream of bytes. Note: As with all `bytes` fields, protobuffers use a pure binary representation, whereas JSON representations use base64.
      */
     content?: string | null;
+    /**
+     * Parsed layout of the document.
+     */
+    documentLayout?: Schema$GoogleCloudDocumentaiV1beta3DocumentDocumentLayout;
     /**
      * A list of entities detected on Document.text. For document shards, entities in this list may cross shard boundaries.
      */
@@ -3242,6 +3686,212 @@ export namespace documentai_v1beta3 {
      * Optional. Currently supports Google Cloud Storage URI of the form `gs://bucket_name/object_name`. Object versioning is not supported. For more information, refer to [Google Cloud Storage Request URIs](https://cloud.google.com/storage/docs/reference-uris).
      */
     uri?: string | null;
+  }
+  /**
+   * Represents the chunks that the document is divided into.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta3DocumentChunkedDocument {
+    /**
+     * List of chunks.
+     */
+    chunks?: Schema$GoogleCloudDocumentaiV1beta3DocumentChunkedDocumentChunk[];
+  }
+  /**
+   * Represents a chunk.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta3DocumentChunkedDocumentChunk {
+    /**
+     * ID of the chunk.
+     */
+    chunkId?: string | null;
+    /**
+     * Text content of the chunk.
+     */
+    content?: string | null;
+    /**
+     * Page footers associated with the chunk.
+     */
+    pageFooters?: Schema$GoogleCloudDocumentaiV1beta3DocumentChunkedDocumentChunkChunkPageFooter[];
+    /**
+     * Page headers associated with the chunk.
+     */
+    pageHeaders?: Schema$GoogleCloudDocumentaiV1beta3DocumentChunkedDocumentChunkChunkPageHeader[];
+    /**
+     * Page span of the chunk.
+     */
+    pageSpan?: Schema$GoogleCloudDocumentaiV1beta3DocumentChunkedDocumentChunkChunkPageSpan;
+    /**
+     * Unused.
+     */
+    sourceBlockIds?: string[] | null;
+  }
+  /**
+   * Represents the page footer associated with the chunk.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta3DocumentChunkedDocumentChunkChunkPageFooter {
+    /**
+     * Page span of the footer.
+     */
+    pageSpan?: Schema$GoogleCloudDocumentaiV1beta3DocumentChunkedDocumentChunkChunkPageSpan;
+    /**
+     * Footer in text format.
+     */
+    text?: string | null;
+  }
+  /**
+   * Represents the page header associated with the chunk.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta3DocumentChunkedDocumentChunkChunkPageHeader {
+    /**
+     * Page span of the header.
+     */
+    pageSpan?: Schema$GoogleCloudDocumentaiV1beta3DocumentChunkedDocumentChunkChunkPageSpan;
+    /**
+     * Header in text format.
+     */
+    text?: string | null;
+  }
+  /**
+   * Represents where the chunk starts and ends in the document.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta3DocumentChunkedDocumentChunkChunkPageSpan {
+    /**
+     * Page where chunk ends in the document.
+     */
+    pageEnd?: number | null;
+    /**
+     * Page where chunk starts in the document.
+     */
+    pageStart?: number | null;
+  }
+  /**
+   * Represents the parsed layout of a document as a collection of blocks that the document is divided into.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta3DocumentDocumentLayout {
+    /**
+     * List of blocks in the document.
+     */
+    blocks?: Schema$GoogleCloudDocumentaiV1beta3DocumentDocumentLayoutDocumentLayoutBlock[];
+  }
+  /**
+   * Represents a block. A block could be one of the various types (text, table, list) supported.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta3DocumentDocumentLayoutDocumentLayoutBlock {
+    /**
+     * ID of the block.
+     */
+    blockId?: string | null;
+    /**
+     * Block consisting of list content/structure.
+     */
+    listBlock?: Schema$GoogleCloudDocumentaiV1beta3DocumentDocumentLayoutDocumentLayoutBlockLayoutListBlock;
+    /**
+     * Page span of the block.
+     */
+    pageSpan?: Schema$GoogleCloudDocumentaiV1beta3DocumentDocumentLayoutDocumentLayoutBlockLayoutPageSpan;
+    /**
+     * Block consisting of table content/structure.
+     */
+    tableBlock?: Schema$GoogleCloudDocumentaiV1beta3DocumentDocumentLayoutDocumentLayoutBlockLayoutTableBlock;
+    /**
+     * Block consisting of text content.
+     */
+    textBlock?: Schema$GoogleCloudDocumentaiV1beta3DocumentDocumentLayoutDocumentLayoutBlockLayoutTextBlock;
+  }
+  /**
+   * Represents a list type block.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta3DocumentDocumentLayoutDocumentLayoutBlockLayoutListBlock {
+    /**
+     * List entries that constitute a list block.
+     */
+    listEntries?: Schema$GoogleCloudDocumentaiV1beta3DocumentDocumentLayoutDocumentLayoutBlockLayoutListEntry[];
+    /**
+     * Type of the list_entries (if exist). Available options are `ordered` and `unordered`.
+     */
+    type?: string | null;
+  }
+  /**
+   * Represents an entry in the list.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta3DocumentDocumentLayoutDocumentLayoutBlockLayoutListEntry {
+    /**
+     * A list entry is a list of blocks. Repeated blocks support further hierarchies and nested blocks.
+     */
+    blocks?: Schema$GoogleCloudDocumentaiV1beta3DocumentDocumentLayoutDocumentLayoutBlock[];
+  }
+  /**
+   * Represents where the block starts and ends in the document.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta3DocumentDocumentLayoutDocumentLayoutBlockLayoutPageSpan {
+    /**
+     * Page where block ends in the document.
+     */
+    pageEnd?: number | null;
+    /**
+     * Page where block starts in the document.
+     */
+    pageStart?: number | null;
+  }
+  /**
+   * Represents a table type block.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta3DocumentDocumentLayoutDocumentLayoutBlockLayoutTableBlock {
+    /**
+     * Body rows containing main table content.
+     */
+    bodyRows?: Schema$GoogleCloudDocumentaiV1beta3DocumentDocumentLayoutDocumentLayoutBlockLayoutTableRow[];
+    /**
+     * Table caption/title.
+     */
+    caption?: string | null;
+    /**
+     * Header rows at the top of the table.
+     */
+    headerRows?: Schema$GoogleCloudDocumentaiV1beta3DocumentDocumentLayoutDocumentLayoutBlockLayoutTableRow[];
+  }
+  /**
+   * Represents a cell in a table row.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta3DocumentDocumentLayoutDocumentLayoutBlockLayoutTableCell {
+    /**
+     * A table cell is a list of blocks. Repeated blocks support further hierarchies and nested blocks.
+     */
+    blocks?: Schema$GoogleCloudDocumentaiV1beta3DocumentDocumentLayoutDocumentLayoutBlock[];
+    /**
+     * How many columns this cell spans.
+     */
+    colSpan?: number | null;
+    /**
+     * How many rows this cell spans.
+     */
+    rowSpan?: number | null;
+  }
+  /**
+   * Represents a row in a table.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta3DocumentDocumentLayoutDocumentLayoutBlockLayoutTableRow {
+    /**
+     * A table row is a list of table cells.
+     */
+    cells?: Schema$GoogleCloudDocumentaiV1beta3DocumentDocumentLayoutDocumentLayoutBlockLayoutTableCell[];
+  }
+  /**
+   * Represents a text type block.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta3DocumentDocumentLayoutDocumentLayoutBlockLayoutTextBlock {
+    /**
+     * A text block could further have child blocks. Repeated blocks support further hierarchies and nested blocks.
+     */
+    blocks?: Schema$GoogleCloudDocumentaiV1beta3DocumentDocumentLayoutDocumentLayoutBlock[];
+    /**
+     * Text content stored in the block.
+     */
+    text?: string | null;
+    /**
+     * Type of the text in the block. Available options are: `paragraph`, `subtitle`, `heading-1`, `heading-2`, `heading-3`, `heading-4`, `heading-5`, `header`, `footer`.
+     */
+    type?: string | null;
   }
   /**
    * An entity that could be a phrase in the text or a property that belongs to the document. It is a known entity type, such as a person, an organization, or location.
@@ -3919,19 +4569,19 @@ export namespace documentai_v1beta3 {
      */
     pixelFontSize?: number | null;
     /**
-     * Whether the text is in small caps.
+     * Whether the text is in small caps. This feature is not supported yet.
      */
     smallcaps?: boolean | null;
     /**
-     * Whether the text is strikethrough.
+     * Whether the text is strikethrough. This feature is not supported yet.
      */
     strikeout?: boolean | null;
     /**
-     * Whether the text is a subscript.
+     * Whether the text is a subscript. This feature is not supported yet.
      */
     subscript?: boolean | null;
     /**
-     * Whether the text is a superscript.
+     * Whether the text is a superscript. This feature is not supported yet.
      */
     superscript?: boolean | null;
     /**
@@ -4867,6 +5517,10 @@ export namespace documentai_v1beta3 {
      */
     individualPageSelector?: Schema$GoogleCloudDocumentaiV1beta3ProcessOptionsIndividualPageSelector;
     /**
+     * Optional. Only applicable to `LAYOUT_PARSER_PROCESSOR`. Returns error if set on other processor types.
+     */
+    layoutConfig?: Schema$GoogleCloudDocumentaiV1beta3ProcessOptionsLayoutConfig;
+    /**
      * Only applicable to `OCR_PROCESSOR` and `FORM_PARSER_PROCESSOR`. Returns error if set on other processor types.
      */
     ocrConfig?: Schema$GoogleCloudDocumentaiV1beta3OcrConfig;
@@ -4883,6 +5537,36 @@ export namespace documentai_v1beta3 {
      * Optional. Indices of the pages (starting from 1).
      */
     pages?: number[] | null;
+  }
+  /**
+   * Serving config for layout parser processor.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta3ProcessOptionsLayoutConfig {
+    /**
+     * Optional. Config for chunking in layout parser processor.
+     */
+    chunkingConfig?: Schema$GoogleCloudDocumentaiV1beta3ProcessOptionsLayoutConfigChunkingConfig;
+  }
+  /**
+   * Serving config for chunking.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta3ProcessOptionsLayoutConfigChunkingConfig {
+    /**
+     * Optional. The percentile of cosine dissimilarity that must be exceeded between a group of tokens and the next. The smaller this number is, the more chunks will be generated.
+     */
+    breakpointPercentileThreshold?: number | null;
+    /**
+     * Optional. The chunk sizes to use when splitting documents, in order of level.
+     */
+    chunkSize?: number | null;
+    /**
+     * Optional. Whether or not to include ancestor headings when splitting.
+     */
+    includeAncestorHeadings?: boolean | null;
+    /**
+     * Optional. The number of tokens to group together when evaluating semantic similarity.
+     */
+    semanticChunkingGroupSize?: boolean | null;
   }
   /**
    * The first-class citizen for Document AI. Each processor defines how to extract structural information from a document.
@@ -4916,6 +5600,14 @@ export namespace documentai_v1beta3 {
      * Output only. The processor version aliases.
      */
     processorVersionAliases?: Schema$GoogleCloudDocumentaiV1beta3ProcessorVersionAlias[];
+    /**
+     * Output only. Reserved for future use.
+     */
+    satisfiesPzi?: boolean | null;
+    /**
+     * Output only. Reserved for future use.
+     */
+    satisfiesPzs?: boolean | null;
     /**
      * Output only. The state of the processor.
      */
@@ -5008,11 +5700,19 @@ export namespace documentai_v1beta3 {
      */
     modelType?: string | null;
     /**
-     * The resource name of the processor version. Format: `projects/{project\}/locations/{location\}/processors/{processor\}/processorVersions/{processor_version\}`
+     * Identifier. The resource name of the processor version. Format: `projects/{project\}/locations/{location\}/processors/{processor\}/processorVersions/{processor_version\}`
      */
     name?: string | null;
     /**
-     * The state of the processor version.
+     * Output only. Reserved for future use.
+     */
+    satisfiesPzi?: boolean | null;
+    /**
+     * Output only. Reserved for future use.
+     */
+    satisfiesPzs?: boolean | null;
+    /**
+     * Output only. The state of the processor version.
      */
     state?: string | null;
   }
@@ -5975,6 +6675,7 @@ export namespace documentai_v1beta3 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6068,6 +6769,7 @@ export namespace documentai_v1beta3 {
           {
             url: (rootUrl + '/v1beta3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6162,6 +6864,7 @@ export namespace documentai_v1beta3 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6295,6 +6998,7 @@ export namespace documentai_v1beta3 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -6386,6 +7090,7 @@ export namespace documentai_v1beta3 {
           {
             url: (rootUrl + '/v1beta3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6477,6 +7182,7 @@ export namespace documentai_v1beta3 {
           {
             url: (rootUrl + '/v1beta3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6629,6 +7335,7 @@ export namespace documentai_v1beta3 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -6648,7 +7355,7 @@ export namespace documentai_v1beta3 {
     }
 
     /**
-     * Creates a processor from the ProcessorType provided. The processor will be at `ENABLED` state by default after its creation.
+     * Creates a processor from the ProcessorType provided. The processor will be at `ENABLED` state by default after its creation. Note that this method requires the `documentai.processors.create` permission on the project, which is highly privileged. A user or service account with this permission can create new processors that can interact with any gcs bucket in your project.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6723,6 +7430,7 @@ export namespace documentai_v1beta3 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -6816,6 +7524,7 @@ export namespace documentai_v1beta3 {
           {
             url: (rootUrl + '/v1beta3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -6910,6 +7619,7 @@ export namespace documentai_v1beta3 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -7004,6 +7714,7 @@ export namespace documentai_v1beta3 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -7095,6 +7806,7 @@ export namespace documentai_v1beta3 {
           {
             url: (rootUrl + '/v1beta3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -7191,6 +7903,7 @@ export namespace documentai_v1beta3 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -7287,6 +8000,7 @@ export namespace documentai_v1beta3 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -7383,6 +8097,7 @@ export namespace documentai_v1beta3 {
               rootUrl + '/v1beta3/{+processor}:setDefaultProcessorVersion'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -7402,7 +8117,7 @@ export namespace documentai_v1beta3 {
     }
 
     /**
-     * Updates metadata associated with a dataset.
+     * Updates metadata associated with a dataset. Note that this method requires the `documentai.googleapis.com/datasets.update` permission on the project, which is highly privileged. A user or service account with this permission can create new processors that can interact with any gcs bucket in your project.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7475,6 +8190,7 @@ export namespace documentai_v1beta3 {
           {
             url: (rootUrl + '/v1beta3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -7695,6 +8411,7 @@ export namespace documentai_v1beta3 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -7787,6 +8504,7 @@ export namespace documentai_v1beta3 {
           {
             url: (rootUrl + '/v1beta3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -7884,6 +8602,7 @@ export namespace documentai_v1beta3 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -7981,6 +8700,7 @@ export namespace documentai_v1beta3 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -8076,6 +8796,7 @@ export namespace documentai_v1beta3 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -8170,6 +8891,7 @@ export namespace documentai_v1beta3 {
           {
             url: (rootUrl + '/v1beta3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -8380,6 +9102,7 @@ export namespace documentai_v1beta3 {
               rootUrl + '/v1beta3/{+humanReviewConfig}:reviewDocument'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -8500,6 +9223,7 @@ export namespace documentai_v1beta3 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -8592,6 +9316,7 @@ export namespace documentai_v1beta3 {
           {
             url: (rootUrl + '/v1beta3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -8687,6 +9412,7 @@ export namespace documentai_v1beta3 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -8781,6 +9507,7 @@ export namespace documentai_v1beta3 {
               rootUrl + '/v1beta3/{+processorVersion}:evaluateProcessorVersion'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -8873,6 +9600,7 @@ export namespace documentai_v1beta3 {
           {
             url: (rootUrl + '/v1beta3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -8970,6 +9698,7 @@ export namespace documentai_v1beta3 {
               '/v1beta3/{+parent}/processorVersions:importProcessorVersion'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -9065,6 +9794,7 @@ export namespace documentai_v1beta3 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -9162,6 +9892,7 @@ export namespace documentai_v1beta3 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -9258,6 +9989,7 @@ export namespace documentai_v1beta3 {
               rootUrl + '/v1beta3/{+parent}/processorVersions:train'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -9353,6 +10085,7 @@ export namespace documentai_v1beta3 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -9566,6 +10299,7 @@ export namespace documentai_v1beta3 {
           {
             url: (rootUrl + '/v1beta3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -9663,6 +10397,7 @@ export namespace documentai_v1beta3 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -9786,6 +10521,7 @@ export namespace documentai_v1beta3 {
           {
             url: (rootUrl + '/v1beta3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -9882,6 +10618,7 @@ export namespace documentai_v1beta3 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),

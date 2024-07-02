@@ -304,6 +304,7 @@ export namespace iamcredentials_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -399,6 +400,7 @@ export namespace iamcredentials_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -487,6 +489,7 @@ export namespace iamcredentials_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -575,6 +578,7 @@ export namespace iamcredentials_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),

@@ -291,6 +291,31 @@
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
+                "enableComplianceUpdates": {
+                  "description": "This endpoint enables Assured Workloads service to offer compliance updates for the folder based assured workload. It sets up an Assured Workloads Service Agent, having permissions to read compliance controls (for example: Org Policies) applied on the workload. The caller must have `resourcemanager.folders.getIamPolicy` and `resourcemanager.folders.setIamPolicy` permissions on the assured workload folder.",
+                  "flatPath": "v1beta1/organizations/{organizationsId}/locations/{locationsId}/workloads/{workloadsId}:enableComplianceUpdates",
+                  "httpMethod": "PUT",
+                  "id": "assuredworkloads.organizations.locations.workloads.enableComplianceUpdates",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The `name` field is used to identify the workload. Format: organizations/{org_id}/locations/{location_id}/workloads/{workload_id}",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/locations/[^/]+/workloads/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+name}:enableComplianceUpdates",
+                  "response": {
+                    "$ref": "GoogleCloudAssuredworkloadsV1beta1EnableComplianceUpdatesResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
                 "enableResourceMonitoring": {
                   "description": "Enable resource violation monitoring for a workload.",
                   "flatPath": "v1beta1/organizations/{organizationsId}/locations/{locationsId}/workloads/{workloadsId}:enableResourceMonitoring",
@@ -563,7 +588,7 @@
       }
     }
   },
-  "revision": "20240314",
+  "revision": "20240627",
   "rootUrl": "https://assuredworkloads.googleapis.com/",
   "schemas": {
     "GoogleCloudAssuredworkloadsV1beta1AcknowledgeViolationRequest": {
@@ -655,20 +680,27 @@
             "FEDRAMP_HIGH",
             "FEDRAMP_MODERATE",
             "US_REGIONAL_ACCESS",
+            "REGIONAL_CONTROLS_PREMIUM_US",
             "HIPAA",
             "HITRUST",
             "EU_REGIONS_AND_SUPPORT",
+            "REGIONAL_CONTROLS_PREMIUM_EU",
             "CA_REGIONS_AND_SUPPORT",
+            "REGIONAL_CONTROLS_PREMIUM_CA",
             "ITAR",
             "AU_REGIONS_AND_US_SUPPORT",
+            "REGIONAL_CONTROLS_PREMIUM_AU",
             "ASSURED_WORKLOADS_FOR_PARTNERS",
             "ISR_REGIONS",
+            "REGIONAL_CONTROLS_PREMIUM_ISR",
             "ISR_REGIONS_AND_SUPPORT",
             "CA_PROTECTED_B",
             "IL5",
             "IL2",
             "JP_REGIONS_AND_SUPPORT",
-            "KSA_REGIONS_AND_SUPPORT_WITH_SOVEREIGNTY_CONTROLS"
+            "REGIONAL_CONTROLS_PREMIUM_JP",
+            "KSA_REGIONS_AND_SUPPORT_WITH_SOVEREIGNTY_CONTROLS",
+            "REGIONAL_CONTROLS"
           ],
           "enumDescriptions": [
             "Unknown compliance regime.",
@@ -677,20 +709,27 @@
             "FedRAMP High data protection controls",
             "FedRAMP Moderate data protection controls",
             "Assured Workloads For US Regions data protection controls",
+            "Assured Workloads For US Regions data protection controls",
             "Health Insurance Portability and Accountability Act controls",
             "Health Information Trust Alliance controls",
             "Assured Workloads For EU Regions and Support controls",
+            "Assured Workloads For EU Regions and Support controls",
+            "Assured Workloads For Canada Regions and Support controls",
             "Assured Workloads For Canada Regions and Support controls",
             "International Traffic in Arms Regulations",
             "Assured Workloads for Australia Regions and Support controls",
+            "Assured Workloads for Australia Regions and Support controls",
             "Assured Workloads for Partners;",
+            "Assured Workloads for Israel Regions",
             "Assured Workloads for Israel",
             "Assured Workloads for Israel Regions",
             "Assured Workloads for Canada Protected B regime",
             "Information protection as per DoD IL5 requirements.",
             "Information protection as per DoD IL2 requirements.",
             "Assured Workloads for Japan Regions",
-            "KSA R5 Controls."
+            "Assured Workloads for Japan Regions",
+            "KSA R5 Controls.",
+            "Assured Workloads for Regional Controls"
           ],
           "type": "string"
         },
@@ -715,6 +754,12 @@
           "type": "array"
         }
       },
+      "type": "object"
+    },
+    "GoogleCloudAssuredworkloadsV1beta1EnableComplianceUpdatesResponse": {
+      "description": "Response for EnableComplianceUpdates endpoint.",
+      "id": "GoogleCloudAssuredworkloadsV1beta1EnableComplianceUpdatesResponse",
+      "properties": {},
       "type": "object"
     },
     "GoogleCloudAssuredworkloadsV1beta1EnableResourceMonitoringResponse": {
@@ -1017,7 +1062,8 @@
             "REMEDIATION_LIST_ALLOWED_VALUES_ORG_POLICY_VIOLATION",
             "REMEDIATION_LIST_DENIED_VALUES_ORG_POLICY_VIOLATION",
             "REMEDIATION_RESTRICT_CMEK_CRYPTO_KEY_PROJECTS_ORG_POLICY_VIOLATION",
-            "REMEDIATION_RESOURCE_VIOLATION"
+            "REMEDIATION_RESOURCE_VIOLATION",
+            "REMEDIATION_RESOURCE_VIOLATION_NON_CMEK_SERVICES"
           ],
           "enumDescriptions": [
             "Unspecified remediation type",
@@ -1025,7 +1071,8 @@
             "Remediation type for list org policy which have allowed values in the monitoring rule",
             "Remediation type for list org policy which have denied values in the monitoring rule",
             "Remediation type for gcp.restrictCmekCryptoKeyProjects",
-            "Remediation type for resource violation."
+            "Remediation type for resource violation.",
+            "Remediation type for resource violation due to gcp.restrictNonCmekServices"
           ],
           "readOnly": true,
           "type": "string"
@@ -1126,20 +1173,27 @@
             "FEDRAMP_HIGH",
             "FEDRAMP_MODERATE",
             "US_REGIONAL_ACCESS",
+            "REGIONAL_CONTROLS_PREMIUM_US",
             "HIPAA",
             "HITRUST",
             "EU_REGIONS_AND_SUPPORT",
+            "REGIONAL_CONTROLS_PREMIUM_EU",
             "CA_REGIONS_AND_SUPPORT",
+            "REGIONAL_CONTROLS_PREMIUM_CA",
             "ITAR",
             "AU_REGIONS_AND_US_SUPPORT",
+            "REGIONAL_CONTROLS_PREMIUM_AU",
             "ASSURED_WORKLOADS_FOR_PARTNERS",
             "ISR_REGIONS",
+            "REGIONAL_CONTROLS_PREMIUM_ISR",
             "ISR_REGIONS_AND_SUPPORT",
             "CA_PROTECTED_B",
             "IL5",
             "IL2",
             "JP_REGIONS_AND_SUPPORT",
-            "KSA_REGIONS_AND_SUPPORT_WITH_SOVEREIGNTY_CONTROLS"
+            "REGIONAL_CONTROLS_PREMIUM_JP",
+            "KSA_REGIONS_AND_SUPPORT_WITH_SOVEREIGNTY_CONTROLS",
+            "REGIONAL_CONTROLS"
           ],
           "enumDescriptions": [
             "Unknown compliance regime.",
@@ -1148,20 +1202,27 @@
             "FedRAMP High data protection controls",
             "FedRAMP Moderate data protection controls",
             "Assured Workloads For US Regions data protection controls",
+            "Assured Workloads For US Regions data protection controls",
             "Health Insurance Portability and Accountability Act controls",
             "Health Information Trust Alliance controls",
             "Assured Workloads For EU Regions and Support controls",
+            "Assured Workloads For EU Regions and Support controls",
+            "Assured Workloads For Canada Regions and Support controls",
             "Assured Workloads For Canada Regions and Support controls",
             "International Traffic in Arms Regulations",
             "Assured Workloads for Australia Regions and Support controls",
+            "Assured Workloads for Australia Regions and Support controls",
             "Assured Workloads for Partners;",
+            "Assured Workloads for Israel Regions",
             "Assured Workloads for Israel",
             "Assured Workloads for Israel Regions",
             "Assured Workloads for Canada Protected B regime",
             "Information protection as per DoD IL5 requirements.",
             "Information protection as per DoD IL2 requirements.",
             "Assured Workloads for Japan Regions",
-            "KSA R5 Controls."
+            "Assured Workloads for Japan Regions",
+            "KSA R5 Controls.",
+            "Assured Workloads for Regional Controls"
           ],
           "type": "string"
         },
@@ -1169,6 +1230,11 @@
           "$ref": "GoogleCloudAssuredworkloadsV1beta1WorkloadComplianceStatus",
           "description": "Output only. Count of active Violations in the Workload.",
           "readOnly": true
+        },
+        "complianceUpdatesEnabled": {
+          "description": "Output only. Indicates whether the compliance updates feature is enabled for a workload. The compliance updates feature can be enabled via the EnableComplianceUpdates endpoint.",
+          "readOnly": true,
+          "type": "boolean"
         },
         "compliantButDisallowedServices": {
           "description": "Output only. Urls for services which are compliant for this Assured Workload, but which are currently disallowed by the ResourceUsageRestriction org policy. Invoke RestrictAllowedResources endpoint to allow your project developers to use these services in their environment.",

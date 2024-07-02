@@ -143,6 +143,32 @@ export namespace firebaseappdistribution_v1alpha {
      */
     certificateHashSha256?: string | null;
   }
+  /**
+   * Instructions for AI driven test
+   */
+  export interface Schema$GoogleFirebaseAppdistroV1alphaAiInstructions {
+    /**
+     * Optional. Describes the app to give the AI some context
+     */
+    appDescription?: string | null;
+    /**
+     * Required. Steps to be accomplished by the AI
+     */
+    steps?: Schema$GoogleFirebaseAppdistroV1alphaAiInstructionsStep[];
+  }
+  /**
+   * A step to be accomplished by the AI
+   */
+  export interface Schema$GoogleFirebaseAppdistroV1alphaAiInstructionsStep {
+    /**
+     * An assertion to be checked by the AI
+     */
+    assertion?: string | null;
+    /**
+     * A goal to be accomplished by the AI
+     */
+    goal?: string | null;
+  }
   export interface Schema$GoogleFirebaseAppdistroV1alphaApp {
     /**
      * App bundle test certificate generated for the app.
@@ -401,6 +427,10 @@ export namespace firebaseappdistribution_v1alpha {
    */
   export interface Schema$GoogleFirebaseAppdistroV1alphaReleaseTest {
     /**
+     * Optional. Input only. Instructions for AI driven test. Input only.
+     */
+    aiInstructions?: Schema$GoogleFirebaseAppdistroV1alphaAiInstructions;
+    /**
      * Output only. Timestamp when the test was run.
      */
     createTime?: string | null;
@@ -421,6 +451,10 @@ export namespace firebaseappdistribution_v1alpha {
    * Configuration for Robo crawler
    */
   export interface Schema$GoogleFirebaseAppdistroV1alphaRoboCrawler {
+    /**
+     * Optional. Instructions for AI driven test
+     */
+    aiInstructions?: Schema$GoogleFirebaseAppdistroV1alphaAiInstructions;
     /**
      * Optional. Login credential for automated tests
      */
@@ -656,6 +690,7 @@ export namespace firebaseappdistribution_v1alpha {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -752,6 +787,7 @@ export namespace firebaseappdistribution_v1alpha {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -849,6 +885,7 @@ export namespace firebaseappdistribution_v1alpha {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -979,6 +1016,7 @@ export namespace firebaseappdistribution_v1alpha {
               '/v1alpha/apps/{mobilesdkAppId}/releases/{releaseId}/enable_access'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1100,6 +1138,7 @@ export namespace firebaseappdistribution_v1alpha {
               '/v1alpha/apps/{mobilesdkAppId}/releases/{releaseId}/notes'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1221,6 +1260,7 @@ export namespace firebaseappdistribution_v1alpha {
               '/v1alpha/apps/{mobilesdkAppId}/release_by_hash/{uploadHash}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1336,6 +1376,7 @@ export namespace firebaseappdistribution_v1alpha {
               rootUrl + '/v1alpha/apps/{mobilesdkAppId}/testers:getTesterUdids'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1452,6 +1493,7 @@ export namespace firebaseappdistribution_v1alpha {
               '/v1alpha/apps/{mobilesdkAppId}/upload_status/{uploadToken}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1578,6 +1620,7 @@ export namespace firebaseappdistribution_v1alpha {
           {
             url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1672,6 +1715,7 @@ export namespace firebaseappdistribution_v1alpha {
           {
             url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -1809,6 +1853,7 @@ export namespace firebaseappdistribution_v1alpha {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1903,6 +1948,7 @@ export namespace firebaseappdistribution_v1alpha {
           {
             url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2000,6 +2046,7 @@ export namespace firebaseappdistribution_v1alpha {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2143,6 +2190,7 @@ export namespace firebaseappdistribution_v1alpha {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),

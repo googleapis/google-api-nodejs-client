@@ -48,22 +48,22 @@ This library supports the maintenance LTS, active LTS, and current release of no
 ### Installation
 This library is distributed on `npm`. In order to add it as a dependency, run the following command:
 
-``` sh
+```sh
 $ npm install googleapis
 ```
 
 If you need to reduce startup times, you can alternatively install a submodule as its own dependency. We make an effort to publish submodules that are __not__ in this [list](https://github.com/googleapis/google-cloud-node#google-cloud-nodejs-client-libraries). In order to add it as a dependency, run the following sample command, replacing with your preferred API:
 
-``` sh
+```sh
 $ npm install @googleapis/docs
 ```
 
-You can run [this search](https://www.npmjs.com/search?q=scope%3Agoogleapis) on npm, to find a list of the submodules available.
+You can run [this search](https://www.npmjs.com/search?q=scope%3Agoogleapis) on `npm`, to find a list of the submodules available.
 ### Using the client library
 
 This is a very simple example. This creates a Blogger client and retrieves the details of a blog given the blog Id:
 
-``` js
+```js
 const {google} = require('googleapis');
 
 // Each API may support multiple versions. With this sample, we're getting
@@ -89,7 +89,7 @@ blogger.blogs.get(params, (err, res) => {
 
 Instead of using callbacks you can also use promises!
 
-``` js
+```js
 blogger.blogs.get(params)
   .then(res => {
     console.log(`The blog url is ${res.data.url}`);
@@ -101,17 +101,18 @@ blogger.blogs.get(params)
 
 Or async/await:
 
-``` js
+```js
 async function runSample() {
   const res = await blogger.blogs.get(params);
   console.log(`The blog url is ${res.data.url}`);
 }
+
 runSample().catch(console.error);
 ```
 
 Alternatively, you can make calls directly to the APIs by installing a submodule:
 
-``` js
+```js
 const docs = require('@googleapis/docs')
 
 const auth = new docs.auth.GoogleAuth({
@@ -174,7 +175,7 @@ A complete sample application that authorizes and authenticates with the OAuth2 
 
 To ask for permissions from a user to retrieve an access token, you redirect them to a consent page. To create a consent page URL:
 
-``` js
+```js
 const {google} = require('googleapis');
 
 const oauth2Client = new google.auth.OAuth2(
@@ -193,7 +194,7 @@ const url = oauth2Client.generateAuthUrl({
   // 'online' (default) or 'offline' (gets refresh_token)
   access_type: 'offline',
 
-  // If you only need one scope you can pass it as a string
+  // If you only need one scope, you can pass it as a string
   scope: scopes
 });
 ```
@@ -204,13 +205,14 @@ const url = oauth2Client.generateAuthUrl({
 
 Once a user has given permissions on the consent page, Google will redirect the page to the redirect URL you have provided with a code query parameter.
 
+```
     GET /oauthcallback?code={authorizationCode}
-
+```
 #### Retrieve access token
 
 With the code returned, you can ask for an access token as shown below:
 
-``` js
+```js
 // This will provide an object with the access_token and refresh_token.
 // Save these somewhere safe so they can be used at a later time.
 const {tokens} = await oauth2Client.getToken(code)
@@ -231,7 +233,7 @@ oauth2Client.on('tokens', (tokens) => {
   console.log(tokens.access_token);
 });
 ```
-This tokens event only occurs in the first authorization, and you need to have set your `access_type` to `offline` when calling the  `generateAuthUrl` method to receive the refresh token. If you have already given your app the requisiste permissions without setting the appropriate constraints for receiving a refresh token, you will need to re-authorize the application to receive a fresh refresh token. You can revoke your app's access to your account [here](https://myaccount.google.com/permissions).
+This tokens event only occurs in the first authorization, and you need to have set your `access_type` to `offline` when calling the  `generateAuthUrl` method to receive the refresh token. If you have already given your app the requisite permissions without setting the appropriate constraints for receiving a refresh token, you will need to re-authorize the application to receive a fresh refresh token. You can revoke your app's access to your account [here](https://myaccount.google.com/permissions).
 
 To set the `refresh_token` at a later time, you can use the `setCredentials` method:
 
@@ -256,7 +258,7 @@ As a developer, you should write your code to handle the case where a refresh to
 ### Using API keys
 You may need to send an API key with the request you are going to make. The following uses an API key to make a request to the Blogger API service to retrieve a blog's name, url, and its total amount of posts:
 
-``` js
+```js
 const {google} = require('googleapis');
 const blogger = google.blogger_v3({
   version: 'v3',
@@ -315,7 +317,7 @@ main().catch(console.error);
 
 ### Service account credentials
 
-Service accounts allow you to perform server to server, app-level authentication using a robot account.  You will create a service account, download a keyfile, and use that to authenticate to Google APIs.  To create a service account:
+Service accounts allow you to perform server-to-server, app-level authentication using a robot account. You will create a service account, download a keyfile, and use that to authenticate to Google APIs. To create a service account:
 - Go to the [Create Service Account Key page](https://console.cloud.google.com/apis/credentials/serviceaccountkey)
 - Select `New Service Account` in the drop down
 - Click the `Create` button
@@ -325,7 +327,7 @@ Save the service account credential file somewhere safe, and *do not check this 
 #### Using the `GOOGLE_APPLICATION_CREDENTIALS` env var
 You can start process with an environment variable named `GOOGLE_APPLICATION_CREDENTIALS`. The value of this env var should be the full path to the service account credential file:
 
-```
+```sh
 $ GOOGLE_APPLICATION_CREDENTIALS=./your-secret-key.json node server.js
 ```
 
@@ -346,7 +348,7 @@ const auth = new google.auth.GoogleAuth({
 
 You can set the `auth` as a global or service-level option so you don't need to specify it every request. For example, you can set `auth` as a global option:
 
-``` js
+```js
 const {google} = require('googleapis');
 
 const oauth2Client = new google.auth.OAuth2(
@@ -363,7 +365,7 @@ google.options({
 
 Instead of setting the option globally, you can also set the authentication client at the service-level:
 
-``` js
+```js
 const {google} = require('googleapis');
 const oauth2Client = new google.auth.OAuth2(
   YOUR_CLIENT_ID,
@@ -401,7 +403,7 @@ This client supports multipart media uploads. The resource parameters are specif
 
 This example uploads a plain text file to Google Drive with the title "Test" and contents "Hello World".
 
-``` js
+```js
 const drive = google.drive({
   version: 'v3',
   auth: oauth2Client

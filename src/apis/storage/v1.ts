@@ -476,6 +476,35 @@ export namespace storage_v1 {
     nextPageToken?: string | null;
   }
   /**
+   * The storage layout configuration of a bucket.
+   */
+  export interface Schema$BucketStorageLayout {
+    /**
+     * The name of the bucket.
+     */
+    bucket?: string | null;
+    /**
+     * The bucket's custom placement configuration for Custom Dual Regions.
+     */
+    customPlacementConfig?: {dataLocations?: string[]} | null;
+    /**
+     * The bucket's hierarchical namespace configuration.
+     */
+    hierarchicalNamespace?: {enabled?: boolean} | null;
+    /**
+     * The kind of item this is. For storage layout, this is always storage#storageLayout.
+     */
+    kind?: string | null;
+    /**
+     * The location of the bucket.
+     */
+    location?: string | null;
+    /**
+     * The type of the bucket location.
+     */
+    locationType?: string | null;
+  }
+  /**
    * A bulk restore objects request.
    */
   export interface Schema$BulkRestoreObjectsRequest {
@@ -650,6 +679,10 @@ export namespace storage_v1 {
    */
   export interface Schema$GoogleLongrunningListOperationsResponse {
     /**
+     * The kind of item this is. For lists of operations, this is always storage#operations.
+     */
+    kind?: string | null;
+    /**
      * The continuation token, used to page through large result sets. Provide this value in a subsequent request to return the next page of results.
      */
     nextPageToken?: string | null;
@@ -671,6 +704,10 @@ export namespace storage_v1 {
      */
     error?: Schema$GoogleRpcStatus;
     /**
+     * The kind of item this is. For operations, this is always storage#operation.
+     */
+    kind?: string | null;
+    /**
      * Service-specific metadata associated with the operation. It typically contains progress information and common metadata such as create time. Some services might not provide such metadata. Any method that returns a long-running operation should document the metadata type, if any.
      */
     metadata?: {[key: string]: any} | null;
@@ -682,6 +719,10 @@ export namespace storage_v1 {
      * The normal response of the operation in case of success. If the original method returns no data on success, such as "Delete", the response is google.protobuf.Empty. If the original method is standard Get/Create/Update, the response should be the resource. For other methods, the response should have the type "XxxResponse", where "Xxx" is the original method name. For example, if the original method name is "TakeSnapshot()", the inferred response type is "TakeSnapshotResponse".
      */
     response?: {[key: string]: any} | null;
+    /**
+     * The link to this long running operation.
+     */
+    selfLink?: string | null;
   }
   /**
    * The "Status" type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each "Status" message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
@@ -1317,6 +1358,7 @@ export namespace storage_v1 {
               '/storage/v1/b/{bucket}/anywhereCaches/{anywhereCacheId}/disable'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1404,6 +1446,7 @@ export namespace storage_v1 {
               '/storage/v1/b/{bucket}/anywhereCaches/{anywhereCacheId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1498,6 +1541,7 @@ export namespace storage_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1585,6 +1629,7 @@ export namespace storage_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1672,6 +1717,7 @@ export namespace storage_v1 {
               '/storage/v1/b/{bucket}/anywhereCaches/{anywhereCacheId}/pause'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1759,6 +1805,7 @@ export namespace storage_v1 {
               '/storage/v1/b/{bucket}/anywhereCaches/{anywhereCacheId}/resume'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1853,6 +1900,7 @@ export namespace storage_v1 {
               '/storage/v1/b/{bucket}/anywhereCaches/{anywhereCacheId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -2033,6 +2081,7 @@ export namespace storage_v1 {
               '$1'
             ),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -2123,6 +2172,7 @@ export namespace storage_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2213,6 +2263,7 @@ export namespace storage_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2305,6 +2356,7 @@ export namespace storage_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2395,6 +2447,7 @@ export namespace storage_v1 {
               '$1'
             ),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -2485,6 +2538,7 @@ export namespace storage_v1 {
               '$1'
             ),
             method: 'PUT',
+            apiVersion: '',
           },
           options
         ),
@@ -2674,6 +2728,7 @@ export namespace storage_v1 {
               '$1'
             ),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -2760,6 +2815,7 @@ export namespace storage_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2847,6 +2903,7 @@ export namespace storage_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2862,6 +2919,99 @@ export namespace storage_v1 {
         );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
+      }
+    }
+
+    /**
+     * Returns the storage layout configuration for the specified bucket. Note that this operation requires storage.objects.list permission.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getStorageLayout(
+      params: Params$Resource$Buckets$Getstoragelayout,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getStorageLayout(
+      params?: Params$Resource$Buckets$Getstoragelayout,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$BucketStorageLayout>;
+    getStorageLayout(
+      params: Params$Resource$Buckets$Getstoragelayout,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getStorageLayout(
+      params: Params$Resource$Buckets$Getstoragelayout,
+      options: MethodOptions | BodyResponseCallback<Schema$BucketStorageLayout>,
+      callback: BodyResponseCallback<Schema$BucketStorageLayout>
+    ): void;
+    getStorageLayout(
+      params: Params$Resource$Buckets$Getstoragelayout,
+      callback: BodyResponseCallback<Schema$BucketStorageLayout>
+    ): void;
+    getStorageLayout(
+      callback: BodyResponseCallback<Schema$BucketStorageLayout>
+    ): void;
+    getStorageLayout(
+      paramsOrCallback?:
+        | Params$Resource$Buckets$Getstoragelayout
+        | BodyResponseCallback<Schema$BucketStorageLayout>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$BucketStorageLayout>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$BucketStorageLayout>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$BucketStorageLayout>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Buckets$Getstoragelayout;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Buckets$Getstoragelayout;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://storage.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/storage/v1/b/{bucket}/storageLayout').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['bucket'],
+        pathParams: ['bucket'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$BucketStorageLayout>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$BucketStorageLayout>(parameters);
       }
     }
 
@@ -2930,6 +3080,7 @@ export namespace storage_v1 {
           {
             url: (rootUrl + '/storage/v1/b').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3013,6 +3164,7 @@ export namespace storage_v1 {
           {
             url: (rootUrl + '/storage/v1/b').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3099,6 +3251,7 @@ export namespace storage_v1 {
               rootUrl + '/storage/v1/b/{bucket}/lockRetentionPolicy'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3185,6 +3338,7 @@ export namespace storage_v1 {
               '$1'
             ),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -3272,6 +3426,7 @@ export namespace storage_v1 {
               '$1'
             ),
             method: 'PUT',
+            apiVersion: '',
           },
           options
         ),
@@ -3365,6 +3520,7 @@ export namespace storage_v1 {
               rootUrl + '/storage/v1/b/{bucket}/iam/testPermissions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3451,6 +3607,7 @@ export namespace storage_v1 {
               '$1'
             ),
             method: 'PUT',
+            apiVersion: '',
           },
           options
         ),
@@ -3524,6 +3681,17 @@ export namespace storage_v1 {
      * The project to be billed for this request. Required for Requester Pays buckets.
      */
     userProject?: string;
+  }
+  export interface Params$Resource$Buckets$Getstoragelayout
+    extends StandardParameters {
+    /**
+     * Name of a bucket.
+     */
+    bucket?: string;
+    /**
+     * An optional prefix used for permission check. It is useful when the caller only has storage.objects.list permission under a specific prefix.
+     */
+    prefix?: string;
   }
   export interface Params$Resource$Buckets$Insert extends StandardParameters {
     /**
@@ -3771,6 +3939,7 @@ export namespace storage_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3869,6 +4038,7 @@ export namespace storage_v1 {
               rootUrl + '/storage/v1/b/{bucket}/defaultObjectAcl/{entity}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -3958,6 +4128,7 @@ export namespace storage_v1 {
               rootUrl + '/storage/v1/b/{bucket}/defaultObjectAcl/{entity}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4048,6 +4219,7 @@ export namespace storage_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4140,6 +4312,7 @@ export namespace storage_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4229,6 +4402,7 @@ export namespace storage_v1 {
               rootUrl + '/storage/v1/b/{bucket}/defaultObjectAcl/{entity}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -4318,6 +4492,7 @@ export namespace storage_v1 {
               rootUrl + '/storage/v1/b/{bucket}/defaultObjectAcl/{entity}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
+            apiVersion: '',
           },
           options
         ),
@@ -4515,6 +4690,7 @@ export namespace storage_v1 {
               '$1'
             ),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -4601,6 +4777,7 @@ export namespace storage_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4687,6 +4864,7 @@ export namespace storage_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4773,6 +4951,7 @@ export namespace storage_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4866,6 +5045,7 @@ export namespace storage_v1 {
               '/storage/v1/b/{bucket}/folders/{sourceFolder}/renameTo/folders/{destinationFolder}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5061,6 +5241,7 @@ export namespace storage_v1 {
               rootUrl + '/storage/v1/b/{bucket}/managedFolders/{managedFolder}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -5147,6 +5328,7 @@ export namespace storage_v1 {
               rootUrl + '/storage/v1/b/{bucket}/managedFolders/{managedFolder}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5234,6 +5416,7 @@ export namespace storage_v1 {
               '/storage/v1/b/{bucket}/managedFolders/{managedFolder}/iam'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5321,6 +5504,7 @@ export namespace storage_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5408,6 +5592,7 @@ export namespace storage_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5495,6 +5680,7 @@ export namespace storage_v1 {
               '/storage/v1/b/{bucket}/managedFolders/{managedFolder}/iam'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
+            apiVersion: '',
           },
           options
         ),
@@ -5589,6 +5775,7 @@ export namespace storage_v1 {
               '/storage/v1/b/{bucket}/managedFolders/{managedFolder}/iam/testPermissions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5813,6 +6000,7 @@ export namespace storage_v1 {
               '/storage/v1/b/{bucket}/notificationConfigs/{notification}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -5900,6 +6088,7 @@ export namespace storage_v1 {
               '/storage/v1/b/{bucket}/notificationConfigs/{notification}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5986,6 +6175,7 @@ export namespace storage_v1 {
               rootUrl + '/storage/v1/b/{bucket}/notificationConfigs'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -6072,6 +6262,7 @@ export namespace storage_v1 {
               rootUrl + '/storage/v1/b/{bucket}/notificationConfigs'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6221,6 +6412,7 @@ export namespace storage_v1 {
               rootUrl + '/storage/v1/b/{bucket}/o/{object}/acl/{entity}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -6310,6 +6502,7 @@ export namespace storage_v1 {
               rootUrl + '/storage/v1/b/{bucket}/o/{object}/acl/{entity}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6400,6 +6593,7 @@ export namespace storage_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -6492,6 +6686,7 @@ export namespace storage_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6581,6 +6776,7 @@ export namespace storage_v1 {
               rootUrl + '/storage/v1/b/{bucket}/o/{object}/acl/{entity}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -6670,6 +6866,7 @@ export namespace storage_v1 {
               rootUrl + '/storage/v1/b/{bucket}/o/{object}/acl/{entity}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
+            apiVersion: '',
           },
           options
         ),
@@ -6917,6 +7114,7 @@ export namespace storage_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -7003,6 +7201,7 @@ export namespace storage_v1 {
               '/storage/v1/b/{destinationBucket}/o/{destinationObject}/compose'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -7089,6 +7288,7 @@ export namespace storage_v1 {
               '/storage/v1/b/{sourceBucket}/o/{sourceObject}/copyTo/b/{destinationBucket}/o/{destinationObject}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -7183,6 +7383,7 @@ export namespace storage_v1 {
               '$1'
             ),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -7269,6 +7470,7 @@ export namespace storage_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -7356,6 +7558,7 @@ export namespace storage_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -7442,6 +7645,7 @@ export namespace storage_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -7532,6 +7736,7 @@ export namespace storage_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -7618,6 +7823,7 @@ export namespace storage_v1 {
               '$1'
             ),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -7703,6 +7909,7 @@ export namespace storage_v1 {
               rootUrl + '/storage/v1/b/{bucket}/o/{object}/restore'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -7789,6 +7996,7 @@ export namespace storage_v1 {
               '/storage/v1/b/{sourceBucket}/o/{sourceObject}/rewriteTo/b/{destinationBucket}/o/{destinationObject}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -7886,6 +8094,7 @@ export namespace storage_v1 {
               '$1'
             ),
             method: 'PUT',
+            apiVersion: '',
           },
           options
         ),
@@ -7979,6 +8188,7 @@ export namespace storage_v1 {
               rootUrl + '/storage/v1/b/{bucket}/o/{object}/iam/testPermissions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -8065,6 +8275,7 @@ export namespace storage_v1 {
               '$1'
             ),
             method: 'PUT',
+            apiVersion: '',
           },
           options
         ),
@@ -8151,6 +8362,7 @@ export namespace storage_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -8909,6 +9121,7 @@ export namespace storage_v1 {
               rootUrl + '/storage/v1/b/{bucket}/operations/{operationId}/cancel'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -9001,6 +9214,7 @@ export namespace storage_v1 {
               rootUrl + '/storage/v1/b/{bucket}/operations/{operationId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -9094,6 +9308,7 @@ export namespace storage_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -9240,6 +9455,7 @@ export namespace storage_v1 {
               rootUrl + '/storage/v1/projects/{projectId}/hmacKeys'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -9324,6 +9540,7 @@ export namespace storage_v1 {
               rootUrl + '/storage/v1/projects/{projectId}/hmacKeys/{accessId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -9410,6 +9627,7 @@ export namespace storage_v1 {
               rootUrl + '/storage/v1/projects/{projectId}/hmacKeys/{accessId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -9496,6 +9714,7 @@ export namespace storage_v1 {
               rootUrl + '/storage/v1/projects/{projectId}/hmacKeys'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -9582,6 +9801,7 @@ export namespace storage_v1 {
               rootUrl + '/storage/v1/projects/{projectId}/hmacKeys/{accessId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
+            apiVersion: '',
           },
           options
         ),
@@ -9768,6 +9988,7 @@ export namespace storage_v1 {
               rootUrl + '/storage/v1/projects/{projectId}/serviceAccount'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),

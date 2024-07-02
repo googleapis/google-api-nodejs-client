@@ -1191,11 +1191,11 @@ export namespace displayvideo_v3 {
    */
   export interface Schema$BulkEditAdvertiserAssignedTargetingOptionsRequest {
     /**
-     * The assigned targeting options to create in batch, specified as a list of `CreateAssignedTargetingOptionsRequest`. Supported targeting types: * `TARGETING_TYPE_CHANNEL` * `TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION` * `TARGETING_TYPE_OMID` * `TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION`
+     * The assigned targeting options to create in batch, specified as a list of `CreateAssignedTargetingOptionsRequest`. Supported targeting types: * `TARGETING_TYPE_CHANNEL` * `TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION` * `TARGETING_TYPE_OMID` * `TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION` * `TARGETING_TYPE_KEYWORD`
      */
     createRequests?: Schema$CreateAssignedTargetingOptionsRequest[];
     /**
-     * The assigned targeting options to delete in batch, specified as a list of `DeleteAssignedTargetingOptionsRequest`. Supported targeting types: * `TARGETING_TYPE_CHANNEL` * `TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION` * `TARGETING_TYPE_OMID` * `TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION`
+     * The assigned targeting options to delete in batch, specified as a list of `DeleteAssignedTargetingOptionsRequest`. Supported targeting types: * `TARGETING_TYPE_CHANNEL` * `TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION` * `TARGETING_TYPE_OMID` * `TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION` * `TARGETING_TYPE_KEYWORD`
      */
     deleteRequests?: Schema$DeleteAssignedTargetingOptionsRequest[];
   }
@@ -3458,6 +3458,10 @@ export namespace displayvideo_v3 {
      */
     adGroupIds?: string[] | null;
     /**
+     * Optional. YouTube Ad Groups QA to download by ID. All IDs must belong to the same Advertiser or Partner specified in CreateSdfDownloadTaskRequest.
+     */
+    adGroupQaIds?: string[] | null;
+    /**
      * Campaigns to download by ID. All IDs must belong to the same Advertiser or Partner specified in CreateSdfDownloadTaskRequest.
      */
     campaignIds?: string[] | null;
@@ -3469,6 +3473,10 @@ export namespace displayvideo_v3 {
      * Line Items to download by ID. All IDs must belong to the same Advertiser or Partner specified in CreateSdfDownloadTaskRequest.
      */
     lineItemIds?: string[] | null;
+    /**
+     * Optional. Line Items QA to download by ID. All IDs must belong to the same Advertiser or Partner specified in CreateSdfDownloadTaskRequest.
+     */
+    lineItemQaIds?: string[] | null;
     /**
      * Media Products to download by ID. All IDs must belong to the same Advertiser or Partner specified in CreateSdfDownloadTaskRequest.
      */
@@ -3543,6 +3551,10 @@ export namespace displayvideo_v3 {
      * Output only. The resource name of the insertion order.
      */
     name?: string | null;
+    /**
+     * Optional. The optimization objective of the insertion order. **This field is only available to allowlisted customers.** If a customer is not allowlisted, this field will be null and attempts to set it will return an error.
+     */
+    optimizationObjective?: string | null;
     /**
      * Required. The budget spending speed setting of the insertion order.
      */
@@ -3986,6 +3998,10 @@ export namespace displayvideo_v3 {
    * Settings that control the key performance indicator, or KPI, of an insertion order.
    */
   export interface Schema$Kpi {
+    /**
+     * Optional. Custom Bidding Algorithm ID associated with KPI_CUSTOM_IMPRESSION_VALUE_OVER_COST. This field is ignored if the proper KPI is not selected.
+     */
+    kpiAlgorithmId?: string | null;
     /**
      * The goal amount, in micros of the advertiser's currency. Applicable when kpi_type is one of: * `KPI_TYPE_CPM` * `KPI_TYPE_CPC` * `KPI_TYPE_CPA` * `KPI_TYPE_CPIAVC` * `KPI_TYPE_VCPM` For example: 1500000 represents 1.5 standard units of the currency.
      */
@@ -5430,7 +5446,7 @@ export namespace displayvideo_v3 {
      */
     exchangeReviewStatuses?: Schema$ExchangeReviewStatus[];
     /**
-     * Publisher review statuses for the creative.
+     * Publisher review statuses for the creative. **Warning:** This field will be deprecated on June 26th, 2024. After this date, this field will be empty. Read our [feature deprecation announcement](/display-video/api/deprecations#features.creative_publisher_review_statuses) for more information.
      */
     publisherReviewStatuses?: Schema$PublisherReviewStatus[];
   }
@@ -6409,6 +6425,7 @@ export namespace displayvideo_v3 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6493,6 +6510,7 @@ export namespace displayvideo_v3 {
           {
             url: (rootUrl + '/v3/advertisers').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -6580,6 +6598,7 @@ export namespace displayvideo_v3 {
               '$1'
             ),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -6674,6 +6693,7 @@ export namespace displayvideo_v3 {
               '/v3/advertisers/{+advertiserId}:editAssignedTargetingOptions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -6762,6 +6782,7 @@ export namespace displayvideo_v3 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6850,6 +6871,7 @@ export namespace displayvideo_v3 {
           {
             url: (rootUrl + '/v3/advertisers').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6944,6 +6966,7 @@ export namespace displayvideo_v3 {
               '/v3/advertisers/{+advertiserId}:listAssignedTargetingOptions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -7033,6 +7056,7 @@ export namespace displayvideo_v3 {
               '$1'
             ),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -7232,6 +7256,7 @@ export namespace displayvideo_v3 {
               '/v3/advertisers/{+advertiserId}/adGroupAds/{+adGroupAdId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -7323,6 +7348,7 @@ export namespace displayvideo_v3 {
               rootUrl + '/v3/advertisers/{+advertiserId}/adGroupAds'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -7464,6 +7490,7 @@ export namespace displayvideo_v3 {
               '/v3/advertisers/{+advertiserId}/adGroups:bulkListAdGroupAssignedTargetingOptions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -7552,6 +7579,7 @@ export namespace displayvideo_v3 {
               rootUrl + '/v3/advertisers/{+advertiserId}/adGroups/{+adGroupId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -7644,6 +7672,7 @@ export namespace displayvideo_v3 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -7818,6 +7847,7 @@ export namespace displayvideo_v3 {
               '/v3/advertisers/{+advertiserId}/adGroups/{+adGroupId}/targetingTypes/{+targetingType}/assignedTargetingOptions/{+assignedTargetingOptionId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -7923,6 +7953,7 @@ export namespace displayvideo_v3 {
               '/v3/advertisers/{+advertiserId}/adGroups/{+adGroupId}/targetingTypes/{+targetingType}/assignedTargetingOptions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -8073,6 +8104,7 @@ export namespace displayvideo_v3 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -8201,6 +8233,7 @@ export namespace displayvideo_v3 {
               rootUrl + '/v3/advertisers/{+advertiserId}/campaigns'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -8288,6 +8321,7 @@ export namespace displayvideo_v3 {
               '/v3/advertisers/{+advertiserId}/campaigns/{+campaignId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -8375,6 +8409,7 @@ export namespace displayvideo_v3 {
               '/v3/advertisers/{+advertiserId}/campaigns/{+campaignId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -8466,6 +8501,7 @@ export namespace displayvideo_v3 {
               rootUrl + '/v3/advertisers/{+advertiserId}/campaigns'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -8561,6 +8597,7 @@ export namespace displayvideo_v3 {
               '/v3/advertisers/{+advertiserId}/campaigns/{+campaignId}:listAssignedTargetingOptions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -8650,6 +8687,7 @@ export namespace displayvideo_v3 {
               '/v3/advertisers/{+advertiserId}/campaigns/{+campaignId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -8867,6 +8905,7 @@ export namespace displayvideo_v3 {
               '/v3/advertisers/{+advertiserId}/campaigns/{+campaignId}/targetingTypes/{+targetingType}/assignedTargetingOptions/{+assignedTargetingOptionId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -8972,6 +9011,7 @@ export namespace displayvideo_v3 {
               '/v3/advertisers/{+advertiserId}/campaigns/{+campaignId}/targetingTypes/{+targetingType}/assignedTargetingOptions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -9121,6 +9161,7 @@ export namespace displayvideo_v3 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -9207,6 +9248,7 @@ export namespace displayvideo_v3 {
               rootUrl + '/v3/advertisers/{+advertiserId}/channels/{+channelId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -9299,6 +9341,7 @@ export namespace displayvideo_v3 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -9385,6 +9428,7 @@ export namespace displayvideo_v3 {
               rootUrl + '/v3/advertisers/{+advertiserId}/channels/{channelId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -9569,6 +9613,7 @@ export namespace displayvideo_v3 {
               '/v3/advertisers/{advertiserId}/channels/{+channelId}/sites:bulkEdit'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -9656,6 +9701,7 @@ export namespace displayvideo_v3 {
               '/v3/advertisers/{advertiserId}/channels/{+channelId}/sites'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -9743,6 +9789,7 @@ export namespace displayvideo_v3 {
               '/v3/advertisers/{advertiserId}/channels/{+channelId}/sites/{+urlOrAppId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -9833,6 +9880,7 @@ export namespace displayvideo_v3 {
               '/v3/advertisers/{+advertiserId}/channels/{+channelId}/sites'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -9925,6 +9973,7 @@ export namespace displayvideo_v3 {
               '/v3/advertisers/{advertiserId}/channels/{+channelId}/sites:replace'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -10121,6 +10170,7 @@ export namespace displayvideo_v3 {
               rootUrl + '/v3/advertisers/{+advertiserId}/creatives'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -10208,6 +10258,7 @@ export namespace displayvideo_v3 {
               '/v3/advertisers/{+advertiserId}/creatives/{+creativeId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -10295,6 +10346,7 @@ export namespace displayvideo_v3 {
               '/v3/advertisers/{+advertiserId}/creatives/{+creativeId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -10386,6 +10438,7 @@ export namespace displayvideo_v3 {
               rootUrl + '/v3/advertisers/{+advertiserId}/creatives'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -10473,6 +10526,7 @@ export namespace displayvideo_v3 {
               '/v3/advertisers/{+advertiserId}/creatives/{+creativeId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -10647,6 +10701,7 @@ export namespace displayvideo_v3 {
               rootUrl + '/v3/advertisers/{+advertiserId}/insertionOrders'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -10734,6 +10789,7 @@ export namespace displayvideo_v3 {
               '/v3/advertisers/{+advertiserId}/insertionOrders/{+insertionOrderId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -10821,6 +10877,7 @@ export namespace displayvideo_v3 {
               '/v3/advertisers/{+advertiserId}/insertionOrders/{+insertionOrderId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -10914,6 +10971,7 @@ export namespace displayvideo_v3 {
               rootUrl + '/v3/advertisers/{+advertiserId}/insertionOrders'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -11009,6 +11067,7 @@ export namespace displayvideo_v3 {
               '/v3/advertisers/{+advertiserId}/insertionOrders/{+insertionOrderId}:listAssignedTargetingOptions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -11098,6 +11157,7 @@ export namespace displayvideo_v3 {
               '/v3/advertisers/{+advertiserId}/insertionOrders/{+insertionOrderId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -11317,6 +11377,7 @@ export namespace displayvideo_v3 {
               '/v3/advertisers/{+advertiserId}/insertionOrders/{+insertionOrderId}/targetingTypes/{+targetingType}/assignedTargetingOptions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -11405,6 +11466,7 @@ export namespace displayvideo_v3 {
               '/v3/advertisers/{+advertiserId}/insertionOrders/{+insertionOrderId}/targetingTypes/{+targetingType}/assignedTargetingOptions/{+assignedTargetingOptionId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -11508,6 +11570,7 @@ export namespace displayvideo_v3 {
               '/v3/advertisers/{+advertiserId}/insertionOrders/{+insertionOrderId}/targetingTypes/{+targetingType}/assignedTargetingOptions/{+assignedTargetingOptionId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -11613,6 +11676,7 @@ export namespace displayvideo_v3 {
               '/v3/advertisers/{+advertiserId}/insertionOrders/{+insertionOrderId}/targetingTypes/{+targetingType}/assignedTargetingOptions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -11804,6 +11868,7 @@ export namespace displayvideo_v3 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -11899,6 +11964,7 @@ export namespace displayvideo_v3 {
               '/v3/advertisers/{+advertiserId}/invoices:lookupInvoiceCurrency'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -12042,6 +12108,7 @@ export namespace displayvideo_v3 {
               '/v3/advertisers/{+advertiserId}/lineItems:bulkEditAssignedTargetingOptions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -12139,6 +12206,7 @@ export namespace displayvideo_v3 {
               '/v3/advertisers/{+advertiserId}/lineItems:bulkListAssignedTargetingOptions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -12234,6 +12302,7 @@ export namespace displayvideo_v3 {
               rootUrl + '/v3/advertisers/{+advertiserId}/lineItems:bulkUpdate'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -12320,6 +12389,7 @@ export namespace displayvideo_v3 {
               rootUrl + '/v3/advertisers/{+advertiserId}/lineItems'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -12407,6 +12477,7 @@ export namespace displayvideo_v3 {
               '/v3/advertisers/{+advertiserId}/lineItems/{+lineItemId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -12501,6 +12572,7 @@ export namespace displayvideo_v3 {
               '/v3/advertisers/{+advertiserId}/lineItems/{+lineItemId}:duplicate'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -12588,6 +12660,7 @@ export namespace displayvideo_v3 {
               '/v3/advertisers/{+advertiserId}/lineItems:generateDefault'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -12675,6 +12748,7 @@ export namespace displayvideo_v3 {
               '/v3/advertisers/{+advertiserId}/lineItems/{+lineItemId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -12766,6 +12840,7 @@ export namespace displayvideo_v3 {
               rootUrl + '/v3/advertisers/{+advertiserId}/lineItems'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -12853,6 +12928,7 @@ export namespace displayvideo_v3 {
               '/v3/advertisers/{+advertiserId}/lineItems/{+lineItemId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -13124,6 +13200,7 @@ export namespace displayvideo_v3 {
               '/v3/advertisers/{+advertiserId}/lineItems/{+lineItemId}/targetingTypes/{+targetingType}/assignedTargetingOptions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -13212,6 +13289,7 @@ export namespace displayvideo_v3 {
               '/v3/advertisers/{+advertiserId}/lineItems/{+lineItemId}/targetingTypes/{+targetingType}/assignedTargetingOptions/{+assignedTargetingOptionId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -13315,6 +13393,7 @@ export namespace displayvideo_v3 {
               '/v3/advertisers/{+advertiserId}/lineItems/{+lineItemId}/targetingTypes/{+targetingType}/assignedTargetingOptions/{+assignedTargetingOptionId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -13420,6 +13499,7 @@ export namespace displayvideo_v3 {
               '/v3/advertisers/{+advertiserId}/lineItems/{+lineItemId}/targetingTypes/{+targetingType}/assignedTargetingOptions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -13608,6 +13688,7 @@ export namespace displayvideo_v3 {
               rootUrl + '/v3/advertisers/{+advertiserId}/locationLists'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -13695,6 +13776,7 @@ export namespace displayvideo_v3 {
               '/v3/advertisers/{+advertiserId}/locationLists/{+locationListId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -13788,6 +13870,7 @@ export namespace displayvideo_v3 {
               rootUrl + '/v3/advertisers/{+advertiserId}/locationLists'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -13875,6 +13958,7 @@ export namespace displayvideo_v3 {
               '/v3/advertisers/{+advertiserId}/locationLists/{locationListId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -14044,6 +14128,7 @@ export namespace displayvideo_v3 {
               '/v3/advertisers/{advertiserId}/locationLists/{+locationListId}/assignedLocations:bulkEdit'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -14134,6 +14219,7 @@ export namespace displayvideo_v3 {
               '/v3/advertisers/{advertiserId}/locationLists/{locationListId}/assignedLocations'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -14222,6 +14308,7 @@ export namespace displayvideo_v3 {
               '/v3/advertisers/{advertiserId}/locationLists/{locationListId}/assignedLocations/{+assignedLocationId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -14321,6 +14408,7 @@ export namespace displayvideo_v3 {
               '/v3/advertisers/{advertiserId}/locationLists/{locationListId}/assignedLocations'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -14499,6 +14587,7 @@ export namespace displayvideo_v3 {
               rootUrl + '/v3/advertisers/{+advertiserId}/negativeKeywordLists'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -14586,6 +14675,7 @@ export namespace displayvideo_v3 {
               '/v3/advertisers/{+advertiserId}/negativeKeywordLists/{+negativeKeywordListId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -14676,6 +14766,7 @@ export namespace displayvideo_v3 {
               '/v3/advertisers/{+advertiserId}/negativeKeywordLists/{+negativeKeywordListId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -14769,6 +14860,7 @@ export namespace displayvideo_v3 {
               rootUrl + '/v3/advertisers/{+advertiserId}/negativeKeywordLists'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -14861,6 +14953,7 @@ export namespace displayvideo_v3 {
               '/v3/advertisers/{+advertiserId}/negativeKeywordLists/{negativeKeywordListId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -15033,6 +15126,7 @@ export namespace displayvideo_v3 {
               '/v3/advertisers/{advertiserId}/negativeKeywordLists/{+negativeKeywordListId}/negativeKeywords:bulkEdit'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -15123,6 +15217,7 @@ export namespace displayvideo_v3 {
               '/v3/advertisers/{advertiserId}/negativeKeywordLists/{+negativeKeywordListId}/negativeKeywords'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -15211,6 +15306,7 @@ export namespace displayvideo_v3 {
               '/v3/advertisers/{advertiserId}/negativeKeywordLists/{+negativeKeywordListId}/negativeKeywords/{+keywordValue}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -15310,6 +15406,7 @@ export namespace displayvideo_v3 {
               '/v3/advertisers/{+advertiserId}/negativeKeywordLists/{+negativeKeywordListId}/negativeKeywords'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -15407,6 +15504,7 @@ export namespace displayvideo_v3 {
               '/v3/advertisers/{advertiserId}/negativeKeywordLists/{+negativeKeywordListId}/negativeKeywords:replace'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -15614,6 +15712,7 @@ export namespace displayvideo_v3 {
               '/v3/advertisers/{+advertiserId}/targetingTypes/{+targetingType}/assignedTargetingOptions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -15702,6 +15801,7 @@ export namespace displayvideo_v3 {
               '/v3/advertisers/{+advertiserId}/targetingTypes/{+targetingType}/assignedTargetingOptions/{+assignedTargetingOptionId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -15803,6 +15903,7 @@ export namespace displayvideo_v3 {
               '/v3/advertisers/{+advertiserId}/targetingTypes/{+targetingType}/assignedTargetingOptions/{+assignedTargetingOptionId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -15906,6 +16007,7 @@ export namespace displayvideo_v3 {
               '/v3/advertisers/{+advertiserId}/targetingTypes/{+targetingType}/assignedTargetingOptions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -15934,7 +16036,7 @@ export namespace displayvideo_v3 {
      */
     advertiserId?: string;
     /**
-     * Required. Identifies the type of this assigned targeting option. Supported targeting types: * `TARGETING_TYPE_CHANNEL` * `TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION` * `TARGETING_TYPE_OMID` * `TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION`
+     * Required. Identifies the type of this assigned targeting option. Supported targeting types: * `TARGETING_TYPE_CHANNEL` * `TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION` * `TARGETING_TYPE_OMID` * `TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION` * `TARGETING_TYPE_KEYWORD`
      */
     targetingType?: string;
 
@@ -15954,7 +16056,7 @@ export namespace displayvideo_v3 {
      */
     assignedTargetingOptionId?: string;
     /**
-     * Required. Identifies the type of this assigned targeting option. Supported targeting types: * `TARGETING_TYPE_CHANNEL` * `TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION` * `TARGETING_TYPE_OMID` * `TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION`
+     * Required. Identifies the type of this assigned targeting option. Supported targeting types: * `TARGETING_TYPE_CHANNEL` * `TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION` * `TARGETING_TYPE_OMID` * `TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION` * `TARGETING_TYPE_KEYWORD`
      */
     targetingType?: string;
   }
@@ -15969,7 +16071,7 @@ export namespace displayvideo_v3 {
      */
     assignedTargetingOptionId?: string;
     /**
-     * Required. Identifies the type of this assigned targeting option. Supported targeting types: * `TARGETING_TYPE_CHANNEL` * `TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION` * `TARGETING_TYPE_OMID` * `TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION` * `TARGETING_TYPE_YOUTUBE_VIDEO` * `TARGETING_TYPE_YOUTUBE_CHANNEL`
+     * Required. Identifies the type of this assigned targeting option. Supported targeting types: * `TARGETING_TYPE_CHANNEL` * `TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION` * `TARGETING_TYPE_OMID` * `TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION` * `TARGETING_TYPE_YOUTUBE_VIDEO` * `TARGETING_TYPE_YOUTUBE_CHANNEL` * `TARGETING_TYPE_KEYWORD`
      */
     targetingType?: string;
   }
@@ -15996,7 +16098,7 @@ export namespace displayvideo_v3 {
      */
     pageToken?: string;
     /**
-     * Required. Identifies the type of assigned targeting options to list. Supported targeting types: * `TARGETING_TYPE_CHANNEL` * `TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION` * `TARGETING_TYPE_OMID` * `TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION` * `TARGETING_TYPE_YOUTUBE_VIDEO` * `TARGETING_TYPE_YOUTUBE_CHANNEL`
+     * Required. Identifies the type of assigned targeting options to list. Supported targeting types: * `TARGETING_TYPE_CHANNEL` * `TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION` * `TARGETING_TYPE_OMID` * `TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION` * `TARGETING_TYPE_YOUTUBE_VIDEO` * `TARGETING_TYPE_YOUTUBE_CHANNEL` * `TARGETING_TYPE_KEYWORD`
      */
     targetingType?: string;
   }
@@ -16075,6 +16177,7 @@ export namespace displayvideo_v3 {
               rootUrl + '/v3/combinedAudiences/{+combinedAudienceId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -16169,6 +16272,7 @@ export namespace displayvideo_v3 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -16317,6 +16421,7 @@ export namespace displayvideo_v3 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -16409,6 +16514,7 @@ export namespace displayvideo_v3 {
               '/v3/customBiddingAlgorithms/{+customBiddingAlgorithmId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -16503,6 +16609,7 @@ export namespace displayvideo_v3 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -16597,6 +16704,7 @@ export namespace displayvideo_v3 {
               '/v3/customBiddingAlgorithms/{+customBiddingAlgorithmId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -16691,6 +16799,7 @@ export namespace displayvideo_v3 {
               '/v3/customBiddingAlgorithms/{+customBiddingAlgorithmId}:uploadRules'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -16787,6 +16896,7 @@ export namespace displayvideo_v3 {
               '/v3/customBiddingAlgorithms/{+customBiddingAlgorithmId}:uploadScript'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -16984,6 +17094,7 @@ export namespace displayvideo_v3 {
               '/v3/customBiddingAlgorithms/{+customBiddingAlgorithmId}/rules'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -17078,6 +17189,7 @@ export namespace displayvideo_v3 {
               '/v3/customBiddingAlgorithms/{+customBiddingAlgorithmId}/rules/{+customBiddingAlgorithmRulesId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -17178,6 +17290,7 @@ export namespace displayvideo_v3 {
               '/v3/customBiddingAlgorithms/{+customBiddingAlgorithmId}/rules'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -17344,6 +17457,7 @@ export namespace displayvideo_v3 {
               '/v3/customBiddingAlgorithms/{+customBiddingAlgorithmId}/scripts'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -17434,6 +17548,7 @@ export namespace displayvideo_v3 {
               '/v3/customBiddingAlgorithms/{+customBiddingAlgorithmId}/scripts/{+customBiddingScriptId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -17528,6 +17643,7 @@ export namespace displayvideo_v3 {
               '/v3/customBiddingAlgorithms/{+customBiddingAlgorithmId}/scripts'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -17690,6 +17806,7 @@ export namespace displayvideo_v3 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -17778,6 +17895,7 @@ export namespace displayvideo_v3 {
           {
             url: (rootUrl + '/v3/customLists').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -17912,6 +18030,7 @@ export namespace displayvideo_v3 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -18007,6 +18126,7 @@ export namespace displayvideo_v3 {
               '/v3/firstAndThirdPartyAudiences/{+firstAndThirdPartyAudienceId}:editCustomerMatchMembers'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -18103,6 +18223,7 @@ export namespace displayvideo_v3 {
               '/v3/firstAndThirdPartyAudiences/{+firstAndThirdPartyAudienceId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -18197,6 +18318,7 @@ export namespace displayvideo_v3 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -18293,6 +18415,7 @@ export namespace displayvideo_v3 {
               '/v3/firstAndThirdPartyAudiences/{+firstAndThirdPartyAudienceId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -18476,6 +18599,7 @@ export namespace displayvideo_v3 {
               rootUrl + '/v3/floodlightGroups/{+floodlightGroupId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -18563,6 +18687,7 @@ export namespace displayvideo_v3 {
               '$1'
             ),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -18693,6 +18818,7 @@ export namespace displayvideo_v3 {
               '/v3/floodlightGroups/{+floodlightGroupId}/floodlightActivities/{+floodlightActivityId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -18788,6 +18914,7 @@ export namespace displayvideo_v3 {
               '/v3/floodlightGroups/{+floodlightGroupId}/floodlightActivities'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -18923,6 +19050,7 @@ export namespace displayvideo_v3 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -19017,6 +19145,7 @@ export namespace displayvideo_v3 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -19154,6 +19283,7 @@ export namespace displayvideo_v3 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -19249,6 +19379,7 @@ export namespace displayvideo_v3 {
               '/v3/guaranteedOrders/{+guaranteedOrderId}:editGuaranteedOrderReadAccessors'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -19337,6 +19468,7 @@ export namespace displayvideo_v3 {
               rootUrl + '/v3/guaranteedOrders/{+guaranteedOrderId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -19431,6 +19563,7 @@ export namespace displayvideo_v3 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -19519,6 +19652,7 @@ export namespace displayvideo_v3 {
               rootUrl + '/v3/guaranteedOrders/{+guaranteedOrderId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -19718,6 +19852,7 @@ export namespace displayvideo_v3 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -19804,6 +19939,7 @@ export namespace displayvideo_v3 {
               rootUrl + '/v3/inventorySourceGroups/{+inventorySourceGroupId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -19895,6 +20031,7 @@ export namespace displayvideo_v3 {
               rootUrl + '/v3/inventorySourceGroups/{+inventorySourceGroupId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -19989,6 +20126,7 @@ export namespace displayvideo_v3 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -20082,6 +20220,7 @@ export namespace displayvideo_v3 {
               rootUrl + '/v3/inventorySourceGroups/{inventorySourceGroupId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -20282,6 +20421,7 @@ export namespace displayvideo_v3 {
               '/v3/inventorySourceGroups/{+inventorySourceGroupId}/assignedInventorySources:bulkEdit'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -20379,6 +20519,7 @@ export namespace displayvideo_v3 {
               '/v3/inventorySourceGroups/{+inventorySourceGroupId}/assignedInventorySources'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -20467,6 +20608,7 @@ export namespace displayvideo_v3 {
               '/v3/inventorySourceGroups/{+inventorySourceGroupId}/assignedInventorySources/{+assignedInventorySourceId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -20562,6 +20704,7 @@ export namespace displayvideo_v3 {
               '/v3/inventorySourceGroups/{+inventorySourceGroupId}/assignedInventorySources'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -20741,6 +20884,7 @@ export namespace displayvideo_v3 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -20836,6 +20980,7 @@ export namespace displayvideo_v3 {
               '/v3/inventorySources/{+inventorySourceId}:editInventorySourceReadWriteAccessors'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -20922,6 +21067,7 @@ export namespace displayvideo_v3 {
               rootUrl + '/v3/inventorySources/{+inventorySourceId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -21016,6 +21162,7 @@ export namespace displayvideo_v3 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -21104,6 +21251,7 @@ export namespace displayvideo_v3 {
               rootUrl + '/v3/inventorySources/{+inventorySourceId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -21299,6 +21447,7 @@ export namespace displayvideo_v3 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -21390,6 +21539,7 @@ export namespace displayvideo_v3 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -21531,6 +21681,7 @@ export namespace displayvideo_v3 {
               rootUrl + '/v3/partners/{+partnerId}:editAssignedTargetingOptions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -21619,6 +21770,7 @@ export namespace displayvideo_v3 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -21707,6 +21859,7 @@ export namespace displayvideo_v3 {
           {
             url: (rootUrl + '/v3/partners').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -21840,6 +21993,7 @@ export namespace displayvideo_v3 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -21926,6 +22080,7 @@ export namespace displayvideo_v3 {
               rootUrl + '/v3/partners/{+partnerId}/channels/{+channelId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -22018,6 +22173,7 @@ export namespace displayvideo_v3 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -22104,6 +22260,7 @@ export namespace displayvideo_v3 {
               rootUrl + '/v3/partners/{+partnerId}/channels/{channelId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -22288,6 +22445,7 @@ export namespace displayvideo_v3 {
               '/v3/partners/{partnerId}/channels/{+channelId}/sites:bulkEdit'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -22374,6 +22532,7 @@ export namespace displayvideo_v3 {
               rootUrl + '/v3/partners/{partnerId}/channels/{+channelId}/sites'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -22461,6 +22620,7 @@ export namespace displayvideo_v3 {
               '/v3/partners/{partnerId}/channels/{+channelId}/sites/{+urlOrAppId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -22550,6 +22710,7 @@ export namespace displayvideo_v3 {
               rootUrl + '/v3/partners/{+partnerId}/channels/{+channelId}/sites'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -22642,6 +22803,7 @@ export namespace displayvideo_v3 {
               '/v3/partners/{partnerId}/channels/{+channelId}/sites:replace'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -22859,6 +23021,7 @@ export namespace displayvideo_v3 {
               '/v3/partners/{+partnerId}/targetingTypes/{+targetingType}/assignedTargetingOptions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -22947,6 +23110,7 @@ export namespace displayvideo_v3 {
               '/v3/partners/{+partnerId}/targetingTypes/{+targetingType}/assignedTargetingOptions/{+assignedTargetingOptionId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -23044,6 +23208,7 @@ export namespace displayvideo_v3 {
               '/v3/partners/{+partnerId}/targetingTypes/{+targetingType}/assignedTargetingOptions/{+assignedTargetingOptionId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -23143,6 +23308,7 @@ export namespace displayvideo_v3 {
               '/v3/partners/{+partnerId}/targetingTypes/{+targetingType}/assignedTargetingOptions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -23315,6 +23481,7 @@ export namespace displayvideo_v3 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -23414,6 +23581,7 @@ export namespace displayvideo_v3 {
           {
             url: (rootUrl + '/v3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -23527,6 +23695,7 @@ export namespace displayvideo_v3 {
               '/v3/targetingTypes/{+targetingType}/targetingOptions/{+targetingOptionId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -23620,6 +23789,7 @@ export namespace displayvideo_v3 {
               rootUrl + '/v3/targetingTypes/{+targetingType}/targetingOptions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -23716,6 +23886,7 @@ export namespace displayvideo_v3 {
               '/v3/targetingTypes/{+targetingType}/targetingOptions:search'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -23873,6 +24044,7 @@ export namespace displayvideo_v3 {
               rootUrl + '/v3/users/{+userId}:bulkEditAssignedUserRoles'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -23958,6 +24130,7 @@ export namespace displayvideo_v3 {
           {
             url: (rootUrl + '/v3/users').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -24044,6 +24217,7 @@ export namespace displayvideo_v3 {
               '$1'
             ),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -24130,6 +24304,7 @@ export namespace displayvideo_v3 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -24216,6 +24391,7 @@ export namespace displayvideo_v3 {
           {
             url: (rootUrl + '/v3/users').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -24302,6 +24478,7 @@ export namespace displayvideo_v3 {
               '$1'
             ),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),

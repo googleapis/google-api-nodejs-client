@@ -158,6 +158,10 @@ export namespace dataform_v1beta1 {
    */
   export interface Schema$BigQueryAction {
     /**
+     * Output only. The ID of the BigQuery job that executed the SQL in sql_script. Only set once the job has started to run.
+     */
+    jobId?: string | null;
+    /**
      * Output only. The generated BigQuery SQL script that will be executed.
      */
     sqlScript?: string | null;
@@ -203,6 +207,7 @@ export namespace dataform_v1beta1 {
      * Optional. The default BigQuery location to use. Defaults to "US". See the BigQuery docs for a full list of locations: https://cloud.google.com/bigquery/docs/locations.
      */
     defaultLocation?: string | null;
+    defaultNotebookRuntimeOptions?: Schema$NotebookRuntimeOptions;
     /**
      * Optional. The default schema (BigQuery dataset ID).
      */
@@ -302,6 +307,15 @@ export namespace dataform_v1beta1 {
     requiredHeadCommitSha?: string | null;
   }
   /**
+   * `CommitRepositoryChanges` response message.
+   */
+  export interface Schema$CommitRepositoryChangesResponse {
+    /**
+     * The commit SHA of the current commit.
+     */
+    commitSha?: string | null;
+  }
+  /**
    * `CommitWorkspaceChanges` request message.
    */
   export interface Schema$CommitWorkspaceChangesRequest {
@@ -352,6 +366,10 @@ export namespace dataform_v1beta1 {
      */
     compilationErrors?: Schema$CompilationError[];
     /**
+     * Output only. Only set if the repository has a KMS Key.
+     */
+    dataEncryptionState?: Schema$DataEncryptionState;
+    /**
      * Output only. The version of `@dataform/core` that was used for compilation.
      */
     dataformCoreVersion?: string | null;
@@ -397,6 +415,10 @@ export namespace dataform_v1beta1 {
      */
     filePath?: string | null;
     /**
+     * The notebook executed by this action.
+     */
+    notebook?: Schema$Notebook;
+    /**
      * The database operations executed by this action.
      */
     operations?: Schema$Operations;
@@ -417,6 +439,15 @@ export namespace dataform_v1beta1 {
      * Indicates the status of the Git access token.
      */
     tokenStatus?: string | null;
+  }
+  /**
+   * Describes encryption state of a resource.
+   */
+  export interface Schema$DataEncryptionState {
+    /**
+     * The KMS key version name with which data of a resource is encrypted.
+     */
+    kmsKeyVersionName?: string | null;
   }
   /**
    * Represents a relation which is not managed by Dataform but which may be referenced by Dataform actions.
@@ -844,6 +875,43 @@ export namespace dataform_v1beta1 {
    * `MoveFile` response message.
    */
   export interface Schema$MoveFileResponse {}
+  export interface Schema$Notebook {
+    /**
+     * The contents of the notebook.
+     */
+    contents?: string | null;
+    /**
+     * A list of actions that this action depends on.
+     */
+    dependencyTargets?: Schema$Target[];
+    /**
+     * Whether this action is disabled (i.e. should not be run).
+     */
+    disabled?: boolean | null;
+    /**
+     * Arbitrary, user-defined tags on this action.
+     */
+    tags?: string[] | null;
+  }
+  /**
+   * Represents a workflow action that will run against a Notebook runtime.
+   */
+  export interface Schema$NotebookAction {
+    /**
+     * Output only. The code contents of a Notebook to be run.
+     */
+    contents?: string | null;
+    /**
+     * Output only. The ID of the Vertex job that executed the notebook in contents and also the ID used for the outputs created in GCS buckets. Only set once the job has started to run.
+     */
+    jobId?: string | null;
+  }
+  export interface Schema$NotebookRuntimeOptions {
+    /**
+     * Optional. The GCS location to upload the result to. Format: `gs://bucket-name`.
+     */
+    gcsOutputBucket?: string | null;
+  }
   /**
    * Represents the metadata of the long-running operation.
    */
@@ -1157,6 +1225,10 @@ export namespace dataform_v1beta1 {
      */
     createTime?: string | null;
     /**
+     * Output only. A data encryption state of a Git repository if this Repository is protected by a KMS key.
+     */
+    dataEncryptionState?: Schema$DataEncryptionState;
+    /**
      * Optional. The repository's user-friendly name.
      */
     displayName?: string | null;
@@ -1164,6 +1236,10 @@ export namespace dataform_v1beta1 {
      * Optional. If set, configures this repository to be linked to a Git remote.
      */
     gitRemoteSettings?: Schema$GitRemoteSettings;
+    /**
+     * Optional. The reference to a KMS encryption key. If provided, it will be used to encrypt user data in the repository and all child resources. It is not possible to add or update the encryption key after the repository is created. Example: `projects/[kms_project_id]/locations/[region]/keyRings/[key_region]/cryptoKeys/[key]`
+     */
+    kmsKeyName?: string | null;
     /**
      * Optional. Repository user labels.
      */
@@ -1362,7 +1438,7 @@ export namespace dataform_v1beta1 {
      */
     invocationConfig?: Schema$InvocationConfig;
     /**
-     * Output only. The workflow config's name.
+     * Identifier. The workflow config's name.
      */
     name?: string | null;
     /**
@@ -1386,6 +1462,10 @@ export namespace dataform_v1beta1 {
      * Immutable. The name of the compilation result to use for this invocation. Must be in the format `projects/x/locations/x/repositories/x/compilationResults/x`.
      */
     compilationResult?: string | null;
+    /**
+     * Output only. Only set if the repository has a KMS Key.
+     */
+    dataEncryptionState?: Schema$DataEncryptionState;
     /**
      * Immutable. If left unset, a default InvocationConfig will be used.
      */
@@ -1432,6 +1512,10 @@ export namespace dataform_v1beta1 {
      */
     invocationTiming?: Schema$Interval;
     /**
+     * Output only. The workflow action's notebook action details.
+     */
+    notebookAction?: Schema$NotebookAction;
+    /**
      * Output only. This action's current state.
      */
     state?: string | null;
@@ -1444,6 +1528,10 @@ export namespace dataform_v1beta1 {
    * Represents a Dataform Git workspace.
    */
   export interface Schema$Workspace {
+    /**
+     * Output only. A data encryption state of a Git repository if this Workspace is protected by a KMS key.
+     */
+    dataEncryptionState?: Schema$DataEncryptionState;
     /**
      * Identifier. The workspace's name.
      */
@@ -1582,6 +1670,7 @@ export namespace dataform_v1beta1 {
           {
             url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1674,6 +1763,7 @@ export namespace dataform_v1beta1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1796,6 +1886,7 @@ export namespace dataform_v1beta1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1884,6 +1975,7 @@ export namespace dataform_v1beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1979,6 +2071,7 @@ export namespace dataform_v1beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2036,6 +2129,7 @@ export namespace dataform_v1beta1 {
 
   export class Resource$Projects$Locations$Repositories {
     context: APIRequestContext;
+    commentThreads: Resource$Projects$Locations$Repositories$Commentthreads;
     compilationResults: Resource$Projects$Locations$Repositories$Compilationresults;
     releaseConfigs: Resource$Projects$Locations$Repositories$Releaseconfigs;
     workflowConfigs: Resource$Projects$Locations$Repositories$Workflowconfigs;
@@ -2043,6 +2137,10 @@ export namespace dataform_v1beta1 {
     workspaces: Resource$Projects$Locations$Repositories$Workspaces;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.commentThreads =
+        new Resource$Projects$Locations$Repositories$Commentthreads(
+          this.context
+        );
       this.compilationResults =
         new Resource$Projects$Locations$Repositories$Compilationresults(
           this.context
@@ -2079,7 +2177,7 @@ export namespace dataform_v1beta1 {
     commit(
       params?: Params$Resource$Projects$Locations$Repositories$Commit,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosPromise<Schema$CommitRepositoryChangesResponse>;
     commit(
       params: Params$Resource$Projects$Locations$Repositories$Commit,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2087,28 +2185,35 @@ export namespace dataform_v1beta1 {
     ): void;
     commit(
       params: Params$Resource$Projects$Locations$Repositories$Commit,
-      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback: BodyResponseCallback<Schema$Empty>
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$CommitRepositoryChangesResponse>,
+      callback: BodyResponseCallback<Schema$CommitRepositoryChangesResponse>
     ): void;
     commit(
       params: Params$Resource$Projects$Locations$Repositories$Commit,
-      callback: BodyResponseCallback<Schema$Empty>
+      callback: BodyResponseCallback<Schema$CommitRepositoryChangesResponse>
     ): void;
-    commit(callback: BodyResponseCallback<Schema$Empty>): void;
+    commit(
+      callback: BodyResponseCallback<Schema$CommitRepositoryChangesResponse>
+    ): void;
     commit(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Repositories$Commit
-        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Schema$CommitRepositoryChangesResponse>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Schema$CommitRepositoryChangesResponse>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Schema$CommitRepositoryChangesResponse>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosPromise<Schema$CommitRepositoryChangesResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Repositories$Commit;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2133,6 +2238,7 @@ export namespace dataform_v1beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2142,12 +2248,14 @@ export namespace dataform_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(
+        createAPIRequest<Schema$CommitRepositoryChangesResponse>(
           parameters,
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<Schema$Empty>(parameters);
+        return createAPIRequest<Schema$CommitRepositoryChangesResponse>(
+          parameters
+        );
       }
     }
 
@@ -2227,6 +2335,7 @@ export namespace dataform_v1beta1 {
               rootUrl + '/v1beta1/{+name}:computeAccessTokenStatus'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2316,6 +2425,7 @@ export namespace dataform_v1beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2400,6 +2510,7 @@ export namespace dataform_v1beta1 {
           {
             url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -2495,6 +2606,7 @@ export namespace dataform_v1beta1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2592,6 +2704,7 @@ export namespace dataform_v1beta1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2676,6 +2789,7 @@ export namespace dataform_v1beta1 {
           {
             url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2764,6 +2878,7 @@ export namespace dataform_v1beta1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2856,6 +2971,7 @@ export namespace dataform_v1beta1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2940,6 +3056,7 @@ export namespace dataform_v1beta1 {
           {
             url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -3035,6 +3152,7 @@ export namespace dataform_v1beta1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3131,6 +3249,7 @@ export namespace dataform_v1beta1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3219,6 +3338,7 @@ export namespace dataform_v1beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3314,6 +3434,7 @@ export namespace dataform_v1beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3521,6 +3642,429 @@ export namespace dataform_v1beta1 {
     requestBody?: Schema$TestIamPermissionsRequest;
   }
 
+  export class Resource$Projects$Locations$Repositories$Commentthreads {
+    context: APIRequestContext;
+    comments: Resource$Projects$Locations$Repositories$Commentthreads$Comments;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.comments =
+        new Resource$Projects$Locations$Repositories$Commentthreads$Comments(
+          this.context
+        );
+    }
+
+    /**
+     * Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getIamPolicy(
+      params: Params$Resource$Projects$Locations$Repositories$Commentthreads$Getiampolicy,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getIamPolicy(
+      params?: Params$Resource$Projects$Locations$Repositories$Commentthreads$Getiampolicy,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Policy>;
+    getIamPolicy(
+      params: Params$Resource$Projects$Locations$Repositories$Commentthreads$Getiampolicy,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getIamPolicy(
+      params: Params$Resource$Projects$Locations$Repositories$Commentthreads$Getiampolicy,
+      options: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
+    getIamPolicy(
+      params: Params$Resource$Projects$Locations$Repositories$Commentthreads$Getiampolicy,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
+    getIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
+    getIamPolicy(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Repositories$Commentthreads$Getiampolicy
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Repositories$Commentthreads$Getiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Repositories$Commentthreads$Getiampolicy;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataform.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+resource}:getIamPolicy').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['resource'],
+        pathParams: ['resource'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Policy>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Policy>(parameters);
+      }
+    }
+
+    /**
+     * Sets the access control policy on the specified resource. Replaces any existing policy. Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    setIamPolicy(
+      params: Params$Resource$Projects$Locations$Repositories$Commentthreads$Setiampolicy,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    setIamPolicy(
+      params?: Params$Resource$Projects$Locations$Repositories$Commentthreads$Setiampolicy,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Policy>;
+    setIamPolicy(
+      params: Params$Resource$Projects$Locations$Repositories$Commentthreads$Setiampolicy,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    setIamPolicy(
+      params: Params$Resource$Projects$Locations$Repositories$Commentthreads$Setiampolicy,
+      options: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
+    setIamPolicy(
+      params: Params$Resource$Projects$Locations$Repositories$Commentthreads$Setiampolicy,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
+    setIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
+    setIamPolicy(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Repositories$Commentthreads$Setiampolicy
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Repositories$Commentthreads$Setiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Repositories$Commentthreads$Setiampolicy;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataform.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+resource}:setIamPolicy').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['resource'],
+        pathParams: ['resource'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Policy>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Policy>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Repositories$Commentthreads$Getiampolicy
+    extends StandardParameters {
+    /**
+     * Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
+     */
+    'options.requestedPolicyVersion'?: number;
+    /**
+     * REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     */
+    resource?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Repositories$Commentthreads$Setiampolicy
+    extends StandardParameters {
+    /**
+     * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     */
+    resource?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$SetIamPolicyRequest;
+  }
+
+  export class Resource$Projects$Locations$Repositories$Commentthreads$Comments {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getIamPolicy(
+      params: Params$Resource$Projects$Locations$Repositories$Commentthreads$Comments$Getiampolicy,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getIamPolicy(
+      params?: Params$Resource$Projects$Locations$Repositories$Commentthreads$Comments$Getiampolicy,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Policy>;
+    getIamPolicy(
+      params: Params$Resource$Projects$Locations$Repositories$Commentthreads$Comments$Getiampolicy,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getIamPolicy(
+      params: Params$Resource$Projects$Locations$Repositories$Commentthreads$Comments$Getiampolicy,
+      options: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
+    getIamPolicy(
+      params: Params$Resource$Projects$Locations$Repositories$Commentthreads$Comments$Getiampolicy,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
+    getIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
+    getIamPolicy(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Repositories$Commentthreads$Comments$Getiampolicy
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Repositories$Commentthreads$Comments$Getiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Repositories$Commentthreads$Comments$Getiampolicy;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataform.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+resource}:getIamPolicy').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['resource'],
+        pathParams: ['resource'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Policy>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Policy>(parameters);
+      }
+    }
+
+    /**
+     * Sets the access control policy on the specified resource. Replaces any existing policy. Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    setIamPolicy(
+      params: Params$Resource$Projects$Locations$Repositories$Commentthreads$Comments$Setiampolicy,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    setIamPolicy(
+      params?: Params$Resource$Projects$Locations$Repositories$Commentthreads$Comments$Setiampolicy,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Policy>;
+    setIamPolicy(
+      params: Params$Resource$Projects$Locations$Repositories$Commentthreads$Comments$Setiampolicy,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    setIamPolicy(
+      params: Params$Resource$Projects$Locations$Repositories$Commentthreads$Comments$Setiampolicy,
+      options: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
+    setIamPolicy(
+      params: Params$Resource$Projects$Locations$Repositories$Commentthreads$Comments$Setiampolicy,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
+    setIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
+    setIamPolicy(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Repositories$Commentthreads$Comments$Setiampolicy
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Repositories$Commentthreads$Comments$Setiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Repositories$Commentthreads$Comments$Setiampolicy;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataform.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+resource}:setIamPolicy').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['resource'],
+        pathParams: ['resource'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Policy>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Policy>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Repositories$Commentthreads$Comments$Getiampolicy
+    extends StandardParameters {
+    /**
+     * Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
+     */
+    'options.requestedPolicyVersion'?: number;
+    /**
+     * REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     */
+    resource?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Repositories$Commentthreads$Comments$Setiampolicy
+    extends StandardParameters {
+    /**
+     * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     */
+    resource?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$SetIamPolicyRequest;
+  }
+
   export class Resource$Projects$Locations$Repositories$Compilationresults {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
@@ -3600,6 +4144,7 @@ export namespace dataform_v1beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3688,6 +4233,7 @@ export namespace dataform_v1beta1 {
           {
             url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3783,6 +4329,7 @@ export namespace dataform_v1beta1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3880,6 +4427,7 @@ export namespace dataform_v1beta1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3926,6 +4474,10 @@ export namespace dataform_v1beta1 {
      * Optional. Filter for the returned list.
      */
     filter?: string;
+    /**
+     * Optional. This field only supports ordering by `name` and `create_time`. If unspecified, the server will choose the ordering. If specified, the default order is ascending for the `name` field.
+     */
+    orderBy?: string;
     /**
      * Optional. Maximum number of compilation results to return. The server may return fewer items than requested. If unspecified, the server will pick an appropriate default.
      */
@@ -4035,6 +4587,7 @@ export namespace dataform_v1beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4120,6 +4673,7 @@ export namespace dataform_v1beta1 {
           {
             url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -4205,6 +4759,7 @@ export namespace dataform_v1beta1 {
           {
             url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4300,6 +4855,7 @@ export namespace dataform_v1beta1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4385,6 +4941,7 @@ export namespace dataform_v1beta1 {
           {
             url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -4542,6 +5099,7 @@ export namespace dataform_v1beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4627,6 +5185,7 @@ export namespace dataform_v1beta1 {
           {
             url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -4712,6 +5271,7 @@ export namespace dataform_v1beta1 {
           {
             url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4807,6 +5367,7 @@ export namespace dataform_v1beta1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4892,6 +5453,7 @@ export namespace dataform_v1beta1 {
           {
             url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -4959,7 +5521,7 @@ export namespace dataform_v1beta1 {
   export interface Params$Resource$Projects$Locations$Repositories$Workflowconfigs$Patch
     extends StandardParameters {
     /**
-     * Output only. The workflow config's name.
+     * Identifier. The workflow config's name.
      */
     name?: string;
     /**
@@ -5049,6 +5611,7 @@ export namespace dataform_v1beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5140,6 +5703,7 @@ export namespace dataform_v1beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5225,6 +5789,7 @@ export namespace dataform_v1beta1 {
           {
             url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -5313,6 +5878,7 @@ export namespace dataform_v1beta1 {
           {
             url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5408,6 +5974,7 @@ export namespace dataform_v1beta1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5505,6 +6072,7 @@ export namespace dataform_v1beta1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5679,6 +6247,7 @@ export namespace dataform_v1beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5767,6 +6336,7 @@ export namespace dataform_v1beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5852,6 +6422,7 @@ export namespace dataform_v1beta1 {
           {
             url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -5947,6 +6518,7 @@ export namespace dataform_v1beta1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6042,6 +6614,7 @@ export namespace dataform_v1beta1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6139,6 +6712,7 @@ export namespace dataform_v1beta1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6224,6 +6798,7 @@ export namespace dataform_v1beta1 {
           {
             url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6312,6 +6887,7 @@ export namespace dataform_v1beta1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6407,6 +6983,7 @@ export namespace dataform_v1beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -6500,6 +7077,7 @@ export namespace dataform_v1beta1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6595,6 +7173,7 @@ export namespace dataform_v1beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -6690,6 +7269,7 @@ export namespace dataform_v1beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -6778,6 +7358,7 @@ export namespace dataform_v1beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -6866,6 +7447,7 @@ export namespace dataform_v1beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -6954,6 +7536,7 @@ export namespace dataform_v1beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -7048,6 +7631,7 @@ export namespace dataform_v1beta1 {
               rootUrl + '/v1beta1/{+workspace}:queryDirectoryContents'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -7138,6 +7722,7 @@ export namespace dataform_v1beta1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -7226,6 +7811,7 @@ export namespace dataform_v1beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -7314,6 +7900,7 @@ export namespace dataform_v1beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -7402,6 +7989,7 @@ export namespace dataform_v1beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -7495,6 +8083,7 @@ export namespace dataform_v1beta1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -7583,6 +8172,7 @@ export namespace dataform_v1beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -7678,6 +8268,7 @@ export namespace dataform_v1beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -7769,6 +8360,7 @@ export namespace dataform_v1beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),

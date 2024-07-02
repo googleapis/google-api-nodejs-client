@@ -30,6 +30,10 @@ import {
 } from './accesscontextmanager';
 import {VERSIONS as acmednsVersions, acmedns} from './acmedns';
 import {
+  VERSIONS as addressvalidationVersions,
+  addressvalidation,
+} from './addressvalidation';
+import {
   VERSIONS as adexchangebuyerVersions,
   adexchangebuyer,
 } from './adexchangebuyer';
@@ -50,6 +54,7 @@ import {
   advisorynotifications,
 } from './advisorynotifications';
 import {VERSIONS as aiplatformVersions, aiplatform} from './aiplatform';
+import {VERSIONS as airqualityVersions, airquality} from './airquality';
 import {VERSIONS as alertcenterVersions, alertcenter} from './alertcenter';
 import {VERSIONS as alloydbVersions, alloydb} from './alloydb';
 import {VERSIONS as analyticsVersions, analytics} from './analytics';
@@ -88,6 +93,7 @@ import {
   apigeeregistry,
 } from './apigeeregistry';
 import {VERSIONS as apikeysVersions, apikeys} from './apikeys';
+import {VERSIONS as apimVersions, apim} from './apim';
 import {VERSIONS as appengineVersions, appengine} from './appengine';
 import {VERSIONS as apphubVersions, apphub} from './apphub';
 import {VERSIONS as appsactivityVersions, appsactivity} from './appsactivity';
@@ -177,6 +183,10 @@ import {VERSIONS as cloudbillingVersions, cloudbilling} from './cloudbilling';
 import {VERSIONS as cloudbuildVersions, cloudbuild} from './cloudbuild';
 import {VERSIONS as cloudchannelVersions, cloudchannel} from './cloudchannel';
 import {
+  VERSIONS as cloudcontrolspartnerVersions,
+  cloudcontrolspartner,
+} from './cloudcontrolspartner';
+import {
   VERSIONS as clouddebuggerVersions,
   clouddebugger,
 } from './clouddebugger';
@@ -214,6 +224,7 @@ import {VERSIONS as cloudtasksVersions, cloudtasks} from './cloudtasks';
 import {VERSIONS as cloudtraceVersions, cloudtrace} from './cloudtrace';
 import {VERSIONS as composerVersions, composer} from './composer';
 import {VERSIONS as computeVersions, compute} from './compute';
+import {VERSIONS as configVersions, config} from './config';
 import {VERSIONS as connectorsVersions, connectors} from './connectors';
 import {
   VERSIONS as contactcenteraiplatformVersions,
@@ -260,6 +271,10 @@ import {
   VERSIONS as deploymentmanagerVersions,
   deploymentmanager,
 } from './deploymentmanager';
+import {
+  VERSIONS as developerconnectVersions,
+  developerconnect,
+} from './developerconnect';
 import {VERSIONS as dfareportingVersions, dfareporting} from './dfareporting';
 import {VERSIONS as dialogflowVersions, dialogflow} from './dialogflow';
 import {
@@ -405,7 +420,9 @@ import {
   VERSIONS as marketingplatformadminVersions,
   marketingplatformadmin,
 } from './marketingplatformadmin';
+import {VERSIONS as meetVersions, meet} from './meet';
 import {VERSIONS as memcacheVersions, memcache} from './memcache';
+import {VERSIONS as merchantapiVersions, merchantapi} from './merchantapi';
 import {VERSIONS as metastoreVersions, metastore} from './metastore';
 import {
   VERSIONS as migrationcenterVersions,
@@ -510,6 +527,7 @@ import {
   VERSIONS as policytroubleshooterVersions,
   policytroubleshooter,
 } from './policytroubleshooter';
+import {VERSIONS as pollenVersions, pollen} from './pollen';
 import {VERSIONS as polyVersions, poly} from './poly';
 import {VERSIONS as privatecaVersions, privateca} from './privateca';
 import {
@@ -603,6 +621,7 @@ import {
   VERSIONS as smartdevicemanagementVersions,
   smartdevicemanagement,
 } from './smartdevicemanagement';
+import {VERSIONS as solarVersions, solar} from './solar';
 import {VERSIONS as sourcerepoVersions, sourcerepo} from './sourcerepo';
 import {VERSIONS as spannerVersions, spanner} from './spanner';
 import {VERSIONS as speechVersions, speech} from './speech';
@@ -698,6 +717,7 @@ export const APIS: APIList = {
   accessapproval: accessapprovalVersions,
   accesscontextmanager: accesscontextmanagerVersions,
   acmedns: acmednsVersions,
+  addressvalidation: addressvalidationVersions,
   adexchangebuyer: adexchangebuyerVersions,
   adexchangebuyer2: adexchangebuyer2Versions,
   adexperiencereport: adexperiencereportVersions,
@@ -707,6 +727,7 @@ export const APIS: APIList = {
   adsensehost: adsensehostVersions,
   advisorynotifications: advisorynotificationsVersions,
   aiplatform: aiplatformVersions,
+  airquality: airqualityVersions,
   alertcenter: alertcenterVersions,
   alloydb: alloydbVersions,
   analytics: analyticsVersions,
@@ -721,6 +742,7 @@ export const APIS: APIList = {
   apigateway: apigatewayVersions,
   apigeeregistry: apigeeregistryVersions,
   apikeys: apikeysVersions,
+  apim: apimVersions,
   appengine: appengineVersions,
   apphub: apphubVersions,
   appsactivity: appsactivityVersions,
@@ -758,6 +780,7 @@ export const APIS: APIList = {
   cloudbilling: cloudbillingVersions,
   cloudbuild: cloudbuildVersions,
   cloudchannel: cloudchannelVersions,
+  cloudcontrolspartner: cloudcontrolspartnerVersions,
   clouddebugger: clouddebuggerVersions,
   clouddeploy: clouddeployVersions,
   clouderrorreporting: clouderrorreportingVersions,
@@ -775,6 +798,7 @@ export const APIS: APIList = {
   cloudtrace: cloudtraceVersions,
   composer: composerVersions,
   compute: computeVersions,
+  config: configVersions,
   connectors: connectorsVersions,
   contactcenteraiplatform: contactcenteraiplatformVersions,
   contactcenterinsights: contactcenterinsightsVersions,
@@ -797,6 +821,7 @@ export const APIS: APIList = {
   datastore: datastoreVersions,
   datastream: datastreamVersions,
   deploymentmanager: deploymentmanagerVersions,
+  developerconnect: developerconnectVersions,
   dfareporting: dfareportingVersions,
   dialogflow: dialogflowVersions,
   digitalassetlinks: digitalassetlinksVersions,
@@ -867,7 +892,9 @@ export const APIS: APIList = {
   managedidentities: managedidentitiesVersions,
   manufacturers: manufacturersVersions,
   marketingplatformadmin: marketingplatformadminVersions,
+  meet: meetVersions,
   memcache: memcacheVersions,
+  merchantapi: merchantapiVersions,
   metastore: metastoreVersions,
   migrationcenter: migrationcenterVersions,
   ml: mlVersions,
@@ -903,6 +930,7 @@ export const APIS: APIList = {
   policyanalyzer: policyanalyzerVersions,
   policysimulator: policysimulatorVersions,
   policytroubleshooter: policytroubleshooterVersions,
+  pollen: pollenVersions,
   poly: polyVersions,
   privateca: privatecaVersions,
   prod_tt_sasportal: prod_tt_sasportalVersions,
@@ -939,6 +967,7 @@ export const APIS: APIList = {
   siteVerification: siteVerificationVersions,
   slides: slidesVersions,
   smartdevicemanagement: smartdevicemanagementVersions,
+  solar: solarVersions,
   sourcerepo: sourcerepoVersions,
   spanner: spannerVersions,
   speech: speechVersions,
@@ -988,6 +1017,7 @@ export class GeneratedAPIs {
   accessapproval = accessapproval;
   accesscontextmanager = accesscontextmanager;
   acmedns = acmedns;
+  addressvalidation = addressvalidation;
   adexchangebuyer = adexchangebuyer;
   adexchangebuyer2 = adexchangebuyer2;
   adexperiencereport = adexperiencereport;
@@ -997,6 +1027,7 @@ export class GeneratedAPIs {
   adsensehost = adsensehost;
   advisorynotifications = advisorynotifications;
   aiplatform = aiplatform;
+  airquality = airquality;
   alertcenter = alertcenter;
   alloydb = alloydb;
   analytics = analytics;
@@ -1011,6 +1042,7 @@ export class GeneratedAPIs {
   apigateway = apigateway;
   apigeeregistry = apigeeregistry;
   apikeys = apikeys;
+  apim = apim;
   appengine = appengine;
   apphub = apphub;
   appsactivity = appsactivity;
@@ -1048,6 +1080,7 @@ export class GeneratedAPIs {
   cloudbilling = cloudbilling;
   cloudbuild = cloudbuild;
   cloudchannel = cloudchannel;
+  cloudcontrolspartner = cloudcontrolspartner;
   clouddebugger = clouddebugger;
   clouddeploy = clouddeploy;
   clouderrorreporting = clouderrorreporting;
@@ -1065,6 +1098,7 @@ export class GeneratedAPIs {
   cloudtrace = cloudtrace;
   composer = composer;
   compute = compute;
+  config = config;
   connectors = connectors;
   contactcenteraiplatform = contactcenteraiplatform;
   contactcenterinsights = contactcenterinsights;
@@ -1087,6 +1121,7 @@ export class GeneratedAPIs {
   datastore = datastore;
   datastream = datastream;
   deploymentmanager = deploymentmanager;
+  developerconnect = developerconnect;
   dfareporting = dfareporting;
   dialogflow = dialogflow;
   digitalassetlinks = digitalassetlinks;
@@ -1157,7 +1192,9 @@ export class GeneratedAPIs {
   managedidentities = managedidentities;
   manufacturers = manufacturers;
   marketingplatformadmin = marketingplatformadmin;
+  meet = meet;
   memcache = memcache;
+  merchantapi = merchantapi;
   metastore = metastore;
   migrationcenter = migrationcenter;
   ml = ml;
@@ -1193,6 +1230,7 @@ export class GeneratedAPIs {
   policyanalyzer = policyanalyzer;
   policysimulator = policysimulator;
   policytroubleshooter = policytroubleshooter;
+  pollen = pollen;
   poly = poly;
   privateca = privateca;
   prod_tt_sasportal = prod_tt_sasportal;
@@ -1229,6 +1267,7 @@ export class GeneratedAPIs {
   siteVerification = siteVerification;
   slides = slides;
   smartdevicemanagement = smartdevicemanagement;
+  solar = solar;
   sourcerepo = sourcerepo;
   spanner = spanner;
   speech = speech;

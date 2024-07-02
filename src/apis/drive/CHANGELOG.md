@@ -1,5 +1,55 @@
 # Changelog
 
+## [8.11.0](https://github.com/googleapis/google-api-nodejs-client/compare/drive-v8.10.0...drive-v8.11.0) (2024-06-21)
+
+
+### Features
+
+* **drive:** update the API ([82c1aef](https://github.com/googleapis/google-api-nodejs-client/commit/82c1aefc9b20a26d72a7915a5838556c76c292fb))
+
+
+### Bug Fixes
+
+* **drive:** update the API ([5f88b3e](https://github.com/googleapis/google-api-nodejs-client/commit/5f88b3e4deaa2aa30bc78df0e5c2e9e387e7d161))
+
+## [8.10.0](https://github.com/googleapis/google-api-nodejs-client/compare/drive-v8.9.0...drive-v8.10.0) (2024-06-06)
+
+
+### Features
+
+* **drive:** update the API ([82c1aef](https://github.com/googleapis/google-api-nodejs-client/commit/82c1aefc9b20a26d72a7915a5838556c76c292fb))
+
+
+### Bug Fixes
+
+* **drive:** update the API ([5f88b3e](https://github.com/googleapis/google-api-nodejs-client/commit/5f88b3e4deaa2aa30bc78df0e5c2e9e387e7d161))
+
+## [8.9.0](https://github.com/googleapis/google-api-nodejs-client/compare/drive-v8.8.0...drive-v8.9.0) (2024-06-03)
+
+
+### Features
+
+* **drive:** update the API ([82c1aef](https://github.com/googleapis/google-api-nodejs-client/commit/82c1aefc9b20a26d72a7915a5838556c76c292fb))
+
+## [8.8.0](https://github.com/googleapis/google-api-nodejs-client/compare/drive-v8.7.1...drive-v8.8.0) (2024-05-02)
+
+
+### Features
+
+* **drive:** update the API ([3862e92](https://github.com/googleapis/google-api-nodejs-client/commit/3862e92b3592f36aca7861c8e6d7bfde7b7e6701))
+
+
+### Bug Fixes
+
+* **drive:** update the API ([5f88b3e](https://github.com/googleapis/google-api-nodejs-client/commit/5f88b3e4deaa2aa30bc78df0e5c2e9e387e7d161))
+
+## [8.7.1](https://github.com/googleapis/google-api-nodejs-client/compare/drive-v8.7.0...drive-v8.7.1) (2024-05-02)
+
+
+### Bug Fixes
+
+* **drive:** update the API ([5f88b3e](https://github.com/googleapis/google-api-nodejs-client/commit/5f88b3e4deaa2aa30bc78df0e5c2e9e387e7d161))
+
 ## [8.7.0](https://github.com/googleapis/google-api-nodejs-client/compare/drive-v8.6.0...drive-v8.7.0) (2024-02-02)
 
 

@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/firebaseml",
-  "version": "1.0.6",
+  "version": "5.0.0",
   "description": "firebaseml",
   "main": "build/index.js",
   "types": "build/index.d.ts",

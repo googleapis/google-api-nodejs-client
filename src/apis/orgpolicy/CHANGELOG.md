@@ -1,5 +1,54 @@
 # Changelog
 
+## [4.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/orgpolicy-v3.0.0...orgpolicy-v4.0.0) (2024-06-21)
+
+
+### ⚠ BREAKING CHANGES
+
+* **orgpolicy:** This release has breaking changes.
+
+### Features
+
+* **orgpolicy:** update the API ([5711ec6](https://github.com/googleapis/google-api-nodejs-client/commit/5711ec69392d4eb6545182c073b11f0241f5c94c))
+* **orgpolicy:** update the API ([9abcb3a](https://github.com/googleapis/google-api-nodejs-client/commit/9abcb3ab05e3f8ceac3d5f6fb77b69b6312d3d78))
+
+## [3.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/orgpolicy-v2.0.0...orgpolicy-v3.0.0) (2024-06-06)
+
+
+### ⚠ BREAKING CHANGES
+
+* **orgpolicy:** This release has breaking changes.
+
+### Features
+
+* **orgpolicy:** update the API ([5711ec6](https://github.com/googleapis/google-api-nodejs-client/commit/5711ec69392d4eb6545182c073b11f0241f5c94c))
+* **orgpolicy:** update the API ([9abcb3a](https://github.com/googleapis/google-api-nodejs-client/commit/9abcb3ab05e3f8ceac3d5f6fb77b69b6312d3d78))
+
+## [2.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/orgpolicy-v1.4.0...orgpolicy-v2.0.0) (2024-06-03)
+
+
+### ⚠ BREAKING CHANGES
+
+* **orgpolicy:** This release has breaking changes.
+
+### Features
+
+* **orgpolicy:** update the API ([5711ec6](https://github.com/googleapis/google-api-nodejs-client/commit/5711ec69392d4eb6545182c073b11f0241f5c94c))
+
+## [1.4.0](https://github.com/googleapis/google-api-nodejs-client/compare/orgpolicy-v1.3.0...orgpolicy-v1.4.0) (2024-05-02)
+
+
+### Features
+
+* **orgpolicy:** update the API ([9abcb3a](https://github.com/googleapis/google-api-nodejs-client/commit/9abcb3ab05e3f8ceac3d5f6fb77b69b6312d3d78))
+
+## [1.3.0](https://github.com/googleapis/google-api-nodejs-client/compare/orgpolicy-v1.2.0...orgpolicy-v1.3.0) (2024-05-02)
+
+
+### Features
+
+* **orgpolicy:** update the API ([9abcb3a](https://github.com/googleapis/google-api-nodejs-client/commit/9abcb3ab05e3f8ceac3d5f6fb77b69b6312d3d78))
+
 ## [1.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/orgpolicy-v1.1.0...orgpolicy-v1.2.0) (2024-01-05)
 
 

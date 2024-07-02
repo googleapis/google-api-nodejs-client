@@ -1,5 +1,61 @@
 # Changelog
 
+## [17.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/run-v17.0.0...run-v17.1.0) (2024-06-03)
+
+
+### Features
+
+* **run:** update the API ([ee8a219](https://github.com/googleapis/google-api-nodejs-client/commit/ee8a21916b7a613a65fae5a86bddc2b29516e450))
+
+## [17.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/run-v16.2.0...run-v17.0.0) (2024-05-10)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#3484](https://github.com/googleapis/google-api-nodejs-client/issues/3484)) ([99b6c8d](https://github.com/googleapis/google-api-nodejs-client/commit/99b6c8de5beb8447d177048a64a977ee39ee5ee6))
+* run the generator ([#3487](https://github.com/googleapis/google-api-nodejs-client/issues/3487)) ([673c364](https://github.com/googleapis/google-api-nodejs-client/commit/673c364a557c466c34052bef761d00e542f96516))
+
+## [16.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/run-v16.1.0...run-v16.2.0) (2024-05-07)
+
+
+### Features
+
+* **run:** update the API ([df2306a](https://github.com/googleapis/google-api-nodejs-client/commit/df2306ae0a2f8fa008b6797f81517d0dd4b0d627))
+
+## [16.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/run-v16.0.0...run-v16.1.0) (2024-05-02)
+
+
+### Features
+
+* **run:** update the API ([4adbdec](https://github.com/googleapis/google-api-nodejs-client/commit/4adbdec9d3771f3c024f978fab7897e547825b11))
+
+## [16.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/run-v15.0.0...run-v16.0.0) (2024-04-04)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#3434](https://github.com/googleapis/google-api-nodejs-client/issues/3434)) ([f0db524](https://github.com/googleapis/google-api-nodejs-client/commit/f0db524bb26f05cea3dec4c0ed66b496399e3857))
+* run the generator ([#3456](https://github.com/googleapis/google-api-nodejs-client/issues/3456)) ([a865e81](https://github.com/googleapis/google-api-nodejs-client/commit/a865e81539b315d3b321650663ba0b2555b1e5a1))
+* **run:** update the API ([7c08e19](https://github.com/googleapis/google-api-nodejs-client/commit/7c08e19e0edf70a3ef9fc13003ba5413e5f7ca60))
+* **run:** update the API ([10c815f](https://github.com/googleapis/google-api-nodejs-client/commit/10c815fd52dec0c800c2dca5dd055a1b904715d0))
+* **run:** update the API ([48a19bf](https://github.com/googleapis/google-api-nodejs-client/commit/48a19bf416bb1648a07e7efc4443d5202f6b8be1))
+* **run:** update the API ([5c8c879](https://github.com/googleapis/google-api-nodejs-client/commit/5c8c8796e7107dca1b7ebca8856b5a94ad15bc33))
+
+
+### Bug Fixes
+
+* **run:** update the API ([d6e4c9e](https://github.com/googleapis/google-api-nodejs-client/commit/d6e4c9edd6aa66a3c2d4f13acb6ad45a0ac14218))
+
 ## [15.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/run-v14.2.0...run-v15.0.0) (2024-03-12)
 
 

@@ -1,5 +1,44 @@
 # Changelog
 
+## [1.5.0](https://github.com/googleapis/google-api-nodejs-client/compare/domains-v1.4.1...domains-v1.5.0) (2024-06-06)
+
+
+### Features
+
+* **domains:** update the API ([d34c2a0](https://github.com/googleapis/google-api-nodejs-client/commit/d34c2a09071ea3431f88ce0b6be0757a9682f66e))
+
+
+### Bug Fixes
+
+* **domains:** update the API ([e24433d](https://github.com/googleapis/google-api-nodejs-client/commit/e24433d3aca2e97884cb42a17ad6e662c51b1fa8))
+
+## [1.4.1](https://github.com/googleapis/google-api-nodejs-client/compare/domains-v1.4.0...domains-v1.4.1) (2024-06-03)
+
+
+### Bug Fixes
+
+* **domains:** update the API ([e24433d](https://github.com/googleapis/google-api-nodejs-client/commit/e24433d3aca2e97884cb42a17ad6e662c51b1fa8))
+
+## [1.4.0](https://github.com/googleapis/google-api-nodejs-client/compare/domains-v1.3.0...domains-v1.4.0) (2024-05-02)
+
+
+### Features
+
+* **domains:** update the API ([d34c2a0](https://github.com/googleapis/google-api-nodejs-client/commit/d34c2a09071ea3431f88ce0b6be0757a9682f66e))
+
+
+### Bug Fixes
+
+* **domains:** update the API ([c13b48f](https://github.com/googleapis/google-api-nodejs-client/commit/c13b48f8337009a023b831c8db4368e51d49da0f))
+* **domains:** update the API ([3ab647b](https://github.com/googleapis/google-api-nodejs-client/commit/3ab647b49cebf3c54bc34054da5d419d0c0cffa5))
+
+## [1.3.0](https://github.com/googleapis/google-api-nodejs-client/compare/domains-v1.2.2...domains-v1.3.0) (2024-05-02)
+
+
+### Features
+
+* **domains:** update the API ([d34c2a0](https://github.com/googleapis/google-api-nodejs-client/commit/d34c2a09071ea3431f88ce0b6be0757a9682f66e))
+
 ## [1.2.2](https://github.com/googleapis/google-api-nodejs-client/compare/domains-v1.2.1...domains-v1.2.2) (2024-02-07)
 
 

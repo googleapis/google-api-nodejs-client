@@ -1137,7 +1137,7 @@ export namespace content_v2_1 {
      */
     paymentsManager?: boolean | null;
     /**
-     * Whether user is a reporting manager.
+     * Whether user is a reporting manager. This role is equivalent to the Performance and insights role in Merchant Center.
      */
     reportingManager?: boolean | null;
   }
@@ -1160,6 +1160,10 @@ export namespace content_v2_1 {
      */
     builtinSimpleAction?: Schema$BuiltInSimpleAction;
     /**
+     * Action implemented and performed in (your) third-party application. The application needs to show an additional content and input form to the merchant as specified for given action. They can trigger the action only when they provided all required inputs.
+     */
+    builtinUserInputAction?: Schema$BuiltInUserInputAction;
+    /**
      * Label of the action button.
      */
     buttonLabel?: string | null;
@@ -1175,6 +1179,52 @@ export namespace content_v2_1 {
      * List of reasons why the action is not available. The list of reasons is empty if the action is available. If there is only one reason, it can be displayed next to the disabled button. If there are more reasons, all of them should be displayed, for example in a pop-up dialog.
      */
     reasons?: Schema$ActionReason[];
+  }
+  /**
+   * Flow that can be selected for an action. When merchant selects a flow, application should open a dialog with more information and input form.
+   */
+  export interface Schema$ActionFlow {
+    /**
+     * Label for the button to trigger the action from the action dialog. For example: "Request review"
+     */
+    dialogButtonLabel?: string | null;
+    /**
+     * Important message to be highlighted in the request dialog. For example: "You can only request a review for disagreeing with this issue once. If it's not approved, you'll need to fix the issue and wait a few days before you can request another review."
+     */
+    dialogCallout?: Schema$Callout;
+    /**
+     * Message displayed in the request dialog. For example: "Make sure you've fixed all your country-specific issues. If not, you may have to wait 7 days to request another review". There may be an more information to be shown in a tooltip.
+     */
+    dialogMessage?: Schema$TextWithTooltip;
+    /**
+     * Title of the request dialog. For example: "Before you request a review"
+     */
+    dialogTitle?: string | null;
+    /**
+     * Not for display but need to be sent back for the selected action flow.
+     */
+    id?: string | null;
+    /**
+     * A list of input fields.
+     */
+    inputs?: Schema$InputField[];
+    /**
+     * Text value describing the intent for the action flow. It can be used as an input label if merchant needs to pick one of multiple flows. For example: "I disagree with the issue"
+     */
+    label?: string | null;
+  }
+  /**
+   * Input provided by the merchant.
+   */
+  export interface Schema$ActionInput {
+    /**
+     * Required. Id of the selected action flow.
+     */
+    actionFlowId?: string | null;
+    /**
+     * Required. Values for input fields.
+     */
+    inputValues?: Schema$InputValue[];
   }
   /**
    * A single reason why the action is not available.
@@ -1378,6 +1428,19 @@ export namespace content_v2_1 {
      */
     title?: string | null;
   }
+  /**
+   * Action that is implemented and performed in (your) third-party application. The application needs to show an additional content and input form to the merchant. They can start the action only when they provided all required inputs. The application will request processing of the action by calling the [triggeraction method](https://developers.google.com/shopping-content/reference/rest/v2.1/merchantsupport/triggeraction).
+   */
+  export interface Schema$BuiltInUserInputAction {
+    /**
+     * Internal details. Not for display but need to be sent back when triggering the action.
+     */
+    actionContext?: string | null;
+    /**
+     * Actions may provide multiple different flows. Merchant selects one that fits best to their intent. Selecting the flow is the first step in user's interaction with the action. It affects what input fields will be available and required and also how the request will be processed.
+     */
+    flows?: Schema$ActionFlow[];
+  }
   export interface Schema$BusinessDayConfig {
     /**
      * Regular business days, such as '"monday"'. May not be empty.
@@ -1424,6 +1487,19 @@ export namespace content_v2_1 {
      * Output only. The current participation stage for the program.
      */
     participationStage?: string | null;
+  }
+  /**
+   * An important message that should be highlighted. Usually displayed as a banner.
+   */
+  export interface Schema$Callout {
+    /**
+     * A full message that needs to be shown to the merchant.
+     */
+    fullMessage?: Schema$TextWithTooltip;
+    /**
+     * Can be used to render messages with different severity in different styles. Snippets off all types contain important information that should be displayed to merchants.
+     */
+    styleHint?: string | null;
   }
   /**
    * Request message for the CaptureOrder method.
@@ -2493,6 +2569,19 @@ export namespace content_v2_1 {
     cooldownTime?: string | null;
   }
   /**
+   * Conditions to be met for a product to have free shipping.
+   */
+  export interface Schema$FreeShippingThreshold {
+    /**
+     * Required. The [CLDR territory code](http://www.unicode.org/repos/cldr/tags/latest/common/main/en.xml) of the country to which an item will ship.
+     */
+    country?: string | null;
+    /**
+     * Required. The minimum product price for the shipping cost to become free. Represented as a number.
+     */
+    priceThreshold?: Schema$Price;
+  }
+  /**
    * Response containing generated recommendations.
    */
   export interface Schema$GenerateRecommendationsResponse {
@@ -2624,6 +2713,134 @@ export namespace content_v2_1 {
     type?: string | null;
   }
   /**
+   * Input field that needs to be available to the merchant. If the field is marked as required, then a value needs to be provided for a successful processing of the request.
+   */
+  export interface Schema$InputField {
+    /**
+     * Input field to provide a boolean value. Corresponds to the [html input type=checkbox](https://www.w3.org/TR/2012/WD-html-markup-20121025/input.checkbox.html#input.checkbox).
+     */
+    checkboxInput?: Schema$InputFieldCheckboxInput;
+    /**
+     * Input field to select one of the offered choices. Corresponds to the [html input type=radio](https://www.w3.org/TR/2012/WD-html-markup-20121025/input.radio.html#input.radio).
+     */
+    choiceInput?: Schema$InputFieldChoiceInput;
+    /**
+     * Not for display but need to be sent back for the given input field.
+     */
+    id?: string | null;
+    /**
+     * Input field label. There may be more information to be shown in a tooltip.
+     */
+    label?: Schema$TextWithTooltip;
+    /**
+     * Whether the field is required. The action button needs to stay disabled till values for all required fields are provided.
+     */
+    required?: boolean | null;
+    /**
+     * Input field to provide text information. Corresponds to the [html input type=text](https://www.w3.org/TR/2012/WD-html-markup-20121025/input.text.html#input.text) or [html textarea](https://www.w3.org/TR/2012/WD-html-markup-20121025/textarea.html#textarea).
+     */
+    textInput?: Schema$InputFieldTextInput;
+  }
+  /**
+   * Checkbox input allows merchants to provide a boolean value. Corresponds to the [html input type=checkbox](https://www.w3.org/TR/2012/WD-html-markup-20121025/input.checkbox.html#input.checkbox). If merchant checks the box, the input value for the field is `true`, otherwise it is `false`. This type of input is often used as a confirmation that the merchant completed required steps before they are allowed to start the action. In such a case, the input field is marked as required and the button to trigger the action should stay disabled until the merchant checks the box.
+   */
+  export interface Schema$InputFieldCheckboxInput {}
+  /**
+   * Choice input allows merchants to select one of the offered choices. Some choices may be linked to additional input fields that should be displayed under or next to the choice option. The value for the additional input field needs to be provided only when the specific choice is selected by the merchant. For example, additional input field can be hidden or disabled until the merchant selects the specific choice.
+   */
+  export interface Schema$InputFieldChoiceInput {
+    /**
+     * A list of choices. Only one option can be selected.
+     */
+    options?: Schema$InputFieldChoiceInputChoiceInputOption[];
+  }
+  /**
+   * A choice that merchant can select.
+   */
+  export interface Schema$InputFieldChoiceInputChoiceInputOption {
+    /**
+     * Input that should be displayed when this option is selected. The additional input will not contain a `ChoiceInput`.
+     */
+    additionalInput?: Schema$InputField;
+    /**
+     * Not for display but need to be sent back for the selected choice option.
+     */
+    id?: string | null;
+    /**
+     * Short description of the choice option. There may be more information to be shown as a tooltip.
+     */
+    label?: Schema$TextWithTooltip;
+  }
+  /**
+   * Text input allows merchants to provide a text value.
+   */
+  export interface Schema$InputFieldTextInput {
+    /**
+     * Additional info regarding the field to be displayed to merchant. For example, warning to not include personal identifiable information. There may be more information to be shown in a tooltip.
+     */
+    additionalInfo?: Schema$TextWithTooltip;
+    /**
+     * Text to be used as the [aria-label](https://www.w3.org/TR/WCAG20-TECHS/ARIA14.html) for the input.
+     */
+    ariaLabel?: string | null;
+    /**
+     * Information about the required format. If present, it should be shown close to the input field to help merchants to provide a correct value. For example: "VAT numbers should be in a format similar to SK9999999999"
+     */
+    formatInfo?: string | null;
+    /**
+     * Type of the text input
+     */
+    type?: string | null;
+  }
+  /**
+   * Input provided by the merchant for input field.
+   */
+  export interface Schema$InputValue {
+    /**
+     * Value for checkbox input field.
+     */
+    checkboxInputValue?: Schema$InputValueCheckboxInputValue;
+    /**
+     * Value for choice input field.
+     */
+    choiceInputValue?: Schema$InputValueChoiceInputValue;
+    /**
+     * Required. Id of the corresponding input field.
+     */
+    inputFieldId?: string | null;
+    /**
+     * Value for text input field.
+     */
+    textInputValue?: Schema$InputValueTextInputValue;
+  }
+  /**
+   * Value for checkbox input field.
+   */
+  export interface Schema$InputValueCheckboxInputValue {
+    /**
+     * Required. True if the merchant checked the box field. False otherwise.
+     */
+    value?: boolean | null;
+  }
+  /**
+   * Value for choice input field.
+   */
+  export interface Schema$InputValueChoiceInputValue {
+    /**
+     * Required. Id of the option that was selected by the merchant.
+     */
+    choiceInputOptionId?: string | null;
+  }
+  /**
+   * Value for text input field.
+   */
+  export interface Schema$InputValueTextInputValue {
+    /**
+     * Required. Text provided by the merchant.
+     */
+    value?: string | null;
+  }
+  /**
    * Request message for the `InsertCheckoutSettings` method.
    */
   export interface Schema$InsertCheckoutSettingsRequest {
@@ -2632,11 +2849,22 @@ export namespace content_v2_1 {
      */
     uriSettings?: Schema$UrlSettings;
   }
+  /**
+   * Details of a monthly installment payment offering. [Learn more](https://support.google.com/merchants/answer/6324474) about installments.
+   */
   export interface Schema$Installment {
     /**
      * The amount the buyer has to pay per month.
      */
     amount?: Schema$Price;
+    /**
+     * Optional. Type of installment payments. Supported values are: - "`finance`" - "`lease`"
+     */
+    creditType?: string | null;
+    /**
+     * Optional. The initial down payment amount the buyer has to pay.
+     */
+    downpayment?: Schema$Price;
     /**
      * The number of installments the buyer has to pay.
      */
@@ -2673,7 +2901,7 @@ export namespace content_v2_1 {
   }
   export interface Schema$LiaAboutPageSettings {
     /**
-     * The status of the verification process for the About page. Acceptable values are: - "`active`" - "`inactive`" - "`pending`"
+     * The status of the verification process for the About page. Supported values are: - "`active`" - "`inactive`" - "`pending`"
      */
     status?: string | null;
     /**
@@ -3197,19 +3425,30 @@ export namespace content_v2_1 {
      */
     locationIds?: string[] | null;
   }
-  export interface Schema$LoyaltyPoints {
+  /**
+   * Allows the setting up of loyalty program benefits (for example price or points). https://support.google.com/merchants/answer/12922446
+   */
+  export interface Schema$LoyaltyProgram {
     /**
-     * Name of loyalty points program. It is recommended to limit the name to 12 full-width characters or 24 Roman characters.
+     * Optional. The cashback that can be used for future purchases.
      */
-    name?: string | null;
+    cashbackForFutureUse?: Schema$Price;
     /**
-     * The retailer's loyalty points in absolute value.
+     * Optional. The amount of loyalty points earned on a purchase.
      */
-    pointsValue?: string | null;
+    loyaltyPoints?: string | null;
     /**
-     * The ratio of a point when converted to currency. Google assumes currency based on Merchant Center settings. If ratio is left out, it defaults to 1.0.
+     * Optional. The price for members of the given tier (instant discount price). Must be smaller or equal to the regular price.
      */
-    ratio?: number | null;
+    price?: Schema$Price;
+    /**
+     * Required. The label of the loyalty program. This is an internal label that uniquely identifies the relationship between a merchant entity and a loyalty program entity. It must be provided so that system can associate the assets below (for example, price and points) with a merchant. The corresponding program must be linked to the merchant account.
+     */
+    programLabel?: string | null;
+    /**
+     * Required. The label of the tier within the loyalty program. Must match one of the labels within the program.
+     */
+    tierLabel?: string | null;
   }
   /**
    * "Merchant Center Destination" sources can be used to send conversion events from a website using a Google tag directly to a Merchant Center account where the source is created.
@@ -3347,11 +3586,11 @@ export namespace content_v2_1 {
    */
   export interface Schema$Metrics {
     /**
-     * Average order size - the average number of items in an order. **This metric cannot be segmented by product dimensions and customer_country_code.**
+     * *Deprecated*: This field is no longer supported and retrieving it returns 0 starting from May 2024. Average order size - the average number of items in an order. **This metric cannot be segmented by product dimensions and customer_country_code.**
      */
     aos?: number | null;
     /**
-     * Average order value in micros (1 millionth of a standard unit, 1 USD = 1000000 micros) - the average value (total price of items) of all placed orders. The currency of the returned value is stored in the currency_code segment. If this metric is selected, 'segments.currency_code' is automatically added to the SELECT clause in the search query (unless it is explicitly selected by the user) and the currency_code segment is populated in the response. **This metric cannot be segmented by product dimensions and customer_country_code.**
+     * *Deprecated*: This field is no longer supported and retrieving it returns 0 starting from May 2024. Average order value in micros (1 millionth of a standard unit, 1 USD = 1000000 micros) - the average value (total price of items) of all placed orders. The currency of the returned value is stored in the currency_code segment. If this metric is selected, 'segments.currency_code' is automatically added to the SELECT clause in the search query (unless it is explicitly selected by the user) and the currency_code segment is populated in the response. **This metric cannot be segmented by product dimensions and customer_country_code.**
      */
     aovMicros?: number | null;
     /**
@@ -3359,15 +3598,15 @@ export namespace content_v2_1 {
      */
     clicks?: string | null;
     /**
-     * Number of conversions divided by the number of clicks, reported on the impression date. The metric is currently available only for the FREE_PRODUCT_LISTING program.
+     * Number of conversions divided by the number of clicks, reported on the impression date. The metric is currently available only for the `FREE_PRODUCT_LISTING` program.
      */
     conversionRate?: number | null;
     /**
-     * Number of conversions attributed to the product, reported on the conversion date. Depending on the attribution model, a conversion might be distributed across multiple clicks, where each click gets its own credit assigned. This metric is a sum of all such credits. The metric is currently available only for the FREE_PRODUCT_LISTING program.
+     * Number of conversions attributed to the product, reported on the conversion date. Depending on the attribution model, a conversion might be distributed across multiple clicks, where each click gets its own credit assigned. This metric is a sum of all such credits. The metric is currently available only for the `FREE_PRODUCT_LISTING` program.
      */
     conversions?: number | null;
     /**
-     * Value of conversions in micros (1 millionth of a standard unit, 1 USD = 1000000 micros) attributed to the product, reported on the conversion date. The metric is currently available only for the FREE_PRODUCT_LISTING program. The currency of the returned value is stored in the currency_code segment. If this metric is selected, 'segments.currency_code' is automatically added to the SELECT clause in the search query (unless it is explicitly selected by the user) and the currency_code segment is populated in the response.
+     * Value of conversions in micros (1 millionth of a standard unit, 1 USD = 1000000 micros) attributed to the product, reported on the conversion date. The metric is currently available only for the `FREE_PRODUCT_LISTING` program. The currency of the returned value is stored in the currency_code segment. If this metric is selected, 'segments.currency_code' is automatically added to the SELECT clause in the search query (unless it is explicitly selected by the user) and the currency_code segment is populated in the response.
      */
     conversionValueMicros?: string | null;
     /**
@@ -3375,7 +3614,7 @@ export namespace content_v2_1 {
      */
     ctr?: number | null;
     /**
-     * Average number of days between an order being placed and the order being fully shipped, reported on the last shipment date. **This metric cannot be segmented by product dimensions and customer_country_code.**
+     * *Deprecated*: This field is no longer supported and retrieving it returns 0 starting from May 2024. Average number of days between an order being placed and the order being fully shipped, reported on the last shipment date. **This metric cannot be segmented by product dimensions and customer_country_code.**
      */
     daysToShip?: number | null;
     /**
@@ -3383,59 +3622,59 @@ export namespace content_v2_1 {
      */
     impressions?: string | null;
     /**
-     * Average number of days between an item being ordered and the item being **This metric cannot be segmented by customer_country_code.**
+     * *Deprecated*: This field is no longer supported and retrieving it returns 0 starting from May 2024. Average number of days between an item being ordered and the item being **This metric cannot be segmented by customer_country_code.**
      */
     itemDaysToShip?: number | null;
     /**
-     * Percentage of shipped items in relation to all finalized items (shipped or rejected by the merchant; unshipped items are not taken into account), reported on the order date. Item fill rate is lowered by merchant rejections. **This metric cannot be segmented by customer_country_code.**
+     * *Deprecated*: This field is no longer supported and retrieving it returns 0 starting from May 2024. Percentage of shipped items in relation to all finalized items (shipped or rejected by the merchant; unshipped items are not taken into account), reported on the order date. Item fill rate is lowered by merchant rejections. **This metric cannot be segmented by customer_country_code.**
      */
     itemFillRate?: number | null;
     /**
-     * Number of ordered items. Excludes customer cancellations that happened within 30 minutes of placing the order. **This metric cannot be segmented by customer_country_code.**
+     * *Deprecated*: This field is no longer supported and retrieving it returns 0 starting from May 2024. Number of ordered items. Excludes customer cancellations that happened within 30 minutes of placing the order. **This metric cannot be segmented by customer_country_code.**
      */
     orderedItems?: string | null;
     /**
-     * Total price of ordered items in micros (1 millionth of a standard unit, 1 USD = 1000000 micros). Excludes shipping, taxes (US only), and customer cancellations that happened within 30 minutes of placing the order. The currency of the returned value is stored in the currency_code segment. If this metric is selected, 'segments.currency_code' is automatically added to the SELECT clause in the search query (unless it is explicitly selected by the user) and the currency_code segment is populated in the response. **This metric cannot be segmented by customer_country_code.**
+     * *Deprecated*: This field is no longer supported and retrieving it returns 0 starting from May 2024. Total price of ordered items in micros (1 millionth of a standard unit, 1 USD = 1000000 micros). Excludes shipping, taxes (US only), and customer cancellations that happened within 30 minutes of placing the order. The currency of the returned value is stored in the currency_code segment. If this metric is selected, 'segments.currency_code' is automatically added to the SELECT clause in the search query (unless it is explicitly selected by the user) and the currency_code segment is populated in the response. **This metric cannot be segmented by customer_country_code.**
      */
     orderedItemSalesMicros?: string | null;
     /**
-     * Number of placed orders. Excludes customer cancellations that happened within 30 minutes of placing the order. **This metric cannot be segmented by product dimensions and customer_country_code.**
+     * *Deprecated*: This field is no longer supported and retrieving it returns 0 starting from May 2024. Number of placed orders. Excludes customer cancellations that happened within 30 minutes of placing the order. **This metric cannot be segmented by product dimensions and customer_country_code.**
      */
     orders?: string | null;
     /**
-     * Number of ordered items canceled by the merchant, reported on the order date. **This metric cannot be segmented by customer_country_code.**
+     * *Deprecated*: This field is no longer supported and retrieving it returns 0 starting from May 2024. Number of ordered items canceled by the merchant, reported on the order date. **This metric cannot be segmented by customer_country_code.**
      */
     rejectedItems?: string | null;
     /**
-     * Number of ordered items sent back for return, reported on the date when the merchant accepted the return. **This metric cannot be segmented by customer_country_code.**
+     * *Deprecated*: This field is no longer supported and retrieving it returns 0 starting from May 2024. Number of ordered items sent back for return, reported on the date when the merchant accepted the return. **This metric cannot be segmented by customer_country_code.**
      */
     returnedItems?: string | null;
     /**
-     * Total price of returned items divided by the total price of shipped items, reported on the order date. If this metric is selected, 'segments.currency_code' is automatically added to the SELECT clause in the search query (unless it is explicitly selected by the user) and the currency_code segment is populated in the response. **This metric cannot be segmented by customer_country_code.**
+     * *Deprecated*: This field is no longer supported and retrieving it returns 0 starting from May 2024. Total price of returned items divided by the total price of shipped items, reported on the order date. If this metric is selected, 'segments.currency_code' is automatically added to the SELECT clause in the search query (unless it is explicitly selected by the user) and the currency_code segment is populated in the response. **This metric cannot be segmented by customer_country_code.**
      */
     returnRate?: number | null;
     /**
-     * Total price of ordered items sent back for return in micros (1 millionth of a standard unit, 1 USD = 1000000 micros), reported on the date when the merchant accepted the return. The currency of the returned value is stored in the currency_code segment. If this metric is selected, 'segments.currency_code' is automatically added to the SELECT clause in the search query (unless it is explicitly selected by the user) and the currency_code segment is populated in the response. **This metric cannot be segmented by customer_country_code.**
+     * *Deprecated*: This field is no longer supported and retrieving it returns 0 starting from May 2024. Total price of ordered items sent back for return in micros (1 millionth of a standard unit, 1 USD = 1000000 micros), reported on the date when the merchant accepted the return. The currency of the returned value is stored in the currency_code segment. If this metric is selected, 'segments.currency_code' is automatically added to the SELECT clause in the search query (unless it is explicitly selected by the user) and the currency_code segment is populated in the response. **This metric cannot be segmented by customer_country_code.**
      */
     returnsMicros?: string | null;
     /**
-     * Number of shipped items, reported on the shipment date. **This metric cannot be segmented by customer_country_code.**
+     * *Deprecated*: This field is no longer supported and retrieving it returns 0 starting from May 2024. Number of shipped items, reported on the shipment date. **This metric cannot be segmented by customer_country_code.**
      */
     shippedItems?: string | null;
     /**
-     * Total price of shipped items in micros (1 millionth of a standard unit, 1 USD = 1000000 micros), reported on the order date. Excludes shipping and taxes (US only). The currency of the returned value is stored in the currency_code segment. If this metric is selected, 'segments.currency_code' is automatically added to the SELECT clause in the search query (unless it is explicitly selected by the user) and the currency_code segment is populated in the response. **This metric cannot be segmented by customer_country_code.**
+     * *Deprecated*: This field is no longer supported and retrieving it returns 0 starting from May 2024. Total price of shipped items in micros (1 millionth of a standard unit, 1 USD = 1000000 micros), reported on the order date. Excludes shipping and taxes (US only). The currency of the returned value is stored in the currency_code segment. If this metric is selected, 'segments.currency_code' is automatically added to the SELECT clause in the search query (unless it is explicitly selected by the user) and the currency_code segment is populated in the response. **This metric cannot be segmented by customer_country_code.**
      */
     shippedItemSalesMicros?: string | null;
     /**
-     * Number of fully shipped orders, reported on the last shipment date. **This metric cannot be segmented by product dimensions and customer_country_code.**
+     * *Deprecated*: This field is no longer supported and retrieving it returns 0 starting from May 2024. Number of fully shipped orders, reported on the last shipment date. **This metric cannot be segmented by product dimensions and customer_country_code.**
      */
     shippedOrders?: string | null;
     /**
-     * Number of ordered items not shipped up until the end of the queried day. If a multi-day period is specified in the search query, the returned value is the average number of unshipped items over the days in the queried period. **This metric cannot be segmented by customer_country_code.**
+     * *Deprecated*: This field is no longer supported and retrieving it returns 0 starting from May 2024. Number of ordered items not shipped up until the end of the queried day. If a multi-day period is specified in the search query, the returned value is the average number of unshipped items over the days in the queried period. **This metric cannot be segmented by customer_country_code.**
      */
     unshippedItems?: number | null;
     /**
-     * Number of orders not shipped or partially shipped up until the end of the queried day. If a multi-day period is specified in the search query, the returned value is the average number of unshipped orders over the days in the queried period. **This metric cannot be segmented by product dimensions and customer_country_code.**
+     * *Deprecated*: This field is no longer supported and retrieving it returns 0 starting from May 2024. Number of orders not shipped or partially shipped up until the end of the queried day. If a multi-day period is specified in the search query, the returned value is the average number of unshipped orders over the days in the queried period. **This metric cannot be segmented by product dimensions and customer_country_code.**
      */
     unshippedOrders?: number | null;
   }
@@ -5709,6 +5948,10 @@ export namespace content_v2_1 {
    */
   export interface Schema$PriceInsights {
     /**
+     * The predicted effectiveness of applying the price suggestion, bucketed.
+     */
+    effectiveness?: string | null;
+    /**
      * The predicted change in clicks as a fraction after introducing the suggested price compared to current active price. For example, 0.05 is a 5% predicted increase in clicks.
      */
     predictedClicksChangeFraction?: number | null;
@@ -5773,6 +6016,10 @@ export namespace content_v2_1 {
      * Target age group of the item.
      */
     ageGroup?: string | null;
+    /**
+     * A safeguard in the [Automated Discounts](//support.google.com/merchants/answer/10295759) and [Dynamic Promotions](//support.google.com/merchants/answer/13949249) projects, ensuring that discounts on merchants' offers do not fall below this value, thereby preserving the offer's value and profitability.
+     */
+    autoPricingMinPrice?: Schema$Price;
     /**
      * Availability status of the item.
      */
@@ -5890,6 +6137,10 @@ export namespace content_v2_1 {
      */
     feedLabel?: string | null;
     /**
+     * Optional. Conditions to be met for a product to have free shipping.
+     */
+    freeShippingThreshold?: Schema$FreeShippingThreshold[];
+    /**
      * Target gender of the item.
      */
     gender?: string | null;
@@ -5946,9 +6197,13 @@ export namespace content_v2_1 {
      */
     linkTemplate?: string | null;
     /**
-     * Loyalty points that users receive after purchasing the item. Japan only.
+     * Loyalty program information that is used to surface loyalty benefits ( for example, better pricing, points, etc) to the user of this item. This signular field points to the latest uploaded loyalty program info. This field will be deprecated in the coming weeks and should not be used in favor of the plural 'LoyaltyProgram' field below.
      */
-    loyaltyPoints?: Schema$LoyaltyPoints;
+    loyaltyProgram?: Schema$LoyaltyProgram;
+    /**
+     * Optional. A list of loyalty program information that is used to surface loyalty benefits (for example, better pricing, points, etc) to the user of this item.
+     */
+    loyaltyPrograms?: Schema$LoyaltyProgram[];
     /**
      * The material of which the item is made.
      */
@@ -6098,6 +6353,14 @@ export namespace content_v2_1 {
      */
     source?: string | null;
     /**
+     * Structured description, for algorithmically (AI)-generated descriptions.
+     */
+    structuredDescription?: Schema$ProductStructuredDescription;
+    /**
+     * Structured title, for algorithmically (AI)-generated titles.
+     */
+    structuredTitle?: Schema$ProductStructuredTitle;
+    /**
      * Number of periods (months or years) and amount of payment per period for an item with an associated subscription contract.
      */
     subscriptionCost?: Schema$ProductSubscriptionCost;
@@ -6164,6 +6427,10 @@ export namespace content_v2_1 {
      * The name of the certification, for example "EPREL". Maximum length is 2000 characters.
      */
     certificationName?: string | null;
+    /**
+     * The certification value (also known as class, level or grade), for example "A+", "C", "gold". Maximum length is 2000 characters.
+     */
+    certificationValue?: string | null;
   }
   /**
    * Product cluster fields. A product cluster is a grouping for different offers that represent the same product. Values are only set for fields requested explicitly in the request's search query.
@@ -6289,7 +6556,7 @@ export namespace content_v2_1 {
      */
     impact?: Schema$ProductIssueImpact;
     /**
-     * Details of the issue as a pre-rendered HTML. HTML elements contain CSS classes that can be used to customize the style of the content. Always sanitize the HTML before embedding it directly to your application. The sanitizer needs to allow basic HTML tags, such as: `div`, `span`, `p`, `a`, `ul`, `li`, `table`, `tr`, `td`. For example, you can use [DOMPurify](https://www.npmjs.com/package/dompurify). CSS classes: * `issue-detail` - top level container for the detail of the issue * `callout-banners` - section of the `issue-detail` with callout banners * `callout-banner` - single callout banner, inside `callout-banners` * `callout-banner-info` - callout with important information (default) * `callout-banner-warning` - callout with a warning * `callout-banner-error` - callout informing about an error (most severe) * `issue-content` - section of the `issue-detail`, contains multiple `content-element` * `content-element` - content element such as a list, link or paragraph, inside `issue-content` * `root-causes` - unordered list with items describing root causes of the issue, inside `issue-content` * `root-causes-intro` - intro text before the `root-causes` list, inside `issue-content` * `segment` - section of the text, `span` inside paragraph * `segment-attribute` - section of the text that represents a product attribute, for example 'image\_link' * `segment-literal` - section of the text that contains a special value, for example '0-1000 kg' * `segment-bold` - section of the text that should be rendered as bold * `segment-italic` - section of the text that should be rendered as italic * `tooltip` - used on paragraphs that should be rendered with a tooltip. A section of the text in such a paragraph will have a class `tooltip-text` and is intended to be shown in a mouse over dialog. If the style is not used, the `tooltip-text` section would be shown on a new line, after the main part of the text. * `tooltip-text` - marks a section of the text within a `tooltip`, that is intended to be shown in a mouse over dialog. * `tooltip-icon` - marks a section of the text within a `tooltip`, that can be replaced with a tooltip icon, for example '?' or 'i'. By default, this section contains a `br` tag, that is separating the main text and the tooltip text when the style is not used. * `tooltip-style-question` - the tooltip shows helpful information, can use the '?' as an icon. * `tooltip-style-info` - the tooltip adds additional information fitting to the context, can use the 'i' as an icon. * `content-moderation` - marks the paragraph that explains how the issue was identified. * `new-element` - Present for new elements added to the pre-rendered content in the future. To make sure that a new content element does not break your style, you can hide everything with this class.
+     * Details of the issue as a pre-rendered HTML. HTML elements contain CSS classes that can be used to customize the style of the content. Always sanitize the HTML before embedding it directly to your application. The sanitizer needs to allow basic HTML tags, such as: `div`, `span`, `p`, `a`, `ul`, `li`, `table`, `tr`, `td`. For example, you can use [DOMPurify](https://www.npmjs.com/package/dompurify). CSS classes: * `issue-detail` - top level container for the detail of the issue * `callout-banners` - section of the `issue-detail` with callout banners * `callout-banner` - single callout banner, inside `callout-banners` * `callout-banner-info` - callout with important information (default) * `callout-banner-warning` - callout with a warning * `callout-banner-error` - callout informing about an error (most severe) * `issue-content` - section of the `issue-detail`, contains multiple `content-element` * `content-element` - content element such as a list, link or paragraph, inside `issue-content` * `root-causes` - unordered list with items describing root causes of the issue, inside `issue-content` * `root-causes-intro` - intro text before the `root-causes` list, inside `issue-content` * `segment` - section of the text, `span` inside paragraph * `segment-attribute` - section of the text that represents a product attribute, for example 'image\_link' * `segment-literal` - section of the text that contains a special value, for example '0-1000 kg' * `segment-bold` - section of the text that should be rendered as bold * `segment-italic` - section of the text that should be rendered as italic * `tooltip` - used on paragraphs that should be rendered with a tooltip. A section of the text in such a paragraph will have a class `tooltip-text` and is intended to be shown in a mouse over dialog. If the style is not used, the `tooltip-text` section would be shown on a new line, after the main part of the text. * `tooltip-text` - marks a section of the text within a `tooltip`, that is intended to be shown in a mouse over dialog. * `tooltip-icon` - marks a section of the text within a `tooltip`, that can be replaced with a tooltip icon, for example '?' or 'i'. By default, this section contains a `br` tag, that is separating the main text and the tooltip text when the style is not used. * `tooltip-style-question` - the tooltip shows helpful information, can use the '?' as an icon. * `tooltip-style-info` - the tooltip adds additional information fitting to the context, can use the 'i' as an icon. * `content-moderation` - marks the paragraph that explains how the issue was identified. * `list-intro` - marks the paragraph that contains an intro for a list. This paragraph will be always followed by a list. * `new-element` - Present for new elements added to the pre-rendered content in the future. To make sure that a new content element does not break your style, you can hide everything with this class.
      */
     prerenderedContent?: string | null;
     /**
@@ -6653,13 +6920,39 @@ export namespace content_v2_1 {
      */
     servability?: string | null;
   }
+  /**
+   * Structured description, for algorithmically (AI)-generated descriptions. See [description](https://support.google.com/merchants/answer/6324468#When_to_use) for more information.
+   */
+  export interface Schema$ProductStructuredDescription {
+    /**
+     * Required. The description text. Maximum length is 5000 characters.
+     */
+    content?: string | null;
+    /**
+     * Optional. The digital source type. Acceptable values are: - "`trained_algorithmic_media`" - "`default`"
+     */
+    digitalSourceType?: string | null;
+  }
+  /**
+   * Structured title, for algorithmically (AI)-generated titles. See [title](https://support.google.com/merchants/answer/6324415#Whentouse) for more information.
+   */
+  export interface Schema$ProductStructuredTitle {
+    /**
+     * Required. The title text. Maximum length is 150 characters.
+     */
+    content?: string | null;
+    /**
+     * Optional. The digital source type. Acceptable values are: - "`trained_algorithmic_media`" - "`default`"
+     */
+    digitalSourceType?: string | null;
+  }
   export interface Schema$ProductSubscriptionCost {
     /**
      * The amount the buyer has to pay per subscription period.
      */
     amount?: Schema$Price;
     /**
-     * The type of subscription period.
+     * The type of subscription period. - "`month`" - "`year`"
      */
     period?: string | null;
     /**
@@ -7436,6 +7729,10 @@ export namespace content_v2_1 {
      * Optional. How the detailed content should be returned. Default option is to return the content as a pre-rendered HTML text.
      */
     contentOption?: string | null;
+    /**
+     * Optional. How actions with user input form should be handled. If not provided, actions will be returned as links that points merchant to Merchant Center where they can request the action.
+     */
+    userInputActionOption?: string | null;
   }
   /**
    * Response containing support content and actions for listed account issues.
@@ -7458,6 +7755,10 @@ export namespace content_v2_1 {
      * Optional. How the detailed content should be returned. Default option is to return the content as a pre-rendered HTML text.
      */
     contentOption?: string | null;
+    /**
+     * Optional. How actions with user input form should be handled. If not provided, actions will be returned as links that points merchant to Merchant Center where they can request the action.
+     */
+    userInputActionOption?: string | null;
   }
   /**
    * Response containing support content and actions for listed product issues.
@@ -8843,6 +9144,23 @@ export namespace content_v2_1 {
     phoneNumber?: string | null;
   }
   /**
+   * Block of text that may contain a tooltip with more information.
+   */
+  export interface Schema$TextWithTooltip {
+    /**
+     * Value of the tooltip as a simple text.
+     */
+    simpleTooltipValue?: string | null;
+    /**
+     * Value of the message as a simple text.
+     */
+    simpleValue?: string | null;
+    /**
+     * The suggested type of an icon for tooltip, if a tooltip is present.
+     */
+    tooltipIconStyle?: string | null;
+  }
+  /**
    * A message that represents a time period.
    */
   export interface Schema$TimePeriod {
@@ -8932,6 +9250,28 @@ export namespace content_v2_1 {
      * Transit time range (min-max) in business days. 0 means same day delivery, 1 means next day delivery.
      */
     minTransitTimeInDays?: number | null;
+  }
+  /**
+   * The payload for the triggered action.
+   */
+  export interface Schema$TriggerActionPayload {
+    /**
+     * Required. The context from the selected action. The value is obtained from rendered issues and needs to be sent back to identify the action that is being triggered.
+     */
+    actionContext?: string | null;
+    /**
+     * Required. Input provided by the merchant.
+     */
+    actionInput?: Schema$ActionInput;
+  }
+  /**
+   * Response informing about the started action.
+   */
+  export interface Schema$TriggerActionResponse {
+    /**
+     * The message for merchant.
+     */
+    message?: string | null;
   }
   /**
    * Request message for the UndeleteConversionSource method.
@@ -9208,6 +9548,7 @@ export namespace content_v2_1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -9303,6 +9644,7 @@ export namespace content_v2_1 {
               '/content/v2.1/{merchantId}/accounts/{accountId}/claimwebsite'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -9400,6 +9742,7 @@ export namespace content_v2_1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -9484,6 +9827,7 @@ export namespace content_v2_1 {
               rootUrl + '/content/v2.1/{merchantId}/accounts/{accountId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -9570,6 +9914,7 @@ export namespace content_v2_1 {
               rootUrl + '/content/v2.1/{merchantId}/accounts/{accountId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -9657,6 +10002,7 @@ export namespace content_v2_1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -9748,6 +10094,7 @@ export namespace content_v2_1 {
               rootUrl + '/content/v2.1/{merchantId}/accounts/{accountId}/link'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -9840,6 +10187,7 @@ export namespace content_v2_1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -9935,6 +10283,7 @@ export namespace content_v2_1 {
               '/content/v2.1/{merchantId}/accounts/{accountId}/listlinks'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -10030,6 +10379,7 @@ export namespace content_v2_1 {
               '/content/v2.1/{merchantId}/accounts/{accountId}/requestphoneverification'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -10118,6 +10468,7 @@ export namespace content_v2_1 {
               rootUrl + '/content/v2.1/{merchantId}/accounts/{accountId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
+            apiVersion: '',
           },
           options
         ),
@@ -10213,6 +10564,7 @@ export namespace content_v2_1 {
               '/content/v2.1/{merchantId}/accounts/{accountId}/updatelabels'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -10310,6 +10662,7 @@ export namespace content_v2_1 {
               '/content/v2.1/{merchantId}/accounts/{accountId}/verifyphonenumber'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -10594,6 +10947,7 @@ export namespace content_v2_1 {
               rootUrl + '/content/v2.1/accounts/{accountId}/credentials'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -10701,6 +11055,7 @@ export namespace content_v2_1 {
               rootUrl + '/content/v2.1/accounts/{accountId}/labels'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -10786,6 +11141,7 @@ export namespace content_v2_1 {
               rootUrl + '/content/v2.1/accounts/{accountId}/labels/{labelId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -10880,6 +11236,7 @@ export namespace content_v2_1 {
               rootUrl + '/content/v2.1/accounts/{accountId}/labels'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -10967,6 +11324,7 @@ export namespace content_v2_1 {
               rootUrl + '/content/v2.1/accounts/{accountId}/labels/{labelId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -11121,6 +11479,7 @@ export namespace content_v2_1 {
               rootUrl + '/content/v2.1/accounts/{accountId}/returncarrier'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -11207,6 +11566,7 @@ export namespace content_v2_1 {
               '/content/v2.1/accounts/{accountId}/returncarrier/{carrierAccountId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -11301,6 +11661,7 @@ export namespace content_v2_1 {
               rootUrl + '/content/v2.1/accounts/{accountId}/returncarrier'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -11396,6 +11757,7 @@ export namespace content_v2_1 {
               '/content/v2.1/accounts/{accountId}/returncarrier/{carrierAccountId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -11545,6 +11907,7 @@ export namespace content_v2_1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -11634,6 +11997,7 @@ export namespace content_v2_1 {
               rootUrl + '/content/v2.1/{merchantId}/accountstatuses/{accountId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -11728,6 +12092,7 @@ export namespace content_v2_1 {
               rootUrl + '/content/v2.1/{merchantId}/accountstatuses'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -11876,6 +12241,7 @@ export namespace content_v2_1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -11964,6 +12330,7 @@ export namespace content_v2_1 {
               rootUrl + '/content/v2.1/{merchantId}/accounttax/{accountId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -12056,6 +12423,7 @@ export namespace content_v2_1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -12143,6 +12511,7 @@ export namespace content_v2_1 {
               rootUrl + '/content/v2.1/{merchantId}/accounttax/{accountId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
+            apiVersion: '',
           },
           options
         ),
@@ -12284,6 +12653,7 @@ export namespace content_v2_1 {
               '/content/v2.1/{merchantId}/buyongoogleprograms/{regionCode}/activate'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -12377,6 +12747,7 @@ export namespace content_v2_1 {
               '/content/v2.1/{merchantId}/buyongoogleprograms/{regionCode}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -12463,6 +12834,7 @@ export namespace content_v2_1 {
               '/content/v2.1/{merchantId}/buyongoogleprograms/{regionCode}/onboard'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -12558,6 +12930,7 @@ export namespace content_v2_1 {
               '/content/v2.1/{merchantId}/buyongoogleprograms/{regionCode}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -12644,6 +13017,7 @@ export namespace content_v2_1 {
               '/content/v2.1/{merchantId}/buyongoogleprograms/{regionCode}/pause'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -12730,6 +13104,7 @@ export namespace content_v2_1 {
               '/content/v2.1/{merchantId}/buyongoogleprograms/{regionCode}/requestreview'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -12921,6 +13296,7 @@ export namespace content_v2_1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -13006,6 +13382,7 @@ export namespace content_v2_1 {
               rootUrl + '/content/v2.1/{merchantId}/collections/{collectionId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -13092,6 +13469,7 @@ export namespace content_v2_1 {
               rootUrl + '/content/v2.1/{merchantId}/collections/{collectionId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -13184,6 +13562,7 @@ export namespace content_v2_1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -13327,6 +13706,7 @@ export namespace content_v2_1 {
               '/content/v2.1/{merchantId}/collectionstatuses/{collectionId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -13421,6 +13801,7 @@ export namespace content_v2_1 {
               rootUrl + '/content/v2.1/{merchantId}/collectionstatuses'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -13544,6 +13925,7 @@ export namespace content_v2_1 {
               rootUrl + '/content/v2.1/{merchantId}/conversionsources'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -13630,6 +14012,7 @@ export namespace content_v2_1 {
               '/content/v2.1/{merchantId}/conversionsources/{conversionSourceId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -13718,6 +14101,7 @@ export namespace content_v2_1 {
               '/content/v2.1/{merchantId}/conversionsources/{conversionSourceId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -13812,6 +14196,7 @@ export namespace content_v2_1 {
               rootUrl + '/content/v2.1/{merchantId}/conversionsources'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -13902,6 +14287,7 @@ export namespace content_v2_1 {
               '/content/v2.1/{merchantId}/conversionsources/{conversionSourceId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -13988,6 +14374,7 @@ export namespace content_v2_1 {
               '/content/v2.1/{merchantId}/conversionsources/{conversionSourceId}:undelete'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -14171,6 +14558,7 @@ export namespace content_v2_1 {
               rootUrl + '/content/v2.1/{cssGroupId}/csses/{cssDomainId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -14261,6 +14649,7 @@ export namespace content_v2_1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -14349,6 +14738,7 @@ export namespace content_v2_1 {
               '/content/v2.1/{cssGroupId}/csses/{cssDomainId}/updatelabels'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -14492,6 +14882,7 @@ export namespace content_v2_1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -14578,6 +14969,7 @@ export namespace content_v2_1 {
               rootUrl + '/content/v2.1/{merchantId}/datafeeds/{datafeedId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -14673,6 +15065,7 @@ export namespace content_v2_1 {
               '/content/v2.1/{merchantId}/datafeeds/{datafeedId}/fetchNow'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -14759,6 +15152,7 @@ export namespace content_v2_1 {
               rootUrl + '/content/v2.1/{merchantId}/datafeeds/{datafeedId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -14846,6 +15240,7 @@ export namespace content_v2_1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -14938,6 +15333,7 @@ export namespace content_v2_1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -15024,6 +15420,7 @@ export namespace content_v2_1 {
               rootUrl + '/content/v2.1/{merchantId}/datafeeds/{datafeedId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
+            apiVersion: '',
           },
           options
         ),
@@ -15205,6 +15602,7 @@ export namespace content_v2_1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -15295,6 +15693,7 @@ export namespace content_v2_1 {
               '/content/v2.1/{merchantId}/datafeedstatuses/{datafeedId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -15389,6 +15788,7 @@ export namespace content_v2_1 {
               rootUrl + '/content/v2.1/{merchantId}/datafeedstatuses'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -15540,6 +15940,7 @@ export namespace content_v2_1 {
               rootUrl + '/content/v2.1/{merchantId}/freelistingsprogram'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -15626,6 +16027,7 @@ export namespace content_v2_1 {
               '/content/v2.1/{merchantId}/freelistingsprogram/requestreview'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -15740,6 +16142,7 @@ export namespace content_v2_1 {
               '/content/v2.1/{merchantId}/freelistingsprogram/checkoutsettings'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -15828,6 +16231,7 @@ export namespace content_v2_1 {
               '/content/v2.1/{merchantId}/freelistingsprogram/checkoutsettings'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -15917,6 +16321,7 @@ export namespace content_v2_1 {
               '/content/v2.1/{merchantId}/freelistingsprogram/checkoutsettings'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -16046,6 +16451,7 @@ export namespace content_v2_1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -16134,6 +16540,7 @@ export namespace content_v2_1 {
               rootUrl + '/content/v2.1/{merchantId}/liasettings/{accountId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -16229,6 +16636,7 @@ export namespace content_v2_1 {
               '/content/v2.1/{merchantId}/liasettings/{accountId}/accessiblegmbaccounts'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -16323,6 +16731,7 @@ export namespace content_v2_1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -16417,6 +16826,7 @@ export namespace content_v2_1 {
               rootUrl + '/content/v2.1/liasettings/posdataproviders'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -16514,6 +16924,7 @@ export namespace content_v2_1 {
               '/content/v2.1/{merchantId}/liasettings/{accountId}/requestgmbaccess'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -16611,6 +17022,7 @@ export namespace content_v2_1 {
               '/content/v2.1/{merchantId}/liasettings/{accountId}/requestinventoryverification/{country}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -16709,6 +17121,7 @@ export namespace content_v2_1 {
               '/content/v2.1/{merchantId}/liasettings/{accountId}/setinventoryverificationcontact'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -16813,6 +17226,7 @@ export namespace content_v2_1 {
               '/content/v2.1/{merchantId}/liasettings/{accountId}/setomnichannelexperience'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -16908,6 +17322,7 @@ export namespace content_v2_1 {
               '/content/v2.1/{merchantId}/liasettings/{accountId}/setposdataprovider'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -16997,6 +17412,7 @@ export namespace content_v2_1 {
               rootUrl + '/content/v2.1/{merchantId}/liasettings/{accountId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
+            apiVersion: '',
           },
           options
         ),
@@ -17263,6 +17679,7 @@ export namespace content_v2_1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -17353,6 +17770,7 @@ export namespace content_v2_1 {
               '/content/v2.1/{merchantId}/products/{productId}/localinventory'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -17479,6 +17897,7 @@ export namespace content_v2_1 {
               '/content/v2.1/{merchantId}/merchantsupport/renderaccountissues'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -17574,6 +17993,7 @@ export namespace content_v2_1 {
               '/content/v2.1/{merchantId}/merchantsupport/renderproductissues/{productId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -17589,6 +18009,102 @@ export namespace content_v2_1 {
         );
       } else {
         return createAPIRequest<Schema$RenderProductIssuesResponse>(parameters);
+      }
+    }
+
+    /**
+     * Start an action. The action can be requested by merchants in third-party application. Before merchants can request the action, the third-party application needs to show them action specific content and display a user input form. The action can be successfully started only once all `required` inputs are provided. If any `required` input is missing, or invalid value was provided, the service will return 400 error. Validation errors will contain Ids for all problematic field together with translated, human readable error messages that can be shown to the user.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    triggeraction(
+      params: Params$Resource$Merchantsupport$Triggeraction,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    triggeraction(
+      params?: Params$Resource$Merchantsupport$Triggeraction,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$TriggerActionResponse>;
+    triggeraction(
+      params: Params$Resource$Merchantsupport$Triggeraction,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    triggeraction(
+      params: Params$Resource$Merchantsupport$Triggeraction,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$TriggerActionResponse>,
+      callback: BodyResponseCallback<Schema$TriggerActionResponse>
+    ): void;
+    triggeraction(
+      params: Params$Resource$Merchantsupport$Triggeraction,
+      callback: BodyResponseCallback<Schema$TriggerActionResponse>
+    ): void;
+    triggeraction(
+      callback: BodyResponseCallback<Schema$TriggerActionResponse>
+    ): void;
+    triggeraction(
+      paramsOrCallback?:
+        | Params$Resource$Merchantsupport$Triggeraction
+        | BodyResponseCallback<Schema$TriggerActionResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$TriggerActionResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$TriggerActionResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$TriggerActionResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Merchantsupport$Triggeraction;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Merchantsupport$Triggeraction;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://shoppingcontent.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/content/v2.1/{merchantId}/merchantsupport/triggeraction'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['merchantId'],
+        pathParams: ['merchantId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$TriggerActionResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$TriggerActionResponse>(parameters);
       }
     }
   }
@@ -17636,6 +18152,22 @@ export namespace content_v2_1 {
      * Request body metadata
      */
     requestBody?: Schema$RenderProductIssuesRequestPayload;
+  }
+  export interface Params$Resource$Merchantsupport$Triggeraction
+    extends StandardParameters {
+    /**
+     * Optional. Language code [IETF BCP 47 syntax](https://tools.ietf.org/html/bcp47) used to localize the response. If not set, the result will be in default language `en-US`.
+     */
+    languageCode?: string;
+    /**
+     * Required. The ID of the merchant's account.
+     */
+    merchantId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$TriggerActionPayload;
   }
 
   export class Resource$Orderinvoices {
@@ -17721,6 +18253,7 @@ export namespace content_v2_1 {
               '/content/v2.1/{merchantId}/orderinvoices/{orderId}/createChargeInvoice'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -17818,6 +18351,7 @@ export namespace content_v2_1 {
               '/content/v2.1/{merchantId}/orderinvoices/{orderId}/createRefundInvoice'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -17954,6 +18488,7 @@ export namespace content_v2_1 {
               rootUrl + '/content/v2.1/{merchantId}/orderreports/disbursements'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -18051,6 +18586,7 @@ export namespace content_v2_1 {
               '/content/v2.1/{merchantId}/orderreports/disbursements/{disbursementId}/transactions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -18208,6 +18744,7 @@ export namespace content_v2_1 {
               '/content/v2.1/{merchantId}/orderreturns/{returnId}/acknowledge'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -18305,6 +18842,7 @@ export namespace content_v2_1 {
               '/content/v2.1/{merchantId}/orderreturns/createOrderReturn'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -18396,6 +18934,7 @@ export namespace content_v2_1 {
               rootUrl + '/content/v2.1/{merchantId}/orderreturns/{returnId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -18489,6 +19028,7 @@ export namespace content_v2_1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -18584,6 +19124,7 @@ export namespace content_v2_1 {
               '/content/v2.1/{merchantId}/orderreturns/{returnId}/process'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -18788,6 +19329,7 @@ export namespace content_v2_1 {
               '/content/v2.1/{merchantId}/orderreturns/{returnId}/labels'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -18907,6 +19449,7 @@ export namespace content_v2_1 {
               '/content/v2.1/{merchantId}/orders/{orderId}/acknowledge'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -19002,6 +19545,7 @@ export namespace content_v2_1 {
               '/content/v2.1/{merchantId}/testorders/{orderId}/advance'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -19095,6 +19639,7 @@ export namespace content_v2_1 {
               rootUrl + '/content/v2.1/{merchantId}/orders/{orderId}/cancel'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -19190,6 +19735,7 @@ export namespace content_v2_1 {
               '/content/v2.1/{merchantId}/orders/{orderId}/cancelLineItem'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -19287,6 +19833,7 @@ export namespace content_v2_1 {
               '/content/v2.1/{merchantId}/testorders/{orderId}/cancelByCustomer'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -19384,6 +19931,7 @@ export namespace content_v2_1 {
               '/content/v2.1/{merchantId}/orders/{orderId}/captureOrder'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -19479,6 +20027,7 @@ export namespace content_v2_1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -19575,6 +20124,7 @@ export namespace content_v2_1 {
               rootUrl + '/content/v2.1/{merchantId}/orders/{orderId}/testreturn'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -19663,6 +20213,7 @@ export namespace content_v2_1 {
               rootUrl + '/content/v2.1/{merchantId}/orders/{orderId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -19758,6 +20309,7 @@ export namespace content_v2_1 {
               '/content/v2.1/{merchantId}/ordersbymerchantid/{merchantOrderId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -19855,6 +20407,7 @@ export namespace content_v2_1 {
               '/content/v2.1/{merchantId}/testordertemplates/{templateName}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -19952,6 +20505,7 @@ export namespace content_v2_1 {
               '/content/v2.1/{merchantId}/orders/{orderId}/inStoreRefundLineItem'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -20044,6 +20598,7 @@ export namespace content_v2_1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -20138,6 +20693,7 @@ export namespace content_v2_1 {
               rootUrl + '/content/v2.1/{merchantId}/orders/{orderId}/refunditem'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -20233,6 +20789,7 @@ export namespace content_v2_1 {
               '/content/v2.1/{merchantId}/orders/{orderId}/refundorder'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -20328,6 +20885,7 @@ export namespace content_v2_1 {
               '/content/v2.1/{merchantId}/orders/{orderId}/rejectReturnLineItem'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -20425,6 +20983,7 @@ export namespace content_v2_1 {
               '/content/v2.1/{merchantId}/orders/{orderId}/returnRefundLineItem'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -20522,6 +21081,7 @@ export namespace content_v2_1 {
               '/content/v2.1/{merchantId}/orders/{orderId}/setLineItemMetadata'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -20619,6 +21179,7 @@ export namespace content_v2_1 {
               '/content/v2.1/{merchantId}/orders/{orderId}/shipLineItems'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -20714,6 +21275,7 @@ export namespace content_v2_1 {
               '/content/v2.1/{merchantId}/orders/{orderId}/updateLineItemShippingDetails'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -20811,6 +21373,7 @@ export namespace content_v2_1 {
               '/content/v2.1/{merchantId}/orders/{orderId}/updateMerchantOrderId'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -20908,6 +21471,7 @@ export namespace content_v2_1 {
               '/content/v2.1/{merchantId}/orders/{orderId}/updateShipment'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -21356,6 +21920,7 @@ export namespace content_v2_1 {
               rootUrl + '/content/v2.1/{merchantId}/ordertrackingsignals'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -21470,6 +22035,7 @@ export namespace content_v2_1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -21555,6 +22121,7 @@ export namespace content_v2_1 {
               '/content/v2.1/{merchantId}/pos/{targetMerchantId}/store/{storeCode}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -21642,6 +22209,7 @@ export namespace content_v2_1 {
               '/content/v2.1/{merchantId}/pos/{targetMerchantId}/store/{storeCode}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -21729,6 +22297,7 @@ export namespace content_v2_1 {
               '/content/v2.1/{merchantId}/pos/{targetMerchantId}/store'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -21823,6 +22392,7 @@ export namespace content_v2_1 {
               '/content/v2.1/{merchantId}/pos/{targetMerchantId}/inventory'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -21910,6 +22480,7 @@ export namespace content_v2_1 {
               '/content/v2.1/{merchantId}/pos/{targetMerchantId}/store'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -21996,6 +22567,7 @@ export namespace content_v2_1 {
               rootUrl + '/content/v2.1/{merchantId}/pos/{targetMerchantId}/sale'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -22183,6 +22755,7 @@ export namespace content_v2_1 {
               rootUrl + '/content/v2.1/{merchantId}/productdeliverytime'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -22269,6 +22842,7 @@ export namespace content_v2_1 {
               '/content/v2.1/{merchantId}/productdeliverytime/{productId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -22360,6 +22934,7 @@ export namespace content_v2_1 {
               '/content/v2.1/{merchantId}/productdeliverytime/{productId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -22497,6 +23072,7 @@ export namespace content_v2_1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -22581,6 +23157,7 @@ export namespace content_v2_1 {
               rootUrl + '/content/v2.1/{merchantId}/products/{productId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -22667,6 +23244,7 @@ export namespace content_v2_1 {
               rootUrl + '/content/v2.1/{merchantId}/products/{productId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -22754,6 +23332,7 @@ export namespace content_v2_1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -22846,6 +23425,7 @@ export namespace content_v2_1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -22932,6 +23512,7 @@ export namespace content_v2_1 {
               rootUrl + '/content/v2.1/{merchantId}/products/{productId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -23114,6 +23695,7 @@ export namespace content_v2_1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -23203,6 +23785,7 @@ export namespace content_v2_1 {
               rootUrl + '/content/v2.1/{merchantId}/productstatuses/{productId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -23297,6 +23880,7 @@ export namespace content_v2_1 {
               rootUrl + '/content/v2.1/{merchantId}/productstatuses'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -23434,6 +24018,7 @@ export namespace content_v2_1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -23520,6 +24105,7 @@ export namespace content_v2_1 {
               rootUrl + '/content/v2.1/{merchantId}/promotions/{id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -23612,6 +24198,7 @@ export namespace content_v2_1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -23758,6 +24345,7 @@ export namespace content_v2_1 {
               rootUrl + '/content/v2.1/{merchantId}/pubsubnotificationsettings'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -23852,6 +24440,7 @@ export namespace content_v2_1 {
               rootUrl + '/content/v2.1/{merchantId}/pubsubnotificationsettings'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
+            apiVersion: '',
           },
           options
         ),
@@ -23971,6 +24560,7 @@ export namespace content_v2_1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -24087,6 +24677,7 @@ export namespace content_v2_1 {
               rootUrl + '/content/v2.1/{merchantId}/recommendations/generate'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -24175,6 +24766,7 @@ export namespace content_v2_1 {
               '/content/v2.1/{merchantId}/recommendations/reportInteraction'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -24305,6 +24897,7 @@ export namespace content_v2_1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -24398,6 +24991,7 @@ export namespace content_v2_1 {
               '/content/v2.1/{merchantId}/products/{productId}/regionalinventory'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -24516,6 +25110,7 @@ export namespace content_v2_1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -24600,6 +25195,7 @@ export namespace content_v2_1 {
               rootUrl + '/content/v2.1/{merchantId}/regions/{regionId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -24686,6 +25282,7 @@ export namespace content_v2_1 {
               rootUrl + '/content/v2.1/{merchantId}/regions/{regionId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -24776,6 +25373,7 @@ export namespace content_v2_1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -24862,6 +25460,7 @@ export namespace content_v2_1 {
               rootUrl + '/content/v2.1/{merchantId}/regions/{regionId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -25024,6 +25623,7 @@ export namespace content_v2_1 {
               rootUrl + '/content/v2.1/{merchantId}/reports/search'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -25138,6 +25738,7 @@ export namespace content_v2_1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -25226,6 +25827,7 @@ export namespace content_v2_1 {
               '/content/v2.1/{merchantId}/returnaddress/{returnAddressId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -25314,6 +25916,7 @@ export namespace content_v2_1 {
               '/content/v2.1/{merchantId}/returnaddress/{returnAddressId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -25402,6 +26005,7 @@ export namespace content_v2_1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -25497,6 +26101,7 @@ export namespace content_v2_1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -25660,6 +26265,7 @@ export namespace content_v2_1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -25748,6 +26354,7 @@ export namespace content_v2_1 {
               '/content/v2.1/{merchantId}/returnpolicy/{returnPolicyId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -25835,6 +26442,7 @@ export namespace content_v2_1 {
               '/content/v2.1/{merchantId}/returnpolicy/{returnPolicyId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -25923,6 +26531,7 @@ export namespace content_v2_1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -26016,6 +26625,7 @@ export namespace content_v2_1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -26161,6 +26771,7 @@ export namespace content_v2_1 {
               rootUrl + '/content/v2.1/{merchantId}/returnpolicyonline'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -26247,6 +26858,7 @@ export namespace content_v2_1 {
               '/content/v2.1/{merchantId}/returnpolicyonline/{returnPolicyId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -26338,6 +26950,7 @@ export namespace content_v2_1 {
               '/content/v2.1/{merchantId}/returnpolicyonline/{returnPolicyId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -26432,6 +27045,7 @@ export namespace content_v2_1 {
               rootUrl + '/content/v2.1/{merchantId}/returnpolicyonline'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -26525,6 +27139,7 @@ export namespace content_v2_1 {
               '/content/v2.1/{merchantId}/returnpolicyonline/{returnPolicyId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -26678,6 +27293,7 @@ export namespace content_v2_1 {
               '/content/v2.1/{merchantId}/settlementreports/{settlementId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -26772,6 +27388,7 @@ export namespace content_v2_1 {
               rootUrl + '/content/v2.1/{merchantId}/settlementreports'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -26911,6 +27528,7 @@ export namespace content_v2_1 {
               '/content/v2.1/{merchantId}/settlementreports/{settlementId}/transactions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -27039,6 +27657,7 @@ export namespace content_v2_1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -27129,6 +27748,7 @@ export namespace content_v2_1 {
               '/content/v2.1/{merchantId}/shippingsettings/{accountId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -27223,6 +27843,7 @@ export namespace content_v2_1 {
               rootUrl + '/content/v2.1/{merchantId}/supportedCarriers'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -27319,6 +27940,7 @@ export namespace content_v2_1 {
               rootUrl + '/content/v2.1/{merchantId}/supportedHolidays'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -27416,6 +28038,7 @@ export namespace content_v2_1 {
               rootUrl + '/content/v2.1/{merchantId}/supportedPickupServices'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -27512,6 +28135,7 @@ export namespace content_v2_1 {
               rootUrl + '/content/v2.1/{merchantId}/shippingsettings'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -27602,6 +28226,7 @@ export namespace content_v2_1 {
               '/content/v2.1/{merchantId}/shippingsettings/{accountId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
+            apiVersion: '',
           },
           options
         ),
@@ -27772,6 +28397,7 @@ export namespace content_v2_1 {
               rootUrl + '/content/v2.1/{merchantId}/shoppingadsprogram'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -27858,6 +28484,7 @@ export namespace content_v2_1 {
               '/content/v2.1/{merchantId}/shoppingadsprogram/requestreview'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),

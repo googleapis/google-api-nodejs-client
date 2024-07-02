@@ -334,6 +334,7 @@ export namespace admin_datatransfer_v1 {
               rootUrl + '/admin/datatransfer/v1/applications/{applicationId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -426,6 +427,7 @@ export namespace admin_datatransfer_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -540,6 +542,7 @@ export namespace admin_datatransfer_v1 {
               rootUrl + '/admin/datatransfer/v1/transfers/{dataTransferId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -626,6 +629,7 @@ export namespace admin_datatransfer_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -719,6 +723,7 @@ export namespace admin_datatransfer_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),

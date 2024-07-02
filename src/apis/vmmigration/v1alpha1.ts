@@ -206,15 +206,15 @@ export namespace vmmigration_v1alpha1 {
    */
   export interface Schema$AwsDiskDetails {
     /**
-     * The ordinal number of the disk.
+     * Output only. The ordinal number of the disk.
      */
     diskNumber?: number | null;
     /**
-     * Size in GB.
+     * Output only. Size in GB.
      */
     sizeGb?: string | null;
     /**
-     * AWS volume ID.
+     * Output only. AWS volume ID.
      */
     volumeId?: string | null;
   }
@@ -260,6 +260,10 @@ export namespace vmmigration_v1alpha1 {
      */
     migrationResourcesUserTags?: {[key: string]: string} | null;
     /**
+     * Output only. Information about the network coniguration of the source. Only gatherred upon request.
+     */
+    networkInsights?: Schema$NetworkInsights;
+    /**
      * Output only. The source's public IP. All communication initiated by this source will originate from this IP.
      */
     publicIp?: string | null;
@@ -273,15 +277,15 @@ export namespace vmmigration_v1alpha1 {
    */
   export interface Schema$AwsSourceVmDetails {
     /**
-     * The total size of the disks being migrated in bytes.
+     * Output only. The total size of the disks being migrated in bytes.
      */
     committedStorageBytes?: string | null;
     /**
-     * The disks attached to the source VM.
+     * Output only. The disks attached to the source VM.
      */
     disks?: Schema$AwsDiskDetails[];
     /**
-     * The firmware type of the source VM.
+     * Output only. The firmware type of the source VM.
      */
     firmware?: string | null;
     /**
@@ -380,15 +384,15 @@ export namespace vmmigration_v1alpha1 {
    */
   export interface Schema$AzureDiskDetails {
     /**
-     * Azure disk ID.
+     * Output only. Azure disk ID.
      */
     diskId?: string | null;
     /**
-     * The ordinal number of the disk.
+     * Output only. The ordinal number of the disk.
      */
     diskNumber?: number | null;
     /**
-     * Size in GB.
+     * Output only. Size in GB.
      */
     sizeGb?: string | null;
   }
@@ -430,15 +434,15 @@ export namespace vmmigration_v1alpha1 {
    */
   export interface Schema$AzureSourceVmDetails {
     /**
-     * The total size of the disks being migrated in bytes.
+     * Output only. The total size of the disks being migrated in bytes.
      */
     committedStorageBytes?: string | null;
     /**
-     * The disks attached to the source VM.
+     * Output only. The disks attached to the source VM.
      */
     disks?: Schema$AzureDiskDetails[];
     /**
-     * The firmware type of the source VM.
+     * Output only. The firmware type of the source VM.
      */
     firmware?: string | null;
     /**
@@ -1110,7 +1114,7 @@ export namespace vmmigration_v1alpha1 {
      */
     description?: string | null;
     /**
-     * Optional. Immutable. The encryption to apply to the image.
+     * Immutable. The encryption to apply to the image.
      */
     encryption?: Schema$Encryption;
     /**
@@ -1818,7 +1822,7 @@ export namespace vmmigration_v1alpha1 {
    */
   export interface Schema$MigrationWarning {
     /**
-     * Suggested action for solving the warning.
+     * Output only. Suggested action for solving the warning.
      */
     actionItem?: Schema$LocalizedMessage;
     /**
@@ -1826,11 +1830,11 @@ export namespace vmmigration_v1alpha1 {
      */
     code?: string | null;
     /**
-     * URL(s) pointing to additional information on handling the current warning.
+     * Output only. URL(s) pointing to additional information on handling the current warning.
      */
     helpLinks?: Schema$Link[];
     /**
-     * The localized warning message.
+     * Output only. The localized warning message.
      */
     warningMessage?: Schema$LocalizedMessage;
     /**
@@ -1839,15 +1843,28 @@ export namespace vmmigration_v1alpha1 {
     warningTime?: string | null;
   }
   /**
+   * Information about the network coniguration of the source.
+   */
+  export interface Schema$NetworkInsights {
+    /**
+     * Output only. The gathered network configuration of the source. Presented in json format.
+     */
+    sourceNetworkConfig?: string | null;
+    /**
+     * Output only. The gathered network configuration of the source. Presented in terraform format.
+     */
+    sourceNetworkTerraform?: string | null;
+  }
+  /**
    * NetworkInterface represents a NIC of a VM.
    */
   export interface Schema$NetworkInterface {
     /**
-     * The external IP to define in the NIC.
+     * Optional. The external IP to define in the NIC.
      */
     externalIp?: string | null;
     /**
-     * The internal IP to define in the NIC. The formats accepted are: `ephemeral` \ ipv4 address \ a named address resource full path.
+     * Optional. The internal IP to define in the NIC. The formats accepted are: `ephemeral` \ ipv4 address \ a named address resource full path.
      */
     internalIp?: string | null;
     /**
@@ -2052,7 +2069,7 @@ export namespace vmmigration_v1alpha1 {
      */
     endTime?: string | null;
     /**
-     * Provides details on the state of the cycle in case of an error.
+     * Output only. Provides details on the state of the cycle in case of an error.
      */
     error?: Schema$Status;
     /**
@@ -2206,11 +2223,11 @@ export namespace vmmigration_v1alpha1 {
    */
   export interface Schema$Tag {
     /**
-     * Key of tag.
+     * Required. Key of tag.
      */
     key?: string | null;
     /**
-     * Value of tag.
+     * Required. Value of tag.
      */
     value?: string | null;
   }
@@ -2342,7 +2359,7 @@ export namespace vmmigration_v1alpha1 {
    */
   export interface Schema$UpgradeStatus {
     /**
-     * Provides details on the state of the upgrade operation in case of an error.
+     * Output only. Provides details on the state of the upgrade operation in case of an error.
      */
     error?: Schema$Status;
     /**
@@ -2524,15 +2541,15 @@ export namespace vmmigration_v1alpha1 {
    */
   export interface Schema$VmwareDiskDetails {
     /**
-     * The ordinal number of the disk.
+     * Output only. The ordinal number of the disk.
      */
     diskNumber?: number | null;
     /**
-     * The disk label.
+     * Output only. The disk label.
      */
     label?: string | null;
     /**
-     * Size in GB.
+     * Output only. Size in GB.
      */
     sizeGb?: string | null;
   }
@@ -2566,15 +2583,15 @@ export namespace vmmigration_v1alpha1 {
    */
   export interface Schema$VmwareSourceVmDetails {
     /**
-     * The total size of the disks being migrated in bytes.
+     * Output only. The total size of the disks being migrated in bytes.
      */
     committedStorageBytes?: string | null;
     /**
-     * The disks attached to the source VM.
+     * Output only. The disks attached to the source VM.
      */
     disks?: Schema$VmwareDiskDetails[];
     /**
-     * The firmware type of the source VM.
+     * Output only. The firmware type of the source VM.
      */
     firmware?: string | null;
     /**
@@ -2746,6 +2763,7 @@ export namespace vmmigration_v1alpha1 {
           {
             url: (rootUrl + '/v1alpha1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2838,6 +2856,7 @@ export namespace vmmigration_v1alpha1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2960,6 +2979,7 @@ export namespace vmmigration_v1alpha1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3047,6 +3067,7 @@ export namespace vmmigration_v1alpha1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3131,6 +3152,7 @@ export namespace vmmigration_v1alpha1 {
           {
             url: (rootUrl + '/v1alpha1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -3215,6 +3237,7 @@ export namespace vmmigration_v1alpha1 {
           {
             url: (rootUrl + '/v1alpha1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3305,6 +3328,7 @@ export namespace vmmigration_v1alpha1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3389,6 +3413,7 @@ export namespace vmmigration_v1alpha1 {
           {
             url: (rootUrl + '/v1alpha1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -3479,6 +3504,7 @@ export namespace vmmigration_v1alpha1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3684,6 +3710,7 @@ export namespace vmmigration_v1alpha1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3768,6 +3795,7 @@ export namespace vmmigration_v1alpha1 {
           {
             url: (rootUrl + '/v1alpha1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -3852,6 +3880,7 @@ export namespace vmmigration_v1alpha1 {
           {
             url: (rootUrl + '/v1alpha1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3944,6 +3973,7 @@ export namespace vmmigration_v1alpha1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4101,6 +4131,7 @@ export namespace vmmigration_v1alpha1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4186,6 +4217,7 @@ export namespace vmmigration_v1alpha1 {
           {
             url: (rootUrl + '/v1alpha1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4281,6 +4313,7 @@ export namespace vmmigration_v1alpha1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4418,6 +4451,7 @@ export namespace vmmigration_v1alpha1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4502,6 +4536,7 @@ export namespace vmmigration_v1alpha1 {
           {
             url: (rootUrl + '/v1alpha1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -4586,6 +4621,7 @@ export namespace vmmigration_v1alpha1 {
           {
             url: (rootUrl + '/v1alpha1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4678,6 +4714,7 @@ export namespace vmmigration_v1alpha1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4832,6 +4869,7 @@ export namespace vmmigration_v1alpha1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4916,6 +4954,7 @@ export namespace vmmigration_v1alpha1 {
           {
             url: (rootUrl + '/v1alpha1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -5011,6 +5050,7 @@ export namespace vmmigration_v1alpha1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5095,6 +5135,7 @@ export namespace vmmigration_v1alpha1 {
           {
             url: (rootUrl + '/v1alpha1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5185,6 +5226,7 @@ export namespace vmmigration_v1alpha1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5269,6 +5311,7 @@ export namespace vmmigration_v1alpha1 {
           {
             url: (rootUrl + '/v1alpha1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -5465,6 +5508,7 @@ export namespace vmmigration_v1alpha1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5550,6 +5594,7 @@ export namespace vmmigration_v1alpha1 {
           {
             url: (rootUrl + '/v1alpha1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -5638,6 +5683,7 @@ export namespace vmmigration_v1alpha1 {
           {
             url: (rootUrl + '/v1alpha1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5733,6 +5779,7 @@ export namespace vmmigration_v1alpha1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5822,6 +5869,7 @@ export namespace vmmigration_v1alpha1 {
               rootUrl + '/v1alpha1/{+datacenterConnector}:upgradeAppliance'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -6006,6 +6054,7 @@ export namespace vmmigration_v1alpha1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -6091,6 +6140,7 @@ export namespace vmmigration_v1alpha1 {
           {
             url: (rootUrl + '/v1alpha1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -6178,6 +6228,7 @@ export namespace vmmigration_v1alpha1 {
               rootUrl + '/v1alpha1/{+migratingVm}:finalizeMigration'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -6263,6 +6314,7 @@ export namespace vmmigration_v1alpha1 {
           {
             url: (rootUrl + '/v1alpha1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6356,6 +6408,7 @@ export namespace vmmigration_v1alpha1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6441,6 +6494,7 @@ export namespace vmmigration_v1alpha1 {
           {
             url: (rootUrl + '/v1alpha1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -6529,6 +6583,7 @@ export namespace vmmigration_v1alpha1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -6617,6 +6672,7 @@ export namespace vmmigration_v1alpha1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -6705,6 +6761,7 @@ export namespace vmmigration_v1alpha1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -6934,6 +6991,7 @@ export namespace vmmigration_v1alpha1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -7022,6 +7080,7 @@ export namespace vmmigration_v1alpha1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -7107,6 +7166,7 @@ export namespace vmmigration_v1alpha1 {
           {
             url: (rootUrl + '/v1alpha1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -7200,6 +7260,7 @@ export namespace vmmigration_v1alpha1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -7358,6 +7419,7 @@ export namespace vmmigration_v1alpha1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -7446,6 +7508,7 @@ export namespace vmmigration_v1alpha1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -7531,6 +7594,7 @@ export namespace vmmigration_v1alpha1 {
           {
             url: (rootUrl + '/v1alpha1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -7624,6 +7688,7 @@ export namespace vmmigration_v1alpha1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -7779,6 +7844,7 @@ export namespace vmmigration_v1alpha1 {
           {
             url: (rootUrl + '/v1alpha1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -7874,6 +7940,7 @@ export namespace vmmigration_v1alpha1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -8002,6 +8069,7 @@ export namespace vmmigration_v1alpha1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -8087,6 +8155,7 @@ export namespace vmmigration_v1alpha1 {
           {
             url: (rootUrl + '/v1alpha1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -8175,6 +8244,7 @@ export namespace vmmigration_v1alpha1 {
           {
             url: (rootUrl + '/v1alpha1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -8270,6 +8340,7 @@ export namespace vmmigration_v1alpha1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -8436,6 +8507,7 @@ export namespace vmmigration_v1alpha1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -8520,6 +8592,7 @@ export namespace vmmigration_v1alpha1 {
           {
             url: (rootUrl + '/v1alpha1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -8604,6 +8677,7 @@ export namespace vmmigration_v1alpha1 {
           {
             url: (rootUrl + '/v1alpha1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -8698,6 +8772,7 @@ export namespace vmmigration_v1alpha1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -8782,6 +8857,7 @@ export namespace vmmigration_v1alpha1 {
           {
             url: (rootUrl + '/v1alpha1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),

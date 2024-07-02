@@ -557,7 +557,7 @@ export namespace serviceconsumermanagement_v1beta1 {
    */
   export interface Schema$Endpoint {
     /**
-     * Unimplemented. Dot not use. DEPRECATED: This field is no longer supported. Instead of using aliases, please specify multiple google.api.Endpoint for each of the intended aliases. Additional names that this endpoint will be hosted on.
+     * Aliases for this endpoint, these will be served by the same UrlMap as the parent endpoint, and will be provisioned in the GCP stack for the Regional Endpoints.
      */
     aliases?: string[] | null;
     /**
@@ -704,7 +704,7 @@ export namespace serviceconsumermanagement_v1beta1 {
     rules?: Schema$HttpRule[];
   }
   /**
-   * # gRPC Transcoding gRPC Transcoding is a feature for mapping between a gRPC method and one or more HTTP REST endpoints. It allows developers to build a single API service that supports both gRPC APIs and REST APIs. Many systems, including [Google APIs](https://github.com/googleapis/googleapis), [Cloud Endpoints](https://cloud.google.com/endpoints), [gRPC Gateway](https://github.com/grpc-ecosystem/grpc-gateway), and [Envoy](https://github.com/envoyproxy/envoy) proxy support this feature and use it for large scale production services. `HttpRule` defines the schema of the gRPC/REST mapping. The mapping specifies how different portions of the gRPC request message are mapped to the URL path, URL query parameters, and HTTP request body. It also controls how the gRPC response message is mapped to the HTTP response body. `HttpRule` is typically specified as an `google.api.http` annotation on the gRPC method. Each mapping specifies a URL path template and an HTTP method. The path template may refer to one or more fields in the gRPC request message, as long as each field is a non-repeated field with a primitive (non-message) type. The path template controls how fields of the request message are mapped to the URL path. Example: service Messaging { rpc GetMessage(GetMessageRequest) returns (Message) { option (google.api.http) = { get: "/v1/{name=messages/x\}" \}; \} \} message GetMessageRequest { string name = 1; // Mapped to URL path. \} message Message { string text = 1; // The resource content. \} This enables an HTTP REST to gRPC mapping as below: HTTP | gRPC -----|----- `GET /v1/messages/123456` | `GetMessage(name: "messages/123456")` Any fields in the request message which are not bound by the path template automatically become HTTP query parameters if there is no HTTP request body. For example: service Messaging { rpc GetMessage(GetMessageRequest) returns (Message) { option (google.api.http) = { get:"/v1/messages/{message_id\}" \}; \} \} message GetMessageRequest { message SubMessage { string subfield = 1; \} string message_id = 1; // Mapped to URL path. int64 revision = 2; // Mapped to URL query parameter `revision`. SubMessage sub = 3; // Mapped to URL query parameter `sub.subfield`. \} This enables a HTTP JSON to RPC mapping as below: HTTP | gRPC -----|----- `GET /v1/messages/123456?revision=2&sub.subfield=foo` | `GetMessage(message_id: "123456" revision: 2 sub: SubMessage(subfield: "foo"))` Note that fields which are mapped to URL query parameters must have a primitive type or a repeated primitive type or a non-repeated message type. In the case of a repeated type, the parameter can be repeated in the URL as `...?param=A&param=B`. In the case of a message type, each field of the message is mapped to a separate parameter, such as `...?foo.a=A&foo.b=B&foo.c=C`. For HTTP methods that allow a request body, the `body` field specifies the mapping. Consider a REST update method on the message resource collection: service Messaging { rpc UpdateMessage(UpdateMessageRequest) returns (Message) { option (google.api.http) = { patch: "/v1/messages/{message_id\}" body: "message" \}; \} \} message UpdateMessageRequest { string message_id = 1; // mapped to the URL Message message = 2; // mapped to the body \} The following HTTP JSON to RPC mapping is enabled, where the representation of the JSON in the request body is determined by protos JSON encoding: HTTP | gRPC -----|----- `PATCH /v1/messages/123456 { "text": "Hi!" \}` | `UpdateMessage(message_id: "123456" message { text: "Hi!" \})` The special name `*` can be used in the body mapping to define that every field not bound by the path template should be mapped to the request body. This enables the following alternative definition of the update method: service Messaging { rpc UpdateMessage(Message) returns (Message) { option (google.api.http) = { patch: "/v1/messages/{message_id\}" body: "*" \}; \} \} message Message { string message_id = 1; string text = 2; \} The following HTTP JSON to RPC mapping is enabled: HTTP | gRPC -----|----- `PATCH /v1/messages/123456 { "text": "Hi!" \}` | `UpdateMessage(message_id: "123456" text: "Hi!")` Note that when using `*` in the body mapping, it is not possible to have HTTP parameters, as all fields not bound by the path end in the body. This makes this option more rarely used in practice when defining REST APIs. The common usage of `*` is in custom methods which don't use the URL at all for transferring data. It is possible to define multiple HTTP methods for one RPC by using the `additional_bindings` option. Example: service Messaging { rpc GetMessage(GetMessageRequest) returns (Message) { option (google.api.http) = { get: "/v1/messages/{message_id\}" additional_bindings { get: "/v1/users/{user_id\}/messages/{message_id\}" \} \}; \} \} message GetMessageRequest { string message_id = 1; string user_id = 2; \} This enables the following two alternative HTTP JSON to RPC mappings: HTTP | gRPC -----|----- `GET /v1/messages/123456` | `GetMessage(message_id: "123456")` `GET /v1/users/me/messages/123456` | `GetMessage(user_id: "me" message_id: "123456")` ## Rules for HTTP mapping 1. Leaf request fields (recursive expansion nested messages in the request message) are classified into three categories: - Fields referred by the path template. They are passed via the URL path. - Fields referred by the HttpRule.body. They are passed via the HTTP request body. - All other fields are passed via the URL query parameters, and the parameter name is the field path in the request message. A repeated field can be represented as multiple query parameters under the same name. 2. If HttpRule.body is "*", there is no URL query parameter, all fields are passed via URL path and HTTP request body. 3. If HttpRule.body is omitted, there is no HTTP request body, all fields are passed via URL path and URL query parameters. ### Path template syntax Template = "/" Segments [ Verb ] ; Segments = Segment { "/" Segment \} ; Segment = "*" | "**" | LITERAL | Variable ; Variable = "{" FieldPath [ "=" Segments ] "\}" ; FieldPath = IDENT { "." IDENT \} ; Verb = ":" LITERAL ; The syntax `*` matches a single URL path segment. The syntax `**` matches zero or more URL path segments, which must be the last part of the URL path except the `Verb`. The syntax `Variable` matches part of the URL path as specified by its template. A variable template must not contain other variables. If a variable matches a single path segment, its template may be omitted, e.g. `{var\}` is equivalent to `{var=*\}`. The syntax `LITERAL` matches literal text in the URL path. If the `LITERAL` contains any reserved character, such characters should be percent-encoded before the matching. If a variable contains exactly one path segment, such as `"{var\}"` or `"{var=*\}"`, when such a variable is expanded into a URL path on the client side, all characters except `[-_.~0-9a-zA-Z]` are percent-encoded. The server side does the reverse decoding. Such variables show up in the [Discovery Document](https://developers.google.com/discovery/v1/reference/apis) as `{var\}`. If a variable contains multiple path segments, such as `"{var=foo/x\}"` or `"{var=**\}"`, when such a variable is expanded into a URL path on the client side, all characters except `[-_.~/0-9a-zA-Z]` are percent-encoded. The server side does the reverse decoding, except "%2F" and "%2f" are left unchanged. Such variables show up in the [Discovery Document](https://developers.google.com/discovery/v1/reference/apis) as `{+var\}`. ## Using gRPC API Service Configuration gRPC API Service Configuration (service config) is a configuration language for configuring a gRPC service to become a user-facing product. The service config is simply the YAML representation of the `google.api.Service` proto message. As an alternative to annotating your proto file, you can configure gRPC transcoding in your service config YAML files. You do this by specifying a `HttpRule` that maps the gRPC method to a REST endpoint, achieving the same effect as the proto annotation. This can be particularly useful if you have a proto that is reused in multiple services. Note that any transcoding specified in the service config will override any matching transcoding configuration in the proto. Example: http: rules: # Selects a gRPC method and applies HttpRule to it. - selector: example.v1.Messaging.GetMessage get: /v1/messages/{message_id\}/{sub.subfield\} ## Special notes When gRPC Transcoding is used to map a gRPC to JSON REST endpoints, the proto to JSON conversion must follow the [proto3 specification](https://developers.google.com/protocol-buffers/docs/proto3#json). While the single segment variable follows the semantics of [RFC 6570](https://tools.ietf.org/html/rfc6570) Section 3.2.2 Simple String Expansion, the multi segment variable **does not** follow RFC 6570 Section 3.2.3 Reserved Expansion. The reason is that the Reserved Expansion does not expand special characters like `?` and `#`, which would lead to invalid URLs. As the result, gRPC Transcoding uses a custom encoding for multi segment variables. The path variables **must not** refer to any repeated or mapped field, because client libraries are not capable of handling such variable expansion. The path variables **must not** capture the leading "/" character. The reason is that the most common use case "{var\}" does not capture the leading "/" character. For consistency, all path variables must share the same behavior. Repeated message fields must not be mapped to URL query parameters, because no client library can support such complicated mapping. If an API needs to use a JSON array for request or response body, it can map the request or response body to a repeated field. However, some gRPC Transcoding implementations may not support this feature.
+   * gRPC Transcoding gRPC Transcoding is a feature for mapping between a gRPC method and one or more HTTP REST endpoints. It allows developers to build a single API service that supports both gRPC APIs and REST APIs. Many systems, including [Google APIs](https://github.com/googleapis/googleapis), [Cloud Endpoints](https://cloud.google.com/endpoints), [gRPC Gateway](https://github.com/grpc-ecosystem/grpc-gateway), and [Envoy](https://github.com/envoyproxy/envoy) proxy support this feature and use it for large scale production services. `HttpRule` defines the schema of the gRPC/REST mapping. The mapping specifies how different portions of the gRPC request message are mapped to the URL path, URL query parameters, and HTTP request body. It also controls how the gRPC response message is mapped to the HTTP response body. `HttpRule` is typically specified as an `google.api.http` annotation on the gRPC method. Each mapping specifies a URL path template and an HTTP method. The path template may refer to one or more fields in the gRPC request message, as long as each field is a non-repeated field with a primitive (non-message) type. The path template controls how fields of the request message are mapped to the URL path. Example: service Messaging { rpc GetMessage(GetMessageRequest) returns (Message) { option (google.api.http) = { get: "/v1/{name=messages/x\}" \}; \} \} message GetMessageRequest { string name = 1; // Mapped to URL path. \} message Message { string text = 1; // The resource content. \} This enables an HTTP REST to gRPC mapping as below: - HTTP: `GET /v1/messages/123456` - gRPC: `GetMessage(name: "messages/123456")` Any fields in the request message which are not bound by the path template automatically become HTTP query parameters if there is no HTTP request body. For example: service Messaging { rpc GetMessage(GetMessageRequest) returns (Message) { option (google.api.http) = { get:"/v1/messages/{message_id\}" \}; \} \} message GetMessageRequest { message SubMessage { string subfield = 1; \} string message_id = 1; // Mapped to URL path. int64 revision = 2; // Mapped to URL query parameter `revision`. SubMessage sub = 3; // Mapped to URL query parameter `sub.subfield`. \} This enables a HTTP JSON to RPC mapping as below: - HTTP: `GET /v1/messages/123456?revision=2&sub.subfield=foo` - gRPC: `GetMessage(message_id: "123456" revision: 2 sub: SubMessage(subfield: "foo"))` Note that fields which are mapped to URL query parameters must have a primitive type or a repeated primitive type or a non-repeated message type. In the case of a repeated type, the parameter can be repeated in the URL as `...?param=A&param=B`. In the case of a message type, each field of the message is mapped to a separate parameter, such as `...?foo.a=A&foo.b=B&foo.c=C`. For HTTP methods that allow a request body, the `body` field specifies the mapping. Consider a REST update method on the message resource collection: service Messaging { rpc UpdateMessage(UpdateMessageRequest) returns (Message) { option (google.api.http) = { patch: "/v1/messages/{message_id\}" body: "message" \}; \} \} message UpdateMessageRequest { string message_id = 1; // mapped to the URL Message message = 2; // mapped to the body \} The following HTTP JSON to RPC mapping is enabled, where the representation of the JSON in the request body is determined by protos JSON encoding: - HTTP: `PATCH /v1/messages/123456 { "text": "Hi!" \}` - gRPC: `UpdateMessage(message_id: "123456" message { text: "Hi!" \})` The special name `*` can be used in the body mapping to define that every field not bound by the path template should be mapped to the request body. This enables the following alternative definition of the update method: service Messaging { rpc UpdateMessage(Message) returns (Message) { option (google.api.http) = { patch: "/v1/messages/{message_id\}" body: "*" \}; \} \} message Message { string message_id = 1; string text = 2; \} The following HTTP JSON to RPC mapping is enabled: - HTTP: `PATCH /v1/messages/123456 { "text": "Hi!" \}` - gRPC: `UpdateMessage(message_id: "123456" text: "Hi!")` Note that when using `*` in the body mapping, it is not possible to have HTTP parameters, as all fields not bound by the path end in the body. This makes this option more rarely used in practice when defining REST APIs. The common usage of `*` is in custom methods which don't use the URL at all for transferring data. It is possible to define multiple HTTP methods for one RPC by using the `additional_bindings` option. Example: service Messaging { rpc GetMessage(GetMessageRequest) returns (Message) { option (google.api.http) = { get: "/v1/messages/{message_id\}" additional_bindings { get: "/v1/users/{user_id\}/messages/{message_id\}" \} \}; \} \} message GetMessageRequest { string message_id = 1; string user_id = 2; \} This enables the following two alternative HTTP JSON to RPC mappings: - HTTP: `GET /v1/messages/123456` - gRPC: `GetMessage(message_id: "123456")` - HTTP: `GET /v1/users/me/messages/123456` - gRPC: `GetMessage(user_id: "me" message_id: "123456")` Rules for HTTP mapping 1. Leaf request fields (recursive expansion nested messages in the request message) are classified into three categories: - Fields referred by the path template. They are passed via the URL path. - Fields referred by the HttpRule.body. They are passed via the HTTP request body. - All other fields are passed via the URL query parameters, and the parameter name is the field path in the request message. A repeated field can be represented as multiple query parameters under the same name. 2. If HttpRule.body is "*", there is no URL query parameter, all fields are passed via URL path and HTTP request body. 3. If HttpRule.body is omitted, there is no HTTP request body, all fields are passed via URL path and URL query parameters. Path template syntax Template = "/" Segments [ Verb ] ; Segments = Segment { "/" Segment \} ; Segment = "*" | "**" | LITERAL | Variable ; Variable = "{" FieldPath [ "=" Segments ] "\}" ; FieldPath = IDENT { "." IDENT \} ; Verb = ":" LITERAL ; The syntax `*` matches a single URL path segment. The syntax `**` matches zero or more URL path segments, which must be the last part of the URL path except the `Verb`. The syntax `Variable` matches part of the URL path as specified by its template. A variable template must not contain other variables. If a variable matches a single path segment, its template may be omitted, e.g. `{var\}` is equivalent to `{var=*\}`. The syntax `LITERAL` matches literal text in the URL path. If the `LITERAL` contains any reserved character, such characters should be percent-encoded before the matching. If a variable contains exactly one path segment, such as `"{var\}"` or `"{var=*\}"`, when such a variable is expanded into a URL path on the client side, all characters except `[-_.~0-9a-zA-Z]` are percent-encoded. The server side does the reverse decoding. Such variables show up in the [Discovery Document](https://developers.google.com/discovery/v1/reference/apis) as `{var\}`. If a variable contains multiple path segments, such as `"{var=foo/x\}"` or `"{var=**\}"`, when such a variable is expanded into a URL path on the client side, all characters except `[-_.~/0-9a-zA-Z]` are percent-encoded. The server side does the reverse decoding, except "%2F" and "%2f" are left unchanged. Such variables show up in the [Discovery Document](https://developers.google.com/discovery/v1/reference/apis) as `{+var\}`. Using gRPC API Service Configuration gRPC API Service Configuration (service config) is a configuration language for configuring a gRPC service to become a user-facing product. The service config is simply the YAML representation of the `google.api.Service` proto message. As an alternative to annotating your proto file, you can configure gRPC transcoding in your service config YAML files. You do this by specifying a `HttpRule` that maps the gRPC method to a REST endpoint, achieving the same effect as the proto annotation. This can be particularly useful if you have a proto that is reused in multiple services. Note that any transcoding specified in the service config will override any matching transcoding configuration in the proto. Example below selects a gRPC method and applies HttpRule to it. http: rules: - selector: example.v1.Messaging.GetMessage get: /v1/messages/{message_id\}/{sub.subfield\} Special notes When gRPC Transcoding is used to map a gRPC to JSON REST endpoints, the proto to JSON conversion must follow the [proto3 specification](https://developers.google.com/protocol-buffers/docs/proto3#json). While the single segment variable follows the semantics of [RFC 6570](https://tools.ietf.org/html/rfc6570) Section 3.2.2 Simple String Expansion, the multi segment variable **does not** follow RFC 6570 Section 3.2.3 Reserved Expansion. The reason is that the Reserved Expansion does not expand special characters like `?` and `#`, which would lead to invalid URLs. As the result, gRPC Transcoding uses a custom encoding for multi segment variables. The path variables **must not** refer to any repeated or mapped field, because client libraries are not capable of handling such variable expansion. The path variables **must not** capture the leading "/" character. The reason is that the most common use case "{var\}" does not capture the leading "/" character. For consistency, all path variables must share the same behavior. Repeated message fields must not be mapped to URL query parameters, because no client library can support such complicated mapping. If an API needs to use a JSON array for request or response body, it can map the request or response body to a repeated field. However, some gRPC Transcoding implementations may not support this feature.
    */
   export interface Schema$HttpRule {
     /**
@@ -926,11 +926,11 @@ export namespace serviceconsumermanagement_v1beta1 {
      */
     autoPopulatedFields?: string[] | null;
     /**
-     * Describes settings to use for long-running operations when generating API methods for RPCs. Complements RPCs that use the annotations in google/longrunning/operations.proto. Example of a YAML configuration:: publishing: method_settings: - selector: google.cloud.speech.v2.Speech.BatchRecognize long_running: initial_poll_delay: seconds: 60 # 1 minute poll_delay_multiplier: 1.5 max_poll_delay: seconds: 360 # 6 minutes total_poll_timeout: seconds: 54000 # 90 minutes
+     * Describes settings to use for long-running operations when generating API methods for RPCs. Complements RPCs that use the annotations in google/longrunning/operations.proto. Example of a YAML configuration:: publishing: method_settings: - selector: google.cloud.speech.v2.Speech.BatchRecognize long_running: initial_poll_delay: 60s # 1 minute poll_delay_multiplier: 1.5 max_poll_delay: 360s # 6 minutes total_poll_timeout: 54000s # 90 minutes
      */
     longRunning?: Schema$LongRunning;
     /**
-     * The fully qualified name of the method, for which the options below apply. This is used to find the method to apply the options.
+     * The fully qualified name of the method, for which the options below apply. This is used to find the method to apply the options. Example: publishing: method_settings: - selector: google.storage.control.v2.StorageControl.CreateFolder # method settings for CreateFolder...
      */
     selector?: string | null;
   }
@@ -1699,11 +1699,15 @@ export namespace serviceconsumermanagement_v1beta1 {
    */
   export interface Schema$V1Beta1ImportProducerOverridesRequest {
     /**
-     * Whether to force the creation of the quota overrides. Setting the force parameter to 'true' ignores all quota safety checks that would fail the request. QuotaSafetyCheck lists all such validations. If force is set to true, it is recommended to include a case id in "X-Goog-Request-Reason" header when sending the request.
+     * Whether to force the creation of the quota overrides. Setting the force parameter to 'true' ignores all quota safety checks that would fail the request. QuotaSafetyCheck lists all such validations.
      */
     force?: boolean | null;
     /**
-     * The list of quota safety checks to ignore before the override mutation. Unlike 'force' field that ignores all the quota safety checks, the 'force_only' field ignores only the specified checks; other checks are still enforced. The 'force' and 'force_only' fields cannot both be set. If force_only is specified, it is recommended to include a case id in "X-Goog-Request-Reason" header when sending the request.
+     * If force option is set to true, force_justification is suggested to be set to log the reason in audit logs.
+     */
+    forceJustification?: string | null;
+    /**
+     * The list of quota safety checks to ignore before the override mutation. Unlike 'force' field that ignores all the quota safety checks, the 'force_only' field ignores only the specified checks; other checks are still enforced. The 'force' and 'force_only' fields cannot both be set.
      */
     forceOnly?: string[] | null;
     /**
@@ -1719,6 +1723,27 @@ export namespace serviceconsumermanagement_v1beta1 {
      * The overrides that were created from the imported data.
      */
     overrides?: Schema$V1Beta1QuotaOverride[];
+  }
+  /**
+   * Request message for ImportProducerQuotaPolicies
+   */
+  export interface Schema$V1Beta1ImportProducerQuotaPoliciesRequest {
+    /**
+     * Whether to force the import of the quota policies. If the policy import would decrease the default limit of any consumer tier by more than 10 percent, the call is rejected, as a safety measure to avoid accidentally decreasing quota too quickly. Setting the force parameter to true ignores this restriction.
+     */
+    force?: boolean | null;
+    /**
+     * If force option is set to true, force_justification is suggested to be set to log the reason in audit logs.
+     */
+    forceJustification?: string | null;
+    /**
+     * The import data is specified in the request message itself
+     */
+    inlineSource?: Schema$V1Beta1PolicyInlineSource;
+    /**
+     * If set to true, validate the request, but do not actually update.
+     */
+    validateOnly?: boolean | null;
   }
   /**
    * Response message for ImportProducerQuotaPolicies
@@ -1756,6 +1781,19 @@ export namespace serviceconsumermanagement_v1beta1 {
     overrides?: Schema$V1Beta1QuotaOverride[];
   }
   /**
+   * Response message for ListProducerQuotaPolicies.
+   */
+  export interface Schema$V1Beta1ListProducerQuotaPoliciesResponse {
+    /**
+     * Token identifying which result to start with; returned by a previous list call.
+     */
+    nextPageToken?: string | null;
+    /**
+     * Producer policies on this limit.
+     */
+    producerQuotaPolicies?: Schema$V1Beta1ProducerQuotaPolicy[];
+  }
+  /**
    * Import data embedded in the request message
    */
   export interface Schema$V1Beta1OverrideInlineSource {
@@ -1763,6 +1801,15 @@ export namespace serviceconsumermanagement_v1beta1 {
      * The overrides to create. Each override must have a value for 'metric' and 'unit', to specify which metric and which limit the override should be applied to. The 'name' field of the override does not need to be set; it is ignored.
      */
     overrides?: Schema$V1Beta1QuotaOverride[];
+  }
+  /**
+   * Import data embedded in the request message
+   */
+  export interface Schema$V1Beta1PolicyInlineSource {
+    /**
+     * The policies to create. Each policy must have a value for 'metric' and 'unit', to specify which metric and which limit the policy should be applied to.
+     */
+    policies?: Schema$V1Beta1ProducerQuotaPolicy[];
   }
   /**
    * Quota policy created by service producer.
@@ -1825,6 +1872,10 @@ export namespace serviceconsumermanagement_v1beta1 {
      * Producer policy inherited from the closet ancestor of the current consumer.
      */
     producerQuotaPolicy?: Schema$V1Beta1ProducerQuotaPolicy;
+    /**
+     * Rollout information of this quota bucket. This field is present only if the effective limit will change due to the ongoing rollout of the service config.
+     */
+    rolloutInfo?: Schema$V1Beta1RolloutInfo;
   }
   /**
    * A quota override
@@ -1871,6 +1922,15 @@ export namespace serviceconsumermanagement_v1beta1 {
      * The updated set of visibility labels for this consumer on this service.
      */
     labels?: string[] | null;
+  }
+  /**
+   * [Output only] Rollout information of a quota.
+   */
+  export interface Schema$V1Beta1RolloutInfo {
+    /**
+     * Whether there is an ongoing rollout for the default limit or not.
+     */
+    defaultLimitOngoingRollout?: boolean | null;
   }
   /**
    * A service account in the Identity and Access Management API.
@@ -1991,6 +2051,7 @@ export namespace serviceconsumermanagement_v1beta1 {
           {
             url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2112,6 +2173,7 @@ export namespace serviceconsumermanagement_v1beta1 {
           {
             url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2203,6 +2265,99 @@ export namespace serviceconsumermanagement_v1beta1 {
               '/v1beta1/{+parent}/consumerQuotaMetrics:importProducerOverrides'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Create or update multiple producer quota policies atomically, all on the same ancestor, but on many different metrics or limits. The name field in the quota policy message should not be set.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    importProducerQuotaPolicies(
+      params: Params$Resource$Services$Consumerquotametrics$Importproducerquotapolicies,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    importProducerQuotaPolicies(
+      params?: Params$Resource$Services$Consumerquotametrics$Importproducerquotapolicies,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    importProducerQuotaPolicies(
+      params: Params$Resource$Services$Consumerquotametrics$Importproducerquotapolicies,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    importProducerQuotaPolicies(
+      params: Params$Resource$Services$Consumerquotametrics$Importproducerquotapolicies,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    importProducerQuotaPolicies(
+      params: Params$Resource$Services$Consumerquotametrics$Importproducerquotapolicies,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    importProducerQuotaPolicies(
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    importProducerQuotaPolicies(
+      paramsOrCallback?:
+        | Params$Resource$Services$Consumerquotametrics$Importproducerquotapolicies
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Services$Consumerquotametrics$Importproducerquotapolicies;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Services$Consumerquotametrics$Importproducerquotapolicies;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://serviceconsumermanagement.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v1beta1/{+parent}/consumerQuotaMetrics:importProducerQuotaPolicies'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2298,6 +2453,7 @@ export namespace serviceconsumermanagement_v1beta1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2342,6 +2498,18 @@ export namespace serviceconsumermanagement_v1beta1 {
      */
     requestBody?: Schema$V1Beta1ImportProducerOverridesRequest;
   }
+  export interface Params$Resource$Services$Consumerquotametrics$Importproducerquotapolicies
+    extends StandardParameters {
+    /**
+     * The resource name of the consumer. An example name would be: `services/compute.googleapis.com/organizations/123`
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$V1Beta1ImportProducerQuotaPoliciesRequest;
+  }
   export interface Params$Resource$Services$Consumerquotametrics$List
     extends StandardParameters {
     /**
@@ -2365,10 +2533,15 @@ export namespace serviceconsumermanagement_v1beta1 {
   export class Resource$Services$Consumerquotametrics$Limits {
     context: APIRequestContext;
     producerOverrides: Resource$Services$Consumerquotametrics$Limits$Produceroverrides;
+    producerQuotaPolicies: Resource$Services$Consumerquotametrics$Limits$Producerquotapolicies;
     constructor(context: APIRequestContext) {
       this.context = context;
       this.producerOverrides =
         new Resource$Services$Consumerquotametrics$Limits$Produceroverrides(
+          this.context
+        );
+      this.producerQuotaPolicies =
+        new Resource$Services$Consumerquotametrics$Limits$Producerquotapolicies(
           this.context
         );
     }
@@ -2445,6 +2618,7 @@ export namespace serviceconsumermanagement_v1beta1 {
           {
             url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2553,6 +2727,7 @@ export namespace serviceconsumermanagement_v1beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2639,6 +2814,7 @@ export namespace serviceconsumermanagement_v1beta1 {
           {
             url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -2735,6 +2911,7 @@ export namespace serviceconsumermanagement_v1beta1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2823,6 +3000,7 @@ export namespace serviceconsumermanagement_v1beta1 {
           {
             url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -2845,11 +3023,15 @@ export namespace serviceconsumermanagement_v1beta1 {
   export interface Params$Resource$Services$Consumerquotametrics$Limits$Produceroverrides$Create
     extends StandardParameters {
     /**
-     * Whether to force the creation of the quota override. Setting the force parameter to 'true' ignores all quota safety checks that would fail the request. QuotaSafetyCheck lists all such validations. If force is set to true, it is recommended to include a case id in "X-Goog-Request-Reason" header when sending the request.
+     * Whether to force the creation of the quota override. Setting the force parameter to 'true' ignores all quota safety checks that would fail the request. QuotaSafetyCheck lists all such validations.
      */
     force?: boolean;
     /**
-     * The list of quota safety checks to ignore before the override mutation. Unlike 'force' field that ignores all the quota safety checks, the 'force_only' field ignores only the specified checks; other checks are still enforced. The 'force' and 'force_only' fields cannot both be set. If force_only is specified, it is recommended to include a case id in "X-Goog-Request-Reason" header when sending the request.
+     * If force option is set to true, force_justification is suggested to be set to log the reason in audit logs.
+     */
+    forceJustification?: string;
+    /**
+     * The list of quota safety checks to ignore before the override mutation. Unlike 'force' field that ignores all the quota safety checks, the 'force_only' field ignores only the specified checks; other checks are still enforced. The 'force' and 'force_only' fields cannot both be set.
      */
     forceOnly?: string[];
     /**
@@ -2865,11 +3047,15 @@ export namespace serviceconsumermanagement_v1beta1 {
   export interface Params$Resource$Services$Consumerquotametrics$Limits$Produceroverrides$Delete
     extends StandardParameters {
     /**
-     * Whether to force the deletion of the quota override. Setting the force parameter to 'true' ignores all quota safety checks that would fail the request. QuotaSafetyCheck lists all such validations. If force is set to true, it is recommended to include a case id in "X-Goog-Request-Reason" header when sending the request.
+     * Whether to force the deletion of the quota override. Setting the force parameter to 'true' ignores all quota safety checks that would fail the request. QuotaSafetyCheck lists all such validations.
      */
     force?: boolean;
     /**
-     * The list of quota safety checks to ignore before the override mutation. Unlike 'force' field that ignores all the quota safety checks, the 'force_only' field ignores only the specified checks; other checks are still enforced. The 'force' and 'force_only' fields cannot both be set. If force_only is specified, it is recommended to include a case id in "X-Goog-Request-Reason" header when sending the request.
+     * If force option is set to true, force_justification is suggested to be set to log the reason in audit logs.
+     */
+    forceJustification?: string;
+    /**
+     * The list of quota safety checks to ignore before the override mutation. Unlike 'force' field that ignores all the quota safety checks, the 'force_only' field ignores only the specified checks; other checks are still enforced. The 'force' and 'force_only' fields cannot both be set.
      */
     forceOnly?: string[];
     /**
@@ -2895,11 +3081,15 @@ export namespace serviceconsumermanagement_v1beta1 {
   export interface Params$Resource$Services$Consumerquotametrics$Limits$Produceroverrides$Patch
     extends StandardParameters {
     /**
-     * Whether to force the update of the quota override. Setting the force parameter to 'true' ignores all quota safety checks that would fail the request. QuotaSafetyCheck lists all such validations. If force is set to true, it is recommended to include a case id in "X-Goog-Request-Reason" header when sending the request.
+     * Whether to force the update of the quota override. Setting the force parameter to 'true' ignores all quota safety checks that would fail the request. QuotaSafetyCheck lists all such validations.
      */
     force?: boolean;
     /**
-     * The list of quota safety checks to ignore before the override mutation. Unlike 'force' field that ignores all the quota safety checks, the 'force_only' field ignores only the specified checks; other checks are still enforced. The 'force' and 'force_only' fields cannot both be set. If force_only is specified, it is recommended to include a case id in "X-Goog-Request-Reason" header when sending the request.
+     * If force option is set to true, force_justification is suggested to be set to log the reason in audit logs.
+     */
+    forceJustification?: string;
+    /**
+     * The list of quota safety checks to ignore before the override mutation. Unlike 'force' field that ignores all the quota safety checks, the 'force_only' field ignores only the specified checks; other checks are still enforced. The 'force' and 'force_only' fields cannot both be set.
      */
     forceOnly?: string[];
     /**
@@ -2915,5 +3105,462 @@ export namespace serviceconsumermanagement_v1beta1 {
      * Request body metadata
      */
     requestBody?: Schema$V1Beta1QuotaOverride;
+  }
+
+  export class Resource$Services$Consumerquotametrics$Limits$Producerquotapolicies {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Creates a producer quota policy. A producer quota policy is applied by the owner or administrator of a service at an org or folder node to set the default quota limit for all consumers under the node where the policy is created. To create multiple policies at once, use ImportProducerQuotaPolicies instead. If a policy with the specified dimensions already exists, this call will fail. To overwrite an existing policy if one is already present ("upsert" semantics), use ImportProducerQuotaPolicies instead.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Services$Consumerquotametrics$Limits$Producerquotapolicies$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Services$Consumerquotametrics$Limits$Producerquotapolicies$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    create(
+      params: Params$Resource$Services$Consumerquotametrics$Limits$Producerquotapolicies$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Services$Consumerquotametrics$Limits$Producerquotapolicies$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(
+      params: Params$Resource$Services$Consumerquotametrics$Limits$Producerquotapolicies$Create,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$Operation>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Services$Consumerquotametrics$Limits$Producerquotapolicies$Create
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Services$Consumerquotametrics$Limits$Producerquotapolicies$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Services$Consumerquotametrics$Limits$Producerquotapolicies$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://serviceconsumermanagement.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+parent}/producerQuotaPolicies').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Deletes a producer quota policy.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Services$Consumerquotametrics$Limits$Producerquotapolicies$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Services$Consumerquotametrics$Limits$Producerquotapolicies$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    delete(
+      params: Params$Resource$Services$Consumerquotametrics$Limits$Producerquotapolicies$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Services$Consumerquotametrics$Limits$Producerquotapolicies$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(
+      params: Params$Resource$Services$Consumerquotametrics$Limits$Producerquotapolicies$Delete,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Services$Consumerquotametrics$Limits$Producerquotapolicies$Delete
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Services$Consumerquotametrics$Limits$Producerquotapolicies$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Services$Consumerquotametrics$Limits$Producerquotapolicies$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://serviceconsumermanagement.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Lists all producer policies created at current consumer node for a limit.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Services$Consumerquotametrics$Limits$Producerquotapolicies$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Services$Consumerquotametrics$Limits$Producerquotapolicies$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$V1Beta1ListProducerQuotaPoliciesResponse>;
+    list(
+      params: Params$Resource$Services$Consumerquotametrics$Limits$Producerquotapolicies$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Services$Consumerquotametrics$Limits$Producerquotapolicies$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$V1Beta1ListProducerQuotaPoliciesResponse>,
+      callback: BodyResponseCallback<Schema$V1Beta1ListProducerQuotaPoliciesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Services$Consumerquotametrics$Limits$Producerquotapolicies$List,
+      callback: BodyResponseCallback<Schema$V1Beta1ListProducerQuotaPoliciesResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$V1Beta1ListProducerQuotaPoliciesResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Services$Consumerquotametrics$Limits$Producerquotapolicies$List
+        | BodyResponseCallback<Schema$V1Beta1ListProducerQuotaPoliciesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$V1Beta1ListProducerQuotaPoliciesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$V1Beta1ListProducerQuotaPoliciesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$V1Beta1ListProducerQuotaPoliciesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Services$Consumerquotametrics$Limits$Producerquotapolicies$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Services$Consumerquotametrics$Limits$Producerquotapolicies$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://serviceconsumermanagement.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+parent}/producerQuotaPolicies').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$V1Beta1ListProducerQuotaPoliciesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$V1Beta1ListProducerQuotaPoliciesResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Updates a producer quota policy.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Services$Consumerquotametrics$Limits$Producerquotapolicies$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Services$Consumerquotametrics$Limits$Producerquotapolicies$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    patch(
+      params: Params$Resource$Services$Consumerquotametrics$Limits$Producerquotapolicies$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Services$Consumerquotametrics$Limits$Producerquotapolicies$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(
+      params: Params$Resource$Services$Consumerquotametrics$Limits$Producerquotapolicies$Patch,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$Operation>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Services$Consumerquotametrics$Limits$Producerquotapolicies$Patch
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Services$Consumerquotametrics$Limits$Producerquotapolicies$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Services$Consumerquotametrics$Limits$Producerquotapolicies$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://serviceconsumermanagement.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Services$Consumerquotametrics$Limits$Producerquotapolicies$Create
+    extends StandardParameters {
+    /**
+     * Whether to force the creation of the quota policy. If the policy creation would decrease the default limit of any consumer tier by more than 10 percent, the call is rejected, as a safety measure to avoid accidentally decreasing quota too quickly. Setting the force parameter to true ignores this restriction.
+     */
+    force?: boolean;
+    /**
+     * If force option is set to true, force_justification is suggested to be set to log the reason in audit logs.
+     */
+    forceJustification?: string;
+    /**
+     * Required. The resource name of the parent quota limit. An example name would be: `services/compute.googleapis.com/organizations/123/consumerQuotaMetrics/compute.googleapis.com%2Fcpus/limits/%2Fproject%2Fregion`
+     */
+    parent?: string;
+    /**
+     * If set to true, validate the request, but do not actually update.
+     */
+    validateOnly?: boolean;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$V1Beta1ProducerQuotaPolicy;
+  }
+  export interface Params$Resource$Services$Consumerquotametrics$Limits$Producerquotapolicies$Delete
+    extends StandardParameters {
+    /**
+     * Whether to force the deletion of the quota policy. If the policy deletion would decrease the default limit of any consumer tier by more than 10 percent, the call is rejected, as a safety measure to avoid accidentally decreasing quota too quickly. Setting the force parameter to true ignores this restriction.
+     */
+    force?: boolean;
+    /**
+     * If force option is set to true, force_justification is suggested to be set to log the reason in audit logs.
+     */
+    forceJustification?: string;
+    /**
+     * Required. The resource name of the policy to delete. An example name would be: `services/compute.googleapis.com/organizations/123/consumerQuotaMetrics/compute.googleapis.com%2Fcpus/limits/%2Fproject%2Fregion/producerQuotaPolicies/4a3f2c1d`
+     */
+    name?: string;
+    /**
+     * If set to true, validate the request, but do not actually update.
+     */
+    validateOnly?: boolean;
+  }
+  export interface Params$Resource$Services$Consumerquotametrics$Limits$Producerquotapolicies$List
+    extends StandardParameters {
+    /**
+     * Requested size of the next page of data.
+     */
+    pageSize?: number;
+    /**
+     * Token identifying which result to start with; returned by a previous list call.
+     */
+    pageToken?: string;
+    /**
+     * Required. The resource name of the parent quota limit. An example name would be: `services/compute.googleapis.com/organizations/123/consumerQuotaMetrics/compute.googleapis.com%2Fcpus/limits/%2Fproject%2Fregion`
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Services$Consumerquotametrics$Limits$Producerquotapolicies$Patch
+    extends StandardParameters {
+    /**
+     * Whether to force the update of the quota policy. If the policy update would decrease the default limit of any consumer tier by more than 10 percent, the call is rejected, as a safety measure to avoid accidentally decreasing quota too quickly. Setting the force parameter to true ignores this restriction.
+     */
+    force?: boolean;
+    /**
+     * If force option is set to true, force_justification is suggested to be set to log the reason in audit logs.
+     */
+    forceJustification?: string;
+    /**
+     * The resource name of the producer policy. An example name would be: `services/compute.googleapis.com/organizations/123/consumerQuotaMetrics/compute.googleapis.com%2Fcpus/limits/%2Fproject%2Fregion/producerQuotaPolicies/4a3f2c1d`
+     */
+    name?: string;
+    /**
+     * Update only the specified fields. If unset, all modifiable fields will be updated.
+     */
+    updateMask?: string;
+    /**
+     * If set to true, validate the request, but do not actually update.
+     */
+    validateOnly?: boolean;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$V1Beta1ProducerQuotaPolicy;
   }
 }

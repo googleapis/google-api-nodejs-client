@@ -125,6 +125,40 @@ export namespace workloadmanager_v1 {
   }
 
   /**
+   * * An AgentCommand specifies a one-time executable program for the agent to run.
+   */
+  export interface Schema$AgentCommand {
+    /**
+     * command is the name of the agent one-time executable that will be invoked.
+     */
+    command?: string | null;
+    /**
+     * parameters is a map of key/value pairs that can be used to specify additional one-time executable settings.
+     */
+    parameters?: {[key: string]: string} | null;
+  }
+  /**
+   * Provides the mapping of a cloud asset to a direct physical location or to a proxy that defines the location on its behalf.
+   */
+  export interface Schema$AssetLocation {
+    /**
+     * Defines the customer expectation around ZI/ZS for this asset and ZI/ZS state of the region at the time of asset creation.
+     */
+    expected?: Schema$IsolationExpectations;
+    /**
+     * Defines extra parameters required for specific asset types.
+     */
+    extraParameters?: Schema$ExtraParameter[];
+    /**
+     * Contains all kinds of physical location definitions for this asset.
+     */
+    locationData?: Schema$LocationData[];
+    /**
+     * Defines parents assets if any in order to allow later generation of child_asset_location data via child assets.
+     */
+    parentAsset?: Schema$CloudAsset[];
+  }
+  /**
    * Message describing big query destination
    */
   export interface Schema$BigQueryDestination {
@@ -138,9 +172,38 @@ export namespace workloadmanager_v1 {
     destinationDataset?: string | null;
   }
   /**
+   * Policy ID that identified data placement in Blobstore as per go/blobstore-user-guide#data-metadata-placement-and-failure-domains
+   */
+  export interface Schema$BlobstoreLocation {
+    policyId?: string[] | null;
+  }
+  /**
    * The request message for Operations.CancelOperation.
    */
   export interface Schema$CancelOperationRequest {}
+  export interface Schema$CloudAsset {
+    assetName?: string | null;
+    assetType?: string | null;
+  }
+  export interface Schema$CloudAssetComposition {
+    childAsset?: Schema$CloudAsset[];
+  }
+  /**
+   * * Command specifies the type of command to execute.
+   */
+  export interface Schema$Command {
+    /**
+     * AgentCommand specifies a one-time executable program for the agent to run.
+     */
+    agentCommand?: Schema$AgentCommand;
+    /**
+     * ShellCommand is invoked via the agent's command line executor.
+     */
+    shellCommand?: Schema$ShellCommand;
+  }
+  export interface Schema$DirectLocationAssignment {
+    location?: Schema$LocationAssignment[];
+  }
   /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
    */
@@ -211,6 +274,10 @@ export namespace workloadmanager_v1 {
      */
     evaluationId?: string | null;
     /**
+     * Optional. External data sources
+     */
+    externalDataSources?: Schema$ExternalDataSources[];
+    /**
      * Output only. [Output only] Inventory time stamp
      */
     inventoryTime?: string | null;
@@ -240,29 +307,63 @@ export namespace workloadmanager_v1 {
    */
   export interface Schema$ExecutionResult {
     /**
-     * the document url of the rule
+     * The commands to remediate the violation.
+     */
+    commands?: Schema$Command[];
+    /**
+     * The URL for the documentation of the rule.
      */
     documentationUrl?: string | null;
     /**
-     * the violate resource
+     * The resource that violates the rule.
      */
     resource?: Schema$Resource;
     /**
-     * the rule which violate in execution
+     * The rule that is violated in an evaluation.
      */
     rule?: string | null;
     /**
-     * severity of violation
+     * The severity of violation.
      */
     severity?: string | null;
     /**
-     * the details of violation in result
+     * The details of violation in an evaluation result.
      */
     violationDetails?: Schema$ViolationDetails;
     /**
-     * the violation message of an execution
+     * The violation message of an execution.
      */
     violationMessage?: string | null;
+  }
+  /**
+   * Message for external data sources
+   */
+  export interface Schema$ExternalDataSources {
+    /**
+     * Required. The asset type of the external data source must be one of go/cai-asset-types
+     */
+    assetType?: string | null;
+    /**
+     * Optional. Name of external data source. The name will be used inside the rego/sql to refer the external data
+     */
+    name?: string | null;
+    /**
+     * Required. Type of external data source
+     */
+    type?: string | null;
+    /**
+     * Required. URI of external data source. example of bq table {project_ID\}.{dataset_ID\}.{table_ID\}
+     */
+    uri?: string | null;
+  }
+  /**
+   * Defines parameters that should only be used for specific asset types.
+   */
+  export interface Schema$ExtraParameter {
+    /**
+     * Details about zones used by regional compute.googleapis.com/InstanceGroupManager to create instances.
+     */
+    regionalMigDistributionPolicy?: Schema$RegionalMigDistributionPolicy;
   }
   /**
    * Message describing compute engine instance filter
@@ -297,6 +398,21 @@ export namespace workloadmanager_v1 {
      * The insights data for the sqlserver workload validation.
      */
     sqlserverValidation?: Schema$SqlserverValidation;
+  }
+  export interface Schema$IsolationExpectations {
+    ziOrgPolicy?: string | null;
+    ziRegionPolicy?: string | null;
+    ziRegionState?: string | null;
+    /**
+     * Deprecated: use zi_org_policy, zi_region_policy and zi_region_state instead for setting ZI expectations as per go/zicy-publish-physical-location.
+     */
+    zoneIsolation?: string | null;
+    /**
+     * Deprecated: use zs_org_policy, and zs_region_stateinstead for setting Zs expectations as per go/zicy-publish-physical-location.
+     */
+    zoneSeparation?: string | null;
+    zsOrgPolicy?: string | null;
+    zsRegionState?: string | null;
   }
   /**
    * Message for response to listing Evaluations
@@ -422,6 +538,18 @@ export namespace workloadmanager_v1 {
      */
     name?: string | null;
   }
+  export interface Schema$LocationAssignment {
+    location?: string | null;
+    locationType?: string | null;
+  }
+  export interface Schema$LocationData {
+    blobstoreLocation?: Schema$BlobstoreLocation;
+    childAssetLocation?: Schema$CloudAssetComposition;
+    directLocation?: Schema$DirectLocationAssignment;
+    gcpProjectProxy?: Schema$TenantProjectProxy;
+    placerLocation?: Schema$PlacerLocation;
+    spannerLocation?: Schema$SpannerLocation;
+  }
   /**
    * This resource represents a long-running operation that is the result of a network API call.
    */
@@ -481,19 +609,41 @@ export namespace workloadmanager_v1 {
     verb?: string | null;
   }
   /**
+   * Message describing that the location of the customer resource is tied to placer allocations
+   */
+  export interface Schema$PlacerLocation {
+    /**
+     * Directory with a config related to it in placer (e.g. "/placer/prod/home/my-root/my-dir")
+     */
+    placerConfig?: string | null;
+  }
+  /**
+   * To be used for specifying the intended distribution of regional compute.googleapis.com/InstanceGroupManager instances
+   */
+  export interface Schema$RegionalMigDistributionPolicy {
+    /**
+     * The shape in which the group converges around distribution of resources. Instance of proto2 enum
+     */
+    targetShape?: number | null;
+    /**
+     * Cloud zones used by regional MIG to create instances.
+     */
+    zones?: Schema$ZoneConfiguration[];
+  }
+  /**
    * Message represent resource in execution result
    */
   export interface Schema$Resource {
     /**
-     * the name of the resource
+     * The name of the resource.
      */
     name?: string | null;
     /**
-     * the service account accosiate with resource
+     * The service account associated with the resource.
      */
     serviceAccount?: string | null;
     /**
-     * the type of reresource
+     * The type of resource.
      */
     type?: string | null;
   }
@@ -651,6 +801,10 @@ export namespace workloadmanager_v1 {
      */
     hostProject?: string | null;
     /**
+     * Optional. A list of replication sites used in Disaster Recovery (DR) configurations.
+     */
+    replicationSites?: Schema$SapDiscoveryComponent[];
+    /**
      * Optional. The resources in a component.
      */
     resources?: Schema$SapDiscoveryResource[];
@@ -668,21 +822,29 @@ export namespace workloadmanager_v1 {
    */
   export interface Schema$SapDiscoveryComponentApplicationProperties {
     /**
-     * Optional. Indicates whether this is a Java or ABAP Netweaver instance. true means it is ABAP, false means it is Java.
+     * Optional. Deprecated: ApplicationType now tells you whether this is ABAP or Java.
      */
     abap?: boolean | null;
+    /**
+     * Optional. Instance number of the SAP application instance.
+     */
+    appInstanceNumber?: string | null;
     /**
      * Required. Type of the application. Netweaver, etc.
      */
     applicationType?: string | null;
     /**
+     * Optional. Instance number of the ASCS instance.
+     */
+    ascsInstanceNumber?: string | null;
+    /**
      * Optional. Resource URI of the recognized ASCS host of the application.
      */
     ascsUri?: string | null;
     /**
-     * Optional. Instance number of the SAP instance.
+     * Optional. Instance number of the ERS instance.
      */
-    instanceNumber?: string | null;
+    ersInstanceNumber?: string | null;
     /**
      * Optional. Kernel version for Netweaver running in the system.
      */
@@ -696,6 +858,10 @@ export namespace workloadmanager_v1 {
    * A set of properties describing an SAP Database layer.
    */
   export interface Schema$SapDiscoveryComponentDatabaseProperties {
+    /**
+     * Optional. SID of the system database.
+     */
+    databaseSid?: string | null;
     /**
      * Required. Type of the database. HANA, DB2, etc.
      */
@@ -772,13 +938,38 @@ export namespace workloadmanager_v1 {
    */
   export interface Schema$SapDiscoveryResourceInstanceProperties {
     /**
+     * Optional. App server instances on the host
+     */
+    appInstances?: Schema$SapDiscoveryResourceInstancePropertiesAppInstance[];
+    /**
      * Optional. A list of instance URIs that are part of a cluster with this one.
      */
     clusterInstances?: string[] | null;
     /**
+     * Optional. The VM's instance number.
+     */
+    instanceNumber?: string | null;
+    /**
+     * Optional. Bitmask of instance role, a resource may have multiple roles at once.
+     */
+    instanceRole?: string | null;
+    /**
      * Optional. A virtual hostname of the instance if it has one.
      */
     virtualHostname?: string | null;
+  }
+  /**
+   * Fields to describe an SAP application server instance.
+   */
+  export interface Schema$SapDiscoveryResourceInstancePropertiesAppInstance {
+    /**
+     * Optional. Instance name of the SAP application instance.
+     */
+    name?: string | null;
+    /**
+     * Optional. Instance number of the SAP application instance.
+     */
+    number?: string | null;
   }
   /**
    * A set of properties describing an SAP workload.
@@ -875,6 +1066,26 @@ export namespace workloadmanager_v1 {
     type?: string | null;
   }
   /**
+   * * A ShellCommand is invoked via the agent's command line executor
+   */
+  export interface Schema$ShellCommand {
+    /**
+     * args is a string of arguments to be passed to the command.
+     */
+    args?: string | null;
+    /**
+     * command is the name of the command to be executed.
+     */
+    command?: string | null;
+    /**
+     * Optional. If not specified, the default timeout is 60 seconds.
+     */
+    timeoutSeconds?: number | null;
+  }
+  export interface Schema$SpannerLocation {
+    dbName?: string[] | null;
+  }
+  /**
    * A presentation of SQLServer workload insight. The schema of SqlServer workloads validation related data.
    */
   export interface Schema$SqlserverValidation {
@@ -934,20 +1145,23 @@ export namespace workloadmanager_v1 {
      */
     message?: string | null;
   }
+  export interface Schema$TenantProjectProxy {
+    projectNumbers?: string[] | null;
+  }
   /**
-   * Message describing the violdation in execution result
+   * Message describing the violation in an evaluation result.
    */
   export interface Schema$ViolationDetails {
     /**
-     * the name of asset
+     * The name of the asset.
      */
     asset?: string | null;
     /**
-     * observed
+     * Details of the violation.
      */
     observed?: {[key: string]: string} | null;
     /**
-     * the service account associate with resource
+     * The service account associated with the resource.
      */
     serviceAccount?: string | null;
   }
@@ -972,6 +1186,9 @@ export namespace workloadmanager_v1 {
    * The response for write insights request.
    */
   export interface Schema$WriteInsightResponse {}
+  export interface Schema$ZoneConfiguration {
+    zone?: string | null;
+  }
 
   export class Resource$Projects {
     context: APIRequestContext;
@@ -1067,6 +1284,7 @@ export namespace workloadmanager_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1160,6 +1378,7 @@ export namespace workloadmanager_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1286,6 +1505,7 @@ export namespace workloadmanager_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1371,6 +1591,7 @@ export namespace workloadmanager_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -1456,6 +1677,7 @@ export namespace workloadmanager_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1549,6 +1771,7 @@ export namespace workloadmanager_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1591,6 +1814,10 @@ export namespace workloadmanager_v1 {
   export interface Params$Resource$Projects$Locations$Evaluations$Delete
     extends StandardParameters {
     /**
+     * Optional. Followed the best practice from https://aip.dev/135#cascading-delete
+     */
+    force?: boolean;
+    /**
      * Required. Name of the resource
      */
     name?: string;
@@ -1609,7 +1836,7 @@ export namespace workloadmanager_v1 {
   export interface Params$Resource$Projects$Locations$Evaluations$List
     extends StandardParameters {
     /**
-     * Filtering results
+     * Filter to be applied when listing the evaluation results.
      */
     filter?: string;
     /**
@@ -1714,6 +1941,7 @@ export namespace workloadmanager_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -1800,6 +2028,7 @@ export namespace workloadmanager_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1894,6 +2123,7 @@ export namespace workloadmanager_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1983,6 +2213,7 @@ export namespace workloadmanager_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2063,7 +2294,7 @@ export namespace workloadmanager_v1 {
     }
 
     /**
-     * List the running result of a single Execution.
+     * Lists the result of a single evaluation.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2140,6 +2371,7 @@ export namespace workloadmanager_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2265,6 +2497,7 @@ export namespace workloadmanager_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2397,6 +2630,7 @@ export namespace workloadmanager_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2502,6 +2736,7 @@ export namespace workloadmanager_v1 {
           {
             url: (rootUrl + '/v1/{+name}:cancel').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2587,6 +2822,7 @@ export namespace workloadmanager_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -2672,6 +2908,7 @@ export namespace workloadmanager_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2765,6 +3002,7 @@ export namespace workloadmanager_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2909,6 +3147,7 @@ export namespace workloadmanager_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),

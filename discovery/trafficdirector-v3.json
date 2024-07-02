@@ -128,7 +128,7 @@
       }
     }
   },
-  "revision": "20240214",
+  "revision": "20240410",
   "rootUrl": "https://trafficdirector.googleapis.com/",
   "schemas": {
     "Address": {
@@ -1192,12 +1192,16 @@
       "type": "object"
     },
     "StringMatcher": {
-      "description": "Specifies the way to match a string. [#next-free-field: 8]",
+      "description": "Specifies the way to match a string. [#next-free-field: 9]",
       "id": "StringMatcher",
       "properties": {
         "contains": {
           "description": "The input string must have the substring specified here. Note: empty contains match is not allowed, please use regex instead. Examples: * ``abc`` matches the value ``xyz.abc.def``",
           "type": "string"
+        },
+        "custom": {
+          "$ref": "TypedExtensionConfig",
+          "description": "Use an extension as the matcher type. [#extension-category: envoy.string_matcher]"
         },
         "exact": {
           "description": "The input string must match exactly the string specified here. Examples: * ``abc`` only matches the value ``abc``.",
@@ -1236,6 +1240,25 @@
         "value": {
           "$ref": "ValueMatcher",
           "description": "The StructMatcher is matched if the value retrieved by path is matched to this value."
+        }
+      },
+      "type": "object"
+    },
+    "TypedExtensionConfig": {
+      "description": "Message type for extension configuration.",
+      "id": "TypedExtensionConfig",
+      "properties": {
+        "name": {
+          "description": "The name of an extension. This is not used to select the extension, instead it serves the role of an opaque identifier.",
+          "type": "string"
+        },
+        "typedConfig": {
+          "additionalProperties": {
+            "description": "Properties of the object. Contains field @type with type URL.",
+            "type": "any"
+          },
+          "description": "The typed config for the extension. The type URL will be used to identify the extension. In the case that the type URL is *xds.type.v3.TypedStruct* (or, for historical reasons, *udpa.type.v1.TypedStruct*), the inner type URL of *TypedStruct* will be utilized. See the :ref:`extension configuration overview ` for further details.",
+          "type": "object"
         }
       },
       "type": "object"

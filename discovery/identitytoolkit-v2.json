@@ -1638,7 +1638,7 @@
               ],
               "enumDescriptions": [
                 "The reCAPTCHA version is not specified.",
-                "Use reCAPTCHA Enterprise."
+                "The reCAPTCHA enterprise."
               ],
               "location": "query",
               "type": "string"
@@ -1655,7 +1655,7 @@
       }
     }
   },
-  "revision": "20240313",
+  "revision": "20240522",
   "rootUrl": "https://identitytoolkit.googleapis.com/",
   "schemas": {
     "GoogleCloudIdentitytoolkitAdminV2AllowByDefault": {
@@ -1709,7 +1709,8 @@
           "type": "array"
         },
         "codeFlowConfig": {
-          "$ref": "GoogleCloudIdentitytoolkitAdminV2CodeFlowConfig"
+          "$ref": "GoogleCloudIdentitytoolkitAdminV2CodeFlowConfig",
+          "description": "Additional config for Apple for code flow."
         }
       },
       "type": "object"
@@ -2032,7 +2033,7 @@
       "type": "object"
     },
     "GoogleCloudIdentitytoolkitAdminV2EmailTemplate": {
-      "description": "Email template. The subject and body fields can contain the following placeholders which will be replaced with the appropriate values: %LINK% - The link to use to redeem the send OOB code. %EMAIL% - The email where the email is being sent. %NEW_EMAIL% - The new email being set for the account (when applicable). %APP_NAME% - The GCP project's display name. %DISPLAY_NAME% - The user's display name.",
+      "description": "Email template. The subject and body fields can contain the following placeholders which will be replaced with the appropriate values: %LINK% - The link to use to redeem the send OOB code. %EMAIL% - The email where the email is being sent. %NEW_EMAIL% - The new email being set for the account (when applicable). %APP_NAME% - The Google Cloud project's display name. %DISPLAY_NAME% - The user's display name.",
       "id": "GoogleCloudIdentitytoolkitAdminV2EmailTemplate",
       "properties": {
         "body": {

@@ -1053,6 +1053,10 @@ export namespace cloudfunctions_v2 {
      */
     availableMemory?: string | null;
     /**
+     * Optional. The binary authorization policy to be checked when deploying the Cloud Run service.
+     */
+    binaryAuthorizationPolicy?: string | null;
+    /**
      * Environment variables that shall be available during function execution.
      */
     environmentVariables?: {[key: string]: string} | null;
@@ -1197,6 +1201,10 @@ export namespace cloudfunctions_v2 {
      * Google Cloud Storage object containing the source. This object must be a gzipped archive file (`.tar.gz`) containing source to build.
      */
     object?: string | null;
+    /**
+     * When the specified storage bucket is a 1st gen function uploard url bucket, this field should be set as the generated upload url for 1st gen deployment.
+     */
+    sourceUploadUrl?: string | null;
   }
   /**
    * Request message for `TestIamPermissions` method.
@@ -1336,6 +1344,7 @@ export namespace cloudfunctions_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1454,6 +1463,7 @@ export namespace cloudfunctions_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1545,6 +1555,7 @@ export namespace cloudfunctions_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1633,6 +1644,7 @@ export namespace cloudfunctions_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1718,6 +1730,7 @@ export namespace cloudfunctions_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -1814,6 +1827,7 @@ export namespace cloudfunctions_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1909,6 +1923,7 @@ export namespace cloudfunctions_v2 {
               rootUrl + '/v2/{+parent}/functions:generateUploadUrl'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1994,6 +2009,7 @@ export namespace cloudfunctions_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2083,6 +2099,7 @@ export namespace cloudfunctions_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2176,6 +2193,7 @@ export namespace cloudfunctions_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2261,6 +2279,7 @@ export namespace cloudfunctions_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -2351,6 +2370,7 @@ export namespace cloudfunctions_v2 {
               rootUrl + '/v2/{+name}:redirectFunctionUpgradeTraffic'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2441,6 +2461,7 @@ export namespace cloudfunctions_v2 {
               rootUrl + '/v2/{+name}:rollbackFunctionUpgradeTraffic'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2530,6 +2551,7 @@ export namespace cloudfunctions_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2621,6 +2643,7 @@ export namespace cloudfunctions_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2717,6 +2740,7 @@ export namespace cloudfunctions_v2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3002,6 +3026,7 @@ export namespace cloudfunctions_v2 {
           {
             url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3095,6 +3120,7 @@ export namespace cloudfunctions_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3222,6 +3248,7 @@ export namespace cloudfunctions_v2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),

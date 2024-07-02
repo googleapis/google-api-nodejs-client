@@ -342,7 +342,7 @@
                       ]
                     },
                     "patch": {
-                      "description": "Updates the configuration of an existing `ConnectivityTest`. After you update a test, the reachability analysis is performed as part of the long running operation, which completes when the analysis completes. The Reachability state in the test resource is updated with the new result. If the endpoint specifications in `ConnectivityTest` are invalid (for example, they contain non-existent resources in the network, or the user does not have read permissions to the network configurations of listed projects), then the reachability result returns a value of UNKNOWN. If the endpoint specifications in `ConnectivityTest` are incomplete, the reachability result returns a value of `AMBIGUOUS`. See the documentation in `ConnectivityTest` for for more details.",
+                      "description": "Updates the configuration of an existing `ConnectivityTest`. After you update a test, the reachability analysis is performed as part of the long running operation, which completes when the analysis completes. The Reachability state in the test resource is updated with the new result. If the endpoint specifications in `ConnectivityTest` are invalid (for example, they contain non-existent resources in the network, or the user does not have read permissions to the network configurations of listed projects), then the reachability result returns a value of UNKNOWN. If the endpoint specifications in `ConnectivityTest` are incomplete, the reachability result returns a value of `AMBIGUOUS`. See the documentation in `ConnectivityTest` for more details.",
                       "flatPath": "v1/projects/{projectsId}/locations/global/connectivityTests/{connectivityTestsId}",
                       "httpMethod": "PATCH",
                       "id": "networkmanagement.projects.locations.global.connectivityTests.patch",
@@ -351,7 +351,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "Required. Unique name of the resource using the form: `projects/{project_id}/locations/global/connectivityTests/{test_id}`",
+                          "description": "Identifier. Unique name of the resource using the form: `projects/{project_id}/locations/global/connectivityTests/{test_id}`",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/global/connectivityTests/[^/]+$",
                           "required": true,
@@ -591,7 +591,7 @@
       }
     }
   },
-  "revision": "20240313",
+  "revision": "20240619",
   "rootUrl": "https://networkmanagement.googleapis.com/",
   "schemas": {
     "AbortInfo": {
@@ -611,6 +611,7 @@
             "DESTINATION_ENDPOINT_NOT_FOUND",
             "MISMATCHED_DESTINATION_NETWORK",
             "UNKNOWN_IP",
+            "GOOGLE_MANAGED_SERVICE_UNKNOWN_IP",
             "SOURCE_IP_ADDRESS_NOT_IN_SOURCE_NETWORK",
             "PERMISSION_DENIED",
             "PERMISSION_DENIED_NO_CLOUD_NAT_CONFIGS",
@@ -666,6 +667,7 @@
             false,
             false,
             false,
+            false,
             false
           ],
           "enumDescriptions": [
@@ -679,6 +681,7 @@
             "Aborted because the destination endpoint could not be found. Deprecated, not used in the new tests.",
             "Aborted because the destination network does not match the destination endpoint. Deprecated, not used in the new tests.",
             "Aborted because no endpoint with the packet's destination IP address is found.",
+            "Aborted because no endpoint with the packet's destination IP is found in the Google-managed project.",
             "Aborted because the source IP address doesn't belong to any of the subnets of the source VPC network.",
             "Aborted because user lacks permission to access all or part of the network configurations required to run the test.",
             "Aborted because user lacks permission to access Cloud NAT configs required to run the test.",
@@ -967,7 +970,7 @@
           "type": "object"
         },
         "name": {
-          "description": "Required. Unique name of the resource using the form: `projects/{project_id}/locations/global/connectivityTests/{test_id}`",
+          "description": "Identifier. Unique name of the resource using the form: `projects/{project_id}/locations/global/connectivityTests/{test_id}`",
           "type": "string"
         },
         "probingDetails": {
@@ -1012,8 +1015,16 @@
           "description": "IP address of the target (if applicable).",
           "type": "string"
         },
+        "pscGoogleApiTarget": {
+          "description": "PSC Google API target the packet is delivered to (if applicable).",
+          "type": "string"
+        },
         "resourceUri": {
           "description": "URI of the resource that the packet is delivered to.",
+          "type": "string"
+        },
+        "storageBucket": {
+          "description": "Name of the Cloud Storage Bucket the packet is delivered to (if applicable).",
           "type": "string"
         },
         "target": {
@@ -1033,7 +1044,8 @@
             "PRIVATE_NETWORK",
             "CLOUD_FUNCTION",
             "APP_ENGINE_VERSION",
-            "CLOUD_RUN_REVISION"
+            "CLOUD_RUN_REVISION",
+            "GOOGLE_MANAGED_SERVICE"
           ],
           "enumDescriptions": [
             "Target not specified.",
@@ -1043,14 +1055,15 @@
             "Target is a Google Kubernetes Engine cluster master.",
             "Target is a Cloud SQL instance.",
             "Target is a published service that uses [Private Service Connect](https://cloud.google.com/vpc/docs/configure-private-service-connect-services).",
-            "Target is all Google APIs that use [Private Service Connect](https://cloud.google.com/vpc/docs/configure-private-service-connect-apis).",
+            "Target is Google APIs that use [Private Service Connect](https://cloud.google.com/vpc/docs/configure-private-service-connect-apis).",
             "Target is a VPC-SC that uses [Private Service Connect](https://cloud.google.com/vpc/docs/configure-private-service-connect-apis).",
             "Target is a serverless network endpoint group.",
             "Target is a Cloud Storage bucket.",
             "Target is a private network. Used only for return traces.",
             "Target is a Cloud Function. Used only for return traces.",
             "Target is a App Engine service version. Used only for return traces.",
-            "Target is a Cloud Run revision. Used only for return traces."
+            "Target is a Cloud Run revision. Used only for return traces.",
+            "Target is a Google-managed service. Used only for return traces."
           ],
           "type": "string"
         }
@@ -1107,9 +1120,12 @@
             "CLOUD_SQL_INSTANCE_NOT_CONFIGURED_FOR_EXTERNAL_TRAFFIC",
             "PUBLIC_CLOUD_SQL_INSTANCE_TO_PRIVATE_DESTINATION",
             "CLOUD_SQL_INSTANCE_NO_ROUTE",
+            "CLOUD_SQL_CONNECTOR_REQUIRED",
             "CLOUD_FUNCTION_NOT_ACTIVE",
             "VPC_CONNECTOR_NOT_SET",
             "VPC_CONNECTOR_NOT_RUNNING",
+            "VPC_CONNECTOR_SERVERLESS_TRAFFIC_BLOCKED",
+            "VPC_CONNECTOR_HEALTH_CHECK_TRAFFIC_BLOCKED",
             "FORWARDING_RULE_REGION_MISMATCH",
             "PSC_CONNECTION_NOT_ACCEPTED",
             "PSC_ENDPOINT_ACCESSED_FROM_PEERED_NETWORK",
@@ -1117,13 +1133,15 @@
             "PSC_NEG_PRODUCER_FORWARDING_RULE_MULTIPLE_PORTS",
             "CLOUD_SQL_PSC_NEG_UNSUPPORTED",
             "NO_NAT_SUBNETS_FOR_PSC_SERVICE_ATTACHMENT",
+            "PSC_TRANSITIVITY_NOT_PROPAGATED",
             "HYBRID_NEG_NON_DYNAMIC_ROUTE_MATCHED",
             "HYBRID_NEG_NON_LOCAL_DYNAMIC_ROUTE_MATCHED",
             "CLOUD_RUN_REVISION_NOT_READY",
             "DROPPED_INSIDE_PSC_SERVICE_PRODUCER",
             "LOAD_BALANCER_HAS_NO_PROXY_SUBNET",
             "CLOUD_NAT_NO_ADDRESSES",
-            "ROUTING_LOOP"
+            "ROUTING_LOOP",
+            "DROPPED_INSIDE_GOOGLE_MANAGED_SERVICE"
           ],
           "enumDescriptions": [
             "Cause is unspecified.",
@@ -1135,7 +1153,7 @@
             "Packet is sent to a wrong (unintended) network. Example: you trace a packet from VM1:Network1 to VM2:Network2, however, the route configured in Network1 sends the packet destined for VM2's IP address to Network3.",
             "Route's next hop IP address cannot be resolved to a GCP resource.",
             "Route's next hop resource is not found.",
-            "Route's next hop instance doesn't hace a NIC in the route's network.",
+            "Route's next hop instance doesn't have a NIC in the route's network.",
             "Route's next hop IP address is not a primary IP address of the next hop instance.",
             "Route's next hop forwarding rule doesn't match next hop IP address.",
             "Route's next hop VPN tunnel is down (does not have valid IKE SAs).",
@@ -1169,9 +1187,12 @@
             "Packet sent from a Cloud SQL instance to an external IP address is not allowed. The Cloud SQL instance is not configured to send packets to external IP addresses.",
             "Packet sent from a Cloud SQL instance with only a public IP address to a private IP address.",
             "Packet was dropped because there is no route from a Cloud SQL instance to a destination network.",
+            "Packet was dropped because the Cloud SQL instance requires all connections to use Cloud SQL connectors and to target the Cloud SQL proxy port (3307).",
             "Packet could be dropped because the Cloud Function is not in an active status.",
             "Packet could be dropped because no VPC connector is set.",
             "Packet could be dropped because the VPC connector is not in a running state.",
+            "Packet could be dropped because the traffic from the serverless service to the VPC connector is not allowed.",
+            "Packet could be dropped because the health check traffic to the VPC connector is not allowed.",
             "Packet could be dropped because it was sent from a different region to a regional forwarding without global access.",
             "The Private Service Connect endpoint is in a project that is not approved to connect to the service.",
             "The packet is sent to the Private Service Connect endpoint over the peering, but [it's not supported](https://cloud.google.com/vpc/docs/configure-private-service-connect-services#on-premises).",
@@ -1179,13 +1200,15 @@
             "The packet is sent to the Private Service Connect backend (network endpoint group), but the producer PSC forwarding rule has multiple ports specified.",
             "The packet is sent to the Private Service Connect backend (network endpoint group) targeting a Cloud SQL service attachment, but this configuration is not supported.",
             "No NAT subnets are defined for the PSC service attachment.",
+            "PSC endpoint is accessed via NCC, but PSC transitivity configuration is not yet propagated.",
             "The packet sent from the hybrid NEG proxy matches a non-dynamic route, but such a configuration is not supported.",
             "The packet sent from the hybrid NEG proxy matches a dynamic route with a next hop in a different region, but such a configuration is not supported.",
             "Packet sent from a Cloud Run revision that is not ready.",
             "Packet was dropped inside Private Service Connect service producer.",
             "Packet sent to a load balancer, which requires a proxy-only subnet and the subnet is not found.",
             "Packet sent to Cloud Nat without active NAT IPs.",
-            "Packet is stuck in a routing loop."
+            "Packet is stuck in a routing loop.",
+            "Packet is dropped due to an unspecified reason inside a Google-managed service. Used only for return traces."
           ],
           "type": "string"
         },
@@ -1546,19 +1569,35 @@
       "id": "ForwardingRuleInfo",
       "properties": {
         "displayName": {
-          "description": "Name of a Compute Engine forwarding rule.",
+          "description": "Name of the forwarding rule.",
+          "type": "string"
+        },
+        "loadBalancerName": {
+          "description": "Name of the load balancer the forwarding rule belongs to. Empty for forwarding rules not related to load balancers (like PSC forwarding rules).",
           "type": "string"
         },
         "matchedPortRange": {
-          "description": "Port range defined in the forwarding rule that matches the test.",
+          "description": "Port range defined in the forwarding rule that matches the packet.",
           "type": "string"
         },
         "matchedProtocol": {
-          "description": "Protocol defined in the forwarding rule that matches the test.",
+          "description": "Protocol defined in the forwarding rule that matches the packet.",
           "type": "string"
         },
         "networkUri": {
-          "description": "Network URI. Only valid for Internal Load Balancer.",
+          "description": "Network URI.",
+          "type": "string"
+        },
+        "pscGoogleApiTarget": {
+          "description": "PSC Google API target this forwarding rule targets (if applicable).",
+          "type": "string"
+        },
+        "pscServiceAttachmentUri": {
+          "description": "URI of the PSC service attachment this forwarding rule targets (if applicable).",
+          "type": "string"
+        },
+        "region": {
+          "description": "Region of the forwarding rule. Set only for regional forwarding rules.",
           "type": "string"
         },
         "target": {
@@ -1566,7 +1605,7 @@
           "type": "string"
         },
         "uri": {
-          "description": "URI of a Compute Engine forwarding rule.",
+          "description": "URI of the forwarding rule.",
           "type": "string"
         },
         "vip": {
@@ -2480,6 +2519,17 @@
       },
       "type": "object"
     },
+    "ServerlessNegInfo": {
+      "description": "For display only. Metadata associated with the serverless network endpoint group backend.",
+      "id": "ServerlessNegInfo",
+      "properties": {
+        "negUri": {
+          "description": "URI of the serverless network endpoint group.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "SetIamPolicyRequest": {
       "description": "Request message for `SetIamPolicy` method.",
       "id": "SetIamPolicyRequest",
@@ -2620,6 +2670,10 @@
           "$ref": "RouteInfo",
           "description": "Display information of a Compute Engine route."
         },
+        "serverlessNeg": {
+          "$ref": "ServerlessNegInfo",
+          "description": "Display information of a Serverless network endpoint group backend. Used only for return traces."
+        },
         "state": {
           "description": "Each step is in one of the pre-defined states.",
           "enum": [
@@ -2635,6 +2689,7 @@
             "START_FROM_CLOUD_RUN_REVISION",
             "START_FROM_STORAGE_BUCKET",
             "START_FROM_PSC_PUBLISHED_SERVICE",
+            "START_FROM_SERVERLESS_NEG",
             "APPLY_INGRESS_FIREWALL_RULE",
             "APPLY_EGRESS_FIREWALL_RULE",
             "APPLY_ROUTE",
@@ -2656,6 +2711,7 @@
             "VIEWER_PERMISSION_MISSING"
           ],
           "enumDeprecated": [
+            false,
             false,
             false,
             false,
@@ -2701,6 +2757,7 @@
             "Initial state: packet originating from a Cloud Run revision. A CloudRunRevisionInfo is populated with starting revision information.",
             "Initial state: packet originating from a Storage Bucket. Used only for return traces. The storage_bucket information is populated.",
             "Initial state: packet originating from a published service that uses Private Service Connect. Used only for return traces.",
+            "Initial state: packet originating from a serverless network endpoint group backend. Used only for return traces. The serverless_neg information is populated.",
             "Config checking state: verify ingress firewall rule.",
             "Config checking state: verify egress firewall rule.",
             "Config checking state: verify route.",

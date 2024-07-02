@@ -855,7 +855,7 @@ export namespace cloudbilling_v1beta {
     nextPageToken?: string | null;
   }
   /**
-   * Encapsulates a stock keeping unit (SKU) visible to a billing account. A SKU distinctly identifies a resource that you can purchase, such as `Nvidia Tesla K80 GPU attached to Spot Preemptible VMs running in Warsaw`.
+   * Encapsulates a stock keeping unit (SKU) visible to a billing account. A SKU distinctly identifies a resource that you can purchase. For a list of available SKUs, see [SKUs](https://cloud.google.com/skus).
    */
   export interface Schema$GoogleCloudBillingBillingaccountskusV1betaBillingAccountSku {
     /**
@@ -1692,6 +1692,7 @@ export namespace cloudbilling_v1beta {
               rootUrl + '/v1beta/{+billingAccount}:estimateCostScenario'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1805,6 +1806,7 @@ export namespace cloudbilling_v1beta {
           {
             url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1901,6 +1903,7 @@ export namespace cloudbilling_v1beta {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2026,6 +2029,7 @@ export namespace cloudbilling_v1beta {
           {
             url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2122,6 +2126,7 @@ export namespace cloudbilling_v1beta {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2245,6 +2250,7 @@ export namespace cloudbilling_v1beta {
           {
             url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2341,6 +2347,7 @@ export namespace cloudbilling_v1beta {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2468,6 +2475,7 @@ export namespace cloudbilling_v1beta {
           {
             url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2564,6 +2572,7 @@ export namespace cloudbilling_v1beta {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2691,6 +2700,7 @@ export namespace cloudbilling_v1beta {
           {
             url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2806,6 +2816,7 @@ export namespace cloudbilling_v1beta {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2927,6 +2938,7 @@ export namespace cloudbilling_v1beta {
           {
             url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3019,6 +3031,7 @@ export namespace cloudbilling_v1beta {
           {
             url: (rootUrl + '/v1beta/skuGroups').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3136,6 +3149,7 @@ export namespace cloudbilling_v1beta {
           {
             url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3232,6 +3246,7 @@ export namespace cloudbilling_v1beta {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3365,6 +3380,7 @@ export namespace cloudbilling_v1beta {
           {
             url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3478,6 +3494,7 @@ export namespace cloudbilling_v1beta {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3600,6 +3617,7 @@ export namespace cloudbilling_v1beta {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),

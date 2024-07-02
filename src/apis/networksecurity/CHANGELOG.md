@@ -1,5 +1,71 @@
 # Changelog
 
+## [8.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/networksecurity-v8.0.0...networksecurity-v8.1.0) (2024-06-03)
+
+
+### Features
+
+* **networksecurity:** update the API ([710dd33](https://github.com/googleapis/google-api-nodejs-client/commit/710dd339009befd0467a3b89db96fd980f44f455))
+
+## [8.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/networksecurity-v7.0.0...networksecurity-v8.0.0) (2024-05-10)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#3484](https://github.com/googleapis/google-api-nodejs-client/issues/3484)) ([99b6c8d](https://github.com/googleapis/google-api-nodejs-client/commit/99b6c8de5beb8447d177048a64a977ee39ee5ee6))
+* run the generator ([#3487](https://github.com/googleapis/google-api-nodejs-client/issues/3487)) ([673c364](https://github.com/googleapis/google-api-nodejs-client/commit/673c364a557c466c34052bef761d00e542f96516))
+
+## [7.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/networksecurity-v6.0.1...networksecurity-v7.0.0) (2024-05-02)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* **networksecurity:** update the API ([4187916](https://github.com/googleapis/google-api-nodejs-client/commit/41879162adf36dd08beeaf94ec0a6e3369e55585))
+* **networksecurity:** update the API ([5aa936f](https://github.com/googleapis/google-api-nodejs-client/commit/5aa936f450012fdd40e36349d3ea6238c19b9b1e))
+* run the generator ([#3434](https://github.com/googleapis/google-api-nodejs-client/issues/3434)) ([f0db524](https://github.com/googleapis/google-api-nodejs-client/commit/f0db524bb26f05cea3dec4c0ed66b496399e3857))
+
+
+### Bug Fixes
+
+* **networksecurity:** update the API ([b4ab725](https://github.com/googleapis/google-api-nodejs-client/commit/b4ab7254926c2a80445481f490eb9738a7399f93))
+* **networksecurity:** update the API ([d16ebd1](https://github.com/googleapis/google-api-nodejs-client/commit/d16ebd1b2eb22e944d0ac7b51d3c79c559b79998))
+
+## [6.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/networksecurity-v6.0.0...networksecurity-v6.0.1) (2024-05-02)
+
+
+### Bug Fixes
+
+* **networksecurity:** update the API ([b4ab725](https://github.com/googleapis/google-api-nodejs-client/commit/b4ab7254926c2a80445481f490eb9738a7399f93))
+
+## [6.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/networksecurity-v5.0.0...networksecurity-v6.0.0) (2024-04-04)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+* **networksecurity:** This release has breaking changes.
+
+### Features
+
+* **networksecurity:** update the API ([4187916](https://github.com/googleapis/google-api-nodejs-client/commit/41879162adf36dd08beeaf94ec0a6e3369e55585))
+* **networksecurity:** update the API ([5aa936f](https://github.com/googleapis/google-api-nodejs-client/commit/5aa936f450012fdd40e36349d3ea6238c19b9b1e))
+* **networksecurity:** update the API ([166232f](https://github.com/googleapis/google-api-nodejs-client/commit/166232fe1444a4db2eb17f14b12ce85e87fceac8))
+* run the generator ([#3434](https://github.com/googleapis/google-api-nodejs-client/issues/3434)) ([f0db524](https://github.com/googleapis/google-api-nodejs-client/commit/f0db524bb26f05cea3dec4c0ed66b496399e3857))
+
+
+### Bug Fixes
+
+* **networksecurity:** update the API ([d16ebd1](https://github.com/googleapis/google-api-nodejs-client/commit/d16ebd1b2eb22e944d0ac7b51d3c79c559b79998))
+
 ## [5.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/networksecurity-v4.1.0...networksecurity-v5.0.0) (2024-03-12)
 
 

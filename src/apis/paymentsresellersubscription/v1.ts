@@ -142,7 +142,7 @@ export namespace paymentsresellersubscription_v1 {
    */
   export interface Schema$GoogleCloudPaymentsResellerSubscriptionV1CancelSubscriptionRequest {
     /**
-     * Optional. If true, Google will cancel the subscription immediately, and may or may not (based on the contract) issue a prorated refund for the remainder of the billing cycle. Otherwise, Google defers the cancelation at renewal_time, and will not issue a refund.
+     * Optional. If true, Google will cancel the subscription immediately, and may or may not (based on the contract) issue a prorated refund for the remainder of the billing cycle. Otherwise, Google defers the cancelation at renewal_time, and will not issue a refund. - YouTube subscriptions must use this option currently. However, the user will still have access to the subscription until the end of the billing cycle.
      */
     cancelImmediately?: boolean | null;
     /**
@@ -173,7 +173,7 @@ export namespace paymentsresellersubscription_v1 {
     unit?: string | null;
   }
   /**
-   * Partner request for entitling the previously provisioned subscription to an end user. The end user identity is inferred from the request OAuth context.
+   * LINT.IfChange Partner request for entitling the previously provisioned subscription to an end user. The end user identity is inferred from the request OAuth context.
    */
   export interface Schema$GoogleCloudPaymentsResellerSubscriptionV1EntitleSubscriptionRequest {
     /**
@@ -554,6 +554,10 @@ export namespace paymentsresellersubscription_v1 {
      */
     promotionSpecs?: Schema$GoogleCloudPaymentsResellerSubscriptionV1SubscriptionPromotionSpec[];
     /**
+     * Optional. The timestamp when the user transaction was made with the Partner. Specify for the case of "bundle with choice", and it must be before the provision_time (when the user makes a selection).
+     */
+    purchaseTime?: string | null;
+    /**
      * Output only. The place where partners should redirect the end-user to after creation. This field might also be populated when creation failed. However, Partners should always prepare a default URL to redirect the user in case this field is empty.
      */
     redirectUri?: string | null;
@@ -616,7 +620,7 @@ export namespace paymentsresellersubscription_v1 {
      */
     lineItemIndex?: number | null;
     /**
-     * Optional. The promotions applied on the line item. It can be: - a free trial promotion, which overrides the subscription-level free trial promotion. - an introductory pricing promotion. When used as input in Create or Provision API, specify its resource name only.
+     * Optional. The promotions applied on the line item. It can be: - an introductory pricing promotion. - a free trial promotion. This feature is not enabled. If used, the request will be rejected. When used as input in Create or Provision API, specify its resource name only.
      */
     lineItemPromotionSpecs?: Schema$GoogleCloudPaymentsResellerSubscriptionV1SubscriptionPromotionSpec[];
     /**
@@ -782,7 +786,7 @@ export namespace paymentsresellersubscription_v1 {
     }
 
     /**
-     * To retrieve the products that can be resold by the partner. It should be autenticated with a service account.
+     * To retrieve the products that can be resold by the partner. It should be autenticated with a service account. - This API doesn't apply to YouTube products currently.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -859,6 +863,7 @@ export namespace paymentsresellersubscription_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -984,6 +989,7 @@ export namespace paymentsresellersubscription_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1005,7 +1011,7 @@ export namespace paymentsresellersubscription_v1 {
     }
 
     /**
-     * To retrieve the promotions, such as free trial, that can be used by the partner. It should be autenticated with a service account.
+     * Retrieves the promotions, such as free trial, that can be used by the partner. - This API doesn't apply to YouTube promotions currently. It should be autenticated with a service account.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1082,6 +1088,7 @@ export namespace paymentsresellersubscription_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1216,6 +1223,7 @@ export namespace paymentsresellersubscription_v1 {
           {
             url: (rootUrl + '/v1/{+name}:cancel').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1314,6 +1322,7 @@ export namespace paymentsresellersubscription_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1412,6 +1421,7 @@ export namespace paymentsresellersubscription_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1507,6 +1517,7 @@ export namespace paymentsresellersubscription_v1 {
           {
             url: (rootUrl + '/v1/{+name}:extend').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1602,6 +1613,7 @@ export namespace paymentsresellersubscription_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1700,6 +1712,7 @@ export namespace paymentsresellersubscription_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1721,7 +1734,7 @@ export namespace paymentsresellersubscription_v1 {
     }
 
     /**
-     * Used by partners to revoke the pending cancellation of a subscription, which is currently in `STATE_CANCEL_AT_END_OF_CYCLE` state. If the subscription is already cancelled, the request will fail. It should be called directly by the partner using service accounts.
+     * Revokes the pending cancellation of a subscription, which is currently in `STATE_CANCEL_AT_END_OF_CYCLE` state. If the subscription is already cancelled, the request will fail. - **This API doesn't apply to YouTube subscriptions.** It should be called directly by the partner using service accounts.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1798,6 +1811,7 @@ export namespace paymentsresellersubscription_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),

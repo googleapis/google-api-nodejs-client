@@ -114,6 +114,7 @@
     "billingAccounts": {
       "methods": {
         "estimateCostScenario": {
+          "deprecated": true,
           "description": "Use custom pricing in the estimate, using a `CostScenario` with a defined `billingAccount`.",
           "flatPath": "v1beta/billingAccounts/{billingAccountsId}:estimateCostScenario",
           "httpMethod": "POST",
@@ -734,8 +735,10 @@
       }
     },
     "v1beta": {
+      "deprecated": true,
       "methods": {
         "estimateCostScenario": {
+          "deprecated": true,
           "description": "Estimate list prices using a `CostScenario` without a defined `billingAccount`.",
           "flatPath": "v1beta:estimateCostScenario",
           "httpMethod": "POST",
@@ -758,7 +761,7 @@
       }
     }
   },
-  "revision": "20240315",
+  "revision": "20240531",
   "rootUrl": "https://cloudbilling.googleapis.com/",
   "schemas": {
     "CacheFillRegions": {
@@ -1802,7 +1805,7 @@
       "type": "object"
     },
     "GoogleCloudBillingBillingaccountskusV1betaBillingAccountSku": {
-      "description": "Encapsulates a stock keeping unit (SKU) visible to a billing account. A SKU distinctly identifies a resource that you can purchase, such as `Nvidia Tesla K80 GPU attached to Spot Preemptible VMs running in Warsaw`.",
+      "description": "Encapsulates a stock keeping unit (SKU) visible to a billing account. A SKU distinctly identifies a resource that you can purchase. For a list of available SKUs, see [SKUs](https://cloud.google.com/skus).",
       "id": "GoogleCloudBillingBillingaccountskusV1betaBillingAccountSku",
       "properties": {
         "billingAccountService": {

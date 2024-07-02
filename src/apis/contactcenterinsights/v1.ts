@@ -198,6 +198,10 @@ export namespace contactcenterinsights_v1 {
      * Overall conversation-level sentiment for each channel of the call.
      */
     sentiments?: Schema$GoogleCloudContactcenterinsightsV1alpha1ConversationLevelSentiment[];
+    /**
+     * Overall conversation-level silence during the call.
+     */
+    silence?: Schema$GoogleCloudContactcenterinsightsV1alpha1ConversationLevelSilence;
   }
   /**
    * A point in a conversation that marks the start or the end of an annotation.
@@ -613,6 +617,19 @@ export namespace contactcenterinsights_v1 {
      * Data specifying sentiment.
      */
     sentimentData?: Schema$GoogleCloudContactcenterinsightsV1alpha1SentimentData;
+  }
+  /**
+   * Conversation-level silence data.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1alpha1ConversationLevelSilence {
+    /**
+     * Amount of time calculated to be in silence.
+     */
+    silenceDuration?: string | null;
+    /**
+     * Percentage of the total conversation spent in silence.
+     */
+    silencePercentage?: number | null;
   }
   /**
    * The call participant speaking for a given utterance.
@@ -1063,11 +1080,11 @@ export namespace contactcenterinsights_v1 {
    */
   export interface Schema$GoogleCloudContactcenterinsightsV1alpha1ExportIssueModelRequest {
     /**
-     * Google Cloud Storage URI to export the Issue Model to.
+     * Google Cloud Storage URI to export the issue model to.
      */
     gcsDestination?: Schema$GoogleCloudContactcenterinsightsV1alpha1ExportIssueModelRequestGcsDestination;
     /**
-     * Required. The issue model to export
+     * Required. The issue model to export.
      */
     name?: string | null;
   }
@@ -1152,7 +1169,7 @@ export namespace contactcenterinsights_v1 {
    */
   export interface Schema$GoogleCloudContactcenterinsightsV1alpha1ImportIssueModelRequest {
     /**
-     * Optional. If set to true, will create a new issue model from the imported file with randomly generated IDs for the issue model and corresponding issues. Otherwise, replaces an existing model with the same ID as the file.
+     * Optional. If set to true, will create an issue model from the imported file with randomly generated IDs for the issue model and corresponding issues. Otherwise, replaces an existing model with the same ID as the file.
      */
     createNewModel?: boolean | null;
     /**
@@ -1244,6 +1261,10 @@ export namespace contactcenterinsights_v1 {
      */
     redactionConfig?: Schema$GoogleCloudContactcenterinsightsV1alpha1RedactionConfig;
     /**
+     * Optional. If set, this fields indicates the number of objects to ingest from the Cloud Storage bucket. If empty, the entire bucket will be ingested. Unless they are first deleted, conversations produced through sampling won't be ingested by subsequent ingest requests.
+     */
+    sampleSize?: number | null;
+    /**
      * Optional. Default Speech-to-Text configuration. Optional, will default to the config specified in Settings.
      */
     speechConfig?: Schema$GoogleCloudContactcenterinsightsV1alpha1SpeechConfig;
@@ -1261,7 +1282,7 @@ export namespace contactcenterinsights_v1 {
      */
     agentChannel?: number | null;
     /**
-     * An opaque, user-specified string representing the human agent who handled the conversations.
+     * Optional. An opaque, user-specified string representing a human agent who handled all conversations in the import. Note that this will be overridden if per-conversation metadata is provided through the `metadata_bucket_uri`.
      */
     agentId?: string | null;
     /**
@@ -1286,7 +1307,7 @@ export namespace contactcenterinsights_v1 {
      */
     customMetadataKeys?: string[] | null;
     /**
-     * Optional. The Cloud Storage path to the source object metadata. Note that: [1] metadata files are expected to be in JSON format [2] metadata and source objects must be in separate buckets [3] a source object's metadata object must share the same name to be properly ingested
+     * Optional. The Cloud Storage path to the conversation metadata. Note that: [1] Metadata files are expected to be in JSON format. [2] Metadata and source files (transcripts or audio) must be in separate buckets. [3] A source file and its corresponding metadata file must share the same name to be properly ingested, E.g. `gs://bucket/audio/conversation1.mp3` and `gs://bucket/metadata/conversation1.json`.
      */
     metadataBucketUri?: string | null;
   }
@@ -1482,7 +1503,7 @@ export namespace contactcenterinsights_v1 {
     phraseMatcher?: string | null;
   }
   /**
-   * DLP resources used for redaction while ingesting conversations.
+   * DLP resources used for redaction while ingesting conversations. DLP settings are applied to conversations ingested from the `UploadConversation` and `IngestConversations` endpoints, including conversation coming from CCAI Platform. They are not applied to conversations ingested from the `CreateConversation` endpoint or the Dialogflow / Agent Assist runtime integrations. When using Dialogflow / Agent Assist runtime integrations, redaction should be performed in Dialogflow / Agent Assist.
    */
   export interface Schema$GoogleCloudContactcenterinsightsV1alpha1RedactionConfig {
     /**
@@ -1542,6 +1563,23 @@ export namespace contactcenterinsights_v1 {
      * The boundary in the conversation where the annotation starts, inclusive.
      */
     startBoundary?: Schema$GoogleCloudContactcenterinsightsV1alpha1AnnotationBoundary;
+    /**
+     * Explicit input used for generating the answer
+     */
+    userInput?: Schema$GoogleCloudContactcenterinsightsV1alpha1RuntimeAnnotationUserInput;
+  }
+  /**
+   * Explicit input used for generating the answer
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1alpha1RuntimeAnnotationUserInput {
+    /**
+     * The resource name of associated generator. Format: `projects//locations//generators/`
+     */
+    generatorName?: string | null;
+    /**
+     * Query text. Article Search uses this to store the input query used to generate the search results.
+     */
+    query?: string | null;
   }
   /**
    * The data for a sentiment annotation.
@@ -1603,7 +1641,7 @@ export namespace contactcenterinsights_v1 {
     reply?: string | null;
   }
   /**
-   * Speech-to-Text configuration.
+   * Speech-to-Text configuration. Speech-to-Text settings are applied to conversations ingested from the `UploadConversation` and `IngestConversations` endpoints, including conversation coming from CCAI Platform. They are not applied to conversations ingested from the `CreateConversation` endpoint.
    */
   export interface Schema$GoogleCloudContactcenterinsightsV1alpha1SpeechConfig {
     /**
@@ -1642,7 +1680,7 @@ export namespace contactcenterinsights_v1 {
    */
   export interface Schema$GoogleCloudContactcenterinsightsV1alpha1UndeployIssueModelResponse {}
   /**
-   * The metadata for an UploadConversation operation.
+   * The metadata for an `UploadConversation` operation.
    */
   export interface Schema$GoogleCloudContactcenterinsightsV1alpha1UploadConversationMetadata {
     /**
@@ -1763,6 +1801,10 @@ export namespace contactcenterinsights_v1 {
      * Overall conversation-level sentiment for each channel of the call.
      */
     sentiments?: Schema$GoogleCloudContactcenterinsightsV1ConversationLevelSentiment[];
+    /**
+     * Overall conversation-level silence during the call.
+     */
+    silence?: Schema$GoogleCloudContactcenterinsightsV1ConversationLevelSilence;
   }
   /**
    * A point in a conversation that marks the start or the end of an annotation.
@@ -2254,6 +2296,19 @@ export namespace contactcenterinsights_v1 {
     sentimentData?: Schema$GoogleCloudContactcenterinsightsV1SentimentData;
   }
   /**
+   * Conversation-level silence data.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1ConversationLevelSilence {
+    /**
+     * Amount of time calculated to be in silence.
+     */
+    silenceDuration?: string | null;
+    /**
+     * Percentage of the total conversation spent in silence.
+     */
+    silencePercentage?: number | null;
+  }
+  /**
    * The call participant speaking for a given utterance.
    */
   export interface Schema$GoogleCloudContactcenterinsightsV1ConversationParticipant {
@@ -2711,11 +2766,11 @@ export namespace contactcenterinsights_v1 {
    */
   export interface Schema$GoogleCloudContactcenterinsightsV1ExportIssueModelRequest {
     /**
-     * Google Cloud Storage URI to export the Issue Model to.
+     * Google Cloud Storage URI to export the issue model to.
      */
     gcsDestination?: Schema$GoogleCloudContactcenterinsightsV1ExportIssueModelRequestGcsDestination;
     /**
-     * Required. The issue model to export
+     * Required. The issue model to export.
      */
     name?: string | null;
   }
@@ -2800,7 +2855,7 @@ export namespace contactcenterinsights_v1 {
    */
   export interface Schema$GoogleCloudContactcenterinsightsV1ImportIssueModelRequest {
     /**
-     * Optional. If set to true, will create a new issue model from the imported file with randomly generated IDs for the issue model and corresponding issues. Otherwise, replaces an existing model with the same ID as the file.
+     * Optional. If set to true, will create an issue model from the imported file with randomly generated IDs for the issue model and corresponding issues. Otherwise, replaces an existing model with the same ID as the file.
      */
     createNewModel?: boolean | null;
     /**
@@ -2892,6 +2947,10 @@ export namespace contactcenterinsights_v1 {
      */
     redactionConfig?: Schema$GoogleCloudContactcenterinsightsV1RedactionConfig;
     /**
+     * Optional. If set, this fields indicates the number of objects to ingest from the Cloud Storage bucket. If empty, the entire bucket will be ingested. Unless they are first deleted, conversations produced through sampling won't be ingested by subsequent ingest requests.
+     */
+    sampleSize?: number | null;
+    /**
      * Optional. Default Speech-to-Text configuration. Optional, will default to the config specified in Settings.
      */
     speechConfig?: Schema$GoogleCloudContactcenterinsightsV1SpeechConfig;
@@ -2909,7 +2968,7 @@ export namespace contactcenterinsights_v1 {
      */
     agentChannel?: number | null;
     /**
-     * An opaque, user-specified string representing the human agent who handled the conversations.
+     * Optional. An opaque, user-specified string representing a human agent who handled all conversations in the import. Note that this will be overridden if per-conversation metadata is provided through the `metadata_bucket_uri`.
      */
     agentId?: string | null;
     /**
@@ -2934,7 +2993,7 @@ export namespace contactcenterinsights_v1 {
      */
     customMetadataKeys?: string[] | null;
     /**
-     * Optional. The Cloud Storage path to the source object metadata. Note that: [1] metadata files are expected to be in JSON format [2] metadata and source objects must be in separate buckets [3] a source object's metadata object must share the same name to be properly ingested
+     * Optional. The Cloud Storage path to the conversation metadata. Note that: [1] Metadata files are expected to be in JSON format. [2] Metadata and source files (transcripts or audio) must be in separate buckets. [3] A source file and its corresponding metadata file must share the same name to be properly ingested, E.g. `gs://bucket/audio/conversation1.mp3` and `gs://bucket/metadata/conversation1.json`.
      */
     metadataBucketUri?: string | null;
   }
@@ -3313,7 +3372,7 @@ export namespace contactcenterinsights_v1 {
     type?: string | null;
   }
   /**
-   * DLP resources used for redaction while ingesting conversations.
+   * DLP resources used for redaction while ingesting conversations. DLP settings are applied to conversations ingested from the `UploadConversation` and `IngestConversations` endpoints, including conversation coming from CCAI Platform. They are not applied to conversations ingested from the `CreateConversation` endpoint or the Dialogflow / Agent Assist runtime integrations. When using Dialogflow / Agent Assist runtime integrations, redaction should be performed in Dialogflow / Agent Assist.
    */
   export interface Schema$GoogleCloudContactcenterinsightsV1RedactionConfig {
     /**
@@ -3373,6 +3432,23 @@ export namespace contactcenterinsights_v1 {
      * The boundary in the conversation where the annotation starts, inclusive.
      */
     startBoundary?: Schema$GoogleCloudContactcenterinsightsV1AnnotationBoundary;
+    /**
+     * Explicit input used for generating the answer
+     */
+    userInput?: Schema$GoogleCloudContactcenterinsightsV1RuntimeAnnotationUserInput;
+  }
+  /**
+   * Explicit input used for generating the answer
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1RuntimeAnnotationUserInput {
+    /**
+     * The resource name of associated generator. Format: `projects//locations//generators/`
+     */
+    generatorName?: string | null;
+    /**
+     * Query text. Article Search uses this to store the input query used to generate the search results.
+     */
+    query?: string | null;
   }
   /**
    * The data for a sentiment annotation.
@@ -3388,7 +3464,7 @@ export namespace contactcenterinsights_v1 {
     score?: number | null;
   }
   /**
-   * The settings resource.
+   * The CCAI Insights project wide settings. Use these settings to configure the behavior of Insights. View these settings with [`getsettings`](https://cloud.google.com/contact-center/insights/docs/reference/rest/v1/projects.locations/getSettings) and change the settings with [`updateSettings`](https://cloud.google.com/contact-center/insights/docs/reference/rest/v1/projects.locations/updateSettings).
    */
   export interface Schema$GoogleCloudContactcenterinsightsV1Settings {
     /**
@@ -3412,15 +3488,15 @@ export namespace contactcenterinsights_v1 {
      */
     name?: string | null;
     /**
-     * A map that maps a notification trigger to a Pub/Sub topic. Each time a specified trigger occurs, Insights will notify the corresponding Pub/Sub topic. Keys are notification triggers. Supported keys are: * "all-triggers": Notify each time any of the supported triggers occurs. * "create-analysis": Notify each time an analysis is created. * "create-conversation": Notify each time a conversation is created. * "export-insights-data": Notify each time an export is complete. * "ingest-conversations": Notify each time an IngestConversations LRO completes. * "update-conversation": Notify each time a conversation is updated via UpdateConversation. * "upload-conversation": Notify when an UploadConversation LRO completes. Values are Pub/Sub topics. The format of each Pub/Sub topic is: projects/{project\}/topics/{topic\}
+     * A map that maps a notification trigger to a Pub/Sub topic. Each time a specified trigger occurs, Insights will notify the corresponding Pub/Sub topic. Keys are notification triggers. Supported keys are: * "all-triggers": Notify each time any of the supported triggers occurs. * "create-analysis": Notify each time an analysis is created. * "create-conversation": Notify each time a conversation is created. * "export-insights-data": Notify each time an export is complete. * "ingest-conversations": Notify each time an IngestConversations LRO is complete. * "update-conversation": Notify each time a conversation is updated via UpdateConversation. * "upload-conversation": Notify when an UploadConversation LRO is complete. Values are Pub/Sub topics. The format of each Pub/Sub topic is: projects/{project\}/topics/{topic\}
      */
     pubsubNotificationSettings?: {[key: string]: string} | null;
     /**
-     * Default DLP redaction resources to be applied while ingesting conversations.
+     * Default DLP redaction resources to be applied while ingesting conversations. This applies to conversations ingested from the `UploadConversation` and `IngestConversations` endpoints, including conversations coming from CCAI Platform.
      */
     redactionConfig?: Schema$GoogleCloudContactcenterinsightsV1RedactionConfig;
     /**
-     * Optional. Default Speech-to-Text resources to be used while ingesting audio files. Optional, CCAI Insights will create a default if not provided.
+     * Optional. Default Speech-to-Text resources to use while ingesting audio files. Optional, CCAI Insights will create a default if not provided. This applies to conversations ingested from the `UploadConversation` and `IngestConversations` endpoints, including conversations coming from CCAI Platform.
      */
     speechConfig?: Schema$GoogleCloudContactcenterinsightsV1SpeechConfig;
     /**
@@ -3492,7 +3568,7 @@ export namespace contactcenterinsights_v1 {
     reply?: string | null;
   }
   /**
-   * Speech-to-Text configuration.
+   * Speech-to-Text configuration. Speech-to-Text settings are applied to conversations ingested from the `UploadConversation` and `IngestConversations` endpoints, including conversation coming from CCAI Platform. They are not applied to conversations ingested from the `CreateConversation` endpoint.
    */
   export interface Schema$GoogleCloudContactcenterinsightsV1SpeechConfig {
     /**
@@ -3531,7 +3607,7 @@ export namespace contactcenterinsights_v1 {
    */
   export interface Schema$GoogleCloudContactcenterinsightsV1UndeployIssueModelResponse {}
   /**
-   * The metadata for an UploadConversation operation.
+   * The metadata for an `UploadConversation` operation.
    */
   export interface Schema$GoogleCloudContactcenterinsightsV1UploadConversationMetadata {
     /**
@@ -3776,6 +3852,7 @@ export namespace contactcenterinsights_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3870,6 +3947,7 @@ export namespace contactcenterinsights_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -4003,6 +4081,7 @@ export namespace contactcenterinsights_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4099,6 +4178,7 @@ export namespace contactcenterinsights_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4194,6 +4274,7 @@ export namespace contactcenterinsights_v1 {
               rootUrl + '/v1/{+location}/conversations:calculateStats'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4215,7 +4296,7 @@ export namespace contactcenterinsights_v1 {
     }
 
     /**
-     * Creates a conversation.
+     * Creates a conversation. Does not support audio transcription or DLP redaction. Use `conversations.upload` instead.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4291,6 +4372,7 @@ export namespace contactcenterinsights_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4381,6 +4463,7 @@ export namespace contactcenterinsights_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -4473,6 +4556,7 @@ export namespace contactcenterinsights_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4570,6 +4654,7 @@ export namespace contactcenterinsights_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4665,6 +4750,7 @@ export namespace contactcenterinsights_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4759,6 +4845,7 @@ export namespace contactcenterinsights_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -4780,7 +4867,7 @@ export namespace contactcenterinsights_v1 {
     }
 
     /**
-     * Create a longrunning conversation upload operation. This method differs from CreateConversation by allowing audio transcription and optional DLP redaction.
+     * Create a long-running conversation upload operation. This method differs from `CreateConversation` by allowing audio transcription and optional DLP redaction.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4856,6 +4943,7 @@ export namespace contactcenterinsights_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4967,7 +5055,7 @@ export namespace contactcenterinsights_v1 {
      */
     filter?: string;
     /**
-     * Optional. The attribute by which to order conversations in the response. If empty, conversations will be ordered by descending creation time. Supported values are one of the following: * create_time * customer_satisfaction_rating * duration * latest_analysis * start_time * turn_count The default sort order is ascending. To specify order, append `asc` or `desc`, i.e. `create_time desc`. See https://google.aip.dev/132#ordering for more details.
+     * Optional. The attribute by which to order conversations in the response. If empty, conversations will be ordered by descending creation time. Supported values are one of the following: * create_time * customer_satisfaction_rating * duration * latest_analysis * start_time * turn_count The default sort order is ascending. To specify order, append `asc` or `desc` (`create_time desc`). For more details, see [Google AIPs Ordering](https://google.aip.dev/132#ordering).
      */
     orderBy?: string;
     /**
@@ -4994,7 +5082,7 @@ export namespace contactcenterinsights_v1 {
      */
     name?: string;
     /**
-     * The list of fields to be updated.
+     * The list of fields to be updated. All possible fields can be updated by passing `*`, or a subset of the following updateable fields can be provided: * `agent_id` * `language_code` * `labels` * `metadata` * `quality_metadata` * `call_metadata` * `start_time` * `expire_time` or `ttl` * `data_source.gcs_source.audio_uri` or `data_source.dialogflow_source.audio_uri`
      */
     updateMask?: string;
 
@@ -5100,6 +5188,7 @@ export namespace contactcenterinsights_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5189,6 +5278,7 @@ export namespace contactcenterinsights_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -5282,6 +5372,7 @@ export namespace contactcenterinsights_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5380,6 +5471,7 @@ export namespace contactcenterinsights_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5530,6 +5622,7 @@ export namespace contactcenterinsights_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5649,6 +5742,7 @@ export namespace contactcenterinsights_v1 {
               rootUrl + '/v1/{+issueModel}:calculateIssueModelStats'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5746,6 +5840,7 @@ export namespace contactcenterinsights_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5838,6 +5933,7 @@ export namespace contactcenterinsights_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -5930,6 +6026,7 @@ export namespace contactcenterinsights_v1 {
           {
             url: (rootUrl + '/v1/{+name}:deploy').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -6022,6 +6119,7 @@ export namespace contactcenterinsights_v1 {
           {
             url: (rootUrl + '/v1/{+name}:export').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -6114,6 +6212,7 @@ export namespace contactcenterinsights_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6211,6 +6310,7 @@ export namespace contactcenterinsights_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -6306,6 +6406,7 @@ export namespace contactcenterinsights_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6400,6 +6501,7 @@ export namespace contactcenterinsights_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -6497,6 +6599,7 @@ export namespace contactcenterinsights_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -6557,7 +6660,7 @@ export namespace contactcenterinsights_v1 {
   export interface Params$Resource$Projects$Locations$Issuemodels$Export
     extends StandardParameters {
     /**
-     * Required. The issue model to export
+     * Required. The issue model to export.
      */
     name?: string;
 
@@ -6698,6 +6801,7 @@ export namespace contactcenterinsights_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -6791,6 +6895,7 @@ export namespace contactcenterinsights_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6889,6 +6994,7 @@ export namespace contactcenterinsights_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6984,6 +7090,7 @@ export namespace contactcenterinsights_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -7119,6 +7226,7 @@ export namespace contactcenterinsights_v1 {
           {
             url: (rootUrl + '/v1/{+name}:cancel').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -7211,6 +7319,7 @@ export namespace contactcenterinsights_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -7306,6 +7415,7 @@ export namespace contactcenterinsights_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -7444,6 +7554,7 @@ export namespace contactcenterinsights_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -7534,6 +7645,7 @@ export namespace contactcenterinsights_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -7626,6 +7738,7 @@ export namespace contactcenterinsights_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -7723,6 +7836,7 @@ export namespace contactcenterinsights_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -7817,6 +7931,7 @@ export namespace contactcenterinsights_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -7983,6 +8098,7 @@ export namespace contactcenterinsights_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -8073,6 +8189,7 @@ export namespace contactcenterinsights_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -8165,6 +8282,7 @@ export namespace contactcenterinsights_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -8262,6 +8380,7 @@ export namespace contactcenterinsights_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -8356,6 +8475,7 @@ export namespace contactcenterinsights_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),

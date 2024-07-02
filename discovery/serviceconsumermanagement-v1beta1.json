@@ -206,6 +206,34 @@
                 "https://www.googleapis.com/auth/cloud-platform"
               ]
             },
+            "importProducerQuotaPolicies": {
+              "description": "Create or update multiple producer quota policies atomically, all on the same ancestor, but on many different metrics or limits. The name field in the quota policy message should not be set.",
+              "flatPath": "v1beta1/services/{servicesId}/{servicesId1}/{servicesId2}/consumerQuotaMetrics:importProducerQuotaPolicies",
+              "httpMethod": "POST",
+              "id": "serviceconsumermanagement.services.consumerQuotaMetrics.importProducerQuotaPolicies",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "parent": {
+                  "description": "The resource name of the consumer. An example name would be: `services/compute.googleapis.com/organizations/123`",
+                  "location": "path",
+                  "pattern": "^services/[^/]+/[^/]+/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1beta1/{+parent}/consumerQuotaMetrics:importProducerQuotaPolicies",
+              "request": {
+                "$ref": "V1Beta1ImportProducerQuotaPoliciesRequest"
+              },
+              "response": {
+                "$ref": "Operation"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
             "list": {
               "description": "Retrieves a summary of all quota information about this consumer that is visible to the service producer, for each quota metric defined by the service. Each metric includes information about all of its defined limits. Each limit includes the limit configuration (quota unit, preciseness, default value), the current effective limit value, and all of the overrides applied to the limit.",
               "flatPath": "v1beta1/services/{servicesId}/{servicesId1}/{servicesId2}/consumerQuotaMetrics",
@@ -315,12 +343,17 @@
                       ],
                       "parameters": {
                         "force": {
-                          "description": "Whether to force the creation of the quota override. Setting the force parameter to 'true' ignores all quota safety checks that would fail the request. QuotaSafetyCheck lists all such validations. If force is set to true, it is recommended to include a case id in \"X-Goog-Request-Reason\" header when sending the request.",
+                          "description": "Whether to force the creation of the quota override. Setting the force parameter to 'true' ignores all quota safety checks that would fail the request. QuotaSafetyCheck lists all such validations.",
                           "location": "query",
                           "type": "boolean"
                         },
+                        "forceJustification": {
+                          "description": "If force option is set to true, force_justification is suggested to be set to log the reason in audit logs.",
+                          "location": "query",
+                          "type": "string"
+                        },
                         "forceOnly": {
-                          "description": "The list of quota safety checks to ignore before the override mutation. Unlike 'force' field that ignores all the quota safety checks, the 'force_only' field ignores only the specified checks; other checks are still enforced. The 'force' and 'force_only' fields cannot both be set. If force_only is specified, it is recommended to include a case id in \"X-Goog-Request-Reason\" header when sending the request.",
+                          "description": "The list of quota safety checks to ignore before the override mutation. Unlike 'force' field that ignores all the quota safety checks, the 'force_only' field ignores only the specified checks; other checks are still enforced. The 'force' and 'force_only' fields cannot both be set.",
                           "enum": [
                             "QUOTA_SAFETY_CHECK_UNSPECIFIED",
                             "LIMIT_DECREASE_BELOW_USAGE",
@@ -364,12 +397,17 @@
                       ],
                       "parameters": {
                         "force": {
-                          "description": "Whether to force the deletion of the quota override. Setting the force parameter to 'true' ignores all quota safety checks that would fail the request. QuotaSafetyCheck lists all such validations. If force is set to true, it is recommended to include a case id in \"X-Goog-Request-Reason\" header when sending the request.",
+                          "description": "Whether to force the deletion of the quota override. Setting the force parameter to 'true' ignores all quota safety checks that would fail the request. QuotaSafetyCheck lists all such validations.",
                           "location": "query",
                           "type": "boolean"
                         },
+                        "forceJustification": {
+                          "description": "If force option is set to true, force_justification is suggested to be set to log the reason in audit logs.",
+                          "location": "query",
+                          "type": "string"
+                        },
                         "forceOnly": {
-                          "description": "The list of quota safety checks to ignore before the override mutation. Unlike 'force' field that ignores all the quota safety checks, the 'force_only' field ignores only the specified checks; other checks are still enforced. The 'force' and 'force_only' fields cannot both be set. If force_only is specified, it is recommended to include a case id in \"X-Goog-Request-Reason\" header when sending the request.",
+                          "description": "The list of quota safety checks to ignore before the override mutation. Unlike 'force' field that ignores all the quota safety checks, the 'force_only' field ignores only the specified checks; other checks are still enforced. The 'force' and 'force_only' fields cannot both be set.",
                           "enum": [
                             "QUOTA_SAFETY_CHECK_UNSPECIFIED",
                             "LIMIT_DECREASE_BELOW_USAGE",
@@ -446,12 +484,17 @@
                       ],
                       "parameters": {
                         "force": {
-                          "description": "Whether to force the update of the quota override. Setting the force parameter to 'true' ignores all quota safety checks that would fail the request. QuotaSafetyCheck lists all such validations. If force is set to true, it is recommended to include a case id in \"X-Goog-Request-Reason\" header when sending the request.",
+                          "description": "Whether to force the update of the quota override. Setting the force parameter to 'true' ignores all quota safety checks that would fail the request. QuotaSafetyCheck lists all such validations.",
                           "location": "query",
                           "type": "boolean"
                         },
+                        "forceJustification": {
+                          "description": "If force option is set to true, force_justification is suggested to be set to log the reason in audit logs.",
+                          "location": "query",
+                          "type": "string"
+                        },
                         "forceOnly": {
-                          "description": "The list of quota safety checks to ignore before the override mutation. Unlike 'force' field that ignores all the quota safety checks, the 'force_only' field ignores only the specified checks; other checks are still enforced. The 'force' and 'force_only' fields cannot both be set. If force_only is specified, it is recommended to include a case id in \"X-Goog-Request-Reason\" header when sending the request.",
+                          "description": "The list of quota safety checks to ignore before the override mutation. Unlike 'force' field that ignores all the quota safety checks, the 'force_only' field ignores only the specified checks; other checks are still enforced. The 'force' and 'force_only' fields cannot both be set.",
                           "enum": [
                             "QUOTA_SAFETY_CHECK_UNSPECIFIED",
                             "LIMIT_DECREASE_BELOW_USAGE",
@@ -492,6 +535,178 @@
                       ]
                     }
                   }
+                },
+                "producerQuotaPolicies": {
+                  "methods": {
+                    "create": {
+                      "description": "Creates a producer quota policy. A producer quota policy is applied by the owner or administrator of a service at an org or folder node to set the default quota limit for all consumers under the node where the policy is created. To create multiple policies at once, use ImportProducerQuotaPolicies instead. If a policy with the specified dimensions already exists, this call will fail. To overwrite an existing policy if one is already present (\"upsert\" semantics), use ImportProducerQuotaPolicies instead.",
+                      "flatPath": "v1beta1/services/{servicesId}/{servicesId1}/{servicesId2}/consumerQuotaMetrics/{consumerQuotaMetricsId}/limits/{limitsId}/producerQuotaPolicies",
+                      "httpMethod": "POST",
+                      "id": "serviceconsumermanagement.services.consumerQuotaMetrics.limits.producerQuotaPolicies.create",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "force": {
+                          "description": "Whether to force the creation of the quota policy. If the policy creation would decrease the default limit of any consumer tier by more than 10 percent, the call is rejected, as a safety measure to avoid accidentally decreasing quota too quickly. Setting the force parameter to true ignores this restriction.",
+                          "location": "query",
+                          "type": "boolean"
+                        },
+                        "forceJustification": {
+                          "description": "If force option is set to true, force_justification is suggested to be set to log the reason in audit logs.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "parent": {
+                          "description": "Required. The resource name of the parent quota limit. An example name would be: `services/compute.googleapis.com/organizations/123/consumerQuotaMetrics/compute.googleapis.com%2Fcpus/limits/%2Fproject%2Fregion`",
+                          "location": "path",
+                          "pattern": "^services/[^/]+/[^/]+/[^/]+/consumerQuotaMetrics/[^/]+/limits/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "validateOnly": {
+                          "description": "If set to true, validate the request, but do not actually update.",
+                          "location": "query",
+                          "type": "boolean"
+                        }
+                      },
+                      "path": "v1beta1/{+parent}/producerQuotaPolicies",
+                      "request": {
+                        "$ref": "V1Beta1ProducerQuotaPolicy"
+                      },
+                      "response": {
+                        "$ref": "Operation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "delete": {
+                      "description": "Deletes a producer quota policy.",
+                      "flatPath": "v1beta1/services/{servicesId}/{servicesId1}/{servicesId2}/consumerQuotaMetrics/{consumerQuotaMetricsId}/limits/{limitsId}/producerQuotaPolicies/{producerQuotaPoliciesId}",
+                      "httpMethod": "DELETE",
+                      "id": "serviceconsumermanagement.services.consumerQuotaMetrics.limits.producerQuotaPolicies.delete",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "force": {
+                          "description": "Whether to force the deletion of the quota policy. If the policy deletion would decrease the default limit of any consumer tier by more than 10 percent, the call is rejected, as a safety measure to avoid accidentally decreasing quota too quickly. Setting the force parameter to true ignores this restriction.",
+                          "location": "query",
+                          "type": "boolean"
+                        },
+                        "forceJustification": {
+                          "description": "If force option is set to true, force_justification is suggested to be set to log the reason in audit logs.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "name": {
+                          "description": "Required. The resource name of the policy to delete. An example name would be: `services/compute.googleapis.com/organizations/123/consumerQuotaMetrics/compute.googleapis.com%2Fcpus/limits/%2Fproject%2Fregion/producerQuotaPolicies/4a3f2c1d`",
+                          "location": "path",
+                          "pattern": "^services/[^/]+/[^/]+/[^/]+/consumerQuotaMetrics/[^/]+/limits/[^/]+/producerQuotaPolicies/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "validateOnly": {
+                          "description": "If set to true, validate the request, but do not actually update.",
+                          "location": "query",
+                          "type": "boolean"
+                        }
+                      },
+                      "path": "v1beta1/{+name}",
+                      "response": {
+                        "$ref": "Operation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "list": {
+                      "description": "Lists all producer policies created at current consumer node for a limit.",
+                      "flatPath": "v1beta1/services/{servicesId}/{servicesId1}/{servicesId2}/consumerQuotaMetrics/{consumerQuotaMetricsId}/limits/{limitsId}/producerQuotaPolicies",
+                      "httpMethod": "GET",
+                      "id": "serviceconsumermanagement.services.consumerQuotaMetrics.limits.producerQuotaPolicies.list",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "pageSize": {
+                          "description": "Requested size of the next page of data.",
+                          "format": "int32",
+                          "location": "query",
+                          "type": "integer"
+                        },
+                        "pageToken": {
+                          "description": "Token identifying which result to start with; returned by a previous list call.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "parent": {
+                          "description": "Required. The resource name of the parent quota limit. An example name would be: `services/compute.googleapis.com/organizations/123/consumerQuotaMetrics/compute.googleapis.com%2Fcpus/limits/%2Fproject%2Fregion`",
+                          "location": "path",
+                          "pattern": "^services/[^/]+/[^/]+/[^/]+/consumerQuotaMetrics/[^/]+/limits/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta1/{+parent}/producerQuotaPolicies",
+                      "response": {
+                        "$ref": "V1Beta1ListProducerQuotaPoliciesResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "patch": {
+                      "description": "Updates a producer quota policy.",
+                      "flatPath": "v1beta1/services/{servicesId}/{servicesId1}/{servicesId2}/consumerQuotaMetrics/{consumerQuotaMetricsId}/limits/{limitsId}/producerQuotaPolicies/{producerQuotaPoliciesId}",
+                      "httpMethod": "PATCH",
+                      "id": "serviceconsumermanagement.services.consumerQuotaMetrics.limits.producerQuotaPolicies.patch",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "force": {
+                          "description": "Whether to force the update of the quota policy. If the policy update would decrease the default limit of any consumer tier by more than 10 percent, the call is rejected, as a safety measure to avoid accidentally decreasing quota too quickly. Setting the force parameter to true ignores this restriction.",
+                          "location": "query",
+                          "type": "boolean"
+                        },
+                        "forceJustification": {
+                          "description": "If force option is set to true, force_justification is suggested to be set to log the reason in audit logs.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "name": {
+                          "description": "The resource name of the producer policy. An example name would be: `services/compute.googleapis.com/organizations/123/consumerQuotaMetrics/compute.googleapis.com%2Fcpus/limits/%2Fproject%2Fregion/producerQuotaPolicies/4a3f2c1d`",
+                          "location": "path",
+                          "pattern": "^services/[^/]+/[^/]+/[^/]+/consumerQuotaMetrics/[^/]+/limits/[^/]+/producerQuotaPolicies/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "updateMask": {
+                          "description": "Update only the specified fields. If unset, all modifiable fields will be updated.",
+                          "format": "google-fieldmask",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "validateOnly": {
+                          "description": "If set to true, validate the request, but do not actually update.",
+                          "location": "query",
+                          "type": "boolean"
+                        }
+                      },
+                      "path": "v1beta1/{+name}",
+                      "request": {
+                        "$ref": "V1Beta1ProducerQuotaPolicy"
+                      },
+                      "response": {
+                        "$ref": "Operation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    }
+                  }
                 }
               }
             }
@@ -500,7 +715,7 @@
       }
     }
   },
-  "revision": "20240319",
+  "revision": "20240623",
   "rootUrl": "https://serviceconsumermanagement.googleapis.com/",
   "schemas": {
     "Api": {
@@ -1119,8 +1334,7 @@
       "id": "Endpoint",
       "properties": {
         "aliases": {
-          "deprecated": true,
-          "description": "Unimplemented. Dot not use. DEPRECATED: This field is no longer supported. Instead of using aliases, please specify multiple google.api.Endpoint for each of the intended aliases. Additional names that this endpoint will be hosted on.",
+          "description": "Aliases for this endpoint, these will be served by the same UrlMap as the parent endpoint, and will be provisioned in the GCP stack for the Regional Endpoints.",
           "items": {
             "type": "string"
           },
@@ -1366,7 +1580,7 @@
       "type": "object"
     },
     "HttpRule": {
-      "description": "# gRPC Transcoding gRPC Transcoding is a feature for mapping between a gRPC method and one or more HTTP REST endpoints. It allows developers to build a single API service that supports both gRPC APIs and REST APIs. Many systems, including [Google APIs](https://github.com/googleapis/googleapis), [Cloud Endpoints](https://cloud.google.com/endpoints), [gRPC Gateway](https://github.com/grpc-ecosystem/grpc-gateway), and [Envoy](https://github.com/envoyproxy/envoy) proxy support this feature and use it for large scale production services. `HttpRule` defines the schema of the gRPC/REST mapping. The mapping specifies how different portions of the gRPC request message are mapped to the URL path, URL query parameters, and HTTP request body. It also controls how the gRPC response message is mapped to the HTTP response body. `HttpRule` is typically specified as an `google.api.http` annotation on the gRPC method. Each mapping specifies a URL path template and an HTTP method. The path template may refer to one or more fields in the gRPC request message, as long as each field is a non-repeated field with a primitive (non-message) type. The path template controls how fields of the request message are mapped to the URL path. Example: service Messaging { rpc GetMessage(GetMessageRequest) returns (Message) { option (google.api.http) = { get: \"/v1/{name=messages/*}\" }; } } message GetMessageRequest { string name = 1; // Mapped to URL path. } message Message { string text = 1; // The resource content. } This enables an HTTP REST to gRPC mapping as below: HTTP | gRPC -----|----- `GET /v1/messages/123456` | `GetMessage(name: \"messages/123456\")` Any fields in the request message which are not bound by the path template automatically become HTTP query parameters if there is no HTTP request body. For example: service Messaging { rpc GetMessage(GetMessageRequest) returns (Message) { option (google.api.http) = { get:\"/v1/messages/{message_id}\" }; } } message GetMessageRequest { message SubMessage { string subfield = 1; } string message_id = 1; // Mapped to URL path. int64 revision = 2; // Mapped to URL query parameter `revision`. SubMessage sub = 3; // Mapped to URL query parameter `sub.subfield`. } This enables a HTTP JSON to RPC mapping as below: HTTP | gRPC -----|----- `GET /v1/messages/123456?revision=2&sub.subfield=foo` | `GetMessage(message_id: \"123456\" revision: 2 sub: SubMessage(subfield: \"foo\"))` Note that fields which are mapped to URL query parameters must have a primitive type or a repeated primitive type or a non-repeated message type. In the case of a repeated type, the parameter can be repeated in the URL as `...?param=A&param=B`. In the case of a message type, each field of the message is mapped to a separate parameter, such as `...?foo.a=A&foo.b=B&foo.c=C`. For HTTP methods that allow a request body, the `body` field specifies the mapping. Consider a REST update method on the message resource collection: service Messaging { rpc UpdateMessage(UpdateMessageRequest) returns (Message) { option (google.api.http) = { patch: \"/v1/messages/{message_id}\" body: \"message\" }; } } message UpdateMessageRequest { string message_id = 1; // mapped to the URL Message message = 2; // mapped to the body } The following HTTP JSON to RPC mapping is enabled, where the representation of the JSON in the request body is determined by protos JSON encoding: HTTP | gRPC -----|----- `PATCH /v1/messages/123456 { \"text\": \"Hi!\" }` | `UpdateMessage(message_id: \"123456\" message { text: \"Hi!\" })` The special name `*` can be used in the body mapping to define that every field not bound by the path template should be mapped to the request body. This enables the following alternative definition of the update method: service Messaging { rpc UpdateMessage(Message) returns (Message) { option (google.api.http) = { patch: \"/v1/messages/{message_id}\" body: \"*\" }; } } message Message { string message_id = 1; string text = 2; } The following HTTP JSON to RPC mapping is enabled: HTTP | gRPC -----|----- `PATCH /v1/messages/123456 { \"text\": \"Hi!\" }` | `UpdateMessage(message_id: \"123456\" text: \"Hi!\")` Note that when using `*` in the body mapping, it is not possible to have HTTP parameters, as all fields not bound by the path end in the body. This makes this option more rarely used in practice when defining REST APIs. The common usage of `*` is in custom methods which don't use the URL at all for transferring data. It is possible to define multiple HTTP methods for one RPC by using the `additional_bindings` option. Example: service Messaging { rpc GetMessage(GetMessageRequest) returns (Message) { option (google.api.http) = { get: \"/v1/messages/{message_id}\" additional_bindings { get: \"/v1/users/{user_id}/messages/{message_id}\" } }; } } message GetMessageRequest { string message_id = 1; string user_id = 2; } This enables the following two alternative HTTP JSON to RPC mappings: HTTP | gRPC -----|----- `GET /v1/messages/123456` | `GetMessage(message_id: \"123456\")` `GET /v1/users/me/messages/123456` | `GetMessage(user_id: \"me\" message_id: \"123456\")` ## Rules for HTTP mapping 1. Leaf request fields (recursive expansion nested messages in the request message) are classified into three categories: - Fields referred by the path template. They are passed via the URL path. - Fields referred by the HttpRule.body. They are passed via the HTTP request body. - All other fields are passed via the URL query parameters, and the parameter name is the field path in the request message. A repeated field can be represented as multiple query parameters under the same name. 2. If HttpRule.body is \"*\", there is no URL query parameter, all fields are passed via URL path and HTTP request body. 3. If HttpRule.body is omitted, there is no HTTP request body, all fields are passed via URL path and URL query parameters. ### Path template syntax Template = \"/\" Segments [ Verb ] ; Segments = Segment { \"/\" Segment } ; Segment = \"*\" | \"**\" | LITERAL | Variable ; Variable = \"{\" FieldPath [ \"=\" Segments ] \"}\" ; FieldPath = IDENT { \".\" IDENT } ; Verb = \":\" LITERAL ; The syntax `*` matches a single URL path segment. The syntax `**` matches zero or more URL path segments, which must be the last part of the URL path except the `Verb`. The syntax `Variable` matches part of the URL path as specified by its template. A variable template must not contain other variables. If a variable matches a single path segment, its template may be omitted, e.g. `{var}` is equivalent to `{var=*}`. The syntax `LITERAL` matches literal text in the URL path. If the `LITERAL` contains any reserved character, such characters should be percent-encoded before the matching. If a variable contains exactly one path segment, such as `\"{var}\"` or `\"{var=*}\"`, when such a variable is expanded into a URL path on the client side, all characters except `[-_.~0-9a-zA-Z]` are percent-encoded. The server side does the reverse decoding. Such variables show up in the [Discovery Document](https://developers.google.com/discovery/v1/reference/apis) as `{var}`. If a variable contains multiple path segments, such as `\"{var=foo/*}\"` or `\"{var=**}\"`, when such a variable is expanded into a URL path on the client side, all characters except `[-_.~/0-9a-zA-Z]` are percent-encoded. The server side does the reverse decoding, except \"%2F\" and \"%2f\" are left unchanged. Such variables show up in the [Discovery Document](https://developers.google.com/discovery/v1/reference/apis) as `{+var}`. ## Using gRPC API Service Configuration gRPC API Service Configuration (service config) is a configuration language for configuring a gRPC service to become a user-facing product. The service config is simply the YAML representation of the `google.api.Service` proto message. As an alternative to annotating your proto file, you can configure gRPC transcoding in your service config YAML files. You do this by specifying a `HttpRule` that maps the gRPC method to a REST endpoint, achieving the same effect as the proto annotation. This can be particularly useful if you have a proto that is reused in multiple services. Note that any transcoding specified in the service config will override any matching transcoding configuration in the proto. Example: http: rules: # Selects a gRPC method and applies HttpRule to it. - selector: example.v1.Messaging.GetMessage get: /v1/messages/{message_id}/{sub.subfield} ## Special notes When gRPC Transcoding is used to map a gRPC to JSON REST endpoints, the proto to JSON conversion must follow the [proto3 specification](https://developers.google.com/protocol-buffers/docs/proto3#json). While the single segment variable follows the semantics of [RFC 6570](https://tools.ietf.org/html/rfc6570) Section 3.2.2 Simple String Expansion, the multi segment variable **does not** follow RFC 6570 Section 3.2.3 Reserved Expansion. The reason is that the Reserved Expansion does not expand special characters like `?` and `#`, which would lead to invalid URLs. As the result, gRPC Transcoding uses a custom encoding for multi segment variables. The path variables **must not** refer to any repeated or mapped field, because client libraries are not capable of handling such variable expansion. The path variables **must not** capture the leading \"/\" character. The reason is that the most common use case \"{var}\" does not capture the leading \"/\" character. For consistency, all path variables must share the same behavior. Repeated message fields must not be mapped to URL query parameters, because no client library can support such complicated mapping. If an API needs to use a JSON array for request or response body, it can map the request or response body to a repeated field. However, some gRPC Transcoding implementations may not support this feature.",
+      "description": "gRPC Transcoding gRPC Transcoding is a feature for mapping between a gRPC method and one or more HTTP REST endpoints. It allows developers to build a single API service that supports both gRPC APIs and REST APIs. Many systems, including [Google APIs](https://github.com/googleapis/googleapis), [Cloud Endpoints](https://cloud.google.com/endpoints), [gRPC Gateway](https://github.com/grpc-ecosystem/grpc-gateway), and [Envoy](https://github.com/envoyproxy/envoy) proxy support this feature and use it for large scale production services. `HttpRule` defines the schema of the gRPC/REST mapping. The mapping specifies how different portions of the gRPC request message are mapped to the URL path, URL query parameters, and HTTP request body. It also controls how the gRPC response message is mapped to the HTTP response body. `HttpRule` is typically specified as an `google.api.http` annotation on the gRPC method. Each mapping specifies a URL path template and an HTTP method. The path template may refer to one or more fields in the gRPC request message, as long as each field is a non-repeated field with a primitive (non-message) type. The path template controls how fields of the request message are mapped to the URL path. Example: service Messaging { rpc GetMessage(GetMessageRequest) returns (Message) { option (google.api.http) = { get: \"/v1/{name=messages/*}\" }; } } message GetMessageRequest { string name = 1; // Mapped to URL path. } message Message { string text = 1; // The resource content. } This enables an HTTP REST to gRPC mapping as below: - HTTP: `GET /v1/messages/123456` - gRPC: `GetMessage(name: \"messages/123456\")` Any fields in the request message which are not bound by the path template automatically become HTTP query parameters if there is no HTTP request body. For example: service Messaging { rpc GetMessage(GetMessageRequest) returns (Message) { option (google.api.http) = { get:\"/v1/messages/{message_id}\" }; } } message GetMessageRequest { message SubMessage { string subfield = 1; } string message_id = 1; // Mapped to URL path. int64 revision = 2; // Mapped to URL query parameter `revision`. SubMessage sub = 3; // Mapped to URL query parameter `sub.subfield`. } This enables a HTTP JSON to RPC mapping as below: - HTTP: `GET /v1/messages/123456?revision=2&sub.subfield=foo` - gRPC: `GetMessage(message_id: \"123456\" revision: 2 sub: SubMessage(subfield: \"foo\"))` Note that fields which are mapped to URL query parameters must have a primitive type or a repeated primitive type or a non-repeated message type. In the case of a repeated type, the parameter can be repeated in the URL as `...?param=A&param=B`. In the case of a message type, each field of the message is mapped to a separate parameter, such as `...?foo.a=A&foo.b=B&foo.c=C`. For HTTP methods that allow a request body, the `body` field specifies the mapping. Consider a REST update method on the message resource collection: service Messaging { rpc UpdateMessage(UpdateMessageRequest) returns (Message) { option (google.api.http) = { patch: \"/v1/messages/{message_id}\" body: \"message\" }; } } message UpdateMessageRequest { string message_id = 1; // mapped to the URL Message message = 2; // mapped to the body } The following HTTP JSON to RPC mapping is enabled, where the representation of the JSON in the request body is determined by protos JSON encoding: - HTTP: `PATCH /v1/messages/123456 { \"text\": \"Hi!\" }` - gRPC: `UpdateMessage(message_id: \"123456\" message { text: \"Hi!\" })` The special name `*` can be used in the body mapping to define that every field not bound by the path template should be mapped to the request body. This enables the following alternative definition of the update method: service Messaging { rpc UpdateMessage(Message) returns (Message) { option (google.api.http) = { patch: \"/v1/messages/{message_id}\" body: \"*\" }; } } message Message { string message_id = 1; string text = 2; } The following HTTP JSON to RPC mapping is enabled: - HTTP: `PATCH /v1/messages/123456 { \"text\": \"Hi!\" }` - gRPC: `UpdateMessage(message_id: \"123456\" text: \"Hi!\")` Note that when using `*` in the body mapping, it is not possible to have HTTP parameters, as all fields not bound by the path end in the body. This makes this option more rarely used in practice when defining REST APIs. The common usage of `*` is in custom methods which don't use the URL at all for transferring data. It is possible to define multiple HTTP methods for one RPC by using the `additional_bindings` option. Example: service Messaging { rpc GetMessage(GetMessageRequest) returns (Message) { option (google.api.http) = { get: \"/v1/messages/{message_id}\" additional_bindings { get: \"/v1/users/{user_id}/messages/{message_id}\" } }; } } message GetMessageRequest { string message_id = 1; string user_id = 2; } This enables the following two alternative HTTP JSON to RPC mappings: - HTTP: `GET /v1/messages/123456` - gRPC: `GetMessage(message_id: \"123456\")` - HTTP: `GET /v1/users/me/messages/123456` - gRPC: `GetMessage(user_id: \"me\" message_id: \"123456\")` Rules for HTTP mapping 1. Leaf request fields (recursive expansion nested messages in the request message) are classified into three categories: - Fields referred by the path template. They are passed via the URL path. - Fields referred by the HttpRule.body. They are passed via the HTTP request body. - All other fields are passed via the URL query parameters, and the parameter name is the field path in the request message. A repeated field can be represented as multiple query parameters under the same name. 2. If HttpRule.body is \"*\", there is no URL query parameter, all fields are passed via URL path and HTTP request body. 3. If HttpRule.body is omitted, there is no HTTP request body, all fields are passed via URL path and URL query parameters. Path template syntax Template = \"/\" Segments [ Verb ] ; Segments = Segment { \"/\" Segment } ; Segment = \"*\" | \"**\" | LITERAL | Variable ; Variable = \"{\" FieldPath [ \"=\" Segments ] \"}\" ; FieldPath = IDENT { \".\" IDENT } ; Verb = \":\" LITERAL ; The syntax `*` matches a single URL path segment. The syntax `**` matches zero or more URL path segments, which must be the last part of the URL path except the `Verb`. The syntax `Variable` matches part of the URL path as specified by its template. A variable template must not contain other variables. If a variable matches a single path segment, its template may be omitted, e.g. `{var}` is equivalent to `{var=*}`. The syntax `LITERAL` matches literal text in the URL path. If the `LITERAL` contains any reserved character, such characters should be percent-encoded before the matching. If a variable contains exactly one path segment, such as `\"{var}\"` or `\"{var=*}\"`, when such a variable is expanded into a URL path on the client side, all characters except `[-_.~0-9a-zA-Z]` are percent-encoded. The server side does the reverse decoding. Such variables show up in the [Discovery Document](https://developers.google.com/discovery/v1/reference/apis) as `{var}`. If a variable contains multiple path segments, such as `\"{var=foo/*}\"` or `\"{var=**}\"`, when such a variable is expanded into a URL path on the client side, all characters except `[-_.~/0-9a-zA-Z]` are percent-encoded. The server side does the reverse decoding, except \"%2F\" and \"%2f\" are left unchanged. Such variables show up in the [Discovery Document](https://developers.google.com/discovery/v1/reference/apis) as `{+var}`. Using gRPC API Service Configuration gRPC API Service Configuration (service config) is a configuration language for configuring a gRPC service to become a user-facing product. The service config is simply the YAML representation of the `google.api.Service` proto message. As an alternative to annotating your proto file, you can configure gRPC transcoding in your service config YAML files. You do this by specifying a `HttpRule` that maps the gRPC method to a REST endpoint, achieving the same effect as the proto annotation. This can be particularly useful if you have a proto that is reused in multiple services. Note that any transcoding specified in the service config will override any matching transcoding configuration in the proto. Example below selects a gRPC method and applies HttpRule to it. http: rules: - selector: example.v1.Messaging.GetMessage get: /v1/messages/{message_id}/{sub.subfield} Special notes When gRPC Transcoding is used to map a gRPC to JSON REST endpoints, the proto to JSON conversion must follow the [proto3 specification](https://developers.google.com/protocol-buffers/docs/proto3#json). While the single segment variable follows the semantics of [RFC 6570](https://tools.ietf.org/html/rfc6570) Section 3.2.2 Simple String Expansion, the multi segment variable **does not** follow RFC 6570 Section 3.2.3 Reserved Expansion. The reason is that the Reserved Expansion does not expand special characters like `?` and `#`, which would lead to invalid URLs. As the result, gRPC Transcoding uses a custom encoding for multi segment variables. The path variables **must not** refer to any repeated or mapped field, because client libraries are not capable of handling such variable expansion. The path variables **must not** capture the leading \"/\" character. The reason is that the most common use case \"{var}\" does not capture the leading \"/\" character. For consistency, all path variables must share the same behavior. Repeated message fields must not be mapped to URL query parameters, because no client library can support such complicated mapping. If an API needs to use a JSON array for request or response body, it can map the request or response body to a repeated field. However, some gRPC Transcoding implementations may not support this feature.",
       "id": "HttpRule",
       "properties": {
         "additionalBindings": {
@@ -1660,10 +1874,10 @@
         },
         "longRunning": {
           "$ref": "LongRunning",
-          "description": "Describes settings to use for long-running operations when generating API methods for RPCs. Complements RPCs that use the annotations in google/longrunning/operations.proto. Example of a YAML configuration:: publishing: method_settings: - selector: google.cloud.speech.v2.Speech.BatchRecognize long_running: initial_poll_delay: seconds: 60 # 1 minute poll_delay_multiplier: 1.5 max_poll_delay: seconds: 360 # 6 minutes total_poll_timeout: seconds: 54000 # 90 minutes"
+          "description": "Describes settings to use for long-running operations when generating API methods for RPCs. Complements RPCs that use the annotations in google/longrunning/operations.proto. Example of a YAML configuration:: publishing: method_settings: - selector: google.cloud.speech.v2.Speech.BatchRecognize long_running: initial_poll_delay: 60s # 1 minute poll_delay_multiplier: 1.5 max_poll_delay: 360s # 6 minutes total_poll_timeout: 54000s # 90 minutes"
         },
         "selector": {
-          "description": "The fully qualified name of the method, for which the options below apply. This is used to find the method to apply the options.",
+          "description": "The fully qualified name of the method, for which the options below apply. This is used to find the method to apply the options. Example: publishing: method_settings: - selector: google.storage.control.v2.StorageControl.CreateFolder # method settings for CreateFolder...",
           "type": "string"
         }
       },
@@ -2696,11 +2910,15 @@
       "id": "V1Beta1ImportProducerOverridesRequest",
       "properties": {
         "force": {
-          "description": "Whether to force the creation of the quota overrides. Setting the force parameter to 'true' ignores all quota safety checks that would fail the request. QuotaSafetyCheck lists all such validations. If force is set to true, it is recommended to include a case id in \"X-Goog-Request-Reason\" header when sending the request.",
+          "description": "Whether to force the creation of the quota overrides. Setting the force parameter to 'true' ignores all quota safety checks that would fail the request. QuotaSafetyCheck lists all such validations.",
           "type": "boolean"
         },
+        "forceJustification": {
+          "description": "If force option is set to true, force_justification is suggested to be set to log the reason in audit logs.",
+          "type": "string"
+        },
         "forceOnly": {
-          "description": "The list of quota safety checks to ignore before the override mutation. Unlike 'force' field that ignores all the quota safety checks, the 'force_only' field ignores only the specified checks; other checks are still enforced. The 'force' and 'force_only' fields cannot both be set. If force_only is specified, it is recommended to include a case id in \"X-Goog-Request-Reason\" header when sending the request.",
+          "description": "The list of quota safety checks to ignore before the override mutation. Unlike 'force' field that ignores all the quota safety checks, the 'force_only' field ignores only the specified checks; other checks are still enforced. The 'force' and 'force_only' fields cannot both be set.",
           "items": {
             "enum": [
               "QUOTA_SAFETY_CHECK_UNSPECIFIED",
@@ -2733,6 +2951,29 @@
             "$ref": "V1Beta1QuotaOverride"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "V1Beta1ImportProducerQuotaPoliciesRequest": {
+      "description": "Request message for ImportProducerQuotaPolicies",
+      "id": "V1Beta1ImportProducerQuotaPoliciesRequest",
+      "properties": {
+        "force": {
+          "description": "Whether to force the import of the quota policies. If the policy import would decrease the default limit of any consumer tier by more than 10 percent, the call is rejected, as a safety measure to avoid accidentally decreasing quota too quickly. Setting the force parameter to true ignores this restriction.",
+          "type": "boolean"
+        },
+        "forceJustification": {
+          "description": "If force option is set to true, force_justification is suggested to be set to log the reason in audit logs.",
+          "type": "string"
+        },
+        "inlineSource": {
+          "$ref": "V1Beta1PolicyInlineSource",
+          "description": "The import data is specified in the request message itself"
+        },
+        "validateOnly": {
+          "description": "If set to true, validate the request, but do not actually update.",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -2787,6 +3028,24 @@
       },
       "type": "object"
     },
+    "V1Beta1ListProducerQuotaPoliciesResponse": {
+      "description": "Response message for ListProducerQuotaPolicies.",
+      "id": "V1Beta1ListProducerQuotaPoliciesResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "Token identifying which result to start with; returned by a previous list call.",
+          "type": "string"
+        },
+        "producerQuotaPolicies": {
+          "description": "Producer policies on this limit.",
+          "items": {
+            "$ref": "V1Beta1ProducerQuotaPolicy"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "V1Beta1OverrideInlineSource": {
       "description": "Import data embedded in the request message",
       "id": "V1Beta1OverrideInlineSource",
@@ -2795,6 +3054,20 @@
           "description": "The overrides to create. Each override must have a value for 'metric' and 'unit', to specify which metric and which limit the override should be applied to. The 'name' field of the override does not need to be set; it is ignored.",
           "items": {
             "$ref": "V1Beta1QuotaOverride"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "V1Beta1PolicyInlineSource": {
+      "description": "Import data embedded in the request message",
+      "id": "V1Beta1PolicyInlineSource",
+      "properties": {
+        "policies": {
+          "description": "The policies to create. Each policy must have a value for 'metric' and 'unit', to specify which metric and which limit the policy should be applied to.",
+          "items": {
+            "$ref": "V1Beta1ProducerQuotaPolicy"
           },
           "type": "array"
         }
@@ -2872,6 +3145,10 @@
         "producerQuotaPolicy": {
           "$ref": "V1Beta1ProducerQuotaPolicy",
           "description": "Producer policy inherited from the closet ancestor of the current consumer."
+        },
+        "rolloutInfo": {
+          "$ref": "V1Beta1RolloutInfo",
+          "description": "Rollout information of this quota bucket. This field is present only if the effective limit will change due to the ongoing rollout of the service config."
         }
       },
       "type": "object"
@@ -2915,6 +3192,17 @@
       "description": "Response message for the `RefreshConsumer` method. This response message is assigned to the `response` field of the returned Operation when that operation is done.",
       "id": "V1Beta1RefreshConsumerResponse",
       "properties": {},
+      "type": "object"
+    },
+    "V1Beta1RolloutInfo": {
+      "description": "[Output only] Rollout information of a quota.",
+      "id": "V1Beta1RolloutInfo",
+      "properties": {
+        "defaultLimitOngoingRollout": {
+          "description": "Whether there is an ongoing rollout for the default limit or not.",
+          "type": "boolean"
+        }
+      },
       "type": "object"
     },
     "V1Beta1ServiceIdentity": {

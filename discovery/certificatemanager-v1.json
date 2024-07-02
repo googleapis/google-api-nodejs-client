@@ -277,7 +277,7 @@
                       "type": "string"
                     },
                     "orderBy": {
-                      "description": "A list of Certificate Config field names used to specify the order of the returned results. The default sorting order is ascending. To specify descending order for a field, add a suffix \" desc\".",
+                      "description": "A list of Certificate Config field names used to specify the order of the returned results. The default sorting order is ascending. To specify descending order for a field, add a suffix `\" desc\"`.",
                       "location": "query",
                       "type": "string"
                     },
@@ -410,7 +410,7 @@
                       "type": "string"
                     },
                     "orderBy": {
-                      "description": "A list of Certificate Map field names used to specify the order of the returned results. The default sorting order is ascending. To specify descending order for a field, add a suffix \" desc\".",
+                      "description": "A list of Certificate Map field names used to specify the order of the returned results. The default sorting order is ascending. To specify descending order for a field, add a suffix `\" desc\"`.",
                       "location": "query",
                       "type": "string"
                     },
@@ -577,7 +577,7 @@
                           "type": "string"
                         },
                         "orderBy": {
-                          "description": "A list of Certificate Map Entry field names used to specify the order of the returned results. The default sorting order is ascending. To specify descending order for a field, add a suffix \" desc\".",
+                          "description": "A list of Certificate Map Entry field names used to specify the order of the returned results. The default sorting order is ascending. To specify descending order for a field, add a suffix `\" desc\"`.",
                           "location": "query",
                           "type": "string"
                         },
@@ -746,7 +746,7 @@
                       "type": "string"
                     },
                     "orderBy": {
-                      "description": "A list of Certificate field names used to specify the order of the returned results. The default sorting order is ascending. To specify descending order for a field, add a suffix \" desc\".",
+                      "description": "A list of Certificate field names used to specify the order of the returned results. The default sorting order is ascending. To specify descending order for a field, add a suffix `\" desc\"`.",
                       "location": "query",
                       "type": "string"
                     },
@@ -913,7 +913,7 @@
                       "type": "string"
                     },
                     "orderBy": {
-                      "description": "A list of Dns Authorization field names used to specify the order of the returned results. The default sorting order is ascending. To specify descending order for a field, add a suffix \" desc\".",
+                      "description": "A list of Dns Authorization field names used to specify the order of the returned results. The default sorting order is ascending. To specify descending order for a field, add a suffix `\" desc\"`.",
                       "location": "query",
                       "type": "string"
                     },
@@ -1208,7 +1208,7 @@
                       "type": "string"
                     },
                     "orderBy": {
-                      "description": "A list of TrustConfig field names used to specify the order of the returned results. The default sorting order is ascending. To specify descending order for a field, add a suffix \" desc\".",
+                      "description": "A list of TrustConfig field names used to specify the order of the returned results. The default sorting order is ascending. To specify descending order for a field, add a suffix `\" desc\"`.",
                       "location": "query",
                       "type": "string"
                     },
@@ -1280,7 +1280,7 @@
       }
     }
   },
-  "revision": "20240313",
+  "revision": "20240417",
   "rootUrl": "https://certificatemanager.googleapis.com/",
   "schemas": {
     "AllowlistedCertificate": {
@@ -2197,7 +2197,7 @@
       "id": "TrustConfig",
       "properties": {
         "allowlistedCertificates": {
-          "description": "Optional. A certificate matching an allowlisted certificate is always considered valid as long as the certificate is parseable, proof of private key possession is established, and constraints on the certificate’s SAN field are met.",
+          "description": "Optional. A certificate matching an allowlisted certificate is always considered valid as long as the certificate is parseable, proof of private key possession is established, and constraints on the certificate's SAN field are met.",
           "items": {
             "$ref": "AllowlistedCertificate"
           },

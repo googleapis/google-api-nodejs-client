@@ -1,5 +1,86 @@
 # Changelog
 
+## [15.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/connectors-v14.0.0...connectors-v15.0.0) (2024-06-21)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* **connectors:** update the API ([99eb514](https://github.com/googleapis/google-api-nodejs-client/commit/99eb514cede51267f297e4f1edb1fba28a7f56e0))
+* **connectors:** update the API ([28688f6](https://github.com/googleapis/google-api-nodejs-client/commit/28688f6f92866dd5de9a904ebda2162f547775ae))
+* **connectors:** update the API ([478d8c6](https://github.com/googleapis/google-api-nodejs-client/commit/478d8c60beb0ccae9a89590f71802aa7843275e2))
+* run the generator ([#3456](https://github.com/googleapis/google-api-nodejs-client/issues/3456)) ([a865e81](https://github.com/googleapis/google-api-nodejs-client/commit/a865e81539b315d3b321650663ba0b2555b1e5a1))
+
+## [14.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/connectors-v13.1.0...connectors-v14.0.0) (2024-06-06)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* **connectors:** update the API ([99eb514](https://github.com/googleapis/google-api-nodejs-client/commit/99eb514cede51267f297e4f1edb1fba28a7f56e0))
+* **connectors:** update the API ([28688f6](https://github.com/googleapis/google-api-nodejs-client/commit/28688f6f92866dd5de9a904ebda2162f547775ae))
+* **connectors:** update the API ([478d8c6](https://github.com/googleapis/google-api-nodejs-client/commit/478d8c60beb0ccae9a89590f71802aa7843275e2))
+* run the generator ([#3456](https://github.com/googleapis/google-api-nodejs-client/issues/3456)) ([a865e81](https://github.com/googleapis/google-api-nodejs-client/commit/a865e81539b315d3b321650663ba0b2555b1e5a1))
+
+## [13.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/connectors-v13.0.0...connectors-v13.1.0) (2024-06-03)
+
+
+### Features
+
+* **connectors:** update the API ([28688f6](https://github.com/googleapis/google-api-nodejs-client/commit/28688f6f92866dd5de9a904ebda2162f547775ae))
+
+## [13.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/connectors-v12.1.0...connectors-v13.0.0) (2024-05-02)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+* **connectors:** This release has breaking changes.
+* This release has breaking changes.
+* This release has breaking changes.
+
+### Features
+
+* **connectors:** update the API ([478d8c6](https://github.com/googleapis/google-api-nodejs-client/commit/478d8c60beb0ccae9a89590f71802aa7843275e2))
+* **connectors:** update the API ([d81f31d](https://github.com/googleapis/google-api-nodejs-client/commit/d81f31d620c083d308ccf33c7de7128501f8b3a6))
+* run the generator ([#3434](https://github.com/googleapis/google-api-nodejs-client/issues/3434)) ([f0db524](https://github.com/googleapis/google-api-nodejs-client/commit/f0db524bb26f05cea3dec4c0ed66b496399e3857))
+* run the generator ([#3441](https://github.com/googleapis/google-api-nodejs-client/issues/3441)) ([f832463](https://github.com/googleapis/google-api-nodejs-client/commit/f832463312572dc58fe89f9254282982a520d1df))
+* run the generator ([#3456](https://github.com/googleapis/google-api-nodejs-client/issues/3456)) ([a865e81](https://github.com/googleapis/google-api-nodejs-client/commit/a865e81539b315d3b321650663ba0b2555b1e5a1))
+
+## [12.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/connectors-v12.0.0...connectors-v12.1.0) (2024-05-02)
+
+
+### Features
+
+* **connectors:** update the API ([478d8c6](https://github.com/googleapis/google-api-nodejs-client/commit/478d8c60beb0ccae9a89590f71802aa7843275e2))
+
+## [12.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/connectors-v11.0.0...connectors-v12.0.0) (2024-04-04)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+* **connectors:** This release has breaking changes.
+* This release has breaking changes.
+* This release has breaking changes.
+* **connectors:** This release has breaking changes.
+
+### Features
+
+* **connectors:** update the API ([d81f31d](https://github.com/googleapis/google-api-nodejs-client/commit/d81f31d620c083d308ccf33c7de7128501f8b3a6))
+* **connectors:** update the API ([102625b](https://github.com/googleapis/google-api-nodejs-client/commit/102625b204b712ce916d5ccd873eee2c19907643))
+* **connectors:** update the API ([f433bd6](https://github.com/googleapis/google-api-nodejs-client/commit/f433bd628431cd6c340746a6066b55bf27267e42))
+* **connectors:** update the API ([863f64f](https://github.com/googleapis/google-api-nodejs-client/commit/863f64ff009635ad2fa4c79216a4b82b22e6235e))
+* run the generator ([#3434](https://github.com/googleapis/google-api-nodejs-client/issues/3434)) ([f0db524](https://github.com/googleapis/google-api-nodejs-client/commit/f0db524bb26f05cea3dec4c0ed66b496399e3857))
+* run the generator ([#3441](https://github.com/googleapis/google-api-nodejs-client/issues/3441)) ([f832463](https://github.com/googleapis/google-api-nodejs-client/commit/f832463312572dc58fe89f9254282982a520d1df))
+* run the generator ([#3456](https://github.com/googleapis/google-api-nodejs-client/issues/3456)) ([a865e81](https://github.com/googleapis/google-api-nodejs-client/commit/a865e81539b315d3b321650663ba0b2555b1e5a1))
+
 ## [11.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/connectors-v10.1.0...connectors-v11.0.0) (2024-03-12)
 
 

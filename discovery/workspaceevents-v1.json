@@ -6,7 +6,7 @@
           "description": "Private Service: https://www.googleapis.com/auth/chat.bot"
         },
         "https://www.googleapis.com/auth/chat.memberships": {
-          "description": "View, add, and remove members from conversations in Google Chat"
+          "description": "View, add, update, and remove members from conversations in Google Chat"
         },
         "https://www.googleapis.com/auth/chat.memberships.readonly": {
           "description": "View members in Google Chat conversations."
@@ -353,7 +353,7 @@
               "type": "string"
             },
             "updateMask": {
-              "description": "Optional. Required. The field to update. You can update one of the following fields in a subscription: * `expire_time`: The timestamp when the subscription expires. * `ttl`: The time-to-live (TTL) or duration of the subscription.",
+              "description": "Optional. The field to update. If omitted, updates any fields included in the request. You can update one of the following fields in a subscription: * `expire_time`: The timestamp when the subscription expires. * `ttl`: The time-to-live (TTL) or duration of the subscription. To fully replace the subscription (the equivalent of `PUT`), use `*`. Any omitted fields are updated with empty values.",
               "format": "google-fieldmask",
               "location": "query",
               "type": "string"
@@ -424,7 +424,7 @@
       }
     }
   },
-  "revision": "20240310",
+  "revision": "20240505",
   "rootUrl": "https://workspaceevents.googleapis.com/",
   "schemas": {
     "ListSubscriptionsResponse": {

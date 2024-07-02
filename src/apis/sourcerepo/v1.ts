@@ -102,7 +102,7 @@ export namespace sourcerepo_v1 {
   /**
    * Cloud Source Repositories API
    *
-   * Accesses source code repositories hosted by Google.
+   * Accesses source code repositories hosted by Google. Important: Cloud Source Repositories is scheduled for end of sales starting June 17, 2024. Customers who have enabled the API prior to this date will not be affected and can continue to use Cloud Source Repositories. Organizations or projects who have not previously enabled the API cannot use Cloud Source Repositories after this date. View Cloud Source Repositories documentation for more info.
    *
    * @example
    * ```js
@@ -501,6 +501,7 @@ export namespace sourcerepo_v1 {
           {
             url: (rootUrl + '/v1/{+name}/config').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -585,6 +586,7 @@ export namespace sourcerepo_v1 {
           {
             url: (rootUrl + '/v1/{+name}/config').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -699,6 +701,7 @@ export namespace sourcerepo_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -783,6 +786,7 @@ export namespace sourcerepo_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -867,6 +871,7 @@ export namespace sourcerepo_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -954,6 +959,7 @@ export namespace sourcerepo_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1041,6 +1047,7 @@ export namespace sourcerepo_v1 {
           {
             url: (rootUrl + '/v1/{+name}/repos').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1125,6 +1132,7 @@ export namespace sourcerepo_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -1212,6 +1220,7 @@ export namespace sourcerepo_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1296,6 +1305,7 @@ export namespace sourcerepo_v1 {
           {
             url: (rootUrl + '/v1/{+name}:sync').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1390,6 +1400,7 @@ export namespace sourcerepo_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),

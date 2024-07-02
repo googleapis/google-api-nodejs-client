@@ -1,5 +1,19 @@
 # Changelog
 
+## [1.0.7](https://github.com/googleapis/google-api-nodejs-client/compare/groupsmigration-v1.0.6...groupsmigration-v1.0.7) (2024-05-02)
+
+
+### Bug Fixes
+
+* **groupsmigration:** update the API ([2d5dfc8](https://github.com/googleapis/google-api-nodejs-client/commit/2d5dfc87a79567d6c65713279d9e169f791edd15))
+
+## [1.0.6](https://github.com/googleapis/google-api-nodejs-client/compare/groupsmigration-v1.0.5...groupsmigration-v1.0.6) (2024-05-02)
+
+
+### Bug Fixes
+
+* **groupsmigration:** update the API ([2d5dfc8](https://github.com/googleapis/google-api-nodejs-client/commit/2d5dfc87a79567d6c65713279d9e169f791edd15))
+
 ## [1.0.5](https://github.com/googleapis/google-api-nodejs-client/compare/groupsmigration-v1.0.4...groupsmigration-v1.0.5) (2023-10-11)
 
 

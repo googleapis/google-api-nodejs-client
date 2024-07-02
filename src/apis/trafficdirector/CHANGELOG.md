@@ -1,5 +1,40 @@
 # Changelog
 
+## [4.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/trafficdirector-v3.1.0...trafficdirector-v4.0.0) (2024-05-02)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#3434](https://github.com/googleapis/google-api-nodejs-client/issues/3434)) ([f0db524](https://github.com/googleapis/google-api-nodejs-client/commit/f0db524bb26f05cea3dec4c0ed66b496399e3857))
+* **trafficdirector:** update the API ([69f9252](https://github.com/googleapis/google-api-nodejs-client/commit/69f92522ff9920b35c5a07302f509f86c49485df))
+
+## [3.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/trafficdirector-v3.0.0...trafficdirector-v3.1.0) (2024-05-02)
+
+
+### Features
+
+* **trafficdirector:** update the API ([69f9252](https://github.com/googleapis/google-api-nodejs-client/commit/69f92522ff9920b35c5a07302f509f86c49485df))
+
+## [3.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/trafficdirector-v2.0.0...trafficdirector-v3.0.0) (2024-04-04)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#3434](https://github.com/googleapis/google-api-nodejs-client/issues/3434)) ([f0db524](https://github.com/googleapis/google-api-nodejs-client/commit/f0db524bb26f05cea3dec4c0ed66b496399e3857))
+
+
+### Bug Fixes
+
+* **trafficdirector:** update the API ([472bb5b](https://github.com/googleapis/google-api-nodejs-client/commit/472bb5bd8c7e63140b3de92704877feb8c5780a9))
+
 ## [2.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/trafficdirector-v1.2.2...trafficdirector-v2.0.0) (2024-03-12)
 
 

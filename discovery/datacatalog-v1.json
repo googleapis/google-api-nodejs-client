@@ -2144,7 +2144,7 @@
       }
     }
   },
-  "revision": "20240315",
+  "revision": "20240614",
   "rootUrl": "https://datacatalog.googleapis.com/",
   "schemas": {
     "Binding": {
@@ -4211,9 +4211,13 @@
             "DATAPLEX_TRANSFER_STATUS_UNSPECIFIED",
             "MIGRATED"
           ],
+          "enumDeprecated": [
+            false,
+            true
+          ],
           "enumDescriptions": [
             "Default value. TagTemplate and its tags are only visible and editable in DataCatalog.",
-            "TagTemplate and its tags are auto-copied to Dataplex service. Visible in both services. Editable in DataCatalog, read-only in Dataplex."
+            "TagTemplate and its tags are auto-copied to Dataplex service. Visible in both services. Editable in DataCatalog, read-only in Dataplex. Deprecated: Individual TagTemplate migration is deprecated in favor of organization or project wide TagTemplate migration opt-in."
           ],
           "type": "string"
         },
@@ -4503,14 +4507,20 @@
             "AUTOML",
             "CUSTOM",
             "BQML",
-            "MODEL_GARDEN"
+            "MODEL_GARDEN",
+            "GENIE",
+            "CUSTOM_TEXT_EMBEDDING",
+            "MARKETPLACE"
           ],
           "enumDescriptions": [
             "Should not be used.",
             "The Model is uploaded by automl training pipeline.",
             "The Model is uploaded by user or custom training pipeline.",
             "The Model is registered and sync'ed from BigQuery ML.",
-            "The Model is saved or tuned from Model Garden."
+            "The Model is saved or tuned from Model Garden.",
+            "The Model is saved or tuned from Genie.",
+            "The Model is uploaded by text embedding finetuning pipeline.",
+            "The Model is saved or tuned from Marketplace."
           ],
           "type": "string"
         }

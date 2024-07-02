@@ -1076,6 +1076,7 @@ export namespace mybusinessbusinessinformation_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1170,6 +1171,7 @@ export namespace mybusinessbusinessinformation_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1317,6 +1319,7 @@ export namespace mybusinessbusinessinformation_v1 {
           {
             url: (rootUrl + '/v1/attributes').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1453,6 +1456,7 @@ export namespace mybusinessbusinessinformation_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1543,6 +1547,7 @@ export namespace mybusinessbusinessinformation_v1 {
           {
             url: (rootUrl + '/v1/categories').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1681,6 +1686,7 @@ export namespace mybusinessbusinessinformation_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1771,6 +1777,7 @@ export namespace mybusinessbusinessinformation_v1 {
           {
             url: (rootUrl + '/v1/chains:search').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1891,6 +1898,7 @@ export namespace mybusinessbusinessinformation_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1995,6 +2003,7 @@ export namespace mybusinessbusinessinformation_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -2080,6 +2089,7 @@ export namespace mybusinessbusinessinformation_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2166,6 +2176,7 @@ export namespace mybusinessbusinessinformation_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2262,6 +2273,7 @@ export namespace mybusinessbusinessinformation_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2347,6 +2359,7 @@ export namespace mybusinessbusinessinformation_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -2433,6 +2446,7 @@ export namespace mybusinessbusinessinformation_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -2599,6 +2613,7 @@ export namespace mybusinessbusinessinformation_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),

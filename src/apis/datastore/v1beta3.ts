@@ -1333,6 +1333,7 @@ export namespace datastore_v1beta3 {
               rootUrl + '/v1beta3/projects/{projectId}:allocateIds'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1426,6 +1427,7 @@ export namespace datastore_v1beta3 {
               rootUrl + '/v1beta3/projects/{projectId}:beginTransaction'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1512,6 +1514,7 @@ export namespace datastore_v1beta3 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1598,6 +1601,7 @@ export namespace datastore_v1beta3 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1688,6 +1692,7 @@ export namespace datastore_v1beta3 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1775,6 +1780,7 @@ export namespace datastore_v1beta3 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1868,6 +1874,7 @@ export namespace datastore_v1beta3 {
               rootUrl + '/v1beta3/projects/{projectId}:runAggregationQuery'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1955,6 +1962,7 @@ export namespace datastore_v1beta3 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),

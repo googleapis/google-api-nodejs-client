@@ -422,6 +422,27 @@ export namespace ondemandscanning_v1beta1 {
   export interface Schema$ComplianceOccurrence {
     nonComplianceReason?: string | null;
     nonCompliantFiles?: Schema$NonCompliantFile[];
+    /**
+     * The OS and config version the benchmark was run on.
+     */
+    version?: Schema$ComplianceVersion;
+  }
+  /**
+   * Describes the CIS benchmark version that is applicable to a given OS and os version.
+   */
+  export interface Schema$ComplianceVersion {
+    /**
+     * The name of the document that defines this benchmark, e.g. "CIS Container-Optimized OS".
+     */
+    benchmarkDocument?: string | null;
+    /**
+     * The CPE URI (https://cpe.mitre.org/specification/) this benchmark is applicable to.
+     */
+    cpeUri?: string | null;
+    /**
+     * The version of the benchmark. This is set to the version of the OS-specific CIS document the benchmark is defined in.
+     */
+    version?: string | null;
   }
   /**
    * Common Vulnerability Scoring System. For details, see https://www.first.org/cvss/specification-document This is a message we will try to use for storing various versions of CVSS rather than making a separate proto for storing a specific version.
@@ -516,6 +537,10 @@ export namespace ondemandscanning_v1beta1 {
      * The status of an SBOM generation.
      */
     sbomStatus?: Schema$SBOMStatus;
+    /**
+     * The status of an vulnerability attestation generation.
+     */
+    vulnerabilityAttestation?: Schema$VulnerabilityAttestation;
   }
   /**
    * Deprecated. Prefer to use a regular Occurrence, and populate the Envelope at the top level of the Occurrence.
@@ -1625,6 +1650,23 @@ export namespace ondemandscanning_v1beta1 {
     vulnerabilityId?: string | null;
   }
   /**
+   * The status of an vulnerability attestation generation.
+   */
+  export interface Schema$VulnerabilityAttestation {
+    /**
+     * If failure, the error reason for why the attestation generation failed.
+     */
+    error?: string | null;
+    /**
+     * The last time we attempted to generate an attestation.
+     */
+    lastAttemptTime?: string | null;
+    /**
+     * The success/failure state of the latest attestation attempt.
+     */
+    state?: string | null;
+  }
+  /**
    * An occurrence of a severity vulnerability on a resource.
    */
   export interface Schema$VulnerabilityOccurrence {
@@ -1814,6 +1856,7 @@ export namespace ondemandscanning_v1beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1899,6 +1942,7 @@ export namespace ondemandscanning_v1beta1 {
           {
             url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -1984,6 +2028,7 @@ export namespace ondemandscanning_v1beta1 {
           {
             url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2077,6 +2122,7 @@ export namespace ondemandscanning_v1beta1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2165,6 +2211,7 @@ export namespace ondemandscanning_v1beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2315,6 +2362,7 @@ export namespace ondemandscanning_v1beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2431,6 +2479,7 @@ export namespace ondemandscanning_v1beta1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),

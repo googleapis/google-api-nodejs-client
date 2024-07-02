@@ -102,7 +102,7 @@ export namespace marketingplatformadmin_v1alpha {
   /**
    * Google Marketing Platform Admin API
    *
-   * The Google Marketing Platform Admin API allows for programmatic access to the Google Marketing Platform configuration data. You can use the Google Marketing Platform Admin API to manage links between your Google Marketing Platform organization and Google Analytics accounts, set the service level of your GA4 properties.
+   * The Google Marketing Platform Admin API allows for programmatic access to the Google Marketing Platform configuration data. You can use the Google Marketing Platform Admin API to manage links between your Google Marketing Platform organization and Google Analytics accounts, and to set the service level of your GA4 properties.
    *
    * @example
    * ```js
@@ -163,6 +163,19 @@ export namespace marketingplatformadmin_v1alpha {
     nextPageToken?: string | null;
   }
   /**
+   * A resource message representing a Google Marketing Platform organization.
+   */
+  export interface Schema$Organization {
+    /**
+     * The human-readable name for the organization.
+     */
+    displayName?: string | null;
+    /**
+     * Identifier. The resource name of the GMP organization. Format: organizations/{org_id\}
+     */
+    name?: string | null;
+  }
+  /**
    * Request message for SetPropertyServiceLevel RPC.
    */
   export interface Schema$SetPropertyServiceLevelRequest {
@@ -188,6 +201,100 @@ export namespace marketingplatformadmin_v1alpha {
       this.analyticsAccountLinks =
         new Resource$Organizations$Analyticsaccountlinks(this.context);
     }
+
+    /**
+     * Lookup for a single organization.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Organizations$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Organizations$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Organization>;
+    get(
+      params: Params$Resource$Organizations$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Organizations$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Organization>,
+      callback: BodyResponseCallback<Schema$Organization>
+    ): void;
+    get(
+      params: Params$Resource$Organizations$Get,
+      callback: BodyResponseCallback<Schema$Organization>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$Organization>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Get
+        | BodyResponseCallback<Schema$Organization>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Organization>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Organization>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Organization> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Organizations$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://marketingplatformadmin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Organization>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Organization>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Organizations$Get
+    extends StandardParameters {
+    /**
+     * Required. The name of the Organization to retrieve. Format: organizations/{org_id\}
+     */
+    name?: string;
   }
 
   export class Resource$Organizations$Analyticsaccountlinks {
@@ -272,6 +379,7 @@ export namespace marketingplatformadmin_v1alpha {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -358,6 +466,7 @@ export namespace marketingplatformadmin_v1alpha {
           {
             url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -453,6 +562,7 @@ export namespace marketingplatformadmin_v1alpha {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -551,6 +661,7 @@ export namespace marketingplatformadmin_v1alpha {
               '/v1alpha/{+analyticsAccountLink}:setPropertyServiceLevel'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),

@@ -554,6 +554,14 @@ export namespace memcache_v1beta2 {
      */
     reservedIpRangeId?: string[] | null;
     /**
+     * Optional. Output only. Reserved for future use.
+     */
+    satisfiesPzi?: boolean | null;
+    /**
+     * Optional. Output only. Reserved for future use.
+     */
+    satisfiesPzs?: boolean | null;
+    /**
      * Output only. The state of this Memcached instance.
      */
     state?: string | null;
@@ -1052,6 +1060,7 @@ export namespace memcache_v1beta2 {
           {
             url: (rootUrl + '/v1beta2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1144,6 +1153,7 @@ export namespace memcache_v1beta2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1266,6 +1276,7 @@ export namespace memcache_v1beta2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1354,6 +1365,7 @@ export namespace memcache_v1beta2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1441,6 +1453,7 @@ export namespace memcache_v1beta2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1525,6 +1538,7 @@ export namespace memcache_v1beta2 {
           {
             url: (rootUrl + '/v1beta2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -1609,6 +1623,7 @@ export namespace memcache_v1beta2 {
           {
             url: (rootUrl + '/v1beta2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1701,6 +1716,7 @@ export namespace memcache_v1beta2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1785,6 +1801,7 @@ export namespace memcache_v1beta2 {
           {
             url: (rootUrl + '/v1beta2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -1874,6 +1891,7 @@ export namespace memcache_v1beta2 {
               rootUrl + '/v1beta2/{+instance}:rescheduleMaintenance'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1962,6 +1980,7 @@ export namespace memcache_v1beta2 {
               '$1'
             ),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -2049,6 +2068,7 @@ export namespace memcache_v1beta2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2273,6 +2293,7 @@ export namespace memcache_v1beta2 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2357,6 +2378,7 @@ export namespace memcache_v1beta2 {
           {
             url: (rootUrl + '/v1beta2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -2441,6 +2463,7 @@ export namespace memcache_v1beta2 {
           {
             url: (rootUrl + '/v1beta2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2533,6 +2556,7 @@ export namespace memcache_v1beta2 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),

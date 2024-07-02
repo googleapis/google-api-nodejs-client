@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/cloudbilling",
-  "version": "3.1.1",
+  "version": "4.0.2",
   "description": "cloudbilling",
   "main": "build/index.js",
   "types": "build/index.d.ts",

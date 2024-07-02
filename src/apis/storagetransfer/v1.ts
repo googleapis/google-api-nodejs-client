@@ -133,7 +133,7 @@ export namespace storagetransfer_v1 {
   }
 
   /**
-   * Represents an On-Premises Agent pool.
+   * Represents an agent pool.
    */
   export interface Schema$AgentPool {
     /**
@@ -211,6 +211,10 @@ export namespace storagetransfer_v1 {
      * Optional. The Resource name of a secret in Secret Manager. AWS credentials must be stored in Secret Manager in JSON format: { "access_key_id": "ACCESS_KEY_ID", "secret_access_key": "SECRET_ACCESS_KEY" \} GoogleServiceAccount must be granted `roles/secretmanager.secretAccessor` for the resource. See [Configure access to a source: Amazon S3] (https://cloud.google.com/storage-transfer/docs/source-amazon-s3#secret_manager) for more information. If `credentials_secret` is specified, do not specify role_arn or aws_access_key. Format: `projects/{project_number\}/secrets/{secret_name\}`
      */
     credentialsSecret?: string | null;
+    /**
+     * Egress bytes over a Google-managed private network. This network is shared between other users of Storage Transfer Service.
+     */
+    managedPrivateNetwork?: boolean | null;
     /**
      * Root path to transfer objects. Must be an empty string or full path name that ends with a '/'. This field is treated as an object prefix. As such, it should generally not begin with a '/'.
      */
@@ -423,19 +427,19 @@ export namespace storagetransfer_v1 {
     transferJobs?: Schema$TransferJob[];
   }
   /**
-   * Specifies the logging behavior for transfer operations. For cloud-to-cloud transfers, logs are sent to Cloud Logging. See [Read transfer logs](https://cloud.google.com/storage-transfer/docs/read-transfer-logs) for details. For transfers to or from a POSIX file system, logs are stored in the Cloud Storage bucket that is the source or sink of the transfer. See [Managing Transfer for on-premises jobs] (https://cloud.google.com/storage-transfer/docs/managing-on-prem-jobs#viewing-logs) for details.
+   * Specifies the logging behavior for transfer operations. Logs can be sent to Cloud Logging for all transfer types. See [Read transfer logs](https://cloud.google.com/storage-transfer/docs/read-transfer-logs) for details.
    */
   export interface Schema$LoggingConfig {
     /**
-     * For transfers with a PosixFilesystem source, this option enables the Cloud Storage transfer logs for this transfer.
+     * For PosixFilesystem transfers, enables [file system transfer logs](https://cloud.google.com/storage-transfer/docs/on-prem-transfer-log-format) instead of, or in addition to, Cloud Logging. This option ignores [LoggableAction] and [LoggableActionState]. If these are set, Cloud Logging will also be enabled for this transfer.
      */
     enableOnpremGcsTransferLogs?: boolean | null;
     /**
-     * Specifies the actions to be logged. If empty, no logs are generated. Not supported for transfers with PosixFilesystem data sources; use enable_onprem_gcs_transfer_logs instead.
+     * Specifies the actions to be logged. If empty, no logs are generated.
      */
     logActions?: string[] | null;
     /**
-     * States in which `log_actions` are logged. If empty, no logs are generated. Not supported for transfers with PosixFilesystem data sources; use enable_onprem_gcs_transfer_logs instead.
+     * States in which `log_actions` are logged. If empty, no logs are generated.
      */
     logActionStates?: string[] | null;
   }
@@ -472,7 +476,7 @@ export namespace storagetransfer_v1 {
      */
     temporaryHold?: string | null;
     /**
-     * Specifies how each object's `timeCreated` metadata is preserved for transfers. If unspecified, the default behavior is the same as TIME_CREATED_SKIP.
+     * Specifies how each object's `timeCreated` metadata is preserved for transfers. If unspecified, the default behavior is the same as TIME_CREATED_SKIP. This behavior is supported for transfers to Cloud Storage buckets from Cloud Storage, Amazon S3, S3-compatible storage, and Azure sources.
      */
     timeCreated?: string | null;
     /**
@@ -808,7 +812,7 @@ export namespace storagetransfer_v1 {
      */
     name?: string | null;
     /**
-     * Notification configuration. This is not supported for transfers involving PosixFilesystem.
+     * Notification configuration.
      */
     notificationConfig?: Schema$NotificationConfig;
     /**
@@ -1079,6 +1083,7 @@ export namespace storagetransfer_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1191,6 +1196,7 @@ export namespace storagetransfer_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1276,6 +1282,7 @@ export namespace storagetransfer_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -1361,6 +1368,7 @@ export namespace storagetransfer_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1454,6 +1462,7 @@ export namespace storagetransfer_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1539,6 +1548,7 @@ export namespace storagetransfer_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -1697,6 +1707,7 @@ export namespace storagetransfer_v1 {
           {
             url: (rootUrl + '/v1/transferJobs').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1782,6 +1793,7 @@ export namespace storagetransfer_v1 {
           {
             url: (rootUrl + '/v1/{+jobName}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -1866,6 +1878,7 @@ export namespace storagetransfer_v1 {
           {
             url: (rootUrl + '/v1/{+jobName}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1956,6 +1969,7 @@ export namespace storagetransfer_v1 {
           {
             url: (rootUrl + '/v1/transferJobs').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2041,6 +2055,7 @@ export namespace storagetransfer_v1 {
           {
             url: (rootUrl + '/v1/{+jobName}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -2125,6 +2140,7 @@ export namespace storagetransfer_v1 {
           {
             url: (rootUrl + '/v1/{+jobName}:run').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2284,6 +2300,7 @@ export namespace storagetransfer_v1 {
           {
             url: (rootUrl + '/v1/{+name}:cancel').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2369,6 +2386,7 @@ export namespace storagetransfer_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2459,6 +2477,7 @@ export namespace storagetransfer_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2544,6 +2563,7 @@ export namespace storagetransfer_v1 {
           {
             url: (rootUrl + '/v1/{+name}:pause').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2629,6 +2649,7 @@ export namespace storagetransfer_v1 {
           {
             url: (rootUrl + '/v1/{+name}:resume').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),

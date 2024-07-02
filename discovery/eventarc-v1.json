@@ -1197,7 +1197,7 @@
       }
     }
   },
-  "revision": "20240119",
+  "revision": "20240524",
   "rootUrl": "https://eventarc.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -1301,6 +1301,11 @@
           "description": "Output only. The name of the Pub/Sub topic created and managed by Eventarc system as a transport for the event delivery. Format: `projects/{project}/topics/{topic_id}`.",
           "readOnly": true,
           "type": "string"
+        },
+        "satisfiesPzs": {
+          "description": "Output only. Whether or not this Channel satisfies the requirements of physical zone separation",
+          "readOnly": true,
+          "type": "boolean"
         },
         "state": {
           "description": "Output only. The state of a Channel.",
@@ -1822,11 +1827,11 @@
       "type": "object"
     },
     "NetworkConfig": {
-      "description": "Represents a network config to be used for destination resolution and connectivity.",
+      "description": "Network Configuration that can be inherited by other protos.",
       "id": "NetworkConfig",
       "properties": {
         "networkAttachment": {
-          "description": "Required. Name of the NetworkAttachment that allows access to the destination VPC. Format: `projects/{PROJECT_ID}/regions/{REGION}/networkAttachments/{NETWORK_ATTACHMENT_NAME}`",
+          "description": "Required. Name of the NetworkAttachment that allows access to the customer's VPC. Format: `projects/{PROJECT_ID}/regions/{REGION}/networkAttachments/{NETWORK_ATTACHMENT_NAME}`",
           "type": "string"
         }
       },
@@ -2108,6 +2113,11 @@
         "name": {
           "description": "Required. The resource name of the trigger. Must be unique within the location of the project and must be in `projects/{project}/locations/{location}/triggers/{trigger}` format.",
           "type": "string"
+        },
+        "satisfiesPzs": {
+          "description": "Output only. Whether or not this Trigger satisfies the requirements of physical zone separation",
+          "readOnly": true,
+          "type": "boolean"
         },
         "serviceAccount": {
           "description": "Optional. The IAM service account email associated with the trigger. The service account represents the identity of the trigger. The `iam.serviceAccounts.actAs` permission must be granted on the service account to allow a principal to impersonate the service account. For more information, see the [Roles and permissions](/eventarc/docs/all-roles-permissions) page specific to the trigger destination.",

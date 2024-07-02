@@ -1288,6 +1288,10 @@ export namespace dataplex_v1 {
      */
     setExpectation?: Schema$GoogleCloudDataplexV1DataQualityRuleSetExpectation;
     /**
+     * Aggregate rule which evaluates the number of rows returned for the provided statement. If any rows are returned, this rule fails.
+     */
+    sqlAssertion?: Schema$GoogleCloudDataplexV1DataQualityRuleSqlAssertion;
+    /**
      * Aggregate rule which evaluates whether the column aggregate statistic lies between a specified range.
      */
     statisticRangeExpectation?: Schema$GoogleCloudDataplexV1DataQualityRuleStatisticRangeExpectation;
@@ -1343,6 +1347,10 @@ export namespace dataplex_v1 {
    */
   export interface Schema$GoogleCloudDataplexV1DataQualityRuleResult {
     /**
+     * Output only. The number of rows returned by the SQL statement in a SQL assertion rule.This field is only valid for SQL assertion rules.
+     */
+    assertionRowCount?: string | null;
+    /**
      * The number of rows a rule was evaluated against.This field is only valid for row-level type rules.Evaluated count can be configured to either include all rows (default) - with null rows automatically failing rule evaluation, or exclude null rows from the evaluated_count, by setting ignore_nulls = true.
      */
     evaluatedCount?: string | null;
@@ -1390,6 +1398,15 @@ export namespace dataplex_v1 {
     values?: string[] | null;
   }
   /**
+   * A SQL statement that is evaluated to return rows that match an invalid state. If any rows are are returned, this rule fails.The SQL statement must use BigQuery standard SQL syntax, and must not contain any semicolons.You can use the data reference parameter ${data()\} to reference the source table with all of its precondition filters applied. Examples of precondition filters include row filters, incremental data filters, and sampling. For more information, see Data reference parameter (https://cloud.google.com/dataplex/docs/auto-data-quality-overview#data-reference-parameter).Example: SELECT * FROM ${data()\} WHERE price < 0
+   */
+  export interface Schema$GoogleCloudDataplexV1DataQualityRuleSqlAssertion {
+    /**
+     * Optional. The SQL statement.
+     */
+    sqlStatement?: string | null;
+  }
+  /**
    * Evaluates whether the column aggregate statistic lies between a specified range.
    */
   export interface Schema$GoogleCloudDataplexV1DataQualityRuleStatisticRangeExpectation {
@@ -1431,6 +1448,10 @@ export namespace dataplex_v1 {
    * Information about the result of a data quality rule for data quality scan. The monitored resource is 'DataScan'.
    */
   export interface Schema$GoogleCloudDataplexV1DataQualityScanRuleResult {
+    /**
+     * The number of rows returned by the SQL statement in a SQL assertion rule. This field is only valid for SQL assertion rules.
+     */
+    assertionRowCount?: string | null;
     /**
      * The column which this rule is evaluated against.
      */
@@ -1816,6 +1837,10 @@ export namespace dataplex_v1 {
    */
   export interface Schema$GoogleCloudDataplexV1DataScanExecutionStatus {
     /**
+     * Optional. The time when the DataScanJob execution was created.
+     */
+    latestJobCreateTime?: string | null;
+    /**
      * The time when the latest DataScanJob ended.
      */
     latestJobEndTime?: string | null;
@@ -2136,7 +2161,7 @@ export namespace dataplex_v1 {
    */
   export interface Schema$GoogleCloudDataplexV1Entry {
     /**
-     * Optional. The Aspects attached to the Entry. The key is either the resource name of the aspect type (if the aspect is attached directly to the entry) or "aspectType@path" if the aspect is attached to an entry's path.
+     * Optional. The Aspects attached to the Entry. The format for the key can be one of the following: 1. {projectId\}.{locationId\}.{aspectTypeId\} (if the aspect is attached directly to the entry) 2. {projectId\}.{locationId\}.{aspectTypeId\}@{path\} (if the aspect is attached to an entry's path)
      */
     aspects?: {[key: string]: Schema$GoogleCloudDataplexV1Aspect} | null;
     /**
@@ -2233,6 +2258,10 @@ export namespace dataplex_v1 {
      * User-defined labels. The maximum size of keys and values is 128 characters each.
      */
     labels?: {[key: string]: string} | null;
+    /**
+     * Output only. Location of the resource in the source system. Entry will be searchable by this location. By default, this should match the location of the EntryGroup containing this entry. A different value allows capturing source location for data external to GCP.
+     */
+    location?: string | null;
     /**
      * The platform containing the source system. The maximum size of the field is 64 characters.
      */
@@ -2475,15 +2504,15 @@ export namespace dataplex_v1 {
     active?: boolean | null;
   }
   /**
-   * Generate recommended DataQualityRules request.
+   * Request details for generating data quality rule recommendations.
    */
   export interface Schema$GoogleCloudDataplexV1GenerateDataQualityRulesRequest {}
   /**
-   * Generate recommended DataQualityRules response.
+   * Response details for data quality rule recommendations.
    */
   export interface Schema$GoogleCloudDataplexV1GenerateDataQualityRulesResponse {
     /**
-     * Generated recommended {@link DataQualityRule\}s.
+     * The data quality rules that Dataplex generates based on the results of a data profiling scan.
      */
     rule?: Schema$GoogleCloudDataplexV1DataQualityRule[];
   }
@@ -3198,42 +3227,11 @@ export namespace dataplex_v1 {
    * A single result of a SearchEntries request.
    */
   export interface Schema$GoogleCloudDataplexV1SearchEntriesResult {
-    /**
-     * Entry format of the result.
-     */
     dataplexEntry?: Schema$GoogleCloudDataplexV1Entry;
-    /**
-     * Entry description.
-     */
-    description?: string | null;
-    /**
-     * Display name.
-     */
-    displayName?: string | null;
-    /**
-     * Resource name of the entry.
-     */
-    entry?: string | null;
-    /**
-     * The entry type.
-     */
-    entryType?: string | null;
-    /**
-     * Fully qualified name.
-     */
-    fullyQualifiedName?: string | null;
     /**
      * Linked resource name.
      */
     linkedResource?: string | null;
-    /**
-     * The last modification timestamp.
-     */
-    modifyTime?: string | null;
-    /**
-     * Relative resource name.
-     */
-    relativeResource?: string | null;
     /**
      * Snippets.
      */
@@ -4142,6 +4140,7 @@ export namespace dataplex_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4236,6 +4235,7 @@ export namespace dataplex_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4332,6 +4332,7 @@ export namespace dataplex_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4426,6 +4427,7 @@ export namespace dataplex_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4606,6 +4608,7 @@ export namespace dataplex_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -4697,6 +4700,7 @@ export namespace dataplex_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -4788,6 +4792,7 @@ export namespace dataplex_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4883,6 +4888,7 @@ export namespace dataplex_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -4977,6 +4983,7 @@ export namespace dataplex_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5070,6 +5077,7 @@ export namespace dataplex_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -5163,6 +5171,7 @@ export namespace dataplex_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5258,6 +5267,7 @@ export namespace dataplex_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5479,6 +5489,7 @@ export namespace dataplex_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -5571,6 +5582,7 @@ export namespace dataplex_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -5663,6 +5675,7 @@ export namespace dataplex_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5758,6 +5771,7 @@ export namespace dataplex_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5853,6 +5867,7 @@ export namespace dataplex_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -5947,6 +5962,7 @@ export namespace dataplex_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -6040,6 +6056,7 @@ export namespace dataplex_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -6135,6 +6152,7 @@ export namespace dataplex_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -6357,6 +6375,7 @@ export namespace dataplex_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -6448,6 +6467,7 @@ export namespace dataplex_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -6467,7 +6487,7 @@ export namespace dataplex_v1 {
     }
 
     /**
-     * Generates recommended DataQualityRule from a data profiling DataScan.
+     * Generates recommended data quality rules based on the results of a data profiling scan.Use the recommendations to build rules for a data quality scan.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6543,6 +6563,7 @@ export namespace dataplex_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -6636,6 +6657,7 @@ export namespace dataplex_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6731,6 +6753,7 @@ export namespace dataplex_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6825,6 +6848,7 @@ export namespace dataplex_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -6918,6 +6942,7 @@ export namespace dataplex_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -7009,6 +7034,7 @@ export namespace dataplex_v1 {
           {
             url: (rootUrl + '/v1/{+name}:run').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -7104,6 +7130,7 @@ export namespace dataplex_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -7199,6 +7226,7 @@ export namespace dataplex_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -7250,7 +7278,7 @@ export namespace dataplex_v1 {
   export interface Params$Resource$Projects$Locations$Datascans$Generatedataqualityrules
     extends StandardParameters {
     /**
-     * Required. The name should be either * the name of a datascan with at least one successful completed data profiling job, or * the name of a successful completed data profiling datascan job.
+     * Required. The name must be one of the following: The name of a data scan with at least one successful, completed data profiling job The name of a successful, completed data profiling job (a data scan job where the job type is data profiling)
      */
     name?: string;
 
@@ -7368,7 +7396,7 @@ export namespace dataplex_v1 {
     }
 
     /**
-     * Generates recommended DataQualityRule from a data profiling DataScan.
+     * Generates recommended data quality rules based on the results of a data profiling scan.Use the recommendations to build rules for a data quality scan.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7444,6 +7472,7 @@ export namespace dataplex_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -7537,6 +7566,7 @@ export namespace dataplex_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -7630,6 +7660,7 @@ export namespace dataplex_v1 {
           {
             url: (rootUrl + '/v1/{+parent}/jobs').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -7654,7 +7685,7 @@ export namespace dataplex_v1 {
   export interface Params$Resource$Projects$Locations$Datascans$Jobs$Generatedataqualityrules
     extends StandardParameters {
     /**
-     * Required. The name should be either * the name of a datascan with at least one successful completed data profiling job, or * the name of a successful completed data profiling datascan job.
+     * Required. The name must be one of the following: The name of a data scan with at least one successful, completed data profiling job The name of a successful, completed data profiling job (a data scan job where the job type is data profiling)
      */
     name?: string;
 
@@ -7779,6 +7810,7 @@ export namespace dataplex_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -7870,6 +7902,7 @@ export namespace dataplex_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -7961,6 +7994,7 @@ export namespace dataplex_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -8056,6 +8090,7 @@ export namespace dataplex_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -8150,6 +8185,7 @@ export namespace dataplex_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -8243,6 +8279,7 @@ export namespace dataplex_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -8336,6 +8373,7 @@ export namespace dataplex_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -8431,6 +8469,7 @@ export namespace dataplex_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -8652,6 +8691,7 @@ export namespace dataplex_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -8744,6 +8784,7 @@ export namespace dataplex_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -8836,6 +8877,7 @@ export namespace dataplex_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -8931,6 +8973,7 @@ export namespace dataplex_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -9026,6 +9069,7 @@ export namespace dataplex_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -9120,6 +9164,7 @@ export namespace dataplex_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -9213,6 +9258,7 @@ export namespace dataplex_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -9308,6 +9354,7 @@ export namespace dataplex_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -9532,6 +9579,7 @@ export namespace dataplex_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -9623,6 +9671,7 @@ export namespace dataplex_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -9714,6 +9763,7 @@ export namespace dataplex_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -9809,6 +9859,7 @@ export namespace dataplex_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -9903,6 +9954,7 @@ export namespace dataplex_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -9996,6 +10048,7 @@ export namespace dataplex_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -10089,6 +10142,7 @@ export namespace dataplex_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -10184,6 +10238,7 @@ export namespace dataplex_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -10405,6 +10460,7 @@ export namespace dataplex_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -10497,6 +10553,7 @@ export namespace dataplex_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -10589,6 +10646,7 @@ export namespace dataplex_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -10684,6 +10742,7 @@ export namespace dataplex_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -10778,6 +10837,7 @@ export namespace dataplex_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -10842,7 +10902,7 @@ export namespace dataplex_v1 {
   export interface Params$Resource$Projects$Locations$Entrygroups$Entries$List
     extends StandardParameters {
     /**
-     * Optional. A filter on the entries to return. Filters are case-sensitive. The request can be filtered by the following fields: entry_type, display_name. The comparison operators are =, !=, <, \>, <=, \>= (strings are compared according to lexical order) The logical operators AND, OR, NOT can be used in the filter. Example filter expressions: "display_name=AnExampleDisplayName" "entry_type=projects/example-project/locations/global/entryTypes/example-entry_type" "entry_type=projects/a* OR "entry_type=projects/k*" "NOT display_name=AnotherExampleDisplayName"
+     * Optional. A filter on the entries to return. Filters are case-sensitive. The request can be filtered by the following fields: entry_type, entry_source.display_name. The comparison operators are =, !=, <, \>, <=, \>= (strings are compared according to lexical order) The logical operators AND, OR, NOT can be used in the filter. Wildcard "*" can be used, but for entry_type the full project id or number needs to be provided. Example filter expressions: "entry_source.display_name=AnExampleDisplayName" "entry_type=projects/example-project/locations/global/entryTypes/example-entry_type" "entry_type=projects/example-project/locations/us/entryTypes/a* OR entry_type=projects/another-project/locations/x" "NOT entry_source.display_name=AnotherExampleDisplayName"
      */
     filter?: string;
     /**
@@ -10969,6 +11029,7 @@ export namespace dataplex_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -11060,6 +11121,7 @@ export namespace dataplex_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -11151,6 +11213,7 @@ export namespace dataplex_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -11246,6 +11309,7 @@ export namespace dataplex_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -11340,6 +11404,7 @@ export namespace dataplex_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -11433,6 +11498,7 @@ export namespace dataplex_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -11526,6 +11592,7 @@ export namespace dataplex_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -11621,6 +11688,7 @@ export namespace dataplex_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -11840,6 +11908,7 @@ export namespace dataplex_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -11933,6 +12002,7 @@ export namespace dataplex_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -12028,6 +12098,7 @@ export namespace dataplex_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -12187,6 +12258,7 @@ export namespace dataplex_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -12278,6 +12350,7 @@ export namespace dataplex_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -12367,6 +12440,7 @@ export namespace dataplex_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -12459,6 +12533,7 @@ export namespace dataplex_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -12553,6 +12628,7 @@ export namespace dataplex_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -12646,6 +12722,7 @@ export namespace dataplex_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -12738,6 +12815,7 @@ export namespace dataplex_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -12833,6 +12911,7 @@ export namespace dataplex_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -13049,6 +13128,7 @@ export namespace dataplex_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -13168,6 +13248,7 @@ export namespace dataplex_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -13254,6 +13335,7 @@ export namespace dataplex_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -13345,6 +13427,7 @@ export namespace dataplex_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -13440,6 +13523,7 @@ export namespace dataplex_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -13534,6 +13618,7 @@ export namespace dataplex_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -13627,6 +13712,7 @@ export namespace dataplex_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -13722,6 +13808,7 @@ export namespace dataplex_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -13817,6 +13904,7 @@ export namespace dataplex_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -14030,6 +14118,7 @@ export namespace dataplex_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -14117,6 +14206,7 @@ export namespace dataplex_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -14209,6 +14299,7 @@ export namespace dataplex_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -14304,6 +14395,7 @@ export namespace dataplex_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -14399,6 +14491,7 @@ export namespace dataplex_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -14493,6 +14586,7 @@ export namespace dataplex_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -14588,6 +14682,7 @@ export namespace dataplex_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -14683,6 +14778,7 @@ export namespace dataplex_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -14901,6 +14997,7 @@ export namespace dataplex_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -14993,6 +15090,7 @@ export namespace dataplex_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -15085,6 +15183,7 @@ export namespace dataplex_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -15180,6 +15279,7 @@ export namespace dataplex_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -15275,6 +15375,7 @@ export namespace dataplex_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -15369,6 +15470,7 @@ export namespace dataplex_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -15462,6 +15564,7 @@ export namespace dataplex_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -15557,6 +15660,7 @@ export namespace dataplex_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -15774,6 +15878,7 @@ export namespace dataplex_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -15901,6 +16006,7 @@ export namespace dataplex_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -15992,6 +16098,7 @@ export namespace dataplex_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -16081,6 +16188,7 @@ export namespace dataplex_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -16174,6 +16282,7 @@ export namespace dataplex_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -16268,6 +16377,7 @@ export namespace dataplex_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -16361,6 +16471,7 @@ export namespace dataplex_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -16452,6 +16563,7 @@ export namespace dataplex_v1 {
           {
             url: (rootUrl + '/v1/{+name}:run').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -16547,6 +16659,7 @@ export namespace dataplex_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -16642,6 +16755,7 @@ export namespace dataplex_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -16861,6 +16975,7 @@ export namespace dataplex_v1 {
           {
             url: (rootUrl + '/v1/{+name}:cancel').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -16950,6 +17065,7 @@ export namespace dataplex_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -17041,6 +17157,7 @@ export namespace dataplex_v1 {
           {
             url: (rootUrl + '/v1/{+parent}/jobs').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -17191,6 +17308,7 @@ export namespace dataplex_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -17282,6 +17400,7 @@ export namespace dataplex_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -17371,6 +17490,7 @@ export namespace dataplex_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -17464,6 +17584,7 @@ export namespace dataplex_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -17558,6 +17679,7 @@ export namespace dataplex_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -17651,6 +17773,7 @@ export namespace dataplex_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -17744,6 +17867,7 @@ export namespace dataplex_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -17839,6 +17963,7 @@ export namespace dataplex_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -18056,6 +18181,7 @@ export namespace dataplex_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -18180,6 +18306,7 @@ export namespace dataplex_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -18272,6 +18399,7 @@ export namespace dataplex_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -18364,6 +18492,7 @@ export namespace dataplex_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -18457,6 +18586,7 @@ export namespace dataplex_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -18552,6 +18682,7 @@ export namespace dataplex_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -18646,6 +18777,7 @@ export namespace dataplex_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -18739,6 +18871,7 @@ export namespace dataplex_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -18834,6 +18967,7 @@ export namespace dataplex_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -19051,6 +19185,7 @@ export namespace dataplex_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -19176,6 +19311,7 @@ export namespace dataplex_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -19261,6 +19397,7 @@ export namespace dataplex_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -19353,6 +19490,7 @@ export namespace dataplex_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -19448,6 +19586,7 @@ export namespace dataplex_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -19542,6 +19681,7 @@ export namespace dataplex_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
+            apiVersion: '',
           },
           options
         ),
@@ -19722,6 +19862,7 @@ export namespace dataplex_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -19809,6 +19950,7 @@ export namespace dataplex_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -19901,6 +20043,7 @@ export namespace dataplex_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -19998,6 +20141,7 @@ export namespace dataplex_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -20145,6 +20289,7 @@ export namespace dataplex_v1 {
           {
             url: (rootUrl + '/v1/{+name}:cancel').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -20229,6 +20374,7 @@ export namespace dataplex_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -20320,6 +20466,7 @@ export namespace dataplex_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -20414,6 +20561,7 @@ export namespace dataplex_v1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),

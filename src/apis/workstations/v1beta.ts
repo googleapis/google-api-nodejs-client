@@ -189,6 +189,14 @@ export namespace workstations_v1beta {
      */
     accelerators?: Schema$Accelerator[];
     /**
+     * Optional. The size of the boot disk for the VM in gigabytes (GB). The minimum boot disk size is `30` GB. Defaults to `50` GB.
+     */
+    bootDiskSizeGb?: number | null;
+    /**
+     * Optional. Whether to enable nested virtualization on boosted Cloud Workstations VMs running using this boost configuration. Nested virtualization lets you run virtual machine (VM) instances inside your workstation. Before enabling nested virtualization, consider the following important considerations. Cloud Workstations instances are subject to the [same restrictions as Compute Engine instances](https://cloud.google.com/compute/docs/instances/nested-virtualization/overview#restrictions): * **Organization policy**: projects, folders, or organizations may be restricted from creating nested VMs if the **Disable VM nested virtualization** constraint is enforced in the organization policy. For more information, see the Compute Engine section, [Checking whether nested virtualization is allowed](https://cloud.google.com/compute/docs/instances/nested-virtualization/managing-constraint#checking_whether_nested_virtualization_is_allowed). * **Performance**: nested VMs might experience a 10% or greater decrease in performance for workloads that are CPU-bound and possibly greater than a 10% decrease for workloads that are input/output bound. * **Machine Type**: nested virtualization can only be enabled on boost configurations that specify a machine_type in the N1 or N2 machine series. * **GPUs**: nested virtualization may not be enabled on boost configurations with accelerators. * **Operating System**: Because [Container-Optimized OS](https://cloud.google.com/compute/docs/images/os-details#container-optimized_os_cos) does not support nested virtualization, when nested virtualization is enabled, the underlying Compute Engine VM instances boot from an [Ubuntu LTS](https://cloud.google.com/compute/docs/images/os-details#ubuntu_lts) image. Defaults to false.
+     */
+    enableNestedVirtualization?: boolean | null;
+    /**
      * Optional. Required. The id to be used for the boost config.
      */
     id?: string | null;
@@ -248,11 +256,11 @@ export namespace workstations_v1beta {
     kmsKeyServiceAccount?: string | null;
   }
   /**
-   * Configuration options for a custom domain.
+   * Configuration options for private workstation clusters.
    */
   export interface Schema$DomainConfig {
     /**
-     * Immutable. Domain used by Workstations for HTTP ingress.
+     * Immutable. Whether Workstations endpoint is private.
      */
     domain?: string | null;
   }
@@ -328,7 +336,7 @@ export namespace workstations_v1beta {
      */
     disableSsh?: boolean | null;
     /**
-     * Optional. Whether to enable nested virtualization on Cloud Workstations VMs created using this workstation configuration. Nested virtualization lets you run virtual machine (VM) instances inside your workstation. Before enabling nested virtualization, consider the following important considerations. Cloud Workstations instances are subject to the [same restrictions as Compute Engine instances](https://cloud.google.com/compute/docs/instances/nested-virtualization/overview#restrictions): * **Organization policy**: projects, folders, or organizations may be restricted from creating nested VMs if the **Disable VM nested virtualization** constraint is enforced in the organization policy. For more information, see the Compute Engine section, [Checking whether nested virtualization is allowed](https://cloud.google.com/compute/docs/instances/nested-virtualization/managing-constraint#checking_whether_nested_virtualization_is_allowed). * **Performance**: nested VMs might experience a 10% or greater decrease in performance for workloads that are CPU-bound and possibly greater than a 10% decrease for workloads that are input/output bound. * **Machine Type**: nested virtualization can only be enabled on workstation configurations that specify a machine_type in the N1 or N2 machine series. * **GPUs**: nested virtualization may not be enabled on workstation configurations with accelerators. * **Operating System**: Because [Container-Optimized OS](https://cloud.google.com/compute/docs/images/os-details#container-optimized_os_cos) does not support nested virtualization, when nested virtualization is enabled, the underlying Compute Engine VM instances boot from an [Ubuntu LTS](https://cloud.google.com/compute/docs/images/os-details#ubuntu_lts) image.
+     * Optional. Whether to enable nested virtualization on Cloud Workstations VMs created using this workstation configuration. Nested virtualization lets you run virtual machine (VM) instances inside your workstation. Before enabling nested virtualization, consider the following important considerations. Cloud Workstations instances are subject to the [same restrictions as Compute Engine instances](https://cloud.google.com/compute/docs/instances/nested-virtualization/overview#restrictions): * **Organization policy**: projects, folders, or organizations may be restricted from creating nested VMs if the **Disable VM nested virtualization** constraint is enforced in the organization policy. For more information, see the Compute Engine section, [Checking whether nested virtualization is allowed](https://cloud.google.com/compute/docs/instances/nested-virtualization/managing-constraint#checking_whether_nested_virtualization_is_allowed). * **Performance**: nested VMs might experience a 10% or greater decrease in performance for workloads that are CPU-bound and possibly greater than a 10% decrease for workloads that are input/output bound. * **Machine Type**: nested virtualization can only be enabled on workstation configurations that specify a machine_type in the N1 or N2 machine series. * **GPUs**: nested virtualization may not be enabled on workstation configurations with accelerators. * **Operating System**: because [Container-Optimized OS](https://cloud.google.com/compute/docs/images/os-details#container-optimized_os_cos) does not support nested virtualization, when nested virtualization is enabled, the underlying Compute Engine VM instances boot from an [Ubuntu LTS](https://cloud.google.com/compute/docs/images/os-details#ubuntu_lts) image.
      */
     enableNestedVirtualization?: boolean | null;
     /**
@@ -344,11 +352,11 @@ export namespace workstations_v1beta {
      */
     poolSize?: number | null;
     /**
-     * Optional. The email address of the service account for Cloud Workstations VMs created with this configuration. When specified, be sure that the service account has `logginglogEntries.create` permission on the project so it can write logs out to Cloud Logging. If using a custom container image, the service account must have [Artifact Registry Reader](https://cloud.google.com/artifact-registry/docs/access-control#roles) permission to pull the specified image. If you as the administrator want to be able to `ssh` into the underlying VM, you need to set this value to a service account for which you have the `iam.serviceAccounts.actAs` permission. Conversely, if you don't want anyone to be able to `ssh` into the underlying VM, use a service account where no one has that permission. If not set, VMs run with a service account provided by the Cloud Workstations service, and the image must be publicly accessible.
+     * Optional. The email address of the service account for Cloud Workstations VMs created with this configuration. When specified, be sure that the service account has `logging.logEntries.create` and `monitoring.timeSeries.create` permissions on the project so it can write logs out to Cloud Logging. If using a custom container image, the service account must have [Artifact Registry Reader](https://cloud.google.com/artifact-registry/docs/access-control#roles) permission to pull the specified image. If you as the administrator want to be able to `ssh` into the underlying VM, you need to set this value to a service account for which you have the `iam.serviceAccounts.actAs` permission. Conversely, if you don't want anyone to be able to `ssh` into the underlying VM, use a service account where no one has that permission. If not set, VMs run with a service account provided by the Cloud Workstations service, and the image must be publicly accessible.
      */
     serviceAccount?: string | null;
     /**
-     * Optional. Scopes to grant to the service_account. Various scopes are automatically added based on feature usage. When specified, users of workstations under this configuration must have `iam.serviceAccounts.actAs` on the service account.
+     * Optional. Scopes to grant to the service_account. When specified, users of workstations under this configuration must have `iam.serviceAccounts.actAs` on the service account.
      */
     serviceAccountScopes?: string[] | null;
     /**
@@ -359,6 +367,10 @@ export namespace workstations_v1beta {
      * Optional. Network tags to add to the Compute Engine VMs backing the workstations. This option applies [network tags](https://cloud.google.com/vpc/docs/add-remove-network-tags) to VMs created with this configuration. These network tags enable the creation of [firewall rules](https://cloud.google.com/workstations/docs/configure-firewall-rules).
      */
     tags?: string[] | null;
+    /**
+     * Optional. Resource manager tags to be bound to this instance. Tag keys and values have the same definition as https://cloud.google.com/resource-manager/docs/tags/tags-overview Keys must be in the format `tagKeys/{tag_key_id\}`, and values are in the format `tagValues/456`.
+     */
+    vmTags?: {[key: string]: string} | null;
   }
   /**
    * An EphemeralDirectory is backed by a Compute Engine persistent disk.
@@ -432,6 +444,10 @@ export namespace workstations_v1beta {
      */
     expireTime?: string | null;
     /**
+     * Optional. Port for which the access token should be generated. If specified, the generated access token grants access only to the specified port of the workstation. If specified, values must be within the range [1 - 65535]. If not specified, the generated access token grants access to all ports of the workstation.
+     */
+    port?: number | null;
+    /**
      * Desired lifetime duration of the access token. This value must be at most 24 hours. If a value is not specified, the token's lifetime will be set to a default value of 1 hour.
      */
     ttl?: string | null;
@@ -461,6 +477,15 @@ export namespace workstations_v1beta {
      * Specifies a Compute Engine instance as the host.
      */
     gceInstance?: Schema$GceInstance;
+  }
+  /**
+   * Http options for the running workstations.
+   */
+  export interface Schema$HttpOptions {
+    /**
+     * Optional. By default, the workstations service makes sure that all requests to the workstation are authenticated. CORS preflight requests do not include cookies or custom headers, and so are considered unauthenticated and blocked by the workstations service. Enabling this option allows these unauthenticated CORS preflight requests through to the workstation, where it becomes the responsibility of the destination server in the workstation to validate the request.
+     */
+    allowedUnauthenticatedCorsPreflightRequests?: boolean | null;
   }
   /**
    * The response message for Operations.ListOperations.
@@ -653,24 +678,22 @@ export namespace workstations_v1beta {
     version?: number | null;
   }
   /**
-   * Configuration options for private workstation clusters.
+   * A PortsConfig defines a range of ports. Both first and last are inclusive. To specify a single port, both first and last should be the same.
    */
+  export interface Schema$PortRange {
+    /**
+     * Required. Starting port number for the current range of ports.
+     */
+    first?: number | null;
+    /**
+     * Required. Ending port number for the current range of ports.
+     */
+    last?: number | null;
+  }
   export interface Schema$PrivateClusterConfig {
-    /**
-     * Optional. Additional projects that are allowed to attach to the workstation cluster's service attachment. By default, the workstation cluster's project and the VPC host project (if different) are allowed.
-     */
     allowedProjects?: string[] | null;
-    /**
-     * Output only. Hostname for the workstation cluster. This field will be populated only when private endpoint is enabled. To access workstations in the workstation cluster, create a new DNS zone mapping this domain name to an internal IP address and a forwarding rule mapping that address to the service attachment.
-     */
     clusterHostname?: string | null;
-    /**
-     * Immutable. Whether Workstations endpoint is private.
-     */
     enablePrivateEndpoint?: boolean | null;
-    /**
-     * Output only. Service attachment URI for the workstation cluster. The service attachemnt is created when private endpoint is enabled. To access workstations in the workstation cluster, configure access to the managed service using [Private Service Connect](https://cloud.google.com/vpc/docs/configure-private-service-connect-services).
-     */
     serviceAttachmentUri?: string | null;
   }
   /**
@@ -813,6 +836,10 @@ export namespace workstations_v1beta {
      */
     reconciling?: boolean | null;
     /**
+     * Optional. The source workstation from which this workstations persistent directories were cloned on creation.
+     */
+    sourceWorkstation?: string | null;
+    /**
      * Output only. Time when this workstation was most recently successfully started, regardless of the workstation's initial state.
      */
     startTime?: string | null;
@@ -907,6 +934,10 @@ export namespace workstations_v1beta {
    */
   export interface Schema$WorkstationConfig {
     /**
+     * Optional. A Single or Range of ports externally accessible in the workstation. If not specified defaults to ports 22, 80 and ports 1024-65535.
+     */
+    allowedPorts?: Schema$PortRange[];
+    /**
      * Optional. Client-specified annotations.
      */
     annotations?: {[key: string]: string} | null;
@@ -958,6 +989,10 @@ export namespace workstations_v1beta {
      * Optional. Runtime host for the workstation.
      */
     host?: Schema$Host;
+    /**
+     * Optional. Http options that customize the behavior of the workstation service's http proxy.
+     */
+    httpOptions?: Schema$HttpOptions;
     /**
      * Optional. Number of seconds to wait before automatically stopping a workstation after it last received user traffic. A value of `"0s"` indicates that Cloud Workstations VMs created with this configuration should never time out due to idleness. Provide [duration](https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#duration) terminated by `s` for seconds—for example, `"7200s"` (2 hours). The default is `"1200s"` (20 minutes).
      */
@@ -1101,6 +1136,7 @@ export namespace workstations_v1beta {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1188,6 +1224,7 @@ export namespace workstations_v1beta {
           {
             url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -1272,6 +1309,7 @@ export namespace workstations_v1beta {
           {
             url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1364,6 +1402,7 @@ export namespace workstations_v1beta {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1510,6 +1549,7 @@ export namespace workstations_v1beta {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1595,6 +1635,7 @@ export namespace workstations_v1beta {
           {
             url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -1683,6 +1724,7 @@ export namespace workstations_v1beta {
           {
             url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1778,6 +1820,7 @@ export namespace workstations_v1beta {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1865,6 +1908,7 @@ export namespace workstations_v1beta {
           {
             url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -2051,6 +2095,7 @@ export namespace workstations_v1beta {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2136,6 +2181,7 @@ export namespace workstations_v1beta {
           {
             url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -2224,6 +2270,7 @@ export namespace workstations_v1beta {
           {
             url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2312,6 +2359,7 @@ export namespace workstations_v1beta {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2407,6 +2455,7 @@ export namespace workstations_v1beta {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2503,6 +2552,7 @@ export namespace workstations_v1beta {
               rootUrl + '/v1beta/{+parent}/workstationConfigs:listUsable'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2590,6 +2640,7 @@ export namespace workstations_v1beta {
           {
             url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -2678,6 +2729,7 @@ export namespace workstations_v1beta {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2773,6 +2825,7 @@ export namespace workstations_v1beta {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3004,6 +3057,7 @@ export namespace workstations_v1beta {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3089,6 +3143,7 @@ export namespace workstations_v1beta {
           {
             url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -3183,6 +3238,7 @@ export namespace workstations_v1beta {
               rootUrl + '/v1beta/{+workstation}:generateAccessToken'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3268,6 +3324,7 @@ export namespace workstations_v1beta {
           {
             url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3356,6 +3413,7 @@ export namespace workstations_v1beta {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3449,6 +3507,7 @@ export namespace workstations_v1beta {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3543,6 +3602,7 @@ export namespace workstations_v1beta {
               rootUrl + '/v1beta/{+parent}/workstations:listUsable'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -3630,6 +3690,7 @@ export namespace workstations_v1beta {
           {
             url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -3718,6 +3779,7 @@ export namespace workstations_v1beta {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3806,6 +3868,7 @@ export namespace workstations_v1beta {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3894,6 +3957,7 @@ export namespace workstations_v1beta {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -3989,6 +4053,7 @@ export namespace workstations_v1beta {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),

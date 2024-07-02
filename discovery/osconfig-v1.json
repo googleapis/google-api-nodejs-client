@@ -112,7 +112,7 @@
             "global": {
               "methods": {
                 "getProjectFeatureSettings": {
-                  "description": "GetProjectFeatureSettings returns the feature settings for a project",
+                  "description": "GetProjectFeatureSettings returns the VM Manager feature settings for a project.",
                   "flatPath": "v1/projects/{projectsId}/locations/global/projectFeatureSettings",
                   "httpMethod": "GET",
                   "id": "osconfig.projects.locations.global.getProjectFeatureSettings",
@@ -121,7 +121,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. Name of the billing config. \"projects//locations/global/projectFeatureSettings\"",
+                      "description": "Required. Name specifies the URL for the ProjectFeatureSettings resource: projects/project_id/locations/global/projectFeatureSettings.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/global/projectFeatureSettings$",
                       "required": true,
@@ -137,7 +137,7 @@
                   ]
                 },
                 "updateProjectFeatureSettings": {
-                  "description": "UpdateProjectFeatureSettings sets the feature settings for a project.",
+                  "description": "UpdateProjectFeatureSettings sets the VM Manager features for a project.",
                   "flatPath": "v1/projects/{projectsId}/locations/global/projectFeatureSettings",
                   "httpMethod": "PATCH",
                   "id": "osconfig.projects.locations.global.updateProjectFeatureSettings",
@@ -146,7 +146,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. Immutable. Name of the config, e.g. projects/12345/locations/global/projectFeatureSettings",
+                      "description": "Required. Immutable. Name specifies the URL for the ProjectFeatureSettings resource: projects/project_id/locations/global/projectFeatureSettings.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/global/projectFeatureSettings$",
                       "required": true,
@@ -442,6 +442,11 @@
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
                       "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Optional. A unique identifier for this request. Restricted to 36 ASCII characters. A random UUID is recommended. This request is only idempotent if a `request_id` is provided.",
+                      "location": "query",
+                      "type": "string"
                     }
                   },
                   "path": "v1/{+parent}/osPolicyAssignments",
@@ -469,6 +474,11 @@
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/osPolicyAssignments/[^/]+$",
                       "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Optional. A unique identifier for this request. Restricted to 36 ASCII characters. A random UUID is recommended. This request is only idempotent if a `request_id` is provided.",
+                      "location": "query",
                       "type": "string"
                     }
                   },
@@ -586,11 +596,21 @@
                     "name"
                   ],
                   "parameters": {
+                    "allowMissing": {
+                      "description": "Optional. If set to true, and the OS policy assignment is not found, a new OS policy assignment will be created. In this situation, `update_mask` is ignored.",
+                      "location": "query",
+                      "type": "boolean"
+                    },
                     "name": {
                       "description": "Resource name. Format: `projects/{project_number}/locations/{location}/osPolicyAssignments/{os_policy_assignment_id}` This field is ignored when you create an OS policy assignment.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/osPolicyAssignments/[^/]+$",
                       "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Optional. A unique identifier for this request. Restricted to 36 ASCII characters. A random UUID is recommended. This request is only idempotent if a `request_id` is provided.",
+                      "location": "query",
                       "type": "string"
                     },
                     "updateMask": {
@@ -1063,7 +1083,7 @@
       }
     }
   },
-  "revision": "20240317",
+  "revision": "20240602",
   "rootUrl": "https://osconfig.googleapis.com/",
   "schemas": {
     "AptSettings": {
@@ -2257,7 +2277,7 @@
           "type": "string"
         },
         "complianceStateReason": {
-          "description": "The reason for the OS policy to be in an unknown compliance state. This field is always populated when `compliance_state` is `UNKNOWN`. If populated, the field can contain one of the following values: * `vm-not-running`: The VM was not running. * `os-policies-not-supported-by-agent`: The version of the OS Config agent running on the VM does not support running OS policies. * `no-agent-detected`: The OS Config agent is not detected for the VM. * `resource-execution-errors`: The OS Config agent encountered errors while executing one or more resources in the policy. See `os_policy_resource_compliances` for details. * `task-timeout`: The task sent to the agent to apply the policy timed out. * `unexpected-agent-state`: The OS Config agent did not report the final status of the task that attempted to apply the policy. Instead, the agent unexpectedly started working on a different task. This mostly happens when the agent or VM unexpectedly restarts while applying OS policies. * `internal-service-errors`: Internal service errors were encountered while attempting to apply the policy.",
+          "description": "The reason for the OS policy to be in an unknown compliance state. This field is always populated when `compliance_state` is `UNKNOWN`. If populated, the field can contain one of the following values: * `vm-not-running`: The VM was not running. * `os-policies-not-supported-by-agent`: The version of the OS Config agent running on the VM does not support running OS policies. * `no-agent-detected`: The OS Config agent is not detected for the VM. * `resource-execution-errors`: The OS Config agent encountered errors while executing one or more resources in the policy. See `os_policy_resource_compliances` for details. * `task-timeout`: The task sent to the agent to apply the policy timed out. * `unexpected-agent-state`: The OS Config agent did not report the final status of the task that attempted to apply the policy. Instead, the agent unexpectedly started working on a different task. This mostly happens when the agent or VM unexpectedly restarts while applying OS policies. * `internal-service-errors`: Internal service errors were encountered while attempting to apply the policy. * `os-policy-execution-pending`: OS policy was assigned to the given VM, but was not executed yet. Typically this is a transient condition that will go away after the next policy execution cycle.",
           "type": "string"
         },
         "osPolicyId": {
@@ -2293,7 +2313,7 @@
           "type": "string"
         },
         "complianceStateReason": {
-          "description": "A reason for the resource to be in the given compliance state. This field is always populated when `compliance_state` is `UNKNOWN`. The following values are supported when `compliance_state == UNKNOWN` * `execution-errors`: Errors were encountered by the agent while executing the resource and the compliance state couldn't be determined. * `execution-skipped-by-agent`: Resource execution was skipped by the agent because errors were encountered while executing prior resources in the OS policy. * `os-policy-execution-attempt-failed`: The execution of the OS policy containing this resource failed and the compliance state couldn't be determined.",
+          "description": "A reason for the resource to be in the given compliance state. This field is always populated when `compliance_state` is `UNKNOWN`. The following values are supported when `compliance_state == UNKNOWN` * `execution-errors`: Errors were encountered by the agent while executing the resource and the compliance state couldn't be determined. * `execution-skipped-by-agent`: Resource execution was skipped by the agent because errors were encountered while executing prior resources in the OS policy. * `os-policy-execution-attempt-failed`: The execution of the OS policy containing this resource failed and the compliance state couldn't be determined. * `os-policy-execution-pending`: OS policy that owns this resource was assigned to the given VM, but was not executed yet.",
           "type": "string"
         },
         "configSteps": {
@@ -3357,15 +3377,15 @@
       "type": "object"
     },
     "ProjectFeatureSettings": {
-      "description": "ProjectFeatureSettings represents the features settings for the VM Manager. The project features settings can be set for a project.",
+      "description": "ProjectFeatureSettings represents the VM Manager feature settings in a project. For more information, see Enable full VM Manager functionality.",
       "id": "ProjectFeatureSettings",
       "properties": {
         "name": {
-          "description": "Required. Immutable. Name of the config, e.g. projects/12345/locations/global/projectFeatureSettings",
+          "description": "Required. Immutable. Name specifies the URL for the ProjectFeatureSettings resource: projects/project_id/locations/global/projectFeatureSettings.",
           "type": "string"
         },
         "patchAndConfigFeatureSet": {
-          "description": "Currently set PatchAndConfigFeatureSet for name.",
+          "description": "Set PatchAndConfigFeatureSet for the project.",
           "enum": [
             "PATCH_AND_CONFIG_FEATURE_SET_UNSPECIFIED",
             "OSCONFIG_B",
@@ -3373,8 +3393,8 @@
           ],
           "enumDescriptions": [
             "Not specified placeholder",
-            "Basic feature set. Enables only the basic set of features.",
-            "Classic set of functionality."
+            "Enables only the basic set of VM Manager features in the project.",
+            "Enables all VM Manager features in the project."
           ],
           "type": "string"
         }

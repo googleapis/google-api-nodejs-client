@@ -895,6 +895,7 @@ export namespace cloudtasks_v2beta3 {
           {
             url: (rootUrl + '/v2beta3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -979,6 +980,7 @@ export namespace cloudtasks_v2beta3 {
           {
             url: (rootUrl + '/v2beta3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1071,6 +1073,7 @@ export namespace cloudtasks_v2beta3 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1155,6 +1158,7 @@ export namespace cloudtasks_v2beta3 {
           {
             url: (rootUrl + '/v2beta3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -1301,6 +1305,7 @@ export namespace cloudtasks_v2beta3 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1385,6 +1390,7 @@ export namespace cloudtasks_v2beta3 {
           {
             url: (rootUrl + '/v2beta3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -1469,6 +1475,7 @@ export namespace cloudtasks_v2beta3 {
           {
             url: (rootUrl + '/v2beta3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1556,6 +1563,7 @@ export namespace cloudtasks_v2beta3 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1646,6 +1654,7 @@ export namespace cloudtasks_v2beta3 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1730,6 +1739,7 @@ export namespace cloudtasks_v2beta3 {
           {
             url: (rootUrl + '/v2beta3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),
@@ -1817,6 +1827,7 @@ export namespace cloudtasks_v2beta3 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1904,6 +1915,7 @@ export namespace cloudtasks_v2beta3 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1991,6 +2003,7 @@ export namespace cloudtasks_v2beta3 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2078,6 +2091,7 @@ export namespace cloudtasks_v2beta3 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2173,6 +2187,7 @@ export namespace cloudtasks_v2beta3 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2412,6 +2427,7 @@ export namespace cloudtasks_v2beta3 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2499,6 +2515,7 @@ export namespace cloudtasks_v2beta3 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2583,6 +2600,7 @@ export namespace cloudtasks_v2beta3 {
           {
             url: (rootUrl + '/v2beta3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -2667,6 +2685,7 @@ export namespace cloudtasks_v2beta3 {
           {
             url: (rootUrl + '/v2beta3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2757,6 +2776,7 @@ export namespace cloudtasks_v2beta3 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2844,6 +2864,7 @@ export namespace cloudtasks_v2beta3 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),

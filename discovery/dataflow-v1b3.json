@@ -23,18 +23,28 @@
   "documentationLink": "https://cloud.google.com/dataflow",
   "endpoints": [
     {
-      "endpointUrl": "https://dataflow.me-central2.rep.googleapis.com/",
-      "location": "me-central2",
-      "description": "Regional Endpoint"
-    },
-    {
       "endpointUrl": "https://dataflow.europe-west3.rep.googleapis.com/",
       "location": "europe-west3",
       "description": "Regional Endpoint"
     },
     {
+      "endpointUrl": "https://dataflow.europe-west8.rep.googleapis.com/",
+      "location": "europe-west8",
+      "description": "Regional Endpoint"
+    },
+    {
       "endpointUrl": "https://dataflow.europe-west9.rep.googleapis.com/",
       "location": "europe-west9",
+      "description": "Regional Endpoint"
+    },
+    {
+      "endpointUrl": "https://dataflow.me-central2.rep.googleapis.com/",
+      "location": "me-central2",
+      "description": "Regional Endpoint"
+    },
+    {
+      "endpointUrl": "https://dataflow.us-east7.rep.googleapis.com/",
+      "location": "us-east7",
       "description": "Regional Endpoint"
     }
   ],
@@ -2187,7 +2197,7 @@
       }
     }
   },
-  "revision": "20240317",
+  "revision": "20240624",
   "rootUrl": "https://dataflow.googleapis.com/",
   "schemas": {
     "ApproximateProgress": {
@@ -2957,7 +2967,7 @@
           "description": "Configuration options for sampling elements from a running pipeline."
         },
         "enableHotKeyLogging": {
-          "description": "When true, enables the logging of the literal hot key to the user's Cloud Logging.",
+          "description": "Optional. When true, enables the logging of the literal hot key to the user's Cloud Logging.",
           "type": "boolean"
         }
       },
@@ -3131,12 +3141,12 @@
           "type": "string"
         },
         "dataset": {
-          "description": "The dataset for the current project where various workflow related tables are stored. The supported resource type is: Google BigQuery: bigquery.googleapis.com/{dataset}",
+          "description": "Optional. The dataset for the current project where various workflow related tables are stored. The supported resource type is: Google BigQuery: bigquery.googleapis.com/{dataset}",
           "type": "string"
         },
         "debugOptions": {
           "$ref": "DebugOptions",
-          "description": "Any debugging options to be supplied to the job."
+          "description": "Optional. Any debugging options to be supplied to the job."
         },
         "experiments": {
           "description": "The list of experiments to enable. This field should be used for SDK related experiments and not for service related experiments. The proper field for service related experiments is service_options.",
@@ -3146,7 +3156,7 @@
           "type": "array"
         },
         "flexResourceSchedulingGoal": {
-          "description": "Which Flexible Resource Scheduling mode to run in.",
+          "description": "Optional. Which Flexible Resource Scheduling mode to run in.",
           "enum": [
             "FLEXRS_UNSPECIFIED",
             "FLEXRS_SPEED_OPTIMIZED",
@@ -3176,15 +3186,15 @@
           "type": "object"
         },
         "serviceAccountEmail": {
-          "description": "Identity to run virtual machines as. Defaults to the default account.",
+          "description": "Optional. Identity to run virtual machines as. Defaults to the default account.",
           "type": "string"
         },
         "serviceKmsKeyName": {
-          "description": "If set, contains the Cloud KMS key identifier used to encrypt data at rest, AKA a Customer Managed Encryption Key (CMEK). Format: projects/PROJECT_ID/locations/LOCATION/keyRings/KEY_RING/cryptoKeys/KEY",
+          "description": "Optional. If set, contains the Cloud KMS key identifier used to encrypt data at rest, AKA a Customer Managed Encryption Key (CMEK). Format: projects/PROJECT_ID/locations/LOCATION/keyRings/KEY_RING/cryptoKeys/KEY",
           "type": "string"
         },
         "serviceOptions": {
-          "description": "The list of service options to enable. This field should be used for service related experiments only. These experiments, when graduating to GA, should be replaced by dedicated fields or become default (i.e. always on).",
+          "description": "Optional. The list of service options to enable. This field should be used for service related experiments only. These experiments, when graduating to GA, should be replaced by dedicated fields or become default (i.e. always on).",
           "items": {
             "type": "string"
           },
@@ -3252,11 +3262,11 @@
           "type": "array"
         },
         "workerRegion": {
-          "description": "The Compute Engine region (https://cloud.google.com/compute/docs/regions-zones/regions-zones) in which worker processing should occur, e.g. \"us-west1\". Mutually exclusive with worker_zone. If neither worker_region nor worker_zone is specified, default to the control plane's region.",
+          "description": "Optional. The Compute Engine region (https://cloud.google.com/compute/docs/regions-zones/regions-zones) in which worker processing should occur, e.g. \"us-west1\". Mutually exclusive with worker_zone. If neither worker_region nor worker_zone is specified, default to the control plane's region.",
           "type": "string"
         },
         "workerZone": {
-          "description": "The Compute Engine zone (https://cloud.google.com/compute/docs/regions-zones/regions-zones) in which worker processing should occur, e.g. \"us-west1-a\". Mutually exclusive with worker_region. If neither worker_region nor worker_zone is specified, a zone in the control plane's region is chosen based on available capacity.",
+          "description": "Optional. The Compute Engine zone (https://cloud.google.com/compute/docs/regions-zones/regions-zones) in which worker processing should occur, e.g. \"us-west1-a\". Mutually exclusive with worker_region. If neither worker_region nor worker_zone is specified, a zone in the control plane's region is chosen based on available capacity.",
           "type": "string"
         }
       },
@@ -3903,7 +3913,7 @@
         },
         "environment": {
           "$ref": "Environment",
-          "description": "The environment for the job."
+          "description": "Optional. The environment for the job."
         },
         "executionInfo": {
           "$ref": "JobExecutionInfo",
@@ -3925,11 +3935,11 @@
           "type": "object"
         },
         "location": {
-          "description": "The [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that contains this job.",
+          "description": "Optional. The [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that contains this job.",
           "type": "string"
         },
         "name": {
-          "description": "The user-specified Dataflow job name. Only one active job with a given name can exist in a project within one region at any given time. Jobs in different regions can have the same name. If a caller attempts to create a job with the same name as an active job that already exists, the attempt returns the existing job. The name must match the regular expression `[a-z]([-a-z0-9]{0,1022}[a-z0-9])?`",
+          "description": "Optional. The user-specified Dataflow job name. Only one active job with a given name can exist in a project within one region at any given time. Jobs in different regions can have the same name. If a caller attempts to create a job with the same name as an active job that already exists, the attempt returns the existing job. The name must match the regular expression `[a-z]([-a-z0-9]{0,1022}[a-z0-9])?`",
           "type": "string"
         },
         "pipelineDescription": {
@@ -3995,6 +4005,11 @@
           "description": "Reserved for future use. This field is set only in responses from the server; it is ignored if it is set in any requests.",
           "type": "boolean"
         },
+        "serviceResources": {
+          "$ref": "ServiceResources",
+          "description": "Output only. Resources used by the Dataflow Service to run the job.",
+          "readOnly": true
+        },
         "stageStates": {
           "description": "This field may be mutated by the Cloud Dataflow service; callers cannot mutate it.",
           "items": {
@@ -4029,11 +4044,11 @@
           "additionalProperties": {
             "type": "string"
           },
-          "description": "The map of transform name prefixes of the job to be replaced to the corresponding name prefixes of the new job.",
+          "description": "Optional. The map of transform name prefixes of the job to be replaced to the corresponding name prefixes of the new job.",
           "type": "object"
         },
         "type": {
-          "description": "The type of Dataflow job.",
+          "description": "Optional. The type of Dataflow job.",
           "enum": [
             "JOB_TYPE_UNKNOWN",
             "JOB_TYPE_BATCH",
@@ -4980,7 +4995,35 @@
             "WORKER_ZONE",
             "BOOLEAN",
             "ENUM",
-            "NUMBER"
+            "NUMBER",
+            "KAFKA_TOPIC",
+            "KAFKA_READ_TOPIC",
+            "KAFKA_WRITE_TOPIC"
+          ],
+          "enumDeprecated": [
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            true,
+            false,
+            false
           ],
           "enumDescriptions": [
             "Default input type.",
@@ -5002,7 +5045,10 @@
             "The parameter specifies a Worker Zone.",
             "The parameter specifies a boolean input.",
             "The parameter specifies an enum input.",
-            "The parameter specifies a number input."
+            "The parameter specifies a number input.",
+            "Deprecated. Please use KAFKA_READ_TOPIC instead.",
+            "The parameter specifies the fully-qualified name of an Apache Kafka topic. This can be either a Google Managed Kafka topic or a non-managed Kafka topic.",
+            "The parameter specifies the fully-qualified name of an Apache Kafka topic. This can be an existing Google Managed Kafka topic, the name for a new Google Managed Kafka topic, or an existing non-managed Kafka topic."
           ],
           "type": "string"
         },
@@ -5840,6 +5886,21 @@
       },
       "type": "object"
     },
+    "ServiceResources": {
+      "description": "Resources used by the Dataflow Service to run the job.",
+      "id": "ServiceResources",
+      "properties": {
+        "zones": {
+          "description": "Output only. List of Cloud Zones being used by the Dataflow Service for this job. Example: us-central1-c",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "ShellTask": {
       "description": "A task which consists of a shell command for the worker to execute.",
       "id": "ShellTask",
@@ -6661,6 +6722,10 @@
           "format": "int64",
           "type": "string"
         },
+        "operationalLimits": {
+          "$ref": "StreamingOperationalLimits",
+          "description": "Operational limits for the streaming job. Can be used by the worker to validate outputs sent to the backend."
+        },
         "streamingComputationConfigs": {
           "description": "Set of computation configuration information.",
           "items": {
@@ -6681,6 +6746,53 @@
         },
         "windmillServicePort": {
           "description": "If present, the worker must use this port to communicate with Windmill Service dispatchers. Only applicable when windmill_service_endpoint is specified.",
+          "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "StreamingOperationalLimits": {
+      "description": "Operational limits imposed on streaming jobs by the backend.",
+      "id": "StreamingOperationalLimits",
+      "properties": {
+        "maxBagElementBytes": {
+          "description": "The maximum size for an element in bag state.",
+          "format": "int64",
+          "type": "string"
+        },
+        "maxGlobalDataBytes": {
+          "description": "The maximum size for an element in global data.",
+          "format": "int64",
+          "type": "string"
+        },
+        "maxKeyBytes": {
+          "description": "The maximum size allowed for a key.",
+          "format": "int64",
+          "type": "string"
+        },
+        "maxProductionOutputBytes": {
+          "description": "The maximum size for a single output element.",
+          "format": "int64",
+          "type": "string"
+        },
+        "maxSortedListElementBytes": {
+          "description": "The maximum size for an element in sorted list state.",
+          "format": "int64",
+          "type": "string"
+        },
+        "maxSourceStateBytes": {
+          "description": "The maximum size for a source state update.",
+          "format": "int64",
+          "type": "string"
+        },
+        "maxTagBytes": {
+          "description": "The maximum size for a state tag.",
+          "format": "int64",
+          "type": "string"
+        },
+        "maxValueBytes": {
+          "description": "The maximum size for a value state field.",
           "format": "int64",
           "type": "string"
         }
@@ -6963,6 +7075,10 @@
       "description": "Metadata describing a template.",
       "id": "TemplateMetadata",
       "properties": {
+        "defaultStreamingMode": {
+          "description": "Optional. Indicates the default streaming mode for a streaming template. Only valid if both supports_at_least_once and supports_exactly_once are true. Possible values: UNSPECIFIED, EXACTLY_ONCE and AT_LEAST_ONCE",
+          "type": "string"
+        },
         "description": {
           "description": "Optional. A description of the template.",
           "type": "string"

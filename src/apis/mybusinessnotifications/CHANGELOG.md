@@ -1,5 +1,19 @@
 # Changelog
 
+## [1.0.7](https://github.com/googleapis/google-api-nodejs-client/compare/mybusinessnotifications-v1.0.6...mybusinessnotifications-v1.0.7) (2024-05-02)
+
+
+### Bug Fixes
+
+* **mybusinessnotifications:** update the API ([ae38037](https://github.com/googleapis/google-api-nodejs-client/commit/ae38037c11139e45813fd0306e3357129b036e1d))
+
+## [1.0.6](https://github.com/googleapis/google-api-nodejs-client/compare/mybusinessnotifications-v1.0.5...mybusinessnotifications-v1.0.6) (2024-05-02)
+
+
+### Bug Fixes
+
+* **mybusinessnotifications:** update the API ([ae38037](https://github.com/googleapis/google-api-nodejs-client/commit/ae38037c11139e45813fd0306e3357129b036e1d))
+
 ## [1.0.5](https://github.com/googleapis/google-api-nodejs-client/compare/mybusinessnotifications-v1.0.4...mybusinessnotifications-v1.0.5) (2023-10-11)
 
 

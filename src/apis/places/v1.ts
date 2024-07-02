@@ -159,7 +159,7 @@ export namespace places_v1 {
    */
   export interface Schema$GoogleMapsPlacesV1AutocompletePlacesRequest {
     /**
-     * Optional. Included primary Place type (for example, "restaurant" or "gas_station") from https://developers.google.com/maps/documentation/places/web-service/place-types. A Place is only returned if its primary type is included in this list. Up to 5 values can be specified. If no types are specified, all Place types are returned.
+     * Optional. Included primary Place type (for example, "restaurant" or "gas_station") in Place Types (https://developers.google.com/maps/documentation/places/web-service/place-types), or only `(regions)`, or only `(cities)`. A Place is only returned if its primary type is included in this list. Up to 5 values can be specified. If no types are specified, all Place types are returned.
      */
     includedPrimaryTypes?: string[] | null;
     /**
@@ -302,7 +302,7 @@ export namespace places_v1 {
      */
     structuredFormat?: Schema$GoogleMapsPlacesV1AutocompletePlacesResponseSuggestionStructuredFormat;
     /**
-     * The predicted text. This text does not represent a Place, but rather a text query that could be used in a search endpoint (for example, TextSearch). `text` is recommended for developers who wish to show a single UI element. Developers who wish to show two separate, but related, UI elements may want to use `structured_format` instead. They are two different ways to represent a query prediction. Users should not try to parse `structured_format` into `text` or vice versa. May be in mixed languages if the request `input` and `language_code` are in different languages or if part of the query does not have a translation from the local language to `language_code`.
+     * The predicted text. This text does not represent a Place, but rather a text query that could be used in a search endpoint (for example, Text Search). `text` is recommended for developers who wish to show a single UI element. Developers who wish to show two separate, but related, UI elements may want to use `structured_format` instead. They are two different ways to represent a query prediction. Users should not try to parse `structured_format` into `text` or vice versa. May be in mixed languages if the request `input` and `language_code` are in different languages or if part of the query does not have a translation from the local language to `language_code`.
      */
     text?: Schema$GoogleMapsPlacesV1AutocompletePlacesResponseSuggestionFormattableText;
   }
@@ -344,6 +344,97 @@ export namespace places_v1 {
      * Required. Radius measured in meters. The radius must be within [0.0, 50000.0].
      */
     radius?: number | null;
+  }
+  /**
+   * A block of content that can be served individually.
+   */
+  export interface Schema$GoogleMapsPlacesV1ContentBlock {
+    /**
+     * Content related to the topic.
+     */
+    content?: Schema$GoogleTypeLocalizedText;
+    /**
+     * Experimental: See https://developers.google.com/maps/documentation/places/web-service/experimental/places-generative for more details. References that are related to this block of content.
+     */
+    references?: Schema$GoogleMapsPlacesV1References;
+    /**
+     * The topic of the content, for example "overview" or "restaurant".
+     */
+    topic?: string | null;
+  }
+  /**
+   * Experimental: See https://developers.google.com/maps/documentation/places/web-service/experimental/places-generative for more details. Content that is contextual to the place query.
+   */
+  export interface Schema$GoogleMapsPlacesV1ContextualContent {
+    /**
+     * Experimental: See https://developers.google.com/maps/documentation/places/web-service/experimental/places-generative for more details. Justifications for the place.
+     */
+    justifications?: Schema$GoogleMapsPlacesV1ContextualContentJustification[];
+    /**
+     * Information (including references) about photos of this place, contexual to the place query.
+     */
+    photos?: Schema$GoogleMapsPlacesV1Photo[];
+    /**
+     * List of reviews about this place, contexual to the place query.
+     */
+    reviews?: Schema$GoogleMapsPlacesV1Review[];
+  }
+  /**
+   * Experimental: See https://developers.google.com/maps/documentation/places/web-service/experimental/places-generative for more details. Justifications for the place. Justifications answers the question of why a place could interest an end user.
+   */
+  export interface Schema$GoogleMapsPlacesV1ContextualContentJustification {
+    /**
+     * Experimental: See https://developers.google.com/maps/documentation/places/web-service/experimental/places-generative for more details.
+     */
+    businessAvailabilityAttributesJustification?: Schema$GoogleMapsPlacesV1ContextualContentJustificationBusinessAvailabilityAttributesJustification;
+    /**
+     * Experimental: See https://developers.google.com/maps/documentation/places/web-service/experimental/places-generative for more details.
+     */
+    reviewJustification?: Schema$GoogleMapsPlacesV1ContextualContentJustificationReviewJustification;
+  }
+  /**
+   * Experimental: See https://developers.google.com/maps/documentation/places/web-service/experimental/places-generative for more details. BusinessAvailabilityAttributes justifications. This shows some attributes a business has that could interest an end user.
+   */
+  export interface Schema$GoogleMapsPlacesV1ContextualContentJustificationBusinessAvailabilityAttributesJustification {
+    /**
+     * If a place provides delivery.
+     */
+    delivery?: boolean | null;
+    /**
+     * If a place provides dine-in.
+     */
+    dineIn?: boolean | null;
+    /**
+     * If a place provides takeout.
+     */
+    takeout?: boolean | null;
+  }
+  /**
+   * Experimental: See https://developers.google.com/maps/documentation/places/web-service/experimental/places-generative for more details. User review justifications. This highlights a section of the user review that would interest an end user. For instance, if the search query is "firewood pizza", the review justification highlights the text relevant to the search query.
+   */
+  export interface Schema$GoogleMapsPlacesV1ContextualContentJustificationReviewJustification {
+    highlightedText?: Schema$GoogleMapsPlacesV1ContextualContentJustificationReviewJustificationHighlightedText;
+    /**
+     * The review that the highlighted text is generated from.
+     */
+    review?: Schema$GoogleMapsPlacesV1Review;
+  }
+  /**
+   * The text highlighted by the justification. This is a subset of the review itself. The exact word to highlight is marked by the HighlightedTextRange. There could be several words in the text being highlighted.
+   */
+  export interface Schema$GoogleMapsPlacesV1ContextualContentJustificationReviewJustificationHighlightedText {
+    /**
+     * The list of the ranges of the highlighted text.
+     */
+    highlightedTextRanges?: Schema$GoogleMapsPlacesV1ContextualContentJustificationReviewJustificationHighlightedTextHighlightedTextRange[];
+    text?: string | null;
+  }
+  /**
+   * The range of highlighted text.
+   */
+  export interface Schema$GoogleMapsPlacesV1ContextualContentJustificationReviewJustificationHighlightedTextHighlightedTextRange {
+    endIndex?: number | null;
+    startIndex?: number | null;
   }
   /**
    * Information about the EV Charge Station hosted in Place. Terminology follows https://afdc.energy.gov/fuels/electricity_infrastructure.html One port could charge one car at a time. One port has one or more connectors. One station has one or more ports.
@@ -468,6 +559,10 @@ export namespace places_v1 {
      */
     allowsDogs?: boolean | null;
     /**
+     * Experimental: See https://developers.google.com/maps/documentation/places/web-service/experimental/places-generative for more details. AI-generated summary of the area that the place is in.
+     */
+    areaSummary?: Schema$GoogleMapsPlacesV1PlaceAreaSummary;
+    /**
      * A set of data provider that must be shown with this result.
      */
     attributions?: Schema$GoogleMapsPlacesV1PlaceAttribution[];
@@ -515,6 +610,10 @@ export namespace places_v1 {
      * The most recent information about fuel options in a gas station. This information is updated regularly.
      */
     fuelOptions?: Schema$GoogleMapsPlacesV1FuelOptions;
+    /**
+     * Experimental: See https://developers.google.com/maps/documentation/places/web-service/experimental/places-generative for more details. AI-generated summary of the place.
+     */
+    generativeSummary?: Schema$GoogleMapsPlacesV1PlaceGenerativeSummary;
     /**
      * Place is good for children.
      */
@@ -739,6 +838,15 @@ export namespace places_v1 {
     types?: string[] | null;
   }
   /**
+   * Experimental: See https://developers.google.com/maps/documentation/places/web-service/experimental/places-generative for more details. AI-generated summary of the area that the place is in.
+   */
+  export interface Schema$GoogleMapsPlacesV1PlaceAreaSummary {
+    /**
+     * Content blocks that compose the area summary. Each block has a separate topic about the area.
+     */
+    contentBlocks?: Schema$GoogleMapsPlacesV1ContentBlock[];
+  }
+  /**
    * Information about data providers of this place.
    */
   export interface Schema$GoogleMapsPlacesV1PlaceAttribution {
@@ -750,6 +858,23 @@ export namespace places_v1 {
      * URI to the Place's data provider.
      */
     providerUri?: string | null;
+  }
+  /**
+   * Experimental: See https://developers.google.com/maps/documentation/places/web-service/experimental/places-generative for more details. AI-generated summary of the place.
+   */
+  export interface Schema$GoogleMapsPlacesV1PlaceGenerativeSummary {
+    /**
+     * The detailed description of the place.
+     */
+    description?: Schema$GoogleTypeLocalizedText;
+    /**
+     * The overview of the place.
+     */
+    overview?: Schema$GoogleTypeLocalizedText;
+    /**
+     * References that are used to generate the summary description.
+     */
+    references?: Schema$GoogleMapsPlacesV1References;
   }
   /**
    * Information about business hour of the place.
@@ -904,6 +1029,19 @@ export namespace places_v1 {
     name?: string | null;
   }
   /**
+   * Experimental: See https://developers.google.com/maps/documentation/places/web-service/experimental/places-generative for more details. Reference that the generative content is related to.
+   */
+  export interface Schema$GoogleMapsPlacesV1References {
+    /**
+     * The list of resource names of the referenced places. This name can be used in other APIs that accept Place resource names.
+     */
+    places?: string[] | null;
+    /**
+     * Reviews that serve as references.
+     */
+    reviews?: Schema$GoogleMapsPlacesV1Review[];
+  }
+  /**
    * Information about a review of a place.
    */
   export interface Schema$GoogleMapsPlacesV1Review {
@@ -1020,7 +1158,7 @@ export namespace places_v1 {
      */
     locationRestriction?: Schema$GoogleMapsPlacesV1SearchTextRequestLocationRestriction;
     /**
-     * Maximum number of results to return. It must be between 1 and 20, inclusively. The default is 20. If the number is unset, it falls back to the upper limit. If the number is set to negative or exceeds the upper limit, an INVALID_ARGUMENT error is returned.
+     * Deprecated: Use `page_size` instead. The maximum number of results per page that can be returned. If the number of available results is larger than `max_result_count`, a `next_page_token` is returned which can be passed to `page_token` to get the next page of results in subsequent requests. If 0 or no value is provided, a default of 20 is used. The maximum value is 20; values above 20 will be coerced to 20. Negative values will return an INVALID_ARGUMENT error. If both `max_result_count` and `page_size` are specified, `max_result_count` will be ignored.
      */
     maxResultCount?: number | null;
     /**
@@ -1031,6 +1169,14 @@ export namespace places_v1 {
      * Used to restrict the search to places that are currently open. The default is false.
      */
     openNow?: boolean | null;
+    /**
+     * Optional. The maximum number of results per page that can be returned. If the number of available results is larger than `page_size`, a `next_page_token` is returned which can be passed to `page_token` to get the next page of results in subsequent requests. If 0 or no value is provided, a default of 20 is used. The maximum value is 20; values above 20 will be set to 20. Negative values will return an INVALID_ARGUMENT error. If both `max_result_count` and `page_size` are specified, `max_result_count` will be ignored.
+     */
+    pageSize?: number | null;
+    /**
+     * Optional. A page token, received from a previous TextSearch call. Provide this to retrieve the subsequent page. When paginating, all parameters other than `page_token`, `page_size`, and `max_result_count` provided to TextSearch must match the initial call that provided the page token. Otherwise an INVALID_ARGUMENT error is returned.
+     */
+    pageToken?: string | null;
     /**
      * Used to restrict the search to places that are marked as certain price levels. Users can choose any combinations of price levels. Default to select all price levels.
      */
@@ -1057,11 +1203,11 @@ export namespace places_v1 {
    */
   export interface Schema$GoogleMapsPlacesV1SearchTextRequestEVOptions {
     /**
-     * Optional. The list of preferred EV connector types. A place that does not support any of the listed connector types are filter out.
+     * Optional. The list of preferred EV connector types. A place that does not support any of the listed connector types is filtered out.
      */
     connectorTypes?: string[] | null;
     /**
-     * Optional. Filtering places by minimum charging rate. Any places with charging a rate less than the minimum charging rate are filtered out.
+     * Optional. Minimum required charging rate in kilowatts. A place with a charging rate less than the specified rate is filtered out.
      */
     minimumChargingRateKw?: number | null;
   }
@@ -1091,6 +1237,14 @@ export namespace places_v1 {
    * Response proto for SearchText.
    */
   export interface Schema$GoogleMapsPlacesV1SearchTextResponse {
+    /**
+     * Experimental: See https://developers.google.com/maps/documentation/places/web-service/experimental/places-generative for more details. A list of contextual contents where each entry associates to the corresponding place in the same index in the places field. The contents that are relevant to the `text_query` in the request are preferred. If the contextual content is not available for one of the places, it will return non-contextual content. It will be empty only when the content is unavailable for this place. This list should have as many entries as the list of places if requested.
+     */
+    contextualContents?: Schema$GoogleMapsPlacesV1ContextualContent[];
+    /**
+     * A token that can be sent as `page_token` to retrieve the next page. If this field is omitted or empty, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
     /**
      * A list of places that meet the user's text search criteria.
      */
@@ -1241,6 +1395,7 @@ export namespace places_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1331,6 +1486,7 @@ export namespace places_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1425,6 +1581,7 @@ export namespace places_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1521,6 +1678,7 @@ export namespace places_v1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1661,6 +1819,7 @@ export namespace places_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),

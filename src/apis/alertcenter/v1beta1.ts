@@ -651,13 +651,25 @@ export namespace alertcenter_v1beta1 {
      */
     email?: string | null;
     /**
+     * ID of the rule that triggered the alert
+     */
+    id?: string | null;
+    /**
      * Required for iOS, empty for others.
      */
     iosVendorId?: string | null;
     /**
+     * Obfuscated ID of the owner of the device
+     */
+    ownerId?: string | null;
+    /**
      * The device resource ID.
      */
     resourceId?: string | null;
+    /**
+     * Action taken as result of the rule
+     */
+    ruleAction?: string | null;
     /**
      * The serial number of the device.
      */
@@ -1013,6 +1025,18 @@ export namespace alertcenter_v1beta1 {
    */
   export interface Schema$ResourceInfo {
     /**
+     * Chat attachment ID.
+     */
+    chatAttachmentId?: string | null;
+    /**
+     * Chat message ID.
+     */
+    chatMessageId?: string | null;
+    /**
+     * Id to identify a device. For example, for Android devices, this is the "Android Device Id" and for Chrome OS devices, it's the "Device Virtual Id".
+     */
+    deviceId?: string | null;
+    /**
      * Drive file ID.
      */
     documentId?: string | null;
@@ -1042,6 +1066,10 @@ export namespace alertcenter_v1beta1 {
      * Source of the data.
      */
     dataSource?: string | null;
+    /**
+     * Event associated with this alert after applying the rule.
+     */
+    eventType?: string | null;
     /**
      * List of matches that were found in the resource content.
      */
@@ -1468,6 +1496,7 @@ export namespace alertcenter_v1beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1562,6 +1591,7 @@ export namespace alertcenter_v1beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -1648,6 +1678,7 @@ export namespace alertcenter_v1beta1 {
               '$1'
             ),
             method: 'DELETE',
+            apiVersion: '',
           },
           options
         ),
@@ -1734,6 +1765,7 @@ export namespace alertcenter_v1beta1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1821,6 +1853,7 @@ export namespace alertcenter_v1beta1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1907,6 +1940,7 @@ export namespace alertcenter_v1beta1 {
           {
             url: (rootUrl + '/v1beta1/alerts').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -1993,6 +2027,7 @@ export namespace alertcenter_v1beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2166,6 +2201,7 @@ export namespace alertcenter_v1beta1 {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
           },
           options
         ),
@@ -2260,6 +2296,7 @@ export namespace alertcenter_v1beta1 {
               '$1'
             ),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2383,6 +2420,7 @@ export namespace alertcenter_v1beta1 {
           {
             url: (rootUrl + '/v1beta1/settings').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
+            apiVersion: '',
           },
           options
         ),
@@ -2467,6 +2505,7 @@ export namespace alertcenter_v1beta1 {
           {
             url: (rootUrl + '/v1beta1/settings').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
           },
           options
         ),

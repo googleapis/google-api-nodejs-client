@@ -274,7 +274,7 @@
                       ],
                       "parameters": {
                         "filter": {
-                          "description": "Optional. Filters applied to the `[Executions.ListExecutions]` results. The following fields are supported for filtering: `executionId`, `state`, `createTime`, `startTime`, `endTime`, `duration`, `workflowRevisionId`, `stepName`, and `label`. For details, see AIP-160. For example, if you are using the Google APIs Explorer: `state=\"SUCCEEDED\"` or `startTime>\"2023-08-01\" AND state=\"FAILED\"`",
+                          "description": "Optional. Filters applied to the `[Executions.ListExecutions]` results. The following fields are supported for filtering: `executionId`, `state`, `createTime`, `startTime`, `endTime`, `duration`, `workflowRevisionId`, `stepName`, and `label`. For details, see AIP-160. For more information, see Filter executions. For example, if you are using the Google APIs Explorer: `state=\"SUCCEEDED\"` or `startTime>\"2023-08-01\" AND state=\"FAILED\"`",
                           "location": "query",
                           "type": "string"
                         },
@@ -457,7 +457,7 @@
       }
     }
   },
-  "revision": "20240129",
+  "revision": "20240617",
   "rootUrl": "https://workflowexecutions.googleapis.com/",
   "schemas": {
     "Callback": {
@@ -1006,6 +1006,11 @@
       "description": "StepEntryMetadata contains metadata information about this step.",
       "id": "StepEntryMetadata",
       "properties": {
+        "expectedIteration": {
+          "description": "Expected iteration represents the expected number of iterations in the step's progress.",
+          "format": "int64",
+          "type": "string"
+        },
         "progressNumber": {
           "description": "Progress number represents the current state of the current progress. eg: A step entry represents the 4th iteration in a progress of PROGRESS_TYPE_FOR.",
           "format": "int64",

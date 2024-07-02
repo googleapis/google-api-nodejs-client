@@ -107,6 +107,56 @@
   "resources": {
     "bidders": {
       "resources": {
+        "auctionPackages": {
+          "methods": {
+            "list": {
+              "description": "List the auction packages. Buyers can use the URL path \"/v1/buyers/{accountId}/auctionPackages\" to list auction packages for the current buyer and its clients. Bidders can use the URL path \"/v1/bidders/{accountId}/auctionPackages\" to list auction packages for the bidder, its media planners, its buyers, and all their clients.",
+              "flatPath": "v1/bidders/{biddersId}/auctionPackages",
+              "httpMethod": "GET",
+              "id": "authorizedbuyersmarketplace.bidders.auctionPackages.list",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "filter": {
+                  "description": "Optional. Optional query string using the [Cloud API list filtering syntax](/authorized-buyers/apis/guides/list-filters). Only supported when parent is bidder. Supported columns for filtering are: * displayName * createTime * updateTime * eligibleSeatIds",
+                  "location": "query",
+                  "type": "string"
+                },
+                "orderBy": {
+                  "description": "Optional. An optional query string to sort auction packages using the [Cloud API sorting syntax](https://cloud.google.com/apis/design/design_patterns#sorting_order). If no sort order is specified, results will be returned in an arbitrary order. Only supported when parent is bidder. Supported columns for sorting are: * displayName * createTime * updateTime",
+                  "location": "query",
+                  "type": "string"
+                },
+                "pageSize": {
+                  "description": "Requested page size. The server may return fewer results than requested. Max allowed page size is 500.",
+                  "format": "int32",
+                  "location": "query",
+                  "type": "integer"
+                },
+                "pageToken": {
+                  "description": "The page token as returned. ListAuctionPackagesResponse.nextPageToken",
+                  "location": "query",
+                  "type": "string"
+                },
+                "parent": {
+                  "description": "Required. Name of the parent buyer that can access the auction package. Format: `buyers/{accountId}`. When used with a bidder account, the auction packages that the bidder, its media planners, its buyers and clients are subscribed to will be listed, in the format `bidders/{accountId}`.",
+                  "location": "path",
+                  "pattern": "^bidders/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+parent}/auctionPackages",
+              "response": {
+                "$ref": "ListAuctionPackagesResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/authorized-buyers-marketplace"
+              ]
+            }
+          }
+        },
         "finalizedDeals": {
           "methods": {
             "list": {
@@ -124,7 +174,7 @@
                   "type": "string"
                 },
                 "orderBy": {
-                  "description": "An optional query string to sort finalized deals using the [Cloud API sorting syntax](https://cloud.google.com/apis/design/design_patterns#sorting_order). If no sort order is specified, results will be returned in an arbitrary order. Supported columns for sorting are: * deal.displayName * deal.createTime * deal.updateTime * deal.flightStartTime * deal.flightEndTime * rtbMetrics.bidRequests7Days * rtbMetrics.bids7Days * rtbMetrics.adImpressions7Days * rtbMetrics.bidRate7Days * rtbMetrics.filteredBidRate7Days * rtbMetrics.mustBidRateCurrentMonth Example: 'deal.displayName, deal.updateTime desc'",
+                  "description": "An optional query string to sort finalized deals using the [Cloud API sorting syntax](https://cloud.google.com/apis/design/design_patterns#sorting_order). If no sort order is specified, results will be returned in an arbitrary order. Supported columns for sorting are: * deal.displayName * deal.createTime * deal.updateTime * deal.flightStartTime * deal.flightEndTime * rtbMetrics.bidRequests7Days * rtbMetrics.bids7Days * rtbMetrics.adImpressions7Days * rtbMetrics.bidRate7Days * rtbMetrics.filteredBidRate7Days * rtbMetrics.mustBidRateCurrentMonth",
                   "location": "query",
                   "type": "string"
                 },
@@ -189,7 +239,7 @@
               ]
             },
             "list": {
-              "description": "List the auction packages subscribed by a buyer and its clients.",
+              "description": "List the auction packages. Buyers can use the URL path \"/v1/buyers/{accountId}/auctionPackages\" to list auction packages for the current buyer and its clients. Bidders can use the URL path \"/v1/bidders/{accountId}/auctionPackages\" to list auction packages for the bidder, its media planners, its buyers, and all their clients.",
               "flatPath": "v1/buyers/{buyersId}/auctionPackages",
               "httpMethod": "GET",
               "id": "authorizedbuyersmarketplace.buyers.auctionPackages.list",
@@ -197,6 +247,16 @@
                 "parent"
               ],
               "parameters": {
+                "filter": {
+                  "description": "Optional. Optional query string using the [Cloud API list filtering syntax](/authorized-buyers/apis/guides/list-filters). Only supported when parent is bidder. Supported columns for filtering are: * displayName * createTime * updateTime * eligibleSeatIds",
+                  "location": "query",
+                  "type": "string"
+                },
+                "orderBy": {
+                  "description": "Optional. An optional query string to sort auction packages using the [Cloud API sorting syntax](https://cloud.google.com/apis/design/design_patterns#sorting_order). If no sort order is specified, results will be returned in an arbitrary order. Only supported when parent is bidder. Supported columns for sorting are: * displayName * createTime * updateTime",
+                  "location": "query",
+                  "type": "string"
+                },
                 "pageSize": {
                   "description": "Requested page size. The server may return fewer results than requested. Max allowed page size is 500.",
                   "format": "int32",
@@ -209,7 +269,7 @@
                   "type": "string"
                 },
                 "parent": {
-                  "description": "Required. Name of the parent buyer that can access the auction package. Format: `buyers/{accountId}`",
+                  "description": "Required. Name of the parent buyer that can access the auction package. Format: `buyers/{accountId}`. When used with a bidder account, the auction packages that the bidder, its media planners, its buyers and clients are subscribed to will be listed, in the format `bidders/{accountId}`.",
                   "location": "path",
                   "pattern": "^buyers/[^/]+$",
                   "required": true,
@@ -772,7 +832,7 @@
                   "type": "string"
                 },
                 "orderBy": {
-                  "description": "An optional query string to sort finalized deals using the [Cloud API sorting syntax](https://cloud.google.com/apis/design/design_patterns#sorting_order). If no sort order is specified, results will be returned in an arbitrary order. Supported columns for sorting are: * deal.displayName * deal.createTime * deal.updateTime * deal.flightStartTime * deal.flightEndTime * rtbMetrics.bidRequests7Days * rtbMetrics.bids7Days * rtbMetrics.adImpressions7Days * rtbMetrics.bidRate7Days * rtbMetrics.filteredBidRate7Days * rtbMetrics.mustBidRateCurrentMonth Example: 'deal.displayName, deal.updateTime desc'",
+                  "description": "An optional query string to sort finalized deals using the [Cloud API sorting syntax](https://cloud.google.com/apis/design/design_patterns#sorting_order). If no sort order is specified, results will be returned in an arbitrary order. Supported columns for sorting are: * deal.displayName * deal.createTime * deal.updateTime * deal.flightStartTime * deal.flightEndTime * rtbMetrics.bidRequests7Days * rtbMetrics.bids7Days * rtbMetrics.adImpressions7Days * rtbMetrics.bidRate7Days * rtbMetrics.filteredBidRate7Days * rtbMetrics.mustBidRateCurrentMonth",
                   "location": "query",
                   "type": "string"
                 },
@@ -804,7 +864,7 @@
               ]
             },
             "pause": {
-              "description": "Pauses serving of the given finalized deal. This call only pauses the serving status, and does not affect other fields of the finalized deal. Calling this method for an already paused deal has no effect. This method only applies to programmatic guaranteed deals.",
+              "description": "Pauses serving of the given finalized deal. This call only pauses the serving status, and does not affect other fields of the finalized deal. Calling this method for an already paused deal has no effect. This method only applies to programmatic guaranteed deals and preferred deals.",
               "flatPath": "v1/buyers/{buyersId}/finalizedDeals/{finalizedDealsId}:pause",
               "httpMethod": "POST",
               "id": "authorizedbuyersmarketplace.buyers.finalizedDeals.pause",
@@ -832,7 +892,7 @@
               ]
             },
             "resume": {
-              "description": "Resumes serving of the given finalized deal. Calling this method for an running deal has no effect. If a deal is initially paused by the seller, calling this method will not resume serving of the deal until the seller also resumes the deal. This method only applies to programmatic guaranteed deals.",
+              "description": "Resumes serving of the given finalized deal. Calling this method for an running deal has no effect. If a deal is initially paused by the seller, calling this method will not resume serving of the deal until the seller also resumes the deal. This method only applies to programmatic guaranteed deals and preferred deals.",
               "flatPath": "v1/buyers/{buyersId}/finalizedDeals/{finalizedDealsId}:resume",
               "httpMethod": "POST",
               "id": "authorizedbuyersmarketplace.buyers.finalizedDeals.resume",
@@ -920,7 +980,7 @@
               ]
             },
             "addNote": {
-              "description": "Creates a note for this proposal and sends to the seller.",
+              "description": "Creates a note for this proposal and sends to the seller. This method is not supported for proposals with DealType set to 'PRIVATE_AUCTION'.",
               "flatPath": "v1/buyers/{buyersId}/proposals/{proposalsId}:addNote",
               "httpMethod": "POST",
               "id": "authorizedbuyersmarketplace.buyers.proposals.addNote",
@@ -1307,7 +1367,7 @@
       }
     }
   },
-  "revision": "20240312",
+  "revision": "20240625",
   "rootUrl": "https://authorizedbuyersmarketplace.googleapis.com/",
   "schemas": {
     "AcceptProposalRequest": {
@@ -1415,14 +1475,38 @@
           "description": "The display_name assigned to the auction package.",
           "type": "string"
         },
+        "eligibleSeatIds": {
+          "description": "Output only. If set, this field contains the list of DSP specific seat ids set by media planners that are eligible to transact on this deal. The seat ID is in the calling DSP's namespace.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
         "name": {
           "description": "Immutable. The unique identifier for the auction package. Format: `buyers/{accountId}/auctionPackages/{auctionPackageId}` The auction_package_id part of name is sent in the BidRequest to all RTB bidders and is returned as deal_id by the bidder in the BidResponse.",
           "type": "string"
         },
-        "subscribedClients": {
-          "description": "Output only. The list of clients of the current buyer that are subscribed to the AuctionPackage. Format: `buyers/{buyerAccountId}/clients/{clientAccountId}`",
+        "subscribedBuyers": {
+          "description": "Output only. The list of buyers that are subscribed to the AuctionPackage. This field is only populated when calling as a bidder. Format: `buyers/{buyerAccountId}`",
           "items": {
             "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "subscribedClients": {
+          "description": "Output only. When calling as a buyer, the list of clients of the current buyer that are subscribed to the AuctionPackage. When calling as a bidder, the list of clients that are subscribed to the AuctionPackage owned by the bidder or its buyers. Format: `buyers/{buyerAccountId}/clients/{clientAccountId}`",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "subscribedMediaPlanners": {
+          "description": "Output only. The list of media planners that are subscribed to the AuctionPackage. This field is only populated when calling as a bidder.",
+          "items": {
+            "$ref": "MediaPlanner"
           },
           "readOnly": true,
           "type": "array"
@@ -2309,12 +2393,21 @@
       "type": "object"
     },
     "MarketplaceTargeting": {
-      "description": "Targeting represents different criteria that can be used to target inventory. For example, they can choose to target inventory only if the user is in the US. Multiple types of targeting are always applied as a logical AND, unless noted otherwise.",
+      "description": "Targeting represents different criteria that can be used to target deals or auction packages. For example, they can choose to target inventory only if the user is in the US. Multiple types of targeting are always applied as a logical AND, unless noted otherwise.",
       "id": "MarketplaceTargeting",
       "properties": {
         "daypartTargeting": {
           "$ref": "DayPartTargeting",
           "description": "Daypart targeting information."
+        },
+        "excludedSensitiveCategoryIds": {
+          "description": "Output only. The sensitive content category label IDs excluded. Refer to this file https://storage.googleapis.com/adx-rtb-dictionaries/content-labels.txt for category IDs.",
+          "items": {
+            "format": "int64",
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
         },
         "geoTargeting": {
           "$ref": "CriteriaTargeting",
@@ -2344,6 +2437,11 @@
         "userListTargeting": {
           "$ref": "CriteriaTargeting",
           "description": "Buyer user list targeting information. User lists can be uploaded using https://developers.google.com/authorized-buyers/rtb/bulk-uploader."
+        },
+        "verticalTargeting": {
+          "$ref": "CriteriaTargeting",
+          "description": "Output only. The verticals included or excluded as defined in https://developers.google.com/authorized-buyers/rtb/downloads/publisher-verticals",
+          "readOnly": true
         },
         "videoTargeting": {
           "$ref": "VideoTargeting",

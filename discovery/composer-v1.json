@@ -111,6 +111,34 @@
           "resources": {
             "environments": {
               "methods": {
+                "checkUpgrade": {
+                  "description": "Check if an upgrade operation on the environment will succeed. In case of problems detailed info can be found in the returned Operation.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/environments/{environmentsId}:checkUpgrade",
+                  "httpMethod": "POST",
+                  "id": "composer.projects.locations.environments.checkUpgrade",
+                  "parameterOrder": [
+                    "environment"
+                  ],
+                  "parameters": {
+                    "environment": {
+                      "description": "Required. The resource name of the environment to check upgrade for, in the form: \"projects/{projectId}/locations/{locationId}/environments/{environmentId}\"",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/environments/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+environment}:checkUpgrade",
+                  "request": {
+                    "$ref": "CheckUpgradeRequest"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
                 "create": {
                   "description": "Create a new environment.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/environments",
@@ -938,7 +966,7 @@
       }
     }
   },
-  "revision": "20240317",
+  "revision": "20240520",
   "rootUrl": "https://composer.googleapis.com/",
   "schemas": {
     "AirflowMetadataRetentionPolicyConfig": {
@@ -977,6 +1005,17 @@
         },
         "value": {
           "description": "IP address or range, defined using CIDR notation, of requests that this rule applies to. Examples: `192.168.1.1` or `192.168.0.0/16` or `2001:db8::/32` or `2001:0db8:0000:0042:0000:8a2e:0370:7334`. IP range prefixes should be properly truncated. For example, `1.2.3.4/24` should be truncated to `1.2.3.0/24`. Similarly, for IPv6, `2001:db8::1/32` should be truncated to `2001:db8::/32`.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "CheckUpgradeRequest": {
+      "description": "Request to check whether image upgrade will succeed.",
+      "id": "CheckUpgradeRequest",
+      "properties": {
+        "imageVersion": {
+          "description": "Optional. The version of the software running in the environment. This encapsulates both the version of Cloud Composer functionality and the version of Apache Airflow. It must match the regular expression `composer-([0-9]+(\\.[0-9]+\\.[0-9]+(-preview\\.[0-9]+)?)?|latest)-airflow-([0-9]+(\\.[0-9]+(\\.[0-9]+)?)?)`. When used as input, the server also checks if the provided version is supported and denies the request for an unsupported version. The Cloud Composer portion of the image version is a full [semantic version](https://semver.org), or an alias in the form of major version number or `latest`. When an alias is provided, the server replaces it with the current Cloud Composer version that satisfies the alias. The Apache Airflow portion of the image version is a full semantic version that points to one of the supported Apache Airflow versions, or an alias in the form of only major or major.minor versions specified. When an alias is provided, the server replaces it with the latest Apache Airflow version that satisfies the alias and is supported in the given Cloud Composer version. In all cases, the resolved image version is stored in the same field. See also [version list](/composer/docs/concepts/versioning/composer-versions) and [versioning overview](/composer/docs/concepts/versioning/composer-versioning-overview).",
           "type": "string"
         }
       },

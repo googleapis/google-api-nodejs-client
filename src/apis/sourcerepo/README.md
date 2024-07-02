@@ -2,7 +2,7 @@
 
 # sourcerepo
 
-> Accesses source code repositories hosted by Google.
+> 
 
 ## Installation
 

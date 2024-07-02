@@ -1,5 +1,47 @@
 # Changelog
 
+## [8.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/iap-v8.0.0...iap-v8.0.1) (2024-06-03)
+
+
+### Bug Fixes
+
+* **iap:** update the API ([0fe384d](https://github.com/googleapis/google-api-nodejs-client/commit/0fe384d1d61c16894418e2abbf772340b8c86d6b))
+
+## [8.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/iap-v7.1.0...iap-v8.0.0) (2024-05-02)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* **iap:** update the API ([db72cb3](https://github.com/googleapis/google-api-nodejs-client/commit/db72cb3acc75efc17df7dd0d6b4418e17c1c3c81))
+* run the generator ([#3456](https://github.com/googleapis/google-api-nodejs-client/issues/3456)) ([a865e81](https://github.com/googleapis/google-api-nodejs-client/commit/a865e81539b315d3b321650663ba0b2555b1e5a1))
+
+
+### Bug Fixes
+
+* **iap:** update the API ([8bcea17](https://github.com/googleapis/google-api-nodejs-client/commit/8bcea170bcf252f3ba7cbab3216a0952c9026330))
+
+## [7.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/iap-v7.0.0...iap-v7.1.0) (2024-05-02)
+
+
+### Features
+
+* **iap:** update the API ([db72cb3](https://github.com/googleapis/google-api-nodejs-client/commit/db72cb3acc75efc17df7dd0d6b4418e17c1c3c81))
+
+## [7.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/iap-v6.0.1...iap-v7.0.0) (2024-04-04)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#3456](https://github.com/googleapis/google-api-nodejs-client/issues/3456)) ([a865e81](https://github.com/googleapis/google-api-nodejs-client/commit/a865e81539b315d3b321650663ba0b2555b1e5a1))
+
 ## [6.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/iap-v6.0.0...iap-v6.0.1) (2024-02-02)
 
 
