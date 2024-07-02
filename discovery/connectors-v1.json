@@ -2427,7 +2427,7 @@
       }
     }
   },
-  "revision": "20240619",
+  "revision": "20240625",
   "rootUrl": "https://connectors.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -2597,6 +2597,10 @@
         "enablePkce": {
           "description": "Whether to enable PKCE for the auth code flow.",
           "type": "boolean"
+        },
+        "omitQueryParams": {
+          "description": "Optional. Omit query params from the redirect URI.",
+          "type": "string"
         },
         "scopes": {
           "description": "The scopes for which the user will authorize Google Cloud Connectors on the connector data source.",

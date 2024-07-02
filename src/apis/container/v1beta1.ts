@@ -171,15 +171,15 @@ export namespace container_v1beta1 {
    */
   export interface Schema$AdditionalPodNetworkConfig {
     /**
-     * The maximum number of pods per node which use this pod network
+     * The maximum number of pods per node which use this pod network.
      */
     maxPodsPerNode?: Schema$MaxPodsConstraint;
     /**
-     * The name of the secondary range on the subnet which provides IP address for this pod range
+     * The name of the secondary range on the subnet which provides IP address for this pod range.
      */
     secondaryPodRange?: string | null;
     /**
-     * Name of the subnetwork where the additional pod network belongs
+     * Name of the subnetwork where the additional pod network belongs.
      */
     subnetwork?: string | null;
   }

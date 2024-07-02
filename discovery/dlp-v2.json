@@ -17,18 +17,18 @@
   "documentationLink": "https://cloud.google.com/sensitive-data-protection/docs/",
   "endpoints": [
     {
-      "endpointUrl": "https://dlp.africa-south1.rep.googleapis.com/",
       "location": "africa-south1",
-      "description": "Regional Endpoint"
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://dlp.africa-south1.rep.googleapis.com/"
     },
     {
       "description": "Regional Endpoint",
-      "endpointUrl": "https://dlp.australia-southeast1.rep.googleapis.com/",
-      "location": "australia-southeast1"
+      "location": "australia-southeast1",
+      "endpointUrl": "https://dlp.australia-southeast1.rep.googleapis.com/"
     },
     {
-      "location": "europe-west9",
       "endpointUrl": "https://dlp.europe-west9.rep.googleapis.com/",
+      "location": "europe-west9",
       "description": "Regional Endpoint"
     }
   ],
