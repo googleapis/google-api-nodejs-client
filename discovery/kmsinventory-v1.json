@@ -242,7 +242,7 @@
       }
     }
   },
-  "revision": "20240623",
+  "revision": "20240630",
   "rootUrl": "https://kmsinventory.googleapis.com/",
   "schemas": {
     "GoogleCloudKmsInventoryV1ListCryptoKeysResponse": {
@@ -396,7 +396,7 @@
           "type": "string"
         },
         "destroyScheduledDuration": {
-          "description": "Immutable. The period of time that versions of this key spend in the DESTROY_SCHEDULED state before transitioning to DESTROYED. If not specified at creation time, the default duration is 24 hours.",
+          "description": "Immutable. The period of time that versions of this key spend in the DESTROY_SCHEDULED state before transitioning to DESTROYED. If not specified at creation time, the default duration is 30 days.",
           "format": "google-duration",
           "type": "string"
         },
