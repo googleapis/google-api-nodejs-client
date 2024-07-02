@@ -136,9 +136,9 @@
               ],
               "enumDescriptions": [
                 "No quality is known.",
-                "The underlying imagery and DSM data were processed at 0.1 m/pixel.",
-                "The underlying imagery and DSM data were processed at 0.25 m/pixel.",
-                "The underlying imagery and DSM data were processed at 0.5 m/pixel."
+                "Solar data is derived from aerial imagery captured at low-altitude and processed at 0.1 m/pixel.",
+                "Solar data is derived from enhanced aerial imagery captured at high-altitude and processed at 0.25 m/pixel.",
+                "Solar data is derived from enhanced satellite imagery processed at 0.25 m/pixel."
               ],
               "location": "query",
               "type": "string"
@@ -202,9 +202,9 @@
               ],
               "enumDescriptions": [
                 "No quality is known.",
-                "The underlying imagery and DSM data were processed at 0.1 m/pixel.",
-                "The underlying imagery and DSM data were processed at 0.25 m/pixel.",
-                "The underlying imagery and DSM data were processed at 0.5 m/pixel."
+                "Solar data is derived from aerial imagery captured at low-altitude and processed at 0.1 m/pixel.",
+                "Solar data is derived from enhanced aerial imagery captured at high-altitude and processed at 0.25 m/pixel.",
+                "Solar data is derived from enhanced satellite imagery processed at 0.25 m/pixel."
               ],
               "location": "query",
               "type": "string"
@@ -267,7 +267,7 @@
       }
     }
   },
-  "revision": "20240430",
+  "revision": "20240630",
   "rootUrl": "https://solar.googleapis.com/",
   "schemas": {
     "BuildingInsights": {
@@ -304,9 +304,9 @@
           ],
           "enumDescriptions": [
             "No quality is known.",
-            "The underlying imagery and DSM data were processed at 0.1 m/pixel.",
-            "The underlying imagery and DSM data were processed at 0.25 m/pixel.",
-            "The underlying imagery and DSM data were processed at 0.5 m/pixel."
+            "Solar data is derived from aerial imagery captured at low-altitude and processed at 0.1 m/pixel.",
+            "Solar data is derived from enhanced aerial imagery captured at high-altitude and processed at 0.25 m/pixel.",
+            "Solar data is derived from enhanced satellite imagery processed at 0.25 m/pixel."
           ],
           "type": "string"
         },
@@ -398,9 +398,9 @@
           ],
           "enumDescriptions": [
             "No quality is known.",
-            "The underlying imagery and DSM data were processed at 0.1 m/pixel.",
-            "The underlying imagery and DSM data were processed at 0.25 m/pixel.",
-            "The underlying imagery and DSM data were processed at 0.5 m/pixel."
+            "Solar data is derived from aerial imagery captured at low-altitude and processed at 0.1 m/pixel.",
+            "Solar data is derived from enhanced aerial imagery captured at high-altitude and processed at 0.25 m/pixel.",
+            "Solar data is derived from enhanced satellite imagery processed at 0.25 m/pixel."
           ],
           "type": "string"
         },

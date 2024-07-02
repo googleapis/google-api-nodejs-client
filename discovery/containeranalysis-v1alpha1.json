@@ -17,9 +17,9 @@
   "documentationLink": "https://cloud.google.com/container-analysis/api/reference/rest/",
   "endpoints": [
     {
-      "description": "Regional Endpoint",
       "location": "me-central2",
-      "endpointUrl": "https://containeranalysis.me-central2.rep.googleapis.com/"
+      "endpointUrl": "https://containeranalysis.me-central2.rep.googleapis.com/",
+      "description": "Regional Endpoint"
     }
   ],
   "fullyEncodeReservedExpansion": true,
