@@ -1469,7 +1469,7 @@
       }
     }
   },
-  "revision": "20240618",
+  "revision": "20240717",
   "rootUrl": "https://games.googleapis.com/",
   "schemas": {
     "AchievementDefinition": {
@@ -2231,12 +2231,9 @@
           "description": "The application that this player identifier is for.",
           "type": "string"
         },
-        "token": {
-          "description": "Recall token data.",
-          "items": {
-            "$ref": "RecallToken"
-          },
-          "type": "array"
+        "recallToken": {
+          "$ref": "RecallToken",
+          "description": "Recall token data."
         }
       },
       "type": "object"
@@ -3314,8 +3311,8 @@
       "description": "Recall token data returned from for the RetrieveDeveloperGamesLastPlayerToken RPC",
       "id": "RetrieveDeveloperGamesLastPlayerTokenResponse",
       "properties": {
-        "token": {
-          "$ref": "RecallToken",
+        "gamePlayerToken": {
+          "$ref": "GamePlayerToken",
           "description": "The recall token associated with the requested PGS Player principal. It can be unset if there is no recall token associated with the requested principal."
         }
       },
@@ -3325,7 +3322,7 @@
       "description": "A list of recall token data returned from the RetrieveGamesPlayerTokens RPC",
       "id": "RetrieveGamesPlayerTokensResponse",
       "properties": {
-        "applicationRecallTokens": {
+        "gamePlayerTokens": {
           "description": "The requested applications along with the recall tokens for the player. If the player does not have recall tokens for an application, that application is not included in the response.",
           "items": {
             "$ref": "GamePlayerToken"

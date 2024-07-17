@@ -24,7 +24,8 @@ import * as http from 'http';
 
 describe(__filename, () => {
   nock.disableNetConnect();
-  const discoveryUrl = 'https://www.googleapis.com/discovery/v1/apis/';
+  const discoveryUrl =
+    'https://raw.githubusercontent.com/googleapis/discovery-artifact-manager/master/discoveries/index.json';
   const fakeIndexPath = 'test/fixtures/index.json';
   const sandbox = sinon.createSandbox();
 
@@ -80,7 +81,7 @@ describe(__filename, () => {
   it('should download the discovery docs', async () => {
     const scopes = [
       nock('https://raw.githubusercontent.com/googleapis')
-        .get('/discovery-artifact-manager/master/discoveries/index.json/')
+        .get('/discovery-artifact-manager/master/discoveries/index.json')
         .replyWithFile(200, fakeIndexPath, {
           'Content-Type': 'application/json',
         }),
@@ -100,7 +101,7 @@ describe(__filename, () => {
   it('should ignore changes to schemas that only have revision changes', async () => {
     const scopes = [
       nock('https://raw.githubusercontent.com/googleapis')
-        .get('/discovery-artifact-manager/master/discoveries/index.json/')
+        .get('/discovery-artifact-manager/master/discoveries/index.json')
         .replyWithFile(200, fakeIndexPath, {
           'Content-Type': 'application/json',
         }),

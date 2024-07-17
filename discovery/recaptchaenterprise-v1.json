@@ -694,7 +694,7 @@
       }
     }
   },
-  "revision": "20240526",
+  "revision": "20240713",
   "rootUrl": "https://recaptchaenterprise.googleapis.com/",
   "schemas": {
     "GoogleCloudRecaptchaenterpriseV1AccountDefenderAssessment": {
@@ -1032,7 +1032,7 @@
           "type": "string"
         },
         "express": {
-          "description": "Optional. Flag for a reCAPTCHA express request for an assessment without a token. If enabled, `site_key` must reference a SCORE key with WAF feature set to EXPRESS.",
+          "description": "Optional. Flag for a reCAPTCHA express request for an assessment without a token. If enabled, `site_key` must reference an Express site key.",
           "type": "boolean"
         },
         "firewallPolicyEvaluation": {
@@ -1103,6 +1103,12 @@
           "type": "boolean"
         }
       },
+      "type": "object"
+    },
+    "GoogleCloudRecaptchaenterpriseV1ExpressKeySettings": {
+      "description": "Settings specific to keys that can be used for reCAPTCHA Express.",
+      "id": "GoogleCloudRecaptchaenterpriseV1ExpressKeySettings",
+      "properties": {},
       "type": "object"
     },
     "GoogleCloudRecaptchaenterpriseV1FirewallAction": {
@@ -1403,6 +1409,10 @@
           "description": "Required. Human-readable display name of this key. Modifiable by user.",
           "type": "string"
         },
+        "expressSettings": {
+          "$ref": "GoogleCloudRecaptchaenterpriseV1ExpressKeySettings",
+          "description": "Settings for keys that can be used by reCAPTCHA Express."
+        },
         "iosSettings": {
           "$ref": "GoogleCloudRecaptchaenterpriseV1IOSKeySettings",
           "description": "Settings for keys that can be used by iOS apps."
@@ -1411,7 +1421,7 @@
           "additionalProperties": {
             "type": "string"
           },
-          "description": "Optional. See [Creating and managing labels] (https://cloud.google.com/recaptcha-enterprise/docs/labels).",
+          "description": "Optional. See [Creating and managing labels] (https://cloud.google.com/recaptcha/docs/labels).",
           "type": "object"
         },
         "name": {
@@ -1541,7 +1551,7 @@
       "id": "GoogleCloudRecaptchaenterpriseV1MigrateKeyRequest",
       "properties": {
         "skipBillingCheck": {
-          "description": "Optional. If true, skips the billing check. A reCAPTCHA Enterprise key or migrated key behaves differently than a reCAPTCHA (non-Enterprise version) key when you reach a quota limit (see https://cloud.google.com/recaptcha-enterprise/quotas#quota_limit). To avoid any disruption of your usage, we check that a billing account is present. If your usage of reCAPTCHA is under the free quota, you can safely skip the billing check and proceed with the migration. See https://cloud.google.com/recaptcha-enterprise/docs/billing-information.",
+          "description": "Optional. If true, skips the billing check. A reCAPTCHA Enterprise key or migrated key behaves differently than a reCAPTCHA (non-Enterprise version) key when you reach a quota limit (see https://cloud.google.com/recaptcha/quotas#quota_limit). To avoid any disruption of your usage, we check that a billing account is present. If your usage of reCAPTCHA is under the free quota, you can safely skip the billing check and proceed with the migration. See https://cloud.google.com/recaptcha/docs/billing-information.",
           "type": "boolean"
         }
       },

@@ -154,12 +154,12 @@ export namespace firebaseappdistribution_v1alpha {
     /**
      * Required. Steps to be accomplished by the AI
      */
-    steps?: Schema$GoogleFirebaseAppdistroV1alphaAiInstructionsStep[];
+    steps?: Schema$GoogleFirebaseAppdistroV1alphaAiStep[];
   }
   /**
    * A step to be accomplished by the AI
    */
-  export interface Schema$GoogleFirebaseAppdistroV1alphaAiInstructionsStep {
+  export interface Schema$GoogleFirebaseAppdistroV1alphaAiStep {
     /**
      * An assertion to be checked by the AI
      */
@@ -168,6 +168,19 @@ export namespace firebaseappdistribution_v1alpha {
      * A goal to be accomplished by the AI
      */
     goal?: string | null;
+  }
+  /**
+   * Captures the results of an AiStep
+   */
+  export interface Schema$GoogleFirebaseAppdistroV1alphaAiStepResult {
+    /**
+     * Output only. The current state of the step
+     */
+    state?: string | null;
+    /**
+     * Required. The step performed by the AI
+     */
+    step?: Schema$GoogleFirebaseAppdistroV1alphaAiStep;
   }
   export interface Schema$GoogleFirebaseAppdistroV1alphaApp {
     /**
@@ -223,6 +236,10 @@ export namespace firebaseappdistribution_v1alpha {
    * The results of running an automated test on a particular device.
    */
   export interface Schema$GoogleFirebaseAppdistroV1alphaDeviceExecution {
+    /**
+     * Output only. Results of the AI steps if passed in
+     */
+    aiStepResults?: Schema$GoogleFirebaseAppdistroV1alphaAiStepResult[];
     /**
      * Output only. An app crash, if any occurred during the test.
      */

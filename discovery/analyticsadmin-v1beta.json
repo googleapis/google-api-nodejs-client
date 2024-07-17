@@ -1253,35 +1253,6 @@
             }
           },
           "resources": {
-            "eventEditRules": {
-              "methods": {
-                "reorder": {
-                  "description": "Changes the processing order of event edit rules on the specified stream.",
-                  "flatPath": "v1beta/properties/{propertiesId}/dataStreams/{dataStreamsId}/eventEditRules:reorder",
-                  "httpMethod": "POST",
-                  "id": "analyticsadmin.properties.dataStreams.eventEditRules.reorder",
-                  "parameterOrder": [
-                    "parent"
-                  ],
-                  "parameters": {
-                    "parent": {
-                      "description": "Required. Example format: properties/123/dataStreams/456",
-                      "location": "path",
-                      "pattern": "^properties/[^/]+/dataStreams/[^/]+$",
-                      "required": true,
-                      "type": "string"
-                    }
-                  },
-                  "path": "v1beta/{+parent}/eventEditRules:reorder",
-                  "request": {
-                    "$ref": "GoogleAnalyticsAdminV1betaReorderEventEditRulesRequest"
-                  },
-                  "response": {
-                    "$ref": "GoogleProtobufEmpty"
-                  }
-                }
-              }
-            },
             "measurementProtocolSecrets": {
               "methods": {
                 "create": {
@@ -1817,7 +1788,7 @@
       }
     }
   },
-  "revision": "20240529",
+  "revision": "20240715",
   "rootUrl": "https://analyticsadmin.googleapis.com/",
   "schemas": {
     "GoogleAnalyticsAdminV1betaAccessBetweenFilter": {
@@ -3348,20 +3319,6 @@
         "accountTicketId": {
           "description": "The param to be passed in the ToS link.",
           "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "GoogleAnalyticsAdminV1betaReorderEventEditRulesRequest": {
-      "description": "Request message for ReorderEventEditRules RPC.",
-      "id": "GoogleAnalyticsAdminV1betaReorderEventEditRulesRequest",
-      "properties": {
-        "eventEditRules": {
-          "description": "Required. EventEditRule resource names for the specified data stream, in the needed processing order. All EventEditRules for the stream must be present in the list.",
-          "items": {
-            "type": "string"
-          },
-          "type": "array"
         }
       },
       "type": "object"

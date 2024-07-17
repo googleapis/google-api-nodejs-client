@@ -881,6 +881,10 @@ export namespace analyticsadmin_v1alpha {
      */
     dailyExportEnabled?: boolean | null;
     /**
+     * Required. Immutable. The geographic location where the created BigQuery dataset should reside. See https://cloud.google.com/bigquery/docs/locations for supported locations.
+     */
+    datasetLocation?: string | null;
+    /**
      * The list of event names that will be excluded from exports.
      */
     excludedEvents?: string[] | null;
@@ -2573,15 +2577,6 @@ export namespace analyticsadmin_v1alpha {
      * The param to be passed in the ToS link.
      */
     accountTicketId?: string | null;
-  }
-  /**
-   * Request message for ReorderEventEditRules RPC.
-   */
-  export interface Schema$GoogleAnalyticsAdminV1alphaReorderEventEditRulesRequest {
-    /**
-     * Required. EventEditRule resource names for the specified data stream, in the needed processing order. All EventEditRules for the stream must be present in the list.
-     */
-    eventEditRules?: string[] | null;
   }
   /**
    * A link that references a source property under the parent rollup property.
@@ -9073,6 +9068,193 @@ export namespace analyticsadmin_v1alpha {
     }
 
     /**
+     * Creates a BigQueryLink.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Properties$Bigquerylinks$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Properties$Bigquerylinks$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaBigQueryLink>;
+    create(
+      params: Params$Resource$Properties$Bigquerylinks$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Properties$Bigquerylinks$Create,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaBigQueryLink>,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaBigQueryLink>
+    ): void;
+    create(
+      params: Params$Resource$Properties$Bigquerylinks$Create,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaBigQueryLink>
+    ): void;
+    create(
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaBigQueryLink>
+    ): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Properties$Bigquerylinks$Create
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaBigQueryLink>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaBigQueryLink>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaBigQueryLink>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaBigQueryLink>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Properties$Bigquerylinks$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Properties$Bigquerylinks$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://analyticsadmin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+parent}/bigQueryLinks').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaBigQueryLink>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaBigQueryLink>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Deletes a BigQueryLink on a property.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Properties$Bigquerylinks$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Properties$Bigquerylinks$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    delete(
+      params: Params$Resource$Properties$Bigquerylinks$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Properties$Bigquerylinks$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+    ): void;
+    delete(
+      params: Params$Resource$Properties$Bigquerylinks$Delete,
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Properties$Bigquerylinks$Delete
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleProtobufEmpty>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Properties$Bigquerylinks$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Properties$Bigquerylinks$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://analyticsadmin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleProtobufEmpty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
+      }
+    }
+
+    /**
      * Lookup for a single BigQuery Link.
      *
      * @param params - Parameters for request
@@ -9264,8 +9446,122 @@ export namespace analyticsadmin_v1alpha {
         );
       }
     }
+
+    /**
+     * Updates a BigQueryLink.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Properties$Bigquerylinks$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Properties$Bigquerylinks$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaBigQueryLink>;
+    patch(
+      params: Params$Resource$Properties$Bigquerylinks$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Properties$Bigquerylinks$Patch,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaBigQueryLink>,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaBigQueryLink>
+    ): void;
+    patch(
+      params: Params$Resource$Properties$Bigquerylinks$Patch,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaBigQueryLink>
+    ): void;
+    patch(
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaBigQueryLink>
+    ): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Properties$Bigquerylinks$Patch
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaBigQueryLink>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaBigQueryLink>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaBigQueryLink>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaBigQueryLink>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Properties$Bigquerylinks$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Properties$Bigquerylinks$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://analyticsadmin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaBigQueryLink>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaBigQueryLink>(
+          parameters
+        );
+      }
+    }
   }
 
+  export interface Params$Resource$Properties$Bigquerylinks$Create
+    extends StandardParameters {
+    /**
+     * Required. Example format: properties/1234
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleAnalyticsAdminV1alphaBigQueryLink;
+  }
+  export interface Params$Resource$Properties$Bigquerylinks$Delete
+    extends StandardParameters {
+    /**
+     * Required. The BigQueryLink to delete. Example format: properties/1234/bigQueryLinks/5678
+     */
+    name?: string;
+  }
   export interface Params$Resource$Properties$Bigquerylinks$Get
     extends StandardParameters {
     /**
@@ -9287,6 +9583,22 @@ export namespace analyticsadmin_v1alpha {
      * Required. The name of the property to list BigQuery links under. Format: properties/{property_id\} Example: properties/1234
      */
     parent?: string;
+  }
+  export interface Params$Resource$Properties$Bigquerylinks$Patch
+    extends StandardParameters {
+    /**
+     * Output only. Resource name of this BigQuery link. Format: 'properties/{property_id\}/bigQueryLinks/{bigquery_link_id\}' Format: 'properties/1234/bigQueryLinks/abc567'
+     */
+    name?: string;
+    /**
+     * Required. The list of fields to be updated. Field names must be in snake case (e.g., "field_to_update"). Omitted fields will not be updated. To replace the entire entity, use one path with the string "*" to match all fields.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleAnalyticsAdminV1alphaBigQueryLink;
   }
 
   export class Resource$Properties$Calculatedmetrics {
@@ -12012,16 +12324,12 @@ export namespace analyticsadmin_v1alpha {
   export class Resource$Properties$Datastreams {
     context: APIRequestContext;
     eventCreateRules: Resource$Properties$Datastreams$Eventcreaterules;
-    eventEditRules: Resource$Properties$Datastreams$Eventeditrules;
     measurementProtocolSecrets: Resource$Properties$Datastreams$Measurementprotocolsecrets;
     sKAdNetworkConversionValueSchema: Resource$Properties$Datastreams$Skadnetworkconversionvalueschema;
     constructor(context: APIRequestContext) {
       this.context = context;
       this.eventCreateRules =
         new Resource$Properties$Datastreams$Eventcreaterules(this.context);
-      this.eventEditRules = new Resource$Properties$Datastreams$Eventeditrules(
-        this.context
-      );
       this.measurementProtocolSecrets =
         new Resource$Properties$Datastreams$Measurementprotocolsecrets(
           this.context
@@ -13641,118 +13949,6 @@ export namespace analyticsadmin_v1alpha {
      * Request body metadata
      */
     requestBody?: Schema$GoogleAnalyticsAdminV1alphaEventCreateRule;
-  }
-
-  export class Resource$Properties$Datastreams$Eventeditrules {
-    context: APIRequestContext;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-    }
-
-    /**
-     * Changes the processing order of event edit rules on the specified stream.
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    reorder(
-      params: Params$Resource$Properties$Datastreams$Eventeditrules$Reorder,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    reorder(
-      params?: Params$Resource$Properties$Datastreams$Eventeditrules$Reorder,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
-    reorder(
-      params: Params$Resource$Properties$Datastreams$Eventeditrules$Reorder,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    reorder(
-      params: Params$Resource$Properties$Datastreams$Eventeditrules$Reorder,
-      options: MethodOptions | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
-      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
-    ): void;
-    reorder(
-      params: Params$Resource$Properties$Datastreams$Eventeditrules$Reorder,
-      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
-    ): void;
-    reorder(callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>): void;
-    reorder(
-      paramsOrCallback?:
-        | Params$Resource$Properties$Datastreams$Eventeditrules$Reorder
-        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$GoogleProtobufEmpty>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Properties$Datastreams$Eventeditrules$Reorder;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Properties$Datastreams$Eventeditrules$Reorder;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl =
-        options.rootUrl || 'https://analyticsadmin.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (
-              rootUrl + '/v1alpha/{+parent}/eventEditRules:reorder'
-            ).replace(/([^:]\/)\/+/g, '$1'),
-            method: 'POST',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['parent'],
-        pathParams: ['parent'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleProtobufEmpty>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
-      }
-    }
-  }
-
-  export interface Params$Resource$Properties$Datastreams$Eventeditrules$Reorder
-    extends StandardParameters {
-    /**
-     * Required. Example format: properties/123/dataStreams/456
-     */
-    parent?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$GoogleAnalyticsAdminV1alphaReorderEventEditRulesRequest;
   }
 
   export class Resource$Properties$Datastreams$Measurementprotocolsecrets {

@@ -1409,7 +1409,7 @@ export namespace merchantapi_accounts_v1beta {
      */
     accepted?: Schema$Accepted;
     /**
-     * Identifier. The resource name of the terms of service version. Format: `accounts/{account\}/termsOfServiceAgreementState/{identifier\}`
+     * Identifier. The resource name of the terms of service version. Format: `accounts/{account\}/termsOfServiceAgreementState/{identifier\}` The identifier format is: `{TermsOfServiceKind\}-{country\}` For example, an identifier could be: `MERCHANT_CENTER-US`
      */
     name?: string | null;
     /**
@@ -1595,6 +1595,9 @@ export namespace merchantapi_accounts_v1beta {
   export class Resource$Accounts {
     context: APIRequestContext;
     accounttax: Resource$Accounts$Accounttax;
+    businessIdentity: Resource$Accounts$Businessidentity;
+    businessInfo: Resource$Accounts$Businessinfo;
+    emailpreferences: Resource$Accounts$Emailpreferences;
     homepage: Resource$Accounts$Homepage;
     issues: Resource$Accounts$Issues;
     onlineReturnPolicies: Resource$Accounts$Onlinereturnpolicies;
@@ -1606,6 +1609,13 @@ export namespace merchantapi_accounts_v1beta {
     constructor(context: APIRequestContext) {
       this.context = context;
       this.accounttax = new Resource$Accounts$Accounttax(this.context);
+      this.businessIdentity = new Resource$Accounts$Businessidentity(
+        this.context
+      );
+      this.businessInfo = new Resource$Accounts$Businessinfo(this.context);
+      this.emailpreferences = new Resource$Accounts$Emailpreferences(
+        this.context
+      );
       this.homepage = new Resource$Accounts$Homepage(this.context);
       this.issues = new Resource$Accounts$Issues(this.context);
       this.onlineReturnPolicies = new Resource$Accounts$Onlinereturnpolicies(
@@ -1883,362 +1893,6 @@ export namespace merchantapi_accounts_v1beta {
     }
 
     /**
-     * Retrieves the business identity of an account.
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    getBusinessIdentity(
-      params: Params$Resource$Accounts$Getbusinessidentity,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    getBusinessIdentity(
-      params?: Params$Resource$Accounts$Getbusinessidentity,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$BusinessIdentity>;
-    getBusinessIdentity(
-      params: Params$Resource$Accounts$Getbusinessidentity,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    getBusinessIdentity(
-      params: Params$Resource$Accounts$Getbusinessidentity,
-      options: MethodOptions | BodyResponseCallback<Schema$BusinessIdentity>,
-      callback: BodyResponseCallback<Schema$BusinessIdentity>
-    ): void;
-    getBusinessIdentity(
-      params: Params$Resource$Accounts$Getbusinessidentity,
-      callback: BodyResponseCallback<Schema$BusinessIdentity>
-    ): void;
-    getBusinessIdentity(
-      callback: BodyResponseCallback<Schema$BusinessIdentity>
-    ): void;
-    getBusinessIdentity(
-      paramsOrCallback?:
-        | Params$Resource$Accounts$Getbusinessidentity
-        | BodyResponseCallback<Schema$BusinessIdentity>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$BusinessIdentity>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$BusinessIdentity>
-        | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$BusinessIdentity> | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Accounts$Getbusinessidentity;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Accounts$Getbusinessidentity;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://merchantapi.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/accounts/v1beta/{+name}').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'GET',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$BusinessIdentity>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$BusinessIdentity>(parameters);
-      }
-    }
-
-    /**
-     * Retrieves the business info of an account.
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    getBusinessInfo(
-      params: Params$Resource$Accounts$Getbusinessinfo,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    getBusinessInfo(
-      params?: Params$Resource$Accounts$Getbusinessinfo,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$BusinessInfo>;
-    getBusinessInfo(
-      params: Params$Resource$Accounts$Getbusinessinfo,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    getBusinessInfo(
-      params: Params$Resource$Accounts$Getbusinessinfo,
-      options: MethodOptions | BodyResponseCallback<Schema$BusinessInfo>,
-      callback: BodyResponseCallback<Schema$BusinessInfo>
-    ): void;
-    getBusinessInfo(
-      params: Params$Resource$Accounts$Getbusinessinfo,
-      callback: BodyResponseCallback<Schema$BusinessInfo>
-    ): void;
-    getBusinessInfo(callback: BodyResponseCallback<Schema$BusinessInfo>): void;
-    getBusinessInfo(
-      paramsOrCallback?:
-        | Params$Resource$Accounts$Getbusinessinfo
-        | BodyResponseCallback<Schema$BusinessInfo>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$BusinessInfo>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$BusinessInfo>
-        | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$BusinessInfo> | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Accounts$Getbusinessinfo;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Accounts$Getbusinessinfo;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://merchantapi.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/accounts/v1beta/{+name}').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'GET',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$BusinessInfo>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$BusinessInfo>(parameters);
-      }
-    }
-
-    /**
-     * Retrieves a store's homepage.
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    getHomepage(
-      params: Params$Resource$Accounts$Gethomepage,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    getHomepage(
-      params?: Params$Resource$Accounts$Gethomepage,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$Homepage>;
-    getHomepage(
-      params: Params$Resource$Accounts$Gethomepage,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    getHomepage(
-      params: Params$Resource$Accounts$Gethomepage,
-      options: MethodOptions | BodyResponseCallback<Schema$Homepage>,
-      callback: BodyResponseCallback<Schema$Homepage>
-    ): void;
-    getHomepage(
-      params: Params$Resource$Accounts$Gethomepage,
-      callback: BodyResponseCallback<Schema$Homepage>
-    ): void;
-    getHomepage(callback: BodyResponseCallback<Schema$Homepage>): void;
-    getHomepage(
-      paramsOrCallback?:
-        | Params$Resource$Accounts$Gethomepage
-        | BodyResponseCallback<Schema$Homepage>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$Homepage>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$Homepage>
-        | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Homepage> | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Accounts$Gethomepage;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Accounts$Gethomepage;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://merchantapi.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/accounts/v1beta/{+name}').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'GET',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$Homepage>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$Homepage>(parameters);
-      }
-    }
-
-    /**
-     * Retrieve shipping setting information.
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    getShippingSettings(
-      params: Params$Resource$Accounts$Getshippingsettings,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    getShippingSettings(
-      params?: Params$Resource$Accounts$Getshippingsettings,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$ShippingSettings>;
-    getShippingSettings(
-      params: Params$Resource$Accounts$Getshippingsettings,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    getShippingSettings(
-      params: Params$Resource$Accounts$Getshippingsettings,
-      options: MethodOptions | BodyResponseCallback<Schema$ShippingSettings>,
-      callback: BodyResponseCallback<Schema$ShippingSettings>
-    ): void;
-    getShippingSettings(
-      params: Params$Resource$Accounts$Getshippingsettings,
-      callback: BodyResponseCallback<Schema$ShippingSettings>
-    ): void;
-    getShippingSettings(
-      callback: BodyResponseCallback<Schema$ShippingSettings>
-    ): void;
-    getShippingSettings(
-      paramsOrCallback?:
-        | Params$Resource$Accounts$Getshippingsettings
-        | BodyResponseCallback<Schema$ShippingSettings>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$ShippingSettings>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$ShippingSettings>
-        | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ShippingSettings> | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Accounts$Getshippingsettings;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Accounts$Getshippingsettings;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://merchantapi.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/accounts/v1beta/{+name}').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'GET',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$ShippingSettings>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$ShippingSettings>(parameters);
-      }
-    }
-
-    /**
      * Lists accounts accessible to the calling user and matching the constraints of the request such as page size or filters. This is not just listing the sub-accounts of an MCA, but all accounts the calling user has access to including other MCAs, linked accounts, standalone accounts and so on.
      *
      * @param params - Parameters for request
@@ -2510,274 +2164,6 @@ export namespace merchantapi_accounts_v1beta {
         return createAPIRequest<Schema$Account>(parameters);
       }
     }
-
-    /**
-     * Updates the business identity of an account. Executing this method requires admin access.
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    updateBusinessIdentity(
-      params: Params$Resource$Accounts$Updatebusinessidentity,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    updateBusinessIdentity(
-      params?: Params$Resource$Accounts$Updatebusinessidentity,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$BusinessIdentity>;
-    updateBusinessIdentity(
-      params: Params$Resource$Accounts$Updatebusinessidentity,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    updateBusinessIdentity(
-      params: Params$Resource$Accounts$Updatebusinessidentity,
-      options: MethodOptions | BodyResponseCallback<Schema$BusinessIdentity>,
-      callback: BodyResponseCallback<Schema$BusinessIdentity>
-    ): void;
-    updateBusinessIdentity(
-      params: Params$Resource$Accounts$Updatebusinessidentity,
-      callback: BodyResponseCallback<Schema$BusinessIdentity>
-    ): void;
-    updateBusinessIdentity(
-      callback: BodyResponseCallback<Schema$BusinessIdentity>
-    ): void;
-    updateBusinessIdentity(
-      paramsOrCallback?:
-        | Params$Resource$Accounts$Updatebusinessidentity
-        | BodyResponseCallback<Schema$BusinessIdentity>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$BusinessIdentity>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$BusinessIdentity>
-        | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$BusinessIdentity> | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Accounts$Updatebusinessidentity;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Accounts$Updatebusinessidentity;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://merchantapi.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/accounts/v1beta/{+name}').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'PATCH',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$BusinessIdentity>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$BusinessIdentity>(parameters);
-      }
-    }
-
-    /**
-     * Updates the business info of an account. Executing this method requires admin access.
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    updateBusinessInfo(
-      params: Params$Resource$Accounts$Updatebusinessinfo,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    updateBusinessInfo(
-      params?: Params$Resource$Accounts$Updatebusinessinfo,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$BusinessInfo>;
-    updateBusinessInfo(
-      params: Params$Resource$Accounts$Updatebusinessinfo,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    updateBusinessInfo(
-      params: Params$Resource$Accounts$Updatebusinessinfo,
-      options: MethodOptions | BodyResponseCallback<Schema$BusinessInfo>,
-      callback: BodyResponseCallback<Schema$BusinessInfo>
-    ): void;
-    updateBusinessInfo(
-      params: Params$Resource$Accounts$Updatebusinessinfo,
-      callback: BodyResponseCallback<Schema$BusinessInfo>
-    ): void;
-    updateBusinessInfo(
-      callback: BodyResponseCallback<Schema$BusinessInfo>
-    ): void;
-    updateBusinessInfo(
-      paramsOrCallback?:
-        | Params$Resource$Accounts$Updatebusinessinfo
-        | BodyResponseCallback<Schema$BusinessInfo>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$BusinessInfo>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$BusinessInfo>
-        | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$BusinessInfo> | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Accounts$Updatebusinessinfo;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Accounts$Updatebusinessinfo;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://merchantapi.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/accounts/v1beta/{+name}').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'PATCH',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$BusinessInfo>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$BusinessInfo>(parameters);
-      }
-    }
-
-    /**
-     * Updates a store's homepage. Executing this method requires admin access.
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    updateHomepage(
-      params: Params$Resource$Accounts$Updatehomepage,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    updateHomepage(
-      params?: Params$Resource$Accounts$Updatehomepage,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$Homepage>;
-    updateHomepage(
-      params: Params$Resource$Accounts$Updatehomepage,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    updateHomepage(
-      params: Params$Resource$Accounts$Updatehomepage,
-      options: MethodOptions | BodyResponseCallback<Schema$Homepage>,
-      callback: BodyResponseCallback<Schema$Homepage>
-    ): void;
-    updateHomepage(
-      params: Params$Resource$Accounts$Updatehomepage,
-      callback: BodyResponseCallback<Schema$Homepage>
-    ): void;
-    updateHomepage(callback: BodyResponseCallback<Schema$Homepage>): void;
-    updateHomepage(
-      paramsOrCallback?:
-        | Params$Resource$Accounts$Updatehomepage
-        | BodyResponseCallback<Schema$Homepage>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$Homepage>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$Homepage>
-        | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Homepage> | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Accounts$Updatehomepage;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Accounts$Updatehomepage;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://merchantapi.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/accounts/v1beta/{+name}').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'PATCH',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$Homepage>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$Homepage>(parameters);
-      }
-    }
   }
 
   export interface Params$Resource$Accounts$Createandconfigure
@@ -2796,34 +2182,6 @@ export namespace merchantapi_accounts_v1beta {
   export interface Params$Resource$Accounts$Get extends StandardParameters {
     /**
      * Required. The name of the account to retrieve. Format: `accounts/{account\}`
-     */
-    name?: string;
-  }
-  export interface Params$Resource$Accounts$Getbusinessidentity
-    extends StandardParameters {
-    /**
-     * Required. The resource name of the business identity. Format: `accounts/{account\}/businessIdentity`
-     */
-    name?: string;
-  }
-  export interface Params$Resource$Accounts$Getbusinessinfo
-    extends StandardParameters {
-    /**
-     * Required. The resource name of the business info. Format: `accounts/{account\}/businessInfo`
-     */
-    name?: string;
-  }
-  export interface Params$Resource$Accounts$Gethomepage
-    extends StandardParameters {
-    /**
-     * Required. The name of the homepage to retrieve. Format: `accounts/{account\}/homepage`
-     */
-    name?: string;
-  }
-  export interface Params$Resource$Accounts$Getshippingsettings
-    extends StandardParameters {
-    /**
-     * Required. The name of the shipping setting to retrieve. Format: `accounts/{account\}/shippingsetting`
      */
     name?: string;
   }
@@ -2870,54 +2228,6 @@ export namespace merchantapi_accounts_v1beta {
      * Request body metadata
      */
     requestBody?: Schema$Account;
-  }
-  export interface Params$Resource$Accounts$Updatebusinessidentity
-    extends StandardParameters {
-    /**
-     * Identifier. The resource name of the business identity. Format: `accounts/{account\}/businessIdentity`
-     */
-    name?: string;
-    /**
-     * Required. List of fields being updated.
-     */
-    updateMask?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$BusinessIdentity;
-  }
-  export interface Params$Resource$Accounts$Updatebusinessinfo
-    extends StandardParameters {
-    /**
-     * Identifier. The resource name of the business info. Format: `accounts/{account\}/businessInfo`
-     */
-    name?: string;
-    /**
-     * Required. List of fields being updated.
-     */
-    updateMask?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$BusinessInfo;
-  }
-  export interface Params$Resource$Accounts$Updatehomepage
-    extends StandardParameters {
-    /**
-     * Identifier. The resource name of the store's homepage. Format: `accounts/{account\}/homepage`
-     */
-    name?: string;
-    /**
-     * Required. List of fields being updated.
-     */
-    updateMask?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$Homepage;
   }
 
   export class Resource$Accounts$Accounttax {
@@ -3235,6 +2545,641 @@ export namespace merchantapi_accounts_v1beta {
     requestBody?: Schema$AccountTax;
   }
 
+  export class Resource$Accounts$Businessidentity {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Retrieves the business identity of an account.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getBusinessIdentity(
+      params: Params$Resource$Accounts$Businessidentity$Getbusinessidentity,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getBusinessIdentity(
+      params?: Params$Resource$Accounts$Businessidentity$Getbusinessidentity,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$BusinessIdentity>;
+    getBusinessIdentity(
+      params: Params$Resource$Accounts$Businessidentity$Getbusinessidentity,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getBusinessIdentity(
+      params: Params$Resource$Accounts$Businessidentity$Getbusinessidentity,
+      options: MethodOptions | BodyResponseCallback<Schema$BusinessIdentity>,
+      callback: BodyResponseCallback<Schema$BusinessIdentity>
+    ): void;
+    getBusinessIdentity(
+      params: Params$Resource$Accounts$Businessidentity$Getbusinessidentity,
+      callback: BodyResponseCallback<Schema$BusinessIdentity>
+    ): void;
+    getBusinessIdentity(
+      callback: BodyResponseCallback<Schema$BusinessIdentity>
+    ): void;
+    getBusinessIdentity(
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Businessidentity$Getbusinessidentity
+        | BodyResponseCallback<Schema$BusinessIdentity>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$BusinessIdentity>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$BusinessIdentity>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$BusinessIdentity> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Businessidentity$Getbusinessidentity;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Accounts$Businessidentity$Getbusinessidentity;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://merchantapi.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/accounts/v1beta/{+name}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$BusinessIdentity>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$BusinessIdentity>(parameters);
+      }
+    }
+
+    /**
+     * Updates the business identity of an account. Executing this method requires admin access.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    updateBusinessIdentity(
+      params: Params$Resource$Accounts$Businessidentity$Updatebusinessidentity,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    updateBusinessIdentity(
+      params?: Params$Resource$Accounts$Businessidentity$Updatebusinessidentity,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$BusinessIdentity>;
+    updateBusinessIdentity(
+      params: Params$Resource$Accounts$Businessidentity$Updatebusinessidentity,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    updateBusinessIdentity(
+      params: Params$Resource$Accounts$Businessidentity$Updatebusinessidentity,
+      options: MethodOptions | BodyResponseCallback<Schema$BusinessIdentity>,
+      callback: BodyResponseCallback<Schema$BusinessIdentity>
+    ): void;
+    updateBusinessIdentity(
+      params: Params$Resource$Accounts$Businessidentity$Updatebusinessidentity,
+      callback: BodyResponseCallback<Schema$BusinessIdentity>
+    ): void;
+    updateBusinessIdentity(
+      callback: BodyResponseCallback<Schema$BusinessIdentity>
+    ): void;
+    updateBusinessIdentity(
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Businessidentity$Updatebusinessidentity
+        | BodyResponseCallback<Schema$BusinessIdentity>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$BusinessIdentity>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$BusinessIdentity>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$BusinessIdentity> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Businessidentity$Updatebusinessidentity;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Accounts$Businessidentity$Updatebusinessidentity;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://merchantapi.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/accounts/v1beta/{+name}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$BusinessIdentity>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$BusinessIdentity>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Accounts$Businessidentity$Getbusinessidentity
+    extends StandardParameters {
+    /**
+     * Required. The resource name of the business identity. Format: `accounts/{account\}/businessIdentity`
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Accounts$Businessidentity$Updatebusinessidentity
+    extends StandardParameters {
+    /**
+     * Identifier. The resource name of the business identity. Format: `accounts/{account\}/businessIdentity`
+     */
+    name?: string;
+    /**
+     * Required. List of fields being updated.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$BusinessIdentity;
+  }
+
+  export class Resource$Accounts$Businessinfo {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Retrieves the business info of an account.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getBusinessInfo(
+      params: Params$Resource$Accounts$Businessinfo$Getbusinessinfo,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getBusinessInfo(
+      params?: Params$Resource$Accounts$Businessinfo$Getbusinessinfo,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$BusinessInfo>;
+    getBusinessInfo(
+      params: Params$Resource$Accounts$Businessinfo$Getbusinessinfo,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getBusinessInfo(
+      params: Params$Resource$Accounts$Businessinfo$Getbusinessinfo,
+      options: MethodOptions | BodyResponseCallback<Schema$BusinessInfo>,
+      callback: BodyResponseCallback<Schema$BusinessInfo>
+    ): void;
+    getBusinessInfo(
+      params: Params$Resource$Accounts$Businessinfo$Getbusinessinfo,
+      callback: BodyResponseCallback<Schema$BusinessInfo>
+    ): void;
+    getBusinessInfo(callback: BodyResponseCallback<Schema$BusinessInfo>): void;
+    getBusinessInfo(
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Businessinfo$Getbusinessinfo
+        | BodyResponseCallback<Schema$BusinessInfo>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$BusinessInfo>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$BusinessInfo>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$BusinessInfo> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Businessinfo$Getbusinessinfo;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accounts$Businessinfo$Getbusinessinfo;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://merchantapi.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/accounts/v1beta/{+name}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$BusinessInfo>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$BusinessInfo>(parameters);
+      }
+    }
+
+    /**
+     * Updates the business info of an account. Executing this method requires admin access.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    updateBusinessInfo(
+      params: Params$Resource$Accounts$Businessinfo$Updatebusinessinfo,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    updateBusinessInfo(
+      params?: Params$Resource$Accounts$Businessinfo$Updatebusinessinfo,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$BusinessInfo>;
+    updateBusinessInfo(
+      params: Params$Resource$Accounts$Businessinfo$Updatebusinessinfo,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    updateBusinessInfo(
+      params: Params$Resource$Accounts$Businessinfo$Updatebusinessinfo,
+      options: MethodOptions | BodyResponseCallback<Schema$BusinessInfo>,
+      callback: BodyResponseCallback<Schema$BusinessInfo>
+    ): void;
+    updateBusinessInfo(
+      params: Params$Resource$Accounts$Businessinfo$Updatebusinessinfo,
+      callback: BodyResponseCallback<Schema$BusinessInfo>
+    ): void;
+    updateBusinessInfo(
+      callback: BodyResponseCallback<Schema$BusinessInfo>
+    ): void;
+    updateBusinessInfo(
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Businessinfo$Updatebusinessinfo
+        | BodyResponseCallback<Schema$BusinessInfo>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$BusinessInfo>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$BusinessInfo>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$BusinessInfo> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Businessinfo$Updatebusinessinfo;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accounts$Businessinfo$Updatebusinessinfo;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://merchantapi.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/accounts/v1beta/{+name}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$BusinessInfo>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$BusinessInfo>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Accounts$Businessinfo$Getbusinessinfo
+    extends StandardParameters {
+    /**
+     * Required. The resource name of the business info. Format: `accounts/{account\}/businessInfo`
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Accounts$Businessinfo$Updatebusinessinfo
+    extends StandardParameters {
+    /**
+     * Identifier. The resource name of the business info. Format: `accounts/{account\}/businessInfo`
+     */
+    name?: string;
+    /**
+     * Required. List of fields being updated.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$BusinessInfo;
+  }
+
+  export class Resource$Accounts$Emailpreferences {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Returns the email preferences for a Merchant Center account user. Use the name=accounts/x/users/me/emailPreferences alias to get preferences for the authenticated user.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getEmailPreferences(
+      params: Params$Resource$Accounts$Emailpreferences$Getemailpreferences,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getEmailPreferences(
+      params?: Params$Resource$Accounts$Emailpreferences$Getemailpreferences,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$EmailPreferences>;
+    getEmailPreferences(
+      params: Params$Resource$Accounts$Emailpreferences$Getemailpreferences,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getEmailPreferences(
+      params: Params$Resource$Accounts$Emailpreferences$Getemailpreferences,
+      options: MethodOptions | BodyResponseCallback<Schema$EmailPreferences>,
+      callback: BodyResponseCallback<Schema$EmailPreferences>
+    ): void;
+    getEmailPreferences(
+      params: Params$Resource$Accounts$Emailpreferences$Getemailpreferences,
+      callback: BodyResponseCallback<Schema$EmailPreferences>
+    ): void;
+    getEmailPreferences(
+      callback: BodyResponseCallback<Schema$EmailPreferences>
+    ): void;
+    getEmailPreferences(
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Emailpreferences$Getemailpreferences
+        | BodyResponseCallback<Schema$EmailPreferences>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$EmailPreferences>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$EmailPreferences>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$EmailPreferences> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Emailpreferences$Getemailpreferences;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Accounts$Emailpreferences$Getemailpreferences;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://merchantapi.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/accounts/v1beta/{+name}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$EmailPreferences>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$EmailPreferences>(parameters);
+      }
+    }
+
+    /**
+     * Updates the email preferences for a Merchant Center account user. MCA users should specify the MCA account rather than a sub-account of the MCA. Preferences which are not explicitly selected in the update mask will not be updated. It is invalid for updates to specify an UNCONFIRMED opt-in status value. Use the name=accounts/x/users/me/emailPreferences alias to update preferences for the authenticated user.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    updateEmailPreferences(
+      params: Params$Resource$Accounts$Emailpreferences$Updateemailpreferences,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    updateEmailPreferences(
+      params?: Params$Resource$Accounts$Emailpreferences$Updateemailpreferences,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$EmailPreferences>;
+    updateEmailPreferences(
+      params: Params$Resource$Accounts$Emailpreferences$Updateemailpreferences,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    updateEmailPreferences(
+      params: Params$Resource$Accounts$Emailpreferences$Updateemailpreferences,
+      options: MethodOptions | BodyResponseCallback<Schema$EmailPreferences>,
+      callback: BodyResponseCallback<Schema$EmailPreferences>
+    ): void;
+    updateEmailPreferences(
+      params: Params$Resource$Accounts$Emailpreferences$Updateemailpreferences,
+      callback: BodyResponseCallback<Schema$EmailPreferences>
+    ): void;
+    updateEmailPreferences(
+      callback: BodyResponseCallback<Schema$EmailPreferences>
+    ): void;
+    updateEmailPreferences(
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Emailpreferences$Updateemailpreferences
+        | BodyResponseCallback<Schema$EmailPreferences>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$EmailPreferences>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$EmailPreferences>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$EmailPreferences> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Emailpreferences$Updateemailpreferences;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Accounts$Emailpreferences$Updateemailpreferences;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://merchantapi.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/accounts/v1beta/{+name}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$EmailPreferences>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$EmailPreferences>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Accounts$Emailpreferences$Getemailpreferences
+    extends StandardParameters {
+    /**
+     * Required. The name of the `EmailPreferences` resource. Format: `accounts/{account\}/users/{email\}/emailPreferences`
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Accounts$Emailpreferences$Updateemailpreferences
+    extends StandardParameters {
+    /**
+     * Identifier. The name of the EmailPreferences. The endpoint is only supported for the authenticated user.
+     */
+    name?: string;
+    /**
+     * Required. List of fields being updated.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$EmailPreferences;
+  }
+
   export class Resource$Accounts$Homepage {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
@@ -3310,6 +3255,94 @@ export namespace merchantapi_accounts_v1beta {
               '$1'
             ),
             method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Homepage>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Homepage>(parameters);
+      }
+    }
+
+    /**
+     * Retrieves a store's homepage.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getHomepage(
+      params: Params$Resource$Accounts$Homepage$Gethomepage,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getHomepage(
+      params?: Params$Resource$Accounts$Homepage$Gethomepage,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Homepage>;
+    getHomepage(
+      params: Params$Resource$Accounts$Homepage$Gethomepage,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getHomepage(
+      params: Params$Resource$Accounts$Homepage$Gethomepage,
+      options: MethodOptions | BodyResponseCallback<Schema$Homepage>,
+      callback: BodyResponseCallback<Schema$Homepage>
+    ): void;
+    getHomepage(
+      params: Params$Resource$Accounts$Homepage$Gethomepage,
+      callback: BodyResponseCallback<Schema$Homepage>
+    ): void;
+    getHomepage(callback: BodyResponseCallback<Schema$Homepage>): void;
+    getHomepage(
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Homepage$Gethomepage
+        | BodyResponseCallback<Schema$Homepage>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Homepage>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Homepage>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Homepage> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Homepage$Gethomepage;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accounts$Homepage$Gethomepage;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://merchantapi.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/accounts/v1beta/{+name}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
             apiVersion: '',
           },
           options
@@ -3416,6 +3449,94 @@ export namespace merchantapi_accounts_v1beta {
         return createAPIRequest<Schema$Homepage>(parameters);
       }
     }
+
+    /**
+     * Updates a store's homepage. Executing this method requires admin access.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    updateHomepage(
+      params: Params$Resource$Accounts$Homepage$Updatehomepage,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    updateHomepage(
+      params?: Params$Resource$Accounts$Homepage$Updatehomepage,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Homepage>;
+    updateHomepage(
+      params: Params$Resource$Accounts$Homepage$Updatehomepage,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    updateHomepage(
+      params: Params$Resource$Accounts$Homepage$Updatehomepage,
+      options: MethodOptions | BodyResponseCallback<Schema$Homepage>,
+      callback: BodyResponseCallback<Schema$Homepage>
+    ): void;
+    updateHomepage(
+      params: Params$Resource$Accounts$Homepage$Updatehomepage,
+      callback: BodyResponseCallback<Schema$Homepage>
+    ): void;
+    updateHomepage(callback: BodyResponseCallback<Schema$Homepage>): void;
+    updateHomepage(
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Homepage$Updatehomepage
+        | BodyResponseCallback<Schema$Homepage>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Homepage>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Homepage>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Homepage> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Homepage$Updatehomepage;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accounts$Homepage$Updatehomepage;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://merchantapi.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/accounts/v1beta/{+name}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Homepage>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Homepage>(parameters);
+      }
+    }
   }
 
   export interface Params$Resource$Accounts$Homepage$Claim
@@ -3430,6 +3551,13 @@ export namespace merchantapi_accounts_v1beta {
      */
     requestBody?: Schema$ClaimHomepageRequest;
   }
+  export interface Params$Resource$Accounts$Homepage$Gethomepage
+    extends StandardParameters {
+    /**
+     * Required. The name of the homepage to retrieve. Format: `accounts/{account\}/homepage`
+     */
+    name?: string;
+  }
   export interface Params$Resource$Accounts$Homepage$Unclaim
     extends StandardParameters {
     /**
@@ -3441,6 +3569,22 @@ export namespace merchantapi_accounts_v1beta {
      * Request body metadata
      */
     requestBody?: Schema$UnclaimHomepageRequest;
+  }
+  export interface Params$Resource$Accounts$Homepage$Updatehomepage
+    extends StandardParameters {
+    /**
+     * Identifier. The resource name of the store's homepage. Format: `accounts/{account\}/homepage`
+     */
+    name?: string;
+    /**
+     * Required. List of fields being updated.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$Homepage;
   }
 
   export class Resource$Accounts$Issues {
@@ -4720,6 +4864,97 @@ export namespace merchantapi_accounts_v1beta {
     }
 
     /**
+     * Retrieve shipping setting information.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getShippingSettings(
+      params: Params$Resource$Accounts$Shippingsettings$Getshippingsettings,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getShippingSettings(
+      params?: Params$Resource$Accounts$Shippingsettings$Getshippingsettings,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ShippingSettings>;
+    getShippingSettings(
+      params: Params$Resource$Accounts$Shippingsettings$Getshippingsettings,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getShippingSettings(
+      params: Params$Resource$Accounts$Shippingsettings$Getshippingsettings,
+      options: MethodOptions | BodyResponseCallback<Schema$ShippingSettings>,
+      callback: BodyResponseCallback<Schema$ShippingSettings>
+    ): void;
+    getShippingSettings(
+      params: Params$Resource$Accounts$Shippingsettings$Getshippingsettings,
+      callback: BodyResponseCallback<Schema$ShippingSettings>
+    ): void;
+    getShippingSettings(
+      callback: BodyResponseCallback<Schema$ShippingSettings>
+    ): void;
+    getShippingSettings(
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Shippingsettings$Getshippingsettings
+        | BodyResponseCallback<Schema$ShippingSettings>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ShippingSettings>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ShippingSettings>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$ShippingSettings> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Shippingsettings$Getshippingsettings;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Accounts$Shippingsettings$Getshippingsettings;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://merchantapi.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/accounts/v1beta/{+name}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ShippingSettings>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ShippingSettings>(parameters);
+      }
+    }
+
+    /**
      * Replace the shipping setting of a merchant with the request shipping setting. Executing this method requires admin access.
      *
      * @param params - Parameters for request
@@ -4807,6 +5042,13 @@ export namespace merchantapi_accounts_v1beta {
     }
   }
 
+  export interface Params$Resource$Accounts$Shippingsettings$Getshippingsettings
+    extends StandardParameters {
+    /**
+     * Required. The name of the shipping setting to retrieve. Format: `accounts/{account\}/shippingsetting`
+     */
+    name?: string;
+  }
   export interface Params$Resource$Accounts$Shippingsettings$Insert
     extends StandardParameters {
     /**
@@ -5026,7 +5268,7 @@ export namespace merchantapi_accounts_v1beta {
   export interface Params$Resource$Accounts$Termsofserviceagreementstates$Get
     extends StandardParameters {
     /**
-     * Required. The resource name of the terms of service version. Format: `accounts/{account\}/termsOfServiceAgreementState/{identifier\}`
+     * Required. The resource name of the terms of service version. Format: `accounts/{account\}/termsOfServiceAgreementState/{identifier\}` The identifier format is: `{TermsOfServiceKind\}-{country\}`
      */
     name?: string;
   }
@@ -5309,96 +5551,6 @@ export namespace merchantapi_accounts_v1beta {
     }
 
     /**
-     * Returns the email preferences for a Merchant Center account user. Use the name=accounts/x/users/me/emailPreferences alias to get preferences for the authenticated user.
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    getEmailPreferences(
-      params: Params$Resource$Accounts$Users$Getemailpreferences,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    getEmailPreferences(
-      params?: Params$Resource$Accounts$Users$Getemailpreferences,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$EmailPreferences>;
-    getEmailPreferences(
-      params: Params$Resource$Accounts$Users$Getemailpreferences,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    getEmailPreferences(
-      params: Params$Resource$Accounts$Users$Getemailpreferences,
-      options: MethodOptions | BodyResponseCallback<Schema$EmailPreferences>,
-      callback: BodyResponseCallback<Schema$EmailPreferences>
-    ): void;
-    getEmailPreferences(
-      params: Params$Resource$Accounts$Users$Getemailpreferences,
-      callback: BodyResponseCallback<Schema$EmailPreferences>
-    ): void;
-    getEmailPreferences(
-      callback: BodyResponseCallback<Schema$EmailPreferences>
-    ): void;
-    getEmailPreferences(
-      paramsOrCallback?:
-        | Params$Resource$Accounts$Users$Getemailpreferences
-        | BodyResponseCallback<Schema$EmailPreferences>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$EmailPreferences>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$EmailPreferences>
-        | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$EmailPreferences> | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Accounts$Users$Getemailpreferences;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Accounts$Users$Getemailpreferences;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://merchantapi.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/accounts/v1beta/{+name}').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'GET',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$EmailPreferences>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$EmailPreferences>(parameters);
-      }
-    }
-
-    /**
      * Lists all users of a Merchant Center account.
      *
      * @param params - Parameters for request
@@ -5576,96 +5728,6 @@ export namespace merchantapi_accounts_v1beta {
         return createAPIRequest<Schema$User>(parameters);
       }
     }
-
-    /**
-     * Updates the email preferences for a Merchant Center account user. MCA users should specify the MCA account rather than a sub-account of the MCA. Preferences which are not explicitly selected in the update mask will not be updated. It is invalid for updates to specify an UNCONFIRMED opt-in status value. Use the name=accounts/x/users/me/emailPreferences alias to update preferences for the authenticated user.
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    updateEmailPreferences(
-      params: Params$Resource$Accounts$Users$Updateemailpreferences,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    updateEmailPreferences(
-      params?: Params$Resource$Accounts$Users$Updateemailpreferences,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$EmailPreferences>;
-    updateEmailPreferences(
-      params: Params$Resource$Accounts$Users$Updateemailpreferences,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    updateEmailPreferences(
-      params: Params$Resource$Accounts$Users$Updateemailpreferences,
-      options: MethodOptions | BodyResponseCallback<Schema$EmailPreferences>,
-      callback: BodyResponseCallback<Schema$EmailPreferences>
-    ): void;
-    updateEmailPreferences(
-      params: Params$Resource$Accounts$Users$Updateemailpreferences,
-      callback: BodyResponseCallback<Schema$EmailPreferences>
-    ): void;
-    updateEmailPreferences(
-      callback: BodyResponseCallback<Schema$EmailPreferences>
-    ): void;
-    updateEmailPreferences(
-      paramsOrCallback?:
-        | Params$Resource$Accounts$Users$Updateemailpreferences
-        | BodyResponseCallback<Schema$EmailPreferences>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$EmailPreferences>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$EmailPreferences>
-        | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$EmailPreferences> | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Accounts$Users$Updateemailpreferences;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Accounts$Users$Updateemailpreferences;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://merchantapi.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/accounts/v1beta/{+name}').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'PATCH',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$EmailPreferences>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$EmailPreferences>(parameters);
-      }
-    }
   }
 
   export interface Params$Resource$Accounts$Users$Create
@@ -5695,13 +5757,6 @@ export namespace merchantapi_accounts_v1beta {
     extends StandardParameters {
     /**
      * Required. The name of the user to retrieve. Format: `accounts/{account\}/users/{email\}` It is also possible to retrieve the user corresponding to the caller by using `me` rather than an email address as in `accounts/{account\}/users/me`.
-     */
-    name?: string;
-  }
-  export interface Params$Resource$Accounts$Users$Getemailpreferences
-    extends StandardParameters {
-    /**
-     * Required. The name of the `EmailPreferences` resource. Format: `accounts/{account\}/users/{email\}/emailPreferences`
      */
     name?: string;
   }
@@ -5735,22 +5790,6 @@ export namespace merchantapi_accounts_v1beta {
      * Request body metadata
      */
     requestBody?: Schema$User;
-  }
-  export interface Params$Resource$Accounts$Users$Updateemailpreferences
-    extends StandardParameters {
-    /**
-     * Identifier. The name of the EmailPreferences. The endpoint is only supported for the authenticated user.
-     */
-    name?: string;
-    /**
-     * Required. List of fields being updated.
-     */
-    updateMask?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$EmailPreferences;
   }
 
   export class Resource$Termsofservice {

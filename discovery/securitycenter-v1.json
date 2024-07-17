@@ -120,7 +120,7 @@
               ],
               "parameters": {
                 "parent": {
-                  "description": "Required. The name of the parent to group the assets by. Its format is \"organizations/[organization_id]\", \"folders/[folder_id]\", or \"projects/[project_id]\".",
+                  "description": "Required. The name of the parent to group the assets by. Its format is `organizations/[organization_id]`, `folders/[folder_id]`, or `projects/[project_id]`.",
                   "location": "path",
                   "pattern": "^folders/[^/]+$",
                   "required": true,
@@ -182,7 +182,7 @@
                   "type": "string"
                 },
                 "parent": {
-                  "description": "Required. The name of the parent resource that contains the assets. The value that you can specify on parent depends on the method in which you specify parent. You can specify one of the following values: \"organizations/[organization_id]\", \"folders/[folder_id]\", or \"projects/[project_id]\".",
+                  "description": "Required. The name of the parent resource that contains the assets. The value that you can specify on parent depends on the method in which you specify parent. You can specify one of the following values: `organizations/[organization_id]`, `folders/[folder_id]`, or `projects/[project_id]`.",
                   "location": "path",
                   "pattern": "^folders/[^/]+$",
                   "required": true,
@@ -262,7 +262,7 @@
                   "type": "string"
                 },
                 "parent": {
-                  "description": "Required. The name of the parent resource of the new BigQuery export. Its format is \"organizations/[organization_id]\", \"folders/[folder_id]\", or \"projects/[project_id]\".",
+                  "description": "Required. The name of the parent resource of the new BigQuery export. Its format is `organizations/[organization_id]`, `folders/[folder_id]`, or `projects/[project_id]`.",
                   "location": "path",
                   "pattern": "^folders/[^/]+$",
                   "required": true,
@@ -290,7 +290,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "Required. The name of the BigQuery export to delete. Its format is organizations/{organization}/bigQueryExports/{export_id}, folders/{folder}/bigQueryExports/{export_id}, or projects/{project}/bigQueryExports/{export_id}",
+                  "description": "Required. The name of the BigQuery export to delete. Its format is `organizations/{organization}/bigQueryExports/{export_id}`, `folders/{folder}/bigQueryExports/{export_id}`, or `projects/{project}/bigQueryExports/{export_id}`",
                   "location": "path",
                   "pattern": "^folders/[^/]+/bigQueryExports/[^/]+$",
                   "required": true,
@@ -315,7 +315,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "Required. Name of the BigQuery export to retrieve. Its format is organizations/{organization}/bigQueryExports/{export_id}, folders/{folder}/bigQueryExports/{export_id}, or projects/{project}/bigQueryExports/{export_id}",
+                  "description": "Required. Name of the BigQuery export to retrieve. Its format is `organizations/{organization}/bigQueryExports/{export_id}`, `folders/{folder}/bigQueryExports/{export_id}`, or `projects/{project}/bigQueryExports/{export_id}`",
                   "location": "path",
                   "pattern": "^folders/[^/]+/bigQueryExports/[^/]+$",
                   "required": true,
@@ -351,7 +351,7 @@
                   "type": "string"
                 },
                 "parent": {
-                  "description": "Required. The parent, which owns the collection of BigQuery exports. Its format is \"organizations/[organization_id]\", \"folders/[folder_id]\", \"projects/[project_id]\".",
+                  "description": "Required. The parent, which owns the collection of BigQuery exports. Its format is `organizations/[organization_id]`, `folders/[folder_id]`, `projects/[project_id]`.",
                   "location": "path",
                   "pattern": "^folders/[^/]+$",
                   "required": true,
@@ -414,7 +414,7 @@
               ],
               "parameters": {
                 "parent": {
-                  "description": "Required. Resource name of the parent to validate the Custom Module under. Its format is: * \"organizations/{organization}/eventThreatDetectionSettings\". * \"folders/{folder}/eventThreatDetectionSettings\". * \"projects/{project}/eventThreatDetectionSettings\".",
+                  "description": "Required. Resource name of the parent to validate the Custom Module under. Its format is: * `organizations/{organization}/eventThreatDetectionSettings`. * `folders/{folder}/eventThreatDetectionSettings`. * `projects/{project}/eventThreatDetectionSettings`.",
                   "location": "path",
                   "pattern": "^folders/[^/]+/eventThreatDetectionSettings$",
                   "required": true,
@@ -446,7 +446,7 @@
                   ],
                   "parameters": {
                     "parent": {
-                      "description": "Required. The new custom module's parent. Its format is: * \"organizations/{organization}/eventThreatDetectionSettings\". * \"folders/{folder}/eventThreatDetectionSettings\". * \"projects/{project}/eventThreatDetectionSettings\".",
+                      "description": "Required. The new custom module's parent. Its format is: * `organizations/{organization}/eventThreatDetectionSettings`. * `folders/{folder}/eventThreatDetectionSettings`. * `projects/{project}/eventThreatDetectionSettings`.",
                       "location": "path",
                       "pattern": "^folders/[^/]+/eventThreatDetectionSettings$",
                       "required": true,
@@ -474,7 +474,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. Name of the custom module to delete. Its format is: * \"organizations/{organization}/eventThreatDetectionSettings/customModules/{module}\". * \"folders/{folder}/eventThreatDetectionSettings/customModules/{module}\". * \"projects/{project}/eventThreatDetectionSettings/customModules/{module}\".",
+                      "description": "Required. Name of the custom module to delete. Its format is: * `organizations/{organization}/eventThreatDetectionSettings/customModules/{module}`. * `folders/{folder}/eventThreatDetectionSettings/customModules/{module}`. * `projects/{project}/eventThreatDetectionSettings/customModules/{module}`.",
                       "location": "path",
                       "pattern": "^folders/[^/]+/eventThreatDetectionSettings/customModules/[^/]+$",
                       "required": true,
@@ -499,7 +499,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. Name of the custom module to get. Its format is: * \"organizations/{organization}/eventThreatDetectionSettings/customModules/{module}\". * \"folders/{folder}/eventThreatDetectionSettings/customModules/{module}\". * \"projects/{project}/eventThreatDetectionSettings/customModules/{module}\".",
+                      "description": "Required. Name of the custom module to get. Its format is: * `organizations/{organization}/eventThreatDetectionSettings/customModules/{module}`. * `folders/{folder}/eventThreatDetectionSettings/customModules/{module}`. * `projects/{project}/eventThreatDetectionSettings/customModules/{module}`.",
                       "location": "path",
                       "pattern": "^folders/[^/]+/eventThreatDetectionSettings/customModules/[^/]+$",
                       "required": true,
@@ -535,7 +535,7 @@
                       "type": "string"
                     },
                     "parent": {
-                      "description": "Required. Name of the parent to list custom modules under. Its format is: * \"organizations/{organization}/eventThreatDetectionSettings\". * \"folders/{folder}/eventThreatDetectionSettings\". * \"projects/{project}/eventThreatDetectionSettings\".",
+                      "description": "Required. Name of the parent to list custom modules under. Its format is: * `organizations/{organization}/eventThreatDetectionSettings`. * `folders/{folder}/eventThreatDetectionSettings`. * `projects/{project}/eventThreatDetectionSettings`.",
                       "location": "path",
                       "pattern": "^folders/[^/]+/eventThreatDetectionSettings$",
                       "required": true,
@@ -571,7 +571,7 @@
                       "type": "string"
                     },
                     "parent": {
-                      "description": "Required. Name of the parent to list custom modules under. Its format is: * \"organizations/{organization}/eventThreatDetectionSettings\". * \"folders/{folder}/eventThreatDetectionSettings\". * \"projects/{project}/eventThreatDetectionSettings\".",
+                      "description": "Required. Name of the parent to list custom modules under. Its format is: * `organizations/{organization}/eventThreatDetectionSettings`. * `folders/{folder}/eventThreatDetectionSettings`. * `projects/{project}/eventThreatDetectionSettings`.",
                       "location": "path",
                       "pattern": "^folders/[^/]+/eventThreatDetectionSettings$",
                       "required": true,
@@ -596,7 +596,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Immutable. The resource name of the Event Threat Detection custom module. Its format is: * \"organizations/{organization}/eventThreatDetectionSettings/customModules/{module}\". * \"folders/{folder}/eventThreatDetectionSettings/customModules/{module}\". * \"projects/{project}/eventThreatDetectionSettings/customModules/{module}\".",
+                      "description": "Immutable. The resource name of the Event Threat Detection custom module. Its format is: * `organizations/{organization}/eventThreatDetectionSettings/customModules/{module}`. * `folders/{folder}/eventThreatDetectionSettings/customModules/{module}`. * `projects/{project}/eventThreatDetectionSettings/customModules/{module}`.",
                       "location": "path",
                       "pattern": "^folders/[^/]+/eventThreatDetectionSettings/customModules/[^/]+$",
                       "required": true,
@@ -634,7 +634,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. The resource name of the effective Event Threat Detection custom module. Its format is: * \"organizations/{organization}/eventThreatDetectionSettings/effectiveCustomModules/{module}\". * \"folders/{folder}/eventThreatDetectionSettings/effectiveCustomModules/{module}\". * \"projects/{project}/eventThreatDetectionSettings/effectiveCustomModules/{module}\".",
+                      "description": "Required. The resource name of the effective Event Threat Detection custom module. Its format is: * `organizations/{organization}/eventThreatDetectionSettings/effectiveCustomModules/{module}`. * `folders/{folder}/eventThreatDetectionSettings/effectiveCustomModules/{module}`. * `projects/{project}/eventThreatDetectionSettings/effectiveCustomModules/{module}`.",
                       "location": "path",
                       "pattern": "^folders/[^/]+/eventThreatDetectionSettings/effectiveCustomModules/[^/]+$",
                       "required": true,
@@ -670,7 +670,7 @@
                       "type": "string"
                     },
                     "parent": {
-                      "description": "Required. Name of the parent to list custom modules for. Its format is: * \"organizations/{organization}/eventThreatDetectionSettings\". * \"folders/{folder}/eventThreatDetectionSettings\". * \"projects/{project}/eventThreatDetectionSettings\".",
+                      "description": "Required. Name of the parent to list custom modules for. Its format is: * `organizations/{organization}/eventThreatDetectionSettings`. * `folders/{folder}/eventThreatDetectionSettings`. * `projects/{project}/eventThreatDetectionSettings`.",
                       "location": "path",
                       "pattern": "^folders/[^/]+/eventThreatDetectionSettings$",
                       "required": true,
@@ -701,7 +701,7 @@
               ],
               "parameters": {
                 "parent": {
-                  "description": "Required. The parent, at which bulk action needs to be applied. Its format is \"organizations/[organization_id]\", \"folders/[folder_id]\", \"projects/[project_id]\".",
+                  "description": "Required. The parent, at which bulk action needs to be applied. Its format is `organizations/[organization_id]`, `folders/[folder_id]`, `projects/[project_id]`.",
                   "location": "path",
                   "pattern": "^folders/[^/]+$",
                   "required": true,
@@ -740,7 +740,7 @@
                       "type": "string"
                     },
                     "parent": {
-                      "description": "Required. Resource name of the new mute configs's parent. Its format is \"organizations/[organization_id]\", \"folders/[folder_id]\", or \"projects/[project_id]\".",
+                      "description": "Required. Resource name of the new mute configs's parent. Its format is `organizations/[organization_id]`, `folders/[folder_id]`, or `projects/[project_id]`.",
                       "location": "path",
                       "pattern": "^folders/[^/]+/locations/[^/]+$",
                       "required": true,
@@ -768,7 +768,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. Name of the mute config to delete. Its format is organizations/{organization}/muteConfigs/{config_id}, folders/{folder}/muteConfigs/{config_id}, projects/{project}/muteConfigs/{config_id}, organizations/{organization}/locations/global/muteConfigs/{config_id}, folders/{folder}/locations/global/muteConfigs/{config_id}, or projects/{project}/locations/global/muteConfigs/{config_id}.",
+                      "description": "Required. Name of the mute config to delete. Its format is `organizations/{organization}/muteConfigs/{config_id}`, `folders/{folder}/muteConfigs/{config_id}`, `projects/{project}/muteConfigs/{config_id}`, `organizations/{organization}/locations/global/muteConfigs/{config_id}`, `folders/{folder}/locations/global/muteConfigs/{config_id}`, or `projects/{project}/locations/global/muteConfigs/{config_id}`.",
                       "location": "path",
                       "pattern": "^folders/[^/]+/locations/[^/]+/muteConfigs/[^/]+$",
                       "required": true,
@@ -793,7 +793,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. Name of the mute config to retrieve. Its format is organizations/{organization}/muteConfigs/{config_id}, folders/{folder}/muteConfigs/{config_id}, projects/{project}/muteConfigs/{config_id}, organizations/{organization}/locations/global/muteConfigs/{config_id}, folders/{folder}/locations/global/muteConfigs/{config_id}, or projects/{project}/locations/global/muteConfigs/{config_id}.",
+                      "description": "Required. Name of the mute config to retrieve. Its format is `organizations/{organization}/muteConfigs/{config_id}`, `folders/{folder}/muteConfigs/{config_id}`, `projects/{project}/muteConfigs/{config_id}`, `organizations/{organization}/locations/global/muteConfigs/{config_id}`, `folders/{folder}/locations/global/muteConfigs/{config_id}`, or `projects/{project}/locations/global/muteConfigs/{config_id}`.",
                       "location": "path",
                       "pattern": "^folders/[^/]+/locations/[^/]+/muteConfigs/[^/]+$",
                       "required": true,
@@ -829,7 +829,7 @@
                       "type": "string"
                     },
                     "parent": {
-                      "description": "Required. The parent, which owns the collection of mute configs. Its format is \"organizations/[organization_id]\", \"folders/[folder_id]\", \"projects/[project_id]\".",
+                      "description": "Required. The parent, which owns the collection of mute configs. Its format is `organizations/[organization_id]`, `folders/[folder_id]`, `projects/[project_id]`.",
                       "location": "path",
                       "pattern": "^folders/[^/]+/locations/[^/]+/muteConfigs$",
                       "required": true,
@@ -854,7 +854,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "This field will be ignored if provided on config creation. Format \"organizations/{organization}/muteConfigs/{mute_config}\" \"folders/{folder}/muteConfigs/{mute_config}\" \"projects/{project}/muteConfigs/{mute_config}\" \"organizations/{organization}/locations/global/muteConfigs/{mute_config}\" \"folders/{folder}/locations/global/muteConfigs/{mute_config}\" \"projects/{project}/locations/global/muteConfigs/{mute_config}\"",
+                      "description": "This field will be ignored if provided on config creation. Format `organizations/{organization}/muteConfigs/{mute_config}` `folders/{folder}/muteConfigs/{mute_config}` `projects/{project}/muteConfigs/{mute_config}` `organizations/{organization}/locations/global/muteConfigs/{mute_config}` `folders/{folder}/locations/global/muteConfigs/{mute_config}` `projects/{project}/locations/global/muteConfigs/{mute_config}`",
                       "location": "path",
                       "pattern": "^folders/[^/]+/locations/[^/]+/muteConfigs/[^/]+$",
                       "required": true,
@@ -899,7 +899,7 @@
                   "type": "string"
                 },
                 "parent": {
-                  "description": "Required. Resource name of the new mute configs's parent. Its format is \"organizations/[organization_id]\", \"folders/[folder_id]\", or \"projects/[project_id]\".",
+                  "description": "Required. Resource name of the new mute configs's parent. Its format is `organizations/[organization_id]`, `folders/[folder_id]`, or `projects/[project_id]`.",
                   "location": "path",
                   "pattern": "^folders/[^/]+$",
                   "required": true,
@@ -927,7 +927,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "Required. Name of the mute config to delete. Its format is organizations/{organization}/muteConfigs/{config_id}, folders/{folder}/muteConfigs/{config_id}, projects/{project}/muteConfigs/{config_id}, organizations/{organization}/locations/global/muteConfigs/{config_id}, folders/{folder}/locations/global/muteConfigs/{config_id}, or projects/{project}/locations/global/muteConfigs/{config_id}.",
+                  "description": "Required. Name of the mute config to delete. Its format is `organizations/{organization}/muteConfigs/{config_id}`, `folders/{folder}/muteConfigs/{config_id}`, `projects/{project}/muteConfigs/{config_id}`, `organizations/{organization}/locations/global/muteConfigs/{config_id}`, `folders/{folder}/locations/global/muteConfigs/{config_id}`, or `projects/{project}/locations/global/muteConfigs/{config_id}`.",
                   "location": "path",
                   "pattern": "^folders/[^/]+/muteConfigs/[^/]+$",
                   "required": true,
@@ -952,7 +952,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "Required. Name of the mute config to retrieve. Its format is organizations/{organization}/muteConfigs/{config_id}, folders/{folder}/muteConfigs/{config_id}, projects/{project}/muteConfigs/{config_id}, organizations/{organization}/locations/global/muteConfigs/{config_id}, folders/{folder}/locations/global/muteConfigs/{config_id}, or projects/{project}/locations/global/muteConfigs/{config_id}.",
+                  "description": "Required. Name of the mute config to retrieve. Its format is `organizations/{organization}/muteConfigs/{config_id}`, `folders/{folder}/muteConfigs/{config_id}`, `projects/{project}/muteConfigs/{config_id}`, `organizations/{organization}/locations/global/muteConfigs/{config_id}`, `folders/{folder}/locations/global/muteConfigs/{config_id}`, or `projects/{project}/locations/global/muteConfigs/{config_id}`.",
                   "location": "path",
                   "pattern": "^folders/[^/]+/muteConfigs/[^/]+$",
                   "required": true,
@@ -988,7 +988,7 @@
                   "type": "string"
                 },
                 "parent": {
-                  "description": "Required. The parent, which owns the collection of mute configs. Its format is \"organizations/[organization_id]\", \"folders/[folder_id]\", \"projects/[project_id]\".",
+                  "description": "Required. The parent, which owns the collection of mute configs. Its format is `organizations/[organization_id]`, `folders/[folder_id]`, `projects/[project_id]`.",
                   "location": "path",
                   "pattern": "^folders/[^/]+$",
                   "required": true,
@@ -1013,7 +1013,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "This field will be ignored if provided on config creation. Format \"organizations/{organization}/muteConfigs/{mute_config}\" \"folders/{folder}/muteConfigs/{mute_config}\" \"projects/{project}/muteConfigs/{mute_config}\" \"organizations/{organization}/locations/global/muteConfigs/{mute_config}\" \"folders/{folder}/locations/global/muteConfigs/{mute_config}\" \"projects/{project}/locations/global/muteConfigs/{mute_config}\"",
+                  "description": "This field will be ignored if provided on config creation. Format `organizations/{organization}/muteConfigs/{mute_config}` `folders/{folder}/muteConfigs/{mute_config}` `projects/{project}/muteConfigs/{mute_config}` `organizations/{organization}/locations/global/muteConfigs/{mute_config}` `folders/{folder}/locations/global/muteConfigs/{mute_config}` `projects/{project}/locations/global/muteConfigs/{mute_config}`",
                   "location": "path",
                   "pattern": "^folders/[^/]+/muteConfigs/[^/]+$",
                   "required": true,
@@ -1056,7 +1056,7 @@
                   "type": "string"
                 },
                 "parent": {
-                  "description": "Required. Resource name of the new notification config's parent. Its format is \"organizations/[organization_id]\", \"folders/[folder_id]\", or \"projects/[project_id]\".",
+                  "description": "Required. Resource name of the new notification config's parent. Its format is `organizations/[organization_id]`, `folders/[folder_id]`, or `projects/[project_id]`.",
                   "location": "path",
                   "pattern": "^folders/[^/]+$",
                   "required": true,
@@ -1084,7 +1084,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "Required. Name of the notification config to delete. Its format is \"organizations/[organization_id]/notificationConfigs/[config_id]\", \"folders/[folder_id]/notificationConfigs/[config_id]\", or \"projects/[project_id]/notificationConfigs/[config_id]\".",
+                  "description": "Required. Name of the notification config to delete. Its format is `organizations/[organization_id]/notificationConfigs/[config_id]`, `folders/[folder_id]/notificationConfigs/[config_id]`, or `projects/[project_id]/notificationConfigs/[config_id]`.",
                   "location": "path",
                   "pattern": "^folders/[^/]+/notificationConfigs/[^/]+$",
                   "required": true,
@@ -1109,7 +1109,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "Required. Name of the notification config to get. Its format is \"organizations/[organization_id]/notificationConfigs/[config_id]\", \"folders/[folder_id]/notificationConfigs/[config_id]\", or \"projects/[project_id]/notificationConfigs/[config_id]\".",
+                  "description": "Required. Name of the notification config to get. Its format is `organizations/[organization_id]/notificationConfigs/[config_id]`, `folders/[folder_id]/notificationConfigs/[config_id]`, or `projects/[project_id]/notificationConfigs/[config_id]`.",
                   "location": "path",
                   "pattern": "^folders/[^/]+/notificationConfigs/[^/]+$",
                   "required": true,
@@ -1210,7 +1210,7 @@
                   ],
                   "parameters": {
                     "parent": {
-                      "description": "Required. Resource name of the new custom module's parent. Its format is \"organizations/{organization}/securityHealthAnalyticsSettings\", \"folders/{folder}/securityHealthAnalyticsSettings\", or \"projects/{project}/securityHealthAnalyticsSettings\"",
+                      "description": "Required. Resource name of the new custom module's parent. Its format is `organizations/{organization}/securityHealthAnalyticsSettings`, `folders/{folder}/securityHealthAnalyticsSettings`, or `projects/{project}/securityHealthAnalyticsSettings`",
                       "location": "path",
                       "pattern": "^folders/[^/]+/securityHealthAnalyticsSettings$",
                       "required": true,
@@ -1238,7 +1238,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. Name of the custom module to delete. Its format is \"organizations/{organization}/securityHealthAnalyticsSettings/customModules/{customModule}\", \"folders/{folder}/securityHealthAnalyticsSettings/customModules/{customModule}\", or \"projects/{project}/securityHealthAnalyticsSettings/customModules/{customModule}\"",
+                      "description": "Required. Name of the custom module to delete. Its format is `organizations/{organization}/securityHealthAnalyticsSettings/customModules/{customModule}`, `folders/{folder}/securityHealthAnalyticsSettings/customModules/{customModule}`, or `projects/{project}/securityHealthAnalyticsSettings/customModules/{customModule}`",
                       "location": "path",
                       "pattern": "^folders/[^/]+/securityHealthAnalyticsSettings/customModules/[^/]+$",
                       "required": true,
@@ -1263,7 +1263,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. Name of the custom module to get. Its format is \"organizations/{organization}/securityHealthAnalyticsSettings/customModules/{customModule}\", \"folders/{folder}/securityHealthAnalyticsSettings/customModules/{customModule}\", or \"projects/{project}/securityHealthAnalyticsSettings/customModules/{customModule}\"",
+                      "description": "Required. Name of the custom module to get. Its format is `organizations/{organization}/securityHealthAnalyticsSettings/customModules/{customModule}`, `folders/{folder}/securityHealthAnalyticsSettings/customModules/{customModule}`, or `projects/{project}/securityHealthAnalyticsSettings/customModules/{customModule}`",
                       "location": "path",
                       "pattern": "^folders/[^/]+/securityHealthAnalyticsSettings/customModules/[^/]+$",
                       "required": true,
@@ -1299,7 +1299,7 @@
                       "type": "string"
                     },
                     "parent": {
-                      "description": "Required. Name of parent to list custom modules. Its format is \"organizations/{organization}/securityHealthAnalyticsSettings\", \"folders/{folder}/securityHealthAnalyticsSettings\", or \"projects/{project}/securityHealthAnalyticsSettings\"",
+                      "description": "Required. Name of parent to list custom modules. Its format is `organizations/{organization}/securityHealthAnalyticsSettings`, `folders/{folder}/securityHealthAnalyticsSettings`, or `projects/{project}/securityHealthAnalyticsSettings`",
                       "location": "path",
                       "pattern": "^folders/[^/]+/securityHealthAnalyticsSettings$",
                       "required": true,
@@ -1335,7 +1335,7 @@
                       "type": "string"
                     },
                     "parent": {
-                      "description": "Required. Name of parent to list descendant custom modules. Its format is \"organizations/{organization}/securityHealthAnalyticsSettings\", \"folders/{folder}/securityHealthAnalyticsSettings\", or \"projects/{project}/securityHealthAnalyticsSettings\"",
+                      "description": "Required. Name of parent to list descendant custom modules. Its format is `organizations/{organization}/securityHealthAnalyticsSettings`, `folders/{folder}/securityHealthAnalyticsSettings`, or `projects/{project}/securityHealthAnalyticsSettings`",
                       "location": "path",
                       "pattern": "^folders/[^/]+/securityHealthAnalyticsSettings$",
                       "required": true,
@@ -1426,7 +1426,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. Name of the effective custom module to get. Its format is \"organizations/{organization}/securityHealthAnalyticsSettings/effectiveCustomModules/{customModule}\", \"folders/{folder}/securityHealthAnalyticsSettings/effectiveCustomModules/{customModule}\", or \"projects/{project}/securityHealthAnalyticsSettings/effectiveCustomModules/{customModule}\"",
+                      "description": "Required. Name of the effective custom module to get. Its format is `organizations/{organization}/securityHealthAnalyticsSettings/effectiveCustomModules/{customModule}`, `folders/{folder}/securityHealthAnalyticsSettings/effectiveCustomModules/{customModule}`, or `projects/{project}/securityHealthAnalyticsSettings/effectiveCustomModules/{customModule}`",
                       "location": "path",
                       "pattern": "^folders/[^/]+/securityHealthAnalyticsSettings/effectiveCustomModules/[^/]+$",
                       "required": true,
@@ -1462,7 +1462,7 @@
                       "type": "string"
                     },
                     "parent": {
-                      "description": "Required. Name of parent to list effective custom modules. Its format is \"organizations/{organization}/securityHealthAnalyticsSettings\", \"folders/{folder}/securityHealthAnalyticsSettings\", or \"projects/{project}/securityHealthAnalyticsSettings\"",
+                      "description": "Required. Name of parent to list effective custom modules. Its format is `organizations/{organization}/securityHealthAnalyticsSettings`, `folders/{folder}/securityHealthAnalyticsSettings`, or `projects/{project}/securityHealthAnalyticsSettings`",
                       "location": "path",
                       "pattern": "^folders/[^/]+/securityHealthAnalyticsSettings$",
                       "required": true,
@@ -1504,7 +1504,7 @@
                   "type": "string"
                 },
                 "parent": {
-                  "description": "Required. Resource name of the parent of sources to list. Its format should be \"organizations/[organization_id]\", \"folders/[folder_id]\", or \"projects/[project_id]\".",
+                  "description": "Required. Resource name of the parent of sources to list. Its format should be `organizations/[organization_id]`, `folders/[folder_id]`, or `projects/[project_id]`.",
                   "location": "path",
                   "pattern": "^folders/[^/]+$",
                   "required": true,
@@ -1533,7 +1533,7 @@
                   ],
                   "parameters": {
                     "parent": {
-                      "description": "Required. Name of the source to groupBy. Its format is \"organizations/[organization_id]/sources/[source_id]\", folders/[folder_id]/sources/[source_id], or projects/[project_id]/sources/[source_id]. To groupBy across all sources provide a source_id of `-`. For example: organizations/{organization_id}/sources/-, folders/{folder_id}/sources/-, or projects/{project_id}/sources/-",
+                      "description": "Required. Name of the source to groupBy. Its format is `organizations/[organization_id]/sources/[source_id]`, `folders/[folder_id]/sources/[source_id]`, or `projects/[project_id]/sources/[source_id]`. To groupBy across all sources provide a source_id of `-`. For example: `organizations/{organization_id}/sources/-, folders/{folder_id}/sources/-`, or `projects/{project_id}/sources/-`",
                       "location": "path",
                       "pattern": "^folders/[^/]+/sources/[^/]+$",
                       "required": true,
@@ -1594,7 +1594,7 @@
                       "type": "string"
                     },
                     "parent": {
-                      "description": "Required. Name of the source the findings belong to. Its format is \"organizations/[organization_id]/sources/[source_id], folders/[folder_id]/sources/[source_id], or projects/[project_id]/sources/[source_id]\". To list across all sources provide a source_id of `-`. For example: organizations/{organization_id}/sources/-, folders/{folder_id}/sources/- or projects/{projects_id}/sources/-",
+                      "description": "Required. Name of the source the findings belong to. Its format is `organizations/[organization_id]/sources/[source_id]`, `folders/[folder_id]/sources/[source_id]`, or `projects/[project_id]/sources/[source_id]`. To list across all sources provide a source_id of `-`. For example: `organizations/{organization_id}/sources/-`, `folders/{folder_id}/sources/-` or `projects/{projects_id}/sources/-`",
                       "location": "path",
                       "pattern": "^folders/[^/]+/sources/[^/]+$",
                       "required": true,
@@ -1659,7 +1659,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. The [relative resource name](https://cloud.google.com/apis/design/resource_names#relative_resource_name) of the finding. Example: \"organizations/{organization_id}/sources/{source_id}/findings/{finding_id}\", \"folders/{folder_id}/sources/{source_id}/findings/{finding_id}\", \"projects/{project_id}/sources/{source_id}/findings/{finding_id}\".",
+                      "description": "Required. The [relative resource name](https://cloud.google.com/apis/design/resource_names#relative_resource_name) of the finding. Example: `organizations/{organization_id}/sources/{source_id}/findings/{finding_id}`, `folders/{folder_id}/sources/{source_id}/findings/{finding_id}`, `projects/{project_id}/sources/{source_id}/findings/{finding_id}`.",
                       "location": "path",
                       "pattern": "^folders/[^/]+/sources/[^/]+/findings/[^/]+$",
                       "required": true,
@@ -1687,7 +1687,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. The [relative resource name](https://cloud.google.com/apis/design/resource_names#relative_resource_name) of the finding. Example: \"organizations/{organization_id}/sources/{source_id}/findings/{finding_id}\", \"folders/{folder_id}/sources/{source_id}/findings/{finding_id}\", \"projects/{project_id}/sources/{source_id}/findings/{finding_id}\".",
+                      "description": "Required. The [relative resource name](https://cloud.google.com/apis/design/resource_names#relative_resource_name) of the finding. Example: `organizations/{organization_id}/sources/{source_id}/findings/{finding_id}`, `folders/{folder_id}/sources/{source_id}/findings/{finding_id}`, `projects/{project_id}/sources/{source_id}/findings/{finding_id}`.",
                       "location": "path",
                       "pattern": "^folders/[^/]+/sources/[^/]+/findings/[^/]+$",
                       "required": true,
@@ -1803,7 +1803,7 @@
           ],
           "parameters": {
             "name": {
-              "description": "Required. Name of the organization to get organization settings for. Its format is \"organizations/[organization_id]/organizationSettings\".",
+              "description": "Required. Name of the organization to get organization settings for. Its format is `organizations/[organization_id]/organizationSettings`.",
               "location": "path",
               "pattern": "^organizations/[^/]+/organizationSettings$",
               "required": true,
@@ -1867,7 +1867,7 @@
               ],
               "parameters": {
                 "parent": {
-                  "description": "Required. The name of the parent to group the assets by. Its format is \"organizations/[organization_id]\", \"folders/[folder_id]\", or \"projects/[project_id]\".",
+                  "description": "Required. The name of the parent to group the assets by. Its format is `organizations/[organization_id]`, `folders/[folder_id]`, or `projects/[project_id]`.",
                   "location": "path",
                   "pattern": "^organizations/[^/]+$",
                   "required": true,
@@ -1929,7 +1929,7 @@
                   "type": "string"
                 },
                 "parent": {
-                  "description": "Required. The name of the parent resource that contains the assets. The value that you can specify on parent depends on the method in which you specify parent. You can specify one of the following values: \"organizations/[organization_id]\", \"folders/[folder_id]\", or \"projects/[project_id]\".",
+                  "description": "Required. The name of the parent resource that contains the assets. The value that you can specify on parent depends on the method in which you specify parent. You can specify one of the following values: `organizations/[organization_id]`, `folders/[folder_id]`, or `projects/[project_id]`.",
                   "location": "path",
                   "pattern": "^organizations/[^/]+$",
                   "required": true,
@@ -1961,7 +1961,7 @@
               ],
               "parameters": {
                 "parent": {
-                  "description": "Required. Name of the organization to run asset discovery for. Its format is \"organizations/[organization_id]\".",
+                  "description": "Required. Name of the organization to run asset discovery for. Its format is `organizations/[organization_id]`.",
                   "location": "path",
                   "pattern": "^organizations/[^/]+$",
                   "required": true,
@@ -2038,7 +2038,7 @@
                   "type": "string"
                 },
                 "parent": {
-                  "description": "Required. The name of the parent resource of the new BigQuery export. Its format is \"organizations/[organization_id]\", \"folders/[folder_id]\", or \"projects/[project_id]\".",
+                  "description": "Required. The name of the parent resource of the new BigQuery export. Its format is `organizations/[organization_id]`, `folders/[folder_id]`, or `projects/[project_id]`.",
                   "location": "path",
                   "pattern": "^organizations/[^/]+$",
                   "required": true,
@@ -2066,7 +2066,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "Required. The name of the BigQuery export to delete. Its format is organizations/{organization}/bigQueryExports/{export_id}, folders/{folder}/bigQueryExports/{export_id}, or projects/{project}/bigQueryExports/{export_id}",
+                  "description": "Required. The name of the BigQuery export to delete. Its format is `organizations/{organization}/bigQueryExports/{export_id}`, `folders/{folder}/bigQueryExports/{export_id}`, or `projects/{project}/bigQueryExports/{export_id}`",
                   "location": "path",
                   "pattern": "^organizations/[^/]+/bigQueryExports/[^/]+$",
                   "required": true,
@@ -2091,7 +2091,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "Required. Name of the BigQuery export to retrieve. Its format is organizations/{organization}/bigQueryExports/{export_id}, folders/{folder}/bigQueryExports/{export_id}, or projects/{project}/bigQueryExports/{export_id}",
+                  "description": "Required. Name of the BigQuery export to retrieve. Its format is `organizations/{organization}/bigQueryExports/{export_id}`, `folders/{folder}/bigQueryExports/{export_id}`, or `projects/{project}/bigQueryExports/{export_id}`",
                   "location": "path",
                   "pattern": "^organizations/[^/]+/bigQueryExports/[^/]+$",
                   "required": true,
@@ -2127,7 +2127,7 @@
                   "type": "string"
                 },
                 "parent": {
-                  "description": "Required. The parent, which owns the collection of BigQuery exports. Its format is \"organizations/[organization_id]\", \"folders/[folder_id]\", \"projects/[project_id]\".",
+                  "description": "Required. The parent, which owns the collection of BigQuery exports. Its format is `organizations/[organization_id]`, `folders/[folder_id]`, `projects/[project_id]`.",
                   "location": "path",
                   "pattern": "^organizations/[^/]+$",
                   "required": true,
@@ -2190,7 +2190,7 @@
               ],
               "parameters": {
                 "parent": {
-                  "description": "Required. Resource name of the parent to validate the Custom Module under. Its format is: * \"organizations/{organization}/eventThreatDetectionSettings\". * \"folders/{folder}/eventThreatDetectionSettings\". * \"projects/{project}/eventThreatDetectionSettings\".",
+                  "description": "Required. Resource name of the parent to validate the Custom Module under. Its format is: * `organizations/{organization}/eventThreatDetectionSettings`. * `folders/{folder}/eventThreatDetectionSettings`. * `projects/{project}/eventThreatDetectionSettings`.",
                   "location": "path",
                   "pattern": "^organizations/[^/]+/eventThreatDetectionSettings$",
                   "required": true,
@@ -2222,7 +2222,7 @@
                   ],
                   "parameters": {
                     "parent": {
-                      "description": "Required. The new custom module's parent. Its format is: * \"organizations/{organization}/eventThreatDetectionSettings\". * \"folders/{folder}/eventThreatDetectionSettings\". * \"projects/{project}/eventThreatDetectionSettings\".",
+                      "description": "Required. The new custom module's parent. Its format is: * `organizations/{organization}/eventThreatDetectionSettings`. * `folders/{folder}/eventThreatDetectionSettings`. * `projects/{project}/eventThreatDetectionSettings`.",
                       "location": "path",
                       "pattern": "^organizations/[^/]+/eventThreatDetectionSettings$",
                       "required": true,
@@ -2250,7 +2250,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. Name of the custom module to delete. Its format is: * \"organizations/{organization}/eventThreatDetectionSettings/customModules/{module}\". * \"folders/{folder}/eventThreatDetectionSettings/customModules/{module}\". * \"projects/{project}/eventThreatDetectionSettings/customModules/{module}\".",
+                      "description": "Required. Name of the custom module to delete. Its format is: * `organizations/{organization}/eventThreatDetectionSettings/customModules/{module}`. * `folders/{folder}/eventThreatDetectionSettings/customModules/{module}`. * `projects/{project}/eventThreatDetectionSettings/customModules/{module}`.",
                       "location": "path",
                       "pattern": "^organizations/[^/]+/eventThreatDetectionSettings/customModules/[^/]+$",
                       "required": true,
@@ -2275,7 +2275,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. Name of the custom module to get. Its format is: * \"organizations/{organization}/eventThreatDetectionSettings/customModules/{module}\". * \"folders/{folder}/eventThreatDetectionSettings/customModules/{module}\". * \"projects/{project}/eventThreatDetectionSettings/customModules/{module}\".",
+                      "description": "Required. Name of the custom module to get. Its format is: * `organizations/{organization}/eventThreatDetectionSettings/customModules/{module}`. * `folders/{folder}/eventThreatDetectionSettings/customModules/{module}`. * `projects/{project}/eventThreatDetectionSettings/customModules/{module}`.",
                       "location": "path",
                       "pattern": "^organizations/[^/]+/eventThreatDetectionSettings/customModules/[^/]+$",
                       "required": true,
@@ -2311,7 +2311,7 @@
                       "type": "string"
                     },
                     "parent": {
-                      "description": "Required. Name of the parent to list custom modules under. Its format is: * \"organizations/{organization}/eventThreatDetectionSettings\". * \"folders/{folder}/eventThreatDetectionSettings\". * \"projects/{project}/eventThreatDetectionSettings\".",
+                      "description": "Required. Name of the parent to list custom modules under. Its format is: * `organizations/{organization}/eventThreatDetectionSettings`. * `folders/{folder}/eventThreatDetectionSettings`. * `projects/{project}/eventThreatDetectionSettings`.",
                       "location": "path",
                       "pattern": "^organizations/[^/]+/eventThreatDetectionSettings$",
                       "required": true,
@@ -2347,7 +2347,7 @@
                       "type": "string"
                     },
                     "parent": {
-                      "description": "Required. Name of the parent to list custom modules under. Its format is: * \"organizations/{organization}/eventThreatDetectionSettings\". * \"folders/{folder}/eventThreatDetectionSettings\". * \"projects/{project}/eventThreatDetectionSettings\".",
+                      "description": "Required. Name of the parent to list custom modules under. Its format is: * `organizations/{organization}/eventThreatDetectionSettings`. * `folders/{folder}/eventThreatDetectionSettings`. * `projects/{project}/eventThreatDetectionSettings`.",
                       "location": "path",
                       "pattern": "^organizations/[^/]+/eventThreatDetectionSettings$",
                       "required": true,
@@ -2372,7 +2372,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Immutable. The resource name of the Event Threat Detection custom module. Its format is: * \"organizations/{organization}/eventThreatDetectionSettings/customModules/{module}\". * \"folders/{folder}/eventThreatDetectionSettings/customModules/{module}\". * \"projects/{project}/eventThreatDetectionSettings/customModules/{module}\".",
+                      "description": "Immutable. The resource name of the Event Threat Detection custom module. Its format is: * `organizations/{organization}/eventThreatDetectionSettings/customModules/{module}`. * `folders/{folder}/eventThreatDetectionSettings/customModules/{module}`. * `projects/{project}/eventThreatDetectionSettings/customModules/{module}`.",
                       "location": "path",
                       "pattern": "^organizations/[^/]+/eventThreatDetectionSettings/customModules/[^/]+$",
                       "required": true,
@@ -2410,7 +2410,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. The resource name of the effective Event Threat Detection custom module. Its format is: * \"organizations/{organization}/eventThreatDetectionSettings/effectiveCustomModules/{module}\". * \"folders/{folder}/eventThreatDetectionSettings/effectiveCustomModules/{module}\". * \"projects/{project}/eventThreatDetectionSettings/effectiveCustomModules/{module}\".",
+                      "description": "Required. The resource name of the effective Event Threat Detection custom module. Its format is: * `organizations/{organization}/eventThreatDetectionSettings/effectiveCustomModules/{module}`. * `folders/{folder}/eventThreatDetectionSettings/effectiveCustomModules/{module}`. * `projects/{project}/eventThreatDetectionSettings/effectiveCustomModules/{module}`.",
                       "location": "path",
                       "pattern": "^organizations/[^/]+/eventThreatDetectionSettings/effectiveCustomModules/[^/]+$",
                       "required": true,
@@ -2446,7 +2446,7 @@
                       "type": "string"
                     },
                     "parent": {
-                      "description": "Required. Name of the parent to list custom modules for. Its format is: * \"organizations/{organization}/eventThreatDetectionSettings\". * \"folders/{folder}/eventThreatDetectionSettings\". * \"projects/{project}/eventThreatDetectionSettings\".",
+                      "description": "Required. Name of the parent to list custom modules for. Its format is: * `organizations/{organization}/eventThreatDetectionSettings`. * `folders/{folder}/eventThreatDetectionSettings`. * `projects/{project}/eventThreatDetectionSettings`.",
                       "location": "path",
                       "pattern": "^organizations/[^/]+/eventThreatDetectionSettings$",
                       "required": true,
@@ -2477,7 +2477,7 @@
               ],
               "parameters": {
                 "parent": {
-                  "description": "Required. The parent, at which bulk action needs to be applied. Its format is \"organizations/[organization_id]\", \"folders/[folder_id]\", \"projects/[project_id]\".",
+                  "description": "Required. The parent, at which bulk action needs to be applied. Its format is `organizations/[organization_id]`, `folders/[folder_id]`, `projects/[project_id]`.",
                   "location": "path",
                   "pattern": "^organizations/[^/]+$",
                   "required": true,
@@ -2516,7 +2516,7 @@
                       "type": "string"
                     },
                     "parent": {
-                      "description": "Required. Resource name of the new mute configs's parent. Its format is \"organizations/[organization_id]\", \"folders/[folder_id]\", or \"projects/[project_id]\".",
+                      "description": "Required. Resource name of the new mute configs's parent. Its format is `organizations/[organization_id]`, `folders/[folder_id]`, or `projects/[project_id]`.",
                       "location": "path",
                       "pattern": "^organizations/[^/]+/locations/[^/]+$",
                       "required": true,
@@ -2544,7 +2544,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. Name of the mute config to delete. Its format is organizations/{organization}/muteConfigs/{config_id}, folders/{folder}/muteConfigs/{config_id}, projects/{project}/muteConfigs/{config_id}, organizations/{organization}/locations/global/muteConfigs/{config_id}, folders/{folder}/locations/global/muteConfigs/{config_id}, or projects/{project}/locations/global/muteConfigs/{config_id}.",
+                      "description": "Required. Name of the mute config to delete. Its format is `organizations/{organization}/muteConfigs/{config_id}`, `folders/{folder}/muteConfigs/{config_id}`, `projects/{project}/muteConfigs/{config_id}`, `organizations/{organization}/locations/global/muteConfigs/{config_id}`, `folders/{folder}/locations/global/muteConfigs/{config_id}`, or `projects/{project}/locations/global/muteConfigs/{config_id}`.",
                       "location": "path",
                       "pattern": "^organizations/[^/]+/locations/[^/]+/muteConfigs/[^/]+$",
                       "required": true,
@@ -2569,7 +2569,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. Name of the mute config to retrieve. Its format is organizations/{organization}/muteConfigs/{config_id}, folders/{folder}/muteConfigs/{config_id}, projects/{project}/muteConfigs/{config_id}, organizations/{organization}/locations/global/muteConfigs/{config_id}, folders/{folder}/locations/global/muteConfigs/{config_id}, or projects/{project}/locations/global/muteConfigs/{config_id}.",
+                      "description": "Required. Name of the mute config to retrieve. Its format is `organizations/{organization}/muteConfigs/{config_id}`, `folders/{folder}/muteConfigs/{config_id}`, `projects/{project}/muteConfigs/{config_id}`, `organizations/{organization}/locations/global/muteConfigs/{config_id}`, `folders/{folder}/locations/global/muteConfigs/{config_id}`, or `projects/{project}/locations/global/muteConfigs/{config_id}`.",
                       "location": "path",
                       "pattern": "^organizations/[^/]+/locations/[^/]+/muteConfigs/[^/]+$",
                       "required": true,
@@ -2605,7 +2605,7 @@
                       "type": "string"
                     },
                     "parent": {
-                      "description": "Required. The parent, which owns the collection of mute configs. Its format is \"organizations/[organization_id]\", \"folders/[folder_id]\", \"projects/[project_id]\".",
+                      "description": "Required. The parent, which owns the collection of mute configs. Its format is `organizations/[organization_id]`, `folders/[folder_id]`, `projects/[project_id]`.",
                       "location": "path",
                       "pattern": "^organizations/[^/]+/locations/[^/]+/muteConfigs$",
                       "required": true,
@@ -2630,7 +2630,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "This field will be ignored if provided on config creation. Format \"organizations/{organization}/muteConfigs/{mute_config}\" \"folders/{folder}/muteConfigs/{mute_config}\" \"projects/{project}/muteConfigs/{mute_config}\" \"organizations/{organization}/locations/global/muteConfigs/{mute_config}\" \"folders/{folder}/locations/global/muteConfigs/{mute_config}\" \"projects/{project}/locations/global/muteConfigs/{mute_config}\"",
+                      "description": "This field will be ignored if provided on config creation. Format `organizations/{organization}/muteConfigs/{mute_config}` `folders/{folder}/muteConfigs/{mute_config}` `projects/{project}/muteConfigs/{mute_config}` `organizations/{organization}/locations/global/muteConfigs/{mute_config}` `folders/{folder}/locations/global/muteConfigs/{mute_config}` `projects/{project}/locations/global/muteConfigs/{mute_config}`",
                       "location": "path",
                       "pattern": "^organizations/[^/]+/locations/[^/]+/muteConfigs/[^/]+$",
                       "required": true,
@@ -2675,7 +2675,7 @@
                   "type": "string"
                 },
                 "parent": {
-                  "description": "Required. Resource name of the new mute configs's parent. Its format is \"organizations/[organization_id]\", \"folders/[folder_id]\", or \"projects/[project_id]\".",
+                  "description": "Required. Resource name of the new mute configs's parent. Its format is `organizations/[organization_id]`, `folders/[folder_id]`, or `projects/[project_id]`.",
                   "location": "path",
                   "pattern": "^organizations/[^/]+$",
                   "required": true,
@@ -2703,7 +2703,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "Required. Name of the mute config to delete. Its format is organizations/{organization}/muteConfigs/{config_id}, folders/{folder}/muteConfigs/{config_id}, projects/{project}/muteConfigs/{config_id}, organizations/{organization}/locations/global/muteConfigs/{config_id}, folders/{folder}/locations/global/muteConfigs/{config_id}, or projects/{project}/locations/global/muteConfigs/{config_id}.",
+                  "description": "Required. Name of the mute config to delete. Its format is `organizations/{organization}/muteConfigs/{config_id}`, `folders/{folder}/muteConfigs/{config_id}`, `projects/{project}/muteConfigs/{config_id}`, `organizations/{organization}/locations/global/muteConfigs/{config_id}`, `folders/{folder}/locations/global/muteConfigs/{config_id}`, or `projects/{project}/locations/global/muteConfigs/{config_id}`.",
                   "location": "path",
                   "pattern": "^organizations/[^/]+/muteConfigs/[^/]+$",
                   "required": true,
@@ -2728,7 +2728,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "Required. Name of the mute config to retrieve. Its format is organizations/{organization}/muteConfigs/{config_id}, folders/{folder}/muteConfigs/{config_id}, projects/{project}/muteConfigs/{config_id}, organizations/{organization}/locations/global/muteConfigs/{config_id}, folders/{folder}/locations/global/muteConfigs/{config_id}, or projects/{project}/locations/global/muteConfigs/{config_id}.",
+                  "description": "Required. Name of the mute config to retrieve. Its format is `organizations/{organization}/muteConfigs/{config_id}`, `folders/{folder}/muteConfigs/{config_id}`, `projects/{project}/muteConfigs/{config_id}`, `organizations/{organization}/locations/global/muteConfigs/{config_id}`, `folders/{folder}/locations/global/muteConfigs/{config_id}`, or `projects/{project}/locations/global/muteConfigs/{config_id}`.",
                   "location": "path",
                   "pattern": "^organizations/[^/]+/muteConfigs/[^/]+$",
                   "required": true,
@@ -2764,7 +2764,7 @@
                   "type": "string"
                 },
                 "parent": {
-                  "description": "Required. The parent, which owns the collection of mute configs. Its format is \"organizations/[organization_id]\", \"folders/[folder_id]\", \"projects/[project_id]\".",
+                  "description": "Required. The parent, which owns the collection of mute configs. Its format is `organizations/[organization_id]`, `folders/[folder_id]`, `projects/[project_id]`.",
                   "location": "path",
                   "pattern": "^organizations/[^/]+$",
                   "required": true,
@@ -2789,7 +2789,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "This field will be ignored if provided on config creation. Format \"organizations/{organization}/muteConfigs/{mute_config}\" \"folders/{folder}/muteConfigs/{mute_config}\" \"projects/{project}/muteConfigs/{mute_config}\" \"organizations/{organization}/locations/global/muteConfigs/{mute_config}\" \"folders/{folder}/locations/global/muteConfigs/{mute_config}\" \"projects/{project}/locations/global/muteConfigs/{mute_config}\"",
+                  "description": "This field will be ignored if provided on config creation. Format `organizations/{organization}/muteConfigs/{mute_config}` `folders/{folder}/muteConfigs/{mute_config}` `projects/{project}/muteConfigs/{mute_config}` `organizations/{organization}/locations/global/muteConfigs/{mute_config}` `folders/{folder}/locations/global/muteConfigs/{mute_config}` `projects/{project}/locations/global/muteConfigs/{mute_config}`",
                   "location": "path",
                   "pattern": "^organizations/[^/]+/muteConfigs/[^/]+$",
                   "required": true,
@@ -2832,7 +2832,7 @@
                   "type": "string"
                 },
                 "parent": {
-                  "description": "Required. Resource name of the new notification config's parent. Its format is \"organizations/[organization_id]\", \"folders/[folder_id]\", or \"projects/[project_id]\".",
+                  "description": "Required. Resource name of the new notification config's parent. Its format is `organizations/[organization_id]`, `folders/[folder_id]`, or `projects/[project_id]`.",
                   "location": "path",
                   "pattern": "^organizations/[^/]+$",
                   "required": true,
@@ -2860,7 +2860,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "Required. Name of the notification config to delete. Its format is \"organizations/[organization_id]/notificationConfigs/[config_id]\", \"folders/[folder_id]/notificationConfigs/[config_id]\", or \"projects/[project_id]/notificationConfigs/[config_id]\".",
+                  "description": "Required. Name of the notification config to delete. Its format is `organizations/[organization_id]/notificationConfigs/[config_id]`, `folders/[folder_id]/notificationConfigs/[config_id]`, or `projects/[project_id]/notificationConfigs/[config_id]`.",
                   "location": "path",
                   "pattern": "^organizations/[^/]+/notificationConfigs/[^/]+$",
                   "required": true,
@@ -2885,7 +2885,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "Required. Name of the notification config to get. Its format is \"organizations/[organization_id]/notificationConfigs/[config_id]\", \"folders/[folder_id]/notificationConfigs/[config_id]\", or \"projects/[project_id]/notificationConfigs/[config_id]\".",
+                  "description": "Required. Name of the notification config to get. Its format is `organizations/[organization_id]/notificationConfigs/[config_id]`, `folders/[folder_id]/notificationConfigs/[config_id]`, or `projects/[project_id]/notificationConfigs/[config_id]`.",
                   "location": "path",
                   "pattern": "^organizations/[^/]+/notificationConfigs/[^/]+$",
                   "required": true,
@@ -3157,7 +3157,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "Required. Name of the resource value config to retrieve. Its format is organizations/{organization}/resourceValueConfigs/{config_id}.",
+                  "description": "Required. Name of the resource value config to retrieve. Its format is `organizations/{organization}/resourceValueConfigs/{config_id}`.",
                   "location": "path",
                   "pattern": "^organizations/[^/]+/resourceValueConfigs/[^/]+$",
                   "required": true,
@@ -3193,7 +3193,7 @@
                   "type": "string"
                 },
                 "parent": {
-                  "description": "Required. The parent, which owns the collection of resource value configs. Its format is \"organizations/[organization_id]\"",
+                  "description": "Required. The parent, which owns the collection of resource value configs. Its format is `organizations/[organization_id]`",
                   "location": "path",
                   "pattern": "^organizations/[^/]+$",
                   "required": true,
@@ -3258,7 +3258,7 @@
                   ],
                   "parameters": {
                     "parent": {
-                      "description": "Required. Resource name of the new custom module's parent. Its format is \"organizations/{organization}/securityHealthAnalyticsSettings\", \"folders/{folder}/securityHealthAnalyticsSettings\", or \"projects/{project}/securityHealthAnalyticsSettings\"",
+                      "description": "Required. Resource name of the new custom module's parent. Its format is `organizations/{organization}/securityHealthAnalyticsSettings`, `folders/{folder}/securityHealthAnalyticsSettings`, or `projects/{project}/securityHealthAnalyticsSettings`",
                       "location": "path",
                       "pattern": "^organizations/[^/]+/securityHealthAnalyticsSettings$",
                       "required": true,
@@ -3286,7 +3286,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. Name of the custom module to delete. Its format is \"organizations/{organization}/securityHealthAnalyticsSettings/customModules/{customModule}\", \"folders/{folder}/securityHealthAnalyticsSettings/customModules/{customModule}\", or \"projects/{project}/securityHealthAnalyticsSettings/customModules/{customModule}\"",
+                      "description": "Required. Name of the custom module to delete. Its format is `organizations/{organization}/securityHealthAnalyticsSettings/customModules/{customModule}`, `folders/{folder}/securityHealthAnalyticsSettings/customModules/{customModule}`, or `projects/{project}/securityHealthAnalyticsSettings/customModules/{customModule}`",
                       "location": "path",
                       "pattern": "^organizations/[^/]+/securityHealthAnalyticsSettings/customModules/[^/]+$",
                       "required": true,
@@ -3311,7 +3311,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. Name of the custom module to get. Its format is \"organizations/{organization}/securityHealthAnalyticsSettings/customModules/{customModule}\", \"folders/{folder}/securityHealthAnalyticsSettings/customModules/{customModule}\", or \"projects/{project}/securityHealthAnalyticsSettings/customModules/{customModule}\"",
+                      "description": "Required. Name of the custom module to get. Its format is `organizations/{organization}/securityHealthAnalyticsSettings/customModules/{customModule}`, `folders/{folder}/securityHealthAnalyticsSettings/customModules/{customModule}`, or `projects/{project}/securityHealthAnalyticsSettings/customModules/{customModule}`",
                       "location": "path",
                       "pattern": "^organizations/[^/]+/securityHealthAnalyticsSettings/customModules/[^/]+$",
                       "required": true,
@@ -3347,7 +3347,7 @@
                       "type": "string"
                     },
                     "parent": {
-                      "description": "Required. Name of parent to list custom modules. Its format is \"organizations/{organization}/securityHealthAnalyticsSettings\", \"folders/{folder}/securityHealthAnalyticsSettings\", or \"projects/{project}/securityHealthAnalyticsSettings\"",
+                      "description": "Required. Name of parent to list custom modules. Its format is `organizations/{organization}/securityHealthAnalyticsSettings`, `folders/{folder}/securityHealthAnalyticsSettings`, or `projects/{project}/securityHealthAnalyticsSettings`",
                       "location": "path",
                       "pattern": "^organizations/[^/]+/securityHealthAnalyticsSettings$",
                       "required": true,
@@ -3383,7 +3383,7 @@
                       "type": "string"
                     },
                     "parent": {
-                      "description": "Required. Name of parent to list descendant custom modules. Its format is \"organizations/{organization}/securityHealthAnalyticsSettings\", \"folders/{folder}/securityHealthAnalyticsSettings\", or \"projects/{project}/securityHealthAnalyticsSettings\"",
+                      "description": "Required. Name of parent to list descendant custom modules. Its format is `organizations/{organization}/securityHealthAnalyticsSettings`, `folders/{folder}/securityHealthAnalyticsSettings`, or `projects/{project}/securityHealthAnalyticsSettings`",
                       "location": "path",
                       "pattern": "^organizations/[^/]+/securityHealthAnalyticsSettings$",
                       "required": true,
@@ -3474,7 +3474,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. Name of the effective custom module to get. Its format is \"organizations/{organization}/securityHealthAnalyticsSettings/effectiveCustomModules/{customModule}\", \"folders/{folder}/securityHealthAnalyticsSettings/effectiveCustomModules/{customModule}\", or \"projects/{project}/securityHealthAnalyticsSettings/effectiveCustomModules/{customModule}\"",
+                      "description": "Required. Name of the effective custom module to get. Its format is `organizations/{organization}/securityHealthAnalyticsSettings/effectiveCustomModules/{customModule}`, `folders/{folder}/securityHealthAnalyticsSettings/effectiveCustomModules/{customModule}`, or `projects/{project}/securityHealthAnalyticsSettings/effectiveCustomModules/{customModule}`",
                       "location": "path",
                       "pattern": "^organizations/[^/]+/securityHealthAnalyticsSettings/effectiveCustomModules/[^/]+$",
                       "required": true,
@@ -3510,7 +3510,7 @@
                       "type": "string"
                     },
                     "parent": {
-                      "description": "Required. Name of parent to list effective custom modules. Its format is \"organizations/{organization}/securityHealthAnalyticsSettings\", \"folders/{folder}/securityHealthAnalyticsSettings\", or \"projects/{project}/securityHealthAnalyticsSettings\"",
+                      "description": "Required. Name of parent to list effective custom modules. Its format is `organizations/{organization}/securityHealthAnalyticsSettings`, `folders/{folder}/securityHealthAnalyticsSettings`, or `projects/{project}/securityHealthAnalyticsSettings`",
                       "location": "path",
                       "pattern": "^organizations/[^/]+/securityHealthAnalyticsSettings$",
                       "required": true,
@@ -3541,7 +3541,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "Required. The organization name or simulation name of this simulation Valid format: \"organizations/{organization}/simulations/latest\" \"organizations/{organization}/simulations/{simulation}\"",
+                  "description": "Required. The organization name or simulation name of this simulation Valid format: `organizations/{organization}/simulations/latest` `organizations/{organization}/simulations/{simulation}`",
                   "location": "path",
                   "pattern": "^organizations/[^/]+/simulations/[^/]+$",
                   "required": true,
@@ -3588,7 +3588,7 @@
                           "type": "string"
                         },
                         "parent": {
-                          "description": "Required. Name of parent to list attack paths. Valid formats: \"organizations/{organization}\", \"organizations/{organization}/simulations/{simulation}\" \"organizations/{organization}/simulations/{simulation}/attackExposureResults/{attack_exposure_result_v2}\" \"organizations/{organization}/simulations/{simulation}/valuedResources/{valued_resource}\"",
+                          "description": "Required. Name of parent to list attack paths. Valid formats: `organizations/{organization}`, `organizations/{organization}/simulations/{simulation}` `organizations/{organization}/simulations/{simulation}/attackExposureResults/{attack_exposure_result_v2}` `organizations/{organization}/simulations/{simulation}/valuedResources/{valued_resource}`",
                           "location": "path",
                           "pattern": "^organizations/[^/]+/simulations/[^/]+/attackExposureResults/[^/]+$",
                           "required": true,
@@ -3622,7 +3622,7 @@
                           "type": "string"
                         },
                         "orderBy": {
-                          "description": "Optional. The fields by which to order the valued resources response. Supported fields: * `exposed_score` * `resource_value` * `resource_type` * `resource` * `display_name` Values should be a comma separated list of fields. For example: `exposed_score,resource_value`. The default sorting order is descending. To specify ascending or descending order for a field, append a \" ASC\" or a \" DESC\" suffix, respectively; for example: `exposed_score DESC`.",
+                          "description": "Optional. The fields by which to order the valued resources response. Supported fields: * `exposed_score` * `resource_value` * `resource_type` * `resource` * `display_name` Values should be a comma separated list of fields. For example: `exposed_score,resource_value`. The default sorting order is descending. To specify ascending or descending order for a field, append a ` ASC` or a ` DESC` suffix, respectively; for example: `exposed_score DESC`.",
                           "location": "query",
                           "type": "string"
                         },
@@ -3638,7 +3638,7 @@
                           "type": "string"
                         },
                         "parent": {
-                          "description": "Required. Name of parent to list valued resources. Valid formats: \"organizations/{organization}\", \"organizations/{organization}/simulations/{simulation}\" \"organizations/{organization}/simulations/{simulation}/attackExposureResults/{attack_exposure_result_v2}\"",
+                          "description": "Required. Name of parent to list valued resources. Valid formats: `organizations/{organization}`, `organizations/{organization}/simulations/{simulation}` `organizations/{organization}/simulations/{simulation}/attackExposureResults/{attack_exposure_result_v2}`",
                           "location": "path",
                           "pattern": "^organizations/[^/]+/simulations/[^/]+/attackExposureResults/[^/]+$",
                           "required": true,
@@ -3685,7 +3685,7 @@
                       "type": "string"
                     },
                     "parent": {
-                      "description": "Required. Name of parent to list attack paths. Valid formats: \"organizations/{organization}\", \"organizations/{organization}/simulations/{simulation}\" \"organizations/{organization}/simulations/{simulation}/attackExposureResults/{attack_exposure_result_v2}\" \"organizations/{organization}/simulations/{simulation}/valuedResources/{valued_resource}\"",
+                      "description": "Required. Name of parent to list attack paths. Valid formats: `organizations/{organization}`, `organizations/{organization}/simulations/{simulation}` `organizations/{organization}/simulations/{simulation}/attackExposureResults/{attack_exposure_result_v2}` `organizations/{organization}/simulations/{simulation}/valuedResources/{valued_resource}`",
                       "location": "path",
                       "pattern": "^organizations/[^/]+/simulations/[^/]+$",
                       "required": true,
@@ -3714,7 +3714,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. The name of this valued resource Valid format: \"organizations/{organization}/simulations/{simulation}/valuedResources/{valued_resource}\"",
+                      "description": "Required. The name of this valued resource Valid format: `organizations/{organization}/simulations/{simulation}/valuedResources/{valued_resource}`",
                       "location": "path",
                       "pattern": "^organizations/[^/]+/simulations/[^/]+/valuedResources/[^/]+$",
                       "required": true,
@@ -3744,7 +3744,7 @@
                       "type": "string"
                     },
                     "orderBy": {
-                      "description": "Optional. The fields by which to order the valued resources response. Supported fields: * `exposed_score` * `resource_value` * `resource_type` * `resource` * `display_name` Values should be a comma separated list of fields. For example: `exposed_score,resource_value`. The default sorting order is descending. To specify ascending or descending order for a field, append a \" ASC\" or a \" DESC\" suffix, respectively; for example: `exposed_score DESC`.",
+                      "description": "Optional. The fields by which to order the valued resources response. Supported fields: * `exposed_score` * `resource_value` * `resource_type` * `resource` * `display_name` Values should be a comma separated list of fields. For example: `exposed_score,resource_value`. The default sorting order is descending. To specify ascending or descending order for a field, append a ` ASC` or a ` DESC` suffix, respectively; for example: `exposed_score DESC`.",
                       "location": "query",
                       "type": "string"
                     },
@@ -3760,7 +3760,7 @@
                       "type": "string"
                     },
                     "parent": {
-                      "description": "Required. Name of parent to list valued resources. Valid formats: \"organizations/{organization}\", \"organizations/{organization}/simulations/{simulation}\" \"organizations/{organization}/simulations/{simulation}/attackExposureResults/{attack_exposure_result_v2}\"",
+                      "description": "Required. Name of parent to list valued resources. Valid formats: `organizations/{organization}`, `organizations/{organization}/simulations/{simulation}` `organizations/{organization}/simulations/{simulation}/attackExposureResults/{attack_exposure_result_v2}`",
                       "location": "path",
                       "pattern": "^organizations/[^/]+/simulations/[^/]+$",
                       "required": true,
@@ -3805,7 +3805,7 @@
                           "type": "string"
                         },
                         "parent": {
-                          "description": "Required. Name of parent to list attack paths. Valid formats: \"organizations/{organization}\", \"organizations/{organization}/simulations/{simulation}\" \"organizations/{organization}/simulations/{simulation}/attackExposureResults/{attack_exposure_result_v2}\" \"organizations/{organization}/simulations/{simulation}/valuedResources/{valued_resource}\"",
+                          "description": "Required. Name of parent to list attack paths. Valid formats: `organizations/{organization}`, `organizations/{organization}/simulations/{simulation}` `organizations/{organization}/simulations/{simulation}/attackExposureResults/{attack_exposure_result_v2}` `organizations/{organization}/simulations/{simulation}/valuedResources/{valued_resource}`",
                           "location": "path",
                           "pattern": "^organizations/[^/]+/simulations/[^/]+/valuedResources/[^/]+$",
                           "required": true,
@@ -3838,7 +3838,7 @@
               ],
               "parameters": {
                 "parent": {
-                  "description": "Required. Resource name of the new source's parent. Its format should be \"organizations/[organization_id]\".",
+                  "description": "Required. Resource name of the new source's parent. Its format should be `organizations/[organization_id]`.",
                   "location": "path",
                   "pattern": "^organizations/[^/]+$",
                   "required": true,
@@ -3866,7 +3866,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "Required. Relative resource name of the source. Its format is \"organizations/[organization_id]/source/[source_id]\".",
+                  "description": "Required. Relative resource name of the source. Its format is `organizations/[organization_id]/source/[source_id]`.",
                   "location": "path",
                   "pattern": "^organizations/[^/]+/sources/[^/]+$",
                   "required": true,
@@ -3930,7 +3930,7 @@
                   "type": "string"
                 },
                 "parent": {
-                  "description": "Required. Resource name of the parent of sources to list. Its format should be \"organizations/[organization_id]\", \"folders/[folder_id]\", or \"projects/[project_id]\".",
+                  "description": "Required. Resource name of the parent of sources to list. Its format should be `organizations/[organization_id]`, `folders/[folder_id]`, or `projects/[project_id]`.",
                   "location": "path",
                   "pattern": "^organizations/[^/]+$",
                   "required": true,
@@ -4054,7 +4054,7 @@
                       "type": "string"
                     },
                     "parent": {
-                      "description": "Required. Resource name of the new finding's parent. Its format should be \"organizations/[organization_id]/sources/[source_id]\".",
+                      "description": "Required. Resource name of the new finding's parent. Its format should be `organizations/[organization_id]/sources/[source_id]`.",
                       "location": "path",
                       "pattern": "^organizations/[^/]+/sources/[^/]+$",
                       "required": true,
@@ -4082,7 +4082,7 @@
                   ],
                   "parameters": {
                     "parent": {
-                      "description": "Required. Name of the source to groupBy. Its format is \"organizations/[organization_id]/sources/[source_id]\", folders/[folder_id]/sources/[source_id], or projects/[project_id]/sources/[source_id]. To groupBy across all sources provide a source_id of `-`. For example: organizations/{organization_id}/sources/-, folders/{folder_id}/sources/-, or projects/{project_id}/sources/-",
+                      "description": "Required. Name of the source to groupBy. Its format is `organizations/[organization_id]/sources/[source_id]`, `folders/[folder_id]/sources/[source_id]`, or `projects/[project_id]/sources/[source_id]`. To groupBy across all sources provide a source_id of `-`. For example: `organizations/{organization_id}/sources/-, folders/{folder_id}/sources/-`, or `projects/{project_id}/sources/-`",
                       "location": "path",
                       "pattern": "^organizations/[^/]+/sources/[^/]+$",
                       "required": true,
@@ -4143,7 +4143,7 @@
                       "type": "string"
                     },
                     "parent": {
-                      "description": "Required. Name of the source the findings belong to. Its format is \"organizations/[organization_id]/sources/[source_id], folders/[folder_id]/sources/[source_id], or projects/[project_id]/sources/[source_id]\". To list across all sources provide a source_id of `-`. For example: organizations/{organization_id}/sources/-, folders/{folder_id}/sources/- or projects/{projects_id}/sources/-",
+                      "description": "Required. Name of the source the findings belong to. Its format is `organizations/[organization_id]/sources/[source_id]`, `folders/[folder_id]/sources/[source_id]`, or `projects/[project_id]/sources/[source_id]`. To list across all sources provide a source_id of `-`. For example: `organizations/{organization_id}/sources/-`, `folders/{folder_id}/sources/-` or `projects/{projects_id}/sources/-`",
                       "location": "path",
                       "pattern": "^organizations/[^/]+/sources/[^/]+$",
                       "required": true,
@@ -4208,7 +4208,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. The [relative resource name](https://cloud.google.com/apis/design/resource_names#relative_resource_name) of the finding. Example: \"organizations/{organization_id}/sources/{source_id}/findings/{finding_id}\", \"folders/{folder_id}/sources/{source_id}/findings/{finding_id}\", \"projects/{project_id}/sources/{source_id}/findings/{finding_id}\".",
+                      "description": "Required. The [relative resource name](https://cloud.google.com/apis/design/resource_names#relative_resource_name) of the finding. Example: `organizations/{organization_id}/sources/{source_id}/findings/{finding_id}`, `folders/{folder_id}/sources/{source_id}/findings/{finding_id}`, `projects/{project_id}/sources/{source_id}/findings/{finding_id}`.",
                       "location": "path",
                       "pattern": "^organizations/[^/]+/sources/[^/]+/findings/[^/]+$",
                       "required": true,
@@ -4236,7 +4236,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. The [relative resource name](https://cloud.google.com/apis/design/resource_names#relative_resource_name) of the finding. Example: \"organizations/{organization_id}/sources/{source_id}/findings/{finding_id}\", \"folders/{folder_id}/sources/{source_id}/findings/{finding_id}\", \"projects/{project_id}/sources/{source_id}/findings/{finding_id}\".",
+                      "description": "Required. The [relative resource name](https://cloud.google.com/apis/design/resource_names#relative_resource_name) of the finding. Example: `organizations/{organization_id}/sources/{source_id}/findings/{finding_id}`, `folders/{folder_id}/sources/{source_id}/findings/{finding_id}`, `projects/{project_id}/sources/{source_id}/findings/{finding_id}`.",
                       "location": "path",
                       "pattern": "^organizations/[^/]+/sources/[^/]+/findings/[^/]+$",
                       "required": true,
@@ -4355,7 +4355,7 @@
               ],
               "parameters": {
                 "parent": {
-                  "description": "Required. The name of the parent to group the assets by. Its format is \"organizations/[organization_id]\", \"folders/[folder_id]\", or \"projects/[project_id]\".",
+                  "description": "Required. The name of the parent to group the assets by. Its format is `organizations/[organization_id]`, `folders/[folder_id]`, or `projects/[project_id]`.",
                   "location": "path",
                   "pattern": "^projects/[^/]+$",
                   "required": true,
@@ -4417,7 +4417,7 @@
                   "type": "string"
                 },
                 "parent": {
-                  "description": "Required. The name of the parent resource that contains the assets. The value that you can specify on parent depends on the method in which you specify parent. You can specify one of the following values: \"organizations/[organization_id]\", \"folders/[folder_id]\", or \"projects/[project_id]\".",
+                  "description": "Required. The name of the parent resource that contains the assets. The value that you can specify on parent depends on the method in which you specify parent. You can specify one of the following values: `organizations/[organization_id]`, `folders/[folder_id]`, or `projects/[project_id]`.",
                   "location": "path",
                   "pattern": "^projects/[^/]+$",
                   "required": true,
@@ -4497,7 +4497,7 @@
                   "type": "string"
                 },
                 "parent": {
-                  "description": "Required. The name of the parent resource of the new BigQuery export. Its format is \"organizations/[organization_id]\", \"folders/[folder_id]\", or \"projects/[project_id]\".",
+                  "description": "Required. The name of the parent resource of the new BigQuery export. Its format is `organizations/[organization_id]`, `folders/[folder_id]`, or `projects/[project_id]`.",
                   "location": "path",
                   "pattern": "^projects/[^/]+$",
                   "required": true,
@@ -4525,7 +4525,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "Required. The name of the BigQuery export to delete. Its format is organizations/{organization}/bigQueryExports/{export_id}, folders/{folder}/bigQueryExports/{export_id}, or projects/{project}/bigQueryExports/{export_id}",
+                  "description": "Required. The name of the BigQuery export to delete. Its format is `organizations/{organization}/bigQueryExports/{export_id}`, `folders/{folder}/bigQueryExports/{export_id}`, or `projects/{project}/bigQueryExports/{export_id}`",
                   "location": "path",
                   "pattern": "^projects/[^/]+/bigQueryExports/[^/]+$",
                   "required": true,
@@ -4550,7 +4550,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "Required. Name of the BigQuery export to retrieve. Its format is organizations/{organization}/bigQueryExports/{export_id}, folders/{folder}/bigQueryExports/{export_id}, or projects/{project}/bigQueryExports/{export_id}",
+                  "description": "Required. Name of the BigQuery export to retrieve. Its format is `organizations/{organization}/bigQueryExports/{export_id}`, `folders/{folder}/bigQueryExports/{export_id}`, or `projects/{project}/bigQueryExports/{export_id}`",
                   "location": "path",
                   "pattern": "^projects/[^/]+/bigQueryExports/[^/]+$",
                   "required": true,
@@ -4586,7 +4586,7 @@
                   "type": "string"
                 },
                 "parent": {
-                  "description": "Required. The parent, which owns the collection of BigQuery exports. Its format is \"organizations/[organization_id]\", \"folders/[folder_id]\", \"projects/[project_id]\".",
+                  "description": "Required. The parent, which owns the collection of BigQuery exports. Its format is `organizations/[organization_id]`, `folders/[folder_id]`, `projects/[project_id]`.",
                   "location": "path",
                   "pattern": "^projects/[^/]+$",
                   "required": true,
@@ -4649,7 +4649,7 @@
               ],
               "parameters": {
                 "parent": {
-                  "description": "Required. Resource name of the parent to validate the Custom Module under. Its format is: * \"organizations/{organization}/eventThreatDetectionSettings\". * \"folders/{folder}/eventThreatDetectionSettings\". * \"projects/{project}/eventThreatDetectionSettings\".",
+                  "description": "Required. Resource name of the parent to validate the Custom Module under. Its format is: * `organizations/{organization}/eventThreatDetectionSettings`. * `folders/{folder}/eventThreatDetectionSettings`. * `projects/{project}/eventThreatDetectionSettings`.",
                   "location": "path",
                   "pattern": "^projects/[^/]+/eventThreatDetectionSettings$",
                   "required": true,
@@ -4681,7 +4681,7 @@
                   ],
                   "parameters": {
                     "parent": {
-                      "description": "Required. The new custom module's parent. Its format is: * \"organizations/{organization}/eventThreatDetectionSettings\". * \"folders/{folder}/eventThreatDetectionSettings\". * \"projects/{project}/eventThreatDetectionSettings\".",
+                      "description": "Required. The new custom module's parent. Its format is: * `organizations/{organization}/eventThreatDetectionSettings`. * `folders/{folder}/eventThreatDetectionSettings`. * `projects/{project}/eventThreatDetectionSettings`.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/eventThreatDetectionSettings$",
                       "required": true,
@@ -4709,7 +4709,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. Name of the custom module to delete. Its format is: * \"organizations/{organization}/eventThreatDetectionSettings/customModules/{module}\". * \"folders/{folder}/eventThreatDetectionSettings/customModules/{module}\". * \"projects/{project}/eventThreatDetectionSettings/customModules/{module}\".",
+                      "description": "Required. Name of the custom module to delete. Its format is: * `organizations/{organization}/eventThreatDetectionSettings/customModules/{module}`. * `folders/{folder}/eventThreatDetectionSettings/customModules/{module}`. * `projects/{project}/eventThreatDetectionSettings/customModules/{module}`.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/eventThreatDetectionSettings/customModules/[^/]+$",
                       "required": true,
@@ -4734,7 +4734,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. Name of the custom module to get. Its format is: * \"organizations/{organization}/eventThreatDetectionSettings/customModules/{module}\". * \"folders/{folder}/eventThreatDetectionSettings/customModules/{module}\". * \"projects/{project}/eventThreatDetectionSettings/customModules/{module}\".",
+                      "description": "Required. Name of the custom module to get. Its format is: * `organizations/{organization}/eventThreatDetectionSettings/customModules/{module}`. * `folders/{folder}/eventThreatDetectionSettings/customModules/{module}`. * `projects/{project}/eventThreatDetectionSettings/customModules/{module}`.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/eventThreatDetectionSettings/customModules/[^/]+$",
                       "required": true,
@@ -4770,7 +4770,7 @@
                       "type": "string"
                     },
                     "parent": {
-                      "description": "Required. Name of the parent to list custom modules under. Its format is: * \"organizations/{organization}/eventThreatDetectionSettings\". * \"folders/{folder}/eventThreatDetectionSettings\". * \"projects/{project}/eventThreatDetectionSettings\".",
+                      "description": "Required. Name of the parent to list custom modules under. Its format is: * `organizations/{organization}/eventThreatDetectionSettings`. * `folders/{folder}/eventThreatDetectionSettings`. * `projects/{project}/eventThreatDetectionSettings`.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/eventThreatDetectionSettings$",
                       "required": true,
@@ -4806,7 +4806,7 @@
                       "type": "string"
                     },
                     "parent": {
-                      "description": "Required. Name of the parent to list custom modules under. Its format is: * \"organizations/{organization}/eventThreatDetectionSettings\". * \"folders/{folder}/eventThreatDetectionSettings\". * \"projects/{project}/eventThreatDetectionSettings\".",
+                      "description": "Required. Name of the parent to list custom modules under. Its format is: * `organizations/{organization}/eventThreatDetectionSettings`. * `folders/{folder}/eventThreatDetectionSettings`. * `projects/{project}/eventThreatDetectionSettings`.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/eventThreatDetectionSettings$",
                       "required": true,
@@ -4831,7 +4831,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Immutable. The resource name of the Event Threat Detection custom module. Its format is: * \"organizations/{organization}/eventThreatDetectionSettings/customModules/{module}\". * \"folders/{folder}/eventThreatDetectionSettings/customModules/{module}\". * \"projects/{project}/eventThreatDetectionSettings/customModules/{module}\".",
+                      "description": "Immutable. The resource name of the Event Threat Detection custom module. Its format is: * `organizations/{organization}/eventThreatDetectionSettings/customModules/{module}`. * `folders/{folder}/eventThreatDetectionSettings/customModules/{module}`. * `projects/{project}/eventThreatDetectionSettings/customModules/{module}`.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/eventThreatDetectionSettings/customModules/[^/]+$",
                       "required": true,
@@ -4869,7 +4869,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. The resource name of the effective Event Threat Detection custom module. Its format is: * \"organizations/{organization}/eventThreatDetectionSettings/effectiveCustomModules/{module}\". * \"folders/{folder}/eventThreatDetectionSettings/effectiveCustomModules/{module}\". * \"projects/{project}/eventThreatDetectionSettings/effectiveCustomModules/{module}\".",
+                      "description": "Required. The resource name of the effective Event Threat Detection custom module. Its format is: * `organizations/{organization}/eventThreatDetectionSettings/effectiveCustomModules/{module}`. * `folders/{folder}/eventThreatDetectionSettings/effectiveCustomModules/{module}`. * `projects/{project}/eventThreatDetectionSettings/effectiveCustomModules/{module}`.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/eventThreatDetectionSettings/effectiveCustomModules/[^/]+$",
                       "required": true,
@@ -4905,7 +4905,7 @@
                       "type": "string"
                     },
                     "parent": {
-                      "description": "Required. Name of the parent to list custom modules for. Its format is: * \"organizations/{organization}/eventThreatDetectionSettings\". * \"folders/{folder}/eventThreatDetectionSettings\". * \"projects/{project}/eventThreatDetectionSettings\".",
+                      "description": "Required. Name of the parent to list custom modules for. Its format is: * `organizations/{organization}/eventThreatDetectionSettings`. * `folders/{folder}/eventThreatDetectionSettings`. * `projects/{project}/eventThreatDetectionSettings`.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/eventThreatDetectionSettings$",
                       "required": true,
@@ -4936,7 +4936,7 @@
               ],
               "parameters": {
                 "parent": {
-                  "description": "Required. The parent, at which bulk action needs to be applied. Its format is \"organizations/[organization_id]\", \"folders/[folder_id]\", \"projects/[project_id]\".",
+                  "description": "Required. The parent, at which bulk action needs to be applied. Its format is `organizations/[organization_id]`, `folders/[folder_id]`, `projects/[project_id]`.",
                   "location": "path",
                   "pattern": "^projects/[^/]+$",
                   "required": true,
@@ -4975,7 +4975,7 @@
                       "type": "string"
                     },
                     "parent": {
-                      "description": "Required. Resource name of the new mute configs's parent. Its format is \"organizations/[organization_id]\", \"folders/[folder_id]\", or \"projects/[project_id]\".",
+                      "description": "Required. Resource name of the new mute configs's parent. Its format is `organizations/[organization_id]`, `folders/[folder_id]`, or `projects/[project_id]`.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
@@ -5003,7 +5003,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. Name of the mute config to delete. Its format is organizations/{organization}/muteConfigs/{config_id}, folders/{folder}/muteConfigs/{config_id}, projects/{project}/muteConfigs/{config_id}, organizations/{organization}/locations/global/muteConfigs/{config_id}, folders/{folder}/locations/global/muteConfigs/{config_id}, or projects/{project}/locations/global/muteConfigs/{config_id}.",
+                      "description": "Required. Name of the mute config to delete. Its format is `organizations/{organization}/muteConfigs/{config_id}`, `folders/{folder}/muteConfigs/{config_id}`, `projects/{project}/muteConfigs/{config_id}`, `organizations/{organization}/locations/global/muteConfigs/{config_id}`, `folders/{folder}/locations/global/muteConfigs/{config_id}`, or `projects/{project}/locations/global/muteConfigs/{config_id}`.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/muteConfigs/[^/]+$",
                       "required": true,
@@ -5028,7 +5028,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. Name of the mute config to retrieve. Its format is organizations/{organization}/muteConfigs/{config_id}, folders/{folder}/muteConfigs/{config_id}, projects/{project}/muteConfigs/{config_id}, organizations/{organization}/locations/global/muteConfigs/{config_id}, folders/{folder}/locations/global/muteConfigs/{config_id}, or projects/{project}/locations/global/muteConfigs/{config_id}.",
+                      "description": "Required. Name of the mute config to retrieve. Its format is `organizations/{organization}/muteConfigs/{config_id}`, `folders/{folder}/muteConfigs/{config_id}`, `projects/{project}/muteConfigs/{config_id}`, `organizations/{organization}/locations/global/muteConfigs/{config_id}`, `folders/{folder}/locations/global/muteConfigs/{config_id}`, or `projects/{project}/locations/global/muteConfigs/{config_id}`.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/muteConfigs/[^/]+$",
                       "required": true,
@@ -5064,7 +5064,7 @@
                       "type": "string"
                     },
                     "parent": {
-                      "description": "Required. The parent, which owns the collection of mute configs. Its format is \"organizations/[organization_id]\", \"folders/[folder_id]\", \"projects/[project_id]\".",
+                      "description": "Required. The parent, which owns the collection of mute configs. Its format is `organizations/[organization_id]`, `folders/[folder_id]`, `projects/[project_id]`.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/muteConfigs$",
                       "required": true,
@@ -5089,7 +5089,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "This field will be ignored if provided on config creation. Format \"organizations/{organization}/muteConfigs/{mute_config}\" \"folders/{folder}/muteConfigs/{mute_config}\" \"projects/{project}/muteConfigs/{mute_config}\" \"organizations/{organization}/locations/global/muteConfigs/{mute_config}\" \"folders/{folder}/locations/global/muteConfigs/{mute_config}\" \"projects/{project}/locations/global/muteConfigs/{mute_config}\"",
+                      "description": "This field will be ignored if provided on config creation. Format `organizations/{organization}/muteConfigs/{mute_config}` `folders/{folder}/muteConfigs/{mute_config}` `projects/{project}/muteConfigs/{mute_config}` `organizations/{organization}/locations/global/muteConfigs/{mute_config}` `folders/{folder}/locations/global/muteConfigs/{mute_config}` `projects/{project}/locations/global/muteConfigs/{mute_config}`",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/muteConfigs/[^/]+$",
                       "required": true,
@@ -5134,7 +5134,7 @@
                   "type": "string"
                 },
                 "parent": {
-                  "description": "Required. Resource name of the new mute configs's parent. Its format is \"organizations/[organization_id]\", \"folders/[folder_id]\", or \"projects/[project_id]\".",
+                  "description": "Required. Resource name of the new mute configs's parent. Its format is `organizations/[organization_id]`, `folders/[folder_id]`, or `projects/[project_id]`.",
                   "location": "path",
                   "pattern": "^projects/[^/]+$",
                   "required": true,
@@ -5162,7 +5162,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "Required. Name of the mute config to delete. Its format is organizations/{organization}/muteConfigs/{config_id}, folders/{folder}/muteConfigs/{config_id}, projects/{project}/muteConfigs/{config_id}, organizations/{organization}/locations/global/muteConfigs/{config_id}, folders/{folder}/locations/global/muteConfigs/{config_id}, or projects/{project}/locations/global/muteConfigs/{config_id}.",
+                  "description": "Required. Name of the mute config to delete. Its format is `organizations/{organization}/muteConfigs/{config_id}`, `folders/{folder}/muteConfigs/{config_id}`, `projects/{project}/muteConfigs/{config_id}`, `organizations/{organization}/locations/global/muteConfigs/{config_id}`, `folders/{folder}/locations/global/muteConfigs/{config_id}`, or `projects/{project}/locations/global/muteConfigs/{config_id}`.",
                   "location": "path",
                   "pattern": "^projects/[^/]+/muteConfigs/[^/]+$",
                   "required": true,
@@ -5187,7 +5187,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "Required. Name of the mute config to retrieve. Its format is organizations/{organization}/muteConfigs/{config_id}, folders/{folder}/muteConfigs/{config_id}, projects/{project}/muteConfigs/{config_id}, organizations/{organization}/locations/global/muteConfigs/{config_id}, folders/{folder}/locations/global/muteConfigs/{config_id}, or projects/{project}/locations/global/muteConfigs/{config_id}.",
+                  "description": "Required. Name of the mute config to retrieve. Its format is `organizations/{organization}/muteConfigs/{config_id}`, `folders/{folder}/muteConfigs/{config_id}`, `projects/{project}/muteConfigs/{config_id}`, `organizations/{organization}/locations/global/muteConfigs/{config_id}`, `folders/{folder}/locations/global/muteConfigs/{config_id}`, or `projects/{project}/locations/global/muteConfigs/{config_id}`.",
                   "location": "path",
                   "pattern": "^projects/[^/]+/muteConfigs/[^/]+$",
                   "required": true,
@@ -5223,7 +5223,7 @@
                   "type": "string"
                 },
                 "parent": {
-                  "description": "Required. The parent, which owns the collection of mute configs. Its format is \"organizations/[organization_id]\", \"folders/[folder_id]\", \"projects/[project_id]\".",
+                  "description": "Required. The parent, which owns the collection of mute configs. Its format is `organizations/[organization_id]`, `folders/[folder_id]`, `projects/[project_id]`.",
                   "location": "path",
                   "pattern": "^projects/[^/]+$",
                   "required": true,
@@ -5248,7 +5248,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "This field will be ignored if provided on config creation. Format \"organizations/{organization}/muteConfigs/{mute_config}\" \"folders/{folder}/muteConfigs/{mute_config}\" \"projects/{project}/muteConfigs/{mute_config}\" \"organizations/{organization}/locations/global/muteConfigs/{mute_config}\" \"folders/{folder}/locations/global/muteConfigs/{mute_config}\" \"projects/{project}/locations/global/muteConfigs/{mute_config}\"",
+                  "description": "This field will be ignored if provided on config creation. Format `organizations/{organization}/muteConfigs/{mute_config}` `folders/{folder}/muteConfigs/{mute_config}` `projects/{project}/muteConfigs/{mute_config}` `organizations/{organization}/locations/global/muteConfigs/{mute_config}` `folders/{folder}/locations/global/muteConfigs/{mute_config}` `projects/{project}/locations/global/muteConfigs/{mute_config}`",
                   "location": "path",
                   "pattern": "^projects/[^/]+/muteConfigs/[^/]+$",
                   "required": true,
@@ -5291,7 +5291,7 @@
                   "type": "string"
                 },
                 "parent": {
-                  "description": "Required. Resource name of the new notification config's parent. Its format is \"organizations/[organization_id]\", \"folders/[folder_id]\", or \"projects/[project_id]\".",
+                  "description": "Required. Resource name of the new notification config's parent. Its format is `organizations/[organization_id]`, `folders/[folder_id]`, or `projects/[project_id]`.",
                   "location": "path",
                   "pattern": "^projects/[^/]+$",
                   "required": true,
@@ -5319,7 +5319,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "Required. Name of the notification config to delete. Its format is \"organizations/[organization_id]/notificationConfigs/[config_id]\", \"folders/[folder_id]/notificationConfigs/[config_id]\", or \"projects/[project_id]/notificationConfigs/[config_id]\".",
+                  "description": "Required. Name of the notification config to delete. Its format is `organizations/[organization_id]/notificationConfigs/[config_id]`, `folders/[folder_id]/notificationConfigs/[config_id]`, or `projects/[project_id]/notificationConfigs/[config_id]`.",
                   "location": "path",
                   "pattern": "^projects/[^/]+/notificationConfigs/[^/]+$",
                   "required": true,
@@ -5344,7 +5344,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "Required. Name of the notification config to get. Its format is \"organizations/[organization_id]/notificationConfigs/[config_id]\", \"folders/[folder_id]/notificationConfigs/[config_id]\", or \"projects/[project_id]/notificationConfigs/[config_id]\".",
+                  "description": "Required. Name of the notification config to get. Its format is `organizations/[organization_id]/notificationConfigs/[config_id]`, `folders/[folder_id]/notificationConfigs/[config_id]`, or `projects/[project_id]/notificationConfigs/[config_id]`.",
                   "location": "path",
                   "pattern": "^projects/[^/]+/notificationConfigs/[^/]+$",
                   "required": true,
@@ -5445,7 +5445,7 @@
                   ],
                   "parameters": {
                     "parent": {
-                      "description": "Required. Resource name of the new custom module's parent. Its format is \"organizations/{organization}/securityHealthAnalyticsSettings\", \"folders/{folder}/securityHealthAnalyticsSettings\", or \"projects/{project}/securityHealthAnalyticsSettings\"",
+                      "description": "Required. Resource name of the new custom module's parent. Its format is `organizations/{organization}/securityHealthAnalyticsSettings`, `folders/{folder}/securityHealthAnalyticsSettings`, or `projects/{project}/securityHealthAnalyticsSettings`",
                       "location": "path",
                       "pattern": "^projects/[^/]+/securityHealthAnalyticsSettings$",
                       "required": true,
@@ -5473,7 +5473,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. Name of the custom module to delete. Its format is \"organizations/{organization}/securityHealthAnalyticsSettings/customModules/{customModule}\", \"folders/{folder}/securityHealthAnalyticsSettings/customModules/{customModule}\", or \"projects/{project}/securityHealthAnalyticsSettings/customModules/{customModule}\"",
+                      "description": "Required. Name of the custom module to delete. Its format is `organizations/{organization}/securityHealthAnalyticsSettings/customModules/{customModule}`, `folders/{folder}/securityHealthAnalyticsSettings/customModules/{customModule}`, or `projects/{project}/securityHealthAnalyticsSettings/customModules/{customModule}`",
                       "location": "path",
                       "pattern": "^projects/[^/]+/securityHealthAnalyticsSettings/customModules/[^/]+$",
                       "required": true,
@@ -5498,7 +5498,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. Name of the custom module to get. Its format is \"organizations/{organization}/securityHealthAnalyticsSettings/customModules/{customModule}\", \"folders/{folder}/securityHealthAnalyticsSettings/customModules/{customModule}\", or \"projects/{project}/securityHealthAnalyticsSettings/customModules/{customModule}\"",
+                      "description": "Required. Name of the custom module to get. Its format is `organizations/{organization}/securityHealthAnalyticsSettings/customModules/{customModule}`, `folders/{folder}/securityHealthAnalyticsSettings/customModules/{customModule}`, or `projects/{project}/securityHealthAnalyticsSettings/customModules/{customModule}`",
                       "location": "path",
                       "pattern": "^projects/[^/]+/securityHealthAnalyticsSettings/customModules/[^/]+$",
                       "required": true,
@@ -5534,7 +5534,7 @@
                       "type": "string"
                     },
                     "parent": {
-                      "description": "Required. Name of parent to list custom modules. Its format is \"organizations/{organization}/securityHealthAnalyticsSettings\", \"folders/{folder}/securityHealthAnalyticsSettings\", or \"projects/{project}/securityHealthAnalyticsSettings\"",
+                      "description": "Required. Name of parent to list custom modules. Its format is `organizations/{organization}/securityHealthAnalyticsSettings`, `folders/{folder}/securityHealthAnalyticsSettings`, or `projects/{project}/securityHealthAnalyticsSettings`",
                       "location": "path",
                       "pattern": "^projects/[^/]+/securityHealthAnalyticsSettings$",
                       "required": true,
@@ -5570,7 +5570,7 @@
                       "type": "string"
                     },
                     "parent": {
-                      "description": "Required. Name of parent to list descendant custom modules. Its format is \"organizations/{organization}/securityHealthAnalyticsSettings\", \"folders/{folder}/securityHealthAnalyticsSettings\", or \"projects/{project}/securityHealthAnalyticsSettings\"",
+                      "description": "Required. Name of parent to list descendant custom modules. Its format is `organizations/{organization}/securityHealthAnalyticsSettings`, `folders/{folder}/securityHealthAnalyticsSettings`, or `projects/{project}/securityHealthAnalyticsSettings`",
                       "location": "path",
                       "pattern": "^projects/[^/]+/securityHealthAnalyticsSettings$",
                       "required": true,
@@ -5661,7 +5661,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. Name of the effective custom module to get. Its format is \"organizations/{organization}/securityHealthAnalyticsSettings/effectiveCustomModules/{customModule}\", \"folders/{folder}/securityHealthAnalyticsSettings/effectiveCustomModules/{customModule}\", or \"projects/{project}/securityHealthAnalyticsSettings/effectiveCustomModules/{customModule}\"",
+                      "description": "Required. Name of the effective custom module to get. Its format is `organizations/{organization}/securityHealthAnalyticsSettings/effectiveCustomModules/{customModule}`, `folders/{folder}/securityHealthAnalyticsSettings/effectiveCustomModules/{customModule}`, or `projects/{project}/securityHealthAnalyticsSettings/effectiveCustomModules/{customModule}`",
                       "location": "path",
                       "pattern": "^projects/[^/]+/securityHealthAnalyticsSettings/effectiveCustomModules/[^/]+$",
                       "required": true,
@@ -5697,7 +5697,7 @@
                       "type": "string"
                     },
                     "parent": {
-                      "description": "Required. Name of parent to list effective custom modules. Its format is \"organizations/{organization}/securityHealthAnalyticsSettings\", \"folders/{folder}/securityHealthAnalyticsSettings\", or \"projects/{project}/securityHealthAnalyticsSettings\"",
+                      "description": "Required. Name of parent to list effective custom modules. Its format is `organizations/{organization}/securityHealthAnalyticsSettings`, `folders/{folder}/securityHealthAnalyticsSettings`, or `projects/{project}/securityHealthAnalyticsSettings`",
                       "location": "path",
                       "pattern": "^projects/[^/]+/securityHealthAnalyticsSettings$",
                       "required": true,
@@ -5739,7 +5739,7 @@
                   "type": "string"
                 },
                 "parent": {
-                  "description": "Required. Resource name of the parent of sources to list. Its format should be \"organizations/[organization_id]\", \"folders/[folder_id]\", or \"projects/[project_id]\".",
+                  "description": "Required. Resource name of the parent of sources to list. Its format should be `organizations/[organization_id]`, `folders/[folder_id]`, or `projects/[project_id]`.",
                   "location": "path",
                   "pattern": "^projects/[^/]+$",
                   "required": true,
@@ -5768,7 +5768,7 @@
                   ],
                   "parameters": {
                     "parent": {
-                      "description": "Required. Name of the source to groupBy. Its format is \"organizations/[organization_id]/sources/[source_id]\", folders/[folder_id]/sources/[source_id], or projects/[project_id]/sources/[source_id]. To groupBy across all sources provide a source_id of `-`. For example: organizations/{organization_id}/sources/-, folders/{folder_id}/sources/-, or projects/{project_id}/sources/-",
+                      "description": "Required. Name of the source to groupBy. Its format is `organizations/[organization_id]/sources/[source_id]`, `folders/[folder_id]/sources/[source_id]`, or `projects/[project_id]/sources/[source_id]`. To groupBy across all sources provide a source_id of `-`. For example: `organizations/{organization_id}/sources/-, folders/{folder_id}/sources/-`, or `projects/{project_id}/sources/-`",
                       "location": "path",
                       "pattern": "^projects/[^/]+/sources/[^/]+$",
                       "required": true,
@@ -5829,7 +5829,7 @@
                       "type": "string"
                     },
                     "parent": {
-                      "description": "Required. Name of the source the findings belong to. Its format is \"organizations/[organization_id]/sources/[source_id], folders/[folder_id]/sources/[source_id], or projects/[project_id]/sources/[source_id]\". To list across all sources provide a source_id of `-`. For example: organizations/{organization_id}/sources/-, folders/{folder_id}/sources/- or projects/{projects_id}/sources/-",
+                      "description": "Required. Name of the source the findings belong to. Its format is `organizations/[organization_id]/sources/[source_id]`, `folders/[folder_id]/sources/[source_id]`, or `projects/[project_id]/sources/[source_id]`. To list across all sources provide a source_id of `-`. For example: `organizations/{organization_id}/sources/-`, `folders/{folder_id}/sources/-` or `projects/{projects_id}/sources/-`",
                       "location": "path",
                       "pattern": "^projects/[^/]+/sources/[^/]+$",
                       "required": true,
@@ -5894,7 +5894,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. The [relative resource name](https://cloud.google.com/apis/design/resource_names#relative_resource_name) of the finding. Example: \"organizations/{organization_id}/sources/{source_id}/findings/{finding_id}\", \"folders/{folder_id}/sources/{source_id}/findings/{finding_id}\", \"projects/{project_id}/sources/{source_id}/findings/{finding_id}\".",
+                      "description": "Required. The [relative resource name](https://cloud.google.com/apis/design/resource_names#relative_resource_name) of the finding. Example: `organizations/{organization_id}/sources/{source_id}/findings/{finding_id}`, `folders/{folder_id}/sources/{source_id}/findings/{finding_id}`, `projects/{project_id}/sources/{source_id}/findings/{finding_id}`.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/sources/[^/]+/findings/[^/]+$",
                       "required": true,
@@ -5922,7 +5922,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. The [relative resource name](https://cloud.google.com/apis/design/resource_names#relative_resource_name) of the finding. Example: \"organizations/{organization_id}/sources/{source_id}/findings/{finding_id}\", \"folders/{folder_id}/sources/{source_id}/findings/{finding_id}\", \"projects/{project_id}/sources/{source_id}/findings/{finding_id}\".",
+                      "description": "Required. The [relative resource name](https://cloud.google.com/apis/design/resource_names#relative_resource_name) of the finding. Example: `organizations/{organization_id}/sources/{source_id}/findings/{finding_id}`, `folders/{folder_id}/sources/{source_id}/findings/{finding_id}`, `projects/{project_id}/sources/{source_id}/findings/{finding_id}`.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/sources/[^/]+/findings/[^/]+$",
                       "required": true,
@@ -6027,7 +6027,7 @@
       }
     }
   },
-  "revision": "20240622",
+  "revision": "20240712",
   "rootUrl": "https://securitycenter.googleapis.com/",
   "schemas": {
     "Access": {
@@ -6251,7 +6251,7 @@
       "id": "AttackExposure",
       "properties": {
         "attackExposureResult": {
-          "description": "The resource name of the attack path simulation result that contains the details regarding this attack exposure score. Example: organizations/123/simulations/456/attackExposureResults/789",
+          "description": "The resource name of the attack path simulation result that contains the details regarding this attack exposure score. Example: `organizations/123/simulations/456/attackExposureResults/789`",
           "type": "string"
         },
         "exposedHighValueResourcesCount": {
@@ -6359,11 +6359,11 @@
           "type": "string"
         },
         "resource": {
-          "description": "The name of the resource at this point in the attack path. The format of the name follows the Cloud Asset Inventory [resource name format](\"https://cloud.google.com/asset-inventory/docs/resource-name-format\")",
+          "description": "The name of the resource at this point in the attack path. The format of the name follows the Cloud Asset Inventory [resource name format](https://cloud.google.com/asset-inventory/docs/resource-name-format)",
           "type": "string"
         },
         "resourceType": {
-          "description": "The [supported resource type](https://cloud.google.com/asset-inventory/docs/supported-asset-types\")",
+          "description": "The [supported resource type](https://cloud.google.com/asset-inventory/docs/supported-asset-types)",
           "type": "string"
         },
         "uuid": {
@@ -6537,7 +6537,7 @@
           "type": "string"
         },
         "id": {
-          "description": "The UUID of the Azure management group, for example, \"20000000-0001-0000-0000-000000000000\".",
+          "description": "The UUID of the Azure management group, for example, `20000000-0001-0000-0000-000000000000`.",
           "type": "string"
         }
       },
@@ -6585,7 +6585,7 @@
           "type": "string"
         },
         "id": {
-          "description": "The UUID of the Azure subscription, for example, \"291bba3f-e0a5-47bc-a099-3bdcb2a50a05\".",
+          "description": "The UUID of the Azure subscription, for example, `291bba3f-e0a5-47bc-a099-3bdcb2a50a05`.",
           "type": "string"
         }
       },
@@ -7358,7 +7358,7 @@
           "type": "string"
         },
         "name": {
-          "description": "Output only. The resource name of the effective ETD custom module. Its format is: * \"organizations/{organization}/eventThreatDetectionSettings/effectiveCustomModules/{module}\". * \"folders/{folder}/eventThreatDetectionSettings/effectiveCustomModules/{module}\". * \"projects/{project}/eventThreatDetectionSettings/effectiveCustomModules/{module}\".",
+          "description": "Output only. The resource name of the effective ETD custom module. Its format is: * `organizations/{organization}/eventThreatDetectionSettings/effectiveCustomModules/{module}`. * `folders/{folder}/eventThreatDetectionSettings/effectiveCustomModules/{module}`. * `projects/{project}/eventThreatDetectionSettings/effectiveCustomModules/{module}`.",
           "readOnly": true,
           "type": "string"
         },
@@ -7438,7 +7438,7 @@
           "type": "string"
         },
         "name": {
-          "description": "Immutable. The resource name of the Event Threat Detection custom module. Its format is: * \"organizations/{organization}/eventThreatDetectionSettings/customModules/{module}\". * \"folders/{folder}/eventThreatDetectionSettings/customModules/{module}\". * \"projects/{project}/eventThreatDetectionSettings/customModules/{module}\".",
+          "description": "Immutable. The resource name of the Event Threat Detection custom module. Its format is: * `organizations/{organization}/eventThreatDetectionSettings/customModules/{module}`. * `folders/{folder}/eventThreatDetectionSettings/customModules/{module}`. * `projects/{project}/eventThreatDetectionSettings/customModules/{module}`.",
           "type": "string"
         },
         "type": {
@@ -8208,7 +8208,7 @@
           "type": "string"
         },
         "name": {
-          "description": "This field will be ignored if provided on config creation. Format \"organizations/{organization}/muteConfigs/{mute_config}\" \"folders/{folder}/muteConfigs/{mute_config}\" \"projects/{project}/muteConfigs/{mute_config}\" \"organizations/{organization}/locations/global/muteConfigs/{mute_config}\" \"folders/{folder}/locations/global/muteConfigs/{mute_config}\" \"projects/{project}/locations/global/muteConfigs/{mute_config}\"",
+          "description": "This field will be ignored if provided on config creation. Format `organizations/{organization}/muteConfigs/{mute_config}` `folders/{folder}/muteConfigs/{mute_config}` `projects/{project}/muteConfigs/{mute_config}` `organizations/{organization}/locations/global/muteConfigs/{mute_config}` `folders/{folder}/locations/global/muteConfigs/{mute_config}` `projects/{project}/locations/global/muteConfigs/{mute_config}`",
           "type": "string"
         },
         "updateTime": {
@@ -8327,7 +8327,7 @@
           "description": "Provides the path to the resource within the resource hierarchy."
         },
         "resourcePathString": {
-          "description": "A string representation of the resource path. For Google Cloud, it has the format of organizations/{organization_id}/folders/{folder_id}/folders/{folder_id}/projects/{project_id} where there can be any number of folders. For AWS, it has the format of org/{organization_id}/ou/{organizational_unit_id}/ou/{organizational_unit_id}/account/{account_id} where there can be any number of organizational units. For Azure, it has the format of mg/{management_group_id}/mg/{management_group_id}/subscription/{subscription_id}/rg/{resource_group_name} where there can be any number of management groups.",
+          "description": "A string representation of the resource path. For Google Cloud, it has the format of `organizations/{organization_id}/folders/{folder_id}/folders/{folder_id}/projects/{project_id}` where there can be any number of folders. For AWS, it has the format of `org/{organization_id}/ou/{organizational_unit_id}/ou/{organizational_unit_id}/account/{account_id}` where there can be any number of organizational units. For Azure, it has the format of `mg/{management_group_id}/mg/{management_group_id}/subscription/{subscription_id}/rg/{resource_group_name}` where there can be any number of management groups.",
           "type": "string"
         },
         "service": {
@@ -8393,11 +8393,11 @@
           "additionalProperties": {
             "type": "string"
           },
-          "description": "List of resource labels to search for, evaluated with AND. For example, \"resource_labels_selector\": {\"key\": \"value\", \"env\": \"prod\"} will match resources with labels \"key\": \"value\" AND \"env\": \"prod\" https://cloud.google.com/resource-manager/docs/creating-managing-labels",
+          "description": "List of resource labels to search for, evaluated with `AND`. For example, `\"resource_labels_selector\": {\"key\": \"value\", \"env\": \"prod\"}` will match resources with labels \"key\": \"value\" `AND` \"env\": \"prod\" https://cloud.google.com/resource-manager/docs/creating-managing-labels",
           "type": "object"
         },
         "resourceType": {
-          "description": "Apply resource_value only to resources that match resource_type. resource_type will be checked with AND of other resources. For example, \"storage.googleapis.com/Bucket\" with resource_value \"HIGH\" will apply \"HIGH\" value only to \"storage.googleapis.com/Bucket\" resources.",
+          "description": "Apply resource_value only to resources that match resource_type. resource_type will be checked with `AND` of other resources. For example, \"storage.googleapis.com/Bucket\" with resource_value \"HIGH\" will apply \"HIGH\" value only to \"storage.googleapis.com/Bucket\" resources.",
           "type": "string"
         },
         "resourceValue": {
@@ -8419,7 +8419,7 @@
           "type": "string"
         },
         "scope": {
-          "description": "Project or folder to scope this configuration to. For example, \"project/456\" would apply this configuration only to resources in \"project/456\" scope will be checked with AND of other resources.",
+          "description": "Project or folder to scope this configuration to. For example, \"project/456\" would apply this configuration only to resources in \"project/456\" scope will be checked with `AND` of other resources.",
           "type": "string"
         },
         "sensitiveDataProtectionMapping": {
@@ -8427,7 +8427,7 @@
           "description": "A mapping of the sensitivity on Sensitive Data Protection finding to resource values. This mapping can only be used in combination with a resource_type that is related to BigQuery, e.g. \"bigquery.googleapis.com/Dataset\"."
         },
         "tagValues": {
-          "description": "Required. Tag values combined with AND to check against. Values in the form \"tagValues/123\" Example: [ \"tagValues/123\", \"tagValues/456\", \"tagValues/789\" ] https://cloud.google.com/resource-manager/docs/tags/tags-creating-and-managing",
+          "description": "Required. Tag values combined with `AND` to check against. Values in the form \"tagValues/123\" Example: `[ \"tagValues/123\", \"tagValues/456\", \"tagValues/789\" ]` https://cloud.google.com/resource-manager/docs/tags/tags-creating-and-managing",
           "items": {
             "type": "string"
           },
@@ -8938,7 +8938,7 @@
       "id": "GoogleCloudSecuritycenterV2AttackExposure",
       "properties": {
         "attackExposureResult": {
-          "description": "The resource name of the attack path simulation result that contains the details regarding this attack exposure score. Example: organizations/123/simulations/456/attackExposureResults/789",
+          "description": "The resource name of the attack path simulation result that contains the details regarding this attack exposure score. Example: `organizations/123/simulations/456/attackExposureResults/789`",
           "type": "string"
         },
         "exposedHighValueResourcesCount": {
@@ -9056,7 +9056,7 @@
           "type": "string"
         },
         "id": {
-          "description": "The UUID of the Azure management group, for example, \"20000000-0001-0000-0000-000000000000\".",
+          "description": "The UUID of the Azure management group, for example, `20000000-0001-0000-0000-000000000000`.",
           "type": "string"
         }
       },
@@ -9104,7 +9104,7 @@
           "type": "string"
         },
         "id": {
-          "description": "The UUID of the Azure subscription, for example, \"291bba3f-e0a5-47bc-a099-3bdcb2a50a05\".",
+          "description": "The UUID of the Azure subscription, for example, `291bba3f-e0a5-47bc-a099-3bdcb2a50a05`.",
           "type": "string"
         }
       },
@@ -9178,7 +9178,7 @@
           "type": "string"
         },
         "dataset": {
-          "description": "The dataset to write findings' updates to. Its format is \"projects/[project_id]/datasets/[bigquery_dataset_id]\". BigQuery Dataset unique ID must contain only letters (a-z, A-Z), numbers (0-9), or underscores (_).",
+          "description": "The dataset to write findings' updates to. Its format is \"projects/[project_id]/datasets/[bigquery_dataset_id]\". BigQuery dataset unique ID must contain only letters (a-z, A-Z), numbers (0-9), or underscores (_).",
           "type": "string"
         },
         "description": {
@@ -9195,7 +9195,7 @@
           "type": "string"
         },
         "name": {
-          "description": "The relative resource name of this export. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name. The following list shows some examples: + `organizations/{organization_id}/locations/{location_id}/bigQueryExports/{export_id}` + `folders/{folder_id}/locations/{location_id}/bigQueryExports/{export_id}` + `projects/{project_id}/locations/{location_id}/bigQueryExports/{export_id}` This field is provided in responses, and is ignored when provided in create requests.",
+          "description": "Identifier. The relative resource name of this export. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name. The following list shows some examples: + `organizations/{organization_id}/locations/{location_id}/bigQueryExports/{export_id}` + `folders/{folder_id}/locations/{location_id}/bigQueryExports/{export_id}` + `projects/{project_id}/locations/{location_id}/bigQueryExports/{export_id}` This field is provided in responses, and is ignored when provided in create requests.",
           "type": "string"
         },
         "principal": {
@@ -10534,8 +10534,10 @@
               "COMMAND_AND_SCRIPTING_INTERPRETER",
               "UNIX_SHELL",
               "PYTHON",
+              "EXPLOITATION_FOR_PRIVILEGE_ESCALATION",
               "PERMISSION_GROUPS_DISCOVERY",
               "CLOUD_GROUPS",
+              "INDICATOR_REMOVAL_FILE_DELETION",
               "APPLICATION_LAYER_PROTOCOL",
               "DNS",
               "SOFTWARE_DEPLOYMENT_TOOLS",
@@ -10599,8 +10601,10 @@
               "T1059",
               "T1059.004",
               "T1059.006",
+              "T1068",
               "T1069",
               "T1069.003",
+              "T1070.004",
               "T1071",
               "T1071.004",
               "T1072",
@@ -10648,7 +10652,7 @@
               "T1588",
               "T1595",
               "T1595.001",
-              "T1613",
+              "T1609",
               "T1611",
               "T1613",
               "T1649"
@@ -10709,8 +10713,10 @@
               "COMMAND_AND_SCRIPTING_INTERPRETER",
               "UNIX_SHELL",
               "PYTHON",
+              "EXPLOITATION_FOR_PRIVILEGE_ESCALATION",
               "PERMISSION_GROUPS_DISCOVERY",
               "CLOUD_GROUPS",
+              "INDICATOR_REMOVAL_FILE_DELETION",
               "APPLICATION_LAYER_PROTOCOL",
               "DNS",
               "SOFTWARE_DEPLOYMENT_TOOLS",
@@ -10774,8 +10780,10 @@
               "T1059",
               "T1059.004",
               "T1059.006",
+              "T1068",
               "T1069",
               "T1069.003",
+              "T1070.004",
               "T1071",
               "T1071.004",
               "T1072",
@@ -10823,7 +10831,7 @@
               "T1588",
               "T1595",
               "T1595.001",
-              "T1613",
+              "T1609",
               "T1611",
               "T1613",
               "T1649"
@@ -10863,7 +10871,7 @@
           "type": "string"
         },
         "name": {
-          "description": "This field will be ignored if provided on config creation. The following list shows some examples of the format: + `organizations/{organization}/muteConfigs/{mute_config}` + `organizations/{organization}locations/{location}//muteConfigs/{mute_config}` + `folders/{folder}/muteConfigs/{mute_config}` + `folders/{folder}/locations/{location}/muteConfigs/{mute_config}` + `projects/{project}/muteConfigs/{mute_config}` + `projects/{project}/locations/{location}/muteConfigs/{mute_config}`",
+          "description": "Identifier. This field will be ignored if provided on config creation. The following list shows some examples of the format: + `organizations/{organization}/muteConfigs/{mute_config}` + `organizations/{organization}locations/{location}//muteConfigs/{mute_config}` + `folders/{folder}/muteConfigs/{mute_config}` + `folders/{folder}/locations/{location}/muteConfigs/{mute_config}` + `projects/{project}/muteConfigs/{mute_config}` + `projects/{project}/locations/{location}/muteConfigs/{mute_config}`",
           "type": "string"
         },
         "type": {
@@ -11249,7 +11257,7 @@
           "description": "Provides the path to the resource within the resource hierarchy."
         },
         "resourcePathString": {
-          "description": "A string representation of the resource path. For Google Cloud, it has the format of organizations/{organization_id}/folders/{folder_id}/folders/{folder_id}/projects/{project_id} where there can be any number of folders. For AWS, it has the format of org/{organization_id}/ou/{organizational_unit_id}/ou/{organizational_unit_id}/account/{account_id} where there can be any number of organizational units. For Azure, it has the format of mg/{management_group_id}/mg/{management_group_id}/subscription/{subscription_id}/rg/{resource_group_name} where there can be any number of management groups.",
+          "description": "A string representation of the resource path. For Google Cloud, it has the format of `organizations/{organization_id}/folders/{folder_id}/folders/{folder_id}/projects/{project_id}` where there can be any number of folders. For AWS, it has the format of `org/{organization_id}/ou/{organizational_unit_id}/ou/{organizational_unit_id}/account/{account_id}` where there can be any number of organizational units. For Azure, it has the format of `mg/{management_group_id}/mg/{management_group_id}/subscription/{subscription_id}/rg/{resource_group_name}` where there can be any number of management groups.",
           "type": "string"
         },
         "service": {
@@ -11351,22 +11359,22 @@
           "type": "string"
         },
         "name": {
-          "description": "Name for the resource value configuration",
+          "description": "Identifier. Name for the resource value configuration",
           "type": "string"
         },
         "resourceLabelsSelector": {
           "additionalProperties": {
             "type": "string"
           },
-          "description": "List of resource labels to search for, evaluated with AND. For example, \"resource_labels_selector\": {\"key\": \"value\", \"env\": \"prod\"} will match resources with labels \"key\": \"value\" AND \"env\": \"prod\" https://cloud.google.com/resource-manager/docs/creating-managing-labels",
+          "description": "List of resource labels to search for, evaluated with `AND`. For example, \"resource_labels_selector\": {\"key\": \"value\", \"env\": \"prod\"} will match resources with labels \"key\": \"value\" `AND` \"env\": \"prod\" https://cloud.google.com/resource-manager/docs/creating-managing-labels",
           "type": "object"
         },
         "resourceType": {
-          "description": "Apply resource_value only to resources that match resource_type. resource_type will be checked with AND of other resources. For example, \"storage.googleapis.com/Bucket\" with resource_value \"HIGH\" will apply \"HIGH\" value only to \"storage.googleapis.com/Bucket\" resources.",
+          "description": "Apply resource_value only to resources that match resource_type. resource_type will be checked with `AND` of other resources. For example, \"storage.googleapis.com/Bucket\" with resource_value \"HIGH\" will apply \"HIGH\" value only to \"storage.googleapis.com/Bucket\" resources.",
           "type": "string"
         },
         "resourceValue": {
-          "description": "Resource value level this expression represents Only required when there is no SDP mapping in the request",
+          "description": "Resource value level this expression represents Only required when there is no Sensitive Data Protection mapping in the request",
           "enum": [
             "RESOURCE_VALUE_UNSPECIFIED",
             "HIGH",
@@ -11384,7 +11392,7 @@
           "type": "string"
         },
         "scope": {
-          "description": "Project or folder to scope this configuration to. For example, \"project/456\" would apply this configuration only to resources in \"project/456\" scope will be checked with AND of other resources.",
+          "description": "Project or folder to scope this configuration to. For example, \"project/456\" would apply this configuration only to resources in \"project/456\" scope and will be checked with `AND` of other resources.",
           "type": "string"
         },
         "sensitiveDataProtectionMapping": {
@@ -11392,7 +11400,7 @@
           "description": "A mapping of the sensitivity on Sensitive Data Protection finding to resource values. This mapping can only be used in combination with a resource_type that is related to BigQuery, e.g. \"bigquery.googleapis.com/Dataset\"."
         },
         "tagValues": {
-          "description": "Required. Tag values combined with AND to check against. Values in the form \"tagValues/123\" Example: [ \"tagValues/123\", \"tagValues/456\", \"tagValues/789\" ] https://cloud.google.com/resource-manager/docs/tags/tags-creating-and-managing",
+          "description": "Tag values combined with `AND` to check against. Values in the form \"tagValues/123\" Example: `[ \"tagValues/123\", \"tagValues/456\", \"tagValues/789\" ]` https://cloud.google.com/resource-manager/docs/tags/tags-creating-and-managing",
           "items": {
             "type": "string"
           },
@@ -11670,7 +11678,7 @@
           "type": "number"
         },
         "relatedFindings": {
-          "description": "List of resource names of findings associated with this toxic combination. For example, organizations/123/sources/456/findings/789.",
+          "description": "List of resource names of findings associated with this toxic combination. For example, `organizations/123/sources/456/findings/789`.",
           "items": {
             "type": "string"
           },
@@ -12541,8 +12549,10 @@
               "COMMAND_AND_SCRIPTING_INTERPRETER",
               "UNIX_SHELL",
               "PYTHON",
+              "EXPLOITATION_FOR_PRIVILEGE_ESCALATION",
               "PERMISSION_GROUPS_DISCOVERY",
               "CLOUD_GROUPS",
+              "INDICATOR_REMOVAL_FILE_DELETION",
               "APPLICATION_LAYER_PROTOCOL",
               "DNS",
               "SOFTWARE_DEPLOYMENT_TOOLS",
@@ -12606,8 +12616,10 @@
               "T1059",
               "T1059.004",
               "T1059.006",
+              "T1068",
               "T1069",
               "T1069.003",
+              "T1070.004",
               "T1071",
               "T1071.004",
               "T1072",
@@ -12716,8 +12728,10 @@
               "COMMAND_AND_SCRIPTING_INTERPRETER",
               "UNIX_SHELL",
               "PYTHON",
+              "EXPLOITATION_FOR_PRIVILEGE_ESCALATION",
               "PERMISSION_GROUPS_DISCOVERY",
               "CLOUD_GROUPS",
+              "INDICATOR_REMOVAL_FILE_DELETION",
               "APPLICATION_LAYER_PROTOCOL",
               "DNS",
               "SOFTWARE_DEPLOYMENT_TOOLS",
@@ -12781,8 +12795,10 @@
               "T1059",
               "T1059.004",
               "T1059.006",
+              "T1068",
               "T1069",
               "T1069.003",
+              "T1070.004",
               "T1071",
               "T1071.004",
               "T1072",
@@ -13050,7 +13066,7 @@
       "id": "PathNodeAssociatedFinding",
       "properties": {
         "canonicalFinding": {
-          "description": "Canonical name of the associated findings. Example: organizations/123/sources/456/findings/789",
+          "description": "Canonical name of the associated findings. Example: `organizations/123/sources/456/findings/789`",
           "type": "string"
         },
         "findingCategory": {
@@ -13359,7 +13375,7 @@
           "description": "Provides the path to the resource within the resource hierarchy."
         },
         "resourcePathString": {
-          "description": "A string representation of the resource path. For Google Cloud, it has the format of org/{organization_id}/folder/{folder_id}/folder/{folder_id}/project/{project_id} where there can be any number of folders. For AWS, it has the format of org/{organization_id}/ou/{organizational_unit_id}/ou/{organizational_unit_id}/account/{account_id} where there can be any number of organizational units. For Azure, it has the format of mg/{management_group_id}/mg/{management_group_id}/subscription/{subscription_id}/rg/{resource_group_name} where there can be any number of management groups.",
+          "description": "A string representation of the resource path. For Google Cloud, it has the format of `org/{organization_id}/folder/{folder_id}/folder/{folder_id}/project/{project_id}` where there can be any number of folders. For AWS, it has the format of `org/{organization_id}/ou/{organizational_unit_id}/ou/{organizational_unit_id}/account/{account_id}` where there can be any number of organizational units. For Azure, it has the format of `mg/{management_group_id}/mg/{management_group_id}/subscription/{subscription_id}/rg/{resource_group_name}` where there can be any number of management groups.",
           "type": "string"
         },
         "service": {
@@ -13803,7 +13819,7 @@
           "type": "string"
         },
         "name": {
-          "description": "Full resource name of the Simulation: organizations/123/simulations/456",
+          "description": "Full resource name of the Simulation: `organizations/123/simulations/456`",
           "type": "string"
         },
         "resourceValueConfigsMetadata": {
@@ -13978,7 +13994,7 @@
           "type": "number"
         },
         "relatedFindings": {
-          "description": "List of resource names of findings associated with this toxic combination. For example, organizations/123/sources/456/findings/789.",
+          "description": "List of resource names of findings associated with this toxic combination. For example, `organizations/123/sources/456/findings/789`.",
           "items": {
             "type": "string"
           },

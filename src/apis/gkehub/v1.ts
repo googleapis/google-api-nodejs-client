@@ -526,9 +526,17 @@ export namespace gkehub_v1 {
      */
     monitor?: string | null;
     /**
+     * Deployment state of otel-collector
+     */
+    otelCollector?: string | null;
+    /**
      * Deployment state of reconciler-manager pod
      */
     reconcilerManager?: string | null;
+    /**
+     * Deployment state of resource-group-controller-manager
+     */
+    resourceGroupControllerManager?: string | null;
     /**
      * Deployment state of root-reconciler
      */
@@ -585,7 +593,7 @@ export namespace gkehub_v1 {
    */
   export interface Schema$ConfigManagementConfigSyncVersion {
     /**
-     * Version of the deployed admission_webhook pod
+     * Version of the deployed admission-webhook pod
      */
     admissionWebhook?: string | null;
     /**
@@ -601,9 +609,17 @@ export namespace gkehub_v1 {
      */
     monitor?: string | null;
     /**
+     * Version of the deployed otel-collector pod
+     */
+    otelCollector?: string | null;
+    /**
      * Version of the deployed reconciler-manager pod
      */
     reconcilerManager?: string | null;
+    /**
+     * Version of the deployed resource-group-controller-manager pod
+     */
+    resourceGroupControllerManager?: string | null;
     /**
      * Version of the deployed reconciler container in root-reconciler pod
      */
@@ -1319,6 +1335,15 @@ export namespace gkehub_v1 {
      * The ordered list of Kubernetes resources that need to be applied to the cluster for GKE Connect agent installation/upgrade.
      */
     manifest?: Schema$ConnectAgentResource[];
+  }
+  /**
+   * Response for GenerateRBACRoleBindingYAML.
+   */
+  export interface Schema$GenerateMembershipRBACRoleBindingYAMLResponse {
+    /**
+     * a yaml text blob including the RBAC policies.
+     */
+    roleBindingsYaml?: string | null;
   }
   /**
    * GkeCluster contains information specific to GKE clusters.
@@ -2793,7 +2818,7 @@ export namespace gkehub_v1 {
      */
     controlPlane?: string | null;
     /**
-     * Enables automatic Service Mesh management.
+     * Optional. Enables automatic Service Mesh management.
      */
     management?: string | null;
   }
@@ -6091,6 +6116,365 @@ export namespace gkehub_v1 {
     }
 
     /**
+     * Creates a Membership RBACRoleBinding.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Locations$Memberships$Rbacrolebindings$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Projects$Locations$Memberships$Rbacrolebindings$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    create(
+      params: Params$Resource$Projects$Locations$Memberships$Rbacrolebindings$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Memberships$Rbacrolebindings$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Memberships$Rbacrolebindings$Create,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$Operation>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Memberships$Rbacrolebindings$Create
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Memberships$Rbacrolebindings$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Memberships$Rbacrolebindings$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://gkehub.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/rbacrolebindings').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Deletes a Membership RBACRoleBinding.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Memberships$Rbacrolebindings$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Memberships$Rbacrolebindings$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    delete(
+      params: Params$Resource$Projects$Locations$Memberships$Rbacrolebindings$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Memberships$Rbacrolebindings$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Memberships$Rbacrolebindings$Delete,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Memberships$Rbacrolebindings$Delete
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Memberships$Rbacrolebindings$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Memberships$Rbacrolebindings$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://gkehub.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Generates a YAML of the RBAC policies for the specified RoleBinding and its associated impersonation resources.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    generateMembershipRBACRoleBindingYAML(
+      params: Params$Resource$Projects$Locations$Memberships$Rbacrolebindings$Generatemembershiprbacrolebindingyaml,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    generateMembershipRBACRoleBindingYAML(
+      params?: Params$Resource$Projects$Locations$Memberships$Rbacrolebindings$Generatemembershiprbacrolebindingyaml,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GenerateMembershipRBACRoleBindingYAMLResponse>;
+    generateMembershipRBACRoleBindingYAML(
+      params: Params$Resource$Projects$Locations$Memberships$Rbacrolebindings$Generatemembershiprbacrolebindingyaml,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    generateMembershipRBACRoleBindingYAML(
+      params: Params$Resource$Projects$Locations$Memberships$Rbacrolebindings$Generatemembershiprbacrolebindingyaml,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GenerateMembershipRBACRoleBindingYAMLResponse>,
+      callback: BodyResponseCallback<Schema$GenerateMembershipRBACRoleBindingYAMLResponse>
+    ): void;
+    generateMembershipRBACRoleBindingYAML(
+      params: Params$Resource$Projects$Locations$Memberships$Rbacrolebindings$Generatemembershiprbacrolebindingyaml,
+      callback: BodyResponseCallback<Schema$GenerateMembershipRBACRoleBindingYAMLResponse>
+    ): void;
+    generateMembershipRBACRoleBindingYAML(
+      callback: BodyResponseCallback<Schema$GenerateMembershipRBACRoleBindingYAMLResponse>
+    ): void;
+    generateMembershipRBACRoleBindingYAML(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Memberships$Rbacrolebindings$Generatemembershiprbacrolebindingyaml
+        | BodyResponseCallback<Schema$GenerateMembershipRBACRoleBindingYAMLResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GenerateMembershipRBACRoleBindingYAMLResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GenerateMembershipRBACRoleBindingYAMLResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GenerateMembershipRBACRoleBindingYAMLResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Memberships$Rbacrolebindings$Generatemembershiprbacrolebindingyaml;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Memberships$Rbacrolebindings$Generatemembershiprbacrolebindingyaml;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://gkehub.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v1/{+parent}/rbacrolebindings:generateMembershipRBACRoleBindingYAML'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GenerateMembershipRBACRoleBindingYAMLResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GenerateMembershipRBACRoleBindingYAMLResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Returns the details of a Membership RBACRoleBinding.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Memberships$Rbacrolebindings$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Memberships$Rbacrolebindings$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$RBACRoleBinding>;
+    get(
+      params: Params$Resource$Projects$Locations$Memberships$Rbacrolebindings$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Memberships$Rbacrolebindings$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$RBACRoleBinding>,
+      callback: BodyResponseCallback<Schema$RBACRoleBinding>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Memberships$Rbacrolebindings$Get,
+      callback: BodyResponseCallback<Schema$RBACRoleBinding>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$RBACRoleBinding>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Memberships$Rbacrolebindings$Get
+        | BodyResponseCallback<Schema$RBACRoleBinding>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$RBACRoleBinding>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$RBACRoleBinding>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$RBACRoleBinding> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Memberships$Rbacrolebindings$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Memberships$Rbacrolebindings$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://gkehub.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$RBACRoleBinding>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$RBACRoleBinding>(parameters);
+      }
+    }
+
+    /**
      * Lists all Membership RBACRoleBindings.
      *
      * @param params - Parameters for request
@@ -6187,8 +6571,140 @@ export namespace gkehub_v1 {
         );
       }
     }
+
+    /**
+     * Updates a Membership RBACRoleBinding.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Locations$Memberships$Rbacrolebindings$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Projects$Locations$Memberships$Rbacrolebindings$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    patch(
+      params: Params$Resource$Projects$Locations$Memberships$Rbacrolebindings$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Memberships$Rbacrolebindings$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Memberships$Rbacrolebindings$Patch,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$Operation>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Memberships$Rbacrolebindings$Patch
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Memberships$Rbacrolebindings$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Memberships$Rbacrolebindings$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://gkehub.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
   }
 
+  export interface Params$Resource$Projects$Locations$Memberships$Rbacrolebindings$Create
+    extends StandardParameters {
+    /**
+     * Required. The parent (project and location) where the RBACRoleBinding will be created. Specified in the format `projects/x/locations/x/memberships/x`.
+     */
+    parent?: string;
+    /**
+     * Required. Client chosen ID for the RBACRoleBinding. `rbacrolebinding_id` must be a valid RFC 1123 compliant DNS label: 1. At most 63 characters in length 2. It must consist of lower case alphanumeric characters or `-` 3. It must start and end with an alphanumeric character Which can be expressed as the regex: `[a-z0-9]([-a-z0-9]*[a-z0-9])?`, with a maximum length of 63 characters.
+     */
+    rbacrolebindingId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$RBACRoleBinding;
+  }
+  export interface Params$Resource$Projects$Locations$Memberships$Rbacrolebindings$Delete
+    extends StandardParameters {
+    /**
+     * Required. The RBACRoleBinding resource name in the format `projects/x/locations/x/memberships/x/rbacrolebindings/x`.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Memberships$Rbacrolebindings$Generatemembershiprbacrolebindingyaml
+    extends StandardParameters {
+    /**
+     * Required. The parent (project and location) where the RBACRoleBinding will be created. Specified in the format `projects/x/locations/x/memberships/x`.
+     */
+    parent?: string;
+    /**
+     * Required. Client chosen ID for the RBACRoleBinding. `rbacrolebinding_id` must be a valid RFC 1123 compliant DNS label: 1. At most 63 characters in length 2. It must consist of lower case alphanumeric characters or `-` 3. It must start and end with an alphanumeric character Which can be expressed as the regex: `[a-z0-9]([-a-z0-9]*[a-z0-9])?`, with a maximum length of 63 characters.
+     */
+    rbacrolebindingId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$RBACRoleBinding;
+  }
+  export interface Params$Resource$Projects$Locations$Memberships$Rbacrolebindings$Get
+    extends StandardParameters {
+    /**
+     * Required. The RBACRoleBinding resource name in the format `projects/x/locations/x/memberships/x/rbacrolebindings/x`.
+     */
+    name?: string;
+  }
   export interface Params$Resource$Projects$Locations$Memberships$Rbacrolebindings$List
     extends StandardParameters {
     /**
@@ -6203,6 +6719,22 @@ export namespace gkehub_v1 {
      * Required. The parent (project and location) where the Features will be listed. Specified in the format `projects/x/locations/x/memberships/x`.
      */
     parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Memberships$Rbacrolebindings$Patch
+    extends StandardParameters {
+    /**
+     * The resource name for the rbacrolebinding `projects/{project\}/locations/{location\}/scopes/{scope\}/rbacrolebindings/{rbacrolebinding\}` or `projects/{project\}/locations/{location\}/memberships/{membership\}/rbacrolebindings/{rbacrolebinding\}`
+     */
+    name?: string;
+    /**
+     * Required. The fields to be updated.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$RBACRoleBinding;
   }
 
   export class Resource$Projects$Locations$Operations {

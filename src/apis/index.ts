@@ -50,6 +50,10 @@ import {VERSIONS as admobVersions, admob} from './admob';
 import {VERSIONS as adsenseVersions, adsense} from './adsense';
 import {VERSIONS as adsensehostVersions, adsensehost} from './adsensehost';
 import {
+  VERSIONS as adsenseplatformVersions,
+  adsenseplatform,
+} from './adsenseplatform';
+import {
   VERSIONS as advisorynotificationsVersions,
   advisorynotifications,
 } from './advisorynotifications';
@@ -244,6 +248,7 @@ import {
   VERSIONS as contentwarehouseVersions,
   contentwarehouse,
 } from './contentwarehouse';
+import {VERSIONS as cssVersions, css} from './css';
 import {VERSIONS as customsearchVersions, customsearch} from './customsearch';
 import {VERSIONS as datacatalogVersions, datacatalog} from './datacatalog';
 import {VERSIONS as dataflowVersions, dataflow} from './dataflow';
@@ -725,6 +730,7 @@ export const APIS: APIList = {
   admob: admobVersions,
   adsense: adsenseVersions,
   adsensehost: adsensehostVersions,
+  adsenseplatform: adsenseplatformVersions,
   advisorynotifications: advisorynotificationsVersions,
   aiplatform: aiplatformVersions,
   airquality: airqualityVersions,
@@ -806,6 +812,7 @@ export const APIS: APIList = {
   containeranalysis: containeranalysisVersions,
   content: contentVersions,
   contentwarehouse: contentwarehouseVersions,
+  css: cssVersions,
   customsearch: customsearchVersions,
   datacatalog: datacatalogVersions,
   dataflow: dataflowVersions,
@@ -1025,6 +1032,7 @@ export class GeneratedAPIs {
   admob = admob;
   adsense = adsense;
   adsensehost = adsensehost;
+  adsenseplatform = adsenseplatform;
   advisorynotifications = advisorynotifications;
   aiplatform = aiplatform;
   airquality = airquality;
@@ -1106,6 +1114,7 @@ export class GeneratedAPIs {
   containeranalysis = containeranalysis;
   content = content;
   contentwarehouse = contentwarehouse;
+  css = css;
   customsearch = customsearch;
   datacatalog = datacatalog;
   dataflow = dataflow;

@@ -277,36 +277,6 @@
             "https://www.googleapis.com/auth/androidpublisher"
           ]
         },
-        "appRecoveries": {
-          "description": "List all app recovery action resources associated with a particular package name and app version.",
-          "flatPath": "androidpublisher/v3/applications/{packageName}/appRecoveries",
-          "httpMethod": "POST",
-          "id": "androidpublisher.apprecovery.appRecoveries",
-          "parameterOrder": [
-            "packageName"
-          ],
-          "parameters": {
-            "packageName": {
-              "description": "Required. Package name of the app for which list of recovery actions is requested.",
-              "location": "path",
-              "required": true,
-              "type": "string"
-            },
-            "versionCode": {
-              "description": "Required. Version code targeted by the list of recovery actions.",
-              "format": "int64",
-              "location": "query",
-              "type": "string"
-            }
-          },
-          "path": "androidpublisher/v3/applications/{packageName}/appRecoveries",
-          "response": {
-            "$ref": "ListAppRecoveriesResponse"
-          },
-          "scopes": [
-            "https://www.googleapis.com/auth/androidpublisher"
-          ]
-        },
         "cancel": {
           "description": "Cancel an already executing app recovery action. Note that this action changes status of the recovery action to CANCELED.",
           "flatPath": "androidpublisher/v3/applications/{packageName}/appRecoveries/{appRecoveryId}:cancel",
@@ -399,6 +369,36 @@
           },
           "response": {
             "$ref": "DeployAppRecoveryResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/androidpublisher"
+          ]
+        },
+        "list": {
+          "description": "List all app recovery action resources associated with a particular package name and app version.",
+          "flatPath": "androidpublisher/v3/applications/{packageName}/appRecoveries",
+          "httpMethod": "GET",
+          "id": "androidpublisher.apprecovery.list",
+          "parameterOrder": [
+            "packageName"
+          ],
+          "parameters": {
+            "packageName": {
+              "description": "Required. Package name of the app for which list of recovery actions is requested.",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            },
+            "versionCode": {
+              "description": "Required. Version code targeted by the list of recovery actions.",
+              "format": "int64",
+              "location": "query",
+              "type": "string"
+            }
+          },
+          "path": "androidpublisher/v3/applications/{packageName}/appRecoveries",
+          "response": {
+            "$ref": "ListAppRecoveriesResponse"
           },
           "scopes": [
             "https://www.googleapis.com/auth/androidpublisher"
@@ -4731,7 +4731,7 @@
       }
     }
   },
-  "revision": "20240626",
+  "revision": "20240717",
   "rootUrl": "https://androidpublisher.googleapis.com/",
   "schemas": {
     "Abi": {
@@ -6299,7 +6299,7 @@
           "readOnly": true
         },
         "transactionProgramCode": {
-          "description": "Optional. The transaction program code, used to help determine service fee for apps partcipating in special partner programs. This field can not be used for external offers transactions. Developers participating in the Play Media Experience Program (https://play.google.com/console/about/programs/mediaprogram/) must provide the program code when reporting alternative billing external transactions. If you are an eligible developer, please contact your BDM for more information on how to set this field.",
+          "description": "Optional. The transaction program code, used to help determine service fee for eligible apps participating in partner programs. Developers participating in the Play Media Experience Program (https://play.google.com/console/about/programs/mediaprogram/) must provide the program code when reporting alternative billing transactions. If you are an eligible developer, please contact your BDM for more information on how to set this field. Note: this field can not be used for external offers transactions.",
           "format": "int32",
           "type": "integer"
         },

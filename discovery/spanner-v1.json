@@ -123,7 +123,7 @@
         "instanceConfigOperations": {
           "methods": {
             "list": {
-              "description": "Lists the user-managed instance config long-running operations in the given project. An instance config operation has a name of the form `projects//instanceConfigs//operations/`. The long-running operation metadata field type `metadata.type_url` describes the type of the metadata. Operations returned include those that have completed/failed/canceled within the last 7 days, and pending operations. Operations returned are ordered by `operation.metadata.value.start_time` in descending order starting from the most recently started operation.",
+              "description": "Lists the user-managed instance configuration long-running operations in the given project. An instance configuration operation has a name of the form `projects//instanceConfigs//operations/`. The long-running operation metadata field type `metadata.type_url` describes the type of the metadata. Operations returned include those that have completed/failed/canceled within the last 7 days, and pending operations. Operations returned are ordered by `operation.metadata.value.start_time` in descending order starting from the most recently started operation.",
               "flatPath": "v1/projects/{projectsId}/instanceConfigOperations",
               "httpMethod": "GET",
               "id": "spanner.projects.instanceConfigOperations.list",
@@ -132,7 +132,7 @@
               ],
               "parameters": {
                 "filter": {
-                  "description": "An expression that filters the list of returned operations. A filter expression consists of a field name, a comparison operator, and a value for filtering. The value must be a string, a number, or a boolean. The comparison operator must be one of: `<`, `>`, `<=`, `>=`, `!=`, `=`, or `:`. Colon `:` is the contains operator. Filter rules are not case sensitive. The following fields in the Operation are eligible for filtering: * `name` - The name of the long-running operation * `done` - False if the operation is in progress, else true. * `metadata.@type` - the type of metadata. For example, the type string for CreateInstanceConfigMetadata is `type.googleapis.com/google.spanner.admin.instance.v1.CreateInstanceConfigMetadata`. * `metadata.` - any field in metadata.value. `metadata.@type` must be specified first, if filtering on metadata fields. * `error` - Error associated with the long-running operation. * `response.@type` - the type of response. * `response.` - any field in response.value. You can combine multiple expressions by enclosing each expression in parentheses. By default, expressions are combined with AND logic. However, you can specify AND, OR, and NOT logic explicitly. Here are a few examples: * `done:true` - The operation is complete. * `(metadata.@type=` \\ `type.googleapis.com/google.spanner.admin.instance.v1.CreateInstanceConfigMetadata) AND` \\ `(metadata.instance_config.name:custom-config) AND` \\ `(metadata.progress.start_time < \\\"2021-03-28T14:50:00Z\\\") AND` \\ `(error:*)` - Return operations where: * The operation's metadata type is CreateInstanceConfigMetadata. * The instance config name contains \"custom-config\". * The operation started before 2021-03-28T14:50:00Z. * The operation resulted in an error.",
+                  "description": "An expression that filters the list of returned operations. A filter expression consists of a field name, a comparison operator, and a value for filtering. The value must be a string, a number, or a boolean. The comparison operator must be one of: `<`, `>`, `<=`, `>=`, `!=`, `=`, or `:`. Colon `:` is the contains operator. Filter rules are not case sensitive. The following fields in the Operation are eligible for filtering: * `name` - The name of the long-running operation * `done` - False if the operation is in progress, else true. * `metadata.@type` - the type of metadata. For example, the type string for CreateInstanceConfigMetadata is `type.googleapis.com/google.spanner.admin.instance.v1.CreateInstanceConfigMetadata`. * `metadata.` - any field in metadata.value. `metadata.@type` must be specified first, if filtering on metadata fields. * `error` - Error associated with the long-running operation. * `response.@type` - the type of response. * `response.` - any field in response.value. You can combine multiple expressions by enclosing each expression in parentheses. By default, expressions are combined with AND logic. However, you can specify AND, OR, and NOT logic explicitly. Here are a few examples: * `done:true` - The operation is complete. * `(metadata.@type=` \\ `type.googleapis.com/google.spanner.admin.instance.v1.CreateInstanceConfigMetadata) AND` \\ `(metadata.instance_config.name:custom-config) AND` \\ `(metadata.progress.start_time < \\\"2021-03-28T14:50:00Z\\\") AND` \\ `(error:*)` - Return operations where: * The operation's metadata type is CreateInstanceConfigMetadata. * The instance configuration name contains \"custom-config\". * The operation started before 2021-03-28T14:50:00Z. * The operation resulted in an error.",
                   "location": "query",
                   "type": "string"
                 },
@@ -148,7 +148,7 @@
                   "type": "string"
                 },
                 "parent": {
-                  "description": "Required. The project of the instance config operations. Values are of the form `projects/`.",
+                  "description": "Required. The project of the instance configuration operations. Values are of the form `projects/`.",
                   "location": "path",
                   "pattern": "^projects/[^/]+$",
                   "required": true,
@@ -169,7 +169,7 @@
         "instanceConfigs": {
           "methods": {
             "create": {
-              "description": "Creates an instance config and begins preparing it to be used. The returned long-running operation can be used to track the progress of preparing the new instance config. The instance config name is assigned by the caller. If the named instance config already exists, `CreateInstanceConfig` returns `ALREADY_EXISTS`. Immediately after the request returns: * The instance config is readable via the API, with all requested attributes. The instance config's reconciling field is set to true. Its state is `CREATING`. While the operation is pending: * Cancelling the operation renders the instance config immediately unreadable via the API. * Except for deleting the creating resource, all other attempts to modify the instance config are rejected. Upon completion of the returned operation: * Instances can be created using the instance configuration. * The instance config's reconciling field becomes false. Its state becomes `READY`. The returned long-running operation will have a name of the format `/operations/` and can be used to track creation of the instance config. The metadata field type is CreateInstanceConfigMetadata. The response field type is InstanceConfig, if successful. Authorization requires `spanner.instanceConfigs.create` permission on the resource parent.",
+              "description": "Creates an instance configuration and begins preparing it to be used. The returned long-running operation can be used to track the progress of preparing the new instance config. The instance configuration name is assigned by the caller. If the named instance configuration already exists, `CreateInstanceConfig` returns `ALREADY_EXISTS`. Immediately after the request returns: * The instance configuration is readable via the API, with all requested attributes. The instance config's reconciling field is set to true. Its state is `CREATING`. While the operation is pending: * Cancelling the operation renders the instance configuration immediately unreadable via the API. * Except for deleting the creating resource, all other attempts to modify the instance configuration are rejected. Upon completion of the returned operation: * Instances can be created using the instance configuration. * The instance config's reconciling field becomes false. Its state becomes `READY`. The returned long-running operation will have a name of the format `/operations/` and can be used to track creation of the instance config. The metadata field type is CreateInstanceConfigMetadata. The response field type is InstanceConfig, if successful. Authorization requires `spanner.instanceConfigs.create` permission on the resource parent.",
               "flatPath": "v1/projects/{projectsId}/instanceConfigs",
               "httpMethod": "POST",
               "id": "spanner.projects.instanceConfigs.create",
@@ -198,7 +198,7 @@
               ]
             },
             "delete": {
-              "description": "Deletes the instance config. Deletion is only allowed when no instances are using the configuration. If any instances are using the config, returns `FAILED_PRECONDITION`. Only user managed configurations can be deleted. Authorization requires `spanner.instanceConfigs.delete` permission on the resource name.",
+              "description": "Deletes the instance config. Deletion is only allowed when no instances are using the configuration. If any instances are using the config, returns `FAILED_PRECONDITION`. Only user-managed configurations can be deleted. Authorization requires `spanner.instanceConfigs.delete` permission on the resource name.",
               "flatPath": "v1/projects/{projectsId}/instanceConfigs/{instanceConfigsId}",
               "httpMethod": "DELETE",
               "id": "spanner.projects.instanceConfigs.delete",
@@ -207,7 +207,7 @@
               ],
               "parameters": {
                 "etag": {
-                  "description": "Used for optimistic concurrency control as a way to help prevent simultaneous deletes of an instance config from overwriting each other. If not empty, the API only deletes the instance config when the etag provided matches the current status of the requested instance config. Otherwise, deletes the instance config without checking the current status of the requested instance config.",
+                  "description": "Used for optimistic concurrency control as a way to help prevent simultaneous deletes of an instance configuration from overwriting each other. If not empty, the API only deletes the instance configuration when the etag provided matches the current status of the requested instance config. Otherwise, deletes the instance configuration without checking the current status of the requested instance config.",
                   "location": "query",
                   "type": "string"
                 },
@@ -260,7 +260,7 @@
               ]
             },
             "list": {
-              "description": "Lists the supported instance configurations for a given project. Returns both Google managed configs and user managed configs.",
+              "description": "Lists the supported instance configurations for a given project. Returns both Google-managed configurations and user-managed configurations.",
               "flatPath": "v1/projects/{projectsId}/instanceConfigs",
               "httpMethod": "GET",
               "id": "spanner.projects.instanceConfigs.list",
@@ -297,7 +297,7 @@
               ]
             },
             "patch": {
-              "description": "Updates an instance config. The returned long-running operation can be used to track the progress of updating the instance. If the named instance config does not exist, returns `NOT_FOUND`. Only user managed configurations can be updated. Immediately after the request returns: * The instance config's reconciling field is set to true. While the operation is pending: * Cancelling the operation sets its metadata's cancel_time. The operation is guaranteed to succeed at undoing all changes, after which point it terminates with a `CANCELLED` status. * All other attempts to modify the instance config are rejected. * Reading the instance config via the API continues to give the pre-request values. Upon completion of the returned operation: * Creating instances using the instance configuration uses the new values. * The instance config's new values are readable via the API. * The instance config's reconciling field becomes false. The returned long-running operation will have a name of the format `/operations/` and can be used to track the instance config modification. The metadata field type is UpdateInstanceConfigMetadata. The response field type is InstanceConfig, if successful. Authorization requires `spanner.instanceConfigs.update` permission on the resource name.",
+              "description": "Updates an instance config. The returned long-running operation can be used to track the progress of updating the instance. If the named instance configuration does not exist, returns `NOT_FOUND`. Only user-managed configurations can be updated. Immediately after the request returns: * The instance config's reconciling field is set to true. While the operation is pending: * Cancelling the operation sets its metadata's cancel_time. The operation is guaranteed to succeed at undoing all changes, after which point it terminates with a `CANCELLED` status. * All other attempts to modify the instance configuration are rejected. * Reading the instance configuration via the API continues to give the pre-request values. Upon completion of the returned operation: * Creating instances using the instance configuration uses the new values. * The instance config's new values are readable via the API. * The instance config's reconciling field becomes false. The returned long-running operation will have a name of the format `/operations/` and can be used to track the instance configuration modification. The metadata field type is UpdateInstanceConfigMetadata. The response field type is InstanceConfig, if successful. Authorization requires `spanner.instanceConfigs.update` permission on the resource name.",
               "flatPath": "v1/projects/{projectsId}/instanceConfigs/{instanceConfigsId}",
               "httpMethod": "PATCH",
               "id": "spanner.projects.instanceConfigs.patch",
@@ -306,7 +306,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "A unique identifier for the instance configuration. Values are of the form `projects//instanceConfigs/a-z*`. User instance config must start with `custom-`.",
+                  "description": "A unique identifier for the instance configuration. Values are of the form `projects//instanceConfigs/a-z*`. User instance configuration must start with `custom-`.",
                   "location": "path",
                   "pattern": "^projects/[^/]+/instanceConfigs/[^/]+$",
                   "required": true,
@@ -748,7 +748,7 @@
               ]
             },
             "move": {
-              "description": "Moves the instance to the target instance config. The returned long-running operation can be used to track the progress of moving the instance. `MoveInstance` returns `FAILED_PRECONDITION` if the instance meets any of the following criteria: * Has an ongoing move to a different instance config * Has backups * Has an ongoing update * Is under free trial * Contains any CMEK-enabled databases While the operation is pending: * All other attempts to modify the instance, including changes to its compute capacity, are rejected. * The following database and backup admin operations are rejected: * DatabaseAdmin.CreateDatabase, * DatabaseAdmin.UpdateDatabaseDdl (Disabled if default_leader is specified in the request.) * DatabaseAdmin.RestoreDatabase * DatabaseAdmin.CreateBackup * DatabaseAdmin.CopyBackup * Both the source and target instance configs are subject to hourly compute and storage charges. * The instance may experience higher read-write latencies and a higher transaction abort rate. However, moving an instance does not cause any downtime. The returned long-running operation will have a name of the format `/operations/` and can be used to track the move instance operation. The metadata field type is MoveInstanceMetadata. The response field type is Instance, if successful. Cancelling the operation sets its metadata's cancel_time. Cancellation is not immediate since it involves moving any data previously moved to target instance config back to the original instance config. The same operation can be used to track the progress of the cancellation. Upon successful completion of the cancellation, the operation terminates with CANCELLED status. Upon completion(if not cancelled) of the returned operation: * Instance would be successfully moved to the target instance config. * You are billed for compute and storage in target instance config. Authorization requires `spanner.instances.update` permission on the resource instance. For more details, please see [documentation](https://cloud.google.com/spanner/docs/move-instance).",
+              "description": "Moves the instance to the target instance config. The returned long-running operation can be used to track the progress of moving the instance. `MoveInstance` returns `FAILED_PRECONDITION` if the instance meets any of the following criteria: * Has an ongoing move to a different instance config * Has backups * Has an ongoing update * Is under free trial * Contains any CMEK-enabled databases While the operation is pending: * All other attempts to modify the instance, including changes to its compute capacity, are rejected. * The following database and backup admin operations are rejected: * DatabaseAdmin.CreateDatabase, * DatabaseAdmin.UpdateDatabaseDdl (Disabled if default_leader is specified in the request.) * DatabaseAdmin.RestoreDatabase * DatabaseAdmin.CreateBackup * DatabaseAdmin.CopyBackup * Both the source and target instance configurations are subject to hourly compute and storage charges. * The instance may experience higher read-write latencies and a higher transaction abort rate. However, moving an instance does not cause any downtime. The returned long-running operation will have a name of the format `/operations/` and can be used to track the move instance operation. The metadata field type is MoveInstanceMetadata. The response field type is Instance, if successful. Cancelling the operation sets its metadata's cancel_time. Cancellation is not immediate since it involves moving any data previously moved to target instance configuration back to the original instance config. The same operation can be used to track the progress of the cancellation. Upon successful completion of the cancellation, the operation terminates with `CANCELLED` status. Upon completion(if not cancelled) of the returned operation: * Instance would be successfully moved to the target instance config. * You are billed for compute and storage in target instance config. Authorization requires `spanner.instances.update` permission on the resource instance. For more details, please see [documentation](https://cloud.google.com/spanner/docs/move-instance).",
               "flatPath": "v1/projects/{projectsId}/instances/{instancesId}:move",
               "httpMethod": "POST",
               "id": "spanner.projects.instances.move",
@@ -1426,7 +1426,7 @@
                   ]
                 },
                 "create": {
-                  "description": "Creates a new Cloud Spanner database and starts to prepare it for serving. The returned long-running operation will have a name of the format `/operations/` and can be used to track preparation of the database. The metadata field type is CreateDatabaseMetadata. The response field type is Database, if successful.",
+                  "description": "Creates a new Spanner database and starts to prepare it for serving. The returned long-running operation will have a name of the format `/operations/` and can be used to track preparation of the database. The metadata field type is CreateDatabaseMetadata. The response field type is Database, if successful.",
                   "flatPath": "v1/projects/{projectsId}/instances/{instancesId}/databases",
                   "httpMethod": "POST",
                   "id": "spanner.projects.instances.databases.create",
@@ -1804,6 +1804,97 @@
                 }
               },
               "resources": {
+                "backupSchedules": {
+                  "methods": {
+                    "getIamPolicy": {
+                      "description": "Gets the access control policy for a database or backup resource. Returns an empty policy if a database or backup exists but does not have a policy set. Authorization requires `spanner.databases.getIamPolicy` permission on resource. For backups, authorization requires `spanner.backups.getIamPolicy` permission on resource.",
+                      "flatPath": "v1/projects/{projectsId}/instances/{instancesId}/databases/{databasesId}/backupSchedules/{backupSchedulesId}:getIamPolicy",
+                      "httpMethod": "POST",
+                      "id": "spanner.projects.instances.databases.backupSchedules.getIamPolicy",
+                      "parameterOrder": [
+                        "resource"
+                      ],
+                      "parameters": {
+                        "resource": {
+                          "description": "REQUIRED: The Cloud Spanner resource for which the policy is being retrieved. The format is `projects//instances/` for instance resources and `projects//instances//databases/` for database resources.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/instances/[^/]+/databases/[^/]+/backupSchedules/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+resource}:getIamPolicy",
+                      "request": {
+                        "$ref": "GetIamPolicyRequest"
+                      },
+                      "response": {
+                        "$ref": "Policy"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/spanner.admin"
+                      ]
+                    },
+                    "setIamPolicy": {
+                      "description": "Sets the access control policy on a database or backup resource. Replaces any existing policy. Authorization requires `spanner.databases.setIamPolicy` permission on resource. For backups, authorization requires `spanner.backups.setIamPolicy` permission on resource.",
+                      "flatPath": "v1/projects/{projectsId}/instances/{instancesId}/databases/{databasesId}/backupSchedules/{backupSchedulesId}:setIamPolicy",
+                      "httpMethod": "POST",
+                      "id": "spanner.projects.instances.databases.backupSchedules.setIamPolicy",
+                      "parameterOrder": [
+                        "resource"
+                      ],
+                      "parameters": {
+                        "resource": {
+                          "description": "REQUIRED: The Cloud Spanner resource for which the policy is being set. The format is `projects//instances/` for instance resources and `projects//instances//databases/` for databases resources.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/instances/[^/]+/databases/[^/]+/backupSchedules/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+resource}:setIamPolicy",
+                      "request": {
+                        "$ref": "SetIamPolicyRequest"
+                      },
+                      "response": {
+                        "$ref": "Policy"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/spanner.admin"
+                      ]
+                    },
+                    "testIamPermissions": {
+                      "description": "Returns permissions that the caller has on the specified database or backup resource. Attempting this RPC on a non-existent Cloud Spanner database will result in a NOT_FOUND error if the user has `spanner.databases.list` permission on the containing Cloud Spanner instance. Otherwise returns an empty set of permissions. Calling this method on a backup that does not exist will result in a NOT_FOUND error if the user has `spanner.backups.list` permission on the containing instance.",
+                      "flatPath": "v1/projects/{projectsId}/instances/{instancesId}/databases/{databasesId}/backupSchedules/{backupSchedulesId}:testIamPermissions",
+                      "httpMethod": "POST",
+                      "id": "spanner.projects.instances.databases.backupSchedules.testIamPermissions",
+                      "parameterOrder": [
+                        "resource"
+                      ],
+                      "parameters": {
+                        "resource": {
+                          "description": "REQUIRED: The Cloud Spanner resource for which permissions are being tested. The format is `projects//instances/` for instance resources and `projects//instances//databases/` for database resources.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/instances/[^/]+/databases/[^/]+/backupSchedules/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+resource}:testIamPermissions",
+                      "request": {
+                        "$ref": "TestIamPermissionsRequest"
+                      },
+                      "response": {
+                        "$ref": "TestIamPermissionsResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/spanner.admin"
+                      ]
+                    }
+                  }
+                },
                 "databaseRoles": {
                   "methods": {
                     "list": {
@@ -3005,11 +3096,11 @@
       }
     }
   },
-  "revision": "20240612",
+  "revision": "20240711",
   "rootUrl": "https://spanner.googleapis.com/",
   "schemas": {
     "AutoscalingConfig": {
-      "description": "Autoscaling config for an instance.",
+      "description": "Autoscaling configuration for an instance.",
       "id": "AutoscalingConfig",
       "properties": {
         "autoscalingLimits": {
@@ -3620,7 +3711,7 @@
           "type": "array"
         },
         "protoDescriptors": {
-          "description": "Optional. Proto descriptors used by CREATE/ALTER PROTO BUNDLE statements in 'extra_statements' above. Contains a protobuf-serialized [google.protobuf.FileDescriptorSet](https://github.com/protocolbuffers/protobuf/blob/main/src/google/protobuf/descriptor.proto). To generate it, [install](https://grpc.io/docs/protoc-installation/) and run `protoc` with --include_imports and --descriptor_set_out. For example, to generate for moon/shot/app.proto, run ``` $protoc --proto_path=/app_path --proto_path=/lib_path \\ --include_imports \\ --descriptor_set_out=descriptors.data \\ moon/shot/app.proto ``` For more details, see protobuffer [self description](https://developers.google.com/protocol-buffers/docs/techniques#self-description).",
+          "description": "Optional. Proto descriptors used by `CREATE/ALTER PROTO BUNDLE` statements in 'extra_statements'. Contains a protobuf-serialized [`google.protobuf.FileDescriptorSet`](https://github.com/protocolbuffers/protobuf/blob/main/src/google/protobuf/descriptor.proto) descriptor set. To generate it, [install](https://grpc.io/docs/protoc-installation/) and run `protoc` with --include_imports and --descriptor_set_out. For example, to generate for moon/shot/app.proto, run ``` $protoc --proto_path=/app_path --proto_path=/lib_path \\ --include_imports \\ --descriptor_set_out=descriptors.data \\ moon/shot/app.proto ``` For more details, see protobuffer [self description](https://developers.google.com/protocol-buffers/docs/techniques#self-description).",
           "format": "byte",
           "type": "string"
         }
@@ -3638,7 +3729,7 @@
         },
         "instanceConfig": {
           "$ref": "InstanceConfig",
-          "description": "The target instance config end state."
+          "description": "The target instance configuration end state."
         },
         "progress": {
           "$ref": "InstanceOperationProgress",
@@ -3653,10 +3744,10 @@
       "properties": {
         "instanceConfig": {
           "$ref": "InstanceConfig",
-          "description": "Required. The InstanceConfig proto of the configuration to create. instance_config.name must be `/instanceConfigs/`. instance_config.base_config must be a Google managed configuration name, e.g. /instanceConfigs/us-east1, /instanceConfigs/nam3."
+          "description": "Required. The InstanceConfig proto of the configuration to create. instance_config.name must be `/instanceConfigs/`. instance_config.base_config must be a Google-managed configuration name, e.g. /instanceConfigs/us-east1, /instanceConfigs/nam3."
         },
         "instanceConfigId": {
-          "description": "Required. The ID of the instance config to create. Valid identifiers are of the form `custom-[-a-z0-9]*[a-z0-9]` and must be between 2 and 64 characters in length. The `custom-` prefix is required to avoid name conflicts with Google managed configurations.",
+          "description": "Required. The ID of the instance configuration to create. Valid identifiers are of the form `custom-[-a-z0-9]*[a-z0-9]` and must be between 2 and 64 characters in length. The `custom-` prefix is required to avoid name conflicts with Google-managed configurations.",
           "type": "string"
         },
         "validateOnly": {
@@ -3810,7 +3901,7 @@
           "type": "string"
         },
         "enableDropProtection": {
-          "description": "Whether drop protection is enabled for this database. Defaults to false, if not set. For more details, please see how to [prevent accidental database deletion](https://cloud.google.com/spanner/docs/prevent-database-deletion).",
+          "description": "Optional. Whether drop protection is enabled for this database. Defaults to false, if not set. For more details, please see how to [prevent accidental database deletion](https://cloud.google.com/spanner/docs/prevent-database-deletion).",
           "type": "boolean"
         },
         "encryptionConfig": {
@@ -4152,7 +4243,7 @@
           "enumDescriptions": [
             "The default mode. Only the statement results are returned.",
             "This mode returns only the query plan, without any results or execution statistics information.",
-            "This mode returns both the query plan and the execution statistics along with the results."
+            "This mode returns both the query plan and the execution statistics along with the results. This has a performance overhead compared to the NORMAL mode. It is not recommended to use this mode for production traffic."
           ],
           "type": "string"
         },
@@ -4423,12 +4514,12 @@
           "type": "string"
         },
         "nodeCount": {
-          "description": "The number of nodes allocated to this instance. At most one of either node_count or processing_units should be present in the message. Users can set the node_count field to specify the target number of nodes allocated to the instance. If autoscaling is enabled, node_count is treated as an OUTPUT_ONLY field and reflects the current number of nodes allocated to the instance. This may be zero in API responses for instances that are not yet in state `READY`. See [the documentation](https://cloud.google.com/spanner/docs/compute-capacity) for more information about nodes and processing units.",
+          "description": "The number of nodes allocated to this instance. At most, one of either `node_count` or `processing_units` should be present in the message. Users can set the node_count field to specify the target number of nodes allocated to the instance. If autoscaling is enabled, node_count is treated as an OUTPUT_ONLY field and reflects the current number of nodes allocated to the instance. This might be zero in API responses for instances that are not yet in the `READY` state. For more information, see [Compute capacity, nodes, and processing units](https://cloud.google.com/spanner/docs/compute-capacity).",
           "format": "int32",
           "type": "integer"
         },
         "processingUnits": {
-          "description": "The number of processing units allocated to this instance. At most one of processing_units or node_count should be present in the message. Users can set the processing_units field to specify the target number of processing units allocated to the instance. If autoscaling is enabled, processing_units is treated as an OUTPUT_ONLY field and reflects the current number of processing units allocated to the instance. This may be zero in API responses for instances that are not yet in state `READY`. See [the documentation](https://cloud.google.com/spanner/docs/compute-capacity) for more information about nodes and processing units.",
+          "description": "The number of processing units allocated to this instance. At most, one of either `processing_units` or `node_count` should be present in the message. Users can set the `processing_units` field to specify the target number of processing units allocated to the instance. If autoscaling is enabled, `processing_units` is treated as an `OUTPUT_ONLY` field and reflects the current number of processing units allocated to the instance. This might be zero in API responses for instances that are not yet in the `READY` state. See [the documentation](https://cloud.google.com/spanner/docs/compute-capacity) for more information about nodes and processing units.",
           "format": "int32",
           "type": "integer"
         },
@@ -4461,11 +4552,11 @@
       "id": "InstanceConfig",
       "properties": {
         "baseConfig": {
-          "description": "Base configuration name, e.g. projects//instanceConfigs/nam3, based on which this configuration is created. Only set for user managed configurations. `base_config` must refer to a configuration of type GOOGLE_MANAGED in the same project as this configuration.",
+          "description": "Base configuration name, e.g. projects//instanceConfigs/nam3, based on which this configuration is created. Only set for user-managed configurations. `base_config` must refer to a configuration of type `GOOGLE_MANAGED` in the same project as this configuration.",
           "type": "string"
         },
         "configType": {
-          "description": "Output only. Whether this instance config is a Google or User Managed Configuration.",
+          "description": "Output only. Whether this instance configuration is a Google- or user-managed configuration.",
           "enum": [
             "TYPE_UNSPECIFIED",
             "GOOGLE_MANAGED",
@@ -4473,8 +4564,8 @@
           ],
           "enumDescriptions": [
             "Unspecified.",
-            "Google managed configuration.",
-            "User managed configuration."
+            "Google-managed configuration.",
+            "User-managed configuration."
           ],
           "readOnly": true,
           "type": "string"
@@ -4484,7 +4575,7 @@
           "type": "string"
         },
         "etag": {
-          "description": "etag is used for optimistic concurrency control as a way to help prevent simultaneous updates of a instance config from overwriting each other. It is strongly suggested that systems make use of the etag in the read-modify-write cycle to perform instance config updates in order to avoid race conditions: An etag is returned in the response which contains instance configs, and systems are expected to put that etag in the request to update instance config to ensure that their change will be applied to the same version of the instance config. If no etag is provided in the call to update instance config, then the existing instance config is overwritten blindly.",
+          "description": "etag is used for optimistic concurrency control as a way to help prevent simultaneous updates of a instance configuration from overwriting each other. It is strongly suggested that systems make use of the etag in the read-modify-write cycle to perform instance configuration updates in order to avoid race conditions: An etag is returned in the response which contains instance configurations, and systems are expected to put that etag in the request to update instance configuration to ensure that their change is applied to the same version of the instance configuration. If no etag is provided in the call to update the instance configuration, then the existing instance configuration is overwritten blindly.",
           "type": "string"
         },
         "freeInstanceAvailability": {
@@ -4501,7 +4592,7 @@
             "Indicates that free instances are available to be created in this instance config.",
             "Indicates that free instances are not supported in this instance config.",
             "Indicates that free instances are currently not available to be created in this instance config.",
-            "Indicates that additional free instances cannot be created in this instance config because the project has reached its limit of free instances."
+            "Indicates that additional free instances cannot be created in this instance configuration because the project has reached its limit of free instances."
           ],
           "readOnly": true,
           "type": "string"
@@ -4521,11 +4612,11 @@
           "type": "array"
         },
         "name": {
-          "description": "A unique identifier for the instance configuration. Values are of the form `projects//instanceConfigs/a-z*`. User instance config must start with `custom-`.",
+          "description": "A unique identifier for the instance configuration. Values are of the form `projects//instanceConfigs/a-z*`. User instance configuration must start with `custom-`.",
           "type": "string"
         },
         "optionalReplicas": {
-          "description": "Output only. The available optional replicas to choose from for user managed configurations. Populated for Google managed configurations.",
+          "description": "Output only. The available optional replicas to choose from for user-managed configurations. Populated for Google-managed configurations.",
           "items": {
             "$ref": "ReplicaInfo"
           },
@@ -4550,19 +4641,19 @@
           "type": "string"
         },
         "reconciling": {
-          "description": "Output only. If true, the instance config is being created or updated. If false, there are no ongoing operations for the instance config.",
+          "description": "Output only. If true, the instance configuration is being created or updated. If false, there are no ongoing operations for the instance config.",
           "readOnly": true,
           "type": "boolean"
         },
         "replicas": {
-          "description": "The geographic placement of nodes in this instance configuration and their replication properties. To create user managed configurations, input `replicas` must include all replicas in `replicas` of the `base_config` and include one or more replicas in the `optional_replicas` of the `base_config`.",
+          "description": "The geographic placement of nodes in this instance configuration and their replication properties. To create user-managed configurations, input `replicas` must include all replicas in `replicas` of the `base_config` and include one or more replicas in the `optional_replicas` of the `base_config`.",
           "items": {
             "$ref": "ReplicaInfo"
           },
           "type": "array"
         },
         "state": {
-          "description": "Output only. The current instance config state. Applicable only for USER_MANAGED configs.",
+          "description": "Output only. The current instance configuration state. Applicable only for `USER_MANAGED` configurations.",
           "enum": [
             "STATE_UNSPECIFIED",
             "CREATING",
@@ -4570,8 +4661,8 @@
           ],
           "enumDescriptions": [
             "Not specified.",
-            "The instance config is still being created.",
-            "The instance config is fully created and ready to be used to create instances."
+            "The instance configuration is still being created.",
+            "The instance configuration is fully created and ready to be used to create instances."
           ],
           "readOnly": true,
           "type": "string"
@@ -4634,12 +4725,12 @@
           "type": "string"
         },
         "nodeCount": {
-          "description": "The number of nodes allocated to this instance partition. Users can set the node_count field to specify the target number of nodes allocated to the instance partition. This may be zero in API responses for instance partitions that are not yet in state `READY`.",
+          "description": "The number of nodes allocated to this instance partition. Users can set the `node_count` field to specify the target number of nodes allocated to the instance partition. This may be zero in API responses for instance partitions that are not yet in state `READY`.",
           "format": "int32",
           "type": "integer"
         },
         "processingUnits": {
-          "description": "The number of processing units allocated to this instance partition. Users can set the processing_units field to specify the target number of processing units allocated to the instance partition. This may be zero in API responses for instance partitions that are not yet in state `READY`.",
+          "description": "The number of processing units allocated to this instance partition. Users can set the `processing_units` field to specify the target number of processing units allocated to the instance partition. This might be zero in API responses for instance partitions that are not yet in the `READY` state.",
           "format": "int32",
           "type": "integer"
         },
@@ -4915,7 +5006,7 @@
           "type": "string"
         },
         "operations": {
-          "description": "The list of matching instance config long-running operations. Each operation's name will be prefixed by the instance config's name. The operation's metadata field type `metadata.type_url` describes the type of the metadata.",
+          "description": "The list of matching instance configuration long-running operations. Each operation's name will be prefixed by the instance config's name. The operation's metadata field type `metadata.type_url` describes the type of the metadata.",
           "items": {
             "$ref": "Operation"
           },
@@ -5199,7 +5290,7 @@
       "id": "MoveInstanceRequest",
       "properties": {
         "targetConfig": {
-          "description": "Required. The target instance config for the instance to move. Values are of the form `projects//instanceConfigs/`.",
+          "description": "Required. The target instance configuration for the instance to move. Values are of the form `projects//instanceConfigs/`.",
           "type": "string"
         }
       },
@@ -5402,7 +5493,7 @@
           "description": "Additional options that affect how many partitions are created."
         },
         "sql": {
-          "description": "Required. The query request to generate partitions for. The request will fail if the query is not root partitionable. For a query to be root partitionable, it needs to satisfy a few conditions. For example, if the query execution plan contains a distributed union operator, then it must be the first operator in the plan. For more information about other conditions, see [Read data in parallel](https://cloud.google.com/spanner/docs/reads#read_data_in_parallel). The query request must not contain DML commands, such as INSERT, UPDATE, or DELETE. Use ExecuteStreamingSql with a PartitionedDml transaction for large, partition-friendly DML operations.",
+          "description": "Required. The query request to generate partitions for. The request fails if the query is not root partitionable. For a query to be root partitionable, it needs to satisfy a few conditions. For example, if the query execution plan contains a distributed union operator, then it must be the first operator in the plan. For more information about other conditions, see [Read data in parallel](https://cloud.google.com/spanner/docs/reads#read_data_in_parallel). The query request must not contain DML commands, such as `INSERT`, `UPDATE`, or `DELETE`. Use `ExecuteStreamingSql` with a PartitionedDml transaction for large, partition-friendly DML operations.",
           "type": "string"
         },
         "transaction": {
@@ -5933,7 +6024,7 @@
           "type": "string"
         },
         "kmsKeyNames": {
-          "description": "Optional. Specifies the KMS configuration for the one or more keys used to encrypt the database. Values are of the form `projects//locations//keyRings//cryptoKeys/`. The keys referenced by kms_key_names must fully cover all regions of the database instance configuration. Some examples: * For single region database instance configs, specify a single regional location KMS key. * For multi-regional database instance configs of type GOOGLE_MANAGED, either specify a multi-regional location KMS key or multiple regional location KMS keys that cover all regions in the instance config. * For a database instance config of type USER_MANAGED, please specify only regional location KMS keys to cover each region in the instance config. Multi-regional location KMS keys are not supported for USER_MANAGED instance configs.",
+          "description": "Optional. Specifies the KMS configuration for the one or more keys used to encrypt the database. Values have the form `projects//locations//keyRings//cryptoKeys/`. The keys referenced by kms_key_names must fully cover all regions of the database instance configuration. Some examples: * For single region database instance configurations, specify a single regional location KMS key. * For multi-regional database instance configurations of type `GOOGLE_MANAGED`, either specify a multi-regional location KMS key or multiple regional location KMS keys that cover all regions in the instance configuration. * For a database instance configuration of type `USER_MANAGED`, please specify only regional location KMS keys to cover each region in the instance configuration. Multi-regional location KMS keys are not supported for USER_MANAGED instance configurations.",
           "items": {
             "type": "string"
           },
@@ -6585,7 +6676,7 @@
         },
         "instanceConfig": {
           "$ref": "InstanceConfig",
-          "description": "The desired instance config after updating."
+          "description": "The desired instance configuration after updating."
         },
         "progress": {
           "$ref": "InstanceOperationProgress",
@@ -6600,7 +6691,7 @@
       "properties": {
         "instanceConfig": {
           "$ref": "InstanceConfig",
-          "description": "Required. The user instance config to update, which must always include the instance config name. Otherwise, only fields mentioned in update_mask need be included. To prevent conflicts of concurrent updates, etag can be used."
+          "description": "Required. The user instance configuration to update, which must always include the instance configuration name. Otherwise, only fields mentioned in update_mask need be included. To prevent conflicts of concurrent updates, etag can be used."
         },
         "updateMask": {
           "description": "Required. A mask specifying which fields in InstanceConfig should be updated. The field mask must always be specified; this prevents any future fields in InstanceConfig from being erased accidentally by clients that do not know about them. Only display_name and labels can be updated.",

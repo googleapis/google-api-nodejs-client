@@ -20,19 +20,19 @@
   "documentationLink": "https://cloud.google.com/vertex-ai/",
   "endpoints": [
     {
-      "location": "africa-south1",
       "endpointUrl": "https://africa-south1-aiplatform.googleapis.com/",
-      "description": "Locational Endpoint"
+      "description": "Locational Endpoint",
+      "location": "africa-south1"
     },
     {
-      "location": "asia-east1",
       "endpointUrl": "https://asia-east1-aiplatform.googleapis.com/",
-      "description": "Locational Endpoint"
+      "description": "Locational Endpoint",
+      "location": "asia-east1"
     },
     {
+      "description": "Locational Endpoint",
       "endpointUrl": "https://asia-east2-aiplatform.googleapis.com/",
-      "location": "asia-east2",
-      "description": "Locational Endpoint"
+      "location": "asia-east2"
     },
     {
       "endpointUrl": "https://asia-northeast1-aiplatform.googleapis.com/",
@@ -41,32 +41,32 @@
     },
     {
       "location": "asia-northeast2",
-      "endpointUrl": "https://asia-northeast2-aiplatform.googleapis.com/",
-      "description": "Locational Endpoint"
+      "description": "Locational Endpoint",
+      "endpointUrl": "https://asia-northeast2-aiplatform.googleapis.com/"
     },
     {
       "location": "asia-northeast3",
-      "description": "Locational Endpoint",
-      "endpointUrl": "https://asia-northeast3-aiplatform.googleapis.com/"
+      "endpointUrl": "https://asia-northeast3-aiplatform.googleapis.com/",
+      "description": "Locational Endpoint"
     },
     {
       "description": "Locational Endpoint",
-      "location": "asia-south1",
-      "endpointUrl": "https://asia-south1-aiplatform.googleapis.com/"
+      "endpointUrl": "https://asia-south1-aiplatform.googleapis.com/",
+      "location": "asia-south1"
     },
     {
+      "endpointUrl": "https://asia-southeast1-aiplatform.googleapis.com/",
       "description": "Locational Endpoint",
-      "location": "asia-southeast1",
-      "endpointUrl": "https://asia-southeast1-aiplatform.googleapis.com/"
+      "location": "asia-southeast1"
     },
     {
+      "endpointUrl": "https://asia-southeast2-aiplatform.googleapis.com/",
       "location": "asia-southeast2",
-      "description": "Locational Endpoint",
-      "endpointUrl": "https://asia-southeast2-aiplatform.googleapis.com/"
+      "description": "Locational Endpoint"
     },
     {
-      "location": "australia-southeast1",
       "description": "Locational Endpoint",
+      "location": "australia-southeast1",
       "endpointUrl": "https://australia-southeast1-aiplatform.googleapis.com/"
     },
     {
@@ -75,34 +75,34 @@
       "endpointUrl": "https://australia-southeast2-aiplatform.googleapis.com/"
     },
     {
-      "endpointUrl": "https://europe-central2-aiplatform.googleapis.com/",
+      "location": "europe-central2",
       "description": "Locational Endpoint",
-      "location": "europe-central2"
+      "endpointUrl": "https://europe-central2-aiplatform.googleapis.com/"
     },
     {
-      "location": "europe-north1",
       "endpointUrl": "https://europe-north1-aiplatform.googleapis.com/",
+      "location": "europe-north1",
       "description": "Locational Endpoint"
     },
     {
-      "endpointUrl": "https://europe-southwest1-aiplatform.googleapis.com/",
+      "description": "Locational Endpoint",
       "location": "europe-southwest1",
-      "description": "Locational Endpoint"
+      "endpointUrl": "https://europe-southwest1-aiplatform.googleapis.com/"
     },
     {
+      "location": "europe-west1",
       "description": "Locational Endpoint",
-      "endpointUrl": "https://europe-west1-aiplatform.googleapis.com/",
-      "location": "europe-west1"
+      "endpointUrl": "https://europe-west1-aiplatform.googleapis.com/"
     },
     {
-      "description": "Locational Endpoint",
       "endpointUrl": "https://europe-west2-aiplatform.googleapis.com/",
-      "location": "europe-west2"
+      "location": "europe-west2",
+      "description": "Locational Endpoint"
     },
     {
-      "location": "europe-west3",
+      "description": "Locational Endpoint",
       "endpointUrl": "https://europe-west3-aiplatform.googleapis.com/",
-      "description": "Locational Endpoint"
+      "location": "europe-west3"
     },
     {
       "description": "Locational Endpoint",
@@ -115,33 +115,33 @@
       "endpointUrl": "https://europe-west6-aiplatform.googleapis.com/"
     },
     {
-      "endpointUrl": "https://europe-west8-aiplatform.googleapis.com/",
       "description": "Locational Endpoint",
-      "location": "europe-west8"
+      "location": "europe-west8",
+      "endpointUrl": "https://europe-west8-aiplatform.googleapis.com/"
     },
     {
       "location": "europe-west9",
-      "endpointUrl": "https://europe-west9-aiplatform.googleapis.com/",
-      "description": "Locational Endpoint"
+      "description": "Locational Endpoint",
+      "endpointUrl": "https://europe-west9-aiplatform.googleapis.com/"
     },
     {
-      "location": "europe-west12",
       "endpointUrl": "https://europe-west12-aiplatform.googleapis.com/",
-      "description": "Locational Endpoint"
+      "description": "Locational Endpoint",
+      "location": "europe-west12"
     },
     {
-      "location": "me-central1",
+      "description": "Locational Endpoint",
       "endpointUrl": "https://me-central1-aiplatform.googleapis.com/",
-      "description": "Locational Endpoint"
+      "location": "me-central1"
     },
     {
-      "location": "me-central2",
+      "description": "Locational Endpoint",
       "endpointUrl": "https://me-central2-aiplatform.googleapis.com/",
-      "description": "Locational Endpoint"
+      "location": "me-central2"
     },
     {
-      "location": "me-west1",
       "endpointUrl": "https://me-west1-aiplatform.googleapis.com/",
+      "location": "me-west1",
       "description": "Locational Endpoint"
     },
     {
@@ -150,34 +150,34 @@
       "endpointUrl": "https://northamerica-northeast1-aiplatform.googleapis.com/"
     },
     {
-      "endpointUrl": "https://northamerica-northeast2-aiplatform.googleapis.com/",
       "location": "northamerica-northeast2",
+      "endpointUrl": "https://northamerica-northeast2-aiplatform.googleapis.com/",
       "description": "Locational Endpoint"
     },
     {
-      "location": "southamerica-east1",
-      "endpointUrl": "https://southamerica-east1-aiplatform.googleapis.com/",
-      "description": "Locational Endpoint"
-    },
-    {
-      "location": "southamerica-west1",
       "description": "Locational Endpoint",
+      "endpointUrl": "https://southamerica-east1-aiplatform.googleapis.com/",
+      "location": "southamerica-east1"
+    },
+    {
+      "description": "Locational Endpoint",
+      "location": "southamerica-west1",
       "endpointUrl": "https://southamerica-west1-aiplatform.googleapis.com/"
     },
     {
-      "description": "Locational Endpoint",
       "endpointUrl": "https://us-central1-aiplatform.googleapis.com/",
-      "location": "us-central1"
+      "location": "us-central1",
+      "description": "Locational Endpoint"
     },
     {
-      "location": "us-central2",
+      "description": "Locational Endpoint",
       "endpointUrl": "https://us-central2-aiplatform.googleapis.com/",
-      "description": "Locational Endpoint"
+      "location": "us-central2"
     },
     {
       "location": "us-east1",
-      "endpointUrl": "https://us-east1-aiplatform.googleapis.com/",
-      "description": "Locational Endpoint"
+      "description": "Locational Endpoint",
+      "endpointUrl": "https://us-east1-aiplatform.googleapis.com/"
     },
     {
       "location": "us-east4",
@@ -185,34 +185,34 @@
       "description": "Locational Endpoint"
     },
     {
-      "location": "us-south1",
       "endpointUrl": "https://us-south1-aiplatform.googleapis.com/",
-      "description": "Locational Endpoint"
+      "description": "Locational Endpoint",
+      "location": "us-south1"
     },
     {
-      "description": "Locational Endpoint",
       "location": "us-west1",
-      "endpointUrl": "https://us-west1-aiplatform.googleapis.com/"
+      "endpointUrl": "https://us-west1-aiplatform.googleapis.com/",
+      "description": "Locational Endpoint"
     },
     {
       "endpointUrl": "https://us-west2-aiplatform.googleapis.com/",
-      "location": "us-west2",
-      "description": "Locational Endpoint"
+      "description": "Locational Endpoint",
+      "location": "us-west2"
     },
     {
       "location": "us-west3",
-      "endpointUrl": "https://us-west3-aiplatform.googleapis.com/",
-      "description": "Locational Endpoint"
+      "description": "Locational Endpoint",
+      "endpointUrl": "https://us-west3-aiplatform.googleapis.com/"
     },
     {
       "description": "Locational Endpoint",
-      "location": "us-west4",
-      "endpointUrl": "https://us-west4-aiplatform.googleapis.com/"
+      "endpointUrl": "https://us-west4-aiplatform.googleapis.com/",
+      "location": "us-west4"
     },
     {
+      "endpointUrl": "https://us-east5-aiplatform.googleapis.com/",
       "location": "us-east5",
-      "description": "Locational Endpoint",
-      "endpointUrl": "https://us-east5-aiplatform.googleapis.com/"
+      "description": "Locational Endpoint"
     }
   ],
   "fullyEncodeReservedExpansion": true,
@@ -2822,6 +2822,40 @@
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
+                "patch": {
+                  "description": "Update a DeploymentResourcePool.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/deploymentResourcePools/{deploymentResourcePoolsId}",
+                  "httpMethod": "PATCH",
+                  "id": "aiplatform.projects.locations.deploymentResourcePools.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Immutable. The resource name of the DeploymentResourcePool. Format: `projects/{project}/locations/{location}/deploymentResourcePools/{deployment_resource_pool}`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/deploymentResourcePools/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "Required. The list of fields to update.",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "request": {
+                    "$ref": "GoogleCloudAiplatformV1DeploymentResourcePool"
+                  },
+                  "response": {
+                    "$ref": "GoogleLongrunningOperation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
                 "queryDeployedModels": {
                   "description": "List DeployedModels that have been deployed on this DeploymentResourcePool.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/deploymentResourcePools/{deploymentResourcePoolsId}:queryDeployedModels",
@@ -3893,7 +3927,7 @@
                       "type": "string"
                     },
                     "updateMask": {
-                      "description": "Field mask is used to specify the fields to be overwritten in the FeatureGroup resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then only the non-empty fields present in the request will be overwritten. Set the update_mask to `*` to override all fields. Updatable fields: * `labels`",
+                      "description": "Field mask is used to specify the fields to be overwritten in the FeatureGroup resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then only the non-empty fields present in the request will be overwritten. Set the update_mask to `*` to override all fields. Updatable fields: * `labels` * `description` * `big_query` * `big_query.entity_id_columns`",
                       "format": "google-fieldmask",
                       "location": "query",
                       "type": "string"
@@ -4072,7 +4106,7 @@
                           "type": "string"
                         },
                         "updateMask": {
-                          "description": "Field mask is used to specify the fields to be overwritten in the Features resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then only the non-empty fields present in the request will be overwritten. Set the update_mask to `*` to override all fields. Updatable fields: * `description` * `labels` * `disable_monitoring` (Not supported for FeatureRegistry Feature)",
+                          "description": "Field mask is used to specify the fields to be overwritten in the Features resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then only the non-empty fields present in the request will be overwritten. Set the update_mask to `*` to override all fields. Updatable fields: * `description` * `labels` * `disable_monitoring` (Not supported for FeatureRegistryService Feature) * `point_of_contact` (Not supported for FeaturestoreService FeatureStore)",
                           "format": "google-fieldmask",
                           "location": "query",
                           "type": "string"
@@ -4500,7 +4534,7 @@
                       "type": "string"
                     },
                     "updateMask": {
-                      "description": "Field mask is used to specify the fields to be overwritten in the FeatureOnlineStore resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then only the non-empty fields present in the request will be overwritten. Set the update_mask to `*` to override all fields. Updatable fields: * `big_query_source` * `bigtable` * `labels` * `sync_config`",
+                      "description": "Field mask is used to specify the fields to be overwritten in the FeatureOnlineStore resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then only the non-empty fields present in the request will be overwritten. Set the update_mask to `*` to override all fields. Updatable fields: * `labels` * `description` * `bigtable` * `bigtable.auto_scaling` * `bigtable.enable_multi_region_replica`",
                       "format": "google-fieldmask",
                       "location": "query",
                       "type": "string"
@@ -4700,7 +4734,7 @@
                           "type": "string"
                         },
                         "updateMask": {
-                          "description": "Field mask is used to specify the fields to be overwritten in the FeatureView resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then only the non-empty fields present in the request will be overwritten. Set the update_mask to `*` to override all fields. Updatable fields: * `labels` * `serviceAgentType`",
+                          "description": "Field mask is used to specify the fields to be overwritten in the FeatureView resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then only the non-empty fields present in the request will be overwritten. Set the update_mask to `*` to override all fields. Updatable fields: * `labels` * `service_agent_type` * `big_query_source` * `big_query_source.uri` * `big_query_source.entity_id_columns` * `feature_registry_source` * `feature_registry_source.feature_groups` * `sync_config` * `sync_config.cron`",
                           "format": "google-fieldmask",
                           "location": "query",
                           "type": "string"
@@ -6067,7 +6101,7 @@
                               "type": "string"
                             },
                             "updateMask": {
-                              "description": "Field mask is used to specify the fields to be overwritten in the Features resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then only the non-empty fields present in the request will be overwritten. Set the update_mask to `*` to override all fields. Updatable fields: * `description` * `labels` * `disable_monitoring` (Not supported for FeatureRegistry Feature)",
+                              "description": "Field mask is used to specify the fields to be overwritten in the Features resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then only the non-empty fields present in the request will be overwritten. Set the update_mask to `*` to override all fields. Updatable fields: * `description` * `labels` * `disable_monitoring` (Not supported for FeatureRegistryService Feature) * `point_of_contact` (Not supported for FeaturestoreService FeatureStore)",
                               "format": "google-fieldmask",
                               "location": "query",
                               "type": "string"
@@ -11145,6 +11179,167 @@
               }
             },
             "notebookExecutionJobs": {
+              "methods": {
+                "create": {
+                  "description": "Creates a NotebookExecutionJob.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/notebookExecutionJobs",
+                  "httpMethod": "POST",
+                  "id": "aiplatform.projects.locations.notebookExecutionJobs.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "notebookExecutionJobId": {
+                      "description": "Optional. User specified ID for the NotebookExecutionJob.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The resource name of the Location to create the NotebookExecutionJob. Format: `projects/{project}/locations/{location}`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/notebookExecutionJobs",
+                  "request": {
+                    "$ref": "GoogleCloudAiplatformV1NotebookExecutionJob"
+                  },
+                  "response": {
+                    "$ref": "GoogleLongrunningOperation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "delete": {
+                  "description": "Deletes a NotebookExecutionJob.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/notebookExecutionJobs/{notebookExecutionJobsId}",
+                  "httpMethod": "DELETE",
+                  "id": "aiplatform.projects.locations.notebookExecutionJobs.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the NotebookExecutionJob resource to be deleted.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/notebookExecutionJobs/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "GoogleLongrunningOperation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "get": {
+                  "description": "Gets a NotebookExecutionJob.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/notebookExecutionJobs/{notebookExecutionJobsId}",
+                  "httpMethod": "GET",
+                  "id": "aiplatform.projects.locations.notebookExecutionJobs.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the NotebookExecutionJob resource.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/notebookExecutionJobs/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "view": {
+                      "description": "Optional. The NotebookExecutionJob view. Defaults to BASIC.",
+                      "enum": [
+                        "NOTEBOOK_EXECUTION_JOB_VIEW_UNSPECIFIED",
+                        "NOTEBOOK_EXECUTION_JOB_VIEW_BASIC",
+                        "NOTEBOOK_EXECUTION_JOB_VIEW_FULL"
+                      ],
+                      "enumDescriptions": [
+                        "When unspecified, the API defaults to the BASIC view.",
+                        "Includes all fields except for direct notebook inputs.",
+                        "Includes all fields."
+                      ],
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "GoogleCloudAiplatformV1NotebookExecutionJob"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "Lists NotebookExecutionJobs in a Location.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/notebookExecutionJobs",
+                  "httpMethod": "GET",
+                  "id": "aiplatform.projects.locations.notebookExecutionJobs.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "Optional. An expression for filtering the results of the request. For field names both snake_case and camelCase are supported. * `notebookExecutionJob` supports = and !=. `notebookExecutionJob` represents the NotebookExecutionJob ID. * `displayName` supports = and != and regex. * `schedule` supports = and != and regex. Some examples: * `notebookExecutionJob=\"123\"` * `notebookExecutionJob=\"my-execution-job\"` * `displayName=\"myDisplayName\"` and `displayName=~\"myDisplayNameRegex\"`",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "orderBy": {
+                      "description": "Optional. A comma-separated list of fields to order by, sorted in ascending order. Use \"desc\" after a field name for descending. Supported fields: * `display_name` * `create_time` * `update_time` Example: `display_name, create_time desc`.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "Optional. The standard list page size.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. The standard list page token. Typically obtained via ListNotebookExecutionJobs.next_page_token of the previous NotebookService.ListNotebookExecutionJobs call.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The resource name of the Location from which to list the NotebookExecutionJobs. Format: `projects/{project}/locations/{location}`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "view": {
+                      "description": "Optional. The NotebookExecutionJob view. Defaults to BASIC.",
+                      "enum": [
+                        "NOTEBOOK_EXECUTION_JOB_VIEW_UNSPECIFIED",
+                        "NOTEBOOK_EXECUTION_JOB_VIEW_BASIC",
+                        "NOTEBOOK_EXECUTION_JOB_VIEW_FULL"
+                      ],
+                      "enumDescriptions": [
+                        "When unspecified, the API defaults to the BASIC view.",
+                        "Includes all fields except for direct notebook inputs.",
+                        "Includes all fields."
+                      ],
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/notebookExecutionJobs",
+                  "response": {
+                    "$ref": "GoogleCloudAiplatformV1ListNotebookExecutionJobsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              },
               "resources": {
                 "operations": {
                   "methods": {
@@ -16776,11 +16971,11 @@
       }
     }
   },
-  "revision": "20240617",
+  "revision": "20240704",
   "rootUrl": "https://aiplatform.googleapis.com/",
   "schemas": {
     "CloudAiLargeModelsVisionGenerateVideoResponse": {
-      "description": "Generate video response.",
+      "description": "Next ID: 8 Generate video response.",
       "id": "CloudAiLargeModelsVisionGenerateVideoResponse",
       "properties": {
         "generatedSamples": {
@@ -18246,7 +18441,12 @@
     "GoogleCloudAiplatformV1BleuSpec": {
       "description": "Spec for bleu score metric - calculates the precision of n-grams in the prediction as compared to reference - returns a score ranging between 0 to 1.",
       "id": "GoogleCloudAiplatformV1BleuSpec",
-      "properties": {},
+      "properties": {
+        "useEffectiveOrder": {
+          "description": "Optional. Whether to use_effective_order to compute bleu score.",
+          "type": "boolean"
+        }
+      },
       "type": "object"
     },
     "GoogleCloudAiplatformV1Blob": {
@@ -18405,6 +18605,12 @@
           },
           "readOnly": true,
           "type": "array"
+        },
+        "score": {
+          "description": "Output only. Confidence score of the candidate.",
+          "format": "double",
+          "readOnly": true,
+          "type": "number"
         }
       },
       "type": "object"
@@ -18615,12 +18821,23 @@
       "description": "Request message for ComputeTokens RPC call.",
       "id": "GoogleCloudAiplatformV1ComputeTokensRequest",
       "properties": {
+        "contents": {
+          "description": "Optional. Input content.",
+          "items": {
+            "$ref": "GoogleCloudAiplatformV1Content"
+          },
+          "type": "array"
+        },
         "instances": {
-          "description": "Required. The instances that are the input to token computing API call. Schema is identical to the prediction schema of the text model, even for the non-text models, like chat models, or Codey models.",
+          "description": "Optional. The instances that are the input to token computing API call. Schema is identical to the prediction schema of the text model, even for the non-text models, like chat models, or Codey models.",
           "items": {
             "type": "any"
           },
           "type": "array"
+        },
+        "model": {
+          "description": "Optional. The name of the publisher model requested to serve the prediction. Format: projects/{project}/locations/{location}/publishers/*/models/*",
+          "type": "string"
         }
       },
       "type": "object"
@@ -18821,22 +19038,33 @@
       "id": "GoogleCloudAiplatformV1CountTokensRequest",
       "properties": {
         "contents": {
-          "description": "Required. Input content.",
+          "description": "Optional. Input content.",
           "items": {
             "$ref": "GoogleCloudAiplatformV1Content"
           },
           "type": "array"
         },
         "instances": {
-          "description": "Required. The instances that are the input to token counting call. Schema is identical to the prediction schema of the underlying model.",
+          "description": "Optional. The instances that are the input to token counting call. Schema is identical to the prediction schema of the underlying model.",
           "items": {
             "type": "any"
           },
           "type": "array"
         },
         "model": {
-          "description": "Required. The name of the publisher model requested to serve the prediction. Format: `projects/{project}/locations/{location}/publishers/*/models/*`",
+          "description": "Optional. The name of the publisher model requested to serve the prediction. Format: `projects/{project}/locations/{location}/publishers/*/models/*`",
           "type": "string"
+        },
+        "systemInstruction": {
+          "$ref": "GoogleCloudAiplatformV1Content",
+          "description": "Optional. The user provided system instructions for the model. Note: only text should be used in parts and content in each part will be in a separate paragraph."
+        },
+        "tools": {
+          "description": "Optional. A list of `Tools` the model may use to generate the next response. A `Tool` is a piece of code that enables the system to interact with external systems to perform an action, or set of actions, outside of knowledge and scope of the model.",
+          "items": {
+            "$ref": "GoogleCloudAiplatformV1Tool"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -19035,6 +19263,21 @@
         "genericMetadata": {
           "$ref": "GoogleCloudAiplatformV1GenericOperationMetadata",
           "description": "Operation metadata for creating a MetadataStore."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1CreateNotebookExecutionJobOperationMetadata": {
+      "description": "Metadata information for NotebookService.CreateNotebookExecutionJob.",
+      "id": "GoogleCloudAiplatformV1CreateNotebookExecutionJobOperationMetadata",
+      "properties": {
+        "genericMetadata": {
+          "$ref": "GoogleCloudAiplatformV1GenericOperationMetadata",
+          "description": "The operation generic information."
+        },
+        "progressMessage": {
+          "description": "A human-readable message that shows the intermediate progress details of NotebookRuntime.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -22077,8 +22320,17 @@
       "description": "The dedicated serving endpoint for this FeatureOnlineStore. Only need to set when you choose Optimized storage type. Public endpoint is provisioned by default.",
       "id": "GoogleCloudAiplatformV1FeatureOnlineStoreDedicatedServingEndpoint",
       "properties": {
+        "privateServiceConnectConfig": {
+          "$ref": "GoogleCloudAiplatformV1PrivateServiceConnectConfig",
+          "description": "Optional. Private service connect config. The private service connection is available only for Optimized storage type, not for embedding management now. If PrivateServiceConnectConfig.enable_private_service_connect set to true, customers will use private service connection to send request. Otherwise, the connection will set to public endpoint."
+        },
         "publicEndpointDomainName": {
           "description": "Output only. This field will be populated with the domain name to use for this FeatureOnlineStore",
+          "readOnly": true,
+          "type": "string"
+        },
+        "serviceAttachment": {
+          "description": "Output only. The name of the service attachment resource. Populated if private service connect is enabled and after FeatureViewSync is created.",
           "readOnly": true,
           "type": "string"
         }
@@ -23487,10 +23739,69 @@
       },
       "type": "object"
     },
+    "GoogleCloudAiplatformV1GroundingChunk": {
+      "description": "Grounding chunk.",
+      "id": "GoogleCloudAiplatformV1GroundingChunk",
+      "properties": {
+        "retrievedContext": {
+          "$ref": "GoogleCloudAiplatformV1GroundingChunkRetrievedContext",
+          "description": "Grounding chunk from context retrieved by the retrieval tools."
+        },
+        "web": {
+          "$ref": "GoogleCloudAiplatformV1GroundingChunkWeb",
+          "description": "Grounding chunk from the web."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1GroundingChunkRetrievedContext": {
+      "description": "Chunk from context retrieved by the retrieval tools.",
+      "id": "GoogleCloudAiplatformV1GroundingChunkRetrievedContext",
+      "properties": {
+        "title": {
+          "description": "Title of the attribution.",
+          "type": "string"
+        },
+        "uri": {
+          "description": "URI reference of the attribution.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1GroundingChunkWeb": {
+      "description": "Chunk from the web.",
+      "id": "GoogleCloudAiplatformV1GroundingChunkWeb",
+      "properties": {
+        "title": {
+          "description": "Title of the chunk.",
+          "type": "string"
+        },
+        "uri": {
+          "description": "URI reference of the chunk.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudAiplatformV1GroundingMetadata": {
       "description": "Metadata returned to client when grounding is enabled.",
       "id": "GoogleCloudAiplatformV1GroundingMetadata",
       "properties": {
+        "groundingChunks": {
+          "description": "List of supporting references retrieved from specified grounding source.",
+          "items": {
+            "$ref": "GoogleCloudAiplatformV1GroundingChunk"
+          },
+          "type": "array"
+        },
+        "groundingSupports": {
+          "description": "Optional. List of grounding support.",
+          "items": {
+            "$ref": "GoogleCloudAiplatformV1GroundingSupport"
+          },
+          "type": "array"
+        },
         "searchEntryPoint": {
           "$ref": "GoogleCloudAiplatformV1SearchEntryPoint",
           "description": "Optional. Google search entry for the following-up web searches."
@@ -23501,6 +23812,33 @@
             "type": "string"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1GroundingSupport": {
+      "description": "Grounding support.",
+      "id": "GoogleCloudAiplatformV1GroundingSupport",
+      "properties": {
+        "confidenceScores": {
+          "description": "Confidence score of the support references. Ranges from 0 to 1. 1 is the most confident. This list must have the same size as the grounding_chunk_indices.",
+          "items": {
+            "format": "float",
+            "type": "number"
+          },
+          "type": "array"
+        },
+        "groundingChunkIndices": {
+          "description": "A list of indices (into 'grounding_chunk') specifying the citations associated with the claim. For instance [1,3,4] means that grounding_chunk[1], grounding_chunk[3], grounding_chunk[4] are the retrieved content attributed to the claim.",
+          "items": {
+            "format": "int32",
+            "type": "integer"
+          },
+          "type": "array"
+        },
+        "segment": {
+          "$ref": "GoogleCloudAiplatformV1Segment",
+          "description": "Segment of the content this support belongs to."
         }
       },
       "type": "object"
@@ -24891,6 +25229,24 @@
       },
       "type": "object"
     },
+    "GoogleCloudAiplatformV1ListNotebookExecutionJobsResponse": {
+      "description": "Response message for [NotebookService.CreateNotebookExecutionJob]",
+      "id": "GoogleCloudAiplatformV1ListNotebookExecutionJobsResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "A token to retrieve next page of results. Pass to ListNotebookExecutionJobs.page_token to obtain that page.",
+          "type": "string"
+        },
+        "notebookExecutionJobs": {
+          "description": "List of NotebookExecutionJobs in the requested page.",
+          "items": {
+            "$ref": "GoogleCloudAiplatformV1NotebookExecutionJob"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudAiplatformV1ListNotebookRuntimeTemplatesResponse": {
       "description": "Response message for NotebookService.ListNotebookRuntimeTemplates.",
       "id": "GoogleCloudAiplatformV1ListNotebookRuntimeTemplatesResponse",
@@ -25217,6 +25573,22 @@
             "TPU_V3",
             "TPU_V4_POD",
             "TPU_V5_LITEPOD"
+          ],
+          "enumDeprecated": [
+            false,
+            true,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false
           ],
           "enumDescriptions": [
             "Unspecified accelerator type, which means no accelerator.",
@@ -25768,6 +26140,16 @@
         "predictSchemata": {
           "$ref": "GoogleCloudAiplatformV1PredictSchemata",
           "description": "The schemata that describe formats of the Model's predictions and explanations as given and returned via PredictionService.Predict and PredictionService.Explain."
+        },
+        "satisfiesPzi": {
+          "description": "Output only. Reserved for future use.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "satisfiesPzs": {
+          "description": "Output only. Reserved for future use.",
+          "readOnly": true,
+          "type": "boolean"
         },
         "supportedDeploymentResourcesTypes": {
           "description": "Output only. When this Model is deployed, its prediction resources are described by the `prediction_resources` field of the Endpoint.deployed_models object. Because not all Models support all resource configuration types, the configuration types this Model supports are listed here. If no configuration types are listed, the Model cannot be deployed to an Endpoint and does not support online predictions (PredictionService.Predict or PredictionService.Explain). Such a Model can serve predictions by using a BatchPredictionJob, if it has at least one entry each in supported_input_storage_formats and supported_output_storage_formats.",
@@ -27507,6 +27889,159 @@
       },
       "type": "object"
     },
+    "GoogleCloudAiplatformV1NotebookExecutionJob": {
+      "description": "NotebookExecutionJob represents an instance of a notebook execution.",
+      "id": "GoogleCloudAiplatformV1NotebookExecutionJob",
+      "properties": {
+        "createTime": {
+          "description": "Output only. Timestamp when this NotebookExecutionJob was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "dataformRepositorySource": {
+          "$ref": "GoogleCloudAiplatformV1NotebookExecutionJobDataformRepositorySource",
+          "description": "The Dataform Repository pointing to a single file notebook repository."
+        },
+        "directNotebookSource": {
+          "$ref": "GoogleCloudAiplatformV1NotebookExecutionJobDirectNotebookSource",
+          "description": "The contents of an input notebook file."
+        },
+        "displayName": {
+          "description": "The display name of the NotebookExecutionJob. The name can be up to 128 characters long and can consist of any UTF-8 characters.",
+          "type": "string"
+        },
+        "executionTimeout": {
+          "description": "Max running time of the execution job in seconds (default 86400s / 24 hrs).",
+          "format": "google-duration",
+          "type": "string"
+        },
+        "executionUser": {
+          "description": "The user email to run the execution as. Only supported by Colab runtimes.",
+          "type": "string"
+        },
+        "gcsNotebookSource": {
+          "$ref": "GoogleCloudAiplatformV1NotebookExecutionJobGcsNotebookSource",
+          "description": "The Cloud Storage url pointing to the ipynb file. Format: `gs://bucket/notebook_file.ipynb`"
+        },
+        "gcsOutputUri": {
+          "description": "The Cloud Storage location to upload the result to. Format: `gs://bucket-name`",
+          "type": "string"
+        },
+        "jobState": {
+          "description": "Output only. The state of the NotebookExecutionJob.",
+          "enum": [
+            "JOB_STATE_UNSPECIFIED",
+            "JOB_STATE_QUEUED",
+            "JOB_STATE_PENDING",
+            "JOB_STATE_RUNNING",
+            "JOB_STATE_SUCCEEDED",
+            "JOB_STATE_FAILED",
+            "JOB_STATE_CANCELLING",
+            "JOB_STATE_CANCELLED",
+            "JOB_STATE_PAUSED",
+            "JOB_STATE_EXPIRED",
+            "JOB_STATE_UPDATING",
+            "JOB_STATE_PARTIALLY_SUCCEEDED"
+          ],
+          "enumDescriptions": [
+            "The job state is unspecified.",
+            "The job has been just created or resumed and processing has not yet begun.",
+            "The service is preparing to run the job.",
+            "The job is in progress.",
+            "The job completed successfully.",
+            "The job failed.",
+            "The job is being cancelled. From this state the job may only go to either `JOB_STATE_SUCCEEDED`, `JOB_STATE_FAILED` or `JOB_STATE_CANCELLED`.",
+            "The job has been cancelled.",
+            "The job has been stopped, and can be resumed.",
+            "The job has expired.",
+            "The job is being updated. Only jobs in the `RUNNING` state can be updated. After updating, the job goes back to the `RUNNING` state.",
+            "The job is partially succeeded, some results may be missing due to errors."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "The labels with user-defined metadata to organize NotebookExecutionJobs. Label keys and values can be no longer than 64 characters (Unicode codepoints), can only contain lowercase letters, numeric characters, underscores and dashes. International characters are allowed. See https://goo.gl/xmQnxf for more information and examples of labels. System reserved label keys are prefixed with \"aiplatform.googleapis.com/\" and are immutable.",
+          "type": "object"
+        },
+        "name": {
+          "description": "Output only. The resource name of this NotebookExecutionJob. Format: `projects/{project_id}/locations/{location}/notebookExecutionJobs/{job_id}`",
+          "readOnly": true,
+          "type": "string"
+        },
+        "notebookRuntimeTemplateResourceName": {
+          "description": "The NotebookRuntimeTemplate to source compute configuration from.",
+          "type": "string"
+        },
+        "scheduleResourceName": {
+          "description": "Output only. The Schedule resource name if this job is triggered by one. Format: `projects/{project_id}/locations/{location}/schedules/{schedule_id}`",
+          "readOnly": true,
+          "type": "string"
+        },
+        "serviceAccount": {
+          "description": "The service account to run the execution as.",
+          "type": "string"
+        },
+        "status": {
+          "$ref": "GoogleRpcStatus",
+          "description": "Output only. Populated when the NotebookExecutionJob is completed. When there is an error during notebook execution, the error details are populated.",
+          "readOnly": true
+        },
+        "updateTime": {
+          "description": "Output only. Timestamp when this NotebookExecutionJob was most recently updated.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1NotebookExecutionJobDataformRepositorySource": {
+      "description": "The Dataform Repository containing the input notebook.",
+      "id": "GoogleCloudAiplatformV1NotebookExecutionJobDataformRepositorySource",
+      "properties": {
+        "commitSha": {
+          "description": "The commit SHA to read repository with. If unset, the file will be read at HEAD.",
+          "type": "string"
+        },
+        "dataformRepositoryResourceName": {
+          "description": "The resource name of the Dataform Repository. Format: `projects/{project_id}/locations/{location}/repositories/{repository_id}`",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1NotebookExecutionJobDirectNotebookSource": {
+      "description": "The content of the input notebook in ipynb format.",
+      "id": "GoogleCloudAiplatformV1NotebookExecutionJobDirectNotebookSource",
+      "properties": {
+        "content": {
+          "description": "The base64-encoded contents of the input notebook file.",
+          "format": "byte",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1NotebookExecutionJobGcsNotebookSource": {
+      "description": "The Cloud Storage uri for the input notebook.",
+      "id": "GoogleCloudAiplatformV1NotebookExecutionJobGcsNotebookSource",
+      "properties": {
+        "generation": {
+          "description": "The version of the Cloud Storage object to read. If unset, the current version of the object is read. See https://cloud.google.com/storage/docs/metadata#generation-number.",
+          "type": "string"
+        },
+        "uri": {
+          "description": "The Cloud Storage uri pointing to the ipynb file. Format: `gs://bucket/notebook_file.ipynb`",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudAiplatformV1NotebookIdleShutdownConfig": {
       "description": "The idle shutdown configuration of NotebookRuntimeTemplate, which contains the idle_timeout as required field.",
       "id": "GoogleCloudAiplatformV1NotebookIdleShutdownConfig",
@@ -29023,6 +29558,10 @@
           "$ref": "GoogleCloudAiplatformV1DedicatedResources",
           "description": "A description of resources that are dedicated to the DeployedModel, and that need a higher degree of manual configuration."
         },
+        "deployMetadata": {
+          "$ref": "GoogleCloudAiplatformV1PublisherModelCallToActionDeployDeployMetadata",
+          "description": "Optional. Metadata information about this deployment config."
+        },
         "deployTaskName": {
           "description": "Optional. The name of the deploy task (e.g., \"text to image generation\").",
           "type": "string"
@@ -29046,6 +29585,20 @@
         "title": {
           "description": "Required. The title of the regional resource reference.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1PublisherModelCallToActionDeployDeployMetadata": {
+      "description": "Metadata information about the deployment for managing deployment config.",
+      "id": "GoogleCloudAiplatformV1PublisherModelCallToActionDeployDeployMetadata",
+      "properties": {
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. Labels for the deployment. For managing deployment config like verifying, source of deployment config, etc.",
+          "type": "object"
         }
       },
       "type": "object"
@@ -29710,6 +30263,17 @@
       },
       "type": "object"
     },
+    "GoogleCloudAiplatformV1RayLogsSpec": {
+      "description": "Configuration for the Ray OSS Logs.",
+      "id": "GoogleCloudAiplatformV1RayLogsSpec",
+      "properties": {
+        "disabled": {
+          "description": "Optional. Flag to disable the export of Ray OSS logs to Cloud Logging.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudAiplatformV1RayMetricSpec": {
       "description": "Configuration for the Ray metrics.",
       "id": "GoogleCloudAiplatformV1RayMetricSpec",
@@ -29732,6 +30296,10 @@
         "imageUri": {
           "description": "Optional. Default image for user to choose a preferred ML framework (for example, TensorFlow or Pytorch) by choosing from [Vertex prebuilt images](https://cloud.google.com/vertex-ai/docs/training/pre-built-containers). Either this or the resource_pool_images is required. Use this field if you need all the resource pools to have the same Ray image. Otherwise, use the {@code resource_pool_images} field.",
           "type": "string"
+        },
+        "rayLogsSpec": {
+          "$ref": "GoogleCloudAiplatformV1RayLogsSpec",
+          "description": "Optional. OSS Ray logging configurations."
         },
         "rayMetricSpec": {
           "$ref": "GoogleCloudAiplatformV1RayMetricSpec",
@@ -30019,7 +30587,7 @@
       "properties": {
         "autoscalingSpec": {
           "$ref": "GoogleCloudAiplatformV1ResourcePoolAutoscalingSpec",
-          "description": "Optional. Optional spec to configure GKE autoscaling"
+          "description": "Optional. Optional spec to configure GKE or Ray-on-Vertex autoscaling"
         },
         "diskSpec": {
           "$ref": "GoogleCloudAiplatformV1DiskSpec",
@@ -30057,7 +30625,7 @@
           "type": "string"
         },
         "minReplicaCount": {
-          "description": "Optional. min replicas in the node pool, must be ≤ replica_count and < max_replica_count or will throw error",
+          "description": "Optional. min replicas in the node pool, must be ≤ replica_count and < max_replica_count or will throw error. For autoscaling enabled Ray-on-Vertex, we allow min_replica_count of a resource_pool to be 0 to match the OSS Ray behavior(https://docs.ray.io/en/latest/cluster/vms/user-guides/configuring-autoscaling.html#cluster-config-parameters). As for Persistent Resource, the min_replica_count must be > 0, we added a corresponding validation inside CreatePersistentResourceRequestValidator.java.",
           "format": "int64",
           "type": "string"
         }
@@ -34809,6 +35377,36 @@
       },
       "type": "object"
     },
+    "GoogleCloudAiplatformV1Segment": {
+      "description": "Segment of the content.",
+      "id": "GoogleCloudAiplatformV1Segment",
+      "properties": {
+        "endIndex": {
+          "description": "Output only. End index in the given Part, measured in bytes. Offset from the start of the Part, exclusive, starting at zero.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "partIndex": {
+          "description": "Output only. The index of a Part object within its parent Content object.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "startIndex": {
+          "description": "Output only. Start index in the given Part, measured in bytes. Offset from the start of the Part, inclusive, starting at zero.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "text": {
+          "description": "Output only. The text corresponding to the segment from the response.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudAiplatformV1ServiceAccountSpec": {
       "description": "Configuration for the use of custom service account to run the workloads.",
       "id": "GoogleCloudAiplatformV1ServiceAccountSpec",
@@ -35896,7 +36494,14 @@
       "id": "GoogleCloudAiplatformV1SupervisedTuningDataStats",
       "properties": {
         "totalBillableCharacterCount": {
+          "deprecated": true,
           "description": "Output only. Number of billable characters in the tuning dataset.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "totalBillableTokenCount": {
+          "description": "Output only. Number of billable tokens in the tuning dataset.",
           "format": "int64",
           "readOnly": true,
           "type": "string"
@@ -35949,6 +36554,12 @@
       "description": "Dataset distribution for Supervised Tuning.",
       "id": "GoogleCloudAiplatformV1SupervisedTuningDatasetDistribution",
       "properties": {
+        "billableSum": {
+          "description": "Output only. Sum of a given population of values that are billable.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
         "buckets": {
           "description": "Output only. Defines the histogram bucket.",
           "items": {
@@ -36264,6 +36875,16 @@
           "format": "int32",
           "readOnly": true,
           "type": "integer"
+        },
+        "satisfiesPzi": {
+          "description": "Output only. Reserved for future use.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "satisfiesPzs": {
+          "description": "Output only. Reserved for future use.",
+          "readOnly": true,
+          "type": "boolean"
         },
         "updateTime": {
           "description": "Output only. Timestamp when this Tensorboard was last updated.",
@@ -36608,6 +37229,10 @@
       "description": "Tokens info with a list of tokens and the corresponding list of token ids.",
       "id": "GoogleCloudAiplatformV1TokensInfo",
       "properties": {
+        "role": {
+          "description": "Optional. Optional fields for the role from the corresponding Content.",
+          "type": "string"
+        },
         "tokenIds": {
           "description": "A list of token ids from the input.",
           "items": {

@@ -484,7 +484,8 @@
                     "$ref": "Operation"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/cloud-translation"
                   ]
                 },
                 "delete": {
@@ -744,7 +745,7 @@
       }
     }
   },
-  "revision": "20230922",
+  "revision": "20240717",
   "rootUrl": "https://translation.googleapis.com/",
   "schemas": {
     "BatchDocumentInputConfig": {

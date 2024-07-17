@@ -463,7 +463,7 @@
                               "type": "string"
                             },
                             "name": {
-                              "description": "The workspace on which to execute the request. It is not part of the open source API but used as a request path prefix to distinguish different virtual Prometheus instances of Google Prometheus Engine. The format is: projects/PROJECT_ID_OR_NUMBER.",
+                              "description": "Required. The workspace on which to execute the request. It is not part of the open source API but used as a request path prefix to distinguish different virtual Prometheus instances of Google Prometheus Engine. The format is: projects/PROJECT_ID_OR_NUMBER.",
                               "location": "path",
                               "pattern": "^projects/[^/]+$",
                               "required": true,
@@ -500,7 +500,7 @@
                               "type": "string"
                             },
                             "name": {
-                              "description": "The project on which to execute the request. Data associcated with the project's workspace stored under the The format is: projects/PROJECT_ID_OR_NUMBER. Open source API but used as a request path prefix to distinguish different virtual Prometheus instances of Google Prometheus Engine.",
+                              "description": "Required. The project on which to execute the request. Data associcated with the project's workspace stored under the The format is: projects/PROJECT_ID_OR_NUMBER. Open source API but used as a request path prefix to distinguish different virtual Prometheus instances of Google Prometheus Engine.",
                               "location": "path",
                               "pattern": "^projects/[^/]+$",
                               "required": true,
@@ -537,7 +537,7 @@
                               "type": "string"
                             },
                             "name": {
-                              "description": "The project on which to execute the request. Data associcated with the project's workspace stored under the The format is: projects/PROJECT_ID_OR_NUMBER. Open source API but used as a request path prefix to distinguish different virtual Prometheus instances of Google Prometheus Engine.",
+                              "description": "Required. The project on which to execute the request. Data associcated with the project's workspace stored under the The format is: projects/PROJECT_ID_OR_NUMBER. Open source API but used as a request path prefix to distinguish different virtual Prometheus instances of Google Prometheus Engine.",
                               "location": "path",
                               "pattern": "^projects/[^/]+$",
                               "required": true,
@@ -574,7 +574,7 @@
                               "type": "string"
                             },
                             "name": {
-                              "description": "The project on which to execute the request. Data associcated with the project's workspace stored under the The format is: projects/PROJECT_ID_OR_NUMBER. Open source API but used as a request path prefix to distinguish different virtual Prometheus instances of Google Prometheus Engine.",
+                              "description": "Required. The project on which to execute the request. Data associcated with the project's workspace stored under the The format is: projects/PROJECT_ID_OR_NUMBER. Open source API but used as a request path prefix to distinguish different virtual Prometheus instances of Google Prometheus Engine.",
                               "location": "path",
                               "pattern": "^projects/[^/]+$",
                               "required": true,
@@ -669,7 +669,7 @@
                                   "type": "string"
                                 },
                                 "name": {
-                                  "description": "The workspace on which to execute the request. It is not part of the open source API but used as a request path prefix to distinguish different virtual Prometheus instances of Google Prometheus Engine. The format is: projects/PROJECT_ID_OR_NUMBER.",
+                                  "description": "Required. The workspace on which to execute the request. It is not part of the open source API but used as a request path prefix to distinguish different virtual Prometheus instances of Google Prometheus Engine. The format is: projects/PROJECT_ID_OR_NUMBER.",
                                   "location": "path",
                                   "pattern": "^projects/[^/]+$",
                                   "required": true,
@@ -753,7 +753,7 @@
       }
     }
   },
-  "revision": "20240623",
+  "revision": "20240713",
   "rootUrl": "https://monitoring.googleapis.com/",
   "schemas": {
     "Aggregation": {
@@ -1356,7 +1356,9 @@
             "CLOUD_SQL_FAILOVER",
             "CLOUD_SQL_START_STOP",
             "CLOUD_SQL_STORAGE",
-            "UPTIME_CHECK_FAILURE"
+            "UPTIME_CHECK_FAILURE",
+            "CLOUD_ALERTING_ALERT",
+            "SERVICE_HEALTH_INCIDENT"
           ],
           "enumDescriptions": [
             "No event type specified.",
@@ -1378,7 +1380,9 @@
             "Failover of a Cloud SQL instance.",
             "Start/stop of a Cloud SQL instance.",
             "Storage event for a Cloud SQL instance.",
-            "Failure of a Cloud Monitoring uptime check."
+            "Failure of a Cloud Monitoring uptime check.",
+            "Alerts from Cloud Alerting",
+            "Incidents from Service Health"
           ],
           "type": "string"
         },

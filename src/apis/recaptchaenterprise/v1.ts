@@ -317,7 +317,7 @@ export namespace recaptchaenterprise_v1 {
      */
     expectedAction?: string | null;
     /**
-     * Optional. Flag for a reCAPTCHA express request for an assessment without a token. If enabled, `site_key` must reference a SCORE key with WAF feature set to EXPRESS.
+     * Optional. Flag for a reCAPTCHA express request for an assessment without a token. If enabled, `site_key` must reference an Express site key.
      */
     express?: boolean | null;
     /**
@@ -373,6 +373,10 @@ export namespace recaptchaenterprise_v1 {
      */
     wafTokenAssessment?: boolean | null;
   }
+  /**
+   * Settings specific to keys that can be used for reCAPTCHA Express.
+   */
+  export interface Schema$GoogleCloudRecaptchaenterpriseV1ExpressKeySettings {}
   /**
    * An individual action. Each action represents what to do if a policy matches.
    */
@@ -595,11 +599,15 @@ export namespace recaptchaenterprise_v1 {
      */
     displayName?: string | null;
     /**
+     * Settings for keys that can be used by reCAPTCHA Express.
+     */
+    expressSettings?: Schema$GoogleCloudRecaptchaenterpriseV1ExpressKeySettings;
+    /**
      * Settings for keys that can be used by iOS apps.
      */
     iosSettings?: Schema$GoogleCloudRecaptchaenterpriseV1IOSKeySettings;
     /**
-     * Optional. See [Creating and managing labels] (https://cloud.google.com/recaptcha-enterprise/docs/labels).
+     * Optional. See [Creating and managing labels] (https://cloud.google.com/recaptcha/docs/labels).
      */
     labels?: {[key: string]: string} | null;
     /**
@@ -697,7 +705,7 @@ export namespace recaptchaenterprise_v1 {
    */
   export interface Schema$GoogleCloudRecaptchaenterpriseV1MigrateKeyRequest {
     /**
-     * Optional. If true, skips the billing check. A reCAPTCHA Enterprise key or migrated key behaves differently than a reCAPTCHA (non-Enterprise version) key when you reach a quota limit (see https://cloud.google.com/recaptcha-enterprise/quotas#quota_limit). To avoid any disruption of your usage, we check that a billing account is present. If your usage of reCAPTCHA is under the free quota, you can safely skip the billing check and proceed with the migration. See https://cloud.google.com/recaptcha-enterprise/docs/billing-information.
+     * Optional. If true, skips the billing check. A reCAPTCHA Enterprise key or migrated key behaves differently than a reCAPTCHA (non-Enterprise version) key when you reach a quota limit (see https://cloud.google.com/recaptcha/quotas#quota_limit). To avoid any disruption of your usage, we check that a billing account is present. If your usage of reCAPTCHA is under the free quota, you can safely skip the billing check and proceed with the migration. See https://cloud.google.com/recaptcha/docs/billing-information.
      */
     skipBillingCheck?: boolean | null;
   }

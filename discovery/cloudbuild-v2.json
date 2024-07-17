@@ -844,7 +844,7 @@
       }
     }
   },
-  "revision": "20240618",
+  "revision": "20240704",
   "rootUrl": "https://cloudbuild.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -1806,12 +1806,14 @@
           "enum": [
             "TYPE_UNSPECIFIED",
             "STRING",
-            "ARRAY"
+            "ARRAY",
+            "OBJECT"
           ],
           "enumDescriptions": [
             "Default enum type; should not be used.",
             "Default",
-            "Arrary type."
+            "Array type.",
+            "Object type."
           ],
           "type": "string"
         }
@@ -1829,6 +1831,13 @@
           },
           "type": "array"
         },
+        "objectVal": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. Value of the parameter if type is object.",
+          "type": "object"
+        },
         "stringVal": {
           "description": "Value of the parameter if type is string.",
           "type": "string"
@@ -1838,12 +1847,14 @@
           "enum": [
             "TYPE_UNSPECIFIED",
             "STRING",
-            "ARRAY"
+            "ARRAY",
+            "OBJECT"
           ],
           "enumDescriptions": [
             "Default enum type; should not be used.",
             "Default",
-            "Array type"
+            "Array type",
+            "Object type"
           ],
           "type": "string"
         }

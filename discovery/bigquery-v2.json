@@ -289,7 +289,7 @@
               "type": "boolean"
             },
             "filter": {
-              "description": "An expression for filtering the results of the request by label. The syntax is \\\"labels.<name>[:<value>]\\\". Multiple filters can be ANDed together by connecting with a space. Example: \\\"labels.department:receiving labels.active\\\". See [Filtering datasets using labels](/bigquery/docs/filtering-labels#filtering_datasets_using_labels) for details.",
+              "description": "An expression for filtering the results of the request by label. The syntax is `labels.[:]`. Multiple filters can be ANDed together by connecting with a space. Example: `labels.department:receiving labels.active`. See [Filtering datasets using labels](https://cloud.google.com/bigquery/docs/filtering-labels#filtering_datasets_using_labels) for details.",
               "location": "query",
               "type": "string"
             },
@@ -455,7 +455,7 @@
               "type": "string"
             },
             "location": {
-              "description": "The geographic location of the job. You must specify the location to run the job for the following scenarios: - If the location to run a job is not in the `us` or the `eu` multi-regional location - If the job's location is in a single region (for example, `us-central1`) For more information, see https://cloud.google.com/bigquery/docs/locations#specifying_your_location.",
+              "description": "The geographic location of the job. You must specify the location to run the job for the following scenarios: * If the location to run a job is not in the `us` or the `eu` multi-regional location * If the job's location is in a single region (for example, `us-central1`) For more information, see https://cloud.google.com/bigquery/docs/locations#specifying_your_location.",
               "location": "query",
               "type": "string"
             },
@@ -530,7 +530,7 @@
               "type": "string"
             },
             "location": {
-              "description": "The geographic location of the job. You must specify the location to run the job for the following scenarios: - If the location to run a job is not in the `us` or the `eu` multi-regional location - If the job's location is in a single region (for example, `us-central1`) For more information, see https://cloud.google.com/bigquery/docs/locations#specifying_your_location.",
+              "description": "The geographic location of the job. You must specify the location to run the job for the following scenarios: * If the location to run a job is not in the `us` or the `eu` multi-regional location * If the job's location is in a single region (for example, `us-central1`) For more information, see https://cloud.google.com/bigquery/docs/locations#specifying_your_location.",
               "location": "query",
               "type": "string"
             },
@@ -575,7 +575,7 @@
               "type": "string"
             },
             "location": {
-              "description": "The geographic location of the job. You must specify the location to run the job for the following scenarios: - If the location to run a job is not in the `us` or the `eu` multi-regional location - If the job's location is in a single region (for example, `us-central1`) For more information, see https://cloud.google.com/bigquery/docs/locations#specifying_your_location.",
+              "description": "The geographic location of the job. You must specify the location to run the job for the following scenarios: * If the location to run a job is not in the `us` or the `eu` multi-regional location * If the job's location is in a single region (for example, `us-central1`) For more information, see https://cloud.google.com/bigquery/docs/locations#specifying_your_location.",
               "location": "query",
               "type": "string"
             },
@@ -1935,7 +1935,7 @@
       }
     }
   },
-  "revision": "20240616",
+  "revision": "20240629",
   "rootUrl": "https://bigquery.googleapis.com/",
   "schemas": {
     "AggregateClassificationMetrics": {
@@ -2518,7 +2518,7 @@
       "id": "BigLakeConfiguration",
       "properties": {
         "connectionId": {
-          "description": "Required. The connection specifying the credentials to be used to read and write to external storage, such as Cloud Storage. The connection_id can have the form \"<project\\_id>.<location\\_id>.<connection\\_id>\" or \"projects/<project\\_id>/locations/<location\\_id>/connections/<connection\\_id>\".",
+          "description": "Required. The connection specifying the credentials to be used to read and write to external storage, such as Cloud Storage. The connection_id can have the form `{project}.{location}.{connection_id}` or `projects/{project}/locations/{location}/connections/{connection_id}\".",
           "type": "string"
         },
         "fileFormat": {
@@ -2534,7 +2534,7 @@
           "type": "string"
         },
         "storageUri": {
-          "description": "Required. The fully qualified location prefix of the external folder where table data is stored. The '*' wildcard character is not allowed. The URI should be in the format \"gs://bucket/path_to_table/\"",
+          "description": "Required. The fully qualified location prefix of the external folder where table data is stored. The '*' wildcard character is not allowed. The URI should be in the format `gs://bucket/path_to_table/`",
           "type": "string"
         },
         "tableFormat": {
@@ -2585,7 +2585,7 @@
           "type": "boolean"
         },
         "qualifierEncoded": {
-          "description": "[Required] Qualifier of the column. Columns in the parent column family that has this exact qualifier are exposed as . field. If the qualifier is valid UTF-8 string, it can be specified in the qualifier_string field. Otherwise, a base-64 encoded value must be set to qualifier_encoded. The column field name is the same as the column qualifier. However, if the qualifier is not a valid BigQuery field identifier i.e. does not match a-zA-Z*, a valid identifier must be provided as field_name.",
+          "description": "[Required] Qualifier of the column. Columns in the parent column family that has this exact qualifier are exposed as `.` field. If the qualifier is valid UTF-8 string, it can be specified in the qualifier_string field. Otherwise, a base-64 encoded value must be set to qualifier_encoded. The column field name is the same as the column qualifier. However, if the qualifier is not a valid BigQuery field identifier i.e. does not match a-zA-Z*, a valid identifier must be provided as field_name.",
           "format": "byte",
           "type": "string"
         },
@@ -2605,7 +2605,7 @@
       "id": "BigtableColumnFamily",
       "properties": {
         "columns": {
-          "description": "Optional. Lists of columns that should be exposed as individual fields as opposed to a list of (column name, value) pairs. All columns whose qualifier matches a qualifier in this list can be accessed as .. Other columns can be accessed as a list through .Column field.",
+          "description": "Optional. Lists of columns that should be exposed as individual fields as opposed to a list of (column name, value) pairs. All columns whose qualifier matches a qualifier in this list can be accessed as `.`. Other columns can be accessed as a list through the `.Column` field.",
           "items": {
             "$ref": "BigtableColumn"
           },
@@ -3096,6 +3096,7 @@
       "type": "object"
     },
     "Dataset": {
+      "description": "Represents a BigQuery dataset.",
       "id": "Dataset",
       "properties": {
         "access": {
@@ -3120,7 +3121,7 @@
                 "type": "string"
               },
               "role": {
-                "description": "An IAM role ID that should be granted to the user, group, or domain specified in this access entry. The following legacy mappings will be applied: OWNER <=> roles/bigquery.dataOwner WRITER <=> roles/bigquery.dataEditor READER <=> roles/bigquery.dataViewer This field will accept any of the above formats, but will return only the legacy format. For example, if you set this field to \"roles/bigquery.dataOwner\", it will be returned back as \"OWNER\".",
+                "description": "An IAM role ID that should be granted to the user, group, or domain specified in this access entry. The following legacy mappings will be applied: * `OWNER`: `roles/bigquery.dataOwner` * `WRITER`: `roles/bigquery.dataEditor` * `READER`: `roles/bigquery.dataViewer` This field will accept any of the above formats, but will return only the legacy format. For example, if you set this field to \"roles/bigquery.dataOwner\", it will be returned back as \"OWNER\".",
                 "type": "string"
               },
               "routine": {
@@ -3128,7 +3129,7 @@
                 "description": "[Pick one] A routine from a different dataset to grant access to. Queries executed against that routine will have read access to views/tables/routines in this dataset. Only UDF is supported for now. The role field is not required when this field is set. If that routine is updated by any user, access to the routine needs to be granted again via an update operation."
               },
               "specialGroup": {
-                "description": "[Pick one] A special group to grant access to. Possible values include: projectOwners: Owners of the enclosing project. projectReaders: Readers of the enclosing project. projectWriters: Writers of the enclosing project. allAuthenticatedUsers: All authenticated BigQuery users. Maps to similarly-named IAM members.",
+                "description": "[Pick one] A special group to grant access to. Possible values include: * projectOwners: Owners of the enclosing project. * projectReaders: Readers of the enclosing project. * projectWriters: Writers of the enclosing project. * allAuthenticatedUsers: All authenticated BigQuery users. Maps to similarly-named IAM members.",
                 "type": "string"
               },
               "userByEmail": {
@@ -3226,7 +3227,7 @@
           "additionalProperties": {
             "type": "string"
           },
-          "description": "The labels associated with this dataset. You can use these to organize and group your datasets. You can set this property when inserting or updating a dataset. See Creating and Updating Dataset Labels for more information.",
+          "description": "The labels associated with this dataset. You can use these to organize and group your datasets. You can set this property when inserting or updating a dataset. See [Creating and Updating Dataset Labels](https://cloud.google.com/bigquery/docs/creating-managing-labels#creating_and_updating_dataset_labels) for more information.",
           "type": "object"
         },
         "lastModifiedTime": {
@@ -3416,6 +3417,7 @@
       "type": "object"
     },
     "DatasetReference": {
+      "description": "Identifier for a dataset.",
       "id": "DatasetReference",
       "properties": {
         "datasetId": {
@@ -3589,6 +3591,7 @@
       "type": "object"
     },
     "EncryptionConfiguration": {
+      "description": "Configuration for Cloud KMS encryption settings.",
       "id": "EncryptionConfiguration",
       "properties": {
         "kmsKeyName": {
@@ -3981,7 +3984,7 @@
           "type": "string"
         },
         "connectionId": {
-          "description": "Optional. The connection specifying the credentials to be used to read external storage, such as Azure Blob, Cloud Storage, or S3. The connection_id can have the form \"<project\\_id>.<location\\_id>.<connection\\_id>\" or \"projects/<project\\_id>/locations/<location\\_id>/connections/<connection\\_id>\".",
+          "description": "Optional. The connection specifying the credentials to be used to read external storage, such as Azure Blob, Cloud Storage, or S3. The connection_id can have the form `{project_id}.{location_id};{connection_id}` or `projects/{project_id}/locations/{location_id}/connections/{connection_id}`.",
           "type": "string"
         },
         "csvOptions": {
@@ -6412,7 +6415,7 @@
             "Random forest classifier model.",
             "An imported TensorFlow Lite model.",
             "An imported ONNX model.",
-            "Model to capture the manual preprocessing logic in the transform clause."
+            "Model to capture the columns and logic in the TRANSFORM clause along with statistics useful for ML analytic functions."
           ],
           "readOnly": true,
           "type": "string"
@@ -6583,7 +6586,7 @@
             "Random forest classifier model.",
             "An imported TensorFlow Lite model.",
             "An imported ONNX model.",
-            "Model to capture the manual preprocessing logic in the transform clause."
+            "Model to capture the columns and logic in the TRANSFORM clause along with statistics useful for ML analytic functions."
           ],
           "readOnly": true,
           "type": "string"
@@ -8984,6 +8987,11 @@
       "properties": {
         "explanation": {
           "description": "Free form human-readable reason metadata caching was unused for the job.",
+          "type": "string"
+        },
+        "staleness": {
+          "description": "Duration since last refresh as of this job for managed tables (indicates metadata cache staleness as seen by this job).",
+          "format": "google-duration",
           "type": "string"
         },
         "tableReference": {

@@ -303,6 +303,19 @@ export namespace healthcare_v1beta1 {
     name?: string | null;
   }
   /**
+   * Contains the error details of the unsupported admin Consent resources for when the ApplyAdminConsents method fails to apply one or more Consent resources.
+   */
+  export interface Schema$ApplyAdminConsentsErrorDetail {
+    /**
+     * The list of Consent resources that are unsupported or cannot be applied and the error associated with each of them.
+     */
+    consentErrors?: Schema$ConsentErrors[];
+    /**
+     * The currently in progress non-validate-only ApplyAdminConsents operation ID if exist.
+     */
+    existingOperationId?: string | null;
+  }
+  /**
    * Request to apply the admin Consent resources for the specified FHIR store.
    */
   export interface Schema$ApplyAdminConsentsRequest {
@@ -704,7 +717,7 @@ export namespace healthcare_v1beta1 {
      */
     accessDeterminationLogConfig?: Schema$AccessDeterminationLogConfig;
     /**
-     * Optional. If set to true, when accessing FHIR resources, the consent headers will be verified against consents given by patients. See the ConsentEnforcementVersion for the supported consent headers.
+     * Optional. The default value is false. If set to true, when accessing FHIR resources, the consent headers will be verified against consents given by patients. See the ConsentEnforcementVersion for the supported consent headers.
      */
     accessEnforced?: boolean | null;
     /**
@@ -719,6 +732,19 @@ export namespace healthcare_v1beta1 {
      * Required. Specifies which consent enforcement version is being used for this FHIR store. This field can only be set once by either CreateFhirStore or UpdateFhirStore. After that, you must call ApplyConsents to change the version.
      */
     version?: string | null;
+  }
+  /**
+   * The Consent resource name and error.
+   */
+  export interface Schema$ConsentErrors {
+    /**
+     * The error code and message.
+     */
+    error?: Schema$Status;
+    /**
+     * The versioned name of the admin Consent resource, in the format `projects/{project_id\}/locations/{location\}/datasets/{dataset_id\}/fhirStores/{fhir_store_id\}/fhir/Consent/{resource_id\}/_history/{version_id\}`. For FHIR stores with `disable_resource_versioning=true`, the format is `projects/{project_id\}/locations/{location\}/datasets/{dataset_id\}/fhirStores/{fhir_store_id\}/fhir/Consent/{resource_id\}`.
+     */
+    name?: string | null;
   }
   /**
    * The detailed evaluation of a particular Consent.
@@ -882,7 +908,7 @@ export namespace healthcare_v1beta1 {
      */
     text?: Schema$TextConfig;
     /**
-     * Ensures in-flight data remains in the region of origin during de-identification. Using this option results in a significant reduction of throughput, and is not compatible with `LOCATION` or `ORGANIZATION_NAME` infoTypes. If the deprecated DicomConfig or FhirConfig are used, then `LOCATION` must be excluded within TextConfig, and must also be excluded within ImageConfig if image redaction is required.
+     * Ensures in-flight data remains in the region of origin during de-identification. The default value is false. Using this option results in a significant reduction of throughput, and is not compatible with `LOCATION` or `ORGANIZATION_NAME` infoTypes. If the deprecated DicomConfig or FhirConfig are used, then `LOCATION` must be excluded within TextConfig, and must also be excluded within ImageConfig if image redaction is required.
      */
     useRegionalDataProcessing?: boolean | null;
   }
@@ -1484,11 +1510,11 @@ export namespace healthcare_v1beta1 {
      */
     pubsubTopic?: string | null;
     /**
-     * Whether to send full FHIR resource to this Pub/Sub topic for Create and Update operation. Note that setting this to true does not guarantee that all resources will be sent in the format of full FHIR resource. When a resource change is too large or during heavy traffic, only the resource name will be sent. Clients should always check the "payloadType" label from a Pub/Sub message to determine whether it needs to fetch the full resource as a separate operation.
+     * Whether to send full FHIR resource to this Pub/Sub topic for Create and Update operation. The default value is false. Note that setting this to true does not guarantee that all resources will be sent in the format of full FHIR resource. When a resource change is too large or during heavy traffic, only the resource name will be sent. Clients should always check the "payloadType" label from a Pub/Sub message to determine whether it needs to fetch the full resource as a separate operation.
      */
     sendFullResource?: boolean | null;
     /**
-     * Whether to send full FHIR resource to this Pub/Sub topic for deleting FHIR resource. Note that setting this to true does not guarantee that all previous resources will be sent in the format of full FHIR resource. When a resource change is too large or during heavy traffic, only the resource name will be sent. Clients should always check the "payloadType" label from a Pub/Sub message to determine whether it needs to fetch the full previous resource as a separate operation.
+     * Whether to send full FHIR resource to this Pub/Sub topic for deleting FHIR resource. The default value is false. Note that setting this to true does not guarantee that all previous resources will be sent in the format of full FHIR resource. When a resource change is too large or during heavy traffic, only the resource name will be sent. Clients should always check the "payloadType" label from a Pub/Sub message to determine whether it needs to fetch the full previous resource as a separate operation.
      */
     sendPreviousResourceOnDelete?: boolean | null;
   }
@@ -1514,7 +1540,7 @@ export namespace healthcare_v1beta1 {
      */
     consentConfig?: Schema$ConsentConfig;
     /**
-     * If true, overrides the default search behavior for this FHIR store to `handling=strict` which returns an error for unrecognized search parameters. If false, uses the FHIR specification default `handling=lenient` which ignores unrecognized search parameters. The handling can always be changed from the default on an individual API call by setting the HTTP header `Prefer: handling=strict` or `Prefer: handling=lenient`.
+     * If true, overrides the default search behavior for this FHIR store to `handling=strict` which returns an error for unrecognized search parameters. If false, uses the FHIR specification default `handling=lenient` which ignores unrecognized search parameters. The handling can always be changed from the default on an individual API call by setting the HTTP header `Prefer: handling=strict` or `Prefer: handling=lenient`. Defaults to false.
      */
     defaultSearchHandlingStrict?: boolean | null;
     /**
@@ -1522,15 +1548,15 @@ export namespace healthcare_v1beta1 {
      */
     disableReferentialIntegrity?: boolean | null;
     /**
-     * Immutable. Whether to disable resource versioning for this FHIR store. This field can not be changed after the creation of FHIR store. If set to false, which is the default behavior, all write operations cause historical versions to be recorded automatically. The historical versions can be fetched through the history APIs, but cannot be updated. If set to true, no historical versions are kept. The server sends errors for attempts to read the historical versions.
+     * Immutable. Whether to disable resource versioning for this FHIR store. This field can not be changed after the creation of FHIR store. If set to false, all write operations cause historical versions to be recorded automatically. The historical versions can be fetched through the history APIs, but cannot be updated. If set to true, no historical versions are kept. The server sends errors for attempts to read the historical versions. Defaults to false.
      */
     disableResourceVersioning?: boolean | null;
     /**
-     * Optional. Whether to allow ExecuteBundle to accept history bundles, and directly insert and overwrite historical resource versions into the FHIR store. If set to false, using history bundles fails with an error.
+     * Optional. Whether to allow ExecuteBundle to accept history bundles, and directly insert and overwrite historical resource versions into the FHIR store. If set to false, using history bundles fails with an error. Defaults to false.
      */
     enableHistoryModifications?: boolean | null;
     /**
-     * Whether this FHIR store has the [updateCreate capability](https://www.hl7.org/fhir/capabilitystatement-definitions.html#CapabilityStatement.rest.resource.updateCreate). This determines if the client can use an Update operation to create a new resource with a client-specified ID. If false, all IDs are server-assigned through the Create operation and attempts to update a non-existent resource return errors. It is strongly advised not to include or encode any sensitive data such as patient identifiers in client-specified resource IDs. Those IDs are part of the FHIR resource path recorded in Cloud audit logs and Pub/Sub notifications. Those IDs can also be contained in reference fields within other resources.
+     * Whether this FHIR store has the [updateCreate capability](https://www.hl7.org/fhir/capabilitystatement-definitions.html#CapabilityStatement.rest.resource.updateCreate). This determines if the client can use an Update operation to create a new resource with a client-specified ID. If false, all IDs are server-assigned through the Create operation and attempts to update a non-existent resource return errors. It is strongly advised not to include or encode any sensitive data such as patient identifiers in client-specified resource IDs. Those IDs are part of the FHIR resource path recorded in Cloud audit logs and Pub/Sub notifications. Those IDs can also be contained in reference fields within other resources. Defaults to false.
      */
     enableUpdateCreate?: boolean | null;
     /**
@@ -3287,19 +3313,19 @@ export namespace healthcare_v1beta1 {
    */
   export interface Schema$ValidationConfig {
     /**
-     * Whether to disable FHIRPath validation for incoming resources. Set this to true to disable checking incoming resources for conformance against FHIRPath requirement defined in the FHIR specification. This property only affects resource types that do not have profiles configured for them, any rules in enabled implementation guides will still be enforced.
+     * Whether to disable FHIRPath validation for incoming resources. The default value is false. Set this to true to disable checking incoming resources for conformance against FHIRPath requirement defined in the FHIR specification. This property only affects resource types that do not have profiles configured for them, any rules in enabled implementation guides will still be enforced.
      */
     disableFhirpathValidation?: boolean | null;
     /**
-     * Whether to disable profile validation for this FHIR store. Set this to true to disable checking incoming resources for conformance against StructureDefinitions in this FHIR store.
+     * Whether to disable profile validation for this FHIR store. The default value is false. Set this to true to disable checking incoming resources for conformance against StructureDefinitions in this FHIR store.
      */
     disableProfileValidation?: boolean | null;
     /**
-     * Whether to disable reference type validation for incoming resources. Set this to true to disable checking incoming resources for conformance against reference type requirement defined in the FHIR specification. This property only affects resource types that do not have profiles configured for them, any rules in enabled implementation guides will still be enforced.
+     * Whether to disable reference type validation for incoming resources. The default value is false. Set this to true to disable checking incoming resources for conformance against reference type requirement defined in the FHIR specification. This property only affects resource types that do not have profiles configured for them, any rules in enabled implementation guides will still be enforced.
      */
     disableReferenceTypeValidation?: boolean | null;
     /**
-     * Whether to disable required fields validation for incoming resources. Set this to true to disable checking incoming resources for conformance against required fields requirement defined in the FHIR specification. This property only affects resource types that do not have profiles configured for them, any rules in enabled implementation guides will still be enforced.
+     * Whether to disable required fields validation for incoming resources. The default value is false. Set this to true to disable checking incoming resources for conformance against required fields requirement defined in the FHIR specification. This property only affects resource types that do not have profiles configured for them, any rules in enabled implementation guides will still be enforced.
      */
     disableRequiredFieldValidation?: boolean | null;
     /**

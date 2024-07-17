@@ -179,7 +179,7 @@ export namespace clouderrorreporting_v1beta1 {
      */
     groupId?: string | null;
     /**
-     * The group resource name. Written as `projects/{projectID\}/groups/{group_id\}`. Example: `projects/my-project-123/groups/my-group` In the group resource name, the `group_id` is a unique identifier for a particular error group. The identifier is derived from key parts of the error-log content and is treated as Service Data. For information about how Service Data is handled, see [Google Cloud Privacy Notice](https://cloud.google.com/terms/cloud-privacy-notice).
+     * The group resource name. Written as `projects/{projectID\}/groups/{group_id\}` or `projects/{projectID\}/locations/{location\}/groups/{group_id\}` Examples: `projects/my-project-123/groups/my-group`, `projects/my-project-123/locations/us-central1/groups/my-group` In the group resource name, the `group_id` is a unique identifier for a particular error group. The identifier is derived from key parts of the error-log content and is treated as Service Data. For information about how Service Data is handled, see [Google Cloud Privacy Notice](https://cloud.google.com/terms/cloud-privacy-notice). For a list of supported locations, see [Supported Regions](https://cloud.google.com/logging/docs/region-support). `global` is the default when unspecified.
      */
     name?: string | null;
     /**
@@ -399,11 +399,13 @@ export namespace clouderrorreporting_v1beta1 {
     events: Resource$Projects$Events;
     groups: Resource$Projects$Groups;
     groupStats: Resource$Projects$Groupstats;
+    locations: Resource$Projects$Locations;
     constructor(context: APIRequestContext) {
       this.context = context;
       this.events = new Resource$Projects$Events(this.context);
       this.groups = new Resource$Projects$Groups(this.context);
       this.groupStats = new Resource$Projects$Groupstats(this.context);
+      this.locations = new Resource$Projects$Locations(this.context);
     }
 
     /**
@@ -506,7 +508,7 @@ export namespace clouderrorreporting_v1beta1 {
   export interface Params$Resource$Projects$Deleteevents
     extends StandardParameters {
     /**
-     * Required. The resource name of the Google Cloud Platform project. Written as `projects/{projectID\}`, where `{projectID\}` is the [Google Cloud Platform project ID](https://support.google.com/cloud/answer/6158840). Example: `projects/my-project-123`.
+     * Required. The resource name of the Google Cloud Platform project. Written as `projects/{projectID\}` or `projects/{projectID\}/locations/{location\}`, where `{projectID\}` is the [Google Cloud Platform project ID](https://support.google.com/cloud/answer/6158840) and `{location\}` is a Cloud region. Examples: `projects/my-project-123`, `projects/my-project-123/locations/global`. For a list of supported locations, see [Supported Regions](https://cloud.google.com/logging/docs/region-support). `global` is the default when unspecified.
      */
     projectName?: string;
   }
@@ -610,7 +612,7 @@ export namespace clouderrorreporting_v1beta1 {
     }
 
     /**
-     * Report an individual error event and record the event to a log. This endpoint accepts **either** an OAuth token, **or** an [API key](https://support.google.com/cloud/answer/6158862) for authentication. To use an API key, append it to the URL as the value of a `key` parameter. For example: `POST https://clouderrorreporting.googleapis.com/v1beta1/{projectName\}/events:report?key=123ABC456` **Note:** [Error Reporting] (https://cloud.google.com/error-reporting) is a global service built on Cloud Logging and can analyze log entries when all of the following are true: * The log entries are stored in a log bucket in the `global` location. * Customer-managed encryption keys (CMEK) are disabled on the log bucket. * The log bucket satisfies one of the following: * The log bucket is stored in the same project where the logs originated. * The logs were routed to a project, and then that project stored those logs in a log bucket that it owns.
+     * Report an individual error event and record the event to a log. This endpoint accepts **either** an OAuth token, **or** an [API key](https://support.google.com/cloud/answer/6158862) for authentication. To use an API key, append it to the URL as the value of a `key` parameter. For example: `POST https://clouderrorreporting.googleapis.com/v1beta1/{projectName\}/events:report?key=123ABC456` **Note:** [Error Reporting] (https://cloud.google.com/error-reporting) is a service built on Cloud Logging and can analyze log entries when all of the following are true: * Customer-managed encryption keys (CMEK) are disabled on the log bucket. * The log bucket satisfies one of the following: * The log bucket is stored in the same project where the logs originated. * The logs were routed to a project, and then that project stored those logs in a log bucket that it owns.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -721,7 +723,7 @@ export namespace clouderrorreporting_v1beta1 {
      */
     pageToken?: string;
     /**
-     * Required. The resource name of the Google Cloud Platform project. Written as `projects/{projectID\}`, where `{projectID\}` is the [Google Cloud Platform project ID](https://support.google.com/cloud/answer/6158840). Example: `projects/my-project-123`.
+     * Required. The resource name of the Google Cloud Platform project. Written as `projects/{projectID\}` or `projects/{projectID\}/locations/{location\}`, where `{projectID\}` is the [Google Cloud Platform project ID](https://support.google.com/cloud/answer/6158840) and `{location\}` is a Cloud region. Examples: `projects/my-project-123`, `projects/my-project-123/locations/global`. For a list of supported locations, see [Supported Regions](https://cloud.google.com/logging/docs/region-support). `global` is the default when unspecified.
      */
     projectName?: string;
     /**
@@ -939,14 +941,14 @@ export namespace clouderrorreporting_v1beta1 {
   export interface Params$Resource$Projects$Groups$Get
     extends StandardParameters {
     /**
-     * Required. The group resource name. Written as `projects/{projectID\}/groups/{group_id\}`. Call groupStats.list to return a list of groups belonging to this project. Example: `projects/my-project-123/groups/my-group` In the group resource name, the `group_id` is a unique identifier for a particular error group. The identifier is derived from key parts of the error-log content and is treated as Service Data. For information about how Service Data is handled, see [Google Cloud Privacy Notice](https://cloud.google.com/terms/cloud-privacy-notice).
+     * Required. The group resource name. Written as either `projects/{projectID\}/groups/{group_id\}` or `projects/{projectID\}/locations/{location\}/groups/{group_id\}`. Call groupStats.list to return a list of groups belonging to this project. Examples: `projects/my-project-123/groups/my-group`, `projects/my-project-123/locations/global/groups/my-group` In the group resource name, the `group_id` is a unique identifier for a particular error group. The identifier is derived from key parts of the error-log content and is treated as Service Data. For information about how Service Data is handled, see [Google Cloud Privacy Notice](https://cloud.google.com/terms/cloud-privacy-notice). For a list of supported locations, see [Supported Regions](https://cloud.google.com/logging/docs/region-support). `global` is the default when unspecified.
      */
     groupName?: string;
   }
   export interface Params$Resource$Projects$Groups$Update
     extends StandardParameters {
     /**
-     * The group resource name. Written as `projects/{projectID\}/groups/{group_id\}`. Example: `projects/my-project-123/groups/my-group` In the group resource name, the `group_id` is a unique identifier for a particular error group. The identifier is derived from key parts of the error-log content and is treated as Service Data. For information about how Service Data is handled, see [Google Cloud Privacy Notice](https://cloud.google.com/terms/cloud-privacy-notice).
+     * The group resource name. Written as `projects/{projectID\}/groups/{group_id\}` or `projects/{projectID\}/locations/{location\}/groups/{group_id\}` Examples: `projects/my-project-123/groups/my-group`, `projects/my-project-123/locations/us-central1/groups/my-group` In the group resource name, the `group_id` is a unique identifier for a particular error group. The identifier is derived from key parts of the error-log content and is treated as Service Data. For information about how Service Data is handled, see [Google Cloud Privacy Notice](https://cloud.google.com/terms/cloud-privacy-notice). For a list of supported locations, see [Supported Regions](https://cloud.google.com/logging/docs/region-support). `global` is the default when unspecified.
      */
     name?: string;
 
@@ -1084,7 +1086,616 @@ export namespace clouderrorreporting_v1beta1 {
      */
     pageToken?: string;
     /**
-     * Required. The resource name of the Google Cloud Platform project. Written as `projects/{projectID\}` or `projects/{projectNumber\}`, where `{projectID\}` and `{projectNumber\}` can be found in the [Google Cloud console](https://support.google.com/cloud/answer/6158840). Examples: `projects/my-project-123`, `projects/5551234`.
+     * Required. The resource name of the Google Cloud Platform project. Written as `projects/{projectID\}` or `projects/{projectNumber\}`, where `{projectID\}` and `{projectNumber\}` can be found in the [Google Cloud console](https://support.google.com/cloud/answer/6158840). It may also include a location, such as `projects/{projectID\}/locations/{location\}` where `{location\}` is a cloud region. Examples: `projects/my-project-123`, `projects/5551234`, `projects/my-project-123/locations/us-central1`, `projects/5551234/locations/us-central1`. For a list of supported locations, see [Supported Regions](https://cloud.google.com/logging/docs/region-support). `global` is the default when unspecified. Use `-` as a wildcard to request group stats from all regions.
+     */
+    projectName?: string;
+    /**
+     * Optional. The exact value to match against [`ServiceContext.resource_type`](/error-reporting/reference/rest/v1beta1/ServiceContext#FIELDS.resource_type).
+     */
+    'serviceFilter.resourceType'?: string;
+    /**
+     * Optional. The exact value to match against [`ServiceContext.service`](/error-reporting/reference/rest/v1beta1/ServiceContext#FIELDS.service).
+     */
+    'serviceFilter.service'?: string;
+    /**
+     * Optional. The exact value to match against [`ServiceContext.version`](/error-reporting/reference/rest/v1beta1/ServiceContext#FIELDS.version).
+     */
+    'serviceFilter.version'?: string;
+    /**
+     * Optional. The preferred duration for a single returned TimedCount. If not set, no timed counts are returned.
+     */
+    timedCountDuration?: string;
+    /**
+     * Restricts the query to the specified time range.
+     */
+    'timeRange.period'?: string;
+  }
+
+  export class Resource$Projects$Locations {
+    context: APIRequestContext;
+    events: Resource$Projects$Locations$Events;
+    groups: Resource$Projects$Locations$Groups;
+    groupStats: Resource$Projects$Locations$Groupstats;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.events = new Resource$Projects$Locations$Events(this.context);
+      this.groups = new Resource$Projects$Locations$Groups(this.context);
+      this.groupStats = new Resource$Projects$Locations$Groupstats(
+        this.context
+      );
+    }
+
+    /**
+     * Deletes all error events of a given project.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    deleteEvents(
+      params: Params$Resource$Projects$Locations$Deleteevents,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    deleteEvents(
+      params?: Params$Resource$Projects$Locations$Deleteevents,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$DeleteEventsResponse>;
+    deleteEvents(
+      params: Params$Resource$Projects$Locations$Deleteevents,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    deleteEvents(
+      params: Params$Resource$Projects$Locations$Deleteevents,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$DeleteEventsResponse>,
+      callback: BodyResponseCallback<Schema$DeleteEventsResponse>
+    ): void;
+    deleteEvents(
+      params: Params$Resource$Projects$Locations$Deleteevents,
+      callback: BodyResponseCallback<Schema$DeleteEventsResponse>
+    ): void;
+    deleteEvents(
+      callback: BodyResponseCallback<Schema$DeleteEventsResponse>
+    ): void;
+    deleteEvents(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Deleteevents
+        | BodyResponseCallback<Schema$DeleteEventsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$DeleteEventsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$DeleteEventsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$DeleteEventsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Deleteevents;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Deleteevents;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://clouderrorreporting.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+projectName}/events').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['projectName'],
+        pathParams: ['projectName'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$DeleteEventsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$DeleteEventsResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Deleteevents
+    extends StandardParameters {
+    /**
+     * Required. The resource name of the Google Cloud Platform project. Written as `projects/{projectID\}` or `projects/{projectID\}/locations/{location\}`, where `{projectID\}` is the [Google Cloud Platform project ID](https://support.google.com/cloud/answer/6158840) and `{location\}` is a Cloud region. Examples: `projects/my-project-123`, `projects/my-project-123/locations/global`. For a list of supported locations, see [Supported Regions](https://cloud.google.com/logging/docs/region-support). `global` is the default when unspecified.
+     */
+    projectName?: string;
+  }
+
+  export class Resource$Projects$Locations$Events {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Lists the specified events.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Events$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Events$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListEventsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Events$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Events$List,
+      options: MethodOptions | BodyResponseCallback<Schema$ListEventsResponse>,
+      callback: BodyResponseCallback<Schema$ListEventsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Events$List,
+      callback: BodyResponseCallback<Schema$ListEventsResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListEventsResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Events$List
+        | BodyResponseCallback<Schema$ListEventsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListEventsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListEventsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListEventsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Events$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Events$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://clouderrorreporting.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+projectName}/events').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['projectName'],
+        pathParams: ['projectName'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListEventsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListEventsResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Events$List
+    extends StandardParameters {
+    /**
+     * Required. The group for which events shall be returned. The `group_id` is a unique identifier for a particular error group. The identifier is derived from key parts of the error-log content and is treated as Service Data. For information about how Service Data is handled, see [Google Cloud Privacy Notice](https://cloud.google.com/terms/cloud-privacy-notice).
+     */
+    groupId?: string;
+    /**
+     * Optional. The maximum number of results to return per response.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A `next_page_token` provided by a previous response.
+     */
+    pageToken?: string;
+    /**
+     * Required. The resource name of the Google Cloud Platform project. Written as `projects/{projectID\}` or `projects/{projectID\}/locations/{location\}`, where `{projectID\}` is the [Google Cloud Platform project ID](https://support.google.com/cloud/answer/6158840) and `{location\}` is a Cloud region. Examples: `projects/my-project-123`, `projects/my-project-123/locations/global`. For a list of supported locations, see [Supported Regions](https://cloud.google.com/logging/docs/region-support). `global` is the default when unspecified.
+     */
+    projectName?: string;
+    /**
+     * Optional. The exact value to match against [`ServiceContext.resource_type`](/error-reporting/reference/rest/v1beta1/ServiceContext#FIELDS.resource_type).
+     */
+    'serviceFilter.resourceType'?: string;
+    /**
+     * Optional. The exact value to match against [`ServiceContext.service`](/error-reporting/reference/rest/v1beta1/ServiceContext#FIELDS.service).
+     */
+    'serviceFilter.service'?: string;
+    /**
+     * Optional. The exact value to match against [`ServiceContext.version`](/error-reporting/reference/rest/v1beta1/ServiceContext#FIELDS.version).
+     */
+    'serviceFilter.version'?: string;
+    /**
+     * Restricts the query to the specified time range.
+     */
+    'timeRange.period'?: string;
+  }
+
+  export class Resource$Projects$Locations$Groups {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Get the specified group.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Groups$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Groups$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ErrorGroup>;
+    get(
+      params: Params$Resource$Projects$Locations$Groups$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Groups$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$ErrorGroup>,
+      callback: BodyResponseCallback<Schema$ErrorGroup>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Groups$Get,
+      callback: BodyResponseCallback<Schema$ErrorGroup>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$ErrorGroup>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Groups$Get
+        | BodyResponseCallback<Schema$ErrorGroup>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ErrorGroup>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ErrorGroup>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$ErrorGroup> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Groups$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Groups$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://clouderrorreporting.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+groupName}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['groupName'],
+        pathParams: ['groupName'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ErrorGroup>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ErrorGroup>(parameters);
+      }
+    }
+
+    /**
+     * Replace the data for the specified group. Fails if the group does not exist.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    update(
+      params: Params$Resource$Projects$Locations$Groups$Update,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    update(
+      params?: Params$Resource$Projects$Locations$Groups$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ErrorGroup>;
+    update(
+      params: Params$Resource$Projects$Locations$Groups$Update,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    update(
+      params: Params$Resource$Projects$Locations$Groups$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$ErrorGroup>,
+      callback: BodyResponseCallback<Schema$ErrorGroup>
+    ): void;
+    update(
+      params: Params$Resource$Projects$Locations$Groups$Update,
+      callback: BodyResponseCallback<Schema$ErrorGroup>
+    ): void;
+    update(callback: BodyResponseCallback<Schema$ErrorGroup>): void;
+    update(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Groups$Update
+        | BodyResponseCallback<Schema$ErrorGroup>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ErrorGroup>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ErrorGroup>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$ErrorGroup> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Groups$Update;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Groups$Update;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://clouderrorreporting.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ErrorGroup>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ErrorGroup>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Groups$Get
+    extends StandardParameters {
+    /**
+     * Required. The group resource name. Written as either `projects/{projectID\}/groups/{group_id\}` or `projects/{projectID\}/locations/{location\}/groups/{group_id\}`. Call groupStats.list to return a list of groups belonging to this project. Examples: `projects/my-project-123/groups/my-group`, `projects/my-project-123/locations/global/groups/my-group` In the group resource name, the `group_id` is a unique identifier for a particular error group. The identifier is derived from key parts of the error-log content and is treated as Service Data. For information about how Service Data is handled, see [Google Cloud Privacy Notice](https://cloud.google.com/terms/cloud-privacy-notice). For a list of supported locations, see [Supported Regions](https://cloud.google.com/logging/docs/region-support). `global` is the default when unspecified.
+     */
+    groupName?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Groups$Update
+    extends StandardParameters {
+    /**
+     * The group resource name. Written as `projects/{projectID\}/groups/{group_id\}` or `projects/{projectID\}/locations/{location\}/groups/{group_id\}` Examples: `projects/my-project-123/groups/my-group`, `projects/my-project-123/locations/us-central1/groups/my-group` In the group resource name, the `group_id` is a unique identifier for a particular error group. The identifier is derived from key parts of the error-log content and is treated as Service Data. For information about how Service Data is handled, see [Google Cloud Privacy Notice](https://cloud.google.com/terms/cloud-privacy-notice). For a list of supported locations, see [Supported Regions](https://cloud.google.com/logging/docs/region-support). `global` is the default when unspecified.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ErrorGroup;
+  }
+
+  export class Resource$Projects$Locations$Groupstats {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Lists the specified groups.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Groupstats$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Groupstats$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListGroupStatsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Groupstats$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Groupstats$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListGroupStatsResponse>,
+      callback: BodyResponseCallback<Schema$ListGroupStatsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Groupstats$List,
+      callback: BodyResponseCallback<Schema$ListGroupStatsResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListGroupStatsResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Groupstats$List
+        | BodyResponseCallback<Schema$ListGroupStatsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListGroupStatsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListGroupStatsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListGroupStatsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Groupstats$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Groupstats$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://clouderrorreporting.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+projectName}/groupStats').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['projectName'],
+        pathParams: ['projectName'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListGroupStatsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListGroupStatsResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Groupstats$List
+    extends StandardParameters {
+    /**
+     * Optional. The alignment of the timed counts to be returned. Default is `ALIGNMENT_EQUAL_AT_END`.
+     */
+    alignment?: string;
+    /**
+     * Optional. Time where the timed counts shall be aligned if rounded alignment is chosen. Default is 00:00 UTC.
+     */
+    alignmentTime?: string;
+    /**
+     * Optional. List all ErrorGroupStats with these IDs. The `group_id` is a unique identifier for a particular error group. The identifier is derived from key parts of the error-log content and is treated as Service Data. For information about how Service Data is handled, see [Google Cloud Privacy Notice] (https://cloud.google.com/terms/cloud-privacy-notice).
+     */
+    groupId?: string[];
+    /**
+     * Optional. The sort order in which the results are returned. Default is `COUNT_DESC`.
+     */
+    order?: string;
+    /**
+     * Optional. The maximum number of results to return per response. Default is 20.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A next_page_token provided by a previous response. To view additional results, pass this token along with the identical query parameters as the first request.
+     */
+    pageToken?: string;
+    /**
+     * Required. The resource name of the Google Cloud Platform project. Written as `projects/{projectID\}` or `projects/{projectNumber\}`, where `{projectID\}` and `{projectNumber\}` can be found in the [Google Cloud console](https://support.google.com/cloud/answer/6158840). It may also include a location, such as `projects/{projectID\}/locations/{location\}` where `{location\}` is a cloud region. Examples: `projects/my-project-123`, `projects/5551234`, `projects/my-project-123/locations/us-central1`, `projects/5551234/locations/us-central1`. For a list of supported locations, see [Supported Regions](https://cloud.google.com/logging/docs/region-support). `global` is the default when unspecified. Use `-` as a wildcard to request group stats from all regions.
      */
     projectName?: string;
     /**

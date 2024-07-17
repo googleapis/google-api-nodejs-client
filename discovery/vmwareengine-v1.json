@@ -3173,7 +3173,7 @@
       }
     }
   },
-  "revision": "20240528",
+  "revision": "20240701",
   "rootUrl": "https://vmwareengine.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -3224,6 +3224,67 @@
       },
       "type": "object"
     },
+    "AutoscalingPolicy": {
+      "description": "Autoscaling policy describes the behavior of the autoscaling with respect to the resource utilization. The scale-out operation is initiated if the utilization exceeds ANY of the respective thresholds. The scale-in operation is initiated if the utilization is below ALL of the respective thresholds.",
+      "id": "AutoscalingPolicy",
+      "properties": {
+        "consumedMemoryThresholds": {
+          "$ref": "Thresholds",
+          "description": "Optional. Utilization thresholds pertaining to amount of consumed memory."
+        },
+        "cpuThresholds": {
+          "$ref": "Thresholds",
+          "description": "Optional. Utilization thresholds pertaining to CPU utilization."
+        },
+        "grantedMemoryThresholds": {
+          "$ref": "Thresholds",
+          "description": "Optional. Utilization thresholds pertaining to amount of granted memory."
+        },
+        "nodeTypeId": {
+          "description": "Required. The canonical identifier of the node type to add or remove. Corresponds to the `NodeType`.",
+          "type": "string"
+        },
+        "scaleOutSize": {
+          "description": "Required. Number of nodes to add to a cluster during a scale-out operation. Must be divisible by 2 for stretched clusters. During a scale-in operation only one node (or 2 for stretched clusters) are removed in a single iteration.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "storageThresholds": {
+          "$ref": "Thresholds",
+          "description": "Optional. Utilization thresholds pertaining to amount of consumed storage."
+        }
+      },
+      "type": "object"
+    },
+    "AutoscalingSettings": {
+      "description": "Autoscaling settings define the rules used by VMware Engine to automatically scale-out and scale-in the clusters in a private cloud.",
+      "id": "AutoscalingSettings",
+      "properties": {
+        "autoscalingPolicies": {
+          "additionalProperties": {
+            "$ref": "AutoscalingPolicy"
+          },
+          "description": "Required. The map with autoscaling policies applied to the cluster. The key is the identifier of the policy. It must meet the following requirements: * Only contains 1-63 alphanumeric characters and hyphens * Begins with an alphabetical character * Ends with a non-hyphen character * Not formatted as a UUID * Complies with [RFC 1034](https://datatracker.ietf.org/doc/html/rfc1034) (section 3.5) Currently there map must contain only one element that describes the autoscaling policy for compute nodes.",
+          "type": "object"
+        },
+        "coolDownPeriod": {
+          "description": "Optional. The minimum duration between consecutive autoscale operations. It starts once addition or removal of nodes is fully completed. Defaults to 30 minutes if not specified. Cool down period must be in whole minutes (for example, 30, 31, 50, 180 minutes).",
+          "format": "google-duration",
+          "type": "string"
+        },
+        "maxClusterNodeCount": {
+          "description": "Optional. Maximum number of nodes of any type in a cluster. If not specified the default limits apply.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "minClusterNodeCount": {
+          "description": "Optional. Minimum number of nodes of any type in a cluster. If not specified the default limits apply.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
     "Binding": {
       "description": "Associates `members`, or principals, with a `role`.",
       "id": "Binding",
@@ -3250,6 +3311,10 @@
       "description": "A cluster in a private cloud.",
       "id": "Cluster",
       "properties": {
+        "autoscalingSettings": {
+          "$ref": "AutoscalingSettings",
+          "description": "Optional. Configuration of the autoscaling applied to this cluster."
+        },
         "createTime": {
           "description": "Output only. Creation time of this resource.",
           "format": "google-datetime",
@@ -5378,6 +5443,23 @@
             "type": "string"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "Thresholds": {
+      "description": "Thresholds define the utilization of resources triggering scale-out and scale-in operations.",
+      "id": "Thresholds",
+      "properties": {
+        "scaleIn": {
+          "description": "Required. The utilization triggering the scale-in operation in percent.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "scaleOut": {
+          "description": "Required. The utilization triggering the scale-out operation in percent.",
+          "format": "int32",
+          "type": "integer"
         }
       },
       "type": "object"

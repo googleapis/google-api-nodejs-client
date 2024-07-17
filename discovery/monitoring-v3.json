@@ -1562,7 +1562,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "The full REST resource name for this channel. The format is: projects/[PROJECT_ID_OR_NUMBER]/notificationChannels/[CHANNEL_ID] The [CHANNEL_ID] is automatically assigned by the server on creation.",
+                  "description": "Identifier. The full REST resource name for this channel. The format is: projects/[PROJECT_ID_OR_NUMBER]/notificationChannels/[CHANNEL_ID] The [CHANNEL_ID] is automatically assigned by the server on creation.",
                   "location": "path",
                   "pattern": "^projects/[^/]+/notificationChannels/[^/]+$",
                   "required": true,
@@ -2714,7 +2714,7 @@
       }
     }
   },
-  "revision": "20240616",
+  "revision": "20240713",
   "rootUrl": "https://monitoring.googleapis.com/",
   "schemas": {
     "Aggregation": {
@@ -4905,7 +4905,7 @@
           "type": "array"
         },
         "name": {
-          "description": "The full REST resource name for this channel. The format is: projects/[PROJECT_ID_OR_NUMBER]/notificationChannels/[CHANNEL_ID] The [CHANNEL_ID] is automatically assigned by the server on creation.",
+          "description": "Identifier. The full REST resource name for this channel. The format is: projects/[PROJECT_ID_OR_NUMBER]/notificationChannels/[CHANNEL_ID] The [CHANNEL_ID] is automatically assigned by the server on creation.",
           "type": "string"
         },
         "type": {
@@ -5639,6 +5639,10 @@
       "description": "A collection of data points that describes the time-varying values of a metric. A time series is identified by a combination of a fully-specified monitored resource and a fully-specified metric. This type is used for both listing and creating time series.",
       "id": "TimeSeries",
       "properties": {
+        "description": {
+          "description": "Input only. A detailed description of the time series that will be associated with the google.api.MetricDescriptor for the metric. Once set, this field cannot be changed through CreateTimeSeries.",
+          "type": "string"
+        },
         "metadata": {
           "$ref": "MonitoredResourceMetadata",
           "description": "Output only. The associated monitored resource metadata. When reading a time series, this field will include metadata labels that are explicitly named in the reduction. When creating a time series, this field is ignored."
@@ -5675,7 +5679,7 @@
           "description": "The associated monitored resource. Custom metrics can use only certain monitored resource types in their time series data. For more information, see Monitored resources for custom metrics (https://cloud.google.com/monitoring/custom-metrics/creating-metrics#custom-metric-resources)."
         },
         "unit": {
-          "description": "The units in which the metric value is reported. It is only applicable if the value_type is INT64, DOUBLE, or DISTRIBUTION. The unit defines the representation of the stored metric values.",
+          "description": "The units in which the metric value is reported. It is only applicable if the value_type is INT64, DOUBLE, or DISTRIBUTION. The unit defines the representation of the stored metric values. This field can only be changed through CreateTimeSeries when it is empty or \"1\".",
           "type": "string"
         },
         "valueType": {

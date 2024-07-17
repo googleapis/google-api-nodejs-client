@@ -256,11 +256,11 @@ export namespace workstations_v1beta {
     kmsKeyServiceAccount?: string | null;
   }
   /**
-   * Configuration options for private workstation clusters.
+   * Configuration options for a custom domain.
    */
   export interface Schema$DomainConfig {
     /**
-     * Immutable. Whether Workstations endpoint is private.
+     * Immutable. Domain used by Workstations for HTTP ingress.
      */
     domain?: string | null;
   }
@@ -678,7 +678,7 @@ export namespace workstations_v1beta {
     version?: number | null;
   }
   /**
-   * A PortsConfig defines a range of ports. Both first and last are inclusive. To specify a single port, both first and last should be the same.
+   * A PortRange defines a range of ports. Both first and last are inclusive. To specify a single port, both first and last should be the same.
    */
   export interface Schema$PortRange {
     /**
@@ -690,10 +690,25 @@ export namespace workstations_v1beta {
      */
     last?: number | null;
   }
+  /**
+   * Configuration options for private workstation clusters.
+   */
   export interface Schema$PrivateClusterConfig {
+    /**
+     * Optional. Additional projects that are allowed to attach to the workstation cluster's service attachment. By default, the workstation cluster's project and the VPC host project (if different) are allowed.
+     */
     allowedProjects?: string[] | null;
+    /**
+     * Output only. Hostname for the workstation cluster. This field will be populated only when private endpoint is enabled. To access workstations in the workstation cluster, create a new DNS zone mapping this domain name to an internal IP address and a forwarding rule mapping that address to the service attachment.
+     */
     clusterHostname?: string | null;
+    /**
+     * Immutable. Whether Workstations endpoint is private.
+     */
     enablePrivateEndpoint?: boolean | null;
+    /**
+     * Output only. Service attachment URI for the workstation cluster. The service attachemnt is created when private endpoint is enabled. To access workstations in the workstation cluster, configure access to the managed service using [Private Service Connect](https://cloud.google.com/vpc/docs/configure-private-service-connect-services).
+     */
     serviceAttachmentUri?: string | null;
   }
   /**
@@ -836,6 +851,14 @@ export namespace workstations_v1beta {
      */
     reconciling?: boolean | null;
     /**
+     * Output only. Reserved for future use.
+     */
+    satisfiesPzi?: boolean | null;
+    /**
+     * Output only. Reserved for future use.
+     */
+    satisfiesPzs?: boolean | null;
+    /**
      * Optional. The source workstation from which this workstations persistent directories were cloned on creation.
      */
     sourceWorkstation?: string | null;
@@ -916,6 +939,14 @@ export namespace workstations_v1beta {
      * Output only. Indicates whether this workstation cluster is currently being updated to match its intended state.
      */
     reconciling?: boolean | null;
+    /**
+     * Output only. Reserved for future use.
+     */
+    satisfiesPzi?: boolean | null;
+    /**
+     * Output only. Reserved for future use.
+     */
+    satisfiesPzs?: boolean | null;
     /**
      * Immutable. Name of the Compute Engine subnetwork in which instances associated with this workstation cluster will be created. Must be part of the subnetwork specified for this workstation cluster.
      */
@@ -1025,6 +1056,14 @@ export namespace workstations_v1beta {
      * Optional. Number of seconds that a workstation can run until it is automatically shut down. We recommend that workstations be shut down daily to reduce costs and so that security updates can be applied upon restart. The idle_timeout and running_timeout fields are independent of each other. Note that the running_timeout field shuts down VMs after the specified time, regardless of whether or not the VMs are idle. Provide duration terminated by `s` for seconds—for example, `"54000s"` (15 hours). Defaults to `"43200s"` (12 hours). A value of `"0s"` indicates that workstations using this configuration should never time out. If encryption_key is set, it must be greater than `"0s"` and less than `"86400s"` (24 hours). Warning: A value of `"0s"` indicates that Cloud Workstations VMs created with this configuration have no maximum running time. This is strongly discouraged because you incur costs and will not pick up security updates.
      */
     runningTimeout?: string | null;
+    /**
+     * Output only. Reserved for future use.
+     */
+    satisfiesPzi?: boolean | null;
+    /**
+     * Output only. Reserved for future use.
+     */
+    satisfiesPzs?: boolean | null;
     /**
      * Output only. A system-assigned unique identifier for this workstation configuration.
      */

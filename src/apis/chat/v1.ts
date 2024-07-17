@@ -146,7 +146,7 @@ export namespace chat_v1 {
      */
     accessState?: string | null;
     /**
-     * Optional. The resource name of the [target audience](https://support.google.com/a/answer/9934697) who can discover the space, join the space, and preview the messages in the space. For details, see [Make a space discoverable to a target audience](https://developers.google.com/workspace/chat/space-target-audience). Format: `audiences/{audience\}` To use the default target audience for the Google Workspace organization, set to `audiences/default`.
+     * Optional. The resource name of the [target audience](https://support.google.com/a/answer/9934697) who can discover the space, join the space, and preview the messages in the space. If unset, only users or Google Groups who have been individually invited or added to the space can access it. For details, see [Make a space discoverable to a target audience](https://developers.google.com/workspace/chat/space-target-audience). Format: `audiences/{audience\}` To use the default target audience for the Google Workspace organization, set to `audiences/default`.
      */
     audience?: string | null;
   }
@@ -501,7 +501,7 @@ export namespace chat_v1 {
     deletionType?: string | null;
   }
   /**
-   * A Google Chat app interaction event. To learn about interaction events, see [Receive and respond to interactions with your Google Chat app](https://developers.google.com/workspace/chat/api/guides/message-formats). To learn about event types and for example event payloads, see [Types of Google Chat app interaction events](https://developers.google.com/workspace/chat/events). In addition to receiving events from user interactions, Chat apps can receive events about changes to spaces, such as when a new member is added to a space. To learn about space events, see [Work with events from Google Chat](https://developers.google.com/workspace/chat/events-overview).
+   * A Google Chat app interaction event that represents and contains data about a user's interaction with a Chat app. To configure your Chat app to receive interaction events, see [Receive and respond to user interactions](https://developers.google.com/workspace/chat/receive-respond-interactions). In addition to receiving events from user interactions, Chat apps can receive events about changes to spaces, such as when a new member is added to a space. To learn about space events, see [Work with events from Google Chat](https://developers.google.com/workspace/chat/events-overview).
    */
   export interface Schema$DeprecatedEvent {
     /**
@@ -509,7 +509,7 @@ export namespace chat_v1 {
      */
     action?: Schema$FormAction;
     /**
-     * Represents informatmessage_visibilityion about the user's client, such as locale, host app, and platform. For Chat apps, `CommonEventObject` includes information submitted by users interacting with [dialogs](https://developers.google.com/workspace/chat/dialogs), like data entered on a card.
+     * Represents information about the user's client, such as locale, host app, and platform. For Chat apps, `CommonEventObject` includes information submitted by users interacting with [dialogs](https://developers.google.com/workspace/chat/dialogs), like data entered on a card.
      */
     common?: Schema$CommonEventObject;
     /**
@@ -533,7 +533,7 @@ export namespace chat_v1 {
      */
     message?: Schema$Message;
     /**
-     * The space in which the interaction event occurred.
+     * The space in which the user interacted with the Chat app.
      */
     space?: Schema$Space;
     /**
@@ -545,11 +545,11 @@ export namespace chat_v1 {
      */
     token?: string | null;
     /**
-     * The type of interaction event. For details, see [Types of Google Chat app interaction events](https://developers.google.com/workspace/chat/events).
+     * The [type](/workspace/chat/api/reference/rest/v1/EventType) of user interaction with the Chat app, such as `MESSAGE` or `ADDED_TO_SPACE`.
      */
     type?: string | null;
     /**
-     * The user that triggered the interaction event.
+     * The user that interacted with the Chat app.
      */
     user?: Schema$User;
   }
@@ -2035,7 +2035,7 @@ export namespace chat_v1 {
      */
     displayName?: string | null;
     /**
-     * Immutable. Whether this space permits any Google Chat user as a member. Input when creating a space in a Google Workspace organization. Omit this field when creating spaces in the following conditions: * The authenticated user uses a consumer account (unmanaged user account). By default, a space created by a consumer account permits any Google Chat user. * The space is used to [import data to Google Chat] (https://developers.google.com/chat/api/guides/import-data-overview) because import mode spaces must only permit members from the same Google Workspace organization. However, as part of the [Google Workspace Developer Preview Program](https://developers.google.com/workspace/preview), import mode spaces can permit any Google Chat user so this field can then be set for import mode spaces. For existing spaces, this field is output only.
+     * Immutable. Whether this space permits any Google Chat user as a member. Input when creating a space in a Google Workspace organization. Omit this field when creating spaces in the following conditions: * The authenticated user uses a consumer account (unmanaged user account). By default, a space created by a consumer account permits any Google Chat user. For existing spaces, this field is output only.
      */
     externalUserAllowed?: boolean | null;
     /**
@@ -3399,7 +3399,7 @@ export namespace chat_v1 {
      */
     name?: string;
     /**
-     * Required. The updated field paths, comma separated if there are multiple. Currently supported field paths: - `display_name` (Only supports changing the display name of a space with the `SPACE` type, or when also including the `space_type` mask to change a `GROUP_CHAT` space type to `SPACE`. Trying to update the display name of a `GROUP_CHAT` or a `DIRECT_MESSAGE` space results in an invalid argument error. If you receive the error message `ALREADY_EXISTS` when updating the `displayName`, try a different `displayName`. An existing space within the Google Workspace organization might already use this display name.) - `space_type` (Only supports changing a `GROUP_CHAT` space type to `SPACE`. Include `display_name` together with `space_type` in the update mask and ensure that the specified space has a non-empty display name and the `SPACE` space type. Including the `space_type` mask and the `SPACE` type in the specified space when updating the display name is optional if the existing space already has the `SPACE` type. Trying to update the space type in other ways results in an invalid argument error). `space_type` is not supported with admin access. - `space_details` - `space_history_state` (Supports [turning history on or off for the space](https://support.google.com/chat/answer/7664687) if [the organization allows users to change their history setting](https://support.google.com/a/answer/7664184). Warning: mutually exclusive with all other field paths.) `space_history_state` is not supported with admin access. - `access_settings.audience` (Supports changing the [access setting](https://support.google.com/chat/answer/11971020) of who can discover the space, join the space, and preview the messages in space. If no audience is specified in the access setting, the space's access setting is updated to private. Warning: mutually exclusive with all other field paths.) `access_settings.audience` is not supported with admin access. - Developer Preview: Supports changing the [permission settings](https://support.google.com/chat/answer/13340792) of a space, supported field paths include: `permission_settings.manage_members_and_groups`, `permission_settings.modify_space_details`, `permission_settings.toggle_history`, `permission_settings.use_at_mention_all`, `permission_settings.manage_apps`, `permission_settings.manage_webhooks`, `permission_settings.reply_messages` (Warning: mutually exclusive with all other non-permission settings field paths). `permission_settings` is not supported with admin access.
+     * Required. The updated field paths, comma separated if there are multiple. You can update the following fields for a space: - `space_details` - `display_name`: Only supports updating the display name for spaces where `spaceType` field is `SPACE`. If you receive the error message `ALREADY_EXISTS`, try a different value. An existing space within the Google Workspace organization might already use this display name. - `space_type`: Only supports changing a `GROUP_CHAT` space type to `SPACE`. Include `display_name` together with `space_type` in the update mask and ensure that the specified space has a non-empty display name and the `SPACE` space type. Including the `space_type` mask and the `SPACE` type in the specified space when updating the display name is optional if the existing space already has the `SPACE` type. Trying to update the space type in other ways results in an invalid argument error. `space_type` is not supported with admin access. - `space_history_state`: Updates [space history settings](https://support.google.com/chat/answer/7664687) by turning history on or off for the space. Only supported if history settings are enabled for the Google Workspace organization. To update the space history state, you must omit all other field masks in your request. `space_history_state` is not supported with admin access. - `access_settings.audience`: Updates the [access setting](https://support.google.com/chat/answer/11971020) of who can discover the space, join the space, and preview the messages in named space where `spaceType` field is `SPACE`. If the existing space has a target audience, you can remove the audience and restrict space access by omitting a value for this field mask. To update access settings for a space, the authenticating user must be a space manager and omit all other field masks in your request. You can't update this field if the space is in [import mode](https://developers.google.com/workspace/chat/import-data-overview). To learn more, see [Make a space discoverable to specific users](https://developers.google.com/workspace/chat/space-target-audience). `access_settings.audience` is not supported with admin access. - Developer Preview: Supports changing the [permission settings](https://support.google.com/chat/answer/13340792) of a space, supported field paths include: `permission_settings.manage_members_and_groups`, `permission_settings.modify_space_details`, `permission_settings.toggle_history`, `permission_settings.use_at_mention_all`, `permission_settings.manage_apps`, `permission_settings.manage_webhooks`, `permission_settings.reply_messages` (Warning: mutually exclusive with all other non-permission settings field paths). `permission_settings` is not supported with admin access.
      */
     updateMask?: string;
 

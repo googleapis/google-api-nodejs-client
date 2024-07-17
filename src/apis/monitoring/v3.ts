@@ -1584,7 +1584,7 @@ export namespace monitoring_v3 {
      */
     mutationRecords?: Schema$MutationRecord[];
     /**
-     * The full REST resource name for this channel. The format is: projects/[PROJECT_ID_OR_NUMBER]/notificationChannels/[CHANNEL_ID] The [CHANNEL_ID] is automatically assigned by the server on creation.
+     * Identifier. The full REST resource name for this channel. The format is: projects/[PROJECT_ID_OR_NUMBER]/notificationChannels/[CHANNEL_ID] The [CHANNEL_ID] is automatically assigned by the server on creation.
      */
     name?: string | null;
     /**
@@ -2089,6 +2089,10 @@ export namespace monitoring_v3 {
    */
   export interface Schema$TimeSeries {
     /**
+     * Input only. A detailed description of the time series that will be associated with the google.api.MetricDescriptor for the metric. Once set, this field cannot be changed through CreateTimeSeries.
+     */
+    description?: string | null;
+    /**
      * Output only. The associated monitored resource metadata. When reading a time series, this field will include metadata labels that are explicitly named in the reduction. When creating a time series, this field is ignored.
      */
     metadata?: Schema$MonitoredResourceMetadata;
@@ -2109,7 +2113,7 @@ export namespace monitoring_v3 {
      */
     resource?: Schema$MonitoredResource;
     /**
-     * The units in which the metric value is reported. It is only applicable if the value_type is INT64, DOUBLE, or DISTRIBUTION. The unit defines the representation of the stored metric values.
+     * The units in which the metric value is reported. It is only applicable if the value_type is INT64, DOUBLE, or DISTRIBUTION. The unit defines the representation of the stored metric values. This field can only be changed through CreateTimeSeries when it is empty or "1".
      */
     unit?: string | null;
     /**
@@ -5685,7 +5689,7 @@ export namespace monitoring_v3 {
   export interface Params$Resource$Projects$Notificationchannels$Patch
     extends StandardParameters {
     /**
-     * The full REST resource name for this channel. The format is: projects/[PROJECT_ID_OR_NUMBER]/notificationChannels/[CHANNEL_ID] The [CHANNEL_ID] is automatically assigned by the server on creation.
+     * Identifier. The full REST resource name for this channel. The format is: projects/[PROJECT_ID_OR_NUMBER]/notificationChannels/[CHANNEL_ID] The [CHANNEL_ID] is automatically assigned by the server on creation.
      */
     name?: string;
     /**

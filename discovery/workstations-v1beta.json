@@ -1127,7 +1127,7 @@
       }
     }
   },
-  "revision": "20240619",
+  "revision": "20240709",
   "rootUrl": "https://workstations.googleapis.com/",
   "schemas": {
     "Accelerator": {
@@ -1315,11 +1315,11 @@
       "type": "object"
     },
     "DomainConfig": {
-      "description": "Configuration options for private workstation clusters.",
+      "description": "Configuration options for a custom domain.",
       "id": "DomainConfig",
       "properties": {
         "domain": {
-          "description": "Immutable. Whether Workstations endpoint is private.",
+          "description": "Immutable. Domain used by Workstations for HTTP ingress.",
           "type": "string"
         }
       },
@@ -1875,7 +1875,7 @@
       "type": "object"
     },
     "PortRange": {
-      "description": "A PortsConfig defines a range of ports. Both first and last are inclusive. To specify a single port, both first and last should be the same.",
+      "description": "A PortRange defines a range of ports. Both first and last are inclusive. To specify a single port, both first and last should be the same.",
       "id": "PortRange",
       "properties": {
         "first": {
@@ -1892,22 +1892,27 @@
       "type": "object"
     },
     "PrivateClusterConfig": {
+      "description": "Configuration options for private workstation clusters.",
       "id": "PrivateClusterConfig",
       "properties": {
         "allowedProjects": {
+          "description": "Optional. Additional projects that are allowed to attach to the workstation cluster's service attachment. By default, the workstation cluster's project and the VPC host project (if different) are allowed.",
           "items": {
             "type": "string"
           },
           "type": "array"
         },
         "clusterHostname": {
+          "description": "Output only. Hostname for the workstation cluster. This field will be populated only when private endpoint is enabled. To access workstations in the workstation cluster, create a new DNS zone mapping this domain name to an internal IP address and a forwarding rule mapping that address to the service attachment.",
           "readOnly": true,
           "type": "string"
         },
         "enablePrivateEndpoint": {
+          "description": "Immutable. Whether Workstations endpoint is private.",
           "type": "boolean"
         },
         "serviceAttachmentUri": {
+          "description": "Output only. Service attachment URI for the workstation cluster. The service attachemnt is created when private endpoint is enabled. To access workstations in the workstation cluster, configure access to the managed service using [Private Service Connect](https://cloud.google.com/vpc/docs/configure-private-service-connect-services).",
           "readOnly": true,
           "type": "string"
         }
@@ -2099,6 +2104,16 @@
           "readOnly": true,
           "type": "boolean"
         },
+        "satisfiesPzi": {
+          "description": "Output only. Reserved for future use.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "satisfiesPzs": {
+          "description": "Output only. Reserved for future use.",
+          "readOnly": true,
+          "type": "boolean"
+        },
         "sourceWorkstation": {
           "description": "Optional. The source workstation from which this workstations persistent directories were cloned on creation.",
           "type": "string"
@@ -2216,6 +2231,16 @@
         },
         "reconciling": {
           "description": "Output only. Indicates whether this workstation cluster is currently being updated to match its intended state.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "satisfiesPzi": {
+          "description": "Output only. Reserved for future use.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "satisfiesPzs": {
+          "description": "Output only. Reserved for future use.",
           "readOnly": true,
           "type": "boolean"
         },
@@ -2365,6 +2390,16 @@
           "description": "Optional. Number of seconds that a workstation can run until it is automatically shut down. We recommend that workstations be shut down daily to reduce costs and so that security updates can be applied upon restart. The idle_timeout and running_timeout fields are independent of each other. Note that the running_timeout field shuts down VMs after the specified time, regardless of whether or not the VMs are idle. Provide duration terminated by `s` for seconds—for example, `\"54000s\"` (15 hours). Defaults to `\"43200s\"` (12 hours). A value of `\"0s\"` indicates that workstations using this configuration should never time out. If encryption_key is set, it must be greater than `\"0s\"` and less than `\"86400s\"` (24 hours). Warning: A value of `\"0s\"` indicates that Cloud Workstations VMs created with this configuration have no maximum running time. This is strongly discouraged because you incur costs and will not pick up security updates.",
           "format": "google-duration",
           "type": "string"
+        },
+        "satisfiesPzi": {
+          "description": "Output only. Reserved for future use.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "satisfiesPzs": {
+          "description": "Output only. Reserved for future use.",
+          "readOnly": true,
+          "type": "boolean"
         },
         "uid": {
           "description": "Output only. A system-assigned unique identifier for this workstation configuration.",

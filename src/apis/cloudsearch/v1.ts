@@ -179,6 +179,11 @@ export namespace cloudsearch_v1 {
      */
     text?: string | null;
   }
+  export interface Schema$BandWidthRangeKbps {
+    percentile10?: number | null;
+    percentile50?: number | null;
+    percentile90?: number | null;
+  }
   /**
    * Used to provide a search operator for boolean properties. This is optional. Search operators let users restrict the query to specific fields relevant to the type of item being searched.
    */
@@ -202,6 +207,516 @@ export namespace cloudsearch_v1 {
      * Returns true if principal has access. Returns false otherwise.
      */
     hasAccess?: boolean | null;
+  }
+  /**
+   * Represents the user's current opt-in status on the current device related to features such as Google Now, App and Web History, Device State and Content. Each opt-in status includes an eligibility status, which depends on the type of account (Dasher, etc.), country, language, and device specifics. Next id: 38 Note: if the proto is changed, please also update the code that converts it to corresponding logs proto (they are in the same name but incompatible so manual conversion is needed). LINT.IfChange
+   */
+  export interface Schema$ClientOptInContext {
+    /**
+     * Enrollment status for Ambient Mode feature go/assistant-ambient-mode
+     */
+    ambientEnrollmentStatus?: string | null;
+    /**
+     * Enrollment status for PhotoFrame feature in Ambient Mode. This is different from PhotoFrame enrollment in other features such as Dreamliner. go/assistant-ambient-mode
+     */
+    ambientPhotoEnrollmentStatus?: string | null;
+    /**
+     * Whether the user has opted into enabling Assistant on Lockscreen. go/iris-newperm-prd
+     */
+    assistantOnLockscreenStatus?: string | null;
+    /**
+     * Audio History. Used to improve speech recognition and hotword triggering. https://sites.google.com/a/google.com/android-speech/projects/audio-history
+     */
+    audioHistoryStatus?: Schema$OptInStatus;
+    /**
+     * Whether the user has opted into bluetooth audio recording setting.
+     */
+    bluetoothAudioRecordingStatus?: string | null;
+    /**
+     * Set to true iff the user is signed into Chrome with the same account as GSA and has Chrome sync enabled (as reported by Chrome to GSA). This can be used to serve personalized suggestions based on the user's browsing history.
+     */
+    chromeSyncStatus?: Schema$OptInStatus;
+    /**
+     * Allows Google to upload device app information.
+     */
+    deviceAppsStatus?: Schema$OptInStatus;
+    /**
+     * Allows Google to upload contact information from device.
+     */
+    deviceContactsStatus?: Schema$OptInStatus;
+    /**
+     * User allows Google to upload state (aka settings) and content (documents and media) from their device. See https://goto.google.com/device-consents
+     */
+    deviceStateAndContentStatus?: Schema$OptInStatus;
+    /**
+     * List of Android package names the user disabled from appearing in the autocomplete suggestions on their device.
+     */
+    disabledIcingSourceApps?: string[] | null;
+    /**
+     * List of Android packages and corpora that the user disabled. This replaces disabled_icing_source_apps and allows disabling a single corpus for a particular package.
+     */
+    disabledIcingSources?: Schema$DisabledIcingPackageCorpus[];
+    /**
+     * Whether the user has opted into headphone personal results setting. go/enable-pr-with-headset
+     */
+    headphonePersonalResultsStatus?: string | null;
+    /**
+     * Enrollment status for Hotword any-screen/always-on. This information is sent to the server-side to know that the user can run Hotword. For example, in go/gsa-voice-feature-tips using this information, the user will be shown Voice Tips that will take the user directly to the enrollment and guide them to move to the next level of Voice Features experience.
+     */
+    hotwordEnrollmentStatus?: Schema$OptInStatus;
+    /**
+     * User allows Google to upload location history from their device. See https://goto.google.com/gcore-ulr
+     */
+    locationHistoryStatus?: Schema$OptInStatus;
+    /**
+     * Whether the user has opted into showing personal response on Lockscreen.
+     */
+    lockscreenPersonalResponseStatus?: string | null;
+    /**
+     * Whether the user has opted into lockscreen queries via bluetooth headsets setting.
+     */
+    lockscreenSearchBluetoothStatus?: string | null;
+    /**
+     * Whether the user has opted into lockscreen queries via wired headsets setting.
+     */
+    lockscreenSearchWiredHeadsetStatus?: string | null;
+    /**
+     * Google Now push notifications.
+     */
+    nowNotificationStatus?: Schema$OptInStatus;
+    /**
+     * Google Now activation.
+     */
+    nowStatus?: Schema$OptInStatus;
+    /**
+     * Google Now marks each release with a TOS version, so it can ask users to opt in again if the terms change from release to release.
+     */
+    nowTosVersion?: number | null;
+    /**
+     * User's eligibility to use the Assistant.
+     */
+    opaEligibility?: string | null;
+    /**
+     * Has the user opted-in to receiving emails for OPA? This is set when the user opts-in during the OPA upgrade flow. It has an UNKNOWN value otherwise. Note that this bit isn't updated if the user changes their email opt-in status through settings or unsubscribing in the email.
+     */
+    opaEmailOptInStatus?: string | null;
+    /**
+     * The Opa experience type. As of Feb 2019, it is only used to check whether the user is in the Try Before You Buy experience.
+     */
+    opaExperienceType?: string | null;
+    /**
+     * The reason why user enters the OPA "signed-out mode" partial experience (go/opa-signed-out-everywhere). Note that the value only means how the user entered the partial experience. For example, if a user enters TBYB and becomes a full-experience user, this value will remain as TBYB. To check the current experience type, you should read opa_experience_type instead.
+     */
+    opaPartialExperienceReason?: string | null;
+    /**
+     * Has the user opted in to OPA's UDC requirements? "OPA UDC consent" is a one-time opt-in to the set of required UDC opt-in bits. If the user has already granted all required UDC opt-ins, then we automatically mark them as consented. We require that users grant OPA UDC consent before using OPA for the first time. Note: The user does not revoke OPA UDC consent if they turn off one of the UDC opt-in bits from Settings; for such users, the server either offers a degraded experience, or prompts the user to re-grant missing opt-ins.)
+     */
+    opaUdcConsentStatus?: string | null;
+    /**
+     * A user-configurable global on/off switch for the Assistant; the user can completely disable the assistant (go/opa-enabled-ss). Defaults to enabled. This setting is completely independent from the user's opa_eligibility; they can be eligible, but OPA disabled. There users are by definition not making Assistant queries, so this value is a signal of the population size.
+     */
+    opaUserEnabledStatus?: string | null;
+    /**
+     * Whether the user has opted into showing proactive personal suggestions on lock screen before asking. This is the proactive sub-bit for lockscreen_personal_response_status.
+     */
+    proactivePersonalResponseStatus?: string | null;
+    /**
+     * Has the user granted permission for Google to read the contents of their screen. Note that in OPA, training hotword automatically opts the user into screen context.
+     */
+    screenContextOptInStatus?: string | null;
+    /**
+     * Whether the user has opted into skipping voice recognition. go/iris-newperm-prd
+     */
+    skipVoiceRecognitionStatus?: string | null;
+    /**
+     * Whether the user has enrolled the Speaker ID model.
+     */
+    speakerModelStatus?: string | null;
+    /**
+     * Whether the user has acknowledged the third party disclosure.
+     */
+    thirdPartyDisclosureStatus?: string | null;
+    /**
+     * Whether the user has opted into alarms/timers context for Quick phrases.
+     */
+    warmActionsAlarmsTimersEnrollmentStatus?: string | null;
+    /**
+     * Whether the user has opted into calls context for Quick phrases.
+     */
+    warmActionsCallsEnrollmentStatus?: string | null;
+    /**
+     * Whether the user has opted into at least one Mobile Warm Words/Quick Phrases context. go/mww-prd
+     */
+    warmActionsEnrollmentStatus?: string | null;
+    /**
+     * User allows Google to upload usage history from their device. This field can be set to true iff web_history_status is set to true. Historically, this used to be called "Supplemental Search History". See https://goto.google.com/device-consents
+     */
+    webAndAppHistoryStatus?: Schema$OptInStatus;
+    /**
+     * User allows Google to log interactions with Search from their device. Historically, this used to be called "Search History". See https://goto.google.com/device-consents
+     */
+    webHistoryStatus?: Schema$OptInStatus;
+  }
+  /**
+   * A person's email address.
+   */
+  export interface Schema$CloudsearchEmailAddress {
+    /**
+     * The email address.
+     */
+    emailAddress?: string | null;
+    /**
+     * Indicates if this is the user's primary email. Only one entry can be marked as primary.
+     */
+    primary?: boolean | null;
+  }
+  /**
+   * Generic way of expessing filters. It support two ways. 1. Setting name and the value. The name has to be an operator_name defined in schema. 2. Setting the operator and filters. The sub filters will be evaluated using the operator.
+   */
+  export interface Schema$CloudsearchFilter {
+    /**
+     * Sub filters. If present, the operator must be set.
+     */
+    filters?: Schema$CloudsearchFilter[];
+    /**
+     * The operator_name that we apply to the query, e.g. price_greater_than. It can be either case, 1. operator_name in schema. We will filter the results with the property that matches the value. 2. greater_than_operator_name or less_than_operator_name in schema. We will filter the results that property is greater than or less than the given value.
+     */
+    name?: string | null;
+    /**
+     * The operator of the filter.
+     */
+    operator?: string | null;
+    /**
+     * The value to check. If present, the name must be set.
+     */
+    value?: Schema$CloudsearchValue;
+  }
+  /**
+   * A filter suggestion.
+   */
+  export interface Schema$CloudsearchFilterSuggestion {
+    /**
+     * The filter suggestion. It can be 1. A value filter, e.g. type:documents 2. A composite filter before:today and after:yesterday
+     */
+    filter?: Schema$CloudsearchFilter;
+    /**
+     * This field contains the suggestion match information returned by the backend after escaping the HTML in the suggestion string. The areas that we might like to extract from the suggestion string returned by the backend are marked using the match_ranges field inside Snippet. For example, if the snippet string inside suggestion_match_info is: "google search", and the keyword "goog" is supposed to be bolded, the match_ranges is the list of range of indexes in the snippet string where it is bolded: [[0, 4)].
+     */
+    suggestionMatchInfo?: Schema$CloudsearchSnippet;
+    type?: string | null;
+  }
+  /**
+   * Object to represent a group.
+   */
+  export interface Schema$CloudsearchGroup {
+    /**
+     * The group's email addresses
+     */
+    emailAddresses?: Schema$CloudsearchEmailAddress[];
+    /**
+     * Group's names
+     */
+    groupNames?: Schema$CloudsearchName[];
+    /**
+     * The resource name of the group to provide information about. See People.get from Google People API.
+     */
+    name?: string | null;
+    /**
+     * Obfuscated GAIA ID of a google group. Used by first party Cloud Search clients.
+     */
+    obfuscatedId?: string | null;
+  }
+  /**
+   * Image returned with suggestion; eg: person's photo or document thumbnail.
+   */
+  export interface Schema$CloudsearchImage {
+    /**
+     * Specifies the source from where the photo is fetched.
+     */
+    source?: string | null;
+    /**
+     * The URL of the photo.
+     */
+    url?: string | null;
+  }
+  /**
+   * Matched range of a snippet [start, end). The "start" and "end" positions are 0 indexed. For example, if the snippet string is "google search" and the string to be matched is "goog", the MatchRange is [0, 4).
+   */
+  export interface Schema$CloudsearchMatchRange {
+    /**
+     * 1 + index of the ending position of the match in the snippet.
+     */
+    end?: number | null;
+    /**
+     * Index of the starting position of the match in the snippet.
+     */
+    start?: number | null;
+  }
+  /**
+   * A person or group's name.
+   */
+  export interface Schema$CloudsearchName {
+    /**
+     * The read-only display name formatted according to the locale specified by the viewer's account or the Accept-Language HTTP header.
+     */
+    displayName?: string | null;
+    /**
+     * Specifies the source from where the name is fetched.
+     */
+    source?: string | null;
+  }
+  /**
+   * A person suggestion.
+   */
+  export interface Schema$CloudsearchPeopleSuggestion {
+    /**
+     * This field contains the suggestion information returned by the backend after escaping the HTML in the suggestion string. The areas that we might like to extract from the suggestion string returned by the backend are marked using the match_ranges field inside Snippet. For example, if the snippet string inside email_name_match_info is: "John Doe - johndoe@google.com", and the keyword "doe" should be matched, the match_ranges is: [[5, 8), [15, 18)].
+     */
+    emailNameMatchInfo?: Schema$CloudsearchSnippet;
+    googleGroup?: Schema$CloudsearchGroup;
+    person?: Schema$CloudsearchPerson;
+  }
+  /**
+   * Object to represent a person.
+   */
+  export interface Schema$CloudsearchPerson {
+    /**
+     * The person's email addresses
+     */
+    emailAddresses?: Schema$CloudsearchEmailAddress[];
+    /**
+     * The resource name of the person to provide information about. See People.get from Google People API.
+     */
+    name?: string | null;
+    /**
+     * Obfuscated GAIA ID of a person. Used by first party Cloud Search client, to build a hangout link.
+     */
+    obfuscatedId?: string | null;
+    /**
+     * The person's names
+     */
+    personNames?: Schema$CloudsearchName[];
+    /**
+     * A person's read-only photo. A picture shown next to the person's name to help others recognize the person in search results.
+     */
+    photos?: Schema$CloudsearchImage[];
+  }
+  export interface Schema$CloudsearchQuerySuggestion {
+    /**
+     * This field contains the suggestion match information returned by the backend after escaping the HTML in the suggestion string. The areas that we might like to extract from the suggestion string returned by the backend are marked using the match_ranges field inside Snippet. For example, if the snippet string inside suggestion_match_info is: "google search", and the keyword "goog" is supposed to be bolded, the match_ranges is the list of range of indexes in the snippet string where it is bolded: [[0, 4)].
+     */
+    suggestionMatchInfo?: Schema$CloudsearchSnippet;
+  }
+  /**
+   * Snippet of the suggestion, which summarizes the content of the resulting page.
+   */
+  export interface Schema$CloudsearchSnippet {
+    /**
+     * The matched ranges in the snippet.
+     */
+    matchRanges?: Schema$CloudsearchMatchRange[];
+    /**
+     * The snippet of the document.
+     */
+    snippet?: string | null;
+  }
+  /**
+   * Define a source to query suggest/search APIs. Source is set in the STMixer request params.
+   */
+  export interface Schema$CloudsearchSource {
+    /**
+     * If set to true, all 3p sources will be considered
+     */
+    anyThirdPartySource?: boolean | null;
+    /**
+     * Source name of contents that indexed by Index API
+     */
+    name?: string | null;
+    /**
+     * Predefined source for Google Apps.
+     */
+    predefinedSource?: string | null;
+  }
+  /**
+   * Signals that contribute to the final score.
+   */
+  export interface Schema$CloudsearchSuggestionScores {
+    completeServerInternalScores?: Schema$CloudsearchSuggestionScoresCompleteServerInternalScores;
+    completeserverInternalScores?: Schema$CloudsearchSuggestionScoresInternalScores;
+    /**
+     * How frequent is the suggestion within this user.
+     */
+    personalizedBoost?: number | null;
+    /**
+     * How popular is the suggestion among all users.
+     */
+    popularity?: number | null;
+    /**
+     * Amount by which a section is boosted based on heuristics.
+     */
+    sectionBoost?: number | null;
+    /**
+     * Scale factor of the datasource its coming from.
+     */
+    sourceScaleFactor?: number | null;
+    starlightInternalScores?: Schema$CloudsearchSuggestionScoresInternalScores;
+  }
+  export interface Schema$CloudsearchSuggestionScoresCompleteServerInternalScores {
+    /**
+     * Contacts group score (i.e. if the string is a name of a group).
+     */
+    contactsGroup?: number | null;
+    /**
+     * Score for email autocomplete. Corresponds to DAS affinity PERSONAL_SUGGEST_EMAIL_AUTOCOMPLETE_SCORE.
+     */
+    emailAutocompleteScore?: number | null;
+    /**
+     * Outbound email count as read from FBS.
+     */
+    focusOutboundEmailCount?: number | null;
+    /**
+     * Frequency based score of a query from the user's gmail search history
+     */
+    gmailHistory?: number | null;
+    gmailHistoryMediumTermQueryTime?: number | null;
+    /**
+     * Both the gmail query_time scores below are based on the time of the last query event. Basically the score is (query_time - (model_time - PERIOD)) / PERIOD Where PERIOD is 1 & 14 days for short and medium term.
+     */
+    gmailHistoryShortTermQueryTime?: number | null;
+    /**
+     * Gmail label score, as received from Gmail through PbUI.
+     */
+    gmailLabel?: number | null;
+    /**
+     * Score for gmail operators.
+     */
+    gmailOperator?: number | null;
+    /**
+     * Score for text entities extracted from gmail subjects.
+     */
+    gmailText?: number | null;
+    /**
+     * The score of the match. The score is in the range [0, num_matching_tokens]. This means that a query with many tokens can have matches with higher score.
+     */
+    matchScore?: number | null;
+    /**
+     * Final score from CompleteServer. This either corresponds to Starlight score or Muppet score (for Generic Suggest suggestions) based on the CompleteServer backend. This is a combination of query dependent and independent components. The scores related to suggestion types like email_autocomplete_score & gmail_text are query independent whereas the match_score is query dependent.
+     */
+    score?: number | null;
+  }
+  /**
+   * Internal scores from CompleteServer/Starlight. NOTE: This proto message is also being used for storing scores from calling Starlight directly instead from CompleteServer.
+   */
+  export interface Schema$CloudsearchSuggestionScoresInternalScores {
+    /**
+     * Contacts group score (i.e. if the string is a name of a group).
+     */
+    contactsGroup?: number | null;
+    /**
+     * Score for email autocomplete. Corresponds to DAS affinity PERSONAL_SUGGEST_EMAIL_AUTOCOMPLETE_SCORE.
+     */
+    emailAutocompleteScore?: number | null;
+    /**
+     * Outbound email count as read from FBS.
+     */
+    focusOutboundEmailCount?: number | null;
+    /**
+     * Frequency based score of a query from the user's gmail search history
+     */
+    gmailHistory?: number | null;
+    gmailHistoryMediumTermQueryTime?: number | null;
+    /**
+     * Both the gmail query_time scores below are based on the time of the last query event. Basically the score is (query_time - (model_time - PERIOD)) / PERIOD Where PERIOD is 1 & 14 days for short and medium term.
+     */
+    gmailHistoryShortTermQueryTime?: number | null;
+    /**
+     * Gmail label score, as received from Gmail through PbUI.
+     */
+    gmailLabel?: number | null;
+    /**
+     * Score for gmail operators.
+     */
+    gmailOperator?: number | null;
+    /**
+     * Score for text entities extracted from gmail subjects.
+     */
+    gmailText?: number | null;
+    /**
+     * The score of the match. The score is in the range [0, num_matching_tokens]. This means that a query with many tokens can have matches with higher score.
+     */
+    matchScore?: number | null;
+    /**
+     * Final score from CompleteServe / Starlight. This either corresponds to Starlight score or Muppet score (for Generic Suggest suggestions) based on the CompleteServer backend. This is a combination of query dependent and independent components. The scores related to suggestion types like email_autocomplete_score & gmail_text are query independent whereas the match_score is query dependent.
+     */
+    score?: number | null;
+  }
+  export interface Schema$CloudsearchSuggestResponseDebugInfo {
+    completeServerInfo?: Schema$CloudsearchSuggestResponseDebugInfoCompleteServerInfo;
+    starlightInfo?: Schema$CloudsearchSuggestResponseDebugInfoStarlightInfo;
+  }
+  export interface Schema$CloudsearchSuggestResponseDebugInfoCompleteServerInfo {
+    completeserverHostname?: string | null;
+    psuggestDoNotCache?: boolean | null;
+    request?: Schema$SuggestSuggestRequest;
+    results?: Schema$CloudsearchSuggestResponseDebugInfoCompleteServerInfoSuggestResult[];
+    starlightHostname?: string | null;
+  }
+  export interface Schema$CloudsearchSuggestResponseDebugInfoCompleteServerInfoSuggestResult {
+    suggestedQuery?: string | null;
+    suggestionType?: string | null;
+  }
+  export interface Schema$CloudsearchSuggestResponseDebugInfoStarlightInfo {
+    /**
+     * Position-weighted measurement of the difference between the two result sets. See go/search-experiments-glossary - CR Score.
+     */
+    compareRankingsScore?: number | null;
+    starlightHostname?: string | null;
+    /**
+     * List of suggestion results returned from Starlight for dark launch.
+     */
+    suggestResults?: Schema$CloudsearchSuggestResult[];
+  }
+  /**
+   * One suggestion result. next_id: 16
+   */
+  export interface Schema$CloudsearchSuggestResult {
+    encryptedResultDebugId?: string | null;
+    extension?: Schema$MessageSet;
+    filterSuggestion?: Schema$CloudsearchFilterSuggestion;
+    /**
+     * Indicates the matches between the suggestion and the user's query. For example, if the user types "isac xx" and the returned suggestion is "Isaac Elias" then the match is on the token "isaac" after spell correction. Note that "isac" in user's query matched with "isaac" in the suggestion because of spell correction. Also note that spell correction may or may not happen. In this example, matched_text_in_query_info.size() is 1, matched_text_in_query_info(0).snippet() is "isaac", matched_text_in_query_info(0).match_ranges().start() is 0 and matched_text_in_query_info(0).match_ranges().end() is 5.
+     */
+    matchedTextInQueryInfo?: Schema$CloudsearchSnippet[];
+    /**
+     * The name of the suggestion. This is unique identifier of the suggestion.
+     */
+    name?: string | null;
+    peopleSuggestion?: Schema$CloudsearchPeopleSuggestion;
+    querySuggestion?: Schema$CloudsearchQuerySuggestion;
+    /**
+     * Final score returned by superroot for this suggestion.
+     */
+    score?: number | null;
+    source?: Schema$CloudsearchSource;
+    subScores?: Schema$CloudsearchSuggestionScores;
+    subType?: string | null;
+    /**
+     * The suggested query that will be used for search, when the user clicks on the suggestion
+     */
+    suggestedQuery?: string | null;
+    suggestionOrigin?: string | null;
+    type?: string | null;
+  }
+  /**
+   * Definition of a single value with generic type. LINT.IfChange
+   */
+  export interface Schema$CloudsearchValue {
+    booleanValue?: boolean | null;
+    dateValue?: Schema$Date;
+    doubleValue?: number | null;
+    integerValue?: string | null;
+    stringValue?: string | null;
+    timestampValue?: string | null;
   }
   export interface Schema$CompositeFilter {
     /**
@@ -506,6 +1021,16 @@ export namespace cloudsearch_v1 {
      */
     searchResponse?: Schema$SearchResponse;
   }
+  /**
+   * Next ID: 3
+   */
+  export interface Schema$DefaultBlockingDataProto {
+    types?: string[] | null;
+    /**
+     * Version ID of the current list of blocked countries and sanctions areas, based on which the types field was computed.
+     */
+    version?: number | null;
+  }
   export interface Schema$DeleteQueueItemsRequest {
     /**
      * The name of connector making this call. Format: datasources/{source_id\}/connectors/{ID\}
@@ -519,6 +1044,16 @@ export namespace cloudsearch_v1 {
      * The name of a queue to delete items from.
      */
     queue?: string | null;
+  }
+  export interface Schema$DisabledIcingPackageCorpus {
+    /**
+     * The name of an individual corpus within the given app. When unset, this means that all corpora for the given package are disabled.
+     */
+    corpusName?: string | null;
+    /**
+     * The package name of an app that the user disabled. This is required.
+     */
+    packageName?: string | null;
   }
   /**
    * A reference to a top-level property within the object that should be displayed in search results. The values of the chosen properties is displayed in the search results along with the display label for that property if one is specified. If a display label is not specified, only the values is shown.
@@ -1762,6 +2297,110 @@ export namespace cloudsearch_v1 {
      */
     freshnessProperty?: string | null;
   }
+  /**
+   * A globally unique identifier associated with each feature. We use 128-bit identifiers so that we have lots of bits available to distinguish between features. The feature id currently consists of a 64-bit "cell id" that **sometimes** corresponds to the approximate centroid of the feature, plus a 64-bit fingerprint of other identifying information. See more on each respective field in its comments. Feature ids are first assigned when the data is created in MapFacts. After initial creation of the feature, they are immutable. This means that the only properties that you should rely on are that they are unique, and that cell_ids often - but not always - preserve spatial locality. The degree of locality varies as the feature undergoes geometry changes, and should not in general be considered a firm guarantee of the location of any particular feature. In fact, some locationless features have randomized cell IDs! Consumers of FeatureProtos from Mapfacts are guaranteed that fprints in the id field of features will be globally unique. Using the fprint allows consumers who don't need the spatial benefit of cell ids to uniquely identify features in a 64-bit address space. This property is not guaranteed for other sources of FeatureProtos.
+   */
+  export interface Schema$GeostoreFeatureIdProto {
+    /**
+     * The S2CellId corresponding to the approximate location of this feature as of when it was first created. This can be of variable accuracy, ranging from the exact centroid of the feature at creation, a very large S2 Cell, or even being completely randomized for locationless features. Cell ids have the nice property that they follow a space-filling curve over the surface of the earth. (See s2cellid.h for details.) WARNING: Clients should only use cell IDs to perform spatial locality optimizations. There is no strict guarantee that the cell ID of a feature is related to the current geometry of the feature in any way.
+     */
+    cellId?: string | null;
+    /**
+     * A 64-bit fingerprint used to identify features. Most clients should rely on MapFacts or OneRing to choose fingerprints. If creating new fprints, the strategy should be chosen so that the chance of collision is remote or non-existent, and the distribution should be reasonably uniform. For example, if the source data assigns unique ids to features, then a fingerprint of the provider name, version, and source id is sufficient.
+     */
+    fprint?: string | null;
+    /**
+     * A place for clients to attach arbitrary data to a feature ID. Never set in MapFacts.
+     */
+    temporaryData?: Schema$MessageSet;
+  }
+  /**
+   * Internal field metadata. This part is not exposed to downstream consumers of the repository (read-only clients) but is available to upstream providers to the repository (read-write clients).
+   */
+  export interface Schema$GeostoreFieldMetadataProto {
+    internal?: Schema$GeostoreInternalFieldMetadataProto;
+  }
+  export interface Schema$GeostoreInternalFieldMetadataProto {
+    /**
+     * Whether or not the piece of data has been generated automatically (i.e., by a bot/automated process based on heuristics/algorithms rather than coming as a fact set by some human user or data provider based on their knowledge). Note that this does NOT imply that the value was set as a result of a bot operation on the repository, since it is conceivable to use a bot/automated process simply as a way of convenience to ingest large amount of canonical/ground truth data.
+     */
+    isAuto?: boolean | null;
+    /**
+     * Information about the source providing the piece of data this metadata is attached to.
+     */
+    sourceSummary?: Schema$GeostoreInternalSourceSummaryProto;
+  }
+  export interface Schema$GeostoreInternalSourceSummaryProto {
+    /**
+     * Within the above provider, the dataset from which this piece of data was generated. For fields that are auto-generated the "dataset" is likely to be some algorithm's or program's name. Similar to SourceInfoProto.dataset but with the difference that it is required to always be set. Providers that don't have a concept of dataset may use "default".
+     */
+    dataset?: string | null;
+    /**
+     * The data provider from which this piece of data was generated. Equivalent to SourceInfoProto.provider in the public schema.
+     */
+    provider?: string | null;
+  }
+  /**
+   * The reference to an entity in the KnowledgeGraph. For details on the KnowledgeGraph see http://goto/kg.
+   */
+  export interface Schema$GeostoreKnowledgeGraphReferenceProto {
+    /**
+     * KG Identifier (MID). For details, see http://go/ke-bg-knowledge-graph#mids.
+     */
+    id?: string | null;
+  }
+  /**
+   * A name for a Feature (street name, point of interest, city, building, etc). We currently use NameProto for two essentially disjoint purposes: 1. Common names, which can be language-specific, or have other kinds of variations. 2. Opaque IDs, such as postal codes, which only have the `text` field set, and potentially some flags. This includes internal-only features like template ids. Each NameProto representing a common name corresponds to an assertion that a fluent speaker or writer of a language would recognize NameProto.text to name the given feature in that language. As such, NameProtos are stored in a repeated field, often having: 1. multiple names with the same text and varying languages, and 2. multiple names with the same language and varying texts.
+   */
+  export interface Schema$GeostoreNameProto {
+    /**
+     * clang-format on The set of flags that apply to this name.
+     */
+    flag?: string[] | null;
+    /**
+     * The external form of a Google International Identifiers Initiative (III) LanguageCode object. See google3/i18n/identifiers/languagecode.h for details. These strings should be treated as opaque blobs. You can use LanguageCodeConverter::FromOther to convert the string to a LanguageCode reference. You can then call methods on the LanguageCode class to extract language/script/region subtags (if any). See also http://g3doc/i18n/identifiers/g3doc/using-iii. We place extra restrictions on languages in addition to what the III library requires. See go/geo-schema-reference/feature-properties/languages. This field may be missing if the name does not have a concept of language but should be set if the language is unknown.
+     */
+    language?: string | null;
+    /**
+     * Field-level metadata for this name. NOTE: there are multiple NameProto fields in the Geo Schema. Metadata here is only expected to be present on FeatureProto.name[].
+     */
+    metadata?: Schema$GeostoreFieldMetadataProto;
+    /**
+     * ** DEPRECATED ** The name text provided in the original source data (UTF-8 encoding). This is the text provided in the source data unmodified with the exception of being converted to UTF-8 and stripping extra leading, trailing and duplicate whitespaces (if necessary).
+     */
+    rawText?: string | null;
+    /**
+     * The short name text (UTF-8 encoding). Acronyms/abbreviations should be consistently used, for example "NE 57th St" rather than "Northeast 57th Street", "N.E 57th St." or some other variant. This field should be populated with the chosen canonical version of the shortened name, based on per-term transformations. For feature specific abbreviations (such as 'CA' for 'California'), one should define a separate name with FLAG_ABBREVIATED set. For other variants of the shortened name that are not the canonical one, devise client based logic (ex: query rewriting rules).
+     */
+    shortText?: string | null;
+    /**
+     * A place for clients to attach arbitrary data to a name. Never set in MapFacts.
+     */
+    temporaryData?: Schema$MessageSet;
+    /**
+     * The name text (UTF-8 encoding). Acronyms/abbreviations should be fully expanded, for example "Northeast 57th Street" rather than "NE 57th St". They can be shortened at display or geocode time. This decision prevents ambiguity over such issues as whether "St" represents "Street" or "Saint". However, it pushes language-specific knowledge into code. We will have libraries and data files to contract acronyms/abbreviations at run-time.
+     */
+    text?: string | null;
+  }
+  export interface Schema$GeostorePointProto {
+    latE7?: number | null;
+    lngE7?: number | null;
+    /**
+     * NOTE: If removing metadata, remove 'option objc_class_prefix = "GS";' together. See cl/189921100. Field-level metadata for this point. NOTE: there are multiple PointProto fields in the Geo Schema. Metadata here is only expected to be present on FeatureProto.point[] and FeatureProto.center.
+     */
+    metadata?: Schema$GeostoreFieldMetadataProto;
+    /**
+     * A place for clients to attach arbitrary data to a point. Never set in MapFacts.
+     */
+    temporaryData?: Schema$MessageSet;
+  }
+  /**
+   * A latitude-longitude rectangle, represented as two diagonally opposite points "lo" and "hi". The rectangle is considered to be a closed region, i.e. it includes its boundary. The latitude bounds must be in the range -90 to 90 degrees inclusive, and the longitude bounds must be in the range -180 to 180 degrees inclusive. Various cases include: - If lo == hi, the rectangle consists of a single point. - If lo.longitude \> hi.longitude, the longitude range is "inverted" (the rectangle crosses the 180 degree longitude line). - If lo.longitude == -180 degrees and hi.longitude = 180 degrees, the rectangle includes all longitudes. - If lo.longitude = 180 degrees and hi.longitude = -180 degrees, the longitude range is empty. - If lo.latitude \> hi.latitude, the latitude range is empty.
+   */
+  export interface Schema$GeostoreRectProto {
+    hi?: Schema$GeostorePointProto;
+    lo?: Schema$GeostorePointProto;
+  }
   export interface Schema$GetCustomerIndexStatsResponse {
     /**
      * Average item count for the given date range for which billing is done.
@@ -1971,6 +2610,77 @@ export namespace cloudsearch_v1 {
      */
     principal?: Schema$Principal;
     type?: string | null;
+  }
+  export interface Schema$IPBlockInfoProto {
+    /**
+     * ASN of the block. Only present when return_organisational is set in the request options.
+     */
+    asn?: string | null;
+    carrierName?: string | null;
+    cookiePopulation?: number | null;
+    /**
+     * DNS and organisational info, only present when return_organisational is set in the request options. Currently (November 2010) this data comes from the raw Quova import.
+     */
+    dnsDomain?: string | null;
+    /**
+     * True, if it is a home IP. Data is from Neustar.
+     */
+    homeIndicator?: boolean | null;
+    /**
+     * Day averages for this block of number of .. Currently (May 2011) not filled in. .. active IPs
+     */
+    ipsEstimate?: number | null;
+    /**
+     * ISIC code, data from Neustar.
+     */
+    isicCode?: string | null;
+    /**
+     * Seconds since epoch any data constituting this block last changed. Currently (May 2011) not filled in.
+     */
+    lastChangedS?: number | null;
+    /**
+     * NAICS code, data from Neustar.
+     */
+    naicsCode?: string | null;
+    /**
+     * Data from the NetDB project, see net/ipmap/..., only present when return_netstats is set in the request options.
+     */
+    netstats?: Schema$NetStatsProto;
+    organisationName?: string | null;
+    /**
+     * Neustar's organization_type data.
+     */
+    organizationType?: string | null;
+    /**
+     * Proxy classification of the block. Only present when return_proxy_classification is set in the request options.
+     */
+    proxyClassification?: Schema$ProxyClassificationProto;
+    /**
+     * For historical reasons, the 'ranges' field is repeated, but actually it occurs at most once. If present, the range is a set of consecutive IP addresses to which the IPGeo result (including the information in the IPBlockInfoProto as well as other info in the IPGeoResponseProto / LocationResult) applies. This means that when the netstats are present, this will be the intersection of the range from the ipgeo index with the range from the netstats index; when the proxy classification is present, this will be intersected with the IP range to which the proxy classification applies. Caveat: intersection with HHI (household income) IP range is currently not implemented.
+     */
+    ranges?: Schema$IPRangeProto[];
+    /**
+     * Estimate of the fraction of IPs that get reallocated per day. Currently (May 2011) not filled in.
+     */
+    reallocFracEstimate?: number | null;
+    /**
+     * Routing type, only present if return_organisational is set in the request options. Currently (June 2012) this data is not filled in.
+     */
+    routingtype?: string | null;
+    /**
+     * .. queries
+     */
+    trafficEstimate?: number | null;
+  }
+  export interface Schema$IPRangeProto {
+    /**
+     * A contiguous range [begin, end] of IPv4 or IPv6 addresses in packed binary form. 4 or 16 bytes, big endian
+     */
+    packedIpBegin?: string | null;
+    /**
+     * inclusive
+     */
+    packedIpEnd?: string | null;
   }
   /**
    * Represents a single object that is an item in the search index, such as a file, folder, or a database record.
@@ -2217,6 +2927,819 @@ export namespace cloudsearch_v1 {
     unmappedIdentities?: Schema$UnmappedIdentity[];
   }
   /**
+   * A set of featurelet annotations for an alternate policy.
+   */
+  export interface Schema$LocationExtractorFeatureletAnnotationSet {
+    /**
+     * The featurelet annotations for the alternate policy.
+     */
+    annotations?: string[] | null;
+    /**
+     * The name of the alternate policy.
+     */
+    name?: string | null;
+  }
+  /**
+   * An interpretation is a place on earth, an annotated query s-tree and a 'legend' grouping tokens into terms, and mapping those to the hierarchy of featurelets inside the location. An interpretation is returned as part of the LocationExtractionResponse and not meant to be used directly. Next tag: 15
+   */
+  export interface Schema$LocationExtractorInterpretation {
+    /**
+     * Location on Earth, containing featurelets ordered from most to least specific. These are referred to in the featurelet_index field below. In case of directions queries, this field contains departure location.
+     */
+    location?: Schema$LocationExtractorLocation;
+    /**
+     * serialized s-expr annotated with :loc
+     */
+    query?: string | null;
+    term?: Schema$LocationExtractorInterpretationTerm[];
+  }
+  /**
+   * This group provides details about what we found in the query as a set of non-overlapping 'terms', each referring to a separate political feature. E.g. query of "Pizza near Mt View CA" would (in one of the geocodes) contain two terms: "Mt View" and "CA". All terms are given in left-to-right order. Note that not all featurelets necessarily occur as a term. Some may have been inferred from the political hierarchy. E.g. in the example above there would be a featurelet for the US after the one for "CA".
+   */
+  export interface Schema$LocationExtractorInterpretationTerm {
+    /**
+     * index into location().featurelet() array (above).
+     */
+    featureletIndex?: number | null;
+    /**
+     * 1+last token covered by this term.
+     */
+    tokenEnd?: number | null;
+    /**
+     * These token indexes refer to the non-negated tokens of the query returned by the Interpretation. Note: That means you have to parse the query field with the SqueryParser, use QueryTreeUtils::FindOriginalNonNegatedWordNodes to get the original tokens, and use these 1-based indexes to retrieve the appropriate tokens from the result. You can NOT just split the original raw query on whitespace and use this as an offset. first token covered by this term.
+     */
+    tokenStart?: number | null;
+    /**
+     * Whether this term matched in a language that is "unexpected". For this purpose, expected languages are: request language, languages spoken in request country, English, unknown languages, and languages of the feature's country.
+     */
+    unexpectedLanguageMatch?: boolean | null;
+  }
+  /**
+   * A Location message represents a geographical feature with an associated confidence level. Within a LocationExtractionServerResponse message, this message is used to specify possible locations of the user, and possible locations the user may be interested in. Next tag: 41
+   */
+  export interface Schema$LocationExtractorLocation {
+    /**
+     * Copy of FeatureProto-\>RankDetailsProto-\>address_rank
+     */
+    addressRank?: number | null;
+    /**
+     * Copy of FeatureProto-\>RankDetailsProto-\>area_rank
+     */
+    areaRank?: number | null;
+    boundingbox?: Schema$LocationExtractorLocationBoundingBox;
+    center?: Schema$LocationExtractorLocationCenter;
+    /**
+     * Represents the Location Extraction Server's confidence that this Location is correct.
+     */
+    confidence?: number | null;
+    featurelet?: Schema$LocationExtractorLocationFeaturelet[];
+    /**
+     * Information about an ip block, like range, speed etc.
+     */
+    ipblockinfo?: Schema$IPBlockInfoProto;
+    /**
+     * Copy of FeatureProto-\>RankDetailsProto-\>population_rank
+     */
+    populationRank?: number | null;
+  }
+  /**
+   * Defines the bounding box for the area. The values specify a rectangle defined from low to high. Latitude and longitude (in degrees) x 10,000,000. We use sfixed32 (fixed-size int32) because they get transmitted using 4 bytes while int32 gets transmitted using 10 bytes.
+   */
+  export interface Schema$LocationExtractorLocationBoundingBox {
+    highLatitudeE7?: number | null;
+    highLongitudeE7?: number | null;
+    lowLatitudeE7?: number | null;
+    lowLongitudeE7?: number | null;
+  }
+  /**
+   * Latitude and longitude of the area center (in degrees) x 10,000,000
+   */
+  export interface Schema$LocationExtractorLocationCenter {
+    latitudeE7?: number | null;
+    longitudeE7?: number | null;
+  }
+  /**
+   * A LocationExtractionResponse message represents a response from the Location Extraction Server. If a location and / or area of interest was found, they will be included in the response. Next tag: 8
+   */
+  export interface Schema$LocationExtractorLocationExtractionResponse {
+    /**
+     * The request.max_interpretation() most likely interpretations of the input sexpr or raw_query. The ordering of interpretations is determined by request.scorer().
+     */
+    interpretation?: Schema$LocationExtractorInterpretation[];
+    /**
+     * True if the results are unreliable, for example due to a deadline being broken.
+     */
+    tainted?: boolean | null;
+    /**
+     * Represents the location of the end user, either from the ip or the user_address field in the request. For historical reasons, this is up to 3 separate locations that form a political hierarchy. See location/extractor/client/public/location.h:MergeLocations for a function to merge them into one. NOTE: the user_location does NOT influence the interpretations below. see the remarks about the ip field above. Conversely, this field is the ONLY field that changes depending on ip or user_address input.
+     */
+    userLocation?: Schema$LocationExtractorLocation[];
+  }
+  /**
+   * A location must have one or more Featurelets, each of which correspond to a single GeoStore Feature. The first Featurelet is considered to be the primary component of the location, and any additional Featurelets should be considered supplementary. For example, the Location "Brooklyn" might have Featurelets: 1) Brooklyn (borough) 2) New York (city) 3) New York (state) 4) United States (country) LINT.IfChange
+   */
+  export interface Schema$LocationExtractorLocationFeaturelet {
+    /**
+     * A field to attach additional data about the feature. For example, the location extraction server uses this field to include the ads criteria id of the featurelet if available. As specified by MessageSet, all types within the set must be unique. Using the changelist number where the message was created is a good method of ensuring uniqueness.
+     */
+    additionalData?: Schema$MessageSet;
+    /**
+     * Alternate annotations on this featurelet.
+     */
+    alternateAnnotations?: Schema$LocationExtractorFeatureletAnnotationSet[];
+    /**
+     * Annotations applied to this featurelet. This field is modified by the policy store.
+     */
+    annotations?: string[] | null;
+    /**
+     * Copy of FeatureProto-\>RankDetailsProto-\>area_rank
+     */
+    areaRank?: number | null;
+    boundingbox?: Schema$LocationExtractorLocationFeatureletBoundingBox;
+    center?: Schema$LocationExtractorLocationFeatureletCenter;
+    /**
+     * Represents the Location Extraction Server's confidence that this featurelet is correct. This is currently not populated by LES. Oolong will parse the LES response for IP addreses and combine multiple locations into a single location with multiple featurelets. This confidence will be populated by Oolong by looking into confidences from each of the locations.
+     */
+    confidence?: number | null;
+    /**
+     * This field contains original feature's establishment type if it had one.
+     */
+    establishmentType?: string | null;
+    /**
+     * The GeoStore Feature ID for this feature. This field will be present when the featurelet was derived from or maps to an oyster feature.
+     */
+    featureId?: Schema$GeostoreFeatureIdProto;
+    /**
+     * The reference to an entity in the KnowledgeGraph.
+     */
+    kgReference?: Schema$GeostoreKnowledgeGraphReferenceProto;
+    /**
+     * Each Featurelet includes the list of names that are associated with the corresponding GeoStore Feature.
+     */
+    name?: Schema$GeostoreNameProto[];
+    /**
+     * Copy of FeatureProto-\>RankDetailsProto-\>population_rank
+     */
+    populationRank?: number | null;
+    /**
+     * The GeoStore Feature type.
+     */
+    type?: string | null;
+  }
+  /**
+   * Defines the bounding box for the area. The values specify a rectangle defined from low to high. Latitude and longitude (in degrees) x 10,000,000. We use sfixed32 (fixed size int32) because they get transmitted using 4 bytes while int32 gets transmitted using 10 bytes. This is currently not populated by LES. Oolong will parse the LES response for IP addreses and combine multiple locations into a single location with multiple featurelets. This will be populated by Oolong by looking into bounding boxes from each location.
+   */
+  export interface Schema$LocationExtractorLocationFeatureletBoundingBox {
+    highLatitudeE7?: number | null;
+    highLongitudeE7?: number | null;
+    lowLatitudeE7?: number | null;
+    lowLongitudeE7?: number | null;
+  }
+  /**
+   * Latitude and longitude of the feature center (in degrees) x 10,000,000
+   */
+  export interface Schema$LocationExtractorLocationFeatureletCenter {
+    latitudeE7?: number | null;
+    longitudeE7?: number | null;
+  }
+  /**
+   * Represents a detected activity record. Next id 3.
+   */
+  export interface Schema$LocationUnifiedActivityRecord {
+    /**
+     * The confidence of the detection. Range is [0, 100].
+     */
+    confidence?: number | null;
+    /**
+     * The type of activity.
+     */
+    type?: string | null;
+  }
+  /**
+   * A set of annotations (e.g., those applied by some particular policy). Next tag: 6
+   */
+  export interface Schema$LocationUnifiedAnnotationSet {
+    /**
+     * The annotations that have been applied by some policy.
+     */
+    annotations?: Schema$LocationUnifiedLocationAnnotation[];
+    /**
+     * If set then this set of annotations are originating from this client id for production use.
+     */
+    clientId?: string | null;
+    /**
+     * The name of this set.
+     */
+    name?: string | null;
+    /**
+     * The policy result that corresponds to the alternate policy.
+     */
+    policyResult?: Schema$LocationUnifiedPolicyResult;
+    /**
+     * The source description for this result in the alternate policy.
+     */
+    sourceDescription?: string | null;
+  }
+  export interface Schema$LocationUnifiedExtractorFlags {
+    gwsJurisdictionCountryExtractorEnabled?: boolean | null;
+    hostDomainExtractorEnabled?: boolean | null;
+    ipAlternateExtractorEnabled?: boolean | null;
+    ipExtractorEnabled?: boolean | null;
+    /**
+     * If true, any query found in the request will be included in geocoding and the location context.
+     */
+    queryExtractorEnabled?: boolean | null;
+    uuleCookieExtractorEnabled?: boolean | null;
+    xgeoHeaderExtractorEnabled?: boolean | null;
+  }
+  /**
+   * A copy of //geostore/base/proto/featureid.proto. Because Oolong descriptors are intended to be publicly available, we don't want to depend on other protos. This proto is tag-compatible with the original. Note that this could be used for non-Oyster identifiers if distinguished by some appropriate producer. Otherwise, it is assumed to be an Oyster ID. The code in logs/storage/validator/logs_validator_traits.cc treats this type as if it were annotated as ST_LOCATION.
+   */
+  export interface Schema$LocationUnifiedFeatureIdProto {
+    /**
+     * The S2CellId corresponding to the approximate centroid of this feature.
+     */
+    cellId?: string | null;
+    /**
+     * A 64-bit fingerprint used to distinguish between multiple features at the same location.
+     */
+    fprint?: string | null;
+  }
+  /**
+   * A featurelet in the location result's hierarchy. This references the feature pool for base data (like names and geometry), and contains additional fields that are set by the policy.
+   */
+  export interface Schema$LocationUnifiedFeatureReference {
+    /**
+     * Alternate annotations applied to this featurelet.
+     */
+    alternateAnnotations?: Schema$LocationExtractorFeatureletAnnotationSet[];
+    /**
+     * Annotations applied to this featurelet by the policy store.
+     */
+    annotations?: string[] | null;
+    /**
+     * The confidence that this featurelet is correct.
+     */
+    confidence?: number | null;
+    /**
+     * The feature ID, which is used as key for looking up the featurelet from the LocationContext's feature pool.
+     */
+    featureId?: Schema$GeostoreFeatureIdProto;
+  }
+  /**
+   * A description of the field of view of a camera. Used in conjunction with location and rotation to indicate how much of a scene is being rendered inside the camera.
+   */
+  export interface Schema$LocationUnifiedFieldOfView {
+    /**
+     * Horizontal degrees of view, i.e. the angle between the left and right clipping planes.
+     */
+    fieldOfViewXDegrees?: number | null;
+    /**
+     * Vertical degrees of view, i.e. the angle between the top and bottom clipping planes.
+     */
+    fieldOfViewYDegrees?: number | null;
+    /**
+     * Pixel dimensions of a device screen. This is currently only used by Tactile and should not be used elsewhere without good reason, at which point we would probably rename the field. Pixels are assumed to be square.
+     */
+    screenWidthPixels?: number | null;
+  }
+  export interface Schema$LocationUnifiedInterpretationData {
+    /**
+     * Serialized s-expr annotated with :loc.
+     */
+    query?: string | null;
+    /**
+     * This group provides details about what we found in the query as a set of non-overlapping 'terms', each referring to a separate political feature. E.g. query of "Pizza near Mt View CA" would (in one of the geocodes) contain two terms: "Mt View" and "CA". All terms are given in left-to-right order. Note that not all featurelets necessarily occur as a term. Some may have been inferred from the political hierarchy. E.g. in the example above there would be a featurelet for the US after the one for "CA".
+     */
+    term?: Schema$LocationExtractorInterpretationTerm[];
+  }
+  /**
+   * A latitude and longitude used to describe a point. Units are degrees x 10^7 and rounded to the nearest integer). When used to describe a point, the latitudes should be in the range +/- 90 degrees and the longitude should be in the range +/- 180 degrees (inclusive). LatLng message was also used to describe a span, but it turns out full longitude span (360 degrees * 10^7) does not fit in signed int32. Thus, using LatLng for a span is deprecated. Please use LatLngRect instead. The code in logs/storage/validator/logs_validator_traits.cc treats this type as if it were annotated as ST_LOCATION.
+   */
+  export interface Schema$LocationUnifiedLatLng {
+    latitudeE7?: number | null;
+    longitudeE7?: number | null;
+  }
+  /**
+   * A latitude-longitude rectangle, represented as two diagonally opposite points "lo" and "hi". The rectangle is considered to be a closed region, i.e. it includes its boundary. The latitude bounds must be in the range -90 to 90 degrees inclusive, and the longitude bounds must be in the range -180 to 180 degrees inclusive. Both points must be normalized, with lo.latitude <= hi.latitude. If lo.latitude \> hi.latitude, the latitude range is considered empty and there will be a warning the first 100 times Oolong sees such proto. "lo" point is the lower-left corner and "hi" point is the upper-right corner of the resulting rectangle. Various special cases include: - If lo == hi, the rectangle consists of a single point. - If lo.longitude \> hi.longitude, the longitude range is "inverted" (the rectangle crosses the 180 degree longitude line). - If lo.longitude == -180 degrees and hi.longitude = 180 degrees, the rectangle includes all longitudes. - If lo.longitude = 180 degrees and hi.longitude = -180 degrees, the longitude range is empty. The code in logs/storage/validator/logs_validator_traits.cc treats this type as if it were annotated as ST_LOCATION.
+   */
+  export interface Schema$LocationUnifiedLatLngRect {
+    hi?: Schema$LocationUnifiedLatLng;
+    lo?: Schema$LocationUnifiedLatLng;
+  }
+  /**
+   * Used to distinguish locations within a location context (e.g., indicate those locations selected by a policy).
+   */
+  export interface Schema$LocationUnifiedLocationAnnotation {
+    /**
+     * Optional debug information associated with this annotation. For human consumption only.
+     */
+    details?: string | null;
+    /**
+     * Indicates the purpose of this annotation.
+     */
+    type?: string | null;
+  }
+  /**
+   * Supplemental attributes for a location that may affect search results. Next Id: 24
+   */
+  export interface Schema$LocationUnifiedLocationAttributesProto {
+    /**
+     * The user detected activity.
+     */
+    activityRecord?: Schema$LocationUnifiedActivityRecord[];
+    /**
+     * Confidence for use in ads. Might be different from the confidence in the descriptor. Currently only used for locations with producer TRAVEL_STATE_INTENT.
+     */
+    adsConfidence?: number | null;
+    /**
+     * Altitude in meters, from ground level.
+     */
+    altitudeMetersFromGround?: number | null;
+    /**
+     * The accuracy of bearing in degrees, based on GMS Core calculations on two latest location points. The actual bearing should be within bearing_degrees ± bearing_accuracy_degrees.
+     */
+    bearingAccuracyDegrees?: number | null;
+    /**
+     * The direction in degrees in which the client device was moving. Must be in the range 0 to 359. 0 represents north and 90 is east.
+     */
+    bearingDegrees?: number | null;
+    /**
+     * An opaque token to represent a transit vehicle that a user is riding. This field is always server generated and encoding scheme is determined by the server. Currently, Tactile's local encoding (web-safe base64 prefixed by "B") is used.
+     */
+    boardedTransitVehicleToken?: string | null;
+    carrierIpType?: string | null;
+    /**
+     * FOR OOLONG INTERNAL USE ONLY! TODO(b/142046202) Migrate this field outside of Location Descriptor. Ratio of device location versus other signals that we have for this user. Note that this is a per-user attribute, not a per-location attribute.
+     */
+    deviceLocationRatio?: number | null;
+    /**
+     * The field of view of a camera.
+     */
+    fieldOfView?: Schema$LocationUnifiedFieldOfView;
+    /**
+     * The direction in degrees in which the client device was pointed. Must be in the range 0 to 359. 0 represents north and 90 is east.
+     */
+    headingDegrees?: number | null;
+    inference?: string | null;
+    ipRangeConfidence?: number | null;
+    manualEntry?: string | null;
+    /**
+     * FOR OOLONG INTERNAL USE ONLY! TODO(b/142046202) Migrate this field outside of Location Descriptor. Additional Oolong-specific attributes of the location.
+     */
+    personalizedLocationAttributes?: Schema$LocationUnifiedPersonalizedLocationAttributes;
+    /**
+     * FOR OOLONG INTERNAL USE ONLY! TODO(b/142046202) Migrate this field outside of Location Descriptor. Total number of locations (across all events) used in PLM inference.
+     */
+    plmSourceLocationCount?: number | null;
+    plmType?: string | null;
+    /**
+     * Clockwise rotation around the line of sight (i.e. vector (0, 0, -1) in Eye Coords). Zero means that y points up in Screen Coords; 180 gives an upside down view, where y points down in Screen Coords. Allowed range is [0, 360). For out-of-range values, the behavior is undefined.
+     */
+    rollDegrees?: number | null;
+    /**
+     * The accuracy of the speed in kilometers per hour, meaning that the actual speed should be within speed_kph ± speed_accuracy_kph.
+     */
+    speedAccuracyKph?: number | null;
+    /**
+     * The speed in kilometers per hour at which the client device was moving.
+     */
+    speedKph?: number | null;
+    /**
+     * Rotation where zero points down, 180 points up and 90 points to horizon. Allowed range is [0, 180]. For out-of-range values, the behavior is undefined.
+     */
+    tiltDegrees?: number | null;
+    viewportSearchOptions?: string | null;
+    weekSecondConfidence?: number | null;
+  }
+  /**
+   * A container for passing and processing the set of locations associated with a particular request. Next available tag: 11
+   */
+  export interface Schema$LocationUnifiedLocationContext {
+    /**
+     * The client ID that was used for annotating this location context (if any). This field is set accordingly by the policy annotation.
+     */
+    clientId?: string | null;
+    /**
+     * Flags to customize the extractors used to build this location context.
+     */
+    extractorFlags?: Schema$LocationUnifiedExtractorFlags;
+    /**
+     * The feature pool used in the location results. This is a map from feature ID to feature data, but since the feature ID is part of the Featurelet data, just a repeated field enumerating them is enough.
+     */
+    featurePool?: Schema$LocationUnifiedOolongFeature[];
+    /**
+     * True if the location context originates from the Hulk Realtime plugin in GWS: go/hulk-realtime-in-search-ads.
+     */
+    fromHulkRealtime?: boolean | null;
+    /**
+     * If true, only a selected list of descriptors will be added to this context by the standard library functions. This is so that debug parameters can be used to override the context reliably. The descriptors that can be added is determined by the lock_strategy enum. Note that policies may override and ignore this flag altogether.
+     */
+    lockedForDebug?: boolean | null;
+    /**
+     * If true, the location context should be kept as is, no policy should modify it, except for: setting the client id and adding qref location.
+     */
+    lockedForPolicy?: boolean | null;
+    /**
+     * Defines which roles/producers can be added/edit for the context. This field is used only when locked_for_debug flag is set.
+     */
+    lockStrategy?: string | null;
+    nonstandardData?: Schema$MessageSet;
+    /**
+     * Information about the origin of the location context. This is used to validate that the location context was created through a valid means, which is Oolong. DO NOT SET THIS FIELD YOURSELF. In fact, do not construct location contexts yourself.
+     */
+    origin?: Schema$LocationUnifiedLocationContextOrigin;
+    results?: Schema$LocationUnifiedLocationResult[];
+  }
+  /**
+   * This message stores information about how a location context was created. It is restricted in visibility to Oolong code only, so that it provides a way to easily identify location contexts that have been created from external code. (Which should NOT be done ever.) Next ID: 3
+   */
+  export interface Schema$LocationUnifiedLocationContextOrigin {
+    /**
+     * Sequence of Dejitter modifications applied to the associated LocationContext. For monitoring and debugging use only; it should be safe to remove or change the contents of this field at any time.
+     */
+    dejitterModifications?: string[] | null;
+    /**
+     * The origin of the LocationContext. May be updated by restricted Oolong libraries that modify the LocationContext after it was returned. Some Apps Framework services use this in their location propagation logic to decide whether a LocationContext is suitable for propagating to backends.
+     */
+    type?: string | null;
+  }
+  /**
+   * A LocationDescriptor is the minimal specification of a location together with its role and producer. The location "payload" can be specified by a variety of means (e.g., an address, an ip address, GPS coordinates, etc.) but only a single means should be used. DO NOT COMBINE MULTIPLE SPECIFICATIONS INTO A SINGLE DESCRIPTOR (e.g., a freeform street address and lat/long together). Next Id: 27
+   */
+  export interface Schema$LocationUnifiedLocationDescriptor {
+    /**
+     * A 128-bit feature consisting of an S2Cell and a unique feature identifier. Should be unused outside of the internal applications by the Oolong team.
+     */
+    additionalFeatureId?: Schema$LocationUnifiedFeatureIdProto;
+    /**
+     * Supplemental attributes for a location that are not related to geocoding, but still may affect search results.
+     */
+    attributes?: Schema$LocationUnifiedLocationAttributesProto;
+    /**
+     * A confidence measure. Percentage: must be 0 to 100.
+     */
+    confidence?: number | null;
+    /**
+     * WARNING: Do not use this field without talking to the oolong-team@ first. It should never contain any Personal Identification Information (PII). You can use this field to provide diagnostic information about the location extraction code. Some examples could include the latency of getting the location, the fact that it was retrieved from the cache or not, the reason for not providing the location, software version (if that cannot be used to identify the user). Make sure to prepare a PDD that describes what is stored in this field for your project before using the field.
+     */
+    diagnosticInfo?: string | null;
+    /**
+     * A 128-bit feature consisting of an S2Cell and a unique feature identifier.
+     */
+    featureId?: Schema$LocationUnifiedFeatureIdProto;
+    /**
+     * This field is intended for recording the producer of a historical location. It will be populated for a descriptor with role HISTORICAL_LOCATION, using the producer of the original descriptor. To enable location history to be sent via an untrusted source to a frontend, you should make sure that the historical_role-historical_producer pair of the descriptor also appears on the untrusted allowlist used by the frontend.
+     */
+    historicalProducer?: string | null;
+    /**
+     * This field is intended for recording frequency of historical location usage. Do not use it unless you know the historical producer intention for this field. DEPRECATED: This is no longer used or populated.
+     */
+    historicalProminence?: number | null;
+    /**
+     * This field is intended for recording the role of a historical location. It will be populated for a descriptor with role HISTORICAL_LOCATION, using the role of the original descriptor. To enable location history to be sent via an untrusted source to a frontend, you should make sure that the historical_role-historical_producer pair of the descriptor also appears on the untrusted allowlist used by the frontend.
+     */
+    historicalRole?: string | null;
+    /**
+     * The language used previously for query geocoding, set to the frontend language of the user during extraction. DO NOT USE THIS TO GET A USER'S LANGUAGE. INSTEAD, GET THE LANGUAGE FROM THE FrontendRequest OR THROUGH ANOTHER API! THIS FIELD WILL GO AWAY.
+     */
+    language?: string | null;
+    /**
+     * A latitude and longitude used to describe this location as a point.
+     */
+    latlng?: Schema$LocationUnifiedLatLng;
+    /**
+     * The span of a bounding box whose center is latlng. Specifies the lengths of the sides of the box and is valid only if latlng is present. DEPRECATED(6/6/2012): b/5979511. Use 'rect' instead.
+     */
+    latlngSpan?: Schema$LocationUnifiedLatLng;
+    /**
+     * A 128-bit feature ID for the (indoor) level/floor of this location. If present, the floor supplements other location attributes in this descriptor. For example, in shopping malls it is quite common that one store occupies rooms on multiple levels, connected with escalators. The user can be at the exact same lat/lng and at the same GAP store, but on different levels.
+     */
+    levelFeatureId?: Schema$LocationUnifiedFeatureIdProto;
+    /**
+     * The number of this location's level relative to the ground floor. 0 means ground floor; -2 is two levels below ground; +0.5 is a mezzanine.
+     */
+    levelNumber?: number | null;
+    /**
+     * A string containing the location payload. The format of this string may depend on the producer but it should be otherwise be treated like a freeform, human-readable string (a query, a street address, city name, postal code, district name, country, etc.). Other, producer-specific formats include IP address, host domain, and squery. time zone. Note that for some producers there is no guarantee that the string contains a valid location (e.g., a query for [pizza]).
+     */
+    loc?: string | null;
+    /**
+     * A 64-bit machine identifier of a geo feature in Freebase.
+     */
+    mid?: string | null;
+    /**
+     * The granularity of the location permissions that was present to get the device location that this location descriptor represents. Only relevant for device locations.
+     */
+    permissionGranularity?: string | null;
+    /**
+     * The presence intervals associated with the location. Required for FUTURE_LOCATION signals. This field should not be logged anywhere.
+     */
+    presenceInterval?: Schema$LocationUnifiedPresenceInterval[];
+    /**
+     * The producer of this location.
+     */
+    producer?: string | null;
+    /**
+     * Extra information about how this descriptor was obtained. Provenance is intended for logging non-semantic details about a descriptor (e.g., whether it was passed using a particular parameter or stored in a particular backend). It should *never* be used as a criterion for selection by a policy or backend (use role/producer instead). This is for bookkeeping only. You don't want this field. Really.
+     */
+    provenance?: string | null;
+    /**
+     * The radius within which one standard deviation (or 68%) of possible locations lie, assuming a normal distribution around latlng. This radius is normally seen in the UI of mobile maps as the blue 'accuracy circle', although the interpretation (e.g. 1sd or 2sd) may vary by platform. Units must be in mm.
+     */
+    radius?: number | null;
+    /**
+     * A viewport or bounds depending on role/producer. For example, when role is VIEWPORT this field represents a viewport. 'latlng' and 'rect' are mutually exclusive.
+     */
+    rect?: Schema$LocationUnifiedLatLngRect;
+    /**
+     * The role of this location.
+     */
+    role?: string | null;
+    /**
+     * Some producers may additionally specify semantics explaining the meaning of a location, in particular to differentiate several locations with the same producer.
+     */
+    semantic?: string[] | null;
+    /**
+     * If there are multiple semantic places, then the first place is the finest, then come the parent hierarchy. This field should not be logged anywhere.
+     */
+    semanticPlace?: Schema$LocationUnifiedSemanticPlace[];
+    /**
+     * A timestamp associated with this location expressed as the number of microseconds since 00:00:00 Jan-1-1970 UTC. If not set, assumed to be "now" or irrelevant. Use this field to indicate when this location has been acquired (e.g. by requesting location from the device).
+     */
+    timestamp?: string | null;
+    /**
+     * A list of visible networks that describe the location and can geocoded by GLS. This field should not be logged anywhere.
+     */
+    visibleNetwork?: Schema$LocationUnifiedVisibleNetwork[];
+  }
+  /**
+   * All information about a single location within a context. This includes the descriptor, which can be thought of as a kind of "query" that minimally specifies the location, and rest (i.e., geocoding data, policy annotations, etc.). A LocationResult typically starts with just a descriptor and the rest is added later via lookups. If necessary, persistent locations can be stored as a pre-geocoded LocationResult to avoid the extra work. Next Available Tag: 14
+   */
+  export interface Schema$LocationUnifiedLocationResult {
+    /**
+     * Additional sets of annotations from other oolong policies.
+     */
+    alternateAnnotations?: Schema$LocationUnifiedAnnotationSet[];
+    /**
+     * The annotations that have been applied to this result for use in production.
+     */
+    annotations?: Schema$LocationUnifiedLocationAnnotation[];
+    /**
+     * Information about whether the feature hierarchy contains default-blocked features.
+     */
+    defaultBlockingData?: Schema$DefaultBlockingDataProto;
+    /**
+     * The descriptor for this result. Once added, descriptors should be considered immutable. Any additional information should be included elsewhere in the result.
+     */
+    desc?: Schema$LocationUnifiedLocationDescriptor;
+    /**
+     * Flag to indicate this result has human-readable names for display.
+     */
+    displayable?: boolean | null;
+    extraData?: Schema$LocationUnifiedLocationResultExtraData;
+    /**
+     * The feature hierarchy for this location result, if using the new feature-pool format instead of les_response.
+     */
+    featureRefs?: Schema$LocationUnifiedFeatureReference[];
+    /**
+     * True indicates that this result has geographical information like a lat/long, bounding box, etc.). The minimum is a lat/long. False only indicates that no such data is present and does NOT explain the reason (e.g., geocoding hasn't been attempted, geocoding timed out, the descriptor does not refer to a location, etc.).
+     */
+    geocoded?: boolean | null;
+    /**
+     * Explains the specific reason for the value of the geocoded field, if any. This can be used to determine whether a descriptor needs to be geocoded. Used for making runtime decisions about whether to attempt geocoding.
+     */
+    geocodingReason?: string | null;
+    /**
+     * WARNING: Do not reference this field directly check go/oolong-usage on how to access the values present in this proto or contact oolong-team@google.com if you don't see what you need.
+     */
+    lesResponse?: Schema$LocationExtractorLocationExtractionResponse;
+    /**
+     * Allow pipelines to associate arbitrary data (e.g., specialized geo identifiers) with a result. Chiefly intended to pass custom data around backends after standard geocoding and policy execution. Oolong libraries will generally ignore such data but may strip it to guard against cache fragmentation. Using this to pass data from frontends to backends before geocoding is not recommended and at your own risk. This field will carry AnonymizedBounds data which will be used for logging purposes.
+     */
+    nonstandardData?: Schema$MessageSet;
+    /**
+     * Result data computed by the policy annotation.
+     */
+    policyResult?: Schema$LocationUnifiedPolicyResult;
+    /**
+     * Enum describing what this result was based on (e.g. location reported by the end user's phone). Present only if the LocationContext was produced by OolongService and this result has the USFUL annotation.
+     */
+    sourceDescription?: string | null;
+  }
+  /**
+   * Includes data that is included only for small subset of results. Next Available Tag: 4
+   */
+  export interface Schema$LocationUnifiedLocationResultExtraData {
+    /**
+     * Result caused a feature diff
+     */
+    featureDiff?: boolean | null;
+    /**
+     * For query results.
+     */
+    interpretationData?: Schema$LocationUnifiedInterpretationData;
+    /**
+     * Information about an ip block, like range, speed etc. This could be the only thing present in an empty result.
+     */
+    ipblockinfo?: Schema$IPBlockInfoProto;
+  }
+  /**
+   * A featurelet corresponds to a single Mapfacts feature. These messages contain only the base data, without anything added by the Oolong policy (like trimming annotations or confidences). Next available tag: 11 LINT.IfChange
+   */
+  export interface Schema$LocationUnifiedOolongFeature {
+    /**
+     * A field to attach additional data about the feature. For example, the location extraction server uses this field to include the ads criteria id of the featurelet if available. As specified by MessageSet, all types within the set must be unique. Using the changelist number where the message was created is a good method of ensuring uniqueness.
+     */
+    additionalData?: Schema$MessageSet;
+    /**
+     * Copy of FeatureProto-\>RankDetailsProto-\>area_rank
+     */
+    areaRank?: number | null;
+    /**
+     * Latitude and longitude of the feature center.
+     */
+    center?: Schema$GeostorePointProto;
+    /**
+     * This field contains original feature's establishment type if it had one.
+     */
+    establishmentType?: string | null;
+    /**
+     * The GeoStore Feature ID for this feature. This value is also used as key into the feature pool from FeatureReference's.
+     */
+    featureId?: Schema$GeostoreFeatureIdProto;
+    /**
+     * The reference to an entity in the KnowledgeGraph.
+     */
+    kgReference?: Schema$GeostoreKnowledgeGraphReferenceProto;
+    /**
+     * Each Featurelet includes the list of names that are associated with the corresponding GeoStore Feature.
+     */
+    name?: Schema$GeostoreNameProto[];
+    /**
+     * Copy of FeatureProto-\>RankDetailsProto-\>population_rank
+     */
+    populationRank?: number | null;
+    /**
+     * The bounding box of this feature.
+     */
+    rect?: Schema$GeostoreRectProto;
+    /**
+     * The GeoStore Feature type.
+     */
+    type?: string | null;
+  }
+  /**
+   * *************************************************************************** PROTO BELOW IS FOR INTERNAL USE ONLY. IT MAY CHANGE WITHOUT NOTICE, SO EVERYONE OUTSIDE OF oolong-team@ IS STRONGLY DISCOURAGED FROM USING IT. CODE STILL DOING SO WILL BE BROKEN WITHOUT NOTICE. *************************************************************************** Internal Oolong-specific personalized location attributes. Next Id: 11.
+   */
+  export interface Schema$LocationUnifiedPersonalizedLocationAttributes {
+    /**
+     * Number of days the location was supported by any 'physical presence'-like or 'explicit-interest'-like location.
+     */
+    anySupportingDays?: number | null;
+    /**
+     * Binary mask representing "explicit-interest" daily visits in the location. EVAL-ONLY, NEVER POPULATED IN PRODUCTION OR LOGS.
+     */
+    eiDailyVisits?: number | null;
+    /**
+     * Binary mask representing "physical-presence" daily visits in the location. EVAL-ONLY, NEVER POPULATED IN PRODUCTION OR LOGS.
+     */
+    ppDailyVisits?: number | null;
+    /**
+     * Number of days the location was supported by any 'physical presence'-like location.
+     */
+    ppSupportingDays?: number | null;
+    /**
+     * Number of weeks the location was supported by any 'physical presence'-like location.
+     */
+    ppSupportingWeeks?: number | null;
+    /**
+     * IP ranges that the location was supported by.
+     */
+    supportingPackedIpRanges?: string[] | null;
+  }
+  /**
+   * PolicyResult contains all the data that is computed based on the classifier policy for a location.
+   */
+  export interface Schema$LocationUnifiedPolicyResult {
+    confidenceRects?: Schema$LocationUnifiedPolicyResultConfidenceRect[];
+  }
+  export interface Schema$LocationUnifiedPolicyResultConfidenceRect {
+    /**
+     * Confidence in the range [0, 100].
+     */
+    confidence?: number | null;
+    /**
+     * The bounding box that we believe is certain with probability given by confidence.
+     */
+    rect?: Schema$LocationUnifiedLatLngRect;
+  }
+  /**
+   * Next ID: 4.
+   */
+  export interface Schema$LocationUnifiedPresenceInterval {
+    /**
+     * Probability of presence as a percentage in [0, 100].
+     */
+    confidence?: number | null;
+    /**
+     * Interval duration in seconds.
+     */
+    durationSec?: string | null;
+    /**
+     * Start of the interval as the number of seconds from the time of the location.
+     */
+    startOffsetSec?: string | null;
+  }
+  /**
+   * Semantic location information from HULK Next Id: 6
+   */
+  export interface Schema$LocationUnifiedSemanticPlace {
+    confidence?: string | null;
+    /**
+     * The feature id of the semantic location POI
+     */
+    featureId?: Schema$LocationUnifiedFeatureIdProto;
+    /**
+     * Geo Ontology GConcept Instances of the semantic location
+     */
+    gconceptInstance?: Schema$LocationUnifiedSemanticPlaceGConceptInstanceProto[];
+    /**
+     * The probability the user is at this place in [0 100].
+     */
+    score?: number | null;
+    source?: string | null;
+  }
+  /**
+   * A GConceptInstance (gcid), copied from geostore.GConceptInstanceProto. Copy is needed because - LocationDescriptor is used publicly, therefore should not have internal dependencies. - GConceptInstanceProto uses js_proto build rules which are incompatible with closure_js_proto_library rules.
+   */
+  export interface Schema$LocationUnifiedSemanticPlaceGConceptInstanceProto {
+    gconceptId?: string | null;
+    prominence?: string | null;
+  }
+  /**
+   * VisibleNetwork describes a location by providing the details of one of the networks visible at that location. GLS can be used to geocode a set of VisibleNetworks into a location, as explained in go/gls-in-gws. Currently only WiFi and cell networks are supported, but the message could be extended to support additional network types (e.g. bluetooth beacons, etc) in the future. Next Id: 5
+   */
+  export interface Schema$LocationUnifiedVisibleNetwork {
+    cell?: Schema$LocationUnifiedVisibleNetworkCell;
+    /**
+     * True if the user's device is currently connected to the network.
+     */
+    connected?: boolean | null;
+    /**
+     * The timestamp of this network. That is when this network was detected, expressed as the number of milliseconds since unix epoch. If not set, assumed to be "now" or irrelevant.
+     */
+    timestampMs?: string | null;
+    wifi?: Schema$LocationUnifiedVisibleNetworkWiFi;
+  }
+  /**
+   * Definition derived from https://developers.google.com/maps/documentation/geolocation/intro#cell_tower_object Next Id: 9
+   */
+  export interface Schema$LocationUnifiedVisibleNetworkCell {
+    /**
+     * For GSM, LTE and WCDMA networks, this field holds the cell ID of the network. For CDMA networks, this field holds the base station ID of the network.
+     */
+    cellId?: number | null;
+    /**
+     * For GSM and WCDMA networks, this field holds the location area code of the network. For LTE networks, this field used to hold the tracking area code of the network, but this usage has been deprecated, and that value should now be provided through tracking_area_code. For CDMA networks, this field holds the network ID of the network.
+     */
+    locationAreaCode?: number | null;
+    /**
+     * The mobile country code of the network.
+     */
+    mobileCountryCode?: number | null;
+    /**
+     * The mobile network code of the network.
+     */
+    mobileNetworkCode?: number | null;
+    /**
+     * Only set for LTE networks for which this field holds the physical cell ID.
+     */
+    physicalCellId?: number | null;
+    /**
+     * Only set for WCDMA networks for which this field holds the primary scrambling code of the network.
+     */
+    primaryScramblingCode?: number | null;
+    /**
+     * Only set for LTE networks for which this field holds the tracking area code.
+     */
+    trackingAreaCode?: number | null;
+    type?: string | null;
+  }
+  /**
+   * Definition derived from https://developers.google.com/maps/documentation/geolocation/intro#wifi_access_point_object Next Id: 3
+   */
+  export interface Schema$LocationUnifiedVisibleNetworkWiFi {
+    /**
+     * The BSSID of the network (i.e. MAC address of the access point).
+     */
+    bssid?: string | null;
+    /**
+     * The signal level of the network in dBm (RSSI).
+     */
+    levelDbm?: number | null;
+  }
+  /**
    * Geo information used for rendering a map that shows the user's work location.
    */
   export interface Schema$MapInfo {
@@ -2280,6 +3803,10 @@ export namespace cloudsearch_v1 {
      */
     resourceName?: string | null;
   }
+  /**
+   * This is proto2's version of MessageSet.
+   */
+  export interface Schema$MessageSet {}
   /**
    * Metadata of a matched search result.
    */
@@ -2356,6 +3883,12 @@ export namespace cloudsearch_v1 {
     objectValues?: Schema$ObjectValues;
     textValues?: Schema$TextValues;
     timestampValues?: Schema$TimestampValues;
+  }
+  export interface Schema$NetStatsProto {
+    bandaidBandwidthKbps?: Schema$BandWidthRangeKbps;
+    bandwidthKbps?: number | null;
+    gfeBandwidthKbps?: Schema$BandWidthRangeKbps;
+    videostatsBandwidthKbps?: Schema$BandWidthRangeKbps;
   }
   /**
    * The definition for an object within a data source.
@@ -2443,6 +3976,19 @@ export namespace cloudsearch_v1 {
      * The normal, successful response of the operation. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
      */
     response?: {[key: string]: any} | null;
+  }
+  /**
+   * The status and eligibility information for a single feature.
+   */
+  export interface Schema$OptInStatus {
+    /**
+     * If the user is ineligible, they should not be opted in!
+     */
+    eligibility?: string | null;
+    /**
+     * If the user is ineligible, they should not be opted in!
+     */
+    optedIn?: boolean | null;
   }
   export interface Schema$PeoplePromotionCard {
     people?: Schema$PersonCore[];
@@ -2698,6 +4244,12 @@ export namespace cloudsearch_v1 {
     fieldViolations?: Schema$FieldViolation[];
   }
   /**
+   * prominent_entity(ies) field encodes the main subject(entities) which the client wants to bias the query into. For a Mini-App, it'll be the main entities in the current Mini-App page. It provides finer-granularity contexts on top of the “mode” field. Note that when QueryBiasingContext is passed to server through ClientDiscourseContext, the prominent_entity should NOT be set and the corresponding information will be merged from ClientDiscourseContext.entity field at the server side.
+   */
+  export interface Schema$ProminentEntity {
+    mid?: string | null;
+  }
+  /**
    * The definition of a property within an object.
    */
   export interface Schema$PropertyDefinition {
@@ -2751,6 +4303,26 @@ export namespace cloudsearch_v1 {
      * The user friendly label for the property that is used if the property is specified to be displayed in ObjectDisplayOptions. If provided, the display label is shown in front of the property values when the property is part of the object display options. For example, if the property value is '1', the value by itself may not be useful context for the user. If the display name given was 'priority', then the user sees 'priority : 1' in the search results which provides clear context to search users. This is OPTIONAL; if not given, only the property values are displayed. The maximum length is 64 characters.
      */
     displayLabel?: string | null;
+  }
+  /**
+   * The enums in ProxyClassificationProto have the same values as in Neustar's data, plus a NONE value, corresponding to empty value in the Neustar's data. See Neustar's IP Intelligence GeoPoint Data Glossary (https://ipintelligence.neustar.biz/portal/home#downloads) for a more detailed description of the meaning of the values. In the data as of January 2016, if the IP address is classified as a proxy, the four fields anonymizer_status, proxy_type, proxy_level and proxy_last_detected_s are all present and set to a value different from NONE; otherwise the enum fields are not set or set to the corresponding NONE constant and proxy_last_detected_s is not set.
+   */
+  export interface Schema$ProxyClassificationProto {
+    /**
+     * WARNING: these fields are coming from a third party. Please consider using only privacy_proxy_operator. Before adding any new usage of this data, please talk to zszami@ and ipgeo-team@.
+     */
+    anonymizerStatus?: string | null;
+    hostingFacility?: boolean | null;
+    /**
+     * Operator of a privacy proxy, e.g. Google One (PPN) or Apple Private Relay. Mapping maintained by Google, does not include data from Neustar. If in doubt, use privacy_proxy_operator == NONE and != NONE to check for privacy proxies.
+     */
+    privacyProxyOperator?: string | null;
+    /**
+     * In seconds since the Epoch.
+     */
+    proxyLastDetectedS?: string | null;
+    proxyLevel?: string | null;
+    proxyType?: string | null;
   }
   /**
    * Represents an item to be pushed to the indexing queue.
@@ -2807,6 +4379,16 @@ export namespace cloudsearch_v1 {
      * User input query to be logged/removed.
      */
     query?: string | null;
+  }
+  /**
+   * The message encapsulates the relevant query biasing contexts from a particular client, e.g. an individual Mini-App or an individual Mini-App page. Next id: 3
+   */
+  export interface Schema$QueryBiasingContext {
+    /**
+     * Specifies the mode to bias the queries from the client into. The mode value should be coming from the Mode enum.
+     */
+    mode?: number | null;
+    prominentEntity?: Schema$ProminentEntity[];
   }
   export interface Schema$QueryCountByStatus {
     count?: string | null;
@@ -3488,6 +5070,16 @@ export namespace cloudsearch_v1 {
      */
     suggestionType?: string | null;
   }
+  export interface Schema$StarlightConsistency {
+    /**
+     * Optional, data-source specific, data to help achieve consistency.
+     */
+    consistency?: Schema$MessageSet;
+    /**
+     * Timestamp of last write operation. By setting this value, a client requests to trigger a new fresh data acquisition if the fresh model is older than this timestamp.
+     */
+    timestampSec?: number | null;
+  }
   /**
    * Start upload file request.
    */
@@ -3537,6 +5129,19 @@ export namespace cloudsearch_v1 {
     person?: Schema$Person;
   }
   /**
+   * Representation of user history for personal reranking. Debug only. Can be used for: 1) Manually entering the field to Suggest http debug GUI. 2) Sending protobuf using stubby tool. 3) Unit tests. 4) Offline analysis. Next ID to use: 3.
+   */
+  export interface Schema$SuggestPersonalRerankDebugInfo {
+    /**
+     * Can be used to store additional user history.
+     */
+    additionalInfo?: Schema$MessageSet;
+    /**
+     * The first query is considered to be the most recent query.
+     */
+    userHistory?: string[] | null;
+  }
+  /**
    * Request of suggest API.
    */
   export interface Schema$SuggestRequest {
@@ -3554,6 +5159,40 @@ export namespace cloudsearch_v1 {
     requestOptions?: Schema$RequestOptions;
   }
   /**
+   * Next ID to use: 13.
+   */
+  export interface Schema$SuggestRequestDebugOptions {
+    /**
+     * Whether to add the subtype to the suggestion so it can be displayed in a side-by-side
+     */
+    annotateWithSubtype?: boolean | null;
+    /**
+     * Whether to enable debug info in SuggestResults.
+     */
+    debug?: boolean | null;
+    disableBadwordFiltering?: boolean | null;
+    /**
+     * Whether to disable the hybrid cache.
+     */
+    disableHybridCache?: boolean | null;
+    disableKesemFiltering?: boolean | null;
+    /**
+     * Whether to pull personal data from Starlight like Anima profile data for personal SxS eval.
+     */
+    enableGetDataFromStarlightForPersonalSxs?: boolean | null;
+    /**
+     * Whether to add the user gaia_id to the request, so it can return personal suggestions.
+     */
+    enablePersonal?: boolean | null;
+    freshMode?: string | null;
+    /**
+     * Number of results to return. If 0, this options is ignored. Is NOT subject to the upper bound limit controlled by num_results_limit_max_override flag
+     */
+    numResults?: number | null;
+    sxs?: boolean | null;
+    trace?: string | null;
+  }
+  /**
    * Response of the suggest API.
    */
   export interface Schema$SuggestResponse {
@@ -3561,6 +5200,16 @@ export namespace cloudsearch_v1 {
      * List of suggestions.
      */
     suggestResults?: Schema$SuggestResult[];
+  }
+  export interface Schema$SuggestRestrict {
+    /**
+     * Name of the restrict, e.g. lang.
+     */
+    name?: string | null;
+    /**
+     * Restrict value.
+     */
+    value?: string | null;
   }
   /**
    * One suggestion result.
@@ -3582,6 +5231,367 @@ export namespace cloudsearch_v1 {
      * The suggested query that will be used for search, when the user clicks on the suggestion
      */
     suggestedQuery?: string | null;
+  }
+  /**
+   * Protos for the stubby interface. Next IDs to use: 37, 38, 39, 40, 43, 44, 46, 47, 48, 71, 77, 100.
+   */
+  export interface Schema$SuggestSuggestRequest {
+    requestdata?: Schema$SuggestSuggestRequestRequestData[];
+  }
+  /**
+   * A suggest request can ask for completions for one query only. For multiple request data an error is returned. Next IDs to use: 135.
+   */
+  export interface Schema$SuggestSuggestRequestRequestData {
+    /**
+     * Number of sequentially added characters after a sequential deletion.
+     */
+    addedCharacterCount?: number | null;
+    /**
+     * Enable calculator. Turning this field on will cause Complete Server to fill the SuggestResults.CalculatorSuggestion string field and it instead disables all the oneboxes (in SuggestResults.CompleteSuggestion.info), including the calculator onebox. Clients that are capable of rendering oneboxes should use the onebox calculator (and should leave this field turned off). When not specified, the default value of this field depends on the client. See suggestflow_state.cc: CommonInit().
+     */
+    calc?: boolean | null;
+    /**
+     * City location ID.
+     */
+    cityId?: number | null;
+    /**
+     * The name of the requesting client (firefox, chrome, etc.).
+     */
+    client?: string | null;
+    /**
+     * The client instance ID provided by AGSA. See http://go/client-instance-id
+     */
+    clientInstanceId?: string | null;
+    clientThumbnailDimensions?: Schema$SuggestSuggestRequestRequestDataClientThumbnailDimensions;
+    /**
+     * Enable completion.
+     */
+    complete?: boolean | null;
+    /**
+     * Allow sending read-after-write consistency data to Starlight.
+     */
+    consistency?: Schema$StarlightConsistency;
+    /**
+     * Repeated list of URLs that we use to trigger context based suggestions (currently zero-prefix).
+     */
+    contextUrls?: string[] | null;
+    /**
+     * cookie_init_time is typically set by GoogleCookie::initial_time()
+     */
+    cookieInitTime?: number | null;
+    /**
+     * Requested country (us, uk, jp, cn, etc.).
+     */
+    country?: string | null;
+    /**
+     * Country as determined by GeoIP.
+     */
+    countryByIp?: string | null;
+    /**
+     * Cursor position (for result-page requests).
+     */
+    cp?: number | null;
+    /**
+     * The dasher domain of the searcher.
+     */
+    dasherDomain?: string | null;
+    /**
+     * Enable debug output.
+     */
+    debug?: boolean | null;
+    debugOptions?: Schema$SuggestRequestDebugOptions;
+    /**
+     * Any sequentially deleted characters after the cursor position.
+     */
+    deletedCharacters?: string | null;
+    /**
+     * Whether to run in Infinite Suggest mode.
+     */
+    DEPRECATEDInfiniteSuggest?: boolean | null;
+    deviceOsVersion?: string | null;
+    /**
+     * Requested dataset (i, m, yt, etc.).
+     */
+    ds?: string | null;
+    /**
+     * Whether to enable Visual Suggest. (Currently used for YouTube Suggest) Clients can opt to disable Visual Suggest based on current device specs and network conditions.
+     */
+    enableVisualSuggest?: boolean | null;
+    /**
+     * Experiment ID.
+     */
+    expid?: string | null;
+    /**
+     * Define the way to read data from the location context.
+     */
+    forceUserLocation?: boolean | null;
+    /**
+     * Parameter frozen_clock in microseconds passed by SXS eval. This will be used as random number generator bit for consistent randomization for SXS tests.
+     */
+    frozenClock?: string | null;
+    /**
+     * Gaia ID for personal suggestions. Format is that of http://displayserver.corp.google.com/ Use ParseLeadingHex64Value in numbers.h to convert to an uint64
+     */
+    gaiaId?: string | null;
+    /**
+     * Hour of the week (UTC).
+     */
+    hourOfTheWeek?: number | null;
+    /**
+     * For each completion, annotate with: https://cs.corp.google.com/#piper///depot/google3/suggest/base/ answer.proto&l=15&rcl=53295698&pv=1 which is the probability that issuing the completion as a query will result in an answer being displayed to the user (live-result,one-box, etc.) If there is no answer type for which the probability is above zero, the completion will not be annotated.
+     */
+    includeAnswerData?: boolean | null;
+    includeLocalSignals?: boolean | null;
+    /**
+     * Annotate the suggestions with webref data.
+     */
+    includeWebrefAnnotations?: boolean | null;
+    /**
+     * The user's ip address. Should NOT be used to override domain.
+     */
+    ipAddress?: string | null;
+    /**
+     * True only when using the CS debug console.
+     */
+    isConsole?: boolean | null;
+    /**
+     * Set once by the server. Can be used for dog-fooding or tests.
+     */
+    isDebugIp?: boolean | null;
+    /**
+     * The following two fields, is_mobile_device and is_mobile_ux are used to denote whether the request comes from a mobile device or a device with mobile user experience. It's possible for a device type to be different than UX type since tablet devices could receive either mobile or desktop UX, as explained in go/ux-tier-logging.
+     */
+    isMobileDevice?: boolean | null;
+    isMobileUx?: boolean | null;
+    /**
+     * For users who are using Google Apps for work (dasher) but are not internal users, we would like to turn off instant apps.
+     */
+    isNonCorpDasherAccount?: boolean | null;
+    /**
+     * Indicates whether the request comes from china.
+     */
+    isRequestFromChina?: boolean | null;
+    /**
+     * Whether the user's account is a Unicorn child account.
+     */
+    isUnicornAccount?: boolean | null;
+    /**
+     * This field should be set to false for requests that are generated due to something other than user interaction. For example: 0-prefix requests could be sent in the background (e.g. periodically) for updating a client side cache. On Android GSA, see http://go/android-0q-cache. Backends, such as Starlight, can then use this signal, e.g. for matters like load-shedding.
+     */
+    isUserInitiatedRequest?: boolean | null;
+    /**
+     * Whether the query was from voice search (set by Youtube LR)
+     */
+    isVoiceQuery?: boolean | null;
+    /**
+     * Requested language (en, ru, iw, etc.).
+     */
+    lang?: string | null;
+    /**
+     * GPS coordinates of the mobile client in degrees, if known.
+     */
+    latitude?: number | null;
+    /**
+     * Oolong LocationContext (see http://goto/oolong).
+     */
+    locationContext?: Schema$LocationUnifiedLocationContext;
+    /**
+     * Region location ID.
+     */
+    locationId?: number | null;
+    /**
+     * If true, will log if there was any flaky backend in SuggestResponse.
+     */
+    logFlakyBackends?: boolean | null;
+    longitude?: number | null;
+    /**
+     * State that overrides whether or not the maps fallback flow should run.
+     */
+    mapsMissPrefix?: string | null;
+    /**
+     * Enable navsuggest.
+     */
+    nav?: boolean | null;
+    /**
+     * Enable news.
+     */
+    news?: boolean | null;
+    /**
+     * Upper limit of the number of navsuggest results to return.
+     */
+    numNavResults?: number | null;
+    /**
+     * Number of suggestions to return. * In non Generic-Suggest clients, when set, this overrides the client configuration. Subject to upper bound limit controlled by num_results_limit_max_override flag. * In Generic-Suggest clients, when set, this caps the number of suggestions in addition to the client configuration. Ignores num_results_limit_max_override flag.
+     */
+    numResultsLimit?: number | null;
+    /**
+     * Chrome Omnibox focus type. This param is passed in "oft" CGI param.
+     */
+    omniboxFocusType?: string | null;
+    /**
+     * Chrome Omnibox input type. This param is passed in "oit" CGI param.
+     */
+    omniboxInputType?: string | null;
+    /**
+     * Chrome Omnibox page classification. This param is passed in "pgcl" CGI param.
+     */
+    omniboxPageClassification?: string | null;
+    /**
+     * The OPA opaque token provided by OPA. NOTE: Deprecated. Please use consistency.FootprintsVersionInfo.version_info.
+     */
+    opaOpaqueToken?: string | null;
+    /**
+     * The opt-in context passed by GSA for App History suggestions. The opt-in context has a list of apps that should be excluded from the personalized App History suggestions. More details at: go/apphistory-suggestions.
+     */
+    optInContext?: Schema$ClientOptInContext;
+    /**
+     * Any additional SuggestRequest::RequestData params, like: RequestAndReferenceOverride (see experiments/suggest_experiment.proto): overrides the default client options; useful for enabling a feature on top of existing features defined for a given client. Person: extra params required by the people flow. MapsHeadRequestParams: extra params used by the maps head flow. OnFocusRequestParams: extra params used by on-focus request. SrDataForSuggestContextualizationRequestParams: extra params used by the SR for suggest context flow. MultimodalSuggestImageSignals: extra params used by Multimodal suggest flow.
+     */
+    params?: Schema$MessageSet;
+    /**
+     * The user debug info used in testing, offline analysis.
+     */
+    personalRerankDebugInfo?: Schema$SuggestPersonalRerankDebugInfo;
+    /**
+     * Deprecated.
+     */
+    prefId?: string | null;
+    /**
+     * For result-page requests.
+     */
+    previousQuery?: string | null;
+    /**
+     * Seconds since the previous_query was issued. Default value -1 means this field is not set in request.
+     */
+    previousQuerySeconds?: number | null;
+    /**
+     * Video id for the most recently watched Youtube Video on Android App. See go/pvideo-suggest for more details. Don't use this directly, instead use request_context-\>video_or_pvideo_id().
+     */
+    previousVideoId?: string | null;
+    /**
+     * Time in seconds since end of watch on the most recently watched Youtube Video on Android App.
+     */
+    previousVideoSeconds?: string | null;
+    /**
+     * Ask Google Suggest server for completions for this query.
+     */
+    query?: string | null;
+    queryBiasingContext?: Schema$QueryBiasingContext;
+    /**
+     * The HTTP request's referrer, it will be set for requests coming from web (desktop or mobile).
+     */
+    referrer?: string | null;
+    /**
+     * Thirdparty restricted search.
+     */
+    restrict?: Schema$SuggestRestrict[];
+    runtimeData?: Schema$SuggestSuggestRequestRequestDataRuntimeData;
+    /**
+     * End position of the user's selection (if any).
+     */
+    selectionEnd?: number | null;
+    /**
+     * Specifies whether we should personalize Suggest results. Based on whether this field is set or not, we have the following interpretations: (1) this field is not set - we request a Kansas check to be done in PSuggest server (fall back to the user personalization settings) Note: this is the default behavior (2) this field is set to true - this forces personalization regardless Kansas settings (3) this field is set to false - this disables personalization (PSuggest flows are not invoked) Note: Originally, we planned to have Kansas check in GWS, however it turns out that Kansas is not on Suggest path and we were forced to implement this check in PSuggest server. See http://b/5265965 for more details.
+     */
+    shouldPersonalize?: boolean | null;
+    /**
+     * Requests suggestions for query restricted to specified site. Should be a sitename (ex: 'youtube.com')
+     */
+    siteRestrict?: string | null;
+    /**
+     * The source language for dictionary/translate (en, ru, iw, etc.).
+     */
+    sourceLang?: string | null;
+    /**
+     * Enable spell correction.
+     */
+    spell?: boolean | null;
+    /**
+     * Deprecated: GWS Experiment Ids that are tagged for Spelling.
+     */
+    spellingExperimentIds?: number[] | null;
+    /**
+     * If non-negative, determines the start index (starting at 0) for results: a value of '0' is a no-opt; and e.g. a value of '20' would skip the first 20 suggestions, returning results 21 - ?? (e.g. ?? = 30 if num_results_limit = 10). Currently, this is only used by PSuggest, and will be ignored by all other suggest backends.
+     */
+    startIndex?: number | null;
+    /**
+     * Request options, filled in a runtime.
+     */
+    suggestRequestId?: number | null;
+    /**
+     * Suppress fragment generation and bolding.
+     */
+    suppressBolding?: boolean | null;
+    /**
+     * Disables pluspage suggestions. This overrides client config. Intended for temporary UI state change as it happens when toolbar is activated.
+     */
+    suppressPluspages?: boolean | null;
+    /**
+     * The target language for dictionary/translate (en, ru, iw, etc.).
+     */
+    targetLang?: string | null;
+    /**
+     * For querynation, this is the psychic completed part of the query. For example if the user has entered [cancun hote] in the searchbox and this completes to [cancun hotels], then text_ahead="ls".
+     */
+    textAhead?: string | null;
+    /**
+     * Original query before it was refined or corrected (set by Youtube LR)
+     */
+    uncorrectedOriginalQuery?: string | null;
+    /**
+     * The user agent string, to be used temporarily within CompleteServer to accurately compute data volume estimate for additional events added to Sessions for Proxima (namely, go/search-metrics-and-triggering-proxima).
+     */
+    userAgent?: string | null;
+    /**
+     * FeatureId associated with user location (from Oolong) as a string
+     */
+    userLocationFeatureId?: string | null;
+    /**
+     * Index of the result in location_context.results field that best describes the user location.
+     */
+    userLocationResult?: number | null;
+    userPrefs?: Schema$SuggestSuggestRequestRequestDataUserPreferences;
+    /**
+     * Override the user location. Used for debugging.
+     */
+    uuld?: string | null;
+    /**
+     * Video id for the currently watching Youtube Video. Don't use this directly, instead use request_context-\>video_or_pvideo_id().
+     */
+    videoId?: string | null;
+    /**
+     * Encrypted YouTube Visitor Data (see go/visitor-id-suggest). For privacy reasons, visitor_data can only be set in absence of gaia_id.
+     */
+    visitorData?: string | null;
+    /**
+     * External YouTube Channel ID for channel scoped suggestions. This ID is is passed through for creator features and is used to fetch channel personalized suggestions.
+     */
+    youtubeExternalChannelId?: string | null;
+    /**
+     * zwieback_id is set by GoogleCookie::uid() For SxS we override zwieback_id, please access through SuggestFlowUtils::GetZwiebackId(...).
+     */
+    zwiebackId?: string | null;
+  }
+  /**
+   * The thumbnail dimensions as per client requirements. Next ID: 5
+   */
+  export interface Schema$SuggestSuggestRequestRequestDataClientThumbnailDimensions {
+    devicePixelRatio?: number | null;
+    iconSizeInDp?: number | null;
+    targetThumbnailHeight?: number | null;
+    /**
+     * Currently only used for YouTube Visual Suggest (go/ytandroid-visual-suggest).
+     */
+    targetThumbnailWidth?: number | null;
+  }
+  /**
+   * Next ID: 2 TODO(b/237694378) Move this to ProcessedRequestContext.
+   */
+  export interface Schema$SuggestSuggestRequestRequestDataRuntimeData {
+    sanitizedRequestLanguage?: string | null;
+  }
+  export interface Schema$SuggestSuggestRequestRequestDataUserPreferences {
+    isTrendsDisabled?: boolean | null;
   }
   /**
    * Used to provide a search operator for text properties. This is optional. Search operators let users restrict the query to specific fields relevant to the type of item being searched.
